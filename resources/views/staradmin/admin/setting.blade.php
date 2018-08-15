@@ -194,7 +194,7 @@
                         <div class="form-group row">
                           <label for="wabao_fee" class="col-sm-3 col-form-label">@lang('dingsu.wabao_fee')</label>
                           <div class="col-sm-9">
-                            <input id="wabao_fee" name="wabao_fee" class="form-control" type="text"  value="{{$record->wabao_fee}}" maxlength="5">
+                            <input id="wabao_fee" name="wabao_fee" class="form-control" type="text"  value="{{ old('wabao_fee', $record->wabao_fee) }}" maxlength="5">
                           </div>
                         </div>
                       </div>
