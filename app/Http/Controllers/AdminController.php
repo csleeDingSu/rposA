@@ -69,6 +69,7 @@ class AdminController extends BaseController
 				 'mobile_default_image_url' => $request->mobile_default_image_url,
 				 'desktop_default_image_url'=> $request->desktop_default_image_url,
 				 'auto_product_redeem'      => $request->auto_product_redeem,
+				 'wabao_fee'     			=> $request->wabao_fee,
                 ];
 		
 		
