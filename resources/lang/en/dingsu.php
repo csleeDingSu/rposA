@@ -130,8 +130,10 @@ return [
 	'vouchers_publish_success' => "vouchers are successfully published",
 	'voucher_update_success_message' => "voucher detail successfully update",
 	'voucher_update_error_message' => "sorry we can't update this voucher detail",
-	
-	
+
+	'login_credentials_failed' => 'These credentials do not match our records.',
+	'login_throttle' => 'Too many login attempts. Please try again in :',
+		
 	'delete_error' => 'Error deleting!',
 	'try_again' => 'Please try again',
 	'delete_success' => 'It was succesfully deleted!',
@@ -201,6 +203,8 @@ return [
 	//Registration 
 	
 	'unknow_ref_key' => "Sorry we couldn't find your referral code",
+
+	
 
 	
 	

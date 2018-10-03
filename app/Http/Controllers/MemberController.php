@@ -33,11 +33,18 @@ class MemberController extends BaseController
 	public function index() {		
 		
 		print_r(Auth::Guard('member')->check());
-		
+
 		if (Auth::Guard('member')->check())
 		{
 			//redirect to member
-			return redirect()->route('memberdashboard'); //change to homepage
+			$member = Auth::Guard('member')->user();
+			$member['balance'] = 123.12;
+			$member['chance'] = 5;
+			$member['pending'] = 6;
+			$member['success'] = 20;
+			$member['history'] = 100;
+			return view('client/member', compact('member'));
+			//return redirect()->route('memberdashboard'); //change to homepage
 		}
 		else if (Auth::Guard('admin')->check())
 		{

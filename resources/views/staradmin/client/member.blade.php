@@ -12,17 +12,16 @@
 	<div class="container">
     <div class="row">
 		<div class="card">
-			<div class="text left">小小李，你已兑换的奖品价值约：</div>
-			<div class="numbers left">4837.00<span class="text">元</span></div>
+			<div class="text left">{{ $member->username }}，你已兑换的奖品价值约：</div>
+			<div class="numbers left">{{ number_format($member->balance, 2) }}<span class="text">元</span></div>
 		</div>
 	</div>
-	
 	<div class="row">
         <div class="square">
 			<div class="content">
 				<div class="table">
 					<div class="table-cell">
-						<div class="numbers">5</div>
+						<div class="numbers">{{ $member->chance }}</div>
 						<div class="label">剩余次数</div>
 					</div>
 				</div>
@@ -32,7 +31,7 @@
 			<div class="content">
 				<div class="table">
 					<div class="table-cell">
-						<div class="numbers">6</div>
+						<div class="numbers">{{ $member->pending }}</div>
 						<div class="label">待确认</div>
 					</div>
 				</div>
@@ -42,7 +41,7 @@
 			<div class="content">
 				<div class="table">
 					<div class="table-cell">               
-						<div class="numbers">20</div>
+						<div class="numbers">{{ $member->success }}</div>
 						<div class="label">兑换成功</div>
 					</div>
 				</div>
@@ -55,7 +54,7 @@
 			<div class="content">
 				<div class="table">
 					<div class="table-cell">
-						<div class="numbers">99+</div>
+						<div class="numbers">{{ $member->history > 99 ? '99+' : $member->history }}</div>
 						<div class="label">以往记录</div>
 					</div>
 				</div>

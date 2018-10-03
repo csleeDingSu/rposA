@@ -37,6 +37,7 @@
 		<!-- End Static navbar -->
 			
 		<!-- Collect the nav links, forms, and other content for toggling -->
+		@if(isset($category))
 		<div class="category-bar navbar">
 			
 			@foreach($category as $cat)
@@ -47,6 +48,8 @@
 			
 			@endforeach
 		</div>
+		@endif
+
 		</div>
 		
         <div class="wrapper banner-bg">
@@ -113,7 +116,7 @@
 			
 			<div class="listing">
 				
-				@if (count($vouchers) > 0)
+			@if(isset($vouchers))
 			<div class="infinite-scroll">
 			@foreach($vouchers as $item)
 				

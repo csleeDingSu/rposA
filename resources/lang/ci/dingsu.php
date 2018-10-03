@@ -128,6 +128,8 @@ return [
 	'voucher_update_success_message' => "voucher detail successfully update",
 	'voucher_update_error_message' => "sorry we can't update this voucher detail",
 	
+	'login_credentials_failed' => '这些凭据与我们的记录不符。',
+	'login_throttle' => '登录尝试次数过多。 请稍后再试：',
 	
 	'delete_error' => 'Error deleting!',
 	'try_again' => 'Please try again',

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => trans('dingsu.login_credentials_failed'),
+    'throttle' => trans('dingsu.login_throttle') . 'seconds seconds.',
 
 ];

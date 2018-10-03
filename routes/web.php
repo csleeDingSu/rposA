@@ -16,9 +16,11 @@ Route::get('/', function()
     return view('client/home');
 });
 */
-Route::get('/home', function () {
-    return view('client/home');
-});
+
+// Route::get('/home', function () {
+//     return view('client/home');
+// });
+$this->get('/home', 'Api\VoucherController@index')->name('api.vlist'); //cs20181003 - temp fix redirect to /home
 
 Route::get('/details', function () {
     return view('client/details');
@@ -40,9 +42,10 @@ Route::get('/history', function () {
     return view('client/history');
 });
 
-Route::get('/profile', function () {
-    return view('client/member');
-});
+// Route::get('/profile', function () {
+//     return view('client/member');
+// });
+Route::get('/profile', 'MemberController@index');
 
 Route::get('/redeem', function () {
     return view('client/redeem');
@@ -87,10 +90,10 @@ $this->post('/doregister', 'Auth\MemberRegisterController@doregister')->name('su
     Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
  });
 
-Route::group(['prefix' => 'member','namespace' => 'Auth', 'middleware' => ['guest']],function(){
-//Route::prefix('member')->group(function() {
-    Route::get('login', 'MemberLoginController@showLoginForm')->name('memberlogin');
-    Route::post('login', 'MemberLoginController@login')->name('memberlogin.submit');
+  Route::group(['prefix' => 'member','namespace' => 'Auth', 'middleware' => ['guest']],function(){
+// //Route::prefix('member')->group(function() {
+     Route::get('login', 'MemberLoginController@showLoginForm')->name('login');
+     Route::post('login', 'MemberLoginController@login')->name('memberlogin.submit');
     	
 	// Password Reset Routes...
     $this->get('password-reset', 'ForgotPasswordController@MembershowLinkRequestForm')->name('member.reset.password');
@@ -98,16 +101,14 @@ Route::group(['prefix' => 'member','namespace' => 'Auth', 'middleware' => ['gues
     $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
     $this->get('reset/{token}', 'ResetPasswordController@MembershowResetForm')->name('member.reset.token');
     $this->post('resetpassword', 'ResetPasswordController@resetpassword')->name('member.update.password');
- });
-$this->get('login', 'Auth\MemberLoginController@showLoginForm')->name('login');
+  });
+
+//$this->get('login', 'Auth\MemberLoginController@showLoginForm')->name('login');
 //Auth Routes END
 
 //Member routes
-Route::group(['middleware' => 'auth:member'], function()
-{
-   
-		
-	
+Route::group(['prefix' => 'member','middleware' => 'auth:member'],function(){
+	Route::get('/', 'MemberController@index');
 });
 //Member routes end
 
