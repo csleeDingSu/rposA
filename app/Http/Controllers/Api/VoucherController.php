@@ -7,20 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
+use App\Unreleasedvouchers;
+use App\Category;
+
 class VoucherController extends Controller
 {
-   
+    
     public function index()
     {
-		$vouchers = Voucher::latest()->paginate(10);
-        return view('client.home', compact('vouchers'));		
+        
+		$category = Category::all();
 		
-    }    
-    public function show()
-    {
-        $vouchers = Voucher::latest()->paginate(10);
-        return view('client.home', compact('vouchers'));		
+		$vouchers = Unreleasedvouchers::latest()->paginate(10);
+        return view('client.home', compact('vouchers','category'));
+		
 		
     }
-	
+
+    public function show($cid = false)
+    {
+        if ($cid)
+		{
+			$vouchers = Unreleasedvouchers::latest()->where('category' ,'=' , $cid)->paginate(10);
+		}
+		else{
+			$vouchers = Unreleasedvouchers::latest()->paginate(10);
+		}
+		
+		$category = Category::all();
+        return view('client.home', compact('vouchers','category'));		
+		
+    }
 }
