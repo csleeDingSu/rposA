@@ -1,0 +1,91 @@
+/*
+.is-breakable {
+  word-break: break-word !important;
+	word-break: break-all;
+}
+#is-breakable {
+  word-break: break-word !important;
+	word-break: break-all;
+}
+
+.table > thead:first-child > tr:first-child > th:first-child {
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+}
+
+.table > tbody > tr > td:first-child {
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+}
+
+.table > thead:first-child > tr:first-child > th:nth-child(2) {
+    /*padding-left: 40px;* /
+}
+
+.table > tbody > tr > td:nth-child(2) {
+    /* padding-left: 50px !important;* /
+}
+
+
+*/
+
+
+#gototopbtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    /*background-color: red; /* Set a background color */
+    /*color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+   /* padding: 15px; /* Some padding */
+    /*border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+#gototopbtn:hover {
+  /*  background-color: #555; /* Add a dark-grey background on hover */
+}
+
+.price-off {
+    z-index: 1;
+    display: inline-block;
+    text-transform: capitalize;
+    margin-bottom: .3125em;
+    overflow: hidden;
+    font-size: .8125em;
+    background: #F4511E;
+    color: #fff;
+    position: absolute;
+    top: 0.4375em;
+    left: -0.25em;
+   /* transform: rotate(-51deg);*/
+    padding: .5625em 3.125em;
+	font-weight: bold;
+	}
+
+.col-md-3, .lightGallery .image-tile {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+.card .card-body {
+    padding: 0px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-left: 5px;
+}
+.card-title {
+    
+    margin-bottom: 8px;
+}
+
+
+.popular {
+    z-index: 1;
+    border: 3px solid #F57C00;
+}

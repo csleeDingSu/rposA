@@ -1,0 +1,158 @@
+.full-height {
+	padding-top: 60px;
+	font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+    background: url("/client/images/background_game.jpg") top center no-repeat;
+}
+
+.text {
+	font-size:24px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.information-table {
+	margin: 0 auto;
+	width: 500px;
+	text-align: center;
+	color: #fff;
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius:10px;
+	font-size: 14px;
+}
+
+.header {
+	padding-top: 10px;
+}
+
+.number {
+	font-size: 30px;
+	padding-bottom: 10px;
+}
+
+.border-right {
+	border-right: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-rectangle {
+	margin: 0 auto;
+	background: url('/client/images/game.png') no-repeat -280px -240px;
+	width: 510px;
+	height: 200px;
+	transform: scale(0.45); 
+	-webkit-transform: scale(0.45);
+	-webkit-transform-origin:left top;
+    font-size: 60px;
+    color: #000;
+    padding-top: 30px;
+
+  /* other styles */
+}
+
+.btn-rectangle.clicked, .btn-rectangle:active {
+	margin: 0 auto;
+	background: url('/client/images/game.png') no-repeat -835px -240px;
+	width: 510px;
+	height: 200px;
+	transform: scale(0.45); 
+	-webkit-transform: scale(0.45);
+	-webkit-transform-origin:left top;
+    font-size: 60px;
+    color: #000;
+    padding-top: 30px;
+
+  /* other styles */
+}
+
+.button-wrapper {
+	margin: 0 auto;
+	width: 500px;
+	height: 100px;
+	position: relative;
+}
+
+.button-card {
+	width: 250px !important;
+	height: 150px;
+	float: left;
+}
+
+.progress-bar-container {
+    width: 550px;
+	height: 70px;
+    margin: 0 auto;
+}
+
+.progress-bar {
+  background: url('/client/images/game.png') no-repeat -274px -60px;
+  width: 1025px;
+  height: 84px;
+  transform: scale(0.5); 
+  -webkit-transform: scale(0.5);
+  -webkit-transform-origin:left top;
+  padding-top: 26px;
+  /* other styles */
+}
+
+.progress-bar-container .circle,
+.progress-bar-container .bar,
+.progress-bar-container .bar-short,
+.progress-bar-container .bar-long {
+    display: inline-block;
+    width: 30px; height: 30px;
+    border-radius: 30px;
+    margin-top:2px;
+}
+
+.progress-bar-container .circle{
+	background: #fff971;
+}
+
+.progress-bar-container .circle .label {
+    display: block;
+    width: 30px;
+    height: 30px;
+    color: #fff971;
+    font-size: 30px;
+    margin-top: -10px;
+    margin-left: -12px;
+}
+
+.progress-bar-container .circle .title {
+    display: block;
+    width: 30px;
+    height: 30px;
+    color: #f2deff;
+    font-size: 30px;
+    margin-top: 50px;
+    margin-left: -8px;
+}
+
+
+.progress-bar-container .bar {
+    position: relative;
+    width: 152px;
+    height: 6px;
+}
+
+.progress-bar-container .bar-short {
+	position: relative;
+    width: 148px;
+    height: 6px;
+}
+
+.progress-bar-container .bar-long {
+	position: relative;
+    width: 154px;
+    height: 6px;
+}
+
+.progress-bar-container .circle.done {
+    background: #000;
+}
+
+.progress-bar-container .circle.done .label {
+    color: #8b8ae7;
+}

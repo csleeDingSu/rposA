@@ -1,0 +1,107 @@
+.img-product {
+	text-align:center;
+	margin-bottom: 20px;
+}
+
+.full-height {
+	width: 547px;
+	text-align:center;
+	padding-bottom: 80px;
+	margin: 0 auto;
+}
+
+.product_details {
+    margin: 0 auto;
+	width: 547px;
+	height: 550px;
+}
+
+.card {
+	width: 547px !important;
+	margin: 0 auto;
+	padding: 10px 0;
+}
+
+.number {
+	font-size: 50px;
+}
+
+.price {
+	text-align: left;
+	color: #757575;
+	font-size: 30px;
+	border-left: 1px dotted #c0c0c0;
+}
+
+.normal-title {
+	font-size: 16px;
+}
+
+.normal-number {
+	padding-top: 0px;
+	margin-top: -5px;
+}
+
+.promo-price {
+	text-align: left;
+	color: #fd8401;
+	font-size: 20px;	
+}
+
+.description {
+	padding: 10px;
+	color: #7d7d7d;
+	font-size: 20px;
+	text-align: left;
+	font-weight: 500;
+}
+
+.instruction {
+	padding: 10px;
+	color: #b7b7b7;
+	font-size: 20px;
+	text-align: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.voucher-header {
+    font: 33px sans-serif;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+	color: #c6c6c6;
+}
+
+.voucher-header:before {
+    border-top: 2px dashed #c6c6c6;
+    content:"";
+    margin: 0 auto; /* this centers the line to the full width specified */
+    position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+    top: 25px; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+}
+
+.voucher-header span { 
+    /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+    background: #fff; 
+    padding: 0 15px; 
+}
+
+.voucher {
+	margin-top: -25px;
+	border-left: 2px dashed #c6c6c6;
+	border-right: 2px dashed #c6c6c6;
+	border-bottom: 2px dashed #c6c6c6;
+	padding-top: 30px;
+	padding-bottom: 10px;
+	font-size: 16px;
+}
+
+.code {
+	color: #e15a00;
+	font-size: 40px;
+	padding-bottom: 10px;
+}

@@ -1,0 +1,109 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.container {
+	width: 500px;
+}
+	
+@media only screen and (max-width: 500px) {
+    .container {
+		width: 100%;
+	}
+}
+
+.square {
+    float:left;
+    position: relative;
+    width: 30%;
+    padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
+    margin:1.66%;
+    background-color:#7f9fc8;
+    overflow:hidden;
+	border:1px solid white;
+}
+
+.content {
+    position:absolute;
+    height:100%; /* = 100% - 2*5% padding */
+    width:100%; /* = 100% - 2*5% padding */
+    
+}
+.table{
+    display:table;
+    width:100%;
+    height:100%;
+}
+.table-cell{
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.numbers{
+    font-size:50px;
+}
+
+.label{
+    font-weight:300;
+}
+
+.full-height {
+	padding-top: 60px;
+	padding-left: 10%;
+	padding-right: 10%;
+	font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+    background:#698fc0;
+}
+
+.card {
+	margin-top: 20px;
+	margin: 1.66%;
+}
+
+.left {
+	text-align: left;
+}
+
+.text {
+	font-size:14px;
+}
+
+.btn-rectangle, .btn-rectangle:hover {
+  width: 100% !important;
+  height: 50px !important;
+  background-color: #3cd5c1;
+  color: white;
+  font-size:24px;
+  padding-top: 5px;
+}
+
+.member {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	background: url('/client/images/icon.png') no-repeat -100px 0px;
+	transform: scale(0.5); /* Equal to scaleX(0.7) scaleY(0.7) */
+	-webkit-transform: scale(0.5);
+	width:100px;
+	height: 110px;
+	margin-top: -20px;
+}
+
+.password {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	background: url('/client/images/icon.png') no-repeat -100px -110px;
+	transform: scale(0.5); /* Equal to scaleX(0.7) scaleY(0.7) */
+	-webkit-transform: scale(0.5);
+	width:100px;
+	height: 110px;
+	margin-top: -20px;
+}
+
+.adjust-label {
+	position: absolute;
+	margin-top: 75px;
+	margin-left: -90px;
+}

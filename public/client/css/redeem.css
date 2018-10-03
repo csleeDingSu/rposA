@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+body {
+	background: #698fc0;
+}
+
+.card, .btn-rectangle, .btn-rectangle:hover {
+	width: 400px !important;
+}
+
+.card {
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+.btn-rectangle, .btn-rectangle:hover {
+  height: 50px !important;
+  background-color: #3cd5c1;
+  color: white;
+  font-size:24px;
+  padding-top: 5px;
+}
+
+@media only screen and (max-width: 400px) {
+    .card, .btn-rectangle, .btn-rectangle:hover {
+		width: 300px !important;
+	}
+}
+
+.prize {
+    margin: 0 auto;
+	width: 250px;
+	height: 250px;
+}
+
+.numbers{
+    font-size:30px;
+	font-weight: 500;
+}
+
+.full-height {
+	padding-top: 60px;
+	font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+    background:#698fc0;
+}
+
+ol > li {
+	text-align: left;
+}
+
+.text {
+	font-size:16px;
+}

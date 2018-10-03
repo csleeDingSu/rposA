@@ -1,0 +1,109 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+body {
+	background: #698fc0;
+}
+
+.card {
+	width: 320px !important;
+	margin: 0 auto;
+	padding: 10px 0;	
+}
+
+.card-margin {
+	margin: 10px 0;
+}
+
+.btn-rectangle, .btn-rectangle:hover {
+	width: 320px !important;
+	height: 50px !important;
+	background-color: #3cd5c1;
+	color: white;
+	font-size:24px;
+	padding-top: 5px;
+	margin-bottom: 20px;
+}
+
+.img-title {
+	width: 320px;
+	margin: 0 auto;
+	background-color: #485d7c;
+}
+
+.img-validate {
+    margin: 0 auto;
+	width: 320px;
+	height: 320px;
+}
+
+.title{
+    font-size:20px;
+	font-weight: 500;
+	padding-bottom: 5px;
+}
+
+.full-height {
+	padding-top: 60px;
+	font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+    background:#698fc0;
+}
+
+.text {
+	font-size:16px;
+}
+
+.left {
+	text-align: left;
+}
+
+input[type=text]{
+	width: 100%;
+	margin-top: 20px;
+	outline: none;
+	padding: 8px;
+	box-sizing: border-box;
+	background-color: #485d7c;
+	border: none;
+	font-size: 16px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #78879c;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #78879c;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #78879c;
+}
+
+.inputWithIcon input[type=text]{
+	padding-left: 40px;
+}
+
+.inputWithIcon {
+	position: relative;
+}
+
+.inputWithIcon .name {
+	position: absolute;
+	left: -25px;
+	top: -3px;
+	padding: 9px 8px;
+	color: #fff;
+	transition:.3s;
+}
+
+div.name {
+	background: url('/images/icon.png') no-repeat -780px -750px;
+	transform: scale(0.3); /* Equal to scaleX(0.7) scaleY(0.7) */
+	-webkit-transform: scale(0.3);
+	width: 90px;
+	height: 90px;
+}

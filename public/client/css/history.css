@@ -1,0 +1,22 @@
+.row {
+  display: grid;
+  grid-template-columns: 80px 80px 80px 80px 80px;
+  grid-gap: 10px;
+  height: 77px;
+  margin: 0 auto;
+}
+
+.box {
+  background: url('/client/images/game.png') no-repeat -65px -64px;
+  width: 93px;
+  height: 84px;
+  transform: scale(0.5); 
+  -webkit-transform: scale(0.5);
+  -webkit-transform-origin:left top;
+  font-size: 60px;
+  color: #000;
+  padding: 20px;
+  padding-left: 52px;
+  padding-right: 0px;
+  /* other styles */
+}

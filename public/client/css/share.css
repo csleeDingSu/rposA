@@ -1,0 +1,185 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+body {
+	background: #384065;
+}
+
+.card {
+	width: 400px !important;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+
+.btn-rectangle, .btn-rectangle:hover {
+	margin: 0 auto;
+	background: url('/client/images/icon.png') no-repeat -1070px -70px;
+	width: 940px;
+	height: 140px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+}
+
+.button-card {
+	width: 500px !important;
+	padding-top: 30px;
+	margin-left: 30px;
+}
+
+.prize-wrapper {
+	margin: 0 auto;
+	width: 500px;
+	height: 200px;
+	position: relative;
+}
+
+.prize-container {
+	margin: 0 auto;
+	background: url('/client/images/icon.png') no-repeat -735px -275px;
+	width: 275px;
+	height: 185px;
+}
+
+.text-wrapper {
+	margin: 0 auto;
+	width: 500px;
+	position: relative;
+}
+
+.icon-check {
+	background: url('/client/images/icon.png') no-repeat -915px -753px;
+	width: 65px;
+	height: 70px;
+	transform: scale(0.4); 
+	-webkit-transform: scale(0.4);
+	-webkit-transform-origin:left top;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+	float:left;
+	margin-left:90px;
+	margin-top:5px;
+}
+
+.text-one {
+	background: url('/client/images/icon.png') no-repeat -904px -500px;
+	width: 86px;
+	height: 80px;
+	transform: scale(0.4); 
+	-webkit-transform: scale(0.4);
+	-webkit-transform-origin:left top;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+	float:left;
+}
+
+.text-three {
+	background: url('/client/images/icon.png') no-repeat -904px -599px;
+	width: 86px;
+	height: 80px;
+	transform: scale(0.4); 
+	-webkit-transform: scale(0.4);
+	-webkit-transform-origin:left top;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+	float:left;
+}
+
+.button-wrapper {
+	margin: 0 auto;
+	width: 500px;
+	height: 100px;
+	position: relative;
+}
+
+.numbers{
+    font-size:30px;
+	font-weight: 500;
+	padding-bottom: 10px;
+	line-height: 30px;
+}
+
+.full-height {
+	padding-top: 60px;
+	font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+    background:#384065;
+}
+
+.title {
+	font-size:25px;
+	float:left;
+	margin-left: -50px;
+}
+
+.margin {
+	margin-left: 75px;
+	float: left;
+}
+
+.text-check {
+	font-size:25px;
+	float:left;
+	margin-left: -30px;
+}
+
+.clear {
+	clear: both;
+}
+
+.information-table {
+	margin: 0 auto;
+	width: 500px;
+	text-align: center;
+	color: #7c7c7c;
+	background-color: #ffffff;
+	border-radius:10px;
+	font-size: 14px;
+}
+
+.information-table .row {
+	margin: 0;
+	border-radius:10px 10px 0 0;
+}
+
+.headers{
+	font-size: 16px;
+	background-color: #f0f0f0;
+	padding: 5px;
+	font-weight: 600;
+}
+
+.info {
+	text-align: left;
+	color: #2a1d0c;
+}
+
+.details {
+	text-align: right;
+	color: #aeaeae;
+}
+
+.body {
+	padding: 10px;
+}
+
+.balance {
+	color: #385da1;
+	border-right: 1px solid #dadada;
+}
+
+.large-font {
+	font-size: 40px;
+}
+
+.normal-font {
+	font-size: 20px;
+}
+
+.count {
+	margin-top: -5px;
+	padding-bottom: 10px;
+}
