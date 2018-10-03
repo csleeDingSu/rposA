@@ -35,7 +35,8 @@
 						<li class="dropdown" uib-dropdown>				
 						  <a href="#" uib-dropdown-toggle role="button"><div class="menu-wrapper"><div class="menu"></div></div></a>
 							<ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
-								<li role="menuitem"><a href="#">李小梅你好</a></li>
+								<li role="menuitem"><a href="#">{{ isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : '' }} 你好</a></li>
+								@if (isset(Auth::Guard('member')->user()->username))
 								<li class="divider"></li>
 								<li role="menuitem"><a href="#">闯关历史</a></li>
 								<li class="divider"></li>
@@ -43,9 +44,10 @@
 								<li class="divider"></li>
 								<li role="menuitem"><a href="#">邀请列表</a></li>
 								<li class="divider"></li>
-								<li role="menuitem"><a href="#">个人资料</a></li>
+								<li role="menuitem"><a href="{{ url('profile') }}">个人资料</a></li>
 								<li class="divider"></li>
-								<li role="menuitem"><a href="#">退出</a></li>
+								<li role="menuitem"><a href="{{ url('logout') }}">退出</a></li>
+								@endif
 							</ul>				
 						</li>
 					  </ul>

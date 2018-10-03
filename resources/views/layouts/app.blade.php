@@ -45,7 +45,7 @@
 								<li class="divider"></li>
 								<li role="menuitem"><a href="#">个人资料</a></li>
 								<li class="divider"></li>
-								<li role="menuitem"><a href="#">退出</a></li>
+								<li role="menuitem"><a href="{{ url('logout') }}">退出</a></li>
 							</ul>				
 						</li>
 					  </ul>

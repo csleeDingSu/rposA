@@ -16,7 +16,11 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="col-xs-3">
 					<div class="div-icon left">
-					  <a href="/register"><i class="fas fa-user-plus"></i>注册</a>
+						@if (isset(Auth::Guard('member')->user()->username))
+						<a href="#"><i class="fas fa-user"></i> {{ Auth::Guard('member')->user()->username }}</a>
+						@else
+					  	<a href="/register"><i class="fas fa-user-plus"></i>注册</a>
+					  	@endif
 					</div>
 				</div>
 				
