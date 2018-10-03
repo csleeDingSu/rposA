@@ -26,8 +26,6 @@
 	      height: 458px;
 	    }
 	</style>
-
-	<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 @endsection
     	
 @section('content')	
