@@ -25,10 +25,6 @@ Route::get('/details', function () {
 });
 
 Route::get('/arcade', function () {
-    return view('client/arcade');
-});
-
-Route::get('/games', function () {
     return view('client/game');
 });
 

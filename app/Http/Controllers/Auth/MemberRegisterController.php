@@ -144,6 +144,8 @@ class MemberRegisterController extends Controller
 					
 			Mail::to($data['email'])->queue(new SendMail('welcomemail', $input)); //correct one
 					
+			//Generate Login Session
+			Auth::guard('member')->attempt(['username' => $data['username'], 'password' => $data['password']]);
 			
 			
 			return response()->json(['success' => true]);			

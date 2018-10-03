@@ -80,6 +80,7 @@
 }
 
 .progress-bar-container {
+	padding-top: 30px;
     width: 550px;
 	height: 70px;
     margin: 0 auto;
@@ -156,3 +157,64 @@
 .progress-bar-container .circle.done .label {
     color: #8b8ae7;
 }
+
+.speech-bubble { 
+	display: inline-block;
+	position: absolute; 
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius: .4em;
+	padding: 20px;
+	z-index: 10;
+	margin-top: -100px;
+	font-size:30px;
+} 
+.speech-bubble:after { 
+	content: ''; 
+	position: absolute; 
+	bottom: 0;  
+	width: 0; 
+	height: 0; 
+	border: 10px solid transparent;
+	border-top-color: rgba(255, 255, 255, 0.2); 
+	border-bottom: 0; 
+	margin-left: -10px; 
+	margin-bottom: -10px; 
+	left: 50%;
+}
+
+.hide {
+	visibility: none;
+}
+
+.level-one, .level-two {
+	left: 0px;
+}
+
+.level-three{
+	left: 100px;
+}
+
+.level-four{
+	left: 290px;
+}
+
+.level-five, .level-six {
+	right: 0px;
+}
+
+.level-one:after {
+	left: 10%;
+}
+
+.level-two:after {
+	left: 37%;
+}
+
+.level-five:after {
+	left: 64%;
+}
+
+.level-six:after {
+	left: 94%;
+}
+

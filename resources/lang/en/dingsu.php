@@ -78,7 +78,7 @@ return [
 	'product_link' => 'Product Link',
 	'check_all' => 'Check all',
 	'select_all' => 'Select All',
-	'' => '',
+	
 	'' => '',
 	'' => '',
 	'' => '',
@@ -97,7 +97,7 @@ return [
 	'delete_confirmation' => "Are you sure?",
 	'message_success' => 'Successfully completed',
 	'select_all_dropdown' => 'Please select dropdown value',
-	'duplicate_ajax_msg' => 'Hello, You have ##count## duplicated Data',
+	'duplicate_ajax_msg' => 'Hello, You have <b>##count##</b> duplicated Data',
 	'vouchers_deleted_success' => 'It was succesfully deleted!',
 	'no_record_found' => 'No record found',
 	
@@ -106,17 +106,17 @@ return [
 	'move_confirmation' => "Are you sure?",
 	'move_conf_text' => "This action will move the data to live",
 	'publish_error' => "An error occurred.",
-	'no_items_to_show' => "Unfortunately, no items were returned.",
+	'no_items_to_show' => "Unfortunately, no items were returned.",	
+	'ph_enter_username_email' => "Enter your Email or Username",	
+	'passwordreset_instructions' => 'Enter your <b>Email</b> or <b>Username</b>  and instructions will be sent to you!',	
+	'reset_password_instruction' => "Please type your new password.",	
+	'no_token_found' => "This token has expired and or not found",	
+	'reset_password_success_message' => "Your password has been successfully changed",	
 	
-	'ph_enter_username_email' => "Enter your Email or Username",
 	
-	'passwordreset_instructions' => 'Enter your <b>Email</b> or <b>Username</b>  and instructions will be sent to you!',
+	'member_registration_success_message' => "Your account has been created successfully",
 	
-	'reset_password_instruction' => "Please type your new password.",
-	
-	'no_token_found' => "This token has expired and or not found",
-	
-	'reset_password_success_message' => "Your password has been successfully changed",
+	'unknow_referral_code' => "<b>Unknown</b> code.Please check your referral code",
 	
 	
 	
@@ -161,7 +161,7 @@ return [
 	'filter' => 'filter',
 	'remove' => 'Remove',
 	'duplicate' => 'Duplicate',
-	
+	'register' => 'Register',
 	
 	
 	//Voucher
@@ -190,7 +190,18 @@ return [
 
 
 	
+	//Password reset
+	'email_reset_password' => 'Reset Password',
+	'email_body_title' => 'Hello, ',
+	'email_body_message' => 'You recently requested to reset your password. Just click the button below to set a new password.',
+	'email_ignore_msg' => "If you didn't request a password reset, you can ignore this email.",
+	'email_regards' => 'Thanks ',
+	'email_footer' => 'Dingsu Malaysia ',
 	
+	//Registration 
+	
+	'unknow_ref_key' => "Sorry we couldn't find your referral code",
+
 	
 	
 	

@@ -20,6 +20,11 @@
 			margin: 0 auto;
 			display:block;
 		}
+
+		.swiper-container {
+	      width: 800px;
+	      height: 458px;
+	    }
 	</style>
 
 	<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
@@ -56,36 +61,42 @@
 		</div>
 
 		<!-- Profile Page Finish -->
-
+	    	
 		<div class="progress-bar-container">
         	<div class="progress-bar">
+        		<span class="speech-bubble level-one">可赢20积分，纯赚10积分</span>
         		<div class="circle">
-	                <span class="label">x</span>
+        			<span class="label">x</span>
 	                <div class="title">10</div>
 	            </div>
 	            <span class="bar-short"></span>
+	            <span class="speech-bubble level-two hide">可赢60积分，扣除前1次亏损，纯赚20积分</span>
 	            <div class="circle">
-	                <span class="label">x</span>
+	            	<span class="label">x</span>
 	                <div class="title">30</div>
 	            </div>
 	            <span class="bar"></span>
+	            <span class="speech-bubble level-three hide">可赢140积分，扣除前2次亏损，纯赚30积分</span>
 	            <div class="circle ">
-	                <span class="label">x</span>
+	            	<span class="label">x</span>
 	                <div class="title">70</div>
 	            </div>
 	            <span class="bar"></span>
+	            <span class="speech-bubble level-four hide">可赢300积分，扣除前3次亏损，纯赚40积分</span>
 	            <div class="circle">
-	                <span class="label">x</span>
+	            	<span class="label">x</span>
 	                <div class="title">150</div>
 	            </div>
 	            <span class="bar"></span>
+	            <span class="speech-bubble level-five hide">可赢620积分，扣除前4次亏损，纯赚50积分</span>
 	            <div class="circle">
-	                <span class="label">x</span>
+	            	<span class="label">x</span>
 	                <div class="title">310</div>
 	            </div>
 	            <span class="bar"></span>
+	            <span class="speech-bubble level-six hide">可赢1260积分，扣除前5次亏损，纯赚60积分</span>
 	            <div class="circle">
-	                <span class="label">x</span>
+	            	<span class="label">x</span>
 	                <div class="title">630</div>
 	            </div>
         	</div>
@@ -132,6 +143,7 @@
 	<script src="{{ asset('/client/js/swiper.min.js') }}"></script>
 	<script type="text/javascript">
 	var swiper = new Swiper('.swiper-container', {
+	  initialSlide: 1,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',

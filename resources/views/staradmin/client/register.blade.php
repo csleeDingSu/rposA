@@ -106,6 +106,10 @@
 					{						
 						var sdf = '@lang("dingsu.member_registration_success_message")';
 						$('#validation-errors').append('<div class="alert alert-success">'+sdf+'</div');
+						
+						url = "/profile";
+      					$(location).attr("href", url);
+						
 					}
 				else 
 					{
