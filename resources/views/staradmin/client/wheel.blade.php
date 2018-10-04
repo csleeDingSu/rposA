@@ -1,17 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-	<style type="text/css">
-		body{
-			background:none transparent;
-			padding:0px;
-			margin:0px;
-		}
-	</style>
-	<script src="{{ asset('/client/js/phaser.min.js') }}"></script>
-	<script src="{{ asset('/client/js/wheel.js') }}"></script>
-	</head>
-	<body>
-		<input id="degree" type="hidden" value="300">
-	</body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        #txtCounter {
+            font-size: 40px;
+            color: white;
+            padding-left: 18px;
+            padding-top: 16px;
+        }
+    </style>
+    <script src="{{ asset('/client/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('/client/js/jquery.rotate.min.js') }}"></script>
+    <script src="{{ asset('/client/js/jquery.wheelOfFortune.js') }}"></script>
+    <script src="{{ asset('/client/js/dome.js') }}"></script>
+</head>
+
+<body>
+	<input id="result" type="hidden" value="6">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="wheel_container"></div>
+        </div>
+    </div>
+</body>
 </html>
