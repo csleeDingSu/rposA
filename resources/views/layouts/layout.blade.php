@@ -26,7 +26,7 @@
 		<div class="icon-bar navbar navbar-default navbar-fixed-bottom">
 		  <a href="/"><i class="fa fa-home"></i><div>首页</div></a> 
 		  <a href="#"><i class="fas fa-yen-sign"></i><div>试用</div></a> 
-		  <a href="#"><div class="balance_circle">25</div><div>剩余次数</div></a> 
+		  <a href="#"><div class="balance_circle">{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</div><div>剩余次数</div></a> 
 		  <a href="/arcade"><i class="fas fa-tasks"></i><div>闯关</div></a>
 		  <a href="/member"><i class="far fa-user"></i><div>个人中心</div></a> 
 		</div>

@@ -5,21 +5,19 @@
  ***/
 
 namespace App\Http\Controllers;
-use DB;
 use App;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-use Illuminate\Database\Eloquent\Model;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
-
+use App\MainLedger;
 use App\Member;
 use Auth;
+use DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use session;
 class MemberController extends BaseController
 {
@@ -38,11 +36,19 @@ class MemberController extends BaseController
 		{
 			//redirect to member
 			$member = Auth::Guard('member')->user();
-			$member['balance'] = 123.12;
-			$member['chance'] = 5;
-			$member['pending'] = 6;
-			$member['success'] = 20;
-			$member['history'] = 100;
+			$mainledger = MainLedger::where('member_id',$member->id)->get();
+			$member['current_balance'] = $member['pending'] = $member['success']=$member['history']= 0;
+
+			if (count($mainledger)>0) {
+
+				$member['current_balance'] = $mainledger->current_balance;
+				$member['pending'] = 6;
+				$member['success'] = 20;
+				$member['history'] = 100;
+
+			}
+
+			
 			return view('client/member', compact('member'));
 			//return redirect()->route('memberdashboard'); //change to homepage
 		}

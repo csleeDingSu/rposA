@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Member extends Authenticatable
+class MemberLedger extends Authenticatable
 {
     use Notifiable;
 
-    protected $guard = 'member';
+    protected $guard = 'member_ledger';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,7 @@ class Member extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',  'username', 'current_life'
+        'member_id', 'current_balance','current_point','current_betting','current_life'
     ];
 
     /**
@@ -26,9 +26,9 @@ class Member extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+
     ];
 	
 	
-	protected $table = 'members';
+	protected $table = 'mainledger';
 }

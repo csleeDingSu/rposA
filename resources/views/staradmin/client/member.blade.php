@@ -13,7 +13,7 @@
     <div class="row">
 		<div class="card">
 			<div class="text left">{{ $member->username }}，你已兑换的奖品价值约：</div>
-			<div class="numbers left">{{ number_format($member->balance, 2) }}<span class="text">元</span></div>
+			<div class="numbers left">{{ number_format($member->current_balance, 2) }}<span class="text">元</span></div>
 		</div>
 	</div>
 	<div class="row">
@@ -21,7 +21,7 @@
 			<div class="content">
 				<div class="table">
 					<div class="table-cell">
-						<div class="numbers">{{ $member->chance }}</div>
+						<div class="numbers">{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</div>
 						<div class="label">剩余次数</div>
 					</div>
 				</div>
