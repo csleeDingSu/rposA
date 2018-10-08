@@ -41,8 +41,8 @@ class MemberController extends BaseController
 			$member['current_balance'] = $member['pending'] = $member['success']=$member['history']= 0;
 			$member['invitation_link'] = url('/') . "/register/$member->affiliate_id";
 			//$member['qrcode'] = QRCodeGenerator::generate('url',array('url' => $member['invitation_link']));
-
-			if (count($mainledger)>0) {
+			
+			if (isset($mainledger)) {
 
 				$member['current_balance'] = $mainledger->current_balance;
 				$member['pending'] = 6;
