@@ -6,6 +6,7 @@
 
 namespace App\Http\Controllers;
 use App;
+use App\Helpers\QRCodeGenerator;
 use App\MainLedger;
 use App\Member;
 use Auth;
@@ -38,6 +39,8 @@ class MemberController extends BaseController
 			$member = Auth::Guard('member')->user();
 			$mainledger = MainLedger::where('member_id',$member->id)->get();
 			$member['current_balance'] = $member['pending'] = $member['success']=$member['history']= 0;
+			$member['invitation_link'] = url('/') . "/register/$member->affiliate_id";
+			//$member['qrcode'] = QRCodeGenerator::generate('url',array('url' => $member['invitation_link']));
 
 			if (count($mainledger)>0) {
 
@@ -47,7 +50,6 @@ class MemberController extends BaseController
 				$member['history'] = 100;
 
 			}
-
 			
 			return view('client/member', compact('member'));
 			//return redirect()->route('memberdashboard'); //change to homepage

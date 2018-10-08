@@ -230,6 +230,23 @@ Route::get('/clearcache', function() {
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
+//test vue
+View::addLocation(resource_path().'/views');
+Route::any('test', 'TestController@Test')->name('test');
 
+Route::any('/test1', function () {
+    return view('test.test');
+});
 
+Route::any('/test2', function () {
+    return view('test.test123', ['name' => 'James']);
+});
 
+//QR CODE
+Route::any('qr-code/url', function () 
+{
+    return  QRCode::url(url('/') . '/register/')
+                  ->setSize(8)
+                  ->setMargin(2)
+                  ->png();
+});   

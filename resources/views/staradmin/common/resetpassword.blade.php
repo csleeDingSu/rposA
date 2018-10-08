@@ -62,13 +62,13 @@
               </div>
               <ul class="auth-footer">
                 <li>
-                  <a href="#">Conditions</a>
+                  <a href="#">@lang('dingsu.conditions')</a>
                 </li>
                 <li>
-                  <a href="#">Help</a>
+                  <a href="#">@lang('dingsu.helps')</a>
                 </li>
                 <li>
-                  <a href="#">Terms</a>
+                  <a href="#">@lang('dingsu.terms')</a>
                 </li>
               </ul>
               <p class="footer-text text-center">@lang('dingsu.copyright') © 2018

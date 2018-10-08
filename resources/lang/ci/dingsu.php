@@ -107,16 +107,16 @@ return [
 	'move_conf_text' => "This action will move the data to live",
 	'publish_error' => "An error occurred.",
 	'no_items_to_show' => "Unfortunately, no items were returned.",	
-	'ph_enter_username_email' => "Enter your Email or Username",	
-	'passwordreset_instructions' => 'Enter your <b>Email</b> or <b>Username</b>  and instructions will be sent to you!',	
+	'ph_enter_username_email' => "输入您的电子邮件或用户名",	
+	'passwordreset_instructions' => '输入电子邮件或用户名，我们会向您发送说明！',	
 	'reset_password_instruction' => "Please type your new password.",	
 	'no_token_found' => "This token has expired and or not found",	
 	'reset_password_success_message' => "Your password has been successfully changed",
 	
 	'member_registration_success_message' => "您的帐户已成功创建",
 
-	'unknow_referral_code' => "<b>Unknown</b> code.Please check your referral code",
-	
+	'unknow_referral_code' => "未知代码。请检查您的推荐代码",
+		
 	'token_insert_error' => 'Error Cannot Insert Token!',
 	'unknown_user' => 'Sorry, We cant find this record!',
 	'reset_mail_success_message' => 'Please check your <b>registered email</b> for reset instructions.',
@@ -144,7 +144,7 @@ return [
 	
 	//buttons
  	'submit' => 'Submit',
-	'reset' => 'Reset',
+	'reset' => '重置',
 	'edit' => 'Edit',
 	'update' => 'Update',
 	'reset_pass' => 'Reset Password',
@@ -199,5 +199,9 @@ return [
 	
 	'unknow_ref_key' => "Sorry we couldn't find your referral code",
 
+	//footer
+	'conditions' => '条件',
+	'helps' => '帮助',
+	'terms' => '术语',
 	
 ];

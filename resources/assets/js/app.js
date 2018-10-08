@@ -17,6 +17,11 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+Vue.component('test', require('./components/test.vue'));
+
+Vue.component('invitation', require('./components/Invitation.vue'));
+
+
 const app = new Vue({
     el: '#app'
 });

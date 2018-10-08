@@ -108,7 +108,7 @@ return [
 	'publish_error' => "An error occurred.",
 	'no_items_to_show' => "Unfortunately, no items were returned.",	
 	'ph_enter_username_email' => "Enter your Email or Username",	
-	'passwordreset_instructions' => 'Enter your <b>Email</b> or <b>Username</b>  and instructions will be sent to you!',	
+	'passwordreset_instructions' => 'Enter your Email or Username and instructions will be sent to you!',	
 	'reset_password_instruction' => "Please type your new password.",	
 	'no_token_found' => "This token has expired and or not found",	
 	'reset_password_success_message' => "Your password has been successfully changed",	
@@ -204,6 +204,10 @@ return [
 	
 	'unknow_ref_key' => "Sorry we couldn't find your referral code",
 
+//footer
+'conditions' => 'Conditions',
+'helps' => 'Helps',
+'terms' => 'Terms',
 	
 
 	
