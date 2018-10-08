@@ -37,7 +37,7 @@ class MemberController extends BaseController
 		{
 			//redirect to member
 			$member = Auth::Guard('member')->user();
-			$mainledger = MainLedger::where('member_id',$member->id)->get();
+			$mainledger = MainLedger::where('member_id',$member->id)->first();
 			$member['current_balance'] = $member['pending'] = $member['success']=$member['history']= 0;
 			$member['invitation_link'] = url('/') . "/register/$member->affiliate_id";
 			//$member['qrcode'] = QRCodeGenerator::generate('url',array('url' => $member['invitation_link']));
