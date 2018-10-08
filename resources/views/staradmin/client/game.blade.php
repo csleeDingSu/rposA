@@ -6,7 +6,7 @@
     @parent
 
     <link rel="stylesheet" href="{{ asset('/client/css/game.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/swiper.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/swiper.css') }}" />
 	<style type="text/css">
 		body{
 			background: #000000;
@@ -22,7 +22,7 @@
 		}
 
 		.swiper-container {
-	      width: 800px;
+	      width: 560px;
 	      height: 458px;
 	    }
 	</style>
@@ -105,33 +105,36 @@
 		<div class="button-wrapper">
 	        <div class="button-card radio-primary">
 	        	<div class="radio btn btn-rectangle">
-					<input class="invisible" type="radio" ng-model="forms.selected" ng-value="first_big" ng-click="radioCheckUncheck($event)">单数
+					<input name="rdbBet" class="invisible" type="radio" value="odd">单数
+					<div class="bet-container">150</div>
 				</div>
 			  </div>
-			  <div class="button-card radio-primary">
+			  <div class="button-card radio-primary right">
 				<div class="radio btn btn-rectangle">
-					<input class="invisible" type="radio" ng-model="forms.selected" ng-value="first_small" ng-click="radioCheckUncheck($event)">双数
+					<input name="rdbBet" class="invisible" type="radio" value="even">双数
+					<div class="bet-container">150</div>
 				</div>
 			  </div>
 		</div>
 		<div style="clear: both;"></div>
 
 		<div class="information-table">
-		<div class="row">
-			<div class="col-xs-4 border-right">
-				<div class="header">当前积分</div>
-				<div class="number">1200</div>
-			</div>
-			<div class="col-xs-4 border-right">
-				<div class="header">可提现红包</div>
-				<div class="number">100元</div>
-			</div>
-			<div class="col-xs-4">
-				<div class="header">剩余次数</div>
-				<div class="number">1</div>
-			</div>
+			<div class="grid-container">
+				<div class="box box-left">
+					<div class="header">当前积分</div>
+					<div class="number">1200</div>
+				</div>
+				<div class="box">
+					<div class="header">可提现红包</div>
+					<div class="number">100元</div>
+				</div>
+				<div class="box box-right">
+					<div class="header">剩余次数</div>
+					<div class="number">1</div>
+				</div>
+		  	</div>
 		</div>
-	</div>
+
 	</div>
 @endsection
 
@@ -139,16 +142,7 @@
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
-	<script src="{{ asset('/client/js/game.js') }}"></script>
 	<script src="{{ asset('/client/js/swiper.min.js') }}"></script>
-	<script type="text/javascript">
-	var swiper = new Swiper('.swiper-container', {
-	  initialSlide: 1,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-
-	</script>
+	<script src="{{ asset('/client/js/game.js') }}"></script>
+	
 @endsection

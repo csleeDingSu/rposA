@@ -63,19 +63,41 @@
 		        </tr>
 		        <tr>
 		            <td>26</td>
-		            <td></td>
+		            <td>
+		            	<div class="odd">
+			                <span class="label">3</span>
+			            </div>
+			        </td>
 		        </tr>
 		        <tr>
 		            <td>25</td>
-		            <td></td>
+		            <td>
+		            	<div class="points">630 <span class="additional">+40</span></div>
+		            </td>
 		        </tr>
 		        <tr>
 		            <td>24</td>
-		            <td></td>
+		            <td>
+		            	<div class="odd">
+			                <span class="label">3</span>
+			            </div>
+		            </td>
 		        </tr>
 		        <tr>
 		            <td>23</td>
-		            <td></td>
+		            <td>
+		            	<div class="odd">
+			                <span class="label">3</span>
+			            </div>
+		            </td>
+		        </tr>
+		        <tr>
+		        	<td class="legend"></td>
+		        	<td class="legend">
+		        		<div class="even"><span class="label"></span></div><div class="legend-item">代表双数</div>
+		        		<div class="odd"><span class="label"></span></div><div class="legend-item">代表单数</div>
+		        		<div class="odd-fail"><span class="label"></span></div><div class="even-fail overlap"><span class="label"></span></div><div class="legend-item">代表失败</div>
+		        	</td>
 		        </tr>
 		    </tbody>
 		</table>

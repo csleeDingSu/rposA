@@ -55,3 +55,8 @@ if( ! function_exists('unique_random') ){
     }
 
 }
+
+function generate_random_number ($min,$max)
+{
+	return mt_rand($min, $max);
+}

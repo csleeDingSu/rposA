@@ -1,126 +1,506 @@
 
-<div class="col-12 d-flex  text-right">
-	
-	<a href="/voucher/upload" class="btn btn-success mr-2">@lang('dingsu.add')</a>
-	
-	<a href="/voucher/import" class="btn btn-info mr-2">@lang('dingsu.upload')</a>
-
-</div>
 
 
-<p>&nbsp;</p>
+		{!! $result->render() !!}
+<div class="row">
+	<!--
+<div class="card">
+<div class="card-body">-->
+	<div class=" col-md-7">
+		<p class="card-description display-4" id="">
+			<span class="duplicatefinder" id="duplicatefinder"></span>
+			<a onClick="RemoveDuplicatevoucher()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-danger btnduplicate" id="btnduplicate">{{ trans('dingsu.remove') }} @lang('dingsu.duplicate')</a>
+		</p>
+	</div>
+	<div class=" col-md-5 ">
 
-<div class="col-lg-12 grid-margin stretch-card">
-	
-	
-	
-	<div class="card">
-		<div class="card-body">
-			<h4 class="card-title">@lang('dingsu.voucher') @lang('dingsu.list')</h4>
-			<div class="table-responsive">
-				<table class="table table-hover table-responsive">
-					<thead>
-						<tr>
-							<th>@lang('dingsu.action')</th>
-							<th>@lang('dingsu.id')</th>
-							<th>@lang('dingsu.name')</th>
-							<th>@lang('dingsu.category')</th>
-							<th>@lang('dingsu.product_price')</th>
-							<th>@lang('dingsu.ads_link')</th>
-							<th>@lang('dingsu.used_voucher')</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($result as $list)
-						<tr>
-							<td>							
-								<a href="/voucher/edit/{{ $list->id }}"  class="btn btn-icons btn-inverse-info"><i class="icon-pencil"></i></a>
-								<a onClick="confirm_Delete({{ $list->id }}, '{{ csrf_token() }}')" data-token="{{ csrf_token() }}" href="#" class="btn btn-icons btn-inverse-danger"><i class="icon-trash"></i></a>
-								
-								
-								
-							</td>
-							<td>{{ $list->id }}</td>
-							<td class="is-breakable">{{ $list->product_name }}</td>
-							<td class="is-breakable" style="word-break: break-all">
-								{{ $list->product_category }}
-							</td>
-							<td >
-								{{ $list->product_price }}
-							</td>
-							<td>
-								<a href="{{ $list->ads_link }}" target="new" >@lang('dingsu.click_here') </a>
-							</td>
-							<td>
-								{{ $list->used_vouchers }}
-							</td>
-							
-							
-							
-							
-							
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-				{!! $result->render() !!}
+		<div class="form-group row">
+			<div class="col">
+				<div class=" form-check form-check-flat">
+					<label for="checkall" class="form-check-label">
+                                <input class="form-check-input " type="checkbox" name="checkall" id="checkall" onClick="return Checkall();"> @lang('dingsu.check_all')</label>
+				</div>
+			</div>
+			<div class="col">
+				<select class="form-control" name="product_action" id="product_action">
+					<option value="0">@lang('dingsu.please_select_to_move')</option>
+					
+					<option value="delete">@lang('dingsu.delete')</option>
+					
+				</select>
+			</div>
+			<div class="col">
+				<a onClick="ProductAction()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-success btnsubmit" id="btnsubmit">@lang('dingsu.submit')</a>
 			</div>
 		</div>
+
+
+		<!--
+</div>
+</div>-->
 	</div>
 </div>
 
 
+		<form action="" name="productdisplayform" id="productdisplayform">
+
+
+			<ul class="row list-unstyled productlist" id="productlist">
+				@foreach($result as $item)
+				
+				<li class="divprolist_{{$item->id}} col-md-2 row is-flex justify-content-around mr-md-2 mt-2" id="divprolist_{{$item->id}}" >
+					
+					<div class="d-flex justify-content-around">
+					
+					<div class="prolist_{{$item->id}} card " >
+						<div class="card-body" onclick="CheckorUncheck('{{$item->id}}')">
+							<input type="hidden" class="prc_{{$item->id}}" data-id="prc_{{$item->id}}" name="{{$item->id}}" id="prc[]" value="{{$item->id}}">
+							
+							<div class="price-off">{{$item->product_price}} $</div>
+						<img class="zoom card-img-top img-fluid" src="{{$item->product_picurl}}" alt="{{$item->product_name}}">
+							<h5 class="card-title mt-0">{{$item->product_name}}</h5>
+							<p class="card-text mt-0">{{$item->product_category}}</p>
+							<p class="card-text mt-0">{{$item->seller_name}}</p>							
+						</div>
+						
+						<div class="card-body border-top pt-1 mt-auto d-flex align-items-end ">
+							<div class="btn-toolbar">
+							<button type="button" data-id="{{$item->id}}" id="{{$item->id}}" class="btn btn-inverse-info openeditmodel  ">@lang('dingsu.edit')</button>&nbsp;
+							<button type="button" onClick="return Deletevoucher({{$item->id}});return false;" class="btn btn-inverse-danger  ">@lang('dingsu.delete')</button>
+							</div>
+						</div>
+							
+					</div>
+					</div>
+				</li>
+				@endforeach
+			</ul>
+		</form>
+		{!! $result->render() !!}
+
+@unless (count($result))    
+	@include ('common.norecord')
+@endunless
+
+		<!--
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
 
+-->
 
 
+<!-- Modal starts -->
+<form class="form-sample" name="formupdatevoucher" id="formupdatevoucher" action="" method="post" autocomplete="on" >
+<div class="modal fade" id="editvouchermode" tabindex="-1" role="dialog" aria-labelledby="editvouchermodelabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
 
-<script language="javascript">
-function confirm_Delete(id,token)
-	{
-Swal({
-  title: '@lang("dingsu.delete_confirmation")',
-  text: '@lang("dingsu.delete_conf_text")',
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonText: '@lang("dingsu.delete")',
-  cancelButtonText: '@lang("dingsu.cancel")',
-	confirmButtonColor: "#DD6B55",
-  closeOnConfirm: false
-}).then((result) => {
-  if (result.value) {
-	  
-	  $.ajax({
-            url: "/member/delete/"+id,
-            type: "POST",
-            data: {_method: 'delete', _token :token},
-            dataType: "html",
-            success: function (data) {
-				if (data === 'false')
-					{
-						swal('@lang("dingsu.delete_error")', '@lang("dingsu.try_again")', "error");
+			
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="editvouchermodelabel">@lang('dingsu.edit') @lang('dingsu.voucher')</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+				</div>
+				<div class="modal-body">
+
+					{{ csrf_field() }} @foreach ($errors->all() as $error)
+					<div class="alert alert-danger" role="alert">@lang($error)</div>
+					@endforeach @if(session()->has('message'))
+					<div class="alert alert-success" role="alert">
+						{{ session()->get('message') }}
+					</div>
+					@endif
+
+
+					@foreach($sys_title->chunk(2) as $items)
+					<div class="row">
+					@foreach($items as $item)
+						<div class="col-md-6">
+						<div class="form-group row">
+							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.'.$item->title) <span class="text-danger">*</span></label>
+							<div class="col-sm-9">
+								
+								<input id="sys_inp_{{$item->title}}" name="{{$item->title}}" class="form-control" type="text" value="">
+							</div>
+						</div>
+					</div>
+					@endforeach 
+					</div>
+					@endforeach 
+					
+					 
+
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-success" onclick="return Update_voucher();return false;">@lang('dingsu.submit')</button>
+					<button type="button" class="btn btn-dark" data-dismiss="modal">@lang('dingsu.cancel')</button>
+
+				</div>
+				<input type="hidden" name="hidden_void" id="hidden_void" value="">
+			
+		</div>
+	</div>
+</div>
+	</form> 
+<!-- Modal Ends -->
+
+
+		
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
+
+		<script language="javascript">
+function Update_voucher()
+{
+	
+	var datav =  $("#formupdatevoucher").serializeArray();
+	var id    =  $("#hidden_void").val();
+	swal( {
+		title: '@lang("dingsu.edit_confirmation")',
+		text: '@lang("dingsu.edit_conf_text")',
+		icon: "warning",
+		closeModal: false,
+		buttons: [
+			'@lang("dingsu.cancel")',
+			'@lang("dingsu.update")'
+		],
+
+		allowOutsideClick: false,
+		closeOnEsc: false,
+		allowEnterKey: false
+
+	} ).then(
+		function ( preConfirm ) {
+			if ( preConfirm ) {
+				swal( {
+					title: '@lang("dingsu.please_wait")',
+					text: '@lang("dingsu.updating_data")..',
+					allowOutsideClick: false,
+					closeOnEsc: false,
+					allowEnterKey: false,
+					buttons: false,
+					onOpen: () => {
+						swal.showLoading()
 					}
-				else 
-					{
-						swal("Done!", '@lang("dingsu.delete_success")', "success");
+				} )
+				$.ajax( {
+					url: "{{route('ajaxupdatevoucher')}}",
+					type: 'post',
+					dataType: "json",
+					data: {
+						_method: 'post',
+						_token: "{{ csrf_token() }}",
+						_data:datav,
+						id:id,
+					},
+					success: function ( result ) {
+						if ( result.success != true ) {
+							swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+						} else {
+							swal( "Done!", '@lang("dingsu.voucher_update_success_message")', "success" );
+							$('#editvouchermode').modal('hide');
+
+						}
+					},
+					error: function ( xhr, ajaxOptions, thrownError ) {
+						swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
+					}
+				} );
+			}
+		} );
+}
+			
+$(document).ready(function() {
+		$('.openeditmodel').click(function() {
+			var id=$(this).data('id');
+			swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.fetching_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+			$.ajax( {
+				url: "/voucher/show/"+ id,
+				type: 'get',
+				dataType: "json",
+				data: {
+					_method: 'get',
+					_token: "{{ csrf_token() }}",
+				},
+				success: function ( result ) {
+					if ( result.success == true ) {
+						swal.close();
+						var data = result.record;
 						
-						$('#tr_'+id).hide(); 
+						
+						@foreach($sys_title as $items)
+						var ifv = '{{$items->title}}';
+							$('#sys_inp_'+ifv).val(data.{{$items->title}});
+						@endforeach 
+					
+						$('#hidden_void').val(id);
+						$('#editvouchermode').modal('show');
+					} else {
+						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+						
+						
 					}
-                
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                swal('@lang("dingsu.delete_error")', '@lang("dingsu.try_again")', "error");
-            }
-        });
-	  
-  } else if (result.dismiss === Swal.DismissReason.cancel) {
-   
-  }
-})
-	}
-	
-	
-</script>
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+				}
+			} );
+		});
+	});			
+			function Checkall() {
+				if ( $( "#checkall" ).is( ':checked' ) ) {
+					$( 'input[id="prc[]"]' ).map( function () {
+						this.value = 1;
+						myVal = this.getAttribute('data-id'); 
+						var id = myVal.substr( myVal.indexOf( '_' ) + 1 );
+						$( ".prolist_" + id ).addClass( "popular" );
+					} )
+				} else {
+					$( 'input[id="prc[]"]' ).map( function () {
+
+						this.value = 0;
+						myVal = this.getAttribute('data-id'); 
+						var id = myVal.substr( myVal.indexOf( '_' ) + 1 );
+						$( ".prolist_" + id ).removeClass( "popular" );
+					} )
+				}
+			}
+
+			function CheckorUncheck( id ) {
+				if ( $( '.prc_' + id ).val() != 1 ) {
+					$( ".prolist_" + id ).addClass( "popular" );
+					$( '.prc_' + id ).val( 1 );
+				} else {
+					$( ".prolist_" + id ).removeClass( "popular" );
+					$( '.prc_' + id ).val( 0 );
+				}
+
+			}
+			
+			
+			function ProductAction( ) {
+
+				var datav =  $("#productdisplayform").serializeArray();
+				var typev =  $( '#product_action' ).val();
+				
+				swal( {
+					title: '@lang("dingsu.delete_confirmation")',
+					text: '@lang("dingsu.delete_conf_text")',
+					icon: "warning",
+					closeModal: false,
+					buttons: [
+						'@lang("dingsu.cancel")',
+						'@lang("dingsu.delete")'
+					],
+
+					allowOutsideClick: false,
+					closeOnEsc: false,
+					allowEnterKey: false
+
+				} ).then(
+					function ( preConfirm ) {
+						if ( preConfirm ) {
+							swal( {
+								title: '@lang("dingsu.please_wait")',
+								text: '@lang("dingsu.deleting_data")..',
+								allowOutsideClick: false,
+								closeOnEsc: false,
+								allowEnterKey: false,
+								buttons: false,
+								onOpen: () => {
+									swal.showLoading()
+								}
+							} )
+							$.ajax( {
+								url: "/voucher/bulkupdate/",
+								type: 'post',
+								dataType: "html",
+								data: {
+									_method: 'delete',
+									_token: "{{ csrf_token() }}",
+									_data:datav,
+									_type:typev,
+								},
+								success: function ( result ) {
+									if ( result == false ) {
+										swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
+									} else {
+										swal( "Done!", '@lang("dingsu.vouchers_deleted_success")', "success" );
+										
+										var obj = JSON.parse(result);
+										$.each(obj, function(key,val){
+											 console.log(key);
+											 console.log(val); 
+											
+											$('#divprolist_'+val ).remove();
+											var $target = $( '.divprolist_' + val ).parents( 'li' );
+											$target.hide( 'slow', function () {
+												$target.remove();
+											} );
+
+										});
+										
+									}
+								},
+								error: function ( xhr, ajaxOptions, thrownError ) {
+									swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
+								}
+							} );
+						}
+					} );
+			}
+
+
+			function Deletevoucher( id ) {
+
+
+				swal( {
+					title: '@lang("dingsu.delete_confirmation")',
+					text: '@lang("dingsu.delete_conf_text")',
+					icon: "warning",
+					closeModal: false,
+					buttons: [
+						'@lang("dingsu.cancel")',
+						'@lang("dingsu.delete")'
+					],
+
+					allowOutsideClick: false,
+					closeOnEsc: false,
+					allowEnterKey: false
+
+				} ).then(
+					function ( preConfirm ) {
+						if ( preConfirm ) {
+							swal( {
+								title: '@lang("dingsu.please_wait")',
+								text: '@lang("dingsu.deleting_data")..',
+								allowOutsideClick: false,
+								closeOnEsc: false,
+								allowEnterKey: false,
+								buttons: false,
+								onOpen: () => {
+									swal.showLoading()
+								}
+							} )
+							$.ajax( {
+								url: "/voucher/delete/" + id,
+								type: 'delete',
+								dataType: "html",
+								data: {
+									_method: 'delete',
+									_token: "{{ csrf_token() }}",
+								},
+								success: function ( result ) {
+									if ( result == false ) {
+										swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
+									} else {
+										swal( "Done!", '@lang("dingsu.vouchers_deleted_success")', "success" );
+										
+										
+										$('#divprolist_'+id ).remove();
+										
+										
+										var $target = $( '.divprolist_' + id ).parents( 'li' );
+										$target.hide( 'slow', function () {
+											$target.remove();
+										} );
+										
+										
+									}
+								},
+								error: function ( xhr, ajaxOptions, thrownError ) {
+									swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
+								}
+							} );
+						}
+					} );
+
+			}
+
+
+
+
+
+			function RemoveDuplicatevoucher() {
+				swal( {
+					title: '@lang("dingsu.delete_confirmation")',
+					text: '@lang("dingsu.delete_conf_text")',
+					icon: "warning",
+					closeModal: false,
+					buttons: [
+						'@lang("dingsu.cancel")',
+						'@lang("dingsu.move")'
+					],
+
+					allowOutsideClick: false,
+					closeOnEsc: false,
+					allowEnterKey: false
+
+				} ).then(
+					function ( preConfirm ) {
+						if ( preConfirm ) {
+							swal( {
+								title: '@lang("dingsu.please_wait")',
+								text: '@lang("dingsu.deleting_data")..',
+								allowOutsideClick: false,
+								closeOnEsc: false,
+								allowEnterKey: false,
+								buttons: false,
+								onOpen: () => {
+									swal.showLoading()
+								}
+							} )
+							$.ajax( {
+								url: "/voucher/remove-vor-duplicate/",
+								type: 'delete',
+								dataType: "html",
+								data: {
+									_method: 'delete',
+									_token: "{{ csrf_token() }}",
+								},
+								success: function ( result ) {
+									swal( "Done!", '@lang("dingsu.delete_success")', "success" );
+								},
+								error: function ( xhr, ajaxOptions, thrownError ) {
+									swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
+								}
+							} );
+						}
+					} );
+			}
+
+
+			$( ".btnduplicate" ).addClass( "disabled" );
+			$( window ).on( 'load', function () {
+				$.ajax( {
+					url: '{{route('ajaxfindvoucherduplicate')}}',
+					type: 'get',
+					contentType: 'application/json; charset=utf-8',
+					success: function ( response ) {
+						if ( response ) {
+							$( ".btnduplicate" ).removeClass( "disabled" );
+							var outdata = '@lang("dingsu.duplicate_ajax_msg")';
+							outdata = outdata.replace( "##count##", response );
+							$( '#duplicatefinder' ).html( outdata );
+						}
+
+
+					},
+					error: function () {}
+				} );
+			} );
+		</script>
