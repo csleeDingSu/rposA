@@ -120,7 +120,7 @@
 			
 			<div class="listing">
 				
-			@if(isset($vouchers))
+			@if(count($vouchers))
 			<div class="infinite-scroll">
 			@foreach($vouchers as $item)
 				
@@ -139,6 +139,15 @@
 				
 				{{ $vouchers->links() }}
 			</div>
+			@else
+				<div class="infinite-scroll">
+					<div class="row">
+						<div class="col center">
+							@lang('dingsu.no_record_found')
+						</div>
+					</div>
+				</div>
+
 			@endif
 				
 				

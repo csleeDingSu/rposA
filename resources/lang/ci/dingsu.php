@@ -99,7 +99,7 @@ return [
 	'select_all_dropdown' => 'Please select dropdown value',
 	'duplicate_ajax_msg' => 'Hello, You have <b>##count##</b> duplicated Data',
 	'vouchers_deleted_success' => 'It was succesfully deleted!',
-	'no_record_found' => 'No record found',
+	'no_record_found' => '没有记录',
 	
 	'select_file_error' => 'Please select file',
 	'edit_confirmation' => "Are you sure?",
