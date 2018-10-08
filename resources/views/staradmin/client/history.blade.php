@@ -12,6 +12,17 @@
 				<div class="box">3</div>
 				<div class="box">4</div>
 				<div class="box">5</div>
+				<div class="right-chain"></div>
+		  	</div>
+
+
+		  	<div class="row">
+				<div class="box">1</div>
+				<div class="box">2</div>
+				<div class="box">3</div>
+				<div class="box">4</div>
+				<div class="box">5</div>
+				<div class="left-chain"></div>
 		  	</div>
 
 		  	<div class="row">
@@ -20,6 +31,7 @@
 				<div class="box">3</div>
 				<div class="box">4</div>
 				<div class="box">5</div>
+				<div class="right-chain"></div>
 		  	</div>
 
 		  	<div class="row">
@@ -28,6 +40,7 @@
 				<div class="box">3</div>
 				<div class="box">4</div>
 				<div class="box">5</div>
+				<div class="left-chain"></div>
 		  	</div>
 
 		  	<div class="row">
@@ -36,14 +49,7 @@
 				<div class="box">3</div>
 				<div class="box">4</div>
 				<div class="box">5</div>
-		  	</div>
-
-		  	<div class="row">
-				<div class="box">1</div>
-				<div class="box">2</div>
-				<div class="box">3</div>
-				<div class="box">4</div>
-				<div class="box">5</div>
+				<div class="right-chain"></div>
 		  	</div>
 
 		  	<div class="row">

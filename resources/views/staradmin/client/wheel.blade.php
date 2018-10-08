@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -9,15 +9,19 @@
             padding-left: 18px;
             padding-top: 16px;
         }
+
+        #wheel_container {
+            left: 30px;
+        }
     </style>
     <script src="{{ asset('/client/js/jquery.min.js') }}"></script>
     <script src="{{ asset('/client/js/jquery.rotate.min.js') }}"></script>
     <script src="{{ asset('/client/js/jquery.wheelOfFortune.js') }}"></script>
-    <script src="{{ asset('/client/js/dome.js') }}"></script>
+    <script src="{{ asset('/client/js/wheel.js') }}"></script>
 </head>
 
 <body>
-	<input id="result" type="hidden" value="6">
+    <input id="result" type="hidden" value="6">
     <div class="row">
         <div class="col-md-6">
             <div id="wheel_container"></div>

@@ -1,104 +1,26 @@
-// the game itself
-var game;
-// the spinning wheel
-var wheel; 
-// can the wheel spin?
-var canSpin;
-// slices (prizes) placed in the wheel
-var slices = 6;
-// prize names, starting from 12 o'clock going clockwise
-var slicePrizes = ["1", "2", "3", "4", "5", "6"];
-// the prize you are about to win
-var prize;
-// text field where to show the prize
-var prizeText;
+$(function () {
+    bindBetButton();
+    DomeWebController.init();
 
-var counterText;
+    var oneMinute = 60 * 1;
+    startTimer(oneMinute);
 
-window.onload = function() {
-  canSpin = false;
-     // creation of a 458x488 game
-	game = new Phaser.Game(458, 458, Phaser.AUTO, "");
-     // adding "PlayGame" state
-     game.state.add("PlayGame",playGame);
-     // launching "PlayGame" state
-     game.state.start("PlayGame");
+});
+
+function bindBetButton(){
+
+    $('.radio-primary', window.parent.document).click(function(){
+        $('.radio-primary', window.parent.document).not(this).find('.radio').removeClass('clicked');
+        $('.radio-primary', window.parent.document).not(this).find('.bet-container').hide();
+
+        $(this).find('.bet-container').toggle();
+        $(this).find('.radio').toggleClass('clicked');
+
+    });
 }
 
-// PLAYGAME STATE
-	
-var playGame = function(game){};
+function startTimer(duration) {
 
-playGame.prototype = {
-     // function to be executed once the state preloads
-     preload: function(){
-        // preloading graphic assets
-        game.load.image("wheel", "/client/images/wheel.png");
-		    game.load.image("pin", "/client/images/pin.png");     
-     },
-     // funtion to be executed when the state is created
-  	create: function(){
-          // giving some color to background
-  		game.stage.backgroundColor = "#ffffff";
-          // adding the wheel in the middle of the canvas
-  		wheel = game.add.sprite(game.width / 2, game.width / 2, "wheel");
-          // setting wheel registration point in its center
-          wheel.anchor.set(0.5);
-          // adding the pin in the middle of the canvas
-          var pin = game.add.sprite(game.width / 2, game.width / 2, "pin");
-          // setting pin registration point in its center
-          pin.anchor.set(0.5);
-          // adding the text field
-          counterText = game.add.text(game.world.centerX, game.world.centerY, "");
-          // setting text field registration point in its center
-          counterText.anchor.set(0.5);
-          // aligning the text to center
-          counterText.align = "center";
-		  
-		  var oneMinute = 60 * 1;
-		  startTimer(oneMinute, this);
-		
-		  var spinInterval = oneMinute * 1000;
-          // the game has just started = we can spin the wheel
-          canSpin = true;
-
-		  
-			
-	},
-     // function to spin the wheel
-     spin(){
-          // can we spin the wheel?
-          if(canSpin){  
-               // the wheel will spin round from 2 to 4 times. This is just coreography
-               var rounds = game.rnd.between(2, 4);
-               // then will rotate by a random number from 0 to 360 degrees. This is the actual spin
-               var degrees = parseInt(document.getElementById('degree').value);
-               // before the wheel ends spinning, we already know the prize according to "degrees" rotation and the number of slices
-               prize = slices - 1 - Math.floor(degrees / (360 / slices));
-
-               // now the wheel cannot spin because it's already spinning
-               canSpin = false;
-               // animation tweeen for the spin: duration 3s, will rotate by (360 * rounds + degrees) degrees
-               // the quadratic easing will simulate friction
-               var spinTween = game.add.tween(wheel).to({
-                    angle: 360 * rounds + degrees
-               }, 3000, Phaser.Easing.Quadratic.Out, true);
-			   console.log('spin');
-			   canSpin = true;
-               // once the tween is completed, call winPrize function
-               //spinTween.onComplete.add(this.winPrize, this);
-          }
-     },
-     // function to assign the prize
-     winPrize(){
-          // now we can spin the wheel again
-          canSpin = true;
-          // writing the prize you just won
-          //counterText.text = slicePrizes[prize];
-     }
-}
-
-function startTimer(duration, game) {
     var timer = duration, minutes, seconds;
 
     setInterval(function () {
@@ -108,13 +30,80 @@ function startTimer(duration, game) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        counterText.text = seconds;
-        counterText.style.fill = 'white';
+        $( "#txtCounter" ).html(seconds);
 
-        if (--timer < 0) {
-            timer = duration;
-			      game.spin();
+        --timer;
+
+        if (timer < 5) {
+            //Lock the selection
+            $('.radio-primary', window.parent.document).unbind('click');
+            //Get selected option
+            var selected = $('div.clicked', window.parent.document).find('input:radio').val();
+            console.log(selected);
         }
-		
+
+        if (timer < 0) {
+            timer = duration;
+            $( "#btnWheel" ).trigger( "click" );
+
+            bindBetButton();
+        }
+        
     }, 1000);
 }
+
+DomeWebController = {
+    pool: {
+        element: {}
+    },
+    getEle: function (k) {
+        return DomeWebController.pool.element[k];
+    },
+    setEle: function (k, v) {
+        DomeWebController.pool.element[k] = v;
+    },
+    init: function () {
+        var that = DomeWebController;
+        that.inits.element();
+        that.inits.event();
+        that.build();
+    },
+    inits: {
+        element: function () {
+            var that = DomeWebController;
+            that.setEle("$wheelContainer", $('#wheel_container'));
+
+        },
+        event: function () {
+            var that = DomeWebController;
+
+        }
+    },
+    build: function () {
+        var that = DomeWebController;
+        var result = $('#result').val();
+
+        that.getEle("$wheelContainer").wheelOfFortune({
+            'wheelImg': "/client/images/wheel.png",//转轮图片
+            'pointerImg': "/client/images/pointer.png",//指针图片
+            'buttonImg': "/client/images/button.png",//开始按钮图片
+            'wSide': 400,//转轮边长(默认使用图片宽度)
+            'pSide': 150,//指针边长(默认使用图片宽度)
+            'bSide': 80,//按钮边长(默认使用图片宽度)
+            'items': {3: [1, 59], 4: [61, 119], 5: [121, 179], 6: [181, 239], 1: [241, 299], 2: [301, 359]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+            'pAngle': 270,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
+            'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
+            'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
+            'rotateNum': 12,//转多少圈(默认12)
+            'duration': 2000,//转一次的持续时间(默认5000)
+            'click': function () {
+                if(1==1){}
+                var key = result;
+                that.getEle("$wheelContainer").wheelOfFortune('rotate', key);
+            },//点击按钮的回调
+            'rotateCallback': function (key) {
+                //alert("左:" + key);
+            }//转完的回调
+        });
+    }
+};

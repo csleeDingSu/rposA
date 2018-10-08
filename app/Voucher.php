@@ -37,6 +37,13 @@ class Voucher extends Model
 		return $result;
 	}
 	
+	public static function get_category()
+	{
+		$result = DB::table('category')->select('id', 'display_name')->get();
+				
+		return $result;
+	}
+	
 	public static function delete_excel_upload($filename)
 	{
 		$result = DB::table('excel_upload')->where('filename', $filename)->delete();
@@ -51,12 +58,33 @@ class Voucher extends Model
 			
 		return $result;
 	}
+	public static function check_duplicate($type = 'voucher_id')
+	{
+		$result = DB::select("SELECT count(1) AS duplicate_count
+		FROM (
+		 SELECT $type FROM vouchers
+		 GROUP BY $type HAVING COUNT($type) > 1
+		) AS t");
+		
+		return $result;
+		
+	}
 	
+	public static function remove_duplicate($type = 'voucher_id')
+	{
+		$result = DB::select("DELETE n1 FROM vouchers n1, vouchers n2 WHERE n1.id > n2.id AND n1.$type= n2.$type");
+		return TRUE;
+	}
 	public function search($request)
 	{
 		if ($filters->has('name')) {
             $user->where('name', $filters->input('name'));
         }
+	}
+	public static function vouchers_insert($chunk)
+	{
+		//DB::insert($chunk->toArray());
+		DB::table('vouchers')->insert($chunk->toArray());
 	}
 	public static function archived_vouchers_insert($chunk)
 	{

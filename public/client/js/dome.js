@@ -1,12 +1,26 @@
 $(function () {
+    bindBetButton();
     DomeWebController.init();
 
-    var oneMinute = 10 * 1;
+    var oneMinute = 60 * 1;
     startTimer(oneMinute);
 
 });
 
+function bindBetButton(){
+
+    $('.radio-primary', window.parent.document).click(function(){
+        $('.radio-primary', window.parent.document).not(this).find('.radio').removeClass('clicked');
+        $('.radio-primary', window.parent.document).not(this).find('.bet-container').hide();
+
+        $(this).find('.bet-container').toggle();
+        $(this).find('.radio').toggleClass('clicked');
+
+    });
+}
+
 function startTimer(duration) {
+
     var timer = duration, minutes, seconds;
 
     setInterval(function () {
@@ -18,9 +32,21 @@ function startTimer(duration) {
 
         $( "#txtCounter" ).html(seconds);
 
-        if (--timer < 0) {
+        --timer;
+
+        if (timer < 5) {
+            //Lock the selection
+            $('.radio-primary', window.parent.document).unbind('click');
+            //Get selected option
+            var selected = $('div.clicked', window.parent.document).find('input:radio').val();
+            console.log(selected);
+        }
+
+        if (timer < 0) {
             timer = duration;
             $( "#btnWheel" ).trigger( "click" );
+
+            bindBetButton();
         }
         
     }, 1000);
@@ -56,7 +82,7 @@ DomeWebController = {
     build: function () {
         var that = DomeWebController;
         var result = $('#result').val();
-        
+
         that.getEle("$wheelContainer").wheelOfFortune({
             'wheelImg': "/client/images/wheel.png",//转轮图片
             'pointerImg': "/client/images/pointer.png",//指针图片
