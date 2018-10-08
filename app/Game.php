@@ -239,6 +239,40 @@ class Game extends Model
 		return $result =  DB::table('member_game_result')->select('id as gameid','game_level_id','is_win','game_result as result','bet','bet_amount')->where('game_id',$gameid)->paginate(20);
 	}
 	
+	public static function get_betting_history_grouped($gameid)
+	{				
+		$result =  DB::table('member_game_result')->select('id as gameid','game_level_id','is_win','game_result as result','bet','bet_amount','player_level')->where('game_id',$gameid)->paginate(20);
+		
+		
+		if ($result)
+		{
+			foreach ($result as $key=>$val)
+			{
+				//print_r($val);die();
+				$level = $val->player_level;
+
+  				$newOptions[$level][] = $val;
+			}
+		}
+		
+		
+		//print_r($newOptions);
+		return $newOptions;
+		//
+	}
+	
+	public static function get_player_level($gameid, $memberid)
+	{
+		 
+		//$result =  DB::table('member_game_result')->select('is_win','player_level')->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->max('player_level');
+		
+		$result =  DB::table('member_game_result')->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->latest()->first();
+		
+		
+		return $result;
+		
+	}
+	
 }
 
 

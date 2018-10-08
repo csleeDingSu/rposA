@@ -1,44 +1,92 @@
-.row {
-  display: grid;
-  grid-template-columns: 80px 80px 80px 80px 80px 80px;
-  grid-gap: 0px;
-  height: 70px;
-  margin-left: 30px;
+/* Form Progress */
+table {
+    border-collapse: separate;
+    border-spacing: 5px;
 }
 
-.box {
-  background: url('/client/images/game.png') no-repeat -65px -64px;
-  width: 93px;
-  height: 84px;
-  transform: scale(0.45); 
-  -webkit-transform: scale(0.45);
-  -webkit-transform-origin:left top;
-  font-size: 60px;
-  color: #000;
-  padding: 20px;
-  padding-left: 52px;
-  padding-right: 0px;
+tbody td {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 2px 10px 5px 10px;
+    margin: 20px auto;
+    text-align: center;
+    height: 30px;
+    color: #8c868a;
+    font-weight: 600;
 }
 
-.right-chain {
-  background: url('/client/images/game.png') no-repeat -1248px -1388px;
-  width: 56px;
-  height: 200px;
-  transform: scale(0.45); 
-  -webkit-transform: scale(0.45);
-  -webkit-transform-origin:left top;
-  float: right;
-  margin-left:-16px;
-  margin-top:17px;
+.legend {
+    background-color: transparent;
 }
 
-.left-chain {
-  background: url('/client/images/game.png') no-repeat -1146px -1388px;
-  width: 56px;
-  height: 200px;
-  transform: scale(0.45); 
-  -webkit-transform: scale(0.45);
-  -webkit-transform-origin:left top;
-  margin-left:-424px;
-  margin-top:17px;
+.legend-item {
+    float: left;
+    padding-top: 10px;
+    padding-right: 10px;
+    color: white;
+}
+
+.overlap {
+    margin-left: -25px;
+}
+
+table .label {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 32px;
+    margin-top: 4px;
+    color: #b5b5ba;
+    font-size: 15px;
+}
+
+table .odd, .even, .odd-fail, .even-fail {
+    float: left;
+    margin-right: 5px;
+}
+
+/* Done / Active */
+table .odd .label {
+    color: #FFF;
+    background: #54d41d;
+}
+
+table .even .label {
+    color: #FFF;
+    background: #ff7200;
+}
+
+table .odd-fail .label {
+    color: #FFF;
+    background: #585858;
+    border: 2px solid #54d41d;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+table .even-fail .label {
+    color: #FFF;
+    background: #585858;
+    border: 2px solid #ff7200;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.points {
+    float: right;
+    color: #5b5563;
+    font-size: 24px;
+    margin-top: 5px;
+    font-weight: 100;
+}
+
+.additional {
+    color: #48b43d;
+    font-size: 18px;
 }

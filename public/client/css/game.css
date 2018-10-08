@@ -24,6 +24,8 @@
     font-size: 60px;
     color: #000;
     padding-top: 30px;
+    outline: none !important;
+	box-shadow: none;
 
   /* other styles */
 }

@@ -37,7 +37,7 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-      	<iframe class="embed-responsive-item" src="/history" allowtransparency="true" frameBorder="0" scrolling="no">
+      	<iframe class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no">
       	</iframe>
 	  </div>
       <div class="swiper-slide">
@@ -45,7 +45,7 @@
 		</iframe>
 	  </div>
       <div class="swiper-slide">
-      	<iframe class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no">
+      	<iframe class="embed-responsive-item" src="/history" allowtransparency="true" frameBorder="0" scrolling="no">
 		</iframe>
 	  </div>
     </div>
@@ -120,16 +120,18 @@
 			<div class="grid-container">
 				<div class="box box-left">
 					<div class="header">当前积分</div>
-					<div class="number">1200</div>
+					<div id="divPoint" class="number"></div>
 				</div>
 				<div class="box">
 					<div class="header">可提现红包</div>
-					<div class="number">100元</div>
+					<div class="number"><span id="spanBalance"></span>元</div>
 				</div>
 				<div class="box box-right">
 					<div class="header">剩余次数</div>
-					<div class="number">1</div>
+					<div id="divLife" class="number"></div>
 				</div>
+				<input id="hidLevel" type="hidden" value="" />
+				<input id="hidUserId" type="hidden" value="" />
 		  	</div>
 		</div>
 

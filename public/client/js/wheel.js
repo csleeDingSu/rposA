@@ -1,11 +1,31 @@
 $(function () {
     bindBetButton();
-    DomeWebController.init();
-
-    var oneMinute = 60 * 1;
-    startTimer(oneMinute);
-
+    initGame();
 });
+
+function initGame(){
+    $.getJSON( "/api/game-play-time/101", function( data ) {
+        if(data.success) {
+            var duration = data.record.duration;
+            var timer = data.record.remaining_time;
+            var freeze_time = data.record.freeze_time;
+            var draw_id = data.record.drawid;
+
+            $('#freeze_time').val(freeze_time);
+            $('#draw_id').val(draw_id);
+
+            DomeWebController.init();
+            startTimer(duration, timer, freeze_time);
+        } else {
+            $.getJSON( "/api/generateresult", function() {
+                bindBetButton();
+                initGame();
+            });
+        }
+
+        
+    });
+}
 
 function bindBetButton(){
 
@@ -19,9 +39,7 @@ function bindBetButton(){
     });
 }
 
-function startTimer(duration) {
-
-    var timer = duration, minutes, seconds;
+function startTimer(duration, timer, freeze_time) {
 
     setInterval(function () {
         minutes = parseInt(timer / 60, 10);
@@ -34,19 +52,19 @@ function startTimer(duration) {
 
         --timer;
 
-        if (timer < 5) {
+        if (timer < 0) {
+            timer = duration;
+
+            bindBetButton();
+            initGame();
+
+        } else if (timer < freeze_time) {
             //Lock the selection
             $('.radio-primary', window.parent.document).unbind('click');
             //Get selected option
             var selected = $('div.clicked', window.parent.document).find('input:radio').val();
-            console.log(selected);
-        }
-
-        if (timer < 0) {
-            timer = duration;
+            //console.log(selected);
             $( "#btnWheel" ).trigger( "click" );
-
-            bindBetButton();
         }
         
     }, 1000);
@@ -82,6 +100,8 @@ DomeWebController = {
     build: function () {
         var that = DomeWebController;
         var result = $('#result').val();
+        var freeze_time = $('#freeze_time').val();
+        console.log(result);
 
         that.getEle("$wheelContainer").wheelOfFortune({
             'wheelImg': "/client/images/wheel.png",//转轮图片
@@ -95,7 +115,7 @@ DomeWebController = {
             'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
             'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
             'rotateNum': 12,//转多少圈(默认12)
-            'duration': 2000,//转一次的持续时间(默认5000)
+            'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
             'click': function () {
                 if(1==1){}
                 var key = result;

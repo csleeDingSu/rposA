@@ -2,104 +2,65 @@
 <html>
 	<head>
 	<link rel="stylesheet" href="{{ asset('/client/css/results.css') }}" />
+	<script src="{{ asset('/client/js/jquery.min.js') }}"></script>
+	<script src="{{ asset('/client/js/results.js') }}"></script>
 	</head>
 
 	<body>
-		<table class="table">
-		    <tbody>
-		        <tr>
-		            <td>30</td>
-		            <td width="500px">
-		            	<div class="odd">
-			                <span class="label">1</span>
-			            </div>
-			            <div class="odd">
-			                <span class="label">2</span>
-			            </div>
-			            <div class="even">
-			                <span class="label">3</span>
-			            </div>
-			            <div class="even">
-			                <span class="label">6</span>
-			            </div>
-			            <div class="points">630 <span class="additional">+40</span></div>
-			        </td>
-		        </tr>
-		        <tr>
-		            <td>29</td>
-		            <td>
-		            	<div class="odd-fail">
-			                <span class="label">1</span>
-			            </div>
-			            <div class="odd-fail">
-			                <span class="label">2</span>
-			            </div>
-			            <div class="even-fail">
-			                <span class="label">3</span>
-			            </div>
-			            <div class="even">
-			                <span class="label">6</span>
-			            </div>
-			            <div class="points">630 <span class="additional">+40</span></div>
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>28</td>
-		            <td>
-		            	<div class="even">
-			                <span class="label">6</span>
-			            </div>
-			            <div class="points">630 <span class="additional">+40</span></div>
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>27</td>
-		            <td>
-		            	<div class="odd">
-			                <span class="label">3</span>
-			            </div>
-			            <div class="points">630 <span class="additional">+40</span></div>
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>26</td>
-		            <td>
-		            	<div class="odd">
-			                <span class="label">3</span>
-			            </div>
-			        </td>
-		        </tr>
-		        <tr>
-		            <td>25</td>
-		            <td>
-		            	<div class="points">630 <span class="additional">+40</span></div>
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>24</td>
-		            <td>
-		            	<div class="odd">
-			                <span class="label">3</span>
-			            </div>
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>23</td>
-		            <td>
-		            	<div class="odd">
-			                <span class="label">3</span>
-			            </div>
-		            </td>
-		        </tr>
-		        <tr>
-		        	<td class="legend"></td>
-		        	<td class="legend">
-		        		<div class="even"><span class="label"></span></div><div class="legend-item">代表双数</div>
-		        		<div class="odd"><span class="label"></span></div><div class="legend-item">代表单数</div>
-		        		<div class="odd-fail"><span class="label"></span></div><div class="even-fail overlap"><span class="label"></span></div><div class="legend-item">代表失败</div>
-		        	</td>
-		        </tr>
-		    </tbody>
-		</table>
+		<div class="wrapper">
+			<div class="row">
+				<div id="result-1" class="box">1</div>
+				<div id="result-2" class="box">2</div>
+				<div id="result-3" class="box">3</div>
+				<div id="result-4" class="box">4</div>
+				<div id="result-5" class="box">5</div>
+				<div class="right-chain"></div>
+		  	</div>
+
+
+		  	<div class="row">
+				<div id="result-10" class="box">1</div>
+				<div id="result-9" class="box">2</div>
+				<div id="result-8" class="box">3</div>
+				<div id="result-7" class="box">4</div>
+				<div id="result-6" class="box">5</div>
+				<div class="left-chain"></div>
+		  	</div>
+
+		  	<div class="row">
+				<div id="result-11" class="box">1</div>
+				<div id="result-12" class="box">2</div>
+				<div id="result-13" class="box">3</div>
+				<div id="result-14" class="box">4</div>
+				<div id="result-15" class="box">5</div>
+				<div class="right-chain"></div>
+		  	</div>
+
+		  	<div class="row">
+				<div id="result-20" class="box">1</div>
+				<div id="result-19" class="box">2</div>
+				<div id="result-18" class="box">3</div>
+				<div id="result-17" class="box">4</div>
+				<div id="result-16" class="box">5</div>
+				<div class="left-chain"></div>
+		  	</div>
+
+		  	<div class="row">
+				<div id="result-21" class="box">1</div>
+				<div id="result-22" class="box">2</div>
+				<div id="result-23" class="box">3</div>
+				<div id="result-24" class="box">4</div>
+				<div id="result-25" class="box">5</div>
+				<div class="right-chain"></div>
+		  	</div>
+
+		  	<div class="row">
+				<div id="result-30" class="box">1</div>
+				<div id="result-29" class="box">2</div>
+				<div id="result-28" class="box">3</div>
+				<div id="result-27" class="box">4</div>
+				<div id="result-26" class="box">5</div>
+		  	</div>
+		</div>
 	</body>
 </html>
