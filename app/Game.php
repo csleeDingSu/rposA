@@ -222,9 +222,16 @@ class Game extends Model
             ->insert($data);
 	}
 	
-	public static function get_game_history($gameid)
+	public static function get_game_history($gameid, $orderby = FALSE)
 	{				
-		return $result =  DB::table('game_result_history')->select('id as gameid','result_id as drawid','game_result as result')->where('game_id',$gameid)->paginate(20);
+		$query = DB::table('game_result_history')->select('id as gameid','result_id as drawid','game_result as result')->where('game_id',$gameid);
+		
+		if ($orderby)
+		{
+			$query = $query->orderBy('id', $orderby);
+		}
+		
+		return $query->paginate(30);
 	}
 	
 	public static function get_betting_history($gameid)

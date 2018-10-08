@@ -124,7 +124,7 @@ class GameController extends Controller
 	
 	public function get_game_history($id = false)
     {
-		$result = Game::get_game_history($id);
+		$result = Game::get_game_history($id,'DESC');
 		return response()->json(['success' => true, 'records' => $result]); 
 	}
 	
@@ -151,12 +151,13 @@ class GameController extends Controller
 			
 			if ($result_time)
 			{
+				
 				$end_date = Carbon::parse($out->created);
 
 				$duration = $end_date->diffInSeconds($out->expiry_time);
 				
 				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => '5'];
-				
+			
 				return response()->json(['success' => true, 'record' => $result]);
 			}
 			return response()->json(['success' => false, 'record' => '', 'message' => 'result expired']); 
