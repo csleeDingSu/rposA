@@ -3,7 +3,6 @@
 	<head>
 	<link rel="stylesheet" href="{{ asset('/client/css/results.css') }}" />
 	<script src="{{ asset('/client/js/jquery.min.js') }}"></script>
-	<script src="{{ asset('/client/js/results.js') }}"></script>
 	</head>
 
 	<body>

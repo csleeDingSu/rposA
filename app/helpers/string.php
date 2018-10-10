@@ -56,7 +56,20 @@ if( ! function_exists('unique_random') ){
 
 }
 
+
 function generate_random_number ($min,$max)
 {
 	return mt_rand($min, $max);
 }
+
+function check_odd_even ($num)
+{
+	if ($num % 2 == 0)
+	{
+		return 'even';
+	}
+	return 'odd';
+}
+
+
+

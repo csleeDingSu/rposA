@@ -37,15 +37,15 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-      	<iframe class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no">
+      	<iframe id="ifm_result" class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no">
       	</iframe>
 	  </div>
       <div class="swiper-slide">
-      	<iframe class="embed-responsive-item" src="/wheel" allowtransparency="true" frameBorder="0" scrolling="no">
+      	<iframe id="ifm_wheel" class="embed-responsive-item" src="/wheel" allowtransparency="true" frameBorder="0" scrolling="no">
 		</iframe>
 	  </div>
       <div class="swiper-slide">
-      	<iframe class="embed-responsive-item" src="/history" allowtransparency="true" frameBorder="0" scrolling="no">
+      	<iframe id="ifm_history" class="embed-responsive-item" src="/history" allowtransparency="true" frameBorder="0" scrolling="no">
 		</iframe>
 	  </div>
     </div>
@@ -104,13 +104,13 @@
 	        <div class="button-card radio-primary">
 	        	<div class="radio btn btn-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="odd">单数
-					<div class="bet-container">150</div>
+					<div class="bet-container">0</div>
 				</div>
 			  </div>
 			  <div class="button-card radio-primary right">
 				<div class="radio btn btn-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="even">双数
-					<div class="bet-container">150</div>
+					<div class="bet-container">0</div>
 				</div>
 			  </div>
 		</div>
@@ -130,8 +130,9 @@
 					<div class="header">剩余次数</div>
 					<div id="divLife" class="number"></div>
 				</div>
+				<input id="hidPoint" type="hidden" value="" />
 				<input id="hidLevel" type="hidden" value="" />
-				<input id="hidUserId" type="hidden" value="" />
+				<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 		  	</div>
 		</div>
 

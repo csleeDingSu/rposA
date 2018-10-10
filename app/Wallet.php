@@ -21,20 +21,30 @@ class Wallet extends Model
 	protected $table_history = 'ledger_history';
 	
 	
-	public static function get_wallet_details($id)
-	{
+	public static function get_wallet_details($gameid, $memberid)
+	{		
+		//$queries = DB::enableQueryLog();
+		//print_r(DB::getQueryLog());
 		$result = [];
-		if (!empty($id))
+		if (!empty($memberid))
 		{
 			$result = DB::table('mainledger')
-				->select('mainledger.current_level as level', 'mainledger.current_point as point','mainledger.current_balance as balance', 'game_life.remaining_life as life')
+				->select('mainledger.current_point as point', 'game_life.remaining_life as life','mainledger.current_balance as balance','game_life.gameid')
 				->join('game_life', 'mainledger.member_id', '=', 'game_life.member_id')
-				->where('mainledger.member_id', $id)
-				->get()->take(1);
-		}
-		
+				->where('mainledger.member_id', $memberid);			
+			if ($gameid)
+			{
+				$result = $result->where('game_life.gameid', $gameid);
+				$result = $result->get()->take(1);
+			}	
+			else 
+			{				
+				$result = $result->get();
+			}				
+		}		
 		return $result;
 	}
+	
 	
 	
 }

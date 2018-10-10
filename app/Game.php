@@ -239,11 +239,11 @@ class Game extends Model
 		return $result =  DB::table('member_game_result')->select('id as gameid','game_level_id','is_win','game_result as result','bet','bet_amount')->where('game_id',$gameid)->paginate(20);
 	}
 	
-	public static function get_betting_history_grouped($gameid)
+	public static function get_betting_history_grouped($gameid, $memberid)
 	{				
-		$result =  DB::table('member_game_result')->select('id as gameid','game_level_id','is_win','game_result as result','bet','bet_amount','player_level')->where('game_id',$gameid)->paginate(20);
+		$result =  DB::table('member_game_result')->select('id as gameid','game_level_id','is_win','game_result as result','bet','bet_amount','player_level')->where('member_id',$memberid)->where('game_id',$gameid)->paginate(20);
 		
-		
+		$newOptions = [];
 		if ($result)
 		{
 			foreach ($result as $key=>$val)
@@ -256,9 +256,7 @@ class Game extends Model
 		}
 		
 		
-		//print_r($newOptions);
 		return $newOptions;
-		//
 	}
 	
 	public static function get_player_level($gameid, $memberid)
@@ -268,8 +266,55 @@ class Game extends Model
 		
 		$result =  DB::table('member_game_result')->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->latest()->first();
 		
-		
 		return $result;
+		
+	}
+	
+	
+	public static function get_member_next_level($gameid, $memberid)
+	{
+		// $result =  DB::table('member_game_result')->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->latest()->first();
+		
+		$result = DB::table('member_game_result')->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
+		
+		//print_r($result);
+		
+		if ($result)
+		{
+			$levelid = $result->game_level_id;
+			
+			$level = self::get_game_next_level($gameid, $levelid);
+		}
+		else 
+		{
+			$level = self::get_game_next_level($gameid, '');
+		}
+		
+		return $level;
+		
+	}
+	
+	public static function get_game_next_level($gameid, $levelid = false)
+	{
+		//echo $levelid.'sd';
+		//$queries = DB::enableQueryLog();
+		
+		//$next = DB::table('game_levels')->where('game_id', '=', $gameid)->where('game_level', '>', 'game_level')->where('id', '>', $levelid)->min('id');
+		
+		if ($levelid)
+		{
+			$next = DB::table('game_levels')->where('game_id', '=', $gameid)->where('id', '>', $levelid)->min('id');
+		}
+		else 
+		{
+			$next = DB::table('game_levels')->where('game_id', '=', $gameid)->min('id');		
+		}
+		
+		//print_r($next);
+		//die();
+		return $next;
+		//print_r(DB::getQueryLog());
+		print_r($next);die();
 		
 	}
 	
