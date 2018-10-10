@@ -84,39 +84,12 @@
 		</a>
 	</div>
 
-	
-
-	
-	<a class="skype social-icon" href="https://web.skype.com/share?url={{$member->invitation_link}}&text=I wanted you to see this site" target="_blank" title="Skype"><i class="fa fa-skype fa-lg"></i></a>
-   <a class="sms social-icon" href="sms://&body={{$member->invitation_link}}" target="_blank" title="SMS"><i class="fa fa-mobile fa-lg"></i></a>
-<a class="whatsapp social-icon" href="whatsapp://send?text={{$member->invitation_link}}" target="_blank" title="whatsapp"><i class="fa fa-mobile fa-lg"></i></a>
-
-
-	<div id="test">
-
 	<div class="row">
         <div class="card">
             <button @click="invitationLink" class="btn btn-rectangle">邀请好友</button>
         </div>
 	</div>
-		
-    <p>this is test @{{ message }}</p>
-    <input type = "text" id="input" v-model="message">
-    <li v-for="s in sample1"> @{{s}}</li>
 
-	<input type = "text" id="input" v-model="newMessage">
-    <button v-on:click="add">Add</button>
-	</div>
-
-	<div id="root">
-		<task></task>
-		<task>go to 2</task>
-
-	</div>
-
-
-	<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
-	<script src="test.js"></script>
 	<div class="row">
 		<div class="card">
 			<div class="text left">
