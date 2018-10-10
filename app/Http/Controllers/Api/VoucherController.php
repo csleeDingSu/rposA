@@ -18,7 +18,8 @@ class VoucherController extends Controller
         
 		$category = Category::all();
 		
-		$vouchers = Unreleasedvouchers::latest()->paginate(10);
+		$vouchers = Voucher::latest()->paginate(5);
+
         return view('client.home', compact('vouchers','category'));
 		
 		
@@ -28,10 +29,10 @@ class VoucherController extends Controller
     {
         if ($cid)
 		{
-			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(10);
+			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
 		}
 		else{
-			$vouchers = Voucher::latest()->paginate(10);
+			$vouchers = Voucher::latest()->paginate(5);
 		}
 		
 		$category = Category::all();
