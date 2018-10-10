@@ -126,7 +126,8 @@
 				
 				<div class="row">
 					<div class="col-xs-4">
-						<img class="product" src="{{$item->product_picurl}}" alt="{{$item->product_name}}">
+						<img class="product" src="{{$item->product_picurl}}_460x460Q90.jpg_.webp
+" alt="{{$item->product_name}}">
 					</div>
 					<div class="col-xs-8">
 						<div class="description">{{$item->product_name}}</div>
