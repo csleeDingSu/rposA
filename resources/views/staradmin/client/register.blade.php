@@ -42,21 +42,21 @@
 
 			 <div class="input-group">
 			 	<span class="input-group-addon"><i class="fa fa-user"></i></span>
-				<input type="text" placeholder="@lang('dingsu.ph_username')"  name="username" id="username" autofocus required value=""/>
+				<input type="text" placeholder="@lang('dingsu.ph_username')"  name="username" id="username" autofocus value="" />
 			</div>
 			
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-phone"></i></span>
-				<input name="phone" id="phone" type="text"  placeholder="@lang('dingsu.ph_mobile_no')" required value="">
+				<input name="phone" id="phone" type="text"  placeholder="@lang('dingsu.ph_mobile_no')" value="" >
 			</div>
 									
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-				 <input name="password" id="password" type="password"  placeholder="@lang('dingsu.ph_password')" required value="">
+				 <input name="password" id="password" type="password"  placeholder="@lang('dingsu.ph_password')" value="" >
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-				<input name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.ph_confirm_password')" value="">
+				<input name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.ph_confirm_password')" value="" >
 			</div>
 		
 			
