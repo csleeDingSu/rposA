@@ -161,8 +161,7 @@ return [
 	'remove' => 'Remove',
 	'duplicate' => 'Duplicate',
 	'register' => '注册',
-	
-	
+	'logout' => '退出',	
 	
 	//Voucher
 	'product_name' => 'Product name',
@@ -203,5 +202,13 @@ return [
 	'conditions' => '条件',
 	'helps' => '帮助',
 	'terms' => '术语',
-	
+
+	//title
+	'home' => '首页',
+	'arcade' => '闯关猜猜猜',
+	'profile' => '个人中心',
+	'try' => '试用',
+	'balance' => '剩余次数',
+	'treasure' => '挖宝',
+	'mines_history' => '挖宝历史',
 ];

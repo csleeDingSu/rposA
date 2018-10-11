@@ -3,7 +3,7 @@
     <head>
 		<meta charset="utf-8">
 		
-        <title>闯关夺宝 - @yield('title')</title>
+        <title>{{env('APP_NAME')}} - @yield('title')</title>
 		
 		@section('top-css')
 			<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -38,15 +38,15 @@
 								<li role="menuitem"><a href="#">{{ isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : '' }} 你好</a></li>
 								@if (isset(Auth::Guard('member')->user()->username))
 								<li class="divider"></li>
-								<li role="menuitem"><a href="#">闯关历史</a></li>
+								<li role="menuitem"><a href="#">{{ trans('dingsu.mines_history') }}</a></li>
 								<li class="divider"></li>
 								<li role="menuitem"><a href="#">已兑换</a></li>
 								<li class="divider"></li>
 								<li role="menuitem"><a href="#">邀请列表</a></li>
 								<li class="divider"></li>
-								<li role="menuitem"><a href="{{ url('profile') }}">个人资料</a></li>
+								<li role="menuitem"><a href="{{ url('profile') }}">{{ trans('dingsu.profile') }}</a></li>
 								<li class="divider"></li>
-								<li role="menuitem"><a href="{{ url('logout') }}">退出</a></li>
+								<li role="menuitem"><a href="{{ url('logout') }}">{{ trans('dingsu.logout') }}</a></li>
 								@endif
 							</ul>				
 						</li>
@@ -60,14 +60,15 @@
 
         @yield('content')
 		
-		@section('footer-navbar')
+		@section('footer-navbar')		
 		<div class="icon-bar navbar navbar-default navbar-fixed-bottom">
-		  <a href="/"><div class="home"></div><div class="icon_label">首页</div></a> 
-		  <a href="#"><div class="trial"></div></i><div class="icon_label">试用</div></a> 
-		  <a href="#"><div class="balance_circle">{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</div><div class="balance_label">剩余次数</div></a> 
-		  <a href="/arcade"><div class="play"></div><div class="icon_label">闯关</div></a>
-		  <a href="/member"><div class="member"></div><div class="icon_label">个人中心</div></a> 
+		  <a href="{{ url('home') }}"><div class="home"></div><div class="icon_label">{{ trans('dingsu.home') }}</div></a> 
+		  <a href="#"><div class="trial"></div></i><div class="icon_label">{{ trans('dingsu.try') }}</div></a> 
+		  <a href="#"><div class="balance_circle">{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</div><div class="balance_label">{{ trans('dingsu.balance') }}</div></a> 
+		  <a href="/arcade"><div class="play"></div><div class="icon_label">{{ trans('dingsu.treasure') }}</div></a>
+		  <a href="/member"><div class="member"></div><div class="icon_label">{{ trans('dingsu.profile') }}</div></a> 
 		</div>
+
 
 		@show
 		

@@ -164,6 +164,7 @@ return [
 	'remove' => 'Remove',
 	'duplicate' => 'Duplicate',
 	'register' => 'Register',
+	'logout' => 'Logout',
 	
 	
 	//Voucher
@@ -204,19 +205,19 @@ return [
 	
 	'unknow_ref_key' => "Sorry we couldn't find your referral code",
 
-//footer
-'conditions' => 'Conditions',
-'helps' => 'Helps',
-'terms' => 'Terms',
-	
+	//footer
+	'conditions' => 'Conditions',
+	'helps' => 'Helps',
+	'terms' => 'Terms',
 
-	
-	
-	
-	
- 
-
-	
+	//title
+	'home' => 'Home',
+	'arcade' => 'Wheel Of Fortune',
+	'profil' => 'Profile',
+	'try' => 'Try',
+	'balance' => 'Balance',
+	'treasure' => 'Mines Treasure',
+	'mines_history' => 'Mines History',
 	
 	
 ];

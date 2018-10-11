@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '闯关猜猜猜')
+@section('title', trans('dingsu.arcade'))
 
 @section('top-css')
     @parent
