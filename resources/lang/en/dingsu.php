@@ -218,6 +218,11 @@ return [
 	'balance' => 'Balance',
 	'treasure' => 'Mines Treasure',
 	'mines_history' => 'Mines History',
-	
+
+	//placeholder
+	'ph_mobile_no' => 'Please key in your mobile number',
+	'ph_username' => 'Please key in your name',
+	'ph_password' => 'Please key in your password',
+	'ph_confirm_password' => 'Please re-enter your password',
 	
 ];

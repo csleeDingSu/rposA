@@ -5,6 +5,7 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/register.css') }}" />
+	
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -12,9 +13,13 @@
 
 <div class="wrapper full-height">
 	<form action="" method="post" name="registerform" id="registerform" autocomplete="off">
+
 	<div class="row">
+
+
 		
 		<div class="card">
+
 			 @if(!empty($refcode) and !isset($ref->id)) 
                 <div class="alert alert-danger alert-dismissable" id="">
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -29,28 +34,31 @@
 				  <div class="" id="validation-errors"></div>
 			
 			@if(!empty($refcode) and isset($ref->id)) 
-			<div class="inputWithIcon">
-				<input name="refcode" id="refcode" type="text"  value="{{$refcode}}" readonly >
-                     
-			</div>
+				<div class="input-group">				
+					<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+					<input name="refcode" id="refcode" type="text"  value="{{$refcode}}" readonly >
+				</div>
 			 @endif
-			<div class="inputWithIcon">
-				<input type="text" placeholder="@lang('dingsu.username')"  name="username" id="username" autofocus required value=""/>
+
+			 <div class="input-group">
+			 	<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" placeholder="@lang('dingsu.ph_username')"  name="username" id="username" autofocus required value=""/>
 			</div>
 			
-			<div class="inputWithIcon">
-				<input name="email" id="email" type="text"  placeholder="@lang('dingsu.email')" required value="">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-phone"></i></span>
+				<input name="phone" id="phone" type="text"  placeholder="@lang('dingsu.ph_mobile_no')" required value="">
 			</div>
-			
-			
-			<div class="inputWithIcon">
-				 <input name="password" id="password" type="password"  placeholder="@lang('dingsu.password')" required value="">
+									
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+				 <input name="password" id="password" type="password"  placeholder="@lang('dingsu.ph_password')" required value="">
 			</div>
-			<div class="inputWithIcon">
-				<input name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.confirm_password')" value="">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+				<input name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.ph_confirm_password')" value="">
 			</div>
-			
-			
+		
 			
 			<!--div class="inputWithIcon">
 				<input type="text" placeholder="您的真实姓名" />

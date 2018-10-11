@@ -211,4 +211,10 @@ return [
 	'balance' => '剩余次数',
 	'treasure' => '挖宝',
 	'mines_history' => '挖宝历史',
+
+	//placeholder
+	'ph_mobile_no' => '请输入手机号作为用户名',
+	'ph_username' => '您的真实姓名',
+	'ph_password' => '请输入密码',
+	'ph_confirm_password' => '请确认密码',
 ];
