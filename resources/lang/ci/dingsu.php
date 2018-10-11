@@ -196,7 +196,7 @@ return [
 	
 	//Registration 
 	
-	'unknow_ref_key' => "Sorry we couldn't find your referral code",
+	'unknow_ref_key' => "抱歉，我们找不到您的推荐代码",
 
 	//footer
 	'conditions' => '条件',

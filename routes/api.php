@@ -36,16 +36,16 @@ Route::group(['namespace' => 'Api'],function(){
 	
 	Route::get('betting-history', 'GameController@get_betting_history')->name('api.betting.history');
 	
-	Route::get('game-play-time/{id?}', 'GameController@get_game_time')->name('api.game.time'); //deprecated
+	//Route::get('game-play-time/{id?}', 'GameController@get_game_time')->name('api.game.time'); //deprecated
 	
 	Route::get('get-latest-result', 'GameController@get_latest_result')->name('api.game.latestresult');
 	
  });	
 
-
+//deprecated
 Route::get('/generateresult', function() {
-    $exitCode = Artisan::call('generate:gameresult');
-	return 'result generated';
+    //$exitCode = Artisan::call('generate:gameresult');
+	return 'deprecated';
 });
 
 

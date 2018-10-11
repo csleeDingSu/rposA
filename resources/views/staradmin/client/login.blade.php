@@ -17,12 +17,14 @@
 			@foreach ($errors->all() as $error)
 			<div class="alert alert-danger" role="alert">@lang($error)</div>
 			@endforeach
-			
-			<div class="inputWithIcon">
-				<input type="text" placeholder="@lang('dingsu.username')" id="username" name="username" value="{{ old('username') }}" autofocus>
+
+			<div class="input-group">				
+				<span class="input-group-addon"><i class="fa fa-phone"></i></span>
+				<input type="text" placeholder="@lang('dingsu.ph_mobile_no')" id="phone" name="phone" value="{{ old('phone') }}" autofocus>
 			</div>
-			
-			<div class="inputWithIcon">
+						
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 				<input type="password" placeholder="*********" id="password" name="password">
 			</div>
 		</div>

@@ -98,17 +98,19 @@ class MemberRegisterController extends Controller
 		
 		$input = [
              'username'   => $data['username'],
-			 'email'   => $data['email'],
+			 // 'email'   => $data['email'],
 		     'password'   => $data['password'],
 			 'password_confirmation'   => $data['confirmpassword'],
 			 'refcode'   => $data['refcode'],
+			 'phone'   => $data['phone'],
               ];
 		
 		$validator = Validator::make($input, 
             [
                 'username' => 'required|string|min:4|max:50|unique:members,username',
-				'email' => 'required|email|min:4|max:50|unique:members,email',
+				// 'email' => 'required|email|min:4|max:50|unique:members,email',
                 'password' => 'required|alphaNum|min:5|max:50|confirmed',
+                'phone' => 'required|string|min:4|max:50|unique:members,phone',
             ]
         );
 		
@@ -133,16 +135,17 @@ class MemberRegisterController extends Controller
 			
 			Members::create([
 				'username' => $data['username'],
-				'email' => $data['email'],
+				'email' => $data['phone'] . '@email.com',
 				'password' => Hash::make($data['password']),
 				'affiliate_id' => $affiliate_id,
 				'referred_by'   => $referred_by,
+				'phone' => $data['phone'],
 			]);
 			
 			
 			//Send Welcome Mail			
 					
-			Mail::to($data['email'])->queue(new SendMail('welcomemail', $input)); //correct one
+			//Mail::to($data['email'])->queue(new SendMail('welcomemail', $input)); //correct one
 					
 			//Generate Login Session
 			Auth::guard('member')->attempt(['username' => $data['username'], 'password' => $data['password']]);

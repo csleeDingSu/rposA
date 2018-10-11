@@ -80,6 +80,12 @@ class GameController extends Controller
 	}
 	
 	//need to work for wallet
+	
+	/**
+	 *
+	 * Fixed player_level number 11/oct/2018
+	 *
+	 **/
 	public function update_game(Request $request)
     {			
 		$glevel = '';
@@ -94,7 +100,6 @@ class GameController extends Controller
 		$gamelevel   = $request->level;	
 			
 		$current_result = Game::get_single_gameresult($drawid);
-		//$game_result = $current_result->game_result;
 		
 		$game_result = !empty($current_result->game_result) ? $current_result->game_result  : '' ;
 		
@@ -118,8 +123,7 @@ class GameController extends Controller
 		if ($validator->fails()) {
 			 return response()->json(['success' => false, 'game_result' => $game_result, 'message' => $validator->errors()->all()]);
 		}
-		else{
-			
+		else{			
 			//If empty then return the game result only
 			if (empty($bet))
 			{
@@ -129,42 +133,20 @@ class GameController extends Controller
 			/**
 			 * if player & histoy win the increse to 1
 			 * if player fail keep the value 
-			 **/
-			$level = Game::get_player_level($gameid, $memberid);
+			 **/			
 			
-			if ($level) 
-			{
-				$player_level = $level->player_level;
+			$game_p_level = $this->get_player_level($gameid, $memberid, $player_level);
 			
-				//if the user previously win then add a increment
-				if ($level->is_win == 1)
-				{					
-					$player_level++;
-				}
-				
-				$glevel = $level->player_level;
-				
-			}
+			$gamelevel    = $game_p_level['gamelevel'];
+			$player_level = $game_p_level['player_level'];
 			
-			$gamelevel = Game::get_member_current_level($gameid, $memberid);
-			//print_r($gamelevel);
-			
-			if (!empty($gamelevel->is_reseted))
-			{
-				$player_level++;
-			}
-			
-			
-			
-			$gamelevel = $gamelevel->levelid;
 			$gen_result  = check_odd_even($game_result);
 			if ($gen_result === $bet)
 			{
 				//win change balance
 				$status = 'win';
 				$is_win = TRUE;				
-			}
-			
+			}			
 			
 			//Add wallet update functions 				
 			$wallet = '100';
@@ -184,6 +166,32 @@ class GameController extends Controller
 		}
 		
 	}
+	
+	public function get_player_level($gameid, $memberid, $player_level)
+	{	
+		$level     = Game::get_player_level($gameid, $memberid);
+		
+		$gamelevel = Game::get_member_current_level($gameid, $memberid);
+		
+
+		if ($level) 
+		{
+			$player_level = $level->player_level;
+			//if the user previously win then add a increment
+			if ($level->is_win == 1)
+			{					
+				$player_level++;
+			}
+			else{
+				if (!empty($gamelevel->is_reseted))
+				{
+					$player_level++;
+				}
+			}
+		}
+		return array ('player_level'=>$player_level,'gamelevel'=>$gamelevel->levelid );
+	}
+	
 	
 			
 	public function view_draw_result(Request $request)
@@ -225,9 +233,7 @@ class GameController extends Controller
 		$memberid   = $request->memberid;
 		
 		$result = Game::get_betting_history_grouped($gameid, $memberid);
-		
-		//print_r($result);
-		//die();
+	
 		return response()->json(['success' => true, 'records' => $result]); 
 	}
 	

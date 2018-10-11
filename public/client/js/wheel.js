@@ -22,27 +22,40 @@ function updateHistory(){
     var user_id = $('#hidUserId', window.parent.document).val();
 
     $.getJSON( "/api/betting-history?gameid=101&memberid=" + user_id, function( data ) {
-        //console.log(data.records);
-        $.each(data.records, function(r, records) {
+
+        var records = data.records;        
+        //console.log(records);
+        for(var r = 1; r <= 8; r++){
+            var last = Object.keys(records)[Object.keys(records).length-1];
+            var last_record = records[last];
             var history = '';
 
-            iframe_history.find('#row-' + r).find('.number').html(r);
+            iframe_history.find('#row-' + r).find('.number').html(last);
             iframe_history.find('#row-' + r).find('.history').html('');
 
-            $.each(records, function(i, item) {
-                var className = item.bet;
+            var betCount = Object.keys(last_record).length;
 
-                if(item.is_win == null){
-                    className = item.bet + '-fail'; 
+            for(var i = 0; i < betCount; i++){
+
+                var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
+                var last_bet = last_record[last_key];
+                //console.log(last_bet);
+                var className = last_bet.bet;
+
+                if(last_bet.is_win == null){
+                    className = last_bet.bet + '-fail'; 
                 }
 
                 history =  '<div class="' + className + '">' +
-                                '<span class="label">' + item.result +'</span>'
+                                '<span class="label">' + last_bet.result +'</span>'
                             '</div>';
 
                 iframe_history.find('#row-' + r).find('.history').append(history);
-            })
-        });
+                delete last_record[last_key];
+            }
+
+            delete records[last];
+        }
     });
 }
 
@@ -80,7 +93,8 @@ function initGame(){
 
     var user_id = $('#hidUserId', window.parent.document).val();
     $.getJSON( "/api/game-setting?gameid=101&memberid=" + user_id, function( data ) {
-        //console.log(data);
+        console.log("/api/game-setting?gameid=101&memberid=0");
+        console.log(data);
         if(data.success) {
             var bet_amount = 0;
             var duration = data.record.duration;
@@ -89,9 +103,11 @@ function initGame(){
             var draw_id = data.record.drawid;
             var level = data.record.level.position;
             var level_id = data.record.level.levelid;
+            var previous_result = data.record.latest_result.game_result;
 
             $('#hidLevel', window.parent.document).val(level);
             $('#hidLevelId', window.parent.document).val(level_id);
+            $('#hidLatestResult', window.parent.document).val(previous_result);
 
             $('.speech-bubble', window.parent.document).addClass("hide");
             $('.speech-bubble', window.parent.document).next().removeClass("done");
@@ -148,10 +164,14 @@ function initGame(){
 
             DomeWebController.init();
             startTimer(duration, timer, freeze_time);
-            bindBetButton();
-        } else {
-            $.getJSON( "/api/generateresult", function() {});
 
+            var user_id = $('#hidUserId', window.parent.document).val();
+            if(user_id > 0){
+                bindBetButton();
+            }
+        } else {
+            //$.getJSON( "/api/generateresult", function() {});
+            //console.log("initGame");
             initGame();
         }
 
@@ -302,6 +322,7 @@ DomeWebController = {
         var that = DomeWebController;
         var result = $('#result').val();
         var freeze_time = $('#freeze_time').val();
+        var startKey = $('#hidLatestResult', window.parent.document).val();
 
         that.getEle("$wheelContainer").wheelOfFortune({
             'wheelImg': "/client/images/wheel.png",//转轮图片
@@ -316,7 +337,7 @@ DomeWebController = {
             'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
             'rotateNum': 12,//转多少圈(默认12)
             'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
-            'startKey' : 1,
+            'startKey' : startKey,
             'click': function () {
                 if(1==1){}
                 var key = result;

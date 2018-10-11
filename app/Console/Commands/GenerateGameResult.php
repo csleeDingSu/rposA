@@ -75,14 +75,19 @@ class GenerateGameResult extends Command
 		//Generate result for levels
 		$insdata = $this->Generateresult($game->id,$value = false);
 		
-		$items = Game::get_gameresult($game->id);
-		//remove expired results
-		Game::archive_data($items);
+		$items = Game::get_gameresult($game->id);		
+		
+		//update new result
+		if ($items)
+		{
+			//remove expired results
+			Game::archive_data($items);
+		}
+		
 		//delete old data
 		Game::force_delete($game->id);
-		//update new result
-		Game::insert_gameresult($insdata);
 		
+		Game::insert_gameresult($insdata);
 		return $result;
 	}
 	
@@ -108,8 +113,10 @@ class GenerateGameResult extends Command
 		//delete old data
 		Game::force_delete($game->id);
 		//update new result
-		Game::insert_gameresult($insdata);
-		
+		if ($insdata)
+		{
+			Game::insert_gameresult($insdata);
+		}
 			
 		return $result;
 	}

@@ -133,6 +133,7 @@
 				<input id="hidPoint" type="hidden" value="" />
 				<input id="hidLevel" type="hidden" value="" />
 				<input id="hidLevelId" type="hidden" value="" />
+				<input id="hidLatestResult" type="hidden" value="" />
 				<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 		  	</div>
 		</div>

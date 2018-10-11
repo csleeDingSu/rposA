@@ -252,7 +252,33 @@ class Game extends Model
 		$result =  DB::table('member_game_result')->select('id','game_id','game_level_id','is_win','game_result as result','bet','bet_amount','player_level','created_at')->where('member_id',$memberid)->where('game_id',$gameid)->orderBy('created_at', 'DESC')->paginate(50);
 		
 		//@todo add osrting function
-		/*
+		
+		$newOptions = [];
+		if ($result)
+		{
+			foreach ($result as $key=>$val)
+			{
+				$level = $val->player_level;
+
+  				$newOptions[$level][] = $val;
+			}
+			
+			krsort($newOptions);
+			
+		}		
+		return $newOptions;
+	}
+	
+	/** Testing purpose**/
+	private static function sort_paginationdata($result = [])
+	{
+		$result->getCollection()->transform(function ($value) {
+				
+			//print_r($value);
+			$value = self::sort_paginationdata($value);
+			return $value;
+		});
+		
 		$newOptions = [];
 		if ($result)
 		{
@@ -260,18 +286,15 @@ class Game extends Model
 			//krsort($result);
 			foreach ($result as $key=>$val)
 			{
-				//print_r($result);die();
+				print_r($val);die();
 				$level = $val->player_level;
 
   				$newOptions[$level][] = $val;
 			}
+			
+			krsort($newOptions);			
 		}
-		//echo 'asf';
-		//print_r($newOptions);
-		krsort($newOptions);
-		//print_r($newOptions);die();
-		*/
-		return $result;
+		return $newOptions;
 	}
 	
 	public static function get_player_level($gameid, $memberid)

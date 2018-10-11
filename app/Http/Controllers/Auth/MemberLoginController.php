@@ -58,7 +58,7 @@ class MemberLoginController extends Controller
 	{
 		$data = array();
 		return view('client.login', $data);
-		return view('common.memberlogin', $data);
+		//return view('common.memberlogin', $data);
 	}
 	
 	/**
@@ -79,7 +79,8 @@ class MemberLoginController extends Controller
 		$validator = $this->validate(
             $request,
             [
-                'username' => 'required|string|min:4|max:50',
+                // 'username' => 'required|string|min:4|max:50',
+                'phone' => 'required|string|min:4|max:50',
                 'password' => 'required|alphaNum|min:5|max:50',
             ]
         );
@@ -91,16 +92,13 @@ class MemberLoginController extends Controller
 	protected function attemptLogin(Request $request)
     {
         
-		$credentials = $request->only('username', 'password');
-		
-		$username = $credentials['username'];
+		$credentials = $request->only('phone', 'password');
+		$phone = $credentials['phone'];
 		$password = $credentials['password'];
-		
-		
 		$credentials['user_status'] = 1; 
 		
 		
-		if (Auth::guard('member')->attempt(['username' => $username, 'password' => $password], $request->remember)) {
+		if (Auth::guard('member')->attempt(['phone' => $phone, 'password' => $password], $request->remember)) {
 			// if successful, then redirect to their intended location			
 			return redirect('/');
 		 }

@@ -16,6 +16,7 @@ class Members extends Model
 		'password',
 		'affiliate_id',
 		'referred_by',
+		'phone',
     ];
 
     /**

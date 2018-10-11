@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\GenerateGameResult::class,
     ];
 
     /**
@@ -27,9 +27,25 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 		
-		$schedule->command('generate:gameresult')
-            ->daily();
+		$this
+            ->scheduleInDayCommands($schedule);
+		
     }
+	
+	protected function scheduleInDayCommands(Schedule $schedule) {
+		$date = date('Ymd', time());
+		
+		$schedule->command('generate:gameresult')
+            ->everyMinute()->appendOutputTo(storage_path('logs/gameresult_'.$date.'.log'));
+		//$schedule->command('mail:sendmail')->everyFiveMinutes(); //to send mail
+	}
+	
+	protected function scheduleDailyCommands(Schedule $schedule) {
+		//no action
+	}
+	
+	protected function scheduleOnDayCommands(Schedule $schedule) {
+	}
 
     /**
      * Register the commands for the application.
