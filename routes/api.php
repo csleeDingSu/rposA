@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::group(['namespace' => 'Api', 'middleware' => ['auth:member']],function(){
+//Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 Route::group(['namespace' => 'Api'],function(){
 		
     Route::get('list-all-game/{id?}', 'GameController@listall')->name('api.game.listall');
@@ -36,7 +36,9 @@ Route::group(['namespace' => 'Api'],function(){
 	
 	Route::get('betting-history', 'GameController@get_betting_history')->name('api.betting.history');
 	
-	Route::get('game-play-time/{id?}', 'GameController@get_game_time')->name('api.game.time');
+	Route::get('game-play-time/{id?}', 'GameController@get_game_time')->name('api.game.time'); //deprecated
+	
+	Route::get('get-latest-result', 'GameController@get_latest_result')->name('api.game.latestresult');
 	
  });	
 

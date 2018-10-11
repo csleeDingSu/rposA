@@ -30,20 +30,53 @@ class GameController extends Controller
 		
 		return response()->json(['success' => true, 'record' => $records]); 
 	}
+	
+	
+	public function mytest(Request $request)
+    {
+		$gameid   = $request->gameid;
+		$memberid = $request->memberid;
+		$levelid  = $request->level;
+		
+		$level  =  Game::get_game_next_position($gameid, $levelid);
+		
+		
+		print_r($level);
+	}
+	
 	public function get_game_setting(Request $request)
     {
 		$gameid   = $request->gameid;
 		$memberid = $request->memberid;
 		
-		$records =  Game::gamesetting($gameid);
+		$level  =  Game::get_member_current_level($gameid, $memberid);
 		
-		$level  =  Game::get_member_next_level($gameid, $memberid);
+		$now        = Carbon::now();
+		$out = Game::get_single_gameresult_by_gameid($gameid);
 		
-		//array_push($records, $level);
+		$latest_result = Game::get_latest_result($gameid);
+			
+		if ($out)
+		{
+			$result_time = $this->processgametime( $now,$out );
+			
+			if ($result_time)
+			{				
+				$end_date = Carbon::parse($out->created_at);
+
+				$duration = $end_date->diffInSeconds($out->expiry_time);
+				
+				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => '5','level'=>$level,'latest_result'=>$latest_result];
+			
+				return response()->json(['success' => true, 'record' => $result]);
+			}
+			return response()->json(['success' => false, 'record' => '', 'message' => 'result expired']); 
+			 
+		}
+		return response()->json(['success' => false, 'record' => '', 'message' => 'invalid game']);
+				
+		//$records =  Game::gamesetting($gameid);
 		
-		$records['levelid'] = $level;
-		
-		return response()->json(['success' => true, 'record' => $records]); 
 	}
 	
 	//need to work for wallet
@@ -57,8 +90,14 @@ class GameController extends Controller
 		$memberid = $request->memberid;
 		$drawid   = $request->drawid;
 		$bet      = $request->bet;
-		$betamt   = $request->betamt;		
+		$betamt   = $request->betamt;	
+		$gamelevel   = $request->level;	
 			
+		$current_result = Game::get_single_gameresult($drawid);
+		//$game_result = $current_result->game_result;
+		
+		$game_result = !empty($current_result->game_result) ? $current_result->game_result  : '' ;
+		
 		$input = [
              'gameid'    => $gameid,
 			 'memberid'  => $memberid,
@@ -77,12 +116,9 @@ class GameController extends Controller
         );
 		
 		if ($validator->fails()) {
-			 return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+			 return response()->json(['success' => false, 'game_result' => $game_result, 'message' => $validator->errors()->all()]);
 		}
 		else{
-			
-			$current_result = Game::get_single_gameresult($drawid);
-			$game_result = $current_result->game_result;
 			
 			//If empty then return the game result only
 			if (empty($bet))
@@ -106,13 +142,21 @@ class GameController extends Controller
 					$player_level++;
 				}
 				
-				
 				$glevel = $level->player_level;
 				
 			}
 			
-			$gamelevel = Game::get_game_next_level($glevel);
+			$gamelevel = Game::get_member_current_level($gameid, $memberid);
+			//print_r($gamelevel);
 			
+			if (!empty($gamelevel->is_reseted))
+			{
+				$player_level++;
+			}
+			
+			
+			
+			$gamelevel = $gamelevel->levelid;
 			$gen_result  = check_odd_even($game_result);
 			if ($gen_result === $bet)
 			{
@@ -130,7 +174,7 @@ class GameController extends Controller
 			{
 				//Update Memeber game play history		
 				$now     = Carbon::now('utc')->toDateTimeString();
-				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>'0','is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level];		
+				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level];		
 
 				$records =  Game::add_play_history($insdata);
 				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
@@ -181,6 +225,9 @@ class GameController extends Controller
 		$memberid   = $request->memberid;
 		
 		$result = Game::get_betting_history_grouped($gameid, $memberid);
+		
+		//print_r($result);
+		//die();
 		return response()->json(['success' => true, 'records' => $result]); 
 	}
 	
@@ -213,7 +260,7 @@ class GameController extends Controller
 			if ($result_time)
 			{
 				
-				$end_date = Carbon::parse($out->created);
+				$end_date = Carbon::parse($out->created_at);
 
 				$duration = $end_date->diffInSeconds($out->expiry_time);
 				
@@ -231,7 +278,7 @@ class GameController extends Controller
 	private function processgametime($now,$result)
 	{
 		
-		$start_time = $result->created;
+		$start_time = $result->created_at;
 		
 		$end_time   = $result->expiry_time;
 		
@@ -244,6 +291,19 @@ class GameController extends Controller
 		return $end_date->diffInSeconds($now);
 		
 	}
+	
+	public function get_latest_result(Request $request)
+    {	
+		$gameid   = $request->gameid;
+		
+		if ($gameid)
+		{
+			$result = Game::get_latest_result($gameid);	
+			return response()->json(['success' => true, 'record' => $result]);
+		}
+		return response()->json(['success' => false, 'record' => '', 'message' => 'unknown game']); 
+	}
+	
 	/*public function view_game_result($id = false)
     {
 		

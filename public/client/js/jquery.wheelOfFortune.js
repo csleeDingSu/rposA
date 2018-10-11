@@ -32,8 +32,18 @@
             bSide = param['bSide'],
             pOffset = wSide / 2 - pSide / 2,
             bOffset = wSide / 2 - bSide / 2,
-            html =
-                '<img src="' + wheelImg + '" style="position:absolute;width:' + wSide + 'px;height:' + wSide + 'px;top:0;left:0;" w/>' +
+            
+            // get Degree
+            startKey = param['startKey'];
+            item = param['items'][startKey],
+            start = item[0], end = item[1],
+            distance = end - start,
+            fluctuate = (1 - param['fluctuate']) * distance / 2,
+            target = start + ran(distance - fluctuate * 2) + fluctuate;
+            degree = 360 - target + param['pAngle'];
+
+        var html =
+                '<img src="' + wheelImg + '" style="transform: rotate('+ degree +'deg);position:absolute;width:' + wSide + 'px;height:' + wSide + 'px;top:0;left:0;" w/>' +
                 '<img src="' + pointerImg + '" style="position:absolute;width:' + pSide + 'px;height:' + pSide + 'px;top:' + pOffset + 'px;left:' + pOffset + 'px;" p/>' +
                 '<img id="btnWheel" src="' + buttonImg + '" style="position:absolute;width:' + bSide + 'px;height:' + bSide + 'px;top:' + bOffset + 'px;left:' + bOffset + 'px;" b/>' +
                 '<div id="txtCounter" style="position:absolute;width:' + bSide + 'px;height:' + bSide + 'px;top:' + bOffset + 'px;left:' + bOffset + 'px;"></div>';
@@ -114,7 +124,6 @@
                 break;
         }
     }
-
 
     function ran(n) {
         return parseInt(Math.random() * n);

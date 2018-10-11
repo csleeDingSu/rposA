@@ -76,7 +76,6 @@ class GenerateGameResult extends Command
 		$insdata = $this->Generateresult($game->id,$value = false);
 		
 		$items = Game::get_gameresult($game->id);
-		
 		//remove expired results
 		Game::archive_data($items);
 		//delete old data
@@ -125,9 +124,11 @@ class GenerateGameResult extends Command
 
 		$row['game_id']       = $id; 
 		//$row['game_level_id'] = $value->id;			
-		$row['created']       = $now; 
-		$row['expiry_time']   = $expiry; 
-		$row['game_result']   = generate_random_number(1,6); //generate random number
+		$row['game_level_id'] = null;			
+		$row['created_at']   = $now; 
+		$row['updated_at']   = $now; 		
+		$row['expiry_time']  = $expiry; 
+		$row['game_result']  = generate_random_number(1,6); //generate random number
 		
 		return $row;
 	}
