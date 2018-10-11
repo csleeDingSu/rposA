@@ -155,7 +155,7 @@ class GameController extends Controller
 			if ($wallet)
 			{
 				//Update Memeber game play history		
-				$now     = Carbon::now('utc')->toDateTimeString();
+				$now     = Carbon::now()->toDateTimeString();
 				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level];		
 
 				$records =  Game::add_play_history($insdata);

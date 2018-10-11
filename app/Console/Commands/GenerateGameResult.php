@@ -40,7 +40,7 @@ class GenerateGameResult extends Command
     public function handle()
     {
         
-		$this->comment('Stared:'.'----------'.Carbon::now('utc')->toDateTimeString().'----------');
+		$this->comment('Stared:'.'----------'.Carbon::now()->toDateTimeString().'----------');
 		//get Game list
 		$gamelist  = Game::all();
  
@@ -61,7 +61,7 @@ class GenerateGameResult extends Command
 			}
         }
  		
-		$this->line('End:'.'-------------'.Carbon::now('utc')->toDateTimeString().'----------');
+		$this->line('End:'.'-------------'.Carbon::now()->toDateTimeString().'----------');
 		
 		$this->info('-------------All done----------');
     }
@@ -70,8 +70,8 @@ class GenerateGameResult extends Command
 		$result  = '';
 		$insdata = [];
 		
-		$now = Carbon::now('utc')->toDateTimeString();
-		
+		$now = Carbon::now()->toDateTimeString();
+				
 		//Generate result for levels
 		$insdata = $this->Generateresult($game->id,$value = false);
 		
@@ -99,7 +99,7 @@ class GenerateGameResult extends Command
 		$result  = '';
 		$insdata = [];
 		
-		$now = Carbon::now('utc')->toDateTimeString();
+		$now = Carbon::now()->toDateTimeString();
 		
 		//Generate result for levels
 		foreach ($level as $key=>$value)
@@ -123,11 +123,11 @@ class GenerateGameResult extends Command
 	
 	private function Generateresult($id,$value)
 	{
-		$now    = Carbon::now('utc')->toDateTimeString();
-		$expiry = Carbon::now('utc')->addSeconds(60)->toDateTimeString(); 
+		$now    = Carbon::now()->toDateTimeString();
+		$expiry = Carbon::now()->addSeconds(60)->toDateTimeString(); 
 		
 		//@todo -: use this for live
-		//$expiry = Carbon::now('utc')->addSeconds($value->play_time)->toDateTimeString(); 
+		//$expiry = Carbon::now()->addSeconds($value->play_time)->toDateTimeString(); 
 
 		$row['game_id']       = $id; 
 		//$row['game_level_id'] = $value->id;			

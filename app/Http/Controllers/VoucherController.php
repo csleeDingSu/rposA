@@ -34,7 +34,7 @@ class VoucherController extends BaseController
 		$record = Unreleasedvouchers::find($id);
 		if ($record)
 		{
-			$now = Carbon::now('utc')->toDateTimeString();
+			$now = Carbon::now()->toDateTimeString();
 			$record['source_type'] = '2'; 
 			$record['created_at']  = $now; 
 			$record['updated_at']  = $now; 
@@ -56,7 +56,7 @@ class VoucherController extends BaseController
 		$record = Voucher::find($id);
 		if ($record)
 		{
-			$now = Carbon::now('utc')->toDateTimeString();
+			$now = Carbon::now()->toDateTimeString();
 			$record['source_type'] = '1'; 
 			$record['created_at']  = $now; 
 			$record['updated_at']  = $now; 
@@ -250,7 +250,7 @@ class VoucherController extends BaseController
 		$models = Voucher::whereIn('id', $dbi)->get();
 		//print_r(DB::getQueryLog());
 		
-		$now = Carbon::now('utc')->toDateTimeString();
+		$now = Carbon::now()->toDateTimeString();
 		
 		switch ($type)
 		{
@@ -285,7 +285,7 @@ class VoucherController extends BaseController
 		
 		
 		
-		$now = Carbon::now('utc')->toDateTimeString();
+		$now = Carbon::now()->toDateTimeString();
 		
 		foreach ($models as $row)
 		{
@@ -343,7 +343,7 @@ class VoucherController extends BaseController
 		
 	public function ajax_update_voucher (Request $request)
 	{
-		$now = Carbon::now('utc')->toDateTimeString();
+		$now = Carbon::now()->toDateTimeString();
 		$data = $request->_data;
 		$id   = $request->id;
 		$insdata = array();
@@ -383,7 +383,7 @@ class VoucherController extends BaseController
 	
 	public function ajax_unrv_update_voucher (Request $request)
 	{
-		$now = Carbon::now('utc')->toDateTimeString();
+		$now = Carbon::now()->toDateTimeString();
 		$data = $request->_data;
 		$id   = $request->id;
 		$insdata = array();

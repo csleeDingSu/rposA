@@ -24,17 +24,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
+        $date = date('Ymd', time());
+		// $schedule->command('inspire')
         //          ->hourly();
-		
+		//$schedule->command('generate:gameresult')->everyMinute();
 		$this
-            ->scheduleInDayCommands($schedule);
+           ->scheduleInDayCommands($schedule);
+		
 		
     }
 	
 	protected function scheduleInDayCommands(Schedule $schedule) {
 		$date = date('Ymd', time());
-		
 		$schedule->command('generate:gameresult')
             ->everyMinute()->appendOutputTo(storage_path('logs/gameresult_'.$date.'.log'));
 		//$schedule->command('mail:sendmail')->everyFiveMinutes(); //to send mail
