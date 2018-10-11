@@ -144,5 +144,7 @@ div.password {
 }
 
 .input-group{
+	width: 100% !important;
+	padding: 8px !important;
 }
 
