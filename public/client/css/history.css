@@ -56,6 +56,11 @@ table .even .label {
     background: #ff7200;
 }
 
+table .odd-fail {
+    z-index: 100;
+    position: relative;
+}
+
 table .odd-fail .label {
     color: #FFF;
     background: #585858;

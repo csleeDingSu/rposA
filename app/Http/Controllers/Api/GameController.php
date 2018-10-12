@@ -98,6 +98,13 @@ class GameController extends Controller
 		$bet      = $request->bet;
 		$betamt   = $request->betamt;	
 		$gamelevel   = $request->level;	
+		
+		$is_playable = Wallet::playable_status($memberid,$gameid);
+		
+		if (empty($is_playable))
+		{
+			return response()->json(['success' => false, 'game_result' => $game_result]);
+		}
 			
 		$current_result = Game::get_single_gameresult($drawid);
 		

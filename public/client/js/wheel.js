@@ -23,38 +23,45 @@ function updateHistory(){
 
     $.getJSON( "/api/betting-history?gameid=101&memberid=" + user_id, function( data ) {
 
-        var records = data.records;        
+        var records = data.records;
+        var maxCount = 8;
+
+        if(records.length < maxCount){
+            maxCount = records.length;
+        }
         //console.log(records);
-        for(var r = 1; r <= 8; r++){
-            var last = Object.keys(records)[Object.keys(records).length-1];
-            var last_record = records[last];
-            var history = '';
+        for(var r = 1; r <= maxCount; r++){
+            if(records.length > 0){
+                var last = Object.keys(records)[Object.keys(records).length-1];
+                var last_record = records[last];
+                var history = '';
 
-            iframe_history.find('#row-' + r).find('.number').html(last);
-            iframe_history.find('#row-' + r).find('.history').html('');
+                iframe_history.find('#row-' + r).find('.number').html(last);
+                iframe_history.find('#row-' + r).find('.history').html('');
 
-            var betCount = Object.keys(last_record).length;
+                var betCount = Object.keys(last_record).length;
 
-            for(var i = 0; i < betCount; i++){
+                for(var i = 0; i < betCount; i++){
 
-                var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
-                var last_bet = last_record[last_key];
-                //console.log(last_bet);
-                var className = last_bet.bet;
+                    var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
+                    var last_bet = last_record[last_key];
+                    //console.log(last_bet);
+                    var className = last_bet.bet;
 
-                if(last_bet.is_win == null){
-                    className = last_bet.bet + '-fail'; 
+                    if(last_bet.is_win == null){
+                        className = last_bet.bet + '-fail'; 
+                    }
+
+                    history =  '<div class="' + className + '">' +
+                                    '<span class="label">' + last_bet.result +'</span>'
+                                '</div>';
+
+                    iframe_history.find('#row-' + r).find('.history').append(history);
+                    delete last_record[last_key];
                 }
 
-                history =  '<div class="' + className + '">' +
-                                '<span class="label">' + last_bet.result +'</span>'
-                            '</div>';
-
-                iframe_history.find('#row-' + r).find('.history').append(history);
-                delete last_record[last_key];
+                delete records[last];
             }
-
-            delete records[last];
         }
     });
 }
@@ -266,7 +273,7 @@ function startTimer(duration, timer, freeze_time) {
 
                 //Trigger the wheel
                 DomeWebController.getEle("$wheelContainer").wheelOfFortune({
-                    'items': {1: [331, 389], 2: [31, 89], 3: [91, 149], 4: [151, 209], 5: [211, 269], 6: [271, 329]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+                    'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
                     'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
                     'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
                     'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
@@ -329,7 +336,8 @@ DomeWebController = {
             'wSide': 400,//转轮边长(默认使用图片宽度)
             'pSide': 150,//指针边长(默认使用图片宽度)
             'bSide': 80,//按钮边长(默认使用图片宽度)
-            'items': {1: [331, 389], 2: [31, 89], 3: [91, 149], 4: [151, 209], 5: [211, 269], 6: [271, 329]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+            'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+                    
             'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
             'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
             'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)

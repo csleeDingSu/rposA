@@ -10,19 +10,17 @@
 		        <tr id="row-1">
 		            <td class="number"></td>
 		            <td width="500px" class="history">
-		            	<div class="points">630 <span class="additional">+40</span></div>
+		            	<!--div class="points">630 <span class="additional">+40</span></div-->
 			        </td>
 		        </tr>
 		        <tr id="row-2">
 		            <td class="number"></td>
 		            <td class="history">
-			            <div class="points">630 <span class="additional">+40</span></div>
 		            </td>
 		        </tr>
 		        <tr id="row-3">
 		            <td class="number"></td>
 		            <td class="history">
-		            	<div class="points">630 <span class="additional">+40</span></div>
 		            </td>
 		        </tr>
 		        <tr id="row-4">

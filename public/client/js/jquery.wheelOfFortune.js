@@ -32,15 +32,19 @@
             bSide = param['bSide'],
             pOffset = wSide / 2 - pSide / 2,
             bOffset = wSide / 2 - bSide / 2,
+            degree = 0;
             
             // get Degree
-            startKey = param['startKey'];
-            item = param['items'][startKey],
-            start = item[0], end = item[1],
-            distance = end - start,
-            fluctuate = (1 - param['fluctuate']) * distance / 2,
-            target = start + ran(distance - fluctuate * 2) + fluctuate;
-            degree = 360 - target + param['pAngle'];
+            if(typeof param['startKey'] == 'undefined'){
+            } else {
+                startKey = param['startKey'];
+                item = param['items'][startKey],
+                start = item[0], end = item[1],
+                distance = end - start,
+                fluctuate = (1 - param['fluctuate']) * distance / 2,
+                target = start + ran(distance - fluctuate * 2) + fluctuate;
+                degree = 360 - target + param['pAngle'];
+            }
 
         var html =
                 '<img src="' + wheelImg + '" style="transform: rotate('+ degree +'deg);position:absolute;width:' + wSide + 'px;height:' + wSide + 'px;top:0;left:0;" w/>' +
