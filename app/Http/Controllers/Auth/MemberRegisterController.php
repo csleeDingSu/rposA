@@ -107,7 +107,7 @@ class MemberRegisterController extends Controller
 		
 		$validator = Validator::make($input, 
             [
-                'username' => 'required|string|min:4|max:50|unique:members,username',
+                'username' => 'required|string|min:1|max:50|unique:members,username',
 				// 'email' => 'required|email|min:4|max:50|unique:members,email',
                 'password' => 'required|alphaNum|min:5|max:50|confirmed',
                 'phone' => 'required|string|min:4|max:50|unique:members,phone',
