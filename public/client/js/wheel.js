@@ -67,7 +67,6 @@ function initUser(){
         if(data.success) {
             if (data.record.length === 0) {
                 $('#spanBalance', window.parent.document).html(0);
-                $('#divLife', window.parent.document).html(0);
                 $('#divPoint', window.parent.document).html(0);
             } else {
                 var balance = parseInt(data.record[0].balance);
@@ -75,7 +74,6 @@ function initUser(){
                 var point = parseInt(data.record[0].point);
 
                 $('#spanBalance', window.parent.document).html(balance);
-                $('#divLife', window.parent.document).html(life);
                 $('#divPoint', window.parent.document).html(point);
                 $('#hidPoint', window.parent.document).html(point);
                 
