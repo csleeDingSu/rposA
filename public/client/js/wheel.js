@@ -1,3 +1,5 @@
+var trigger = false;
+
 $(function () {    
     initGame();
 });
@@ -82,7 +84,7 @@ function initUser(){
 
                 $('#divBalance', window.parent.document).html(balance);
                 $('#spanPoint', window.parent.document).html(point);
-                $('#hidBalance', window.parent.document).html(balance);
+                $('#hidBalance', window.parent.document).val(balance);
                 
                 setBalance();
             }
@@ -93,10 +95,12 @@ function initUser(){
 
 function initGame(){
     initUser();
+    resetGame();
     updateResult();
     updateHistory();
 
     var user_id = $('#hidUserId', window.parent.document).val();
+    trigger = false;
     //console.log("/api/game-setting?gameid=101&memberid=" + user_id);
     $.getJSON( "/api/game-setting?gameid=101&memberid=" + user_id, function( data ) {
         //console.log(data);
@@ -184,13 +188,17 @@ function initGame(){
     });
 }
 
+function resetGame() {
+    $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
+}
+
 function setBalance() {
     var selected = $('div.clicked', window.parent.document).find('input:radio').val();
     if (typeof selected == 'undefined'){
         //do nothing
     } else {
         var bet_amount = parseInt($('.bet-container', window.parent.document).html());
-        var balance = $('#hidBalance', window.parent.document).html();
+        var balance = $('#hidBalance', window.parent.document).val();
         var newbalance = balance - bet_amount;
         //console.log(balance + " - " + bet_amount + " = " + newbalance);
         if(newbalance < 0){
@@ -204,8 +212,8 @@ function setBalance() {
 function bindBetButton(){
     //console.log('bindBetButton');
     $('.radio-primary', window.parent.document).click(function(){
-        var balance = parseInt($('#hidBalance', window.parent.document).html());
-
+        var balance = $('#hidBalance', window.parent.document).val();
+console.log(balance);
         if(isNaN(balance) || balance < 10){
             return false;
         }
@@ -225,7 +233,7 @@ function bindBetButton(){
             var newbalance = balance - bet_amount;
 
             if(newbalance < 0){
-                var selected = $('div.clicked', window.parent.document).removeClass('clicked');
+                var selected = $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
                 return false;
             } else {
                 $('#divBalance', window.parent.document).html(newbalance);
@@ -255,53 +263,59 @@ function startTimer(duration, timer, freeze_time) {
             clearInterval(timerInterval);
             initGame();
 
-        } else if (timer == trigger_time) {
+        } else if (timer <= trigger_time) {
             //Lock the selection
             $('.radio-primary', window.parent.document).unbind('click');
 
-            //Get selected option
-            var selected = $('div.clicked', window.parent.document).find('input:radio').val();
-            var bet_amount = $('.bet-container', window.parent.document).html();
-            var draw_id = $('#draw_id').val();
-            var user_id = $('#hidUserId', window.parent.document).val();
-            var level_id = $('#hidLevelId', window.parent.document).val();
+            if (trigger == false) {
+                var freeze_time = timer + 1;
+                $('#freeze_time').val(freeze_time);
 
-            //console.log("Selected: "+selected+ " Bet Amount: "+bet_amount+ " Draw Id:"+draw_id+" User Id: "+user_id);   
-            //console.log("/api/update-game-result");
-            $.post("/api/update-game-result", { 
-                gameid : 101, 
-                memberid : user_id, 
-                drawid : draw_id, 
-                bet : selected, 
-                betamt : bet_amount,
-                level : level_id
-            }, 
-            function(data) {
-                console.log(data);
-                var freeze_time = $('#freeze_time').val();
-                var result = data.game_result;
-                $('#result').val(result);
+                //Get selected option
+                var selected = $('div.clicked', window.parent.document).find('input:radio').val();
+                var bet_amount = $('.bet-container', window.parent.document).html();
+                var draw_id = $('#draw_id').val();
+                var user_id = $('#hidUserId', window.parent.document).val();
+                var level_id = $('#hidLevelId', window.parent.document).val();
 
-                //Trigger the wheel
-                DomeWebController.getEle("$wheelContainer").wheelOfFortune({
-                    'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
-                    'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
-                    'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
-                    'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-                    'rotateNum': 12,//转多少圈(默认12)
-                    'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
-                    'click': function () {
-                        if(1==1){}
-                        var key = result;
-                        DomeWebController.getEle("$wheelContainer").wheelOfFortune('rotate', key);
-                    },//点击按钮的回调
-                    'rotateCallback': function (key) {
-                        //alert("左:" + key);
-                    }//转完的回调
-                });
+                //console.log("Selected: "+selected+ " Bet Amount: "+bet_amount+ " Draw Id:"+draw_id+" User Id: "+user_id);   
+                console.log("/api/update-game-result");
+                $.post("/api/update-game-result", { 
+                    gameid : 101, 
+                    memberid : user_id, 
+                    drawid : draw_id, 
+                    bet : selected, 
+                    betamt : bet_amount,
+                    level : level_id
+                }, 
+                function(data) {
+                    console.log(data);
+                    var freeze_time = $('#freeze_time').val();
+                    var result = data.game_result;
+                    $('#result').val(result);
 
-                $( "#btnWheel" ).trigger( "click" );
-            }, 'json');
+                    //Trigger the wheel
+                    DomeWebController.getEle("$wheelContainer").wheelOfFortune({
+                        'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+                        'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
+                        'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
+                        'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
+                        'rotateNum': 12,//转多少圈(默认12)
+                        'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
+                        'click': function () {
+                            if(1==1){}
+                            var key = result;
+                            DomeWebController.getEle("$wheelContainer").wheelOfFortune('rotate', key);
+                        },//点击按钮的回调
+                        'rotateCallback': function (key) {
+                            //alert("左:" + key);
+                        }//转完的回调
+                    });
+
+                    $( "#btnWheel" ).trigger( "click" );
+                    trigger = true;
+                }, 'json');
+            }
         }
         
     }, 1000);

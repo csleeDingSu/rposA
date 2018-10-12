@@ -212,10 +212,11 @@
 .bet-container {
 	font-size: 30px;
 	margin-top: -60px;
-	margin-right: 75px;
+	margin-left: 305px;
 	width: 100px;
 	float: right;
 	display: none;
+	position: absolute;
 }
 
 
