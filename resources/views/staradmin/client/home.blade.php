@@ -17,24 +17,24 @@
 				<div class="col-xs-3">
 					<div class="div-icon left">
 						@if (isset(Auth::Guard('member')->user()->username))
-						<a href="#"><i class="fas fa-user"></i> {{ Auth::Guard('member')->user()->username }}</a>
+						<a href="/member"><i class="fas fa-user"></i> {{ Auth::Guard('member')->user()->username }}</a>
 						@else
 					  	<a href="/register"><i class="fas fa-user-plus"></i>注册</a>
 					  	@endif
 					</div>
 				</div>
 				
-				<div class="col-xs-6 div-brand">
-					  <a class="navbar-brand" href="/home">
-						<img src="/client/images/logo.jpg" alt="{{env('APP_NAME')}}" class="logo" />
+				<div class="col right">
+					  <a href="/home">
+						<img src="/client/images/wabao_logo.png" alt="{{env('APP_NAME')}}" class = "logo"/>
 					  </a>
 				</div>
 			
-				<div class="col-xs-3">
+				<!-- <div class="col-xs-3">
 					<div class="div-icon right">
 					  <a href="#"><i class="fas fa-rss"></i>关注</a>
 					</div>
-				</div>
+				</div> -->
 			  </div>
 			  <!-- /.container-fluid -->
 			</nav>
@@ -42,7 +42,7 @@
 			
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		@if(isset($category))
-		<div class="category-bar navbar">
+		<div class="category-bar">
 			
 			@foreach($category as $cat)
 			
@@ -55,7 +55,7 @@
 
 		</div>
 		
-        <div class="wrapper banner-bg">
+        <div class="banner-bg">
 			<img src="/client/images/banner.jpg" alt="banner" class="banner" />
         </div>
 		

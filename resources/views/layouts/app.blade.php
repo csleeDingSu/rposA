@@ -61,10 +61,10 @@
 		@section('footer-navbar')
 		<div class="icon-bar navbar navbar-default navbar-fixed-bottom">
 		  <a href="/"><div class="home"></div><div class="icon_label">首页</div></a> 
-		  <a href="#"><div class="trial"></div></i><div class="icon_label">试用</div></a> 
+		  <!-- <a href="#"><div class="trial"></div></i><div class="icon_label">试用</div></a>  -->
 		  <a href="#"><div class="balance_circle">{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</div><div class="balance_label">剩余次数</div></a> 
 		  <a href="/arcade"><div class="play"></div><div class="icon_label">闯关</div></a>
-		  <a href="/member"><div class="member"></div><div class="icon_label">个人中心</div></a> 
+		  <!-- <a href="/member"><div class="member"></div><div class="icon_label">个人中心</div></a>  -->
 		</div>
 
 		@show
