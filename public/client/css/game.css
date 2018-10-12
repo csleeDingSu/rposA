@@ -1,16 +1,24 @@
+@media all and (max-width:724px){
+	html, body {
+		height: 100%;
+	}
+}
+
 .full-height {
 	padding-top: 60px;
 	font-size:20px;
     font-family: 'Lato',verdana, sans-serif;
     color: #fff;
-    text-align:center;
     background: url("/client/images/background_game.jpg") top center no-repeat;
+    background-size: 560px;
+    width: 560px;
+    text-align:center;
+    margin: 0 auto;
+    height: 100%
 }
 
 .text {
 	font-size:24px;
-	padding-top: 15px;
-	padding-bottom: 15px;
 }
 
 .btn-rectangle, .btn-rectangle:active {
@@ -22,7 +30,7 @@
 	-webkit-transform: scale(0.45);
 	-webkit-transform-origin:left top;
     font-size: 60px;
-    color: #000;
+    color: #555555;
     padding-top: 30px;
     outline: none !important;
 	box-shadow: none;
@@ -39,7 +47,7 @@
 	-webkit-transform: scale(0.45);
 	-webkit-transform-origin:left top;
     font-size: 60px;
-    color: #000;
+    color: #6a2d1b;
     padding-top: 30px;
 
   /* other styles */
@@ -53,8 +61,9 @@
 }
 
 .button-card {
+	margin-top: -20px;
 	width: 240px !important;
-	height: 150px;
+	height: 100px;
 	float: left;
 }
 
@@ -63,10 +72,9 @@
 }
 
 .progress-bar-container {
-	padding-top: 30px;
     width: 512px;
-	height: 70px;
-    margin: 0 auto;
+	height: 50px;
+	padding-top: 40px;
 }
 
 .progress-bar {
@@ -104,16 +112,16 @@
     margin-left: -12px;
 }
 
-.progress-bar-container .circle .title {
+.progress-bar-container .title {
     display: block;
     width: 30px;
     height: 30px;
     color: #f2deff;
     font-size: 30px;
-    margin-top: 50px;
+    margin-top: -80px;
     margin-left: -8px;
+    position: absolute;
 }
-
 
 .progress-bar-container .bar {
     position: relative;
@@ -148,7 +156,7 @@
 	border-radius: .4em;
 	padding: 20px;
 	z-index: 10;
-	margin-top: -100px;
+	margin-top: -140px;
 	font-size:30px;
 } 
 .speech-bubble:after { 
@@ -174,11 +182,11 @@
 }
 
 .level-three{
-	left: 100px;
+	left: 115px;
 }
 
 .level-four{
-	left: 290px;
+	left: 305px;
 }
 
 .level-five, .level-six {
@@ -186,15 +194,15 @@
 }
 
 .level-one:after {
-	left: 10%;
+	left: 6%;
 }
 
 .level-two:after {
-	left: 37%;
+	left: 39%;
 }
 
 .level-five:after {
-	left: 64%;
+	left: 63%;
 }
 
 .level-six:after {
@@ -203,47 +211,107 @@
 
 .bet-container {
 	font-size: 30px;
-	color: white;
-	margin-top: 15px;
+	margin-top: -60px;
+	margin-right: 75px;
+	width: 100px;
+	float: right;
 	display: none;
 }
 
 
 .information-table {
 	margin: 0 auto;
-	width: 500px;
-	padding-bottom: 100px;
-}
-
-.header {
-	padding-top: 10px;
-}
-
-.number {
-	font-size: 30px;
+	width: 540px;
 	padding-bottom: 10px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 2px;
-  height: 70px;
+  grid-template-columns: auto auto 150px;
+  height: 40px;
 }
 
 .box {
-  background-color: rgba(255, 255, 255, 0.2);
   font-size: 14px;
   color: #fff;
-  /* other styles */
 }
 
-.box-left {
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
+.coin {
+	background: url('/client/images/game.png') no-repeat -1674px -715px;
+	width: 82px;
+	height: 82px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	float: left;
+	z-index: 100;
+	position: relative;
 }
 
-.box-right {
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
+.drumstick {
+	background: url('/client/images/game.png') no-repeat -1680px -1355px;
+	width: 90px;
+	height: 90px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	float: left;
+	margin-top: -8px;
+	z-index: 100;
+	position: relative;
+}
+
+.number {
+	float: left;
+	position: absolute;
+	margin-top: 3px;
+	margin-left: 15px;
+	background-color: #63147f;
+	border-radius: 20px;
+	font-size: 22px;
+	padding-left: 20px;
+	width: 120px;
+	padding-bottom: 1px;
+}
+
+.rules{
+	float: right;
+	background-color: #63147f;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	font-size: 18px;
+	margin-top: 3px;
+	padding: 3px 10px 5px 20px;
+}
+
+.long {
+	width: 160px;
+	padding-left: 35px;
+}
+
+.info-wrapper {
+	float: right;
+	margin-top: 2px;
+	margin-left: 5px;
+	height:30px;
+    width:55px;
+}
+
+.info {
+	background: url('/client/images/game.png') no-repeat -1664px -659px;
+	width: 110px;
+	height: 56px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	float: left;
+	text-align: center;
+	padding: 10px;
+	position: relative;
+    display: inline-block;
+}
+
+.right {
+	float: right;
+	margin-right: 15px;
 }

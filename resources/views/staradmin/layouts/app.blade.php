@@ -28,7 +28,9 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="col-xs-3"></div>
 					<div class="col-xs-6">
-					  <a class="navbar-brand" href="#">@yield('title')</a>
+						<div class="navbar-title">
+						  <a class="navbar-brand" href="#">@yield('title')</a>
+						</div>
 					</div>
 				
 					<div class="col-xs-3">

@@ -22,16 +22,41 @@
 		}
 
 		.swiper-container {
-	      width: 560px;
+	      width: 580px;
 	      height: 458px;
+	      margin-left: -31px;
 	    }
 	</style>
 @endsection
     	
 @section('content')	
 	<div class="wrapper full-height">
-		<div class="text center">
-			<img src="{{ asset('/client/images/game_title.png') }}" width="500" />
+		<div class="information-table">
+			<div class="grid-container">
+				<div class="box">
+					<div class="coin"></div>
+					<div class="number long">
+						<span id="spanPoint">0</span>
+						<div class="info-wrapper">
+							<div class="info">换钱</div>
+						</div>
+					</div>
+				</div>
+				<div class="box">
+					<div class="right">
+						<div class="drumstick"></div>
+						<div id="divBalance" class="number">0</div>
+					</div>
+				</div>
+				<div class="box">
+					<div class="rules">规则介绍</div>
+				</div>
+				<input id="hidBalance" type="hidden" value="" />
+				<input id="hidLevel" type="hidden" value="" />
+				<input id="hidLevelId" type="hidden" value="" />
+				<input id="hidLatestResult" type="hidden" value="" />
+				<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
+		  	</div>
 		</div>
 
 <div class="swiper-container">
@@ -54,47 +79,42 @@
     <div class="swiper-button-prev"></div>
   </div>
 
-		<div class="text center">
-			猜下一次是单数或双数
-		</div>
-
 		<!-- Profile Page Finish -->
-	    	
-		<div class="progress-bar-container">
+	   	<div class="progress-bar-container">
         	<div class="progress-bar">
-        		<span class="speech-bubble level-one hide">可赢20积分，纯赚10积分</span>
+        		<span class="speech-bubble level-one hide">消耗10鸡腿，能挖到10鸡腿加10金币。</span>
         		<div class="circle">
-        			<span class="label"></span>
-	                <div class="title">10</div>
+        			<span class="label">x</span>
+        			<div class="title">10</div>
 	            </div>
 	            <span class="bar-short"></span>
-	            <span class="speech-bubble level-two hide">可赢60积分，扣除前1次亏损，纯赚20积分</span>
+	            <span class="speech-bubble level-two hide">消耗30鸡腿，能挖到40鸡腿加20金币。</span>
 	            <div class="circle">
-	            	<span class="label"></span>
+	            	<span class="label">x</span>
 	                <div class="title">30</div>
 	            </div>
 	            <span class="bar"></span>
-	            <span class="speech-bubble level-three hide">可赢140积分，扣除前2次亏损，纯赚30积分</span>
+	            <span class="speech-bubble level-three hide">消耗70鸡腿，能挖到110鸡腿加30金币。</span>
 	            <div class="circle ">
-	            	<span class="label"></span>
+	            	<span class="label">x</span>
 	                <div class="title">70</div>
 	            </div>
 	            <span class="bar"></span>
-	            <span class="speech-bubble level-four hide">可赢300积分，扣除前3次亏损，纯赚40积分</span>
+	            <span class="speech-bubble level-four hide">消耗150鸡腿，能挖到260鸡腿加40金币。</span>
 	            <div class="circle">
-	            	<span class="label"></span>
+	            	<span class="label">x</span>
 	                <div class="title">150</div>
 	            </div>
 	            <span class="bar"></span>
-	            <span class="speech-bubble level-five hide">可赢620积分，扣除前4次亏损，纯赚50积分</span>
+	            <span class="speech-bubble level-five hide">消耗310鸡腿，能挖到570鸡腿加50金币。</span>
 	            <div class="circle">
-	            	<span class="label"></span>
+	            	<span class="label">x</span>
 	                <div class="title">310</div>
 	            </div>
 	            <span class="bar"></span>
-	            <span class="speech-bubble level-six hide">可赢1260积分，扣除前5次亏损，纯赚60积分</span>
+	            <span class="speech-bubble level-six hide">消耗630鸡腿，能挖到1200鸡腿加60金币。</span>
 	            <div class="circle">
-	            	<span class="label"></span>
+	            	<span class="label">x</span>
 	                <div class="title">630</div>
 	            </div>
         	</div>
@@ -115,29 +135,6 @@
 			  </div>
 		</div>
 		<div style="clear: both;"></div>
-
-		<div class="information-table">
-			<div class="grid-container">
-				<div class="box box-left">
-					<div class="header">当前积分</div>
-					<div id="divPoint" class="number"></div>
-				</div>
-				<div class="box">
-					<div class="header">可提现红包</div>
-					<div class="number"><span id="spanBalance"></span>元</div>
-				</div>
-				<div class="box box-right">
-					<div class="header">剩余次数</div>
-					<div id="divLife" class="number"></div>
-				</div>
-				<input id="hidPoint" type="hidden" value="" />
-				<input id="hidLevel" type="hidden" value="" />
-				<input id="hidLevelId" type="hidden" value="" />
-				<input id="hidLatestResult" type="hidden" value="" />
-				<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
-		  	</div>
-		</div>
-
 	</div>
 @endsection
 

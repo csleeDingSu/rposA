@@ -20,71 +20,71 @@ function updateHistory(){
 
     var iframe_history = $('#ifm_history', window.parent.document).contents();
     var user_id = $('#hidUserId', window.parent.document).val();
-
+    //console.log("/api/betting-history?gameid=101&memberid=" + user_id);
     $.getJSON( "/api/betting-history?gameid=101&memberid=" + user_id, function( data ) {
 
         var records = data.records;
+        var length = Object.keys(records).length;
         var maxCount = 8;
 
-        if(records.length < maxCount){
-            maxCount = records.length;
+        if(length < maxCount){
+            maxCount = parseInt(length);
         }
         //console.log(records);
         for(var r = 1; r <= maxCount; r++){
-            if(records.length > 0){
-                var last = Object.keys(records)[Object.keys(records).length-1];
-                var last_record = records[last];
-                var history = '';
+            var last = Object.keys(records)[Object.keys(records).length-1];
+            var last_record = records[last];
+            var history = '';
 
-                iframe_history.find('#row-' + r).find('.number').html(last);
-                iframe_history.find('#row-' + r).find('.history').html('');
+            iframe_history.find('#row-' + r).find('.number').html(last);
+            iframe_history.find('#row-' + r).find('.history').html('');
 
-                var betCount = Object.keys(last_record).length;
+            var betCount = Object.keys(last_record).length;
 
-                for(var i = 0; i < betCount; i++){
+            for(var i = 0; i < betCount; i++){
 
-                    var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
-                    var last_bet = last_record[last_key];
-                    //console.log(last_bet);
-                    var className = last_bet.bet;
+                var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
+                var last_bet = last_record[last_key];
+                //console.log(last_bet);
+                var className = last_bet.bet;
 
-                    if(last_bet.is_win == null){
-                        className = last_bet.bet + '-fail'; 
-                    }
-
-                    history =  '<div class="' + className + '">' +
-                                    '<span class="label">' + last_bet.result +'</span>'
-                                '</div>';
-
-                    iframe_history.find('#row-' + r).find('.history').append(history);
-                    delete last_record[last_key];
+                if(last_bet.is_win == null){
+                    className = last_bet.bet + '-fail'; 
                 }
 
-                delete records[last];
+                history =  '<div class="' + className + '">' +
+                                '<span class="label">' + last_bet.result +'</span>'
+                            '</div>';
+
+                iframe_history.find('#row-' + r).find('.history').append(history);
+                delete last_record[last_key];
             }
+
+            delete records[last];
         }
     });
 }
 
 function initUser(){
     var user_id = $('#hidUserId', window.parent.document).val();
+    //console.log("/api/wallet-detail");
     $.post("/api/wallet-detail", { 'memberid': user_id, gameid: 101 }, function(data) {
-        //console.log(data);
+        console.log(data);
         // Do something with the request
         if(data.success) {
             if (data.record.length === 0) {
-                $('#spanBalance', window.parent.document).html(0);
-                $('#divPoint', window.parent.document).html(0);
+                $('#divBalance', window.parent.document).html(0);
+                $('#spanPoint', window.parent.document).html(0);
             } else {
-                var balance = parseInt(data.record[0].balance);
-                var life = data.record[0].life;
-                var point = parseInt(data.record[0].point);
+                var balance = parseInt(data.record.balance);
+                var life = data.record.life;
+                var point = parseInt(data.record.point);
 
-                $('#spanBalance', window.parent.document).html(balance);
-                $('#divPoint', window.parent.document).html(point);
-                $('#hidPoint', window.parent.document).html(point);
+                $('#divBalance', window.parent.document).html(balance);
+                $('#spanPoint', window.parent.document).html(point);
+                $('#hidBalance', window.parent.document).html(balance);
                 
-                setPoint();
+                setBalance();
             }
         }
         
@@ -97,9 +97,9 @@ function initGame(){
     updateHistory();
 
     var user_id = $('#hidUserId', window.parent.document).val();
+    //console.log("/api/game-setting?gameid=101&memberid=" + user_id);
     $.getJSON( "/api/game-setting?gameid=101&memberid=" + user_id, function( data ) {
-        console.log("/api/game-setting?gameid=101&memberid=0");
-        console.log(data);
+        //console.log(data);
         if(data.success) {
             var bet_amount = 0;
             var duration = data.record.duration;
@@ -126,43 +126,43 @@ function initGame(){
                 case 2:
                     bet_amount = 30;
                     $('.level-two', window.parent.document).removeClass("hide");
-                    $('.level-one', window.parent.document).next().addClass("done").find(".label").html("x");
+                    $('.level-one', window.parent.document).next().addClass("done");
                     break;
                 case 3:
                     bet_amount = 70;
                     $('.level-three', window.parent.document).removeClass("hide");
-                    $('.level-one', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-two', window.parent.document).next().addClass("done").find(".label").html("x");
+                    $('.level-one', window.parent.document).next().addClass("done");
+                    $('.level-two', window.parent.document).next().addClass("done");
                     break;
                 case 4:
                     bet_amount = 150;
                     $('.level-four', window.parent.document).removeClass("hide");
-                    $('.level-one', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-two', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-three', window.parent.document).next().addClass("done").find(".label").html("x");
+                    $('.level-one', window.parent.document).next().addClass("done");
+                    $('.level-two', window.parent.document).next().addClass("done");
+                    $('.level-three', window.parent.document).next().addClass("done");
                     break;
                 case 5:
                     bet_amount = 310;
                     $('.level-five', window.parent.document).removeClass("hide");
-                    $('.level-one', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-two', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-three', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-four', window.parent.document).next().addClass("done").find(".label").html("x");
+                    $('.level-one', window.parent.document).next().addClass("done");
+                    $('.level-two', window.parent.document).next().addClass("done");
+                    $('.level-three', window.parent.document).next().addClass("done");
+                    $('.level-four', window.parent.document).next().addClass("done");
                     break;
                 case 6:
                     bet_amount = 630;
                     $('.level-six', window.parent.document).removeClass("hide");
-                    $('.level-one', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-two', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-three', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-four', window.parent.document).next().addClass("done").find(".label").html("x");
-                    $('.level-five', window.parent.document).next().addClass("done").find(".label").html("x");
+                    $('.level-one', window.parent.document).next().addClass("done");
+                    $('.level-two', window.parent.document).next().addClass("done");
+                    $('.level-three', window.parent.document).next().addClass("done");
+                    $('.level-four', window.parent.document).next().addClass("done");
+                    $('.level-five', window.parent.document).next().addClass("done");
                     break;
             }
 
             $('.bet-container', window.parent.document).html(bet_amount);
 
-            setPoint();
+            setBalance();
 
             $('#freeze_time').val(freeze_time);
             $('#draw_id').val(draw_id);
@@ -184,25 +184,29 @@ function initGame(){
     });
 }
 
-function setPoint() {
+function setBalance() {
     var selected = $('div.clicked', window.parent.document).find('input:radio').val();
     if (typeof selected == 'undefined'){
         //do nothing
     } else {
         var bet_amount = parseInt($('.bet-container', window.parent.document).html());
-        var point = $('#hidPoint', window.parent.document).html();
-        var newpoint = point - bet_amount;
-        //console.log(point + " - " + bet_amount + " = " + newpoint);
-        $('#divPoint', window.parent.document).html(newpoint);
+        var balance = $('#hidBalance', window.parent.document).html();
+        var newbalance = balance - bet_amount;
+        //console.log(balance + " - " + bet_amount + " = " + newbalance);
+        if(newbalance < 0){
+
+        } else {
+            $('#divBalance', window.parent.document).html(newbalance);
+        }
     }
 }
 
 function bindBetButton(){
     //console.log('bindBetButton');
     $('.radio-primary', window.parent.document).click(function(){
-        var point = parseInt($('#hidPoint', window.parent.document).html());
+        var balance = parseInt($('#hidBalance', window.parent.document).html());
 
-        if(point < 10){
+        if(isNaN(balance) || balance < 10){
             return false;
         }
 
@@ -214,12 +218,18 @@ function bindBetButton(){
 
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         if (typeof selected == 'undefined'){
-            $('#divPoint', window.parent.document).html(point);
+            $('#divBalance', window.parent.document).html(balance);
         } else {
 
             var bet_amount = parseInt($('.bet-container', window.parent.document).html());
-            var newpoint = point - bet_amount;
-            $('#divPoint', window.parent.document).html(newpoint);
+            var newbalance = balance - bet_amount;
+
+            if(newbalance < 0){
+                var selected = $('div.clicked', window.parent.document).removeClass('clicked');
+                return false;
+            } else {
+                $('#divBalance', window.parent.document).html(newbalance);
+            }
         }
 
     });
@@ -257,6 +267,7 @@ function startTimer(duration, timer, freeze_time) {
             var level_id = $('#hidLevelId', window.parent.document).val();
 
             //console.log("Selected: "+selected+ " Bet Amount: "+bet_amount+ " Draw Id:"+draw_id+" User Id: "+user_id);   
+            //console.log("/api/update-game-result");
             $.post("/api/update-game-result", { 
                 gameid : 101, 
                 memberid : user_id, 

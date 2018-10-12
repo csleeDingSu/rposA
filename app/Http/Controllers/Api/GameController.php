@@ -99,16 +99,7 @@ class GameController extends Controller
 		$betamt   = $request->betamt;	
 		$gamelevel   = $request->level;	
 		
-		$is_playable = Wallet::playable_status($memberid,$gameid);
 		
-		if (empty($is_playable))
-		{
-			return response()->json(['success' => false, 'game_result' => $game_result]);
-		}
-			
-		$current_result = Game::get_single_gameresult($drawid);
-		
-		$game_result = !empty($current_result->game_result) ? $current_result->game_result  : '' ;
 		
 		$input = [
              'gameid'    => $gameid,
@@ -126,6 +117,22 @@ class GameController extends Controller
 				//'bet'      => 'required',
             ]
         );
+		
+		
+		$current_result = Game::get_single_gameresult($drawid);
+		
+		$game_result = !empty($current_result->game_result) ? $current_result->game_result  : '' ;
+		
+		$gamelevel = Game::get_member_current_level($gameid, $memberid);
+		
+		$levelid = $gamelevel ->levelid;
+		
+		$is_playable = Wallet::playable_status($memberid,$gameid,$levelid);		
+		
+		if (empty($is_playable))
+		{
+			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough balance to play']);
+		}
 		
 		if ($validator->fails()) {
 			 return response()->json(['success' => false, 'game_result' => $game_result, 'message' => $validator->errors()->all()]);
@@ -156,20 +163,25 @@ class GameController extends Controller
 			}			
 			
 			//Add wallet update functions 				
-			$wallet = '100';
-			//$wallet = Wallet:game_walletupdate ($input, $status, 'PNT');
+			//$wallet = '100';
+			$wallet = Wallet::game_walletupdate ($memberid, $gameid, $status, $gamelevel);
+			
+			$level = \DB::table('game_levels')->where('id', $gamelevel)->get()->first();
+			
+			
 			
 			if ($wallet)
 			{
 				//Update Memeber game play history		
 				$now     = Carbon::now()->toDateTimeString();
-				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level];		
+					
+				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level];		
 
 				$records =  Game::add_play_history($insdata);
 				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
 			}
 			
-			return response()->json(['success' => false, 'status' => 'not enough balance to play']); 
+			return response()->json(['success' => false, 'message' => 'not enough balance to play']); 
 		}
 		
 	}

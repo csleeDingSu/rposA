@@ -125,7 +125,7 @@ class Game extends Model
 	
 	public static function force_delete($id)
 	{
-		$flights = DB::table('game_result')
+		$result = DB::table('game_result')
                 ->where('game_id', $id)
                 ->delete();
 	}
@@ -453,6 +453,15 @@ class Game extends Model
 		return $result = DB::table('game_result_history')->where('game_id', $gameid)->latest()->first();
 	}
 		
+	public static function DeleteGameHistory()
+	{
+		$yesterday = date("Y-m-d", strtotime( '-1 days' ) );
+		$result = DB::table('game_result_history')
+                ->whereDate('created_at', $yesterday)
+                ->delete();
+	}
+	
+	
 	
 }
 
