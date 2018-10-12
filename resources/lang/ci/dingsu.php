@@ -217,4 +217,7 @@ return [
 	'ph_username' => '您的真实姓名',
 	'ph_password' => '请输入密码',
 	'ph_confirm_password' => '请确认密码',
+
+	//message
+	'info_forgot_password' => '如忘记密码请找我们的客服.',
 ];

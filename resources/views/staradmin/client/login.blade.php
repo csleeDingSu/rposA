@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '登陆')
+@section('title', trans('dingsu.login'))
 
 @section('top-css')
     @parent
@@ -32,7 +32,7 @@
 	
     <div class="row">
 		<div class="card">
-			<div class="text left">如忘记密码请找微信客服。</div>
+			<div class="text left">{{trans('dingsu.info_forgot_password')}}</div>
 		</div>
 	</div>
 
