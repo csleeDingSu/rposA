@@ -5,23 +5,26 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/home.css') }}" />
+
 @endsection
 
 
 @section('content')	
+
+
 		<!-- Static navbar -->
 		<div id="header">
+			
+
 			<nav class="navbar navbar-default">
 			  <div class="container-fluid">
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="col-xs-3">
-					<div class="div-icon left">
-						@if (isset(Auth::Guard('member')->user()->username))
-						<a href="/member"><i class="fas fa-user"></i> {{ Auth::Guard('member')->user()->username }}</a>
-						@else
-					  	<a href="/register"><i class="fas fa-user-plus"></i>注册</a>
-					  	@endif
-					</div>
+				<div class="col div-icon left">
+					@if (isset(Auth::Guard('member')->user()->username))
+					<a href="/member"><i class="fas fa-user"></i> {{ Auth::Guard('member')->user()->username }}</a>
+					@else
+				  	<a href="/register"><i class="fas fa-user-plus"></i>注册</a>
+				  	@endif
 				</div>
 				
 				<div class="col right">
@@ -41,17 +44,36 @@
 		<!-- End Static navbar -->
 			
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		@if(isset($category))
-		<div class="category-bar">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+        	<div class="navbar-header">
+	        	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	              <span class="sr-only">Toggle navigation</span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	            </button>
+	        </div>
+            <div id="navbar" class="navbar-collapse collapse">
+				@if(isset($category))
+				
+
+				<ul class="nav navbar-nav">
+					
+					@foreach($category as $cat)
+					
+					<li class="navbar-custom"><a href="/cs/{{$cat->id}}" class="hvr-underline-from-center">{{$cat->display_name}}</a></li>
+					
+					
+					@endforeach
+				</ul>
 			
-			@foreach($category as $cat)
-			
-			<a href="/cs/{{$cat->id}}" class="hvr-underline-from-center">{{$cat->display_name}}</a>		
-			
-			
-			@endforeach
+				@endif
+
+			</div>
 		</div>
-		@endif
+	</nav>
+
 
 		</div>
 		

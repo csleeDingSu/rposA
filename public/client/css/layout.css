@@ -93,7 +93,7 @@
 
 /* Footer Menu */
 .icon-bar {
-	width: 100%;
+	/*width: 100%;*/
 	background-color: #f6f6f6;
 	/*overflow: auto;*/
 }
@@ -198,4 +198,10 @@
 	-webkit-transform: scale(0.35);
 	width:80px;
 	height: 80px;
+}
+
+/*customize nav*/
+  .navbar-default .navbar-nav>li>a {
+	width:100px;
+	color: #ffffff;
 }

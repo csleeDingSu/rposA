@@ -18,7 +18,7 @@ class VoucherController extends Controller
         
 		$category = Category::all();
 		
-		$vouchers = Unreleasedvouchers::latest()->paginate(5);
+		$vouchers = Voucher::latest()->paginate(5);
         return view('client.home', compact('vouchers','category'));
 		
 		
