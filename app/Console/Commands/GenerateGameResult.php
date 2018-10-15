@@ -53,7 +53,7 @@ class GenerateGameResult extends Command
 			{
 				switch($category->id)
 				{
-					//fortune games
+					//fortune game
 					case '1':
 						$result = $this->GenerateRandomresult($game,$category);
 					break;
@@ -95,7 +95,7 @@ class GenerateGameResult extends Command
 	private function OldGenerateRandomresult($game,$category = false)
 	{
 		return false;
-		$level   = Game::get_gamelevel($game->id);
+		/*$level   = Game::get_gamelevel($game->id);
 		$result  = '';
 		$insdata = [];
 		
@@ -107,9 +107,11 @@ class GenerateGameResult extends Command
 			$insdata = $this->Generateresult($game->id,$value);
 		}
 		$items = Game::get_gameresult($game->id);
-		
-		//remove expired results
-		Game::archive_data($items);
+		if ($items)
+		{
+			//remove expired results
+			Game::archive_data($items);
+		}
 		//delete old data
 		Game::force_delete($game->id);
 		//update new result
@@ -118,7 +120,7 @@ class GenerateGameResult extends Command
 			Game::insert_gameresult($insdata);
 		}
 			
-		return $result;
+		return $result;*/
 	}
 	
 	private function Generateresult($id,$value)

@@ -85,8 +85,6 @@ class VoucherController extends BaseController
 	{
 		$data['record'] = $record = Voucher::find($id);
 		
-		//print_r($record->commision);die();
-		
 		$data['page'] = 'common.error';
 		
 		if ($record)
@@ -322,21 +320,21 @@ class VoucherController extends BaseController
 		$record = Voucher::find($id);
 		if ($record)
 		{
-			return response()->json(['success' => true, 'record' => $record]);
+			$syscategory = Voucher::get_category()->toArray();
+			return response()->json(['success' => true, 'record' => $record,'syscategory'=>$syscategory]);			
 		}
 	}
 	
 	public function show_unreleased_voucher ($id)
 	{
-		$record = Unreleasedvouchers::find($id);
+		$record = Unreleasedvouchers::find($id);		
 		if ($record)
 		{
-			return response()->json(['success' => true, 'record' => $record]);
-		}
+			$syscategory = Voucher::get_category()->toArray();
+			return response()->json(['success' => true, 'record' => $record,'syscategory'=>$syscategory]);
+		}		
+		return response()->json(['success' => false]);
 		//$record = DB::table('unreleased_vouchers')->where('id', $id)->first();
-		
-		
-		
 	}
 	
 	
@@ -349,8 +347,7 @@ class VoucherController extends BaseController
 		$insdata = array();
 		$record = Voucher::find($id);
 		if ($record)
-		{
-			
+		{			
 			foreach($data as $key=>$val)
 			{
 				$insdata[$val['name']] = $val['value'];
@@ -358,27 +355,22 @@ class VoucherController extends BaseController
 				$insdata['updated_at']  = $now; 
 			}
 
-
 			//$validation = \Illuminate\Support\Facades\Validator::make($request->only('start_date', 'end_date'),    $rules);
 			unset($insdata['_token']);
 			unset($insdata['hidden_void']);
 
-
 			DB::enableQueryLog();
-
 			 try {
 				DB::table('vouchers')
 				->where('id', $id)
 				->update($insdata);
 				 return response()->json(['success' => true]);
 			}  catch (\Exception $ex) {
-
 				 //dd($ex);
 				 return response()->json(['success' => false, 'record' => '']);
 			}
 		}
-		return response()->json(['success' => false, 'record' => '']);
-		
+		return response()->json(['success' => false, 'record' => '']);		
 	}
 	
 	public function ajax_unrv_update_voucher (Request $request)
@@ -389,8 +381,7 @@ class VoucherController extends BaseController
 		$insdata = array();
 		$record = Unreleasedvouchers::find($id);
 		if ($record)
-		{
-			
+		{			
 			foreach($data as $key=>$val)
 			{
 				$insdata[$val['name']] = $val['value'];
@@ -398,13 +389,13 @@ class VoucherController extends BaseController
 				$insdata['updated_at']  = $now; 
 			}
 
-
-			//$validation = \Illuminate\Support\Facades\Validator::make($request->only('start_date', 'end_date'),    $rules);
+			$system_category = $insdata['system_category'];
 			unset($insdata['_token']);
-			unset($insdata['hidden_void']);
-
-
-			DB::enableQueryLog();
+			unset($insdata['hidden_void']);			
+			
+			$insdata['category'] = $insdata['system_category'];
+			unset($insdata['system_category']);
+			//DB::enableQueryLog();
 
 			 try {
 				DB::table('unreleased_vouchers')
@@ -412,17 +403,28 @@ class VoucherController extends BaseController
 				->update($insdata);
 				 return response()->json(['success' => true]);
 			}  catch (\Exception $ex) {
-
 				 //dd($ex);
-				 return response()->json(['success' => false, 'record' => '']);
+				 return response()->json(['success' => false]);
 			}
 		}
-		return response()->json(['success' => false, 'record' => '']);
-		
+		return response()->json(['success' => false]);		
 	}
 	
 		
-	
+	public function get_voucher_detail($id)
+	{		
+		if (!empty($id))
+		{
+			$record = Voucher::find($id);
+			if ($record)
+			{
+				$data['page']   = 'client.details';
+				$data['record'] = $record;	
+			}
+		}		
+		$data['page'] = 'common.error';		
+		return view('client/details',$data);
+	}
 	
 	
 	

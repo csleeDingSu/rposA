@@ -22,9 +22,9 @@ Route::get('/', function()
 // });
 $this->get('/home', 'Api\VoucherController@index')->name('api.vlist'); //cs20181003 - temp fix redirect to /home
 
-Route::get('/details', function () {
-    return view('client/details');
-});
+Route::get('/details/{id?}', 'VoucherController@get_voucher_detail')->name('get.voucher.detail');
+
+
 
 Route::get('/arcade', function () {
     return view('client/game');

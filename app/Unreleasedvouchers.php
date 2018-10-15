@@ -6,7 +6,7 @@ class Unreleasedvouchers extends Model
 {   
     
 	protected $fillable = [
-       'id', 'name',  'type', 'extension', 'uid'
+       'id'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -25,13 +25,7 @@ class Unreleasedvouchers extends Model
 	{
 		$record = DB::table('unreleased_vouchers')->where('source_file', $file)->first();
 		return $record;
-	}
-	
-	public function publish_voucher($file)
-	{
-		
-		
-	}
+	}	
 	
 	public static function check_duplicate($type = 'voucher_id')
 	{
@@ -42,7 +36,6 @@ FROM (
 ) AS t");
 		
 		return $result;
-		
 	}
 	
 	public static function remove_duplicate($type = 'voucher_id')
@@ -51,5 +44,13 @@ FROM (
 		return TRUE;
 	}
 	
+	
+	public static function get_list($limit)
+	{
+		
+		$result = DB::table('unreleased_vouchers')->whereNull('category')->take($limit)->get();
+		
+		return $result;
+	}
 	
 }

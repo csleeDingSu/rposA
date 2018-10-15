@@ -8,24 +8,28 @@
 @endsection
 
 @section('content')	
+
+
+@if(!empty($record)) 
+
+
         <div class="wrapper img-product">
-			<img src="/client/images/product_details.jpg" alt="product details" class="product_details" />
+			<img src="{{$record->product_picurl}}" alt="product details" class="product_details" />
         </div>
-		
 		<div class="wrapper full-height">
 			<div class="card">
 				<div class="col-xs-6 promo-price">
-					<span class="number">19.9</span> 试用价
+					<span class="number">{{$record->product_price}}</span> 试用价
 				</div>
 				<div class="col-xs-6 price">
 					<div class="normal-title">淘宝正常售价：</div>
-					<div class="normal-number">49.9元</div>
+					<div class="normal-number">{{$record->product_price}} 元</div>
 				</div>
 			</div>
 			
 			<div class="card">
 				<div class="col-xs-12 description">
-					ins超火的网红女士手表星空防水时尚款女2018新款时尚潮流chic风
+					{{$record->product_name}}
 				</div>
 				<div class="clear"></div>
 			</div>
@@ -35,7 +39,7 @@
 				<div class="voucher-header">
 					<span>独家优惠卷</span>
 					<div class="voucher">
-						<div class="code">¥ v2Dqb1HL5DF ¥</div>
+						<div class="code">¥ {{$record->voucher_id}} ¥</div>
 						<div>请复制后，打开淘宝APP就能看到商品。</div>
 					</div>
 				</div>
@@ -51,4 +55,11 @@
 				<div class="clear"></div>
 			</div>
 		</div>
+@else
+<div class="wrapper full-height">
+			<div class="card"> 
+				@lang('dingsu.no_record_found')
+				</div>
+	</div>
+ @endif
 @endsection

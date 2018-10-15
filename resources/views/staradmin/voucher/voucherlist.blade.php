@@ -23,7 +23,7 @@
 			</div>
 			<div class="col">
 				<select class="form-control" name="product_action" id="product_action">
-					<option value="0">@lang('dingsu.please_select_to_move')</option>
+					<option value="0">@lang('dingsu.default_select')</option>
 					
 					<option value="delete">@lang('dingsu.delete')</option>
 					
@@ -113,7 +113,22 @@
 						{{ session()->get('message') }}
 					</div>
 					@endif
-
+					<div class="row">
+						
+						<div class="col-md-6">
+						<div class="form-group row">
+							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
+							<div class="col-sm-9">
+								
+								<select class="form-control" name="system_category" id="system_category">
+								 
+								</select>
+							</div>
+						</div>
+					</div>
+						
+						
+					</div>
 
 					@foreach($sys_title->chunk(2) as $items)
 					<div class="row">
@@ -237,16 +252,39 @@ $(document).ready(function() {
 				},
 				success: function ( result ) {
 					if ( result.success == true ) {
-						swal.close();
-						var data = result.record;
 						
+						var data = result.record;
+						var vcategory = null;
 						
 						@foreach($sys_title as $items)
 						var ifv = '{{$items->title}}';
 							$('#sys_inp_'+ifv).val(data.{{$items->title}});
+						
+							if (ifv == 'product_category')
+							{
+								console.log(ifv);
+								console.log(data.category);								
+								var vcategory = data.category;
+							}
+						
 						@endforeach 
+						var category = result.syscategory;
+						
+						 $('#system_category')
+							  .find('option')
+							  .remove()
+							  .end();
+						
+						 $.each(category, function(key, value){
+							  $('#system_category')
+							  .append($('<option>', { value : value.id })
+							  .text(value.display_name));
+						});
+						
+						$("#system_category").val(vcategory);
 					
 						$('#hidden_void').val(id);
+						swal.close();
 						$('#editvouchermode').modal('show');
 					} else {
 						

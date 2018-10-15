@@ -111,7 +111,7 @@ class Game extends Model
 	public static function archive_data($chunk)
 	{		
 		$chunk= json_decode( json_encode($chunk), true);
-		
+		unset($chunk['game_level_id']);
 		try{
 			//$queries = DB::enableQueryLog();
 		    DB::table('game_result_history')->insert($chunk);
@@ -453,12 +453,11 @@ class Game extends Model
 		return $result = DB::table('game_result_history')->where('game_id', $gameid)->latest()->first();
 	}
 		
-	public static function DeleteGameHistory()
+	public static function DeleteGameHistory($date)
 	{
-		$yesterday = date("Y-m-d", strtotime( '-1 days' ) );
 		$result = DB::table('game_result_history')
-                ->whereDate('created_at', $yesterday)
-                ->delete();
+                ->where('created_at','<', $date)
+                ->delete();		
 	}
 	
 	

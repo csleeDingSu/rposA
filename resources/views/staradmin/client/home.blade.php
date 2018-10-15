@@ -93,13 +93,15 @@
 			@foreach($vouchers as $item)
 				
 				<div class="row">
-					<div class="col-xs-4">
-						<img class="product" src="{{$item->product_picurl}}_460x460Q90.jpg_.webp" alt="{{$item->product_name}}">
-					</div>
+					<a href="/details/{{$item->id}}">
+						<div class="col-xs-4">
+							<img class="product" src="{{$item->product_picurl}}_460x460Q90.jpg_.webp" alt="{{$item->product_name}}">
+						</div>
+					</a>
 					<div class="col-xs-8">
 						<div class="description">{{$item->product_name}}</div>
 						<div class="price">¥ {{$item->product_price}}</div>
-						<div class="col-xs-6 promo-price">试用价19.9元</div>
+						<div class="col-xs-6 promo-price"><a href="/details/{{$item->id}}">试用价19.9元</a></div>
 						<div class="col-xs-5 view">已有15人申请</div>
 					</div>
 				</div>
