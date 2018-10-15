@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}" ng-app="arcade-app">
     <head>
 		<meta charset="utf-8">
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>闯关夺宝 - @yield('title')</title>
 		
 		@section('top-css')

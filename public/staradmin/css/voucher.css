@@ -1,0 +1,49 @@
+
+.zoom {
+   transition: transform .2s; /* Animation */
+    
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
+.price-off {
+    z-index: 1;
+    display: inline-block;
+    text-transform: capitalize;
+    margin-bottom: .3125em;
+    overflow: hidden;
+    font-size: .8125em;
+    background: #F4511E;
+    color: #fff;
+    position: absolute;
+    top: 0.4375em;
+    left: -0.25em;
+   /* transform: rotate(-51deg);*/
+    padding: .5625em 3.125em;
+	font-weight: bold;
+	}
+
+.col-md-3, .lightGallery .image-tile {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+.card .card-body {
+    padding: 0px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-left: 5px;
+}
+.card-title {
+    
+    margin-bottom: 8px;
+}
+
+
+.popular {
+    z-index: 1;
+    border: 3px solid #F57C00;
+}

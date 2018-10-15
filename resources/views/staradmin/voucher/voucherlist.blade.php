@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href=" {{ asset('staradmin/css/voucher.css') }}">
 
 
 		{!! $result->render() !!}

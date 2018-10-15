@@ -48,6 +48,11 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/member/topup"> @lang('dingsu.topup') @lang('dingsu.member')</a>
 					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/member/pending-verification">@lang('dingsu.pending_wechat_verification')</a>
+					</li>
+					
 				</ul>
 			</div>
 		</li>

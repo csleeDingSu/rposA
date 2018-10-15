@@ -30,7 +30,59 @@
 
 
 */
+/*
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.is-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
 
+/*
+* And with max cross-browser enabled.
+* Nobody should ever write this by hand. 
+* Use a preprocesser with autoprefixing.
+* /
+.row.is-flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.row.is-flex > [class*='col-'] {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+*/
+
+/**
+.zoom {
+   transition: transform .2s; /* Animation * /
+    
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) * /
+}
+*/
+.card-img-top {
+height: 150px;
+object-fit: fill;
+}
 
 #gototopbtn {
     display: none; /* Hidden by default */
@@ -52,6 +104,8 @@
   /*  background-color: #555; /* Add a dark-grey background on hover */
 }
 
+
+/*
 .price-off {
     z-index: 1;
     display: inline-block;
@@ -64,7 +118,7 @@
     position: absolute;
     top: 0.4375em;
     left: -0.25em;
-   /* transform: rotate(-51deg);*/
+   /* transform: rotate(-51deg);* /
     padding: .5625em 3.125em;
 	font-weight: bold;
 	}
@@ -89,3 +143,5 @@
     z-index: 1;
     border: 3px solid #F57C00;
 }
+
+*/

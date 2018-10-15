@@ -1,7 +1,24 @@
-@media all and (max-width:724px){
-	html, body {
-		height: 100%;
-	}
+html, body {
+	height: 100%;
+}
+
+body{
+	background: #000000;
+	padding:0px;
+	margin:0px;	
+}
+
+iframe {
+	width: 358px;
+	height: 458px;
+	margin: 0 auto;
+	display:block;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 370px;
+  margin-left: -31px;
 }
 
 .full-height {
@@ -9,12 +26,15 @@
 	font-size:20px;
     font-family: 'Lato',verdana, sans-serif;
     color: #fff;
-    background: url("/client/images/background_game.jpg") top center no-repeat;
-    background-size: 560px;
-    width: 560px;
     text-align:center;
     margin: 0 auto;
-    height: 100%
+    background-image: url("/client/images/background_game.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: fixed;
+    position: relative;
+    height: 100%;
 }
 
 .text {
@@ -26,8 +46,8 @@
 	background: url('/client/images/game.png') no-repeat -280px -240px;
 	width: 510px;
 	height: 200px;
-	transform: scale(0.45); 
-	-webkit-transform: scale(0.45);
+	transform: scale(0.33); 
+	-webkit-transform: scale(0.33);
 	-webkit-transform-origin:left top;
     font-size: 60px;
     color: #555555;
@@ -43,8 +63,8 @@
 	background: url('/client/images/game.png') no-repeat -835px -240px;
 	width: 510px;
 	height: 200px;
-	transform: scale(0.45); 
-	-webkit-transform: scale(0.45);
+	transform: scale(0.33); 
+	-webkit-transform: scale(0.33);
 	-webkit-transform-origin:left top;
     font-size: 60px;
     color: #6a2d1b;
@@ -55,15 +75,17 @@
 
 .button-wrapper {
 	margin: 0 auto;
-	width: 500px;
+	width: 360px;
 	height: 100px;
 	position: relative;
+	padding-left: 5px;
+    /* more transition here */
 }
 
 .button-card {
-	margin-top: -20px;
-	width: 240px !important;
-	height: 100px;
+	margin-top: -30px;
+	width: 170px !important;
+	height: 70px;
 	float: left;
 }
 
@@ -72,17 +94,19 @@
 }
 
 .progress-bar-container {
-    width: 512px;
+    width: 360px;
 	height: 50px;
-	padding-top: 40px;
+	margin: 0 auto;
+	padding-left: 5px;
+	padding-top: 5px;
 }
 
 .progress-bar {
   background: url('/client/images/game.png') no-repeat -274px -60px;
   width: 1025px;
-  height: 84px;
-  transform: scale(0.5); 
-  -webkit-transform: scale(0.5);
+  height: 85px;
+  transform: scale(0.34); 
+  -webkit-transform: scale(0.34);
   -webkit-transform-origin:left top;
   padding-top: 26px;
   /* other styles */
@@ -117,9 +141,9 @@
     width: 30px;
     height: 30px;
     color: #f2deff;
-    font-size: 30px;
+    font-size: 40px;
     margin-top: -80px;
-    margin-left: -8px;
+    margin-left: -10px;
     position: absolute;
 }
 
@@ -154,10 +178,10 @@
 	position: absolute; 
 	background-color: rgba(255, 255, 255, 0.2);
 	border-radius: .4em;
-	padding: 20px;
+	padding: 25px;
 	z-index: 10;
-	margin-top: -140px;
-	font-size:30px;
+	margin-top: -150px;
+	font-size:40px;
 } 
 .speech-bubble:after { 
 	content: ''; 
@@ -182,11 +206,11 @@
 }
 
 .level-three{
-	left: 115px;
+	left: 26px;
 }
 
 .level-four{
-	left: 305px;
+	left: 210px;
 }
 
 .level-five, .level-six {
@@ -198,15 +222,15 @@
 }
 
 .level-two:after {
-	left: 39%;
+	left: 30%;
 }
 
 .level-five:after {
-	left: 63%;
+	left: 73%;
 }
 
 .level-six:after {
-	left: 94%;
+	left: 95%;
 }
 
 .bet-container {
@@ -222,18 +246,18 @@
 
 .information-table {
 	margin: 0 auto;
-	width: 540px;
+	width: 100%;
 	padding-bottom: 10px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto 150px;
+  grid-template-columns: auto auto 110px;
   height: 40px;
 }
 
 .box {
-  font-size: 14px;
+  font-size: 1em;
   color: #fff;
 }
 
@@ -241,20 +265,21 @@
 	background: url('/client/images/game.png') no-repeat -1674px -715px;
 	width: 82px;
 	height: 82px;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
+	transform: scale(0.4); 
+	-webkit-transform: scale(0.4);
 	-webkit-transform-origin:left top;
 	float: left;
 	z-index: 100;
 	position: relative;
+	margin-left: 5px;
 }
 
 .drumstick {
 	background: url('/client/images/game.png') no-repeat -1680px -1355px;
 	width: 90px;
 	height: 90px;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
+	transform: scale(0.42); 
+	-webkit-transform: scale(0.42);
 	-webkit-transform-origin:left top;
 	float: left;
 	margin-top: -8px;
@@ -265,54 +290,66 @@
 .number {
 	float: left;
 	position: absolute;
-	margin-top: 3px;
-	margin-left: 15px;
+	margin-left: 19px;
+	margin-top: 1px;
 	background-color: #63147f;
-	border-radius: 20px;
-	font-size: 22px;
-	padding-left: 20px;
-	width: 120px;
-	padding-bottom: 1px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	width: 80px;
+	font-size: 0.9em;
+	text-align: right;
+	padding-right: 10px;
+	padding-top: 0px;
+	height:29px;
 }
 
 .rules{
 	float: right;
 	background-color: #63147f;
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px;
-	font-size: 18px;
-	margin-top: 3px;
-	padding: 3px 10px 5px 20px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	padding: 0px 10px 0px 20px;
+}
+
+.rules-label {
+	font-size: 0.9em;
+}
+
+.balance {
+	font-size: 1.1em;
+	padding-right: 5px;
 }
 
 .long {
-	width: 160px;
-	padding-left: 35px;
+	width: 130px;
+	padding-left: 10px;
+	padding-right: 5px;
+
 }
 
 .info-wrapper {
 	float: right;
-	margin-top: 2px;
-	margin-left: 5px;
-	height:30px;
-    width:55px;
+	height:28px;
+    width:40px;
+    font-size: 2em;
+    margin-top:4px;
+    display: inline-block;
 }
 
 .info {
 	background: url('/client/images/game.png') no-repeat -1664px -659px;
 	width: 110px;
 	height: 56px;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
+	transform: scale(0.4); 
+	-webkit-transform: scale(0.4);
 	-webkit-transform-origin:left top;
 	float: left;
 	text-align: center;
-	padding: 10px;
 	position: relative;
     display: inline-block;
 }
 
 .right {
 	float: right;
-	margin-right: 15px;
+	margin-right: 10px;
 }

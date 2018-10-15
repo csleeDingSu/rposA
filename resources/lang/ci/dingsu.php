@@ -78,7 +78,8 @@ return [
 	'product_link' => 'Product Link',
 	'check_all' => 'Check all',
 	'select_all' => 'Select All',
-	'' => '',
+	
+	'pending_wechat_verification' => 'Pending Verfication',
 	'' => '',
 	'' => '',
 	'' => '',

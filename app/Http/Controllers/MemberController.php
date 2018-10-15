@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Helpers\QRCodeGenerator;
 use App\MainLedger;
-use App\Member;
+use App\Members as Member;
 use Auth;
 use DB;
 use Illuminate\Database\Eloquent\Model;

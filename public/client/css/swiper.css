@@ -177,25 +177,25 @@
 
 .swiper-button-prev,
 .swiper-container-rtl .swiper-button-next {
-  left: 10px;
-  top: 160px;
+  left: -1px;
+  top: 130px;
   right: auto;
   background: url('/client/images/game.png') no-repeat -65px -640px;
   width: 80px;
   height: 400px;
-  transform: scale(0.45); 
-  -webkit-transform: scale(0.45);
+  transform: scale(0.3); 
+  -webkit-transform: scale(0.3);
   -webkit-transform-origin:left top;
 }
 .swiper-button-next,
 .swiper-container-rtl .swiper-button-prev {
-  right: -35px;
-  top: 160px;
+  right: -56px;
+  top: 130px;
   background: url('/client/images/game.png') no-repeat -65px -240px;
   width: 80px;
   height: 400px;
-  transform: scale(0.45); 
-  -webkit-transform: scale(0.45);
+  transform: scale(0.3); 
+  -webkit-transform: scale(0.3);
   -webkit-transform-origin:left top;
 }
 .swiper-button-prev.swiper-button-white,
