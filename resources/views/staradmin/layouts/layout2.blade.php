@@ -5,14 +5,11 @@
   <div class="container-scroller">
 
     @include('layouts.partials.header')
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
             
-      @include('layouts.partials.nav')
+    @include('layouts.partials.nav')
       
-      @include('layouts.partials.banner')
+    @include('layouts.partials.banner')
 
-      <!-- partial -->
       <div class="main-panel">
       
 			<!-- Main Content area -->
@@ -23,10 +20,8 @@
 			
       </div>
 
-      @include('layouts.partials.footer')
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+    @include('layouts.partials.footer')
+
   </div>
   
 </body>

@@ -4,7 +4,7 @@
 	  /*background: url(/client/images/banner.jpg);*/
 	  background-position: center;
 	  background-size: cover;
-	  height: 225px; width: 100%;
+	  height: 100px; width: 70%;
 	}
 
 	@media (min-width: 480px) {
@@ -21,7 +21,7 @@
 }
 </style>
 
-<div class="navbar container center">
-	<img src="/client/images/banner.jpg" alt="banner" class="banner" />
+<div class="container navbar text-center">
+	<img src="/client/images/banner.png" alt="banner" class="banner" />
 </div>
 

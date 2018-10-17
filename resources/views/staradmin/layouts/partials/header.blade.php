@@ -13,7 +13,7 @@
 	  </a>
 	
 	<div class="col right div-icon">
-		  <a href="#"><i class="fas fa-rss"></i>关注</a>
+		 <a href="#"><i class="fas fa-rss"></i>关注</a>		  
 	</div>
-  
+
 </div>
