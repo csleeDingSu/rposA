@@ -25,11 +25,11 @@
 .div-icon {
 	position: relative;
 	border: 2px solid #ffffff;
-	border-radius: 20px;
+	border-radius: 5px;
 	text-align: center;
-	padding:5px;
-	margin: 8px;
-	width: 150px;
+	padding:0px;
+	margin: 0px;
+	width: 60px;
 }
 
 .left {
@@ -46,7 +46,7 @@
 
 .div-icon a {
 	color: #ffffff;
-	font-size: 16px;
+	font-size: 12px;
 	text-decoration: none;
 }
 
@@ -288,4 +288,20 @@
 
 .clear {
 	clear: both;
+}
+
+.portrait {
+    height: 80px;
+    width: 30px;
+}
+
+.landscape {
+    height: 30px;
+    width: 80px;
+    text-align: center;
+}
+
+.square {
+    height: 75px;
+    width: 75px;
 }
