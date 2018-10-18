@@ -3,17 +3,14 @@
 		
 		<li class="nav-item">
 			<a class="nav-link" href="/admin/dashboard">
-              <i class="menu-icon  icon-home"></i>
+              <i class="menu-icon  icon-home  text-primary"></i>
               <span class="menu-title"> @lang('dingsu.dashboard')</span>
-            </a>
-		
+            </a>		
 		</li>
-		
-		
-		
+				
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uigame" aria-expanded="false" aria-controls="uigame">
-              <i class="menu-icon icon-game-controller"></i>
+              <i class="menu-icon icon-game-controller  text-info"></i>
               <span class="menu-title"> @lang('dingsu.game')  @lang('dingsu.list')</span>
               <i class="menu-arrow"></i>
             </a>
@@ -35,7 +32,7 @@
 		
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uimember" aria-expanded="false" aria-controls="uimember">
-              <i class="menu-icon icon-people"></i>
+              <i class="menu-icon icon-people  text-warning"></i>
               <span class="menu-title">@lang('dingsu.member')  @lang('dingsu.list')</span>
               <i class="menu-arrow"></i>
             </a>
@@ -52,7 +49,6 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/member/pending-verification">@lang('dingsu.pending_wechat_verification')</a>
 					</li>
-					
 				</ul>
 			</div>
 		</li>
@@ -96,6 +92,13 @@
 				</ul>
 			</div>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/settings/redeem">
+              <i class="menu-icon icon-present text-primary"></i>
+              <span class="menu-title"> @lang('dingsu.redeem')</span>
+            </a>
+		
+		</li>
 		
 		<li class="nav-item">
 			<a class="nav-link" href="/settings">
@@ -103,7 +106,6 @@
               <span class="menu-title"> @lang('dingsu.settings')</span>
             </a>
 		
-		</li>
-		
+		</li>		
 	</ul>
 </nav>

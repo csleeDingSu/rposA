@@ -70,7 +70,7 @@ function updateHistory(){
 function initUser(){
     var user_id = $('#hidUserId', window.parent.document).val();
     //console.log("/api/wallet-detail");
-    $.post("/api/wallet-detail", { 'memberid': user_id, gameid: 101 }, function(data) {
+    $.post("/api/wallet-detail", { 'memberid': user_id, 'gameid': 101 }, function(data) {
         console.log(data);
         // Do something with the request
         if(data.success) {
@@ -186,10 +186,8 @@ function initGame(){
             DomeWebController.init();
             startTimer(duration, timer, freeze_time);
 
-            var user_id = $('#hidUserId', window.parent.document).val();
-            if(user_id > 0){
-                bindBetButton();
-            }
+            bindBetButton();
+
         } else {
             //$.getJSON( "/api/generateresult", function() {});
             //console.log("initGame");
@@ -225,13 +223,20 @@ function bindBetButton(){
     //console.log('bindBetButton');
     $('.radio-primary', window.parent.document).click(function(){
         var balance = $('#hidBalance', window.parent.document).val();
-console.log(balance);
+        var level = parseInt($('#hidLevel', window.parent.document).val());
+        
+        var user_id = $('#hidUserId', window.parent.document).val();
+        if(user_id == 0){
+            window.top.location.href = "/member";
+        }
+
         if(isNaN(balance) || balance < 10){
             return false;
         }
 
         $('.radio-primary', window.parent.document).not(this).find('.radio').removeClass('clicked');
         $('.radio-primary', window.parent.document).not(this).find('.bet-container').hide();
+        $('.speech-bubble', window.parent.document).addClass("hide");
 
         $(this).find('.bet-container').toggle();
         $(this).find('.radio').toggleClass('clicked');
@@ -249,6 +254,28 @@ console.log(balance);
                 return false;
             } else {
                 $('#divBalance', window.parent.document).html(newbalance);
+            }
+
+            switch (level) {
+                default:
+                case 1:
+                    $('.level-one', window.parent.document).removeClass("hide");
+                    break;
+                case 2:
+                    $('.level-two', window.parent.document).removeClass("hide");
+                    break;
+                case 3:
+                    $('.level-three', window.parent.document).removeClass("hide");
+                    break;
+                case 4:
+                    $('.level-four', window.parent.document).removeClass("hide");
+                    break;
+                case 5:
+                    $('.level-five', window.parent.document).removeClass("hide");
+                    break;
+                case 6:
+                    $('.level-six', window.parent.document).removeClass("hide");
+                    break;
             }
         }
 

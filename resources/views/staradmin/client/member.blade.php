@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
-@section('title', '会员中心')
+@section('title', '个人主页')
 
 @section('top-css')
     @parent
@@ -8,101 +8,97 @@
 @endsection
 
 @section('content')
-<div class="wrapper full-height">
+<div class="full-height">
 	<div class="container">
-    <div class="row">
-		<div class="card">
-			<div class="text left">{{ $member->username }}，你已兑换的奖品价值约：</div>
-			<div class="numbers left">{{ number_format($member->current_balance, 2) }}<span class="text">元</span></div>
-		</div>
-	</div>
-	<div class="row">
-        <div class="square">
-			<div class="content">
-				<div class="table">
-					<div class="table-cell">
-						<div class="numbers">{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</div>
-						<div class="label">剩余次数</div>
-					</div>
-				</div>
+		<!-- member id -->
+		<div class="card left">
+			<div class="name">{{ $member->username }}</div>
+			<div class="icon-verified-wrapper">
+				<div class="icon-verified"></div>
 			</div>
+			<div class="verified">已通过实名认证</div>
+			<div style="clear: both;"></div>
+			
+			<div class="member-id">账号:{{ $member->id }}</div>
 		</div>
-		<div class="square">
-			<div class="content">
-				<div class="table">
-					<div class="table-cell">
-						<div class="numbers">{{ $member->pending }}</div>
-						<div class="label">待确认</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="square">
-			<div class="content">
-				<div class="table">
-					<div class="table-cell">               
-						<div class="numbers">{{ $member->success }}</div>
-						<div class="label">兑换成功</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-        <div class="square">
-			<div class="content">
-				<div class="table">
-					<div class="table-cell">
-						<div class="numbers">{{ $member->history > 99 ? '99+' : $member->history }}</div>
-						<div class="label">以往记录</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="square">
-			<div class="content">
-				<div class="table">
-					<div class="table-cell">
-						<div class="member"></div>
-						<div class="label adjust-label">个人资料</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<a href="member/password-reset">
-			<div class="square">
-				<div class="content">
-					<div class="table">
-						<div class="table-cell">               
-							<div class="password"></div>
-							<div class="label adjust-label">修改密码</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</a>
-	</div>
+		<!-- end member id -->
 
-	<div class="row">
-        <div class="card">
-            <button @click="invitationLink" class="btn btn-rectangle">邀请好友</button>
-        </div>
-	</div>
-
-	<div class="row">
-		<div class="card">
-			<div class="text left">
-			每邀请一个好友，你好友能获得3次的闯关机会，你也能获得3次闯关机会，次数可以累计！
-			<br /><br />
-			友情提示：每个人只能注册一个帐号，如果多开小号，你所有的账户会被封号。
-			<br /><br />
-			</div>
+		<!-- member details -->
+		<div class="information-table">
+			  <div class="col-xs-4">
+			  	红包余额<br />
+			  	<span class="point numbers">{{ number_format($wallet->current_point, 2, '.', '') }}</span><br />
+			  	<span class="button">提现到支付宝</span>
+			  </div>
+			  <div class="col-xs-4 middle-border">
+			  	奖励金币<br />
+			  	<span class="balance numbers">{{ number_format($wallet->current_balance, 0, '.', '') }}</span><br />
+			  	<span class="button">兑换成红包</span>
+			  </div>
+			  <div class="col-xs-4">
+			  	剩余次数<br />
+			  	<span class="life numbers">{{ $wallet->current_life }}</span><br />
+			  	<span class="button">马上去挖宝</span>
+			  </div>
 		</div>
-	</div>
-	</div>
+		<!-- end member details -->
 
-
+		<!-- member listing -->
+		<div class="listing-table">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<div class="icon-wrapper">
+						<div class="icon-add-friend"></div>
+					</div>
+					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+				邀请好友一起挖宝 <div class="note">邀请1个好友，奖励3次挖宝机会。</div>
+				</li>
+				<li class="list-group-item">
+					<div class="icon-wrapper">
+						<div class="icon-play"></div>
+					</div>
+					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+					挖宝次数明细
+				</li>
+				<li class="list-group-item">
+					<div class="icon-wrapper">
+						<div class="icon-play-history"></div>
+					</div>
+					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+					挖宝记录
+				</li>
+				<li class="list-group-item">
+					<div class="icon-wrapper">
+						<div class="icon-redeem"></div>
+					</div>
+					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+					兑换红包记录
+				</li>
+				<li class="list-group-item">
+					<div class="icon-wrapper">
+						<div class="icon-withdraw"></div>
+					</div>
+					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+					提现记录
+				</li>
+				<li class="list-group-item">
+					<div class="icon-wrapper">
+						<div class="icon-faq"></div>
+					</div>
+					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+					常见问题回答
+				</li>
+				<li class="list-group-item">
+					<div class="icon-wrapper">
+						<div class="icon-customer"></div>
+					</div>
+					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+					联系客服
+				</li>
+			</ul>
+		 </div>
+		<!-- end member listing -->
+	</div>
 </div>
 
 @endsection

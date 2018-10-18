@@ -10,19 +10,19 @@ body{
 
 iframe {
 	width: 358px;
-	height: 458px;
+	height: 320px;
 	margin: 0 auto;
 	display:block;
 }
 
 .swiper-container {
-  width: 100%;
+  width: 400px;
   height: 370px;
   margin-left: -31px;
 }
 
 .full-height {
-	padding-top: 60px;
+	padding-top: 40px;
 	font-size:20px;
     font-family: 'Lato',verdana, sans-serif;
     color: #fff;
@@ -35,6 +35,22 @@ iframe {
     background-attachment: fixed;
     position: relative;
     height: 100%;
+}
+
+.information-table {
+	margin: 0 auto;
+	width: 400px;
+	padding-bottom: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+    .swiper-container {
+		width: 100%;
+	}
+
+	.information-table {
+		width: 100%;
+	}
 }
 
 .text {
@@ -54,7 +70,7 @@ iframe {
     padding-top: 30px;
     outline: none !important;
 	box-shadow: none;
-
+	cursor: pointer;
   /* other styles */
 }
 
@@ -69,7 +85,7 @@ iframe {
     font-size: 60px;
     color: #6a2d1b;
     padding-top: 30px;
-
+    cursor: pointer;
   /* other styles */
 }
 
@@ -79,18 +95,14 @@ iframe {
 	height: 100px;
 	position: relative;
 	padding-left: 5px;
-    /* more transition here */
+	margin-top: -10px;
 }
 
 .button-card {
-	margin-top: -30px;
+	margin-top: -45px;
 	width: 170px !important;
 	height: 70px;
 	float: left;
-}
-
-.right {
-	float: right;
 }
 
 .progress-bar-container {
@@ -98,17 +110,21 @@ iframe {
 	height: 50px;
 	margin: 0 auto;
 	padding-left: 5px;
-	padding-top: 5px;
+	padding-top: 0px;
+	margin-top: -10px;
 }
 
 .progress-bar {
-  background: url('/client/images/game.png') no-repeat -274px -60px;
-  width: 1025px;
-  height: 85px;
-  transform: scale(0.34); 
-  -webkit-transform: scale(0.34);
-  -webkit-transform-origin:left top;
-  padding-top: 26px;
+	background: url('/client/images/game.png') no-repeat -274px -60px;
+	width: 1025px;
+	height: 85px;
+	transform: scale(0.34); 
+	-webkit-transform: scale(0.34);
+	-webkit-transform-origin:left top;
+	padding-top: 26px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
   /* other styles */
 }
 
@@ -234,25 +250,18 @@ iframe {
 }
 
 .bet-container {
-	font-size: 30px;
-	margin-top: -60px;
-	margin-left: 305px;
+	font-size: 40px;
+	margin-top: -65px;
+	margin-left: 320px;
 	width: 100px;
 	float: right;
 	display: none;
 	position: absolute;
 }
 
-
-.information-table {
-	margin: 0 auto;
-	width: 100%;
-	padding-bottom: 10px;
-}
-
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto 110px;
+  grid-template-columns: auto auto 80px;
   height: 40px;
 }
 
@@ -265,8 +274,8 @@ iframe {
 	background: url('/client/images/game.png') no-repeat -1674px -715px;
 	width: 82px;
 	height: 82px;
-	transform: scale(0.4); 
-	-webkit-transform: scale(0.4);
+	transform: scale(0.28); 
+	-webkit-transform: scale(0.28);
 	-webkit-transform-origin:left top;
 	float: left;
 	z-index: 100;
@@ -278,11 +287,11 @@ iframe {
 	background: url('/client/images/game.png') no-repeat -1680px -1355px;
 	width: 90px;
 	height: 90px;
-	transform: scale(0.42); 
-	-webkit-transform: scale(0.42);
+	transform: scale(0.3); 
+	-webkit-transform: scale(0.3);
 	-webkit-transform-origin:left top;
 	float: left;
-	margin-top: -8px;
+	margin-top: -4px;
 	z-index: 100;
 	position: relative;
 }
@@ -290,17 +299,17 @@ iframe {
 .number {
 	float: left;
 	position: absolute;
-	margin-left: 19px;
+	margin-left: 16px;
 	margin-top: 1px;
 	background-color: #63147f;
 	border-top-right-radius: 15px;
 	border-bottom-right-radius: 15px;
-	width: 80px;
-	font-size: 0.9em;
+	width: 60px;
+	font-size: 0.6em;
 	text-align: right;
 	padding-right: 10px;
-	padding-top: 0px;
-	height:29px;
+	padding-top: 2px;
+	height:21px;
 }
 
 .rules{
@@ -308,11 +317,9 @@ iframe {
 	background-color: #63147f;
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
-	padding: 0px 10px 0px 20px;
-}
-
-.rules-label {
-	font-size: 0.9em;
+	padding: 2px 10px 0px 20px;
+	height:21px;
+	font-size: 0.6em;
 }
 
 .balance {
@@ -321,7 +328,7 @@ iframe {
 }
 
 .long {
-	width: 130px;
+	width: 110px;
 	padding-left: 10px;
 	padding-right: 5px;
 
@@ -329,27 +336,27 @@ iframe {
 
 .info-wrapper {
 	float: right;
-	height:28px;
-    width:40px;
+	height:20px;
+    width:30px;
     font-size: 2em;
-    margin-top:4px;
+    margin-top: 1px;
     display: inline-block;
 }
 
 .info {
 	background: url('/client/images/game.png') no-repeat -1664px -659px;
 	width: 110px;
-	height: 56px;
-	transform: scale(0.4); 
-	-webkit-transform: scale(0.4);
+	height: 54px;
+	transform: scale(0.3); 
+	-webkit-transform: scale(0.3);
 	-webkit-transform-origin:left top;
 	float: left;
 	text-align: center;
 	position: relative;
     display: inline-block;
+    font-size: 1.2em;
 }
 
 .right {
 	float: right;
-	margin-right: 10px;
 }

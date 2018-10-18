@@ -155,7 +155,7 @@ class GameController extends Controller
 			 * if player fail keep the value 
 			 **/		
 			
-			$game_p_level = $this->get_player_level($gameid, $memberid, $player_level);
+			$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $gamelevel);
 			
 			$gamelevel    = $game_p_level['gamelevel'];
 			$player_level = $game_p_level['player_level'];
@@ -192,11 +192,11 @@ class GameController extends Controller
 		
 	}
 	
-	public function get_player_level($gameid, $memberid, $player_level)
+	public function get_player_level($gameid, $memberid, $player_level,$gamelevel)
 	{	
 		$level     = Game::get_player_level($gameid, $memberid);
 		
-		$gamelevel = Game::get_member_current_level($gameid, $memberid);
+		//$gamelevel = Game::get_member_current_level($gameid, $memberid);
 		
 
 		if ($level) 
@@ -341,7 +341,73 @@ class GameController extends Controller
 			
 	}*/
 	
-	
+	public function life_redemption(Request $request)
+    {
+		$memberid = $request->memberid;
+		$gameid   = $request->gameid;
+		$life   = $request->life; //life yes
+
+
+		if ($life == 'yes')
+		{
+			//print_r($life);
+			//die();
+			$wallet = Wallet::get_wallet_details($gameid, $memberid);
+
+			//print_r($wallet);
+			//print_r($gameid);
+			//print_r($memberid);
+			if ($wallet) 
+			{
+				//print_r($wallet);
+				if ($wallet->life >= 1 ) 
+				{
+					
+					$current_life=$wallet->life-1;
+					$balance_before=$wallet->balance;
+					$credit_bal=+1200;
+					$current_balance = $wallet->balance +$credit_bal;
+					$balance_after= $current_balance;
+					$debit_bal=0;
+					$current_level = 1;
+					$current_bet = $wallet->bet;
+					$current_point=$wallet->point;
+					
+
+					$history=array(
+						'current_life' 				=>	$current_life,
+						'balance_before' 			=>	$balance_before,
+						'credit_bal'                =>  $credit_bal,
+						'current_balance'	        =>  $current_balance,
+						'balance_after'	            =>  $balance_after,
+						'debit_bal' 				=>	$debit_bal,
+						'current_level' 		    =>	$current_level,
+						'current_bet'           	=>  $current_bet,
+						'current_point'	            =>  $current_point,
+						);
+
+					// here update the life 
+					//update wallet
+					Wallet::life_redeem_post_ledgerhistory($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
+					Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid);
+					//update ledger history
+
+					
+					//Reset latest member game level
+					Game::reset_member_game_level($memberid , $gameid);
+					
+					return response()->json(['success' => true]); 
+				}else if($life <=0)
+				{
+					
+					return response()->json(['success' => false, 'record' => '', 'message' => 'not enough life']); 
+				}
+				return response()->json(['success' => false, 'record' => '', 'message' => 'no data from wallet']);
+			}
+			return response()->json(['success' => false, 'record' => '', 'message' => 'want redeem']); 
+		}
+		return response()->json(['success' => false, 'record' => '', 'message' => 'dun want redeem']); 
+	}
 	
 	
 	public function showresult($gameid = false)

@@ -11,6 +11,7 @@
 			<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 			<link rel="stylesheet" href="{{ asset('/client/css/layout.css') }}" />
+			<link rel="stylesheet" href="{{ asset('/client/css/footer.css') }}" />
 		@show
 		
 		@section('top-javascript')
@@ -23,18 +24,8 @@
     <body>
         @yield('content')
 		
-		@section('footer-navbar')  
-
-		<div class="icon-bar navbar navbar-default navbar-fixed-bottom">
-		  <div class="container mx-auto text-center">
-		  <a href="{{ url('home') }}"><div class="home"></div><div class="icon_label">{{ trans('dingsu.home') }}</div></a> 
-		  <a href="#"><div class="trial"></div></i><div class="icon_label">{{ trans('dingsu.try') }}</div></a> 
-		  <a href="#"><div class="balance_circle">{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</div><div class="balance_label">{{ trans('dingsu.balance') }}</div></a> 
-		  <a href="/arcade"><div class="play"></div><div class="icon_label">{{ trans('dingsu.treasure') }}</div></a>
-		  <a href="/member"><div class="member"></div><div class="icon_label">{{ trans('dingsu.profile') }}</div></a> 
-		</div>
-	</div>
-
+		@section('footer-navbar')
+			@include('layouts/footer')
 		@show
 		
 		@section('footer-javascript')

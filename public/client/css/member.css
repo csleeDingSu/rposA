@@ -2,108 +2,228 @@
 
 .container {
 	width: 500px;
+	background-color: #e9e9e9;
 }
 	
 @media only screen and (max-width: 500px) {
     .container {
 		width: 100%;
+		padding: 0;
 	}
 }
 
-.square {
-    float:left;
-    position: relative;
-    width: 30%;
-    padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
-    margin:1.66%;
-    background-color:#7f9fc8;
-    overflow:hidden;
-	border:1px solid white;
-}
-
-.content {
-    position:absolute;
-    height:100%; /* = 100% - 2*5% padding */
-    width:100%; /* = 100% - 2*5% padding */
-    
-}
-.table{
-    display:table;
-    width:100%;
-    height:100%;
-}
-.table-cell{
-    display:table-cell;
-    vertical-align:middle;
-}
-
-.numbers{
-    font-size:50px;
-}
-
-.label{
-    font-weight:300;
+html, body {
+	height: 100%;
 }
 
 .full-height {
-	padding-top: 60px;
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-top: 30px;
 	font-size:20px;
     font-family: 'Lato',verdana, sans-serif;
     color: #fff;
     text-align:center;
-    background:#698fc0;
+    background:#e9e9e9;
+    height: 100%;
 }
 
 .card {
-	margin-top: 20px;
-	margin: 1.66%;
+	background-color: #384065;
+	padding: 0px 20px 20px 20px;
+	font-size: 16px;
+}
+
+.name {
+	font-size: 30px;
+	float: left;
+}
+
+.member-id {
+	font-size: 14px;
+}
+
+.verified {
+	font-size: 14px;
+	color: #63cd07;
+	float: left;
+	margin-top: 18px;
+	padding-left: 0px;
+}
+
+.information-table {
+	padding-top:5px;
+	background: #f8f8f8;
+	height: 100px;	
+}
+
+.information-table  div[class^="col"] {
+	background: #f8f8f8;
+	text-align: center;
+	padding-top: 8px;
+	color: #b1b1b1;
+	font-size: 12px;
+}
+
+.middle-border {
+	border-left: 1px solid #e8e8e8;
+	border-right: 1px solid #e8e8e8;
+}
+
+.numbers{
+    font-size:25px;
+}
+
+.point {
+	color: #cb0008;
+}
+
+.balance {
+	color: #fe7606;
+}
+
+.life {
+	color: #375ffc;
+}
+
+.button {
+	background-color: #7b89c6;
+	font-size: 10px;
+	color: white;
+	border-radius: 2px;
+	padding: 2px 10px 2px 10px;
 }
 
 .left {
 	text-align: left;
 }
 
-.text {
-	font-size:14px;
+.listing-table {
+	text-align: left;
+	color: #686868;
+	font-size: 14px;
+	margin-top: 5px;
+	padding-bottom: 20px;
+	background-color: white;
+	height: 100%;
 }
 
-.btn-rectangle, .btn-rectangle:hover {
-  width: 100% !important;
-  height: 50px !important;
-  background-color: #3cd5c1;
-  color: white;
-  font-size:24px;
-  padding-top: 5px;
+.list-group-item:first-child, .list-group-item:last-child {
+	border-radius: 0px;
 }
 
-.member {
+.list-group-item {
+	border: none;
+}
+
+.glyphicon {
+	float: right;
+	color: #ababab;
+}
+
+.icon-wrapper {
+	height: 30px;
+	width: 30px;
+	float: left;
+}
+
+.icon-add-friend {
+	background: url('/client/images/game.png') no-repeat -1670px -800px;
+	width: 80px;
+	height: 82px;
+	transform: scale(0.3); 
+	-webkit-transform: scale(0.3);
+	-webkit-transform-origin:left top;
+	float: left;
 	position: relative;
-	display: inline-block;
-	text-align: center;
-	background: url('/client/images/icon.png') no-repeat -100px 0px;
-	transform: scale(0.5); /* Equal to scaleX(0.7) scaleY(0.7) */
-	-webkit-transform: scale(0.5);
-	width:100px;
-	height: 110px;
-	margin-top: -20px;
 }
 
-.password {
+.icon-play {
+	background: url('/client/images/game.png') no-repeat -1670px -885px;
+	width: 80px;
+	height: 82px;
+	transform: scale(0.26); 
+	-webkit-transform: scale(0.26);
+	-webkit-transform-origin:left top;
+	float: left;
 	position: relative;
-	display: inline-block;
-	text-align: center;
-	background: url('/client/images/icon.png') no-repeat -100px -110px;
-	transform: scale(0.5); /* Equal to scaleX(0.7) scaleY(0.7) */
-	-webkit-transform: scale(0.5);
-	width:100px;
-	height: 110px;
-	margin-top: -20px;
 }
 
-.adjust-label {
-	position: absolute;
-	margin-top: 75px;
-	margin-left: -90px;
+.icon-play-history {
+	background: url('/client/images/game.png') no-repeat -1670px -962px;
+	width: 80px;
+	height: 60px;
+	transform: scale(0.32); 
+	-webkit-transform: scale(0.32);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.icon-redeem {
+	background: url('/client/images/game.png') no-repeat -1670px -1015px;
+	width: 80px;
+	height: 50px;
+	transform: scale(0.32); 
+	-webkit-transform: scale(0.32);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.icon-withdraw {
+	background: url('/client/images/game.png') no-repeat -1670px -1059px;
+	width: 80px;
+	height: 82px;
+	transform: scale(0.3); 
+	-webkit-transform: scale(0.3);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.icon-faq {
+	background: url('/client/images/game.png') no-repeat -1670px -1140px;
+	width: 80px;
+	height: 80px;
+	transform: scale(0.3); 
+	-webkit-transform: scale(0.3);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.icon-customer {
+	background: url('/client/images/game.png') no-repeat -1670px -1220px;
+	width: 80px;
+	height: 80px;
+	transform: scale(0.32); 
+	-webkit-transform: scale(0.32);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.icon-verified-wrapper {
+	margin-top: 20px;
+	height: 20px;
+	width: 30px;
+	float: left;
+}
+
+.icon-verified {
+	background: url('/client/images/game.png') no-repeat -1670px -1300px;
+	width: 80px;
+	height: 50px;
+	transform: scale(0.35); 
+	-webkit-transform: scale(0.35);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.note {
+	display: inline-block;
+	font-size: 10px;
+	color: #949494;
+	float: right;
+	padding-top: 2px;
 }

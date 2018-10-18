@@ -338,6 +338,9 @@ class Game extends Model
 	 * if the user win it will show first level
 	 * if the user dont have any records in member_game_history it will show first level
 	 * if the user have data and if he lose it will show the next level
+	 *
+	 * New function for game reset 
+	 * if the user have data and if the latest reselt reseted it will return first level
 	 **/
 	public static function get_member_current_level($gameid, $memberid)
 	{
@@ -347,7 +350,7 @@ class Game extends Model
 		{
 			$levelid = $result->game_level_id;
 			
-			if ($result->is_win ==1)
+			if ($result->is_win ==1 || $result->is_reset ==1)
 			{
 				$levelid = '';
 				$level   = self::get_game_current_level($gameid, $levelid);
@@ -355,9 +358,6 @@ class Game extends Model
 			}
 			else
 			{
-				//get next level ?
-				//$level   = self::get_game_next_level($gameid, $levelid);
-				
 				//Fixed for wrong ID position 
 				$level   = self::get_game_next_position($gameid, $levelid);
 			}
@@ -460,7 +460,23 @@ class Game extends Model
                 ->delete();		
 	}
 	
-	
+	public static function get_latest_member_result($memberid , $gameid)
+	{
+		return $result = DB::table('member_game_result')->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();		
+	}
+	public static function reset_member_game_level($memberid , $gameid)	
+	{
+		$level = self::get_latest_member_result($memberid , $gameid);
+		
+		if ($level)
+		{
+			DB::table('member_game_result')
+            ->where('id', $level->id)
+            ->update(['is_reset' => 1]);
+		}
+		
+		return true;
+	}
 	
 }
 

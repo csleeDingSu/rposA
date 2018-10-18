@@ -16,7 +16,6 @@ class Members extends Model
 		'password',
 		'affiliate_id',
 		'referred_by',
-		'phone',
     ];
 
     /**
@@ -31,13 +30,27 @@ class Members extends Model
 		print_r($request);
 	}
 	
-	public static function update_member($id)
-	{
+	public static function update_member($id,$data)
+	{	
 		
-		
-		DB::table('members')
+		 return $result = DB::table('members')
             ->where('id', $id)
-            ->update(['firstname' => 'fyname']);
+            ->update($data);
+		/*
+		DB::enableQueryLog();
+		print_r(DB::getQueryLog());
+		try {
+				DB::table('members')
+					->where('id', $id)
+					->update($data);
+				 return TRUE;
+			}  catch (\Exception $ex) {
+
+				 //dd($ex);
+				 return response()->json(['success' => false, 'record' => '']);
+			}
+		*/
+		
 	}
 	
 	public static function get_member($id)
@@ -53,4 +66,14 @@ class Members extends Model
 		
 		return $result;
 	}
+	
+	
+	public static function get_pending_wechat_members($limit = 100)
+	{
+		$result =  DB::table('members')->whereNotNull('wechat_name')->where('wechat_verification_status', 1)->paginate($limit);
+		
+		return $result;
+	}
+	
+	
 }

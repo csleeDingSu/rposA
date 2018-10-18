@@ -152,6 +152,11 @@ Route::group(['middleware' => 'auth:admin'], function()
 	//Route::get('/member/edit', 'MemberController@verify_wechat');	
 	//Route::post('/member/edit', 'MemberController@delete_member');
 	
+	Route::get('/member/pending-verification', 'MemberController@list_pending_wechat_account');
+	
+	Route::post('/member/update-verification', 'MemberController@verify_wechat_account')->name('ajaxapprovewechat');
+	
+	Route::post('/member/reject-verification', 'MemberController@reject_wechat_verification')->name('post.wechat.reject');
 	
 	
 	//Admin Routes
@@ -219,7 +224,10 @@ Route::group(['middleware' => 'auth:admin'], function()
 //END
 
 Route::get('/admin', 'AdminController@index');
-Route::get('/member', 'MemberController@index');
+Route::get('/member', 'ClientController@index');
+Route::get('/client/profile', 'ClientController@member_profile')->name('client.profile.page');
+
+
 
 Route::get('/clearcache', function() {
     $exitCode = Artisan::call('cache:clear');

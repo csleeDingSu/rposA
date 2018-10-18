@@ -178,7 +178,7 @@
 .swiper-button-prev,
 .swiper-container-rtl .swiper-button-next {
   left: -1px;
-  top: 130px;
+  top: 110px;
   right: auto;
   background: url('/client/images/game.png') no-repeat -65px -640px;
   width: 80px;
@@ -190,7 +190,7 @@
 .swiper-button-next,
 .swiper-container-rtl .swiper-button-prev {
   right: -56px;
-  top: 130px;
+  top: 110px;
   background: url('/client/images/game.png') no-repeat -65px -240px;
   width: 80px;
   height: 400px;

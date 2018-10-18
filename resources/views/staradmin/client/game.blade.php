@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="box">
-				<div class="rules"><span class="rules-label">规则介绍</span></div>
+				<div class="rules">规则介绍</div>
 			</div>
 			<input id="hidBalance" type="hidden" value="" />
 			<input id="hidLevel" type="hidden" value="" />

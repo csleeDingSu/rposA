@@ -12,8 +12,8 @@
 							<th>@lang('dingsu.id')</th>
 							<th>@lang('dingsu.name')</th>
 							<th>@lang('dingsu.create_Date')</th>
-							<th>@lang('dingsu.credit')</th>
-							<th>@lang('dingsu.online_status')</th>
+							<th>@lang('dingsu.wechat') @lang('dingsu.name')</th>
+							<th>@lang('dingsu.wechat_status')</th>
 							<th>@lang('dingsu.status')</th>
 							<th class="">@lang('dingsu.action')</th>
 						</tr>
@@ -27,11 +27,21 @@
 								{{ $list->created_at }}
 							</td>
 							<td>
-								--
+								{{ $list->wechat_name }}
 							</td>
 							<td>
-								--
+								@if($list->wechat_verification_status == 0)
+								<label class="badge badge-success">@lang('dingsu.verified')</label> 
+								@elseif ($list->wechat_verification_status == 1)
+								<label class="badge badge-info">@lang('dingsu.unverified')</label> 
+								@elseif ($list->wechat_verification_status == 2)
+								<label class="badge badge-warning">@lang('dingsu.rejected')</label> 
+								@elseif ($list->wechat_verification_status == 3)
+								<label class="badge badge-danger">@lang('dingsu.suspended')</label> 
+								@else 
+								@endif
 							</td>
+							
 							<td>
 								@if($list->member_status == 0)
 								<label class="badge badge-success">@lang('dingsu.active')</label> 
@@ -44,10 +54,8 @@
 							</td>
 							<td>							
 								<a href="/member/edit/{{ $list->id }}"  class="btn btn-info btn-fw">@lang('dingsu.edit')</a>
-								{{-- @if($list->account_type == 1) --}}
 								<a href="/member/reset/{{ $list->id }}" data-token="{{ csrf_token() }}"  class="btn btn-warning btn-fw">@lang('dingsu.reset_pass')</a>
 								<a onClick="confirm_Delete({{ $list->id }}, '{{ csrf_token() }}')" data-token="{{ csrf_token() }}" href="#" class="btn btn-danger btn-fw">@lang('dingsu.delete')</a>
-								{{-- @endif--}}
 							</td>
 						</tr>
 						@endforeach
