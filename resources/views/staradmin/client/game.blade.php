@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
-@section('title', '闯关猜猜猜')
+@section('title', '挖宝大冒险')
 
 @section('top-css')
     @parent
@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{ asset('/client/css/swiper.css') }}" />
 @endsection
     	
+@section('menu')
+<a href=""><div class="icon-share"></div></a>
+@endsection
+
 @section('content')	
 <div class="full-height">
 	<!-- information table -->

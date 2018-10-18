@@ -63,7 +63,7 @@ class ClientController extends BaseController
 		$member = Auth::guard('member')->user()->id	;
 		$data['member'] = Member::get_member($member);
 		
-		//$data['wallet'] = Wallet::get_wallet_details_all($member);
+		$data['wallet'] = Wallet::get_wallet_details_all($member);
 		$data['page'] = 'client.member'; 
 		return view('client/member', $data);
 	}

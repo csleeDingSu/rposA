@@ -1,0 +1,65 @@
+/* Adjust Navbar Height */
+navbar-nav > li > a, .navbar-brand {
+    padding-top:5px !important; 
+    padding-bottom:0 !important;
+    height: 30px;
+}
+
+.navbar {
+	min-height:30px !important;
+}
+/* End Adjust Navbar Height */
+
+#header
+{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index:1000
+}
+
+.navbar{
+	background: #f6f6f6;
+	border-radius: 0;	
+}
+
+.navbar-title {
+	margin: 0 auto;
+	width: 150px;
+}
+
+.navbar-default .navbar-brand {
+	color: #3d3d3d;
+	width:100%; 
+	text-align: center;
+	font-size: 16px;
+	font-weight: 500;
+	display:block;
+    width:150px;
+}
+
+.navbar-default {
+	border: none;
+}
+
+.menu-wrapper {
+	position: relative;
+	height: 20px;
+	float: right;
+	margin-top: 1px;
+	margin-left: 20px;
+}
+
+.icon-share {
+	background: url('/client/images/game.png') no-repeat -1580px -1470px;
+	transform: scale(0.29); /* Equal to scaleX(0.7) scaleY(0.7) */
+	-webkit-transform: scale(0.29);
+	-webkit-transform-origin:left top;
+	width:310px;
+	height: 140px;
+	position: absolute;
+}
+
+.icon-wrapper {
+	width: auto;
+}

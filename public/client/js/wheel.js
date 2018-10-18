@@ -87,6 +87,18 @@ function initUser(){
                 $('#hidBalance', window.parent.document).val(balance);
                 
                 setBalance();
+
+                // add points from additional life.
+                if(user_id > 0 && balance == 0){
+                    $.post("/api/resetlife", { 'memberid': user_id, 'gameid': 101, 'life': 'yes' }, function(data) {
+                        console.log(data);
+                        // Do something with the request
+                        if(data.success) {
+                            initUser();
+                        }
+                        
+                    }, 'json');
+                }
             }
         }
         

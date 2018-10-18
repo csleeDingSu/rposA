@@ -123,6 +123,21 @@ class GameController extends Controller
 		
 		$game_result = !empty($current_result->game_result) ? $current_result->game_result  : '' ;
 		
+		
+		
+		
+		if ($validator->fails()) {
+			 return response()->json(['success' => false, 'game_result' => $game_result, 'message' => $validator->errors()->all()]);
+		}
+		
+		
+		//If empty then return the game result only
+		if (empty($bet) || empty($memberid))
+		{
+			return response()->json(['success' => false, 'game_result' => $game_result]);
+		}
+		
+		
 		$gamelevel = Game::get_member_current_level($gameid, $memberid);
 		
 		$levelid = $gamelevel ->levelid;
@@ -132,22 +147,13 @@ class GameController extends Controller
 		if (empty($is_playable))
 		{
 			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough balance to play']);
-		}
-		
-		if ($validator->fails()) {
-			 return response()->json(['success' => false, 'game_result' => $game_result, 'message' => $validator->errors()->all()]);
-		}
-		else{			
-			//If empty then return the game result only
-			if (empty($bet))
-			{
-				return response()->json(['success' => false, 'game_result' => $game_result]);
-			}
+		}		
+		else{
 			
 			/**
 			 * if player & histoy win the increse to 1
 			 * if player fail keep the value 
-			 **/			
+			 **/		
 			
 			$game_p_level = $this->get_player_level($gameid, $memberid, $player_level);
 			
