@@ -19,7 +19,7 @@ class VoucherController extends Controller
 		$category = Category::all();
 		
 		$vouchers = Voucher::latest()->paginate(5);
-        return view('client.home2', compact('vouchers','category'));
+        return view('client.home', compact('vouchers','category'));
 		
 		
     }
@@ -35,7 +35,7 @@ class VoucherController extends Controller
 		}
 		
 		$category = Category::all();
-        return view('client.home2', compact('vouchers','category'));		
+        return view('client.home', compact('vouchers','category'));		
 		
     }
 }

@@ -45,7 +45,7 @@ Route::get('/history', function () {
 // Route::get('/profile', function () {
 //     return view('client/member');
 // });
-Route::get('/profile', 'MemberController@index');
+Route::get('/profile', 'ClientController@member_profile')->name('client.profile');
 
 Route::get('/redeem', function () {
     return view('client/redeem');

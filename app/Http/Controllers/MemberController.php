@@ -5,59 +5,43 @@
  ***/
 
 namespace App\Http\Controllers;
+use DB;
 use App;
-use App\Helpers\QRCodeGenerator;
-use App\MainLedger;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
+
 use App\Members as Member;
 use Auth;
-use DB;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use session;
 class MemberController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 	public function __construction()
 	{
-		//$this->middleware('member');
-		//$this->middleware('auth:member');
 		$this->middleware('auth:admin');
 	}
 	public function index() {		
 		
-		print_r(Auth::Guard('member')->check());
-
 		if (Auth::Guard('member')->check())
 		{
+			$this->member_profile();
 			//redirect to member
-			$member = Auth::Guard('member')->user();
-			$mainledger = MainLedger::where('member_id',$member->id)->first();
-			$member['current_balance'] = $member['pending'] = $member['success']=$member['history']= 0;
-			$member['invitation_link'] = url('/') . "/register/$member->affiliate_id";
-			//$member['qrcode'] = QRCodeGenerator::generate('url',array('url' => $member['invitation_link']));
-			
-			if (isset($mainledger)) {
-
-				$member['current_balance'] = $mainledger->current_balance;
-				$member['pending'] = 6;
-				$member['success'] = 20;
-				$member['history'] = 100;
-
-			}
-			
-			return view('client/member', compact('member'));
 			//return redirect()->route('memberdashboard'); //change to homepage
 		}
 		else if (Auth::Guard('admin')->check())
 		{
+			$this->member_list();
 			//redirect to member list
-			return redirect()->route('memberlist');
+			//return redirect()->route('memberlist');
 		}
 		else
 		{
@@ -71,7 +55,7 @@ class MemberController extends BaseController
 	public function member_list()
 	{
 		
-		$result =  DB::table('members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status'])->paginate(25);		
+		$result =  DB::table('members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status'])->paginate(25);		
 		//die();
 		$data['page'] = 'member.memberlist'; 
 				
@@ -87,24 +71,15 @@ class MemberController extends BaseController
 		$data['page'] = 'member.addmember';
 		return view('main', $data);
 	}
-	
-		
-	
-	public function save_member(Request $request)
-	{
-		
 				
+	public function save_member(Request $request)
+	{		
 		$validator = $this->validate(
             $request,
             [
                 'firstname' => 'required|string|min:4',
                 'email' => 'required|email|unique:members,email',
 				'username' => 'required|unique:members,username',
-            ],
-            [
-                'firstname.required' => 'Firstname is required',
-                'email.required' => 'Email is required',
-				'username.required' => 'Username is required',
             ]
         );
 		
@@ -116,20 +91,17 @@ class MemberController extends BaseController
 			$member->email = $request->email;
 			$member->password = Hash::make($request->password);
 			$member->member_status = $request->status;
-			$member->withdrawal_password = $request->w_password;
-
+			$member->withdrawal_password = $request->w_password;			
+			$member->affiliate_id = unique_random('members', 'affiliate_id', 10);
 			$member->save();
 		}
 		catch(\Exception $e){
 		   echo $e->getMessage();   
 		}
-		
-		
 		return redirect()->back()->with('message', trans('dingsu.member_account_success_message') );
 		
 		//@todo : add mail
-		//self::sendmail($request->all());
-		
+		//self::sendmail($request->all());		
 		
 	}
 	
@@ -137,15 +109,12 @@ class MemberController extends BaseController
 	{
 		$data['member'] = $member = Member::get_member($id);
 		
-		//print_r($member);die();
-		
 		$data['page'] = 'common.error';
 		
 		if ($member)
 		{
 			$data['page'] = 'member.editmember';
-		}
-		
+		}		
 		
 		return view('main', $data);
 	}
@@ -158,41 +127,89 @@ class MemberController extends BaseController
             [
                 'firstname' => 'required|string|min:4',
 				'email' => 'required|email|unique:members,email,'.$id,
+				'wechat_name' => 'nullable|unique:members,wechat_name,'.$id,
+				'phone' => 'nullable|min:7|max:12|unique:members,phone,'.$id,
             ]
         );
+		$data = ['firstname' => $request->firstname,'lastname' => $request->lastname,'email' => $request->email,'member_status' => $request->status,'wechat_name' => $request->wechat_name,'wechat_verification_status' => $request->wechat_verification_status,'phone' => $request->phone];
 		
-		 //Member::where('id', '=', $id)->update(array('firstname' => $request->firstname,'lastname' => $request->lastname));
+		Member::update_member($id, $data);
 		
-		try{
-		    $member = new Member();
-			$member->firstname     = $request->firstname;
-			$member->lastname      = $request->lastname;
-			$member->email         = $request->email;
-			$member->member_status = $request->status;
-			$member->account_type  = '';
-			$member->update_member($id);
-		}
-		catch(\Exception $e){
-		   echo $e->getMessage();   
-		}
-		
-		
-		//return redirect()->back()->with('message', trans('dingsu.member_accountupdate_success_message') );
+		return redirect()->back()->with('message', trans('dingsu.member_accountupdate_success_message') );
 		
 	}
 	
 	public function delete_member ($id)
 	{
-		//$member = Member::findOrFail($id);
 		$member = Member::find($id);
 		
 		if ($member)
 		{
 			//@todo : check user bidding information & referral commision
-			//Member::destroy($id);
+			Member::destroy($id);
 			return 'true';
 		}
 		return 'false';
+	}
+	
+	public function list_pending_wechat_account ()
+	{
+		$result = Member::get_pending_wechat_members(20);
+		
+		$data['page'] = 'member.pendingwechat';  		
+		$data['result'] = $result;
+		
+		return view('main', $data);
+	}
+	public function verify_wechat_account (Request $request)
+	{
+		$id = $request->id;
+		$record = Member::find($id);
+		if ($record)
+		{
+			$input = [
+				 'wechat_name'   => $record->wechat_name
+				  ];
+			$validator = Validator::make($input, 
+				[
+					'wechat_name' => 'required|unique:members,wechat_name,'.$id
+				]
+			);
+			if ($validator->fails()) {
+				return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+			}	
+			else
+			{
+				$data = ['wechat_verification_status'=>0];
+				$res = Member::update_member($record->id,$data);
+			}	
+			
+			return response()->json(['success' => true]);
+		}		
+		return response()->json(['success' => false]);
+	}
+	public function reject_wechat_verification (Request $request)
+	{
+		$id = $request->id;
+		$notes = $request->notes;
+		
+		$input = [
+			 'notes'   => $notes
+			  ];
+		$validator = Validator::make($input, 
+			[
+				'notes' => 'required'
+			]
+		);
+		if ($validator->fails()) {
+			 return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}	
+		else
+		{
+			$data = ['wechat_verification_status'=>2,'wechat_notes'=>$notes];
+			$res = Member::update_member($id,$data);
+		}
+		return response()->json(['success' => true]);
 	}
 	
 	public function reset_password ()
@@ -243,7 +260,7 @@ class MemberController extends BaseController
 	
 	public function member_profile()
 	{
-		
+		return view('client/member');
 	}
 	
 	public function today_transaction()

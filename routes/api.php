@@ -40,6 +40,10 @@ Route::group(['namespace' => 'Api'],function(){
 	
 	Route::get('get-latest-result', 'GameController@get_latest_result')->name('api.game.latestresult');
 	
+	Route::post('resetlife', 'GameController@life_redemption')->name('api.game.resetlife');
+	
+	Route::post('update-wechatname', 'MemberController@update_wechat')->name('post.wechat.name');
+	
  });	
 
 //deprecated
