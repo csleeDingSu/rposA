@@ -11,11 +11,9 @@
 
 @section('content')	
 
-		<div class="container" style="border-bottom: 1px solid #394165;">
-			
-			<div class="title">超值试用
-			<button class="btn_recommend">每天10点更新</button></div>
-		</div>
+		<div class="card">
+				<div class="title">超值试用<div class="button-wrapper"><button class="btn_recommend">每天10点更新</button></div></div>
+			</div>
 
 
 		<div class="container" style="background-color: white;">
