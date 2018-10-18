@@ -9,16 +9,12 @@
     @include('layouts.partials.nav')
       
     @include('layouts.partials.banner')
-
-      <div class="main-panel">
       
-			<!-- Main Content area -->
-			
-      {{-- @yield('content') --}}
-			
-			<!-- End -->
-			
-      </div>
+		<!-- Main Content area -->
+		
+     @yield('content')
+		
+		<!-- End -->
 
     @include('layouts.partials.footer')
 

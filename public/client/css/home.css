@@ -180,7 +180,7 @@
 }
 
 .listing {
-	width: 547px !important;
+	width: auto !important;
 	margin: 0 auto;
 	padding: 10px 0;
 	background-color: #ffffff;
@@ -230,9 +230,9 @@
 }
 
 .button-wrapper {
-	width: 215px;
-	height: 50px;
-	position: relative;
+	/*width: 215px;*/
+	/*height: 50px;*/
+	/*position: relative;*/
 	float: right;
 	margin-top: -10px;
 }
@@ -246,7 +246,7 @@
 	-webkit-transform-origin:left top;
     -webkit-transition:0.5s all;
     -moz-transition:0.5s all;
-	position: absolute;
+	/*position: absolute;*/
 }
 
 .btn-rectangle, .btn-rectangle:hover, .btn-rectangle:visited, .btn-rectangle:link {

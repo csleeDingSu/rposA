@@ -203,7 +203,8 @@
 /*customize nav*/
   .navbar-default .navbar-nav>li>a {
 	width:100px;
-	color: #ffffff;
+	color: white;
+
 }
 
 

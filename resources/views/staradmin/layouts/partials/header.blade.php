@@ -1,4 +1,4 @@
-<div class="container navbar text-center">
+<header class="container navbar navbar-default text-center">
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="col left div-icon">
 		@if (isset(Auth::Guard('member')->user()->username))
@@ -16,4 +16,4 @@
 		 <a href="#"><i class="fas fa-rss"></i>关注</a>		  
 	</div>
 
-</div>
+</header>
