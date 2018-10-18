@@ -16,7 +16,7 @@
 		
 		<!-- End -->
 
-    @include('layouts.partials.footer')
+    @include('layouts.footer')
 
   </div>
   

@@ -12,8 +12,9 @@
 @section('content')	
 
 		<div class="container" style="border-bottom: 1px solid #394165;">
-			<button class="btn_recommend">每天10点更新</button>
-			<div class="title">超值试用</div>
+			
+			<div class="title">超值试用
+			<button class="btn_recommend">每天10点更新</button></div>
 		</div>
 
 
