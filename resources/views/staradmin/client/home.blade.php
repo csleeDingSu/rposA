@@ -4,7 +4,7 @@
 
 @section('top-css')
     @parent
-	<link rel="stylesheet" href="{{ asset('/client/css/home.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/home2.css') }}" />
 
 @endsection
 
@@ -26,7 +26,7 @@
 			<div class="infinite-scroll">
 			@foreach($vouchers as $item)
 				
-				<div class="row" style="border-bottom: 1px solid #394165;">
+				<div class="row">
 					<div class="col-sm-3">
 						<a href="/details/{{$item->id}}">
 							<img class="product" src="{{$item->product_picurl}}_460x460Q90.jpg_.webp" alt="{{$item->product_name}}">
@@ -35,12 +35,14 @@
 					<div class="col-sm-9">
 						<div class="description">{{$item->product_name}}</div>
 						<div class="price">¥ {{$item->product_price}}</div>
-						<div class="col-xs-6 promo-price"><a href="/details/{{$item->id}}">试用价19.9元</a></div>
-						<div class="col-xs-5 view">已有15人申请</div>
+						<div class="col-xs-6 promo-price">试用价19.9元</div>
+						<a href="/arcade"><button  class="btn_wabao">免费挖宝</button></a>
+
 					</div>
 				</div>
+				<br><br>
 				@endforeach
-				
+				<br><br>
 				{{ $vouchers->links() }}
 			</div>
 			@else

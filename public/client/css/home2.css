@@ -189,7 +189,7 @@
 }
 
 .title {
-	font-size:24px;
+	font-size:20px;
 	font-weight: 500;
 	text-align:left;
 	margin: 10px 0;
@@ -309,11 +309,11 @@
 .btn_wabao {
 	margin-left: 5px;
 	background-color: red;
-	width: 200px;
+	width: 150px;
 	height: 30px;
 	color: white;
   	font-size:20px;
-  border-radius: 10px;
+  	border-radius: 10px;
 	position: absolute;
 	border: 1px solid grey
 }
