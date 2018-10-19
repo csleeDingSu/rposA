@@ -72,13 +72,13 @@
 		
 		
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="menu-icon icon-tag text-success"></i>
+			<a class="nav-link" data-toggle="collapse" href="#voucher" aria-expanded="false" aria-controls="voucher">
+              <i class="menu-icon icon-tag text-primary"></i>
               <span class="menu-title">@lang('dingsu.voucher')</span>
               <i class="menu-arrow"></i>
             </a>
 		
-			<div class="collapse" id="auth">
+			<div class="collapse" id="voucher">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item">
 						<a class="nav-link" href="/voucher/list"> @lang('dingsu.voucher') @lang('dingsu.list') </a>
@@ -92,16 +92,32 @@
 				</ul>
 			</div>
 		</li>
+		
 		<li class="nav-item">
-			<a class="nav-link" href="/settings/redeem">
-              <i class="menu-icon icon-present text-primary"></i>
-              <span class="menu-title"> @lang('dingsu.redeem')</span>
+			<a class="nav-link" data-toggle="collapse" href="#redeem" aria-expanded="false" aria-controls="redeem">
+              <i class="menu-icon icon-present text-success"></i>
+              <span class="menu-title">@lang('dingsu.redeem')</span>
+              <i class="menu-arrow"></i>
             </a>
 		
+			<div class="collapse" id="redeem">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/product/list"> @lang('dingsu.product') @lang('dingsu.list') </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/product/softpins"> @lang('dingsu.softpins') </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/product/pending-redeem">@lang('dingsu.pending') @lang('dingsu.redeem')  </a>
+					</li>
+				</ul>
+			</div>
 		</li>
 		
+		
 		<li class="nav-item">
-			<a class="nav-link" href="/settings">
+			<a class="nav-link" href="/admin/settings">
               <i class="menu-icon icon-settings text-danger"></i>
               <span class="menu-title"> @lang('dingsu.settings')</span>
             </a>

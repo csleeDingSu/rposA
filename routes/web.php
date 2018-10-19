@@ -220,6 +220,33 @@ Route::group(['middleware' => 'auth:admin'], function()
 	
 	Route::post('/voucher/ajaxupdate-unrv-voucher', 'VoucherController@ajax_unrv_update_voucher')->name('ajax_unrv_updatevoucher');
 	Route::post('/voucher/ajaxupdatevoucher', 'VoucherController@ajax_update_voucher')->name('ajaxupdatevoucher');
+	
+	
+	//product
+	Route::get('/product/list', 'ProductController@list_product')->name('product.list');
+	Route::get('/product/ajaxlist', 'ProductController@ajax_list_product')->name('product.ajax.list');
+	
+	Route::get('/product/add', 'ProductController@add_product')->name('product.add');
+	Route::get('/product/edit/{id?}', 'ProductController@edit_product')->name('product.edit');
+	
+	Route::post('/product/add', 'ProductController@save_product')->name('product.save');
+	Route::post('/product/edit/{id?}', 'ProductController@update_product')->name('product.update');
+	
+	
+	//softpins
+	Route::get('/product/softpins', 'ProductController@list_pins')->name('pin.list');
+	Route::post('/product/addpins', 'ProductController@save_pins')->name('pin.create');
+	
+	
+	
+	Route::delete('/product/remove-softpins', 'ProductController@remove_pin')->name('pin.remove');
+	
+	
+	
+	//redeem
+	Route::get('/product/pending-redeem', 'ProductController@get_pending_redeemlist')->name('redeem.pending.list');
+	Route::delete('/product/confirm-redeem', 'ProductController@confirm_redeem')->name('pin.redeem.confirm');
+	Route::delete('/product/reject-redeem', 'ProductController@reject_redeem')->name('pin.redeem.reject'); 
 });
 //END
 

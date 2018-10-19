@@ -4,19 +4,20 @@
 
 @section('top-css')
     @parent
-	<link rel="stylesheet" href="{{ asset('/client/css/home2.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/home.css') }}" />
 
 @endsection
 
 
 @section('content')	
 
-		<div class="card">
+		<div class="container">
+			<div class="card">
 				<div class="title">超值试用<div class="button-wrapper"><button class="btn_recommend">每天10点更新</button></div></div>
 			</div>
+		</div>
 
-
-		<div class="container" style="background-color: white;">
+		<div class="container full-height">
 			
 			<div class="listing">
 				
@@ -25,12 +26,12 @@
 			@foreach($vouchers as $item)
 				
 				<div class="row">
-					<div class="col-sm-3">
+					<div class="col-xs-4">
 						<a href="/details/{{$item->id}}">
-							<img class="product" src="{{$item->product_picurl}}_460x460Q90.jpg_.webp" alt="{{$item->product_name}}">
+							<img class="product" src="{{$item->product_picurl}}_460x460Q90.jpg" alt="{{$item->product_name}}">
 						</a>
 					</div>
-					<div class="col-sm-9">
+					<div class="col-xs-8">
 						<div class="description">{{$item->product_name}}</div>
 						<div class="price">¥ {{$item->product_price}}</div>
 						<div class="col-xs-6 promo-price">试用价19.9元</div>
@@ -38,9 +39,9 @@
 
 					</div>
 				</div>
-				<br><br>
+				<br>
 				@endforeach
-				<br><br>
+				<br>
 				{{ $vouchers->links() }}
 			</div>
 			@else
