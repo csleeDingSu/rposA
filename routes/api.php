@@ -43,12 +43,12 @@ Route::group(['namespace' => 'Api'],function(){
 	Route::post('resetlife', 'GameController@life_redemption')->name('api.game.resetlife');
 	
 	Route::post('update-wechatname', 'MemberController@update_wechat')->name('post.wechat.name');
-	
+			
 	Route::get('/product-list', 'ProductController@list_product_by_point')->name('api.product.list');
 	
 	Route::get('/redeem-history', 'ProductController@get_redeem_history')->name('api.redeem.history');
 	
-	Route::get('/request-redeem', 'ProductController@request_redeem')->name('api.redeem.request');
+	Route::post('/request-redeem', 'ProductController@request_redeem')->name('api.redeem.request');
 	
  });	
 

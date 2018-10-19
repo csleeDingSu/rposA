@@ -22,7 +22,7 @@ class Wallet extends Model
 	protected $table_history = 'ledger_history';
 	
 	
-	public static function get_wallet_details($gameid, $memberid)
+	public static function get_wallet_details($memberid)
 	{		
 		
 		$result = [];
@@ -44,6 +44,65 @@ class Wallet extends Model
 			return $result = DB::table('mainledger')->where('member_id', $memberid)->latest()->first();
 		}
 		return $result;
+	}
+	
+	public static function update_ledger($memberid,$type,$amendpoint,$category = 'PNT')
+	{
+		$wallet    = self::get_wallet_details_all($memberid);
+		
+		$mainfield  = 'current_balance';
+		if ($category == 'PNT')
+		{
+			$mainfield = 'current_point';
+		}
+		
+		$credit = 0;
+		$debit  = 0;
+		$balance    = $wallet->{$mainfield};
+		
+		
+		if ($type == 'credit')
+		{
+			//add	
+			$credit = $amendpoint;
+			$balance_after = $balance  + $credit ;
+		}
+		else if ($type == 'debit'){
+			$debit = $amendpoint;
+			$balance_after = $balance  - $debit ;
+		}
+		$now = Carbon::now();
+		
+		$history = [
+			'created_at' 	  => $now,
+			'updated_at' 	  => $now,
+			'member_id'       => $memberid,
+			'credit'	      => $credit,
+			'debit'	          => $debit,
+			'balance_before'  => $balance,
+			'balance_after'   => $balance_after,
+			'current_balance' => $balance_after,
+			'notes'           => $balance_after,
+			'credit_type'	  => $category,
+			];
+		
+		
+		$data = [ 
+			'updated_at'   => $now,
+			"$mainfield"   => $balance_after,
+		];
+		
+		$ledger  = DB::table('mainledger')
+				   ->where('member_id', $memberid)
+				   ->update($data);
+		
+		$history = self::add_ledger_history($history);
+	}
+	
+		
+	public static function add_ledger_history($data)
+	{
+		return DB::table('ledger_history')->insertGetId($data);
 	}
 
 

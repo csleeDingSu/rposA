@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Carbon\Carbon;
 class Product extends Model
 {   
     use SoftDeletes;
@@ -44,9 +44,9 @@ class Product extends Model
 		return $result;
 	}
 	
-	public static function get_pin_detail_by_view($id, $point)
+	public static function get_pin_detail_by_view($productid, $point)
 	{
-		$result = DB::table('view_softpins')->where('productid', $id)->where('product_status', 0)->first();
+		$result = DB::table('view_softpins')->where('productid', $productid)->where('product_status', 0)->first();
 		return $result;
 	}
 	
@@ -142,16 +142,37 @@ class Product extends Model
             ->where('id', $id)
             ->update($data);
 		}		 		
-	}
+	}	
 	
-	
-	public static function list_available_redeem_product($memberid, $point)
+	public static function list_available_redeem_product($point)
 	{		
-	$result = Product::where('min_point', '<=', $point)->where('product_status', '=', 0)->paginate(50);
+		$result = Product::where('product_status', '=', 0);
+		
+		if (!empty($point))
+		{
+			$result = $result->where('min_point', '<=', $point);
+		}
+		$result = $result->paginate(50);
 		
 		return $result;
 	}
 	
+	public static function get_available_pin($product = false, $point = false)
+	{
+		$result = DB::table('view_softpins')->where('product_status', '=', 0)->where('pin_status', '=', 0);
+		
+		if (!empty($product))
+		{
+			$result = $result->where('productid', '=', $product);
+		}
+		if (!empty($point))
+		{
+			$result = $result->where('min_point', '<=', $point);
+		}
+		$result = $result->first();
+		
+		return $result;
+	}
 	
 }
 

@@ -276,7 +276,7 @@ class GameController extends Controller
 		$gameid   = $request->gameid;
 		$memberid   = $request->memberid;
 		
-		$records =  Wallet::get_wallet_details($gameid, $memberid);
+		$records =  Wallet::get_wallet_details($memberid);
 		return response()->json(['success' => true, 'record' => $records]); 
 	}
 	
@@ -352,7 +352,7 @@ class GameController extends Controller
 		{
 			//print_r($life);
 			//die();
-			$wallet = Wallet::get_wallet_details($gameid, $memberid);
+			$wallet = Wallet::get_wallet_details($memberid);
 
 			//print_r($wallet);
 			//print_r($gameid);
