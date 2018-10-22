@@ -13,10 +13,10 @@ body {
 }
 
 #txtCounter {
-    font-size: 30px;
+    font-size: 25px;
     color: white;
-    padding-left: 15px;
-    padding-top: 12px;
+    padding-left: 12px;
+    padding-top: 10px;
 }
 
 #wheel_container {

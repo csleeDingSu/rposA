@@ -15,9 +15,15 @@ iframe {
 	display:block;
 }
 
+@media only screen and (max-width: 360px) {
+    .iframe {
+		width: 360px;
+	}
+}
+
 .swiper-container {
   width: 400px;
-  height: 370px;
+  height: 330px;
   margin-left: -31px;
 }
 
@@ -55,6 +61,12 @@ iframe {
 
 .text {
 	font-size:24px;
+}
+
+.instruction {
+	visibility: visible;
+	margin-bottom: 20px;
+	font-size: 16px;
 }
 
 .btn-rectangle, .btn-rectangle:active {
@@ -105,13 +117,49 @@ iframe {
 	float: left;
 }
 
+@media only screen and (max-width: 360px) {
+    .btn-rectangle, .btn-rectangle:active {
+		transform: scale(0.3); 
+		-webkit-transform: scale(0.3);
+		-webkit-transform-origin:left top;
+	    font-size: 60px;
+	    padding-top: 30px;
+	  /* other styles */
+	}
+
+	.btn-rectangle.clicked {
+		width: 510px;
+		height: 200px;
+		transform: scale(0.3); 
+		-webkit-transform: scale(0.3);
+		-webkit-transform-origin:left top;
+	    font-size: 60px;
+	    padding-top: 30px;
+	  /* other styles */
+	}
+
+	.button-wrapper {
+		margin: 0 auto;
+		width: 310px;
+		height: 100px;
+		position: relative;
+		padding-left: 5px;
+		margin-top: -10px;
+	}
+
+	.button-card {
+		margin-top: -45px;
+		width: 150px !important;
+		height: 70px;
+		float: left;
+	}
+}
+
 .progress-bar-container {
     width: 360px;
 	height: 50px;
 	margin: 0 auto;
 	padding-left: 5px;
-	padding-top: 0px;
-	margin-top: -10px;
 }
 
 .progress-bar {
@@ -187,6 +235,23 @@ iframe {
 
 .progress-bar-container .circle.done .label {
     color: #8b8ae7;
+}
+
+@media only screen and (max-width: 360px) {
+	.progress-bar-container {
+	    width: 320px;
+		height: 50px;
+		margin: 0 auto;
+		padding-left: 5px;
+	}
+
+	.progress-bar {
+		transform: scale(0.3); 
+		-webkit-transform: scale(0.3);
+		-webkit-transform-origin:left top;
+		padding-top: 26px;
+	  /* other styles */
+	}
 }
 
 .speech-bubble { 

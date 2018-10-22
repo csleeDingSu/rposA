@@ -1,9 +1,15 @@
-#header
-{
+.sticky {
 	position: fixed;
 	top: 0;
-	width: 100%;
-	z-index:1000;
+	z-index: 1000;
+	left: 50%;
+    transform: translate(-50%);
+}
+
+@media only screen and (max-width: 760px) {
+    .sticky {
+		width: 100%;
+	}
 }
 
 .navbar-default {

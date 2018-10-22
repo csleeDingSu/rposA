@@ -38,9 +38,9 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label for="quantity" class="col-sm-3 col-form-label">@lang('dingsu.available_quantity')</label>
+                          <label for="quantity" class="col-sm-3 col-form-label">@lang('dingsu.product_display_id')</label>
                           <div class="col-sm-9">
-                            <input id="quantity" name="quantity" class="form-control" type="text" value="{{ old('quantity', $record->available_quantity) }}" maxlength="5">
+                            <input id="product_display_id" readonly name="product_display_id" class="form-control" type="text" value="{{ $record->available_quantity }}" maxlength="5">
                           </div>
                         </div>
                       </div>

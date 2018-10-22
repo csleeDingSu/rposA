@@ -69,6 +69,8 @@
 	</div>
 	<!-- end swiper iframe -->
 
+	<div class="instruction">猜下次幸运号是单数或双数</div>
+
 	<!-- progress bar -->
 	<div class="progress-bar-container">
     	<div class="progress-bar">

@@ -74,7 +74,7 @@ class ProductController extends Controller
 		{
 			$now = Carbon::now();
 			
-			$data = ['member_id'=>$memberid,'pin_status'=>2,'request_at'=>$now];
+			$data = ['member_id'=>$memberid,'pin_status'=>4,'request_at'=>$now,'used_point'=>$product->min_point];
 			
 			Wallet::update_ledger($memberid,'debit',$product->min_point,'PNT');
 			

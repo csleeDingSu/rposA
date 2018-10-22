@@ -117,7 +117,7 @@
 						</div>
 
 						<div>
-							<a href="#" class="btn btn_submit">进入挖宝 开始赚钱</a>
+							<a href="/arcade" class="btn btn_submit">进入挖宝 开始赚钱</a>
 						</div>
 					</div>
 				</div>							

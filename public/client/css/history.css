@@ -26,6 +26,27 @@ td.history {
     width: 248px;
 }
 
+@media only screen and (max-width: 360px) {
+    html {
+        margin-left: 30px;
+    }
+
+    tbody td {
+        padding: 0px 5px 3px 5px;
+        height: 26px;
+        margin-right: 100px;
+    }
+
+    td.history {
+        width: 200px;
+    }
+
+    .number {
+        width: 20px;
+        font-size: 14px;
+    }
+}
+
 .legend {
     background-color: transparent;
 }
@@ -40,6 +61,18 @@ td.history {
 
 .overlap {
     margin-left: -23px;
+}
+
+@media only screen and (max-width: 360px) {
+    .legend-item {
+        padding-top: 10px;
+        padding-right: 10px;
+        font-size: 10px;
+    }
+
+    .overlap {
+        margin-left: -23px;
+    }
 }
 
 table .label {
@@ -96,10 +129,35 @@ table .even-fail .label {
     line-height: 22px;
 }
 
+@media only screen and (max-width: 360px) {
+    table .label {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 20px;
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
+    table .odd, .even, .odd-fail, .even-fail {
+        margin-right: 5px;
+    }
+
+    table .odd-fail .label {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    table .even-fail .label {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
 .points {
     float: right;
     color: #5b5563;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 5px;
     font-weight: 100;
 }

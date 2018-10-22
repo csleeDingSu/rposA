@@ -297,5 +297,7 @@ return [
 	'pin_added_success_msg' => 'Softpin added successfully',
 	'softpin_update_success_message' => 'Softpin was successfully Added',
 	'done' => 'Done',
+	'import' => 'Import',
+	'product_display_id' => 'Product Display Id',
 	
 ];

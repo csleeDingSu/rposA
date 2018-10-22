@@ -46,7 +46,7 @@ class Wallet extends Model
 		return $result;
 	}
 	
-	public static function update_ledger($memberid,$type,$amendpoint,$category = 'PNT')
+	public static function update_ledger($memberid,$type,$amendpoint,$category = 'PNT',$notes = FALSE)
 	{
 		$wallet    = self::get_wallet_details_all($memberid);
 		
@@ -82,7 +82,7 @@ class Wallet extends Model
 			'balance_before'  => $balance,
 			'balance_after'   => $balance_after,
 			'current_balance' => $balance_after,
-			'notes'           => $balance_after,
+			'notes'           => $notes,
 			'credit_type'	  => $category,
 			];
 		

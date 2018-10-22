@@ -22,7 +22,7 @@
 					<tbody>
 						@foreach($result as $list)
 						<tr id="tr_{{ $list->id }}">
-							<td>{{ $list->id }}</td>
+							<td>{{ $list->product_display_id }}</td>
 							<td>{{ $list->created_at }}</td>
 							<td>{{ $list->product_name }}</td>
 							

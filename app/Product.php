@@ -36,6 +36,13 @@ class Product extends Model
 		
 		return $result;
 	}
+	public static function get_view_product($id)
+	{
+		$result = DB::table('view_product')->where('id', $id)->first();
+		
+		return $result;
+	}
+	
 	
 	public static function get_pin_list($limit = 100)
 	{
@@ -59,7 +66,7 @@ class Product extends Model
 	
 	public static function get_redeemlist_history($memberid, $limit = 100)
 	{
-		$result =  DB::table('view_redeem_list')->where('member_id', $memberid)->orderby('DESC')->paginate($limit);
+		$result =  DB::table('view_redeem_list')->where('member_id', $memberid)->orderBy('request_at', 'DESC')->paginate($limit);
 		
 		return $result;
 	}
@@ -78,7 +85,12 @@ class Product extends Model
 		return $result;
 	}
 	
-	
+	public static function get_product_view_list($limit = 100)
+	{
+		$result =  DB::table('view_product')->paginate($limit);
+		
+		return $result;
+	}
 		
 	public static function get_product_list($limit = 100)
 	{
@@ -89,7 +101,7 @@ class Product extends Model
 	
 	public static function get_ajax_product_list()
 	{
-		$result =  DB::table('product')->select('id','product_name')->get();
+		$result =  DB::table('product')->select('id','product_name','product_display_id')->get();
 		
 		return $result;
 	}
@@ -171,6 +183,20 @@ class Product extends Model
 		}
 		$result = $result->first();
 		
+		return $result;
+	}
+	
+	public static function get_csvtitle()
+	{
+		$result = DB::table('csv_title')->where('category','softpin')->select('id', 'title')->get();
+				
+		return $result;
+	}
+	
+	public static function QueuedList($filename)
+	{
+		$result = DB::table('excel_upload')->select('sys_field_id', 'file_title_loc_id')->where('filename', $filename)->get();
+			
 		return $result;
 	}
 	

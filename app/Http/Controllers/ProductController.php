@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-
+use App\Wallet;
 use App\Product;
 use Carbon\Carbon;
 
@@ -30,7 +30,7 @@ class ProductController extends BaseController
 	
 	public function list_product()
     {
-		$result =  Product::get_product_list(100);
+		$result =  Product::get_product_view_list(100);
 		$data['page'] = 'product.productlist'; 	
 		$data['result'] = $result;
 		
@@ -58,13 +58,13 @@ class ProductController extends BaseController
             $request,
             [
                 'product_name' => 'required|string|min:4',
-				'quantity' => 'required|integer|not_in:0|min:1',
+				'product_display_id' => 'required|integer|not_in:0|min:1|unique:product,product_display_id',
 				'min_point' => 'required|numeric',
 				'product_price' => 'numeric|between:0,99999.99',
             ]
         );	
 		$now = Carbon::now();
-		$data = ['product_name' => $request->product_name,'available_quantity' => $request->quantity,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now];
+		$data = ['product_name' => $request->product_name,'product_display_id' => $request->product_display_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now];
 		
 		Product::save_product($data);
 		
@@ -73,7 +73,7 @@ class ProductController extends BaseController
 	
 	public function edit_product($id = FALSE)
     {
-		$data['record'] = $record = Product::get_product($id);
+		$data['record'] = $record = Product::get_view_product($id);
 		
 		$data['page'] = 'common.error';
 		
@@ -91,14 +91,13 @@ class ProductController extends BaseController
             $request,
             [
                 'product_name'  => 'required|string|min:4',
-				'quantity'      => 'required|integer|not_in:0|min:1',
 				'min_point'     => 'required|numeric',
 				'product_price' => 'numeric|between:0,99999.99',
 				'id'            => 'unique:product,id,'.$id
             ]
         );	
 		$now = Carbon::now();
-		$data = ['product_name' => $request->product_name,'available_quantity' => $request->quantity,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now];
+		$data = ['product_name' => $request->product_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now];
 		
 		Product::update_product($id, $data);
 		
@@ -233,6 +232,9 @@ class ProductController extends BaseController
 		{
 			$now = Carbon::now();
 			$data = ['pin_status'=>3,'confimed_at'=>$now];
+						
+			Wallet::update_ledger($record->memberid,'credit',$record->used_point,'PNT','redeem rejected,point refund to customer');
+			
 			Product::update_pin($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
 		}

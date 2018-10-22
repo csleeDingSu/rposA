@@ -89,7 +89,7 @@ function initUser(){
                 setBalance();
 
                 // add points from additional life.
-                if(user_id > 0 && balance == 0){
+                if(user_id > 0 && balance < 630){
                     $.post("/api/resetlife", { 'memberid': user_id, 'gameid': 101, 'life': 'yes' }, function(data) {
                         console.log(data);
                         // Do something with the request
@@ -244,6 +244,7 @@ function bindBetButton(){
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         if (typeof selected == 'undefined'){
             $('#divBalance', window.parent.document).html(balance);
+            $('.instruction', window.parent.document).css('visibility', 'visible');
         } else {
 
             var bet_amount = parseInt($('.bet-container', window.parent.document).html());
@@ -254,6 +255,7 @@ function bindBetButton(){
                 return false;
             } else {
                 $('#divBalance', window.parent.document).html(newbalance);
+                $('.instruction', window.parent.document).css('visibility', 'hidden');
             }
 
             switch (level) {
@@ -397,9 +399,9 @@ DomeWebController = {
             'wheelImg': "/client/images/wheel.png",//转轮图片
             'pointerImg': "/client/images/pointer.png",//指针图片
             'buttonImg': "/client/images/button.png",//开始按钮图片
-            'wSide': 300,//转轮边长(默认使用图片宽度)
-            'pSide': 120,//指针边长(默认使用图片宽度)
-            'bSide': 60,//按钮边长(默认使用图片宽度)
+            'wSide': 260,//转轮边长(默认使用图片宽度)
+            'pSide': 100,//指针边长(默认使用图片宽度)
+            'bSide': 50,//按钮边长(默认使用图片宽度)
             'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
                     
             'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)

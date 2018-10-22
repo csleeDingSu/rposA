@@ -223,6 +223,7 @@ Route::group(['middleware' => 'auth:admin'], function()
 	
 	
 	//product
+	Route::get('/product/', 'ProductController@list_product')->name('product.list.all');
 	Route::get('/product/list', 'ProductController@list_product')->name('product.list');
 	Route::get('/product/ajaxlist', 'ProductController@ajax_list_product')->name('product.ajax.list');
 	
@@ -237,6 +238,11 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::get('/product/softpins', 'ProductController@list_pins')->name('pin.list');
 	Route::post('/product/addpins', 'ProductController@save_pins')->name('pin.create');
 	
+	Route::get('/product/import', 'ImportController@getPinImport')->name('import');
+	Route::post('/product/import-pins', 'ImportController@PostpinImport')->name('pin.import');
+	Route::post('/product/importprocess', 'ImportController@PinProcessImport')->name('pin.process.import');
+	
+	//Route::delete('/product/remove-softpins', 'ProductController@remove_pin')->name('pin.remove');
 	
 	
 	Route::delete('/product/remove-softpins', 'ProductController@remove_pin')->name('pin.remove');

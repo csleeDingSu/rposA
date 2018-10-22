@@ -28,17 +28,17 @@
 			  <div class="col-xs-4">
 			  	红包余额<br />
 			  	<span class="point numbers">{{ number_format($wallet->current_point, 2, '.', '') }}</span><br />
-			  	<span class="button">提现到支付宝</span>
+			  	<a href="#"><span class="button">提现到支付宝</span></a>
 			  </div>
 			  <div class="col-xs-4 middle-border">
 			  	奖励金币<br />
 			  	<span class="balance numbers">{{ number_format($wallet->current_balance, 0, '.', '') }}</span><br />
-			  	<span class="button">兑换成红包</span>
+			  	<a href="/arcade"><span class="button">兑换成红包</span></a>
 			  </div>
 			  <div class="col-xs-4">
 			  	剩余次数<br />
 			  	<span class="life numbers">{{ $wallet->current_life }}</span><br />
-			  	<span class="button">马上去挖宝</span>
+			  	<a href="/arcade"><span class="button">马上去挖宝</span></a>
 			  </div>
 		</div>
 		<!-- end member details -->

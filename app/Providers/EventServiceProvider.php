@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
 		 'App\Events\GenerateVoucher' => [
             'App\Listeners\GenerateVouchertoDb',
         ],
+		'App\Events\ImportSoftpins' => [
+            'App\Listeners\LisImportSoftpins',
+        ],
     ];
 
     /**

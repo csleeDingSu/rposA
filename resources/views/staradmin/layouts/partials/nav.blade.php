@@ -107,7 +107,7 @@
 }
 </style>
 
-<header class="container navbar navbar-default">
+<header id="category-nav" class="container navbar navbar-default">
 	@if(isset($category))
 	<nav class='greedy-nav'>
 	<button><div class="hamburger"></div></button>

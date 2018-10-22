@@ -55,3 +55,38 @@ body {
   margin-left:-292px;
   margin-top:12px;
 }
+
+@media only screen and (max-width: 360px) {
+    .row {
+      grid-template-columns: 45px 45px 45px 45px 45px 45px;
+      height: 50px;
+      margin-left: 0px;
+    }
+
+    .box {
+     transform: scale(0.3); 
+      -webkit-transform: scale(0.3);
+      -webkit-transform-origin:left top;
+      font-size: 60px;
+      padding: 20px;
+      padding-left: 52px;
+      padding-right: 0px;
+    }
+
+    .right-chain {
+      transform: scale(0.3); 
+      -webkit-transform: scale(0.3);
+      -webkit-transform-origin:left top;
+      float: right;
+      margin-left:-2px;
+      margin-top:12px;
+    }
+
+    .left-chain {
+     transform: scale(0.3); 
+      -webkit-transform: scale(0.3);
+      -webkit-transform-origin:left top;
+      margin-left:-241px;
+      margin-top:12px;
+    }
+}
