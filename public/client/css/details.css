@@ -16,9 +16,9 @@
 }
 
 .card {
-	width: 370px !important;
+	width: 360px !important;
 	margin: 0 auto;
-	padding: 10px 0;
+	padding-top: 10px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -35,25 +35,32 @@
 }
 
 .number {
-	font-size: 30px;
+	font-size: 25px;
+	float: left;
+}
+
+.yuan-sign {
+	font-size: 12px;
 }
 
 .strikethrough-text {
 	padding-top: 10px;
-	margin-top: 0px;
+	margin-left: 10px;
 	text-align: left;
-	color: #757575;
+	color: #8d8d8d;
 	font-size: 14px;
+	float: left;
+	text-decoration: line-through;
 }
 
 .promo-price {
 	text-align: left;
-	color: #fd8401;
-	font-size: 20px;	
+	color: #f56a33;
+	font-size: 20px;
+	margin: 0px;
 }
 
 .description {
-	padding: 0 10px;
 	color: #7d7d7d;
 	font-size: 12px;
 	text-align: left;
@@ -76,7 +83,7 @@
     position: relative;
     text-align: center;
     z-index: 1;
-	color: #c6c6c6;
+	color: #b9b9b9;
 }
 
 .voucher-header:before {
@@ -99,13 +106,159 @@
 	border-left: 1px solid #c6c6c6;
 	border-right: 1px solid #c6c6c6;
 	border-bottom: 1px solid #c6c6c6;
-	padding-top: 30px;
+	padding-top: 20px;
 	padding-bottom: 10px;
 	font-size: 16px;
 }
 
 .code {
-	color: #e15a00;
+	color: #bababa;
 	font-size: 18px;
 	padding-bottom: 10px;
+	font-weight: 600;
+}
+
+.icon-wrapper {
+	height: 20px;
+	width: 20px;
+	float: left;
+}
+
+.icon-taobao {
+	background: url('/client/images/game.png') no-repeat -1434px -1275px;
+	width: 46px;
+	height: 46px;
+	transform: scale(0.35); 
+	-webkit-transform: scale(0.35);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.icon-voucher-wrapper {
+	height: 20px;
+	width: 40px;
+	float: left;
+	margin-top: 13px;
+	margin-right: 10px;
+}
+
+.icon-voucher {
+	background: url('/client/images/game.png') no-repeat -1434px -1375px;
+	width: 110px;
+	height: 46px;
+	transform: scale(0.35); 
+	-webkit-transform: scale(0.35);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.button-wrapper {
+	background: #f2f2f2;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.btn_submit, .btn_submit:active, .btn_submit:hover, .btn_submit:focus {
+	background: #fe6f07;
+	width: 350px;
+	border-radius: 30px;
+	color: white;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+a.btn_submit, a.btn_submit:active, a.btn_submit:hover, a.btn_submit:focus {
+	width: 240px;
+	font-weight: 500;
+	margin-top: 30px;
+	font-size: 18px;
+}
+
+.close {
+	margin: 0px 10px;
+}
+
+.modal-content {
+	background: #f8f8f8;
+}
+
+.modal-full-height {
+	width: 300px;
+	text-align:center;
+	padding-bottom: 10px;
+	margin: 0 auto;
+}
+
+.modal-card {
+	width: 300px !important;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+.modal-img-product {
+	text-align:center;
+	margin: 10px auto 0px auto;
+	background-color: #fff;
+    padding: 10px;
+    border: 1px solid #e4e4e4;
+    width: 50%;
+    height: 50%;
+}
+
+.center-text {
+	text-align: center;
+	padding-top: 0px;
+	color: #b7b7b7;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.modal-center {
+	margin: 0 auto;
+}
+
+.modal-promo-price {
+	display:inline-block;
+	color: #888888;
+	font-size: 15px;
+}
+
+.modal-strikethrough-text {
+	display:inline-block;
+	color: #b7b7b7;
+	font-size: 12px;
+	text-decoration: line-through;
+}
+
+.wabao-price {
+	display:inline-block;
+	color: #f7741c;
+	font-size: 18px;
+}
+
+.icon-wabao-wrapper {
+	height: 27px;
+	width: 130px;
+	display:inline-block;
+}
+
+.icon-wabao {
+	background: url('/client/images/game.png') no-repeat -1402px -570px;
+	width: 367px;
+	height: 70px;
+	transform: scale(0.35); 
+	-webkit-transform: scale(0.35);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.glyphicon {
+	margin-top: 6px;
+}
+
+a.back:visited {
+    color: black;
 }

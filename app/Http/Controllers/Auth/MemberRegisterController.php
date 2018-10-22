@@ -82,7 +82,7 @@ class MemberRegisterController extends Controller
 		
 		
 		return view('client/register',$data);
-		return view('common/register',$data);
+		// return view('common/register',$data);
 	}
 	
 	public function doregister(Request $request) {		

@@ -23,7 +23,9 @@
 				<nav id="header" class="navbar navbar-default">
 				  <div class="container-fluid">
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="col-xs-3"></div>
+					<div class="col-xs-3">
+						@yield('left-menu')
+					</div>
 					<div class="col-xs-6">
 						<div class="navbar-title">
 						  <div class="navbar-brand">@yield('title')</div>
