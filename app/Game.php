@@ -3,6 +3,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use SoftDeletes; 
+use member_game_result;
+
 class Game extends Model
 {   
     protected $fillable = [
@@ -224,10 +226,11 @@ class Game extends Model
 		return $result;
 	}
 	
-	public static function add_play_history($data)
+	public static function add_play_history($data, $filter)
 	{				
-		DB::table('member_game_result')
-            ->insert($data);
+      
+      	return member_game_result::updateOrCreate($filter, $data)->id;
+		//DB::table('member_game_result')->insert($data);
 	}
 	
 	public static function get_game_history($gameid, $orderby = FALSE)

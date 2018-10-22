@@ -140,7 +140,7 @@ class GameController extends Controller
 		
 		$gamelevel = Game::get_member_current_level($gameid, $memberid);
 		
-		$levelid = $gamelevel ->levelid;
+		$levelid = $gamelevel->levelid;
 		
 		$is_playable = Wallet::playable_status($memberid,$gameid,$levelid);		
 		
@@ -181,10 +181,13 @@ class GameController extends Controller
 				//Update Memeber game play history		
 				$now     = Carbon::now()->toDateTimeString();
 					
-				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level];		
+				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level， 'draw_id' => $drawid];
+				$filter = ['draw_id' => $drawid];		
 
-				$records =  Game::add_play_history($insdata);
-				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
+				$records =  Game::add_play_history($insdata,$filter);
+				$bStatus = ($records > 0) ? true : false;
+
+				return response()->json(['success' => $bStatus, 'status' => $status, 'game_result' => $game_result]); 
 			}
 			
 			return response()->json(['success' => false, 'message' => 'not enough balance to play']); 
