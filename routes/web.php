@@ -22,50 +22,60 @@ Route::get('/', function()
 // });
 $this->get('/home', 'Api\VoucherController@index')->name('api.vlist'); //cs20181003 - temp fix redirect to /home
 
-Route::get('/details/{id?}', 'VoucherController@get_voucher_detail')->name('get.voucher.detail');
 
 
 
-Route::get('/arcade', function () {
-    return view('client/game');
+//Member routes
+Route::group(['middleware' => 'sso'], function()
+{
+
+	Route::get('/details/{id?}', 'VoucherController@get_voucher_detail')->name('get.voucher.detail');
+
+
+
+	Route::get('/arcade', function () {
+		return view('client/game');
+	});
+
+	Route::get('/wheel', function () {
+		return view('client/wheel');
+	});
+
+	Route::get('/results', function () {
+		return view('client/results');
+	});
+
+	Route::get('/history', function () {
+		return view('client/history');
+	});
+
+	// Route::get('/profile', function () {
+	//     return view('client/member');
+	// });
+	Route::get('/profile', 'ClientController@member_profile')->name('client.profile');
+
+	Route::get('/redeem', function () {
+		return view('client/redeem');
+	});
+	/*
+	Route::get('/register', function () {
+		return view('client/register');
+	});
+
+	Route::get('/login', function () {
+		return view('client/login');
+	});
+	*/
+	Route::get('/validate', function () {
+		return view('client/validate');
+	});
+
+	Route::get('/share', function () {
+		return view('client/share');
+	});
+
 });
-
-Route::get('/wheel', function () {
-    return view('client/wheel');
-});
-
-Route::get('/results', function () {
-    return view('client/results');
-});
-
-Route::get('/history', function () {
-    return view('client/history');
-});
-
-// Route::get('/profile', function () {
-//     return view('client/member');
-// });
-Route::get('/profile', 'ClientController@member_profile')->name('client.profile');
-
-Route::get('/redeem', function () {
-    return view('client/redeem');
-});
-/*
-Route::get('/register', function () {
-    return view('client/register');
-});
-
-Route::get('/login', function () {
-    return view('client/login');
-});
-*/
-Route::get('/validate', function () {
-    return view('client/validate');
-});
-
-Route::get('/share', function () {
-    return view('client/share');
-});
+//Member routes end
 
 
 $this->get('cs/{id?}', 'Api\VoucherController@show')->name('api.vclist');
@@ -103,8 +113,12 @@ $this->post('/doregister', 'Auth\MemberRegisterController@doregister')->name('su
     $this->post('resetpassword', 'ResetPasswordController@resetpassword')->name('member.update.password');
   });
 
-//$this->get('login', 'Auth\MemberLoginController@showLoginForm')->name('login');
+$this->get('login', 'Auth\MemberLoginController@showLoginForm')->name('login');
 //Auth Routes END
+
+
+
+
 
 //Member routes
 Route::group(['prefix' => 'member','middleware' => 'auth:member'],function(){
@@ -268,8 +282,9 @@ Route::get('/clearcache', function() {
 });
 
 
+Route::get('logout', 'Auth\LoginController@logout');
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 

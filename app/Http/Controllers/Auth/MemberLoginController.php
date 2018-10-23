@@ -50,7 +50,10 @@ class MemberLoginController extends Controller
 	
 	protected function authenticated(Request $request, $user)
 	{
-	 	return redirect('/');
+	 	$user = Auth::guard('member')->user();
+		$user->active_session = Session::getId();
+	    $user->save();
+		return redirect('/');
 	}
 	
 	

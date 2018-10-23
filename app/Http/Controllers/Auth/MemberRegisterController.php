@@ -149,7 +149,9 @@ class MemberRegisterController extends Controller
 					
 			//Generate Login Session
 			Auth::guard('member')->attempt(['username' => $data['username'], 'password' => $data['password']]);
-			
+			$user = Auth::guard('member')->user();
+			$user->active_session = Session::getId();
+			$user->save();
 			
 			return response()->json(['success' => true]);			
 		}		
