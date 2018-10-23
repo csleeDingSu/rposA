@@ -11,6 +11,42 @@
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 			<link rel="stylesheet" href="{{ asset('/client/css/style.css') }}" />
 			<link rel="stylesheet" href="{{ asset('/client/css/footer.css') }}" />
+			<style type="text/css">
+				
+					.div-icon {
+						position: relative;
+						border: 2px solid #ADB2C9;
+						border-radius: 20px;
+						text-align: center;
+						padding:4px;
+						margin: 8px;
+						width: 60px;
+
+					}
+
+					.div-icon > a {						
+						color: #ADB2C9;
+						text-decoration: none;
+					}
+
+					.div-icon > a:hover {
+					  color: white;
+					  
+					}
+
+					.nav, .navbar-title {
+						position: relative;
+						/*border: 2px solid #ADB2C9;*/
+						/*border-radius: 20px;*/
+						/*text-align: center;*/
+						padding:6px;
+						/*margin: 8px;*/
+						/*width: 60px;*/
+					}
+
+
+			</style>
+
 		@show
 		
 		@section('top-javascript')
@@ -27,7 +63,12 @@
 				<nav id="header" class="navbar navbar-default">
 				  <div class="container-fluid">
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="col-xs-3"></div>
+					<div class="col-xs-3">
+						<div class="col div-icon">
+						  	<a href="/register"><i class="fa fa-user-plus"></i>注册</a>					  	
+						</div>						
+					</div>
+					
 					<div class="col-xs-6">
 						<div class="navbar-title">
 						  <a class="navbar-brand" href="#">@yield('title')</a>

@@ -1,10 +1,17 @@
+<style type="text/css">
+	
+	.div-icon > a:hover {
+	  color: white;
+	}
+</style>
+
 <header class="container navbar navbar-default text-center">
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="col left div-icon">
 		@if (isset(Auth::Guard('member')->user()->username))
 		<a href="/member"><i class="fas fa-user"></i> {{ Auth::Guard('member')->user()->username }}</a>
 		@else
-	  	<a href="/register"><i class="fas fa-user-plus"></i>注册</a>
+	  	<a href="/register"><i class="fas fa-user-plus"></i> 注册</a>
 	  	@endif
 	</div>
 	
@@ -13,7 +20,7 @@
 	  </a>
 	
 	<div class="col right div-icon">
-		 <a href="#"><i class="fas fa-rss"></i>关注</a>		  
+		 <a href="#"><i class="fas fa-rss"></i> 关注</a>		  
 	</div>
 
 </header>

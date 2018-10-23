@@ -1,6 +1,6 @@
 <style>
 .hvr-underline-from-center{
-    color: white !important;
+    color: #ADB2C9 !important;
 }
 
 .greedy-nav {
@@ -13,7 +13,7 @@
   padding: 5px 20px;
   background: #394165;
   font-size: 14px;
-  color: white;
+  color: #ADB2C9;
   text-decoration: none;
 }
 .greedy-nav a:hover {

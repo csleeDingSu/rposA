@@ -26,18 +26,18 @@
 			@foreach($vouchers as $item)
 				
 				<div class="row">
-					<div class="col-xs-4">
+					<div class="col-xs-4 col-md-10">
 						<a href="/details/{{$item->id}}">
 							<img class="product" src="{{$item->product_picurl}}_460x460Q90.jpg" alt="{{$item->product_name}}">
 						</a>
 					</div>
-					<div class="col-xs-8">
+					<div class="col-xs-8 col-md-10">
 						<div class="description">{{$item->product_name}}</div>
 						<div class="price">¥ {{$item->product_price}}</div>
 						<div class="col-xs-6 promo-price">试用价19.9元</div>
 						<a href="/arcade"><button  class="btn_wabao">免费挖宝</button></a>
-
 					</div>
+
 				</div>
 				<br>
 				@endforeach
