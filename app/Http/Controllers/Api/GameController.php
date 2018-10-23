@@ -139,12 +139,6 @@ class GameController extends Controller
 		{
 			return response()->json(['success' => false, 'game_result' => $game_result]);
 		}
-
-		//Check current bet request match with server draw result
-		if (member_game_result::where('member_id', '=', $memberid)->where('game_id', '=', $gameid)->where('draw_id', '=', $drawid)->exists()) {
-		   // user found
-			return response()->json(['success' => false, 'game_result' => $game_result]);
-		}
 		
 		
 		$gamelevel = Game::get_member_current_level($gameid, $memberid);
@@ -158,6 +152,12 @@ class GameController extends Controller
 			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough balance to play']);
 		}		
 		else{
+
+			//Check current bet request match with server draw result
+			if (member_game_result::where('member_id', '=', $memberid)->where('game_id', '=', $gameid)->where('draw_id', '=', $drawid)->exists()) {
+			   // user found
+				return response()->json(['success' => false, 'game_result' => $game_result]);
+			}
 			
 			/**
 			 * if player & histoy win the increse to 1
