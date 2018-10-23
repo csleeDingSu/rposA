@@ -200,6 +200,7 @@ function initGame(){
 
 function resetGame() {
     $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
+    $('.instruction', window.parent.document).css('visibility', 'visible');
 }
 
 function setBalance() {

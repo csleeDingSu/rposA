@@ -7,6 +7,11 @@ body {
     display: table-cell;
 }
 
+.wrapper {
+    margin: 0 auto;
+    width: 100%;
+}
+
 table {
     border-collapse: separate;
     border-spacing: 3px;
@@ -26,7 +31,8 @@ td.history {
     width: 248px;
 }
 
-@media only screen and (max-width: 360px) {
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
     html {
         margin-left: 30px;
     }
@@ -38,7 +44,7 @@ td.history {
     }
 
     td.history {
-        width: 200px;
+        width: 210px;
     }
 
     .number {
@@ -63,7 +69,8 @@ td.history {
     margin-left: -23px;
 }
 
-@media only screen and (max-width: 360px) {
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
     .legend-item {
         padding-top: 10px;
         padding-right: 10px;
@@ -71,7 +78,7 @@ td.history {
     }
 
     .overlap {
-        margin-left: -23px;
+        margin-left: -18px;
     }
 }
 
@@ -129,7 +136,8 @@ table .even-fail .label {
     line-height: 22px;
 }
 
-@media only screen and (max-width: 360px) {
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
     table .label {
         width: 20px;
         height: 20px;

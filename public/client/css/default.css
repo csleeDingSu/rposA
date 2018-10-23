@@ -61,5 +61,17 @@ navbar-nav > li > a, .navbar-brand {
 }
 
 .icon-wrapper {
-	width: auto;
+	width: 60px;
+	height: 20px;
+}
+
+@media only screen and (max-width: 375px) {
+    .icon-wrapper {
+		width: 60px;		
+	}
+
+	.menu-wrapper {
+		float: left;
+		margin-left: 10px;
+	}
 }

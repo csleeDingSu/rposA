@@ -61,6 +61,8 @@ html, body {
 	padding-top: 8px;
 	color: #b1b1b1;
 	font-size: 12px;
+	padding-right: 10px;
+    padding-left: 10px;
 }
 
 .information-table a {
@@ -116,6 +118,12 @@ html, body {
 
 .list-group-item {
 	border: none;
+}
+
+@media only screen and (max-width: 360px) {
+    .list-group-item {
+		font-size: 12px;
+	}
 }
 
 .glyphicon {

@@ -15,9 +15,11 @@ iframe {
 	display:block;
 }
 
-@media only screen and (max-width: 360px) {
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
     .iframe {
 		width: 360px;
+		height: 300px;
 	}
 }
 
@@ -25,6 +27,12 @@ iframe {
   width: 400px;
   height: 330px;
   margin-left: -31px;
+}
+
+@media only screen and (max-width: 360px) {
+    .swiper-container {
+	  height: 300px;
+	}
 }
 
 .full-height {
@@ -141,7 +149,7 @@ iframe {
 	.button-wrapper {
 		margin: 0 auto;
 		width: 310px;
-		height: 100px;
+		height: 120px;
 		position: relative;
 		padding-left: 5px;
 		margin-top: -10px;
