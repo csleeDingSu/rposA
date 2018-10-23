@@ -6,7 +6,7 @@
 	  background-size: cover;
 	  height: 100px; width: 70%;
 	}
-
+/*
 	@media (min-width: 480px) {
 	    #banner { height: 200px; }
 	}
@@ -17,7 +17,7 @@
 
 	@media (min-width: 992px) {
 	    #banner { height: 100px; }
-	}
+	}*/
 }
 </style>
 

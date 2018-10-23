@@ -79,6 +79,9 @@
 .banner {
     margin: 0 auto;
 	border-radius: 18px;
+	float:center;
+	width:50%;
+	height: 30%;
 }
 
 .product {
