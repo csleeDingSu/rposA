@@ -47,11 +47,13 @@
 		<div class="listing-table">
 			<ul class="list-group">
 				<li class="list-group-item">
-					<div class="icon-wrapper">
-						<div class="icon-add-friend"></div>
-					</div>
-					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-				邀请好友一起挖宝 <div class="note">邀请1个好友，奖励3次挖宝机会。</div>
+					<a href = "share">
+						<div class="icon-wrapper">
+							<div class="icon-add-friend"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+					邀请好友一起挖宝 <div class="note">邀请1个好友，奖励3次挖宝机会。</div>
+					</a>
 				</li>
 				<li class="list-group-item">
 					<div class="icon-wrapper">

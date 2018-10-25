@@ -10,7 +10,7 @@
 @endsection
     	
 @section('menu')
-<a href=""><div class="icon-share"></div></a>
+<a href="share"><div class="icon-share"></div></a>
 @endsection
 
 @section('content')	
