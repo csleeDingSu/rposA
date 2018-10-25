@@ -16,9 +16,11 @@
 }
 
 .card {
-	width: 360px !important;
+	width: 360px;
 	margin: 0 auto;
 	padding-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -102,7 +104,7 @@
 }
 
 .voucher {
-	margin-top: -8px;
+	margin-top: -11px;
 	border-left: 1px solid #c6c6c6;
 	border-right: 1px solid #c6c6c6;
 	border-bottom: 1px solid #c6c6c6;
@@ -192,9 +194,27 @@ a.btn_submit, a.btn_submit:active, a.btn_submit:hover, a.btn_submit:focus {
 }
 
 .modal-card {
-	width: 300px !important;
+	width: 300px;
 	margin: 0 auto;
 	padding-top: 10px;
+}
+
+@media only screen and (max-width: 360px) {
+	.code {
+		font-size: 16px;
+	}
+
+   .btn_submit, .btn_submit:active, .btn_submit:hover, .btn_submit:focus {
+		width: 100%;
+	}
+
+	.modal-full-height {
+		width: 240px;
+	}
+
+	.modal-card {
+		width: 240px;
+	}
 }
 
 .modal-img-product {

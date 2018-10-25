@@ -13,9 +13,12 @@
 	<link rel="stylesheet" href="{{ asset('/client/css/details.css') }}" />
 @endsection
 
-@section('content')	
+@section('top-javascript')
+	@parent
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+@endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+@section('content')	
 
 @if(!empty($record)) 
 
@@ -127,22 +130,21 @@
 </div>
 </form> 
 <!-- Modal Ends -->
+@endsection
 
-
-<script type="text/javascript">
-	$(document).ready(function () {
+@section('footer-javascript')
+    @parent
+	<script type="text/javascript">
+		$(document).ready(function () {
+			
+					
+			});
 		
-				
+		$('.openeditmodel').click(function() {
+			$('#viewvouchermode').modal('show');		
 		});
 	
-	$('.openeditmodel').click(function() {
-		$('#viewvouchermode').modal('show');		
-	});
-	
-</script>
-
-
-
+	</script>
 @endsection
 
 

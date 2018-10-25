@@ -228,7 +228,7 @@ return [
 	
 	'phone' => 'Phone',
 	'wechat_verification_status' => 'Wechat Vefication Status',
-	'wechat_name' => 'Wechat name',
+	'wechat_name' => '微信号',
 	'edit_member' => 'Edit Member',
 	'verified' => 'Verified',
 	'unverified' => 'Unverified',
@@ -291,4 +291,7 @@ return [
 	'pin_added_success_msg' => 'Softpin added successfully',
 	'softpin_update_success_message' => 'Softpin was successfully Added',
 	'done' => 'Done',
+	'import' => 'Import',
+	'product_display_id' => 'Product Display Id',
+	
 ];

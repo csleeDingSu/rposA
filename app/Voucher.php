@@ -32,7 +32,7 @@ class Voucher extends Model
 	
 	public static function get_csvtitle($limit = 5)
 	{
-		$result = DB::table('csv_title')->select('id', 'title')->get($limit);
+		$result = DB::table('csv_title')->where('category','voucher')->select('id', 'title')->get($limit);
 				
 		return $result;
 	}

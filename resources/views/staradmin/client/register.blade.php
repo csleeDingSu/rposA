@@ -45,6 +45,11 @@
 			</div>
 			
 			<div class="input-group">
+				<span class="input-group-addon"><i class="fab fa-weixin"></i></span>
+				<input name="wechat_name" id="wechat_name" type="text"  placeholder="@lang('dingsu.wechat_name')" value="" >
+			</div>
+
+			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-phone"></i></span>
 				<input name="phone" id="phone" type="text"  placeholder="@lang('dingsu.ph_mobile_no')" value="" >
 			</div>
@@ -95,6 +100,7 @@
 		 
         e.preventDefault();		
 		jQuery.ajax({
+
 			type:"POST",
 			url: "{{route('submit.member.register')}}",
 			data:{
@@ -135,9 +141,10 @@
 			}
 		});
 	});
-	</script>@endsection
+	</script>
+	@endsection
 
-@section('footer-javascript')
+@section('top-javascript')
     @parent
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 @endsection

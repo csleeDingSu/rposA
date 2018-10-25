@@ -69,6 +69,7 @@ class MemberRegisterController extends Controller
 	
 	public function showRegisterForm($ref = FALSE)
 	{
+
 		$data = [];
 		
 		
@@ -85,7 +86,8 @@ class MemberRegisterController extends Controller
 		// return view('common/register',$data);
 	}
 	
-	public function doregister(Request $request) {		
+	public function doregister(Request $request) {	
+	
 		
 		$inputs = $request->input('datav');		
 		$referred_by = null;
@@ -103,6 +105,7 @@ class MemberRegisterController extends Controller
 			 'password_confirmation'   => $data['confirmpassword'],
 			 'refcode'   => $data['refcode'],
 			 'phone'   => $data['phone'],
+ 			 'wechat_name'   => $data['wechat_name'],
               ];
 		
 		$validator = Validator::make($input, 
@@ -140,6 +143,7 @@ class MemberRegisterController extends Controller
 				'affiliate_id' => $affiliate_id,
 				'referred_by'   => $referred_by,
 				'phone' => $data['phone'],
+				'wechat_name' => (isset($data['wechat_name']) ? $data['wechat_name'] : null),
 			]);
 			
 			

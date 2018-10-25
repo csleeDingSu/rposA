@@ -47,7 +47,7 @@
 		<div class="listing-table">
 			<ul class="list-group">
 				<li class="list-group-item">
-					<a href = "share">
+					<a href = "/share">
 						<div class="icon-wrapper">
 							<div class="icon-add-friend"></div>
 						</div>
@@ -69,13 +69,17 @@
 					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 					挖宝记录
 				</li>
+				
 				<li class="list-group-item">
-					<div class="icon-wrapper">
-						<div class="icon-redeem"></div>
-					</div>
-					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-					兑换红包记录
+					<a href="/redeem">
+						<div class="icon-wrapper">
+							<div class="icon-redeem"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						兑换红包记录
+					</a>
 				</li>
+
 				<li class="list-group-item">
 					<div class="icon-wrapper">
 						<div class="icon-withdraw"></div>

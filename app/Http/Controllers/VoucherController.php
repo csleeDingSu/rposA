@@ -354,8 +354,13 @@ class VoucherController extends BaseController
 				$insdata['created_at']  = $now; 
 				$insdata['updated_at']  = $now; 
 			}
-
+			
 			//$validation = \Illuminate\Support\Facades\Validator::make($request->only('start_date', 'end_date'),    $rules);
+			
+			$system_category = $insdata['system_category'];
+			$insdata['category'] = $insdata['system_category'];
+			
+			unset($insdata['system_category']);
 			unset($insdata['_token']);
 			unset($insdata['hidden_void']);
 

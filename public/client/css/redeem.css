@@ -1,56 +1,393 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
 
-body {
-	background: #698fc0;
+.container {
+	width: 500px;
+	background-color: #f3f3f3;
 }
-
-.card, .btn-rectangle, .btn-rectangle:hover {
-	width: 400px !important;
-}
-
-.card {
-	margin: 0 auto;
-	padding-top: 20px;
-}
-
-.btn-rectangle, .btn-rectangle:hover {
-  height: 50px !important;
-  background-color: #3cd5c1;
-  color: white;
-  font-size:24px;
-  padding-top: 5px;
-}
-
-@media only screen and (max-width: 400px) {
-    .card, .btn-rectangle, .btn-rectangle:hover {
-		width: 300px !important;
+	
+@media only screen and (max-width: 500px) {
+    .container {
+		width: 100%;
+		padding: 0;
 	}
 }
 
-.prize {
-    margin: 0 auto;
-	width: 250px;
-	height: 250px;
+html, body {
+	height: 100%;
 }
 
-.numbers{
-    font-size:30px;
-	font-weight: 500;
+.navbar-default .navbar-brand {
+    color: #979797;
 }
 
 .full-height {
-	padding-top: 60px;
+	padding-top: 30px;
 	font-size:20px;
     font-family: 'Lato',verdana, sans-serif;
     color: #fff;
     text-align:center;
-    background:#698fc0;
+    background:#f3f3f3;
+    height: 100%;
 }
 
-ol > li {
+.card {
+	background-color: #01a7f1;
+	padding: 10px 20px;
+	font-size: 16px;
+}
+
+.left {
 	text-align: left;
 }
 
-.text {
-	font-size:16px;
+.label-coin {
+	margin-left: 2px;
+	float: left;
 }
+
+.label-coin a {
+	text-decoration: none;
+	color: white;
+	float: right;
+}
+
+.icon-coin-wrapper {
+	height: 22px;
+	width: 22px;
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.icon-coin {
+	background: url('/client/images/game.png') no-repeat -1674px -715px;
+	width: 82px;
+	height: 82px;
+	transform: scale(0.28); 
+	-webkit-transform: scale(0.28);
+	-webkit-transform-origin:left top;
+	float: left;
+	z-index: 100;
+	position: relative;
+}
+
+.wabao-coin {
+	font-size: 40px;
+}
+
+.navbar {
+	border-radius: 0;
+	margin-bottom: 0;
+	min-height: 0px;
+    background: #e8e8e8;
+}
+
+/* Tabs */
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > li > a:hover {
+	text-decoration: none;
+	border-bottom-color: #0180cd;
+    color: #0180cd !important;
+    background-color: transparent !important;
+}
+.nav-pills > li > a{
+    border-radius:0px;
+    color:#6e6e6e;
+    font-weight: 500;
+    border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d0d0d0;
+}
+
+.full-width-tabs > ul.nav.nav-pills {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.full-width-tabs > ul.nav.nav-pills > li {
+	float: none;
+	display: table-cell;
+}
+.full-width-tabs > ul.nav.nav-pills > li > a {
+	text-align: center;
+}
+
+.take-all-space-you-can{
+	width:100%;
+}
+/* End Tabs */
+
+/* Redeem List Content */
+.tab-content {
+	padding-bottom: 70px;
+}
+
+.row {
+	width: auto !important;
+	margin: 10px 10px 0px 10px;
+	padding: 10px 0px 10px 0px;
+	background-color: #ffffff;
+	text-align: left;
+}
+
+.column-1 {
+	padding-right: 5px;
+	padding-left: 10px;
+}
+
+.column-2 {
+	padding-right: 5px;
+	padding-left: 10px;
+	text-align: left;
+}
+
+.column-3 {
+	padding-right: 5px;
+	padding-left: 0px;
+}
+
+.img-voucher {
+	width: 80px;
+	height: 80px;
+}
+
+.btn-redeem {
+	background: #ffb524;
+	color: white;
+	font-size: 24px;
+	border-radius: 40px;
+	width: 80px;
+	height: 80px;
+	padding-top: 22px;
+	padding-left: 16px;
+	cursor: pointer;
+}
+
+.description {
+	font-size: 14px;
+	color: #626262;
+}
+
+.note {
+	font-size: 12px;
+	color: #e6ae4f;
+	padding-bottom: 3px;
+}
+
+.w-coin {
+	font-size: 20px;
+	color: #feae25;
+	margin-left: 25px;
+	margin-top: -3px;
+}
+
+.balance {
+	font-size: 12px;
+	color: #c4c4c4;
+}
+
+@media only screen and (max-width: 360px) {
+    .column-2 {
+    	margin-left: 10px;
+    	padding-right: 0px;
+    	width: 140px;
+    }
+
+    .btn-redeem {
+		font-size: 20px;
+		border-radius: 35px;
+		width: 70px;
+		height: 70px;
+		padding-top: 20px;
+		padding-left: 16px;
+	}
+
+	.description {
+		font-size: 12px;
+	}
+
+	.note {
+		font-size: 10px;
+		padding-bottom: 6px;
+	}
+
+	.balance {
+		font-size: 10px;
+		padding-top: 4px;
+	}
+}
+/* End Redeem List Content */
+
+/* Redeem History Content */
+.history-row {
+	height: 60px;
+	color: #737373;
+	padding-top: 10px;
+	border-bottom: 1px solid #e3e3e3;
+}
+
+.btn-card {
+	background: #01a7f1;
+	color: white;
+	font-size: 14px;
+	border-radius: 20px;
+	width: 80px;
+	height: 20px;
+	padding-top: 0px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.btn-pending {
+	color: #01a7f1;
+	font-size: 14px;
+	border-radius: 20px;
+	width: 80px;
+	height: 20px;
+	padding-top: 0px;
+	margin-top: 10px;
+	border: 1px solid #01a7f1;
+	cursor: pointer;
+}
+
+.collapse, .collapsing {
+	background: white;
+	color: #858585;
+	font-size: 14px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e3e3e3;
+	height: 60px;
+	position:relative;
+	z-index: 100;
+}
+
+.collapse:after, .collapse:before {
+    content:"";
+    position:absolute;
+    left:50%; /* horizontal position */
+    border-width: 0em 1em 1em 0em; /* the angle of the pipe */
+    border-style: solid;
+    border-color: white transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+	height: 0;
+	
+}
+
+.collapse:after {
+	top:-1.4em; /* vertical position */
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #ffffff;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+.collapse:before {
+	top:-1.7em; /* vertical position */
+	border-color: rgba(227, 227, 227, 0);
+	border-bottom-color: #e3e3e3;
+	border-width: 12px;
+	margin-left: -12px;
+}
+
+.numbers {
+	color: #01a7f1;
+}
+
+@media only screen and (max-width: 360px) {
+	.collapse, .collapsing {
+		font-size: 12px;
+	}
+
+	.collapse:after {
+		top:-1.3em; /* vertical position */
+		border-width: 8px;
+		margin-left: -8px;
+	}
+
+	.collapse:before {
+		top:-1.7em; /* vertical position */
+		border-width: 10px;
+		margin-left: -10px;
+	}
+
+}
+/* End Redeem History Content */
+
+/* Modal Box */
+.modal-content {
+	background: #f8f8f8;
+}
+
+.modal-full-height {
+	text-align:center;
+	padding-bottom: 10px;
+	margin: 0 auto;
+}
+
+.modal-card {
+	width: 250px !important;
+	margin: 0 auto;
+}
+
+.modal-center {
+	margin: 0 auto;
+	color: #6e6e6e;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+.modal-icon {
+	display: inline-block;
+	float: none;
+}
+
+.wabao-price {
+	color: #f3b747;
+	display: inline-block;
+	float: none;
+	font-size: 24px;
+}
+
+.wabao-balance {
+	color: #f8b01e;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.modal-img-voucher {
+	text-align:center;
+	margin: 10px auto 0px auto;
+	background-color: #fff;
+    padding: 4px;
+    width: 90px;
+    height: 90px;
+}
+
+.btn_submit, .btn_submit:active, .btn_submit:hover, .btn_submit:focus {
+	background: #f67a00;
+	width: 240px;
+	border-radius: 30px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 30px;
+	font-size: 18px;
+}
+
+.btn_cancel, .btn_cancel:active, .btn_cancel:hover, .btn_cancel:focus {
+	background: #adadad;
+	width: 240px;
+	border-radius: 30px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 10px;
+	font-size: 18px;
+}
+/* End Modal box */

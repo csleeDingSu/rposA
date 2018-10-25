@@ -112,6 +112,11 @@ html, body {
 	height: 100%;
 }
 
+.list-group a {
+	text-decoration: none;
+	color: #686868;
+}
+
 .list-group-item:first-child, .list-group-item:last-child {
 	border-radius: 0px;
 }

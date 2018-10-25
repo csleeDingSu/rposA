@@ -21,7 +21,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrustProxies::class,
 		
 		//custom
-		 \App\Http\Middleware\SingleSession::class,
+		\App\Http\Middleware\SingleSession::class,
+		\App\Http\Middleware\ForceHttpsProtocol::class,
     ];
 
     /**
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
 		
 		//custom
 		'sso' => \App\Http\Middleware\SingleSession::class,
+		'forcessl' => \App\Http\Middleware\ForceHttpsProtocol::class,
     ];
 }

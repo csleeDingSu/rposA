@@ -16,6 +16,8 @@ class Members extends Model
 		'password',
 		'affiliate_id',
 		'referred_by',
+		'wechat_name',
+		'phone',
     ];
 
     /**

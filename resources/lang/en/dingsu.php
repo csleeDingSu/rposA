@@ -1,4 +1,4 @@
-<?php
+'done' => 'Done',<?php
 
 return [
 
