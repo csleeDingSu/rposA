@@ -9,6 +9,7 @@
 
 @section('content')
 <div class="wrapper full-height">
+	@include('layouts.partials.notification')
 	<form method="post" action="{{route('memberlogin.submit')}}">
 	<div class="row">
 		<div class="card">
@@ -42,6 +43,7 @@
 			<button class="btn  btn-rectangle">@lang('dingsu.login')</button>
         </div>
 	</div>
+
 	</form>	
 </div>
 @endsection

@@ -17,6 +17,9 @@
       <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
     @show
 <body>
+
+  @include('layouts.partials.notification')
+
   <div class="container-scroller">
 
     @include('layouts.partials.header')

@@ -55,9 +55,10 @@
 			<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
 			<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
 			<script src="{{ asset('/client/js/menu.js') }}"></script>
+
 		@show
     </head>
-    <body>
+    <body>    	
         @section('top-navbar')
             <!-- Static navbar -->
 				<nav id="header" class="navbar navbar-default">

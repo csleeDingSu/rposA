@@ -101,6 +101,15 @@
 					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 					联系客服
 				</li>
+				<li class="list-group-item">
+					<a href = "/logout">
+						<div class="icon-wrapper" style="padding: 0px 5px 5px 6px">
+							<i class="fa fa-sign-out-alt"></i>						
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						{{ trans('dingsu.logout') }}
+					</a>
+				</li>
 			</ul>
 		 </div>
 		<!-- end member listing -->

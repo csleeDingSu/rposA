@@ -1,0 +1,114 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.container {
+	width: 500px;
+}
+	
+@media only screen and (max-width: 500px) {
+    .container {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+html, body {
+	height: 100%;
+}
+
+.full-height {
+	padding-top: 30px;
+	font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+    background:#4a4a4a;
+    height: 100%;
+}
+
+.card {
+	margin: 80px 30px 10px 30px;
+	background-color: #ffa800;
+	font-size: 16px;
+	border-radius: 10px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+.icon-verify-wrapper {
+	height: 120px;
+	width: 120px;
+	display: inline-block;
+}
+
+.icon-verify {
+	background: url('/client/images/game.png') no-repeat -1389px -17px;
+	width: 380px;
+	height: 380px;
+	transform: scale(0.3); 
+	-webkit-transform: scale(0.3);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	color: #000;
+}
+
+.instructions {
+	margin-top:10px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.btn-verify {
+	background: white;
+	color: #737373;
+	margin: 20px auto;
+	font-size: 18px;
+	padding: 5px 10px 5px 10px;
+	font-weight: 500;
+	height: 35px;
+	width: 160px;
+	display: inline-block;
+}
+
+.btn-verify a {
+	text-decoration: none;
+	color: #737373;
+}
+
+.btn-close {
+	color: #ffa800;
+	font-size: 16px;
+	margin: 0 auto;
+	padding-left: 20px;
+	width: 280px;
+	display: inline-block;
+}
+
+.btn-close a {
+	text-decoration: none;
+	color: #ffa800;
+}
+
+.glyphicon {
+	font-size: 20px;
+	display: block;
+	float: left;
+	padding-left: 10px;
+}
+
+.left {
+	display: block;
+	padding-bottom: 3px;
+	float: left;
+	padding-left: 10px;
+}
+
+@media only screen and (max-width: 360px) {
+    .btn-verify {
+		margin: 20px 50px;
+	}
+
+	.btn-close {
+		margin: 0 10px;
+	}
+}

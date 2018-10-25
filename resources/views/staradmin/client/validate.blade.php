@@ -27,13 +27,13 @@
         </div>
 	</div>
 	
-	<div class="row">
+	<!--div class="row">
 		<div class="card">
 			<div class="card-margin">
 				<div class="title">第二步：加客服微信审核</div>
 			</div>
 			<img src="/client/images/validate.png" alt="validate" class="img-validate" />
 		</div>
-	</div>
+	</div-->
 </div>
 @endsection

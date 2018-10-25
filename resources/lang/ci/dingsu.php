@@ -294,4 +294,5 @@ return [
 	'import' => 'Import',
 	'product_display_id' => 'Product Display Id',
 	
+	'please_login' => '未登录，请登录以继续.',
 ];

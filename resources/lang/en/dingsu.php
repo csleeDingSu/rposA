@@ -299,5 +299,7 @@ return [
 	'done' => 'Done',
 	'import' => 'Import',
 	'product_display_id' => 'Product Display Id',
+
+	'please_login' => 'Not logged in, please log in to continue.',
 	
 ];

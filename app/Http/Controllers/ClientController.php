@@ -67,6 +67,20 @@ class ClientController extends BaseController
 		$data['page'] = 'client.member'; 
 		return view('client/member', $data);
 	}
+
+	public function member_access_game()
+	{
+		if (!Auth::Guard('member')->check())
+		{
+			$msg = trans('dingsu.please_login');
+			\Session::flash('success',$msg);
+
+			return redirect('/login');
+		}
+
+		return view('client/game');
+
+	}
 	
 	
 }
