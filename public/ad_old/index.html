@@ -110,7 +110,6 @@
 					</div>
 				</li>
 			</ul>
-			<p class="isnext">下拉显示更多...</p>
 		</div>
 		<div class="showBox dn">
 			<div class="showIn dflex scaleHide">
@@ -132,8 +131,6 @@
 				$('.showBox').fadeIn(150, function () {
 					being.scaleShow('.showIn');
 				});
-
-
 			});
 			$('.showBox').click(function (e) {
 				console.log(e);
@@ -146,33 +143,6 @@
 					$('.showBox').fadeOut(150);
 					$('.cutBtn img').attr('src', 'images/cut.png');
 				}
-			});
-
-
-			being.scrollBottom('.card', '.card-body', () => {
-				//滚到到底部执行动作
-
-				//添加
-				var html = '';
-				html += '<li class="dbox opacity2">';	
-				html += '<a href="#" class="imgBox dbox0">';
-				html += '<img src="images/demoImg.png">';
-				html += '</a>';
-				html += '<div class="dbox1">';
-				html += '<h2>美的电热水壶家用204不锈钢正面电热烧水壶自动断电保温大开水壶</h2>';
-				html += '<h3>';
-				html += '<font>券后价¥2.9</font>淘宝原价129.9元';
-				html += '</h3>';		
-				html += '<div class="quan">';
-				html += '<span>¥100元券<font>剩三张</font></span>';
-				html += '<a>微信领取</a>';
-				html += '</div>';
-				html += '</div>';
-				html += '</li>';
-				$('.list').append(html);
-			
-				//暂无更多
-				//$('.isnext').html('暂无更多...');
 			});
 
 		})

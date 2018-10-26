@@ -1,8 +1,3 @@
-.card{
-  height: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
 .card-body {
 }
 .card-body .header {
@@ -177,5 +172,3 @@
 }
 
 .showBox h3{ text-align: center; line-height: 1.6em; color: #b1b1b1; margin-bottom: .2rem; font-size: .24rem;}
-
-.isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0;}

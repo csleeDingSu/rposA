@@ -12,6 +12,7 @@
 							<th>@lang('dingsu.id')</th>
 							<th>@lang('dingsu.name')</th>
 							<th>@lang('dingsu.create_Date')</th>
+							<th>@lang('dingsu.referred_by')</th>
 							<th>@lang('dingsu.wechat') @lang('dingsu.name')</th>
 							<th>@lang('dingsu.wechat_status')</th>
 							<th>@lang('dingsu.status')</th>
@@ -25,6 +26,9 @@
 							<td>{{ $list->username }}</td>
 							<td>
 								{{ $list->created_at }}
+							</td>
+							<td>
+								{{ $list->parent }}
 							</td>
 							<td>
 								{{ $list->wechat_name }}

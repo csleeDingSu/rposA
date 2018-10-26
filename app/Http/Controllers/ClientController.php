@@ -27,6 +27,7 @@ use App\Members as Member;
 
 use App\Voucher;
 
+use Api\MemberController;
 
 class ClientController extends BaseController
 {
@@ -76,11 +77,69 @@ class ClientController extends BaseController
 			\Session::flash('success',$msg);
 
 			return redirect('/login');
+
+		} else {
+
+			$member = Auth::guard('member')->user()->id	;
+			$data['member'] = Member::get_member($member);
+
+			if (is_null($data['member']->wechat_name)) {
+
+				return redirect('/verify');
+
+			}
+
 		}
 
 		return view('client/game');
 
 	}
-	
+
+	public function member_update_wechatname(Request $request)
+	{
+		$memberid = $request->input('memberid');
+		$wechat_name = $request->input('wechat_name');
+
+		if (!Auth::Guard('member')->check())
+		{
+			$msg = trans('dingsu.please_login');
+			\Session::flash('success',$msg);
+
+			return redirect('/login');
+
+		} else {
+
+			if (is_null($wechat_name)) {
+
+				$msg = trans('dingsu.please_fill_wechatid');
+				\Session::flash('success',$msg);
+
+				return redirect('/validate');
+
+			} else {
+
+				$res = MemberController::update_wechat($request);
+
+				if ($res) {
+
+					return view('client/game');
+
+				} else {
+
+					$msg = trans('dingsu.please_fill_wechatid');
+					\Session::flash('success',$msg);
+
+					return redirect('/validate');
+
+
+				}
+
+
+
+			}
+
+		}
+
+	}
 	
 }

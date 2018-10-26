@@ -23,8 +23,6 @@ Route::get('/', function()
 $this->get('/home', 'Api\VoucherController@index')->name('api.vlist'); //cs20181003 - temp fix redirect to /home
 
 
-
-
 //Member routes
 Route::group(['middleware' => 'sso'], function()
 {
@@ -32,6 +30,8 @@ Route::group(['middleware' => 'sso'], function()
 	Route::get('/details/{id?}', 'VoucherController@get_voucher_detail')->name('get.voucher.detail');
 
 	Route::get('/arcade', 'ClientController@member_access_game')->name('client.arcade');
+
+	$this->post('/member_update_wechatname', 'ClientController@member_update_wechatname');
 
 	Route::get('/wheel', function () {
 		return view('client/wheel');
@@ -74,6 +74,7 @@ Route::group(['middleware' => 'sso'], function()
 		return view('client/verify');
 	});
 
+
 });
 //Member routes end
 
@@ -86,10 +87,6 @@ $this->get('/', 'Api\VoucherController@index')->name('api.vlist');
 
 $this->get('register/{token?}', 'Auth\MemberRegisterController@showRegisterForm')->name('member.register');
 $this->post('/doregister', 'Auth\MemberRegisterController@doregister')->name('submit.member.register');
-
-
-
-
 
 //Auth Routes
 
@@ -122,7 +119,9 @@ $this->get('login', 'Auth\MemberLoginController@showLoginForm')->name('login');
 
 //Member routes
 Route::group(['prefix' => 'member','middleware' => 'auth:member'],function(){
+	
 	Route::get('/', 'MemberController@index');
+	
 });
 //Member routes end
 
@@ -145,6 +144,15 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::post('/game/edit/{id}', 'GameController@update_game');
 	
 	Route::get('/game/addlevel/{id}', 'GameController@add_level');
+
+
+	//redeem route
+	//Route::get('/redeem', 'RedeemController@getRedeemList')->name('redeemlist');
+	//Route::post('/redeem/import-pins', 'ImportController@PostpinImport')->name('pin.import');
+	
+
+		
+
 	
 	//Member route
 	Route::get('/member/index', 'MemberController@dashboard');
@@ -273,8 +281,6 @@ Route::group(['middleware' => 'auth:admin'], function()
 Route::get('/admin', 'AdminController@index');
 Route::get('/member', 'ClientController@index');
 Route::get('/client/profile', 'ClientController@member_profile')->name('client.profile.page');
-
-
 
 Route::get('/clearcache', function() {
     $exitCode = Artisan::call('cache:clear');

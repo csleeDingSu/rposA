@@ -62,6 +62,13 @@ class Members extends Model
 		return $result;
 	}
 	
+	public static function get_view_member($id)
+	{
+		$result = DB::table('view_members')->where('id', $id)->first();
+		
+		return $result;
+	}
+	
 	public static function CheckReferral($refid)
 	{
 		$result = DB::table('members')->select('id','affiliate_id','username','firstname','firstname','realname')->where('affiliate_id', $refid)->first();

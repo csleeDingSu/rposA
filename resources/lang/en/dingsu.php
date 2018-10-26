@@ -1,4 +1,4 @@
-'done' => 'Done',<?php
+<?php
 
 return [
 
@@ -299,7 +299,9 @@ return [
 	'done' => 'Done',
 	'import' => 'Import',
 	'product_display_id' => 'Product Display Id',
+	'referred_by' => 'Referred by',
 
 	'please_login' => 'Not logged in, please log in to continue.',
+	'please_fill_wechatid' => 'Please fill in your wechat id',
 	
 ];

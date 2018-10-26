@@ -87,7 +87,7 @@ class MemberRegisterController extends Controller
 	}
 	
 	public function doregister(Request $request) {	
-	
+
 		
 		$inputs = $request->input('datav');		
 		$referred_by = null;
@@ -160,6 +160,7 @@ class MemberRegisterController extends Controller
 			return response()->json(['success' => true]);			
 		}		
 	}
+	
 }
 
 

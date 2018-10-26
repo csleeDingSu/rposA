@@ -144,7 +144,7 @@ return [
 	'error' => 'Error',
 	
 	//buttons
- 	'submit' => 'Submit',
+ 	'submit' => '提交',
 	'reset' => '重置',
 	'edit' => 'Edit',
 	'update' => 'Update',
@@ -293,6 +293,8 @@ return [
 	'done' => 'Done',
 	'import' => 'Import',
 	'product_display_id' => 'Product Display Id',
-	
+	'referred_by' => 'Referred by',
 	'please_login' => '未登录，请登录以继续.',
+	'please_fill_wechatid' => '请填写您的微信ID',
+
 ];

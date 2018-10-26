@@ -55,7 +55,7 @@ class MemberController extends BaseController
 	public function member_list()
 	{
 		
-		$result =  DB::table('members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status'])->paginate(25);		
+		$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent'])->paginate(25);		
 		//die();
 		$data['page'] = 'member.memberlist'; 
 				

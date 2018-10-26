@@ -19,6 +19,7 @@ class MemberController extends Controller
 		
 	public function update_wechat (Request $request)
 	{
+
 		$id = $request->memberid;
 		$record = Member::find($id);
 		if ($record)
