@@ -5,7 +5,7 @@ body {
 }
 
 .card {
-	width: 320px !important;
+	width: 280px !important;
 	margin: 0 auto;
 	padding: 10px 0;	
 }
@@ -15,11 +15,11 @@ body {
 }
 
 .btn-rectangle, .btn-rectangle:hover {
-	width: 320px !important;
-	height: 50px !important;
+	width: 280px !important;
+	height: 45px !important;
 	background-color: #3cd5c1;
 	color: white;
-	font-size:24px;
+	font-size: 24px;
 	padding-top: 5px;
 	margin-bottom: 20px;
 }
@@ -101,7 +101,7 @@ input[type=text]{
 }
 
 div.name {
-	background: url('/images/icon.png') no-repeat -780px -750px;
+	background: url('/client/images/icon.png') no-repeat -780px -750px;
 	transform: scale(0.3); /* Equal to scaleX(0.7) scaleY(0.7) */
 	-webkit-transform: scale(0.3);
 	width: 90px;

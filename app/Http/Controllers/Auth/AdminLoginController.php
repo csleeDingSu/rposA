@@ -56,7 +56,16 @@ class AdminLoginController extends Controller
 		}
 		*/
 
-	 	return redirect('admin/dashboard');
+		if ($request->input('username') == 'admin2') {
+
+			return redirect()->route('ad.product.show');
+
+		} else {
+			//redirect to member list
+			return redirect()->route('admindashboard');	
+		}
+
+	 	// return redirect('admin/dashboard');
 	}
 	
 	

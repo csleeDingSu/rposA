@@ -42,109 +42,9 @@
 			<div class="tab-content">
 				<!-- redeem list content -->
 				<div id="prize" class="tab-pane fade in active">
-					<div class="row">
-						<div class="col-xs-3 column-1">
-							<img class="img-voucher" src="{{ asset('/client/images/alipay.jpg') }}" alt="alipay voucher 50">
-						</div>
-						<div class="col-xs-6 column-2">
-							<div class="description">中国移动充值卡50元</div>
-							<div class="note">*可兑换支付宝余额48.5元</div>
-							<div class="icon-coin-wrapper">
-								<div class="icon-coin"></div>
-							</div>
-							<div class="w-coin">500</div>
-							<div style="clear: both;"></div>
-							<div class="balance">剩余 221 张 已兑换 3884 张</div>
-						</div>
-						<div class="col-xs-3 column-3">
-							<div class="btn-redeem openeditmodel">兑换</div>
-						</div>	
-					</div>
-
-					<!-- Modal starts -->
-					<form class="form-sample" name="formvoucher" id="formvoucher" action="" method="post" autocomplete="on" >
-					<div class="modal fade col-md-12" id="viewvouchermode" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
-						<div class="modal-dialog modal-lg" role="document">
-							<div class="modal-content">
-								<div class="modal-body">				
-									<div class="modal-row">
-										<div class="modal-img-voucher">
-											<img src="{{ asset('/client/images/alipay.jpg') }}" alt="alipay voucher 50" class="img-voucher" />
-								        </div>
-
-										<div class="wrapper modal-full-height">
-											<div class="modal-card">
-												<div class="modal-center">
-													兑换本产品需要消耗:
-												</div>
-											</div>
-
-											<div class="modal-card">
-													<div class="icon-coin-wrapper modal-icon">
-														<div class="icon-coin"></div>
-													</div>
-													<div class="wabao-price">500挖宝币</div>
-											</div>
-
-											<div class="modal-card">
-												<div class="wabao-balance">您当前拥有 680 挖宝币</div>
-											</div>
-
-											<div>
-												<a href="/arcade" class="btn btn_submit">确定兑换</a>
-											</div>
-
-											<div>
-												<a href="/arcade" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>
-											</div>
-										</div>
-									</div>							
-								</div>
-							</div>
-						</div>
-					</div>
-					</form> 
-					<!-- Modal Ends -->
-
-
-					<div class="row">
-						<div class="col-xs-3 column-1">
-							<img class="img-voucher" src="{{ asset('/client/images/alipay.jpg') }}" alt="alipay voucher 50">
-						</div>
-						<div class="col-xs-6 column-2">
-							<div class="description">中国移动充值卡50元</div>
-							<div class="note">*可兑换支付宝余额48.5元</div>
-							<div class="icon-coin-wrapper">
-								<div class="icon-coin"></div>
-							</div>
-							<div class="w-coin">500</div>
-							<div style="clear: both;"></div>
-							<div class="balance">剩余 221 张 已兑换 3884 张</div>
-						</div>
-						<div class="col-xs-3 column-3">
-							<div class="btn-redeem openeditmodel">兑换</div>
-						</div>	
-					</div>
-
-					<div class="row">
-						<div class="col-xs-3 column-1">
-							<img class="img-voucher" src="{{ asset('/client/images/alipay.jpg') }}" alt="alipay voucher 50">
-						</div>
-						<div class="col-xs-6 column-2">
-							<div class="description">中国移动充值卡50元</div>
-							<div class="note">*可兑换支付宝余额48.5元</div>
-							<div class="icon-coin-wrapper">
-								<div class="icon-coin"></div>
-							</div>
-							<div class="w-coin">500</div>
-							<div style="clear: both;"></div>
-							<div class="balance">剩余 221 张 已兑换 3884 张</div>
-						</div>
-						<div class="col-xs-3 column-3">
-							<div class="btn-redeem openeditmodel">兑换</div>
-						</div>	
-					</div>
 				</div>
+
+
 				<!-- end redeem list content -->
 
 				<!-- redeem history content -->
@@ -247,13 +147,90 @@
     @parent
 	<script type="text/javascript">
 		$(document).ready(function () {
-			
-					
-			});
-		
-		$('.openeditmodel').click(function() {
-			$('#viewvouchermode').modal('show');		
+			$.getJSON( "/api/product-list?memberid={{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}", 
+				function( data ) {
+			        var records = data.records.data;
+			        var html = '';
+
+			        $.each(records, function(i, item) {
+			            
+			            html += '<div class="row">' +
+									'<div class="col-xs-3 column-1">' +
+										'<img class="img-voucher" src="'+ item.product_picurl +'" alt="alipay voucher 50">' +
+									'</div>' +
+									'<div class="col-xs-6 column-2">' +
+										'<div class="description">中国移动充值卡50元</div>' +
+										'<div class="note">*可兑换支付宝余额48.5元</div>' +
+										'<div class="icon-coin-wrapper">' +
+											'<div class="icon-coin"></div>' +
+										'</div>' +
+										'<div class="w-coin">'+ item.min_point +'</div>' +
+										'<div style="clear: both;"></div>' +
+										'<div class="balance">剩余 221 张 已兑换 3884 张</div>' +
+									'</div>' +
+									'<div class="col-xs-3 column-3">' +
+										'<div class="btn-redeem openeditmodel'+ i +'">兑换</div>' +
+									'</div>' +
+								'</div>';
+
+						html += '<!-- Modal starts -->' +
+								'<form class="form-sample" name="formvoucher" id="formvoucher" action="" method="post" autocomplete="on" >' +
+								'<div class="modal fade col-md-12" id="viewvouchermode'+ i +'" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">' +
+									'<div class="modal-dialog modal-lg" role="document">' +
+										'<div class="modal-content">' +
+											'<div class="modal-body">' +
+												'<div class="modal-row">' +
+													'<div class="modal-img-voucher">' +
+														'<img src="' + item.product_picurl +'" alt="alipay voucher 50" class="img-voucher" />' +
+											        '</div>' +
+
+													'<div class="wrapper modal-full-height">' +
+														'<div class="modal-card">' +
+															'<div class="modal-center">' +
+																'兑换本产品需要消耗:' +
+															'</div>' +
+														'</div>' +
+
+														'<div class="modal-card">' +
+																'<div class="icon-coin-wrapper modal-icon">' +
+																	'<div class="icon-coin"></div>' +
+																'</div>' +
+																'<div class="wabao-price">'+ item.min_point +'挖宝币</div>' +
+														'</div>' +
+
+														'<div class="modal-card">' +
+															'<div class="wabao-balance">您当前拥有 680 挖宝币</div>' +
+														'</div>' +
+
+														'<div>' +
+															'<a href="/arcade" class="btn btn_submit">确定兑换</a>' +
+														'</div>' +
+
+														'<div>' +
+															'<a href="/arcade" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
+														'</div>' +
+													'</div>' +
+												'</div>' +
+											'</div>' +
+										'</div>' +
+									'</div>' +
+								'</div>' +
+								'</form>' +
+								'<!-- Modal Ends -->';
+			        });
+
+			        $('#prize').html(html);
+
+			        $.each(records, function(i, item) {
+				        $('.openeditmodel' + i).click(function() {
+							$('#viewvouchermode' + i).modal('show');
+						});
+				    });
+
+		    });					
 		});
+		
+		
 	
 	</script>
 @endsection

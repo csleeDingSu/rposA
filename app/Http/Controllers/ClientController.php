@@ -142,4 +142,13 @@ class ClientController extends BaseController
 
 	}
 	
+	public function member_referral_list(Request $request)
+	{
+		$id = $request->id;
+		$result =  Member::get_member_referral_list($id);
+		
+		print_r($result);
+	}
+	
+	
 }

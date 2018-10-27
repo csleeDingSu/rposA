@@ -69,6 +69,15 @@ class Members extends Model
 		return $result;
 	}
 	
+	public static function get_member_referral_list($id)
+	{
+		if (empty($id)) return [];
+		
+		$result = DB::table('members')->select('id','affiliate_id','username','firstname','firstname')->where('referred_by', $id)->get();
+		
+		return $result;
+	}
+	
 	public static function CheckReferral($refid)
 	{
 		$result = DB::table('members')->select('id','affiliate_id','username','firstname','firstname','realname')->where('affiliate_id', $refid)->first();

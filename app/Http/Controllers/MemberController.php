@@ -66,6 +66,12 @@ class MemberController extends BaseController
 		return view('main', $data);
 	}
 	
+	public function member_referral_list(Request $request)
+	{
+		$id = $request->id;
+		$result =  Member::get_member_referral_list($id);
+	}
+	
 	public function add_member ()
 	{
 		$data['page'] = 'member.addmember';

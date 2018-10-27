@@ -22,6 +22,8 @@ Route::get('/', function()
 // });
 $this->get('/home', 'Api\VoucherController@index')->name('api.vlist'); //cs20181003 - temp fix redirect to /home
 
+$this->get('/ads', 'Api\ProductController@index')->name('api.client.ad');
+//$this->get('/ads', 'Api\ProductController@index')->name('api.client.adold');
 
 //Member routes
 Route::group(['middleware' => 'sso'], function()
@@ -73,6 +75,10 @@ Route::group(['middleware' => 'sso'], function()
 	Route::get('/verify', function () {
 		return view('client/verify');
 	});
+	
+	
+	
+	Route::get('/referral-list', 'ClientController@member_referral_list')->name('client.referral.list');
 
 
 });
@@ -185,7 +191,7 @@ Route::group(['middleware' => 'auth:admin'], function()
 	///Route::any('/', ['uses' => 'AdminController@dashboard'])->name('admindashboard');
 	///Route::get('/', 'AdminController@dashboard');
 	//Route::get('/', function() { return Redirect::to("AdminController/dashboard"); });
-	Route::get('/admin/dashboard', 'AdminController@dashboard');
+	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admindashboard');
 	
 	
 	//Voucher Routes
@@ -275,6 +281,20 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::get('/product/pending-redeem', 'ProductController@get_pending_redeemlist')->name('redeem.pending.list');
 	Route::delete('/product/confirm-redeem', 'ProductController@confirm_redeem')->name('pin.redeem.confirm');
 	Route::delete('/product/reject-redeem', 'ProductController@reject_redeem')->name('pin.redeem.reject'); 
+	
+	
+	
+	//new product 
+	
+	Route::get('/product/product-new', 'ProductController@show_product')->name('ad.product.show'); 	
+	
+	Route::get('/product/ad-edit/{id?}', 'ProductController@edit_ad_product')->name('ad.product.edit');	
+	Route::post('/product/ad-edit/{id?}', 'ProductController@update_ad_product')->name('ad.postproduct.edit');
+	
+	Route::get('/product/ad-add', 'ProductController@add_ad_product')->name('ad.product.add');
+	Route::post('/product/ad-add', 'ProductController@save_ad_product')->name('ad.product.save');
+	
+	Route::delete('/product/ad-delete', 'ProductController@delete_ad_product')->name('ad.product.delete');
 });
 //END
 

@@ -13,10 +13,12 @@
 		<!-- member id -->
 		<div class="card left">
 			<div class="name">{{ $member->username }}</div>
+			@if($member->wechat_verification_status == 0)
 			<div class="icon-verified-wrapper">
 				<div class="icon-verified"></div>
 			</div>
 			<div class="verified">已通过实名认证</div>
+			@endif
 			<div style="clear: both;"></div>
 			
 			<div class="member-id">账号:{{ $member->id }}</div>

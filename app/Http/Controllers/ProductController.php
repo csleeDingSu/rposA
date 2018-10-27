@@ -28,6 +28,124 @@ class ProductController extends BaseController
 	
 	public $pagination_count = 100;
 	
+	public function show_product()
+    {
+		$result =  Product::get_ad_product_list(100);
+		$data['page'] = 'ad.productlist'; 	
+		$data['result'] = $result;
+		
+		return view('main', $data);		
+	}
+	
+	public function add_ad_product()
+    {
+		$data['page'] = 'ad.addproduct'; 	
+		
+		return view('main', $data);		
+	}
+	
+	
+	
+	public function save_ad_product(Request $request)
+    {
+    	$product_display_id = (\DB::table('ad_display')->orderBy('id','desc')->first()->id) + 1; //$request->product_display_id;
+
+		$validator = $this->validate(
+            $request,
+            [
+                'product_name' => 'required|string|min:4',
+				//'product_display_id' => 'required|integer|not_in:0|min:1|unique:product,product_display_id',
+				'required_point' => 'required|numeric',
+				'product_price' => 'numeric|between:0,99999.99',
+				'discount_price' => 'numeric|between:0,99999.99',
+				'product_quantity' => 'numeric|between:0,99999.99',	
+				'product_image' => 'sometimes|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+            ]
+        );	
+		$now = Carbon::now();
+		$image = $request->file('product_image');
+        $imagename = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('ad/product_image');
+        $image->move($destinationPath, $imagename);
+		
+		$data = ['product_name' => $request->product_name,'product_quantity' => $request->product_quantity,'product_display_id' => $product_display_id,'required_point' => $request->required_point,'product_status' => $request->status,'product_price' => $request->product_price,'discount_price' => $request->discount_price,'created_at' => $now,'product_picurl' => $imagename,'product_description' => $request->product_description];
+		
+		Product::save_ad_product($data);
+		
+		return redirect()->back()->with('message', trans('dingsu.product_update_success_message') );
+	}
+	
+	
+	
+	public function edit_ad_product($id = FALSE)
+    {
+		$data['record'] = $record = Product::get_ad_product($id);
+		
+		//print_r($record );die();
+		
+		$data['page'] = 'common.error';
+		
+		if ($record)
+		{
+			$data['page'] = 'ad.editproduct';
+		}		
+		
+		return view('main', $data);
+	}
+	
+	public function update_ad_product($id, Request $request)
+    {
+		$rules =  [
+            'product_name'   => 'required|string|min:4',
+			'required_point' => 'required|numeric',
+			'product_price'  => 'numeric|between:0,99999.99',
+			'discount_price' => 'numeric|between:0,99999.99',
+			'product_quantity' => 'numeric|between:0,99999.99',
+			'id'            => 'unique:product,id,'.$id,
+			'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
+		
+		
+		$validator = $this->validate(
+            $request,
+            [
+                $rules
+            ]
+        );	
+		$now = Carbon::now();
+		
+		$data = ['product_name' => $request->product_name,'required_point' => $request->required_point,'product_status' => $request->status,'product_price' => $request->product_price,'discount_price' => $request->discount_price,'product_quantity' => $request->product_quantity,'created_at' => $now,'product_description' => $request->product_description];
+		
+		
+		if ($request->product_image)
+		{
+			$image = $request->file('product_image');
+			$imagename = time().'.'.$image->getClientOriginalExtension();
+			$destinationPath = public_path('ad/product_image');
+			$image->move($destinationPath, $imagename);			
+			
+			$data['product_picurl'] = $imagename;
+		}
+				
+		Product::update_ad_product($id, $data);		
+			
+		
+		return redirect()->back()->with('message', trans('dingsu.product_update_success_message') );
+		 
+	}
+	
+	
+	public function delete_ad_product(Request $request)
+    {
+		$id = $request->id;
+		Product::delete_ad_product($id);
+		return response()->json(['success' => true, 'message' => 'done']);
+	}
+	
+	//old
+	
+	
+	
 	public function list_product()
     {
 		$result =  Product::get_product_view_list(100);
@@ -64,7 +182,7 @@ class ProductController extends BaseController
             ]
         );	
 		$now = Carbon::now();
-		$data = ['product_name' => $request->product_name,'product_display_id' => $request->product_display_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now];
+		$data = ['product_name' => $request->product_name,'product_display_id' => $request->product_display_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_description' => $product_description];
 		
 		Product::save_product($data);
 		

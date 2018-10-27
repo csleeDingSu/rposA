@@ -200,6 +200,51 @@ class Product extends Model
 		return $result;
 	}
 	
+	//ad
+	
+	
+	public static function get_ad_product_list($limit = 100)
+	{
+		$result =  DB::table('ad_display')->paginate($limit);
+		
+		return $result;
+	}
+	
+	public static function get_ad_product($id)
+	{
+		$result = DB::table('ad_display')->where('id', $id)->first();
+		
+		return $result;
+	}
+	
+	public static function update_ad_product($id,$data)
+	{	
+		if (!empty($id))
+		{
+			return $result = DB::table('ad_display')
+            ->where('id', $id)
+            ->update($data);
+		}		 		
+	}
+	
+	public static function save_ad_product($chunk)
+	{
+		DB::table('ad_display')->insert($chunk);
+	}
+	
+	public static function delete_ad_product($id)
+	{
+		return DB::table('ad_display')->where('id', $id)->delete();
+	}
+	
+	
+	public static function get_ad_paginate($limit = 10)
+	{
+		$result = DB::table('ad_display')->latest()->paginate($limit);
+		
+		return $result;
+	}
+	
 }
 
 

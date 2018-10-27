@@ -45,4 +45,13 @@ class MemberController extends Controller
 		return response()->json(['success' => false]);
 	}
 	
+	
+	public function member_referral_list(Request $request)
+	{
+		$id = $request->memberid;
+		$result =  Member::get_member_referral_list($id);
+		return response()->json(['success' => true,'data'=>$result]);
+	}
+	
+	
 }

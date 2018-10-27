@@ -1,3 +1,19 @@
+
+@if(Auth::user()->name == 'admin2')
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+	<ul class="nav">
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/product/product-new">
+              <i class="menu-icon  icon-list text-danger"></i>
+              <span class="menu-title"> @lang('dingsu.redeem') 2 </span>
+            </a>
+		
+		</li>
+		
+	</ul>
+</nav>
+@else
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 	<ul class="nav">
 		
@@ -115,6 +131,13 @@
 			</div>
 		</li>
 		
+		<li class="nav-item">
+			<a class="nav-link" href="/product/product-new">
+              <i class="menu-icon  icon-list text-danger"></i>
+              <span class="menu-title"> @lang('dingsu.redeem') 2 </span>
+            </a>
+		
+		</li>
 		
 		<li class="nav-item">
 			<a class="nav-link" href="/admin/settings">
@@ -125,3 +148,4 @@
 		</li>		
 	</ul>
 </nav>
+@endif

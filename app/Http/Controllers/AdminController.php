@@ -28,8 +28,15 @@ class AdminController extends BaseController
 		}
 		else if (Auth::Guard('admin')->check())
 		{
+			if (Auth::user()->username == 'admin2') {
+
+			return redirect()->route('ad.product.show');
+
+			} else {
 			//redirect to member list
-			return redirect()->route('admindashboard');
+			return redirect()->route('admindashboard');	
+			}
+			
 		}
 		else
 		{
@@ -40,7 +47,7 @@ class AdminController extends BaseController
 	public function dashboard ()
 	{
 		$data['page'] = 'admin.dashboard';
-		
+
 		$user = Auth::user();
 		
 		if (Auth::guard('admin')->check()){

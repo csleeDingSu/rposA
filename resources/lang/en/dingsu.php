@@ -304,4 +304,8 @@ return [
 	'please_login' => 'Not logged in, please log in to continue.',
 	'please_fill_wechatid' => 'Please fill in your wechat id',
 	
+	
+	'discount_price' => 'Discount price',
+	'image' => 'Image',
+	'product_description' => 'Description',
 ];

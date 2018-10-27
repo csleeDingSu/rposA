@@ -43,6 +43,7 @@
 			<input id="hidLevelId" type="hidden" value="" />
 			<input id="hidLatestResult" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
+			<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
 	  	</div>
 	</div>
 	<!-- end information table -->
@@ -130,6 +131,47 @@
 	</div>
 	<!-- end button wrapper -->
 </div>
+
+<!-- Modal starts -->
+<form class="form-sample" name="formvoucher" id="formvoucher" action="" method="post" autocomplete="on" >
+	<div class="modal fade col-md-12" id="wechat_verify" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="icon-verify-wrapper">
+									<div class="icon-verify"></div>
+								</div>
+								<div class="instructions">
+									您需要通过实名认证
+									<br />
+									才能享受网站的福利
+								</div>
+								<div class="btn-verify">
+									<a href="/validate">
+										<div class="left">马上去认证</div>
+										<div class="glyphicon glyphicon-menu-right"></div>
+									</a>
+								</div>			
+							</div>
+							
+
+						</div>
+					</div>							
+				</div>
+			</div>
+			<div class="btn-close">
+				<a href="/">
+					<div class="glyphicon glyphicon-remove-circle"></div>
+					<div class="left"> 暂时不想认证，先逛逛看。</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</form> 
+<!-- Modal Ends -->
 @endsection
 
 @section('footer-javascript')
@@ -138,5 +180,13 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
 	<script src="{{ asset('/client/js/swiper.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game.js') }}"></script>
-	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var wechat_status = $('#hidWechatId').val();
+
+			if(wechat_status > 0) {
+				$('#wechat_verify').modal({backdrop: 'static', keyboard: false});
+			}
+		});	
+	</script>
 @endsection

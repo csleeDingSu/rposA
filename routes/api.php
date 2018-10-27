@@ -50,6 +50,9 @@ Route::group(['namespace' => 'Api'],function(){
 	
 	Route::post('/request-redeem', 'ProductController@request_redeem')->name('api.redeem.request');
 	
+	
+	Route::get('/referral-list', 'MemberController@member_referral_list')->name('api.referral.list');
+	
  });	
 
 //deprecated
