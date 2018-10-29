@@ -50,7 +50,7 @@
 				@foreach($result as $item)
 				<li class="dbox">
 					<a href="#" class="imgBox dbox0">
-						<img src="{{ asset('ad/product_image/' . $item->product_picurl) }}">
+						<img src="{{ env('ads_product_image_url') . $item->product_picurl }}">
 					</a>
 					<div class="dbox1">
 						<h2>{{$item->product_description}}</h2>
