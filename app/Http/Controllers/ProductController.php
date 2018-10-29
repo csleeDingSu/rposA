@@ -48,7 +48,9 @@ class ProductController extends BaseController
 	
 	public function save_ad_product(Request $request)
     {
-    	$product_display_id = (\DB::table('ad_display')->orderBy('id','desc')->first()->id) + 1; //$request->product_display_id;
+    	$curentID = \DB::table('ad_display')->orderBy('id','desc')->first();
+
+    	$product_display_id = isset($curentID->id) ? 1 : $curentID + 1; //$request->product_display_id;
 
 		$validator = $this->validate(
             $request,
