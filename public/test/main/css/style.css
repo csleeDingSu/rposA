@@ -1,0 +1,571 @@
+.cardHeader {
+  height: 1.95rem;
+}
+.header {
+  height: 1.95rem;
+}
+.header .top {
+  line-height: 1.15rem;
+  height: 1.15rem;
+  background: #ff4e4e;
+}
+.header .top li {
+  font-size: 0;
+  line-height: 1.15rem;
+  text-align: center;
+}
+.header .top li img {
+  vertical-align: middle;
+  height: 0.56rem;
+}
+.header .top li a {
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+.header .top li.logo img {
+  height: 0.82rem;
+}
+.main {
+  background: #fff;
+}
+.main .txt {
+  line-height: 0.8rem;
+  height: 0.8rem;
+  overflow: hidden;
+  font-size: 0;
+}
+.main .txt a {
+  display: inline-block;
+  font-size: 0.3rem;
+  color: #6c6c6c;
+  line-height: 0.5rem;
+  border-bottom: 0.04rem solid transparent;
+  vertical-align: middle;
+  margin: 0 0.265rem;
+}
+.main .txt a.on {
+  color: #ff4e4e;
+  border-bottom: 0.04rem solid #ff4e4e;
+}
+
+.main .downIcon {
+  display: block;
+  padding: 0 0.18rem;
+  line-height: 0.8rem;
+  font-size: 0;
+}
+.main .downIcon img {
+  width: 0.3rem;
+  vertical-align: middle;
+}
+
+.slideMore {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  background: #fff;
+  z-index: 10;
+}
+.slideMore h2 {
+  padding-left: 0.28rem;
+  font-size: 0.32rem;
+  color: #ff4e4e;
+  line-height: 0.79rem;
+  border-bottom: 0.01rem solid #e4e4e4;
+}
+.slideMore h2 a {
+  float: right;
+  width: 0.8rem;
+  text-align: center;
+  line-height: 0.8rem;
+}
+.slideMore h2 a img {
+  width: 0.3rem;
+  vertical-align: middle;
+}
+.slideMore p {
+  padding: 0.2rem 0;
+  font-size: 0;
+}
+.slideMore p a {
+  display: inline-block;
+  font-size: 0.28rem;
+  color: #666;
+  line-height: 0.62rem;
+  margin: 0.12rem 0.18rem;
+  background: #f0f0f0;
+  padding: 0 0.29rem;
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+.slideMore p a:active,
+.slideMore p a.on {
+  background: #ff4e4e;
+  color: #fff;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.product {
+  margin-top: 0.3rem;
+  background: #fff;
+}
+.title {
+  padding: 0.25rem 0.18rem 0.3rem 0.18rem;
+}
+.title h2 {
+  height: 0.28rem;
+  line-height: 0.28rem;
+  font-size: 0.28rem;
+  color: #8e8e8e;
+  padding-left: 0.12rem;
+  border-left: 0.1rem solid #ff4e4e;
+}
+.title span {
+  float: right;
+  line-height: 0.28rem;
+  font-size: 0.2rem;
+  color: #8e8e8e;
+}
+.product .list-1 {
+  margin: 0 0.14rem;
+  font-size: 0;
+}
+
+.product .list-1 li {
+  vertical-align: top;
+  display: inline-block;
+  width: calc(25% - 0.08rem);
+  margin: 0 0.04rem;
+  margin-bottom: 0.18rem;
+}
+.product .list-1 h2 {
+  font-size: 0.21rem;
+  line-height: 1.6em;
+  margin-bottom: 0.1rem;
+  color: #737373;
+  text-align: center;
+}
+.product .list-1 font {
+  color: #f63556;
+}
+.product .list-1 a {
+  display: block;
+  margin-bottom: 0.1rem;
+  height: 1.71rem;
+  position: relative;
+}
+.product .list-1 a img {
+  width: 100%;
+  height: 100%;
+}
+.product .list-1 a span {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.16rem;
+  line-height: 0.25rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0 0.08rem;
+  color: #fff;
+}
+
+.product .list-1 h3 {
+  font-size: 0.21rem;
+  color: #c3c3c3;
+  line-height: 0.36rem;
+  text-align: center;
+}
+.product .list-2 {
+  padding: 0 0.24rem;
+}
+.product .list-2 li {
+  margin-top: 0.54rem;
+}
+.product .list-2 li:first-of-type {
+  margin-top: 0;
+}
+.product .list-2 .imgBox {
+  width: 2.1rem;
+  height: 2.1rem;
+  display: block;
+  margin-right: 0.38rem;
+}
+.product .list-2 .imgBox img {
+  width: 100%;
+  height: 100%;
+}
+.product .list-2 h2 {
+  font-size: 0.25rem;
+  color: #8e8e8e;
+  word-break: break-all;
+  line-height: 0.38rem;
+}
+.product .list-2 .price {
+  padding: 0.2rem 0 0.24rem 0;
+  font-size: 0;
+}
+
+.product .list-2 .price span {
+  display: inline-block;
+  font-size: 0.32rem;
+  color: #656565;
+  height: 0.32rem;
+  line-height: 0.32rem;
+  margin-right: 0.15rem;
+}
+.product .list-2 .quan {
+  vertical-align: top;
+  height: 0.32rem;
+  width: 2rem;
+  background: url(../images/quanIcon.png) left -0.06rem no-repeat;
+  background-size: auto 0.44rem;
+  display: inline-block;
+}
+.product .list-2 .quan p {
+  width: 1.2rem;
+  text-align: center;
+  display: inline-block;
+  font-size: 0.24rem;
+  color: #fff;
+  line-height: 0.32rem;
+  height: 0.32rem;
+  vertical-align: top;
+}
+.product .list-2 .quan p font {
+  font-size: 0.16rem;
+}
+
+.product .list-2 .quan h3 {
+  font-size: 0.2rem;
+  color: #eb7e74;
+  line-height: 0.32rem;
+  height: 0.32rem;
+  display: inline-block;
+  width: 0.8rem;
+}
+.product .list-2 .mset {
+  font-size: 0;
+}
+.product .list-2 .mset a {
+  width: 1.9rem;
+  margin-left: 0.18rem;
+  text-align: center;
+  border-radius: 0.1rem;
+  display: inline-block;
+  font-size: 0.25rem;
+  color: #ff5949;
+  line-height: 0.48rem;
+  border: 0.01rem solid #ff5949;
+  -webkit-border-radius: 0.1rem;
+  -moz-border-radius: 0.1rem;
+  -ms-border-radius: 0.1rem;
+  -o-border-radius: 0.1rem;
+}
+.product .list-2 .mset a:first-of-type {
+  margin-left: 0;
+}
+.product .list-2 .mset a.type {
+  color: #fff;
+  background: #ff5949;
+}
+
+.more {
+  text-align: center;
+}
+.more p {
+  font-size: 0.26rem;
+  color: #c6c6c6;
+  line-height: 0.8rem;
+}
+
+.navBox {
+  box-sizing: border-box;
+  height: 1rem;
+  border-top: 0.02rem solid #cbcbcb;
+  position: relative;
+  background: #f6f6f6;
+}
+
+.homeIcon {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: url(../images/nav1.png) center center no-repeat;
+  background-size: 100% 100%;
+}
+.moneyIcon {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: url(../images/nav2.png) center center no-repeat;
+  background-size: 100% 100%;
+}
+.checkIcon {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: url(../images/nav3.png) center center no-repeat;
+  background-size: 100% 100%;
+}
+.userIcon {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: url(../images/nav4.png) center center no-repeat;
+  background-size: 100% 100%;
+}
+.navBox p {
+  text-align: center;
+  font-size: 0.22rem;
+  color: #696969;
+  line-height: 0.32rem;
+}
+
+.navBox dd {
+  text-align: center;
+}
+.navBox dd i {
+  margin: 0.12rem 0 0.06rem 0;
+}
+.navBox dd a {
+  display: block;
+  height: 0.98rem;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+.navBox dd a:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.nTxt {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  text-align: center;
+  font-size: 0.48rem;
+  color: #fff;
+  line-height: 1.1rem;
+  background: url(../images/navImg.png) center center no-repeat;
+  background-size: 1.09rem;
+}
+.navBox dt {
+  height: 0.98rem;
+}
+.navBox dt img,
+.navBox dt p {
+  position: relative;
+  z-index: 10;
+}
+.navBox dt a {
+  z-index: 4;
+  display: block;
+  position: relative;
+  top: -0.45rem;
+  width: 2.1rem;
+  text-align: center;
+}
+.navBox dt:before {
+  content: "";
+  display: block;
+  width: 1.18rem;
+  height: 1.18rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  background: #f6f6f6;
+  position: absolute;
+  top: -0.5rem;
+  border: 0.02rem solid #cbcbcb;
+  left: 50%;
+  margin-left: -0.598rem;
+  z-index: 1;
+}
+.navBox dt:after {
+  content: "";
+  display: block;
+  width: 1.4rem;
+  left: 50%;
+  margin-left: -0.7rem;
+  height: 0.8rem;
+  background: #f6f6f6;
+  position: absolute;
+  top: -0rem;
+  z-index: 2;
+}
+
+.showQuan,
+.showBao {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+.showQuan .inBox {
+  background: #fff;
+  width: 5.9rem;
+  border-radius: 0.1rem;
+  -webkit-border-radius: 0.1rem;
+  -moz-border-radius: 0.1rem;
+  -ms-border-radius: 0.1rem;
+  -o-border-radius: 0.1rem;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 0.85rem;
+}
+.showQuan .inBox::before {
+  content: "";
+  display: block;
+  width: 3.34rem;
+  height: 3.34rem;
+  background: #fff;
+  top: -0.8rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  position: absolute;
+  left: 50%;
+  margin-left: -1.67rem;
+  z-index: 0;
+}
+
+.showQuan .inBox img.icon {
+  position: absolute;
+  z-index: 1;
+  top: -1.34rem;
+  left: 50%;
+  width: 3rem;
+  height: 3rem;
+  margin-left: -1.5rem;
+}
+
+.showQuan .inBox h2 {
+  font-size: 0.32rem;
+  color: #999999;
+  line-height: 0.94rem;
+  margin-top: 1.65rem;
+  position: relative;
+  z-index: 2;
+}
+.showQuan .inBox h3 {
+  display: inline-block;
+  width: 4.78rem;
+  height: 0.82rem;
+  line-height: 0.82rem;
+  background: #757575;
+  border-radius: 0.1rem;
+  -webkit-border-radius: 0.1rem;
+  -moz-border-radius: 0.1rem;
+  -ms-border-radius: 0.1rem;
+  -o-border-radius: 0.1rem;
+  font-size: 0.36rem;
+  color: #fffc00;
+  font-weight: bold;
+  margin-bottom: 0.28rem;
+}
+
+.showQuan .inBox a {
+  display: block;
+  width: 5.01rem;
+  margin: 0 auto;
+  margin-bottom: 0.2rem;
+}
+.showQuan .inBox a img {
+  width: 100%;
+}
+
+.showQuan .inBox h4 {
+  font-size: 0.2rem;
+  color: #999999;
+  line-height: 0.4rem;
+}
+
+.showBao .inBox {
+  text-align: center;
+  width: 6.56rem;
+  border-radius: 0.12rem;
+  -webkit-border-radius: 0.12rem;
+  -moz-border-radius: 0.12rem;
+  -ms-border-radius: 0.12rem;
+  -o-border-radius: 0.12rem;
+  background: #fff;
+  padding: 0.55rem 0 0.8rem 0;
+}
+
+.showBao .imgBox {
+  margin: 0 auto;
+  border: 0.01rem solid #efefef;
+  padding: 0.15rem;
+  font-size: 0;
+  display: inline-block;
+  margin-bottom: 0.2rem;
+}
+
+.showBao .imgBox img {
+  max-width: 4.75rem;
+}
+
+.showBao h2 {
+  font-size: 0.24rem;
+  text-align: center;
+  color: #666666;
+  line-height: 1.6em;
+  padding: 0 1.05rem;
+  margin-bottom: 0.1rem;
+}
+.showBao h3 {
+  line-height: 0.5rem;
+}
+.showBao h3 font {
+  color: #333333;
+  font-size: 0.26rem;
+  margin-right: 0.15rem;
+}
+.showBao h3 em {
+  font-size: 0.2rem;
+  color: #999999;
+  text-decoration: line-through;
+}
+.showBao h1 {
+  font-size: 0.38rem;
+  color: #ff594a;
+  margin-bottom: .15rem;
+}
+.showBao .iconImg {
+  width: 2.6rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-align: center;
+  font-size: 0;
+  background: url(../images/icon-3.png) center center no-repeat;
+  background-size:100% .4rem; 
+  margin: 0 auto;
+  margin-bottom: .3rem;
+}
+.showBao .iconImg img{ vertical-align: middle; width: .23rem;margin-right: .05rem}
+.showBao .iconImg span{ display: inline-block; vertical-align: middle;font-size: .22rem; color: #fff;}
+.showBao a{ display: block; margin: 0 auto; width: 5.02rem;}
+.showBao a img{ width: 100%;}

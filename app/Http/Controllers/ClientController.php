@@ -27,7 +27,7 @@ use App\Members as Member;
 
 use App\Voucher;
 
-use Api\MemberController;
+use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
 {
@@ -118,7 +118,9 @@ class ClientController extends BaseController
 
 			} else {
 
-				$res = MemberController::update_wechat($request);
+				$m = new MemberController;
+
+				$res = $m->update_wechat($request);
 
 				if ($res) {
 
