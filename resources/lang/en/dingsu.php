@@ -308,4 +308,5 @@ return [
 	'discount_price' => 'Discount price',
 	'image' => 'Image',
 	'product_description' => 'Description',
+	'import_ads' => "Import ads",
 ];

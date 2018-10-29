@@ -188,9 +188,9 @@ class Product extends Model
 		return $result;
 	}
 	
-	public static function get_csvtitle()
+	public static function get_csvtitle($type = 'softpin')
 	{
-		$result = DB::table('csv_title')->where('category','softpin')->select('id', 'title')->get();
+		$result = DB::table('csv_title')->where('category',$type)->select('id', 'title')->get();
 				
 		return $result;
 	}

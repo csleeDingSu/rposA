@@ -28,7 +28,7 @@ use Storage;
 //new
 
 use App\Events\ImportSoftpins;
-
+use App\Events\ImportAds;
 
 class ImportController extends BaseController
 {
@@ -292,6 +292,89 @@ class ImportController extends BaseController
 		}
 
 		return view('import_success');
+	}
+	
+	//ads import
+	
+	public function getAdImport()
+    {
+        $max_size = ini_get('upload_max_filesize') ;
+		
+		$max_size = 90000 ;
+		
+		$data['page'] = 'ad.import'; 
+		
+		return view('main', $data);
+    }
+	
+	public function PostAdImport(Request $request)
+	{
+
+		ini_set('memory_limit', '3024M'); // or you could use 1G
+		
+		$max_size = (int)ini_get('upload_max_filesize') * 10000;
+		
+		
+		$max_size = 900000 ;
+		
+		$all_ext = implode(',', $this->document_ext);
+		
+		
+		$validator = $this->validate(
+            $request,
+            [
+                'file' => 'required|file|mimes:' . $all_ext 
+            ]
+        );
+		
+		$extension = $request->file->extension();
+		
+		
+		$filename = 'ads'.time(); 
+		
+		$path = $request->file->storeAs('ads', $filename.'.'.$extension, 'public_uploads');
+		
+		$url = Storage::url('uploads/'.$path);
+		
+		$excelChecker = Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
+				
+		$arrayhead = $excelChecker[0];
+				
+		$data['page']       = 'ad.importparse'; 
+		$data['file_title'] = array_keys($arrayhead);
+		$data['sys_title']  = Product::get_csvtitle('ads'); 
+		$data['filename']   = $filename;
+		return view('main', $data);
+		
+	}
+	
+	public function AdProcessImport(Request $request)
+	{
+		
+		$file_title = $request->file_title;
+		$sys_title  = $request->sys_tit;
+		$filename  = $request->filename;
+				
+		foreach ($sys_title as $key=>$val)
+		{
+			
+			$arr['sys_field_id'] = $val;
+			$arr['file_title_loc_id'] = $file_title[$key];
+			$arr['filename'] = $filename;
+			
+			$dbc[] = $arr;
+		}
+		
+		DB::table('excel_upload')->insert($dbc);
+		
+		event(new ImportAds($request,$filename));
+				
+		$data['page'] = 'common.success'; 
+		
+		$data['msg']  = 'message_import_success';
+		
+		return view('main', $data);
+		
 	}
 	
 }

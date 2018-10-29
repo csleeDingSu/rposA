@@ -49,7 +49,7 @@
 
 				<!-- redeem history content -->
 				<div id="history" class="tab-pane fade">
-					<div class="history-row">
+					<!--div class="history-row">
 						<div class="col-xs-3 column-1">
 							1001
 						</div>
@@ -60,79 +60,7 @@
 						<div class="col-xs-3 column-3">
 							<div class="btn-pending">等待发放</div>
 						</div>	
-					</div>
-
-					<div class="history-row">
-						<div class="col-xs-3 column-1">
-							1002
-						</div>
-						<div class="col-xs-6 column-2">
-							<div class="description">中国移动充值卡 50元</div>
-							<div class="balance">兑换时间:2018-10-24 17:29</div>
-						</div>
-						<div class="col-xs-3 column-3">
-							<div class="btn-card" data-toggle="collapse" data-target="#content-1002">查看卡号</div>
-						</div>	
-					</div>
-					<div id="content-1002" class="collapse">
-						<div>卡号： <span class="numbers">3718371837382943</span> 密码：<span class="numbers">384u983984324321</span></div>
-						<div class="balance">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！
-						</div>
-					</div>
-
-					<div class="history-row">
-						<div class="col-xs-3 column-1">
-							1003
-						</div>
-						<div class="col-xs-6 column-2">
-							<div class="description">中国移动充值卡 50元</div>
-							<div class="balance">兑换时间:2018-10-24 17:29</div>
-						</div>
-						<div class="col-xs-3 column-3">
-							<div class="btn-card" data-toggle="collapse" data-target="#content-1003">查看卡号</div>
-						</div>	
-					</div>
-					<div id="content-1003" class="collapse">
-						<div>卡号： <span class="numbers">3718371837382943</span> 密码：<span class="numbers">384u983984324321</span></div>
-						<div class="balance">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！
-						</div>
-					</div>
-
-					<div class="history-row">
-						<div class="col-xs-3 column-1">
-							1004
-						</div>
-						<div class="col-xs-6 column-2">
-							<div class="description">中国移动充值卡 50元</div>
-							<div class="balance">兑换时间:2018-10-24 17:29</div>
-						</div>
-						<div class="col-xs-3 column-3">
-							<div class="btn-card" data-toggle="collapse" data-target="#content-1004">查看卡号</div>
-						</div>	
-					</div>
-					<div id="content-1004" class="collapse">
-						<div>卡号： <span class="numbers">3718371837382943</span> 密码：<span class="numbers">384u983984324321</span></div>
-						<div class="balance">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！
-						</div>
-					</div>
-
-					<div class="history-row">
-						<div class="col-xs-3 column-1">
-							1005
-						</div>
-						<div class="col-xs-6 column-2">
-							<div class="description">中国移动充值卡 50元</div>
-							<div class="balance">兑换时间:2018-10-24 17:29</div>
-						</div>
-						<div class="col-xs-3 column-3">
-							<div class="btn-card" data-toggle="collapse" data-target="#content-1005">查看卡号</div>
-						</div>	
-					</div>
-					<div id="content-1005" class="collapse">
-						<div>卡号： <span class="numbers">3718371837382943</span> 密码：<span class="numbers">384u983984324321</span></div>
-						<div class="balance">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！
-						</div>
-					</div>
+					</div-->
 				</div>
 				<!-- end redeem list content -->
 			</div>
@@ -174,7 +102,6 @@
 								'</div>';
 
 						html += '<!-- Modal starts -->' +
-								'<form class="form-sample" name="formvoucher" id="formvoucher" action="" method="post" autocomplete="on" >' +
 								'<div class="modal fade col-md-12" id="viewvouchermode'+ i +'" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">' +
 									'<div class="modal-dialog modal-lg" role="document">' +
 										'<div class="modal-content">' +
@@ -202,20 +129,21 @@
 															'<div class="wabao-balance">您当前拥有 680 挖宝币</div>' +
 														'</div>' +
 
-														'<div>' +
-															'<a href="/arcade" class="btn btn_submit">确定兑换</a>' +
+														'<div id="error-'+ item.id + '" class="error"></div>' +
+
+														'<div id="redeem-'+ item.id +'" onClick="redeem(\''+ item.id +'\');">' +
+															'<a class="btn btn_submit" >确定兑换</a>' +
 														'</div>' +
 
 														'<div>' +
-															'<a href="/arcade" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
+															'<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
 														'</div>' +
 													'</div>' +
 												'</div>' +
 											'</div>' +
 										'</div>' +
 									'</div>' +
-								'</div>' +
-								'</form>' +
+								'</div>' + 
 								'<!-- Modal Ends -->';
 			        });
 
@@ -230,7 +158,50 @@
 		    });					
 		});
 		
+
 		
+		$.getJSON( "/api/redeem-history?memberid={{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}", 
+			function( data ) {
+				var records = data.records.data;
+			    var html = '';
+
+			    $.each(records, function(i, item) {
+			    	html += '<div class="history-row">' +
+						'<div class="col-xs-3 column-1">' +
+							item.id +
+						'</div>' +
+						'<div class="col-xs-6 column-2">' +
+							'<div class="description">'+ item.pin_name +'</div>' +
+							'<div class="balance">兑换时间:'+ item.created_at +'</div>' +
+						'</div>' +
+						'<div class="col-xs-3 column-3">' +
+							'<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">查看卡号</div>' +
+						'</div>' +
+					'</div>' +
+					'<div id="content-' + item.id + '" class="collapse">' +
+						'<div>卡号： <span class="numbers">'+ item.code_hash +'</span> 密码：<span class="numbers">'+ item.code +'</span></div>' +
+						'<div class="balance">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
+						'</div>' +
+					'</div>';
+				});
+
+				$('#history').html(html);
+			});
+
+		function redeem(product_id){
+
+			$.post("/api/request-redeem", { 
+				'memberid': {{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}},
+				'productid': product_id
+			}, function(data) {
+				if(data.success) {
+					window.location.href = "/redeem";
+				} else {
+					$('#error-' + product_id).html(data.message);
+				}
+			});
+		}
+
 	
 	</script>
 @endsection

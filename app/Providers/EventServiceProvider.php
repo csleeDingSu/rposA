@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
 		'App\Events\ImportSoftpins' => [
             'App\Listeners\LisImportSoftpins',
         ],
+		'App\Events\ImportAds' => [
+            'App\Listeners\LisImportAds',
+        ],
     ];
 
     /**

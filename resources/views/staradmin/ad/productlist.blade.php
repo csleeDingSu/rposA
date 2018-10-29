@@ -1,5 +1,11 @@
 
-<div class="col-12 d-flex  text-right"><a href="/product/ad-add" class="btn btn-success mr-2">@lang('dingsu.add')</a></div>
+<div class="col-12 d-flex  text-right">
+	
+	<a href="{{ route('ad.product.add') }}" class="btn btn-success mr-2">@lang('dingsu.add')</a>
+	<a href="{{ route('ad.get.import') }}" class="btn btn-info mr-2">@lang('dingsu.import')</a>
+
+
+</div>
 <p>&nbsp;</p>
 <div class="col-lg-12 grid-margin stretch-card">	
 	<div class="card">

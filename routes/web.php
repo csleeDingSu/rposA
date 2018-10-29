@@ -295,6 +295,11 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::post('/product/ad-add', 'ProductController@save_ad_product')->name('ad.product.save');
 	
 	Route::delete('/product/ad-delete', 'ProductController@delete_ad_product')->name('ad.product.delete');
+	
+	// ad import 
+	Route::get('/product/ad-import', 'ImportController@getAdImport')->name('ad.get.import');
+	Route::post('/product/ad-import-pins', 'ImportController@PostAdImport')->name('ad.post.import');
+	Route::post('/product/ad-importprocess', 'ImportController@AdProcessImport')->name('ad.process.import');
 });
 //END
 
