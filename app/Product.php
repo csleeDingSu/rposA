@@ -207,14 +207,14 @@ class Product extends Model
 	
 	public static function get_ad_product_list($limit = 100)
 	{
-		$result =  DB::table('ad_display')->paginate($limit);
+		$result =  ad_display::paginate($limit);
 		
 		return $result;
 	}
 	
 	public static function get_ad_product($id)
 	{
-		$result = DB::table('ad_display')->where('id', $id)->first();
+		$result = ad_display::where('id', $id)->first();
 		
 		return $result;
 	}
@@ -223,20 +223,19 @@ class Product extends Model
 	{	
 		if (!empty($id))
 		{
-			return $result = DB::table('ad_display')
-            ->where('id', $id)
+			return $result = ad_display::where('id', $id)
             ->update($data);
 		}		 		
 	}
 	
 	public static function save_ad_product($chunk)
 	{
-		DB::table('ad_display')->insert($chunk);
+		ad_display::insert($chunk);
 	}
 	
 	public static function delete_ad_product($id)
 	{
-		return DB::table('ad_display')->where('id', $id)->delete();
+		return ad_display::where('id', $id)->delete();
 	}
 	
 	

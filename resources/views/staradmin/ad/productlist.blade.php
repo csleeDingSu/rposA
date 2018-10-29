@@ -15,7 +15,7 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>@lang('dingsu.id')</th>
+							<!-- <th>@lang('dingsu.id')</th> -->
 							<th>@lang('dingsu.create_Date')</th>
 							<th>@lang('dingsu.product') @lang('dingsu.name')</th>							
 							<th>@lang('dingsu.available_quantity')</th>
@@ -27,7 +27,7 @@
 					<tbody>
 						@foreach($result as $list)
 						<tr id="tr_{{ $list->id }}">
-							<td>{{ $list->product_display_id }}</td>
+							<!-- <td>{{ $list->product_display_id }}</td> -->
 							<td>{{ $list->created_at }}</td>
 							<td>{{ $list->product_name }}</td>
 							

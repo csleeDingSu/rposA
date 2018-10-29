@@ -309,4 +309,8 @@ return [
 	'image' => 'Image',
 	'product_description' => 'Description',
 	'import_ads' => "Import ads",
+	'required_point' => 'required point',
+	'picture' => 'picture',
+	'product_quantity' => 'product quantity',
+	'description' => 'description',
 ];
