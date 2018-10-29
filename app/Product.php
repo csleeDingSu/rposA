@@ -5,6 +5,8 @@ use DB;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use App\ad_display;
+
 class Product extends Model
 {   
     use SoftDeletes;
@@ -240,7 +242,8 @@ class Product extends Model
 	
 	public static function get_ad_paginate($limit = 10)
 	{
-		$result = DB::table('ad_display')->latest()->paginate($limit);
+		//$result = DB::table('ad_display')->latest()->paginate($limit);
+		$result = ad_display::latest()->paginate($limit);
 		
 		return $result;
 	}
