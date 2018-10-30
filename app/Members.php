@@ -18,6 +18,7 @@ class Members extends Model
 		'referred_by',
 		'wechat_name',
 		'phone',
+		'wechat_verification_status',
     ];
 
     /**

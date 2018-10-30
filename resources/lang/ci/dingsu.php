@@ -310,5 +310,8 @@ return [
 	'change' => 'change',
 	'change_passsword_error' => 'cannot update/change password',
 	'change_passsword_success' => 'password successfully Updated',
+	'current_life' => 'Current life',
+	'add_life' => 'Add life',
+	'life' => 'Life',
 	
 ];

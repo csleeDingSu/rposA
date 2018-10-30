@@ -1,0 +1,100 @@
+<?php
+/***
+ *
+ *
+ ***/
+
+namespace App\Http\Controllers;
+use DB;
+use App;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
+use App\Wallet;
+use Carbon\Carbon;
+
+
+
+class LedgerController extends BaseController
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+	
+	public function remove_history($id)
+	{
+		$record = Ledger::find($id);
+		if ($record)
+		{		
+			Ledger::destroy($id);
+			return response()->json(['success' => true, 'record' => '']);
+		}
+		else{
+			return response()->json(['success' => false, 'record' => '']);
+		}
+		
+	}
+	
+	
+	public function create($id)
+	{		
+		$record = Ledger::find($id);
+		if ($record)
+		{			
+            Ledger::insert($record);
+			return response()->json(['success' => true, 'record' => '']);
+		}
+		return response()->json(['success' => false, 'record' => '']);
+	}
+	public function update()
+	{
+		$insdata = [];
+		$msg = Ledger::where('id', '=', $id)->update($insdata);
+		if ($msg) return response()->json(['success' => true, 'record' => '']);
+		else return response()->json(['success' => false, 'record' => '']);
+	}
+	public function get_life (Request $request)
+	{
+		$id     = $request->input('id');
+		$record = Wallet::get_wallet_details($id);
+		return response()->json(['success' => true, 'record' => $record]);
+	}
+	
+	
+	
+
+	public function adjust_life (Request $request)
+	{
+		$inputs   = $request->input('datav');
+		$memberid = $request->input('id');
+		
+		
+		foreach ($inputs as $key=>$val)
+		{
+			$data[$val['name']] = $val['value'];			
+		}
+		
+		$record = Wallet::update_ledger_life($memberid, $data['addlife'],'LFE',$data['tnotes']);
+		
+		if ($record['success']) return response()->json(['success' => true,'record'=>$record]);
+		else return response()->json(['success' => false, 'message' => 'unknown wallet record']);
+		
+		return response()->json(['success' => false, 'message' => 'unknown record']);
+		
+	}
+	
+	
+	public function adjust_balance ($id = FALSE)
+	{
+		
+	}
+	
+	
+	
+}

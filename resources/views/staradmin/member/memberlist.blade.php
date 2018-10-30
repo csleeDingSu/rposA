@@ -70,23 +70,10 @@
 							<td>							
 								<a href="/member/edit/{{ $list->id }}"  class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>
 								
-								
-								
+								<button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-primary opentopupmodel  "> <i class=" ti-angle-double-up "></i> </button> 								
 								<a href="javascript:void(0)" onClick="resetpassword('{{ $list->id }}')"  class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-warning"><i class="icon-key"></i></a>
 								
-								
-								
-								
 								<a onClick="confirm_Delete({{ $list->id }})"  href="javascript:void(0)" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a>
-								
-								
-								
-								
-								 
-								
-								
-								
-								
 								
 							</td>
 						</tr>
@@ -268,16 +255,6 @@
 					</div>
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			<div class="row">
 						
 						<div class="col-md-12">
@@ -287,13 +264,6 @@
 								
 								<input type="text" required class="form-control" name="confirmpassword" id="confirmpassword" value="" maxlength="50">
 									
-							
-							
-							
-							
-							
-							
-							
 							
 							</div>
 						</div>
@@ -315,6 +285,93 @@
 </div>
 	</form> 
 <!-- Modal Ends -->
+
+
+
+<!--Reset Password Modal starts -->
+<form class="form-sample" name="formtopup" id="formtopup" action="" method="post" autocomplete="on" >
+<div class="modal fade" id="topupmode" tabindex="-1" role="dialog" aria-labelledby="topupmode" aria-hidden="true">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content">			
+
+				<div class="modal-header">
+					<h5 class="modal-title" >@lang('dingsu.add') @lang('dingsu.life') </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+				</div>
+				<div class="modal-body">
+					
+					<div class="" id="tvalidation-errors"></div>
+					
+				<div class="row">
+						
+						<div class="col-md-12">
+						<div class="form-group row">
+							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.current_life') <span class="text-danger">*</span></label>
+							<div class="col-sm-9">
+								
+								<input type="text" readonly class="form-control" name="clife" id="clife" value="" maxlength="50">
+									
+							</div>
+						</div>
+					</div>				
+						
+					</div>
+			
+			
+			<div class="row">
+						
+						<div class="col-md-12">
+						<div class="form-group row">
+							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.add_life')<span class="text-danger">*</span></label>
+							<div class="col-sm-9">
+								
+								<select class="form-control" name="addlife" id="addlife">
+								  <option value="1" >1</option>
+								  <option value="2">2</option>    
+								  <option value="3">3</option>    
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+									
+								</select>
+									
+							
+							</div>
+						</div>
+					</div>				
+						
+					</div>
+					
+					
+					<div class="row">					
+						<div class="col-md-12">
+						<div class="form-group row">
+							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.notes') </label>
+							<div class="col-sm-9">								
+								<textarea class="form-control"  name="tnotes" id="tnotes"></textarea>
+							</div>
+						</div>
+					</div>					
+					</div>
+
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-success" onclick="return updatelife();return false;">@lang('dingsu.submit')</button>
+					<button type="button" class="btn btn-dark" data-dismiss="modal">@lang('dingsu.cancel')</button>
+
+				</div>
+				<input type="hidden" name="tid" id="tid" value="">
+			
+		</div>
+	</div>
+</div>
+	</form> 
+<!-- Modal Ends -->
+
+
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
@@ -356,6 +413,108 @@
 		$('#resetpasswordmode').modal('show');
 	}
 	
+	function updatelife()
+	{
+		var datav =  $("#formtopup").serializeArray();
+		var id =$('#rid').val();
+		swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.updating_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+			$.ajax( {
+				url: "{{route('post.ledger.adjustlife')}}",
+				type: 'post',
+				dataType: "json",
+				data: {
+					_method: 'post',
+					_token: "{{ csrf_token() }}",
+					id:  id,
+					datav:datav,
+				},
+				success: function ( result ) {
+					if ( result.success == true ) {
+						
+						var data = result.record;
+						
+						$('#formtopup')[0].reset();
+						$('#topupmode').modal('hide');
+					} else {
+						$.each(result.message, function(key,value) {
+							$('#tvalidation-errors').append('<div class="alert alert-danger">'+value+'</div');
+						 });
+						
+						
+					}swal.close();
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+				}
+			} );
+		
+		$('#topupmode').modal('hide');
+	}
+	
+	
+	$('.opentopupmodel').click(function() {
+			var id=$(this).data('id');
+			$('#rid').val(id);
+			swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.fetching_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+			$.ajax( {
+				url: "{{route('get.ledger.life')}}",
+				type: 'get',
+				dataType: "json",
+				data: {
+					_method: 'get',
+					_token: "{{ csrf_token() }}",
+					id:  id,
+				},
+				success: function ( result ) {
+					if ( result.success == true ) {
+						swal.close();
+						var data = result.record;
+						
+						if (data != null)
+							{
+								$('#clife').val(data.life);
+								$('#tid').val(id);
+								$('#topupmode').modal('show');
+							}
+						else 
+							{
+								swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+							}
+					
+						
+						
+					} else {
+						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+						
+						
+					}
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+				}
+			} );
+		});
 	
 	function saveresetpass()
 	{
@@ -483,9 +642,6 @@
 				_method: 'post',
 				_token: "{{ csrf_token() }}",
 				_data:datav,
-				//id:id,
-				//notes:notes,
-				//status:status,
 			},
 			success: function ( result ) {
 				if ( result.success != true ) {
@@ -557,6 +713,53 @@ Swal({
 })
 	}
 
+/*
+  Switch actions
+*/
+$('.unmask').on('click', function(){
 
+  if($(this).prev('input').attr('type') == 'password')
+    changeType($(this).prev('input'), 'text');
+
+  else
+    changeType($(this).prev('input'), 'password');
+
+  return false;
+});
+
+function changeType(x, type) {
+  if(x.prop('type') == type)
+  return x; //That was easy.
+  try {
+    return x.prop('type', type); //Stupid IE security will not allow this
+  } catch(e) {
+    //Try re-creating the element (yep... this sucks)
+    //jQuery has no html() method for the element, so we have to put into a div first
+    var html = $("<div>").append(x.clone()).html();
+    var regex = /type=(\")?([^\"\s]+)(\")?/; //matches type=text or type="text"
+    //If no match, we add the type attribute to the end; otherwise, we replace
+    var tmp = $(html.match(regex) == null ?
+      html.replace(">", ' type="' + type + '">') :
+      html.replace(regex, 'type="' + type + '"') );
+    //Copy data from old element
+    tmp.data('type', x.data('type') );
+    var events = x.data('events');
+    var cb = function(events) {
+      return function() {
+            //Bind all prior events
+            for(i in events)
+            {
+              var y = events[i];
+              for(j in y)
+                tmp.bind(i, y[j].handler);
+            }
+          }
+        }(events);
+        x.replaceWith(tmp);
+    setTimeout(cb, 10); //Wait a bit to call function
+    return tmp;
+  }
+}
+	
 	
 </script>

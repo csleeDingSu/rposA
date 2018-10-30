@@ -294,6 +294,12 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::get('/product/ad-import', 'ImportController@getAdImport')->name('ad.get.import');
 	Route::post('/product/ad-import-pins', 'ImportController@PostAdImport')->name('ad.post.import');
 	Route::post('/product/ad-importprocess', 'ImportController@AdProcessImport')->name('ad.process.import');
+	
+	//ledger
+	
+	Route::get('/ledger/get-life', 'LedgerController@get_life')->name('get.ledger.life');
+	
+	Route::post('/ledger/adjust-life', 'LedgerController@adjust_life')->name('post.ledger.adjustlife');
 });
 //END
 

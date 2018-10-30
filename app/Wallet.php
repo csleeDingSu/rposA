@@ -46,6 +46,44 @@ class Wallet extends Model
 		return $result;
 	}
 	
+	public static function update_ledger_life($memberid,$new_life,$category = 'LFE',$notes = FALSE)
+	{
+		$wallet    = self::get_wallet_details_all($memberid);
+		
+		if ($wallet)
+		{
+
+			$now = Carbon::now();
+
+			$newlife = $wallet->current_life + $new_life;
+			$history = [
+				'created_at' 	  => $now,
+				'updated_at' 	  => $now,
+				'member_id'       => $memberid,
+				'credit'	      => '0',
+				'debit'	          => '0',
+				'notes'           => $new_life.' LIFE ADDED '.$notes,
+				'credit_type'	  => $category,
+				];
+
+
+			$data = [ 
+				'updated_at'    => $now,
+				'current_life'  => $newlife,
+			];
+
+			$ledger  = DB::table('mainledger')
+					   ->where('member_id', $memberid)
+					   ->update($data);
+
+			$history = self::add_ledger_history($history);
+			
+			return ['success'=>true,'life'=>$newlife];
+		
+		}
+		return ['success'=>false,'message'=>'unknown record'];
+	}
+	
 	public static function update_ledger($memberid,$type,$amendpoint,$category = 'PNT',$notes = FALSE)
 	{
 		$wallet    = self::get_wallet_details_all($memberid);

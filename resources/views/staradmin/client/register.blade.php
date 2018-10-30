@@ -41,14 +41,9 @@
 
 			 <div class="input-group">
 			 	<span class="input-group-addon"><i class="fa fa-user"></i></span>
-				<input type="text" placeholder="@lang('dingsu.ph_username')"  name="username" id="username" autofocus value="" />
+				<input type="text" placeholder="@lang('dingsu.username')"  name="username" id="username" autofocus value="" />
 			</div>
 			
-			<div class="input-group">
-				<span class="input-group-addon"><i class="fab fa-weixin"></i></span>
-				<input name="wechat_name" id="wechat_name" type="text"  placeholder="@lang('dingsu.wechat_name')" value="" >
-			</div>
-
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-phone"></i></span>
 				<input name="phone" id="phone" type="text"  placeholder="@lang('dingsu.ph_mobile_no')" value="" >
@@ -62,36 +57,23 @@
 				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 				<input name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.ph_confirm_password')" value="" >
 			</div>
-		
-			
-			<!--div class="inputWithIcon">
-				<input type="text" placeholder="您的真实姓名" />
-				<i class="far fa-comment-alt" aria-hidden="true" /></i>
-			</div-->
-			
-		</div>
-	</div>
-	
-    <!--div class="row">
-		<div class="card">
-			<div class="text left">为了防止用户注册多个账户多次领取福利，您必须填写真实姓名，才能通过审核。</div>
-		</div>
-	</div-->
 
-	<div class="row">
-        <div class="card">
-			
-			<button id="registerbutton" type="submit" class="btn btn-rectangle">@lang('dingsu.register')</button>
-        </div>
-	</div>
-	</form>
-	<div class="row">
-		<div class="card">
-			<div class="text left">
-				注册代表你同意用户协议和隐私条款
+			<div class="input-group">
+		        <div class="card">
+					
+					<button id="registerbutton" type="submit" class="btn btn-rectangle">@lang('dingsu.register')</button>
+		        
+					<div class="text left">
+						注册代表你同意用户协议和隐私条款
+					</div>
+				</div>
 			</div>
+
 		</div>
 	</div>
+
+	
+	</form>
 </div>
 
 

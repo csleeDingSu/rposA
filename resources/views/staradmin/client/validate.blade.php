@@ -31,8 +31,8 @@
 					<input type="hidden" id="memberid", name="memberid" value="{{ Auth::Guard('member')->user()->id }}"/>
 
 					<div class="input-group">
-						<span class="input-group-addon"><i class="fab fa-weixin"></i></span>
-						<input name="wechat_name" id="wechat_name" type="text"  placeholder="@lang('dingsu.wechat_name')" value="" >
+						<span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+						<input name="wechat_name" id="wechat_name" type="text"  placeholder="@lang('dingsu.ph_username')" value="" >
 					</div>
 
 					<!-- <div class="input-group">
@@ -50,14 +50,14 @@
 		        </div>
 			</div>
 			
-			<!--div class="row">
+			<div class="row">
 				<div class="card">
 					<div class="card-margin">
 						<div class="title">第二步：加客服微信审核</div>
 					</div>
-					<img src="/client/images/validate.png" alt="validate" class="img-validate" />
+					<img src="/client/images/wabao666_qrcode.JPG" alt="validate" class="img-validate" />
 				</div>
-			</div-->
+			</div
 	</form>
 </div>
 @endsection
