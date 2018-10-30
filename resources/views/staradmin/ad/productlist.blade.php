@@ -1,13 +1,22 @@
-
-<div class="col-12 d-flex  text-right">
+<div class="row">
+<div class="col-8">
 	
 	<a href="{{ route('ad.product.add') }}" class="btn btn-success mr-2">@lang('dingsu.add')</a>
 	<a href="{{ route('ad.get.import') }}" class="btn btn-info mr-2">@lang('dingsu.import')</a>
+	
+</div>
+<div class="col-4 text-right">
+	
+	
+	<a href="javascript:void(0);" onClick="delete_all();" class="btn btn-info mr-2">@lang('dingsu.clean')</a>
 
 
 </div>
+</div>	
+	
 <p>&nbsp;</p>
-<div class="col-lg-12 grid-margin stretch-card">	
+<div class="row">
+<div class="col-lg-12 grid-margin stretch-card d-flex">	
 	<div class="card">
 		<div class="card-body">
 			<h4 class="card-title">@lang('dingsu.product') @lang('dingsu.list')</h4>
@@ -15,7 +24,7 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<!-- <th>@lang('dingsu.id')</th> -->
+							<th>@lang('dingsu.id')</th>
 							<th>@lang('dingsu.create_Date')</th>
 							<th>@lang('dingsu.product') @lang('dingsu.name')</th>							
 							<th>@lang('dingsu.available_quantity')</th>
@@ -27,7 +36,7 @@
 					<tbody>
 						@foreach($result as $list)
 						<tr id="tr_{{ $list->id }}">
-							<!-- <td>{{ $list->product_display_id }}</td> -->
+							<td>{{ $list->product_display_id }}</td>
 							<td>{{ $list->created_at }}</td>
 							<td>{{ $list->product_name }}</td>
 							
@@ -69,7 +78,7 @@
 		</div>
 	</div>
 </div>
-
+</div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
@@ -120,6 +129,47 @@ Swal({
   }
 })
 	}
+	
+function delete_all()
+	{
+Swal({
+  title: '@lang("dingsu.delete_confirmation")',
+  text: '@lang("dingsu.delete_conf_text")',
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonText: '@lang("dingsu.delete")',
+  cancelButtonText: '@lang("dingsu.cancel")',
+	confirmButtonColor: "#DD6B55",
+  closeOnConfirm: false
+}).then((result) => {
+  if (result.value) {
+	  
+	  $.ajax({
+            url: "/product/ad-delete-all",
+            type: "post",
+            data: {_method: 'delete', _token :"{{ csrf_token() }}"},
+            dataType: "html",
+            success: function (data) {
+				if (data === 'false')
+					{
+						swal('@lang("dingsu.delete_error")', '@lang("dingsu.try_again")', "error");
+					}
+				else 
+					{
+						swal("Done!", '@lang("dingsu.delete_success")', "success");
+						window.location.href = "{{route('ad.product.show')}}";
+					}
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal('@lang("dingsu.delete_error")', '@lang("dingsu.try_again")', "error");
+            }
+        });
+	  
+  } 
+})
+	}
+	
 	
 	
 </script>

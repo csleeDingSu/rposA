@@ -25,7 +25,7 @@
 
 			<div style="clear: both;"></div>
 			
-			<div class="wabao-coin">500.00</div>
+			<div class="wabao-coin">&nbsp;</div>
 		</div>
 		<!-- end wabao coin info -->
 
@@ -49,18 +49,6 @@
 
 				<!-- redeem history content -->
 				<div id="history" class="tab-pane fade">
-					<!--div class="history-row">
-						<div class="col-xs-3 column-1">
-							1001
-						</div>
-						<div class="col-xs-6 column-2">
-							<div class="description">中国移动充值卡 50元</div>
-							<div class="balance">兑换时间:2018-10-24 17:29</div>
-						</div>
-						<div class="col-xs-3 column-3">
-							<div class="btn-pending">等待发放</div>
-						</div>	
-					</div-->
 				</div>
 				<!-- end redeem list content -->
 			</div>
@@ -77,6 +65,8 @@
 		$(document).ready(function () {
 			$.getJSON( "/api/product-list?memberid={{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}", 
 				function( data ) {
+					$('.wabao-coin').html(data.current_point);
+
 			        var records = data.records.data;
 			        var html = '';
 
@@ -84,11 +74,11 @@
 			            
 			            html += '<div class="row">' +
 									'<div class="col-xs-3 column-1">' +
-										'<img class="img-voucher" src="'+ item.product_picurl +'" alt="alipay voucher 50">' +
+										'<img class="img-voucher" src="'+ item.product_picurl +'" alt="'+item.product_name+'">' +
 									'</div>' +
 									'<div class="col-xs-6 column-2">' +
-										'<div class="description">中国移动充值卡50元</div>' +
-										'<div class="note">*可兑换支付宝余额48.5元</div>' +
+										'<div class="description">' + item.product_name + '</div>' +
+										'<div class="note">*可兑换支付宝余额' + item.product_price + '元</div>' +
 										'<div class="icon-coin-wrapper">' +
 											'<div class="icon-coin"></div>' +
 										'</div>' +
@@ -126,7 +116,7 @@
 														'</div>' +
 
 														'<div class="modal-card">' +
-															'<div class="wabao-balance">您当前拥有 680 挖宝币</div>' +
+															'<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 挖宝币</div>' +
 														'</div>' +
 
 														'<div id="error-'+ item.id + '" class="error"></div>' +
@@ -166,23 +156,37 @@
 			    var html = '';
 
 			    $.each(records, function(i, item) {
+			    	var counter = i + 1;
+
 			    	html += '<div class="history-row">' +
 						'<div class="col-xs-3 column-1">' +
-							item.id +
+							counter +
 						'</div>' +
 						'<div class="col-xs-6 column-2">' +
-							'<div class="description">'+ item.pin_name +'</div>' +
+							'<div class="description">'+ item.product_name + ' ' + item.pin_name + '</div>' +
 							'<div class="balance">兑换时间:'+ item.created_at +'</div>' +
-						'</div>' +
-						'<div class="col-xs-3 column-3">' +
-							'<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">查看卡号</div>' +
-						'</div>' +
-					'</div>' +
-					'<div id="content-' + item.id + '" class="collapse">' +
-						'<div>卡号： <span class="numbers">'+ item.code_hash +'</span> 密码：<span class="numbers">'+ item.code +'</span></div>' +
-						'<div class="balance">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
-						'</div>' +
-					'</div>';
+						'</div>';
+
+					if(item.pin_status == 4) { // Pending
+						html += '<div class="col-xs-3 column-3">' +
+									'<div class="btn-pending">等待发放</div>' +
+								'</div>' + 
+							'</div>';
+
+					} else if (item.pin_status == 2) { // Confirmed
+						html += '<div class="col-xs-3 column-3">' +
+									'<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">查看卡号</div>' +
+								'</div>' + 
+							'</div>' +
+						'<div id="content-' + item.id + '" class="collapse">' +
+							'<div>卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="numbers"></span></div>' +
+							'<div class="balance">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
+							'</div>' +
+						'</div>';
+					} else {
+						html += '</div>';
+					}
+
 				});
 
 				$('#history').html(html);

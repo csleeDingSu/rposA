@@ -156,9 +156,6 @@ Route::group(['middleware' => 'auth:admin'], function()
 	//Route::get('/redeem', 'RedeemController@getRedeemList')->name('redeemlist');
 	//Route::post('/redeem/import-pins', 'ImportController@PostpinImport')->name('pin.import');
 	
-
-		
-
 	
 	//Member route
 	Route::get('/member/index', 'MemberController@dashboard');
@@ -173,12 +170,8 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::post('/member/edit/{id}', 'MemberController@update_member');
 	
 	
-	//Route::post('/member/delete/{id}', 'MemberController@delete_member');
-	//Route::get('/member/delete/{id}', 'MemberController@delete_member');
 	Route::delete('/member/delete/{id}', 'MemberController@delete_member');
-	//Route::get('/member/edit', 'MemberController@change_password');
-	//Route::get('/member/edit', 'MemberController@verify_wechat');	
-	//Route::post('/member/edit', 'MemberController@delete_member');
+	
 	
 	Route::get('/member/pending-verification', 'MemberController@list_pending_wechat_account');
 	
@@ -186,11 +179,10 @@ Route::group(['middleware' => 'auth:admin'], function()
 	
 	Route::post('/member/reject-verification', 'MemberController@reject_wechat_verification')->name('post.wechat.reject');
 	
+	Route::post('/member/change-status', 'MemberController@change_status')->name('ajaxchange.member.status');
+	Route::post('/member/change-password', 'MemberController@change_password')->name('ajaxchange.member.resetpass');
 	
-	//Admin Routes
-	///Route::any('/', ['uses' => 'AdminController@dashboard'])->name('admindashboard');
-	///Route::get('/', 'AdminController@dashboard');
-	//Route::get('/', function() { return Redirect::to("AdminController/dashboard"); });
+	//Admin Routes	
 	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admindashboard');
 	
 	
@@ -295,6 +287,8 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::post('/product/ad-add', 'ProductController@save_ad_product')->name('ad.product.save');
 	
 	Route::delete('/product/ad-delete', 'ProductController@delete_ad_product')->name('ad.product.delete');
+	
+	Route::delete('/product/ad-delete-all', 'ProductController@clean_ad_product')->name('ad.product.clean'); //truncate
 	
 	// ad import 
 	Route::get('/product/ad-import', 'ImportController@getAdImport')->name('ad.get.import');

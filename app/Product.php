@@ -247,6 +247,12 @@ class Product extends Model
 		return $result;
 	}
 	
+	public static function clean($ids = false)
+	{
+		$result = DB::table('ad_display')->truncate();
+		return $result;
+	}
+	
 }
 
 

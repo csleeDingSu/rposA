@@ -27,8 +27,12 @@ class ProductController extends Controller
 		
 		$wallet = Wallet::get_wallet_details($member_id);
 		
-		$result =  Product::list_available_redeem_product($wallet->point);
-		return response()->json(['success' => true, 'records' => $result]);
+		if ($wallet)
+		{
+			$result =  Product::list_available_redeem_product($wallet->point);
+			return response()->json(['success' => true, 'current_point'=>$wallet->point , 'records' => $result]);
+		}
+		return response()->json(['success' => false, 'records' => '']);
 	}
 	
 	public function redeem_request(Request $request)

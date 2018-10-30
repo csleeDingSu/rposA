@@ -3,10 +3,9 @@
  *
  *
  ***/
-
 namespace App\Http\Controllers;
-use DB;
-use App;
+
+
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -18,10 +17,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-
-use App\Members as Member;
+use DB;
+use App;
 use Auth;
 use session;
+use App\Wallet;
+
+use App\Members as Member;
+
 class MemberController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -34,8 +37,8 @@ class MemberController extends BaseController
 		if (Auth::Guard('member')->check())
 		{
 			$this->member_profile();
-			//redirect to member
-			//return redirect()->route('memberdashboard'); //change to homepage
+			//return redirect('/profile');
+			//return redirect()->route('/profile'); //change to homepage
 		}
 		else if (Auth::Guard('admin')->check())
 		{
@@ -45,6 +48,7 @@ class MemberController extends BaseController
 		}
 		else
 		{
+			//echo 'here';
 			return redirect()->route('login');
 		}		
 	}
@@ -55,8 +59,8 @@ class MemberController extends BaseController
 	public function member_list()
 	{
 		
-		$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent'])->paginate(25);		
-		//die();
+		$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent','wechat_notes'])->paginate(25);		
+				
 		$data['page'] = 'member.memberlist'; 
 				
 		$data['result'] = $result; 
@@ -64,12 +68,6 @@ class MemberController extends BaseController
 		//return view('purpleadmin.main', $data);
 					
 		return view('main', $data);
-	}
-	
-	public function member_referral_list(Request $request)
-	{
-		$id = $request->id;
-		$result =  Member::get_member_referral_list($id);
 	}
 	
 	public function add_member ()
@@ -167,33 +165,7 @@ class MemberController extends BaseController
 		
 		return view('main', $data);
 	}
-	public function verify_wechat_account (Request $request)
-	{
-		$id = $request->id;
-		$record = Member::find($id);
-		if ($record)
-		{
-			$input = [
-				 'wechat_name'   => $record->wechat_name
-				  ];
-			$validator = Validator::make($input, 
-				[
-					'wechat_name' => 'required|unique:members,wechat_name,'.$id
-				]
-			);
-			if ($validator->fails()) {
-				return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
-			}	
-			else
-			{
-				$data = ['wechat_verification_status'=>0];
-				$res = Member::update_member($record->id,$data);
-			}	
-			
-			return response()->json(['success' => true]);
-		}		
-		return response()->json(['success' => false]);
-	}
+	
 	public function reject_wechat_verification (Request $request)
 	{
 		$id = $request->id;
@@ -218,15 +190,147 @@ class MemberController extends BaseController
 		return response()->json(['success' => true]);
 	}
 	
+	//prem
+	public function verify_wechat_account (Request $request)
+	{
+		$data = $request->_data;
+		
+		foreach($data as $val)
+		{
+			$dbi[$val['name']] = $val['value'];		
+		}
+		
+		$id     = $dbi['hidden_void'];
+		$status = $dbi['model_wechat_status'];
+		$wechat = $dbi['model_wechat_name'];
+		
+		$record = Member::find($id);
+		if ($record)
+		{
+			//$wechat = $record->wechat_name
+			
+			$input = [
+				 'wechat_name'   => $wechat,
+				 'notes'         => $dbi['notes']
+				  ];			
+			
+			$validator = Validator::make($input, 
+				[
+					'wechat_name' => 'required|unique:members,wechat_name,'.$id,
+					'notes' => 'required'
+				]
+			);
+			
+						
+			
+			if ($validator->fails()) {
+				return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+			}	
+			else
+			{
+				$data = ['wechat_name'=> $wechat,'wechat_verification_status'=>$status,'wechat_notes'=>$dbi['notes']];
+				$res = Member::update_member($record->id,$data);
+			}	
+			
+			switch ($status)
+			{
+				case '1':
+					$badge = "<label class='badge badge-info'>".trans('dingsu.unverified')."</label> ";
+				break;
+				case '2':
+					$badge = "<label class='badge badge-warning'>".trans('dingsu.rejected')."</label> ";
+				break;
+				case '3':
+					$badge = "<label class='badge badge-danger'>".trans('dingsu.suspended')."</label> ";
+				break;
+				default:
+					$badge = "<label class='badge badge-success'>".trans('dingsu.verified')."</label> ";
+				break;
+					
+			}
+			
+			return response()->json(['success' => true,'wechat_name'=>$wechat,'wechat_status'=>$status,'badge'=>$badge]);
+		}		
+		return response()->json(['success' => false]);
+	}
+	
+	public function change_status (Request $request)
+	{
+		$id     = $request->id;
+		$status = $request->status;
+		
+		$record = Member::find($id);
+		if ($record)
+		{
+			$data = ['member_status'=> $status];
+			$res = Member::update_member($record->id,$data);
+			
+			
+			switch ($status)
+			{
+				case '1':
+					$badge = "<label class='badge badge-danger'>".trans('dingsu.inactive')."</label> ";
+				break;
+				case '2':
+					$badge = "<label class='badge badge-warning'>".trans('dingsu.suspended')."</label> ";
+				break;
+				default:
+					$badge = "<label class='badge badge-success'>".trans('dingsu.active')."</label> ";
+				break;
+					
+			}
+			
+			return response()->json(['success' => true,'memberstatus'=>$status,'badge'=>$badge]);
+			
+			
+		}
+		return response()->json(['success' => false,'message'=>['unknown user']  ]);
+	}
+	
+	public function change_password (Request $request)
+	{
+		$inputs = $request->input('datav');		
+		$id     = $request->input('id');
+		
+		$record = Member::find($id);
+		
+		
+		foreach ($inputs as $key=>$val)
+		{
+			$data[$val['name']] = $val['value'];			
+		}
+		
+		
+		$input = [            
+		     'password'   => $data['password'],
+			 'password_confirmation'   => $data['confirmpassword'],
+              ];
+		
+		$validator = Validator::make($input, 
+            [                
+                'password' => 'required|alphaNum|min:5|max:50|confirmed',
+            ]
+        );
+		
+		if ($validator->fails()) {
+			 return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		else
+		{
+			
+			$data = [ 'password'=> Hash::make($data['password']) ];
+			$res = Member::update_member($record->id,$data);
+			
+			return response()->json(['success' => true]);
+		}
+	}
+	
 	public function reset_password ()
 	{
 		
 	}
 	
-	public function change_password ()
-	{
-		
-	}
+	
 	
 	public function verify_wechat ()
 	{
@@ -266,7 +370,14 @@ class MemberController extends BaseController
 	
 	public function member_profile()
 	{
-		return view('client/member');
+		$member = Auth::guard('member')->user()->id	;
+		$data['member'] = Member::get_member($member);
+		
+		$data['wallet'] = Wallet::get_wallet_details($member);
+		$data['page'] = 'client.member'; 
+			return response()->json(['success' => true]);		
+		return view('main', $data);
+		return view('client.member', $data);
 	}
 	
 	public function today_transaction()

@@ -97,17 +97,27 @@
                       </div>
                     </div>
 					 
-					 <div class="row"> 
+					 <div class="row">
+						 
+						 <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="product_image" class="col-sm-3 col-form-label">@lang('dingsu.image')</label>
+                          <div class="col-sm-9">
+                            <input id="product_image" name="product_image" class="form-control" type="text" value="{{ old('product_image')}}" >
+                          </div>
+                        </div>
+                      </div>
+						 <!--
 						
                      <div class="col-md-6">
                         <div class="form-group row">
                           <label for="product_image" class="col-sm-3 col-form-label">@lang('dingsu.image')</label>
                           <div class="col-sm-9">
-                            {!! Form::file('product_image', array('class' => 'image')) !!}
+                             Form::file('product_image', array('class' => 'image')) 
                           </div>
                         </div>
                       </div>
-						 
+						 -->
                      <div class="col-md-6">
                         <div class="form-group row">
                           <label for="status" class="col-sm-3 col-form-label">@lang('dingsu.status')</label>

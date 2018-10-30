@@ -100,6 +100,17 @@
 					  
 					   <div class="row"> 
 					
+						   <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="product_image" class="col-sm-3 col-form-label">@lang('dingsu.image')</label>
+                          <div class="col-sm-9">
+                            <input id="product_image" name="product_image" class="form-control" type="text" value="{{ old('product_image', $record->product_picurl) }}" >
+							  
+							  <img src="{{ $record->product_picurl }}" width="300px">
+                          </div>
+                        </div>
+                      </div>
+						   <!--
 						 <div class="col-md-6">
                         <div class="form-group row">
                           <label for="product_image" class="col-sm-3 col-form-label">@lang('dingsu.image')</label>
@@ -107,8 +118,8 @@
                             {!! Form::file('product_image', array('class' => 'image')) !!}
 							  
 							  
-							  <div class="" style="width: 200px;">
-							  <img src="{{ asset('ad/product_image/' . $record->product_picurl) }}" width="300px">
+							  <div class="" style="width: 200px; height: 180px">
+							  <img src="{{ $record->product_picurl }}" width="300px">
 							  
 							  </div>
 							  
@@ -116,7 +127,7 @@
                           </div>
                         </div>
                       </div>
-						   
+						   -->
 						   
 						  
                      <div class="col-md-6">

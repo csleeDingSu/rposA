@@ -306,4 +306,9 @@ return [
 	'picture' => '图片',
 	'product_quantity' => '可用数量',
 	'description' => '产品描述',
+	'clean' => '清洁',
+	'change' => 'change',
+	'change_passsword_error' => 'cannot update/change password',
+	'change_passsword_success' => 'password successfully Updated',
+	
 ];
