@@ -160,7 +160,9 @@ class Product extends Model
 	
 	public static function list_available_redeem_product($point)
 	{		
-		$result = Product::where('product_status', '=', 0);
+		//$result = Product::where('product_status', '=', 0);
+		
+		$result = DB::table('view_product')->where('product_status', '=', 0);
 		
 		if (!empty($point))
 		{

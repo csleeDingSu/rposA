@@ -112,7 +112,7 @@ class ClientController extends BaseController
 			if (is_null($wechat_name)) {
 
 				$msg = trans('dingsu.please_fill_wechatid');
-				\Session::flash('success',$msg);
+				\Session::flash('warning',$msg);
 
 				return redirect('/validate');
 
@@ -124,14 +124,17 @@ class ClientController extends BaseController
 
 				if ($res) {
 
-					return view('client/game');
+					$msg = trans('dingsu.success_update_wechatid');
+					\Session::flash('success',$msg);
+
+					return redirect('/validate');
 
 				} else {
 
 					$msg = trans('dingsu.please_fill_wechatid');
 					\Session::flash('success',$msg);
 
-					return redirect('/validate');
+					return redirect('/arcade');
 
 
 				}

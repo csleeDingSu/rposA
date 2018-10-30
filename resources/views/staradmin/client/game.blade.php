@@ -44,6 +44,7 @@
 			<input id="hidLatestResult" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
+			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
 	  	</div>
 	</div>
 	<!-- end information table -->
@@ -132,46 +133,143 @@
 	<!-- end button wrapper -->
 </div>
 
-<!-- Modal starts -->
-<form class="form-sample" name="formvoucher" id="formvoucher" action="" method="post" autocomplete="on" >
-	<div class="modal fade col-md-12" id="wechat_verify" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+<!-- Steps Modal starts -->
+<form class="form-sample" name="frm-steps" id="frm-steps" action="" method="post" autocomplete="on" >
+	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="icon-verify-wrapper">
-									<div class="icon-verify"></div>
-								</div>
 								<div class="instructions">
-									您需要通过实名认证
+									只需两步实名认证
 									<br />
-									才能享受网站的福利
-								</div>
-								<div class="btn-verify">
-									<a href="/validate">
-										<div class="left">马上去认证</div>
-										<div class="glyphicon glyphicon-menu-right"></div>
-									</a>
-								</div>			
+									就能享受网站福利
+								</div>								
 							</div>
-							
-
+							<div class="row">
+								<div class="col-xs-2"></div>
+								<div class="col-xs-4">
+									<img class="img-step" src="{{ asset('/client/images/step_01.png') }}" />
+									<div class="step">第一步</div>
+									<div class="step-details">
+										添加微信<br />
+										客服审核
+									</div>
+								</div>
+								<div class="col-xs-4">
+									<img class="img-step" src="{{ asset('/client/images/step_02.png') }}" />
+									<div class="step">第二步</div>
+									<div class="step-details">
+										通过认证<br />
+										享受福利
+									</div>
+								</div>
+								<div class="col-xs-2"></div>
+							</div>
 						</div>
 					</div>							
 				</div>
+				<div class="btn-verify-wrapper">
+					<div class="btn-verify">
+						<a href="#">
+							<div class="left">马上去认证</div>
+							<div class="glyphicon glyphicon-menu-right"></div>
+						</a>
+					</div>
+				</div>
 			</div>
-			<div class="btn-close">
-				<a href="/">
-					<div class="glyphicon glyphicon-remove-circle"></div>
-					<div class="left"> 暂时不想认证，先逛逛看。</div>
-				</a>
+
+			<div class="modal-card">
+				<div class="btn-close">
+					<a href="/">
+						<div class="glyphicon glyphicon-remove-circle"></div>
+						<div class="left"> 不想认证，先逛逛看。</div>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </form> 
-<!-- Modal Ends -->
+<!-- Steps Modal Ends -->
+
+
+
+<!-- Verify Modal starts -->
+@include('layouts.partials.notification')
+<form action="member_update_wechatname" method="post" name="wechatform" id="wechatform">
+	<div class="modal fade col-md-12" id="wechat-verify" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content modal-wechat">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								@csrf
+
+								<div class="" id="validation-errors"></div>
+								<div class="wechat-title">
+									实名认证审核
+								</div>
+								
+								<div class="modal-input">
+									<input type="hidden" id="memberid", name="memberid" value="{{ Auth::Guard('member')->user()->id }}"/>
+									<input name="wechat_name" id="wechat_name" type="text"  placeholder="@lang('dingsu.ph_username')" value="" >
+								</div>
+
+								<div class="wechat-wrapper">
+									<img src="{{ asset('/client/images/wabao666_qrcode.JPG') }}" />
+									<div>长按图片保存到手机，在扫码相册<br />
+									添加客服微信，需备注 "{{ Auth::Guard('member')->user()->username }}"</div>
+								</div>						
+							</div>
+						</div>
+					</div>							
+				</div>
+				<div class="btn-submit-wrapper">
+					<button class="btn btn-submit">@lang('dingsu.submit')</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form> 
+<!-- Verify Modal Ends -->
+
+<!-- pending verify step -->
+<div class="modal fade col-md-12" id="pending-verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="instructions">
+									等待认证
+								</div>								
+							</div>
+							<div class="card">
+								<div class="instructions">加客服微信审核</div>
+								
+								<img src="/client/images/wabao666_qrcode.JPG" alt="validate" class="img-validate" style="width: 250px;height: 250px;" />
+							</div>
+							
+							<div class="btn-close">
+								<a href="/">
+									<div class="glyphicon glyphicon-remove-circle"></div>
+									<div class="left"> 先逛逛看。</div>
+								</a>
+							</div>
+						
+						</div>
+					</div>							
+				</div>
+			</div>
+			
+		</div>
+	</div>
+<!--  end -->
+
 @endsection
 
 @section('footer-javascript')
@@ -183,10 +281,25 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			var wechat_status = $('#hidWechatId').val();
+			var wechat_name = $('#hidWechatName').val();
+			
 
-			if(wechat_status > 0) {
-				$('#wechat_verify').modal({backdrop: 'static', keyboard: false});
+			if(wechat_status > 0 && wechat_name == null) {
+				$('#verify-steps').modal({backdrop: 'static', keyboard: false});
+			} else if(wechat_status > 0 && wechat_name != null) {
+				$('#pending-verify-steps').modal({backdrop: 'static', keyboard: false});
 			}
+
+			$('.btn-verify').click(function(){
+				$('#verify-steps').modal('hide');
+				$('#wechat-verify').modal({backdrop: 'static', keyboard: false});
+			});
+
+			@if (count($errors) > 0)
+				$('#verify-steps').modal('hide');
+			    $('#wechat-verify').modal({backdrop: 'static', keyboard: false});
+			@endif
+
 		});	
 	</script>
 @endsection

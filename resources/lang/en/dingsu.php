@@ -303,7 +303,7 @@ return [
 
 	'please_login' => 'Not logged in, please log in to continue.',
 	'please_fill_wechatid' => 'Please fill in your wechat id',
-	
+	'success_update_wechatid' => 'Your name has been updated successfully.',
 	
 	'discount_price' => 'Discount price',
 	'image' => 'Image',
@@ -322,7 +322,6 @@ return [
 	'current_life' => 'Current life',
 	'add_life' => 'Add life',
 	'life' => 'Life',
-	
-	
+	'close' => 'Close',
 	
 ];

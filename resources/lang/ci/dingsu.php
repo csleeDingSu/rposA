@@ -294,7 +294,8 @@ return [
 	'product_display_id' => '产品展示ID',
 	'referred_by' => 'Referred by',
 	'please_login' => '未登录，请登录以继续.',
-	'please_fill_wechatid' => '请填写您的微信ID',
+	'please_fill_wechatid' => '请填写您的真实姓名',
+	'success_update_wechatid' => '您的真实姓名已成功更新，等候认证。',
 
 	
 	'discount_price' => '卷后价',
@@ -313,5 +314,6 @@ return [
 	'current_life' => 'Current life',
 	'add_life' => 'Add life',
 	'life' => 'Life',
+	'close' => '关闭',
 	
 ];
