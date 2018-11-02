@@ -13,6 +13,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+use App\redeemed;
+use App\Members;
+use Carbon\Carbon;
+
 class AdminController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -52,6 +56,10 @@ class AdminController extends BaseController
 		
 		if (Auth::guard('admin')->check()){
 		//	$user = Auth::user();
+			$data['total_members'] = Members::count();
+			$data['today_registration'] = Members::whereDate('created_at',Carbon::today())->count();
+			$data['today_online'] = Members::whereNotNull('active_session')->count();
+			$data['total_redeemed'] = redeemed::count();
 		}
 		//print_r($user);die();
 		

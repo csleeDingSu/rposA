@@ -628,6 +628,11 @@ iframe {
 	margin-bottom: 20px;
 }
 
+.alert {
+	padding: 5px;
+	font-size: 12px;
+}
+
 @media only screen and (max-width: 360px) {
 	.modal-input input {
 		width: 220px;

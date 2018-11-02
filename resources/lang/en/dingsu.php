@@ -323,5 +323,10 @@ return [
 	'add_life' => 'Add life',
 	'life' => 'Life',
 	'close' => 'Close',
+
+	'total_members' => 'Total Members',
+	'today_registration' => 'Today Registration',
+	'online_users' => 'Online users',
+	'total_redeemed' => 'Total redeemed',
 	
 ];

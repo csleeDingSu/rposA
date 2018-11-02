@@ -197,7 +197,6 @@
 
 
 <!-- Verify Modal starts -->
-@include('layouts.partials.notification')
 <form action="member_update_wechatname" method="post" name="wechatform" id="wechatform">
 	<div class="modal fade col-md-12" id="wechat-verify" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
@@ -212,6 +211,8 @@
 								<div class="wechat-title">
 									实名认证审核
 								</div>
+								
+								@include('layouts.partials.notification')
 								
 								<div class="modal-input">
 									<input type="hidden" id="memberid", name="memberid" value="{{ Auth::Guard('member')->user()->id }}"/>
@@ -295,7 +296,7 @@
 				$('#wechat-verify').modal({backdrop: 'static', keyboard: false});
 			});
 
-			@if (count($errors) > 0)
+			@if(Session::has('info') or Session::has('success') or Session::has('warning') or Session::has('error'))
 				$('#verify-steps').modal('hide');
 			    $('#wechat-verify').modal({backdrop: 'static', keyboard: false});
 			@endif
