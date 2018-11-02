@@ -15,6 +15,7 @@ body {
 table {
     border-collapse: separate;
     border-spacing: 3px;
+    margin: 0 auto;
 }
 
 tbody td {
@@ -32,11 +33,7 @@ td.history {
 }
 
 /* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-    html {
-        margin-left: 30px;
-    }
-
+@media only screen and (max-width: 360px) {
     tbody td {
         padding: 0px 5px 3px 5px;
         height: 26px;
@@ -70,7 +67,7 @@ td.history {
 }
 
 /* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+@media only screen and (max-width: 360px) {
     .legend-item {
         padding-top: 10px;
         padding-right: 10px;
@@ -137,7 +134,7 @@ table .even-fail .label {
 }
 
 /* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+@media only screen and (max-width: 360px) {
     table .label {
         width: 20px;
         height: 20px;

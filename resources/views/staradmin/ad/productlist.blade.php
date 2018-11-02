@@ -8,7 +8,7 @@
 <div class="col-4 text-right">
 	
 	
-	<a href="javascript:void(0);" onClick="delete_all();" class="btn btn-info mr-2">@lang('dingsu.clean')</a>
+	<a href="javascript:void(0);" onClick="delete_all();" class="btn btn-danger mr-2">@lang('dingsu.clean')</a>
 
 
 </div>

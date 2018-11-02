@@ -274,11 +274,3 @@ a.btn_submit, a.btn_submit:active, a.btn_submit:hover, a.btn_submit:focus {
 	float: left;
 	position: relative;
 }
-
-.glyphicon {
-	margin-top: 6px;
-}
-
-a.back:visited {
-    color: black;
-}

@@ -1,6 +1,12 @@
 @extends('layouts.default')
 
-@section('title', '个人主页')
+@section('title', '兑换奖品')
+
+@section('left-menu')
+    <a href="/profile" class="back">
+        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
+    </a>
+@endsection
 
 @section('top-css')
     @parent
@@ -33,8 +39,8 @@
 		<div class="full-width-tabs">
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
-			  <li class="active take-all-space-you-can"><a data-toggle="tab" href="#prize">奖品商城</a></li>
-			  <li class="take-all-space-you-can"><a data-toggle="tab" href="#history">我的充值卡</a></li>
+			  <li class="active take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">奖品兑换</a></li>
+			  <li class="take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的充值卡</a></li>
 			</ul>
 			<!-- end redeem tabs -->
 
@@ -63,6 +69,11 @@
     @parent
 	<script type="text/javascript">
 		$(document).ready(function () {
+			$('.tab').click(function(){
+				var title = $(this).html();
+				$('.navbar-brand').html(title); 
+			});
+
 			$.getJSON( "/api/product-list?memberid={{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}", 
 				function( data ) {
 					$('.wabao-coin').html(data.current_point);
@@ -78,13 +89,13 @@
 									'</div>' +
 									'<div class="col-xs-6 column-2">' +
 										'<div class="description">' + item.product_name + '</div>' +
-										'<div class="note">*可兑换支付宝余额' + item.product_price + '元</div>' +
+										'<div class="note">您还剩' + parseInt(data.current_point) + '挖宝币</div>' +
 										'<div class="icon-coin-wrapper">' +
 											'<div class="icon-coin"></div>' +
 										'</div>' +
 										'<div class="w-coin">'+ item.min_point +'</div>' +
 										'<div style="clear: both;"></div>' +
-										'<div class="balance">剩余 221 张 已兑换 3884 张</div>' +
+										'<div class="remaining">剩余 221 张 已兑换 3884 张</div>' +
 									'</div>' +
 									'<div class="col-xs-3 column-3">' +
 										'<div class="btn-redeem openeditmodel'+ i +'">兑换</div>' +
@@ -159,28 +170,28 @@
 			    	var counter = i + 1;
 
 			    	html += '<div class="history-row">' +
-						'<div class="col-xs-3 column-1">' +
+						'<div class="col-xs-2 column-4">' +
 							counter +
 						'</div>' +
-						'<div class="col-xs-6 column-2">' +
+						'<div class="col-xs-7 column-5">' +
 							'<div class="description">'+ item.product_name + ' ' + item.pin_name + '</div>' +
 							'<div class="balance">兑换时间:'+ item.created_at +'</div>' +
 						'</div>';
 
 					if(item.pin_status == 4) { // Pending
-						html += '<div class="col-xs-3 column-3">' +
+						html += '<div class="col-xs-3 column-6">' +
 									'<div class="btn-pending">等待发放</div>' +
 								'</div>' + 
 							'</div>';
 
 					} else if (item.pin_status == 2) { // Confirmed
-						html += '<div class="col-xs-3 column-3">' +
+						html += '<div class="col-xs-3 column-6">' +
 									'<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">查看卡号</div>' +
 								'</div>' + 
 							'</div>' +
 						'<div id="content-' + item.id + '" class="collapse">' +
-							'<div>卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="numbers"></span></div>' +
-							'<div class="balance">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
+							'<div>卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="codes"></span></div>' +
+							'<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
 							'</div>' +
 						'</div>';
 					} else {

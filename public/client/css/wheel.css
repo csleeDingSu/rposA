@@ -1,6 +1,11 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .wrapper {
     margin: 0 auto;
     width: 100%;
+    
 }
 
 #txtCounter {
@@ -8,15 +13,15 @@
     color: white;
     padding-left: 12px;
     padding-top: 10px;
+    text-shadow:
+        2px  2px 0 #5e0f8c,
+       -1px -1px 0 #5e0f8c,  
+        1px -1px 0 #5e0f8c,
+       -1px  1px 0 #5e0f8c,
+        1px  1px 0 #5e0f8c;
 }
 
 #wheel_container {
-    left: 13%;
-}
-
-/* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-    #wheel_container {
-        left: 8%;
-    }
+    margin: 0 auto;
+    width: 100%;
 }

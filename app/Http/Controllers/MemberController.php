@@ -56,17 +56,53 @@ class MemberController extends BaseController
 	public function dashboard() {
 		return $this->member_list();
 	}
-	public function member_list()
+	
+	public function child_list(Request $request)
 	{
+		$result = Member::get_child($request->id);
+		return view('member.childlist', ['result' => $result])->render();  
+	}
+	
+	public function member_list(Request $request)
+	{
+		$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent','wechat_notes','totalcount']);		
 		
-		$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent','wechat_notes'])->paginate(25);		
+		$input = array();
+		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter
+			if (!empty($input['s_phone'])) { 
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%");
+			}
+			if (!empty($input['s_referred_by'])) {
+				$result = $result->where('parent','=',"{$input['s_referred_by']}") ;
+			}		
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;
 				
+			}
+			if (isset($input['s_wechatstatus'])) {
+				if ($input['s_wechatstatus'] != '' )
+					$result = $result->where('wechat_verification_status','=',$input['s_wechatstatus']);								
+			}
+			if (isset($input['s_status'])) {
+				if ($input['s_status'] != '' )
+					$result = $result->where('member_status','=',$input['s_status']);
+			}
+		}
+		$result =  $result->orderby('id','DESC')->paginate(30);
+		
 		$data['page'] = 'member.memberlist'; 
 				
 		$data['result'] = $result; 
 		
-		//return view('purpleadmin.main', $data);
-					
+		if ($request->ajax()) {
+            return view('member.ajaxmemberlist', ['result' => $result])->render();  
+        }					
 		return view('main', $data);
 	}
 	

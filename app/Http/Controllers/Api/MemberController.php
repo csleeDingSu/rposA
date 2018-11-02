@@ -53,5 +53,11 @@ class MemberController extends Controller
 		return response()->json(['success' => true,'data'=>$result]);
 	}
 	
+	public function child_list(Request $request)
+	{
+		$result = Member::get_child($request->memberid);  
+		return response()->json(['success' => true,'result' => $result]);
+	}
+	
 	
 }

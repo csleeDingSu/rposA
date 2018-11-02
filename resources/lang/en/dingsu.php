@@ -323,10 +323,20 @@ return [
 	'add_life' => 'Add life',
 	'life' => 'Life',
 	'close' => 'Close',
-
+	'unused' => 'Unused',
+	'description' => 'Description',
+	'history' => 'history',
+	'log' => 'log',
+	'softpin' => 'softpin',
+	'referred_count' => 'Total referred',
+	'user_account_success_message' => 'Account has been created successfully and is ready to use',
+	'add_new_user' => 'Add new user',
+	'edit_user' => 'Edit user details',
+	'user_accountupdate_success_message' => 'Account was successfully updated', 
+	'setting_success_save_message' => 'Settings was successfully updated',
+	
 	'total_members' => 'Total Members',
 	'today_registration' => 'Today Registration',
 	'online_users' => 'Online users',
 	'total_redeemed' => 'Total redeemed',
-	
 ];

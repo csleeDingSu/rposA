@@ -75,6 +75,10 @@ Route::group(['middleware' => 'sso'], function()
 	Route::get('/verify', function () {
 		return view('client/verify');
 	});
+
+	Route::get('/faq', function () {
+		return view('client/faq');
+	});
 	
 	
 	
@@ -181,6 +185,8 @@ Route::group(['middleware' => 'auth:admin'], function()
 	
 	Route::post('/member/change-status', 'MemberController@change_status')->name('ajaxchange.member.status');
 	Route::post('/member/change-password', 'MemberController@change_password')->name('ajaxchange.member.resetpass');
+	
+	Route::get('/member/get-childs', 'MemberController@child_list')->name('ajax.child.members');
 	
 	//Admin Routes	
 	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admindashboard');
@@ -300,6 +306,26 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::get('/ledger/get-life', 'LedgerController@get_life')->name('get.ledger.life');
 	
 	Route::post('/ledger/adjust-life', 'LedgerController@adjust_life')->name('post.ledger.adjustlife');
+	
+	//settings
+	Route::get('/admin/settings', 'AdminController@setting')->name('site.settings');
+	Route::post('/admin/settings', 'AdminController@update_setting')->name('site.submit.settings');
+	
+	//User 
+	Route::get('/user', 'AdminController@userlist');
+	Route::get('/user/list', 'AdminController@userlist')->name('userlist');	
+	Route::get('/user/add', 'AdminController@add_user');
+	Route::post('/user/add', 'AdminController@create');	
+	Route::get('/user/edit/{id}', 'AdminController@edit_user');
+	Route::post('/user/edit/{id}', 'AdminController@update');	
+	Route::delete('/user/delete/{id}', 'AdminController@destroy');
+	
+	Route::post('/user/change-status', 'AdminController@change_status')->name('post.user.status');	
+	Route::post('/user/change-password', 'AdminController@change_password')->name('post.user.resetpass');
+	
+	Route::get('/user/profile', 'AdminController@profile');
+	Route::post('/user/profile', 'AdminController@update_profile');	
+	Route::post('/user/update-password', 'AdminController@update_password');
 });
 //END
 

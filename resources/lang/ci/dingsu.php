@@ -315,10 +315,20 @@ return [
 	'add_life' => 'Add life',
 	'life' => 'Life',
 	'close' => '关闭',
+	'unused' => 'Unused',
+	'description' => 'Description',
+	'history' => 'history',
+	'log' => 'log',
+	'softpin' => 'softpin',
+	'referred_count' => 'Total referred',
+	'user_account_success_message' => 'Account has been created successfully and is ready to use',
+	'add_new_user' => 'Add new user',
+	'edit_user' => 'Edit user details',
+	'user_accountupdate_success_message' => 'Account was successfully updated',
+	'setting_success_save_message' => 'Settings was successfully updated',
 
 	'total_members' => '会员总数',
 	'today_registration' => '今天注册人数',
 	'online_users' => '在线用户',
 	'total_redeemed' => '赎回总额',
-	
 ];

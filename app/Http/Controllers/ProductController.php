@@ -182,10 +182,11 @@ class ProductController extends BaseController
 				'product_display_id' => 'required|integer|not_in:0|min:1|unique:product,product_display_id',
 				'min_point' => 'required|numeric',
 				'product_price' => 'numeric|between:0,99999.99',
+				'product_pic_url' => 'required',
             ]
         );	
 		$now = Carbon::now();
-		$data = ['product_name' => $request->product_name,'product_display_id' => $request->product_display_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_description' => $product_description];
+		$data = ['product_name' => $request->product_name,'product_display_id' => $request->product_display_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description];
 		
 		Product::save_product($data);
 		
@@ -214,11 +215,12 @@ class ProductController extends BaseController
                 'product_name'  => 'required|string|min:4',
 				'min_point'     => 'required|numeric',
 				'product_price' => 'numeric|between:0,99999.99',
-				'id'            => 'unique:product,id,'.$id
+				'id'            => 'unique:product,id,'.$id,
+				'product_pic_url' => 'required',
             ]
         );	
 		$now = Carbon::now();
-		$data = ['product_name' => $request->product_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now];
+		$data = ['product_name' => $request->product_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description];
 		
 		Product::update_product($id, $data);
 		
@@ -226,8 +228,39 @@ class ProductController extends BaseController
 		 
 	}
 	
+	public function list_pins(Request $request)
+    {
+		$result =  \DB::table('view_softpins');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_product_name'])) {
+				$result = $result->where('product_name','LIKE', "%{$input['s_product_name']}%") ;				
+			}
+			if (isset($input['s_status'])) {
+				if ($input['s_status'] != '' )
+					$result = $result->where('pin_status','=',$input['s_status']);
+			}
+		}
+		
+		$result =  $result->orderby('id','DESC')->paginate(30);
+				
+		$data['page'] = 'product.pinlist'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('product.pin_ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);		
+	}
 	
-	public function list_pins()
+	public function old_list_pins()
     {
 		$result =  Product::get_pin_list_by_view(100);
 		$data['page'] = 'product.pinlist'; 	
@@ -250,14 +283,12 @@ class ProductController extends BaseController
 					'product_id' => $dbi['product_list'], 
 					'pin_name'   => $dbi['pin_name'],			 
 					'code'       => $dbi['code'],
-					'code_hash'  => $dbi['code_hash'],
 			  	 ];
 		
 		$validator = Validator::make($input, [
 			'product_id'   => 'required|exists:product,id',
 			'pin_name'     => 'required',
 			'code'         => 'required|unique:softpins,code',
-			'code_hash'    => 'required',
 		]);
  
 		
@@ -269,7 +300,7 @@ class ProductController extends BaseController
 		
 		
 		$now = Carbon::now();
-		$data = ['product_id' => $input['product_id'],'pin_name' => $input['pin_name'],'code' => $input['code'],'code_hash' => $input['code_hash'],'created_at' => $now];
+		$data = ['product_id' => $input['product_id'],'pin_name' => $input['pin_name'],'code' => $input['code'],'created_at' => $now];
 		
 		$id = Product::save_pin($data);
 		
@@ -319,7 +350,40 @@ class ProductController extends BaseController
 		return view('main', $data);		
 	}
 	
-	public function get_pending_redeemlist()
+	public function get_pending_redeemlist(Request $request)
+    {
+		$result =  \DB::table('view_redeem_list')->where('pin_status',4);		
+		
+		$input = array();
+		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_product_name'])) {
+				$result = $result->where('product_name','LIKE', "%{$input['s_product_name']}%") ;
+				
+			}
+			if (!empty($input['s_username'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			}
+		}
+		$result =  $result->orderby('id','DESC')->paginate(30);
+		
+		$data['page'] = 'product.redeemlist'; 	
+				
+		$data['result'] = $result; 
+		
+		if ($request->ajax()) {
+            return view('product.redeem_ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);
+	}
+	
+	public function old_get_pending_redeemlist()
     {
 		$result =  Product::get_pending_redeemlist(100);
 		$data['page'] = 'product.redeemlist'; 	

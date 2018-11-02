@@ -1,0 +1,144 @@
+
+
+
+
+<div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">@lang('dingsu.setting')</h4> <hr>
+                  <form class="form-sample" action="" method="post" autocomplete="off">
+					   
+				
+					  {{ csrf_field() }}
+					  
+					  
+					  @foreach ($errors->all() as $error)
+						<div class="alert alert-danger" role="alert">@lang($error)</div>
+					  @endforeach
+					  
+					  
+					  @if(session()->has('message'))
+						<div class="alert alert-success" role="alert">
+							{{ session()->get('message') }}
+						</div>
+					@endif
+					  
+					  
+					  <div class="row">
+						
+                      <div class="col-md-6">
+                        <div class="form-group row"> 
+							<label for="allow_login" class="col-sm-3 col-form-label">@lang('dingsu.allow_login')</label>
+							 
+                          <div class="col-sm-9">
+                            <select id="allow_login" name="allow_login" class="form-control">
+                              <option {{old('allow_login',$record->allow_login)=="Y"? 'selected':''}}  value="Y" >@lang('dingsu.yes')</option>
+                              <option {{old('allow_login',$record->allow_login)=="N"? 'selected':''}} value="N">@lang('dingsu.no')</option>
+                            </select>
+                          </div>
+							
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="allow_registration" class="col-sm-3 col-form-label">@lang('dingsu.allow_registration')</label>
+                          <div class="col-sm-9">
+                            <select id="allow_registration" name="allow_registration" class="form-control">
+                              <option {{old('allow_registration',$record->allow_registration)=="Y"? 'selected':''}}  value="Y" >@lang('dingsu.yes')</option>
+                              <option {{old('allow_registration',$record->allow_registration)=="N"? 'selected':''}} value="N">@lang('dingsu.no')</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					  
+					  
+					  <div class="row">
+						
+                      <div class="col-md-6">
+                        <div class="form-group row"> 
+							<label for="site_maintenance" class="col-sm-3 col-form-label">@lang('dingsu.site_maintenance')</label>
+                          
+							 
+                          <div class="col-sm-9">
+                            <select id="site_maintenance" name="site_maintenance" class="form-control">
+                              <option {{old('site_maintenance',$record->site_maintenance)=="Y"? 'selected':''}}  value="Y" >@lang('dingsu.yes')</option>
+                              <option {{old('site_maintenance',$record->site_maintenance)=="N"? 'selected':''}} value="N">@lang('dingsu.no')</option>
+                            </select>
+                          </div>
+							
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="maintenance_message" class="col-sm-3 col-form-label">@lang('dingsu.maintenance_message')</label>
+                          <div class="col-sm-9">
+                           <textarea class="form-control" name="maintenance_message" id="maintenance_message" placeholder="@lang('dingsu.maintenance_message_placeholder')" rows="3">{{ $record->maintenance_message }}</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					  
+					 <div class="row">
+						
+                     
+						  
+						  <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="auto_maintenance" class="col-sm-3 col-form-label">@lang('dingsu.auto_maintenance')</label>
+                          <div class="col-sm-9">
+                           <div class="form-check form-check-flat">
+                              <label class="form-check-label">
+                                <input value="1" {{ (! empty(old('auto_maintenance')) ? 'checked' : '') }} name="auto_maintenance" id="auto_maintenance" class="form-check-input" type="checkbox"> &nbsp; <i class="input-helper"></i></label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+						  
+                    </div>
+					  
+					  
+					  
+					  <div class="row"> 
+						
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="maintenance_start_time" class="col-sm-3 col-form-label">@lang('dingsu.maintenance_start_time')</label>
+                          <div class="col-sm-9">
+                            <input id="maintenance_start_time" name="maintenance_start_time" class="form-control" type="text"  value="{{$record->maintenance_start_time}}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="maintenance_end_time" class="col-sm-3 col-form-label">@lang('dingsu.maintenance_end_time')</label>
+                          <div class="col-sm-9">
+                            <input id="maintenance_end_time" name="maintenance_end_time" class="form-control" type="text"  value="{{ old('maintenance_end_time', $record->maintenance_end_time) }}">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					  
+					  
+						 
+						 
+						 
+						 
+					  
+                    <button type="submit" class="btn btn-success mr-2">@lang('dingsu.submit')</button>
+					  <a href="" type="submit" class="btn btn-light mr-2">@lang('dingsu.reset')</a>
+                    <div class="row">
+                      
+                      
+                   
+					  
+					  
+                    
+                  </form>
+                </div>
+              </div>
+            </div>
+	
+	
+	
+	

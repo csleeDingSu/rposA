@@ -192,3 +192,12 @@ body {
 	/*width:50%;*/
 	/*height: 50%;*/
 }
+
+#qrcode {
+	position: absolute;
+	margin:auto;
+	width:100%;
+	left: 710px;
+	top: 360px;
+}
+

@@ -63,6 +63,12 @@ class Members extends Model
 		return $result;
 	}
 	
+	public static function get_child($refid)
+	{
+		$result = Members::select('username','created_at','wechat_name','wechat_verification_status','member_status')->where('referred_by', $refid)->get();
+		return $result;
+	}
+	
 	public static function get_view_member($id)
 	{
 		$result = DB::table('view_members')->where('id', $id)->first();

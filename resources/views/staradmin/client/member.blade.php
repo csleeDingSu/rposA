@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '个人主页')
+@section('title', '个人中心')
 
 @section('top-css')
     @parent
@@ -13,16 +13,22 @@
 		<div class="box">
 			<!-- member id -->
 			<div class="card left">
-				<div class="name">{{ $member->username }}</div>
-				@if($member->wechat_verification_status == 0)
-				<div class="icon-verified-wrapper">
-					<div class="icon-verified"></div>
+				<div class="col-xs-6 member-wrapper">
+					<div class="name">{{ $member->username }}</div>
+					<div style="clear: both;"></div>
+					<div class="member-id">ID:{{ $member->id }}</div>
 				</div>
-				<div class="verified">已通过实名认证</div>
-				@endif
+				<div class="col-xs-6 member-wrapper">
+					@if($member->wechat_verification_status == 0)
+					<div class="button-verified">
+						<div class="icon-verified-wrapper">
+							<div class="icon-verified"></div>
+						</div>
+						<div class="verified">已通过实名认证</div>
+					</div>
+					@endif
+				</div>
 				<div style="clear: both;"></div>
-				
-				<div class="member-id">ID:{{ $member->id }}</div>
 			</div>
 			<!-- end member id -->
 
@@ -52,8 +58,13 @@
 
 		<!-- member listing -->
 		<div class="listing-table">
+			<div class="image-wrapper">
+				<a href="/share">
+					<img src="{{ asset('/client/images/share.png') }}" alt="share">
+				</a>
+			</div>
 			<ul class="list-group">
-				<li class="list-group-item">
+				<li class="list-group-item first-item">
 					<div class="icon-wrapper">
 						<div class="icon-play"></div>
 					</div>
@@ -61,15 +72,15 @@
 					我的奖品
 				</li>
 
-				<li class="list-group-item">
-					<a href="/redeem">
-						<div class="icon-wrapper">
-							<div class="icon-redeem"></div>
-						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						兑换奖品
-					</a>
-				</li>
+				<a href="/redeem">
+					<li class="list-group-item">					
+							<div class="icon-wrapper">
+								<div class="icon-redeem"></div>
+							</div>
+							<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+							兑换奖品					
+					</li>
+				</a>
 
 				<li class="list-group-item">
 					<div class="icon-wrapper">
@@ -89,22 +100,36 @@
 			</ul>
 		</div>
 
-		<div class="listing-table">
+		<div class="listing-table long">
 			<ul class="list-group">
-				<li class="list-group-item">
-					<div class="icon-wrapper">
-						<div class="icon-faq"></div>
-					</div>
-					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-					常见问题
-				</li>
+
+				<a href="/faq">
+					<li class="list-group-item first-item">
+						<div class="icon-wrapper">
+							<div class="icon-faq"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						常见问题
+					</li>
+				</a>
+
 				<li class="list-group-item">
 					<div class="icon-wrapper">
 						<div class="icon-customer"></div>
 					</div>
 					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 					联系客服
-				</li>				
+				</li>
+
+				<a href = "/logout">
+					<li class="list-group-item">					
+						<div class="icon-wrapper" style="padding: 0px 5px 5px 6px">
+							<i class="fa fa-sign-out-alt"></i>						
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						{{ trans('dingsu.logout') }}					
+					</li>
+				</a>				
 			</ul>
 		 </div>
 		<!-- end member listing -->

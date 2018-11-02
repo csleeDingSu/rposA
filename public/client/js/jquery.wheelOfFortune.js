@@ -51,7 +51,7 @@
                 '<img src="' + pointerImg + '" style="position:absolute;width:' + pSide + 'px;height:' + pSide + 'px;top:' + pOffset + 'px;left:' + pOffset + 'px;" p/>' +
                 '<img id="btnWheel" src="' + buttonImg + '" style="position:absolute;width:' + bSide + 'px;height:' + bSide + 'px;top:' + bOffset + 'px;left:' + bOffset + 'px;" b/>' +
                 '<div id="txtCounter" style="position:absolute;width:' + bSide + 'px;height:' + bSide + 'px;top:' + bOffset + 'px;left:' + bOffset + 'px;"></div>';
-        this.css({'width': wSide, 'height': wSide, 'position': 'absolute'});
+        this.css({'width': wSide, 'height': wSide, 'position': 'relative'});
         this.html(html);
         this.find("[b]").on('click', click);
     }

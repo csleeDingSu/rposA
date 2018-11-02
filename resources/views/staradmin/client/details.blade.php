@@ -4,7 +4,7 @@
 
 @section('left-menu')
 	<a href="/" class="back">
-		<div class="glyphicon glyphicon-menu-left" aria-hidden="true"></div>
+		<div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
 	</a>
 @endsection
 

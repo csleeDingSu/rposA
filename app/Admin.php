@@ -1,14 +1,12 @@
 <?php
 
 namespace App;
+use Illuminate\Database\Eloquent\Model;
+use DB;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
-class Admin extends Authenticatable
+class Admin extends Model
 {
-    use Notifiable;
-
+   
     protected $guard = 'admin';
 
     /**
@@ -17,7 +15,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'job_title', 'username',
+        'name', 'email', 'password', 'username',
     ];
 
     /**
@@ -28,4 +26,20 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+	
+	
+	
+	public static function get_setting()
+	{
+		$result = DB::table('settings')->first();
+		
+		return $result;
+	}
+	public static function update_setting($id,$data)
+	{	
+		
+		 return $result = DB::table('settings')
+            ->where('id', $id)
+            ->update($data);
+	}
 }

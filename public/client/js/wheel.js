@@ -85,6 +85,7 @@ function initUser(){
                 $('#divBalance', window.parent.document).html(balance);
                 $('#spanPoint', window.parent.document).html(point);
                 $('#hidBalance', window.parent.document).val(balance);
+                $(".balance_circle", window.parent.document).html(life);
                 
                 setBalance();
 

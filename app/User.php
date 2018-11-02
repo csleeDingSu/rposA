@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','affiliate_id', 'referred_by',
     ];
 
     /**
@@ -25,4 +25,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+	
+	
+	public static function update_user($id,$data)
+	{	
+		
+		 return $result = \DB::table('users')
+            ->where('id', $id)
+            ->update($data);
+		
+	}
 }

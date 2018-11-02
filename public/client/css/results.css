@@ -7,13 +7,9 @@ body {
     display: table-cell;
 }
 
-.wrapper {
-    margin-left: 15px;
-}
-
 .row {
   display: grid;
-  grid-template-columns: 55px 55px 55px 55px 55px 55px;
+  grid-template-columns: 20px 55px 55px 55px 55px 55px 20px;
   grid-gap: 0px;
   height: 50px;
   margin-left: 30px;
@@ -52,16 +48,16 @@ body {
   transform: scale(0.33); 
   -webkit-transform: scale(0.33);
   -webkit-transform-origin:left top;
-  margin-left:-292px;
-  margin-top:12px;
+  margin-left: 4px;
+  margin-top: 12px;
 }
 
 /* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+@media only screen and (max-width: 360px) {
     .row {
-      grid-template-columns: 45px 45px 45px 45px 45px 45px;
+      grid-template-columns: 20px 45px 45px 45px 45px 45px 20px;
       height: 50px;
-      margin-left: -10px;
+      margin-left: 0px;
     }
 
     .box {
@@ -87,7 +83,5 @@ body {
      transform: scale(0.3); 
       -webkit-transform: scale(0.3);
       -webkit-transform-origin:left top;
-      margin-left:-241px;
-      margin-top:12px;
     }
 }

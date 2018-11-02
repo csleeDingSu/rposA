@@ -48,10 +48,11 @@ Route::group(['namespace' => 'Api'],function(){
 	
 	Route::get('/redeem-history', 'ProductController@get_redeem_history')->name('api.redeem.history');
 	
-	Route::post('/request-redeem', 'ProductController@request_redeem')->name('api.redeem.request');
-	
+	Route::post('/request-redeem', 'ProductController@request_redeem')->name('api.redeem.request');	
 	
 	Route::get('/referral-list', 'MemberController@member_referral_list')->name('api.referral.list');
+	
+	Route::get('child-list', 'MemberController@child_list')->name('child.list');
 	
  });	
 

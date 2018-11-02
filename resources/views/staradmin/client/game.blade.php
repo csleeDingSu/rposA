@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/swiper.css') }}" />
 @endsection
     	
-@section('menu')
-<a href="share"><div class="icon-share"></div></a>
+@section('top-navbar')
 @endsection
 
 @section('content')	
@@ -21,7 +20,7 @@
 			<div class="box">
 				<div class="coin"></div>
 				<div class="number long">
-					<span class="balance" id="spanPoint">0</span>
+					<span class="balance" id="spanPoint">0</span><span class="life-balance" id="spanLifePoint"> +0</span>
 					<div class="info-wrapper">
 						<div class="info">换钱</div>
 					</div>

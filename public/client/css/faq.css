@@ -1,0 +1,63 @@
+/*******************************
+* Does not work properly if "in" is added after "collapse".
+* Get free snippets on bootpen.com
+*******************************/
+    .container {
+        padding: 0;        
+        margin-top: 40px;
+    }
+
+    .panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #EEEEEE;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #212121;
+        background-color: #FAFAFA;
+        border-color: #EEEEEE;
+    }
+
+    .panel-title {
+        font-size: 14px;
+        background: #FFFFFF;
+        color: #333333;
+    }
+
+    .panel-title > a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+    }
+
+    .panel-body {
+        color: #747474;
+    }
+
+    .more-less {
+        float: right;
+        color: #212121;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+    .more-less {
+        color: #cccccc;
+    }
+
+    .title {
+        display: inline-block;
+        border-left: 2px solid #48affa;
+        padding-left: 5px;
+        font-weight: 600;
+    }
+
+/* ----- v CAN BE DELETED v ----- */
+body {
+    background-color: #f2f2f2;
+}
