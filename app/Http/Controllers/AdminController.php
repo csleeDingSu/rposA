@@ -282,5 +282,64 @@ class AdminController extends BaseController
 		}
 	}
 	
+	public function update_password (Request $request)
+	{
+		$inputs = $request->input('datav');		
+		
+		$id = Auth::guard('admin')->user()->id;
+		
+		foreach ($inputs as $key=>$val)
+		{
+			$data[$val['name']] = $val['value'];			
+		}		
+		
+		$input = [            
+		     'password'   => $data['password'],
+			 'password_confirmation'   => $data['confirmpassword'],
+              ];
+		
+		$validator = Validator::make($input, 
+            [                
+                'password' => 'required|alphaNum|min:5|max:50|confirmed',
+            ]
+        );
+		
+		if ($validator->fails()) {
+			 return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		else
+		{			
+			$data = [ 'password'=> Hash::make($data['password']) ];
+			$res = User::update_user($id,$data);
+			
+			return response()->json(['success' => true]);
+		}
+	}
+	
+	public function profile ()
+	{
+		$data['page']    = 'admin.profile';
+		$data['user'] = Auth::guard('admin')->user();
+		
+		return view('main', $data);
+	}
+	
+	public function update_profile(Request $request)
+	{
+		$id = Auth::guard('admin')->user()->id;
+		$validator = $this->validate(
+            $request,
+            [
+                'firstname' => 'required|string|min:4',
+				'email' => 'required|email|unique:users,email,'.$id,
+            ]
+        );
+		$data = ['name' => $request->firstname,'email' => $request->email,'user_status' => $request->status];
+		
+		User::update_user($id, $data);
+		
+		return redirect()->back()->with('message', trans('dingsu.user_accountupdate_success_message') );
+		
+	}
 	
 }
