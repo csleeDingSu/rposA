@@ -1,7 +1,12 @@
 var trigger = false;
 
-$(function () {    
-    initGame();
+$(function () {
+    var wechat_status = $('#hidWechatId', window.parent.document).val();
+    var wechat_name = $('#hidWechatName', window.parent.document).val();
+
+    if(wechat_status == 0 && wechat_name != null) {
+        initGame();
+    }
 });
 
 function updateResult(){
@@ -81,9 +86,11 @@ function initUser(){
                 var balance = parseInt(data.record.balance);
                 var life = data.record.life;
                 var point = parseInt(data.record.point);
+                var acupoint =  parseInt(data.record.acupoint);
 
                 $('#divBalance', window.parent.document).html(balance);
                 $('#spanPoint', window.parent.document).html(point);
+                $('#spanAcuPoint', window.parent.document).html('+' + acupoint);
                 $('#hidBalance', window.parent.document).val(balance);
                 $(".balance_circle", window.parent.document).html(life);
                 

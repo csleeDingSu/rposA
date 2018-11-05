@@ -42,4 +42,35 @@ class Admin extends Model
             ->where('id', $id)
             ->update($data);
 	}
+	
+	public static function list_faq()
+	{
+		$result = DB::table('faq')->get();
+		
+		return $result;
+	}
+	public static function get_faq($id = null)
+	{
+		$result = DB::table('faq')->where('id',$id)->first();
+		
+		return $result;
+	}
+	public static function create_faq($data)
+	{	
+		
+		 return $result = DB::table('faq')
+            ->insertGetId($data);
+	}
+	public static function update_faq($id,$data)
+	{	
+		
+		 return $result = DB::table('faq')
+            ->where('id', $id)
+            ->update($data);
+	}
+	public static function delete_faq($id)
+	{			
+		 return DB::table('faq')->delete($id);
+	}
+	
 }

@@ -1,0 +1,133 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.container {
+	width: 500px;
+	background-color: #f3f3f3;
+}
+	
+@media only screen and (max-width: 500px) {
+    .container {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+html, body {
+	height: 100%;
+	background-color: #f3f3f3;
+}
+
+.full-height {
+	padding-top: 30px;
+	font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+    background:#f3f3f3;
+    height: 100%;
+}
+
+.row {
+	height: 70px;
+	color: #cccccc;
+	font-size: 14px;
+	padding-top: 10px;
+	margin-right: 0px;
+	margin-left: 0px;
+	border-top: 1px solid #e3e3e3;
+	border-bottom: 1px solid #e3e3e3;
+	background: #ffffff;
+}
+
+.column-1 {
+	padding-right: 5px;
+	padding-left: 10px;
+}
+
+.column-2 {
+	padding-right: 5px;
+	padding-left: 10px;
+	text-align: left;
+}
+
+.right-wrapper {
+	float: right;
+	margin-right: 10px;
+}
+
+@media only screen and (max-width: 360px) {
+    .column-2 {
+    	padding-left: 0px;
+    }
+}
+
+.fa {
+	display: block;
+	margin-top: 3px;
+	margin-left: -1px;
+}
+
+.label {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 25px;
+    margin-top: 0px;
+    color: #b5b5ba;
+    font-size: 14px;
+}
+
+.pass, .fail {
+    float: left;
+    margin-right: 10px;
+}
+
+.pass .label {
+    color: #FFF;
+    background-image: linear-gradient(#ffcb4d, #ff902a);
+}
+
+.fail .label {
+    color: #FFF;
+    background-image: linear-gradient(#e2e2e2, #afafaf);
+}
+
+.date {
+	text-align: left;
+	color: #7f7f7f;
+	font-size: 12px;
+	padding-top: 8px;
+}
+
+.icon-coin-wrapper {
+	height: 20px;
+	width: 20px;
+	float: right;
+	margin-top: 6px;
+	margin-right: 3px;
+}
+
+.icon-coin {
+	background: url('/client/images/game.png') no-repeat -1674px -715px;
+	width: 82px;
+	height: 82px;
+	transform: scale(0.22); 
+	-webkit-transform: scale(0.22);
+	-webkit-transform-origin:left top;
+	float: left;
+	z-index: 100;
+	position: relative;
+}
+
+.points {
+	color: #ef3636;
+	font-size: 20px;
+	float: right;
+}
+
+.balance {
+	float: right;
+	color: #747474;
+	padding-top: 3px;
+}

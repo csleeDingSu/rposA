@@ -26,6 +26,10 @@
 						</div>
 						<div class="verified">已通过实名认证</div>
 					</div>
+					@else
+					<div class="button-unverified">
+						<div class="unverified">还没通过实名认证</div>
+					</div>
 					@endif
 				</div>
 				<div style="clear: both;"></div>
@@ -82,13 +86,15 @@
 					</li>
 				</a>
 
-				<li class="list-group-item">
-					<div class="icon-wrapper">
-						<div class="icon-play-history"></div>
-					</div>
-					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-					挖宝记录
-				</li>
+				<a href="/allhistory">
+					<li class="list-group-item">
+						<div class="icon-wrapper">
+							<div class="icon-play-history"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						挖宝记录
+					</li>
+				</a>
 
 				<li class="list-group-item">
 					<div class="icon-wrapper">

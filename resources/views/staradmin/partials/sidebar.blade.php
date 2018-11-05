@@ -146,6 +146,14 @@
             </a>		
 
 		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/admin/faq">
+              <i class="menu-icon  icon-note text-primary"></i>
+              <span class="menu-title"> @lang('dingsu.faq')</span>
+            </a>		
+
+		</li>
 	</ul>
 </nav>
 @endif

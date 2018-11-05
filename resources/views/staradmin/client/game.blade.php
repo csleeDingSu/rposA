@@ -20,7 +20,7 @@
 			<div class="box">
 				<div class="coin"></div>
 				<div class="number long">
-					<span class="balance" id="spanPoint">0</span><span class="life-balance" id="spanLifePoint"> +0</span>
+					<span class="balance" id="spanPoint">0</span><span class="life-balance" id="spanAcuPoint"> +0</span>
 					<div class="info-wrapper">
 						<div class="info">换钱</div>
 					</div>
@@ -134,7 +134,7 @@
 
 <!-- Steps Modal starts -->
 <form class="form-sample" name="frm-steps" id="frm-steps" action="" method="post" autocomplete="on" >
-	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
@@ -197,7 +197,7 @@
 
 <!-- Verify Modal starts -->
 <form action="member_update_wechatname" method="post" name="wechatform" id="wechatform">
-	<div class="modal fade col-md-12" id="wechat-verify" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal fade col-md-12" id="wechat-verify" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content modal-wechat">
 				<div class="modal-body">				
@@ -215,7 +215,7 @@
 								
 								<div class="modal-input">
 									<input type="hidden" id="memberid", name="memberid" value="{{ Auth::Guard('member')->user()->id }}"/>
-									<input name="wechat_name" id="wechat_name" type="text"  placeholder="@lang('dingsu.ph_username')" value="" >
+									<input name="wechat_name" id="wechat_name" type="text"  placeholder="@lang('dingsu.ph_username')" value="" required>
 								</div>
 
 								<div class="wechat-wrapper">
@@ -232,42 +232,55 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal-card">
+				<div class="btn-close">
+					<a href="/">
+						<div class="glyphicon glyphicon-remove-circle"></div>
+						<div class="left"> 不想认证，先逛逛看。</div>
+					</a>
+				</div>
+			</div>
 	</div>
 </form> 
 <!-- Verify Modal Ends -->
 
 <!-- pending verify step -->
-<div class="modal fade col-md-12" id="pending-verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+
+	<div class="modal fade col-md-12" id="pending-verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
 		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
+			<div class="modal-content modal-wechat">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="instructions">
+								@csrf
+
+								<div class="" id="validation-errors"></div>
+								<div class="wechat-title">
 									等待认证
-								</div>								
-							</div>
-							<div class="card">
-								<div class="instructions">加客服微信审核</div>
+								</div>
 								
-								<img src="/client/images/wabao666_qrcode.JPG" alt="validate" class="img-validate" style="width: 250px;height: 250px;" />
+								<div class="wechat-wrapper">
+									<img src="{{ asset('/client/images/wabao666_qrcode.JPG') }}" />
+									<div>长按图片保存到手机，在扫码相册<br />
+									添加客服微信，需备注 "{{ Auth::Guard('member')->user()->username }}"</div>
+								</div>						
 							</div>
-							
-							<div class="btn-close">
-								<a href="/">
-									<div class="glyphicon glyphicon-remove-circle"></div>
-									<div class="left"> 先逛逛看。</div>
-								</a>
-							</div>
-						
 						</div>
 					</div>							
 				</div>
 			</div>
-			
+			<div class="modal-card">
+				<div class="btn-close">
+					<a href="/">
+						<div class="glyphicon glyphicon-remove-circle"></div>
+						<div class="left"> 等待认证，先逛逛看。</div>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
+
 <!--  end -->
 
 @endsection
@@ -283,10 +296,9 @@
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			
-
-			if(wechat_status > 0 && wechat_name == null) {
+			if(wechat_status > 0 && wechat_name == '') {
 				$('#verify-steps').modal({backdrop: 'static', keyboard: false});
-			} else if(wechat_status > 0 && wechat_name != null) {
+			} else if(wechat_status > 0 && wechat_name != '') {
 				$('#pending-verify-steps').modal({backdrop: 'static', keyboard: false});
 			}
 

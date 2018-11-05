@@ -80,6 +80,9 @@ Route::group(['middleware' => 'sso'], function()
 		return view('client/faq');
 	});
 	
+	Route::get('/allhistory', function () {
+		return view('client/allhistory');
+	});
 	
 	
 	Route::get('/referral-list', 'ClientController@member_referral_list')->name('client.referral.list');
@@ -326,6 +329,13 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::get('/user/profile', 'AdminController@profile');
 	Route::post('/user/profile', 'AdminController@update_profile');	
 	Route::post('/user/update-password', 'AdminController@update_password');
+	
+	//faq
+	Route::get('/admin/faq', 'AdminController@listfaq')->name('faq.list');
+	Route::get('/admin/get-faq', 'AdminController@getfaq')->name('faq.get');
+	Route::post('/admin/add-faq', 'AdminController@savefaq')->name('faq.create');
+	Route::post('/admin/edit-faq', 'AdminController@editfaq')->name('faq.edit');
+	Route::delete('/admin/delete-faq', 'AdminController@delete_faq')->name('faq.remove');
 });
 //END
 

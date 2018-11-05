@@ -331,4 +331,8 @@ return [
 	'today_registration' => '今天注册人数',
 	'online_users' => '在线用户',
 	'total_redeemed' => '赎回总额',
+	'title' => 'title',
+	'content' => 'content',
+	'faq' => 'faq',
+	'faq_added_success_msg' => 'Faq added successfully',
 ];

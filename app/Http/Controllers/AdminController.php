@@ -342,4 +342,155 @@ class AdminController extends BaseController
 		
 	}
 	
+	public function getfaq(Request $request)
+    {
+		$id = $request->id;
+		$record = Admin::get_faq($id);
+		return response()->json(['success' => true, 'record' => $record]);
+	}
+	
+	public function listfaq (Request $request)
+	{
+		
+		//$data['record']  = Admin::get_faq();
+		
+		
+		$result =  \DB::table('faq');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_title'])) {
+				$result = $result->where('title','LIKE', "%{$input['s_title']}%") ;				
+			}
+		}
+		
+		$result =  $result->orderby('id','DESC')->paginate(30);
+				
+		$data['page']    = 'faq.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('faq.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+		
+		
+	}
+	
+	public function savefaq(Request $request)
+    {
+		
+		$data = $request->_datav;
+		
+		foreach($data as $val)
+		{
+			
+				$dbi[$val['name']] = $val['value'];
+		
+		}
+		
+		
+		if ($dbi['mode'] =='edit')
+		{
+			return $this->updatefaq($dbi);
+		}
+		
+		$input = [
+					'title'   => $dbi['title'], 			 
+					'content' => $dbi['content'],
+			  	 ];
+		
+		$validator = Validator::make($input, [
+			'title'   => 'required|unique:faq,title',
+			'content' => 'required',
+		]);
+ 
+		
+		
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		
+		
+		$now = Carbon::now();
+		$data = ['title' => $input['title'],'content' => $input['content'],'created_at' => $now];
+		
+		$id = Admin::create_faq($data);
+		
+		
+		$faq  = Admin::get_faq($id);
+		$row  = '<tr id=tr_'.$faq->id.'>';
+		$row .= "<td>$faq->id</td>";
+		$row .= "<td>$now</td>";			
+		$row .= '<td>'.$faq->title.'</td>';
+		$row .= '<td>'.$faq->content.'</td>';
+		$row .= '<td><a href="javascript:void(0)" data-id="'.$faq->id.'"  class="editfaq btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>';
+		$row .= '<a href="javascript:void(0)" onClick="confirm_Delete('.$faq->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a></td>';
+		$row .= '</tr>';
+		
+		return response()->json(['success' => true, 'message' => trans('dingsu.softpin_update_success_message'),'record'=>$row]);
+	}
+	
+	//for update faq from ajax
+	public function updatefaq ($data)
+	{
+		$id = $data['hidden_void'];
+		
+		$input = [
+					'title' => $data['title'], 
+					'content'   => $data['content'],
+			  	 ];
+		$validator = Validator::make($input, [
+			 'title' => 'required|unique:faq,title,'.$id,
+      		 'content'  => 'required',
+		]);
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$insdata = ['title' => $data['title'],
+				 'content' => $data['content'],];		
+		
+		$res = Admin::update_faq($id,$insdata);		
+		return response()->json(['success' => true,'mode'=>'edit']);
+	}
+	
+	public function update_faq (Request $request)
+	{
+		$data['page']    = 'admin.setting';
+		
+		$id = $request->id;
+		$validator = $this->validate(
+            $request,
+            [
+                'title' => 'required',
+      			'faq_content'  => 'required',
+            ]
+        );
+		
+		$data = ['title' => $request->title,
+				 'content' => $request->faq_content,];		
+		
+		$res = Admin::update_faq($id,$data);		
+		
+		
+		return redirect()->back()->with('message', trans('dingsu.faq_success_save_message') );
+		return view('main', $data);
+	}
+	
+	public function delete_faq (Request $request)
+	{
+		$id = $request->id;
+		Admin::delete_faq($id);
+		return response()->json(['success' => true, 'message' => 'success']);
+	}
+	
+	
 }

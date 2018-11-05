@@ -339,4 +339,8 @@ return [
 	'today_registration' => 'Today Registration',
 	'online_users' => 'Online users',
 	'total_redeemed' => 'Total redeemed',
+	'title' => 'title',
+	'content' => 'content',
+	'faq' => 'faq',
+	'faq_added_success_msg' => 'Faq added successfully',
 ];
