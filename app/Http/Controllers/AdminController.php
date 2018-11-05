@@ -459,7 +459,7 @@ class AdminController extends BaseController
 				 'content' => $data['content'],];		
 		
 		$res = Admin::update_faq($id,$insdata);		
-		return response()->json(['success' => true,'mode'=>'edit']);
+		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$input]);
 	}
 	
 	public function update_faq (Request $request)

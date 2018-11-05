@@ -158,9 +158,9 @@
 					} );
 					swal.close()
 				} else {
-					//swal( '@lang("dingsu.done")', '@lang("dingsu.pin_added_success_msg")', "success" );
 					if (result.mode == 'edit')
 					{
+						var data = result.dataval; 
 						swal( {
 							type: 'success',
 							title: '@lang("dingsu.done")',
@@ -168,9 +168,10 @@
 							showConfirmButton: true,
 							timer: 1000
 						} );
-						$( "input[type=text], textarea" ).val( "" );
-						$( '#faqtable tr:first' ).after( result.record );
-						$( '#openeditmodel' ).modal( 'hide' );
+						var id = $('#hidden_void').val();
+						$('#st_'+id).html(data.title);
+						$('#sc_'+id).html(data.content);
+						
 					}
 					else
 					{
@@ -181,10 +182,12 @@
 							showConfirmButton: true,
 							timer: 1000
 						} );
-						$( "input[type=text], textarea" ).val( "" );
 						$( '#faqtable tr:first' ).after( result.record );
-						$( '#openeditmodel' ).modal( 'hide' );
+						
 					}
+					
+					$( "input[type=text], textarea" ).val( "" );
+					$( '#openeditmodel' ).modal( 'hide' );
 					
 				}
 			},
@@ -278,6 +281,7 @@
 
 			swal( {
 				title: '@lang("dingsu.please_wait")',
+
 				text: '@lang("dingsu.updating_data")..',
 				allowOutsideClick: false,
 				closeOnEsc: false,

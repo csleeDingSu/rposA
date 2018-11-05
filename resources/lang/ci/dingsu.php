@@ -335,4 +335,5 @@ return [
 	'content' => 'content',
 	'faq' => 'faq',
 	'faq_added_success_msg' => 'Faq added successfully',
+	'faq_update_success_msg' => 'Faq successfully Updated',
 ];

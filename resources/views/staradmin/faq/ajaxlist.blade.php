@@ -20,8 +20,8 @@
 							<tr id="tr_{{ $list->id }}">
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
-								<td>{{ $list->title }}</td>
-								<td>{{ $list->content }}</td>
+								<td id="st_{{$list->id}}">{{ $list->title }}</td>
+								<td id="sc_{{$list->id}}">{{ $list->content }}</td>
 								<td>
 									<a href="javascript:void(0)" data-id="{{ $list->id }}"  class="editfaq btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>
 								
