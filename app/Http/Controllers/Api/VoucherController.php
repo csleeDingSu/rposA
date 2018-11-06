@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Unreleasedvouchers;
 use App\Category;
+use App\redeemed;
 
 class VoucherController extends Controller
 {
@@ -18,8 +19,12 @@ class VoucherController extends Controller
         
 		$category = Category::all();
 		
-		$vouchers = Voucher::latest()->paginate(5);
-        return view('client.home', compact('vouchers','category'));
+		$vouchers = Voucher::latest()->paginate(25);
+
+		$total = ['redeemed' => redeemed::count(), 'vouchers' => Voucher::count()];
+
+        //return view('client.home', compact('vouchers','category'));
+        return view('client.home3', compact('vouchers','category','total'));
 		
 		
     }
@@ -31,11 +36,16 @@ class VoucherController extends Controller
 			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
 		}
 		else{
-			$vouchers = Voucher::latest()->paginate(5);
+			$vouchers = Voucher::latest()->paginate(25);
 		}
 		
 		$category = Category::all();
-        return view('client.home', compact('vouchers','category'));		
+
+		$total = ['redeemed' => redeemed::count(), 'vouchers' => Voucher::count()];
+
+
+        //return view('client.home', compact('vouchers','category'));		
+        return view('client.home3', compact('vouchers','category','total'));
 		
     }
 }
