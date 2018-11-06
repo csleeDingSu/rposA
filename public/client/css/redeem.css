@@ -422,3 +422,8 @@ html, body {
 	color: red;
 }
 /* End Modal box */
+
+.empty {
+	font-size: 12px;
+	color: #ff8624;
+}

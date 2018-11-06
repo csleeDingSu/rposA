@@ -16,72 +16,25 @@
 @section('content')
 <div class="container demo">
 
-    
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
+        @foreach ($faqs as $faq)
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
+            <div class="panel-heading" role="tab" id="heading-{{ $faq->id }}">
                 <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $faq->id }}" aria-expanded="true" aria-controls="collapse{{ $faq->id }}">
                         <i class="more-less glyphicon glyphicon-menu-right"></i>
-                        <div class="title">如何快速挖宝</div>
+                        <div class="title">{{ $faq->title }}</div>
                     </a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div id="collapse{{ $faq->id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{ $faq->id }}">
                 <div class="panel-body">
-                      注册用户需先提交实名认证申请，获得认证通过后可参与挖宝活动，新用户拥有获得3次挖宝机会，分享给好友1次可以获得3次挖宝机会，分享越多，挖宝机会越多。
+                    {{ $faq->content }}
                 </div>
             </div>
         </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <i class="more-less glyphicon glyphicon-menu-right"></i>
-                        <div class="title">邀请好友，有什么好处？</div>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                    注册用户需先提交实名认证申请，获得认证通过后可参与挖宝活动，新用户拥有获得3次挖宝机会，分享给好友1次可以获得3次挖宝机会，分享越多，挖宝机会越多。
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <i class="more-less glyphicon glyphicon-menu-right"></i>
-                        <div class="title">网站的产品不想花钱怎么得到？</div>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                    注册用户需先提交实名认证申请，获得认证通过后可参与挖宝活动，新用户拥有获得3次挖宝机会，分享给好友1次可以获得3次挖宝机会，分享越多，挖宝机会越多。
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFour">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <i class="more-less glyphicon glyphicon-menu-right"></i>
-                        <div class="title">如何成为VIP</div>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                <div class="panel-body">
-                    注册用户需先提交实名认证申请，获得认证通过后可参与挖宝活动，新用户拥有获得3次挖宝机会，分享给好友1次可以获得3次挖宝机会，分享越多，挖宝机会越多。
-                </div>
-            </div>
-        </div>
+        @endforeach
 
     </div><!-- panel-group -->
     

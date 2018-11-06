@@ -131,3 +131,8 @@ html, body {
 	color: #747474;
 	padding-top: 3px;
 }
+
+.empty {
+	font-size: 12px;
+	color: #ff8624;
+}

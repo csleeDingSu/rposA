@@ -94,7 +94,7 @@ class ProductController extends Controller
 	
 	public function index()
     {		
-		$result = Product::get_ad_paginate(100);
+		$result = Product::get_ad_paginate(10);
 		$productcount = $result->count();
         return view('ad.ad', compact('result','productcount'));
 		
@@ -103,7 +103,7 @@ class ProductController extends Controller
 
     public function show()
     {
-		$result = Product::get_ad_paginate(100);
+		$result = Product::get_ad_paginate(10);
 		
 		$productcount = Category::all();
         return view('ad.ad', compact('result','productcount'));		

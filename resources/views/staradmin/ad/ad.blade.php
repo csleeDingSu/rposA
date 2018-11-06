@@ -18,15 +18,24 @@
 	
 	<script type="text/javascript" src="{{ asset('ad/js/jquery-1.9.1.js') }}"></script>	
 	<script type="text/javascript" src="{{ asset('ad/js/being.js') }}"></script>
-	
-	
-	
-	
-	
+		
 </head>
 
 <body>
-	<section class="card">
+	<section class="cardm">
+		
+		<div class="showBox dn">
+			<div class="showIn dflex scaleHide">
+				<div class="inBox">
+					<img src="{{ asset('ad/images/wxIcon.png') }}" class="wxIcon">
+					<h2>请加客服微信&nbsp;领取优惠券</h2>
+					<h5 class="showcode">WABAO8877</h5>
+					<a class="cutBtn"><img src=" {{ asset('ad/images/cut.png') }}"></a>
+					<h3>如果点击按钮复制不成功，请到微信手动输入添加。</h3>
+				</div>
+			</div>
+		</div>
+		
 		<div class="card-body">
 			<div class="header">
 				<img src="{{ asset('ad/images/ad.jpg') }}">
@@ -42,9 +51,7 @@
 				<p>今日优惠精选</p>
 			</div>
 			
-			
-			<div class="infinite-scroll">
-				
+			<div class="infinite-scroll">				
 				
 			<ul class="list">
 				@foreach($result as $item)
@@ -68,22 +75,8 @@
 			{{ $result->links() }}
 			</div>
 			
-			
-			<p class="isnext">下拉显示更多...</p>
-			
-			
 		</div>
-		<div class="showBox dn">
-			<div class="showIn dflex scaleHide">
-				<div class="inBox">
-					<img src="{{ asset('ad/images/wxIcon.png') }}" class="wxIcon">
-					<h2>请加客服微信&nbsp;领取优惠券</h2>
-					<h5 class="showcode">WABAO8877</h5>
-					<a class="cutBtn"><img src=" {{ asset('ad/images/cut.png') }}"></a>
-					<h3>如果点击按钮复制不成功，请到微信手动输入添加。</h3>
-				</div>
-			</div>
-		</div>
+		
 	</section>
 	
 	
@@ -93,14 +86,18 @@
 	
 	
 	<script>
+			
 $(function () {
-			$('.quan a').click(function () {				
+	
+			$( ".infinite-scroll" ).on( "click", ".quan a", function ( e ) {
+			//$('.quan a').click(function () {				
 				//var id =$(this).attr("data-id");
 				//$('.showcode').html(id);				
 				$('.showBox').fadeIn(150, function () {
 					being.scaleShow('.showIn');
 				});
 			});
+	
 			$('.showBox').click(function (e) {
 				console.log(e);
 				var target = $(e.target).closest('.inBox').length;
@@ -158,22 +155,18 @@ $(function () {
 			$('.cutBtn img').attr('src', "{{ asset('ad/images/cutNo.png') }}");
 		});
 		
-		
-		
-		
-		 $('ul.pagination').hide();
-	
+		 $('ul.pagination').hide();	
 	 
         $('.infinite-scroll').jscroll({
             autoTrigger: true,
             debug: false,
-            loadingHtml: '<img class="center-block" src=" {{ asset('/client/images/ajax-loader.gif') }} " alt="Loading..." />',
+            loadingHtml: '<p class="isnext">下拉显示更多...</p>',
             padding: 0,
             nextSelector: '.pagination li.active + li a',
             contentSelector: '.infinite-scroll',
             callback: function() {
                 $('ul.pagination').remove();
-            }
+            },
         });
 		
 	</script>

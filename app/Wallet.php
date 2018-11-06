@@ -30,8 +30,8 @@ class Wallet extends Model
 		{
 			
 			return $result = DB::table('mainledger')->select('current_point as point', 'current_level as level', 'current_life as life','current_balance as balance','current_betting as bet'
-			,'current_life_acupoint as acupoint'
-			//, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint) as acupoint')
+			//,'current_life_acupoint as acupoint'
+			, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint end) as acupoint')
 			)->where('member_id', $memberid)->latest()->first();
 		}
 
@@ -123,7 +123,7 @@ class Wallet extends Model
 		
 		if($status=="win")
 		{
-			$credit_type                    ='PNT';
+			//$credit_type                    ='PNT';
 			//$member_id                      = $memberid;
 			$balance_before                 = $mainledger->current_balance;
 			$credit                         = $level->point_reward;
@@ -144,7 +144,7 @@ class Wallet extends Model
 			$award_current_bal				= $award_bal_before+$credit;
 			
 			Self::updatemainledger($memberid,$balance_before,$current_balance,$current_bet,$current_life,$current_level,$current_point,$current_life_acupoint);
-			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$credit_type,$award_bal_before,$award_bal_after,$award_current_bal,$current_point);
+			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point);
 
 			
 
@@ -152,7 +152,7 @@ class Wallet extends Model
 		{
 			//check for PNT
 			//$member_id                      = $memberid;
-			$credit_type                    ='PNT';
+			//$credit_type                    ='PNT';
 			$balance_before                 = $mainledger->current_balance;
 			$current_balance                = $mainledger->current_balance - (is_null($level->bet_amount) ? 0 : $level->bet_amount);
 			$balance_after                  = $mainledger->current_balance - (is_null($level->bet_amount) ? 0 : $level->bet_amount);
@@ -160,8 +160,8 @@ class Wallet extends Model
 			$current_bet                    = $level->bet_amount;
 			$current_life                   = $mainledger->current_life;
 			$current_level					= $level->game_level;
-			$credit                   = 0;
-			$debit                    = 0; //"{{ $level->bet_amount}}"
+			$credit                   		= 0;
+			$debit                    		= 0; //"{{ $level->bet_amount}}"
 			$credit_bal  					= 0;
 			$debit_bal                      = $balance_before-$balance_after;
 			$current_life_acupoint			= $mainledger->current_life_acupoint+$credit;
@@ -171,8 +171,10 @@ class Wallet extends Model
 
 			
 
+			// Self::updatemainledger($memberid,$balance_before,$current_balance,$current_bet,$current_life,$current_level,$current_point,$current_life_acupoint);
+			// Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$credit_type,$award_bal_before,$award_bal_after,$award_current_bal,$current_point);
 			Self::updatemainledger($memberid,$balance_before,$current_balance,$current_bet,$current_life,$current_level,$current_point,$current_life_acupoint);
-			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$credit_type,$award_bal_before,$award_bal_after,$award_current_bal,$current_point);
+			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point);
 
 			
 
@@ -218,7 +220,7 @@ public static function updatemainledger($memberid,$balance_before,$current_balan
 }
 
 
-public static function postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$credit_type,$award_bal_before,$award_bal_after,$award_current_bal,$current_point)
+public static function postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point)
 {
 	$now = Carbon::now()->toDateTimeString();
 
@@ -256,9 +258,11 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 	$insdata = $postledger_history_PNT;
 	$insdata2= $postledger_history_BAL;
 
+	if($credit>0){
 	DB::table('ledger_history')->
 			insert($insdata);
-		DB::table('ledger_history')->
+	}
+	DB::table('ledger_history')->
 			insert($insdata2);
 
 
@@ -287,6 +291,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		$current_balance= isset($mainledger->current_balance) ? $mainledger->current_balance : 0;
 		$bet_amount= isset($game_levels->bet_amount) ? $game_levels->bet_amount : 0;
 		$current_life_acupoint= isset($mainledger->current_life_acupoint) ? $mainledger->current_life_acupoint : 0;
+		//$life= 'yes';
 		//$redeempointstatus = false;
 		if($current_balance>=$bet_amount && $current_life_acupoint<150){
 			$playablestatus = true;
@@ -309,32 +314,32 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 
 	}
 
-	public static function postledger_history_life($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance)
-{
-	$now = Carbon::now()->toDateTimeString();
+// 	public static function postledger_history_life($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance)
+// {
+// 	$now = Carbon::now()->toDateTimeString();
 
-	// For the betting balance
+// 	// For the betting balance
 
-	$postledger_history_life=array(
-	'created_at' 				=>	$now,
-	'updated_at' 				=>	$now,
-	'member_id'                 =>  $memberid,
-	'credit'	                =>  $credit_bal,
-	'debit'	                    =>  $debit_bal,
-	'balance_before' 			=>	$balance_before,
-	'balance_after' 		    =>	$balance_after,
-	'current_balance'           =>  $current_balance,
-	'credit_type'	            =>  'BAL',
-	);
+// 	$postledger_history_life=array(
+// 	'created_at' 				=>	$now,
+// 	'updated_at' 				=>	$now,
+// 	'member_id'                 =>  $memberid,
+// 	'credit'	                =>  $credit_bal,
+// 	'debit'	                    =>  $debit_bal,
+// 	'balance_before' 			=>	$balance_before,
+// 	'balance_after' 		    =>	$balance_after,
+// 	'current_balance'           =>  $current_balance,
+// 	'credit_type'	            =>  'BAL',
+// 	);
 
 
-	$insdata= $postledger_history_life;
+// 	$insdata= $postledger_history_life;
 
-	DB::table('ledger_history')->
-			insert($insdata);
+// 	DB::table('ledger_history')->
+// 			insert($insdata);
 
-		return true;
-	}
+// 		return true;
+// 	}
 
 
 
@@ -353,7 +358,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			'balance_before' 			=>	$balance_before,
 			'balance_after' 		    =>	$balance_after,
 			'current_balance'           =>  $current_balance,
-			'credit_type'	            =>  'BAL',
+			'credit_type'	            =>  'BAL_REDEEM',
 		);
 
 
@@ -381,7 +386,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			'balance_before' 			=>	$award_bal_before,
 			'balance_after' 		    =>	$award_bal_after,
 			'current_balance'           =>  $award_current_bal,
-			'credit_type'	            =>  'PNT',
+			'credit_type'	            =>  'PNT_REDEEM',
 
 		);
 
@@ -412,7 +417,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			'balance_before' 			=>	$crd_bal_before,
 			'balance_after' 		    =>	$crd_bal_after,
 			'current_balance'           =>  $crd_current_bal,
-			'credit_type'	            =>  'CRD',
+			'credit_type'	            =>  'CRD_REDEEM',
 
 		);
 
