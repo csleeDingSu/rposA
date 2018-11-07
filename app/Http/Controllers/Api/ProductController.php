@@ -46,6 +46,15 @@ class ProductController extends Controller
     {
 		$member_id = $request->memberid;
 		$result    = Product::get_redeemlist_history($member_id,30);
+		$result->getCollection()->transform(function ($value) {
+			$code = $value->code;
+			$value->code = null;
+			if ( $value->pin_status == 1 or $value->pin_status == 2 )
+			{
+				$value->code = $code;
+			}
+			return $value;
+		});		
 		return response()->json(['success' => true, 'records' => $result]);
 	}
 	

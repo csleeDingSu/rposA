@@ -155,13 +155,20 @@ class GameController extends Controller
 
 		if (empty($is_playable)&&empty($is_redeemable))// 0
 		{
-			$this->life_redemption($memberid,$gameid,$life);
+			$req = New Request;
+			$req->merge(['memberid' => $memberid]);
+			$req->merge(['gameid' => $gameid]);
+			$req->merge(['life' => $life]);
+			$this->redeem_life($req);//life_redemption($memberid,$gameid,$life);
 
+
+			
 			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough balance to play']);
 			
 		}elseif (empty($is_playable)&&!empty($is_redeemable))//1
 		{
-			$this->life_redemption($memberid,$gameid,$life);
+			$this->redeem_life($memberid,$gameid,$life);
+
 			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'exceeded the coin limit']);
 		}		
 		else{
@@ -366,11 +373,17 @@ class GameController extends Controller
 			
 	}*/
 	
-	public function life_redemption($memberid,$gameid,$life)
+	public function redeem_life(Request $request){
+		$memberid = $request->memberid;
+		$gameid   = $request->gameid;
+		$life   = $request->life; //life yes
+		$this->life_redemption($memberid,$gameid,$life);
+	}
+
+
+
+	public function life_redemption($memberid, $gameid, $life)
     {
-		//$memberid = $request->memberid;
-		//$gameid   = $request->gameid;
-		//$life   = $request->life; //life yes
 		$credit_bal=0;
 
 
@@ -425,7 +438,6 @@ class GameController extends Controller
 					if ($is_redeemable == true){
 						$current_point=$wallet->point+ env('coin_max', 150);
 						$status=true;
-						print_r("Redeem life with coin");
 
 // ---------------------Credit--------------------------------------
 					$crd_credit                   	= env('coin_max', 150);
@@ -446,7 +458,6 @@ class GameController extends Controller
 
 					} else{
 						$current_point=$wallet->point;
-						print_r("Redeem life no coin");
 						// // ---------------------Balance--------------------------------------
 						// $balance_before=$wallet->balance;
 						// if($balance_before==0){

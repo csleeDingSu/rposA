@@ -22,7 +22,7 @@
 				<div class="number long">
 					<span class="balance" id="spanPoint">0</span><span class="life-balance" id="spanAcuPoint"> +0</span>
 					<div class="info-wrapper">
-						<div class="info">换钱</div>
+						<a class="btn-redeem" href="/redeem"><div class="info">换钱</div></a>
 					</div>
 				</div>
 			</div>

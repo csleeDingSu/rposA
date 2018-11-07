@@ -45,7 +45,7 @@
 				  </div>
 				  <div class="col-xs-4 middle-border">
 				  	正在进行中<br />
-				  	<span class="balance numbers">{{ number_format($wallet->current_balance, 0, '.', '') }}</span><br />
+				  	<span class="balance numbers">{{ number_format($wallet->current_life_acupoint, 0, '.', '') }}</span><br />
 				  	<a href="/arcade"><span class="button">继续挖宝</span></a>
 				  </div>
 				  <div class="col-xs-4">

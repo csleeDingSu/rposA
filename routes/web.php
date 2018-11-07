@@ -287,6 +287,7 @@ Route::group(['middleware' => 'auth:admin'], function()
 	Route::delete('/product/reject-redeem', 'ProductController@reject_redeem')->name('pin.redeem.reject'); 
 	
 	
+	Route::get('/product/redeem-history', 'ProductController@get_redeemhistory')->name('redeem.history.list');
 	
 	//new product 
 	

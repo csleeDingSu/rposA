@@ -19,7 +19,7 @@ class VoucherController extends Controller
         
 		$category = Category::all();
 		
-		$vouchers = Voucher::latest()->paginate(25);
+		$vouchers = Voucher::latest()->paginate(5);
 
 		$total = ['redeemed' => redeemed::count(), 'vouchers' => Voucher::count()];
 
@@ -36,7 +36,7 @@ class VoucherController extends Controller
 			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
 		}
 		else{
-			$vouchers = Voucher::latest()->paginate(25);
+			$vouchers = Voucher::latest()->paginate(5);
 		}
 		
 		$category = Category::all();

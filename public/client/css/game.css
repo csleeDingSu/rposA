@@ -410,6 +410,10 @@ iframe {
 
 }
 
+.btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {
+	color: white;
+}
+
 .info-wrapper {
 	float: right;
 	height:21px;

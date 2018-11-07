@@ -60,13 +60,20 @@ class ClientController extends BaseController
 	
 	public function member_profile()
 	{
+		if (Auth::Guard('member')->check()) {
+
+			$member = Auth::guard('member')->user()->id	;
+			$data['member'] = Member::get_member($member);
+			
+			$data['wallet'] = Wallet::get_wallet_details_all($member);
+			$data['page'] = 'client.member'; 
+			return view('client/member', $data);
+
+		} else {
+
+			return redirect()->route('login');
+		}		
 		
-		$member = Auth::guard('member')->user()->id	;
-		$data['member'] = Member::get_member($member);
-		
-		$data['wallet'] = Wallet::get_wallet_details_all($member);
-		$data['page'] = 'client.member'; 
-		return view('client/member', $data);
 	}
 
 	public function member_access_game()
