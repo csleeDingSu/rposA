@@ -34,14 +34,16 @@ class VoucherController extends Controller
         if ($cid)
 		{
 			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
+			$vouchers_total = Voucher::where('category' ,'=' , $cid)->count();
 		}
 		else{
 			$vouchers = Voucher::latest()->paginate(5);
+			$vouchers_total = Voucher::count();
 		}
 		
 		$category = Category::all();
 
-		$total = ['redeemed' => redeemed::count(), 'vouchers' => Voucher::count()];
+		$total = ['redeemed' => redeemed::count(), 'vouchers' => $vouchers_total];
 
 
         //return view('client.home', compact('vouchers','category'));		

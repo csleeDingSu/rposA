@@ -336,6 +336,6 @@ return [
 	'faq' => 'faq',
 	'faq_added_success_msg' => 'Faq added successfully',
 	'faq_update_success_msg' => 'Faq successfully Updated',
-	'copied' => 'Copied',
-	'text_copied' => 'The text has been copied.',
+	'copied' => '复制',
+	'text_copied' => '分享给朋友获得挖宝机会。',
 ];

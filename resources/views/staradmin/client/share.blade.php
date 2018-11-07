@@ -29,13 +29,133 @@ dd(Auth::Guard('member')->user()->affiliate_id)
 		position: absolute;
 		left: -999em;
 	}
+
+	@media only screen and (max-device-width:2000px) {
+	   #qrcode {
+			margin:1280px 50px 50px 220px;
+		}
+
+		img {
+	    	width: 200px;
+		}
+	}
+
+
+	@media only screen and (max-device-width:1990px) {
+	   #qrcode {
+			margin:810px 50px 50px 135px;
+		}
+
+		img {
+	    	width: 130px;
+		}
+	}
+
+
+	@media only screen and (max-device-width:1024px) {
+	   #qrcode {
+			margin:1060px 50px 50px 180px;
+		}
+
+		img {
+	    	width: 165px;
+		}
+	}
+
+	@media only screen and (max-device-width:950px) {
+	   #qrcode {
+			margin:815px 50px 50px 140px;
+		}
+
+		img {
+	    	width: 125px;
+		}
+	}
+
+
+	@media only screen and (max-device-width:800px) {
+	   #qrcode {
+			margin:815px 50px 50px 140px;
+		}
+
+		img {
+	    	width: 125px;
+		}
+	}
+
+	@media only screen and (max-device-width:750px) {
+	   #qrcode {
+			margin:395px 50px 50px 68px;
+		}
+
+		img {
+	    	width: 60px;
+		}
+	}
+
+	@media only screen and (max-device-width:500px) {
+	   #qrcode {
+			margin:437px 50px 50px 75px;
+		}
+
+		img {
+	    	width: 65px;
+		}
+	}
+
+	@media only screen and (max-device-width:414px) {
+	   #qrcode {
+			margin:440px 50px 50px 75px;
+		}
+
+		img {
+	    	width: 65px;
+		}
+	}
+
+	@media only screen and (max-device-width:375px) {
+	   #qrcode {
+			margin:395px 50px 50px 70px;
+		}
+
+		img {
+	    	width: 60px;
+		}
+	}
+
+
+	@media only screen and (max-device-width:360px) {
+	   #qrcode {
+			margin:378px 50px 50px 65px;
+		}
+
+		img {
+	    	width: 60px;
+		}
+	}
+
+	@media only screen and (max-device-width:320px) {
+	   #qrcode {
+			margin:335px 50px 50px 60px;
+		}
+
+		img {
+	    	width: 50px;
+		}
+	}
+
 </style>
+
 <div class="wrapper full-height" style="padding-top: 0px !important; background-color: #450B72">
 	<div class="container center">
-		<!-- <div class="col-xs-4 col-md-3"> -->
-			<div class="wrapper copyurl" id="copyurl" data-clipboard-target="#copy">
-				<div id="qrcode"></div>
-				</div>
+		
+		<div class="wrapper copyurl" id="copyurl" data-clipboard-target="#copy">
+			<div id="qrcode" class="qrcode"></div>
+			<div class="share">
+				<img src="{{ asset('/client/images/8_invitation.jpg') }}">
+			</div>			
+		</div>
+	
 		<span id="copy" class="offscreen url" aria-hidden="true">123</span>
 				<script type="text/javascript">
 					
@@ -59,36 +179,26 @@ dd(Auth::Guard('member')->user()->affiliate_id)
 					{
 						
 						$('#qrcode').html('');
-						var qrcode = new QRCode("qrcode",{
-							// position: relative,
-							//top: 80px,
-							//left: 80px,
-							width: 50,
-							height: 50,
-							//z-index: 1,
-
-							//colorDark : "#000000",
-							//colorLight : "#ffffff",
-							//correctLevel : QRCode.CorrectLevel.H
+						var qrcode = new QRCode("qrcode", {
+						    text: "http://wabao666.com/register/"+affiliate_id,
+						    // width: 60,
+						    // height: 60,
+						    colorDark : "#000000",
+						    colorLight : "#ffffff",
+						    correctLevel : QRCode.CorrectLevel.H
 						});
 						var url = 'http://wabao666.com/register/'+affiliate_id;
 						$('.url').html(url);
-						qrcode.makeCode(url);
+						//qrcode.makeCode(url);
+
 						
 					}
 				</script>
 			
-			<img src="/client/images/8_invitation.jpg" class="share"/>		
-			
-			<!-- <input id="h_affiliate_id" name="h_affiliate_id" type="hidden" value="{{Auth::Guard('member')->user()->affiliate_id}}" /> -->
 			<script type="text/javascript">
 				GenerateCode('{{Auth::Guard('member')->user()->affiliate_id}}');
-				//GenerateCode(90);
 			</script>	
 
-
-			
-		<!-- </div> -->
 	</div>
 </div>
 @endsection

@@ -24,14 +24,16 @@
 		<div class="cardHeader">
 			<div class="header">
 				<ul class="dbox top">
-					<li class="dbox0">
-						<!-- @if (isset(Auth::Guard('member')->user()->username))
-							<a href="/member">{{ Auth::Guard('member')->user()->username }}</a>
+					
+						@if (isset(Auth::Guard('member')->user()->username))
+							<a class="title" href="/member" style="color: white;">{{ Auth::Guard('member')->user()->username }}</a>
 						@else
+						<li class="dbox0">
 					  		<a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a>
-					  	@endif -->
-					  	<a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a>
-				  	</li>					
+					  	@endif
+					  	</li>
+					  	<!-- <a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a> -->
+				  						
 					<li class="dbox1 logo"><img src="{{ asset('/test/main/images/logo.png') }}"></li>
 					<li class="dbox0"><a href="#"><img src="{{ asset('/test/main/images/follow.png') }}"></a></li>
 				</ul>
@@ -40,8 +42,10 @@
 						<div class="dbox1 txt">
 							@if(isset($category))
 								@foreach($category as $cat)
-									@if ($cat->number == 1)
-										<a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
+
+									@if ($loop->first)
+										<!-- <a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a> -->
+										<a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 									@else
 										<a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 									@endif
@@ -153,7 +157,7 @@
 								
 								@foreach($vouchers as $item)
 									<li class="dbox">
-										<a class="dbox0 imgBox" href="#" >
+										<a class="dbox0 imgBox" href="#" data-t_id="{{$item->id}}" >
 											<img src="{{$item->product_picurl}}_460x460Q90.jpg" alt="{{$item->product_name}}">
 										</a>
 										<div class="dbox1">
@@ -293,7 +297,9 @@
 			});
 
 
-			// $('.product .list-2 .dbox a.dbox0.imgBox').click((e) => {
+			// $('.product .list-2 .dbox a.dbox0').click((e) => {
+
+			// 	alert($(e.target).data('t_id'));
 
 			// 	item_id = $(e.target).data('t_id');
 			// 	product_name = $(e.target).data('t_product_name');
