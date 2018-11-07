@@ -9,7 +9,7 @@
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
-	<title>首页</title>
+	<title>@lang('dingsu.home')</title>
 	<link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
@@ -26,7 +26,7 @@
 <body style="background:#efefef">
 <input type="hidden" id="page" value="1" />
 <input type="hidden" id="max_page" value="{{$vouchers->lastPage()}}" />
-	
+
 	<section class="cardFull card-flex">
 		<div class="cardHeader">
 			<div class="header">
