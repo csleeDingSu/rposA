@@ -33,7 +33,7 @@
 				<ul class="dbox top">
 					
 						@if (isset(Auth::Guard('member')->user()->username))
-							<a class="title" href="/member" style="color: white;">{{ Auth::Guard('member')->user()->username }}</a>
+							<a class="title" href="/member" style="color: white; font-size: 20px;">{{ Auth::Guard('member')->user()->username }}</a>
 						@else
 						<li class="dbox0">
 					  		<a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a>
