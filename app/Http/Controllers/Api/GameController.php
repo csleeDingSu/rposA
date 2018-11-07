@@ -404,12 +404,12 @@ class GameController extends Controller
 				//print_r($wallet);
 				if ($wallet->life >= 1) 
 				{
-					$res = Wallet::playable_status($memberid,$gameid,$wallet->level);	
-					$is_redeemable = $res['redeempointstatus'];
-					$status = false;
-					$current_life=$wallet->life-1;
-					$credit                   	= 0;
-					$debit                    	= $wallet->acupoint; //"{{ $level->bet_amount}}"
+					$res 			= Wallet::playable_status($memberid,$gameid,$wallet->level);	
+					$is_redeemable 	= $res['redeempointstatus'];
+					$status 		= false;
+					$current_life	=$wallet->life-1;
+					$credit        	= 0;
+					$debit        	= $wallet->acupoint; //"{{ $level->bet_amount}}"
 
 
 
@@ -419,35 +419,36 @@ class GameController extends Controller
 
 
 // ---------------------Balance--------------------------------------
-					$balance_before=$wallet->balance;
-					if($balance_before==0){
-						$credit_bal=+1200;
+					$balance_before		=$wallet->balance;
+					if($balance_before!=1200){
+						$credit_bal= 1200-$wallet->balance;
+						//$credit_bal=+1200;
 						}
-					$current_balance = $wallet->balance +$credit_bal;
-					$balance_after= $current_balance;
-					$debit_bal=0;
-					$current_level = 1;
-					$current_bet = $wallet->bet;
+					$current_balance	= $wallet->balance +$credit_bal;
+					$balance_after		= $current_balance;
+					$debit_bal			= 0;
+					$current_level 		= 1;
+					$current_bet 		= $wallet->bet;
 // ---------------------Point--------------------------------------
 					
-					$award_bal_before			= $wallet->acupoint;// $wallet->point;
-					$award_bal_after			= $award_bal_before-$wallet->acupoint;
-					$award_current_bal			= $award_bal_before-$wallet->acupoint;
-					$current_life_acupoint	 	= $award_bal_before-$wallet->acupoint;
+					$award_bal_before		= $wallet->acupoint;// $wallet->point;
+					$award_bal_after		= $award_bal_before-$wallet->acupoint;
+					$award_current_bal		= $award_bal_before-$wallet->acupoint;
+					$current_life_acupoint	= $award_bal_before-$wallet->acupoint;
 
 					if ($is_redeemable == true){
 						$current_point=$wallet->point+ env('coin_max', 150);
 						$status=true;
 
 // ---------------------Credit--------------------------------------
-					$crd_credit                   	= env('coin_max', 150);
-					$crd_debit                    	= 0; //"{{ $level->bet_amount}}"
+					$crd_credit             = env('coin_max', 150);
+					$crd_debit              = 0; //"{{ $level->bet_amount}}"
 					if($wallet->acupoint>150){
 						$wallet->acupoint=150;
 					}
 					$crd_bal_before			= $wallet->point;
 					$crd_bal_after			= $crd_bal_before+env('coin_max', 150);
-					$crd_current_bal			= $crd_bal_before+env('coin_max', 150);
+					$crd_current_bal		= $crd_bal_before+env('coin_max', 150);
 
 
 					Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);

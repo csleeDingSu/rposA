@@ -14,7 +14,7 @@ use App\redeemed;
 class VoucherController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
         
 		$category = Category::all();
@@ -22,6 +22,11 @@ class VoucherController extends Controller
 		$vouchers = Voucher::latest()->paginate(5);
 
 		$total = ['redeemed' => redeemed::count(), 'vouchers' => Voucher::count()];
+		
+		if ($request->ajax()) {
+    		$view = view('client.ajaxhome',compact('vouchers'))->render();
+            return response()->json(['html'=>$view]);
+        }
 
         //return view('client.home', compact('vouchers','category'));
         return view('client.home3', compact('vouchers','category','total'));
@@ -29,7 +34,7 @@ class VoucherController extends Controller
 		
     }
 
-    public function show($cid = false)
+    public function show($cid = false,Request $request)
     {
         if ($cid)
 		{
@@ -45,7 +50,11 @@ class VoucherController extends Controller
 
 		$total = ['redeemed' => redeemed::count(), 'vouchers' => $vouchers_total];
 
-
+		if ($request->ajax()) {
+    		$view = view('client.ajaxhome',compact('vouchers'))->render();
+            return response()->json(['html'=>$view]);
+        }
+		
         //return view('client.home', compact('vouchers','category'));		
         return view('client.home3', compact('vouchers','category','total'));
 		

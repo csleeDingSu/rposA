@@ -346,4 +346,6 @@ return [
 	'faq_update_success_msg' => 'Faq successfully Updated',
 	'copied' => 'Copied',
 	'text_copied' => 'The text has been copied.',
+	
+	'end_of_result' => '--End of result--',
 ];

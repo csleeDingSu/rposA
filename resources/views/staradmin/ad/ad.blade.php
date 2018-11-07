@@ -22,7 +22,7 @@
 </head>
 
 <body>
-	<section class="cardm">
+	<section class="card">
 		
 		<div class="showBox dn">
 			<div class="showIn dflex scaleHide">
@@ -73,15 +73,17 @@
 				@endforeach
 			</ul>
 			{{ $result->links() }}
+				<p class="isnext">下拉显示更多...</p>
 			</div>
 			
 		</div>
 		
 	</section>
 	
+<input type="hidden" id="page" value="1" />
+<input type="hidden" id="max_page" value="{{$result->lastPage()}}" />
+
 	
-	
-	<script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
 	<script src="{{ asset('ad/js/clipboard.min.js') }}"></script> 
 	
 	
@@ -110,8 +112,22 @@ $(function () {
 					$('.cutBtn img').attr('src', "{{ asset('ad/images/cut.png') }}");
 				}
 			});
+	
+			
+			being.scrollBottom('.card', '.card-body', () => {	
+				page++;
+				var max_page = parseInt($('#max_page').val());
+				if(page > max_page) {
+					$('#page').val(page);
+					$(".isnext").html("@lang('dingsu.end_of_result')");
+					$('.isnext').css('padding-bottom', '50px');
 
-/*
+				}else{
+					getPosts(page);
+				}	
+			});
+			/*
+
 			being.scrollBottom('.card', '.card-body', () => {
 				//滚到到底部执行动作
 
@@ -132,12 +148,13 @@ $(function () {
 				html += '</div>';
 				html += '</div>';
 				html += '</li>';
-				//$('.list').append(html);
+				$('.list').append(html);
 			
 				//暂无更多
 				//$('.isnext').html('暂无更多...');
 			}); 
-*/
+			*/
+
 		})
 		var clipboard = new ClipboardJS('.cutBtn', {
 			target: function () {
@@ -155,8 +172,33 @@ $(function () {
 			$('.cutBtn img').attr('src', "{{ asset('ad/images/cutNo.png') }}");
 		});
 		
-		 $('ul.pagination').hide();	
-	 
+		$('ul.pagination').hide();	
+	 	var page=1;
+		
+		function getPosts(page){
+			$.ajax({
+				type: "GET",
+				url: "/?page"+page, 
+				data: { page: page },
+				beforeSend: function(){ 
+				},
+				complete: function(){ 
+				  $('#loading').remove
+				},
+				success: function(responce) { 
+					$('.list').append(responce.html);
+				}
+			 });
+		}
+		
+		$('.card-body').on('scroll', function() {
+				if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {            
+					//scroll
+					alert();
+				}
+			})
+		
+		/*
         $('.infinite-scroll').jscroll({
             autoTrigger: true,
             debug: false,
@@ -168,7 +210,7 @@ $(function () {
                 $('ul.pagination').remove();
             },
         });
-		
+		*/
 	</script>
 
 </body>

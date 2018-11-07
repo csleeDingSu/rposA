@@ -101,20 +101,33 @@ class ProductController extends Controller
 	
 	
 	
-	public function index()
+	public function index(Request $request)
     {		
 		$result = Product::get_ad_paginate(10);
+		
+		
+		if ($request->ajax()) {
+    		$view = view('ad.ajaxhome',compact('result'))->render();
+            return response()->json(['html'=>$view]);
+        }
+		
 		$productcount = $result->count();
         return view('ad.ad', compact('result','productcount'));
 		
 		
     }
 
-    public function show()
+    public function show(Request $request)
     {
 		$result = Product::get_ad_paginate(10);
 		
 		$productcount = Category::all();
+		
+		if ($request->ajax()) {
+    		$view = view('ad.ajaxhome',compact('result'))->render();
+            return response()->json(['html'=>$view]);
+        }
+		
         return view('ad.ad', compact('result','productcount'));		
 		
     }

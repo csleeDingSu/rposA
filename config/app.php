@@ -219,5 +219,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
     ],
+	
+	
+	'introducer_life' => 1,
 
 ];

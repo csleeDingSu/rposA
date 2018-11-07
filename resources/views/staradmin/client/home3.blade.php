@@ -17,9 +17,16 @@
 	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}"></script>
 </head>
-
+<style>
+	
+	
+.isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
+	
+	</style>
 <body style="background:#efefef">
-
+<input type="hidden" id="page" value="1" />
+<input type="hidden" id="max_page" value="{{$vouchers->lastPage()}}" />
+	
 	<section class="cardFull card-flex">
 		<div class="cardHeader">
 			<div class="header">
@@ -114,6 +121,7 @@
 							<a href="#">
 								<span>¥178.00</span>
 								<img src="{{ asset('/test/main/images/demo/d-img.png') }}">
+
 							</a>
 							<h2>
 								<font>李明东</font>挖到了
@@ -177,6 +185,7 @@
 											</div>
 										</div>
 									</li>
+							
 								@endforeach
 								
 							@else
@@ -205,11 +214,14 @@
 				
 						</ul>
 						{{ $vouchers->links() }}
+						
+						<p class="isnext">下拉显示更多...</p>
 					</div>
 					
 				</div>
 			</div>
 		</div>
+		
 		<div class="cardFoot">
 			<div class="navBox">
 				<dl class="dbox">
@@ -259,9 +271,11 @@
 				<div class="iconImg"><img src="{{ asset('/test/main/images/icon-2.png') }}"><span>10兑换1元红包</span></div>
 				<a class="btn" href="/arcade"><img src="{{ asset('/test/main/images/wabao.png') }}"></a>
 			</div>
-		</div>
+		</div> 
+		
 	</section>
-
+	
+	
 	<script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}"></script>
 	<script>
@@ -371,24 +385,46 @@
 				$('.cutBtn img').attr('src', 'test/main/images/btn-3.png');
 			});
 
-			being.scrollBottom('.cardBody', '.box', () => {
-				//alert('123');
+			being.scrollBottom('.cardBody', '.box', () => {			
+				page++;
+				var max_page = parseInt($('#max_page').val());
+				if(page > max_page) {
+					$('#page').val(page);
+					$(".isnext").html("@lang('dingsu.end_of_result')");
+					$('.isnext').css('padding-bottom', '50px');
+
+				}else{
+					getPosts(page);
+				}	
 			});
 		})
 
-		$('ul.pagination').hide();	
-	 
-        $('infinite-scroll').jscroll({
-            autoTrigger: true,
-            debug: false,
-            loadingHtml: '<p class="isnext">下拉显示更多...</p>',
-            padding: 0,
-            nextSelector: '.pagination li.active + li a',
-            contentSelector: '.infinite-scroll',
-            callback: function() {
-                $('ul.pagination').remove();
-            },
-        });
+		$('ul.pagination').hide();
+		
+		var page=1;
+		
+		/*$('.cardBody').on('scroll', function() {
+        	if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {            
+				//scroll
+			}
+		})*/
+				
+		function getPosts(page){
+			$.ajax({
+				type: "GET",
+				url: "/?page"+page, 
+				data: { page: page },
+				beforeSend: function(){ 
+				},
+				complete: function(){ 
+				  $('#loading').remove
+				},
+				success: function(responce) { 
+					$('.list-2').append(responce.html);
+				}
+			 });
+		}
+		
 	</script>
 
 </body>

@@ -146,7 +146,7 @@ $(function() {
 					
 				}
 				window.history.pushState("", "", url);
-				/*
+				
 				swal( {
 					title: '@lang("dingsu.please_wait")',
 					text: '@lang("dingsu.updating_data")..',
@@ -158,7 +158,7 @@ $(function() {
 						swal.showLoading()
 					}
 				} )				
-				*/
+				
                 $.ajax({
                     url : url,
 					data: {_method: 'get', _token :"{{ csrf_token() }}",_data:$("#searchform").serialize()},

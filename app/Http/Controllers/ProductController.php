@@ -352,7 +352,7 @@ class ProductController extends BaseController
 	
 	public function get_pending_redeemlist(Request $request)
     {
-		$result =  \DB::table('view_redeem_list')->where('pin_status',4);		
+		$result =  \DB::table('view_pending_redeem')->where('pin_status',4);		
 		
 		$input = array();
 		
@@ -426,6 +426,42 @@ class ProductController extends BaseController
 		else{
 			return response()->json(['success' => false, 'message' => 'unknown product']);
 		}	
+	}
+	
+	public function get_redeemhistory(Request $request)
+    {
+		$result =  \DB::table('view_redeem_history');	
+		$input = array();
+		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_product_name'])) {
+				$result = $result->where('product_name','LIKE', "%{$input['s_product_name']}%") ;
+				
+			}
+			if (!empty($input['s_username'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			}
+			if (isset($input['s_status'])) {
+				if ($input['s_status'] != '' )
+					$result = $result->where('redeem_state','=',$input['s_status']);
+			}
+		}
+		
+		$result =  $result->orderby('id','DESC')->paginate(30);
+				
+		$data['page'] = 'product.redeemhistory'; 	
+				
+		$data['result'] = $result; 		
+		
+		 if ($request->ajax()) {
+            return view('product.redeemhistory_ajaxlist', ['result' => $result])->render();  
+        }					
+		return view('main', $data);
 	}
 	
 	public function clean_ad_product()

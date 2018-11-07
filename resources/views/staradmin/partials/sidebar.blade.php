@@ -121,9 +121,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/product/pending-redeem">@lang('dingsu.pending') @lang('dingsu.redeem')  </a>
 					</li>
-					<!--<li class="nav-item">
+					<li class="nav-item">
 						<a class="nav-link" href="/product/redeem-history">@lang('dingsu.redeem') @lang('dingsu.history')  </a>
 					</li>
+					<!--
 					<li class="nav-item">
 						<a class="nav-link" href="/product/redeem-history">@lang('dingsu.redeem') @lang('dingsu.log')  </a>
 					</li>-->

@@ -281,6 +281,7 @@ class MemberController extends BaseController
 				break;
 				default:
 					$badge = "<label class='badge badge-success'>".trans('dingsu.verified')."</label> ";
+					$this->add_life($record);
 				break;
 					
 			}
@@ -288,6 +289,26 @@ class MemberController extends BaseController
 			return response()->json(['success' => true,'wechat_name'=>$wechat,'wechat_status'=>$status,'badge'=>$badge]);
 		}		
 		return response()->json(['success' => false]);
+	}
+	
+	public function add_life ($record)
+	{
+		if ($record->referred_by)
+		{
+			if (empty($record->introducer_life))
+			{
+				$life   = \Config::get('app.introducer_life');
+				$wallet = Wallet::update_ledger_life($record->id, $life,'LFE',' Introducer bonus life.Introduced user :'.$record->username);
+				
+				if ($wallet['success'])
+				{
+					$data = ['introducer_life'=> 1];
+					$res = Member::update_member($record->id,$data);
+					return TRUE;
+				}
+				// @todo :- Log error message
+			}
+		}
 	}
 	
 	public function change_status (Request $request)
