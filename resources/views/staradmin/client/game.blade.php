@@ -7,6 +7,16 @@
 
     <link rel="stylesheet" href="{{ asset('/client/css/game.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/swiper.css') }}" />
+
+    <style>
+    	
+    	.reveal-modal {
+		    /*position: relative;*/
+		    margin: 0 auto;
+		    top: 25%;
+		}
+
+    </style>
 @endsection
     	
 @section('top-navbar')
@@ -285,8 +295,8 @@
 
 <!-- Start Reset Life -->
 
-	<div class="modal fade col-md-12" id="reset-life" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
-		<div class="modal-dialog modal-lg" role="document">
+	<div class="modal fade col-md-12" id="reset-life" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg reveal-modal" role="document">
 			<div class="modal-content modal-wechat">
 				<div class="modal-body">				
 					<div class="modal-row">
@@ -296,12 +306,12 @@
 
 								<div class="" id="validation-errors"></div>
 								<div class="wechat-title">
-									游戏结束。！
+									游戏结束！
 								</div>
 								
 								<div class="wechat-wrapper">
 									<div>继续再玩?</div>
-									<button id="btn-reset-life" type="button" class="btn btn-primary">OK</button>
+									<button id="btn-reset-life" type="button" class="btn btn-primary">提交</button>
 								</div>						
 							</div>
 						</div>
@@ -311,7 +321,7 @@
 			<div class="modal-card">
 				<div class="btn-close" data-dismiss="modal">
 						<div class="glyphicon glyphicon-remove-circle"></div>
-						<div class="left"> 等待认证，先逛逛看。</div>
+						<div class="left">关闭游戏，先逛逛看。</div>
 				</div>
 			</div>
 		</div>

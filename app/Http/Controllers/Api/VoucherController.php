@@ -17,7 +17,7 @@ class VoucherController extends Controller
     public function index(Request $request)
     {
         
-		$category = Category::all();
+		$category = Category::orderby('position','ASC')->get();
 		
 		$vouchers = Voucher::latest()->paginate(5);
 
@@ -46,7 +46,7 @@ class VoucherController extends Controller
 			$vouchers_total = Voucher::count();
 		}
 		
-		$category = Category::all();
+		$category = Category::orderby('position','ASC')->get();
 
 		$total = ['redeemed' => redeemed::count(), 'vouchers' => $vouchers_total];
 
