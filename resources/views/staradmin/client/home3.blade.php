@@ -159,14 +159,8 @@
 					</div>
 					
 					<div class="infinite-scroll">
-						<ul class="list-2">
-
-							
-								
+						<ul class="list-2">								
 								@include('client.ajaxhome')
-								
-							
-				
 						</ul>
 						{{ $vouchers->links() }}
 						
@@ -248,8 +242,7 @@
 					$('.cardHeader').removeAttr('style');
 				});
 			});
-			$('.product .list-2 .mset a:first-child').click(() => {
-
+			$("body").on("click",".mset a:first-child",function(){
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 			})
@@ -325,8 +318,7 @@
 			});
 			
 			
-			$('.product .list-2 .mset a.type').click((e) => {
-				
+			$("body").on("click",".mset a.type",function(e) {				
 				item_id       = $(e.target).data('tt_id');
 				product_name  = $(e.target).data('tt_product_name');
 				product_price = $(e.target).data('tt_product_price');

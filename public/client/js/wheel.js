@@ -199,7 +199,7 @@ function initGame(){
         } else {
             //$.getJSON( "/api/generateresult", function() {});
             //console.log("initGame");
-            initGame();
+            //initGame();
         }
 
         
@@ -240,11 +240,13 @@ function bindBetButton(){
             window.top.location.href = "/member";
         }
 
-        if(isNaN(balance) || balance < 10){
+        if(isNaN(balance)){
             return false;
         }
 
+        //console.log(user_id +":" + balance + ":" + life );
         if(user_id > 0 && balance < 630 && life > 0){
+
             bindResetLifeButton();
             $('#reset-life', window.parent.document).modal();
 

@@ -20,41 +20,36 @@ Route::get('/', function()
 // Route::get('/home', function () {
 //     return view('client/home');
 // });
-$this->get('/home', 'Api\VoucherController@index')->name('api.vlist'); //cs20181003 - temp fix redirect to /home
+$this->get( '/home', 'Api\VoucherController@index' )->name( 'api.vlist' ); //cs20181003 - temp fix redirect to /home
 
-$this->get('/ads', 'Api\ProductController@index')->name('api.client.ad');
+$this->get( '/ads', 'Api\ProductController@index' )->name( 'api.client.ad' );
 //$this->get('/ads', 'Api\ProductController@index')->name('api.client.adold');
 
 //Member routes
-Route::group(['middleware' => 'sso'], function()
-{
+Route::group( [ 'middleware' => 'sso' ], function () {
 
-	Route::get('/details/{id?}', 'VoucherController@get_voucher_detail')->name('get.voucher.detail');
+	Route::get( '/details/{id?}', 'VoucherController@get_voucher_detail' )->name( 'get.voucher.detail' );
 
-	Route::get('/arcade', 'ClientController@member_access_game')->name('client.arcade');
+	Route::get( '/arcade', 'ClientController@member_access_game' )->name( 'client.arcade' );
 
-	$this->post('/member_update_wechatname', 'ClientController@member_update_wechatname');
+	$this->post( '/member_update_wechatname', 'ClientController@member_update_wechatname' );
 
-	Route::get('/wheel', function () {
-		return view('client/wheel');
-	});
+	Route::get( '/wheel', function () {
+		return view( 'client/wheel' );
+	} );
 
-	Route::get('/results', function () {
-		return view('client/results');
-	});
+	Route::get( '/results', function () {
+		return view( 'client/results' );
+	} );
 
-	Route::get('/history', function () {
-		return view('client/history');
-	});
+	Route::get( '/history', function () {
+		return view( 'client/history' );
+	} );
 
-	// Route::get('/profile', function () {
-	//     return view('client/member');
-	// });
-	Route::get('/profile', 'ClientController@member_profile')->name('client.profile');
 
-	Route::get('/redeem', function () {
-		return view('client/redeem');
-	});
+	Route::get( '/redeem', function () {
+		return view( 'client/redeem' );
+	} );
 	/*
 	Route::get('/register', function () {
 		return view('client/register');
@@ -64,69 +59,76 @@ Route::group(['middleware' => 'sso'], function()
 		return view('client/login');
 	});
 	*/
-	Route::get('/validate', function () {
-		return view('client/validate');
-	});
+	Route::get( '/validate', function () {
+		return view( 'client/validate' );
+	} );
 
-	Route::get('/share', function () {
-		return view('client/share');
-	});
+	Route::get( '/share', function () {
+		return view( 'client/share' );
+	} );
 
-	Route::get('/verify', function () {
-		return view('client/verify');
-	});
+	Route::get( '/verify', function () {
+		return view( 'client/verify' );
+	} );
 
-	Route::get('/faq', function () {
+	Route::get( '/faq', function () {
 
-		$faqs = DB::table('faq')->select('id', 'title', 'content')->orderBy('id', 'desc')->get();
+		$faqs = DB::table( 'faq' )->select( 'id', 'title', 'content' )->orderBy( 'id', 'desc' )->get();
 
-		return view('client/faq', compact('faqs'));
-	});
-	
-	Route::get('/allhistory', function () {
-		return view('client/allhistory');
-	});
-	
-	
-	Route::get('/referral-list', 'ClientController@member_referral_list')->name('client.referral.list');
+		return view( 'client/faq', compact( 'faqs' ) );
+	} );
+
+	Route::get( '/allhistory', function () {
+		return view( 'client/allhistory' );
+	} );
 
 
-});
+	Route::get( '/referral-list', 'ClientController@member_referral_list' )->name( 'client.referral.list' );
+
+
+} );
+
+
+Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
+	Route::get( '/profile', 'ClientController@member_profile' )->name( 'client.profile' );
+
+} );
+
 //Member routes end
 
 
-$this->get('cs/{id?}', 'Api\VoucherController@show')->name('api.vclist');
+$this->get( 'cs/{id?}', 'Api\VoucherController@show' )->name( 'api.vclist' );
 
-$this->get('/', 'Api\VoucherController@index')->name('api.vlist');
+$this->get( '/', 'Api\VoucherController@index' )->name( 'api.vlist' );
 
 
 
-$this->get('register/{token?}', 'Auth\MemberRegisterController@showRegisterForm')->name('member.register');
-$this->post('/doregister', 'Auth\MemberRegisterController@doregister')->name('submit.member.register');
+$this->get( 'register/{token?}', 'Auth\MemberRegisterController@showRegisterForm' )->name( 'member.register' );
+$this->post( '/doregister', 'Auth\MemberRegisterController@doregister' )->name( 'submit.member.register' );
 
 //Auth Routes
 
 //Auth::routes();
- Route::prefix('admin')->group(function() {
-    Route::get('login', 'Auth\AdminLoginController@showLoginForm')->name('adminlogin');
-    Route::post('login', 'Auth\AdminLoginController@login')->name('adminlogin.submit');
-    Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
- });
+Route::prefix( 'admin' )->group( function () {
+	Route::get( 'login', 'Auth\AdminLoginController@showLoginForm' )->name( 'adminlogin' );
+	Route::post( 'login', 'Auth\AdminLoginController@login' )->name( 'adminlogin.submit' );
+	Route::get( 'dashboard', 'AdminController@dashboard' )->name( 'admin.dashboard' );
+} );
 
-  Route::group(['prefix' => 'member','namespace' => 'Auth', 'middleware' => ['guest']],function(){
-// //Route::prefix('member')->group(function() {
-     Route::get('login', 'MemberLoginController@showLoginForm')->name('login');
-     Route::post('login', 'MemberLoginController@login')->name('memberlogin.submit');
-    	
+Route::group( [ 'prefix' => 'member', 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function () {
+	// //Route::prefix('member')->group(function() {
+	Route::get( 'login', 'MemberLoginController@showLoginForm' )->name( 'memberlogin' );
+	Route::post( 'login', 'MemberLoginController@login' )->name( 'memberlogin.submit' );
+
 	// Password Reset Routes...
-    $this->get('password-reset', 'ForgotPasswordController@MembershowLinkRequestForm')->name('member.reset.password');
-	$this->post('password-reset', 'ForgotPasswordController@sendResetLinkEmail')->name('submit.reset.password');
-    $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
-    $this->get('reset/{token}', 'ResetPasswordController@MembershowResetForm')->name('member.reset.token');
-    $this->post('resetpassword', 'ResetPasswordController@resetpassword')->name('member.update.password');
-  });
+	$this->get( 'password-reset', 'ForgotPasswordController@MembershowLinkRequestForm' )->name( 'member.reset.password' );
+	$this->post( 'password-reset', 'ForgotPasswordController@sendResetLinkEmail' )->name( 'submit.reset.password' );
+	$this->post( 'password/email', 'ForgotPasswordController@sendResetLinkEmail' );
+	$this->get( 'reset/{token}', 'ResetPasswordController@MembershowResetForm' )->name( 'member.reset.token' );
+	$this->post( 'resetpassword', 'ResetPasswordController@resetpassword' )->name( 'member.update.password' );
+} );
 
-$this->get('login', 'Auth\MemberLoginController@showLoginForm')->name('login');
+$this->get( 'login', 'Auth\MemberLoginController@showLoginForm' )->name( 'login' );
 //Auth Routes END
 
 
@@ -134,229 +136,224 @@ $this->get('login', 'Auth\MemberLoginController@showLoginForm')->name('login');
 
 
 //Member routes
-Route::group(['prefix' => 'member','middleware' => 'auth:member'],function(){
-	
-	Route::get('/', 'MemberController@index');
-	
-});
+Route::group( [ 'prefix' => 'member', 'middleware' => 'auth:member' ], function () {
+
+	Route::get( '/', 'MemberController@index' );
+
+} );
 //Member routes end
 
 
 
 //Admin
-Route::group(['middleware' => 'auth:admin'], function()
-{
-    	
+Route::group( [ 'middleware' => 'auth:admin' ], function () {
+
 	//Game rotes
-	Route::get('/game', 'GameController@get_game_list');
-	Route::get('/game/index', 'GameController@dashboard');
-	Route::get('/game/list', 'GameController@get_game_list');
-	
-	Route::get('/game/new', 'GameController@new_game');
-	Route::post('/game/new', 'GameController@save_game');
-	
-	
-	Route::get('/game/edit/{id}', 'GameController@edit_game');
-	Route::post('/game/edit/{id}', 'GameController@update_game');
-	
-	Route::get('/game/addlevel/{id}', 'GameController@add_level');
+	Route::get( '/game', 'GameController@get_game_list' );
+	Route::get( '/game/index', 'GameController@dashboard' );
+	Route::get( '/game/list', 'GameController@get_game_list' );
+
+	Route::get( '/game/new', 'GameController@new_game' );
+	Route::post( '/game/new', 'GameController@save_game' );
+
+
+	Route::get( '/game/edit/{id}', 'GameController@edit_game' );
+	Route::post( '/game/edit/{id}', 'GameController@update_game' );
+
+	Route::get( '/game/addlevel/{id}', 'GameController@add_level' );
 
 
 	//redeem route
 	//Route::get('/redeem', 'RedeemController@getRedeemList')->name('redeemlist');
 	//Route::post('/redeem/import-pins', 'ImportController@PostpinImport')->name('pin.import');
-	
-	
+
+
 	//Member route
-	Route::get('/member/index', 'MemberController@dashboard');
-	Route::get('/member/dashboard', 'MemberController@dashboard')->name('memberdashboard');
-	Route::get('/member', 'MemberController@member_list');
-	Route::get('/member/list', 'MemberController@member_list')->name('memberlist');
-	
-	Route::get('/member/add', 'MemberController@add_member');
-	Route::post('/member/add', 'MemberController@save_member');
-	
-	Route::get('/member/edit/{id}', 'MemberController@edit_member');
-	Route::post('/member/edit/{id}', 'MemberController@update_member');
-	
-	
-	Route::delete('/member/delete/{id}', 'MemberController@delete_member');
-	
-	
-	Route::get('/member/pending-verification', 'MemberController@list_pending_wechat_account');
-	
-	Route::post('/member/update-verification', 'MemberController@verify_wechat_account')->name('ajaxapprovewechat');
-	
-	Route::post('/member/reject-verification', 'MemberController@reject_wechat_verification')->name('post.wechat.reject');
-	
-	Route::post('/member/change-status', 'MemberController@change_status')->name('ajaxchange.member.status');
-	Route::post('/member/change-password', 'MemberController@change_password')->name('ajaxchange.member.resetpass');
-	
-	Route::get('/member/get-childs', 'MemberController@child_list')->name('ajax.child.members');
-	
+	Route::get( '/member/index', 'MemberController@dashboard' );
+	Route::get( '/member/dashboard', 'MemberController@dashboard' )->name( 'memberdashboard' );
+	Route::get( '/member', 'MemberController@member_list' );
+	Route::get( '/member/list', 'MemberController@member_list' )->name( 'memberlist' );
+
+	Route::get( '/member/add', 'MemberController@add_member' );
+	Route::post( '/member/add', 'MemberController@save_member' );
+
+	Route::get( '/member/edit/{id}', 'MemberController@edit_member' );
+	Route::post( '/member/edit/{id}', 'MemberController@update_member' );
+
+
+	Route::delete( '/member/delete/{id}', 'MemberController@delete_member' );
+
+
+	Route::get( '/member/pending-verification', 'MemberController@list_pending_wechat_account' );
+
+	Route::post( '/member/update-verification', 'MemberController@verify_wechat_account' )->name( 'ajaxapprovewechat' );
+
+	Route::post( '/member/reject-verification', 'MemberController@reject_wechat_verification' )->name( 'post.wechat.reject' );
+
+	Route::post( '/member/change-status', 'MemberController@change_status' )->name( 'ajaxchange.member.status' );
+	Route::post( '/member/change-password', 'MemberController@change_password' )->name( 'ajaxchange.member.resetpass' );
+
+	Route::get( '/member/get-childs', 'MemberController@child_list' )->name( 'ajax.child.members' );
+
 	//Admin Routes	
-	Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admindashboard');
-	
-	
+	Route::get( '/admin/dashboard', 'AdminController@dashboard' )->name( 'admindashboard' );
+
+
 	//Voucher Routes
-	Route::get('/voucher/', 'VoucherController@get_voucher_list');
-	Route::get('/voucher/list', 'VoucherController@get_voucher_list');
-	Route::get('/voucher/unreleased', 'VoucherController@get_unreleasedvoucher_list');	
-	
-	Route::get('/voucher/category', 'VoucherController@get_category');
-	Route::get('/voucher/category/add', 'VoucherController@add_category');
-	Route::post('/voucher/category/add', 'VoucherController@save_category');	
-	Route::get('/voucher/category/edit/{id}', 'VoucherController@edit_category');
-	Route::post('/voucher/category/edit/{id}', 'VoucherController@edit_category');	
-	Route::post('/voucher/category/delete/{id}', 'VoucherController@delete_category');	
-	
-	Route::get('/voucher/edit/{id}', 'VoucherController@edit_voucher');
-	Route::post('/voucher/edit/{id}', 'VoucherController@update_voucher');
-	
-	Route::delete('/voucher/delete/{id}', 'VoucherController@destroy');
-	Route::delete('/voucher/ur-delete/{id}', 'VoucherController@destroy_unr_voucher');
-	
-	Route::delete('/voucher/bulkupdate', 'VoucherController@bulkdata_update');
-	Route::delete('/voucher/bulk-unreleased-update', 'VoucherController@bulkdata_unrv_update')->name('unrv_update');
-	
-	Route::get('/voucher/edit/{id}', 'VoucherController@edit_voucher');
-	Route::get('/voucher/addlevel/{id}', 'VoucherController@add_level');
-	
-	Route::get('/voucher/import', 'ImportController@getImport')->name('import');
-	
-	Route::post('/voucher/import', 'ImportController@parseImport')->name('importparse');
-	Route::post('/voucher/importprocess', 'ImportController@ProcessparseImport')->name('importpost');
-	
-	
-	Route::get('/voucher/testimport', 'ImportController@testparseImport')->name('testimport');
-	Route::post('/voucher/testimport', 'ImportController@testProcessparseImport')->name('testimportpost');
-	
-	Route::get('/voucher/download', 'ImportController@downloadExcel');
-	
-	
-	Route::post('/voucher/publishvoucher/{id}', 'VoucherController@publishvoucher');
-	
-	Route::post('/voucher/unreleased', 'VoucherController@post_unreleasedvoucher_list');
-	
-	Route::post('/voucher/publishfile/{id}', 'VoucherController@publishfile');
-	 
-	Route::get('/voucher/un-duplicate-finder', 'VoucherController@check_unrvoucher_duplicate')->name('ajaxfindunrvoucherduplicate');
-	Route::get('/voucher/vo-duplicate-finder', 'VoucherController@check_voucher_duplicate')->name('ajaxfindvoucherduplicate');
-	
-	Route::delete('/voucher/remove-unr-duplicate/', 'VoucherController@remove_unrvoucher_duplicate');
-	Route::delete('/voucher/remove-vor-duplicate/', 'VoucherController@remove_voucher_duplicate');
-	
-	
-	Route::get('/voucher/show/{id}', 'VoucherController@show_voucher')->name('showvoucher');
-	Route::get('/voucher/show-unrv/{id}', 'VoucherController@show_unreleased_voucher')->name('showunreleasedvoucher');
-	
-	Route::post('/voucher/ajaxupdate-unrv-voucher', 'VoucherController@ajax_unrv_update_voucher')->name('ajax_unrv_updatevoucher');
-	Route::post('/voucher/ajaxupdatevoucher', 'VoucherController@ajax_update_voucher')->name('ajaxupdatevoucher');
-	
-	
+	Route::get( '/voucher/', 'VoucherController@get_voucher_list' );
+	Route::get( '/voucher/list', 'VoucherController@get_voucher_list' );
+	Route::get( '/voucher/unreleased', 'VoucherController@get_unreleasedvoucher_list' );
+
+	Route::get( '/voucher/category', 'VoucherController@get_category' );
+	Route::get( '/voucher/category/add', 'VoucherController@add_category' );
+	Route::post( '/voucher/category/add', 'VoucherController@save_category' );
+	Route::get( '/voucher/category/edit/{id}', 'VoucherController@edit_category' );
+	Route::post( '/voucher/category/edit/{id}', 'VoucherController@edit_category' );
+	Route::post( '/voucher/category/delete/{id}', 'VoucherController@delete_category' );
+
+	Route::get( '/voucher/edit/{id}', 'VoucherController@edit_voucher' );
+	Route::post( '/voucher/edit/{id}', 'VoucherController@update_voucher' );
+
+	Route::delete( '/voucher/delete/{id}', 'VoucherController@destroy' );
+	Route::delete( '/voucher/ur-delete/{id}', 'VoucherController@destroy_unr_voucher' );
+
+	Route::delete( '/voucher/bulkupdate', 'VoucherController@bulkdata_update' );
+	Route::delete( '/voucher/bulk-unreleased-update', 'VoucherController@bulkdata_unrv_update' )->name( 'unrv_update' );
+
+	Route::get( '/voucher/edit/{id}', 'VoucherController@edit_voucher' );
+	Route::get( '/voucher/addlevel/{id}', 'VoucherController@add_level' );
+
+	Route::get( '/voucher/import', 'ImportController@getImport' )->name( 'import' );
+
+	Route::post( '/voucher/import', 'ImportController@parseImport' )->name( 'importparse' );
+	Route::post( '/voucher/importprocess', 'ImportController@ProcessparseImport' )->name( 'importpost' );
+
+
+	Route::get( '/voucher/testimport', 'ImportController@testparseImport' )->name( 'testimport' );
+	Route::post( '/voucher/testimport', 'ImportController@testProcessparseImport' )->name( 'testimportpost' );
+
+	Route::get( '/voucher/download', 'ImportController@downloadExcel' );
+
+
+	Route::post( '/voucher/publishvoucher/{id}', 'VoucherController@publishvoucher' );
+
+	Route::post( '/voucher/unreleased', 'VoucherController@post_unreleasedvoucher_list' );
+
+	Route::post( '/voucher/publishfile/{id}', 'VoucherController@publishfile' );
+
+	Route::get( '/voucher/un-duplicate-finder', 'VoucherController@check_unrvoucher_duplicate' )->name( 'ajaxfindunrvoucherduplicate' );
+	Route::get( '/voucher/vo-duplicate-finder', 'VoucherController@check_voucher_duplicate' )->name( 'ajaxfindvoucherduplicate' );
+
+	Route::delete( '/voucher/remove-unr-duplicate/', 'VoucherController@remove_unrvoucher_duplicate' );
+	Route::delete( '/voucher/remove-vor-duplicate/', 'VoucherController@remove_voucher_duplicate' );
+
+
+	Route::get( '/voucher/show/{id}', 'VoucherController@show_voucher' )->name( 'showvoucher' );
+	Route::get( '/voucher/show-unrv/{id}', 'VoucherController@show_unreleased_voucher' )->name( 'showunreleasedvoucher' );
+
+	Route::post( '/voucher/ajaxupdate-unrv-voucher', 'VoucherController@ajax_unrv_update_voucher' )->name( 'ajax_unrv_updatevoucher' );
+	Route::post( '/voucher/ajaxupdatevoucher', 'VoucherController@ajax_update_voucher' )->name( 'ajaxupdatevoucher' );
+
+
 	//product
-	Route::get('/product/', 'ProductController@list_product')->name('product.list.all');
-	Route::get('/product/list', 'ProductController@list_product')->name('product.list');
-	Route::get('/product/ajaxlist', 'ProductController@ajax_list_product')->name('product.ajax.list');
-	
-	Route::get('/product/add', 'ProductController@add_product')->name('product.add');
-	Route::get('/product/edit/{id?}', 'ProductController@edit_product')->name('product.edit');
-	
-	Route::post('/product/add', 'ProductController@save_product')->name('product.save');
-	Route::post('/product/edit/{id?}', 'ProductController@update_product')->name('product.update');
-	
-	
+	Route::get( '/product/', 'ProductController@list_product' )->name( 'product.list.all' );
+	Route::get( '/product/list', 'ProductController@list_product' )->name( 'product.list' );
+	Route::get( '/product/ajaxlist', 'ProductController@ajax_list_product' )->name( 'product.ajax.list' );
+
+	Route::get( '/product/add', 'ProductController@add_product' )->name( 'product.add' );
+	Route::get( '/product/edit/{id?}', 'ProductController@edit_product' )->name( 'product.edit' );
+
+	Route::post( '/product/add', 'ProductController@save_product' )->name( 'product.save' );
+	Route::post( '/product/edit/{id?}', 'ProductController@update_product' )->name( 'product.update' );
+
+
 	//softpins
-	Route::get('/product/softpins', 'ProductController@list_pins')->name('pin.list');
-	Route::post('/product/addpins', 'ProductController@save_pins')->name('pin.create');
-	
-	Route::get('/product/import', 'ImportController@getPinImport')->name('import');
-	Route::post('/product/import-pins', 'ImportController@PostpinImport')->name('pin.import');
-	Route::post('/product/importprocess', 'ImportController@PinProcessImport')->name('pin.process.import');
-	
+	Route::get( '/product/softpins', 'ProductController@list_pins' )->name( 'pin.list' );
+	Route::post( '/product/addpins', 'ProductController@save_pins' )->name( 'pin.create' );
+
+	Route::get( '/product/import', 'ImportController@getPinImport' )->name( 'import' );
+	Route::post( '/product/import-pins', 'ImportController@PostpinImport' )->name( 'pin.import' );
+	Route::post( '/product/importprocess', 'ImportController@PinProcessImport' )->name( 'pin.process.import' );
+
 	//Route::delete('/product/remove-softpins', 'ProductController@remove_pin')->name('pin.remove');
-	
-	
-	Route::delete('/product/remove-softpins', 'ProductController@remove_pin')->name('pin.remove');
-	
-	
-	
+
+
+	Route::delete( '/product/remove-softpins', 'ProductController@remove_pin' )->name( 'pin.remove' );
+
+
+
 	//redeem
-	Route::get('/product/pending-redeem', 'ProductController@get_pending_redeemlist')->name('redeem.pending.list');
-	Route::delete('/product/confirm-redeem', 'ProductController@confirm_redeem')->name('pin.redeem.confirm');
-	Route::delete('/product/reject-redeem', 'ProductController@reject_redeem')->name('pin.redeem.reject'); 
-	
-	
-	Route::get('/product/redeem-history', 'ProductController@get_redeemhistory')->name('redeem.history.list');
-	
+	Route::get( '/product/pending-redeem', 'ProductController@get_pending_redeemlist' )->name( 'redeem.pending.list' );
+	Route::delete( '/product/confirm-redeem', 'ProductController@confirm_redeem' )->name( 'pin.redeem.confirm' );
+	Route::delete( '/product/reject-redeem', 'ProductController@reject_redeem' )->name( 'pin.redeem.reject' );
+
+
+	Route::get( '/product/redeem-history', 'ProductController@get_redeemhistory' )->name( 'redeem.history.list' );
+
 	//new product 
-	
-	Route::get('/product/product-new', 'ProductController@show_product')->name('ad.product.show'); 	
-	
-	Route::get('/product/ad-edit/{id?}', 'ProductController@edit_ad_product')->name('ad.product.edit');	
-	Route::post('/product/ad-edit/{id?}', 'ProductController@update_ad_product')->name('ad.postproduct.edit');
-	
-	Route::get('/product/ad-add', 'ProductController@add_ad_product')->name('ad.product.add');
-	Route::post('/product/ad-add', 'ProductController@save_ad_product')->name('ad.product.save');
-	
-	Route::delete('/product/ad-delete', 'ProductController@delete_ad_product')->name('ad.product.delete');
-	
-	Route::delete('/product/ad-delete-all', 'ProductController@clean_ad_product')->name('ad.product.clean'); //truncate
-	
+
+	Route::get( '/product/product-new', 'ProductController@show_product' )->name( 'ad.product.show' );
+
+	Route::get( '/product/ad-edit/{id?}', 'ProductController@edit_ad_product' )->name( 'ad.product.edit' );
+	Route::post( '/product/ad-edit/{id?}', 'ProductController@update_ad_product' )->name( 'ad.postproduct.edit' );
+
+	Route::get( '/product/ad-add', 'ProductController@add_ad_product' )->name( 'ad.product.add' );
+	Route::post( '/product/ad-add', 'ProductController@save_ad_product' )->name( 'ad.product.save' );
+
+	Route::delete( '/product/ad-delete', 'ProductController@delete_ad_product' )->name( 'ad.product.delete' );
+
+	Route::delete( '/product/ad-delete-all', 'ProductController@clean_ad_product' )->name( 'ad.product.clean' ); //truncate
+
 	// ad import 
-	Route::get('/product/ad-import', 'ImportController@getAdImport')->name('ad.get.import');
-	Route::post('/product/ad-import-pins', 'ImportController@PostAdImport')->name('ad.post.import');
-	Route::post('/product/ad-importprocess', 'ImportController@AdProcessImport')->name('ad.process.import');
-	
+	Route::get( '/product/ad-import', 'ImportController@getAdImport' )->name( 'ad.get.import' );
+	Route::post( '/product/ad-import-pins', 'ImportController@PostAdImport' )->name( 'ad.post.import' );
+	Route::post( '/product/ad-importprocess', 'ImportController@AdProcessImport' )->name( 'ad.process.import' );
+
 	//ledger
-	
-	Route::get('/ledger/get-life', 'LedgerController@get_life')->name('get.ledger.life');
-	
-	Route::post('/ledger/adjust-life', 'LedgerController@adjust_life')->name('post.ledger.adjustlife');
-	
+
+	Route::get( '/ledger/get-life', 'LedgerController@get_life' )->name( 'get.ledger.life' );
+
+	Route::post( '/ledger/adjust-life', 'LedgerController@adjust_life' )->name( 'post.ledger.adjustlife' );
+
 	//settings
-	Route::get('/admin/settings', 'AdminController@setting')->name('site.settings');
-	Route::post('/admin/settings', 'AdminController@update_setting')->name('site.submit.settings');
-	
+	Route::get( '/admin/settings', 'AdminController@setting' )->name( 'site.settings' );
+	Route::post( '/admin/settings', 'AdminController@update_setting' )->name( 'site.submit.settings' );
+
 	//User 
-	Route::get('/user', 'AdminController@userlist');
-	Route::get('/user/list', 'AdminController@userlist')->name('userlist');	
-	Route::get('/user/add', 'AdminController@add_user');
-	Route::post('/user/add', 'AdminController@create');	
-	Route::get('/user/edit/{id}', 'AdminController@edit_user');
-	Route::post('/user/edit/{id}', 'AdminController@update');	
-	Route::delete('/user/delete/{id}', 'AdminController@destroy');
-	
-	Route::post('/user/change-status', 'AdminController@change_status')->name('post.user.status');	
-	Route::post('/user/change-password', 'AdminController@change_password')->name('post.user.resetpass');
-	
-	Route::get('/user/profile', 'AdminController@profile');
-	Route::post('/user/profile', 'AdminController@update_profile');	
-	Route::post('/user/update-password', 'AdminController@update_password');
-	
+	Route::get( '/user', 'AdminController@userlist' );
+	Route::get( '/user/list', 'AdminController@userlist' )->name( 'userlist' );
+	Route::get( '/user/add', 'AdminController@add_user' );
+	Route::post( '/user/add', 'AdminController@create' );
+	Route::get( '/user/edit/{id}', 'AdminController@edit_user' );
+	Route::post( '/user/edit/{id}', 'AdminController@update' );
+	Route::delete( '/user/delete/{id}', 'AdminController@destroy' );
+
+	Route::post( '/user/change-status', 'AdminController@change_status' )->name( 'post.user.status' );
+	Route::post( '/user/change-password', 'AdminController@change_password' )->name( 'post.user.resetpass' );
+
+	Route::get( '/user/profile', 'AdminController@profile' );
+	Route::post( '/user/profile', 'AdminController@update_profile' );
+	Route::post( '/user/update-password', 'AdminController@update_password' );
+
 	//faq
-	Route::get('/admin/faq', 'AdminController@listfaq')->name('faq.list');
-	Route::get('/admin/get-faq', 'AdminController@getfaq')->name('faq.get');
-	Route::post('/admin/add-faq', 'AdminController@savefaq')->name('faq.create');
-	Route::post('/admin/edit-faq', 'AdminController@editfaq')->name('faq.edit');
-	Route::delete('/admin/delete-faq', 'AdminController@delete_faq')->name('faq.remove');
-});
+	Route::get( '/admin/faq', 'AdminController@listfaq' )->name( 'faq.list' );
+	Route::get( '/admin/get-faq', 'AdminController@getfaq' )->name( 'faq.get' );
+	Route::post( '/admin/add-faq', 'AdminController@savefaq' )->name( 'faq.create' );
+	Route::post( '/admin/edit-faq', 'AdminController@editfaq' )->name( 'faq.edit' );
+	Route::delete( '/admin/delete-faq', 'AdminController@delete_faq' )->name( 'faq.remove' );
+} );
 //END
 
-Route::get('/admin', 'AdminController@index');
-Route::get('/member', 'ClientController@index');
-Route::get('/client/profile', 'ClientController@member_profile')->name('client.profile.page');
+Route::get( '/admin', 'AdminController@index' );
+Route::get( '/member', 'ClientController@index' );
+Route::get( '/client/profile', 'ClientController@member_profile' )->name( 'client.profile.page' );
 
-Route::get('/clearcache', function() {
-    $exitCode = Artisan::call('cache:clear');
+Route::get( '/clearcache', function () {
+	$exitCode = Artisan::call( 'cache:clear' );
 	return 'cache:cleared';
-});
+} );
 
 
-Route::get('logout', 'Auth\LoginController@logout');
+Route::get( 'logout', 'Auth\LoginController@logout' );
 
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
-
-
-
+Route::post( 'logout', 'Auth\LoginController@logout' )->name( 'logout' );

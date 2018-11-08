@@ -25,7 +25,7 @@
 								@endforeach
 								
 							@else
-								<li class="dbox">
+								<!--<li class="dbox">
 									<a href="#" class="dbox0 imgBox">
 										<img src="{{ asset('/test/main/images/demo/d-img2.png') }}">
 									</a>
@@ -45,5 +45,5 @@
 											<a class="type">免费挖宝</a>
 										</div>
 									</div>
-								</li>
+								</li> -->
 							@endif

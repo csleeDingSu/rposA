@@ -28,10 +28,7 @@ class AdminController extends BaseController
 	
 	protected $hidden = ['password', 'password_hash', 'age', 'created_at'];
 	
-	public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
+	
 	
 	public function setting ()
 	{

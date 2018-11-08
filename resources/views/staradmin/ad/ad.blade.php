@@ -178,7 +178,7 @@ $(function () {
 		function getPosts(page){
 			$.ajax({
 				type: "GET",
-				url: "/?page"+page, 
+				url: "{{url()->current()}}?page"+page, 
 				data: { page: page },
 				beforeSend: function(){ 
 				},

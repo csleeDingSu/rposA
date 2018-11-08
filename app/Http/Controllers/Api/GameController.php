@@ -377,7 +377,7 @@ class GameController extends Controller
 		$memberid = $request->memberid;
 		$gameid   = $request->gameid;
 		$life   = $request->life; //life yes
-		$this->life_redemption($memberid,$gameid,$life);
+		return $this->life_redemption($memberid,$gameid,$life);
 	}
 
 

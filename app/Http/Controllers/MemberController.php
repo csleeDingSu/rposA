@@ -28,10 +28,7 @@ use App\Members as Member;
 class MemberController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-	public function __construction()
-	{
-		$this->middleware('auth:admin');
-	}
+	
 	public function index() {		
 		
 		if (Auth::Guard('member')->check())

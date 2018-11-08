@@ -107,7 +107,7 @@ class ProductController extends Controller
 		
 		
 		if ($request->ajax()) {
-    		$view = view('ad.ajaxhome',compact('result'))->render();
+    		$view = view('ad.ajaxlist',compact('result'))->render();
             return response()->json(['html'=>$view]);
         }
 		
@@ -124,7 +124,7 @@ class ProductController extends Controller
 		$productcount = Category::all();
 		
 		if ($request->ajax()) {
-    		$view = view('ad.ajaxhome',compact('result'))->render();
+    		$view = view('ad.ajaxlist',compact('result'))->render();
             return response()->json(['html'=>$view]);
         }
 		
