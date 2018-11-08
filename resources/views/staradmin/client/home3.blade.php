@@ -201,7 +201,7 @@
 			<div class="inBox">
 				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
 				<h2>请加客服微信 领取优惠券</h2>
-				<h3 id="cut">￥K8454DFGH45H</h3>
+				<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
 				<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
 				<h4>如果点按钮复制不成功，请到微信手动输入添加</h4>
 			</div>
@@ -243,11 +243,12 @@
 				});
 			});
 			$("body").on("click",".mset a:first-child",function(){
+				$( ".copyvoucher" ).html($(this).data('voucher'));
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 			})
 			$('.showQuan').click((e) => {
-				$('.cutBtn img').attr('src', 'test/main/images/btn-1.png');
+				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-1.png') }} ");
 				var target = $(e.target).closest('.inBox').length;
 				console.log(target);
 				if (target > 0) {
@@ -361,12 +362,12 @@
 			});
 			clipboard.on('success', function (e) {
 				console.log(e);
-				$('.cutBtn img').attr('src', 'test/main/images/btn-2.png');
+				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				$('.cutBtn img').attr('src', 'test/main/images/btn-3.png');
+				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-3.png') }} ");
 			});
 
 			being.scrollBottom('.cardBody', '.box', () => {			

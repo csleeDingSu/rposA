@@ -569,3 +569,10 @@
 .showBao .iconImg span{ display: inline-block; vertical-align: middle;font-size: .22rem; color: #fff;}
 .showBao a{ display: block; margin: 0 auto; width: 5.02rem;}
 .showBao a img{ width: 100%;}
+
+.copyvoucher {
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis 
+}

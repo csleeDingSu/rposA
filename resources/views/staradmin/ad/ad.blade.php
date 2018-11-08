@@ -65,7 +65,11 @@
 							<font>券后价¥{{$item->discount_price}}</font>淘宝原价{{$item->product_price}}元
 						</h3>
 						<div class="quan">
-							<span>¥{{$item->required_point}}元券<font>剩 {{$item->product_quantity}} 张</font></span> 
+							@if ($item->product_quantity > 0)
+								<span>¥{{$item->required_point}}元券<font>剩 {{$item->product_quantity}} 张</font></span>
+							@else
+								<span>¥{{$item->required_point}}元券<font>剩 999 张</font></span>
+							@endif 
 							<a data-id="{{$item->redeem_code}}" id="{{$item->redeem_code}}">微信领取</a>
 						</div>
 					</div>
