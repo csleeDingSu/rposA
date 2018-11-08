@@ -2,7 +2,7 @@
 								
 								@foreach($vouchers as $item)
 									<li class="dbox">
-										<a class="dbox0 imgBox" href="#" >
+										<a class="dbox0 imgBox" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg">
 											<img src="{{$item->product_picurl}}_460x460Q90.jpg" alt="{{$item->product_name}}">
 										</a>
 										<div class="dbox1">
@@ -18,7 +18,7 @@
 											</div>
 											<div class="mset">
 												<a>领取优惠券</a>
-												<a class="type" href="#" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg">免费挖宝</a>
+												<a class="type" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg">免费挖宝</a>
 											</div>
 										</div>
 									</li>

@@ -348,4 +348,5 @@ return [
 	'text_copied' => 'The text has been copied.',
 	
 	'end_of_result' => '--End of result--',
+	'okay' => 'Okay',
 ];

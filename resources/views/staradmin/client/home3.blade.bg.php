@@ -51,8 +51,8 @@
 								@foreach($category as $cat)
 
 									@if ($loop->first)
-										<a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
-										<!-- <a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a> -->
+										<!-- <a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a> -->
+										<a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 									@else
 										<a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 									@endif
@@ -161,11 +161,56 @@
 					<div class="infinite-scroll">
 						<ul class="list-2">
 
-							
+							@if(count($vouchers))
 								
-								@include('client.ajaxhome')
-								
+								@foreach($vouchers as $item)
+									<li class="dbox">
+										<a class="dbox0 imgBox" href="#" data-t_id="{{$item->id}}" >
+											<img src="{{$item->product_picurl}}_460x460Q90.jpg" alt="{{$item->product_name}}">
+										</a>
+										<div class="dbox1">
+											<h2>{{$item->product_name}}</h2>
+											<div class="price">
+												<span>￥{{$item->product_price}} </span>
+												<div class="quan">
+													<p>
+														<font>￥</font>100.00
+													</p>
+													<h3>优惠券</h3>
+												</div>
+											</div>
+											<div class="mset">
+												<a>领取优惠券</a>
+												<a class="type" href="#" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg">免费挖宝</a>
+											</div>
+										</div>
+									</li>
 							
+								@endforeach
+								
+							@else
+								<li class="dbox">
+									<a href="#" class="dbox0 imgBox">
+										<img src="{{ asset('/test/main/images/demo/d-img2.png') }}">
+									</a>
+									<div class="dbox1">
+										<h2>双人被夏凉被空调被双人被夏凉被空调被调被调被调被</h2>
+										<div class="price">
+											<span>￥338.00 </span>
+											<div class="quan">
+												<p>
+													<font>￥</font>100.00
+												</p>
+												<h3>优惠券</h3>
+											</div>
+										</div>
+										<div class="mset">
+											<a>领取优惠券</a>
+											<a class="type">免费挖宝</a>
+										</div>
+									</div>
+								</li>
+							@endif
 				
 						</ul>
 						{{ $vouchers->links() }}
@@ -289,7 +334,7 @@
 			
 		
 			// });
-/*
+
 			$('.product .list-2 .mset a.type').click((e) => {
 
 				item_id = $(e.target).data('tt_id');
@@ -313,43 +358,6 @@
 				
 		
 			});
-			
-			*/
-			$("body").on("click",".imgBox",function(){
-				item_id       = $(this).data('tt_id');
-				product_name  = $(this).data('tt_product_name');
-				product_price = $(this).data('tt_product_price');
-				product_img   = $(this).data('tt_product_img');
-				
-				showBao(item_id,product_name,product_price,product_img);
-			});
-			
-			
-			$('.product .list-2 .mset a.type').click((e) => {
-				
-				item_id       = $(e.target).data('tt_id');
-				product_name  = $(e.target).data('tt_product_name');
-				product_price = $(e.target).data('tt_product_price');
-				product_img   = $(e.target).data('tt_product_img');
-				
-				showBao(item_id,product_name,product_price,product_img);
-			});
-			
-			
-			function showBao(item_id,product_name,product_price,product_img)
-			{
-				being.wrapShow();
-
-				document.getElementById("product_name").textContent = product_name;
-				// $(this).find("#product_name").innerHTML = product_name;
-				document.getElementById("product_price").textContent = '淘宝原价：￥' + product_price;
-				document.getElementById("product_discount_price").textContent = '优惠价：' + product_price + '元';
-				document.getElementById("product_img").src = product_img;
-
-
-				being.scaleShow('.showBao');
-			}
-			
 
 			$('.showBao').click((e) => {
 				var target = $(e.target).closest('.inBox').length;

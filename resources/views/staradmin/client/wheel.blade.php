@@ -6,6 +6,7 @@
     <script src="{{ asset('/client/js/jquery.min.js') }}"></script>
     <script src="{{ asset('/client/js/jquery.rotate.min.js') }}"></script>
     <script src="{{ asset('/client/js/jquery.wheelOfFortune.js') }}"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{ asset('/client/js/wheel.js') }}"></script>
 </head>
 

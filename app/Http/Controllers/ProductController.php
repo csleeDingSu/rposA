@@ -412,13 +412,12 @@ class ProductController extends BaseController
     {
 		$id = $request->id;
 		$record = Product::get_pin($id);
-		
 		if ($record)
 		{
 			$now = Carbon::now();
 			$data = ['pin_status'=>3,'confimed_at'=>$now];
 						
-			Wallet::update_ledger($record->memberid,'credit',$record->used_point,'PNT','redeem rejected,point refund to customer');
+			Wallet::update_ledger($record->member_id,'credit',$record->used_point,'PNT','redeem rejected,point refund to customer');
 			
 			Product::update_pin($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);

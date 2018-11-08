@@ -97,7 +97,7 @@ function initUser(){
                 setBalance();
 
                 // add points from additional life.
-                if(user_id > 0 && balance < 630){
+                /*if(user_id > 0 && balance < 630){
                     $.post("/api/resetlife", { 'memberid': user_id, 'gameid': 101, 'life': 'yes' }, function(data) {
                         console.log(data);
                         // Do something with the request
@@ -106,7 +106,7 @@ function initUser(){
                         }
                         
                     }, 'json');
-                }
+                }*/
             }
         }
         
@@ -233,7 +233,8 @@ function bindBetButton(){
     $('.radio-primary', window.parent.document).click(function(){
         var balance = $('#hidBalance', window.parent.document).val();
         var level = parseInt($('#hidLevel', window.parent.document).val());
-        
+        var life = $(".balance_circle", window.parent.document).html();
+
         var user_id = $('#hidUserId', window.parent.document).val();
         if(user_id == 0){
             window.top.location.href = "/member";
@@ -242,6 +243,21 @@ function bindBetButton(){
         if(isNaN(balance) || balance < 10){
             return false;
         }
+
+        if(user_id > 0 && balance < 630 && life > 0){
+            bindResetLifeButton();
+            $('#reset-life', window.parent.document).modal();
+
+            /*$.post("/api/resetlife", { 'memberid': user_id, 'gameid': 101, 'life': 'yes' }, function(data) {
+                console.log(data);
+                // Do something with the request
+                if(data.success) {
+                    initUser();
+                }
+                
+            }, 'json');*/
+        }
+
 
         $('.radio-primary', window.parent.document).not(this).find('.radio').removeClass('clicked');
         $('.radio-primary', window.parent.document).not(this).find('.bet-container').hide();
@@ -290,6 +306,28 @@ function bindBetButton(){
             }
         }
 
+    });
+}
+
+function bindResetLifeButton(){
+
+    $('#btn-reset-life', window.parent.document).click(function(){
+        var balance = $('#hidBalance', window.parent.document).val();
+        var life = $(".balance_circle", window.parent.document).html();
+        var user_id = $('#hidUserId', window.parent.document).val();
+
+        // add points from additional life.
+        if(user_id > 0 && balance < 630 && life > 0){
+            $.post("/api/resetlife", { 'memberid': user_id, 'gameid': 101, 'life': 'yes' }, function(data) {
+                console.log(data);
+                // Do something with the request
+                if(data.success) {
+                    $('#reset-life', window.parent.document).modal('hide');
+                    initUser();
+                }
+                
+            }, 'json');
+        }
     });
 }
 

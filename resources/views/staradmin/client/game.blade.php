@@ -283,6 +283,42 @@
 
 <!--  end -->
 
+<!-- Start Reset Life -->
+
+	<div class="modal fade col-md-12" id="reset-life" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content modal-wechat">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								@csrf
+
+								<div class="" id="validation-errors"></div>
+								<div class="wechat-title">
+									游戏结束。！
+								</div>
+								
+								<div class="wechat-wrapper">
+									<div>继续再玩?</div>
+									<button id="btn-reset-life" type="button" class="btn btn-primary">OK</button>
+								</div>						
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+			<div class="modal-card">
+				<div class="btn-close" data-dismiss="modal">
+						<div class="glyphicon glyphicon-remove-circle"></div>
+						<div class="left"> 等待认证，先逛逛看。</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
 @endsection
 
 @section('footer-javascript')

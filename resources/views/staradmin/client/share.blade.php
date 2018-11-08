@@ -167,7 +167,13 @@ dd(Auth::Guard('member')->user()->affiliate_id)
 						console.info('Trigger:', e.trigger);
 
 						e.clearSelection();
-						 swal('@lang("dingsu.copied")!', '@lang("dingsu.text_copied")', "success");
+						swal({  type: 'success',  title: '@lang("dingsu.copied")!',text: '@lang("dingsu.text_copied")', confirmButtonText: '@lang("dingsu.okay")',}).then(
+  function () { window.open(
+  'weixin://',
+  '_blank' 
+); },
+ 
+)
 					});
 
 					clipboard.on('error', function(e) {

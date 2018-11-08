@@ -304,7 +304,7 @@ html, body {
 .collapse:after {
 	top:-1.4em; /* vertical position */
 	border-color: rgba(255, 255, 255, 0);
-	border-bottom-color: #ffffff;
+	border-bottom-color: #f4f7f9;
 	border-width: 10px;
 	margin-left: -10px;
 }
