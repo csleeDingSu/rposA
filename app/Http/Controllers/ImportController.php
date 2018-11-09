@@ -328,7 +328,7 @@ class ImportController extends BaseController
   //       );
 		
 		$extension = $request->file->extension();
-		
+		$extension = empty($extension) ? 'xls' : $extension;
 		
 		$filename = 'ads'.time(); 
 		
