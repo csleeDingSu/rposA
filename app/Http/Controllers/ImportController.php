@@ -320,12 +320,12 @@ class ImportController extends BaseController
 		$all_ext = implode(',', $this->document_ext);
 		
 		
-		$validator = $this->validate(
-            $request,
-            [
-                'file' => 'required|file|mimes:' . $all_ext 
-            ]
-        );
+		// $validator = $this->validate(
+  //           $request,
+  //           [
+  //               'file' => 'required|file|mimes:' . $all_ext 
+  //           ]
+  //       );
 		
 		$extension = $request->file->extension();
 		
