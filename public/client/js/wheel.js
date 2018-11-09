@@ -248,18 +248,27 @@ function bindBetButton(){
         //console.log(user_id +":" + balance + ":" + life );
         if(user_id > 0 && life > 0){
 
-            if(balance < 630 || acupoint >= 150) {
+            if(balance < 630) {
+
                 bindResetLifeButton();
-                $('#reset-life', window.parent.document).modal();
+                $('#reset-life-lose', window.parent.document).modal();
                 return false;
-                /*$.post("/api/resetlife", { 'memberid': user_id, 'gameid': 101, 'life': 'yes' }, function(data) {
-                    console.log(data);
-                    // Do something with the request
-                    if(data.success) {
-                        initUser();
-                    }
-                    
-                }, 'json');*/
+
+            } else if(acupoint >= 150) {
+
+                bindResetLifeButton();
+                $('#reset-life-max', window.parent.document).modal();
+                return false;
+
+            }
+        } else if(user_id > 0 && life == 0){
+
+            if(balance < 630) {
+
+                bindResetLifeButton();
+                $('#reset-life-share', window.parent.document).modal();
+                return false;
+
             }
         }
 

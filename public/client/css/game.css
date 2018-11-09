@@ -443,6 +443,77 @@ body{
 	font-size: 16px;
 }
 
+.modal-packet-wrapper {
+	width: 301px;
+	height: 337px;
+	top: 10%;
+	margin: 0 auto;
+}
+
+.modal-packet {
+	width: 670px;
+	height: 750px;
+	font-size: 16px;
+	margin: 0 auto;
+	background-image: url("/client/images/packet.png");
+	background-color: transparent;
+	background-repeat: no-repeat;
+	transform: scale(0.45); 
+	-webkit-transform: scale(0.45);
+	-webkit-transform-origin:left top;
+}
+
+.packet-title {
+	color: #ff2e4d;
+	font-size: 60px;
+	font-weight: 700;
+	margin-top: 40px;
+}
+
+.packet-title.lose {
+	color: #393939;
+}
+
+.packet-note {
+	color: #c87d1b;
+	font-weight: 700;
+	font-size: 25px;
+	margin-top: 10px;
+}
+
+.packet-instruction {
+	color: white;
+	font-size: 32px;
+	margin-top: 80px;
+	padding-bottom: 70px;
+}
+
+.packet-button {
+	font-size: 32px;
+	color: #dd1927;
+	font-weight: 700;
+	width: 360px;
+	height: 90px;
+	margin: 0 auto;
+	margin-bottom: 25px;
+	padding-top: 20px;
+	cursor: pointer;
+}
+
+.packet-button-note {
+	color: #787878;
+	font-size: 20px;
+	margin-top: -5px;
+}
+
+.packet-button-name {
+	margin-top: -12px;
+}
+
+.link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
+	text-decoration: none;
+}
+
 .icon-verify-wrapper {
 	height: 120px;
 	width: 120px;

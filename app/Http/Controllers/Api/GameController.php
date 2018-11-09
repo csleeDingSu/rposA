@@ -10,6 +10,7 @@ use Validator;
 use Carbon\Carbon;
 use App\Wallet;
 use App\member_game_result;
+use App\member_game_bet_temp;
 
 class GameController extends Controller
 {
@@ -109,8 +110,17 @@ class GameController extends Controller
 		//$life		= $request->life;
 		$life		= 'yes';
 
-		
-		
+		//add checking bet amount from member_game_bet_temp temporary table
+		if (empty($bet)) {
+			$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->where('level', $request->level)->first();			
+			if (!empty($res)) {
+
+				$bet = $res->bet;
+				$betamt = $res->betamt;
+
+			}
+		}
+				
 		$input = [
              'gameid'    => $gameid,
 			 'memberid'  => $memberid,
@@ -127,7 +137,6 @@ class GameController extends Controller
 				//'bet'      => 'required',
             ]
         );
-		
 		
 		$current_result = Game::get_single_gameresult($drawid);
 		
@@ -540,5 +549,63 @@ class GameController extends Controller
 	public function decideresult($gameid = false)
     {
 	}
+
+	public function update_game_temp(Request $request)
+    {	
+    	$required = ['gameid','memberid','drawid'];
+
+    	foreach($required as $element){
+		  if($request->input($element) == null){
+		      $error_msg = 'Missing ' .$element. ' .';
+		      return response()->json(['success' => false, 'message' => $error_msg]);
+		      break;
+		  }
+		}
 	
+		//update deleted_at - remove old bet
+		member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->update(['deleted_at' => Carbon::now()]);
+
+		//insert new bet
+		$params = ['gameid' => $request->gameid, 'memberid' => $request->memberid, 'drawid' => $request->drawid, 'bet' => $request->bet, 'betamt' =>$request->betamt, 'level' => $request->level];
+		$res = member_game_bet_temp::Create($params)->id;
+
+        if ($res > 0) {
+
+        	return response()->json(['success' => true, 'message' => "temparory member $request->memberid bet $request->betamt"]);
+
+        } else {
+
+        	return response()->json(['success' => false, 'message' => "invalid bet request"]);
+
+        }	
+	
+
+	}
+
+	public function get_update_game_temp(Request $request)
+    {	
+    	$required = ['gameid','memberid','drawid'];
+
+    	foreach($required as $element){
+		  if($request->input($element) == null){
+		      $error_msg = 'Missing ' .$element. ' .';
+		      return response()->json(['success' => false, 'message' => $error_msg]);
+		      break;
+		  }
+		}
+
+		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->first();
+
+		if (empty($res)) {
+
+			return response()->json(['success' => false, 'record' => $res, 'message' => "record not found"]);
+
+		} else {
+
+			return response()->json(['success' => true, 'record' => $res, 'message' => "return record successfully"]);
+
+		}
+
+	}
+
 }

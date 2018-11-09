@@ -46,10 +46,14 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/history' );
 	} );
 
-
 	Route::get( '/redeem', function () {
-		return view( 'client/redeem' );
+		return view( 'client/redeem');
 	} );
+
+	Route::get( '/redeem/{slug}', function ($slug = '') {
+		return view( 'client/redeem', compact('slug'));
+	} );
+
 	/*
 	Route::get('/register', function () {
 		return view('client/register');
@@ -63,9 +67,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/validate' );
 	} );
 
-	Route::get( '/share', function () {
-		return view( 'client/share' );
-	} );
+	
 
 	Route::get( '/verify', function () {
 		return view( 'client/verify' );
@@ -85,12 +87,18 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::get( '/referral-list', 'ClientController@member_referral_list' )->name( 'client.referral.list' );
 
+	Route::any( '/tips', 'ClientController@tips' )->name( 'client.tips' );
+
 
 } );
 
 
 Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get( '/profile', 'ClientController@member_profile' )->name( 'client.profile' );
+	
+	Route::get( '/share', function () {
+		return view( 'client/share' );
+	} );
 
 } );
 

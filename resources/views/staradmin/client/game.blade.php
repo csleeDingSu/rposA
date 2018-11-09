@@ -311,35 +311,94 @@
 
 <!--  end -->
 
-<!-- Start Reset Life -->
+<!-- Start Reset Life Max -->
 
-	<div class="modal fade col-md-12" id="reset-life" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg reveal-modal" role="document">
-			<div class="modal-content modal-wechat">
+	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg modal-packet-wrapper" role="document">
+			<div class="modal-packet">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								@csrf
-
-								<div class="" id="validation-errors"></div>
-								<div class="wechat-title">
-									游戏结束！
-								</div>
-								
-								<div class="wechat-wrapper">
-									<div>继续再玩?</div>
-									<button id="btn-reset-life" type="button" class="btn btn-primary">提交</button>
-								</div>						
+							<div class="packet-title">150 封顶</div>
+							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
+							您当前已经完成了
 							</div>
+							<div class="packet-instruction">你当前还有 5 次挖宝机会<br />
+							你可选择 <strong>继续挖宝</strong> 或 <strong>兑换奖品</strong>
+							</div>
+							<div id="btn-reset-life" class="packet-button">
+								<div class="packet-button-name">继续挖宝</div>
+								<div class="packet-button-note">将消耗1次挖宝机会</div>
+							</div>
+							<a href="/redeem" class="link-button">
+								<div class="packet-button">兑换奖品</div>
+							</a>
 						</div>
 					</div>							
 				</div>
 			</div>
-			<div class="modal-card">
-				<div class="btn-close" data-dismiss="modal">
-						<div class="glyphicon glyphicon-remove-circle"></div>
-						<div class="left">关闭游戏，先逛逛看。</div>
+		</div>
+	</div>
+
+<!--  end -->
+
+<!-- Start Reset Life Share -->
+
+	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg modal-packet-wrapper" role="document">
+			<div class="modal-packet">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="packet-title">150 封顶</div>
+							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
+							您当前已经完成了
+							</div>
+							<div class="packet-instruction">你当前还有 0 次挖宝机会<br />
+							你可选择 <strong>邀请好友</strong> 或 <strong>兑换奖品</strong>
+							</div>
+							<a href="/share" class="link-button">
+								<div class="packet-button">
+									<div class="packet-button-name">邀请好友</div>
+									<div class="packet-button-note">每邀请1名好友获得1次挖宝机会</div>
+								</div>
+							</a>
+							<a href="/redeem" class="link-button">
+								<div class="packet-button">兑换奖品</div>
+							</a>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
+<!-- Start Reset Life Lose -->
+
+	<div class="modal fade col-md-12" id="reset-life-lose" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg modal-packet-wrapper" role="document">
+			<div class="modal-packet">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="packet-title lose">挖宝失败</div>
+							<div class="packet-note">将扣除本次挖宝所赚取的 100 挖宝币<br />
+							别气馁，再接再厉！
+							</div>
+							<div class="packet-instruction">你当前还有 0 次挖宝机会<br />
+							你可选择 <strong>继续挖宝</strong> 或 <strong>兑换奖品</strong>
+							</div>
+							<div id="btn-reset-life" class="packet-button">
+								<div class="packet-button-name">继续挖宝</div>
+								<div class="packet-button-note">将消耗1次挖宝机会</div>
+							</div>
+							<a href="/redeem" class="link-button">
+								<div class="packet-button">兑换奖品</div>
+							</a>
+						</div>
+					</div>							
 				</div>
 			</div>
 		</div>

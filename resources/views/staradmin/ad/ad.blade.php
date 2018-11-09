@@ -18,7 +18,7 @@
 	
 	<script type="text/javascript" src="{{ asset('ad/js/jquery-1.9.1.js') }}"></script>	
 	<script type="text/javascript" src="{{ asset('ad/js/being.js') }}"></script>
-		
+			
 </head>
 
 <body>
@@ -54,27 +54,7 @@
 			<div class="infinite-scroll">				
 				
 			<ul class="list">
-				@foreach($result as $item)
-				<li class="dbox">
-					<a href="#" class="imgBox dbox0">
-						<img src="{{ env('ads_product_image_url') . $item->product_picurl }}">
-					</a>
-					<div class="dbox1">
-						<h2>{{$item->product_description}}</h2>
-						<h3>
-							<font>券后价¥{{$item->discount_price}}</font>淘宝原价{{$item->product_price}}元
-						</h3>
-						<div class="quan">
-							@if ($item->product_quantity > 0)
-								<span>¥{{$item->required_point}}元券<font>剩 {{$item->product_quantity}} 张</font></span>
-							@else
-								<span>¥{{$item->required_point}}元券<font>剩 999 张</font></span>
-							@endif 
-							<a data-id="{{$item->redeem_code}}" id="{{$item->redeem_code}}">微信领取</a>
-						</div>
-					</div>
-				</li>
-				@endforeach
+				@include('ad.ajaxlist')
 			</ul>
 			{{ $result->links() }}
 				<p class="isnext">下拉显示更多...</p>

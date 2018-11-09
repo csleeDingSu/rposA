@@ -68,13 +68,15 @@
 				</a>
 			</div>
 			<ul class="list-group">
-				<li class="list-group-item first-item">
-					<div class="icon-wrapper">
-						<div class="icon-play"></div>
-					</div>
-					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-					我的奖品
-				</li>
+				<a href="/redeem/history">
+					<li class="list-group-item first-item">
+						<div class="icon-wrapper">
+							<div class="icon-play"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						我的奖品
+					</li>
+				</a>
 
 				<a href="/redeem">
 					<li class="list-group-item">					

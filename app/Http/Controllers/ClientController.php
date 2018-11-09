@@ -26,6 +26,7 @@ use App\Wallet;
 use App\Members as Member;
 
 use App\Voucher;
+use App\tips;
 
 use App\Http\Controllers\Api\MemberController;
 
@@ -160,6 +161,14 @@ class ClientController extends BaseController
 		$result =  Member::get_member_referral_list($id);
 		
 		print_r($result);
+	}
+
+	public function tips()
+	{
+
+		$tips =  tips::whereNull('deleted_at')->orderBy('seq')->get();
+		return view( 'client/tips', compact( 'tips' ) );
+
 	}
 	
 	

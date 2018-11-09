@@ -53,6 +53,10 @@ Route::group(['namespace' => 'Api'],function(){
 	Route::get('/referral-list', 'MemberController@member_referral_list')->name('api.referral.list');
 	
 	Route::get('child-list', 'MemberController@child_list')->name('child.list');
+
+	Route::any('update-game-result-temp', 'GameController@update_game_temp')->name('api.game.update_temp');
+
+	Route::any('get-game-result-temp', 'GameController@get_update_game_temp')->name('api.game.get.update_temp');
 	
  });	
 

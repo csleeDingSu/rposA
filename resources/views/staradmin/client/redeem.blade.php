@@ -37,26 +37,25 @@
 		</div>
 		<!-- end wabao coin info -->
 
-
 		<div class="full-width-tabs">
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
-			  <li class="active take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">奖品兑换</a></li>
-			  <li class="take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的充值卡</a></li>
+			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">奖品兑换</a></li>
+			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的充值卡</a></li>
 			</ul>
 			<!-- end redeem tabs -->
 
 			<!-- tab content -->
 			<div class="tab-content">
 				<!-- redeem list content -->
-				<div id="prize" class="tab-pane fade in active">
+				<div id="prize" class="tab-pane fade {{ empty($slug) ? 'in active' : '' }}">
 				</div>
 
 
 				<!-- end redeem list content -->
 
 				<!-- redeem history content -->
-				<div id="history" class="tab-pane fade">
+				<div id="history" class="tab-pane fade {{ (!empty($slug) and $slug == 'history') ? 'in active' : '' }}">
 				</div>
 				<!-- end redeem list content -->
 			</div>

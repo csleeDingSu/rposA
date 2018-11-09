@@ -166,7 +166,7 @@ function redeem(product_id){
         'productid': product_id
     }, function(data) {
         if(data.success) {
-            window.location.href = "/redeem";
+            window.location.href = "/redeem/history";
         } else {
             $('#error-' + product_id).html(data.message);
         }
