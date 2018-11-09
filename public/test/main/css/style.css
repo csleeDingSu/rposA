@@ -571,8 +571,7 @@
 .showBao a img{ width: 100%;}
 
 .copyvoucher {
-  width: 100px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis 
+  text-overflow: ellipsis ;
 }

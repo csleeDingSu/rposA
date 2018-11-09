@@ -228,7 +228,9 @@
 	<script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}"></script>
 	<script>
-		$(function () {
+		$(document).ready(function(){
+		//$(function () {
+			
 			$('.downIcon').click(function () {
 				$('.cardHeader').css({ 'z-index': '11' });
 				being.wrapShow('.cardBody');
@@ -242,11 +244,7 @@
 					$('.cardHeader').removeAttr('style');
 				});
 			});
-			$("body").on("click",".mset a:first-child",function(){
-				$( ".copyvoucher" ).html($(this).data('voucher'));
-				being.wrapShow();
-				being.scaleShow('.showQuan');
-			})
+			
 			$('.showQuan').click((e) => {
 				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-1.png') }} ");
 				var target = $(e.target).closest('.inBox').length;
@@ -309,6 +307,13 @@
 			});
 			
 			*/
+			$("body").on("click",".mset a.showvoucher",function(e) {
+			//$("body").on("click",".showvoucher",function(){
+				$( ".copyvoucher" ).html($(this).data('voucher'));
+				being.wrapShow();
+				being.scaleShow('.showQuan');
+			});
+			
 			$("body").on("click",".imgBox",function(){
 				item_id       = $(this).data('tt_id');
 				product_name  = $(this).data('tt_product_name');

@@ -8,29 +8,6 @@ body{
 	margin:0px;	
 }
 
-iframe {
-	width: 358px;
-	height: 320px;
-	margin: 0 auto;
-	display:block;
-}
-
-.swiper-container {
-  width: 400px;
-  height: 330px;
-  margin-left: -31px;
-}
-
-@media only screen and (max-width: 360px) {
-    .swiper-container {
-	  height: 300px;
-	}
-
-	iframe {
-		width: 280px;
-		height: 300px;
-	}
-}
 
 .full-height {
 	padding-top: 10px;
@@ -399,8 +376,11 @@ iframe {
 
 .life-balance {
 	color: #FFE24D;
-	padding-right: 5px;
 	font-size: 12px;
+}
+
+#spanAcuPoint {
+	padding-right: 5px;
 }
 
 .long {
@@ -655,3 +635,65 @@ iframe {
 	}
 }
 /* End Wechat Modal*/
+
+/* Swiper */
+
+iframe {
+	width: 400px;
+	height: 330px;
+	margin: 0 auto;
+	display:block;
+}
+
+.swiper-container {
+  width: 400px;
+  height: 330px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 500px) {
+    .swiper-container {
+    	width: 100%;
+	  	height: 300px;
+	}
+
+	iframe {
+		width: 350px;
+		height: 300px;
+	}
+}
+
+.flickity-button {
+  background: transparent;
+}
+
+.flickity-button-icon {
+  fill: transparent;
+}
+
+.flickity-prev-next-button {
+	border-radius: 0px;
+}
+
+.flickity-prev-next-button.previous {
+  left: 0px;
+  top: 110px;
+  right: auto;
+  background: url('/client/images/game.png') no-repeat -65px -640px;
+  width: 80px;
+  height: 400px;
+  transform: scale(0.3); 
+  -webkit-transform: scale(0.3);
+  -webkit-transform-origin:left top;
+}
+
+.flickity-prev-next-button.next {
+  top: 110px;
+  background: url('/client/images/game.png') no-repeat -65px -240px;
+  width: 80px;
+  height: 400px;
+  transform: scale(0.3); 
+  -webkit-transform: scale(0.3);
+  -webkit-transform-origin:left top;
+  right: -56px;
+}

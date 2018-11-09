@@ -58,6 +58,8 @@ class GameController extends Controller
 		
 		$latest_result = Game::get_latest_result($gameid);
 			
+		$setting =  Game::gamesetting($gameid);
+		
 		if ($out)
 		{
 			$result_time = $this->processgametime( $now,$out );
@@ -68,7 +70,10 @@ class GameController extends Controller
 
 				$duration = $end_date->diffInSeconds($out->expiry_time);
 				
-				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => '5','level'=>$level,'latest_result'=>$latest_result];
+				//@todo :- get from config
+				if ($setting->freeze_time>=30 or $setting->freeze_time<5) $setting->freeze_time = 5;
+				
+				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time,'level'=>$level,'latest_result'=>$latest_result];
 			
 				return response()->json(['success' => true, 'record' => $result]);
 			}

@@ -5,8 +5,9 @@
 @section('top-css')
     @parent
 
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="{{ asset('/client/css/game.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/swiper.css') }}" />
+    
 
     <style>
     	
@@ -30,7 +31,7 @@
 			<div class="box">
 				<div class="coin"></div>
 				<div class="number long">
-					<span class="balance" id="spanPoint">0</span><span class="life-balance" id="spanAcuPoint"> +0</span>
+					<span class="balance" id="spanPoint">0</span> <span class="life-balance">+</span><span class="life-balance" id="spanAcuPoint">0</span>
 					<div class="info-wrapper">
 						<a class="btn-redeem" href="/redeem"><div class="info">换钱</div></a>
 					</div>
@@ -59,7 +60,7 @@
 	<!-- end information table -->
 
 	<!-- swiper iframe -->
-	<div class="swiper-container">
+	<!--div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<iframe id="ifm_result" class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no" align="middle">
@@ -77,6 +78,23 @@
 
 		<div class="swiper-button-next"></div>
 		<div class="swiper-button-prev"></div>
+	</div-->
+
+	<div class="swiper-container">
+		<div class="carousel-cell">
+			<iframe id="ifm_result" class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no" align="middle">
+			</iframe>
+		</div>
+
+		<div class="carousel-cell">
+			<iframe id="ifm_wheel" class="embed-responsive-item" src="/wheel" allowtransparency="true" frameBorder="0" scrolling="no">
+			</iframe>
+		</div>
+
+		<div class="carousel-cell">
+			<iframe id="ifm_history" class="embed-responsive-item" src="/history" allowtransparency="true" frameBorder="0" scrolling="no">
+			</iframe>
+		</div>
 	</div>
 	<!-- end swiper iframe -->
 
@@ -335,7 +353,7 @@
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
-	<script src="{{ asset('/client/js/swiper.min.js') }}"></script>
+	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 	<script src="{{ asset('/client/js/game.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {

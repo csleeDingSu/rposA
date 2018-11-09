@@ -12,7 +12,6 @@ body {
   grid-template-columns: 20px 55px 55px 55px 55px 55px 20px;
   grid-gap: 0px;
   height: 50px;
-  margin-left: 30px;
 }
 
 .box {

@@ -1,11 +1,12 @@
 $(function () {
   
-	var swiper = new Swiper('.swiper-container', {
-		initialSlide: 1,
-		loop: false,
-		navigation: {
-		nextEl: '.swiper-button-next',
-		prevEl: '.swiper-button-prev',
-		},
+	$('.swiper-container').flickity({
+		// options
+		draggable: true,
+		wrapAround: true,
+		pageDots: false,
+		initialIndex: 1,
+		freeScroll: false,
+		contain: true,
 	});
 });
