@@ -47,7 +47,7 @@ body{
 
 .instruction {
 	visibility: visible;
-	margin-bottom: 20px;
+	margin-bottom: 45px;
 	font-size: 16px;
 }
 
@@ -508,6 +508,10 @@ body{
 
 .packet-button-name {
 	margin-top: -12px;
+}
+
+.packet-acupoint {
+	color: #c81b1b;
 }
 
 .link-button:link, .link-button:visited, .link-button:hover, .link-button:active{

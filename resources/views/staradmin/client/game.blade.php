@@ -323,10 +323,14 @@
 							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
 							您当前已经完成了
 							</div>
-							<div class="packet-instruction">你当前还有 5 次挖宝机会<br />
+							<div class="packet-instruction">你当前还有 
+								<span class="spanLife">
+									{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}
+								</span> 
+								次挖宝机会<br />
 							你可选择 <strong>继续挖宝</strong> 或 <strong>兑换奖品</strong>
 							</div>
-							<div id="btn-reset-life" class="packet-button">
+							<div class="btn-reset-life packet-button">
 								<div class="packet-button-name">继续挖宝</div>
 								<div class="packet-button-note">将消耗1次挖宝机会</div>
 							</div>
@@ -354,7 +358,11 @@
 							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
 							您当前已经完成了
 							</div>
-							<div class="packet-instruction">你当前还有 0 次挖宝机会<br />
+							<div class="packet-instruction">你当前还有 
+								<span class="spanLife">
+									{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}
+								</span> 
+							 次挖宝机会<br />
 							你可选择 <strong>邀请好友</strong> 或 <strong>兑换奖品</strong>
 							</div>
 							<a href="/share" class="link-button">
@@ -384,13 +392,19 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="packet-title lose">挖宝失败</div>
-							<div class="packet-note">将扣除本次挖宝所赚取的 100 挖宝币<br />
+							<div class="packet-note">将扣除本次挖宝所赚取的 
+								<span class="packet-acupoint" id="spanAcuPoint">0</span> 
+							 挖宝币<br />
 							别气馁，再接再厉！
 							</div>
-							<div class="packet-instruction">你当前还有 0 次挖宝机会<br />
+							<div class="packet-instruction">你当前还有 
+								<span class="spanLife">
+									{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}
+								</span>
+							 次挖宝机会<br />
 							你可选择 <strong>继续挖宝</strong> 或 <strong>兑换奖品</strong>
 							</div>
-							<div id="btn-reset-life" class="packet-button">
+							<div class="btn-reset-life packet-button">
 								<div class="packet-button-name">继续挖宝</div>
 								<div class="packet-button-note">将消耗1次挖宝机会</div>
 							</div>
@@ -418,7 +432,7 @@
 		$(document).ready(function () {
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
-			
+
 			if(wechat_status > 0 && wechat_name == '') {
 				$('#verify-steps').modal({backdrop: 'static', keyboard: false});
 			} else if(wechat_status > 0 && wechat_name != '') {

@@ -1,18 +1,394 @@
 <?php
 
-namespace App\Http\Controllers\Api;
-
+namespace App\Http\Controllers;
+use DB;
+use App;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Game;
-use Validator;
 use Carbon\Carbon;
 use App\Wallet;
 use App\member_game_result;
 
-class GameController extends Controller
+class GameController extends BaseController
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+	
+	public function index() {
+		return self::get_game();
+	}
+
+// ---------------------------Game-------------------------------
+	
+public function get_game_list()
+{
+	
+	$result =  DB::table('games')->paginate(25);
+	$data['page'] = 'game.gamelist'; 
+			
+	$data['result'] = $result;
+	
+	return view('main', $data);
+}
+
+public function new_game ()
+{
+	$data['page'] = 'game.addgame';
+		
+	return view('main', $data);
+}
+
+
+public function save_game(Request $request)
+{		
+	$validator = $this->validate(
+		$request,
+		[
+			'game_name' => 'required|string|min:4',
+			'game_id' => 'required|min:6|unique:games,game_id',
+		]
+	);
+	
+	$now = Carbon::now();
+	$data = [
+	'game_id' => $request->game_id,
+	'created_at' => $now,
+	'updated_at' => $now,
+	'game_name' => $request->game_name,
+	'is_active' => $request->is_active,
+	'notes' => $request->notes,
+	'membership' => $request->membership,
+	'game_category' => $request->category,
+	'game_status' => $request->game_status,
+	'is_support_game_resume' => $request->is_support_game_resume];
+	
+	Game::save_game($data);
+	
+	return redirect()->route('gamelist')->with('status', ('dingsu.game_add_success_message'));
+	
+}
+
+
+public function edit_game($id)
+{
+	$data['out'] = $game = Game::get_game($id);
+	
+	$data['page'] = 'common.error';
+	
+	if ($game)
+	{
+		$data['page'] = 'game.editgame';
+		
+		$data['levels'] = Game::get_gamelevel($id);
+
+		$data['levels_opt'] = Game::get_gamelevel_options($id);
+
+	}		
+	
+	return view('main', $data);
+	
+}
+
+public function update_gamedetails($id, Request $request)
+{
+	$validator = $this->validate(
+		$request,
+		[
+			'game_name' => 'required|string|min:4',
+			'game_id' => 'required|min:6',
+		]
+	);	
+	$now = Carbon::now();
+	$data = [
+	'game_id' => $request->game_id,
+	'updated_at' => $now,
+	'game_name' => $request->game_name,
+	'is_active' => $request->is_active,
+	'notes' => $request->notes,
+	'membership' => $request->membership,
+	'game_category' => $request->category,
+	'game_status' => $request->game_status,
+	'is_support_game_resume' => $request->is_support_game_resume];
+
+	Game::update_gameinfo($id,$data);
+	
+	return redirect()->back()->with('message', trans('dingsu.game_update_success_message'));
+}
+
+public function delete_game ($id)
+	{
+		$game = Game::get_game($id);
+		
+		if ($game)
+		{
+			//@todo : check user bidding information & referral commision
+			Game::destroy($id);
+			return 'true';
+		}
+		return 'false';
+	}
+
+
+
+// ---------------------------Game Level-------------------------------
+public function add_level()
+{
+	$data['page'] = 'game.addlevel'; 
+	return view('main', $data);
+
+
+}	
+
+
+public function save_level(Request $request)
+{		
+	$validator = $this->validate(
+		$request,
+		[
+			'game_level' => 'required',
+			'play_time' => 'required',
+			'status' => 'required',
+			'prize_reward' => 'required',
+			'bet_amount' => 'required',
+			'point_reward' => 'required',
+			
+		]
+	);
+	
+	//$now = Carbon::now();
+	$data = [
+		'game_id' 		=> $request->gameID,
+		'game_level' 	=> $request->game_level,
+		'play_time' 	=> $request->play_time,
+		'status' 		=> $request->status,
+		'prize_reward' 	=> $request->prize_reward,
+		'notes' 		=> $request->notes,
+		'bet_amount' 	=> $request->bet_amount,
+		'point_reward'	=> $request->point_reward];
+
+	Game::save_level($data);
+	
+	
+	return redirect()->route('editgame', ['id' => $request->gameID])->with('status', ('dingsu.game_add_success_message'));
+	
+}
+
+
+public function edit_level($id)
+{
+	//$data['out'] = $game = Game::get_level_by_id($id);
+	//$data['levels'] = Game::get_gamelevel($id);
+	$data['levels'] = $level =  Game::get_level_by_id($id);
+	
+	$data['page'] = 'common.error';
+	
+	if ($level)
+	{
+		$data['page'] = 'game.editlevel';
+		
+		//$data['levels'] = Game::get_gamelevel($id);
+
+		$data['levels_opt'] = Game::get_gamelevel_options($id);
+
+	}		
+	
+	return view('main', $data);
+	
+}
+
+
+
+public function update_level($id, Request $request)
+{
+		
+	//$now = Carbon::now();
+	$data = [
+	'game_level' 	=> $request->game_level,
+	'play_time' 	=> $request->play_time,
+	'status' 		=> $request->status,
+	'prize_reward' 	=> $request->prize_reward,
+	'notes' 		=> $request->notes,
+	'bet_amount' 	=> $request->bet_amount,
+	'point_reward'	=> $request->point_reward];
+
+	Game::update_level($id,$data);
+	
+	return redirect()->back()->with('message', trans('dingsu.level_update_success_message'));
+}
+
+
+
+
+
+public function delete_level ($id)
+{
+	$level = Game::delete_level_by_id($id);
+	
+	if ($level)
+	{
+		//@todo : check user bidding information & referral commision
+		Game::destroy($id);
+		return 'true';
+	}
+	return 'false';
+}
+
+
+
+
+// ---------------------------Game Category-------------------------------
+
+public function get_gamecategory_list()
+{
+	
+	$result =  DB::table('game_category')->paginate(25);
+	$data['page'] = 'game.gamecategorylist'; 
+			
+	$data['result'] = $result;
+	
+	return view('main', $data);
+}
+
+public function add_gamecategory()
+{
+	$data['page'] = 'game.addgamecategory';
+		
+	return view('main', $data);
+}
+
+
+public function save_gamecategory(Request $request)
+{		
+	$validator = $this->validate(
+		$request,
+		[
+			'name' 		=> 'required',
+			'block_time'=> 'required',
+			'game_type' => 'required',
+			'game_time' => 'required',
+		]
+	);
+	
+	$now = Carbon::now();
+	$data = [
+	'id' 					=> $request->id,	
+	'created_at' 			=> $now,	
+	'updated_at' 			=> $now,
+	'name' 					=> $request->name,
+	'block_time' 			=> $request->block_time,
+	'game_type' 			=> $request->game_type,
+	'is_support_multiplayer'=> $request->is_support_multiplayer,
+	'is_support_tournament' => $request->is_support_tournament,
+	'env_file_name' 		=> $request->env_file_name,
+	'is_track_user' 		=> $request->is_track_user,	
+	'save_game_session' 	=> $request->save_game_session,
+	'game_lock_time' 		=> $request->game_lock_time,	
+	'user_lock_time' 		=> $request->user_lock_time,	
+	'is_session_end_on_update' 	=> $request->is_session_end_on_update,	
+	'is_override_core_setting' 	=> $request->is_override_core_setting,
+	'is_support_custom_setting' => $request->is_support_custom_setting,
+	'game_time' 			=> $request->game_time];
+	
+	Game::save_gamecategory($data);
+	
+	return redirect()->route('gamecategorylist')->with('status', ('dingsu.gamecategory_add_success_message'));
+	
+}
+
+
+public function edit_gamecategory($id)
+{
+	$data['out'] = $game = Game::edit_gamecategory($id);
+	
+	$data['page'] = 'common.error';
+	
+	if ($game)
+	{
+		$data['page'] = 'game.editgamecategory';
+	}		
+	
+	return view('main', $data);
+	
+}
+
+public function update_gamecategory($id, Request $request)
+{
+	$validator = $this->validate(
+		$request,
+		[
+			'name' 		=> 'required',
+			'block_time'=> 'required',
+			'game_type' => 'required',
+			'game_time' => 'required',
+		]
+	);
+	$now = Carbon::now();
+	$data = [
+	'id' 					=> $request->id,	
+	'updated_at' 			=> $now,
+	'name' 					=> $request->name,
+	'block_time' 			=> $request->block_time,
+	'game_type' 			=> $request->game_type,
+	'is_support_multiplayer'=> $request->is_support_multiplayer,
+	'is_support_tournament' => $request->is_support_tournament,
+	'env_file_name' 		=> $request->env_file_name,
+	'is_track_user' 		=> $request->is_track_user,	
+	'save_game_session' 	=> $request->save_game_session,
+	'game_lock_time' 		=> $request->game_lock_time,	
+	'user_lock_time' 		=> $request->user_lock_time,	
+	'is_session_end_on_update' 	=> $request->is_session_end_on_update,	
+	'is_override_core_setting' 	=> $request->is_override_core_setting,
+	'is_support_custom_setting' => $request->is_support_custom_setting,
+	'game_time' 			=> $request->game_time];
+
+
+	Game::update_gamecategory($id,$data);
+	
+	return redirect()->back()->with('message', trans('dingsu.gamecategory_update_success_message'));
+}
+
+public function delete_gamecategory ($id)
+	{
+		$game = Game::delete_gamecategory($id);
+		
+		if ($game)
+		{
+			//@todo : check user bidding information & referral commision
+			Game::destroy($id);
+			return 'true';
+		}
+		return 'false';
+	}
+
+
+
+
+
+// ---------------------------Game Setting-------------------------------
+
+public function get_setting_list(){
+	$result =  Game::get_setting_list(100);
+	$data['page'] = 'setting.settinglist';
+	$data['result'] = $result;
+
+	return view('main', $data);
+
+}
+
+public function add_setting()
+{
+	$data['page'] = 'setting.editsetting';	
+	
+	return view('main', $data);		
+}
+	
     
 	public function listgames()
     {
@@ -88,6 +464,7 @@ class GameController extends Controller
 	 * Fixed player_level number 11/oct/2018
 	 *
 	 **/
+	
 	public function update_game(Request $request)
     {	
 

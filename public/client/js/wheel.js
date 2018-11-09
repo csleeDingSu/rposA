@@ -91,8 +91,10 @@ function initUser(){
                 $('#divBalance', window.parent.document).html(balance);
                 $('#spanPoint', window.parent.document).html(point);
                 $('#spanAcuPoint', window.parent.document).html(acupoint);
+                $('.packet-acupoint', window.parent.document).html(acupoint);
                 $('#hidBalance', window.parent.document).val(balance);
                 $(".balance_circle", window.parent.document).html(life);
+                $(".spanLife", window.parent.document).html(life);                
                 
                 setBalance();
 
@@ -196,6 +198,15 @@ function initGame(){
 
             bindBetButton();
 
+            //console.log("/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id);
+            $.getJSON( "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id, function() {
+                if(data.success) {
+                    //console.log(data.record);
+                } else {
+                    //console.log(data.message);
+                }
+            });
+
         } else {
             //$.getJSON( "/api/generateresult", function() {});
             //console.log("initGame");
@@ -235,6 +246,7 @@ function bindBetButton(){
         var level = parseInt($('#hidLevel', window.parent.document).val());
         var life = $(".balance_circle", window.parent.document).html();
         var acupoint = $('#spanAcuPoint', window.parent.document).html();
+        var draw_id = $('#draw_id').val();
 
         var user_id = $('#hidUserId', window.parent.document).val();
         if(user_id == 0){
@@ -282,8 +294,15 @@ function bindBetButton(){
 
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         if (typeof selected == 'undefined'){
+
             $('#divBalance', window.parent.document).html(balance);
             $('.instruction', window.parent.document).css('visibility', 'visible');
+
+            //console.log("/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet=&betamt=");
+            $.getJSON( "/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet=&betamt=", function( data ) {
+                //console.log(data);
+            });
+
         } else {
 
             var bet_amount = parseInt($('.bet-container', window.parent.document).html());
@@ -295,6 +314,11 @@ function bindBetButton(){
             } else {
                 $('#divBalance', window.parent.document).html(newbalance);
                 $('.instruction', window.parent.document).css('visibility', 'hidden');
+
+                //console.log("/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet="+ selected +"&betamt=" + bet_amount);
+                $.getJSON( "/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet="+ selected +"&betamt=" + bet_amount, function( data ) {
+                    //console.log(data);
+                });
             }
 
             switch (level) {
@@ -325,7 +349,7 @@ function bindBetButton(){
 
 function bindResetLifeButton(){
 
-    $('#btn-reset-life', window.parent.document).click(function(){
+    $('.btn-reset-life', window.parent.document).click(function(){
         var balance = $('#hidBalance', window.parent.document).val();
         var life = $(".balance_circle", window.parent.document).html();
         var user_id = $('#hidUserId', window.parent.document).val();
@@ -338,7 +362,8 @@ function bindResetLifeButton(){
                     console.log(data);
                     // Do something with the request
                     if(data.success) {
-                        $('#reset-life', window.parent.document).modal('hide');
+                        $('#reset-life-lose', window.parent.document).modal('hide');
+                        $('#reset-life-max', window.parent.document).modal('hide');
                         initUser();
                     }
                     

@@ -20,60 +20,155 @@ class Game extends Model
     protected $table = 'games';
 	
 	protected $table_category = 'game_category';
+
+
+
+
+
+
+		// -------------------------Game----------------------------------
+		public static function get_gamelist()
+		{
+			return Game::all();
+		}
 	
-	public static function get_gamelist()
-	{
-		return Game::all();
-	}
+		public static function save_game($chunk)
+		{
+			DB::table('games')->insert($chunk);
+		}
+	
+		public static function get_game($id)
+		{
+			$result = DB::table('games')->where('id', $id)->first();
+			
+			return $result;
+		}
+
+		
+	
+		public static function get_gamelevel($id)
+		{
+			$result = DB::table('game_levels')->where('game_id', $id)->orderBy('level_position', 'ASC')->get();
+			
+			return $result;
+		}
+	
+		public static function get_gamelevel_options($id)
+		{
+			$result = DB::table('game_levels_options')->get();
+			
+			return $result;
+		}
+
+	
+		public static function update_gameinfo($id,$data)
+		{	
+			if (!empty($id))
+			{
+				return $result = DB::table('games')
+				->where('id', $id)
+				->update($data);
+			}		 		
+		}
+
+
+		
+
+	
+		public static function save_level($chunk)
+		{
+			DB::table('game_levels')->insert($chunk);
+		}
+	
+		public static function get_level_by_id($id)
+		{
+			$result = DB::table('game_levels')->where('id', $id)->first();
+			
+			return $result;
+		}
+	
+		public static function update_level($id,$data)
+		{	
+			if (!empty($id))
+			{
+				return $result = DB::table('game_levels')
+				->where('id', $id)
+				->update($data);
+			}		 		
+		}
+		public static function get_game_category($id = FALSE)
+		{
+			
+			if (!empty($id))
+			{
+				$result = DB::table('game_category')->where('id', $id)->first();
+			}
+			else{
+				$result = DB::table('game_category')->get();
+			}
+			
+			return json_encode($result);
+		}
+
+
+
+
+	
+		public static function save_gamecategory($chunk)
+		{
+			DB::table('game_category')->insert($chunk);
+		}
+		public static function edit_gamecategory($id = FALSE)
+		{
+			$result = DB::table('game_category')->where('id', $id)->first();
+			
+			return $result;
+		}
+	
+		public static function update_gamecategory($id,$data)
+		{	
+			if (!empty($id))
+			{
+				return $result = DB::table('game_category')
+				->where('id', $id)
+				->update($data);
+			}		 		
+		}
+	
+		public static function delete_gamecategory($id)
+		{
+			$result = DB::table('game_category')->delete($id);
+			return $result;
+		}
+	
+		
+		public static function delete_level_by_id($id)
+		{
+			$result = DB::table('game_levels')->delete($id);
+			return $result;
+		}
+
+
+
+
+		// --------------------------------------------
+	
+	
 	
 	public static function save_gamelevels($request)
 	{		
 		
 	}
 	
-	public static function update_game($id)
-	{
-				
-		DB::table('members')
-            ->where('id', $id)
-            ->update(['firstname' => 'fyname']);
-	}
 	
-	public static function get_game($id)
-	{
-		$result = DB::table('games')->where('id', $id)->first();
-		
-		return $result;
-	}
+	
+	
 	//New
-	public static function get_gamelevel($id)
-	{
-		$result = DB::table('game_levels')->where('game_id', $id)->orderBy('level_position', 'ASC')->get();
-		
-		return $result;
-	}
-	
-	public static function get_level_by_id($id)
-	{
-		$result = DB::table('game_levels')->where('id', $id)->first();
-		
-		return $result;
-	}
 	
 	
-	public static function get_game_category($id = FALSE)
-	{
-		
-		if (!empty($id))
-		{
-			$result = DB::table('game_category')->where('id', $id)->first();
-		}
-		else{
-			$result = DB::table('game_category')->get();
-		}
-		
-		return json_encode($result);
-	}
+	
+	
+	
 	
 	public static function get_game_options($id = FALSE)
 	{

@@ -25,6 +25,50 @@ $this->get( '/home', 'Api\VoucherController@index' )->name( 'api.vlist' ); //cs2
 $this->get( '/ads', 'Api\ProductController@index' )->name( 'api.client.ad' );
 //$this->get('/ads', 'Api\ProductController@index')->name('api.client.adold');
 
+
+
+
+
+	//Game rotes
+	Route::get('/game', 'GameController@get_game_list')->name('gamelist');
+	Route::get('/game/index', 'GameController@dashboard');
+	//Route::get('/game/list', 'GameController@get_game_list')
+	Route::get('/game/category', 'GameController@get_gamecategory_list')->name('gamecategorylist');
+	Route::get('/game/delete/{id}', 'GameController@delete_game');
+	
+
+	
+	Route::get('/game/add', 'GameController@new_game');
+	Route::get('/game/edit/{id}', 'GameController@edit_game')->name('editgame');
+	Route::get('/game/addlevel/{id}', 'GameController@add_level');
+	Route::get('/game/level/edit/{id}', 'GameController@edit_level');
+	Route::get('/game/category/add/', 'GameController@add_gamecategory');
+	Route::get('/game/category/edit/{id}', 'GameController@edit_gamecategory');
+	
+	
+	Route::post('/game/add', 'GameController@save_game');
+	Route::post('/game/edit/{id}', 'GameController@update_gamedetails');
+	Route::post('/game/addlevel/{id}', 'GameController@save_level');
+	Route::post('/game/level/edit/{id}', 'GameController@update_level');
+	Route::post('/game/category/add/', 'GameController@save_gamecategory');
+	Route::post('/game/category/edit/{id}', 'GameController@update_gamecategory');
+
+
+	Route::delete('/game/delete/{id}', 'GameController@delete_game');
+	Route::delete('/game/level/delete/{id}', 'GameController@delete_level');
+	Route::delete('/game/category/delete/{id}', 'GameController@delete_gamecategory');
+	//Route::get('/game/level/delete/{id}', 'GameController@delete_level');
+
+	Route::get('/setting', 'GameController@get_setting_list');
+	Route::get('/setting/add', 'GameController@add_setting');
+	Route::get('/setting/edit/{id}', 'GameController@edit_setting');
+	Route::post('/setting/delete/{id}', 'GameController@edit_setting');
+
+
+
+
+
+
 //Member routes
 Route::group( [ 'middleware' => 'sso' ], function () {
 
@@ -279,7 +323,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get( '/product/softpins', 'ProductController@list_pins' )->name( 'pin.list' );
 	Route::post( '/product/addpins', 'ProductController@save_pins' )->name( 'pin.create' );
 
-	Route::get( '/product/import', 'ImportController@getPinImport' )->name( 'import' );
+	Route::get( '/product/import', 'ImportController@getPinImport' )->name( 'import.softpin' );
 	Route::post( '/product/import-pins', 'ImportController@PostpinImport' )->name( 'pin.import' );
 	Route::post( '/product/importprocess', 'ImportController@PinProcessImport' )->name( 'pin.process.import' );
 

@@ -1,50 +1,38 @@
 
-<div class="col-12 d-flex  text-right"><a href="/game/add" class="btn btn-success mr-2">@lang('dingsu.add')</a></div>
+<div class="col-12 d-flex  text-right"><a href="/game/category/add" class="btn btn-success mr-2">@lang('dingsu.add')</a></div>
 <p>&nbsp;</p>
 <div class="col-lg-12 grid-margin stretch-card">	
 	<div class="card">
 		<div class="card-body">
-			<h4 class="card-title">@lang('dingsu.game') @lang('dingsu.list')</h4>
+			<h4 class="card-title">@lang('dingsu.game') @lang('dingsu.categories')</h4>
 			<div class="table-responsive">				
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>@lang('dingsu.game') @lang('dingsu.id')</th>	
+							<th>@lang('dingsu.name')</th>	
 							<th>@lang('dingsu.created') @lang('dingsu.at')</th>
-							<th>@lang('dingsu.game') @lang('dingsu.name')</th>	
-							<th>@lang('dingsu.game') @lang('dingsu.category')</th>	
-							<th>@lang('dingsu.game') @lang('dingsu.status')</th>	
+							<th>@lang('dingsu.game') @lang('dingsu.type')</th>	
+							<th>@lang('dingsu.game') @lang('dingsu.time')</th>	
+							<th>@lang('dingsu.block') @lang('dingsu.time')</th>	
 							<th class="">@lang('dingsu.action')</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($result as $list)
 						<tr id="tr_{{ $list->id }}">
-							<td>{{ $list->game_id }}</td>
+							<td>{{ $list->name }}</td>
 							<td>{{ $list->created_at }}</td>
-							<td>{{ $list->game_name }}</td>
+							<td>{{ $list->game_type }}</td>
 							
 							<td>
-								{{ $list->game_category }}
+								{{ $list->game_time }}
 							</td>
-							<td>
-								@if($list->game_status == 0)
-								<label class="badge badge-success">@lang('dingsu.active')</label> 
-								@elseif ($list->game_status == 1)
-								<label class="badge badge-danger">@lang('dingsu.inactive')</label> 
-								@elseif ($list->game_status == 2)
-								<label class="badge badge-warning">@lang('dingsu.reserved')</label>
-								@else 
-								<label class="badge badge-danger">@lang('dingsu.unknown') @lang('dingsu.status')</label>
-								@endif
-							</td>
-							
-							
+                            <td>{{ $list->block_time }}</td>
 							<td>
 								
 								
 								
-								<a href="/game/edit/{{ $list->id }}"  class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>
+								<a href="/game/category/edit/{{ $list->id }}"  class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>
 								
 								<a href="javascript:void(0)" onClick="confirm_Delete({{ $list->id }}, '{{ csrf_token() }}')" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a>
 								
@@ -53,9 +41,11 @@
 						@endforeach
 					</tbody>
 				</table>				
+				<!-- <a href="/game/" type="submit" class="btn btn-light mr-2">@lang('dingsu.back')</a> -->
 				{!! $result->render() !!}
 			</div>
 		</div>
+		
 	</div>
 </div>
 
@@ -82,7 +72,7 @@ Swal({
   if (result.value) {
 	  
 	  $.ajax({
-            url: "/game/delete/"+id,
+            url: "/game/category/delete/"+id,
             type: "POST",
             data: {_method: 'delete', _token :token},
             dataType: "html",

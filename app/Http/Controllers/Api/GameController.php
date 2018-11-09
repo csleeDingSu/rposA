@@ -563,7 +563,8 @@ class GameController extends Controller
 		}
 	
 		//update deleted_at - remove old bet
-		member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->update(['deleted_at' => Carbon::now()]);
+		//member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->update(['deleted_at' => Carbon::now()]);
+		member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->whereNull('deleted_at')->update(['deleted_at' => Carbon::now()]);
 
 		//insert new bet
 		$params = ['gameid' => $request->gameid, 'memberid' => $request->memberid, 'drawid' => $request->drawid, 'bet' => $request->bet, 'betamt' =>$request->betamt, 'level' => $request->level];

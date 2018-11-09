@@ -1,108 +1,115 @@
+<div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">@lang('dingsu.edit_level')</h4>
+                  <form class="form-sample" action="" method="post" autocomplete="on">
+					  
+					  {{ csrf_field() }}
+					  
+					  
+					  @foreach ($errors->all() as $error)
+						<div class="alert alert-danger" role="alert">@lang($error)</div>
+					  @endforeach
+					  
+					  
+					  @if(session()->has('message'))
+						<div class="alert alert-success" role="alert">
+							{{ session()->get('message') }}
+						</div>
+					@endif
+					  
+					  
+					  <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group row"> 
+					           <label for="game_level" class="col-sm-3 col-form-label">@lang('dingsu.game') @lang('dingsu.level')</label>
+                      <div class="col-sm-9">
+                      <input id="game_level" name="game_level" class="form-control" type="text" autofocus value="{{ old('game_level', $levels->game_level) }}">
+                    </div>
+                </div>
+             </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                <label for="play_time" class="col-sm-3 col-form-label">@lang('dingsu.play') @lang('dingsu.time')</label>
+                  <div class="col-sm-9">
+                  <input id="play_time" name="play_time" class="form-control" type="text" value="{{ old('play_time', $levels->play_time) }}" maxlength="5">
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 
-<h5 class="my-4">@lang('dingsu.gamelevels')</h5>
 
-<div class="col-lg-12 grid-margin stretch-card">
-		
-	
-	
-	
-<div class="table-responsive">
-		<table class="table table-hover" >
-			<thead>
-				<tr width="10%">
-					<th>@lang('dingsu.gamelevel')</th>
-					<th>@lang('dingsu.playtime')</th>
-					<th>@lang('dingsu.reward')</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($levels as $level)
-				<tr>
-					<td>{{ $level->id }}</td>
-					<td>
-					<select id="playtime" name="playtime" class="form-control">
-						@foreach ($classname_array as $data)                                       
-						<option value="{{ $data->id }}"  >{{ $data->play_time }}</option>                                                      
-						@endforeach
-					</select>
-					</td>
-					<td>
-					<select id="reward" name="reward" class="form-control">
-						@foreach ($classname_array as $data)                                       
-						<option value="{{ $data->id }}"  >{{ $data->reward }}</option>                                                      
-						@endforeach
-					</select>
-					</td>
+
+         <div class="row"> 
+           <div class="col-md-6">
+              <div class="form-group row">
+               <label for="bet_amount" class="col-sm-3 col-form-label">@lang('dingsu.bet_amount')</label>
+                <div class="col-sm-9">
+                 <input id="bet_amount" name="bet_amount" class="form-control" type="text" required value="{{ $levels->bet_amount }}"   maxlength="5">
+                </div>
+              </div>
+            </div>
+					<div class="col-md-6">
+						<div class="form-group row">
+							<label for="prize_reward" class="col-sm-3 col-form-label">@lang('dingsu.prize_reward')</label>
+							<div class="col-sm-9">
+								<select id="prize_reward" name="prize_reward" class="form-control">
+								<option {{old('prize_reward',$levels->prize_reward)=="0"? 'selected':''}}  value="0" >@lang('dingsu.category') 1</option>
+								<option {{old('prize_reward',$levels->prize_reward)=="1"? 'selected':''}}  value="1" >@lang('dingsu.category') 2</option>
+								<option {{old('prize_reward',$levels->prize_reward)=="2"? 'selected':''}}  value="2" >@lang('dingsu.category') 3</option>
+								<option {{old('prize_reward',$levels->prize_reward)=="3"? 'selected':''}}  value="3" >@lang('dingsu.category') 4</option>
+								</select>
+							</div>
+						</div>
+          </div>
+        </div>   
+
+            <div class="row"> 
+              <div class="col-md-6">
+              <div class="form-group row">
+                <label for="status" class="col-sm-3 col-form-label">@lang('dingsu.status')</label>
+                 <div class="col-sm-9">
+                <select id="status" name="status" class="form-control">
+							 <option {{old('status',$levels->status)=="0"? 'selected':''}}  value="0" >@lang('dingsu.active')</option>
+							 <option {{old('status',$levels->status)=="1"? 'selected':''}}  value="1" >@lang('dingsu.inactive')</option>
+							 <option {{old('status',$levels->status)=="2"? 'selected':''}}  value="2" >@lang('dingsu.reserved')</option>
+                </select>
+                  </div>
+                </div>
+              </div> 
+
+					<div class="col-md-6">
+            <div class="form-group row">
+             <label for="point_reward" class="col-sm-3 col-form-label">@lang('dingsu.point_reward')</label>
+              <div class="col-sm-9">
+							<select id="point_reward" name="point_reward" class="form-control">
+								<option {{old('point_reward',$levels->point_reward)=="0"? 'selected':''}}  value="0" >@lang('dingsu.no')</option>
+								<option {{old('point_reward',$levels->point_reward)=="1"? 'selected':''}}  value="1" >@lang('dingsu.yes')</option>
+								</select>
+							  </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row"> 
+					  <div class="col-md-6">
+               <div class="form-group row">
+                 <label for="notes" class="col-sm-3 col-form-label">@lang('dingsu.notes')</label>
+                  <div class="col-sm-9">
+                    <input id="notes" name="notes" class="form-control" type="text" value="{{ old('notes', $levels->notes) }}"  maxlength="5">
+                  </div>
+                </div>
+            </div>
+         </div>
+				
+					  
 					
-
-
-				</tr>
-				@endforeach
-			</tbody>
-
-		</table>
-					<td>
-						<a href="/game/editlevel/{{ $level->id }}" class="btn btn-info btn-fw">@lang('dingsu.edit')</a>
-						<a onClick="confirm_Delete({{ $level->id }}, '{{ csrf_token() }}')" data-token="{{ csrf_token() }}" href="#" class="btn btn-danger btn-fw">@lang('dingsu.delete')</a>
-					</td>
-	</div>
-</div>
-
-
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
-
-
-
-
-<script language="javascript">
-function confirm_Delete(id,token)
-	{
-Swal({
-  title: '@lang("dingsu.delete_confirmation")',
-  text: '@lang("dingsu.delete_conf_text")',
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonText: '@lang("dingsu.delete")',
-  cancelButtonText: '@lang("dingsu.cancel")',
-	confirmButtonColor: "#DD6B55",
-  closeOnConfirm: false
-}).then((result) => {
-  if (result.value) {
-	  
-	  $.ajax({
-            url: "/member/delete/"+id,
-            type: "POST",
-            data: {_method: 'delete', _token :token},
-            dataType: "html",
-            success: function (data) {
-				if (data === 'false')
-					{
-						swal('@lang("dingsu.delete_error")', '@lang("dingsu.try_again")', "error");
-					}
-				else 
-					{
-						swal("Done!", '@lang("dingsu.delete_success")', "success");
-						
-						$('#tr_'+id).hide(); 
-					}
-                
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                swal('@lang("dingsu.delete_error")', '@lang("dingsu.try_again")', "error");
-            }
-        });
-	  
-  } else if (result.dismiss === Swal.DismissReason.cancel) {
-   
-  }
-})
-	}
-	
-	
-</script>
+					  
+                    <button type="submit" class="btn btn-success mr-2">@lang('dingsu.submit')</button>
+					  <a href="/game/edit/{{ $levels->game_id }}" type="submit" class="btn btn-light mr-2">@lang('dingsu.back')</a>
+                  </form>
+              </div>
+            </div>
