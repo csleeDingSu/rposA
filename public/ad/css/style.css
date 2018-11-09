@@ -84,9 +84,10 @@
   line-height: 0.46rem;
 }
 .list li h3 font {
-  color: #de7e22;
-  font-size: 0.24rem;
+  color: #fa8100;
+  font-size: 0.40rem;
   margin-right: 0.14rem;
+  /*font-size: 4vw;*/
 }
 .list li .quan {
   background: url(../images/adicon.png) -0.16rem -2.02rem no-repeat;
@@ -101,12 +102,12 @@
   width: 48%;
   height: 0.55rem;
   text-align: center;
-  font-size: 0.22rem;
+  font-size: 0.40rem;
   color: #e1439f;
   line-height: 0.55rem;
 }
 .list li .quan font {
-  color: #cccccc;
+  color: #81be07;
   font-size: 0.18rem;
   margin-left: 0.1rem;
 }
