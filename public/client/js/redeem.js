@@ -25,7 +25,17 @@ $(document).ready(function () {
 
             } else {
                 $.each(records, function(i, item) {
-                    
+                    var available_quantity = item.available_quantity;
+                    var used_quantity = item.used_quantity;
+
+                    if(available_quantity === null){
+                        available_quantity = 0;
+                    }
+
+                    if(used_quantity === null){
+                        used_quantity = 0;
+                    }
+
                     html += '<div class="row">' +
                                 '<div class="col-xs-3 column-1">' +
                                     '<img class="img-voucher" src="'+ item.product_picurl +'" alt="'+item.product_name+'">' +
@@ -38,7 +48,7 @@ $(document).ready(function () {
                                     '</div>' +
                                     '<div class="w-coin">'+ item.min_point +'</div>' +
                                     '<div style="clear: both;"></div>' +
-                                    '<div class="remaining">剩余 221 张 已兑换 3884 张</div>' +
+                                    '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ used_quantity +' 张</div>' +
                                 '</div>' +
                                 '<div class="col-xs-3 column-3">' +
                                     '<div class="btn-redeem openeditmodel'+ i +'">兑换</div>' +

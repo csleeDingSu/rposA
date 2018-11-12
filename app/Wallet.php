@@ -152,8 +152,8 @@ class Wallet extends Model
 
 		//$level = Self::current_level($id);
 		$level = Self::current_level_details($gamelevel);
-		$levelid = Game::get_member_current_level($gameid, $memberid);
-		$currentlevelid = Self::get_current_level($gameid,$memberid);
+		//$levelid = Game::get_member_current_level($gameid, $memberid);
+		//$currentlevelid = Self::get_current_level($gameid,$memberid);
 
 		
 		if($status=="win")

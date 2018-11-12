@@ -70,21 +70,7 @@
 								<div class="form-group">
 									<button class="btn btn-primary submit-btn btn-block">@lang('dingsu.login')</button>
 								</div>
-								<div class="form-group d-flex justify-content-between">
-									<div class="form-check form-check-flat mt-0">
-										<label class="form-check-label">
-                     						
-											
-					<input type="checkbox" class="form-check-input" name="remember" {{ old('remember') ? 'checked' : '' }}> @lang('dingsu.remember_me')
-                    						
-                    </label>
-
-
-									
-
-									</div>
-									<a href="#" class="text-small forgot-password text-black">@lang('dingsu.forget_password')</a>
-								</div>
+								
 
 
 							</form>

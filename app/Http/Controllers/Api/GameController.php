@@ -96,7 +96,7 @@ class GameController extends Controller
 	 **/
 	public function update_game(Request $request)
     {	
-
+		$reward = 0;
 		$glevel = '';
 		$status = 'lose';
 		$is_win = null;
@@ -172,18 +172,13 @@ class GameController extends Controller
 
 		if (empty($is_playable)&&empty($is_redeemable))// 0
 		{
-			$req = New Request;
-			$req->merge(['memberid' => $memberid]);
-			$req->merge(['gameid' => $gameid]);
-			$req->merge(['life' => $life]);
-			$this->redeem_life($req);//life_redemption($memberid,$gameid,$life);
-
+			//life_redemption($memberid,$gameid,$life);
 			
 			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough balance to play']);
 			
 		}elseif (empty($is_playable)&&!empty($is_redeemable))//1
 		{
-			$this->redeem_life($memberid,$gameid,$life);
+			//$this->life_redemption($memberid,$gameid,$life);
 
 			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'exceeded the coin limit']);
 		}		
@@ -218,13 +213,18 @@ class GameController extends Controller
 			{
 				//Update Memeber game play history		
 				$now     = Carbon::now()->toDateTimeString();
+				
+				if ($wallet['status'] =='win') $reward = $level->point_reward;
+				
 					
-				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid];
-				$filter = ['member_id'=>$memberid,'game_id'=>$gameid,'draw_id' => $drawid,'wallet_point' => $wallet['point'],'wallet_balance' => $wallet['balance']];		
+				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid,'wallet_point' => $wallet['point'],'reward' => $reward];
+				
+				
+				$filter = ['member_id'=>$memberid,'game_id'=>$gameid,'draw_id' => $drawid];		
 
 				$records =  Game::add_play_history($insdata,$filter);
 				//$records = member_game_result::firstOrCreate($filter, $insdata)->id;
-				echo 'in';print_r($wallet);
+				
 				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
 			}
 			
