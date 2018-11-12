@@ -126,16 +126,19 @@ class GameController extends Controller
 			 'memberid'  => $memberid,
 			 'drawid'    => $drawid,
 			 'bet'       => $bet,	
-			 'betamt'    => $betamt,	
+			 'betamt'    => $betamt,
+			 'cdrawid'   => $drawid,
               ];
-		
+		//Check current bet request match with server draw result - fixed on 12/11/2018
 		$validator = Validator::make($input, 
             [
                 'gameid'   => 'required|exists:games,id',
 				'memberid' => 'required|exists:members,id',
 				'drawid'   => 'required|exists:game_result,id',
+				'cdrawid'  => "unique:member_game_result,draw_id,NULL,id,game_id,$gameid,member_id,$memberid",
 				//'bet'      => 'required',
-            ]
+            ],
+			['cdrawid.unique' => 'user already played the game']
         );
 		
 		$current_result = Game::get_single_gameresult($drawid);
@@ -175,7 +178,6 @@ class GameController extends Controller
 			$req->merge(['life' => $life]);
 			$this->redeem_life($req);//life_redemption($memberid,$gameid,$life);
 
-
 			
 			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough balance to play']);
 			
@@ -186,13 +188,6 @@ class GameController extends Controller
 			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'exceeded the coin limit']);
 		}		
 		else{
-
-			//Check current bet request match with server draw result
-			if (member_game_result::where('member_id', '=', $memberid)->where('game_id', '=', $gameid)->where('draw_id', '=', $drawid)->exists()) {
-			   // user found
-				return response()->json(['success' => false, 'game_result' => $game_result]);
-			}
-			
 			/**
 			 * if player & histoy win the increse to 1
 			 * if player fail keep the value 
@@ -225,11 +220,11 @@ class GameController extends Controller
 				$now     = Carbon::now()->toDateTimeString();
 					
 				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid];
-				$filter = ['member_id'=>$memberid,'game_id'=>$gameid,'draw_id' => $drawid];		
+				$filter = ['member_id'=>$memberid,'game_id'=>$gameid,'draw_id' => $drawid,'wallet_point' => $wallet['point'],'wallet_balance' => $wallet['balance']];		
 
 				$records =  Game::add_play_history($insdata,$filter);
 				//$records = member_game_result::firstOrCreate($filter, $insdata)->id;
-				
+				echo 'in';print_r($wallet);
 				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
 			}
 			

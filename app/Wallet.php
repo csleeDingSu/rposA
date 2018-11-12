@@ -219,7 +219,7 @@ class Wallet extends Model
 		   // amend the mainledger
 		   // add history
 		   // life
-		
+		return ['status'=>$status,'point'=>$current_point,'balance'=>$current_balance];
 		return $status;
 	}
 
@@ -320,11 +320,11 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 
 	public static function playable_status($memberid,$gameid,$gamelevel)
 	{
-		Self:: current_wallet($memberid);
-		$mainledger =DB::table('mainledger')->where('member_id',$memberid)->get()->first();
-		$game_levels =DB::table('game_levels')->where('id', $gamelevel)->get()->first();
-		$current_balance= isset($mainledger->current_balance) ? $mainledger->current_balance : 0;
-		$bet_amount= isset($game_levels->bet_amount) ? $game_levels->bet_amount : 0;
+		$mainledger = Self::current_wallet($memberid);
+		//$mainledger = DB::table('mainledger')->where('member_id',$memberid)->get()->first();
+		$game_levels = DB::table('game_levels')->where('id', $gamelevel)->get()->first();
+		$current_balance = isset($mainledger->current_balance) ? $mainledger->current_balance : 0;
+		$bet_amount = isset($game_levels->bet_amount) ? $game_levels->bet_amount : 0;
 		$current_life_acupoint= isset($mainledger->current_life_acupoint) ? $mainledger->current_life_acupoint : 0;
 		//$life= 'yes';
 		//$redeempointstatus = false;

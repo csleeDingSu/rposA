@@ -21,6 +21,8 @@ class CreateTipsTable extends Migration
             $table->string('title',11)->nullable();
             $table->string('content',11)->nullable();
             $table->integer('seq')->nullable();
+            $table->string('btn_txt',255)->nullable();
+            $table->string('btn_url',255)->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('deleted_at')->nullable(); 

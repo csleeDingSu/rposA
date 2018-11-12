@@ -201,9 +201,16 @@
 			<div class="inBox">
 				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
 				<h2>请加客服微信 领取优惠券</h2>
-				<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
-				<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
-				<h4>如果点按钮复制不成功，请到微信手动输入添加</h4>
+
+				@if (isset(Auth::Guard('member')->user()->username))
+					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
+					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
+					<h4>如果点按钮复制不成功，请到微信手动输入添加</h4>
+				@else
+					<h3 id="cut">请先注册，才能领取优惠券</h3>
+				@endif
+				
+				
 			</div>
 		</div>
 
