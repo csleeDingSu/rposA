@@ -23,7 +23,7 @@ imagecolortransparent($redimg, $white);
 imagefill($redimg, 0, 0, $white);
 
 // Merge the red image onto the PNG image
-imagecopymerge($image, $redimg, 160,870, 0, 0, 150, 150, 80);
+imagecopymerge($image, $redimg, 30,700, 0, 0, 150, 150, 100);
 
 
 ob_start();
@@ -174,19 +174,26 @@ imagedestroy($image);
 		}
 	}
 
+	.b_image {
+		margin-top: 30px;
+		margin-bottom: 25px;
+	}
+
 </style>
 
 <div class="wrapper full-height" style="padding-top: 0px !important; background-color: #450B72">
 	<div class="container center">
-		
-		<div class="wrapper copyurl" id="copyurl" data-clipboard-target="#copy">
-			<div id="qrcode" class="qrcode"></div>
-			<div class="share">
-				<?php echo '<img src="data:image/png;base64,'.base64_encode($imgData).'" />';?>
-			</div>			
+		<div class="b_image">
+			<!-- <div class="wrapper copyurl" id="copyurl" data-clipboard-target="#copy"> -->
+				<div class="wrapper copyurl">
+				<div id="qrcode" class="qrcode"></div>
+				<div class="share">
+					<?php echo '<img src="data:image/png;base64,'.base64_encode($imgData).'" />';?>
+				</div>			
+			</div>
 		</div>
 	
-		<span id="copy" class="offscreen url" aria-hidden="true"><?php echo $url; ?></span>
+		<!-- <span id="copy" class="offscreen url" aria-hidden="true"><?php //echo $url; ?></span> -->
 				<script type="text/javascript">
 					
 					var clipboard = new ClipboardJS('.copyurl');
