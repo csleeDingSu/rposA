@@ -158,7 +158,7 @@ class Product extends Model
 		}		 		
 	}	
 	
-	public static function list_available_redeem_product($point)
+	public static function list_available_redeem_product($point,$quantity = 0)
 	{		
 		//$result = Product::where('product_status', '=', 0);
 		
@@ -167,6 +167,10 @@ class Product extends Model
 		if (!empty($point))
 		{
 			$result = $result->where('min_point', '<=', $point);
+		}
+		if (!empty($quantity))
+		{
+			$result = $result->where('available_quantity', '>=', 1);
 		}
 		$result = $result->paginate(50);
 		

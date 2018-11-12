@@ -29,7 +29,7 @@ class ProductController extends Controller
 		
 		if ($wallet)
 		{
-			$result =  Product::list_available_redeem_product($wallet->point);
+			$result =  Product::list_available_redeem_product($wallet->point, 1);
 			return response()->json(['success' => true, 'current_point'=>$wallet->point , 'records' => $result]);
 		}
 		return response()->json(['success' => false, 'records' => '']);

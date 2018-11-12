@@ -77,7 +77,8 @@ class AdminController extends BaseController
 		if (Auth::Guard('member')->check())
 		{
 			//redirect to member
-			return redirect()->route('/');
+			//return redirect()->route('/');
+			return redirect('/profile');
 		}
 		else if (Auth::Guard('admin')->check())
 		{

@@ -360,7 +360,7 @@ body{
 	width: auto;
 }
 
-.rules{
+.btn-rules{
 	float: right;
 	background-color: #63147f;
 	border-top-left-radius: 15px;
@@ -368,6 +368,7 @@ body{
 	padding: 2px 5px 0px 15px;
 	height:22px;
 	font-size: 0.7em;
+	cursor: pointer;
 }
 
 .balance {
@@ -771,4 +772,9 @@ iframe {
   -webkit-transform: scale(0.3);
   -webkit-transform-origin:left top;
   right: -56px;
+}
+
+.rules-content {
+	color: #8c8c8c;
+	text-align: left;
 }

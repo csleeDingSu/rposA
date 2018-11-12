@@ -14,8 +14,8 @@
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
 
-	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 </head>
 <style>
 	
@@ -50,7 +50,7 @@
 							@if(isset($category))
 								@foreach($category as $cat)
 
-									@if ($loop->first)
+									@if ($cat->id == $cid)
 										<a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 										<!-- <a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a> -->
 									@else
@@ -74,7 +74,7 @@
 						<h2>全部分类<a class="close"><img src="{{ asset('/test/main/images/closeIcon.png') }}"></a></h2>
 						<p>
 							@foreach($category as $cat)
-								@if ($cat->number == 1)
+								@if ($cat->id == $cid)
 									<a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 								@else
 									<a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
@@ -232,8 +232,7 @@
 	</section>
 	
 	
-	<script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
-	<script src="{{ asset('/test/main/js/clipboard.min.js') }}"></script>
+	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script>
 		$(document).ready(function(){
 		//$(function () {

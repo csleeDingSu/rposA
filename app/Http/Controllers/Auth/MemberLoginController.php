@@ -83,7 +83,7 @@ class MemberLoginController extends Controller
             $request,
             [
                 // 'username' => 'required|string|min:4|max:50',
-                'phone' => 'required|string|min:4|max:50',
+                // 'phone' => 'required|string|min:4|max:50',
                 'password' => 'required|alphaNum|min:5|max:50',
             ]
         );
@@ -95,13 +95,31 @@ class MemberLoginController extends Controller
 	protected function attemptLogin(Request $request)
     {
         
-		$credentials = $request->only('phone', 'password');
+		$credentials = $request->only('username', 'phone', 'password');
+        $username = $credentials['username'];
 		$phone = $credentials['phone'];
 		$password = $credentials['password'];
 		$credentials['user_status'] = 1; 
+
+        if (empty($username) && empty($phone)) {
+
+            $array = ['username' => $username, 'phone' => $phone, 'password' => $password];
+
+        } else if (!empty($username) && empty($phone)) {
+
+            $array = ['username' => $username, 'password' => $password];
+
+        } else if (empty($username) && !empty($phone)) {
+
+            $array = ['phone' => $phone, 'password' => $password];
+
+        } else {
+
+            $array = ['username' => $username, 'phone' => $phone, 'password' => $password];
+
+        }
 		
-		
-		if (Auth::guard('member')->attempt(['phone' => $phone, 'password' => $password], $request->remember)) {
+		if (Auth::guard('member')->attempt($array, $request->remember)) {
 			// if successful, then redirect to their intended location			
 			return redirect('/');
 		 }

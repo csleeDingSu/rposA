@@ -19,9 +19,14 @@
 			<div class="alert alert-danger" role="alert">@lang($error)</div>
 			@endforeach
 
+			<div class="input-group">
+			 	<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" placeholder="@lang('dingsu.username')"  name="username" id="username" autofocus value="{{ old('username') }}" />
+			</div>
+
 			<div class="input-group">				
 				<span class="input-group-addon"><i class="fa fa-phone"></i></span>
-				<input type="text" placeholder="@lang('dingsu.ph_mobile_no')" id="phone" name="phone" value="{{ old('phone') }}" autofocus>
+				<input type="text" placeholder="@lang('dingsu.ph_mobile_no')" id="phone" name="phone" value="{{ old('phone') }}">
 			</div>
 						
 			<div class="input-group">

@@ -402,13 +402,23 @@ class GameController extends Controller
 			//print_r($life);
 			//die();
 			$wallet = Wallet::get_wallet_details($memberid);
+			
+			$gamelevel = Game::get_member_current_level($gameid, $memberid);
 
-			//print_r($wallet);
+			//print_r($gamelevel);die();
 			//print_r($gameid);
 			//print_r($memberid);
 			if ($wallet) 
 			{
-
+				if ($gamelevel->position != 1) 
+				{
+					return response()->json(['success' => false, 'record' => '', 'message' => 'reset first.cannt redeem.level must be one']); 
+				}
+				
+				if ($wallet->acupoint < 1) 
+				{
+					return response()->json(['success' => false, 'record' => '', 'message' => 'nothing to redeem']); 
+				}
 				
 				//print_r($wallet);
 				if ($wallet->life >= 1) 
@@ -433,7 +443,8 @@ class GameController extends Controller
 						$credit_bal= 1200-$wallet->balance;
 						//$credit_bal=+1200;
 						}
-					$current_balance	= $wallet->balance +$credit_bal;
+					//$current_balance	= $wallet->balance +$credit_bal;
+					$current_balance	= $wallet->balance;
 					$balance_after		= $current_balance;
 					$debit_bal			= 0;
 					$current_level 		= 1;
@@ -446,7 +457,7 @@ class GameController extends Controller
 					$current_life_acupoint	= $award_bal_before-$wallet->acupoint;
 
 					if ($is_redeemable == true){
-						$current_point=$wallet->point+ env('coin_max', 150);
+						$current_point=$wallet->point+ $wallet->acupoint;
 						$status=true;
 
 // ---------------------Credit--------------------------------------
@@ -456,8 +467,8 @@ class GameController extends Controller
 						$wallet->acupoint=150;
 					}
 					$crd_bal_before			= $wallet->point;
-					$crd_bal_after			= $crd_bal_before+env('coin_max', 150);
-					$crd_current_bal		= $crd_bal_before+env('coin_max', 150);
+					$crd_bal_after			= $crd_bal_before+$wallet->acupoint;
+					$crd_current_bal		= $crd_bal_after;
 
 
 					Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
@@ -467,6 +478,7 @@ class GameController extends Controller
 
 
 					} else{
+						/*
 						$current_point=$wallet->point;
 						// // ---------------------Balance--------------------------------------
 						// $balance_before=$wallet->balance;
@@ -491,6 +503,7 @@ class GameController extends Controller
 						//Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
 						Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
 						//Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
+						*/
 					}
 
 					// $history=array(
@@ -518,7 +531,7 @@ class GameController extends Controller
 					//Reset latest member game level
 					Game::reset_member_game_level($memberid , $gameid);
 
-					return response()->json(['success' => true, 'status' => $status, 'Acupoint' => $wallet->acupoint]); 
+					return response()->json(['success' => true,  'Acupoint' => $wallet->acupoint]); 
 					//return response()->json(['success' => true]); 
 				}else if($life <=0)
 				{

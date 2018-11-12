@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div class="box">
-				<div class="rules">规则介绍</div>
+				<div class="btn-rules">规则介绍</div>
 			</div>
 			<input id="hidBalance" type="hidden" value="" />
 			<input id="hidLevel" type="hidden" value="" />
@@ -311,6 +311,36 @@
 
 <!--  end -->
 
+<!-- Game Rules Modal -->
+	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content modal-wechat">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								
+								<div class="rules-content">
+									转盘每60秒转动一次，随机获得一个幸运号。<br />
+									<br />
+									玩家竞猜【单数】或【双数】，猜中即可获得奖励。<br />
+									<br />
+									每次挖宝机会有1200挖宝币，玩家根据系统设定的6次押宝积分去玩。<br />
+									最多可赚取150挖宝币，赚取的积分能兑换奖品，150挖宝币约等于15元红包。<br />
+									<br />
+									如果连续6次都没猜中，代表挖宝失败，并且会清零本次挖宝所赚的挖宝币。
+								</div>
+													
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
 <!-- Start Reset Life Max -->
 
 	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
@@ -432,6 +462,10 @@
 		$(document).ready(function () {
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
+
+			$('.btn-rules').click(function(){
+				$('#game-rules').modal();
+			});
 
 			if(wechat_status > 0 && wechat_name == '') {
 				$('#verify-steps').modal({backdrop: 'static', keyboard: false});

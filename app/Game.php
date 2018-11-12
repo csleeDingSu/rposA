@@ -347,7 +347,7 @@ class Game extends Model
 	
 	public static function get_betting_history_grouped($gameid, $memberid)
 	{				
-		$result =  DB::table('member_game_result')->select('id','game_id','game_level_id','is_win','game_result as result','bet','bet_amount','player_level','created_at','wallet_point','reward')->where('member_id',$memberid)->where('game_id',$gameid)->orderBy('created_at', 'DESC')->paginate(50);
+		$result =  DB::table('member_game_result')->select('id','game_id','game_level_id','is_win','game_result as result','bet','bet_amount','player_level','created_at','wallet_point','reward')->where('member_id',$memberid)->where('game_id',$gameid)->where('wallet_point','!=',null)->orderBy('created_at', 'DESC')->paginate(50);
 		
 		//@todo add osrting function
 		

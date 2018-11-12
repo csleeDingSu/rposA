@@ -164,7 +164,7 @@ class MemberController extends BaseController
             [
                 'firstname' => 'required|string|min:4',
 				'email' => 'required|email|unique:members,email,'.$id,
-				'wechat_name' => 'nullable|unique:members,wechat_name,'.$id,
+				//'wechat_name' => 'nullable|unique:members,wechat_name,'.$id,
 				'phone' => 'nullable|min:7|max:12|unique:members,phone,'.$id,
             ]
         );
@@ -249,8 +249,8 @@ class MemberController extends BaseController
 			
 			$validator = Validator::make($input, 
 				[
-					'wechat_name' => 'required|unique:members,wechat_name,'.$id,
-					'notes' => 'required'
+					//'wechat_name' => 'required|unique:members,wechat_name,'.$id,
+					//'notes' => 'required'
 				]
 			);
 			

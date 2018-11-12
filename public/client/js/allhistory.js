@@ -25,7 +25,9 @@ $(function () {
                 var history = '';
 
                 var betCount = Object.keys(last_record).length;
-
+                var winCount = 0;
+                var loseCount = 0;
+                var points = 0;
 
                 history =   '<div class="row">' +
                                 '<div class="col-xs-9 column-1">';
@@ -41,6 +43,9 @@ $(function () {
                     if(last_bet.is_win == null){
                         className = 'fail';
                         faIcon = 'fa-times';
+                        loseCount++;
+                    } else {
+                        winCount++;                        
                     }
 
                     history +=   '<div class="' + className + '">' +
@@ -50,18 +55,22 @@ $(function () {
                     delete last_record[last_key];
                 }
 
+                if(winCount) {
+                    points = (winCount + loseCount) * 10;
+                }
+
                 history += '<div style="clear: both"></div>' +
                                 '<div class="date">2018-11-02 15:30 至 2018-11-02 15:30</div>' +
                             '</div>' +
                             '<div class="col-xs-3 column-2">' +
                                 '<div class="right-wrapper">' +
-                                    '<div class="points">600</div>' +
+                                    '<div class="points">'+ points +'</div>' +
                                     '<div class="icon-coin-wrapper">' +
                                         '<div class="icon-coin"></div>' +
                                     '</div>' +
                                     
                                     '<div style="clear: both"></div>' +
-                                    '<div class="balance">2600</div>' +
+                                    '<div class="balance">'+ last_bet.wallet_point +'</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';

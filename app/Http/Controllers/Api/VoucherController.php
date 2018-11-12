@@ -27,9 +27,9 @@ class VoucherController extends Controller
     		$view = view('client.ajaxhome',compact('vouchers'))->render();
             return response()->json(['html'=>$view]);
         }
-
+		$cid = false;
         //return view('client.home', compact('vouchers','category'));
-        return view('client.home3', compact('vouchers','category','total'));
+        return view('client.home3', compact('vouchers','category','total','cid'));
 		
 		
     }
@@ -56,7 +56,7 @@ class VoucherController extends Controller
         }
 		
         //return view('client.home', compact('vouchers','category'));		
-        return view('client.home3', compact('vouchers','category','total'));
+        return view('client.home3', compact('vouchers','category','total','cid'));
 		
     }
 }
