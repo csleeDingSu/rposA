@@ -394,4 +394,11 @@ return [
 	
 	'end_of_result' => '--End of result--',
 	'okay' => 'Okay',
+	'tips' => 'tips',
+	'tips_added_success_msg' => 'Tips added successfully',
+	'tips_update_success_msg' => 'Tips successfully Updated',
+	'seq' => 'sequence',
+	'step' => 'step',
+	'url' => 'URL',
+	'btn_txt' => 'Button Text',
 ];

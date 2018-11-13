@@ -61,17 +61,21 @@ class ProductController extends BaseController
 				'product_price' => 'numeric|between:0,99999.99',
 				'discount_price' => 'numeric|between:0,99999.99',
 				'product_quantity' => 'numeric|between:0,99999.99',	
-				//'product_image' => 'sometimes|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+				'product_image' => 'sometimes|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+				'product_picurl' => 'sometimes|url',
             ]
         );	
 		$now = Carbon::now();
-		/*
-		$image = $request->file('product_image');
-        $imagename = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('ad/product_image');
-        $image->move($destinationPath, $imagename);
-		*/
-		$data = ['product_name' => $request->product_name,'product_quantity' => $request->product_quantity,'product_display_id' => $product_display_id,'required_point' => $request->required_point,'product_status' => $request->status,'product_price' => $request->product_price,'discount_price' => $request->discount_price,'created_at' => $now,'product_picurl' => $request->product_image,'product_description' => $request->product_description];
+		$imagename= '';
+		if ($request->product_image)
+		{
+			$image = $request->file('product_image');
+			$imagename = time().'.'.$image->getClientOriginalExtension();
+			$destinationPath = public_path('ad/product_image');
+			$image->move($destinationPath, $imagename);
+		}
+		
+		$data = ['product_name' => $request->product_name,'product_quantity' => $request->product_quantity,'product_display_id' => $product_display_id,'required_point' => $request->required_point,'product_status' => $request->status,'product_price' => $request->product_price,'discount_price' => $request->discount_price,'created_at' => $now,'product_picurl' => $request->product_picurl,'product_image' => $imagename,'product_description' => $request->product_description];
 		
 		Product::save_ad_product($data);
 		
@@ -105,7 +109,8 @@ class ProductController extends BaseController
 			'discount_price' => 'numeric|between:0,99999.99',
 			'product_quantity' => 'numeric|between:0,99999.99',
 			'id'            => 'unique:product,id,'.$id,
-			//'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			'product_image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			'product_picurl' => 'sometimes|url',
         ];
 		
 		
@@ -117,9 +122,9 @@ class ProductController extends BaseController
         );	
 		$now = Carbon::now();
 		
-		$data = ['product_name' => $request->product_name,'required_point' => $request->required_point,'product_status' => $request->status,'product_price' => $request->product_price,'discount_price' => $request->discount_price,'product_quantity' => $request->product_quantity,'created_at' => $now,'product_description' => $request->product_description,'product_picurl' => $request->product_image];
+		$data = ['product_name' => $request->product_name,'required_point' => $request->required_point,'product_status' => $request->status,'product_price' => $request->product_price,'discount_price' => $request->discount_price,'product_quantity' => $request->product_quantity,'created_at' => $now,'product_description' => $request->product_description,'product_picurl' => $request->product_picurl];
 		
-		/*
+		
 		if ($request->product_image)
 		{
 			$image = $request->file('product_image');
@@ -127,9 +132,9 @@ class ProductController extends BaseController
 			$destinationPath = public_path('ad/product_image');
 			$image->move($destinationPath, $imagename);			
 			
-			$data['product_picurl'] = $imagename;
+			$data['product_image'] = $imagename;
 		}
-		*/		
+				
 		Product::update_ad_product($id, $data);		
 			
 		
@@ -137,6 +142,13 @@ class ProductController extends BaseController
 		 
 	}
 	
+	public function delete_ad_image(Request $request)
+    {
+		$id = $request->id;
+		$data = ['product_image' => ''];
+		Product::update_ad_product($id, $data);		
+		return response()->json(['success' => true, 'message' => 'done']);
+	}
 	
 	public function delete_ad_product(Request $request)
     {

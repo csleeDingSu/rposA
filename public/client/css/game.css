@@ -308,7 +308,7 @@ body{
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto 80px;
+  grid-template-columns: auto  80px;
   height: 40px;
 }
 
@@ -376,8 +376,8 @@ body{
 }
 
 .life-balance {
-	color: #FFE24D;
-	font-size: 12px;
+	color: #14c409;
+	font-size: 1.1em;
 }
 
 #spanAcuPoint {
@@ -395,7 +395,7 @@ body{
 	color: white;
 }
 
-.info-wrapper {
+.btn-calculate-wrapper {
 	float: right;
 	height:21px;
     width:30px;
@@ -405,7 +405,7 @@ body{
     display: inline-block;
 }
 
-.info {
+.btn-calculate {
 	background: url('/client/images/game.png') no-repeat -1664px -659px;
 	width: 110px;
 	height: 54px;
@@ -417,6 +417,7 @@ body{
 	position: relative;
     display: inline-block;
     font-size: 1.4em;
+    cursor: pointer;
 }
 
 .right {
@@ -424,8 +425,8 @@ body{
 }
 
 /* Modal Box */
-.modal-content {
-	background: #2761e3;
+.modal-content, .modal-title {
+	background: white;
 	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
@@ -438,6 +439,30 @@ body{
 	margin: 0 auto;
 }
 
+.modal-wechat {
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.modal-title {
+	background: #4c89e2;
+	color: white;
+	text-align: center;
+	margin-top: 10%;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+}
+
+.modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-weight: 700;
+}
+
 .modal-card {
 	width: 250px;
 	margin: 0 auto;
@@ -445,58 +470,118 @@ body{
 }
 
 .modal-packet-wrapper {
-	width: 301px;
-	height: 337px;
+	width: 360px;
+	height: 390px;
 	top: 10%;
 	margin: 0 auto;
 }
 
 .modal-packet {
-	width: 670px;
-	height: 750px;
+	width: 730px;
+	height: 830px;
 	font-size: 16px;
 	margin: 0 auto;
 	background-image: url("/client/images/packet.png");
 	background-color: transparent;
 	background-repeat: no-repeat;
-	transform: scale(0.45); 
-	-webkit-transform: scale(0.45);
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
 }
 
+.copyvoucher {
+	border: 1px solid #e3e3e3;
+	background: #f0f0f0;
+	color: #4380d9;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 30px;
+	border-radius: 5px;
+	font-size: 30px;
+}
+
+.cutBtn, .cutBtn-success, .cutBtn-fail {
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 30px;
+	font-size: 20px;
+	color: white;
+	padding: 6px;
+	background-image: linear-gradient(#ffaf08, #ff830b);
+}
+
+.cutBtn-success {
+	background: #1ba908;
+}
+
+.cutBtn-fail {
+	background: #838383;
+}
+
 .packet-title {
-	color: #ff2e4d;
-	font-size: 60px;
+	color: #3f9e06;
+	font-size: 50px;
 	font-weight: 700;
-	margin-top: 40px;
+	margin-top: 50px;
 }
 
 .packet-title.lose {
 	color: #393939;
 }
 
+.packet-coin-wrapper {
+	margin: -20px auto 30px auto;
+	width: 300px;
+}
+
+.packet-coin {
+	background: url('/client/images/game.png') no-repeat -1674px -715px;
+	width: 82px;
+	height: 82px;
+	transform: scale(1); 
+	-webkit-transform: scale(1);
+	-webkit-transform-origin:left top;
+	display: inline-block;
+	z-index: 100;
+	position: relative;
+	margin-top: 15px;
+}
+
+.packet-point {
+	font-size: 80px;
+	color: #ffee56;
+	display: inline-block;
+    vertical-align:top;
+    padding: 0;
+    margin: 0;
+}
+
 .packet-note {
-	color: #c87d1b;
+	color: #c07e27;
 	font-weight: 700;
 	font-size: 25px;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .packet-instruction {
 	color: white;
-	font-size: 32px;
+	font-size: 40px;
 	margin-top: 80px;
-	padding-bottom: 70px;
+	padding-bottom: 20px;
+}
+
+.extra-padding {
+	padding-bottom: 90px;
 }
 
 .packet-button {
-	font-size: 32px;
-	color: #dd1927;
+	font-size: 40px;
+	color: #e05c96;
 	font-weight: 700;
 	width: 360px;
-	height: 90px;
+	height: 100px;
 	margin: 0 auto;
-	margin-bottom: 25px;
+	margin-bottom: 28px;
 	padding-top: 20px;
 	cursor: pointer;
 }
@@ -513,6 +598,50 @@ body{
 
 .packet-acupoint {
 	color: #c81b1b;
+}
+
+.modal-message-title {
+	color: #656565;
+	font-size: 22px;
+	font-weight: 700;
+}
+
+.modal-message-content {
+	color: #9a9a9a;
+	font-size: 16px;
+	font-weight: 700;
+	padding-top: 10px;
+	padding-bottom: 30px;
+}
+
+.img-warning {
+	width: 80px;
+	height: 80px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.modal-message-button {
+	background: #f8db9f;
+	color: #9c731b;
+	padding: 5px;
+	font-weight: 700;
+	font-size: 22px;
+	border-radius: 5px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+@media only screen and (max-width: 360px) {
+	.modal-packet-wrapper {
+		width: 301px;
+		height: 337px;
+	}
+
+	.modal-packet {
+		transform: scale(0.42); 
+		-webkit-transform: scale(0.42);
+	}
 }
 
 .link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
@@ -537,12 +666,16 @@ body{
 	color: #000;
 }
 
-.instructions, .wechat-title {
+.instructions, .instructions-dark {
 	margin-top: 10px;
-	margin-bottom: 20px;
-	font-size: 16px;
+	margin-bottom: 5px;
+	font-size: 12px;
 	font-weight: 500;
-	color: white;
+	color: #cdcdcd;
+}
+
+.instructions-dark {
+	color: #bababa;
 }
 
 .img-step {
@@ -559,31 +692,6 @@ body{
 .step-details {
 	color: white;
 	margin-top: 10px;
-}
-
-.btn-verify-wrapper {
-	background: white;
-	width: 299px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	margin-left: -1px;
-}
-
-.btn-verify {
-	background: white;
-	color: #248ada;
-	margin: 0 auto;
-	font-size: 18px;
-	padding: 10px 10px 1px 10px;
-	font-weight: 500;
-	height: 45px;
-	width: 160px;
-	display: block;
-}
-
-.btn-verify a {
-	text-decoration: none;
-	color: #248ada;
 }
 
 .btn-close {
@@ -615,11 +723,7 @@ body{
 }
 
 @media only screen and (max-width: 360px) {
-	.modal-content {
-		width: 270px;
-	}
-
-	.btn-verify-wrapper {
+	.modal-content, .modal-title {
 		width: 270px;
 	}
 
@@ -632,12 +736,6 @@ body{
 /* End Modal box */
 
 /* Wechat Modal */
-.modal-wechat {
-	background: white;
-	border-radius: 6px;
-	border-bottom: 1px solid #4a87e2;
-}
-
 .wechat-title {
 	color: #4b89e2;
 }

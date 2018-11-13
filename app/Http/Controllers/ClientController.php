@@ -25,34 +25,26 @@ use App\Wallet;
 
 use App\Members as Member;
 
-use App\Voucher;
 use App\tips;
 
-use App\Http\Controllers\Api\MemberController;
+//use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 	
-	public function __construction()
-	{
-		$this->middleware('auth:member');
-	}
+	
 	public function index() {		
-		
 		if (Auth::Guard('member')->check())
 		{
 			return redirect('/profile');
 		}
 		else if (Auth::Guard('admin')->check())
 		{
-			//return redirect('/member/list');
-			//redirect to member list
 			return redirect()->route('memberlist');
 		}
 		else
 		{
-			//echo 'here';
 			return redirect()->route('login');
 		}		
 	}
@@ -61,7 +53,7 @@ class ClientController extends BaseController
 	
 	public function member_profile()
 	{
-		if (Auth::Guard('member')->check()) {
+		//if (Auth::Guard('member')->check()) {
 
 			$member = Auth::guard('member')->user()->id	;
 			$data['member'] = Member::get_member($member);
@@ -70,10 +62,6 @@ class ClientController extends BaseController
 			$data['page'] = 'client.member'; 
 			return view('client/member', $data);
 
-		} else {
-
-			return redirect()->route('login');
-		}		
 		
 	}
 

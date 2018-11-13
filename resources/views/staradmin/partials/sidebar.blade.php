@@ -5,7 +5,7 @@
 			<li class="nav-item">
 				<a class="nav-link" href="/product/product-new">
               <i class="menu-icon  icon-list text-danger"></i>
-              <span class="menu-title"> @lang('dingsu.redeem') 2 </span>
+              <span class="menu-title text-capitalize"> @lang('dingsu.redeem') 2 </span>
             </a>
 			</li>
 
@@ -17,14 +17,14 @@
 		<li class="nav-item">
 			<a class="nav-link" href="/admin/dashboard">
               <i class="menu-icon  icon-home  text-primary"></i>
-              <span class="menu-title"> @lang('dingsu.dashboard')</span>
+              <span class="menu-title text-capitalize"> @lang('dingsu.dashboard')</span>
             </a>		
 		</li>
 
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uigame" aria-expanded="false" aria-controls="uigame">
               <i class="menu-icon icon-game-controller  text-info"></i>
-              <span class="menu-title"> @lang('dingsu.game')  @lang('dingsu.list')</span>
+              <span class="menu-title text-capitalize"> @lang('dingsu.game')  @lang('dingsu.list')</span>
               <i class="menu-arrow"></i>
             </a>		
 
@@ -32,9 +32,6 @@
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item">
 						<a class="nav-link" href="/game/list">@lang('dingsu.game')  @lang('dingsu.list')</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/game/setting">@lang('dingsu.game')  @lang('dingsu.settings')</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/game/category">@lang('dingsu.game')  @lang('dingsu.category')</a>
@@ -46,7 +43,7 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uimember" aria-expanded="false" aria-controls="uimember">
               <i class="menu-icon icon-people  text-warning"></i>
-              <span class="menu-title">@lang('dingsu.member')  @lang('dingsu.list')</span>
+              <span class="menu-title text-capitalize">@lang('dingsu.member')  @lang('dingsu.list')</span>
               <i class="menu-arrow"></i>
             </a>		
 
@@ -67,7 +64,7 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uiuser" aria-expanded="false" aria-controls="uiuser">
               <i class="menu-icon icon-user"></i>
-              <span class="menu-title">@lang('dingsu.users')  @lang('dingsu.list')</span>
+              <span class="menu-title text-capitalize">@lang('dingsu.users')  @lang('dingsu.list')</span>
               <i class="menu-arrow"></i>
             </a>
 		
@@ -84,7 +81,7 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#voucher" aria-expanded="false" aria-controls="voucher">
               <i class="menu-icon icon-tag text-primary"></i>
-              <span class="menu-title">@lang('dingsu.voucher')</span>
+              <span class="menu-title text-capitalize">@lang('dingsu.voucher')</span>
               <i class="menu-arrow"></i>
             </a>		
 
@@ -106,7 +103,7 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#redeem" aria-expanded="false" aria-controls="redeem">
               <i class="menu-icon icon-present text-success"></i>
-              <span class="menu-title">@lang('dingsu.product')</span>
+              <span class="menu-title text-capitalize">@lang('dingsu.product')</span>
               <i class="menu-arrow"></i>
             </a>		
 
@@ -135,25 +132,44 @@
 		<li class="nav-item">
 			<a class="nav-link" href="/product/product-new">
               <i class="menu-icon  icon-list text-danger"></i>
-              <span class="menu-title"> @lang('dingsu.redeem') 2 </span>
+              <span class="menu-title text-capitalize"> @lang('dingsu.redeem') 2 </span>
             </a>	
 
 		</li>
 
-		<li class="nav-item">
-			<a class="nav-link" href="/admin/settings">
-              <i class="menu-icon icon-settings text-danger"></i>
-              <span class="menu-title"> @lang('dingsu.settings')</span>
-            </a>		
-
-		</li>
+		
 		
 		<li class="nav-item">
 			<a class="nav-link" href="/admin/faq">
               <i class="menu-icon  icon-note text-primary"></i>
-              <span class="menu-title"> @lang('dingsu.faq')</span>
-            </a>		
-
+              <span class="menu-title text-capitalize"> @lang('dingsu.faq')</span>
+            </a>
+		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link" href="/admin/tips">
+              <i class="menu-icon icon-speech  text-info"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.tips')</span>
+            </a>	
+		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#uisetting" aria-expanded="false" aria-controls="uisetting">
+              <i class="menu-icon icon-settings  text-danger"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.settings')</span>
+              <i class="menu-arrow"></i>
+            </a>
+		
+			<div class="collapse" id="uisetting">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/settings">@lang('dingsu.settings')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/banner">@lang('dingsu.banner')</a>
+					</li>
+				</ul>
+			</div>
 		</li>
 	</ul>
 </nav>

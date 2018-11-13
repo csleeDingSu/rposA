@@ -82,6 +82,7 @@ function initUser(){
             if (data.record.length === 0) {
                 $('#divBalance', window.parent.document).html(0);
                 $('#spanPoint', window.parent.document).html(0);
+                $('.packet-point', window.parent.document).html(0);
             } else {
                 var balance = parseInt(data.record.balance);
                 var life = data.record.life;
@@ -90,6 +91,7 @@ function initUser(){
 
                 $('#divBalance', window.parent.document).html(balance);
                 $('#spanPoint', window.parent.document).html(point);
+                $('.packet-point', window.parent.document).html(point);
                 $('#spanAcuPoint', window.parent.document).html(acupoint);
                 $('.packet-acupoint', window.parent.document).html(acupoint);
                 $('#hidBalance', window.parent.document).val(balance);
@@ -197,6 +199,7 @@ function initGame(){
             startTimer(duration, timer, freeze_time);
 
             bindBetButton();
+            bindCalculateButton();
 
             //console.log("/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id);
             $.getJSON( "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id, function() {
@@ -264,12 +267,6 @@ function bindBetButton(){
 
                 bindResetLifeButton();
                 $('#reset-life-lose', window.parent.document).modal();
-                return false;
-
-            } else if(acupoint >= 150) {
-
-                bindResetLifeButton();
-                $('#reset-life-max', window.parent.document).modal();
                 return false;
 
             }
@@ -347,6 +344,19 @@ function bindBetButton(){
     });
 }
 
+function bindCalculateButton(){
+    $('.btn-calculate', window.parent.document).click(function(){
+        var acupoint = $('#spanAcuPoint', window.parent.document).html();
+        if(acupoint < 150) {
+            bindResetLifeButton();
+            $('#reset-life-play', window.parent.document).modal();
+        } else if (acupoint >= 150) {
+            bindResetLifeButton();
+            $('#reset-life-max', window.parent.document).modal();
+        }
+    });
+}
+
 function bindResetLifeButton(){
 
     $('.btn-reset-life', window.parent.document).click(function(){
@@ -356,19 +366,17 @@ function bindResetLifeButton(){
         var acupoint = $('#spanAcuPoint', window.parent.document).html();
 
         // add points from additional life.
-        if(user_id > 0 && life > 0){
-            if(balance < 630 || acupoint >= 150) {
-                $.post("/api/resetlife", { 'memberid': user_id, 'gameid': 101, 'life': 'yes' }, function(data) {
-                    console.log(data);
-                    // Do something with the request
-                    if(data.success) {
-                        $('#reset-life-lose', window.parent.document).modal('hide');
-                        $('#reset-life-max', window.parent.document).modal('hide');
-                        initUser();
-                    }
-                    
-                }, 'json');
-            }
+        if(user_id > 0){
+            $.post("/api/resetlife", { 'memberid': user_id, 'gameid': 101, 'life': 'yes' }, function(data) {
+                console.log(data);
+                // Do something with the request
+                if(data.success) {
+                    $('#reset-life-lose', window.parent.document).modal('hide');
+                    $('#reset-life-max', window.parent.document).modal('hide');
+                    initUser();
+                }
+                
+            }, 'json');
         }
     });
 }

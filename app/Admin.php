@@ -73,4 +73,34 @@ class Admin extends Model
 		 return DB::table('faq')->delete($id);
 	}
 	
+	public static function list_tips()
+	{
+		$result = DB::table('tips')->get();
+		
+		return $result;
+	}
+	public static function get_tips($id = null)
+	{
+		$result = DB::table('tips')->where('id',$id)->first();
+		
+		return $result;
+	}
+	public static function create_tips($data)
+	{	
+		
+		 return $result = DB::table('tips')
+            ->insertGetId($data);
+	}
+	public static function update_tips($id,$data)
+	{	
+		
+		 return $result = DB::table('tips')
+            ->where('id', $id)
+            ->update($data);
+	}
+	public static function delete_tips($id)
+	{			
+		 return DB::table('tips')->delete($id);
+	}
+	
 }

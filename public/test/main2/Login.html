@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+     <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" /> 
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="css/public.css" />
+    <link rel="stylesheet" type="text/css" href="css/module.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/being.js"></script>
+  </head>
+
+  <body style="background:#efefef">
+    <section class="cardFull card-flex">
+      <div class="cardBody loginBody">
+        <div class="loginHead">
+          <a class="logo"><img src="images/logo.png"></a>
+          <div class="name"><img src="images/logoTitle.png"></div>
+        </div>
+        <div class="loginBox">
+          <div class="hd flex">
+            <a class="on">快速注册</a>
+            <a>账号登录</a>
+          </div>
+          <div class="bd">
+            <div class="inBox on">
+              <ul>
+                <li>
+                  <div class="flexSp">
+                    <img src="images/telIcon.png">
+                    <input type="text" placeholder="输入手机号码">
+                  </div>
+                </li>
+                <li>
+                    <div class="flexSp">
+                      <img src="images/lockIcon.png">
+                      <input type="text" placeholder="设置登录密码">
+                    </div>
+                  </li>
+                  <li>
+                      <div class="flexSp">
+                        <img src="images/lockIcon.png">
+                        <input type="text" placeholder="重复登录密码">
+                      </div>
+                    </li>
+                    <li>
+                      <button type="button">注册</button>
+                    </li>
+              </ul>
+            </div>
+            <div class="inBox">
+                <ul>
+                  <li>
+                    <div class="flexSp">
+                      <img src="images/telIcon.png">
+                      <input type="text" placeholder="输入手机号码">
+                    </div>
+                  </li>
+                  <li>
+                      <div class="flexSp">
+                        <img src="images/lockIcon.png">
+                        <input type="text" placeholder="设置登录密码">
+                      </div>
+                    </li>
+                      <li>
+                        <button type="button">登录</button>
+                      </li>
+                    <li>
+                        <p>忘记密码?<a href="#">请联系客服</a></p>
+                    </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      $(function(){
+      $('.loginBox .hd a').click(function(){
+        var that=$(this);
+        let i=that.index();
+        console.log(i);
+        that.addClass('on').siblings().removeClass('on');
+        $('.loginBox .bd').children('.inBox').eq(i).fadeIn(0).siblings().fadeOut(0);
+      })
+      })</script>
+  
+
+
+  
+  </body>
+</html>

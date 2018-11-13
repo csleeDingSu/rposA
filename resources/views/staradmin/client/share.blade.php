@@ -64,36 +64,48 @@ imagedestroy($image);
 	{
 		width: 100%;
 		position: relative;
-		margin-top: 30px;
+		margin-top: 50px;
 		margin-bottom: 30px;
 	}
 
-	@media only screen and (max-device-width:1990px) {
+	.img2
+	{
+		width: 49%;
+		position: absolute;
+		top:380px;
+		left: 390px;
+	}
+	
+	@media only screen and (max-device-width:1024px) {
 	   #qrcode {
-			margin:810px 50px 50px 135px;
+			margin:1060px 50px 50px 180px;
 		}
 /*ok*/
 		.img2
-			{
-				width: 49% !important;
-				position: absolute;
-				top:345px !important;
-				left: 390px !important;
-			}
+		{
+			width: 59%;
+			/*position: absolute;*/
+			/*top:170px;*/
+			/*left: 68px;*/
+			margin-top: -10px;
+			margin-left: -180px;
+		}
 	}
 
-	@media only screen and (max-device-width:1882px) {
+	@media only screen and (max-device-width:941px) {
 	   #qrcode {
-			margin:810px 50px 50px 135px;
+			margin:1060px 50px 50px 180px;
 		}
 /*ok*/
 		.img2
-			{
-				width: 40% !important;
-				position: absolute;
-				top:340px !important;
-				left: 390px !important;
-			}
+		{
+			width: 50%;
+			/*position: absolute;*/
+			/*top:170px;*/
+			/*left: 68px;*/
+			margin-top: -125px;
+			margin-left: -155px;
+		}
 	}
 
 	@media only screen and (max-device-width:375px) {
@@ -103,10 +115,10 @@ imagedestroy($image);
 /*ok*/
 		.img2
 		{
-			width: 59% !important;
+			width: 59%;
 			position: absolute;
-			top:123px !important;
-			left: 77px !important;
+			margin-top: -230px;
+			margin-left: -313px;
 		}
 	}
 
@@ -118,13 +130,12 @@ imagedestroy($image);
 <div class="wrapper full-height" style="padding-top: 0px !important; background-color: #450B72">
 	<div class="container center">
 
-		<img class="img1" src="{{ asset('/client/images/8_invitation.jpg') }}" />
-
 		<div>
 			<div class="wrapper copyurl" id="copyurl" data-clipboard-target="#copy">
 				<!-- <div class="wrapper copyurl"> -->
 				<div id="qrcode" class="qrcode"></div>
-				<div class="share">
+				<div>
+					<img class="img1" src="{{ asset('/client/images/8_invitation.jpg') }}" />
 					<?php echo '<img class="img2" src="data:image/png;base64,'.base64_encode($imgData).'" />';?>
 				</div>			
 			</div>

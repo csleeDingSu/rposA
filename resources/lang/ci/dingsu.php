@@ -340,4 +340,11 @@ return [
 	'text_copied' => '分享给朋友获得挖宝机会。',
 	'end_of_result' => '-- 已下载完毕 --',
 	'okay' => '好的',
+	'tips' => 'tips',
+	'tips_added_success_msg' => 'Tips added successfully',
+	'tips_update_success_msg' => 'Tips successfully Updated',
+	'seq' => 'sequence',
+	'step' => 'step',
+	'url' => 'URL',
+	'btn_txt' => 'Button Text',
 ];

@@ -98,36 +98,46 @@
                      
                     </div>
 					  
-					   <div class="row"> 
+					 <div class="row"> 
 					
 						   <div class="col-md-6">
                         <div class="form-group row">
-                          <label for="product_image" class="col-sm-3 col-form-label">@lang('dingsu.image')</label>
+                          <label for="product_picurl" class="col-sm-3 col-form-label">@lang('dingsu.image')</label>
                           <div class="col-sm-9">
-                            <input id="product_image" name="product_image" class="form-control" type="text" value="{{ old('product_image', $record->product_picurl) }}" >
+                            <input id="product_picurl" name="product_picurl" class="form-control" type="text" value="{{ old('product_picurl', $record->product_picurl) }}" >
 							  
 							  <img src="{{ $record->product_picurl }}" width="300px">
+							  
                           </div>
                         </div>
                       </div>
-						   <!--
+						   
 						 <div class="col-md-6">
                         <div class="form-group row">
                           <label for="product_image" class="col-sm-3 col-form-label">@lang('dingsu.image')</label>
                           <div class="col-sm-9">
                             {!! Form::file('product_image', array('class' => 'image')) !!}
 							  
+							  @if($record->product_image)
+							  <a href="javascript:void(0)" onClick="confirm_Delete({{ $record->id }})" class="imga btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-close  "></i></a>
 							  
-							  <div class="" style="width: 200px; height: 180px">
-							  <img src="{{ $record->product_picurl }}" width="300px">
+							  <div class="imgdiv" style="width: 200px; height: 180px">
+							 
+							  <img src="{{ Config::get('app.ads_product_image_url') . $record->product_image }}" width="300px" height="350px"></img>
 							  
 							  </div>
+							 @endif 
 							  
 							  
                           </div>
                         </div>
                       </div>
-						   -->
+						   
+                    </div>
+					  
+					  
+					   <div class="row"> 
+					
 						   
 						  
                      <div class="col-md-6">
@@ -156,3 +166,59 @@
                   </form>
               </div>
             </div>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
+
+<script language="javascript">
+	
+
+	function confirm_Delete( id ) {
+		Swal( {
+			title: '@lang("dingsu.delete_confirmation")',
+			text: '@lang("dingsu.delete_conf_text")',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonText: '@lang("dingsu.delete")',
+			cancelButtonText: '@lang("dingsu.cancel")',
+			confirmButtonColor: "#DD6B55",
+			closeOnConfirm: false
+		} ).then( ( result ) => {
+			if ( result.value ) {
+
+				$.ajax( {
+					url: '{{route('ad.remove.image')}}',
+					headers: {
+						'X-CSRF-TOKEN': $( 'meta[name="csrf-token"]' ).attr( 'content' )
+					},
+					type: 'delete',
+					data: {
+						id: id,
+						_token: "{{ csrf_token() }}",
+					},
+					dataType: "html",
+					success: function ( response ) {
+
+						var response = jQuery.parseJSON( response );
+						if ( response.success == false ) {
+							swal( '@lang("dingsu.delete_error")', '@lang("dingsu.try_again")', "error" );
+						} else {
+							
+							swal({  icon: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.delete_success")', button: '@lang("dingsu.okay")',});
+						
+							$( '.imgdiv' ).remove();
+							$( '.imga' ).remove();
+						}
+
+					},
+					error: function ( xhr, ajaxOptions, thrownError ) {
+						swal( '@lang("dingsu.delete_error")', '@lang("dingsu.try_again")', "error" );
+					}
+				} );
+
+			}
+		} )
+	}
+
+</script>

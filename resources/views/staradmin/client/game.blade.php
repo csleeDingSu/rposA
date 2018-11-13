@@ -32,19 +32,12 @@
 				<div class="coin"></div>
 				<div class="number long">
 					<span class="balance" id="spanPoint">0</span> <span class="life-balance">+</span><span class="life-balance" id="spanAcuPoint">0</span>
-					<div class="info-wrapper">
-						<a class="btn-redeem" href="/redeem"><div class="info">换钱</div></a>
+					<div class="btn-calculate-wrapper">
+						<div class="btn-calculate">结算</div>
 					</div>
 				</div>
 			</div>
-			<div class="box">
-				<div class="right">
-					<div class="drumstick"></div>
-					<div class="number">
-						<span class="balance" id="divBalance">0</span>
-					</div>
-				</div>
-			</div>
+
 			<div class="box">
 				<div class="btn-rules">规则介绍</div>
 			</div>
@@ -103,37 +96,39 @@
 	<!-- progress bar -->
 	<div class="progress-bar-container">
     	<div class="progress-bar">
-    		<span class="speech-bubble level-one hide">消耗10鸡腿，能挖到10鸡腿加10金币。</span>
+    		<span class="speech-bubble level-one hide">猜中得20分，扣之前投入10分，赚10分。</span>
     		<div class="circle">
     			<span class="label">x</span>
     			<div class="title">10</div>
             </div>
             <span class="bar-short"></span>
-            <span class="speech-bubble level-two hide">消耗30鸡腿，能挖到40鸡腿加20金币。</span>
+            <span class="speech-bubble level-two hide">猜中得60分，扣前两次投入40分，赚20分。</span>
             <div class="circle">
             	<span class="label">x</span>
                 <div class="title">30</div>
             </div>
             <span class="bar"></span>
-            <span class="speech-bubble level-three hide">消耗70鸡腿，能挖到110鸡腿加30金币。</span>
+            <span class="speech-bubble level-three hide">
+            猜中得140分，扣前3次投入110分，赚30分。</span>
             <div class="circle ">
             	<span class="label">x</span>
                 <div class="title">70</div>
             </div>
             <span class="bar"></span>
-            <span class="speech-bubble level-four hide">消耗150鸡腿，能挖到260鸡腿加40金币。</span>
+            <span class="speech-bubble level-four hide">
+            猜中得300分，扣前4次投入260分，赚40分。</span>
             <div class="circle">
             	<span class="label">x</span>
                 <div class="title">150</div>
             </div>
             <span class="bar-long"></span>
-            <span class="speech-bubble level-five hide">消耗310鸡腿，能挖到570鸡腿加50金币。</span>
+            <span class="speech-bubble level-five hide">猜中得620分，扣前5次投入570分，赚50分。</span>
             <div class="circle">
             	<span class="label">x</span>
                 <div class="title">310</div>
             </div>
             <span class="bar"></span>
-            <span class="speech-bubble level-six hide">消耗630鸡腿，能挖到1200鸡腿加60金币。</span>
+            <span class="speech-bubble level-six hide">猜中得1260分，扣前6次投入1200分，赚60分。</span>
             <div class="circle">
             	<span class="label">x</span>
                 <div class="title">630</div>
@@ -164,47 +159,31 @@
 <form class="form-sample" name="frm-steps" id="frm-steps" action="" method="post" autocomplete="on" >
 	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
 		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
+			<div class="modal-title">
+				<h1>请加客服微信</h1>
+				通过审核才能享受网站福利
+			</div>
+			<div class="modal-content modal-wechat">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="instructions">
-									只需两步实名认证
-									<br />
-									就能享受网站福利
+									客服微信在线时间：早上8点-晚上9点
 								</div>								
 							</div>
 							<div class="row">
-								<div class="col-xs-2"></div>
-								<div class="col-xs-4">
-									<img class="img-step" src="{{ asset('/client/images/step_01.png') }}" />
-									<div class="step">第一步</div>
-									<div class="step-details">
-										添加微信<br />
-										客服审核
-									</div>
-								</div>
-								<div class="col-xs-4">
-									<img class="img-step" src="{{ asset('/client/images/step_02.png') }}" />
-									<div class="step">第二步</div>
-									<div class="step-details">
-										通过认证<br />
-										享受福利
-									</div>
-								</div>
-								<div class="col-xs-2"></div>
+								<div id="cut" class="copyvoucher">WABAO666</div>
+								<div class="cutBtn">一键复制</div>
+							</div>
+							<div class="modal-card">
+								<div class="instructions-dark">
+									请按复制按钮，复制成功后到微信添加。<br />
+									如复制不成功，请到微信手动输入添加。
+								</div>								
 							</div>
 						</div>
 					</div>							
-				</div>
-				<div class="btn-verify-wrapper">
-					<div class="btn-verify">
-						<a href="#">
-							<div class="left">马上去认证</div>
-							<div class="glyphicon glyphicon-menu-right"></div>
-						</a>
-					</div>
 				</div>
 			</div>
 
@@ -222,99 +201,10 @@
 <!-- Steps Modal Ends -->
 
 
-
-<!-- Verify Modal starts -->
-<form action="member_update_wechatname" method="post" name="wechatform" id="wechatform">
-	<div class="modal fade col-md-12" id="wechat-verify" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content modal-wechat">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								@csrf
-
-								<div class="" id="validation-errors"></div>
-								<div class="wechat-title">
-									实名认证审核
-								</div>
-								
-								@include('layouts.partials.notification')
-								
-								<div class="modal-input">
-									<input type="hidden" id="memberid", name="memberid" value="{{ Auth::Guard('member')->user()->id }}"/>
-									<input name="wechat_name" id="wechat_name" type="text"  placeholder="@lang('dingsu.ph_username')" value="" required>
-								</div>
-
-								<div class="wechat-wrapper">
-									<img src="{{ asset('/client/images/wabao666_qrcode.JPG') }}" />
-									<div>长按图片保存到手机，在扫码相册<br />
-									添加客服微信，需备注 "{{ Auth::Guard('member')->user()->username }}"</div>
-								</div>						
-							</div>
-						</div>
-					</div>							
-				</div>
-				<div class="btn-submit-wrapper">
-					<button class="btn btn-submit">@lang('dingsu.submit')</button>
-				</div>
-			</div>
-		</div>
-		<div class="modal-card">
-				<div class="btn-close">
-					<a href="/">
-						<div class="glyphicon glyphicon-remove-circle"></div>
-						<div class="left"> 不想认证，先逛逛看。</div>
-					</a>
-				</div>
-			</div>
-	</div>
-</form> 
-<!-- Verify Modal Ends -->
-
-<!-- pending verify step -->
-
-	<div class="modal fade col-md-12" id="pending-verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content modal-wechat">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								@csrf
-
-								<div class="" id="validation-errors"></div>
-								<div class="wechat-title">
-									等待认证
-								</div>
-								
-								<div class="wechat-wrapper">
-									<img src="{{ asset('/client/images/wabao666_qrcode.JPG') }}" />
-									<div>长按图片保存到手机，在扫码相册<br />
-									添加客服微信，需备注 "{{ Auth::Guard('member')->user()->username }}"</div>
-								</div>						
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-			<div class="modal-card">
-				<div class="btn-close">
-					<a href="/">
-						<div class="glyphicon glyphicon-remove-circle"></div>
-						<div class="left"> 等待认证，先逛逛看。</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
-
 <!-- Game Rules Modal -->
 	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content modal-wechat">
+			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
@@ -343,25 +233,23 @@
 
 <!-- Start Reset Life Max -->
 
-	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg modal-packet-wrapper" role="document">
 			<div class="modal-packet">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="packet-title">150 封顶</div>
+							<div class="packet-title">恭喜获得150挖宝币</div>
 							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
-							您当前已经完成了
+							您当前已经封顶
 							</div>
-							<div class="packet-instruction">你当前还有 
-								<span class="spanLife">
-									{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}
-								</span> 
-								次挖宝机会<br />
-							你可选择 <strong>继续挖宝</strong> 或 <strong>兑换奖品</strong>
+							<div class="packet-instruction">您拥有总挖宝币</div>
+							<div class="packet-coin-wrapper">
+								<div class="packet-coin"></div>
+								<div class="packet-point">&nbsp;</div>
 							</div>
 							<div class="btn-reset-life packet-button">
-								<div class="packet-button-name">继续挖宝</div>
+								<div class="packet-button-name">结算并继续挖宝</div>
 								<div class="packet-button-note">将消耗1次挖宝机会</div>
 							</div>
 							<a href="/redeem" class="link-button">
@@ -376,34 +264,63 @@
 
 <!--  end -->
 
-<!-- Start Reset Life Share -->
+<!-- Start Reset Life Max -->
 
-	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg modal-packet-wrapper" role="document">
 			<div class="modal-packet">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="packet-title">150 封顶</div>
+							<div class="packet-title">恭喜获得100挖宝币</div>
 							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
-							您当前已经完成了
+							您还可以继续挖
 							</div>
-							<div class="packet-instruction">你当前还有 
-								<span class="spanLife">
-									{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}
-								</span> 
-							 次挖宝机会<br />
-							你可选择 <strong>邀请好友</strong> 或 <strong>兑换奖品</strong>
+							<div class="packet-instruction">您拥有总挖宝币</div>
+							<div class="packet-coin-wrapper">
+								<div class="packet-coin"></div>
+								<div class="packet-point">&nbsp;</div>
 							</div>
-							<a href="/share" class="link-button">
-								<div class="packet-button">
-									<div class="packet-button-name">邀请好友</div>
-									<div class="packet-button-note">每邀请1名好友获得1次挖宝机会</div>
+							<div class="btn-reset-life packet-button">
+								<div class="packet-button-name">确定结算</div>
+								<div class="packet-button-note">结算后本次挖宝结束</div>
+							</div>
+
+							<div class="close-modal packet-button">
+								<div class="packet-button-name">返回继续挖宝</div>
+								<div class="packet-button-note">每局最多获得150挖宝币</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
+<!-- Start Reset Life Share -->
+
+	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
+								<div class="modal-message-title">
+									您当前没有挖宝次数
 								</div>
-							</a>
-							<a href="/redeem" class="link-button">
-								<div class="packet-button">兑换奖品</div>
-							</a>
+								<div class="modal-message-content">
+									邀请好友注册将获得挖宝次数
+								</div>
+								<a href="/share" class="link-button">
+									<div class="modal-message-button">
+										邀请好友加入
+									</div>
+								</a>													
+							</div>
 						</div>
 					</div>							
 				</div>
@@ -427,7 +344,7 @@
 							 挖宝币<br />
 							别气馁，再接再厉！
 							</div>
-							<div class="packet-instruction">你当前还有 
+							<div class="packet-instruction extra-padding">你当前还有 
 								<span class="spanLife">
 									{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}
 								</span>
@@ -457,6 +374,7 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
 	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/game.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
@@ -467,21 +385,26 @@
 				$('#game-rules').modal();
 			});
 
-			if(wechat_status > 0 && wechat_name == '') {
-				$('#verify-steps').modal({backdrop: 'static', keyboard: false});
-			} else if(wechat_status > 0 && wechat_name != '') {
-				$('#pending-verify-steps').modal({backdrop: 'static', keyboard: false});
-			}
-
-			$('.btn-verify').click(function(){
-				$('#verify-steps').modal('hide');
-				$('#wechat-verify').modal({backdrop: 'static', keyboard: false});
+			$('.close-modal').click(function(){
+				$('#reset-life-play').modal('hide');
 			});
 
-			@if(Session::has('info') or Session::has('success') or Session::has('warning') or Session::has('error'))
-				$('#verify-steps').modal('hide');
-			    $('#wechat-verify').modal({backdrop: 'static', keyboard: false});
-			@endif
+			if(wechat_status > 0) {
+				$('#verify-steps').modal({backdrop: 'static', keyboard: false});
+			}
+
+			var clipboard = new ClipboardJS('.cutBtn', {
+				target: function () {
+					return document.querySelector('#cut');
+				}
+			});
+			clipboard.on('success', function (e) {
+				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+			});
+
+			clipboard.on('error', function (e) {
+				$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+			});
 
 		});	
 	</script>

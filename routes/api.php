@@ -13,9 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 //Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 Route::group(['namespace' => 'Api'],function(){
@@ -59,12 +56,3 @@ Route::group(['namespace' => 'Api'],function(){
 	Route::any('get-game-result-temp', 'GameController@get_update_game_temp')->name('api.game.get.update_temp');
 	
  });	
-
-//deprecated
-Route::get('/generateresult', function() {
-    //$exitCode = Artisan::call('generate:gameresult');
-	return 'deprecated';
-});
-
-
-

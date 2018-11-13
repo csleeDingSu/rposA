@@ -2,7 +2,12 @@
 @foreach($result as $item)
 	<li class="dbox">
 		<a href="#" class="imgBox dbox0">
-			<img src="{{ env('ads_product_image_url') . $item->product_picurl }}">
+			@if($item->product_image)
+			<img src="{{ Config::get('app.ads_product_image_url') . $item->product_image }}">
+			@elseif ($item->product_picurl)
+			<img src="{{ $item->product_picurl }}">
+			@else
+			@endif
 		</a>
 		<div class="dbox1">
 			<h2>{{$item->product_description}}</h2>
