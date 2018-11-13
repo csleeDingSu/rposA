@@ -16,7 +16,7 @@ class VoucherController extends Controller
     
     public function index(Request $request)
     {
-        
+        /*
 		$category = Category::orderby('position','ASC')->get();
 		
 		$vouchers = Voucher::latest()->paginate(5);
@@ -30,7 +30,8 @@ class VoucherController extends Controller
 		$cid = false;
         //return view('client.home', compact('vouchers','category'));
         return view('client.home3', compact('vouchers','category','total','cid'));
-		
+		*/
+		return redirect('/cs/1');
 		
     }
 

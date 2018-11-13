@@ -423,8 +423,8 @@ class GameController extends Controller
 				//print_r($wallet);
 				if ($wallet->life >= 1) 
 				{
-					$res 			= Wallet::playable_status($memberid,$gameid,$wallet->level);	
-					$is_redeemable 	= $res['redeempointstatus'];
+					//$res 			= Wallet::playable_status($memberid,$gameid,$wallet->level);	
+					//$is_redeemable 	= $res['redeempointstatus'];
 					$status 		= false;
 					$current_life	=$wallet->life-1;
 					$credit        	= 0;
@@ -456,9 +456,9 @@ class GameController extends Controller
 					$award_current_bal		= $award_bal_before-$wallet->acupoint;
 					$current_life_acupoint	= $award_bal_before-$wallet->acupoint;
 
-					if ($is_redeemable == true){
-						$current_point=$wallet->point+ $wallet->acupoint;
-						$status=true;
+					
+					$current_point=$wallet->point+ $wallet->acupoint;
+					$status=true;
 
 // ---------------------Credit--------------------------------------
 					$crd_credit             = env('coin_max', 150);
@@ -476,56 +476,6 @@ class GameController extends Controller
 					Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
 					Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
 
-
-					} else{
-						/*
-						$current_point=$wallet->point;
-						// // ---------------------Balance--------------------------------------
-						// $balance_before=$wallet->balance;
-						// if($balance_before==0){
-						// 	$credit_bal=+1200;
-						// 	}
-						// $current_balance = $wallet->balance +$credit_bal;
-						// $balance_after= $current_balance;
-						// $debit_bal=0;
-						// $current_level = 1;
-						// $current_bet = $wallet->bet;
-						// // ---------------------Point--------------------------------------
-
-						// $award_bal_before			= $wallet->acupoint;// $wallet->point;
-						// $award_bal_after			= $award_bal_before-$wallet->acupoint;
-						// $award_current_bal			= $award_bal_before-$wallet->acupoint;
-						// $current_life_acupoint	 	= $award_bal_before-$wallet->acupoint;
-						Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
-						if($credit>0){
-						Wallet::life_redeem_post_ledgerhistory_pnt($memberid,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);
-						}
-						//Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
-						Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
-						//Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
-						*/
-					}
-
-					// $history=array(
-					// 	'current_life' 				=>	$current_life,
-					// 	'balance_before' 			=>	$balance_before,
-					// 	'credit_bal'                =>  $credit_bal,
-					// 	'current_balance'	        =>  $current_balance,
-					// 	'balance_after'	            =>  $balance_after,
-					// 	'debit_bal' 				=>	$debit_bal,
-					// 	'current_level' 		    =>	$current_level,
-					// 	'current_bet'           	=>  $current_bet,
-					// 	'current_point'	            =>  $current_point,
-					// 	'current_life_acupoint'	    =>  $current_life_acupoint,
-					// 	);
-
-					// here update the life 
-					//update wallet
-					// Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
-					// Wallet::life_redeem_post_ledgerhistory_pnt($memberid,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);
-					// Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
-					// Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
-					//update ledger history
 
 					
 					//Reset latest member game level
