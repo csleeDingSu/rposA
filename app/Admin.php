@@ -103,4 +103,34 @@ class Admin extends Model
 		 return DB::table('tips')->delete($id);
 	}
 	
+	public static function list_banner()
+	{
+		$result = DB::table('banner')->get();
+		
+		return $result;
+	}
+	public static function get_banner($id = null)
+	{
+		$result = DB::table('banner')->where('id',$id)->first();
+		
+		return $result;
+	}
+	public static function create_banner($data)
+	{	
+		
+		 return $result = DB::table('banner')
+            ->insertGetId($data);
+	}
+	public static function update_banner($id,$data)
+	{	
+		
+		 return $result = DB::table('banner')
+            ->where('id', $id)
+            ->update($data);
+	}
+	public static function delete_banner($id)
+	{			
+		 return DB::table('banner')->delete($id);
+	}
+	
 }

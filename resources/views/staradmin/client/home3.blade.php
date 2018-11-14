@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
 
 	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
@@ -87,13 +89,24 @@
 		</div>
 		<div class="cardBody">
 			<div class="box">
+				
 				<div class="banner">
+					
+					@if(isset($banner))					
+					@foreach($banner as $bner)	
+						<img data-lazy="{{url('/')}}/ad/banner/{{$bner->banner_image}}"  >					
+					@endforeach					
+					@endif
+					
+				</div>
+				<!--
+				<div class="banners">
 					<img src="{{ asset('/test/main/images/demo/banner.png') }}">
 				</div>
 
-				<!-- <div class="product">
+				<div class="product">
 					<div class="title">
-						<span>今日用户已领走<font color="#f63556"> {{ $total['redeemed'] }} </font>元产品</span>
+						<span>今日用户已领走<font color="#f63556">  </font>元产品</span>
 						<h2>免费挖宝 免费领取</h2>
 					</div>
 					<ul class="list-1 fix">
@@ -154,7 +167,7 @@
 
 				<div class="product">
 					<div class="title">
-						<span>共有<font color="#f63556">{{$total['vouchers']}}</font>款产品</span>
+						<span>共有<font color="#f63556">{{ $vouchers->total() }}</font>款产品</span>
 						<h2>精选大额优惠券</h2>
 					</div>
 					
@@ -171,32 +184,7 @@
 			</div>
 		</div>
 		
-		<div class="cardFoot">
-			<div class="navBox">
-				<dl class="dbox">
-					<dd class="dbox1">
-						<a href="{{ url('home') }}">
-							<i class="homeIcon"></i>
-							<p>首页</p>
-						</a>
-					</dd>
-
-
-					<dt class="dbox0">
-						<a href="/arcade">
-							<i class="nTxt">{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? ((Auth::Guard('member')->user()->wechat_verification_status == 0) ? Auth::Guard('member')->user()->current_life : 0) : 0}}</i>
-							<p>剩余闯关</p>
-						</a>
-					</dt>
-					<dd class="dbox1">
-						<a href="/member">
-							<i class="userIcon"></i>
-							<p>个人中心</p>
-						</a>
-					</dd>
-				</dl>
-			</div>
-		</div>
+		@include('layouts/footer')
 
 		<!-- 领取优惠券  -->
 		<div class="showQuan dflex scaleHide">
@@ -233,9 +221,24 @@
 		
 	</section>
 	
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script>
+		
+		$(document).on('ready', function() {
+      
+		  $(".banner").slick({
+			  autoplay:true,
+			  autoplaySpeed:1000,
+			  arrows:false,
+			  lazyLoad: 'ondemand', // ondemand progressive anticipated
+			  infinite: true,
+			  adaptiveHeight: false
+		  });
+		});
+		
+		
+		
 		$(document).ready(function(){
 		//$(function () {
 			
@@ -410,7 +413,7 @@
 		function getPosts(page){
 			$.ajax({
 				type: "GET",
-				url: "/?page"+page, 
+				url: window.location+"/?page"+page, 
 				data: { page: page },
 				beforeSend: function(){ 
 				},

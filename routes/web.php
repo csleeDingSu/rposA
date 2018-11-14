@@ -301,6 +301,14 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	//settings
 	Route::get( '/admin/settings', 'AdminController@setting' )->name( 'site.settings' );
 	Route::post( '/admin/settings', 'AdminController@update_setting' )->name( 'site.submit.settings' );
+	
+	//banner
+	Route::get('/admin/banner', 'AdminController@listbanner')->name('banner.list');
+	Route::get('/admin/get-banner', 'AdminController@getbanner')->name('banner.get');
+	Route::post('/admin/add-banner', 'AdminController@savebanner')->name('banner.create');
+	Route::post('/admin/edit-banner', 'AdminController@editbanner')->name('banner.edit');
+	Route::delete('/admin/delete-banner', 'AdminController@delete_banner')->name('banner.remove');		
+	Route::delete( '/banner/remove-image', 'AdminController@delete_banner_image' )->name( 'banner.remove.image' );
 } );
 //END
 

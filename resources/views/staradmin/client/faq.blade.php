@@ -24,7 +24,7 @@
                 <h4 class="panel-title">
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $faq->id }}" aria-expanded="true" aria-controls="collapse{{ $faq->id }}">
                         <i class="more-less glyphicon glyphicon-menu-right"></i>
-                        <div class="title">{{ $faq->title }}</div>
+                        <div class="faq-title">{{ $faq->title }}</div>
                     </a>
                 </h4>
             </div>

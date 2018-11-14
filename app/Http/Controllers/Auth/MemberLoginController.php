@@ -82,7 +82,7 @@ class MemberLoginController extends Controller
 		$validator = $this->validate(
             $request,
             [
-                // 'username' => 'required|string|min:4|max:50',
+                'username' => 'required|string|min:4|max:50',
                 // 'phone' => 'required|string|min:4|max:50',
                 'password' => 'required|alphaNum|min:5|max:50',
             ]
@@ -95,31 +95,21 @@ class MemberLoginController extends Controller
 	protected function attemptLogin(Request $request)
     {
         
-		$credentials = $request->only('username', 'phone', 'password');
+		$credentials = $request->only('username', 'password');
         $username = $credentials['username'];
-		$phone = $credentials['phone'];
 		$password = $credentials['password'];
 		$credentials['user_status'] = 1; 
 
-        if (empty($username) && empty($phone)) {
-
-            $array = ['username' => $username, 'phone' => $phone, 'password' => $password];
-
-        } else if (!empty($username) && empty($phone)) {
-
-            $array = ['username' => $username, 'password' => $password];
-
-        } else if (empty($username) && !empty($phone)) {
-
-            $array = ['phone' => $phone, 'password' => $password];
-
-        } else {
-
-            $array = ['username' => $username, 'phone' => $phone, 'password' => $password];
-
+        //1st try username
+        $array = ['username' => $username, 'password' => $password];
+        $bRes = Auth::guard('member')->attempt($array, $request->remember);
+        if (!$bRes) {
+            //2nd try phone number
+            $array = ['phone' => $username, 'password' => $password];
+            $bRes = Auth::guard('member')->attempt($array, $request->remember);
         }
 		
-		if (Auth::guard('member')->attempt($array, $request->remember)) {
+		if ($bRes) {
 			// if successful, then redirect to their intended location			
 			return redirect('/');
 		 }
@@ -130,10 +120,7 @@ class MemberLoginController extends Controller
 					'error' => [trans('auth.failed')],
 				]
 			);
-	
-	
-		
-		
+			
     }
 	
 	/**

@@ -3,8 +3,15 @@
 * Get free snippets on bootpen.com
 *******************************/
     .container {
-        padding: 0;        
-        margin-top: 40px;
+        padding: 0;
+        margin-top: 10px;      
+        width: 100%;
+    }
+
+    @media only screen and (max-width: 500px) {
+       .container {
+            margin-top: 40px;
+       } 
     }
 
     .panel-group .panel {
@@ -50,7 +57,7 @@
         color: #cccccc;
     }
 
-    .title {
+    .faq-title {
         display: inline-block;
         border-left: 2px solid #48affa;
         padding-left: 5px;

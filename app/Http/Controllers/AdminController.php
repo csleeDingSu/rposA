@@ -658,4 +658,148 @@ class AdminController extends BaseController
 		return response()->json(['success' => true, 'message' => 'success']);
 	}
 	/**Tips END**/
+	
+	/**Banner**/
+	public function getbanner(Request $request)
+    {
+		$id = $request->id;
+		$record = Admin::get_banner($id);
+		return response()->json(['success' => true, 'record' => $record]);
+	}
+	
+	
+	public function listbanner (Request $request)
+	{
+				
+		$result =  \DB::table('banner');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter	
+			if (!empty($input['s_status'])) {
+				$result = $result->where('is_status','=', "{$input['s_status']}") ;				
+			}
+		}
+		
+		$result =  $result->orderby('id','ASC')->paginate(30);
+				
+		$data['page']    = 'banner.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('banner.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+		
+		
+	}
+	
+	public function savebanner(Request $request)
+    {
+		if ($request->mode == 'edit')
+		{
+			return $this->updatebanner($request);
+		}
+		
+		$input = [
+					'status'   => $request->status, 			 
+					'banner_image' =>$request->banner_image,
+			  	 ];
+		
+		$validator = Validator::make($input, [			
+			'banner_image' => 'required|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+			'status' => 'required',
+		]);
+		
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$now = Carbon::now();
+		$image = $request->file('banner_image');
+        $imagename = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('ad/banner');
+        $image->move($destinationPath, $imagename);		
+		
+		$data = ['banner_image' => $imagename,'is_status' => $input['status'],'created_at' => $now];
+		$badge = '';
+		$id = Admin::create_banner($data);
+		
+		$bnr  = Admin::get_banner($id);
+		$row  = '<tr id=tr_'.$bnr->id.'>';
+		$row .= "<td>$bnr->id</td>";
+		$row .= "<td>$now</td>";
+		switch ($bnr->is_status)
+			{
+				case '1':
+					$badge = "<label class='badge badge-success'>".trans('dingsu.active')."</label> ";
+				break;
+				case '2':
+					$badge = "<label class='badge badge-warning'>".trans('dingsu.inactive')."</label> ";
+				break;				
+					
+			}
+		$row .= "<td>$badge</td>";
+		$row .= '<td id="ss_'.$bnr->id.'"><img style="width: 200px !important;height: 200px !important" width="300px" height="200px" class="img-md  mb-4 mb-md-0 d-block mx-md-auto" src="/ad/banner/'.$bnr->banner_image.'" alt="image"></td>';
+		$row .= '<td><a href="javascript:void(0)" data-id="'.$bnr->id.'"  class="editbanner btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>';
+		$row .= '<a href="javascript:void(0)" onClick="confirm_Delete('.$bnr->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a></td>';
+		$row .= '</tr>';
+		
+		return response()->json(['success' => true, 'message' => trans('dingsu.banner_update_success_msg'),'record'=>$row]);
+	}
+	
+	//for update banner from ajax
+	public function updatebanner ($data)
+	{
+		$id = $data->hidden_void;
+		
+		$input = [
+					'status'   => $data->status, 			 
+					'banner_image' =>$data->banner_image,
+			  	 ];
+		$validator = Validator::make($input, [
+			 'banner_image' => 'nullable|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+			 'status' => 'required',
+		]);
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		$imagename = '';
+		$now = Carbon::now();
+		if ($data->banner_image)
+		{
+			$image = $data->file('banner_image');
+			$imagename = time().'.'.$image->getClientOriginalExtension();
+			$destinationPath = public_path('ad/banner');
+			$image->move($destinationPath, $imagename);
+			$insdata['banner_image'] = $imagename;
+		}
+		
+		$insdata['is_status'] = $data->status;
+				
+		$res = Admin::update_banner($id,$insdata);		
+		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$insdata]);
+	}
+
+	
+	public function delete_banner (Request $request)
+	{
+		$id = $request->id;
+		Admin::delete_banner($id);
+		return response()->json(['success' => true, 'message' => 'success']);
+	}
+	
+	public function delete_banner_image(Request $request)
+    {
+		$id = $request->id;
+		$data = ['banner_image' => ''];
+		Admin::update_banner($id, $data);		
+		return response()->json(['success' => true, 'message' => 'done']);
+	}
+	/**Banner END**/
 }

@@ -164,6 +164,8 @@ return [
         LaravelQRCode\Providers\QRCodeServiceProvider::class,   
 
         Collective\Html\HtmlServiceProvider::class,
+		
+		Laravel\Passport\PassportServiceProvider::class,
   
 
     ],

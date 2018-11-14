@@ -3,6 +3,7 @@
 .container {
 	width: 500px;
 	background-color: #f2f2f2;
+	position: relative;
 }
 	
 @media only screen and (max-width: 500px) {
@@ -14,16 +15,11 @@
 
 html, body {
 	height: 100%;
+	background: #f2f2f2;
 }
 
 .full-height {
-	padding-top: 30px;
-	font-size:20px;
-    font-family: 'Lato',verdana, sans-serif;
-    color: #fff;
-    text-align:center;
     background:#f2f2f2;
-    height: 100%;
 }
 
 .card {
@@ -144,11 +140,11 @@ html, body {
 	text-align: left;
 }
 
-.box{
+.member-box {
 	width: 440px;
 	height: 150px;
 	position: absolute;
-	margin-top: 10px;
+	margin-top: 3%;
 	left:0;
 	right:0;
 	margin-left:auto;
@@ -157,15 +153,14 @@ html, body {
 }
 
 @media only screen and (max-width: 500px) {
-    .box {
+    .member-box {
 		width: 90%;
-		top: 6%;
+		margin-top: 4%;
 	}
 }
 
 @media only screen and (max-width: 360px) {
-    .box {
-		top: 6%;
+    .member-box {
 	}
 }
 
@@ -241,11 +236,11 @@ html, body {
 	}
 }
 
-/*.glyphicon {
+.glyphicon {
 	float: right;
 	color: #ababab;
 }
-*/
+
 .icon-wrapper {
 	height: 30px;
 	width: 30px;
@@ -336,6 +331,7 @@ html, body {
 	float: right;
 	padding-top: 2px;
 }
+
 
 /* Modal Box */
 .modal-content, .modal-title {
@@ -585,20 +581,20 @@ html, body {
 	color: #ffd200;
 }
 
-.glyphicon {
+/*.glyphicon {
 	font-size: 20px;
 	display: block;
 	float: left;
 	padding-left: 10px;
 }
-
-.left {
+*/
+/*.left {
 	display: block;
 	padding-bottom: 3px;
 	float: left;
 	padding-left: 10px;
 }
-
+*/
 @media only screen and (max-width: 360px) {
 	.modal-content, .modal-title {
 		width: 270px;
@@ -611,3 +607,4 @@ html, body {
 	}
 }
 /* End Modal box */
+

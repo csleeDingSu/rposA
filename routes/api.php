@@ -13,6 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::post('login', 'API\AuthController@login');
+Route::post('register', 'API\AuthController@register');
+
+
+Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
+	Route::get('details', 'AuthController@details');
+});
+
+
+
+Route::get('/test', function () {
+    return response()->json([
+        'success' => true
+    ]);
+})->middleware('auth:api');
 
 //Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 Route::group(['namespace' => 'Api'],function(){

@@ -214,6 +214,7 @@ return [
 
 	//placeholder
 	'ph_mobile_no' => '请输入手机号作为用户名',
+	'ph_username_mobile_no' => '请输入用户名或者手机号',
 	'ph_username' => '您的真实姓名',
 	'ph_password' => '请输入密码',
 	'ph_confirm_password' => '请确认密码',
@@ -347,4 +348,7 @@ return [
 	'step' => 'step',
 	'url' => 'URL',
 	'btn_txt' => 'Button Text',
+	'banner' => 'banner',
+	'banner_added_success_msg' => 'Banner added successfully',
+	'banner_update_success_msg' => 'Banner successfully Updated',
 ];

@@ -3,26 +3,24 @@ html, body {
 }
 
 body{
-	background: #000000;
+	background: #f6f6f6;
 	padding:0px;
 	margin:0px;	
 }
 
-
-.full-height {
-	padding-top: 10px;
-	font-size:20px;
-    font-family: 'Lato',verdana, sans-serif;
-    color: #fff;
-    text-align:center;
-    margin: 0 auto;
-    background-image: url("/client/images/background_game.jpg");
+.card-flex .cardBody {
+	background-image: url("/client/images/background_game.jpg");
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: center top;
     background-attachment: fixed;
+}
+
+.full-height {
+	padding-top: 10px;
+    margin: 0 auto;    
     position: relative;
-    height: 100%;
+    background: none;
 }
 
 .information-table {

@@ -17,16 +17,6 @@ html, body {
 	background-color: #f3f3f3;
 }
 
-.full-height {
-	padding-top: 30px;
-	font-size:20px;
-    font-family: 'Lato',verdana, sans-serif;
-    color: #fff;
-    text-align:center;
-    background:#f3f3f3;
-    height: 100%;
-}
-
 .row {
 	height: 70px;
 	color: #cccccc;

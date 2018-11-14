@@ -14,7 +14,7 @@
 
 <div class="full-height">
 	<div class="container">
-		<div class="box">
+		<div class="member-box">
 			<!-- member id -->
 			<div class="card left">
 				<div class="col-xs-6 member-wrapper">
@@ -45,17 +45,17 @@
 				  <div class="col-xs-4">
 				  	总挖币数<br />
 				  	<span class="point numbers">{{ number_format($wallet->current_point, 0, '.', '') }}</span><br />
-				  	<a href="#"><span class="button">兑换奖品</span></a>
+				  	<a href="/redeem"><span class="button">兑换奖品</span></a>
 				  </div>
 				  <div class="col-xs-4 middle-border">
-				  	正在进行中<br />
+				  	未结算<br />
 				  	<span class="balance numbers">{{ number_format($wallet->current_life_acupoint, 0, '.', '') }}</span><br />
 				  	<a href="/arcade"><span class="button">继续挖宝</span></a>
 				  </div>
 				  <div class="col-xs-4">
 				  	剩余次数<br />
 				  	<span class="life numbers">{{ $wallet->current_life }}</span><br />
-				  	<a href="/arcade"><span class="button">马上增加</span></a>
+				  	<a href="/share"><span class="button">马上增加</span></a>
 				  </div>
 			</div>
 			<!-- end member details -->
@@ -102,13 +102,15 @@
 					</li>
 				</a>
 
-				<li class="list-group-item">
-					<div class="icon-wrapper">
-						<div class="icon-withdraw"></div>
-					</div>
-					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-					挖宝攻略
-				</li>
+				<a href="/tips">
+					<li class="list-group-item">
+						<div class="icon-wrapper">
+							<div class="icon-withdraw"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						挖宝攻略
+					</li>
+				</a>
 			</ul>
 		</div>
 
@@ -183,7 +185,7 @@
 			<div class="modal-card">
 				<div class="btn-close">
 					<a href="/">
-						<div class="glyphicon glyphicon-remove-circle"></div>
+						<div class="glyphicon glyphicon-remove-circle" style="float: left;color: #ffd200;"></div>
 						<div class="left"> 不想认证，先逛逛看。</div>
 					</a>
 				</div>

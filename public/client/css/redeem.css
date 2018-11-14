@@ -17,16 +17,6 @@ html, body {
 	background-color: #f3f3f3;
 }
 
-.full-height {
-	padding-top: 30px;
-	font-size:20px;
-    font-family: 'Lato',verdana, sans-serif;
-    color: #fff;
-    text-align:center;
-    background:#f3f3f3;
-    height: 100%;
-}
-
 .card {
 	background-color: #01a7f1;
 	padding: 10px 20px;
@@ -72,12 +62,6 @@ html, body {
 
 .wabao-coin {
 	font-size: 40px;
-}
-
-.navbar {
-	border-radius: 0;
-	margin-bottom: 0;
-	min-height: 0px;
 }
 
 /* Tabs */

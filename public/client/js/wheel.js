@@ -92,7 +92,7 @@ function initUser(){
                 $('#divBalance', window.parent.document).html(balance);
                 $('#spanPoint', window.parent.document).html(point);
                 $('.packet-point', window.parent.document).html(point);
-                $('#spanAcuPoint', window.parent.document).html(acupoint);
+                $('.spanAcuPoint', window.parent.document).html(acupoint);
                 $('.packet-acupoint', window.parent.document).html(acupoint);
                 $('#hidBalance', window.parent.document).val(balance);
                 $(".balance_circle", window.parent.document).html(life);
@@ -248,7 +248,7 @@ function bindBetButton(){
         var balance = $('#hidBalance', window.parent.document).val();
         var level = parseInt($('#hidLevel', window.parent.document).val());
         var life = $(".balance_circle", window.parent.document).html();
-        var acupoint = $('#spanAcuPoint', window.parent.document).html();
+        var acupoint = $('.spanAcuPoint', window.parent.document).html();
         var draw_id = $('#draw_id').val();
 
         var user_id = $('#hidUserId', window.parent.document).val();
@@ -346,7 +346,7 @@ function bindBetButton(){
 
 function bindCalculateButton(){
     $('.btn-calculate', window.parent.document).click(function(){
-        var acupoint = $('#spanAcuPoint', window.parent.document).html();
+        var acupoint = $('.spanAcuPoint', window.parent.document).html();
         if(acupoint < 150) {
             bindResetLifeButton();
             $('#reset-life-play', window.parent.document).modal();
@@ -363,7 +363,7 @@ function bindResetLifeButton(){
         var balance = $('#hidBalance', window.parent.document).val();
         var life = $(".balance_circle", window.parent.document).html();
         var user_id = $('#hidUserId', window.parent.document).val();
-        var acupoint = $('#spanAcuPoint', window.parent.document).html();
+        var acupoint = $('.spanAcuPoint', window.parent.document).html();
 
         // add points from additional life.
         if(user_id > 0){

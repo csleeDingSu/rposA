@@ -70,41 +70,42 @@ imagedestroy($image);
 
 	.img2
 	{
-		width: 49%;
+		top: 230px;
+		left: 230px;
 		position: absolute;
-		top:380px;
-		left: 390px;
+		transform: scale(0.95); 
+		-webkit-transform: scale(0.95);
 	}
 	
-	@media only screen and (max-device-width:1024px) {
+	@media only screen and (max-device-width:2000px) {
 	   #qrcode {
-			margin:1060px 50px 50px 180px;
+			margin:395px 50px 50px 70px;
 		}
-/*ok*/
+/*ok-*/
 		.img2
 		{
-			width: 59%;
-			/*position: absolute;*/
-			/*top:170px;*/
-			/*left: 68px;*/
-			margin-top: -10px;
-			margin-left: -180px;
+			top:235px;
+			left: 230px;
+			position: absolute;
+			transform: scale(0.92); 
+			-webkit-transform: scale(0.92);
+			
 		}
 	}
 
-	@media only screen and (max-device-width:941px) {
+	@media only screen and (max-device-width:1500px) {
 	   #qrcode {
-			margin:1060px 50px 50px 180px;
+			margin:395px 50px 50px 70px;
 		}
-/*ok*/
+/*ok-*/
 		.img2
 		{
-			width: 50%;
-			/*position: absolute;*/
-			/*top:170px;*/
-			/*left: 68px;*/
-			margin-top: -125px;
-			margin-left: -155px;
+			top:410px;
+			left: 325px;
+			position: absolute;
+			transform: scale(1.3); 
+			-webkit-transform: scale(1.2);
+			
 		}
 	}
 
@@ -112,18 +113,17 @@ imagedestroy($image);
 	   #qrcode {
 			margin:395px 50px 50px 70px;
 		}
-/*ok*/
+/*ok-*/
 		.img2
 		{
-			width: 59%;
+			top:-64px;
+			left: -63px;
 			position: absolute;
-			margin-top: -230px;
-			margin-left: -313px;
+			transform: scale(0.44); 
+			-webkit-transform: scale(0.44);
+			
 		}
 	}
-
-
-
 
 </style>
 

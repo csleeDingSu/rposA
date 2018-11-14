@@ -10,17 +10,33 @@ navbar-nav > li > a, .navbar-brand {
 }
 /* End Adjust Navbar Height */
 
-#header
-{
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index:1000
-}
-
 .navbar{
 	background: #FFFFFF;
-	border-radius: 0;	
+	border-radius: 0;
+	margin-bottom: 0;
+	z-index: 1000;
+}
+
+@media only screen and (max-width: 500px) {
+   .navbar{
+   		position: fixed;
+   		width: 100%;
+   } 
+}
+
+.full-height {
+	font-size:20px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #fff;
+    text-align:center;
+    background:#f3f3f3;
+    height: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+    .full-height {
+		padding-top: 30px;
+	}
 }
 
 .navbar-title {

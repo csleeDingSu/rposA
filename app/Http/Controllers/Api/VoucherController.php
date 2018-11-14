@@ -39,25 +39,27 @@ class VoucherController extends Controller
     {
         if ($cid)
 		{
-			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
-			$vouchers_total = Voucher::where('category' ,'=' , $cid)->count();
+			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);			
+			//pagination already have the count data so no need to call again
+			//$vouchers_total = Voucher::where('category' ,'=' , $cid)->count(); 
+			
 		}
 		else{
 			$vouchers = Voucher::latest()->paginate(5);
-			$vouchers_total = Voucher::count();
 		}
-		
-		$category = Category::orderby('position','ASC')->get();
-
-		$total = ['redeemed' => redeemed::count(), 'vouchers' => $vouchers_total];
 
 		if ($request->ajax()) {
     		$view = view('client.ajaxhome',compact('vouchers'))->render();
             return response()->json(['html'=>$view]);
         }
 		
-        //return view('client.home', compact('vouchers','category'));		
-        return view('client.home3', compact('vouchers','category','total','cid'));
+		//$total = ['redeemed' => redeemed::count(), 'vouchers' => $vouchers_total];
+		
+		$category = Category::orderby('position','ASC')->get();
+		
+        $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
+		
+        return view('client.home3', compact('vouchers','category','cid','banner'));
 		
     }
 }

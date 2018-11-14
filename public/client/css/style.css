@@ -10,14 +10,6 @@ navbar-nav > li > a, .navbar-brand {
 }
 /* End Adjust Navbar Height */
 
-#header
-{
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index:1000
-}
-
 .wrapper {
 	padding-top: 20px;
 	padding-left: 20px;
@@ -33,6 +25,15 @@ navbar-nav > li > a, .navbar-brand {
 .navbar{
 	background: #23262b;
 	border-radius: 0;	
+	margin-bottom: 0;
+	z-index: 1000;
+}
+
+@media only screen and (max-width: 500px) {
+   .navbar{
+   		position: fixed;
+   		width: 100%;
+   } 
 }
 
 .navbar-title {

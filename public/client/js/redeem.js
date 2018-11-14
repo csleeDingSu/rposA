@@ -27,6 +27,7 @@ $(document).ready(function () {
                 $.each(records, function(i, item) {
                     var available_quantity = item.available_quantity;
                     var used_quantity = item.used_quantity;
+                    var reserved_quantity = item.reserved_quantity;
 
                     if(available_quantity === null){
                         available_quantity = 0;
@@ -35,6 +36,12 @@ $(document).ready(function () {
                     if(used_quantity === null){
                         used_quantity = 0;
                     }
+
+                    if(reserved_quantity === null){
+                        reserved_quantity = 0;
+                    }
+
+                    var total_used = parseInt(used_quantity) + parseInt(reserved_quantity);
 
                     html += '<div class="row">' +
                                 '<div class="col-xs-3 column-1">' +
@@ -48,7 +55,7 @@ $(document).ready(function () {
                                     '</div>' +
                                     '<div class="w-coin">'+ item.min_point +'</div>' +
                                     '<div style="clear: both;"></div>' +
-                                    '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ used_quantity +' 张</div>' +
+                                    '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ total_used +' 张</div>' +
                                 '</div>' +
                                 '<div class="col-xs-3 column-3">' +
                                     '<div class="btn-redeem openeditmodel'+ i +'">兑换</div>' +

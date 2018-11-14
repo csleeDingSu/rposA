@@ -1,6 +1,6 @@
-@extends('layouts.layout3')
+@extends('layouts.default')
 
-@section('title', '挖宝记录')
+@section('title', '挖宝攻略')
 
 @section('left-menu')
     <a href="/profile" class="back">
@@ -10,25 +10,26 @@
 
 @section('top-css')
     @parent
-	<link rel="stylesheet" href="{{ asset('/client/css/allhistory.css') }}" />
-@endsection
-
-@section('top-javascript')
-	@parent
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="{{ asset('/client/css/tips.css') }}" />
 @endsection
 
 @section('content')
-<div class="full-height">
-	<div class="container">
-		<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
-		<!-- <div id="history"></div> -->
-	</div>
-</div>
-@endsection
 
-@section('footer-javascript')
+<div class="full-height">
+
 	@parent
 	<script src="{{ asset('/client/js/allhistory.js') }}"></script>
+	<div class="tips_container">
+	
+		<div class="panel-step1">
+		</div>
+		<a href="/share"><div class="panel-step1-btn"></div></a>
+        <div class="panel-step2"></div>
+        <a href="/arcade"><div class="panel-step2-btn"></div></a>
+   
+    </div><!-- panel-group -->
+    
+    
+</div><!-- container -->
 
 @endsection

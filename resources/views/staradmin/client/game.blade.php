@@ -31,7 +31,7 @@
 			<div class="box">
 				<div class="coin"></div>
 				<div class="number long">
-					<span class="balance" id="spanPoint">0</span> <span class="life-balance">+</span><span class="life-balance" id="spanAcuPoint">0</span>
+					<span class="balance" id="spanPoint">0</span> <span class="life-balance">+</span><span class="life-balance spanAcuPoint">0</span>
 					<div class="btn-calculate-wrapper">
 						<div class="btn-calculate">结算</div>
 					</div>
@@ -272,7 +272,7 @@
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="packet-title">恭喜获得100挖宝币</div>
+							<div class="packet-title">恭喜获得<span class="spanAcuPoint"></span>挖宝币</div>
 							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
 							您还可以继续挖
 							</div>
@@ -330,6 +330,36 @@
 
 <!--  end -->
 
+<!-- Start Reset Life Share -->
+
+	<div class="modal fade col-md-12" id="reset-life-bet" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
+								<div class="modal-message-title">
+									当前不能结算
+								</div>
+								<div class="modal-message-content">
+									本局挖宝尚未完成
+								</div>
+
+								<div class="close-modal modal-message-button">
+									继续挖宝
+								</div>												
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
 <!-- Start Reset Life Lose -->
 
 	<div class="modal fade col-md-12" id="reset-life-lose" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
@@ -340,7 +370,7 @@
 						<div class="wrapper modal-full-height">
 							<div class="packet-title lose">挖宝失败</div>
 							<div class="packet-note">将扣除本次挖宝所赚取的 
-								<span class="packet-acupoint" id="spanAcuPoint">0</span> 
+								<span class="packet-acupoint spanAcuPoint">0</span> 
 							 挖宝币<br />
 							别气馁，再接再厉！
 							</div>
@@ -366,7 +396,6 @@
 	</div>
 
 <!--  end -->
-
 @endsection
 
 @section('footer-javascript')
@@ -387,6 +416,7 @@
 
 			$('.close-modal').click(function(){
 				$('#reset-life-play').modal('hide');
+				$('#reset-life-bet').modal('hide');
 			});
 
 			if(wechat_status > 0) {

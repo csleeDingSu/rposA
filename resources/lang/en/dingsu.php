@@ -266,6 +266,7 @@ return [
 
 	//placeholder
 	'ph_mobile_no' => 'Please key in your mobile number',
+	'ph_username_mobile_no' => 'Please key in your username or mobile number',
 	'ph_username' => 'Please key in your name',
 	'ph_password' => 'Please key in your password',
 	'ph_confirm_password' => 'Please re-enter your password',
@@ -401,4 +402,7 @@ return [
 	'step' => 'step',
 	'url' => 'URL',
 	'btn_txt' => 'Button Text',
+	'banner' => 'banner',
+	'banner_added_success_msg' => 'Banner added successfully',
+	'banner_update_success_msg' => 'Banner successfully Updated',
 ];
