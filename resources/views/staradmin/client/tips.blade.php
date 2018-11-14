@@ -17,8 +17,6 @@
 
 <div class="full-height">
 
-	@parent
-	<script src="{{ asset('/client/js/allhistory.js') }}"></script>
 	<div class="tips_container">
 	
 		<div class="panel-step1">
