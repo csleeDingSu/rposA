@@ -119,13 +119,15 @@ class MemberRegisterController extends Controller
 		     'password'   => $data['password'],
 			 'password_confirmation'   => $data['confirmpassword'],
 			 'refcode'   => $data['refcode'],
+ 			 'phone'   => $data['phone'],
               ];
 		
 		$validator = Validator::make($input, 
             [
                 'username' => 'required|string|min:4|max:30|unique:members,username',
+				'phone' => 'required|string|min:4|max:50|unique:members,phone',
 				//'email' => 'required|email|min:4|max:50|unique:members,email',
-                'password' => 'required|alphaNum|min:5|max:50|confirmed',
+                'password' => 'required|alphaNum|min:5|max:50|confirmed',                
             ]
         );
 		
@@ -147,14 +149,24 @@ class MemberRegisterController extends Controller
 			
 			$affiliate_id =  unique_random('members', 'affiliate_id', 10);
 			
+			// Members::create([
+			// 	'username' => $data['username'],
+			// 	//'email' => $data['email'],
+			// 	'password' => Hash::make($data['password']),
+			// 	'affiliate_id' => $affiliate_id,
+			// 	'referred_by'   => $referred_by,
+			// ]);
+
 			Members::create([
 				'username' => $data['username'],
-				//'email' => $data['email'],
+				'email' => $data['phone'] . '@email.com',
 				'password' => Hash::make($data['password']),
 				'affiliate_id' => $affiliate_id,
 				'referred_by'   => $referred_by,
-			]);
-			
+				'phone' => $data['phone'],
+				//'wechat_name' => $data['username'],//(isset($data['wechat_name']) ? $data['wechat_name'] : null),
+				'wechat_verification_status' => 1,
+			]);			
 			
 			//Send Welcome Mail			
 					

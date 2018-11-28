@@ -70,13 +70,13 @@
                                 <li>
                                     <div class="flexSp">
                                         <img src="{{ asset('auth/images/telIcon.png') }}">
-                                        <input type="text" id="authusername" name="authusername" placeholder="输入手机号码" required maxlength="30">
+                                        <input type="text" id="authusername" name="authusername" placeholder="@lang('dingsu.ph_username_mobile_no')" required maxlength="30">
                                     </div>
                                 </li>
                                 <li>
                                     <div class="flexSp">
                                         <img src="{{ asset('auth/images/lockIcon.png') }}">
-                                        <input type="password" id="authpassword" name="authpassword" placeholder="设置登录密码" required maxlength="30">
+                                        <input type="password" id="authpassword" name="authpassword" placeholder="@lang('dingsu.ph_password')" required maxlength="30">
                                     </div>
                                 </li>
                                 <li>
@@ -89,7 +89,7 @@
                             </ul>
                         </form>
                     </div>
-                    
+
                     <div class="inBox">
                         <form class="registerform" name="registerform" id="registerform" action="" method="post" autocomplete="off">
                             <ul>
@@ -108,27 +108,35 @@
                                 @if(!empty($refcode) and isset($ref->id))
                                 <li>
                                     <div class="flexSp">
-                                        <img src="{{ asset('auth/images/telIcon.png') }}">
-                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly disabled>
+                                        <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
+                                        <span><i class="fa fa-hashtag fa-lg" style="color: lightgrey;"></i></span>
+                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly disabled style="color: lightgrey;">
                                     </div>
                                 </li>
                                 @endif
                                 <li>
                                     <div class="flexSp">
+                                        <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
+                                        <span><i class="fa fa-user fa-2x" style="color: lightgrey;"></i></span>
+                                        <input name="username" id="username" type="text" placeholder="@lang('dingsu.username')" required maxlength="30" autofocus>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flexSp">
                                         <img src="{{ asset('auth/images/telIcon.png') }}">
-                                        <input name="username" id="username" type="text" placeholder="输入手机号码" required maxlength="30" autofocus>
+                                        <input name="phone" id="phone" type="text" placeholder="@lang('dingsu.ph_mobile_no')" required maxlength="30" autofocus>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="flexSp">
                                         <img src="{{ asset('auth/images/lockIcon.png') }}">
-                                        <input name="password" id="password" type="password" placeholder="设置登录密码" required maxlength="30">
+                                        <input name="password" id="password" type="password" placeholder="@lang('dingsu.ph_password')" required maxlength="30">
                                     </div>
                                 </li>
                                 <li>
                                     <div class="flexSp">
                                         <img src="{{ asset('auth/images/lockIcon.png') }}">
-                                        <input name="confirmpassword" id="confirmpassword" type="password" placeholder="重复登录密码" required maxlength="30">
+                                        <input name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.ph_confirm_password')" required maxlength="30">
                                     </div>
                                 </li>
                                 <li>
