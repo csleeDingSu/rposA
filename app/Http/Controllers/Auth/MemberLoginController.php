@@ -60,8 +60,9 @@ class MemberLoginController extends Controller
 	public function showLoginForm()
 	{
 		$data = array();
-		return view('client.login', $data);
+		// return view('client.login', $data);
 		//return view('common.memberlogin', $data);
+        return view('auth.login',$data);
 	}
 	
 	/**
