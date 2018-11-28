@@ -45,7 +45,7 @@ class ClientController extends BaseController
 		}
 		else
 		{
-			return redirect()->route('login');
+			return redirect()->route('render.member.register');
 		}		
 	}
 	
@@ -72,7 +72,7 @@ class ClientController extends BaseController
 			$msg = trans('dingsu.please_login');
 			\Session::flash('success',$msg);
 
-			return redirect('/login');
+			return redirect('/nlogin');
 
 		} else {
 
