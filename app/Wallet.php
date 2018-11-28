@@ -29,7 +29,7 @@ class Wallet extends Model
 		if (!empty($memberid))
 		{
 			
-			return $result = DB::table('mainledger')->select('current_point as point', 'current_level as level', 'current_life as life','current_balance as balance','current_betting as bet'
+			return $result = DB::table('mainledger')->select('current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet'
 			//,'current_life_acupoint as acupoint'
 			, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint end) as acupoint')
 			)->where('member_id', $memberid)->latest()->first();
@@ -109,6 +109,22 @@ class Wallet extends Model
 			$debit = $amendpoint;
 			$balance_after = $balance  - $debit ;
 		}
+		
+		else if ($type == 'acpoint'){
+			$credit = $amendpoint;
+			$balance_after = $balance  + $amendpoint ;
+			
+			if ($amendpoint < $wallet->current_life_acupoint)
+			{
+				if ($wallet->current_life_acupoint > 150)
+				{
+					$purgedpoint = $wallet->current_life_acupoint - $amendpoint ;
+					$notes .= $purgedpoint.' points Purged. ';
+				}
+			}
+			
+			$notes .= 'Acpoint: '.$amendpoint.' Redeemed';
+		}
 		$now = Carbon::now();
 		
 		$history = [
@@ -129,6 +145,10 @@ class Wallet extends Model
 			'updated_at'   => $now,
 			"$mainfield"   => $balance_after,
 		];
+		
+		if ($type == 'acpoint') {
+			$data['current_life_acupoint'] = 0;
+		}
 		
 		$ledger  = DB::table('mainledger')
 				   ->where('member_id', $memberid)
@@ -219,7 +239,7 @@ class Wallet extends Model
 		   // amend the mainledger
 		   // add history
 		   // life
-		return ['status'=>$status,'point'=>$current_point,'balance'=>$current_balance];
+		return ['status'=>$status,'point'=>$current_point,'balance'=>$current_balance,'acupoint'=>$current_life_acupoint];
 		return $status;
 	}
 
@@ -320,6 +340,9 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 
 	public static function playable_status($memberid,$gameid,$gamelevel)
 	{
+		$playablestatus = false;
+		$redeempointstatus = false;
+		
 		$mainledger = Self::current_wallet($memberid);
 		//$mainledger = DB::table('mainledger')->where('member_id',$memberid)->get()->first();
 		$game_levels = DB::table('game_levels')->where('id', $gamelevel)->get()->first();
@@ -328,19 +351,22 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		$current_life_acupoint= isset($mainledger->current_life_acupoint) ? $mainledger->current_life_acupoint : 0;
 		//$life= 'yes';
 		//$redeempointstatus = false;
-		if($current_balance>=$bet_amount && $current_life_acupoint<150){
-			$playablestatus = true;
-			$redeempointstatus = false;
-		}else if($current_life_acupoint>=150){
-			$redeempointstatus = true;
-			$playablestatus = false;
-		}else{
-			$playablestatus = false;
-			$redeempointstatus = false;
+		if ($mainledger->current_life >=1)
+		{
+			if($current_balance>=$bet_amount && $current_life_acupoint<150){
+				$playablestatus = true;
+				$redeempointstatus = false;
+			}else if($current_life_acupoint>=150){
+				$redeempointstatus = true;
+				$playablestatus = false;
+			}else{
+				$playablestatus = false;
+				$redeempointstatus = false;
+			}
 		}
+		
 
-
-		return ['playablestatus' => $playablestatus, 'redeempointstatus' => $redeempointstatus];
+		return ['playablestatus' => $playablestatus, 'redeempointstatus' => $redeempointstatus, 'life' => $mainledger->current_life];
 	}
 	
 	public static function get_current_level($gameid,$memberid)

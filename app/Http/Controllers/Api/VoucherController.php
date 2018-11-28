@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Unreleasedvouchers;
 use App\Category;
 use App\redeemed;
+use Auth;
 
 class VoucherController extends Controller
 {
@@ -58,8 +59,21 @@ class VoucherController extends Controller
 		$category = Category::orderby('position','ASC')->get();
 		
         $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
+
+		if (Auth::Guard('member')->check()) {
+
+			$member_id = Auth::guard('member')->user()->id;
+
+        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();	
+		}
+        else{
+
+        	$member_mainledger = null;
+
+        }
+
 		
-        return view('client.home3', compact('vouchers','category','cid','banner'));
+        return view('client.home3', compact('vouchers','category','cid','banner','member_mainledger'));
 		
     }
 }

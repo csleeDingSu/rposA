@@ -121,7 +121,8 @@ class MemberController extends BaseController
         );
 		
 		try{
-		    $member = new Member();
+			$member = new Member();
+			$member->membership = $request->membership;
 			$member->firstname = $request->firstname;
 			$member->lastname = $request->lastname;
 			$member->username = $request->username;
@@ -132,6 +133,10 @@ class MemberController extends BaseController
 			$member->affiliate_id = unique_random('members', 'affiliate_id', 10);
 			$member->save();
 		}
+
+		
+
+
 		catch(\Exception $e){
 		   echo $e->getMessage();   
 		}
@@ -144,7 +149,7 @@ class MemberController extends BaseController
 	
 	public function edit_member ($id = FALSE)
 	{
-		$data['member'] = $member = Member::get_member($id);
+		$data['member'] = $member = Member::get_view_member($id);
 		
 		$data['page'] = 'common.error';
 		
@@ -168,10 +173,10 @@ class MemberController extends BaseController
 				'phone' => 'nullable|min:7|max:12|unique:members,phone,'.$id,
             ]
         );
-		$data = ['firstname' => $request->firstname,'lastname' => $request->lastname,'email' => $request->email,'member_status' => $request->status,'wechat_name' => $request->wechat_name,'wechat_verification_status' => $request->wechat_verification_status,'phone' => $request->phone];
-		
+		$data = ['membership' => $request->membership,'firstname' => $request->firstname,'lastname' => $request->lastname,'email' => $request->email,'member_status' => $request->status,'wechat_name' => $request->wechat_name,'wechat_verification_status' => $request->wechat_verification_status,'phone' => $request->phone];
 		Member::update_member($id, $data);
 		
+
 		return redirect()->back()->with('message', trans('dingsu.member_accountupdate_success_message') );
 		
 	}

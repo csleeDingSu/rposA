@@ -12,7 +12,7 @@ use Auth;
 use Session;
 use Larashop\Notifications\ResetPassword as ResetPasswordNotification;
 
-
+use Validator;
 class MemberLoginController extends Controller
 {
    
@@ -135,6 +135,46 @@ class MemberLoginController extends Controller
                 'error' => [trans('auth.failed')],
             ]
         );
+    }
+    
+    
+    public function dologin(Request $request) {		
+		
+		$input = [
+             'username'   => $request['username'],			
+		     'password'   => $request['password'],
+              ];
+		
+		$validator = Validator::make($input, 
+            [
+                'username' => 'required|string|min:4|max:50',
+                'password' => 'required|alphaNum|min:5|max:50',
+            ]
+        );
+		
+		if ($validator->fails()) {
+            return response()->json(['success' => false, 'message' => $validator->errors()->all()],200);
+		}
+               
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if ($this->hasTooManyLoginAttempts($request)) {            
+            $this->fireLockoutEvent($request);
+            return response()->json(['success' => false, 'message' => $this->sendLockoutResponse($request)]);
+        }
+
+        if ($this->attemptLogin($request)) {
+            return response()->json(['success' => true, 'message' => $this->sendLoginResponse($request)]);
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+		
     }
 	
 	

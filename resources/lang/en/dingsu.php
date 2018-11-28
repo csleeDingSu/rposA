@@ -31,6 +31,7 @@ return [
 	'status' => 'Status',
 	'action' => 'Action',
 	'game' => 'Game',
+	'games' => 'Games',
 	'list' => 'List',
 	'create_date' => 'Create date',
 	'company_name' => 'Dingsu',
@@ -405,4 +406,12 @@ return [
 	'banner' => 'banner',
 	'banner_added_success_msg' => 'Banner added successfully',
 	'banner_update_success_msg' => 'Banner successfully Updated',
+
+	'game_setting' => 'Game Setting',
+    
+    'introduce_life' => 'Introducer life bonus',
+    'game_default_life' => 'Welcome life',
+    'member_login_success_message' => 'Login successful.Please wait while you are redirected to your profile',
+    
+    'share' => 'share',
 ];

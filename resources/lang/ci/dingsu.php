@@ -30,6 +30,7 @@ return [
 	'status' => '状况',
 	'action' => '功能',
 	'game' => '游戏',
+	'games' => '游戏',
 	'list' => '列表',
 	'create_date' => '创建日期',
 	'company_name' => '顶速',
@@ -55,8 +56,8 @@ return [
 	'please_wait' => '请稍候',
 	'forget_password' => '忘记密码',
 	'remember_me' => '记住我',
-	'myprofile' => 'My Profile',
-	'signout' => 'Sign Out',
+	'myprofile' => '个人简历',
+	'signout' => '登出',
 	'topup' => '充值',
 	'user' => '用户',
 	'users' => '用户',
@@ -213,7 +214,7 @@ return [
 	'mines_history' => '挖宝历史',
 
 	//placeholder
-	'ph_mobile_no' => '请输入手机号作为用户名',
+	'ph_mobile_no' => '请输入手机号',
 	'ph_username_mobile_no' => '请输入用户名或者手机号',
 	'ph_username' => '您的真实姓名',
 	'ph_password' => '请输入密码',
@@ -351,4 +352,14 @@ return [
 	'banner' => 'banner',
 	'banner_added_success_msg' => 'Banner added successfully',
 	'banner_update_success_msg' => 'Banner successfully Updated',
+
+	'game_setting' => '游戏设置',
+	'categories' => '类别',
+	'block' => 'Block',
+    'introduce_life' => 'Introducer life bonus ',
+    'game_default_life' => 'Welcome life',
+	'member_login_success_message' => 'Login successful.Please wait while you are redirected to your profile',
+
+    'share' => '分享',
+	
 ];

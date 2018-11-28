@@ -20,40 +20,24 @@
 					  
 					  
 					  
-					   <div class="row">
-						   <div class="col-md-6">
-						   <div class="form-group row">
-                          <label for="account_type" class="col-sm-3 col-form-label">@lang('dingsu.account_type')</label>
-                          <div class="col-sm-9">
-                            <select id="account_type" name="account_type" class="form-control">
-                              <option value="">@lang('Please select 1')</option>
-                              <option value="1">@lang('dingsu.test_account')</option>
-                              <option value="2">@lang('dingsu.member_account')</option>
-                            </select>
-                          </div>
-                        </div>
-						   </div>
-               
-               <div class="col-md-6">
-						   <div class="form-group row">
-                          <label for="admin_level" class="col-sm-3 col-form-label">@lang('dingsu.admin_level')</label>
-                          <div class="col-sm-9">
-                            <select id="admin_level" name="admin_level" class="form-control">
-                              <option value="">@lang('Please select 1')</option>
-                              <option value="1">@lang('dingsu.super_admin')</option>
-                              <option value="2">@lang('dingsu.system_admin')</option>
-                              <option value="3">@lang('dingsu.marketing_admin')</option>
-                            </select>
-                          </div>
-                        </div>
+					  <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="membership" class="col-sm-3 col-form-label">@lang('dingsu.membership')</label>
+                  <div class="col-sm-9">
+                    <select id="membership" name="membership" class="form-control">
+                      <option value="0">@lang('dingsu.standard')</option>
+                      <option value="1">@lang('dingsu.vip')</option>
+                    </select>
+                  </div>
                 </div>
+              </div>
 					  </div>
                    
                     
 					  
 					  
 					  <div class="row">
-						
                       <div class="col-md-6">
                         <div class="form-group row"> 
 							<label for="firstname" class="col-sm-3 col-form-label">@lang('dingsu.firstname')</label>

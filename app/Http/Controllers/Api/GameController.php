@@ -12,6 +12,8 @@ use App\Wallet;
 use App\member_game_result;
 use App\member_game_bet_temp;
 
+use App\member_game_notification;
+
 class GameController extends Controller
 {
     
@@ -169,7 +171,11 @@ class GameController extends Controller
 		$is_redeemable = $res['redeempointstatus'];
 		//print_r($is_playable);
 
-
+		if ($res['life']<1)
+		{
+			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough life to play']);
+			
+		}
 		if (empty($is_playable)&&empty($is_redeemable))// 0
 		{
 			//life_redemption($memberid,$gameid,$life);
@@ -224,6 +230,8 @@ class GameController extends Controller
 
 				$records =  Game::add_play_history($insdata,$filter);
 				//$records = member_game_result::firstOrCreate($filter, $insdata)->id;
+                
+                if ($wallet['acupoint'] >= 150 ) $this->update_notification($memberid, $gameid,'0');
 				
 				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
 			}
@@ -399,42 +407,28 @@ class GameController extends Controller
 
 		if ($life == 'yes')
 		{
-			//print_r($life);
-			//die();
 			$wallet = Wallet::get_wallet_details($memberid);
 			
 			$gamelevel = Game::get_member_current_level($gameid, $memberid);
 
-			//print_r($gamelevel);die();
-			//print_r($gameid);
-			//print_r($memberid);
 			if ($wallet) 
-			{
+			{	
 				if ($gamelevel->position != 1) 
 				{
 					return response()->json(['success' => false, 'record' => '', 'message' => 'reset first.cannt redeem.level must be one']); 
 				}
-				
-				if ($wallet->acupoint < 1) 
-				{
-					return response()->json(['success' => false, 'record' => '', 'message' => 'nothing to redeem']); 
-				}
-				
-				//print_r($wallet);
 				if ($wallet->life >= 1) 
 				{
-					//$res 			= Wallet::playable_status($memberid,$gameid,$wallet->level);	
-					//$is_redeemable 	= $res['redeempointstatus'];
+
+					if($wallet->acupoint>150){
+						$wallet->acupoint=150;
+					}
+
 					$status 		= false;
-					$current_life	=$wallet->life-1;
+					$current_life	= $wallet->life-1;
 					$credit        	= 0;
 					$debit        	= $wallet->acupoint; //"{{ $level->bet_amount}}"
 
-
-
-					
-						//Wallet::life_redeem_post_ledgerhistory_pnt($memberid,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);
-						//Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
 
 
 // ---------------------Balance--------------------------------------
@@ -443,8 +437,8 @@ class GameController extends Controller
 						$credit_bal= 1200-$wallet->balance;
 						//$credit_bal=+1200;
 						}
-					//$current_balance	= $wallet->balance +$credit_bal;
-					$current_balance	= $wallet->balance;
+					$current_balance	= $wallet->balance +$credit_bal;
+					//$current_balance	= $wallet->balance;
 					$balance_after		= $current_balance;
 					$debit_bal			= 0;
 					$current_level 		= 1;
@@ -455,17 +449,20 @@ class GameController extends Controller
 					$award_bal_after		= $award_bal_before-$wallet->acupoint;
 					$award_current_bal		= $award_bal_before-$wallet->acupoint;
 					$current_life_acupoint	= $award_bal_before-$wallet->acupoint;
-
 					
 					$current_point=$wallet->point+ $wallet->acupoint;
+					/*
+					if ($wallet->point < 1)
+					{
+						$current_point = 1200 + $wallet->acupoint;
+					}
+					*/
 					$status=true;
 
 // ---------------------Credit--------------------------------------
-					$crd_credit             = env('coin_max', 150);
+					$crd_credit             = $wallet->acupoint;
 					$crd_debit              = 0; //"{{ $level->bet_amount}}"
-					if($wallet->acupoint>150){
-						$wallet->acupoint=150;
-					}
+					
 					$crd_bal_before			= $wallet->point;
 					$crd_bal_after			= $crd_bal_before+$wallet->acupoint;
 					$crd_current_bal		= $crd_bal_after;
@@ -476,17 +473,34 @@ class GameController extends Controller
 					Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
 					Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
 
-
-					
 					//Reset latest member game level
 					Game::reset_member_game_level($memberid , $gameid);
 
 					return response()->json(['success' => true,  'Acupoint' => $wallet->acupoint]); 
 					//return response()->json(['success' => true]); 
-				}else if($life <=0)
+				}
+				else 
 				{
 					
-					return response()->json(['success' => false, 'record' => '', 'message' => 'not enough life']); 
+					if ($wallet->acupoint < 1) 
+					{
+						return response()->json(['success' => false, 'record' => '', 'message' => 'nothing to redeem']); 
+					}
+					$credit        	= 0;
+					$debit        	= $wallet->acupoint; 
+					
+					if ($debit > 150 )
+					{
+						$debit = 150;
+					}
+					
+					Wallet::update_ledger($memberid,'acpoint',$debit,$category = 'PNT',$notes = FALSE);
+					
+					return response()->json(['success' => true]); 
+					
+					
+					
+					//return response()->json(['success' => false, 'record' => '', 'message' => 'not enough life']); 
 				}
 				return response()->json(['success' => false, 'record' => '', 'message' => 'no data from wallet']);
 			}
@@ -495,15 +509,7 @@ class GameController extends Controller
 		return response()->json(['success' => false, 'record' => '', 'message' => 'dun want redeem']); 
 	}
 	
-	
-	public function showresult($gameid = false)
-    {
-	}
-	
-	public function saveresult($gameid = false)
-    {
-	}
-	
+			
 	public function decideresult($gameid = false)
     {
 	}
@@ -565,6 +571,34 @@ class GameController extends Controller
 
 		}
 
+	}
+    
+    public function change_game_notification(Request $request)
+    {
+        $memberid = $request->memberid;
+        $gameid   = $request->gameid;
+        $flag     = $request->flag;        
+        $this->update_notification($memberid, $gameid, $flag);
+        return response()->json(['success' => true, 'message' => 'success']);			
+	}
+    
+    public function update_notification($memberid, $gameid, $flag)
+    {
+        $params = [ 'memberid' => $memberid, 'gameid' => $gameid ];		
+        $record = member_game_notification::firstOrNew( $params );
+        $record->flag_status = $flag;
+        $record->memberid    = $memberid;
+        $record->gameid      = $gameid;
+        $record->save();
+        return true;
+    }
+	
+	public function get_game_notification(Request $request)
+    {
+        $memberid = $request->memberid;
+        $gameid   = $request->gameid;        
+        $record   = member_game_notification::select('memberid', 'gameid','flag_status')->where('memberid', $memberid)->where('gameid', $gameid)->first();    
+        return response()->json(['success' => true, 'record' => $record ]);
 	}
 
 }

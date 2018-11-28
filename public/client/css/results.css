@@ -7,11 +7,24 @@ body {
     display: table-cell;
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 20px 55px 55px 55px 55px 55px 20px;
-  grid-gap: 0px;
+.row > div.box-wrapper {
+  float: left;
+  width: 55px;
   height: 50px;
+}
+
+.row > div.chain-wrapper {
+  width: 20px;
+  float: left;
+  height: 50px;
+}
+
+.row > div.right {
+  margin-left: 0px;
+}
+
+.row > div.left {
+  margin-left: 0px;
 }
 
 .box {
@@ -25,7 +38,6 @@ body {
   color: #000;
   padding: 20px;
   padding-left: 52px;
-  padding-right: 0px;
 }
 
 .right-chain {
@@ -35,8 +47,7 @@ body {
   transform: scale(0.33); 
   -webkit-transform: scale(0.33);
   -webkit-transform-origin:left top;
-  float: right;
-  margin-left:-8px;
+  margin-left:-10px;
   margin-top:12px;
 }
 
@@ -47,15 +58,21 @@ body {
   transform: scale(0.33); 
   -webkit-transform: scale(0.33);
   -webkit-transform-origin:left top;
-  margin-left: 4px;
+  margin-left: 2px;
   margin-top: 12px;
 }
 
 /* iPhone 5 ----------- */
 @media only screen and (max-width: 360px) {
-    .row {
-      grid-template-columns: 20px 45px 45px 45px 45px 45px 20px;
-      height: 50px;
+    .row > div.box-wrapper {
+      width: 45px;
+    }
+
+    .row > div.right {
+      margin-left: 0px;
+    }
+
+    .row > div.left {
       margin-left: 0px;
     }
 
@@ -73,7 +90,6 @@ body {
       transform: scale(0.3); 
       -webkit-transform: scale(0.3);
       -webkit-transform-origin:left top;
-      float: right;
       margin-left:-2px;
       margin-top:12px;
     }
@@ -82,5 +98,6 @@ body {
      transform: scale(0.3); 
       -webkit-transform: scale(0.3);
       -webkit-transform-origin:left top;
+      margin-left:4px;
     }
 }

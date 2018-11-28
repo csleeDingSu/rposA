@@ -248,11 +248,11 @@ html, body {
 }
 
 .icon-add-friend {
-	background: url('/client/images/game.png') no-repeat -1670px -800px;
+	background: url('/client/images/game.png') no-repeat -1670px -805px;
 	width: 80px;
-	height: 82px;
-	transform: scale(0.3); 
-	-webkit-transform: scale(0.3);
+	height: 80px;
+	transform: scale(0.26); 
+	-webkit-transform: scale(0.26);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;

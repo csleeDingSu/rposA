@@ -161,9 +161,23 @@ body {
 }
 
 @media only screen and (min-width: 350px) {
+
+    .tips_container {
+        
+        height: 950px;
+        
+    }
     
     .panel-step1 {
+        height: 185px;
         margin-top: 325px;
+    }
+
+    .panel-step2 {
+     
+        height: 190px;
+        margin-top: 80px;
+     
     }
 
 }

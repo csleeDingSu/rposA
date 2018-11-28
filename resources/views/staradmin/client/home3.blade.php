@@ -35,16 +35,16 @@
 				<ul class="dbox top">
 					
 						@if (isset(Auth::Guard('member')->user()->username))
-							<a class="title" href="/member" style="color: white; font-size: 20px;">{{ Auth::Guard('member')->user()->username }}</a>
+							<a class="title" href="/member" style="color: white; font-size: 0.3rem;">{{ Auth::Guard('member')->user()->username }}</a>
 						@else
 						<li class="dbox0">
-					  		<a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a>
+					  		<a href="/nlogin" style="color: white; font-size: 0.3rem;">@lang('dingsu.login') / @lang('dingsu.register')</a>
 					  	@endif
 					  	</li>
 					  	<!-- <a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a> -->
 				  						
 					<li class="dbox1 logo"><img src="{{ asset('/test/main/images/logo.png') }}"></li>
-					<li class="dbox0"><a href="#"><img src="{{ asset('/test/main/images/follow.png') }}"></a></li>
+					<li class="dbox0"><a href="/share" style="color: white; font-size: 0.3rem;"><img src="{{ asset('/client/images/share_btn.png') }}" style="height: 0.3rem;"> @lang('dingsu.share')</a></li>
 				</ul>
 				<div class="main rel">
 					<div class="dbox">
@@ -53,6 +53,7 @@
 								@foreach($category as $cat)
 
 									@if ($cat->id == $cid)
+										{{$current_cat_name = $cat->display_name}}
 										<a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 										<!-- <a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a> -->
 									@else
@@ -168,7 +169,7 @@
 				<div class="product">
 					<div class="title">
 						<span>共有<font color="#f63556">{{ $vouchers->total() }}</font>款产品</span>
-						<h2>精选大额优惠券</h2>
+						<h2>{{ is_null($current_cat_name) ? 精选 : $current_cat_name }}大额优惠券</h2>
 					</div>
 					
 					<div class="infinite-scroll">
@@ -190,12 +191,12 @@
 		<div class="showQuan dflex scaleHide">
 			<div class="inBox">
 				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
-				<h2>请加客服微信 领取优惠券</h2>
+				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
 
 				@if (isset(Auth::Guard('member')->user()->username))
 					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
 					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
-					<h4>如果点按钮复制不成功，请到微信手动输入添加</h4>
+					<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
 				@else
 					<h3 id="cut">请先注册，才能领取优惠券</h3>
 				@endif
@@ -209,13 +210,24 @@
 				<div class="imgBox">
 					<img id="product_img" src="{{ asset('/test/main/images/demo/d-img3.png') }}">
 				</div>
-				<h2 id = 'product_name'>INS网红手表时尚潮流手表女士韩版 抖音时来运转石英表休闲</h2>
-				<h3>
+				<h2 style="white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis ;" id = 'product_name'>INS网红手表时尚潮流手表女士韩版 抖音时来运转石英表休闲</h2>
+				<h3 style="display: none">
 					<font id="product_discount_price">优惠价：39元</font><em id = "product_price">淘宝原价：￥360</em>
 				</h3>
-				<h1>390挖宝币 免费兑换</h1>
-				<div class="iconImg"><img src="{{ asset('/test/main/images/icon-2.png') }}"><span>10兑换1元红包</span></div>
+
+				<div class="group">
+				 	<img src="{{ asset('/test/main/images/icon-2.png') }}" />
+					<span><em id = 'voucher_price'>390挖宝币 免费兑换</em></span>
+				</div>
+
+				<div class="group" style="text-align: center;">
+					<div class="balance">你当前拥有 <em id='current_point'> {{ isset($member_mainledger->current_point) ? number_format($member_mainledger->current_point, 0, ".", "") : 0 }}</em> 挖宝币</div>
+				</div>
+
 				<a class="btn" href="/arcade"><img src="{{ asset('/test/main/images/wabao.png') }}"></a>
+
 			</div>
 		</div> 
 		
@@ -330,8 +342,10 @@
 				product_name  = $(this).data('tt_product_name');
 				product_price = $(this).data('tt_product_price');
 				product_img   = $(this).data('tt_product_img');
-				
-				showBao(item_id,product_name,product_price,product_img);
+				product_discount_price   = $(this).data('tt_product_discount_price');
+				voucher_price = $(this).data('tt_voucher_price');
+
+				showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price);
 			});
 			
 			
@@ -340,21 +354,23 @@
 				product_name  = $(e.target).data('tt_product_name');
 				product_price = $(e.target).data('tt_product_price');
 				product_img   = $(e.target).data('tt_product_img');
+				product_discount_price = $(e.target).data('tt_product_discount_price');
+				voucher_price = $(e.target).data('tt_voucher_price');
 				
-				showBao(item_id,product_name,product_price,product_img);
+				showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price);
 			});
 			
 			
-			function showBao(item_id,product_name,product_price,product_img)
+			function showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price)
 			{
 				being.wrapShow();
 
 				document.getElementById("product_name").textContent = product_name;
 				// $(this).find("#product_name").innerHTML = product_name;
 				document.getElementById("product_price").textContent = '淘宝原价：￥' + product_price;
-				document.getElementById("product_discount_price").textContent = '优惠价：' + product_price + '元';
+				document.getElementById("product_discount_price").textContent = '优惠价：' + product_discount_price + '元';
 				document.getElementById("product_img").src = product_img;
-
+				document.getElementById("voucher_price").textContent = Math.round((product_price - voucher_price) * 10);
 
 				being.scaleShow('.showBao');
 			}

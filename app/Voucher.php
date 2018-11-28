@@ -32,7 +32,7 @@ class Voucher extends Model
 	
 	public static function get_csvtitle($limit = 5)
 	{
-		$result = DB::table('csv_title')->where('category','voucher')->select('id', 'title')->get($limit);
+		$result = DB::table('csv_title')->where('category','voucher')->select('id', 'title', 'is_mandatory')->get($limit);
 				
 		return $result;
 	}
@@ -93,6 +93,17 @@ class Voucher extends Model
 		DB::table('archived_vouchers')->insert($chunk->toArray());
 	}
 	 
-	
+	public static function get_voucher_withoutpass($table = 'vouchers', $limit = 5)
+	{	
+        $result = DB::table($table)->where('pass_access_flag','0')->select('id', 'product_detail_link', 'pass_access_flag')->limit($limit)->get($limit);
+		return $result;
+	}
+    
+    public static function update_voucher($table = 'vouchers', $id, $data)
+	{
+        $ledger  = DB::table($table)
+				   ->where('id', $id)
+				   ->update($data);
+    }
 	
 }

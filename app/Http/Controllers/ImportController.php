@@ -26,7 +26,7 @@ use Storage;
 
 
 //new
-
+use App\Events\GenerateVoucher;
 use App\Events\ImportSoftpins;
 use App\Events\ImportAds;
 
@@ -34,7 +34,7 @@ class ImportController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 	
-	private $document_ext = ['xls', 'xlsx'];
+	public $document_ext = ['xls', 'xlsx'];
 	
 	public function getImport()
     {
@@ -129,6 +129,8 @@ class ImportController extends BaseController
 		return view('main', $data);
 		
 	}
+	
+	
 	
 	public function parseImport(Request $request)
 	{

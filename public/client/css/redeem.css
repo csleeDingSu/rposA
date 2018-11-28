@@ -1,5 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
 
+.fade {
+	cursor: pointer;
+}
+
 .container {
 	width: 500px;
 	background-color: #f3f3f3;
@@ -332,6 +336,7 @@ html, body {
 /* Modal Box */
 .modal-content {
 	background: #f8f8f8;
+	margin-top: 10%;
 }
 
 .modal-full-height {

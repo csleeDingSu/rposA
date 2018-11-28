@@ -78,6 +78,26 @@
                         </div>
                       </div>
                     </div>
+                      
+                       <div class="row"> 
+						
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="introduce_life" class="col-sm-3 col-form-label">@lang('dingsu.introduce_life')</label>
+                          <div class="col-sm-9">
+                            <input id="introduce_life" name="introduce_life" class="form-control" type="text"  value="{{$record->introduce_life}}" maxlength="2">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="game_default_life" class="col-sm-3 col-form-label">@lang('dingsu.game_default_life')</label>
+                          <div class="col-sm-9">
+                            <input id="game_default_life" name="game_default_life" class="form-control" type="text"  value="{{ old('game_default_life', $record->game_default_life) }}" maxlength="2">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 					  
 					 <div class="row">
 						

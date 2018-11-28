@@ -40,6 +40,12 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	$this->get( '/', 'Api\VoucherController@index' )->name( 'api.vlist' );
 
+	Route::any( '/invitation_list', 'ClientController@invitation_list' )->name( 'client.invitation_list' );
+
+	Route::get( '/customer_service', function () {
+		return view( 'client/customer_service' );
+	} );
+	
 } );
 
 //Member routes with member guard
@@ -312,6 +318,11 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 } );
 //END
 
+
+
+Route::get('nlogin/{token?}', 'Auth\MemberRegisterController@showAuthForm')->name('render.member.register');
+Route::post('nlogin', 'Auth\MemberLoginController@dologin')->name('submit.member.login');
+Route::post('nreg', 'Auth\MemberRegisterController@doreg')->name('submit.member.newregister');
 
 
 

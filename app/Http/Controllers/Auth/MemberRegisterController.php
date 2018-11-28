@@ -85,6 +85,91 @@ class MemberRegisterController extends Controller
 		return view('client/register',$data);
 		// return view('common/register',$data);
 	}
+    
+    
+    public function showAuthForm($ref = FALSE)
+	{
+
+		$data = [];
+		
+		
+		if (!empty($ref))
+		{
+			$data['ref']     = Members::CheckReferral($ref);
+			
+			$data['refcode'] = $ref;
+			
+		}
+		
+		return view('auth.login', $data);
+	}
+    
+    public function doreg(Request $request)
+    {
+        $input = array();
+        $referred_by = null;
+		parse_str($request->datav, $input);
+		$data = array_map('trim', $input);        
+        
+		if (empty($data['refcode']) )  $data['refcode'] = null;
+		
+		$input = [
+             'username'   => $data['username'],
+			 //'email'   => $data['email'],
+		     'password'   => $data['password'],
+			 'password_confirmation'   => $data['confirmpassword'],
+			 'refcode'   => $data['refcode'],
+              ];
+		
+		$validator = Validator::make($input, 
+            [
+                'username' => 'required|string|min:4|max:30|unique:members,username',
+				//'email' => 'required|email|min:4|max:50|unique:members,email',
+                'password' => 'required|alphaNum|min:5|max:50|confirmed',
+            ]
+        );
+		
+		if ($validator->fails()) {
+			 return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		else {					
+			if (!empty($data['refcode']))
+			{
+				$ref   = Members::CheckReferral($data['refcode']);
+				
+				if (empty($ref->id))
+				{					
+					$error = [trans('dingsu.unknow_ref_key')];
+					return response()->json(['success' => false, 'message' => $error]);			 
+				}				
+				$referred_by = $ref->id;				
+			}
+			
+			$affiliate_id =  unique_random('members', 'affiliate_id', 10);
+			
+			Members::create([
+				'username' => $data['username'],
+				//'email' => $data['email'],
+				'password' => Hash::make($data['password']),
+				'affiliate_id' => $affiliate_id,
+				'referred_by'   => $referred_by,
+			]);
+			
+			
+			//Send Welcome Mail			
+					
+			//Mail::to($data['email'])->queue(new SendMail('welcomemail', $input)); //correct one
+					
+			//Generate Login Session
+			Auth::guard('member')->attempt(['username' => $data['username'], 'password' => $data['password']]);
+			
+			$user = Auth::guard('member')->user();
+			$user->active_session = Session::getId();
+			$user->save();
+			
+			return response()->json(['success' => true]);		
+        }
+    }
 	
 	public function doregister(Request $request) {	
 

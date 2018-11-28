@@ -18,11 +18,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 @endsection
 
-@section('content')
+@section('content') 
 <div class="full-height">
 	<div class="container">
 		<!-- wabao coin info -->
 		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
+		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 
 		<div class="card left">
 			<div class="icon-coin-wrapper">
@@ -48,7 +50,7 @@
 			<!-- tab content -->
 			<div class="tab-content">
 				<!-- redeem list content -->
-				<div id="prize" class="tab-pane fade {{ empty($slug) ? 'in active' : '' }}">
+				<div id="prize" class="prize tab-pane fade {{ empty($slug) ? 'in active' : '' }}">
 				</div>
 
 
@@ -64,7 +66,11 @@
 		<!-- End listing -->
 	</div>
 </div>
+
 @endsection
+<!-- Model will append here-->
+<!-- Model END-->
+
 
 @section('footer-javascript')
     @parent

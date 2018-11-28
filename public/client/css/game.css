@@ -46,7 +46,7 @@ body{
 .instruction {
 	visibility: visible;
 	margin-bottom: 45px;
-	font-size: 16px;
+	font-size: 20px;
 }
 
 .btn-rectangle, .btn-rectangle:active {
@@ -158,29 +158,32 @@ body{
 
 .progress-bar-container .circle,
 .progress-bar-container .bar,
-.progress-bar-container .bar-short,
-.progress-bar-container .bar-long {
-    display: inline-block;
+.progress-bar-container .bar-longer,
+.progress-bar-container .bar-long,
+.progress-bar-container .bar-last {
+    display: block;
+    float: left;
     width: 30px; height: 30px;
     border-radius: 30px;
     margin-top:2px;
 }
 
 .progress-bar-container .circle{
-	background: #fff971;
+	background: #e5e5e5;
+	margin-left: 25px;
 }
 
 .progress-bar-container .circle .label {
     display: block;
     width: 30px;
     height: 30px;
-    color: #fff971;
+    color: #e5e5e5;
     font-size: 30px;
     margin-top: -10px;
     margin-left: -12px;
 }
 
-.progress-bar-container .title {
+.progress-bar-container .bet-title {
     display: block;
     width: 30px;
     height: 30px;
@@ -193,19 +196,25 @@ body{
 
 .progress-bar-container .bar {
     position: relative;
-    width: 152px;
-    height: 6px;
-}
-
-.progress-bar-container .bar-short {
-	position: relative;
-    width: 148px;
+    width: 130px;
     height: 6px;
 }
 
 .progress-bar-container .bar-long {
 	position: relative;
-    width: 154px;
+    width: 134px;
+    height: 6px;
+}
+
+.progress-bar-container .bar-longer {
+	position: relative;
+    width: 138px;
+    height: 6px;
+}
+
+.progress-bar-container .bar-last {
+	position: relative;
+    width: 133px;
     height: 6px;
 }
 
@@ -237,7 +246,7 @@ body{
 .speech-bubble { 
 	display: inline-block;
 	position: absolute; 
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(119, 82, 165, 0.5);
 	border-radius: .4em;
 	padding: 25px;
 	z-index: 10;
@@ -251,11 +260,50 @@ body{
 	width: 0; 
 	height: 0; 
 	border: 10px solid transparent;
-	border-top-color: rgba(255, 255, 255, 0.2); 
+	border-top-color: rgba(119, 82, 165, 0.5); 
 	border-bottom: 0; 
 	margin-left: -10px; 
 	margin-bottom: -10px; 
 	left: 50%;
+}
+
+.rules-bubble {
+	position: relative;
+	background: #f1b847;
+	border-radius: 1em;
+	font-size:16px;
+	margin-top: 6px;
+	margin-right: 10px;
+	text-shadow:
+        1px  1px 0 #a7781a,
+       -1px -1px 0 #a7781a,  
+        1px -1px 0 #a7781a,
+       -1px  1px 0 #a7781a,
+        1px  1px 0 #a7781a;
+    animation: blink 1s infinite;
+    display: none;
+}
+
+.rules-bubble:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 90%;
+	width: 0;
+	height: 0;
+	border: 8px solid transparent;
+	border-bottom-color: #f1b847;
+	border-top: 0;
+	border-right: 0;
+	margin-left: -16px;
+	margin-top: -8px;
+}
+
+@keyframes blink 
+{  
+ 0% { opacity: 1.0; }
+ 50% { opacity: 0.7; }
+ 100% { opacity: 1.0; }
 }
 
 .hide {
@@ -271,7 +319,7 @@ body{
 }
 
 .level-four{
-	left: 210px;
+	left: 140px;
 }
 
 .level-five, .level-six {
@@ -279,34 +327,54 @@ body{
 }
 
 .level-one:after {
-	left: 6%;
+	left: 5%;
 }
 
 .level-two:after {
-	left: 30%;
+	left: 27%;
+}
+
+.level-three:after {
+	left: 45%;
+}
+
+.level-four:after {
+	left: 54%;
 }
 
 .level-five:after {
-	left: 73%;
+	left: 75%;
 }
 
 .level-six:after {
-	left: 95%;
+	left: 97%;
 }
 
-.bet-container {
-	font-size: 40px;
-	margin-top: -65px;
-	margin-left: 320px;
-	width: 100px;
-	float: right;
+.active {
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #f69502;
+  }
+  50% {
+    background-color: #e5e5e5;
+  }
+  100% {
+    background-color: #f69502;
+  }
+}
+
+.bet-container, .bet {
+	font-size: 60px;
+	color: #15a71e;
 	display: none;
-	position: absolute;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto  80px;
+  grid-template-columns: auto  100px;
   height: 40px;
 }
 
@@ -316,7 +384,7 @@ body{
 }
 
 .coin {
-	background: url('/client/images/game.png') no-repeat -1674px -715px;
+	background: url('/client/images/game.png') no-repeat -1512px -820px;
 	width: 82px;
 	height: 82px;
 	transform: scale(0.3); 
@@ -833,6 +901,11 @@ iframe {
 		width: 350px;
 		height: 300px;
 	}
+}
+
+.flickity-viewport {
+	width: 400px;
+  	height: 330px;
 }
 
 .flickity-button {

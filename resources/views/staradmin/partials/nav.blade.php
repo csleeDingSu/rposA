@@ -86,7 +86,7 @@
           </li>
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <span class="profile-text">Hello, {{{ isset(Auth::user()->username) ? Auth::user()->username : 'Guest'}}}</span>
+              <span class="profile-text">{{{ isset(Auth::user()->username) ? Auth::user()->username : 'Guest'}}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               

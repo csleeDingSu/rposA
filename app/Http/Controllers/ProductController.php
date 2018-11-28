@@ -61,8 +61,8 @@ class ProductController extends BaseController
 				'product_price' => 'numeric|between:0,99999.99',
 				'discount_price' => 'numeric|between:0,99999.99',
 				'product_quantity' => 'numeric|between:0,99999.99',	
-				'product_image' => 'sometimes|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
-				'product_picurl' => 'sometimes|url',
+				'product_image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+				'product_picurl' => 'nullable|url',
             ]
         );	
 		$now = Carbon::now();
@@ -75,7 +75,7 @@ class ProductController extends BaseController
 			$image->move($destinationPath, $imagename);
 		}
 		
-		$data = ['product_name' => $request->product_name,'product_quantity' => $request->product_quantity,'product_display_id' => $product_display_id,'required_point' => $request->required_point,'product_status' => $request->status,'product_price' => $request->product_price,'discount_price' => $request->discount_price,'created_at' => $now,'product_picurl' => $request->product_picurl,'product_image' => $imagename,'product_description' => $request->product_description];
+		$data = ['product_name' => $request->product_name,'product_quantity' => $request->product_quantity,'required_point' => $request->required_point,'product_status' => $request->status,'product_price' => $request->product_price,'discount_price' => $request->discount_price,'created_at' => $now,'product_picurl' => $request->product_picurl,'product_image' => $imagename,'product_description' => $request->product_description];
 		
 		Product::save_ad_product($data);
 		

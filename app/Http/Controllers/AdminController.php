@@ -49,19 +49,24 @@ class AdminController extends BaseController
                 'auto_maintenance' => 'sometimes',
       			'maintenance_start_time'  => 'required_with:auto_maintenance,on',
 				'maintenance_end_time'    => 'required_with:auto_maintenance,on',
+                'introduce_life' => 'required|integer|between:0,10',
+                'game_default_life' => 'required|integer|between:0,10',
             ]
         );
 		
 		
 
 		
-		$data = ['allow_login' => $request->allow_login,
-				 'allow_registration' => $request->allow_registration,
-				 'site_maintenance' => $request->site_maintenance,
-				 'maintenance_message' => $request->maintenance_message,
-				 'auto_maintenance' => $request->auto_maintenance,
+		$data = ['allow_login'            => $request->allow_login,
+				 'allow_registration'     => $request->allow_registration,
+				 'site_maintenance'       => $request->site_maintenance,
+				 'maintenance_message'    => $request->maintenance_message,
+				 'auto_maintenance'       => $request->auto_maintenance,
 				 'maintenance_start_time' => $request->maintenance_start_time,
-				 'maintenance_end_time' => $request->maintenance_end_time,];
+				 'maintenance_end_time'   => $request->maintenance_end_time,
+                 'introduce_life'         => $request->introduce_life,
+                 'game_default_life'      => $request->game_default_life,
+                ];
 		
 		
 		$res = Admin::update_setting(1,$data);

@@ -24,18 +24,17 @@
 					  
 					  
 					   <div class="row">
-						   <div class="col-md-6">
-						   <div class="form-group row">
-                          <label for="account_type" class="col-sm-3 col-form-label">@lang('dingsu.account_type')</label>
-                          <div class="col-sm-9">
-                            <select id="account_type" name="account_type" class="form-control">
-                              <option>@lang('dingsu.test_account')</option>
-                              <option>@lang('dingsu.member_account')</option>
-                            </select>
-                          </div>
-                        </div>
-						   </div>
-						   
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="membership" class="col-sm-3 col-form-label">@lang('dingsu.membership')</label>
+                  <div class="col-sm-9">
+                    <select id="membership" name="membership" class="form-control">
+                      <option {{ old('membership', $member->membership)=="0"? 'selected':'' }} value="0">@lang('dingsu.standard')</option>
+                      <option {{ old('membership', $member->membership)=="1"? 'selected':'' }} value="1">@lang('dingsu.vip')</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 					  </div>
                    
                     
@@ -94,7 +93,7 @@
                             <select id="status" name="status" class="form-control">
                               <option {{old('status',$member->member_status)=="0"? 'selected':''}}  value="0" >@lang('dingsu.active')</option>
                               <option {{old('status',$member->member_status)=="1"? 'selected':''}} value="1">@lang('dingsu.inactive')</option>
-								<option {{old('status',$member->member_status)=="2"? 'selected':''}} value="2">@lang('dingsu.suspended')</option>
+								              <option {{old('status',$member->member_status)=="2"? 'selected':''}} value="2">@lang('dingsu.suspended')</option>
                             </select>
 							  
 							  

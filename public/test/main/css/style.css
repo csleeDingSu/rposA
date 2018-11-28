@@ -575,3 +575,39 @@
   overflow: hidden;
   text-overflow: ellipsis ;
 }
+
+.showBao .group span em{ display: inline-block; vertical-align: middle; color: #ffb221; font-size: .44rem;}
+
+.showBao .balance { color: #D3D3D3; font-size: .34rem; margin-top: 10px; margin-bottom: 20px;}
+
+.showBao .balance em{ display: inline-block; vertical-align: middle; color: #ffb221; font-size: .34rem;}
+
+.icon-coin {
+  background: url('/client/images/game.png') no-repeat -1674px -715px;
+  width: 82px;
+  height: 82px;
+  transform: scale(0.28); 
+  -webkit-transform: scale(0.28);
+  -webkit-transform-origin:left top;
+  float: left;
+  z-index: 100;
+  position: relative;
+  
+}
+
+.showBao .group img {
+
+    margin-top: 2px;
+
+  }
+
+@media only screen and (min-width: 500px) {
+
+  .showBao .group img {
+
+    transform: scale(1.5);
+    margin-right: 10px;
+
+  }
+
+}

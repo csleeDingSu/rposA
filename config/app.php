@@ -224,5 +224,7 @@ return [
 	
 	
 	'introducer_life' => 1,
+	'ads_product_image_url' => '/ad/product_image/',
+	'banner_url' => public_path("ad\banner"),
 
 ];

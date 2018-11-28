@@ -18,7 +18,7 @@
 			<!-- member id -->
 			<div class="card left">
 				<div class="col-xs-6 member-wrapper">
-					<div class="name">{{ $member->username }}</div>
+					<div class="name">{{ $member->username }}*</div>
 					<div style="clear: both;"></div>
 					<div class="member-id">ID:{{ $member->id }}</div>
 				</div>
@@ -72,8 +72,17 @@
 				</a>
 			</div>
 			<ul class="list-group">
-				<a href="/redeem/history">
+				<a href="/invitation_list">
 					<li class="list-group-item first-item">
+						<div class="icon-wrapper">
+							<div class="icon-add-friend"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						邀请记录
+					</li>
+				</a>
+				<a href="/redeem/history">
+					<li class="list-group-item">
 						<div class="icon-wrapper">
 							<div class="icon-play"></div>
 						</div>
@@ -127,13 +136,15 @@
 					</li>
 				</a>
 
-				<li class="list-group-item">
-					<div class="icon-wrapper">
-						<div class="icon-customer"></div>
-					</div>
-					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-					联系客服
-				</li>
+				<a href="/customer_service">
+					<li class="list-group-item">
+						<div class="icon-wrapper">
+							<div class="icon-customer"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						联系客服
+					</li>
+				</a>
 
 				<a href = "/logout">
 					<li class="list-group-item">					

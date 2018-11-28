@@ -13,15 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('login', 'API\AuthController@login');
-Route::post('register', 'API\AuthController@register');
+//Route::post('login', 'API\AuthController@login');
+//Route::post('register', 'API\AuthController@register');
 
 
 Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	Route::get('details', 'AuthController@details');
 });
 
-
+Route::any('gettoken', 'Api\AuthController@get_token');
 
 Route::get('/test', function () {
     return response()->json([
@@ -29,8 +29,9 @@ Route::get('/test', function () {
     ]);
 })->middleware('auth:api');
 
-//Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
-Route::group(['namespace' => 'Api'],function(){
+
+Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
+//Route::group(['namespace' => 'Api'],function(){
 		
     Route::get('list-all-game/{id?}', 'GameController@listall')->name('api.game.listall');
 	
@@ -69,5 +70,8 @@ Route::group(['namespace' => 'Api'],function(){
 	Route::any('update-game-result-temp', 'GameController@update_game_temp')->name('api.game.update_temp');
 
 	Route::any('get-game-result-temp', 'GameController@get_update_game_temp')->name('api.game.get.update_temp');
+    
+    Route::post('change-game-notification', 'GameController@change_game_notification')->name('change.game.notification');
+    Route::get('get-game-notification', 'GameController@get_game_notification')->name('get.game.notification');
 	
  });	

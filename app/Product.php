@@ -166,7 +166,7 @@ class Product extends Model
 		
 		if (!empty($point))
 		{
-			$result = $result->where('min_point', '<=', $point);
+			//$result = $result->where('min_point', '<=', $point);
 		}
 		if (!empty($quantity))
 		{
@@ -196,7 +196,7 @@ class Product extends Model
 	
 	public static function get_csvtitle($type = 'softpin')
 	{
-		$result = DB::table('csv_title')->where('category',$type)->select('id', 'title')->get();
+		$result = DB::table('csv_title')->where('category',$type)->select('id', 'title', 'is_mandatory')->get();
 				
 		return $result;
 	}

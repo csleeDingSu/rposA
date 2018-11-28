@@ -2,6 +2,7 @@
 <html>
 	<head>
 	<link rel="stylesheet" href="{{ asset('/client/css/history.css') }}" />
+	<script src="{{ asset('/client/js/jquery.min.js') }}"></script>
 	</head>
 
 	<body>

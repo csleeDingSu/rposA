@@ -11,6 +11,7 @@ use App\Product;
 use Excel;
 use DB;
 use Carbon\Carbon;
+use App\ad_display;
 
 class LisImportAds
 {
@@ -100,7 +101,8 @@ class LisImportAds
 				$i++;
 			}
 			foreach (array_chunk($dbc,800) as $t) {
-			   DB::table('ad_display')->insert($t);
+			   //DB::table('ad_display')->insert($t);
+				ad_display::insert($t);
 			}
 		}
 		else { die('File Missing/No excel rows to process'); }

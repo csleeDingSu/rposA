@@ -2,7 +2,7 @@
 								
 								@foreach($vouchers as $item)
 									<li class="dbox">
-										<a class="dbox0 imgBox" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg">
+										<a class="dbox0 imgBox" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}">
 											<img src="{{$item->product_picurl}}_460x460Q90.jpg" alt="{{$item->product_name}}">
 										</a>
 										<div class="dbox1">
@@ -11,14 +11,14 @@
 												<span>￥{{$item->product_price}} </span>
 												<div class="quan">
 													<p>
-														<font>￥</font>100.00
+														<font>￥</font>{{number_format($item->voucher_price, 2)}}
 													</p>
 													<h3>优惠券</h3>
 												</div>
 											</div>
 											<div class="mset">
-												<a class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_id}}">领取优惠券</a>
-												<a class="type" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg">免费挖宝</a>
+												<a class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}">领取优惠券</a>
+												<a class="type" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}">免费挖宝</a>
 											</div>
 										</div>
 									</li>

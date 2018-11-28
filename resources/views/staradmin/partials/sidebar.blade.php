@@ -24,18 +24,19 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uigame" aria-expanded="false" aria-controls="uigame">
               <i class="menu-icon icon-game-controller  text-info"></i>
-              <span class="menu-title text-capitalize"> @lang('dingsu.game')  @lang('dingsu.list')</span>
+              <span class="menu-title text-capitalize"> @lang('dingsu.game_setting')</span>
               <i class="menu-arrow"></i>
             </a>		
 
 			<div class="collapse" id="uigame">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item">
-						<a class="nav-link" href="/game/list">@lang('dingsu.game')  @lang('dingsu.list')</a>
+						<a class="nav-link" href="/game/category">@lang('dingsu.category')</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/game/category">@lang('dingsu.game')  @lang('dingsu.category')</a>
+						<a class="nav-link" href="/game/list">@lang('dingsu.games')</a>
 					</li>
+					
 				</ul>
 			</div>
 		</li>

@@ -4,14 +4,40 @@ $(document).ready(function () {
         $('.navbar-brand').html(title); 
     });
 
+    getToken();
+});
+
+function getToken(){
+    var username = $('#hidUsername', window.parent.document).val();
+    var session = $('#hidSession', window.parent.document).val();
+
+    $.getJSON( "/api/gettoken?username=" + username + "&token=" + session, function( data ) {
+        //console.log(data);
+        if(data.success) {
+            getProductList(data.access_token);
+            redeemHistory(data.access_token);
+        }      
+    });
+}
+
+function getProductList(token) {
     var member_id = $('#hidUserId').val();
 
-    $.getJSON( "/api/product-list?memberid=" + member_id, 
-        function( data ) {
+    $.ajax({
+        type: 'GET',
+        url: "/api/product-list?memberid=" + member_id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        success: function(data) {
+
             $('.wabao-coin').html(data.current_point);
 
             var records = data.records.data;
             var html = '';
+             var htmlmodel = '';
 
             if(records.length === 0){
 
@@ -62,9 +88,9 @@ $(document).ready(function () {
                                 '</div>' +
                             '</div>';
 
-                    html += '<!-- Modal starts -->' +
-                            '<div class="modal fade col-md-12" id="viewvouchermode'+ i +'" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">' +
-                                '<div class="modal-dialog modal-lg" role="document">' +
+                    htmlmodel += '<!-- Modal starts -->' +
+                            '<div class="modal fade col-lg-12" id="viewvouchermode'+ i +'" tabindex="-1" >' +
+                                '<div class="modal-dialog modal-sm" role="document">' +
                                     '<div class="modal-content">' +
                                         '<div class="modal-body">' +
                                             '<div class="modal-row">' +
@@ -90,16 +116,23 @@ $(document).ready(function () {
                                                         '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 挖宝币</div>' +
                                                     '</div>' +
 
-                                                    '<div id="error-'+ item.id + '" class="error"></div>' +
+                                                    '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ item.id +'\');">' +
+                                                    if (item.min_point <= parseInt(data.current_point)) {
+
+                                                        htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
-                                                    '</div>' +
+                                                        '</div>' +
+                                                        '<div>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
+                                                        '</div>';
+                                                    } else {
+                                                        htmlmodel += '<div>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不能兑换</a>' +
+                                                        '</div>';
+                                                    }
 
-                                                    '<div>' +
-                                                        '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
-                                                    '</div>' +
-                                                '</div>' +
+                                                     htmlmodel += '</div>' +
                                             '</div>' +
                                         '</div>' +
                                     '</div>' +
@@ -109,6 +142,7 @@ $(document).ready(function () {
                 });
 
                 $('#prize').html(html);
+                $( ".cardFull" ).after( htmlmodel);
 
                 $.each(records, function(i, item) {
                     $('.openeditmodel' + i).click(function() {
@@ -116,10 +150,24 @@ $(document).ready(function () {
                     });
                 });
             }
-    }); 
+        } // end success
+    }); // end $.ajax
+} // end function
 
-    $.getJSON( "/api/redeem-history?memberid=" + member_id, 
-        function( data ) {
+function redeemHistory(token) {
+
+    var member_id = $('#hidUserId').val();
+
+    $.ajax({
+        type: 'GET',
+        url: "/api/redeem-history?memberid=" + member_id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        success: function(data) {
+
             var records = data.records.data;
             var html = '';
 
@@ -171,25 +219,30 @@ $(document).ready(function () {
 
                 $('#history').html(html);
             }
-        });                
-});
-
-function redeem(product_id){
-
-    var member_id = $('#hidUserId').val();
-    
-    $.post("/api/request-redeem", { 
-        'memberid': member_id,
-        'productid': product_id
-    }, function(data) {
-        if(data.success) {
-            window.location.href = "/redeem/history";
-        } else {
-            $('#error-' + product_id).html(data.message);
         }
     });
 }
-        
 
-        
+function redeem(token, product_id){
+
+    var member_id = $('#hidUserId').val();
+    
+    $.ajax({
+        type: 'POST',
+        url: "/api/request-redeem",
+        data: { 'memberid': member_id, 'productid': product_id },
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            if(data.success) {
+                window.location.href = "/redeem/history";
+            } else {
+                $('#error-' + product_id).html(data.message);
+            }
+        }
+    });
+}
         
