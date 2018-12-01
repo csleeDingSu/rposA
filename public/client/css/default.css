@@ -6,7 +6,9 @@ navbar-nav > li > a, .navbar-brand {
 }
 
 .navbar {
-	min-height:30px !important;
+	min-height:35px !important;
+    padding-top: 2px;
+
 }
 /* End Adjust Navbar Height */
 
@@ -35,7 +37,7 @@ navbar-nav > li > a, .navbar-brand {
 
 @media only screen and (max-width: 500px) {
     .full-height {
-		padding-top: 30px;
+		padding-top: 35px;
 	}
 }
 
@@ -51,7 +53,7 @@ navbar-nav > li > a, .navbar-brand {
 	font-size: 16px;
 	font-weight: 700;
 	display:block;
-    width:150px;
+    width:150px;      
 }
 
 .navbar-default {

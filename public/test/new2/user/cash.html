@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>提现</title>
+    <link rel="stylesheet" type="text/css" href="../css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../css/module.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/being.js"></script>
+</head>
+
+<body style=" background:#f2f2f2;">
+    <section class="cardFull card-flex">
+        <div class="cardHeader">
+            <div class="headTitle">
+                <a class="return"><img src="../images/headReturn.png" /></a>
+                <h2>提现</h2>
+                <a class="list" href="detailed.html">
+                    <font color="#4da0ff">明细</font>
+                </a>
+            </div>
+        </div>
+        <div class="cardBody">
+            <div class="cashBox">
+                <div class="bgBox"></div>
+                <div class="inCash">
+                    <div class="card changeCard">
+                        <div class="name">转到银行卡</div>
+                        <div class="detail">
+                            <h2>工商银行（2323）</h2>
+                            <p>10小时内到账</p>
+                        </div>
+                        <div class="btnBox">
+                            <a href="#"> <img src="../images/nextIcon.png" /> </a>
+                        </div>
+                    </div>
+                    <div class="moneyBox">
+                        <h2>提现金额</h2>
+                        <div class="inputBox">
+                            <span>￥</span> <input type="tel" value="500" />
+                        </div>
+                    </div>
+                    <p class="hint">可提现金额：1000 <a class="allCash">全部提现</a></p>
+                    <p class="hintExceed">最多可提现1000，已超额！</p>
+                    <div class="cashBtn">
+                        <a href="#" class="gradientBtn">确认提现</a>
+                    </div>
+                </div>
+
+                <!-- 成功 -->
+
+                <div class=" showType successBox">
+                    <div class="inBox fix">
+                        <img src="../images/successIcon.png" />
+                        <h2>提现已提交</h2>
+                        <p>2分钟内到账</p>
+                    </div>
+                </div>
+
+                <div class="changeCardBox">
+                    <div class="title">
+                        <h2>选择银行卡</h2>
+                        <a class="close"><img src="../images/closeIcon.png" /></a>
+                    </div>
+                    <ul class="cardList">
+                        <li>工商银行（2525）</li>
+                        <li>建设银行（8899）</li>
+                        <li>农业银行（6633）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(function() {
+            $(".gradientBtn").click(function() {
+                being.wrapShow('.cardBody');
+                $(".successBox").fadeIn(150);
+            });
+            $(".showType").click(function(e) {
+                var target = $(e.target).closest(".inShow").length;
+                if (target > 0) {
+                    return;
+                } else {
+                    $(".showType").fadeOut(150);
+                    being.wrapHide();
+                }
+            });
+
+            $(".changeCard").click(function() {
+                being.wrapShow();
+                $(".changeCardBox").animate({
+                    bottom: 0
+                }, 250);
+            });
+
+            $(".changeCardBox").click(function() {
+                being.wrapHide();
+                $(".changeCardBox").animate({
+                    bottom: "-200%"
+                }, 250);
+            });
+            $(".changeCardBox li").click(function() {
+                let i = $(this).html();
+                $(this).addClass('on').siblings().removeClass('on');
+                $('.cashBox .card h2').html(i);
+                being.wrapHide();
+                $(".changeCardBox").animate({
+                    bottom: "-200%"
+                }, 250);
+            });
+        });
+    </script>
+</body>
+
+</html>

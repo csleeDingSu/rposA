@@ -11,6 +11,7 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/allhistory.css') }}" />
+	<link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('top-javascript')
@@ -25,12 +26,14 @@
 		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 		<div id="history"></div>
+        <div id="pagination"></div>
 	</div>
 </div>
 @endsection
 
 @section('footer-javascript')
 	@parent
+	<script src="http://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
 	<script src="{{ asset('/client/js/allhistory.js') }}"></script>
 
 @endsection

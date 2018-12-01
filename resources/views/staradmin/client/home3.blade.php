@@ -39,12 +39,19 @@
 						@else
 						<li class="dbox0">
 					  		<a href="/nlogin" style="color: white; font-size: 0.3rem;">@lang('dingsu.login') / @lang('dingsu.register')</a>
-					  	@endif
 					  	</li>
+					  	@endif
 					  	<!-- <a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a> -->
 				  						
 					<li class="dbox1 logo"><img src="{{ asset('/test/main/images/logo.png') }}"></li>
+
+					@if (isset(Auth::Guard('member')->user()->wechat_verification_status) && (Auth::Guard('member')->user()->wechat_verification_status > 0)) 
+							<a class="title" href="/logout" style="color: white; font-size: 0.3rem;">退出登陆</a>
+				
+					@else
 					<li class="dbox0"><a href="/share" style="color: white; font-size: 0.3rem;"><img src="{{ asset('/client/images/share_btn.png') }}" style="height: 0.3rem;"> @lang('dingsu.share')</a></li>
+				  	@endif
+					
 				</ul>
 				<div class="main rel">
 					<div class="dbox">
@@ -90,16 +97,20 @@
 		</div>
 		<div class="cardBody">
 			<div class="box">
-				
-				<div class="banner">
+
+				@if($cid == 1)
 					
-					@if(isset($banner))					
-					@foreach($banner as $bner)	
-						<img data-lazy="{{url('/')}}/ad/banner/{{$bner->banner_image}}"  >					
-					@endforeach					
-					@endif
-					
-				</div>
+					<div class="banner">
+						
+						@if(isset($banner))					
+						@foreach($banner as $bner)	
+							<img data-lazy="{{url('/')}}/ad/banner/{{$bner->banner_image}}"  >					
+						@endforeach					
+						@endif
+						
+					</div>
+
+				@endif
 				<!--
 				<div class="banners">
 					<img src="{{ asset('/test/main/images/demo/banner.png') }}">
@@ -399,7 +410,7 @@
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-3.png') }} ");
+				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
 			});
 
 			being.scrollBottom('.cardBody', '.box', () => {			

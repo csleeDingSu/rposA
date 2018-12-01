@@ -168,7 +168,7 @@ function initUser(token){
 }
 
 function initGame(token){
-
+    $( '.btn-reset-life', window.parent.document ).off( "click" );
     var user_id = $('#hidUserId', window.parent.document).val();
     trigger = false;
     
@@ -182,138 +182,140 @@ function initGame(token){
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
 
-            var bet_amount = 0;
-            var duration = data.record.duration;
-            var timer = data.record.remaining_time;
-            var freeze_time = data.record.freeze_time;
-            var draw_id = data.record.drawid;
-            var level = data.record.level.position;
-            var level_id = data.record.level.levelid;
-            var previous_result = data.record.latest_result.game_result;
+            if(data.success) {
+                var bet_amount = 0;
+                var duration = data.record.duration;
+                var timer = data.record.remaining_time;
+                var freeze_time = data.record.freeze_time;
+                var draw_id = data.record.drawid;
+                var level = data.record.level.position;
+                var level_id = data.record.level.levelid;
+                var previous_result = data.record.latest_result.game_result;
 
-            $('#hidLevel', window.parent.document).val(level);
-            $('#hidLevelId', window.parent.document).val(level_id);
-            $('#hidLatestResult', window.parent.document).val(previous_result);
+                $('#hidLevel', window.parent.document).val(level);
+                $('#hidLevelId', window.parent.document).val(level_id);
+                $('#hidLatestResult', window.parent.document).val(previous_result);
 
-            $('.speech-bubble', window.parent.document).addClass("hide");
-            $('.speech-bubble', window.parent.document).next().removeClass("done").removeClass("active").find('.label').html('');
-            
-            switch (level) {
-                default:
-                case 1:
-                    bet_amount = 10;
-                    $('.level-one', window.parent.document).next().addClass("active");
-                    break;
-                case 2:
-                    bet_amount = 30;
-                    $('.level-two', window.parent.document).next().addClass("active");
-                    $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                    break;
-                case 3:
-                    bet_amount = 70;
-                    $('.level-three', window.parent.document).next().addClass("active");
-                    $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
-                    break;
-                case 4:
-                    bet_amount = 150;
-                    $('.level-four', window.parent.document).next().addClass("active");
-                    $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
-                    break;
-                case 5:
-                    bet_amount = 310;
-                    $('.level-five', window.parent.document).next().addClass("active");
-                    $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-four', window.parent.document).next().addClass("done").find('.label').html('x');
-                    break;
-                case 6:
-                    bet_amount = 630;
-                    $('.level-six', window.parent.document).next().addClass("active");
-                    $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-four', window.parent.document).next().addClass("done").find('.label').html('x');
-                    $('.level-five', window.parent.document).next().addClass("done").find('.label').html('x');
-                    break;
-            }
-
-            $('.bet-container', window.parent.document).html(bet_amount);
-
-            setBalance();
-
-            $('#freeze_time').val(freeze_time);
-            $('#draw_id').val(draw_id);
-
-            DomeWebController.init();
-            startTimer(duration, timer, freeze_time, token);
-
-            bindBetButton(token);
-            bindCalculateButton(token);
-
-            $.ajax({
-                type: 'GET',
-                url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id,
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { console.log(error) },
-                success: function(data) {
-
-                    if(data.success){
-                        var selected = data.record.bet;
-                        var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
-                        var bet_amount = parseInt(data.record.betamt);
-                        var newtotalbalance = total_balance - bet_amount;
-
-                        var btn_rectangle = $("input[value='"+ selected +"']", window.parent.document).parent();
-                        btn_rectangle.addClass('clicked');
-                        btn_rectangle.find('.bet-container').show();
-                        btn_rectangle.find('.bet').show();
-
-                        $('#spanPoint', window.parent.document).html(newtotalbalance);
-                        $('.instruction', window.parent.document).css('visibility', 'hidden');
-
-                        switch (level) {
-                            default:
-                            case 1:
-                                $('.level-one', window.parent.document).removeClass("hide");
-                                break;
-                            case 2:
-                                $('.level-two', window.parent.document).removeClass("hide");
-                                break;
-                            case 3:
-                                $('.level-three', window.parent.document).removeClass("hide");
-                                break;
-                            case 4:
-                                $('.level-four', window.parent.document).removeClass("hide");
-                                break;
-                            case 5:
-                                $('.level-five', window.parent.document).removeClass("hide");
-                                break;
-                            case 6:
-                                $('.level-six', window.parent.document).removeClass("hide");
-                                break;
-                        }
-
-                        $.ajax({
-                            type: 'GET',
-                            url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet="+ selected +"&betamt=" + bet_amount,
-                            dataType: "json",
-                            beforeSend: function( xhr ) {
-                                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                            },
-                            error: function (error) { console.log(error.responseText) },
-                            success: function(data) {
-                            }
-                        });
-                    }
+                $('.speech-bubble', window.parent.document).addClass("hide");
+                $('.speech-bubble', window.parent.document).next().removeClass("done").removeClass("active").find('.label').html('');
+                
+                switch (level) {
+                    default:
+                    case 1:
+                        bet_amount = 10;
+                        $('.level-one', window.parent.document).next().addClass("active");
+                        break;
+                    case 2:
+                        bet_amount = 30;
+                        $('.level-two', window.parent.document).next().addClass("active");
+                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
+                        break;
+                    case 3:
+                        bet_amount = 70;
+                        $('.level-three', window.parent.document).next().addClass("active");
+                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
+                        break;
+                    case 4:
+                        bet_amount = 150;
+                        $('.level-four', window.parent.document).next().addClass("active");
+                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
+                        break;
+                    case 5:
+                        bet_amount = 310;
+                        $('.level-five', window.parent.document).next().addClass("active");
+                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-four', window.parent.document).next().addClass("done").find('.label').html('x');
+                        break;
+                    case 6:
+                        bet_amount = 630;
+                        $('.level-six', window.parent.document).next().addClass("active");
+                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-four', window.parent.document).next().addClass("done").find('.label').html('x');
+                        $('.level-five', window.parent.document).next().addClass("done").find('.label').html('x');
+                        break;
                 }
-            });
+
+                $('.bet-container', window.parent.document).html(bet_amount);
+
+                setBalance();
+
+                $('#freeze_time').val(freeze_time);
+                $('#draw_id').val(draw_id);
+
+                DomeWebController.init();
+                startTimer(duration, timer, freeze_time, token);
+
+                bindBetButton(token);
+                bindCalculateButton(token);
+
+                $.ajax({
+                    type: 'GET',
+                    url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id,
+                    dataType: "json",
+                    beforeSend: function( xhr ) {
+                        xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                    },
+                    error: function (error) { console.log(error) },
+                    success: function(data) {
+
+                        if(data.success){
+                            var selected = data.record.bet;
+                            var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
+                            var bet_amount = parseInt(data.record.betamt);
+                            var newtotalbalance = total_balance - bet_amount;
+
+                            var btn_rectangle = $("input[value='"+ selected +"']", window.parent.document).parent();
+                            btn_rectangle.addClass('clicked');
+                            btn_rectangle.find('.bet-container').show();
+                            btn_rectangle.find('.bet').show();
+
+                            $('#spanPoint', window.parent.document).html(newtotalbalance);
+                            $('.instruction', window.parent.document).css('visibility', 'hidden');
+
+                            switch (level) {
+                                default:
+                                case 1:
+                                    $('.level-one', window.parent.document).removeClass("hide");
+                                    break;
+                                case 2:
+                                    $('.level-two', window.parent.document).removeClass("hide");
+                                    break;
+                                case 3:
+                                    $('.level-three', window.parent.document).removeClass("hide");
+                                    break;
+                                case 4:
+                                    $('.level-four', window.parent.document).removeClass("hide");
+                                    break;
+                                case 5:
+                                    $('.level-five', window.parent.document).removeClass("hide");
+                                    break;
+                                case 6:
+                                    $('.level-six', window.parent.document).removeClass("hide");
+                                    break;
+                            }
+
+                            $.ajax({
+                                type: 'GET',
+                                url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet="+ selected +"&betamt=" + bet_amount,
+                                dataType: "json",
+                                beforeSend: function( xhr ) {
+                                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                                },
+                                error: function (error) { console.log(error.responseText) },
+                                success: function(data) {
+                                }
+                            });
+                        }
+                    }
+                }); // ajax get-game-result-temp
+            }
         }
     });
 }
@@ -527,8 +529,7 @@ function bindCalculateButton(token){
 }
 
 function bindResetLifeButton(token){
-
-    $('.btn-reset-life', window.parent.document).click( function() {
+    $( '.btn-reset-life', window.parent.document ).click( function(){
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
@@ -543,11 +544,36 @@ function bindResetLifeButton(token){
                 },
                 error: function (error) { console.log(error.responseText) },
                 success: function(data) {
-                    $('#reset-life-max', window.parent.document).modal('hide');
-                    $('#reset-life-play', window.parent.document).modal('hide');
-                    $('#reset-life-lose', window.parent.document).modal('hide');
-                    $('#reset-life-start', window.parent.document).modal('hide');
-                    initUser();
+                    if(data.success){
+                        window.parent.location.href = "/redeem";
+                    }
+                }
+            });
+        }
+    });
+
+    $( '.btn-reset-life-continue', window.parent.document ).click( function(){
+        var user_id = $('#hidUserId', window.parent.document).val();
+
+        // add points from additional life.
+        if(user_id > 0){
+            $.ajax({
+                type: 'POST',
+                url: "/api/resetlife",
+                data: { 'memberid': user_id, 'gameid': 101, 'life': 'yes' },
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                },
+                error: function (error) { console.log(error.responseText) },
+                success: function(data) {
+                    if(data.success){
+                        $('#reset-life-max', window.parent.document).modal('hide');
+                        $('#reset-life-play', window.parent.document).modal('hide');
+                        $('#reset-life-lose', window.parent.document).modal('hide');
+                        $('#reset-life-start', window.parent.document).modal('hide');
+                        getToken();
+                    }
                 }
             });
         }
@@ -635,9 +661,15 @@ function startTimer(duration, timer, freeze_time, token) {
                         $('#result').val(result);
 
                         if(data.status == 'win'){
-                            $('.instruction', window.parent.document).html('恭喜你猜对了，继续猜赚更多。');
+                            var level = parseInt($('#hidLevel', window.parent.document).val());
+                            var win_amount = level * 10;
+
+                            $('.instruction', window.parent.document).html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
                         } else if (data.status == 'lose') {
-                            $('.instruction', window.parent.document).html('很遗憾猜错了，继续猜不气馁');
+                            var level = parseInt($('#hidLevel', window.parent.document).val());
+                            var chance = 6 - level;
+
+                            $('.instruction', window.parent.document).html('很遗憾猜错了，你还有'+ chance +'次机会！');
                         }
 
                         //Trigger the wheel

@@ -75,7 +75,7 @@ function getProductList(token) {
                                 '</div>' +
                                 '<div class="col-xs-6 column-2">' +
                                     '<div class="description">' + item.product_name + '</div>' +
-                                    '<div class="note">您还剩' + parseInt(data.current_point) + '挖宝币</div>' +
+                                    '<div class="note">可兑换支付宝红包' + parseInt(data.current_point) + '元</div>' +
                                     '<div class="icon-coin-wrapper">' +
                                         '<div class="icon-coin"></div>' +
                                     '</div>' +

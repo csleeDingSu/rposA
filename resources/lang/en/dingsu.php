@@ -220,7 +220,7 @@ return [
 	'product_category' => 'Product first category',
 	'taobao_guest_link' => 'Taobao guest link',
 	'product_price' => 'Product price',
-	'month_sales' => 'Montly sales',
+	'month_sales' => 'Monthly sales',
 	'income_ratio' => 'Income ratio',
 	'commision' => 'Commision',
 	'seller_name' => 'Seller name',
@@ -414,4 +414,5 @@ return [
     'member_login_success_message' => 'Login successful.Please wait while you are redirected to your profile',
     
     'share' => 'share',
+	'copy' => 'Copy',
 ];
