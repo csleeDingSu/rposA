@@ -76,6 +76,51 @@ class GameController extends Controller
 				//@todo :- get from config
 				if ($setting->freeze_time>=30 or $setting->freeze_time<5) $setting->freeze_time = 5;
 				
+				
+				$cresults = \DB::select('SELECT 
+    m_id ,new_count
+FROM(
+    SELECT
+        m.member_id AS m_id,
+				m.game_id AS g_id,
+        m.created_at AS m_date,
+        m.is_win,
+        IF(m.is_win is null AND @b = m.member_id, @a := @a +1, @a := 0) AS new_count,
+        @b := m.member_id
+    FROM member_game_result m
+JOIN (
+    SELECT 
+        @a := 0, 
+        @b := 0
+    ) AS t
+  ) AS TEMP
+WHERE new_count >= :count and m_id = :id and g_id = :gid 
+GROUP BY m_id', ['count' => 6,'m_id' => $memberid,'g_id' => $gameid]);
+				
+				print_r($cresults);die();
+				
+				
+				$consecutive_lose = "SELECT 
+    m_id ,new_count
+FROM(
+    SELECT
+        m.member_id AS m_id,
+				m.game_id AS g_id,
+        m.created_at AS m_date,
+        m.is_win,
+        IF(m.is_win is null AND @b = m.member_id, @a := @a +1, @a := 0) AS new_count,
+        @b := m.member_id
+    FROM member_game_result m
+JOIN (
+    SELECT 
+        @a := 0, 
+        @b := 0
+    ) AS t
+  ) AS TEMP
+WHERE new_count >= 9 and m_id = 6 and g_id = 101 
+GROUP BY m_id";
+				
+				
 				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time,'level'=>$level,'latest_result'=>$latest_result];
 			
 				return response()->json(['success' => true, 'record' => $result]);

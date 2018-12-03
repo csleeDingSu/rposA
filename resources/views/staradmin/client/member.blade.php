@@ -161,6 +161,9 @@
 	</div>
 </div>
 
+
+
+@section('footer-javascript')
 <!-- Steps Modal starts -->
 <form class="form-sample" name="frm-steps" id="frm-steps" action="" method="post" autocomplete="on" >
 	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
@@ -205,9 +208,6 @@
 	</div>
 </form> 
 <!-- Steps Modal Ends -->
-@endsection
-
-@section('footer-javascript')
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	

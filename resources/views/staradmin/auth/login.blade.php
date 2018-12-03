@@ -110,7 +110,7 @@
                                     <div class="flexSp">
                                         <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
                                         <span><i class="fa fa-hashtag fa-lg" style="color: lightgrey;"></i></span>
-                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly disabled style="color: lightgrey;">
+                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly  style="color: lightgrey;">
                                     </div>
                                 </li>
                                 @endif
