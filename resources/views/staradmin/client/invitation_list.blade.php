@@ -32,13 +32,16 @@
                 <div class="panel-heading" role="tab" id="heading-{{ $l->id }}">
                     <h4 class="panel-title">
                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $l->id }}" aria-expanded="true" aria-controls="collapse{{ $l->id }}">
-                            <i class="more-less glyphicon glyphicon-menu-right"></i>
-                            <div class="invitation-title">{{ $l->username }} - 
+                            <!-- <i class="more-less glyphicon glyphicon-menu-right"></i> -->
                             @if ($l->wechat_verification_status == 0)
-                                <span style="color: green">已通过实名认证</span>
+                                <span style="color: green; float: right; font-weight: 600;">已认证 挖宝次数+1</span>
+                            @elseif ($l->wechat_verification_status == 1)
+                                <span style="color: blue; float: right; font-weight: 600;">等待认证</span>
                             @else
-                                <span style="color: red">未通过实名认证</span>
+                                <span style="color: red; float: right; font-weight: 600;">认证失败</span>
                             @endif
+                            
+                            <div class="invitation-title">{{ $l->username }} 
                             </div>
 
                         </a>
@@ -47,7 +50,7 @@
                 <div id="collapse{{ $l->id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{ $l->id }}">
                     <div class="panel-body">
                         用户名: {{ $l->username }}，
-                        电话: {{ $l->phone }}，
+                        电话: {{ str_pad(substr($l->phone, 3), strlen($l->phone), '*', STR_PAD_RIGHT) }}，
                         微信: {{ $l->wechat_name }}
                     </div>
                 </div>

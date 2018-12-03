@@ -82,8 +82,9 @@ class MemberRegisterController extends Controller
 		}
 		
 		
-		return view('client/register',$data);
+		//return view('client/register',$data);
 		// return view('common/register',$data);
+		return view('auth.login', $data);
 	}
     
     
@@ -124,7 +125,7 @@ class MemberRegisterController extends Controller
 		
 		$validator = Validator::make($input, 
             [
-                'username' => 'required|string|min:4|max:30|unique:members,username',
+                'username' => 'required|string|min:1|max:30|unique:members,username',
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
 				//'email' => 'required|email|min:4|max:50|unique:members,email',
                 'password' => 'required|alphaNum|min:5|max:50|confirmed',                

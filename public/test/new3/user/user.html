@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>用户中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../css/module.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/being.js"></script>
+  </head>
+
+  <body style="background:#efefef">
+   
+    <section class="cardFull card-flex">
+    
+      <div class="cardHeader">
+        <div class="headTitle">
+          <a class="return"><img src="../images/headReturn.png" /></a>
+          <h2>个人中心</h2>
+        </div>
+      </div>
+    
+      <div class="cardBody ">
+    
+        <div class="userBody">
+          <div class="userBox">
+            <img src="../images/userImg.png">
+            <h2>15266668888</h2>
+          </div>
+          <div class="coinBox fix">
+            <div class="flex name">
+              <img src="../images/goldIcon.png">
+              <span>我的金币<span>
+            </div>
+            <h2>10000</h2>
+            <div class="btnBox">
+              <a class="cBtn" href="cash.html"><img src="../images/cBtn.png"></a>
+              <a class="tBtn" href="recharge.html"><img src="../images/tBtn.png"></a>
+            </div>
+          </div>
+          <a class="bankCard flexSp" href="cardList.html">
+            <h2 class="flexCenter"><img src="../images/bankCard.png"><span>银行卡</span></h2>
+            <p class="flexCenter">
+              <!-- is number -->
+              <i>1</i>
+              <!-- is null -->
+              <i class="null">未绑定</i>
+              <img src="../images/sIcon.png">
+            </p>
+          </a>
+    
+          <div class="userList">
+            <a class="flexSp" href="yaList.html">
+              <h2 class="flexCenter"><img src="../images/user-1.png"><span>押宝记录</span></h2>
+              <p class="flexCenter">
+                <!-- is number -->
+                <img src="../images/sIcon.png">
+              </p>
+            </a>
+            <a class="flexSp" href="msg.html">
+              <h2 class="flexCenter"><img src="../images/user-2.png"><span>平台消息</span></h2>
+              <p class="flexCenter">
+                <!-- is number -->
+                <i>5</i>
+                <img src="../images/sIcon.png">
+              </p>
+            </a>
+            <a class="flexSp" href="question.html">
+              <h2 class="flexCenter"><img src="../images/user-3.png"><span>常见问题</span></h2>
+              <p class="flexCenter">
+                <!-- is number -->
+                <img src="../images/sIcon.png">
+              </p>
+            </a>
+            <a class="flexSp sendKf">
+              <h2 class="flexCenter"><img src="../images/user-4.png"><span>联系客服</span></h2>
+              <p class="flexCenter">
+                <!-- is number -->
+                <img src="../images/sIcon.png">
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="kfBox flexCenterC scaleHide">
+          <div class="inBox">
+            <h2>添加微信联系客服</h2>
+            <div class="qrCode">
+              <img src="../images/kefu.png">
+              <p>长按图片保存到手机，在扫码相册添加客服微信，需备注“zixun”</p>
+            </div>
+            <a class="sendLove">发送好友请求</a>
+          </div>
+        </div>
+    </section>
+
+
+
+    <script>
+      $(function() {
+
+$('.sendKf').click(function(){
+  being.wrapShow('.cardFull ');
+  being.scaleShow('.kfBox');
+});
+$('.kfBox').click(function(e){
+  var target = $(e.target).closest(".inBox").length;
+          if (target > 0) {
+            return;
+          } else {
+            being.scaleHide('.kfBox');
+            being.wrapHide();
+
+          }
+})
+
+      });
+    </script>
+  </body>
+</html>

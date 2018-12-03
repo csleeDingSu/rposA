@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '登录 / 注册')
+{{-- @section('title', '登录 / 注册') --}}
 
 @section('top-css')
     @parent
@@ -47,6 +47,11 @@
             font-size: 2em;
             vertical-align: middle;
         }
+
+        .flexSp img {
+            height: 0.5rem;
+        }
+
     </style>
 
 
@@ -56,7 +61,7 @@
     <div class="loginBox">
                 <div class="hd flex">                    
                     <a class="on">账号登录</a>
-                    <a>快速注册</a>
+                    <a id="reg">快速注册</a>
                 </div>
                 <div class="bd">
                     <div class="inBox on">
@@ -109,15 +114,16 @@
                                 <li>
                                     <div class="flexSp">
                                         <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
-                                        <span><i class="fa fa-hashtag fa-lg" style="color: lightgrey;"></i></span>
-                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly  style="color: lightgrey;">
+
+                                        <span><i class="fa fa-hashtag fa-2x" style="color: lightgrey;height: 0.5rem;"></i></span>
+                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly disabled style="color: lightgrey;">
                                     </div>
                                 </li>
                                 @endif
                                 <li>
                                     <div class="flexSp">
                                         <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
-                                        <span><i class="fa fa-user fa-2x" style="color: lightgrey;"></i></span>
+                                        <span><i class="fa fa-user fa-2x" style="color: lightgrey; height: 0.5rem;"></i></span>
                                         <input name="username" id="username" type="text" placeholder="@lang('dingsu.username')" required maxlength="30" autofocus>
                                     </div>
                                 </li>
@@ -155,6 +161,14 @@
 @section('footer-javascript')
     @parent
             <script>
+
+                if ($("#refcode").val()) {
+                    $( '.loginBox .bd' ).children( '.inBox' ).eq( 1 ).fadeIn( 0 ).siblings().fadeOut( 0 ); 
+                    $( '.loginBox .hd a').removeClass('on');
+                    $('#reg').addClass( 'on' );
+                }
+
+                
             $( function () {
                 $( '.loginBox .hd a' ).click( function () {
                     var that = $( this );

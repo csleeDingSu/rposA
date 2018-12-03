@@ -1,43 +1,248 @@
+
 <style>
-	.fotos {
-		display: inline-block;
-		position: relative;
+   
+    
+    .offscreen {
+        position: absolute;
+        left: -999em;
+    }
+    
+    @media only screen and (min-device-width:1000px) {
+        .fotos {
+            left: -100px;
+        }
+    }
+    
+    
+    
+    
+    .small-img {
+		
+        
 	}
-	
-	.big-img {
-		width: 100%;
-		max-width: 100%;
-	}
-	
-	.small-img {
-		position: absolute;
-		left: 18%;
-		top: 13.39%;
-		width: 65%;
-		max-width: 65%;
-		max-height: 44%;
-	}
+    
+    
+    .parent1 {
+  overflow: hidden; /* required */
 
-	.offscreen {
-		position: absolute;
-		left: -999em;
-	}
+  position: relative; /* required  for demo*/
+ height: 80%;
+       
+        
+        border: red solid thin;
+        margin: 0 auto;
+        text-align: center;
+    display:table-cell;
+    vertical-align:middle;
+        
+        padding: 25 25 25 25;
+        background: grey;
+        margin-bottom:5px;
+        background: url("{{ asset('cshare/images/bg.png') }}") no-repeat;
+        
+        
+         background-size: 100%;
+        
 
-	@media only screen and (min-device-width:1000px) {
-	   
-		.fotos {
-    	 left: -100px;   
-		}
-	}
+        
+        
+       
+        /*this to solve "the content will not be cut when the window is smaller than the content": */
+        max-width:100%;
+        max-height:100%;
+        
+        
+}
+    
+    .child
+    {
+        overflow: hidden; /* required */
+  width: 80%; /* for demo only */
+  
+  position: relative; /* required  for demo*/
 
-	.swal-wide{
-	    /*margin: auto; transform: translateX(-50%);*/
-	    /*width: 50%;*/
-	    /*height: 50%;*/
-        /*transform: scale3d(0.1, 0.1, 0.1);*/
+        margin: 0 auto;
+        text-align: center;
+    vertical-align:middle;
+        
+        padding: 25 25 25 25;
+        margin-bottom:5px;
+        background: url("{{ asset('cshare/images/bg.png') }}") no-repeat;
+        
+        
+         background-size: 100%;
+        
 
-	}
+        
+        
+       
+        /*this to solve "the content will not be cut when the window is smaller than the content": */
+        max-width:100%;
+        max-height:100%;
+    }
+    
+    .child img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
 
+    
+    
+    
+.ribbon {
+  position: absolute;
+  left: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+}
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #FFBA00;
+  background: linear-gradient(#FFBA00 0%, #FFBA00 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; left: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #FFBA00;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #FFBA00;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #FFBA00;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #FFBA00;
+}
+    
+    .c_button {
+  display: block;
+  width: 100%;
+ 
+  border: none;
+  font-size: 0.32rem;
+  color: #fff;
+  line-height: 0.84rem;
+  outline: none;
+  border-radius: 0.42rem;
+  -webkit-border-radius: 0.42rem;
+  -moz-border-radius: 0.42rem;
+  -ms-border-radius: 0.42rem;
+  -o-border-radius: 0.42rem;
+        
+    background-image: url("{{ asset('cshare/images/btn.png') }}");
+    background-repeat: no-repeat;
+        background-size: cover;background-size: 100% 100%;
+       
+  
+}
+    
+    
+    
+    .closebtn {
+  display: block;
+  width: 80%; 
+  border: thin;
+  font-size: 0.62rem;
+  color: #57606f;
+  line-height: 0.84rem;
+  outline: none;
+  border-radius: 0.42rem;
+  -webkit-border-radius: 0.42rem;
+  -moz-border-radius: 0.42rem;
+  -ms-border-radius: 0.42rem;
+  -o-border-radius: 0.42rem;
+background-color: #e6e6e6;
+      
+       
+  
+}
+    
+   .btndiv 
+    {
+        max-width: 600px;
+    }
+    
+    
+    
+    
+    
+.box{
+  text-align: center;
+  
+  min-width:160;
+    padding: 10 10 10 10;
+text-align: center;
+}
+
+.box-virtical{
+  display:inline-block;
+  float:left;
+
+}
+    
+    .box-horizontal{
+  display:block;
+
+
+}
+    
+    .modelimg
+    {
+        vertical-align: middle;
+        text-align: center;
+    }
+    
+    
+    
+.openFrom{
+   background: #fff;
+   border-radius:.1rem .1rem 0 0 ;
+   -webkit-border-radius:.1rem .1rem 0 0 ;
+   -moz-border-radius:.1rem .1rem 0 0 ;
+   -ms-border-radius:.1rem .1rem 0 0 ;
+   -o-border-radius:.1rem .1rem 0 0 ;
+   position: absolute;
+   display: none;
+   bottom:0;
+   max-height: 80%;
+   overflow-y: auto;
+   z-index: 20;
+   width: 100%;
+   left: 0;
+}
+.openFrom .title{
+    font-size: .36rem; 
+    padding: 0 !important;
+    text-align: center;
+    color: #333;
+    border-bottom:.012rem solid #e0e0e0;
+    margin-left: 0px !important;
+}
+    
+    .pt10
+    {
+        padding-top: 15%;
+    }
 </style>
 <?php
 
@@ -73,70 +278,238 @@ $imgData = ob_get_clean();
 imagedestroy( $image );
 
 ?>
-@extends( 'layouts.default' )
+@section('top-javascript')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+@endsection 
+@section('modelcontent')
+
+<style>
+
+.modelimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("{{ asset('cshare/images/model.png') }} ");
+    background-repeat: no-repeat;
+    background-size: contain;float: left;
+}
+   
+.swal-size-sm 
+{
+   width: 200px !important;
+    height: 200px !important;
+}
+    
+    
+    .fit { /* set relative picture size */
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .center {
+            display: block;
+            margin: auto;
+        }
+    
+    
+    .rounded {
+ 
+         display: block;
+  border-radius: 0.42rem;
+  -webkit-border-radius: 0.42rem;
+  -moz-border-radius: 0.42rem;
+  -ms-border-radius: 0.42rem;
+  -o-border-radius: 0.42rem;
+    }
+    
+    .head1
+    {
+        margin-bottom: .2rem;
+font-family: inherit;
+line-height: 0.9;
+color: inherit;
+        font-weight: normal;
+        font-size: 30;display: inline-block;float: left;
+    }
+    
+    .head2
+    {
+        margin-bottom: .2rem;
+font-family: inherit;
+line-height: 0.9;
+color: inherit;
+        font-weight: normal;
+        font-size: 20;
+    }
+    .headrow
+    {
+         display: flex;
+    /* flex-direction: column;*/
+    align-items: center;
+       /* padding-left: 30%;*/
+        
+        text-align: center
+    }
+</style>
+<section class="openFrom">
+   
+      <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 33%">    
+       <span class="head2">分享到微信的方法</span>
+     </div>     
+     <div class="row headrow" style="margin-top: 1px; padding-left: 3%">    
+       <span class="head2">按住宣传图3秒 > 选择分享图片 > 选择微信</span>
+     </div>
+    
+    
+    
+    
+    <div class="modelfimgs">
+        <img class="center fit" src="{{ asset('cshare/images/model.png') }}"><br>
+    </div>
+    
+    <div class="menu" align="center" style="padding-bottom: 60px;">
+             
+              <button class="closebtn rounded" name="closebtn" id="closebtn" type="button">登录</button>
+            </div>
+    
+</section>
+
+<span id="copy" class="offscreen url" aria-hidden="true">{{$url}}</span>
+
+
+
+                
+<script type="text/javascript">
+ function set_body_height() { // set body height = window height
+        $('body').height($(window).height());
+    }
+    $(document).ready(function() {
+        $(window).bind('resize', set_body_height);
+        set_body_height();
+    });
+                                
+					var clipboard = new ClipboardJS('.copyurl');
+                    console.log(clipboard);
+					clipboard.on('success', function(e) {
+						
+						e.clearSelection();
+                       // alert('success');
+						/*swal({  type: 'success',  title: '@lang("dingsu.copied")!',text: '@lang("dingsu.text_copied")', confirmButtonText: '@lang("dingsu.okay")',customClass: 'swal-size-sm',}).then(
+						  function () { 
+							   if( navigator.userAgent.match(/Android/i)
+								 || navigator.userAgent.match(/webOS/i)
+								 || navigator.userAgent.match(/iPhone/i)
+								 || navigator.userAgent.match(/iPad/i)
+								 || navigator.userAgent.match(/iPod/i)
+								 || navigator.userAgent.match(/BlackBerry/i)
+								 || navigator.userAgent.match(/Windows Phone/i)
+								 ){
+							  // window.open(
+								  // 'weixin://',
+								  // '_blank' 
+								// ); 
+							   }
+						  },
+
+						)
+                        */
+					});
+
+					clipboard.on('error', function(e) {
+						console.error('Action:', e.action);
+						console.error('Trigger:', e.trigger);
+					});
+
+    
+    
+                    $("#closebtn").click(() => {
+                        being.wrapHide();
+                        $(".openFrom").slideDown(150);
+                        $(".openFrom").hide();
+                        
+                      });
+    
+                            $(".c_button").click(() => { 
+                                being.wrapShow();
+                                $(".openFrom").slideDown(150);
+                                $(".wrapBox ").click(function (e) {
+                                  being.wrapHide();
+                                  $(".openFrom").slideUp(150);
+                                });
+                              });
+
+</script>
+
+@endsection 
+
+@extends( 'layouts.share' )
 
 @section( 'title', '分享给朋友' )
 
-@section('left-menu')
-    <a href="/profile" class="back">
-        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
-    </a>
-@endsection
+
 
 @section( 'top-css' )
 @parent
-<link rel="stylesheet" href="{{ asset('/client/css/share.css') }}"/> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.min.css"/>
+ 
 
 @endsection 
 @section('content')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <div class="container  pt10">
+  <div class="row justify-content-center headrow">
+      <!--
+<h1>分享给好友赚挖宝机会</h1>
+      <h1>每邀请1个好友获得1次机会</h1>
+      <h1>被邀请的好友获得3次机会</h1>-->
+      
+      <span class="head1">分享给好友赚挖宝机会</span>
+      
+      
+  </div>
+     
+     <div class="row justify-content-center headrow" style="">    
+       <span class="head2">每邀请1个好友获得1次机会</span>
+     </div>     
+     <div class="row justify-content-center headrow">    
+       <span class="head2">被邀请的好友获得3次机会</span>
+     </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
-
-<div class="wrapper full-height" style="padding-top: 0px !important; background-color: #450B72">
-	<div class="container center" style="background-color: #450B72;">
-		
-			<div id="fotos" class="fotos">
-				<img class="big-img" id="imgdisplay1" src="{{ asset('/client/images/8_invitation.jpg') }}"/>
-
-			
-				<?php echo '<img  class="small-img" id="imgdisplay2" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
-			</div>
-
-			<div class="wrapper copyurl" id="copyurl" data-clipboard-text="{{$url}}" style="-webkit-transform-origin:left top;">					
-				</div>
-
-			
-		
-		<script type="text/javascript">
-			new ClipboardJS( '.copyurl' );
-
-			var clipboard = new ClipboardJS( '.copyurl' );
-			clipboard.on( 'success', function ( e ) {
-				e.clearSelection();
-				swal( {
-					type: 'success',
-					title: '@lang("dingsu.copied")!',
-					text: '@lang("dingsu.text_copied")',
-					confirmButtonText: '@lang("dingsu.okay")',
-				   customClass: 'swal-wide',
-				     position: 'center',
-				     width: 500,
-				     timer:1000,
-  					// padding: '3em',
-
-				       
-				} )
-			} );
-
-			clipboard.on( 'error', function ( e ) {
-				console.error( 'Action:', e.action );
-				console.error( 'Trigger:', e.trigger );
-			} );
-		</script>
-	</div>
 </div>
+
+
+<div class="wrapper full-height" style="padding-top: 0px !important; ">
+    <div class="container9 center " style="background-color: #ffff;">
+
+        <div class="box box-horizontal">
+            <div class="parent">
+                
+                <div class="child copyurl" data-clipboard-target="#copy">
+                    
+                    
+                    <div class="ribbon ribbon-top-left">
+                      <span>@lang('dingsu.copy')</span>
+                    </div>
+                    
+                    
+                    <?php echo '<img  class="small-img" id="copyurl"  src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="box box-horizontal" >
+            <div class="btndiv" align="center" style="display: inline-block; width: 80%;">
+                <button class="c_button" name="c_button" id="c_button" type="button">登录</button>
+            </div>
+            
+        </div>
+    
+
+    </div>
+</div>
+
+
+
+
 @endsection

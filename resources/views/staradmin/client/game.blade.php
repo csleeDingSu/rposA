@@ -226,13 +226,13 @@
 								<div class="packet-coin"></div>
 								<div class="packet-point">&nbsp;</div>
 							</div>
-							<div class="btn-reset-life packet-button">
+							<div class="btn-reset-life-continue packet-button">
 								<div class="packet-button-name">结算并继续挖宝</div>
 								<div class="packet-button-note">将消耗1次挖宝机会</div>
 							</div>
-							<a href="/redeem" class="link-button">
-								<div class="packet-button">兑换奖品</div>
-							</a>
+							<div class="btn-reset-life packet-button">
+								结算并兑换奖品
+							</div>
 						</div>
 					</div>							
 				</div>
@@ -355,7 +355,7 @@
 									将扣除本次挖宝所赚取的 <span class="spanAcuPoint"></span> 挖宝币
 								</div>
 
-								<div class="btn-reset-life modal-message-button">
+								<div class="btn-reset-life-continue modal-message-button">
 									继续挖宝
 								</div>												
 							</div>
@@ -385,7 +385,7 @@
 									您必须把挖宝机会兑换成挖宝币
 								</div>
 
-								<div class="btn-reset-life modal-message-button">
+								<div class="btn-reset-life-continue modal-message-button">
 									兑换挖宝币
 								</div>												
 							</div>
@@ -440,7 +440,7 @@
 	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/game.js') }}"></script>
-	<script src="{{ asset('/client/js/NoSleep.js') }}"></script>
+	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
 	<script type="text/javascript">
 		$(document).ready(function () {
 			var wechat_status = $('#hidWechatId').val();
@@ -448,6 +448,7 @@
 
 			$('.btn-rules').click(function(){
 				$('#game-rules').modal('show');
+				$('.rules-bubble', window.parent.document).hide();
 			});
 
 			if(wechat_status > 0) {
@@ -464,21 +465,22 @@
 			});
 
 			clipboard.on('error', function (e) {
-				$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
 		});	
 
-		var noSleep = new NoSleep();
+		// var noSleep = new NoSleep();
 
-		function enableNoSleep() {
-		  noSleep.enable();
-		  document.removeEventListener('click', enableNoSleep, false);
-		}
+		// function enableNoSleep() {
+		//   noSleep.enable();
+		//   document.removeEventListener('click', enableNoSleep, false);
+		// }
 
 		// Enable wake lock.
 		// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-		document.addEventListener('click', enableNoSleep, false);
+		// document.addEventListener('click', enableNoSleep, false);
 
 		// ...
 

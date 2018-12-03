@@ -148,7 +148,7 @@ class MemberLoginController extends Controller
 		
 		$validator = Validator::make($input, 
             [
-                'username' => 'required|string|min:4|max:50',
+                'username' => 'required|string|min:1|max:50',
                 'password' => 'required|alphaNum|min:5|max:50',
             ]
         );
