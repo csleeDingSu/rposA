@@ -132,18 +132,15 @@ function initUser(token){
                     $('.packet-acupoint', window.parent.document).html(acupoint);
                     $('#hidBalance', window.parent.document).val(balance);
                     $(".nTxt", window.parent.document).html(life);
-                    $(".spanLife", window.parent.document).html(life);                
-                    
+                    $(".spanLife", window.parent.document).html(life);
+
                     setBalance();
 
                     if(life == 0){
                         $('#reset-life-share', window.parent.document).modal();
-                    }
-
-                    if (user_id > 0 && acupoint >= 150) {
+                    } else if (user_id > 0 && acupoint >= 150) {
                         bindResetLifeButton(token);
                         $('#reset-life-max', window.parent.document).modal({backdrop: 'static', keyboard: false});
-                        return false;
                     }
 
                     $.ajax({
@@ -181,7 +178,7 @@ function initGame(token){
         },
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
-
+            console.log(data);
             if(data.success) {
                 var bet_amount = 0;
                 var duration = data.record.duration;
@@ -191,14 +188,23 @@ function initGame(token){
                 var level = data.record.level.position;
                 var level_id = data.record.level.levelid;
                 var previous_result = data.record.latest_result.game_result;
+                var consecutive_lose = data.record.consecutive_lose;
+                var life = $(".nTxt", window.parent.document).html();
+                var balance = $('#hidBalance', window.parent.document).val();
 
                 $('#hidLevel', window.parent.document).val(level);
                 $('#hidLevelId', window.parent.document).val(level_id);
                 $('#hidLatestResult', window.parent.document).val(previous_result);
+                $('#hidConsecutiveLose', window.parent.document).val(consecutive_lose);
 
                 $('.speech-bubble', window.parent.document).addClass("hide");
                 $('.speech-bubble', window.parent.document).next().removeClass("done").removeClass("active").find('.label').html('');
                 
+                if (consecutive_lose == 'yes' && life > 0 && balance == 0) {
+                    bindResetLifeButton(token);
+                    $('#reset-life-lose', window.parent.document).modal();
+                }
+
                 switch (level) {
                     default:
                     case 1:
@@ -382,6 +388,7 @@ function bindBetButton(token){
         var life = $(".nTxt", window.parent.document).html();
         var acupoint = parseInt($('.spanAcuPoint', window.parent.document).html());
         var draw_id = $('#draw_id').val();
+        var consecutive_lose = $('#hidConsecutiveLose', window.parent.document).val();
 
         var user_id = $('#hidUserId', window.parent.document).val();
         if(user_id == 0){
@@ -396,27 +403,23 @@ function bindBetButton(token){
         if(user_id > 0 && life > 0){
 
             if(balance < 630) {
-                if(life >=3){
-                    bindResetLifeButton(token);
-                    $('#reset-life-start', window.parent.document).modal();
-                    return false;
-                } else {
+                if(consecutive_lose == 'yes'){
                     bindResetLifeButton(token);
                     $('#reset-life-lose', window.parent.document).modal();
-                    return false;
+                } else {
+                    bindResetLifeButton(token);
+                    $('#reset-life-start', window.parent.document).modal();
                 }
 
             }
 
         } else if(user_id > 0 && life == 0){
                 $('#reset-life-share', window.parent.document).modal();
-                return false;
         }
 
         if (user_id > 0 && acupoint >= 150) {
             bindResetLifeButton(token);
             $('#reset-life-max', window.parent.document).modal();
-            return false;
         }
 
 

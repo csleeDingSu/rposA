@@ -48,10 +48,13 @@ class ProductController extends Controller
 		$result    = Product::get_redeemlist_history($member_id,30);
 		$result->getCollection()->transform(function ($value) {
 			$code = $value->code;
+			$passcode = $value->passcode;
 			$value->code = null;
+			$value->passcode = null;
 			if ( $value->pin_status == 1 or $value->pin_status == 2 )
 			{
-				$value->code = $code;
+				$value->code     = $code;
+				$value->passcode = $passcode;
 			}
 			return $value;
 		});		

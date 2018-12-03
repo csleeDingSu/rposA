@@ -579,6 +579,28 @@ class Game extends Model
 	//@todo:- get consecutive Limit from env
 	public static function get_consecutive_lose($memberid , $gameid)
 	{
+		$win = 0;
+		$result = DB::table('member_game_result')
+				->select('is_win')
+                 ->where('member_id', $memberid)
+				 ->where('game_id', $gameid)
+				 ->orderBy('created_at', 'DESC')
+                 ->limit(6)
+				 ->get();
+		
+				
+		if ($result)
+		{
+			foreach ($result as $row)
+			{
+				$win = $row->is_win + $win;
+			}
+		}
+		
+		if ($win <= 0) return 'yes';
+		return '';
+		
+		
 		$c_lose = '';
 		$consecutive_lose = DB::select("SELECT 
 								m_id ,count

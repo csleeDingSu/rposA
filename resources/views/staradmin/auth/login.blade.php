@@ -120,7 +120,7 @@
                                         <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
 
                                         <span><i class="fa fa-hashtag fa-2x" style="color: lightgrey;height: 0.5rem;"></i></span>
-                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly disabled style="color: lightgrey;">
+                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly  style="color: lightgrey;">
                                     </div>
                                 </li>
                                 @endif
