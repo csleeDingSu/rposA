@@ -50,7 +50,7 @@
                 <div id="collapse{{ $l->id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{ $l->id }}">
                     <div class="panel-body">
                         用户名: {{ $l->username }}，
-                        电话: {{ str_pad(substr($l->phone, 3), strlen($l->phone), '*', STR_PAD_RIGHT) }}，
+                        电话: {{ str_pad(substr($l->phone, 0, (strlen($l->phone) - 3)), strlen($l->phone), '*', STR_PAD_RIGHT) }}，
                         微信: {{ $l->wechat_name }}
                     </div>
                 </div>

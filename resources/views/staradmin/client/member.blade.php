@@ -163,6 +163,9 @@
 
 @endsection
 
+
+
+@section('footer-javascript')
 <!-- Steps Modal starts -->
 	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
 		<div class="modal-dialog modal-lg" role="document">
@@ -205,8 +208,6 @@
 		</div>
 	</div>
 <!-- Steps Modal Ends -->
-
-@section('footer-javascript')
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	

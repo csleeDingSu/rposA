@@ -576,6 +576,38 @@ class Game extends Model
 		return true;
 	}
 	
+	//@todo:- get consecutive Limit from env
+	public static function get_consecutive_lose($memberid , $gameid)
+	{
+		$c_lose = '';
+		$consecutive_lose = DB::select("SELECT 
+								m_id ,count
+							FROM(
+								SELECT
+									m.member_id AS m_id,
+											m.game_id AS g_id,
+									m.created_at AS m_date,
+									m.is_win,
+									IF(m.is_win is null AND @b = m.member_id, @a := @a +1, @a := 0) AS count,
+									@b := m.member_id
+								FROM member_game_result m
+							JOIN (
+								SELECT 
+									@a := 0, 
+									@b := 0
+								) AS t
+							  ) AS TEMPff
+							WHERE count >= ? and m_id = ? and g_id = ?
+							GROUP BY m_id", [6,$memberid,$gameid]);
+		
+		if ($consecutive_lose)
+		{
+			$c_lose = 'yes';
+		}
+		
+		return $c_lose;		
+	}
+	
 }
 
 
