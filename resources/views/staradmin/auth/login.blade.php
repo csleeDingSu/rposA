@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-{{-- @section('title', '登录 / 注册') --}}
+@section('title', '登录 / 注册')
 
 @section('top-css')
     @parent
@@ -50,6 +50,10 @@
 
         .flexSp img {
             height: 0.5rem;
+        }
+
+        .navbar-brand {
+            display:none !important;
         }
 
     </style>
