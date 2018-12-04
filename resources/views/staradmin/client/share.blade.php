@@ -248,7 +248,7 @@ text-align: center;
 
 $affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
 
-$url = 'http://wabao666.com/register/' . $affiliate_id;
+$url = env('APP_URL', 'https://wabao666.com') . '/register/' . $affiliate_id;
 
 $showIcon = public_path( 'client/bar/showIcon.png' );
 
