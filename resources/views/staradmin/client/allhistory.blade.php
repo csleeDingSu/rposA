@@ -33,7 +33,7 @@
 
 @section('footer-javascript')
 	@parent
-	<script src="http://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
+	<script src="https://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
 	<script src="{{ asset('/client/js/allhistory.js') }}"></script>
 
 @endsection
