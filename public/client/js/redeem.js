@@ -207,7 +207,7 @@ function redeemHistory(token) {
                                 '</div>' + 
                             '</div>' +
                         '<div id="content-' + item.id + '" class="collapse">' +
-                            '<div>卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="codes"></span></div>' +
+                            '<div>卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="codes">' + item.passcode + '</span></div>' +
                             '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
                             '</div>' +
                         '</div>';

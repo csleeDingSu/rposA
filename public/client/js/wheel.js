@@ -514,10 +514,14 @@ function bindCalculateButton(token){
         var acupoint = $('.spanAcuPoint', window.parent.document).html();
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         var level = parseInt($('#hidLevel', window.parent.document).val());
+        var consecutive_lose = $('#hidConsecutiveLose', window.parent.document).val();
 
         if (typeof selected == 'undefined'){
             if (acupoint == 0 || level > 1) {
                 $('#reset-life-bet', window.parent.document).modal();
+            } else if (level == 1 && consecutive_lose == 'yes') {
+                bindResetLifeButton(token);
+                $('#reset-life-lose', window.parent.document).modal();
             } else if(acupoint > 0 && acupoint < 150) {
                 bindResetLifeButton(token);
                 $('#reset-life-play', window.parent.document).modal();

@@ -53,6 +53,15 @@
 							</div>
 						</div>
 						
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="passcode" class="col-sm-3 col-form-label">@lang('dingsu.passcode')  <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<input id="passcode" name="passcode" class="form-control" type="text" autofocus value="{{ old('passcode')}}">
+								</div>
+							</div>
+						</div>
+						
 					</div>
 				</div>
 				<div class="modal-footer">

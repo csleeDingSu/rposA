@@ -139,7 +139,7 @@
   width: 100%;
  
   border: none;
-  font-size: 0.32rem;
+  font-size: 0.4rem;
   color: #fff;
   line-height: 0.84rem;
   outline: none;
@@ -162,7 +162,7 @@
   display: block;
   width: 80%; 
   border: thin;
-  font-size: 0.62rem;
+  font-size: 0.4rem;
   color: #57606f;
   line-height: 0.84rem;
   outline: none;
@@ -335,13 +335,22 @@ color: inherit;
     
     .head2
     {
-        margin-bottom: .2rem;
-font-family: inherit;
-line-height: 0.9;
-color: inherit;
-        font-weight: normal;
-        font-size: 20;
+
+      font-size: 0.4rem;
+      color: grey;
+      line-height: 0.7rem;
+      text-align: center;
     }
+
+    .head3
+    {
+
+      font-size: 0.3rem;
+      color: grey;
+      line-height: 0.6rem;
+      text-align: center;
+    }
+
     .headrow
     {
          display: flex;
@@ -351,14 +360,35 @@ color: inherit;
         
         text-align: center
     }
+
+    .detail {
+      /* 标准的语法 */
+      padding: 0.36rem 0.24rem 0.24rem;
+  }
+
+  .detail h2 {
+      color: grey;
+      font-size: 0.5rem;
+      line-height: 0.8rem;
+      text-align: center;
+  }
+
+  .detail h3 {
+      font-size: 0.35rem;
+      color: grey;
+      line-height: 0.7rem;
+      text-align: center;
+  }
+
+
 </style>
 <section class="openFrom">
    
       <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 33%">    
        <span class="head2">分享到微信的方法</span>
      </div>     
-     <div class="row headrow" style="margin-top: 1px; padding-left: 3%">    
-       <span class="head2">按住宣传图3秒 > 选择分享图片 > 选择微信</span>
+     <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 16%">    
+       <span class="head3">按住宣传图3秒 > 选择分享图片 > 选择微信</span>
      </div>
     
     
@@ -370,7 +400,7 @@ color: inherit;
     
     <div class="menu" align="center" style="padding-bottom: 60px;">
              
-              <button class="closebtn rounded" name="closebtn" id="closebtn" type="button">登录</button>
+              <button class="closebtn rounded" name="closebtn" id="closebtn" type="button">知道了</button>
             </div>
     
 </section>
@@ -456,29 +486,17 @@ color: inherit;
 @endsection 
 @section('content')
 
- <div class="container  pt10">
-  <div class="row justify-content-center headrow">
-      <!--
-<h1>分享给好友赚挖宝机会</h1>
-      <h1>每邀请1个好友获得1次机会</h1>
-      <h1>被邀请的好友获得3次机会</h1>-->
+ <div class="container">
+  <div class="detail">
       
-      <span class="head1">分享给好友赚挖宝机会</span>
-      
-      
-  </div>
+      <h2>分享给好友赚挖宝机会</h2>
+       <h3>每邀请<span style="color: red;"> 1 </span>个好友获得<span style="color: red;"> 1 </span>次机会</h3>
+     <h3>被邀请的好友获得<span style="color: red;"> 3 </span>次机会</h3>
      
-     <div class="row justify-content-center headrow" style="">    
-       <span class="head2">每邀请1个好友获得1次机会</span>
-     </div>     
-     <div class="row justify-content-center headrow">    
-       <span class="head2">被邀请的好友获得3次机会</span>
-     </div>
-
 </div>
 
 
-<div class="wrapper full-height" style="padding-top: 0px !important; ">
+
     <div class="container9 center " style="background-color: #ffff;">
 
         <div class="box box-horizontal">
@@ -500,7 +518,7 @@ color: inherit;
 
         <div class="box box-horizontal" >
             <div class="btndiv" align="center" style="display: inline-block; width: 80%;">
-                <button class="c_button" name="c_button" id="c_button" type="button">登录</button>
+                <button class="c_button" name="c_button" id="c_button" type="button">查看分享方法</button>
             </div>
             
         </div>

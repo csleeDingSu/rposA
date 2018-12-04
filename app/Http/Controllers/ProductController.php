@@ -295,12 +295,14 @@ class ProductController extends BaseController
 					'product_id' => $dbi['product_list'], 
 					'pin_name'   => $dbi['pin_name'],			 
 					'code'       => $dbi['code'],
+					'passcode'   => $dbi['passcode'],
 			  	 ];
 		
 		$validator = Validator::make($input, [
 			'product_id'   => 'required|exists:product,id',
 			'pin_name'     => 'required',
 			'code'         => 'required|unique:softpins,code',
+			'passcode'     => 'required|unique:softpins,passcode',
 		]);
  
 		
@@ -312,7 +314,7 @@ class ProductController extends BaseController
 		
 		
 		$now = Carbon::now();
-		$data = ['product_id' => $input['product_id'],'pin_name' => $input['pin_name'],'code' => $input['code'],'created_at' => $now];
+		$data = ['product_id' => $input['product_id'],'pin_name' => $input['pin_name'],'code' => $input['code'],'passcode' => $input['passcode'],'created_at' => $now];
 		
 		$id = Product::save_pin($data);
 		
