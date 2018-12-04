@@ -124,10 +124,19 @@ return [
 	'edit_category' => 'Edit Category',
 	'gamecategory_update_success_message' => 'Game Category Successfully Updated',
 	'is_override_core_setting' => 'Override Core Setting',
+	'search' => 'Search',
+	'member_list' => 'Member List',
+	'users_list' => 'User List',
+	'voucher_list' => 'Voucher List',
+	'unreleased_voucher' => 'Unreleased Voucher',
+	'product_list' => 'Product List',
+	'redeem_history' => 'Redeem History',
+	'pending_redeem' => 'Pending Redeem',
 	'' => '',
 	'' => '',
 	'' => '',
 	'' => '',
+	
 	
 	'pending_wechat_verification' => 'Pending Verfication',
 
@@ -152,7 +161,7 @@ return [
 	'move_confirmation' => "Are you sure?",
 	'move_conf_text' => "This action will move the data to live",
 	'publish_error' => "An error occurred.",
-	'no_items_to_show' => "Unfortunately, no items were returned.",	
+	'no_items_to_show' => "Unfortunately, no record found.",	
 	'ph_enter_username_email' => "Enter your Email or Username",	
 	'passwordreset_instructions' => 'Enter your Email or Username and instructions will be sent to you!',	
 	'reset_password_instruction' => "Please type your new password.",	

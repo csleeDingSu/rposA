@@ -57,7 +57,7 @@
 		</section>
 
 		@section('footer-javascript')
-			<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+			<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 			<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 			<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 		@show
