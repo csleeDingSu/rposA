@@ -101,16 +101,20 @@
 				@if($cid == 1)
 					
 					<div class="banner">
+
+						<img src="https://wabao666.com/ad/banner/1543910501.png">
 						
-						@if(isset($banner))					
-						@foreach($banner as $bner)	
-							<img data-lazy="{{url('/')}}/ad/banner/{{$bner->banner_image}}"  >					
-						@endforeach					
-						@endif
-						
+<!--
+						{{-- @if(isset($banner)) --}}					
+						{{-- @foreach($banner as $bner) --}}	
+							<img data-lazy="{{url('/')}}/ad/banner/{{-- $bner->banner_image --}}"  >					
+						{{-- @endforeach --}}					
+						{{-- @endif --}}
+-->						
 					</div>
 
 				@endif
+
 				<!--
 				<div class="banners">
 					<img src="{{ asset('/test/main/images/demo/banner.png') }}">
