@@ -70,15 +70,16 @@ class VoucherController extends BaseController
 		}
 		return response()->json(['success' => false, 'record' => '']);
 	}
-	public function get_voucher_list()
-	{		
-		$result =  DB::table('vouchers')->latest()->paginate(200);
-		$data['page'] = 'voucher.voucherlist'; 
-		$data['sys_title']  = Voucher::get_csvtitle(); 		
-		$data['result'] = $result;
+	// public function get_voucher_list()
+	// {		
+	// 	$result =  DB::table('vouchers')->latest()->paginate(200);
+	// 	$data['page'] = 'voucher.voucherlist'; 
+	// 	$data['sys_title']  = Voucher::get_csvtitle();
+	// 	$data['category']  = Voucher::get_category();  		
+	// 	$data['result'] = $result;
 		
-		return view('main', $data);
-	}
+	// 	return view('main', $data);
+	// }
 	
 	public function edit_voucher ($id = FALSE)
 	{
@@ -89,13 +90,56 @@ class VoucherController extends BaseController
 		if ($record)
 		{
 			$data['page'] = 'voucher.edit_voucher';
+			$data['category']  = Voucher::get_category();  
 			
 			$data['sys_title']  = Voucher::get_csvtitle(); 
 		}
-		
-		
+
+
 		return view('main', $data);
 	}
+
+
+	public function edit_category ($id = FALSE)
+	{
+		$data['category'] = $category = Voucher::get_category_setting($id);
+		
+		$data['page'] = 'common.error';
+		
+		if ($category)
+		{
+			$data['page'] = 'voucher.edit_category';
+		
+			$data['sub_category'] = Voucher::get_subcategory($id);
+	
+			//$data['levels_opt'] = Game::get_gamelevel_options($id);
+			//$data['category']  = Voucher::get_category();  
+			
+			//$data['sys_title']  = Voucher::get_csvtitle(); 
+		}
+
+
+		return view('main', $data);
+	}
+	// public function update_editcategory ($id,Request $request)
+	// {
+	// 	$insdata = array();
+	
+				
+	// 	$inputs = $request->vi;
+		
+	// 	$systit = $request->sys_tit;
+		
+	// 	foreach ($systit as $key=>$val)
+	// 	{
+	// 		$insdata[$val] = $inputs[$key];
+			
+	// 	}
+	// 	 $msg = Voucher::where('id', '=', $id)->update($insdata);
+	// 	if ($msg) return redirect()->back()->with('message', trans('dingsu.voucher_update_success_message') );
+	// 	else return redirect()->back()->with('error', trans('dingsu.voucher_update_error_message') );
+		
+	// }
 	
 	public function update_voucher ($id,Request $request)
 	{
@@ -139,7 +183,7 @@ class VoucherController extends BaseController
 		$data['page'] = 'voucher.unreleasedvoucherlist'; 	
 		$data['files'] =  DB::table('excel_upload')->select('filename')->distinct()->get();
 		$data['sys_title']  = Voucher::get_csvtitle(); 
-		
+		$data['category']  = Voucher::get_maincategory();  
 		$data['result'] = $result;
 		
 		return view('main', $data);
@@ -237,6 +281,7 @@ class VoucherController extends BaseController
 		$data = $request->_data;
 		$type = $request->_type;
 		
+		
 		foreach($data as $val)
 		{
 			if ($val['value'] == 1)
@@ -255,7 +300,12 @@ class VoucherController extends BaseController
 			
 			case 'delete':
 				Voucher::destroy($dbi);
+				//print_r($dbi);
+				die();
 			break;	
+			// case 'tag':
+			// 	Voucher::tag_voucher($id, $data);
+			// break;	
 		}
 		
 		echo json_encode($dbi);
@@ -265,11 +315,16 @@ class VoucherController extends BaseController
 	public function bulkdata_unrv_update (Request $request)
 	{
 		
-		$dbi = array();
+		$dbi = array(); // unrelease voucher id 
 		$insdata = array();
+		$tagdata = array();
 		$data = $request->_data;
 		$type = $request->_type;
 		
+		//print_r($data );
+		//print_r($type);
+		//print_r($dbi);
+		//die();
 		foreach($data as $val)
 		{
 			if ($val['value'] == 1)
@@ -279,6 +334,7 @@ class VoucherController extends BaseController
 		}
 		//DB::enableQueryLog();
 		$models = Unreleasedvouchers::whereIn('id', $dbi)->get();
+		$models = $models->toArray();
 		//print_r(DB::getQueryLog());
 		
 		
@@ -297,16 +353,29 @@ class VoucherController extends BaseController
 			unset($row['id']);
 			
 			$insdata[] = $row;
+			
 		}
+
+
+
 		
 		switch ($type)
 		{
 			case 'move':
-				//move data to voucher table
-				Voucher::vouchers_insert($models);
+
+				foreach ($insdata as $row)
+				{
+					//print_r($row);die();
+					$id = DB::table('vouchers')->insertGetId($row);
+					echo $id;
+					Voucher::update_voucher_id($dbi, $id);
+				}
+
+
 			break;
 			case 'delete':
 				Voucher::archived_vouchers_insert($models);
+				
 			break;	
 		}
 		Unreleasedvouchers::destroy($dbi);
@@ -314,16 +383,151 @@ class VoucherController extends BaseController
 		echo json_encode($dbi);
 	
 	}
+
+
+
+	public function listvoucher (Request $request)
+	{
+		
+		//$data['record']  = Admin::get_faq();
+		
+		
+		//$result =  \DB::table('tips');
+		$result =  \DB::table('vouchers');
+		$data['page'] = 'voucher.list'; 
+		$data['sys_title']  = Voucher::get_csvtitle();
+		$data['category']  = Voucher::get_maincategory();
+		//$data['category']  = Voucher::get_category();
+		$category = $data['category'];  		
+		//$data['tags'] = Voucher::get_categorytag($id);
+
+		$data['result'] = $result;
+
+
+		
+		
+
+		//$result =  DB::table('vouchers')->latest()->paginate(200);
+	// 	$data['page'] = 'voucher.voucherlist'; 
+	// 	$data['sys_title']  = Voucher::get_csvtitle();
+	// 	$data['category']  = Voucher::get_category();  		
+	// 	$data['result'] = $result;
+		
+	// 	return view('main', $data);
+
 	
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_title'])) {
+				$result = $result->where('product_category','LIKE', "%{$input['s_title']}%") ;				
+			}
+		}
+
+
+		// public function getfaq(Request $request)
+		// {
+		// 	$id = $request->id;
+		// 	$record = Admin::get_faq($id);
+		// 	return response()->json(['success' => true, 'record' => $record]);
+		// }
+
+
+
+		
+		$result =  $result->orderby('id','DESC')->paginate(200);
+		//$result =  $result->orderby('id','DESC')->paginate(30);
+				
+		$data['page']    = 'voucher.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+			return view('voucher.ajaxlist', ['result' => $result, 'category' =>$category])->render();  
+
+        }
+					
+		return view('main', $data);
+		
+		
+	}
+
+
+
+
 	public function show_voucher ($id)
 	{
 		$record = Voucher::find($id);
 		if ($record)
 		{
 			$syscategory = Voucher::get_category()->toArray();
-			return response()->json(['success' => true, 'record' => $record,'syscategory'=>$syscategory]);			
+			$tagcategory = Voucher::get_categorytag($id)->toArray();
+			$temp = ['record'=>$record,'syscategory'=>$syscategory,'tagcategory'=>$tagcategory];
+			return response()->json(['success' => true, 'record' => $record,'syscategory'=>$syscategory,'tagcategory'=>$tagcategory]);			
+		} else {
+			return response()->json(['success' => false, 'record' => 'empty']);	
 		}
 	}
+
+// ------------------------------------------------------------------------------------------------
+	public function listvouchersetting (Request $request)
+	{
+		$result =  \DB::table('category')->where('parent_id',0);
+		$data['page'] = 'voucher.setting'; 
+		$data['sys_title']  = Voucher::get_csvtitle();
+		$data['category']  = Voucher::get_category();
+		// $data['category'] = $category = Voucher::get_category_setting($id);
+		$category = $data['category'];  		
+		$data['result'] = $result;
+
+	
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_title'])) {
+				$result = $result->where('product_category','LIKE', "%{$input['s_title']}%") ;				
+			}
+		}
+
+		
+		$result =  $result->orderby('id','ASC')->paginate(200);
+				
+		$data['page']    = 'voucher.setting'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+			return view('voucher.ajaxlist', ['category' =>$category])->render();  
+        }
+		return view('main', $data);
+	}
+
+	public function show_voucher_setting ($id)
+	{
+		$record = Voucher::find($id);
+		if ($record)
+		{
+			$syscategory = Voucher::get_category()->toArray();
+			$tagcategory = Voucher::get_categorytag($id)->toArray();
+			$temp = ['record'=>$record,'syscategory'=>$syscategory,'tagcategory'=>$tagcategory];
+			return response()->json(['success' => true, 'record' => $record,'syscategory'=>$syscategory,'tagcategory'=>$tagcategory]);			
+		} else {
+			return response()->json(['success' => false, 'record' => 'empty']);	
+		}
+	}
+
+
+
+// --------------------------------------------------------------------------
+
 	
 	public function show_unreleased_voucher ($id)
 	{
@@ -331,7 +535,9 @@ class VoucherController extends BaseController
 		if ($record)
 		{
 			$syscategory = Voucher::get_category()->toArray();
-			return response()->json(['success' => true, 'record' => $record,'syscategory'=>$syscategory]);
+			$tagcategory = Voucher::get__unr_categorytag($id)->toArray();
+			$temp = ['record'=>$record,'syscategory'=>$syscategory,'tagcategory'=>$tagcategory];
+			return response()->json(['success' => true, 'record' => $record,'syscategory'=>$syscategory,'tagcategory'=>$tagcategory]);	
 		}		
 		return response()->json(['success' => false]);
 		//$record = DB::table('unreleased_vouchers')->where('id', $id)->first();
@@ -345,22 +551,66 @@ class VoucherController extends BaseController
 		$data = $request->_data;
 		$id   = $request->id;
 		$insdata = array();
+		$tagdata = array();
+		$datat = array();
+		$arr_system_category = [];
 		$record = Voucher::find($id);
+		
 		if ($record)
+		// print("check");
 		{			
 			foreach($data as $key=>$val)
 			{
 				$insdata[$val['name']] = $val['value'];
 				$insdata['created_at']  = $now; 
 				$insdata['updated_at']  = $now; 
+				if ($val['name'] == 'system_category[]') {
+					$arr_system_category[] = $val['value'];
+				}
 			}
-			
-			//$validation = \Illuminate\Support\Facades\Validator::make($request->only('start_date', 'end_date'),    $rules);
-			
-			$system_category = $insdata['system_category'];
-			$insdata['category'] = $insdata['system_category'];
-			
-			unset($insdata['system_category']);
+
+			if (is_array($arr_system_category))
+			{
+				// print("check2");
+				// print("id");
+				// print($id);
+				// $tagdata['category']= implode(",", $arr_system_category);
+				//App\Voucher_category::destroy($id);
+				//Voucher_category::delete_tag($id);
+				DB::table('voucher_category') -> where('voucher_id', $id) ->delete();
+
+				foreach ($arr_system_category as $data_)
+				{
+					// print("check3");
+						// $temp_t['voucher_id'] = $id;
+						// $temp_t['updated_at']  = $now; 
+						
+						// $temp_t['category'] = $data_;
+						// DB::table('voucher_category')
+						// 	 ->insert($temp_t);
+
+							 $voucher_tags = App\Voucher_category::updateOrCreate(
+								[
+									'voucher_id' => $id, 
+									'category' => $data_
+									
+								],
+								[
+									'updated_at'  => $now,
+								]
+								
+							);
+							 
+						
+					//}
+				
+				}
+			}
+					
+
+			// print($voucher_tags);
+			unset($insdata['system_category[]']);
+			unset($insdata['category[]']);
 			unset($insdata['_token']);
 			unset($insdata['hidden_void']);
 
@@ -369,14 +619,176 @@ class VoucherController extends BaseController
 				DB::table('vouchers')
 				->where('id', $id)
 				->update($insdata);
-				 return response()->json(['success' => true]);
+
+
+				
+
+
+				//  DB::table('voucher_category')
+				// ->where('id', $id)
+				// ->update($temp_t);
+			 return response()->json(['success' => true]);
+
 			}  catch (\Exception $ex) {
 				 //dd($ex);
-				 return response()->json(['success' => false, 'record' => '']);
+				 return response()->json(['success' => false, 'record' =>'']);
 			}
 		}
 		return response()->json(['success' => false, 'record' => '']);		
 	}
+
+	public function ajax_update_tag(Request $request)
+	{
+		$now = Carbon::now()->toDateTimeString();
+		$dbi = array();
+		$insdata = array();
+		$indata = array();
+		$data = $request->_data;
+		$datat = $request->_datat;
+		$arr_tag = [];
+		//$tag =  DB::table('voucher_category')->select(['id', 'updated_at','unr_voucher_id','category']);		
+		//$tag = Voucher::get_categorytag();
+
+		
+		foreach($data as $val)
+		{
+			if ($val['value'] == 1)
+			{
+				$dbi[] = $val['name'];
+			}
+		}
+		//DB::enableQueryLog();
+		$models = Voucher::whereIn('id', $dbi)->get();
+
+		// if ($record)
+		// {			
+
+			foreach($dbi as $datav){
+				DB::table('voucher_category') -> where('voucher_id', $datav) ->delete();
+				// $temp_t['unr_voucher_id'] = $datav;
+					// DB::table('voucher_category')
+					// 		->insert($temp_t);
+					//var_dump($datav);
+					
+
+				foreach($datat as $data_){
+
+					
+					if (!is_null($data_['value'])) {
+
+						$voucher_tags = App\Voucher_category::updateOrCreate(
+						[
+								'voucher_id' => $datav, 
+								'category' => $data_['value']
+								
+							],
+							[
+								'updated_at'  => $now,
+							]
+							
+						);
+
+						// var_dump($datav);
+
+						// $temp_t['updated_at']  = $now; 
+						// $temp_t['category'] = $data_['value'];
+
+						//if($temp_t['category']!=$tag['category']){
+						//DB::table('voucher_category')
+			 			//	->insert($temp_t);
+						//}else{
+
+						//}
+						
+					}
+				
+				}
+					
+					
+			}
+
+			DB::enableQueryLog();
+			try {
+			   //DB::table('voucher_category')
+			   //->where('id', $dbi)
+			//    ->update($insdata);
+				//->insert($temp_t);
+
+
+
+				 return response()->json(['success' => true]);
+			}  catch (\Exception $ex) {
+				 dd($ex);
+				 return response()->json(['success' => false, 'record' =>'']);
+			}
+		//}
+		return response()->json(['success' => false, 'record' => '']);		
+	}
+
+
+	public function ajax_update_unr_tag(Request $request)
+	{
+		$now = Carbon::now()->toDateTimeString();
+		$dbi = array();
+		$insdata = array();
+		$indata = array();
+		$data = $request->_data;
+		$datat = $request->_datat;
+		$arr_tag = [];
+		
+		foreach($data as $val)
+		{
+			if ($val['value'] == 1)
+			{
+				$dbi[] = $val['name'];
+			}
+		}
+		//DB::enableQueryLog();
+		$models = Voucher::whereIn('id', $dbi)->get();
+
+		// if ($record)
+		// {			
+			
+			foreach($dbi as $datav){
+				DB::table('voucher_category') -> where('unr_voucher_id', $datav) ->delete();
+
+				foreach($datat as $data_){
+
+					
+					if (!is_null($data_['value'])) {
+
+						$voucher_tags = App\Voucher_category::updateOrCreate(
+						[
+								'unr_voucher_id' => $datav, 
+								'category' => $data_['value']
+								
+							],
+							[
+								'updated_at'  => $now,
+							]
+							
+						);
+					}
+				}
+				
+
+			}
+			DB::enableQueryLog();
+			try {
+
+
+				 return response()->json(['success' => true]);
+			}  catch (\Exception $ex) {
+				 dd($ex);
+				 return response()->json(['success' => false, 'record' =>'']);
+			}
+		//}
+		return response()->json(['success' => false, 'record' => '']);		
+	}
+
+
+
+
 	
 	public function ajax_unrv_update_voucher (Request $request)
 	{
@@ -384,6 +796,7 @@ class VoucherController extends BaseController
 		$data = $request->_data;
 		$id   = $request->id;
 		$insdata = array();
+		$arr_system_category = [];
 		$record = Unreleasedvouchers::find($id);
 		if ($record)
 		{			
@@ -392,14 +805,59 @@ class VoucherController extends BaseController
 				$insdata[$val['name']] = $val['value'];
 				$insdata['created_at']  = $now; 
 				$insdata['updated_at']  = $now; 
+				if ($val['name'] == 'system_category[]') {
+
+					$arr_system_category[] = $val['value'];
+
+				}
 			}
 
-			$system_category = $insdata['system_category'];
+
+			if (is_array($arr_system_category))
+			{
+				// print("check2");
+				// print("id");
+				// print($id);
+				// $tagdata['category']= implode(",", $arr_system_category);
+				//App\Voucher_category::destroy($id);
+				//Voucher_category::delete_tag($id);
+				DB::table('voucher_category') -> where('unr_voucher_id', $id) ->delete();
+
+				foreach ($arr_system_category as $data_)
+				{
+					// print("check3");
+						// $temp_t['voucher_id'] = $id;
+						// $temp_t['updated_at']  = $now; 
+						
+						// $temp_t['category'] = $data_;
+						// DB::table('voucher_category')
+						// 	 ->insert($temp_t);
+
+							 $voucher_tags = App\Voucher_category::updateOrCreate(
+								[
+									'unr_voucher_id' => $id, 
+									'category' => $data_
+									
+								],
+								[
+									'updated_at'  => $now,
+								]
+								
+							);
+							 
+						
+					//}
+				
+				}
+			}
+
+			$insdata['category']= implode(",", $arr_system_category);
+
+			
 			unset($insdata['_token']);
 			unset($insdata['hidden_void']);			
 			
-			$insdata['category'] = $insdata['system_category'];
-			unset($insdata['system_category']);
+			unset($insdata['system_category[]']);
 			//DB::enableQueryLog();
 
 			 try {
@@ -408,10 +866,12 @@ class VoucherController extends BaseController
 				->update($insdata);
 				 return response()->json(['success' => true]);
 			}  catch (\Exception $ex) {
-				 //dd($ex);
+				 dd($ex);
 				 return response()->json(['success' => false]);
 			}
 		}
+
+		
 		return response()->json(['success' => false]);		
 	}
 	
@@ -431,7 +891,107 @@ class VoucherController extends BaseController
 		return view('client/details',$data);
 	}
 	
+	public function add_cate (Request $request)
+	{
+		//$record = Category::find($id);
+		$data = $request->_data;
+		// print_r($data);
+		// die();
+		
+		foreach($data as $key=>$val)
+		{
+			//$insdata[$val['name']] = $val['value'];
+			//print_r($insdata[$val['name']]);
+			$insdata[$val['name']] = $val['value'];
+			//$insdata['parent_id'] = $val['value'];
+			// if ($val['name'] == 'system_category[]') {
+			// 	$arr_system_category[] = $val['value'];
+			// }
+		}
+		
+		try {
+			DB::table('category')->insert($insdata);
+			 return response()->json(['success' => true]);
+		}  catch (\Exception $ex) {
+			 //dd($ex);
+			 return response()->json(['success' => false]);
+		}
+	}
+
+public function add_subcate (Request $request)
+{
+	//$record = Category::find($id);
+	$data = $request->_data;
+	// print_r($data);
+	// die();
 	
+	foreach($data as $key=>$val)
+	{
+		//$insdata[$val['name']] = $val['value'];
+		//print_r($insdata[$val['name']]);
+		$insdata[$val['name']] = $val['value'];
+		//$insdata['parent_id'] = $val['value'];
+		// if ($val['name'] == 'system_category[]') {
+		// 	$arr_system_category[] = $val['value'];
+		// }
+	}
 	
-	
+	try {
+		DB::table('category')->insert($insdata);
+		 return response()->json(['success' => true]);
+	}  catch (\Exception $ex) {
+		 //dd($ex);
+		 return response()->json(['success' => false]);
+	}
 }
+
+
+public function delete_category ($id)
+{
+	// $data = $request->_data;
+	// print();
+	$category = Voucher::delete_category_by_id($id);
+	
+	if ($category)
+	{
+		//@todo : check user bidding information & referral commision
+		Voucher::delete_category_by_id($id);
+		return 'true';
+	}
+	return 'false';
+}
+public function delete_subcategory ($id)
+{
+	// $data = $request->_data;
+	// print();
+	$category = Voucher::delete_subcategory_by_id($id);
+	
+	if ($category)
+	{
+		//@todo : check user bidding information & referral commision
+		Voucher::delete_subcategory_by_id($id);
+		return 'true';
+	}
+	return 'false';
+}
+
+public function update_category($id, Request $request)
+{
+	print_r($request->category);
+	$validator = $this->validate(
+		$request,
+		[
+			'category' => 'required|string',
+		]
+	);	
+	$data = [
+	'display_name' => $request->category];
+
+	Voucher::update_category_by_id($id,$data);
+	
+	return redirect()->back()->with('message', trans('dingsu.game_update_success_message'));
+	//return redirect()->route('gamelist')->with('status', ('dingsu.game_add_success_message'));
+}
+}
+
+

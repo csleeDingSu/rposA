@@ -111,6 +111,7 @@ return [
 	'level_update_success_message' => '成功更新级别',
 	'categories' => '类别',
 	'block' => '封锁',
+	'featured' => '精选',
 	'is_support_multiplayer' => '支持多人游戏',
 	'is_support_tournament' => '支持比赛',
 	'is_track_user' => '跟踪用户',
@@ -130,8 +131,13 @@ return [
 	'desktop' => 'Desktop',
 	'mobile_default_image_url' => 'Mobile Default Image URL',
 	'desktop_default_image_url' => 'Desktop Default Image URL',
-	'' => '',
-	
+	//setting
+	'category_setting' => '类别设定',
+	'sub_category' => '子类别',
+	'number' => '号',
+	'voucher_category' => '优惠卷类别',
+	'sub_cate' => '子类别',
+	'search' => '搜索',
 	
 	
 	//messages

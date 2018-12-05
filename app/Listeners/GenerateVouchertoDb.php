@@ -8,6 +8,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Storage;
 
 use App\Voucher;
+use App\Voucher_category;
+use Carbon\Carbon;
 use Excel;
 use DB;
 class GenerateVouchertoDb
@@ -30,6 +32,8 @@ class GenerateVouchertoDb
      */
     public function handle(GenerateVoucher $event)
     {
+		$categories= Voucher::get_category();
+
         ini_set('memory_limit', '4024M');
 		ini_set('max_execution_time', 900);
 		
@@ -38,6 +42,7 @@ class GenerateVouchertoDb
 		$queuet   = Voucher::QueuedList($filename)->toArray();
 		$systitle = Voucher::get_csvtitle()->toArray();
 		
+		$now = Carbon::now()->toDateTimeString();
 		$cfile = array();
 		$flist = $queuet;
 		foreach ($systitle as $key=>$filecolumn)
@@ -60,6 +65,8 @@ class GenerateVouchertoDb
 		$filename = $filename.'.xls';
 		$path = 'uploads/excel/'.$filename;
 		$url = Storage::url($path);
+
+		$array_data = [];
 		
 		$data = Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
 		
@@ -84,20 +91,89 @@ class GenerateVouchertoDb
 							
 							$insdata[$re_field] = $val[$mva];
 							$insdata['source_file'] = $filename;
+
+
+							if ($re_field == 'product_category')
+							{
+								
+								$_data= explode("/", $insdata['product_category']);
+								
+								
+									if(empty($kk[$i])){
+										foreach($_data as $key=> $item){
+											$get_data = self::sort_voucher($item, $categories);
+											// if(!empty($get_data)){
+											$array_data[]=$get_data;
+											// print_r("123");
+											// }
+											//print_r($array_data);
+											//print_r($array_data);
+											//  print_r("check1");
+											//  
+										}
+									$kk[$i] = $array_data;
+									unset($array_data);
+								}
+								
+								
+							}
+
 						}
+						
 						$m++;
 					}
-				}				
+				}	
+			
+
 				if (!empty($insdata))
 				{
 					$dbc[$i] = $insdata;
 				}
 				$i++;
 			}
-			foreach (array_chunk($dbc,800) as $t) {
-			   DB::table('unreleased_vouchers')->insert($t);
+			foreach ($dbc as $key=> $t) {
+
+			   $id = DB::table('unreleased_vouchers')->insertGetId($t);
+
+			   foreach($kk[$key] as $key=>$val)
+				{
+					$catedata['unr_voucher_id']  = $id; 
+
+					$catedata['category']  = $val; 
+					$catedata['updated_at']  = $now; 
+					$catedata['created_at']  = $now; 
+					DB::table('voucher_category')->insert($catedata);
+				}
 			}
 		}
 		else { die('File Missing/No excel rows to process'); }
-    }
+	}
+	
+
+
+	private function sort_voucher($gencate, $categories)
+	{
+
+				foreach($categories as $key=> $cate){
+					$category= '';
+
+					if($gencate == $cate->display_name){
+						$category= $cate->parent_id;
+						// echo 'GC--'.$gencate;
+						// echo 'DN---'.$cate->display_name;
+						// echo '<br><br>';
+						// echo 'PI---'.$cate->parent_id;
+						// echo '<br><br>';
+						//  echo '--YES';
+						return $category;
+					// }
+					}else{
+						$category= '';
+					}
+				}
+		return $category;
+	}
+
+
+
 }

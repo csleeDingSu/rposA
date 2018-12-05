@@ -1,3 +1,11 @@
+<div class="clearfix">&nbsp;</div>
+<section class="filter">
+	@include('voucher.filter')
+</section>
+
+
+
+
 <link rel="stylesheet" href=" {{ asset('staradmin/css/voucher.css') }}">
 		<div class="row">
 			<div class="col-md-6">
@@ -149,20 +157,20 @@
 					<div class="row">
 						
 						<div class="col-md-6">
-						<div class="form-group row">
-							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
-							<div class="col-sm-9">
-								
-								<select class="form-control" name="system_category" id="system_category">
-								 
-								</select>
+							<div class="form-group row">
+								<label for="system_category" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+										
+									@foreach ($category as $cate) 
+									<input type="checkbox" id="system_category[{{$cate->id}}]" name="system_category[]" value="{{$cate->id}}" />{{$cate->display_name}}
+									@endforeach
+								</div>
 							</div>
 						</div>
-					</div>
-						
-						
-					</div>
 
+						
+						
+					</div>
 
 					@foreach($sys_title->chunk(2) as $items)
 					<div class="row">
@@ -201,6 +209,74 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
 
 <script language='javascript' >
+
+
+
+//-------------Save tag category --------------------------------
+function save_tag()
+{
+	var datav =  $("#productdisplayform").serializeArray();
+	var datat =  $("#voucher_tag").serializeArray();
+	var id    =  $("#hidden_void").val();
+	swal( {
+		title: '@lang("dingsu.edit_confirmation")',
+		text: '@lang("dingsu.edit_conf_text")',
+		icon: "warning",
+		closeModal: false,
+		buttons: [
+			'@lang("dingsu.cancel")',
+			'@lang("dingsu.update")'
+		],
+
+		allowOutsideClick: false,
+		closeOnEsc: false,
+		allowEnterKey: false
+
+	} ).then(
+		function ( preConfirm ) {
+			if ( preConfirm ) {
+				swal( {
+					title: '@lang("dingsu.please_wait")',
+					text: '@lang("dingsu.updating_data")..',
+					allowOutsideClick: false,
+					closeOnEsc: false,
+					allowEnterKey: false,
+					buttons: false,
+					onOpen: () => {
+						swal.showLoading()
+					}
+				} )
+				$.ajax( {
+					url: "{{route('ajaxupdateunrvouchertag')}}",
+					type: 'post',
+					dataType: "json",
+					data: {
+						_method: 'post',
+						_token: "{{ csrf_token() }}",
+						_data: datav,
+						_datat: datat,
+						
+					},
+					success: function ( result ) {
+						if ( result.success != true ) {
+							swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+						} else {
+							swal( "Done!", '@lang("dingsu.voucher_update_success_message")', "success" );
+							$('#editvouchermode').modal('hide');
+
+						}
+					},
+					error: function ( xhr, ajaxOptions, thrownError ) {
+						swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
+					}
+				} );
+			}
+		} );
+}
+
+
+
+
 function Update_voucher()
 {
 	
@@ -263,6 +339,8 @@ function Update_voucher()
 	$(document).ready(function() {
 		$('.openeditmodel').click(function() {
 			var id=$(this).data('id');
+
+			$('#formupdatevoucher')[0].reset();
 			swal( {
 				title: '@lang("dingsu.please_wait")',
 				text: '@lang("dingsu.fetching_data")..',
@@ -286,7 +364,32 @@ function Update_voucher()
 					if ( result.success == true ) {
 						
 						var data = result.record;
+						var data_tagcategory = result.tagcategory;
+						console.log(data);
+						console.log(data_tagcategory);
 						var vcategory = null;
+						
+						$("input[name='system_category[]']").each( function () {
+							cposition = $(this).val();
+							$.each( data_tagcategory, function( key, value ) {
+							tags= value.category;
+
+							if (document.getElementById('system_category[' + cposition + ']').checked== true)
+								{
+									console.log('true'+'system_category[' + cposition + ']');
+									console.log(tags);
+								}
+
+							if (tags == cposition) {
+								document.getElementById('system_category[' + cposition + ']').checked = true;		
+								// console.log('true');						
+							} else if (tags != cposition && document.getElementById('system_category[' + cposition + ']').checked== false){
+								document.getElementById('system_category[' + cposition + ']').checked = false;	
+								// console.log('unchecked');
+							}	
+						});
+						
+					});
 						
 						@foreach($sys_title as $items)
 						var ifv = '{{$items->title}}';
@@ -656,4 +759,66 @@ function Update_voucher()
 					error: function () {}
 				} );
 			} );
+
+			$( function () {
+
+
+			$( ".filter" ).on( "click", ".search", function ( e ) {
+				e.preventDefault();
+				getdatalist( '' );
+
+			} );
+
+			$( ".filter" ).on( "click", "#reset_search", function ( e ) {
+				e.preventDefault();
+				$( '#searchform' )[ 0 ].reset();
+				getdatalist( '' );
+			} );
+
+
+			$( 'body' ).on( 'click', '.pagination a', function ( e ) {
+				e.preventDefault();
+				var url = $( this ).attr( 'href' );
+				getdatalist( url );
+
+			} );
+
+
+
+			function getdatalist( url ) {
+				if ( !url ) {
+					var url = "{{route('unreleasedvoucherlist')}}";
+				}
+				window.history.pushState( "", "", url );
+
+				swal( {
+					title: '@lang("dingsu.please_wait")',
+
+					text: '@lang("dingsu.updating_data")..',
+					allowOutsideClick: false,
+					closeOnEsc: false,
+					allowEnterKey: false,
+					buttons: false,
+					onOpen: () => {
+						swal.showLoading()
+					}
+				} )
+
+				$.ajax( {
+					url: url,
+					data: {
+						_method: 'get',
+						_token: "{{ csrf_token() }}",
+						_data: $( "#searchform" ).serialize()
+					},
+				} ).done( function ( data ) {
+					$( '.datalist' ).html( data );
+					swal.close();
+				} ).fail( function () {
+					alert( 'datalist could not be loaded.' );
+					swal.close();
+				} );
+			}
+			} );
+
 		</script>

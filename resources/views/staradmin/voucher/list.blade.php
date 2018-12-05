@@ -1,102 +1,19 @@
-<link rel="stylesheet" href=" {{ asset('staradmin/css/voucher.css') }}">
+<div class="clearfix">&nbsp;</div>
+<section class="filter">
+	@include('voucher.filter')
+</section>
 
-
-		{!! $result->render() !!}
-<div class="row">
-	<!--
-<div class="card">
-<div class="card-body">-->
-	<div class=" col-md-7">
-		<p class="card-description display-4" id="">
-			<span class="duplicatefinder" id="duplicatefinder"></span>
-			<a onClick="RemoveDuplicatevoucher()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-danger btnduplicate" id="btnduplicate">{{ trans('dingsu.remove') }} @lang('dingsu.duplicate')</a>
-		</p>
-	</div>
-	<div class=" col-md-5 ">
-
-		<div class="form-group row">
-			<div class="col">
-				<div class=" form-check form-check-flat">
-					<label for="checkall" class="form-check-label">
-                                <input class="form-check-input " type="checkbox" name="checkall" id="checkall" onClick="return Checkall();"> @lang('dingsu.check_all')</label>
-				</div>
-			</div>
-			<div class="col">
-				<select class="form-control" name="product_action" id="product_action">
-					<option value="0">@lang('dingsu.default_select')</option>
-					
-					<option value="delete">@lang('dingsu.delete')</option>
-					
-				</select>
-			</div>
-			<div class="col">
-				<a onClick="ProductAction()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-success btnsubmit" id="btnsubmit">@lang('dingsu.submit')</a>
-			</div>
-		</div>
-
-
-		<!--
-</div>
-</div>-->
-	</div>
-</div>
-
-
-		<form action="" name="productdisplayform" id="productdisplayform">
-
-
-			<ul class="row list-unstyled productlist" id="productlist">
-				@foreach($result as $item)
-				
-				<li class="divprolist_{{$item->id}} col-md-2 row is-flex justify-content-around mr-md-2 mt-2" id="divprolist_{{$item->id}}" >
-					
-					<div class="d-flex justify-content-around">
-					
-					<div class="prolist_{{$item->id}} card " >
-						<div class="card-body" onclick="CheckorUncheck('{{$item->id}}')">
-							<input type="hidden" class="prc_{{$item->id}}" data-id="prc_{{$item->id}}" name="{{$item->id}}" id="prc[]" value="{{$item->id}}">
-							
-							<div class="price-off">{{$item->product_price}} $</div>
-						<img class="zoom card-img-top img-fluid" src="{{$item->product_picurl}}" alt="{{$item->product_name}}">
-							<h5 class="card-title mt-0">{{$item->product_name}}</h5>
-							<p class="card-text mt-0">{{$item->product_category}}</p>
-							<p class="card-text mt-0">{{$item->seller_name}}</p>							
-						</div>
-						
-						<div class="card-body border-top pt-1 mt-auto d-flex align-items-end ">
-							<div class="btn-toolbar">
-							<button type="button" data-id="{{$item->id}}" id="{{$item->id}}" class="btn btn-inverse-info openeditmodel  ">@lang('dingsu.edit')</button>&nbsp;
-							<button type="button" onClick="return Deletevoucher({{$item->id}});return false;" class="btn btn-inverse-danger  ">@lang('dingsu.delete')</button>
-							</div>
-						</div>
-							
-					</div>
-					</div>
-				</li>
-				@endforeach
-			</ul>
-		</form>
-		{!! $result->render() !!}
-
-@unless (count($result))    
-	@include ('common.norecord')
-@endunless
-
-		<!--
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
-
--->
+<section class="datalist">
+	@include('voucher.ajaxlist')
+</section>
 
 
 <!-- Modal starts -->
 <form class="form-sample" name="formupdatevoucher" id="formupdatevoucher" action="" method="post" autocomplete="on" >
+
 <div class="modal fade" id="editvouchermode" tabindex="-1" role="dialog" aria-labelledby="editvouchermodelabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
-
-			
 
 				<div class="modal-header">
 					<h5 class="modal-title" id="editvouchermodelabel">@lang('dingsu.edit') @lang('dingsu.voucher')</h5>
@@ -116,16 +33,17 @@
 					<div class="row">
 						
 						<div class="col-md-6">
-						<div class="form-group row">
-							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
-							<div class="col-sm-9">
-								
-								<select class="form-control" name="system_category" id="system_category">
-								 
-								</select>
+							<div class="form-group row">
+								<label for="system_category" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+										
+									@foreach ($category as $cate) 
+									<input type="checkbox" id="system_category[{{$cate->id}}]" name="system_category[]" value="{{$cate->id}}" />{{$cate->display_name}}
+									@endforeach
+								</div>
 							</div>
 						</div>
-					</div>
+
 						
 						
 					</div>
@@ -137,7 +55,6 @@
 						<div class="form-group row">
 							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.'.$item->title) <span class="text-danger">*</span></label>
 							<div class="col-sm-9">
-								
 								<input id="sys_inp_{{$item->title}}" name="{{$item->title}}" class="form-control" type="text" value="">
 							</div>
 						</div>
@@ -157,10 +74,10 @@
 				</div>
 				<input type="hidden" name="hidden_void" id="hidden_void" value="">
 			
+			</div>
 		</div>
 	</div>
-</div>
-	</form> 
+</form> 
 <!-- Modal Ends -->
 
 
@@ -229,8 +146,11 @@ function Update_voucher()
 }
 			
 $(document).ready(function() {
-		$('.openeditmodel').click(function() {
+	$( 'body' ).on( 'click', '.openeditmodel', function ( e ) {
+		//$('.openeditmodel').click(function() {
 			var id=$(this).data('id');
+			
+			$('#formupdatevoucher')[0].reset();
 			swal( {
 				title: '@lang("dingsu.please_wait")',
 				text: '@lang("dingsu.fetching_data")..',
@@ -254,22 +174,63 @@ $(document).ready(function() {
 					if ( result.success == true ) {
 						
 						var data = result.record;
+						var data_tagcategory = result.tagcategory;
+						console.log(data);
+						console.log(data_tagcategory);
 						var vcategory = null;
+						
+						$("input[name='system_category[]']").each( function () {
+							cposition = $(this).val();
+							$.each( data_tagcategory, function( key, value ) {
+							tags= value.category;
+
+							if (document.getElementById('system_category[' + cposition + ']').checked== true)
+								{
+									console.log('true'+'system_category[' + cposition + ']');
+									console.log(tags);
+								}
+
+							if (tags == cposition) {
+								document.getElementById('system_category[' + cposition + ']').checked = true;		
+								// console.log('true');						
+							} else if (tags != cposition && document.getElementById('system_category[' + cposition + ']').checked== false){
+								document.getElementById('system_category[' + cposition + ']').checked = false;	
+								// console.log('unchecked');
+							}	
+						});
+						
+					});
+
+										
+					
 						
 						@foreach($sys_title as $items)
 						var ifv = '{{$items->title}}';
 							$('#sys_inp_'+ifv).val(data.{{$items->title}});
 						
-							if (ifv == 'product_category')
-							{
-								console.log(ifv);
-								console.log(data.category);								
-								var vcategory = data.category;
-							}
+
 						
+							// if (ifv == 'product_category')
+							// {
+
+							// 	console.log(ifv);
+							// 	console.log(data.category);								
+							// 	var vcategory = data.category;
+								
+							// }
+							
 						@endforeach 
-						var category = result.syscategory;
 						
+
+
+						var tag = result.tagcategory;
+						//if( tag['category'==])
+						var category = result.syscategory;
+						//var tags= tag['category'];
+						var categories= category['position'];
+						
+
+
 						 $('#system_category')
 							  .find('option')
 							  .remove()
@@ -281,7 +242,7 @@ $(document).ready(function() {
 							  .text(value.display_name));
 						});
 						
-						$("#system_category").val(vcategory);
+						//$("#system_category").val(vcategory);
 					
 						$('#hidden_void').val(id);
 						swal.close();
@@ -403,6 +364,72 @@ $(document).ready(function() {
 			}
 
 
+//-------------Save tag category --------------------------------
+function save_tag()
+{
+	var datav =  $("#productdisplayform").serializeArray();
+	var datat =  $("#voucher_tag").serializeArray();
+	var id    =  $("#hidden_void").val();
+	swal( {
+		title: '@lang("dingsu.edit_confirmation")',
+		text: '@lang("dingsu.edit_conf_text")',
+		icon: "warning",
+		closeModal: false,
+		buttons: [
+			'@lang("dingsu.cancel")',
+			'@lang("dingsu.update")'
+		],
+
+		allowOutsideClick: false,
+		closeOnEsc: false,
+		allowEnterKey: false
+
+	} ).then(
+		function ( preConfirm ) {
+			if ( preConfirm ) {
+				swal( {
+					title: '@lang("dingsu.please_wait")',
+					text: '@lang("dingsu.updating_data")..',
+					allowOutsideClick: false,
+					closeOnEsc: false,
+					allowEnterKey: false,
+					buttons: false,
+					onOpen: () => {
+						swal.showLoading()
+					}
+				} )
+				$.ajax( {
+					url: "{{route('ajaxupdatevouchertag')}}",
+					type: 'post',
+					dataType: "json",
+					data: {
+						_method: 'post',
+						_token: "{{ csrf_token() }}",
+						_data: datav,
+						_datat: datat,
+						
+					},
+					success: function ( result ) {
+						if ( result.success != true ) {
+							$('#voucher_tag')[0].reset();
+							swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+						} else {
+							swal( "Done!", '@lang("dingsu.voucher_update_success_message")', "success" );
+							$('#editvouchermode').modal('hide');
+
+						}
+					},
+					error: function ( xhr, ajaxOptions, thrownError ) {
+						swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
+					}
+				} );
+			}
+		} );
+}
+
+//---------------------------------------------------
+
+
 			function Deletevoucher( id ) {
 
 
@@ -468,11 +495,6 @@ $(document).ready(function() {
 					} );
 
 			}
-
-
-
-
-
 			function RemoveDuplicatevoucher() {
 				swal( {
 					title: '@lang("dingsu.delete_confirmation")',
@@ -541,4 +563,65 @@ $(document).ready(function() {
 					error: function () {}
 				} );
 			} );
-		</script>
+
+
+			
+	$( function () {
+
+
+$( ".filter" ).on( "click", ".search", function ( e ) {
+	e.preventDefault();
+	getdatalist( '' );
+
+} );
+
+$( ".filter" ).on( "click", "#reset_search", function ( e ) {
+	e.preventDefault();
+	$( '#searchform' )[ 0 ].reset();
+	getdatalist( '' );
+} );
+
+
+$( 'body' ).on( 'click', '.pagination a', function ( e ) {
+	e.preventDefault();
+	var url = $( this ).attr( 'href' );
+	getdatalist( url );
+
+} );
+
+function getdatalist( url ) {
+	if ( !url ) {
+		var url = "{{route('voucher.list')}}";
+	}
+	window.history.pushState( "", "", url );
+
+	swal( {
+		title: '@lang("dingsu.please_wait")',
+
+		text: '@lang("dingsu.updating_data")..',
+		allowOutsideClick: false,
+		closeOnEsc: false,
+		allowEnterKey: false,
+		buttons: false,
+		onOpen: () => {
+			swal.showLoading()
+		}
+	} )
+
+	$.ajax( {
+		url: url,
+		data: {
+			_method: 'get',
+			_token: "{{ csrf_token() }}",
+			_data: $( "#searchform" ).serialize()
+		},
+	} ).done( function ( data ) {
+		$( '.datalist' ).html( data );
+		swal.close();
+	} ).fail( function () {
+		alert( 'datalist could not be loaded.' );
+		swal.close();
+	} );
+}
+} );
+</script>
