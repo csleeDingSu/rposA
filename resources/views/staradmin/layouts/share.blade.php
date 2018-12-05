@@ -7,8 +7,8 @@
         <title>{{env('APP_NAME')}} - @yield('title')</title>
 		
 		@section('top-css')
-			<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.min.css"/>
+			<link href="{{ asset('/client/css/bootstrap.min.css') }}" rel="stylesheet">
+			<link rel="stylesheet" href="{{ asset('/client/css/sweetalert2.min.css') }}"/>
         
         <link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 			<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
@@ -42,9 +42,9 @@
 			
 
         
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{{ asset('/client/js/clipboard.min.js') }}"></script>
+<script src="{{ asset('/client/js/sweetalert2.all.min.js') }}"></script>
+			<script src="{{ asset('/client/js/bootstrap.min.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
         
         
