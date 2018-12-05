@@ -100,9 +100,9 @@
 
 				@if($cid == 1)
 					
-					<div class="banners">
+					<div class="banner">
 
-						<img data-lazy="https://wabao666.com/ad/banner/1543910501.png">
+						<img data-lazy="{{ asset('/test/main/images/demo/banner.png') }}">
 						
 <!--
 						{{-- @if(isset($banner)) --}}					
