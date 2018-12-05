@@ -165,7 +165,9 @@ function initUser(token){
 }
 
 function initGame(token){
-    $( '.btn-reset-life', window.parent.document ).off( "click" );
+    $( '.btn-reset-life', window.parent.document ).unbind( "click" );
+    $( '.btn-reset-life-continue', window.parent.document ).unbind( "click" );
+    
     var user_id = $('#hidUserId', window.parent.document).val();
     trigger = false;
     
