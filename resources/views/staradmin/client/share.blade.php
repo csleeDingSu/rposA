@@ -245,9 +245,6 @@ imagedestroy( $image );
         text-align: center;
       }
 
-      .box-horizontal {
-        padding: 0 10 10 20; !important;
-      }
        
     </style>
 
@@ -372,7 +369,7 @@ imagedestroy( $image );
 
 
 
-    <div class="container9 center " style="background-color: #ffff;">
+    <div class="container9 center" style="background-color: #ffff; padding-bottom: 25px !important;">
 
         <div class="box box-horizontal">
             <div class="parent">
