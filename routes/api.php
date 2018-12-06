@@ -74,4 +74,8 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
     Route::post('change-game-notification', 'GameController@change_game_notification')->name('change.game.notification');
     Route::get('get-game-notification', 'GameController@get_game_notification')->name('get.game.notification');
 	
+	Route::post('/request-vip-upgrade', 'ProductController@request_vip')->name('api.vip.request');
+		
+	Route::post('/redeem-vip', 'ProductController@redeem_vip')->name('api.vip.redeem');	
+	
  });	

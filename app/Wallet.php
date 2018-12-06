@@ -29,7 +29,7 @@ class Wallet extends Model
 		if (!empty($memberid))
 		{
 			
-			return $result = DB::table('mainledger')->select('current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet'
+			return $result = DB::table('mainledger')->select('current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
 			//,'current_life_acupoint as acupoint'
 			, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint end) as acupoint')
 			)->where('member_id', $memberid)->latest()->first();
@@ -47,6 +47,72 @@ class Wallet extends Model
 			return $result = DB::table('mainledger')->where('member_id', $memberid)->latest()->first();
 		}
 		return $result;
+	}
+	
+	public static function update_vip_wallet($memberid,$life = 0,$point = 0,$category = 'VIP',$notes = FALSE)
+	{
+		$wallet    = self::get_wallet_details_all($memberid);
+		if ($wallet)
+		{
+			$now = Carbon::now();
+			if ($life > 0)
+			{
+				$newlife = $wallet->vip_life + $life;
+				$history = [
+					'created_at' 	   => $now,
+					'updated_at' 	   => $now,
+					'member_id'        => $memberid,
+					'credit'	       => '0',
+					'debit'	           => '0',
+					'before_vip_life'  => $wallet->vip_life,
+					'current_vip_life' => $newlife,
+					
+					'notes'            => $life.' VIP LIFE ADDED '.$notes,
+					'credit_type'	   => $category,
+					];
+
+				$data = [ 
+					'updated_at'    => $now,
+					'vip_life'  => $newlife,
+				];
+				
+				$ledger  = DB::table('mainledger')
+					   ->where('member_id', $memberid)
+					   ->update($data);
+
+				$history = self::add_ledger_history($history);
+			}
+
+			if ($point > 0)
+			{
+				$newpoint = $wallet->vip_point + $point;
+				$history = [
+					'created_at' 	    => $now,
+					'updated_at' 	    => $now,
+					'member_id'         => $memberid,
+					'credit'	        => '0',
+					'debit'	            => '0',
+					'before_vip_point'  => $wallet->vip_point,
+					'current_vip_point' => $newpoint,
+					'notes'             => $point.' VIP POINTS ADDED '.$notes,
+					'credit_type'	    => $category,
+					];
+
+				$data = [ 
+					'updated_at'   => $now,
+					'vip_point'    => $newpoint,
+				];
+				
+				$ledger  = DB::table('mainledger')
+					   ->where('member_id', $memberid)
+					   ->update($data);
+
+				$history = self::add_ledger_history($history);
+			}
+			
+			return ['success'=>true,'life'=>$newlife];
+		}
+		return ['success'=>false,'message'=>'unknown record'];
 	}
 	
 	public static function update_ledger_life($memberid,$new_life,$category = 'LFE',$notes = FALSE)

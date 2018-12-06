@@ -10,6 +10,7 @@ use Validator;
 use Carbon\Carbon;
 use App\Wallet;
 use App\Product;
+use App\Package;
 class ProductController extends Controller
 {
    
@@ -30,7 +31,9 @@ class ProductController extends Controller
 		if ($wallet)
 		{
 			$result =  Product::list_available_redeem_product($wallet->point, 1);
-			return response()->json(['success' => true, 'current_point'=>$wallet->point , 'records' => $result]);
+			$package =  Package::list_available_redeem_package($wallet->point);
+			
+			return response()->json(['success' => true, 'current_point'=>$wallet->point , 'records' => $result, 'packages' => $package]);
 		}
 		return response()->json(['success' => false, 'records' => '']);
 	}
@@ -58,7 +61,10 @@ class ProductController extends Controller
 			}
 			return $value;
 		});		
-		return response()->json(['success' => true, 'records' => $result]);
+		$package    = Package::get_vip_list($member_id); 
+		
+		
+		return response()->json(['success' => true, 'records' => $result, 'package' => $package]);
 	}
 	
 	
@@ -135,6 +141,93 @@ class ProductController extends Controller
 		
     }
 	
+	
+	//package
+	public function request_vip(Request $request)
+    {
+		$memberid  = $request->memberid;
 		
+		$packageid = $request->packageid;		
+		
+		$input = [
+			 'memberid'  => $request->memberid,
+			 'packageid' => $request->packageid,			
+			  ];
+		$validator = Validator::make($input, 
+			[
+				'memberid' => 'required',
+				'packageid' => 'required'
+			]
+		);
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$wallet    = Wallet::get_wallet_details($memberid);
+		
+		$package   = Package::get_package($packageid);
+		
+		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);
+		
+		
+		if ($package->min_point <= $wallet->point)
+		{
+			$now = Carbon::now();
+			
+			$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint];
+						
+			Wallet::update_ledger($memberid,'debit',$package->min_point,'PNT',$package->min_point.' Point reserved for VIP package');
+			
+			Package::save_vip_package($data);
+			
+			return response()->json(['success' => true, 'message' => 'success']);
+		}
+		
+		return response()->json(['success' => false, 'message' => 'insufficient point']);
+	}
+	
+	
+	public function redeem_vip(Request $request)
+    {
+		$packageid = $request->packageid;	
+		$memberid  = $request->memberid;
+		$passcode  = $request->passcode;
+		
+		$input = [
+			 'memberid'  => $memberid,
+			 'packageid' => $packageid,	
+			 'passcode'  => $passcode,
+			  ];
+		$validator = Validator::make($input, 
+			[
+				'memberid'  => 'required',
+				'packageid' => 'required',
+				'passcode'  => 'required'
+			]
+		);
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$package   = Package::get_redeem_package($packageid, $memberid );
+		
+		if ($package)
+		{
+			if ($passcode === $package->passcode)
+			{
+				Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'VIP','');
+				
+				$now = Carbon::now();
+				$data = ['redeem_state'=>3,'redeemed_at'=>$now];
+						
+				Package::update_vip($package->id, $data);
+				
+				return response()->json(['success' => true, 'message' => '']);
+			}
+			return response()->json(['success' => false, 'message' => 'wrong redeem code']);
+		}
+		
+		return response()->json(['success' => false, 'message' => 'unknown vip package / user not authorise to use this package']);
+	}	
 	
 }

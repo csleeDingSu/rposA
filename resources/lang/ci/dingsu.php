@@ -408,4 +408,27 @@ return [
 
     'share' => '分享',
 	'copy' => '复制',
+	
+	'report' => 'report',
+	'credit_type' => 'Credit type',
+	'redeem_life' => 'Redeem life',
+	'redeem_product' => 'Redeem product',
+	'before_balance' => 'Balance before',
+	'after_balance' => 'Balance after',
+	
+	'debit' => 'debit',
+	'credit_type_BAL' => 'Balance Credit',
+	'credit_type_BAL_REDEEM' => 'balance redeemed',
+	'credit_type_CRD_REDEEM' => 'CRD redeemed',
+	'credit_type_LFE' => 'Life',
+	'credit_type_PNT' => 'point',
+	'credit_type_PNT_REDEEM' => 'point redeemed',
+	'credit_type_UNK' => 'unknown',
+	'point_report' => 'Ledger report',
+	'package' => 'Package',
+	'new_package_success_message' => 'Package added successfully',
+	'package_added_success_msg' => 'Package added successfully',
+	'package_update_success_msg' => 'Package successfully Updated',
+	'vip' => 'Vip',
+	'point' => 'point',
 ];

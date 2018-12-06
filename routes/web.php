@@ -315,6 +315,21 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::post('/admin/edit-banner', 'AdminController@editbanner')->name('banner.edit');
 	Route::delete('/admin/delete-banner', 'AdminController@delete_banner')->name('banner.remove');		
 	Route::delete( '/banner/remove-image', 'AdminController@delete_banner_image' )->name( 'banner.remove.image' );
+	
+	//Package	
+	Route::get('/package/', 'ProductController@list_package')->name('package.list.all');
+	Route::get('/package/list', 'ProductController@list_package')->name('package.list');	
+	Route::post('/package/add', 'ProductController@save_package')->name('package.save');
+	Route::get('/package/get-package', 'ProductController@getpackage')->name('package.get');	
+	Route::delete('/package/delete', 'ProductController@delete_package')->name('package.remove');
+	
+	//Vip redeem list	
+	Route::get('/package/redeem-list', 'ProductController@list_redeem_package')->name('package.redeem.list');
+	Route::get('/package/redeem-history', 'ProductController@list_redeem_history')->name('package.redeem.history');
+	
+	
+	Route::post('/package/confirm-vip', 'ProductController@confirm_vip')->name('package.redeem.confirm');	
+	Route::post('/package/reject-vip', 'ProductController@reject_vip')->name('package.redeem.reject');
 } );
 //END
 

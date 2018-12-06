@@ -129,6 +129,30 @@
 				</ul>
 			</div>
 		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#uipackage" aria-expanded="false" aria-controls="uipackage">
+              <i class="menu-icon  icon-layers   text-info"></i>
+              <span class="menu-title"> @lang('dingsu.package')  @lang('dingsu.list')</span>
+              <i class="menu-arrow"></i>
+            </a>
+		
+			<div class="collapse" id="uipackage">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/package/list">@lang('dingsu.package')  @lang('dingsu.list')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/package/redeem-list">@lang('dingsu.vip')  @lang('dingsu.list')</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/package/redeem-history">@lang('dingsu.vip')  @lang('dingsu.history')</a>
+					</li>
+					
+				</ul>
+			</div>
+		</li>
 
 		<li class="nav-item">
 			<a class="nav-link" href="/product/product-new">

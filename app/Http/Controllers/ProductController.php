@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Wallet;
 use App\Product;
 use Carbon\Carbon;
-
+use App\Package;
 
 
 class ProductController extends BaseController
@@ -484,8 +484,278 @@ class ProductController extends BaseController
 	}
 	
 	
-	public function test()
+	/*** package ***/
+	public function list_package (Request $request)
+	{
+				
+		$result =  \DB::table('view_package');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_name'])) {
+				$result = $result->where('package_name','LIKE', "%{$input['s_name']}%") ;				
+			}						
+			if (isset($input['s_status'])) {
+				if ($input['s_status'] != '' )
+					$result = $result->where('package_status','=',$input['s_status']);
+			}
+		}		
+		$result         =  $result->orderby('created_at','DESC')->paginate(30);
+				
+		$data['page']   = 'package.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('package.ajaxlist', ['result' => $result])->render();  
+        }					
+		return view('main', $data);	
+	}
+	
+	public function updatepackage($input)
     {
+		$id = $input['hidden_void'];
+		
+		$validator = Validator::make($input, [
+			'package_name'   => 'required|string|min:2',
+			'min_point' => 'required|numeric',
+			'price' => 'numeric|between:0,99999.99',
+			'package_pic_url' => 'required',
+			'package_life' => 'sometimes|numeric|min:0',
+			'package_freepoint' => 'sometimes|numeric|min:0',
+		]);
+ 
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$now = Carbon::now();
+		$data = ['package_name' => $input['package_name'],'min_point' => $input['min_point'],'package_status' => $input['status'],'package_price' => $input['price'],'updated_at' => $now,'package_picurl' => $input['package_pic_url'],'package_description' => $input['package_description'], 'package_life' => $input['package_life'],
+				 'package_freepoint' => $input['package_freepoint'] ];
+		 
+		Package::update_package($id,$data);
+		$row = $this->render_package($id);
+		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$row]);
+	}
+	
+	public function save_package(Request $request)
+    {
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+		
+		if ($input['mode'] =='edit')
+		{
+			return $this->updatepackage($input);
+		}
+		
+		$validator = Validator::make($input, [
+			'package_name'   => 'required|string|min:2',
+			'min_point' => 'required|numeric',
+			'price' => 'numeric|between:0,99999.99',
+			'package_pic_url' => 'required',
+			'package_life' => 'sometimes|numeric|min:0',
+			'package_freepoint' => 'sometimes|numeric|min:0',
+		]);
+ 
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$now = Carbon::now();
+		$data = ['package_name' => $input['package_name'],
+				 'min_point' => $input['min_point'],
+				 'package_status' => $input['status'],
+				 'package_price' => $input['price'],
+				 'created_at' => $now,
+				 'package_picurl' => $input['package_pic_url'],
+				 'package_description' => $input['package_description'],
+				 'package_life' => $input['package_life'],
+				 'package_freepoint' => $input['package_freepoint'] 
+				];
+		 
+		$id = Package::save_package($data);
+		
+		$row = $this->render_package($id);
+		
+		
+		return response()->json(['success' => true, 'message' => trans('dingsu.new_package_success_message'),'record'=>$row]);
+	}
+	
+	public function getpackage(Request $request)
+	{
+		$id = $request->id;
+		$record = Package::get_package($id);
+		return response()->json(['success' => true, 'record' => $record]);
+	}
+	public function delete_package(Request $request)
+	{
+		$id = $request->id;
+		$record = Package::get_view_package($id);
+		if ($record)
+		{
+			if ($record->reserved_quantity)
+			{
+				return response()->json(['success' => false, 'message' => 'entitled with user']);
+			}
+			Package::delete_package($record->id);
+			return response()->json(['success' => true, 'record' => '']);
+		}
+		else{
+			return response()->json(['success' => false, 'message' => 'unknown package']);
+		}	
+	}
+	
+	public function render_package ($id)
+	{
+		$package = Package::get_package($id);
+		$row  = '<tr id=tr_'.$package->id.'>';
+		$row .= "<td>$package->id</td>";
+		$row .= "<td>$package->created_at</td>";			
+		$row .= '<td>'.$package->package_name.'</td>';
+		$row .= '<td>'.$package->package_price.'</td>';
+		$row .= '<td>'.$package->min_point.'</td>';
+		
+		switch ($package->package_status)
+			{
+				case '1':
+					$badge = "<label class='badge badge-success'>".trans('dingsu.active')."</label> ";
+				break;
+				case '2':
+					$badge = "<label class='badge badge-warning'>".trans('dingsu.inactive')."</label> ";
+				break;				
+					
+			}
+		$row .= "<td>$badge</td>";
+		
+		$row .= '<td><a href="javascript:void(0)" data-id="'.$package->id.'" class="editrow btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>
+									
+				<a href="javascript:void(0)" onClick="confirm_Delete('.$package->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a></td>';
+		$row .= '</tr>';
+		return $row;
+	}
+	
+	public function list_redeem_package(Request $request)
+    {
+		$result =  \DB::table('view_pending_vip');		
+		
+		$input = array();
+		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_package_name'])) {
+				$result = $result->where('package_name','LIKE', "%{$input['s_package_name']}%") ;				
+			}
+			if (!empty($input['s_username'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			}
+		}
+		
+		//DB::enableQueryLog();
+		
+		$result =  $result->orderby('id','DESC')->paginate(30);
+		
+		//$queries = DB::getQueryLog();
+		//print_r(DB::getQueryLog());
+		//print_r($queries);
+		
+		
+		//die();
+		$data['page'] = 'package.pendinglist.list'; 	
+				
+		$data['result'] = $result; 
+		
+		
+		 if ($request->ajax()) {
+            return view('package.pendinglist.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);
+	}
+	
+		
+	public function list_redeem_history(Request $request)
+    {
+		$result =  \DB::table('view_vip_list');		
+		
+		$input = array();
+		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_package_name'])) {
+				$result = $result->where('package_name','LIKE', "%{$input['s_package_name']}%") ;				
+			}
+			if (!empty($input['s_username'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			}
+		}
+		
+		$result =  $result->orderby('id','DESC')->paginate(30);
+		
+		$data['page'] = 'package.vip_history.list'; 	
+				
+		$data['result'] = $result; 
+		
+		
+		 if ($request->ajax()) {
+            return view('package.vip_history.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);
+	}
+	
+	
+	public function confirm_vip(Request $request)
+    {
+		$id = $request->id;
+		$record = Package::get_vip_package($id);
+		
+		if ($record)
+		{
+			$now = Carbon::now();
+			$passcode = unique_random('vip_redeemed','passcode',8);
+			$data = ['redeem_state'=>2,'confimed_at'=>$now,'passcode'=>$passcode];
+			Package::update_vip($record->id, $data);
+			return response()->json(['success' => true, 'message' => 'success']);
+		}
+		else{
+			return response()->json(['success' => false, 'message' => 'unknown product']);
+		}	
+	}
+	
+	public function reject_vip(Request $request)
+    {
+		//return false;
+		
+		$id = $request->id;
+		$record = Package::get_vip_package($id);
+		if ($record)
+		{
+			$now = Carbon::now();
+			$data = ['redeem_state'=>0,'confimed_at'=>$now];
+						
+			Wallet::update_ledger($record->member_id,'credit',$record->used_point,'PNT','vip package rejected,point refund to customer');
+			
+			Package::update_vip($record->id, $data);
+			
+			return response()->json(['success' => true, 'message' => 'success']);
+		}
+		else{
+			return response()->json(['success' => false, 'message' => 'unknown package']);
+		}	
 	}
 	
 }
