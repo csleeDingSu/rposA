@@ -374,7 +374,7 @@ body{
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto  100px;
+  grid-template-columns: auto  110px;
   height: 40px;
 }
 
@@ -394,6 +394,17 @@ body{
 	z-index: 100;
 	position: relative;
 	margin-left: 5px;
+}
+
+.btn-vip {
+	background: url('/client/images/game.png') no-repeat -1513px -718px;
+	width: 88px;
+	height: 81px;
+	transform: scale(0.3); 
+	-webkit-transform: scale(0.3);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: absolute;
 }
 
 .drumstick {
@@ -496,7 +507,7 @@ body{
 	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10%;
+	margin-top: 50%;
 }
 
 .modal-full-height {
@@ -515,7 +526,6 @@ body{
 	background: #4c89e2;
 	color: white;
 	text-align: center;
-	margin-top: 10%;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 	padding: 10px;
@@ -538,7 +548,7 @@ body{
 .modal-packet-wrapper {
 	width: 360px;
 	height: 390px;
-	top: 10%;
+	top: 20%;
 	margin: 0 auto;
 }
 
@@ -791,6 +801,7 @@ body{
 @media only screen and (max-width: 360px) {
 	.modal-content, .modal-title {
 		width: 270px;
+		margin-top: 40%;
 	}
 
 	.modal-card {
@@ -946,4 +957,135 @@ iframe {
 .rules-content {
 	color: #8c8c8c;
 	text-align: left;
+}
+
+/* VIP Modal */
+.vip-background {
+	background: url('/client/images/vip/bg.png') no-repeat;
+	webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    width: 320px;
+    height: 425px;
+}
+
+.vip-logo-wrapper {
+	width: 320px;
+	height: 20px;
+	position: relative;
+	text-align: center;
+}
+
+.vip-logo {
+  	position: absolute;
+    display: inline-block;
+    top: -16px;
+    margin-left: -16px;
+}
+
+.vip-title {
+	margin-bottom: 20px;
+}
+
+.vip-modal-card {
+	width: 280px;
+}
+
+.vip-card {
+	margin-bottom: 10px;
+	border-radius: 5px;
+	background: #fff;
+	height: 90px;
+	text-align: left;
+	padding: 10px 15px;
+}
+
+.img-vip {
+	float: left;
+	margin-top: 2px;
+	margin-right: 5px;
+}
+
+.vip-card-title, .normal-card-title {
+	font-size: 16px;
+	padding-bottom: 5px;
+	float: left;
+	color: #ff682c;
+}
+
+.vip-card-desc, .normal-card-desc {
+	font-size: 14px;
+	color: #f48122;
+}
+
+.normal-card-title {
+	color: #666666;
+}
+
+.normal-card-desc {
+	color: #999999;
+}
+
+.vip-info {
+	font-size: 16px;
+	color: #feef00;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.btn-vip-submit {
+	border-radius: 5px;
+	font-size: 20px;
+	color: white;
+	padding: 6px;
+	background-image: linear-gradient(#ffcc4e, #ff8624);
+}
+
+@media only screen and (max-width: 360px) {
+	.vip-background {
+		width: 260px;
+		height: 347px;
+	}
+
+	.vip-logo {
+	    margin-left: -50px;
+	}
+
+	.vip-modal-card {
+		width: 230px;
+	}
+
+	.vip-title {
+		width: 130px;
+		height: 24px;
+		margin-bottom: 15px;
+	}
+
+	.vip-card {
+		margin-bottom: 10px;
+		border-radius: 5px;
+		background: #fff;
+		height: 70px;
+		text-align: left;
+		padding: 5px 10px;
+	}
+
+	.vip-card-title, .normal-card-title {
+		font-size: 14px;
+	}
+
+	.vip-card-desc, .normal-card-desc {
+		font-size: 12px;
+	}
+
+	.vip-info {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		font-size: 14px;
+	}
+
+	.btn-vip-submit {
+		font-size: 16px;
+	}
 }

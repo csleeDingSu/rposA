@@ -339,7 +339,7 @@ html, body {
 	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10%;
+	margin-top: 50%;
 }
 
 .modal-full-height {
@@ -358,7 +358,6 @@ html, body {
 	background: #4c89e2;
 	color: white;
 	text-align: center;
-	margin-top: 10%;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 	padding: 10px;

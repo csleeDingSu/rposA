@@ -39,6 +39,7 @@
 			</div>
 
 			<div class="box">
+				<div class="btn-vip"></div>
 				<div class="btn-rules">规则介绍</div>
 				<div style="clear:both"></div>
 				<div class="rules-bubble blink">请看介绍</div>
@@ -433,6 +434,42 @@
 <!--  end -->
 
 
+<!-- VIP Modal -->
+
+	<div class="modal fade col-md-12 col-sm-10" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content vip-background">
+                <div class="vip-logo-wrapper">
+                	<img class="vip-logo" src="{{ asset('/client/images/vip/vip-big.png') }}" width="44" height="40" />
+                </div>
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card vip-modal-card">
+								<img class="vip-title" src="{{ asset('/client/images/vip/vip-title.png') }}" width="160" height="30" />
+								<div class="vip-card">
+									<img class="img-vip" src="{{ asset('/client/images/vip/v1.png') }}" width="20" height="17" /><div class="vip-card-title">VIP场的结算方式：</div>
+									<div style="clear: both;"></div>
+									<div class="vip-card-desc">原始积分1200可结算，挖宝无上限，想挖多少就挖多少。</div>
+								</div>
+								<div class="vip-card">
+									<img class="img-vip" src="{{ asset('/client/images/vip/v2.png') }}" width="20" height="17" /><div class="normal-card-title">普通场的结算方式：</div>
+									<div style="clear: both;"></div>
+									<div class="normal-card-desc">原始积分1200不可结算，最多可挖宝150，只能结算150挖宝币。</div>
+								</div>
+								<div class="vip-info">入场要求：消耗100元话费卷</div>
+								<div class="btn-vip-submit">提交话费卷</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
+
 
 @section('footer-javascript')
 	@parent
@@ -450,6 +487,10 @@
 			$('.btn-rules').click(function(){
 				$('#game-rules').modal('show');
 				$('.rules-bubble', window.parent.document).hide();
+			});
+
+			$('.btn-vip').click(function(){
+				$('#vip-modal').modal('show');
 			});
 
 			if(wechat_status > 0) {
