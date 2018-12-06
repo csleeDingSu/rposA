@@ -246,7 +246,7 @@ imagedestroy( $image );
       }
 
       .box-horizontal {
-        padding: 0 10 10 10; !important;
+        padding: 0 10 10 20; !important;
       }
        
     </style>
