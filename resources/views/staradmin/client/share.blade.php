@@ -244,6 +244,10 @@ imagedestroy( $image );
         line-height: 0.7rem;
         text-align: center;
       }
+
+      .box-horizontal {
+        padding: 0 10 10 10; !important;
+      }
        
     </style>
 
