@@ -4,7 +4,7 @@
 
 @section('top-css')
     @parent
-	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/client/css/member.css') }}" />
 @endsection
 
@@ -136,15 +136,15 @@
 					</li>
 				</a>
 
-				<a href="/customer_service">
-					<li class="list-group-item">
+				<!-- <a href="/customer_service"> -->
+					<li class="list-group-item" id="csBtn">
 						<div class="icon-wrapper">
 							<div class="icon-customer"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						联系客服
 					</li>
-				</a>
+				<!-- </a> -->
 
 				<a href = "/logout">
 					<li class="list-group-item">					
@@ -208,6 +208,40 @@
 		</div>
 	</div>
 <!-- Steps Modal Ends -->
+
+<!-- customer service modal -->
+	<div class="modal fade col-md-12" id="csModal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey; background: rgba(0,0,0,.5);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-title">
+				<h1>请加客服微信</h1>
+			</div>
+			<div class="modal-content modal-wechat">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="instructions">
+									客服微信在线时间：早上8点-晚上9点
+								</div>								
+							</div>
+							<div class="row">
+								<div id="cutCS" class="copyvoucher">WABAO666</div>
+								<div class="cutBtn" id = "cutBtnCS">一键复制</div>
+							</div>
+							<div class="modal-card">
+								<div class="instructions-dark">
+									请按复制按钮，复制成功后到微信添加。<br />
+									如复制不成功，请到微信手动输入添加。
+								</div>								
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- customer service modal Ends -->
+
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	
@@ -224,6 +258,13 @@
 					return document.querySelector('#cut');
 				}
 			});
+
+			var clipboard = new ClipboardJS('#cutBtnCS', {
+				target: function () {
+					return document.querySelector('#cutCS');
+				}
+			});
+
 			clipboard.on('success', function (e) {
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
@@ -231,6 +272,10 @@
 			clipboard.on('error', function (e) {
 				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+			});
+
+			$('#csBtn').click(function () {
+				$('#csModal').modal();
 			});
 	
 		});	
