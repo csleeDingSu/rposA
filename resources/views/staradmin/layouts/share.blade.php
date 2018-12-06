@@ -34,13 +34,15 @@
 
 			@include('layouts/footer')
 		</section>        
-		<script src="{{ asset('/client/js/clipboard.min.js') }}"></script>
+
+        
+        @section('footer-javascript')
+
+				<script src="{{ asset('/client/js/clipboard.min.js') }}"></script>
 		<script src="{{ asset('/client/js/sweetalert2.all.min.js') }}"></script>
 		<script src="{{ asset('/client/js/bootstrap.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-        
-        
-        @section('footer-javascript')
+
 		@show
         
         @yield('modelcontent')
