@@ -180,6 +180,7 @@ background-color: #e6e6e6;
    .btndiv 
     {
         max-width: 600px;
+        padding-bottom: 20px;
     }
     
     
@@ -363,7 +364,7 @@ color: inherit;
 
     .detail {
       /* 标准的语法 */
-      padding: 0.36rem 0.24rem 0.24rem;
+      padding: 0.24rem 0.24rem 0.24rem;
   }
 
   .detail h2 {
