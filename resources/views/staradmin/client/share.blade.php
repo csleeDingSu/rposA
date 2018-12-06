@@ -381,7 +381,7 @@ imagedestroy( $image );
                     </div>
                     
                     
-                    <?php echo '<img  class="small-img" id="copyurl"  src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
+                    <?php echo '<img  class="small-img" id="copyurl"  data-lazy="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
                 </div>
             </div>
         </div>
