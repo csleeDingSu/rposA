@@ -7,14 +7,15 @@
         <title>{{env('APP_NAME')}} - @yield('title')</title>
 		
 		@section('top-css')
+			
 			<link href="{{ asset('/client/css/bootstrap.min.css') }}" rel="stylesheet">
-			<link rel="stylesheet" href="{{ asset('/client/css/sweetalert2.min.css') }}"/>
+			<!-- <link rel="stylesheet" href="{{ asset('/client/css/sweetalert2.min.css') }}"/> -->
         
         <link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 			<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 			<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/client/css/default.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/client/css/footer.css') }}" />
+			<!-- <link rel="stylesheet" href="{{ asset('/client/css/default.css') }}" /> -->
+			<!-- <link rel="stylesheet" href="{{ asset('/client/css/footer.css') }}" /> -->
 			
 		@show
 		
@@ -23,8 +24,7 @@
 		@show
     </head>
     <body>
-        @section('top-navbar')
-            
+        @section('top-navbar')            
         @show
 
         <section class="cardFull card-flex">
@@ -33,20 +33,11 @@
 			</div>
 
 			@include('layouts/footer')
-		</section>
-        
-        
-        
-
-		
-			
-
-        
-<script src="{{ asset('/client/js/clipboard.min.js') }}"></script>
-<script src="{{ asset('/client/js/sweetalert2.all.min.js') }}"></script>
-			<script src="{{ asset('/client/js/bootstrap.min.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-        
+		</section>        
+		<script src="{{ asset('/client/js/clipboard.min.js') }}"></script>
+		<script src="{{ asset('/client/js/sweetalert2.all.min.js') }}"></script>
+		<script src="{{ asset('/client/js/bootstrap.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
         
         
         @section('footer-javascript')

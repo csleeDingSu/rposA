@@ -1,4 +1,37 @@
+<?php
 
+$affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
+
+$url = env('APP_URL', 'https://wabao666.com') . '/register/' . $affiliate_id;
+
+$showIcon = public_path( 'client/bar/showIcon.png' );
+
+$showimage = public_path( 'client/bar/image.jpg' );
+
+$showIcon = "https://chart.googleapis.com/chart?chs=190x190&cht=qr&chl=$url&choe=UTF-8";
+
+
+$redimg = imagecreatetruecolor( 500, 500 );
+
+$redimg = imagecreatefrompng( $showIcon );
+
+$image = imagecreatefromjpeg( $showimage );
+
+$white = imagecolorallocate( $redimg, 255, 255, 255 );
+
+imagecolortransparent( $redimg, $white );
+imagefill( $redimg, 0, 0, $white );
+
+// Merge the red image onto the PNG image
+imagecopymerge( $image, $redimg, -10, 611, 0, 0, 190, 190, 100 );
+
+
+ob_start();
+imagepng( $image );
+$imgData = ob_get_clean();
+imagedestroy( $image );
+
+?>
 <style>
     
     .offscreen {
@@ -213,40 +246,6 @@
    
 </style>
 
-<?php
-
-$affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
-
-$url = env('APP_URL', 'https://wabao666.com') . '/register/' . $affiliate_id;
-
-$showIcon = public_path( 'client/bar/showIcon.png' );
-
-$showimage = public_path( 'client/bar/image.jpg' );
-
-$showIcon = "https://chart.googleapis.com/chart?chs=190x190&cht=qr&chl=$url&choe=UTF-8";
-
-
-$redimg = imagecreatetruecolor( 500, 500 );
-
-$redimg = imagecreatefrompng( $showIcon );
-
-$image = imagecreatefromjpeg( $showimage );
-
-$white = imagecolorallocate( $redimg, 255, 255, 255 );
-
-imagecolortransparent( $redimg, $white );
-imagefill( $redimg, 0, 0, $white );
-
-// Merge the red image onto the PNG image
-imagecopymerge( $image, $redimg, -10, 611, 0, 0, 190, 190, 100 );
-
-
-ob_start();
-imagepng( $image );
-$imgData = ob_get_clean();
-imagedestroy( $image );
-
-?>
 @section('top-javascript')
     <script src="{{ asset('/client/js/jquery.min.js') }}"></script>
 @endsection 
