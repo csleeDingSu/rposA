@@ -72,6 +72,16 @@
 				</a>
 			</div>
 			<ul class="list-group">
+				<a href="/">
+					<li class="list-group-item first-item">
+						<div class="icon-wrapper">
+							<div class="icon-vip"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						<div class="vip-count">次数</div>
+						VIP专场
+					</li>
+				</a>
 				<a href="/invitation_list">
 					<li class="list-group-item first-item">
 						<div class="icon-wrapper">

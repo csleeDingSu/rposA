@@ -137,14 +137,13 @@ class GameController extends Controller
 		
 		if ($is_win) 
 		{
-			Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP');
+			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP');
 			$reward = $level->point_reward;
 		}
 		else
 		{
-			Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP','debit');
+			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP','debit');
 		}
-		$wallet = Wallet::game_walletupdate ($memberid, $gameid, $status, $gamelevel);
 			
 		//update game history
 		if ($wallet)

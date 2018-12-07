@@ -374,7 +374,7 @@ body{
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto  110px;
+  grid-template-columns: auto  120px;
   height: 40px;
 }
 
@@ -403,7 +403,7 @@ body{
 	transform: scale(0.3); 
 	-webkit-transform: scale(0.3);
 	-webkit-transform-origin:left top;
-	float: left;
+	float: right;
 	position: absolute;
 }
 
@@ -437,7 +437,7 @@ body{
 	width: auto;
 }
 
-.btn-rules{
+.btn-rules {
 	float: right;
 	background-color: #63147f;
 	border-top-left-radius: 15px;
@@ -445,6 +445,25 @@ body{
 	padding: 2px 5px 0px 15px;
 	height:22px;
 	font-size: 0.7em;
+	cursor: pointer;
+}
+
+.btn-rules-wrapper {
+	width: 100px;
+	height: 22px;
+	margin-top: 1px;
+	float: right;
+}
+
+.btn-rules-vip {
+	background: url('/client/images/vip/vip-bg.png') no-repeat;
+	width: 300px;
+	height: 69px;
+	transform: scale(0.35); 
+	-webkit-transform: scale(0.35);
+	-webkit-transform-origin:left top;
+	padding: 2px 5px 0px 15px;
+	font-size: 2em;
 	cursor: pointer;
 }
 
@@ -482,9 +501,9 @@ body{
     display: inline-block;
 }
 
-.btn-calculate {
-	background: url('/client/images/game.png') no-repeat -1664px -659px;
-	width: 110px;
+.btn-calculate, .btn-calculate-vip {
+	background: #1ea20c;
+	width: 105px;
 	height: 54px;
 	transform: scale(0.33); 
 	-webkit-transform: scale(0.33);
@@ -493,8 +512,13 @@ body{
 	text-align: center;
 	position: relative;
     display: inline-block;
+    border-radius: 30px;
     font-size: 1.4em;
     cursor: pointer;
+}
+
+.btn-calculate-vip {
+	background: #e95d00;
 }
 
 .right {

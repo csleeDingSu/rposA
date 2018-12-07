@@ -241,10 +241,29 @@ html, body {
 	color: #ababab;
 }
 
+.vip-count {
+	float: right;
+	margin-top: -1px;
+	margin-right: 2px;
+	font-weight: 500;
+	color: red;
+}
+
 .icon-wrapper {
 	height: 30px;
 	width: 30px;
 	float: left;
+}
+
+.icon-vip {
+	background: url('/client/images/vip/v3.png') no-repeat;
+	width: 37px;
+	height: 37px;
+	transform: scale(0.52); 
+	-webkit-transform: scale(0.52);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
 }
 
 .icon-add-friend {
