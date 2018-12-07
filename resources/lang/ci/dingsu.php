@@ -431,4 +431,10 @@ return [
 	'package_update_success_msg' => 'Package successfully Updated',
 	'vip' => 'Vip',
 	'point' => 'point',
+
+	'vip_price' => '价格',
+	'vip_consumed_point' => '消耗挖宝币',
+	'vip_convertible_life' => '可得到的挖宝机会',
+	'vip_convertible_point' => '可兑换挖宝币',
+	'vip_package_image_url' => 'Package图像网址',
 ];

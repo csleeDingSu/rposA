@@ -92,7 +92,73 @@ class GameController extends Controller
 		
 	}
 	
-	//need to work for wallet
+	
+	public function play_vip_game($vipdata)
+    { 
+		$reward       = 0;
+		$glevel       = '';
+		$status       = 'lose';
+		$is_win       = null;
+		$player_level = 1;				
+		$memberid     = $vipdata['memberid'];
+		$gameid       = $vipdata['gameid'];
+		$level	      = $vipdata['gamelevel'];
+		$bet          = $vipdata['bet'];
+		$game_result  = $vipdata['game_result'];
+		$drawid       = $vipdata['drawid'];
+		
+		//check playable status
+		$wallet = Wallet::get_wallet_details($memberid);
+		
+		if ($wallet->vip_life < 1) return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough life to play']);
+		
+		if ($wallet->vip_point < $level->bet_amount) return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough points to play']);
+		
+		//check game result
+		
+		/**
+		 * if player & histoy win the increse to 1
+		 * if player fail keep the value 
+		 **/		
+
+		$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $level,1);
+
+		$gamelevel    = $game_p_level['gamelevel'];
+		$player_level = $game_p_level['player_level'];
+
+		$gen_result  = check_odd_even($game_result);
+		if ($gen_result === $bet)
+		{
+			$status = 'win';
+			$is_win = TRUE;				
+		}	
+		
+		//update wallet
+		
+		if ($is_win) 
+		{
+			Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP');
+			$reward = $level->point_reward;
+		}
+		else
+		{
+			Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP','debit');
+		}
+		$wallet = Wallet::game_walletupdate ($memberid, $gameid, $status, $gamelevel);
+			
+		//update game history
+		if ($wallet)
+			{
+				//Update Memeber game play history		
+				$now     = Carbon::now()->toDateTimeString();
+					
+				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid,'reward' => $reward];				
+				
+				$records =  Game::add_vip_play_history($insdata);
+                				
+				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
+			}
+	}
 	
 	/**
 	 *
@@ -112,8 +178,11 @@ class GameController extends Controller
 		$bet      = $request->bet;
 		$betamt   = $request->betamt;	
 		$gamelevel  = $request->level;
-		//$life		= $request->life;
+		$vip       = $request->vip;	
 		$life		= 'yes';
+		$table    = 'member_game_result';
+		
+		if ($vip) $table = 'vip_member_game_result';
 
 		//add checking bet amount from member_game_bet_temp temporary table
 		if (empty($bet)) {
@@ -140,7 +209,7 @@ class GameController extends Controller
                 'gameid'   => 'required|exists:games,id',
 				'memberid' => 'required|exists:members,id',
 				'drawid'   => 'required|exists:game_result,id',
-				'cdrawid'  => "unique:member_game_result,draw_id,NULL,id,game_id,$gameid,member_id,$memberid",
+				'cdrawid'  => "unique:$table,draw_id,NULL,id,game_id,$gameid,member_id,$memberid",
 				//'bet'      => 'required',
             ],
 			['cdrawid.unique' => 'user already played the game']
@@ -161,13 +230,21 @@ class GameController extends Controller
 		//If empty then return the game result only
 		if (empty($bet) || empty($memberid))
 		{
-			return response()->json(['success' => false, 'game_result' => $game_result]);
+			return response()->json(['success' => false, 'game_result' => $game_result, 'message' => 'no betting']);
 		}
 		
-		
-		$gamelevel = Game::get_member_current_level($gameid, $memberid);
+		$gamelevel = Game::get_member_current_level($gameid, $memberid, $vip);
 		
 		$levelid = $gamelevel->levelid;
+		
+		$vipdata['memberid']    = $memberid;
+		$vipdata['gameid']      = $gameid;
+		$vipdata['gamelevel']   = $gamelevel;
+		$vipdata['bet']         = $bet;
+		$vipdata['game_result'] = $game_result;
+		$vipdata['drawid']      = $drawid;
+		
+		if ($vip) return $this->play_vip_game($vipdata);
 		
 		$res = Wallet::playable_status($memberid,$gameid,$levelid);
 		$is_playable = $res['playablestatus'];	
@@ -244,9 +321,9 @@ class GameController extends Controller
 		
 	}
 	
-	public function get_player_level($gameid, $memberid, $player_level,$gamelevel)
+	public function get_player_level($gameid, $memberid, $player_level,$gamelevel,$vip = FALSE)
 	{	
-		$level     = Game::get_player_level($gameid, $memberid);
+		$level     = Game::get_player_level($gameid, $memberid,$vip );
 		
 		//$gamelevel = Game::get_member_current_level($gameid, $memberid);
 		

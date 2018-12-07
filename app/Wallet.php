@@ -49,15 +49,29 @@ class Wallet extends Model
 		return $result;
 	}
 	
-	public static function update_vip_wallet($memberid,$life = 0,$point = 0,$category = 'VIP',$notes = FALSE)
+	public static function update_vip_wallet($memberid,$life = 0,$point = 0,$category = 'VIP',$type = 'credit', $notes = FALSE)
 	{
+		$newpoint     = '';
+		$newlife      = '';
+		$action_sym   = '-1';
+		$action_type  = 'DEBITED';
+		$debit        = $point ; 
+		$credit       = '';
+		if ($type == 'credit')
+		{
+			$action_sym  = '1';
+			$action_type = 'CREDITED';
+			$credit      = $point;
+			$debit       = '' ; 
+		}
+		
 		$wallet    = self::get_wallet_details_all($memberid);
 		if ($wallet)
 		{
 			$now = Carbon::now();
 			if ($life > 0)
 			{
-				$newlife = $wallet->vip_life + $life;
+				$newlife = $wallet->vip_life + ($life * $action_sym) ;
 				$history = [
 					'created_at' 	   => $now,
 					'updated_at' 	   => $now,
@@ -67,7 +81,7 @@ class Wallet extends Model
 					'before_vip_life'  => $wallet->vip_life,
 					'current_vip_life' => $newlife,
 					
-					'notes'            => $life.' VIP LIFE ADDED '.$notes,
+					'notes'            => $life." VIP LIFE $action_type ".$notes,
 					'credit_type'	   => $category,
 					];
 
@@ -85,16 +99,16 @@ class Wallet extends Model
 
 			if ($point > 0)
 			{
-				$newpoint = $wallet->vip_point + $point;
+				$newpoint = $wallet->vip_point + ($point * $action_sym);
 				$history = [
 					'created_at' 	    => $now,
 					'updated_at' 	    => $now,
 					'member_id'         => $memberid,
-					'credit'	        => '0',
-					'debit'	            => '0',
+					'credit'	        => $credit,
+					'debit'	            => $debit,
 					'before_vip_point'  => $wallet->vip_point,
 					'current_vip_point' => $newpoint,
-					'notes'             => $point.' VIP POINTS ADDED '.$notes,
+					'notes'             => $point." VIP POINTS $action_type ".$notes,
 					'credit_type'	    => $category,
 					];
 
@@ -110,7 +124,7 @@ class Wallet extends Model
 				$history = self::add_ledger_history($history);
 			}
 			
-			return ['success'=>true,'life'=>$newlife];
+			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
 	}

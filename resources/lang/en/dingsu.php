@@ -447,4 +447,10 @@ return [
 	'package_update_success_msg' => 'Package successfully Updated',
 	'vip' => 'Vip',
 	'point' => 'point',
+
+	'vip_price' => 'Price',
+	'vip_consumed_point' => 'Consumed Point',
+	'vip_convertible_life' => 'Convertible life',
+	'vip_convertible_point' => 'Convertible point',
+	'vip_package_image_url' => 'Package image url',
 ];
