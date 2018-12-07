@@ -22,7 +22,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="price" class="col-sm-3 col-form-label">@lang('dingsu.package') @lang('dingsu.price') <span class="text-danger">*</span></label>
+								<label for="price" class="col-sm-3 col-form-label">@lang('dingsu.package') @lang('dingsu.vip_price') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input id="price" name="price" class="form-control" type="text" value="{{ old('price')}}" required maxlength="5"> 
 								</div>
@@ -32,7 +32,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="min_point" class="col-sm-3 col-form-label">@lang('dingsu.min_point')  <span class="text-danger">*</span></label>
+								<label for="min_point" class="col-sm-3 col-form-label">@lang('dingsu.vip_consumed_point')  <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input id="min_point" name="min_point" class="form-control" type="text" value="{{ old('min_point')}}" required maxlength="10">
 								</div>
@@ -54,7 +54,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="package_life" class="col-sm-3 col-form-label">@lang('dingsu.life')  <span class="text-danger">*</span></label>
+								<label for="package_life" class="col-sm-3 col-form-label">@lang('dingsu.vip_convertible_life')  <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input id="package_life" name="package_life" class="form-control" type="text" value="{{ old('package_life')}}"  maxlength="3">
 								</div>
@@ -63,7 +63,7 @@
 						
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="package_freepoint" class="col-sm-3 col-form-label">@lang('dingsu.point')  </label>
+								<label for="package_freepoint" class="col-sm-3 col-form-label">@lang('dingsu.vip_convertible_point')  </label>
 								<div class="col-sm-9">
 									<input id="package_freepoint" name="package_freepoint" class="form-control" type="text" value="{{ old('package_freepoint')}}"  maxlength="10">
 								</div>
@@ -75,7 +75,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="package_pic_url" class="col-sm-3 col-form-label">@lang('dingsu.picurl')  <span class="text-danger">*</span></label>
+								<label for="package_pic_url" class="col-sm-3 col-form-label">@lang('dingsu.vip_package_image_url')  <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input id="package_pic_url" name="package_pic_url" class="form-control" type="text" required value="{{ old('package_pic_url')}}" >
 								</div>

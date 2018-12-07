@@ -395,15 +395,15 @@ class Game extends Model
 		return $newOptions;
 	}
 	
-	public static function get_player_level($gameid, $memberid)
+	public static function get_player_level($gameid, $memberid, $vip = FALSE)
 	{
 		 
-		//$result =  DB::table('member_game_result')->select('is_win','player_level')->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->max('player_level');
+		$table = 'member_game_result';
+		if ($vip) $table = 'vip_member_game_result';
 		
-		$result =  DB::table('member_game_result')->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->latest()->first();
+		$result =  DB::table($table)->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->latest()->first();
 		
-		return $result;
-		
+		return $result;		
 	}
 	
 	
@@ -439,9 +439,14 @@ class Game extends Model
 	 *
 	 * New function for game reset 
 	 * if the user have data and if the latest reselt reseted it will return first level
+	 
+	 * 7-12-2018 added support to VIP
 	 **/
-	public static function get_member_current_level($gameid, $memberid)
+	public static function get_member_current_level($gameid, $memberid, $vip = FALSE)
 	{
+		$table = 'member_game_result';
+		if ($vip) $table = 'vip_member_game_result';
+		
 		$result = DB::table('member_game_result')->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
 		
 		if ($result)
@@ -469,7 +474,9 @@ class Game extends Model
 		
 		return $level;		
 	}
-	
+	/**
+	 * 7-12-2018 added support to retrive bet amount & reward column
+	 **/
 	public static function get_game_next_position($gameid, $levelid = false)
 	{
 		$current = self::get_game_current_level($gameid, $levelid);
@@ -477,7 +484,7 @@ class Game extends Model
 		$queries = DB::enableQueryLog();
 		//print_r(DB::getQueryLog());
 		
-		$next = DB::table('game_levels')->where('game_id', '=', $gameid)->where('game_level', '>', $current->position)->orderBy('game_level', 'ASC')->select('id as levelid','game_level as position')->first();
+		$next = DB::table('game_levels')->where('game_id', '=', $gameid)->where('game_level', '>', $current->position)->orderBy('game_level', 'ASC')->select('id as levelid','game_level as position','bet_amount','point_reward')->first();
 		
 		if (!$next)
 		{
@@ -491,15 +498,18 @@ class Game extends Model
 		
 	}
 	
+	/**
+	 * 7-12-2018 added support to retrive bet amount & reward column
+	 **/
 	public static function get_game_current_level($gameid, $levelid = false)
 	{
 		if ($levelid)
 		{
-			$current = DB::table('game_levels')->where('id', '=', $levelid)->where('game_id', '=', $gameid)->select('id as levelid','game_level as position')->first();
+			$current = DB::table('game_levels')->where('id', '=', $levelid)->where('game_id', '=', $gameid)->select('id as levelid','game_level as position','bet_amount','point_reward')->first();
 		}
 		else 
 		{
-			$current = DB::table('game_levels')->where('game_id', '=', $gameid)->where('game_level', '=', 1)->select('id as levelid','game_level as position')->first();		
+			$current = DB::table('game_levels')->where('game_id', '=', $gameid)->where('game_level', '=', 1)->select('id as levelid','game_level as position','bet_amount','point_reward')->first();		
 		}
 		return $current;		
 	}
@@ -628,6 +638,12 @@ class Game extends Model
 		}
 		
 		return $c_lose;		
+	}
+	
+	public static function add_vip_play_history($data)
+	{				
+		DB::table('vip_member_game_result')
+            ->insert($data);
 	}
 	
 }

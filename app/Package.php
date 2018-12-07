@@ -41,11 +41,11 @@ class Package extends Model
 	
 	public static function list_available_redeem_package($point)
 	{		
-		$result = DB::table('package')->where('package_status', '=', 0);
+		$result = DB::table('package')->where('package_status', '=', 1);
 		
 		if (!empty($point))
 		{
-			$result = $result->where('min_point', '<=', $point);
+			//$result = $result->where('min_point', '<=', $point);
 		}
 		//$result = $result->paginate(50);
 		
