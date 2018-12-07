@@ -115,11 +115,12 @@ var NoSleep = function () {
     key: 'enable',
     value: function enable() {
       if (oldIOS) {
-        this.disable();
-        this.noSleepTimer = window.setInterval(function () {
-          window.location.href = '/';
-          window.setTimeout(window.stop, 0);
-        }, 15000);
+        // this.disable();
+        // this.noSleepTimer = window.setInterval(function () {
+        //   window.location.href = '/';
+        //   window.setTimeout(window.stop, 0);
+        // }, 15000);
+        this.noSleepVideo.play();
       } else {
         this.noSleepVideo.play();
       }
