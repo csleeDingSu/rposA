@@ -36,6 +36,7 @@ function getProductList(token) {
             $('.wabao-coin').html(data.current_point);
 
             var records = data.records.data;
+            var packages = data.packages;
             var html = '';
              var htmlmodel = '';
 
@@ -50,6 +51,97 @@ function getProductList(token) {
                 $('#prize').html(html);
 
             } else {
+                $.each(packages, function(i, item) {
+                    var available_quantity = null; //item.available_quantity;
+                    var used_quantity = null; //item.used_quantity;
+                    var reserved_quantity = null; //item.reserved_quantity;
+
+                    if(available_quantity === null){
+                        available_quantity = 0;
+                    }
+
+                    if(used_quantity === null){
+                        used_quantity = 0;
+                    }
+
+                    if(reserved_quantity === null){
+                        reserved_quantity = 0;
+                    }
+
+                    var total_used = parseInt(used_quantity) + parseInt(reserved_quantity);
+
+                    html += '<div class="row">' +
+                                '<div class="col-xs-3 column-1">' +
+                                    '<img class="img-voucher" src="'+ item.package_picurl +'" alt="'+item.package_name+'">' +
+                                '</div>' +
+                                '<div class="col-xs-6 column-2">' +
+                                    '<div class="description">' + item.package_name + '</div>' +
+                                    '<div class="note">可兑换支付宝红包' + parseInt(data.current_point) + '元</div>' +
+                                    '<div class="icon-coin-wrapper">' +
+                                        '<div class="icon-coin"></div>' +
+                                    '</div>' +
+                                    '<div class="w-coin">'+ item.min_point +'</div>' +
+                                    '<div style="clear: both;"></div>' +
+                                    '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ total_used +' 张</div>' +
+                                '</div>' +
+                                '<div class="col-xs-3 column-3">' +
+                                    '<div class="btn-redeem openeditmodel'+ i +'">兑换</div>' +
+                                '</div>' +
+                            '</div>';
+
+                    htmlmodel += '<!-- Modal starts -->' +
+                            '<div class="modal fade col-lg-12" id="viewvouchermode'+ i +'" tabindex="-1" >' +
+                                '<div class="modal-dialog modal-sm" role="document">' +
+                                    '<div class="modal-content">' +
+                                        '<div class="modal-body">' +
+                                            '<div class="modal-row">' +
+                                                '<div class="modal-img-voucher">' +
+                                                    '<img src="' + item.package_picurl +'" alt="' + item.package_name + '" class="img-voucher" />' +
+                                                '</div>' +
+
+                                                '<div class="wrapper modal-full-height">' +
+                                                    '<div class="modal-card">' +
+                                                        '<div class="modal-center">' +
+                                                            '兑换本产品需要消耗:' +
+                                                        '</div>' +
+                                                    '</div>' +
+
+                                                    '<div class="modal-card">' +
+                                                            '<div class="icon-coin-wrapper modal-icon">' +
+                                                                '<div class="icon-coin"></div>' +
+                                                            '</div>' +
+                                                            '<div class="wabao-price">'+ item.min_point +'挖宝币</div>' +
+                                                    '</div>' +
+
+                                                    '<div class="modal-card">' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 挖宝币</div>' +
+                                                    '</div>' +
+
+                                                    '<div id="error-'+ item.id + '" class="error"></div>';
+
+                                                    if (item.min_point <= parseInt(data.current_point)) {
+
+                                                        htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
+                                                        '<a class="btn btn_submit" >确定兑换</a>' +
+                                                        '</div>' +
+                                                        '<div>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
+                                                        '</div>';
+                                                    } else {
+                                                        htmlmodel += '<div>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不能兑换</a>' +
+                                                        '</div>';
+                                                    }
+
+                                                     htmlmodel += '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' + 
+                            '<!-- Modal Ends -->';
+                });
+
                 $.each(records, function(i, item) {
                     var available_quantity = item.available_quantity;
                     var used_quantity = item.used_quantity;
