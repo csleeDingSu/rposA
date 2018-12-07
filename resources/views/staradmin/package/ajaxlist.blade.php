@@ -12,8 +12,8 @@
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.name')</th>
 								
-								<th>@lang('dingsu.price')</th>
-								<th>@lang('dingsu.min_point')</th>
+								<th>@lang('dingsu.vip_price')</th>
+								<th>@lang('dingsu.vip_consumed_point')</th>
 								<th>@lang('dingsu.status')</th>		
 								<th>@lang('dingsu.action')</th>
 							</tr>
