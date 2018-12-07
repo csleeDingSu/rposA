@@ -85,12 +85,12 @@ function getProductList(token) {
                                     '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ total_used +' 张</div>' +
                                 '</div>' +
                                 '<div class="col-xs-3 column-3">' +
-                                    '<div class="btn-redeem openeditmodel'+ i +'">兑换</div>' +
+                                    '<div class="btn-redeem openeditmodel_p'+ i +'">兑换</div>' +
                                 '</div>' +
                             '</div>';
 
                     htmlmodel += '<!-- Modal starts -->' +
-                            '<div class="modal fade col-lg-12" id="viewvouchermode'+ i +'" tabindex="-1" >' +
+                            '<div class="modal fade col-lg-12" id="viewvouchermode_p'+ i +'" tabindex="-1" >' +
                                 '<div class="modal-dialog modal-sm" role="document">' +
                                     '<div class="modal-content">' +
                                         '<div class="modal-body">' +
@@ -119,7 +119,7 @@ function getProductList(token) {
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    if (item.min_point <= parseInt(data.current_point)) {
+                                                    if ((available_quantity > 0) && (item.min_point <= parseInt(data.current_point))) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
@@ -210,7 +210,7 @@ function getProductList(token) {
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    if (item.min_point <= parseInt(data.current_point)) {
+                                                    if ((available_quantity > 0) && item.min_point <= parseInt(data.current_point)) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
@@ -235,6 +235,12 @@ function getProductList(token) {
 
                 $('#prize').html(html);
                 $( ".cardFull" ).after( htmlmodel);
+
+                $.each(packages, function(i, item) {
+                    $('.openeditmodel_p' + i).click(function() {
+                        $('#viewvouchermode_p' + i).modal('show');
+                    });
+                });
 
                 $.each(records, function(i, item) {
                     $('.openeditmodel' + i).click(function() {
