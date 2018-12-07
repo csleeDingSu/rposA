@@ -478,7 +478,7 @@
 	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/game.js') }}"></script>
-	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
+	<script src="{{ asset('/client/js/NoSleep.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
 			var wechat_status = $('#hidWechatId').val();
@@ -513,16 +513,19 @@
 
 		});	
 
-		// var noSleep = new NoSleep();
+		var noSleep = new NoSleep();
 
-		// function enableNoSleep() {
-		//   noSleep.enable();
-		//   document.removeEventListener('click', enableNoSleep, false);
-		// }
+		function enableNoSleep() {
+		  noSleep.enable();
+		  //document.removeEventListener('click', enableNoSleep, false);
+		  document.removeEventListener('touchstart', enableNoSleep, false);
+
+		}
 
 		// Enable wake lock.
 		// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
 		// document.addEventListener('click', enableNoSleep, false);
+		document.addEventListener('touchstart', enableNoSleep, false);
 
 		// ...
 
