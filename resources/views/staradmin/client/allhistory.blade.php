@@ -16,7 +16,7 @@
 
 @section('top-javascript')
 	@parent
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
 
 @section('footer-javascript')
 	@parent
-	<script src="https://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
+	<script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
 	<script src="{{ asset('/client/js/allhistory.js') }}"></script>
 
 @endsection
