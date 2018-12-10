@@ -40,7 +40,7 @@
 
 				<script src="{{ asset('/client/js/clipboard.min.js') }}"></script>
 		<script src="{{ asset('/client/js/sweetalert2.all.min.js') }}"></script>
-		<script src="{{ asset('/client/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>			
 		<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 
 		@show
