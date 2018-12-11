@@ -1,0 +1,72 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>用户管理-金币</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+  <style>
+    html,body{
+      background: #fff;
+    }</style>
+
+  <div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+      <a lay-href="">主页</a>
+
+    </div>
+  </div>
+        <div class="layui-card">
+          <div class="layui-card-body">
+          
+            <table class="layui-hide" id="table"  lay-filter="table"></table>
+
+            <script type="text/html" id="table-coin">
+              <!-- 金币 -->
+             <font color="#559d00">{{d.username}}</font> 
+             <!-- <font color="#cb0000"></font> {{d.username}} -->
+            </script>
+        
+    </div>
+  </div>
+  
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'table'], function(){
+    var table = layui.table;
+  
+    table.render({
+      elem: '#table'
+      ,url: layui.setter.base + 'json/table/user.js'
+      ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+      ,page:{theme: '#0290ff'}
+      ,height: 'full-100'
+      ,cols: [[
+        {field:'experience', title: '金币数量'}
+        ,{field:'score', title: '明细'}
+        ,{field:'classify', title: '金币',templet: '#table-coin',}
+        ,{field:'classify', title: '时间'}
+      ]]
+    });
+
+   
+    
+   
+      
+  
+  });
+  </script>
+</body>
+</html>
