@@ -5,7 +5,7 @@
 @section('top-css')
     @parent
 
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/game.css') }}" />
     
 
@@ -474,8 +474,8 @@
 @section('footer-javascript')
 	@parent
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
-	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+	<script src="{{ asset('/client/cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js') }}"></script>
+	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/game.js') }}"></script>
 	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
