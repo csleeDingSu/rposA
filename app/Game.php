@@ -447,7 +447,7 @@ class Game extends Model
 		$table = 'member_game_result';
 		if ($vip) $table = 'vip_member_game_result';
 		
-		$result = DB::table('member_game_result')->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
+		$result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
 		
 		if ($result)
 		{
@@ -568,17 +568,23 @@ class Game extends Model
                 ->delete();		
 	}
 	
-	public static function get_latest_member_result($memberid , $gameid)
+	public static function get_latest_member_result($memberid , $gameid, $vip = FALSE)
 	{
-		return $result = DB::table('member_game_result')->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();		
+		$table = 'member_game_result';
+		if ($vip) $table = 'vip_member_game_result';
+		
+		return $result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();		
 	}
-	public static function reset_member_game_level($memberid , $gameid)	
+	public static function reset_member_game_level($memberid , $gameid, $vip = FALSE)	
 	{
-		$level = self::get_latest_member_result($memberid , $gameid);
+		$table = 'member_game_result';
+		if ($vip) $table = 'vip_member_game_result';
+		
+		$level = self::get_latest_member_result($memberid , $gameid,$vip);
 		
 		if ($level)
 		{
-			DB::table('member_game_result')
+			DB::table($table)
             ->where('id', $level->id)
             ->update(['is_reset' => 1]);
 		}
@@ -587,11 +593,14 @@ class Game extends Model
 	}
 	
 	//@todo:- get consecutive Limit from env
-	public static function get_consecutive_lose($memberid , $gameid)
+	public static function get_consecutive_lose($memberid , $gameid,$vip = FALSE)
 	{
 		$win = 0;
-		$result = DB::table('member_game_result')
-				->select('is_win')
+		$table = 'member_game_result';
+		if ($vip) $table = 'vip_member_game_result';
+		
+		$result = DB::table($table)
+				->select('is_win','is_reset')
                  ->where('member_id', $memberid)
 				 ->where('game_id', $gameid)
 				 ->orderBy('created_at', 'DESC')
@@ -603,7 +612,7 @@ class Game extends Model
 		{
 			foreach ($result as $row)
 			{
-				$win = $row->is_win + $win;
+				$win = $row->is_reset + $row->is_win + $win;
 			}
 		}
 		
