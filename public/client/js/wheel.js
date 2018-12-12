@@ -8,6 +8,37 @@ $(function () {
         getToken();
         closeModal();
     }
+
+    $(".btn-rules-vip", window.parent.document).click(handleClick);
+
+    function handleClick() {
+
+        var val = $(this).html();
+
+        if(val == '进入VIP专场'){
+            var wrapper_html = '<div class="btn-rules-wrapper"><div class="btn-rules-vip">返回普通场</div><div style="clear:both"></div></div>';
+
+            var balance_html = '<div class="number long number-vip"><span class="balance-vip" id="spanPoint">0</span><div class="btn-calculate-wrapper"><div class="btn-calculate-vip">结算</div></div></div>';
+
+            $('#hidHall', window.parent.document).val('vip');
+
+        } else {
+            var wrapper_html = '<div class="btn-vip vip-margin-negative"></div><div class="btn-rules-wrapper"><div class="btn-rules-vip">进入VIP专场</div><div style="clear:both"></div></div>';
+
+            var balance_html = '<div class="number long"><span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span><div class="btn-calculate-wrapper"><div class="btn-calculate">结算</div> </div></div>';
+
+            $('#hidHall', window.parent.document).val('normal');
+        }
+
+        $("#btn-vip-wrapper", window.parent.document).html(wrapper_html);
+        $("#balance-wrapper", window.parent.document).html(balance_html);
+
+        getToken();
+
+        $(".btn-rules-vip", window.parent.document).click(handleClick);
+
+    
+    }
 });
 
 function updateResult(token){
@@ -107,7 +138,7 @@ function initUser(token){
         },
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
-            //console.log(data);
+            console.log(data);
             // Do something with the request
             if(data.success) {
                 if (data.record.length === 0) {
@@ -119,13 +150,23 @@ function initUser(token){
                     var point = parseInt(data.record.point);
                     var acupoint =  parseInt(data.record.acupoint);
 
+                    var vip_point =  parseInt(data.record.vip_point);
+                    var vip_life =  parseInt(data.record.vip_life);
+
+                    var hall = $('#hidHall', window.parent.document).val();
+
                     if(life == 0){
                         balance = 0;
                     }
 
                     var total_balance = balance + acupoint;
 
-                    $('#spanPoint', window.parent.document).html(total_balance);
+                    if(hall == 'vip'){
+                        $('#spanPoint', window.parent.document).html(vip_point);
+                    } else {
+                        $('#spanPoint', window.parent.document).html(total_balance);
+                    }
+                    
                     $('#hidTotalBalance', window.parent.document).val(total_balance);
                     $('.packet-point', window.parent.document).html(point);
                     $('.spanAcuPoint', window.parent.document).html(acupoint);

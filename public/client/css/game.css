@@ -407,6 +407,14 @@ body{
 	position: absolute;
 }
 
+.vip-margin {
+	margin-left: 10px;
+}
+
+.vip-margin-negative {
+	margin-left: -10px;
+}
+
 .drumstick {
 	background: url('/client/images/game.png') no-repeat -1680px -1355px;
 	width: 90px;
@@ -435,6 +443,10 @@ body{
 	padding-top: 0px;
 	height:22px;
 	width: auto;
+}
+
+.number-vip {
+	text-align: left;
 }
 
 .btn-rules {
@@ -469,6 +481,10 @@ body{
 
 .balance {
 	font-size: 1.1em;
+}
+
+.balance-vip {
+	color: #f9d950
 }
 
 .life-balance {
@@ -531,7 +547,7 @@ body{
 	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 50%;
+	margin-top: 40%;
 }
 
 .modal-full-height {

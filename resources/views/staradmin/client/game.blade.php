@@ -30,26 +30,49 @@
 		<div class="grid-container">
 			<div class="box">
 				<div class="coin"></div>
+				@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
+				<div id="balance-wrapper">
+					<div class="number long">
+						<span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span>
+						<div class="btn-calculate-wrapper">
+							<div class="btn-calculate">结算</div>
+						</div>
+					</div>
+				</div>
+				@else
 				<div class="number long">
 					<span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span>
 					<div class="btn-calculate-wrapper">
 						<div class="btn-calculate">结算</div>
 					</div>
 				</div>
+				@endif
 			</div>
 
+			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
+			<div class="box" id="btn-vip-wrapper">
+				<div class="btn-vip vip-margin-negative"></div>
+				<div class="btn-rules-wrapper">
+					<div class="btn-rules-vip">进入VIP专场</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+			@else
 			<div class="box">
-				<div class="btn-vip"></div>
+				<div class="btn-vip vip-margin"></div>
 				<div class="btn-rules">规则介绍</div>
 				<div style="clear:both"></div>
 				<div class="rules-bubble blink">请看介绍</div>
 			</div>
+			@endif
+
 			<input id="hidTotalBalance" type="hidden" value="" />
 			<input id="hidBalance" type="hidden" value="" />
 			<input id="hidLevel" type="hidden" value="" />
 			<input id="hidLevelId" type="hidden" value="" />
 			<input id="hidLatestResult" type="hidden" value="" />
 			<input id="hidConsecutiveLose" type="hidden" value="" />
+			<input id="hidHall" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
 			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
