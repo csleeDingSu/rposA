@@ -16,6 +16,13 @@
 					<h4 class="card-title">Search</h4>
 					<div class="form-group row">
 						<div class="col">
+							<label>@lang('dingsu.username')</label>
+							<div id="the-basics">
+								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
+							</div>
+						</div>
+						
+						<div class="col">
 							<label>@lang('dingsu.phone')</label>
 							<div id="the-basics">
 								<input type="text" class="form-control typeahead tt-input" name="s_phone" id="s_phone" placeholder="@lang('dingsu.phone')">

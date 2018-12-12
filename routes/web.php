@@ -330,6 +330,11 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	Route::post('/package/confirm-vip', 'ProductController@confirm_vip')->name('package.redeem.confirm');	
 	Route::post('/package/reject-vip', 'ProductController@reject_vip')->name('package.redeem.reject');
+	
+	//reports
+	Route::get('/report/redeem_product', 'ReportController@redeem_product')->name('report.redeem.product');
+	Route::get('/report/point_report', 'ReportController@ledger_report')->name('report.point.report');
+	Route::get('/report/redeem_life', 'ReportController@redeem_life')->name('report.redeem.life');
 } );
 //END
 

@@ -99,7 +99,8 @@ class GameController extends Controller
 		$glevel       = '';
 		$status       = 'lose';
 		$is_win       = null;
-		$player_level = 1;				
+		$player_level = 1;
+		$close        = null;
 		$memberid     = $vipdata['memberid'];
 		$gameid       = $vipdata['gameid'];
 		$level	      = $vipdata['gamelevel'];
@@ -142,6 +143,7 @@ class GameController extends Controller
 		}
 		else
 		{
+			
 			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP','debit');
 		}
 			
@@ -154,6 +156,15 @@ class GameController extends Controller
 				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid,'reward' => $reward];				
 				
 				$records =  Game::add_vip_play_history($insdata);
+			
+				if (!$is_win) 
+				{
+					$close  = Game::get_consecutive_lose($memberid, $gameid,'1');
+					if ($close == 'yes') {
+						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
+						Game::reset_member_game_level($memberid , $gameid,'1');
+					}
+				}
                 				
 				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
 			}
@@ -326,6 +337,7 @@ class GameController extends Controller
 		
 		//$gamelevel = Game::get_member_current_level($gameid, $memberid);
 		
+		print_r($level);
 
 		if ($level) 
 		{

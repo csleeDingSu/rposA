@@ -196,6 +196,28 @@
 				</ul>
 			</div>
 		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#uireport" aria-expanded="false" aria-controls="uireport">
+              <i class="menu-icon icon-pie-chart text-warning"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.report')</span>
+              <i class="menu-arrow"></i>
+            </a>
+		
+			<div class="collapse" id="uireport">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/report/redeem_life">@lang('dingsu.redeem_life')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/report/point_report">@lang('dingsu.point_report')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/report/redeem_product">@lang('dingsu.redeem_product')</a>
+					</li>
+				</ul>
+			</div>
+		</li>
 	</ul>
 </nav>
 @endif
