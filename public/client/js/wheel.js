@@ -9,9 +9,9 @@ $(function () {
         closeModal();
     }
 
-    $(".btn-rules-vip", window.parent.document).click(handleClick);
+    $(".btn-rules-vip", window.parent.document).click(vipHall);
 
-    function handleClick() {
+    function vipHall() {
 
         var val = $(this).html();
 
@@ -35,9 +35,14 @@ $(function () {
 
         getToken();
 
-        $(".btn-rules-vip", window.parent.document).click(handleClick);
+        $(".btn-rules-vip", window.parent.document).click(vipHall);
+        $('.btn-vip', window.parent.document).click(showVip);
 
     
+    }
+
+    function showVip() {
+        $('#vip-modal', window.parent.document).modal('show');
     }
 });
 
