@@ -91,7 +91,7 @@
 				</a>
 				@endif
 				<a href="/invitation_list">
-					<li class="list-group-item first-item">
+					<li class="list-group-item {{ ($wallet->vip_life > 0)? '' : 'first-item' }}">
 						<div class="icon-wrapper">
 							<div class="icon-add-friend"></div>
 						</div>
