@@ -11,7 +11,7 @@
 
 			<dt class="dbox0">
 				<a href="/arcade">
-					@if(isset(Auth::Guard('member')->user()->membership) and Auth::Guard('member')->user()->membership == 1)
+					@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 						<i class="nVip"></i>
 						<p>剩余闯关</p>
 					@else

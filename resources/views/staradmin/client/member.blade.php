@@ -55,7 +55,7 @@
 				  <div class="col-xs-4">
 				  	剩余次数<br />
 				  	<span class="life numbers">
-				  		@if($member->membership == 1)
+				  		@if($wallet->vip_life > 0)
 				  			{{ $wallet->current_life + $wallet->vip_life }}
 				  		@else
 				  			{{ $wallet->current_life }}
@@ -78,7 +78,7 @@
 				</a>
 			</div>
 			<ul class="list-group">
-				@if($member->membership == 1)
+				@if($wallet->vip_life > 0)
 				<a href="/">
 					<li class="list-group-item first-item">
 						<div class="icon-wrapper">
