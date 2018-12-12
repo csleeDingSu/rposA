@@ -220,7 +220,6 @@ class GameController extends Controller
 				'memberid' => 'required|exists:members,id',
 				'drawid'   => 'required|exists:game_result,id',
 				'cdrawid'  => "unique:$table,draw_id,NULL,id,game_id,$gameid,member_id,$memberid",
-				//'bet'      => 'required',
             ],
 			['cdrawid.unique' => 'user already played the game']
         );
@@ -228,9 +227,6 @@ class GameController extends Controller
 		$current_result = Game::get_single_gameresult($drawid);
 		
 		$game_result = !empty($current_result->game_result) ? $current_result->game_result  : '' ;
-		
-		
-		
 		
 		if ($validator->fails()) {
 			 return response()->json(['success' => false, 'game_result' => $game_result, 'message' => $validator->errors()->all()]);
@@ -245,6 +241,7 @@ class GameController extends Controller
 		
 		$gamelevel = Game::get_member_current_level($gameid, $memberid, $vip);
 		
+				
 		$levelid = $gamelevel->levelid;
 		
 		$vipdata['memberid']    = $memberid;

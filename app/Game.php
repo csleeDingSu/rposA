@@ -447,7 +447,7 @@ class Game extends Model
 		$table = 'member_game_result';
 		if ($vip) $table = 'vip_member_game_result';
 		
-		$result = DB::table('member_game_result')->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
+		$result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
 		
 		if ($result)
 		{
