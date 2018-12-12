@@ -31,5 +31,5 @@ class Member extends Authenticatable
     ];
 	
 	
-	protected $table = 'view_members';
+	protected $table = 'members';
 }
