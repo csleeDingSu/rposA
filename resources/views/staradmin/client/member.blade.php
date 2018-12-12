@@ -79,7 +79,7 @@
 			</div>
 			<ul class="list-group">
 				@if($wallet->vip_life > 0)
-				<a href="/">
+				<a href="/arcade">
 					<li class="list-group-item first-item">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
