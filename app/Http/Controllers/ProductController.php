@@ -561,6 +561,7 @@ class ProductController extends BaseController
 			'package_pic_url' => 'required',
 			'package_life' => 'sometimes|numeric|min:0',
 			'package_freepoint' => 'sometimes|numeric|min:0',
+			'package_type' => 'required',
 		]);
  
 		if ($validator->fails()) {
@@ -576,7 +577,8 @@ class ProductController extends BaseController
 				 'package_picurl' => $input['package_pic_url'],
 				 'package_description' => $input['package_description'],
 				 'package_life' => $input['package_life'],
-				 'package_freepoint' => $input['package_freepoint'] 
+				 'package_freepoint' => $input['package_freepoint'] ,
+				 'package_type' => $input['package_type'] 
 				];
 		 
 		$id = Package::save_package($data);
@@ -717,7 +719,10 @@ class ProductController extends BaseController
 		return view('main', $data);
 	}
 	
-	
+	/**
+	 * @todo:- get random length from config
+	 *
+	 **/
 	public function confirm_vip(Request $request)
     {
 		$id = $request->id;
