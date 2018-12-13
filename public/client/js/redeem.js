@@ -32,7 +32,7 @@ function getProductList(token) {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-
+            //console.log(data);
             $('.wabao-coin').html(data.current_point);
 
             var records = data.records.data;
@@ -52,9 +52,9 @@ function getProductList(token) {
 
             } else {
                 $.each(packages, function(i, item) {
-                    var available_quantity = null; //item.available_quantity;
-                    var used_quantity = null; //item.used_quantity;
-                    var reserved_quantity = null; //item.reserved_quantity;
+                    var available_quantity = item.available_quantity;
+                    var used_quantity = item.used_quantity;
+                    var reserved_quantity = item.reserved_quantity;
 
                     if(available_quantity === null){
                         available_quantity = 0;
@@ -121,7 +121,7 @@ function getProductList(token) {
 
                                                     if ((available_quantity > 0) && (item.min_point <= parseInt(data.current_point))) {
 
-                                                        htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
+                                                        htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeemVip(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
                                                         '</div>' +
                                                         '<div>' +
@@ -265,11 +265,12 @@ function redeemHistory(token) {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-
+            //console.log(data);
             var records = data.records.data;
+            var package = data.package;
             var html = '';
 
-            if(records.length === 0){
+            if(records.length === 0 && package.length === 0){
 
                 html += '<div class="history-row">' +
                             '<div class="col-xs-12">' +
@@ -280,6 +281,40 @@ function redeemHistory(token) {
                 $('#history').html(html);
 
             } else {
+
+                $.each(package, function(i, item) {
+                    var counter = i + 1;
+
+                    html += '<div class="history-row">' +
+                        '<div class="col-xs-2 column-4">' +
+                            counter +
+                        '</div>' +
+                        '<div class="col-xs-7 column-5">' +
+                            '<div class="description">'+ item.package_name + ' ' + item.package_price + '</div>' +
+                            '<div class="balance">兑换时间:'+ item.created_at +'</div>' +
+                        '</div>';
+
+                    if(item.redeem_state == 1) { // Pending
+                        html += '<div class="col-xs-3 column-6">' +
+                                    '<div class="btn-pending">等待发放</div>' +
+                                '</div>' + 
+                            '</div>';
+
+                    } else if (item.redeem_state == 2) { // Confirmed
+                        html += '<div class="col-xs-3 column-6">' +
+                                    '<div class="btn-card" data-toggle="collapse" data-target="#content-p-' + item.id + '">查看卡号</div>' +
+                                '</div>' + 
+                            '</div>' +
+                        '<div id="content-p-' + item.id + '" class="collapse">' +
+                            '<div>卡号： <span class="numbers"></span> 密码：<span class="codes">' + item.passcode + '</span></div>' +
+                            '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
+                            '</div>' +
+                        '</div>';
+                    } else {
+                        html += '</div>';
+                    }
+
+                });
 
                 $.each(records, function(i, item) {
                     var counter = i + 1;
@@ -339,6 +374,29 @@ function redeem(token, product_id){
                 window.location.href = "/redeem/history";
             } else {
                 $('#error-' + product_id).html(data.message);
+            }
+        }
+    });
+}
+
+function redeemVip(token, package_id){
+
+    var member_id = $('#hidUserId').val();
+    
+    $.ajax({
+        type: 'POST',
+        url: "/api/request-vip-upgrade",
+        data: { 'memberid': member_id, 'packageid': package_id },
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            if(data.success) {
+                window.location.href = "/redeem/history";
+            } else {
+                $('#error-' + package_id).html(data.message);
             }
         }
     });
