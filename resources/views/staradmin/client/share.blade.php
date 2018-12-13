@@ -4,7 +4,7 @@ $affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
 
 $url = env('APP_URL', 'https://wabao666.com') . '/register/' . $affiliate_id;
 
-include(app_path().'/lib/qr/qrlib.php');
+include(app_path().'/Lib/qr/qrlib.php');
 
 $filename = public_path().'/client/qr/'.$affiliate_id.'.png';
 
