@@ -12,6 +12,9 @@ QRcode::png($url, $filename, 'L', '4', 2);
 
 $showIcon = $filename;
 
+
+//echo $filename;
+//die();
 $showimage = public_path( 'client/bar/image.jpg' );
 
 //$showIcon = "https://chart.googleapis.com/chart?chs=190x190&cht=qr&chl=$url&choe=UTF-8";

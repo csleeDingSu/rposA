@@ -28,7 +28,7 @@
  
 	// Encoding modes
 	 
-	define('QR_MODE_NUL', -1);
+	/*define('QR_MODE_NUL', -1);
 	define('QR_MODE_NUM', 0);
 	define('QR_MODE_AN', 1);
 	define('QR_MODE_8', 2);
@@ -45,7 +45,7 @@
 	// Supported output formats
 	
 	define('QR_FORMAT_TEXT', 0);
-	define('QR_FORMAT_PNG',  1);
+	define('QR_FORMAT_PNG',  1);*/
 	
 	class qrstr {
 		public static function set(&$srctab, $x, $y, $repl, $replLen = false) {

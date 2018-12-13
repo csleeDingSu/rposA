@@ -25,8 +25,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
  
-    define('STRUCTURE_HEADER_BITS',  20);
-    define('MAX_STRUCTURED_SYMBOLS', 16);
+    //define('STRUCTURE_HEADER_BITS',  20);
+    //define('MAX_STRUCTURED_SYMBOLS', 16);
 
     class QRinputItem {
     
