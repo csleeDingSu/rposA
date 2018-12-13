@@ -97,6 +97,23 @@
 					</div>
 					
 					
+					<div class="row">
+						
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="package_type" class="col-sm-3 col-form-label">@lang('dingsu.type')  </label>
+								<div class="col-sm-9">
+									 <select id="package_type" name="package_type" class="form-control">
+									  <option value="1">@lang('dingsu.flexi')</option>
+									  <option value="2">@lang('dingsu.prepaid')</option>
+									</select>									
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-success" id="savebtn" onclick="return addpackage();return false;">@lang('dingsu.add')</button>

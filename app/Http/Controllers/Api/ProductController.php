@@ -170,18 +170,35 @@ class ProductController extends Controller
 		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);
 		
 		
-		if ($package->min_point <= $wallet->point)
+		switch ($package->package_type)
 		{
-			$now = Carbon::now();
+			//flexi type
+			case '1':
+				if ($package->min_point <= $wallet->point)
+				{
+					$now = Carbon::now();
+
+					$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint];
+
+					Wallet::update_ledger($memberid,'debit',$package->min_point,'PNT',$package->min_point.' Point reserved for VIP package');
+
+					Package::save_vip_package($data);
+
+					return response()->json(['success' => true, 'message' => 'success']);
+				}
+			break;
 			
-			$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint];
-						
-			Wallet::update_ledger($memberid,'debit',$package->min_point,'PNT',$package->min_point.' Point reserved for VIP package');
-			
-			Package::save_vip_package($data);
-			
-			return response()->json(['success' => true, 'message' => 'success']);
-		}
+			//prepaid
+			case '2':
+				$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint];
+				
+				Package::save_vip_package($data);
+
+				return response()->json(['success' => true, 'message' => 'success']);
+				
+			break;	
+		}		
+		
 		
 		return response()->json(['success' => false, 'message' => 'insufficient point']);
 	}

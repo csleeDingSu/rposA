@@ -25,6 +25,7 @@ function openmodel() {
 		$('#formadd')[0].reset();
 		$('#mode').val('create');
 		$( '#validation-errors' ).html( '' );
+		$('#package_type').attr("disabled", false);
 		$( '#openaddmodel' ).modal( 'show' );
 	}
 
@@ -142,8 +143,9 @@ function openmodel() {
 								$('#package_description').val(data.package_description);
 								$('#package_freepoint').val(data.package_freepoint);
 								$('#package_life').val(data.package_life);
+								$('#package_type').val(data.package_type);
 								
-								
+								$('#package_type').attr("disabled", true);
 								$('#hidden_void').val(id);
 								
 								$("#savebtn").html('@lang("dingsu.update")');
