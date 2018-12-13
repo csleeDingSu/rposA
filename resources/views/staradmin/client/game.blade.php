@@ -184,8 +184,6 @@
 </div>
 
 
-@endsection
-
 
 <!-- Steps Modal starts -->
 <form class="form-sample" name="frm-steps" id="frm-steps" action="" method="post" autocomplete="on" >
@@ -491,8 +489,7 @@
 	</div>
 
 <!--  end -->
-
-
+@endsection
 
 @section('footer-javascript')
 	@parent
