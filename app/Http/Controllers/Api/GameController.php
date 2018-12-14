@@ -54,8 +54,6 @@ class GameController extends Controller
 		$gameid   = $request->gameid;
 		$memberid = $request->memberid;
 		$vip       = $request->vip;	
-		$table    = 'member_game_result';		
-		if ($vip) $table = 'vip_member_game_result';
 		
 		$level  =  Game::get_member_current_level($gameid, $memberid, $vip);
 		
