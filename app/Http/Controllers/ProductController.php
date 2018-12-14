@@ -763,4 +763,32 @@ class ProductController extends BaseController
 		}	
 	}
 	
+	public function get_quantity (Request $request)
+	{
+		$id     = $request->input('id');
+		$record = Package::get_available_quantity($id);
+		return response()->json(['success' => true, 'record' => $record]);
+	}
+	
+
+	public function adjust_quantity (Request $request)
+	{	
+		
+		$input = array();		
+		parse_str($request->_data, $input);
+		$data = array_map('trim', $input);
+		
+		$id = $data['tid'];
+		
+		$record = Package::find($id);
+		if ($record)
+		{
+			$quantity = $record->available_quantity + $data['add_quantity'];
+			Package::update_package($id, ['available_quantity'=>$quantity ]);			
+			
+			return response()->json(['success' => true,'quantity'=>$quantity]);
+		}
+		
+		return response()->json(['success' => false, 'message' => 'unknown record']);		
+	}
 }

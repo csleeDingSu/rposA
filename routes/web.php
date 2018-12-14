@@ -323,6 +323,9 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get('/package/get-package', 'ProductController@getpackage')->name('package.get');	
 	Route::delete('/package/delete', 'ProductController@delete_package')->name('package.remove');
 	
+	Route::get('/package/get-quantity', 'ProductController@get_quantity')->name('get.package.quantity');	
+	Route::post('/package/adjust-quantity', 'ProductController@adjust_quantity')->name('post.package.adjustquantity');
+	
 	//Vip redeem list	
 	Route::get('/package/redeem-list', 'ProductController@list_redeem_package')->name('package.redeem.list');
 	Route::get('/package/redeem-history', 'ProductController@list_redeem_history')->name('package.redeem.history');
