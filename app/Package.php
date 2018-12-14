@@ -97,10 +97,12 @@ class Package extends Model
 		return DB::table('package')->insertGetId($chunk);
 	}
 	
-	public static function delete_package($chunk)
+	public static function delete_package($id)
 	{
-		DB::table('package')->delete($chunk);
-		//return DB::table('ad_display')->where('id', $id)->delete();
+		
+		Package::find($id)->delete();
+		return true;
+		//DB::table('package')->delete($id);
 	}
 	
 	public static function save_manyvip_package($chunk)
