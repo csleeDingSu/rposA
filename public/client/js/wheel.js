@@ -310,7 +310,7 @@ function initGame(token){
                 bindCalculateButton(token);
 
                 $(".se-pre-con", window.parent.document).fadeOut("slow");
-                
+
                 $.ajax({
                     type: 'GET',
                     url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id,
@@ -321,7 +321,7 @@ function initGame(token){
                     error: function (error) { console.log(error) },
                     success: function(data) {
 
-                        if(data.success){
+                        if(data.success && data.record.bet != null){
                             var selected = data.record.bet;
                             var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
                             var bet_amount = parseInt(data.record.betamt);
