@@ -10,10 +10,10 @@
 							<tr>
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
-								<th>@lang('dingsu.name')</th>
-								
+								<th>@lang('dingsu.name')</th>								
 								<th>@lang('dingsu.vip_price')</th>
 								<th>@lang('dingsu.vip_consumed_point')</th>
+								<th>@lang('dingsu.type')</th>
 								<th>@lang('dingsu.status')</th>		
 								<th>@lang('dingsu.action')</th>
 							</tr>
@@ -27,6 +27,18 @@
 								<td>{{ $list->package_price }}</td>
 								<td>{{ $list->min_point }}</td>
 								<td>									
+									@switch($list->package_type)
+										@case('1')
+											<label class="badge badge-success">@lang('dingsu.flexi')</label>
+											@break
+										@case('2')
+											<label class="badge badge-warning">@lang('dingsu.prepaid')</label>
+											@break
+										
+									@endswitch
+									
+								</td>
+								<td>									
 									@switch($list->package_status)
 										@case('1')
 											<label class="badge badge-success">@lang('dingsu.active')</label>
@@ -34,6 +46,9 @@
 										@case('2')
 											<label class="badge badge-warning">@lang('dingsu.inactive')</label>
 											@break
+										@case('3')
+											<label class="badge badge-warning">@lang('dingsu.trash')</label>
+											@break	
 										@default
 											<label class="badge badge-danger">@lang('dingsu.unknown') @lang('dingsu.status')</label>
 									@endswitch
