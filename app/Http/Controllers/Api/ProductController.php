@@ -147,7 +147,10 @@ class ProductController extends Controller
     {
 		$memberid  = $request->memberid;
 		
-		$packageid = $request->packageid;		
+		$packageid = $request->packageid;	
+		
+		$insdata = [];
+		$card = $request->card;	
 		
 		$input = [
 			 'memberid'  => $request->memberid,
@@ -169,14 +172,14 @@ class ProductController extends Controller
 		
 		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);
 		
-		
+		$now = Carbon::now();
 		switch ($package->package_type)
 		{
 			//flexi type
 			case '1':
 				if ($package->min_point <= $wallet->point)
 				{
-					$now = Carbon::now();
+					
 
 					$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint];
 
@@ -190,11 +193,28 @@ class ProductController extends Controller
 			
 			//prepaid
 			case '2':
-				$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint];
+				$a = 0 ;
+				$r = 0 ;
+				$parepaid = explode(',',$card);
+				foreach ($parepaid as $pcard)
+				{
+					$card = array_map('trim', explode(' ', $pcard));
+					
+					if (!empty($card[0]) && !empty($card[1]) )
+					{
+						$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'cardnum'=>$card[0],'cardpass'=>$card[1]];
+						
+						$insdata[] = $data;
+						$a++;
+					}
+					else{
+						$r++;
+					}
+				}
 				
-				Package::save_vip_package($data);
+				Package::save_manyvip_package($insdata);
 
-				return response()->json(['success' => true, 'message' => 'success']);
+				return response()->json(['success' => true, 'message' => 'success','rejected'=>$r,'added'=>$a]);
 				
 			break;	
 		}		
