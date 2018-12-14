@@ -100,6 +100,7 @@ class Package extends Model
 	public static function delete_package($chunk)
 	{
 		DB::table('package')->delete($chunk);
+		//return DB::table('ad_display')->where('id', $id)->delete();
 	}
 	
 	public static function save_manyvip_package($chunk)
@@ -142,6 +143,12 @@ class Package extends Model
 	public static function get_vip_list($memberid, $limit = 100)
 	{
 		$result =  DB::table('view_vip_list')->select('*',DB::raw("(CASE WHEN redeem_state='3' THEN '0' WHEN redeem_state='2' THEN '0' ELSE passcode  END) as passcode"))->where('member_id', $memberid)->get();
+		return $result;
+	}
+	
+	public static function get_available_quantity($id)
+	{
+		$result =  DB::table('package')->select('available_quantity')->where('id', $id)->first();
 		return $result;
 	}
 	
