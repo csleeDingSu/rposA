@@ -43,6 +43,8 @@
 									
 								<a href="javascript:void(0)" data-id="{{ $list->id }}" class="editrow btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>
 									
+								<button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-primary opentopupmodel  "> <i class=" icon-arrow-up "></i> </button>
+									
 								<a href="javascript:void(0)" onClick="confirm_Delete({{ $list->id }});return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a>
 								
 								</td>
