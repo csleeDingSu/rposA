@@ -53,8 +53,11 @@ class GameController extends Controller
     {
 		$gameid   = $request->gameid;
 		$memberid = $request->memberid;
+		$vip       = $request->vip;	
+		$table    = 'member_game_result';		
+		if ($vip) $table = 'vip_member_game_result';
 		
-		$level  =  Game::get_member_current_level($gameid, $memberid);
+		$level  =  Game::get_member_current_level($gameid, $memberid, $vip);
 		
 		$now        = Carbon::now();
 		$out = Game::get_single_gameresult_by_gameid($gameid);
@@ -62,6 +65,8 @@ class GameController extends Controller
 		$latest_result = Game::get_latest_result($gameid);
 			
 		$setting =  Game::gamesetting($gameid);
+		
+		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 		
 		if ($out)
 		{
@@ -74,10 +79,7 @@ class GameController extends Controller
 				$duration = $end_date->diffInSeconds($out->expiry_time);
 				
 				//@todo :- get from config
-				if ($setting->freeze_time>=30 or $setting->freeze_time<5) $setting->freeze_time = 5;				
-				
-				$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid);
-				
+				if ($setting->freeze_time>=30 or $setting->freeze_time<5) $setting->freeze_time = 5;	
 				
 				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time,'level'=>$level,'latest_result'=>$latest_result,'consecutive_lose'=>$consecutive_lose];
 			
