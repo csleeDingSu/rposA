@@ -32,7 +32,7 @@
 											<label class="badge badge-success">@lang('dingsu.flexi')</label>
 											@break
 										@case('2')
-											<label class="badge badge-warning">@lang('dingsu.prepaid')</label>
+											<label class="badge badge-info">@lang('dingsu.prepaid')</label>
 											@break
 										
 									@endswitch
