@@ -83,7 +83,9 @@
                 </div>
               </a>
             </div> -->
+
           </li>
+
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">{{{ isset(Auth::user()->username) ? Auth::user()->username : 'Guest'}}}</span>
@@ -101,6 +103,16 @@
 				
 				
             </div>
+          </li>
+
+          <li class="nav-item">
+            
+              @if (Lang::locale() == 'ci')
+                <a class="nav-link" href="/locale/en">English</a>
+              @else
+                <a class="nav-link" href="/locale/ci">中文</a>
+              @endif
+            
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
