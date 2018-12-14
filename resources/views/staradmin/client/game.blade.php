@@ -23,7 +23,8 @@
 @section('top-navbar')
 @endsection
 
-@section('content')	
+@section('content')
+<div class="se-pre-con"></div>
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
@@ -499,8 +500,11 @@
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/game.js') }}"></script>
 	<script src="{{ asset('/client/js/NoSleep.js') }}"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function () {
+			$(".se-pre-con").fadeOut("slow");
+
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 
