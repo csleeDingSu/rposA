@@ -226,19 +226,16 @@ class ProductController extends Controller
 	
 	public function redeem_vip(Request $request)
     {
-		$packageid = $request->packageid;	
 		$memberid  = $request->memberid;
 		$passcode  = $request->passcode;
 		
 		$input = [
 			 'memberid'  => $memberid,
-			 'packageid' => $packageid,	
 			 'passcode'  => $passcode,
 			  ];
 		$validator = Validator::make($input, 
 			[
 				'memberid'  => 'required',
-				'packageid' => 'required',
 				'passcode'  => 'required'
 			]
 		);
@@ -246,7 +243,7 @@ class ProductController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		$package   = Package::get_redeem_package($packageid, $memberid );
+		$package   = Package::get_redeem_package_passcode($passcode, $memberid );
 		
 		if ($package)
 		{
