@@ -102,7 +102,10 @@ class Package extends Model
 		DB::table('package')->delete($chunk);
 	}
 	
-
+	public static function save_manyvip_package($chunk)
+	{
+		return DB::table('vip_redeemed')->insert($chunk);
+	}
 	
 	public static function save_vip_package($chunk)
 	{
