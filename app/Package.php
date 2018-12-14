@@ -137,12 +137,18 @@ class Package extends Model
             ->where('id', $id)
             ->update($data);
 		}		 		
-	}
-	
+	}	
 	
 	public static function get_vip_list($memberid, $limit = 100)
 	{
 		$result =  DB::table('view_vip_list')->select('*',DB::raw("(CASE WHEN redeem_state='3' THEN '0' WHEN redeem_state='2' THEN '0' ELSE passcode  END) as passcode"))->where('member_id', $memberid)->get();
+		return $result;
+	}
+	
+	public static function get_redeem_package_passcode($passcode, $memberid)
+	{
+		$result =  DB::table('view_active_vip_package')->where('passcode', $passcode)->where('member_id', $memberid)->where('redeem_state', 2)->first();
+		
 		return $result;
 	}
 	
