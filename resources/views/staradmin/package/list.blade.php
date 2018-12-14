@@ -19,6 +19,102 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
 
 <script language="javascript">
+$(".datalist").on("click",".opentopupmodel", function(){
+			var id=$(this).data('id');
+			$('#rid').val(id);
+	
+			swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.fetching_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+			$.ajax( {
+				url: "{{route('get.package.quantity')}}",    
+				type: 'get',
+				dataType: "json",
+				data: {
+					_method: 'get',
+					_token: "{{ csrf_token() }}",
+					id:  id,
+				},
+				success: function ( result ) {
+					if ( result.success == true ) {
+						swal.close();
+						var data = result.record;
+						
+						if (data != null)
+							{
+								$('#cquantity').val(data.available_quantity);
+								$('#tid').val(id);
+								$('#topupmode').modal('show');
+							}
+						else 
+							{
+								swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+							}
+						
+					} else {						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+					}
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+				}
+			} );
+		});
+	
+function updatequantity()
+	{
+		var datav =  $("#formtopup").serialize();
+		var id =$('#tid').val();
+		swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.fetching_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+			$.ajax( {
+				url: "{{route('post.package.adjustquantity')}}",
+				type: 'post',
+				dataType: "json",
+				data: {
+					_method: 'post',
+					_token: "{{ csrf_token() }}",
+					id:  id,
+					_data:datav,
+				},
+				success: function ( result ) {
+					if ( result.success == true ) {
+						swal.close();
+						var data = result.record;
+						$('#atd_'+id).html(result.quantity);
+						$('#formtopup')[0].reset();
+						$('#topupmode').modal('hide');
+						
+						swal({  icon: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.quantity_updated_message")', button: '@lang("dingsu.okay")',});
+						
+					} else {						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+					}
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+				}
+			} );
+		
+		$('#topupmode').modal('hide');
+	}
 	
 function openmodel() {
 		$("#savebtn").html('@lang("dingsu.add")');
