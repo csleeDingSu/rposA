@@ -488,7 +488,7 @@ class ProductController extends BaseController
 	public function list_package (Request $request)
 	{
 				
-		$result =  \DB::table('view_package');
+		$result =  \DB::table('view_package')->whereNull('deleted_at');
 		$input = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
@@ -605,7 +605,9 @@ class ProductController extends BaseController
 			{
 				return response()->json(['success' => false, 'message' => 'entitled with user']);
 			}
-			Package::delete_package($record->id);
+			//Package::delete_package($record->id);
+			$now = Carbon::now();
+			Package::update_package($id, ['deleted_at'=>$now, 'package_status'=> 3 ]);
 			return response()->json(['success' => true, 'record' => '']);
 		}
 		else{
