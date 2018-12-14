@@ -277,17 +277,26 @@
 				}
 			});
 
-			var clipboard = new ClipboardJS('#cutBtnCS', {
-				target: function () {
-					return document.querySelector('#cutCS');
-				}
-			});
-
 			clipboard.on('success', function (e) {
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
 			clipboard.on('error', function (e) {
+				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+			});
+
+			var clipboardCS = new ClipboardJS('#cutBtnCS', {
+				target: function () {
+					return document.querySelector('#cutCS');
+				}
+			});
+
+			clipboardCS.on('success', function (e) {
+				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+			});
+
+			clipboardCS.on('error', function (e) {
 				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});

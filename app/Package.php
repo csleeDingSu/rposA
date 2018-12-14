@@ -97,12 +97,18 @@ class Package extends Model
 		return DB::table('package')->insertGetId($chunk);
 	}
 	
-	public static function delete_package($chunk)
+	public static function delete_package($id)
 	{
-		DB::table('package')->delete($chunk);
+		
+		Package::find($id)->delete();
+		return true;
+		//DB::table('package')->delete($id);
 	}
 	
-
+	public static function save_manyvip_package($chunk)
+	{
+		return DB::table('vip_redeemed')->insert($chunk);
+	}
 	
 	public static function save_vip_package($chunk)
 	{
@@ -134,12 +140,24 @@ class Package extends Model
             ->where('id', $id)
             ->update($data);
 		}		 		
-	}
-	
+	}	
 	
 	public static function get_vip_list($memberid, $limit = 100)
 	{
 		$result =  DB::table('view_vip_list')->select('*',DB::raw("(CASE WHEN redeem_state='3' THEN '0' WHEN redeem_state='2' THEN '0' ELSE passcode  END) as passcode"))->where('member_id', $memberid)->get();
+		return $result;
+	}
+	
+	public static function get_available_quantity($id)
+	{
+		$result =  DB::table('package')->select('available_quantity')->where('id', $id)->first();
+		return $result;
+	}
+	
+	public static function get_redeem_package_passcode($passcode, $memberid)
+	{
+		$result =  DB::table('view_active_vip_package')->where('passcode', $passcode)->where('member_id', $memberid)->where('redeem_state', 2)->first();
+		
 		return $result;
 	}
 	

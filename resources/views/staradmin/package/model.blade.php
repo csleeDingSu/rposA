@@ -126,3 +126,49 @@
 	</div>
 </form>
 <!-- Modal Ends -->
+
+<!--Quantity Modal starts -->
+<form class="form-sample" name="formtopup" id="formtopup" action="" method="post" autocomplete="on">
+	<div class="modal fade" id="topupmode" tabindex="-1" role="dialog" aria-labelledby="topupmode" aria-hidden="true">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">@lang('dingsu.add') @lang('dingsu.quantity') </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>				
+				</div>
+				<div class="modal-body">
+					<div class="" id="rvalidation-errors"></div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
+								<label for="cquantity" class="col-sm-6 col-form-label">@lang('dingsu.current') @lang('dingsu.quantity') <span class="text-danger">*</span></label>
+								<div class="col-sm-6">
+									<input type="text" readonly class="form-control" name="cquantity" id="cquantity" value="" maxlength="50">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
+								<label for="add_quantity" class="col-sm-6 col-form-label">@lang('dingsu.add') @lang('dingsu.quantity')<span class="text-danger">*</span></label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" name="add_quantity" id="add_quantity" value="" maxlength="50">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" onclick="return updatequantity();return false;">@lang('dingsu.submit')</button>
+					<button type="button" class="btn btn-dark" data-dismiss="modal">@lang('dingsu.cancel')</button>
+				</div>
+				<input type="hidden" name="tid" id="tid" value="">
+			</div>
+		</div>
+	</div>
+</form>
+<!-- Modal Ends -->
