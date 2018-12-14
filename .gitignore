@@ -12,4 +12,5 @@ npm-debug.log
 yarn-error.log
 .env
 .svn
-storage/uploads/ads/ads1542771675.xls
+/storage/uploads/ads
+/public/client/qr
