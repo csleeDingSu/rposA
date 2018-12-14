@@ -309,6 +309,8 @@ function initGame(token){
                 bindBetButton(token);
                 bindCalculateButton(token);
 
+                $(".se-pre-con", window.parent.document).fadeOut("slow");
+                
                 $.ajax({
                     type: 'GET',
                     url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id,

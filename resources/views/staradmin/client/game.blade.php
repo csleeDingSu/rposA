@@ -503,7 +503,6 @@
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$(".se-pre-con").fadeOut("slow");
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
