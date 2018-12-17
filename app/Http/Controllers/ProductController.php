@@ -625,6 +625,23 @@ class ProductController extends BaseController
 		$row .= '<td>'.$package->package_price.'</td>';
 		$row .= '<td>'.$package->min_point.'</td>';
 		
+		//$row .= '<td>'.$package->available_quantity.'</td>';
+		//$row .= '<td>'.$package->used_quantity.'</td>';
+		//$row .= '<td>'.$package->rejected_quantity.'</td>';
+		
+		switch ($package->package_type)
+			{
+				case '1':
+					$badge = "<label class='badge badge-success'>".trans('dingsu.flexi')."</label> ";
+				break;
+				case '2':
+					$badge = "<label class='badge badge-warning'>".trans('dingsu.prepaid')."</label> ";
+				break;				
+					
+			}
+		$row .= "<td>$badge</td>";
+		
+		
 		switch ($package->package_status)
 			{
 				case '1':
