@@ -481,4 +481,7 @@ return [
 	'wabao' => 'Wabao',
 	'bet' => 'Bet',
 	'coin' => 'coin',
+	'via' => 'Via',
+	'prepaid' => 'Prepaid',
+	'card' => 'Card',
 ];

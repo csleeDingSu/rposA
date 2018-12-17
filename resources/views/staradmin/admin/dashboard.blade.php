@@ -294,3 +294,37 @@
 
 
 </div>
+
+
+
+
+
+<div class="row">
+             <div class="col-md-4 grid-margin stretch-card">
+             <div class="card">
+                <div class="card-body">
+					<div class="wrapper d-flex justify-content-between">
+                    <div class="side-left">
+                      <p class="display-5 mb-2">@lang('dingsu.via') @lang('dingsu.wabao') @lang('dingsu.coin')</p>
+                    </div>
+                    <div class="side-right">
+                      <small class="display-4 mb-4 font-weight-light">{{$result->total_active_user}}</small>
+                    </div>
+                  </div>
+					
+					<div class="wrapper d-flex justify-content-between">
+                    <div class="side-left">
+                      <p class="display-5 mb-2">@lang('dingsu.via') @lang('dingsu.prepaid') @lang('dingsu.card')</p>
+                    </div>
+                    <div class="side-right">
+                      <small class="display-4 mb-4 font-weight-light">{{$result->total_inactive_user}}</small>
+                    </div>
+                  </div>
+					
+					
+                  
+                </div>
+              </div>
+				 
+            </div>
+	
