@@ -102,7 +102,7 @@ class AdminController extends BaseController
 			return redirect()->route('adminlogin');
 		}
 	}
-	
+	/*
 	public function dashboard ()
 	{
 		$data['page'] = 'admin.dashboard';
@@ -122,7 +122,7 @@ class AdminController extends BaseController
 		return view('main', $data);
 	}
 	
-	
+	*/
 	public function userlist(Request $request)
 	{
 		$result =  DB::table('users');		
