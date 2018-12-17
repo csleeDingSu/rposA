@@ -171,6 +171,11 @@ class Report extends Model
 		
 	}
 	
+	public static function wabao_redeem_user()
+	{	
+		$result = DB::table('view_package_type_usercount')->select('count','package_type')->get();
+		return $result ;		
+	}
 	
 	 //DB::enableQueryLog();
 		//$result = DB::table($table)->where('pass_access_flag','=','3')->select('id', 'product_detail_link', 'pass_access_flag')->limit($limit)->get($limit);
