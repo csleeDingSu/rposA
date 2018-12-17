@@ -27,7 +27,7 @@ class Package extends Model
 	
 	public static function get_package($id)
 	{
-		$result = DB::table('package')->where('id', $id)->first();
+		$result = DB::table('view_package')->where('id', $id)->first();
 		
 		return $result;
 	}
