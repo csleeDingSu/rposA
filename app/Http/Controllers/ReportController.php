@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
+use App\Report;
 use Carbon\Carbon;
 
 class ReportController extends BaseController
@@ -22,10 +22,17 @@ class ReportController extends BaseController
 	
 	protected $hidden = ['password', 'password_hash', 'age', 'created_at'];
 	
-	public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
+	public function dashboard ()
+	{
+		$data['page']   = 'admin.dashboard';
+
+		$data['result'] =  DB::table('dashboard')->first();
+		
+		$data['game'] =  Report::game_win_lose();
+		
+		//print_r($data['result']);die();
+		return view('main', $data);
+	}
 	
 	
 	public function redeem_product (Request $request)

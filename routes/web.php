@@ -109,7 +109,7 @@ Route::get( '/member', 'ClientController@index' )->name( 'client.main' );
 Route::prefix( 'admin' )->group( function () {
 	Route::get( 'login', 'Auth\AdminLoginController@showLoginForm' )->name( 'adminlogin' );
 	Route::post( 'login', 'Auth\AdminLoginController@login' )->name( 'adminlogin.submit' );
-	Route::get( 'dashboard', 'AdminController@dashboard' )->name( 'admin.dashboard' );
+	Route::get( 'dashboard', 'ReportController@dashboard' )->name( 'admin.dashboard' );
 } );
 
 Route::group( [ 'prefix' => 'member', 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function () {
@@ -301,8 +301,8 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::delete('/admin/delete-tips', 'AdminController@delete_tips')->name('tips.remove');
 	
 	//Admin Routes	
-	Route::get( '/admin/dashboard', 'AdminController@dashboard' )->name( 'admindashboard' );
-	Route::get( '/admin', 'AdminController@dashboard' );
+	Route::get( '/admin/dashboard', 'ReportController@dashboard' )->name( 'admindashboard' );
+	Route::get( '/admin', 'ReportController@dashboard' );
 	
 	//settings
 	Route::get( '/admin/settings', 'AdminController@setting' )->name( 'site.settings' );
