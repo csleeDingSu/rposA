@@ -66,7 +66,19 @@ class GenerateDashboardReport extends Command
 		$report['ledger_vip_points']  			= Report::ledger_points('vip');
 		$report['unreleased_voucher_count']     = Report::voucher_count('unreleased');
 		
-		
+		$re = Report::wabao_redeem_user();		
+		foreach ($re as $ruser)
+		{
+			switch ($ruser->package_type)
+			{
+				case '1':
+					$report['total_flexi_user']    			= $ruser->count; 
+					break;
+				case '2':
+					$report['total_prepaid_user']    		= $ruser->count;
+					break;
+			}
+		}
 		
 		$now = Carbon::now()->toDateTimeString();
 		$nextupdate = Carbon::now()->addMinutes(5)->toDateTimeString(); 
