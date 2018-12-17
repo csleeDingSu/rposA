@@ -484,4 +484,7 @@ return [
 	'via' => 'Via',
 	'prepaid' => 'Prepaid',
 	'card' => 'Card',
+	'pending_items' => 'Pending Items',
+	'current_items' => 'Current Items',
+	'today_items' => 'Today Items',
 ];
