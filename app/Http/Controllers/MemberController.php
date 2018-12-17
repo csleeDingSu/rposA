@@ -302,7 +302,8 @@ class MemberController extends BaseController
 		{
 			if (empty($record->introducer_life))
 			{
-				$life   = \Config::get('app.introducer_life');
+				//$life   = \Config::get('app.introducer_life');
+				$life   = Member::get_introducer_life();
 				$wallet = Wallet::update_ledger_life($record->referred_by, $life,'LFE',' Introducer bonus life.Introduced user :'.$record->username);
 				
 				if ($wallet['success'])
