@@ -307,7 +307,7 @@ class MemberController extends BaseController
 				
 				if ($wallet['success'])
 				{
-					$data = ['introducer_life'=> 1];
+					$data = ['introducer_life'=> $life];
 					$res = Member::update_member($record->id,$data);
 					return TRUE;
 				}
