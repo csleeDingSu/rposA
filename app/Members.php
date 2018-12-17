@@ -100,5 +100,10 @@ class Members extends Model
 		return $result;
 	}
 	
-	
+	public static function get_introducer_life($id = 1)
+	{
+		$result = DB::table('settings')->where('id', $id)->pluck('introduce_life');
+		
+		return $result;
+	}
 }
