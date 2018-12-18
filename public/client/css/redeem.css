@@ -454,6 +454,7 @@ html, body {
 
 .vip-content {
 	background: #ffffff;
+	margin-top: 30%;
 }
 
 .vip-tab-pane {
@@ -511,11 +512,14 @@ hr {
 }
 
 .cutBtn-success {
-	background: #1ba908;
+	border: 1px solid #1ba908;
+	color: #1ba908;
 }
 
 .cutBtn-fail {
-	background: #838383;
+	border: 1px solid #838383;
+	color: #838383;
+
 }
 
 textarea {
