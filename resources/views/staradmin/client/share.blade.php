@@ -1,5 +1,6 @@
 <style>
    #loading {
+	   /*
     width: 100%;
     height: 100%;
     top: 0px;
@@ -10,6 +11,17 @@
     background-color: #ff4456;
     z-index: 99;
     text-align: center;
+	   */
+	   
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('/client/images/preloader.gif') center no-repeat;
+		background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(255, 255, 255, 0.9);
 }
 
 
