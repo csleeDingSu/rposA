@@ -22,7 +22,7 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
 							<div class="wrapper text-center text-sm-left">
-								<p class="card-text mb-0">@lang('dingsu.pending') @lang('dingsu.redeem')</p>
+								<p class="card-text mb-0">@lang('dingsu.redeem')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
 										
@@ -38,7 +38,7 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
 							<div class="wrapper text-center text-sm-left">
-								<p class="card-text mb-0">@lang('dingsu.vip') @lang('dingsu.pending') @lang('dingsu.redeem')</p>
+								<p class="card-text mb-0">@lang('dingsu.vip') @lang('dingsu.redeem')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
 										<a href="/package/redeem-list" class="">
@@ -81,7 +81,7 @@
 				<h2 class="card-title text-primary ">@lang('dingsu.today') @lang('dingsu.users')</h2>
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.today_user_registration')</p>
+						<p class="card-text mb-0">@lang('dingsu.today_user_registration')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->today_user_registration}}</small>
@@ -90,7 +90,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.today_game_player')</p>
+						<p class="card-text mb-0">@lang('dingsu.today_game_player')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->today_game_player}}</small>
@@ -99,7 +99,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.today_vip_game_player')</p>
+						<p class="card-text mb-0">@lang('dingsu.today_vip_game_player')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->today_vip_game_player}} </small>
@@ -118,7 +118,7 @@
 				<h2 class="card-title text-primary ">@lang('dingsu.today') @lang('dingsu.redeemtion')</h2>
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.today_product_redeem')</p>
+						<p class="card-text mb-0">@lang('dingsu.today_product_redeem')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->today_product_redeem}} </small>
@@ -127,19 +127,10 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.today_package_redeem')</p>
+						<p class="card-text mb-0">@lang('dingsu.today_package_redeem')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->today_package_redeem}}</small>
-					</div>
-				</div>
-
-				<div class="wrapper d-flex justify-content-between">
-					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.today_vip_game_player')</p>
-					</div>
-					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->today_vip_game_player}} </small>
 					</div>
 				</div>
 
@@ -156,7 +147,7 @@
 				<h2 class="card-title text-primary ">@lang('dingsu.game') @lang('dingsu.info')</h2>
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.draw_id')</p>
+						<p class="card-text mb-0">@lang('dingsu.draw_id')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light c_draw_id">&nbsp; </small>
@@ -165,7 +156,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.result')</p>
+						<p class="card-text mb-0">@lang('dingsu.result')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light c_game_result">&nbsp;</small>
@@ -174,7 +165,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.total_win')</p>
+						<p class="card-text mb-0">@lang('dingsu.total_win')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light c_win">&nbsp; </small>
@@ -183,7 +174,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2 ">@lang('dingsu.total_lose')</p>
+						<p class="card-text mb-0">@lang('dingsu.total_lose')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light c_lose">&nbsp; </small>
@@ -192,7 +183,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2 ">@lang('dingsu.played_user')</p>
+						<p class="card-text mb-0">@lang('dingsu.played_user')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light c_played_users">&nbsp; </small>
@@ -234,7 +225,7 @@
 			<div class="card-body">
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.total') @lang('dingsu.users')</p>
+						<p class="card-text mb-0">@lang('dingsu.total_of_users')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->total_active_user}}</small>
@@ -243,7 +234,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.total') @lang('dingsu.inactive') @lang('dingsu.users')</p>
+						<p class="card-text mb-0">@lang('dingsu.total_inactive_users')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->total_inactive_user}}</small>
@@ -262,10 +253,10 @@
 		<div class="card">
 
 			<div class="card-body">
-				<h2 class="card-title text-primary ">@lang('dingsu.total') @lang('dingsu.wabao') @lang('dingsu.coin')</h2>
+				<h2 class="card-title text-primary ">@lang('dingsu.total_wabao_coin')</h2>
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.win_from_basic')</p>
+						<p class="card-text mb-0">@lang('dingsu.win_from_basic')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_bet - $result->total_game_lose }} </small>
@@ -274,7 +265,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.win_from_vip')</p>
+						<p class="card-text mb-0">@lang('dingsu.win_from_vip')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->total_vip_game_bet - $result->total_vip_game_lose }}</small>
@@ -290,10 +281,10 @@
 	<div class="col-md-4 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
-				<h2 class="card-title text-primary ">@lang('dingsu.total') @lang('dingsu.wabao') @lang('dingsu.bet')</h2>
+				<h2 class="card-title text-primary ">@lang('dingsu.total_wabao_bet')</h2>
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.total_game_bet')</p>
+						<p class="card-text mb-0">@lang('dingsu.total_game_bet')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_bet}} </small>
@@ -302,28 +293,10 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.total_game_lose')</p>
+						<p class="card-text mb-0">@lang('dingsu.total_game_lose')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_lose}}</small>
-					</div>
-				</div>
-
-				<div class="wrapper d-flex justify-content-between">
-					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.total_vip_game_bet')</p>
-					</div>
-					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_vip_game_bet}} </small>
-					</div>
-				</div>
-
-				<div class="wrapper d-flex justify-content-between">
-					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.total_lose')</p>
-					</div>
-					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_vip_game_lose}} </small>
 					</div>
 				</div>
 
@@ -339,36 +312,6 @@
 
 
 
-
-<div class="row">
-	<div class="col-md-4 grid-margin stretch-card">
-		<div class="card">
-			<div class="card-body">
-				<div class="wrapper d-flex justify-content-between">
-					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.via') @lang('dingsu.wabao') @lang('dingsu.coin')</p>
-					</div>
-					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_active_user}}</small>
-					</div>
-				</div>
-
-				<div class="wrapper d-flex justify-content-between">
-					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.via') @lang('dingsu.prepaid') @lang('dingsu.card')</p>
-					</div>
-					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_inactive_user}}</small>
-					</div>
-				</div>
-
-
-
-			</div>
-		</div>
-
-	</div>
-	
 	<style>
 	.loader {
 	  

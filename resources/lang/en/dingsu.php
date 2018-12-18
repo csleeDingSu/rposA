@@ -459,9 +459,9 @@ return [
 	'quantity_updated_message' => 'quantity successfully Updated',
 	
 	
-	'today_user_registration' => 'Today Registration',
-	'today_game_player' => 'Play Basic channel',
-	'today_vip_game_player' => 'Play VIP channel',
+	'today_user_registration' => 'Number of registered',
+	'today_game_player' => 'Number of players playing (Basic)',
+	'today_vip_game_player' => 'Number of players playing (VIP)',
 	'today_product_redeem' => 'Today Product Redeemed',
 	'today_package_redeem' => 'VIP Package Redeemed',
 	'today' => 'Today',
@@ -471,7 +471,7 @@ return [
 	'total_lose' => 'Total Lose',
 	'result' => 'Result',
 	'draw_id' => 'Draw ID',
-	'total' => 'Total',
+	'total_of_users' => '用户总数',
 	'win_from_basic' => 'Win from Basic',
 	'win_from_vip' => 'Win from VIP',
 	'total_game_bet' => 'Total point Bet',
@@ -488,5 +488,8 @@ return [
 	'current_items' => 'Current Items',
 	'today_items' => 'Today Items',
 	'played_user' => 'Played user',
+	'total_inactive_users' => 'Total inactive users',
+	'total_wabao_coin' => 'Total wabao coin',
+	'total_wabao_bet' => 'Total wabao bet',
 	
 ];
