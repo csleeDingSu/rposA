@@ -25,13 +25,14 @@ class ReportController extends BaseController
 	public function dashboard ()
 	{
 		$data['page']   = 'admin.dashboard';
-
 		$data['result'] =  DB::table('dashboard')->first();
-		
-		$data['game'] =  Report::game_win_lose();
-		
-		//print_r($data['result']);die();
 		return view('main', $data);
+	}
+	
+	public function gameinfo ()
+	{
+		$result =  Report::game_win_lose();
+		return response()->json(['success' => true, 'record' => $result]);
 	}
 	
 	

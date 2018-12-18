@@ -9,7 +9,10 @@
 							<div class="wrapper text-center text-sm-left">
 								<p class="card-text mb-0">@lang('dingsu.pending_wechat_verification')</p>
 								<div class="fluid-container">
-									<h3 class="mb-0 font-weight-medium">{{$result->pending_wechat}}</h3>
+									<h3 class="mb-0 font-weight-medium">
+										<a href="/member/pending-verification" class="text-decoration">{{$result->pending_wechat}}</a>
+										</h3>
+								
 								</div>
 							</div>
 						</div>
@@ -21,7 +24,11 @@
 							<div class="wrapper text-center text-sm-left">
 								<p class="card-text mb-0">@lang('dingsu.pending') @lang('dingsu.redeem')</p>
 								<div class="fluid-container">
-									<h3 class="mb-0 font-weight-medium">{{$result->pending_redeem_verification}}</h3>
+									<h3 class="mb-0 font-weight-medium">
+										
+										<a href="/product/pending-redeem" class="">
+										{{$result->pending_redeem_verification}}</a></h3>
+								
 								</div>
 							</div>
 						</div>
@@ -33,7 +40,12 @@
 							<div class="wrapper text-center text-sm-left">
 								<p class="card-text mb-0">@lang('dingsu.vip') @lang('dingsu.pending') @lang('dingsu.redeem')</p>
 								<div class="fluid-container">
-									<h3 class="mb-0 font-weight-medium">{{$result->pending_vip_verification}}</h3>
+									<h3 class="mb-0 font-weight-medium">
+										<a href="/package/redeem-list" class="">
+										
+											{{$result->pending_vip_verification}} </a></h3>
+
+								
 								</div>
 							</div>
 						</div>
@@ -45,7 +57,11 @@
 							<div class="wrapper text-center text-sm-left">
 								<p class="card-text mb-0">@lang('dingsu.unreleased') @lang('dingsu.voucher')</p>
 								<div class="fluid-container">
-									<h3 class="mb-0 font-weight-medium">{{$result->unreleased_voucher_count}}</h3>
+									<h3 class="mb-0 font-weight-medium">
+										
+										<a href="/voucher/unreleased" class="">
+										{{$result->unreleased_voucher_count}}</a></h3>
+								
 								</div>
 							</div>
 						</div>
@@ -131,8 +147,11 @@
 		</div>
 
 	</div>
-	<div class="col-md-4 grid-margin stretch-card">
+	<div data-disabled="true" class="col-md-4 grid-margin stretch-card gameinfo">
 		<div class="card">
+
+
+
 			<div class="card-body">
 				<h2 class="card-title text-primary ">@lang('dingsu.game') @lang('dingsu.info')</h2>
 				<div class="wrapper d-flex justify-content-between">
@@ -140,7 +159,7 @@
 						<p class="display-5 mb-2">@lang('dingsu.draw_id')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$game->draw_id}} </small>
+						<small class="display-4 mb-4 font-weight-light c_draw_id">&nbsp; </small>
 					</div>
 				</div>
 
@@ -149,7 +168,7 @@
 						<p class="display-5 mb-2">@lang('dingsu.result')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$game->game_result}}</small>
+						<small class="display-4 mb-4 font-weight-light c_game_result">&nbsp;</small>
 					</div>
 				</div>
 
@@ -158,18 +177,41 @@
 						<p class="display-5 mb-2">@lang('dingsu.total_win')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$game->win}} </small>
+						<small class="display-4 mb-4 font-weight-light c_win">&nbsp; </small>
 					</div>
 				</div>
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="display-5 mb-2">@lang('dingsu.total_lose')</p>
+						<p class="display-5 mb-2 ">@lang('dingsu.total_lose')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$game->lose}} </small>
+						<small class="display-4 mb-4 font-weight-light c_lose">&nbsp; </small>
 					</div>
 				</div>
+
+				<div class="wrapper d-flex justify-content-between">
+					<div class="side-left">
+						<p class="display-5 mb-2 ">@lang('dingsu.played_user')</p>
+					</div>
+					<div class="side-right">
+						<small class="display-4 mb-4 font-weight-light c_played_users">&nbsp; </small>
+					</div>
+				</div>
+
+
+
+
+
+
+				<div class="d-flex align-items-center justify-content-between text-muted border-top py-3 mt-3">
+					<p class="mb-0"></p>
+					<div class="wrapper d-flex align-items-center">&nbsp;
+						<i class=" icon-refresh hideajaxgame" onClick="return updategame('1');"> </i>
+					</div>
+				</div>
+
+
 
 			</div>
 		</div>
@@ -218,6 +260,7 @@
 
 	<div class="col-md-4 grid-margin stretch-card">
 		<div class="card">
+
 			<div class="card-body">
 				<h2 class="card-title text-primary ">@lang('dingsu.total') @lang('dingsu.wabao') @lang('dingsu.coin')</h2>
 				<div class="wrapper d-flex justify-content-between">
@@ -325,3 +368,79 @@
 		</div>
 
 	</div>
+	
+	<style>
+	.loader {
+	  
+    opacity: 0.5;
+    height: 100%;
+}
+	</style>
+	
+	
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+<script language="javascript">
+	
+	
+	function ajax_call() {
+		
+		$( ".gameinfo" ).addClass( "loader" );
+		
+		$(".hideajaxgame").hide();
+		$.ajax( {
+				url: "{{route('get.gameinfo')}}",
+				type: 'get',
+				dataType: "json",
+				data: {
+					_method: 'get',
+					_token: "{{ csrf_token() }}",
+				},
+				success: function ( result ) {
+					$( ".gameinfo" ).removeClass( "loader" );
+					$(".hideajaxgame").show();
+					if ( result.success == true ) {
+						var data = result.record;						
+						if (data != null)
+							{
+								console.log(data);
+								$('.c_win').html(data.win);
+								$('.c_lose').html(data.lose);								
+								$('.c_game_result').html(data.game_result);
+								$('.c_draw_id').html(data.draw_id);
+								$('.c_played_users').html(data.played_users);
+							}						
+					} else {						
+						alert('Error');
+					}
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					alert('Error');
+				}
+			} );
+};
+
+ 
+
+
+	
+	function updategame(mcall)
+	{
+		if (mcall)
+		{
+			ajax_call();
+		}
+		else{
+			ajax_call();
+			var interval = 60 * 1000  ;
+			var myTimer = setInterval(ajax_call, interval);
+			clearInterval(myTimer);
+			myTimer = setInterval(ajax_call, interval);
+		}
+		
+	}
+	
+	updategame('');
+	
+	</script>	

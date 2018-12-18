@@ -131,16 +131,16 @@ class Report extends Model
 		
 		//return $result = DB::table('game_result_history')->where('game_id', $gameid)->latest()->first();
 		//print_r($row);die();
-		$row->result_id = '78734';
-			$row->result_id = '78817';
-		$result = DB::table('member_game_result')->select('draw_id','game_result'
+		//$row->result_id = '78734';
+			//$row->result_id = '78817';
+		$result = DB::table('member_game_result')->select("draw_id",'game_result'
 			, DB::raw('count(case when is_win = 1 then 1 else null end) as win')
 			, DB::raw('count(case when is_win is null then 1 else null end) as lose')
 			, DB::raw('count(DISTINCT member_id) as played_users')
 			)->where('draw_id', $row->result_id)->first();
 		
-		//print_r($result);die();
-		
+		$result->draw_id = $row->result_id;
+		$result->game_result = $row->game_result;
 		return $result ;
 		
 	}
