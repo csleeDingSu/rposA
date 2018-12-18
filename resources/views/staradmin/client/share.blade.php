@@ -1,3 +1,23 @@
+<style>
+   #loading {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    display: block;
+    opacity: 0.95;
+    background-color: #ff4456;
+    z-index: 99;
+    text-align: center;
+}
+
+
+</style>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+<div id="loading">
+    
+</div>
 <?php
 
 $affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
@@ -411,5 +431,10 @@ imagedestroy( $image );
 
 
 
-
+<script>
+  $(window).load(function() {
+    
+    $('#loading').hide();
+});
+</script>
 @endsection
