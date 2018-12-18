@@ -279,7 +279,6 @@ imagedestroy( $image );
     </style>
 
 @section('top-javascript')
-    <script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
 @endsection 
 
 @section('modelcontent')
