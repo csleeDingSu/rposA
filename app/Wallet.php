@@ -375,6 +375,9 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		'current_balance'           =>  $award_current_bal,
 		'credit_type'	            =>  $category.'PNT',
 		);
+		
+		DB::table('ledger_history')->
+			insert($postledger_history_PNT);
 	}
 
 	// For the betting balance
@@ -390,19 +393,11 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		'current_balance'           =>  $current_balance,
 		'credit_type'	            =>  $category.'BAL',
 		);
+		
+		DB::table('ledger_history')->
+			insert($postledger_history_BAL);
 
 	}
-
-
-	$insdata = $postledger_history_PNT;
-	$insdata2= $postledger_history_BAL;
-
-	if($credit>0){
-	DB::table('ledger_history')->
-			insert($insdata);
-	}
-	DB::table('ledger_history')->
-			insert($insdata2);
 
 
 		return true;
