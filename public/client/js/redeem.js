@@ -84,7 +84,7 @@ function getProductList(token) {
 
                     var total_used = parseInt(used_quantity) + parseInt(reserved_quantity);
 
-                    console.log(item);
+                    //console.log(item);
                         html += '<div class="row">' +
                                     '<div class="col-xs-3 column-1">' +
                                         '<img class="img-voucher" src="'+ item.package_picurl +'" alt="'+item.package_name+'">' +
@@ -104,7 +104,7 @@ function getProductList(token) {
                                     '</div>' +
                                 '</div>';
 
-                    if(item.min_point > 0){
+                    if(item.package_type == 1){
                         htmlmodel += '<!-- Modal starts -->' +
                                 '<div class="modal fade col-lg-12" id="viewvouchermode_p'+ i +'" tabindex="-1" >' +
                                     '<div class="modal-dialog modal-sm" role="document">' +
@@ -156,10 +156,10 @@ function getProductList(token) {
                                     '</div>' +
                                 '</div>' + 
                                 '<!-- Modal Ends -->';
-                    } else {
+                    } else if(item.package_type == 2){
                         htmlmodel += '<!-- Modal starts -->' +
                                         '<div class="modal fade col-lg-12" id="viewvouchermode_p'+ i +'" tabindex="-1" >' +
-                                            '<div class="modal-dialog modal-sm" role="document">' +
+                                            '<div class="modal-dialog modal-sm-vip" role="document">' +
                                                 '<div class="modal-content vip-content">' +
                                                     '<div class="modal-body">' +
                                                         '<div class="modal-row">' +
@@ -170,25 +170,28 @@ function getProductList(token) {
 
                                                             '<div class="tab-content">' +
                                                               '<div id="single" class="tab-pane fade in active vip-tab-pane">' +
-                                                                '卡号： <input type="text" name="card_no" placeholder="请输入卡号" /><br /><hr>' +
-                                                                '密码： <input type="text" name="password" placeholder="请输入密码" /><br /><hr>' +
+                                                                '卡号： <input id="txt_cardno" type="text" name="card_no" placeholder="请输入卡号" /><br /><hr>' +
+                                                                '密码： <input id="txt_password" type="text" name="password" placeholder="请输入密码" /><br /><hr>' +
                                                                 '<span class="modal-description">提交面值为100元，【卡密规则】 卡号15位，密码19位<br />' +
                                                                 '100元充值卡换VIP专场1次，200元充值卡换VIP专场2次<br />' +
                                                                 '以此类推</span>' +
                                                                 '<div class="modal-card">' +
-                                                                    '<div id="redeem-" onClick="redeemVip(\'token\', \'\');">' +
+                                                                    '<div id="request-'+ item.id +'" onClick="requestVip(\'' + token + '\', \''+ item.id +'\', \'single\', '+ i +');">' +
                                                                         '<a class="btn btn-submit-vip">提交</a>' +
                                                                     '</div>' +
                                                                 '</div>' +
                                                               '</div>' +
 
                                                               '<div id="multiple" class="tab-pane fade vip-tab-pane">' +
-                                                                '<textarea placeholder="卡号与密码之间用空额隔开，每张一行用回车隔开"></textarea><br />' +
+                                                                '<textarea id="txa_card" placeholder="卡号与密码之间用空额隔开，每张一行用回车隔开"></textarea><br />' +
+                                                                '<div class="textarea-link-wrapper">' +
+                                                                '<div class="textarea-link open-card-no-modal">卡密示例</div>' +
+                                                                '</div>' +
                                                                 '<span class="modal-description">提交面值为100元，【卡密规则】 卡号15位，密码19位<br />' +
                                                                 '100元充值卡换VIP专场1次，200元充值卡换VIP专场2次<br />' +
                                                                 '以此类推</span>' +
                                                                 '<div class="modal-card">' +
-                                                                    '<div id="redeem-" onClick="redeemVip(\'token\', \'\');">' +
+                                                                    '<div id="request-'+ item.id +'" onClick="requestVip(\'' + token + '\', \''+ item.id +'\', \'multiple\', '+ i +');">' +
                                                                         '<a class="btn btn-submit-vip" >提交</a>' +
                                                                     '</div>' +
                                                                 '</div>' +
@@ -317,6 +320,10 @@ function getProductList(token) {
                     $('.openeditmodel' + i).click(function() {
                         $('#viewvouchermode' + i).modal('show');
                     });
+                });
+
+                $('.open-card-no-modal').click(function() {
+                    $('#card-no-modal').modal('show');
                 });
             }
         } // end success
@@ -473,24 +480,30 @@ function redeemVip(token, package_id){
     });
 }
 
-function redeemVip(token, package_id){
+function requestVip(token, package_id, type, index){
 
     var member_id = $('#hidUserId').val();
-    
+
+    if(type == 'single') {
+        var card_no = $('#txt_cardno').val();
+        var password = $('#txt_password').val();
+        var card = card_no + ' ' + password;
+    } else {
+        var card = $('#txa_card').val();
+    }
+
     $.ajax({
         type: 'POST',
         url: "/api/request-vip-upgrade",
-        data: { 'memberid': member_id, 'packageid': package_id },
+        data: { 'memberid': member_id, 'packageid': package_id, 'card': card },
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
-            if(data.success) {
-                window.location.href = "/redeem/history";
-            } else {
-                $('#error-' + package_id).html(data.message);
+            if(data.success){
+                $('#viewvouchermode_p' + index).modal('hide');
             }
         }
     });
