@@ -363,7 +363,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 {
 	$now = Carbon::now()->toDateTimeString();
 
-	if (!empty($credit) && !empty($debit)) {
+	if (!empty($credit) || !empty($debit)) {
 		$postledger_history_PNT=array(
 		'created_at' 				=>	$now,
 		'updated_at' 				=>	$now,
@@ -378,7 +378,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 	}
 
 	// For the betting balance
-	if (!empty($credit_bal) && !empty($debit_bal)) {
+	if (!empty($credit_bal) || !empty($debit_bal)) {
 		$postledger_history_BAL=array(
 		'created_at' 				=>	$now,
 		'updated_at' 				=>	$now,
