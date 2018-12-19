@@ -363,35 +363,35 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 {
 	$now = Carbon::now()->toDateTimeString();
 
-
-	$postledger_history_PNT=array(
-	'created_at' 				=>	$now,
-	'updated_at' 				=>	$now,
-	'member_id'                 =>  $memberid,
-	'credit'	                =>  $credit,
-	'debit'	                    =>  $debit,
-	'balance_before' 			=>	$award_bal_before,
-	'balance_after' 		    =>	$award_bal_after,
-	'current_balance'           =>  $award_current_bal,
-	'credit_type'	            =>  $category.'PNT',
-	);
-
+	if (!empty($credit) && !empty($debit)) {
+		$postledger_history_PNT=array(
+		'created_at' 				=>	$now,
+		'updated_at' 				=>	$now,
+		'member_id'                 =>  $memberid,
+		'credit'	                =>  $credit,
+		'debit'	                    =>  $debit,
+		'balance_before' 			=>	$award_bal_before,
+		'balance_after' 		    =>	$award_bal_after,
+		'current_balance'           =>  $award_current_bal,
+		'credit_type'	            =>  $category.'PNT',
+		);
+	}
 
 	// For the betting balance
+	if (!empty($credit_bal) && !empty($debit_bal)) {
+		$postledger_history_BAL=array(
+		'created_at' 				=>	$now,
+		'updated_at' 				=>	$now,
+		'member_id'                 =>  $memberid,
+		'credit'	                =>  $credit_bal,
+		'debit'	                    =>  $debit_bal,
+		'balance_before' 			=>	$balance_before,
+		'balance_after' 		    =>	$balance_after,
+		'current_balance'           =>  $current_balance,
+		'credit_type'	            =>  $category.'BAL',
+		);
 
-	$postledger_history_BAL=array(
-	'created_at' 				=>	$now,
-	'updated_at' 				=>	$now,
-	'member_id'                 =>  $memberid,
-	'credit'	                =>  $credit_bal,
-	'debit'	                    =>  $debit_bal,
-	'balance_before' 			=>	$balance_before,
-	'balance_after' 		    =>	$balance_after,
-	'current_balance'           =>  $current_balance,
-	'credit_type'	            =>  $category.'BAL',
-	);
-
-
+	}
 
 
 	$insdata = $postledger_history_PNT;
