@@ -122,10 +122,10 @@ class Report extends Model
 		return $count->wherein('redeem_state' ,['2','3'])->count();
 	}
 	
-	public static function game_win_lose()
+	public static function game_win_lose($gameid = '101')
 	{
 		$row = DB::table('game_result_history')
-			  ->where('game_id', '=', '101')
+			  ->where('game_id', '=', $gameid)
 			  ->latest()->first();
 			 // ->pluck('result_id');  // "5"
 		
