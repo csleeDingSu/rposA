@@ -27,14 +27,12 @@ class Wallet extends Model
 		
 		$result = [];
 		if (!empty($memberid))
-		{
-			
+		{			
 			return $result = DB::table('mainledger')->select('current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
 			//,'current_life_acupoint as acupoint'
 			, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint end) as acupoint')
 			)->where('member_id', $memberid)->latest()->first();
 		}
-
 		return $result;
 	}
 	
@@ -80,8 +78,7 @@ class Wallet extends Model
 					'credit'	       => '0',
 					'debit'	           => '0',
 					'before_vip_life'  => $wallet->vip_life,
-					'current_vip_life' => $newlife,
-					
+					'current_vip_life' => $newlife,					
 					'notes'            => $life." VIP LIFE $action_type ".$notes,
 					'credit_type'	   => $prefix.'L'.$category,
 					];
@@ -121,10 +118,8 @@ class Wallet extends Model
 				$ledger  = DB::table('mainledger')
 					   ->where('member_id', $memberid)
 					   ->update($data);
-
 				$history = self::add_ledger_history($history);
-			}
-			
+			}			
 			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
@@ -159,8 +154,7 @@ class Wallet extends Model
 
 			$history = self::add_ledger_history($history);
 			
-			return ['success'=>true,'life'=>$newlife];
-		
+			return ['success'=>true,'life'=>$newlife];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
 	}
@@ -177,8 +171,7 @@ class Wallet extends Model
 		
 		$credit = 0;
 		$debit  = 0;
-		$balance    = $wallet->{$mainfield};
-		
+		$balance    = $wallet->{$mainfield};		
 		
 		if ($type == 'credit')
 		{
@@ -221,8 +214,7 @@ class Wallet extends Model
 			'current_balance' => $balance_after,
 			'notes'           => $notes,
 			'credit_type'	  => $prefix.$category,
-			];
-		
+			];		
 		
 		$data = [ 
 			'updated_at'   => $now,
@@ -231,8 +223,7 @@ class Wallet extends Model
 		
 		if ($type == 'acpoint') {
 			$data['current_life_acupoint'] = 0;
-		}
-		
+		}		
 		$ledger  = DB::table('mainledger')
 				   ->where('member_id', $memberid)
 				   ->update($data);
