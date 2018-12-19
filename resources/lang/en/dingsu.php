@@ -489,4 +489,8 @@ return [
 	'today_items' => 'Today Items',
 	'played_user' => 'Played user',
 	
+	'deducted' => 'Deducted',
+	'acpoint' => 'Accumulated point',
+	'added' => 'Added',
+	
 ];
