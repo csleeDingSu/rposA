@@ -21,13 +21,19 @@
 							<div id="bloodhound">
 								<select id="s_type" name="s_type" class="form-control">
 									<option value="" selected>@lang('dingsu.default_select')</option>
-									<option value="BAL">@lang('dingsu.credit_type_BAL')</option>
-									<option value="BAL_REDEEM">@lang('dingsu.credit_type_BAL_REDEEM')</option>
-									<option value="CRD_REDEEM">@lang('dingsu.credit_type_CRD_REDEEM')</option>
-									<option value="LFE">@lang('dingsu.credit_type_LFE')</option>
-									<option value="PNT">@lang('dingsu.credit_type_PNT')</option>									
-									<option value="PNT_REDEEM">@lang('dingsu.credit_type_PNT_REDEEM')</option>
-									<option value="UNK">@lang('dingsu.credit_type_UNK')</option>
+									<option value="CRPNT">@lang('dingsu.credit') @lang('dingsu.point')</option>
+									<option value="RPNT">@lang('dingsu.redeem') @lang('dingsu.point')</option>
+									<option value="RBAL">@lang('dingsu.redeem') @lang('dingsu.balance')</option>
+									<option value="ABAL">@lang('dingsu.added') @lang('dingsu.balance')</option>
+									<option value="APNT">@lang('dingsu.added') @lang('dingsu.point')</option>
+									<option value="DBAL">@lang('dingsu.deducted') @lang('dingsu.balance')</option>
+									<option value="DPNT">@lang('dingsu.deducted') @lang('dingsu.point')</option>
+									<option value="APPNT">@lang('dingsu.acpoint') @lang('dingsu.redeemed')</option>
+									<option value="ALFE">@lang('dingsu.added') @lang('dingsu.life')</option>
+									<option value="APVIP">@lang('dingsu.added') @lang('dingsu.vip') @lang('dingsu.point')</option>
+									<option value="DPVIP">@lang('dingsu.deducted') @lang('dingsu.vip') @lang('dingsu.point')</option>
+									<option value="ALVIP">@lang('dingsu.added') @lang('dingsu.vip') @lang('dingsu.life')</option>
+									<option value="DLVIP">@lang('dingsu.deducted') @lang('dingsu.vip') @lang('dingsu.life')</option>
 								</select>
 							</div>
 						</div>
