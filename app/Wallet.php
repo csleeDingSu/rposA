@@ -42,8 +42,7 @@ class Wallet extends Model
 	{		
 		$result = [];
 		if (!empty($memberid))
-		{
-			
+		{			
 			return $result = DB::table('mainledger')->where('member_id', $memberid)->latest()->first();
 		}
 		return $result;
@@ -343,17 +342,13 @@ public static function updatemainledger($memberid,$balance_before,$current_balan
 		'current_betting'	        =>  $current_bet, // amount
 		'current_life'	            =>  $current_life,
 		'current_level'	            =>  $current_level,
-		'current_life_acupoint'		=>	$current_life_acupoint,
-		
+		'current_life_acupoint'		=>	$current_life_acupoint,	
 		
 		);
 	
 		DB::table('mainledger')->
 			where('member_id', $memberid)
 			->update($updatemainledger);
-
-
-	
 	
 	return true;
 }
@@ -398,24 +393,16 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			insert($postledger_history_BAL);
 
 	}
-
-
-		return true;
-	}
+	return true;
+}
 	public static function current_wallet($member_id)
 	{
-
 		return $result =  DB::table('mainledger')->where('member_id',$member_id)->get()->first();
-
 	}
 	public static function current_level_details($level_id)
 	{
-
 		return $result = DB::table('game_levels')->where('id', $level_id)->get()->first();
-
 	}
-
-	
 
 	public static function playable_status($memberid,$gameid,$gamelevel)
 	{
@@ -501,15 +488,10 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			'credit_type'	            =>  'RBAL',
 		);
 
-
-
-
 		$insdata= $postledger_history_BAL;
 
 		DB::table('ledger_history')->
 				insert($insdata);
-			
-	
 		
         return true;
 	}
@@ -530,16 +512,10 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 
 		);
 
-
-
-
 		$insdata= $postledger_history_PNT;
 
 		DB::table('ledger_history')->
-				insert($insdata);
-			
-	
-		
+				insert($insdata);		
         return true;
 	}
 
@@ -547,7 +523,6 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 	public static function life_redeem_post_ledgerhistory_crd($memberid,$credit,$debit,$crd_bal_before,$crd_bal_after,$crd_current_bal)
 	{
 		$now = Carbon::now()->toDateTimeString();
-
 		$postledger_history_CRD=array(
 			'created_at' 				=>	$now,
 			'updated_at' 				=>	$now,
@@ -558,7 +533,6 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			'balance_after' 		    =>	$crd_bal_after,
 			'current_balance'           =>  $crd_current_bal,
 			'credit_type'	            =>  'CRPNT',
-
 		);
 
 		$insdata= $postledger_history_CRD;
@@ -566,8 +540,6 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		DB::table('ledger_history')->
 				insert($insdata);
 			
-	
-		
         return true;
 
 
@@ -581,16 +553,11 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		'current_life'	            =>  $current_life,
 		'current_life_acupoint'	    =>  $current_life_acupoint,
 		'current_point'	    		=>  $current_point,
-		
-		
 		);
 	
 		DB::table('mainledger')->
 			where('member_id', $memberid)
 			->update($updatemainledger);
-
-
-	
 	
 	return true;
 }
