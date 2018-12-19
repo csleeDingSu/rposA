@@ -66,6 +66,27 @@
 		<!-- End listing -->
 	</div>
 </div>
+
+<!-- Modal starts -->
+<div class="modal fade col-lg-12" id="card-no-modal" tabindex="-1" style="z-index: 9999">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content vip-content">
+            <div class="modal-body">
+                <div class="modal-row">
+                      <div id="single" class="tab-pane fade in active vip-tab-pane">
+                        <span class="card-no-description">
+                        	卡号与卡密之间请用“空格”隔开，<br />
+                        	每张卡张勇一行用“回车（Enter键）”隔开，<br />
+                        	例：<br />
+                        </span>
+                        <span class="card-no-example">123456789456125 5878596541257456987</span>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Ends -->
 @endsection
 
 
