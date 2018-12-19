@@ -31,29 +31,48 @@
 								<td>{{ $list->balance_after }}</td>
 								<td>									
 									@switch($list->credit_type)
-										@case('BAL')
-											@lang('dingsu.credit_type_BAL')
+										@case('CRPNT')
+											@lang('dingsu.credit') @lang('dingsu.point')
 											@break
-
-										@case('BAL_REDEEM')
-											@lang('dingsu.credit_type_BAL_REDEEM')
+										@case('RPNT')
+											@lang('dingsu.redeem') @lang('dingsu.point')
 											@break
-										@case('CRD_REDEEM')
-											@lang('dingsu.credit_type_CRD_REDEEM')
+										@case('RBAL')
+											@lang('dingsu.redeem') @lang('dingsu.balance')
+											@break	
+										@case('ABAL')
+											@lang('dingsu.added') @lang('dingsu.balance')
 											@break
-										@case('LFE')
-											@lang('dingsu.credit_type_LFE')
+										@case('APNT')
+											@lang('dingsu.added') @lang('dingsu.point')
 											@break
-										@case('PNT')
-											@lang('dingsu.credit_type_PNT')
+										@case('DBAL')
+											@lang('dingsu.deducted') @lang('dingsu.balance')
 											@break
-										@case('PNT_REDEEM')
-											@lang('dingsu.credit_type_PNT_REDEEM')
+										@case('DPNT')
+											@lang('dingsu.deducted') @lang('dingsu.point')
+											@break
+										@case('APPNT')
+											@lang('dingsu.acpoint') @lang('dingsu.redeemed')
+											@break
+										@case('ALFE')
+											@lang('dingsu.added') @lang('dingsu.life')
+											@break	
+										@case('APVIP')
+											@lang('dingsu.added') @lang('dingsu.vip') @lang('dingsu.point')
+											@break
+										@case('DPVIP')
+											@lang('dingsu.deducted') @lang('dingsu.vip') @lang('dingsu.point')
+											@break
+										@case('ALVIP')
+											@lang('dingsu.added') @lang('dingsu.vip') @lang('dingsu.life')
+											@break
+										@case('DLVIP')
+											@lang('dingsu.deducted') @lang('dingsu.vip') @lang('dingsu.life')											
 											@break
 										@default
 											@lang('dingsu.credit_type_UNK')
-									@endswitch
-									
+									@endswitch									
 								</td>
 								<td>{{ $list->notes }}</td>
 							</tr>
