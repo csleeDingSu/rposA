@@ -334,7 +334,7 @@ class GameController extends Controller
 		
 		//$gamelevel = Game::get_member_current_level($gameid, $memberid);
 		
-		print_r($level);
+		//print_r($level);
 
 		if ($level) 
 		{
