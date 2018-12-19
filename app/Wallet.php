@@ -84,7 +84,7 @@ class Wallet extends Model
 					'current_vip_life' => $newlife,
 					
 					'notes'            => $life." VIP LIFE $action_type ".$notes,
-					'credit_type'	   => $prefix.$category,
+					'credit_type'	   => $prefix.'L'.$category,
 					];
 
 				$data = [ 
@@ -111,7 +111,7 @@ class Wallet extends Model
 					'before_vip_point'  => $wallet->vip_point,
 					'current_vip_point' => $newpoint,
 					'notes'             => $point." VIP POINTS $action_type ".$notes,
-					'credit_type'	    => $prefix.$category,
+					'credit_type'	    => $prefix.'P'.$category,
 					];
 
 				$data = [ 
