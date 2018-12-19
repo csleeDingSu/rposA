@@ -492,4 +492,8 @@ return [
 	'total_wabao_coin' => 'Total wabao coin',
 	'total_wabao_bet' => 'Total wabao bet',
 	
+	'deducted' => 'Deducted',
+	'acpoint' => 'Accumulated point',
+	'added' => 'Added',
+	
 ];
