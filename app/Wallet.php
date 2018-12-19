@@ -57,12 +57,14 @@ class Wallet extends Model
 		$action_type  = 'DEBITED';
 		$debit        = $point ; 
 		$credit       = '';
+		$prefix       = 'D';
 		if ($type == 'credit')
 		{
 			$action_sym  = '1';
 			$action_type = 'CREDITED';
 			$credit      = $point;
 			$debit       = '' ; 
+			$prefix      = 'A';
 		}
 		
 		$wallet    = self::get_wallet_details_all($memberid);
@@ -82,7 +84,7 @@ class Wallet extends Model
 					'current_vip_life' => $newlife,
 					
 					'notes'            => $life." VIP LIFE $action_type ".$notes,
-					'credit_type'	   => $category,
+					'credit_type'	   => $prefix.$category,
 					];
 
 				$data = [ 
@@ -109,7 +111,7 @@ class Wallet extends Model
 					'before_vip_point'  => $wallet->vip_point,
 					'current_vip_point' => $newpoint,
 					'notes'             => $point." VIP POINTS $action_type ".$notes,
-					'credit_type'	    => $category,
+					'credit_type'	    => $prefix.$category,
 					];
 
 				$data = [ 
@@ -144,7 +146,7 @@ class Wallet extends Model
 				'credit'	      => '0',
 				'debit'	          => '0',
 				'notes'           => $new_life.' LIFE ADDED '.$notes,
-				'credit_type'	  => $category,
+				'credit_type'	  => 'A'.$category,
 				];
 
 			$data = [ 
@@ -184,10 +186,12 @@ class Wallet extends Model
 			//add	
 			$credit = $amendpoint;
 			$balance_after = $balance  + $credit ;
+			$prefix      = 'A';
 		}
 		else if ($type == 'debit'){
 			$debit = $amendpoint;
 			$balance_after = $balance  - $debit ;
+			$prefix      = 'D';
 		}
 		
 		else if ($type == 'acpoint'){
@@ -202,7 +206,7 @@ class Wallet extends Model
 					$notes .= $purgedpoint.' points Purged. ';
 				}
 			}
-			
+			$prefix      = 'AP';
 			$notes .= 'Acpoint: '.$amendpoint.' Redeemed';
 		}
 		$now = Carbon::now();
@@ -217,7 +221,7 @@ class Wallet extends Model
 			'balance_after'   => $balance_after,
 			'current_balance' => $balance_after,
 			'notes'           => $notes,
-			'credit_type'	  => $category,
+			'credit_type'	  => $prefix.$category,
 			];
 		
 		
@@ -277,9 +281,9 @@ class Wallet extends Model
 			$award_bal_before				= $mainledger->current_life_acupoint;;//- $level->point_reward;
 			$award_bal_after				= $award_bal_before+$credit;
 			$award_current_bal				= $award_bal_before+$credit;
-			
+			$category                       = 'A';
 			Self::updatemainledger($memberid,$balance_before,$current_balance,$current_bet,$current_life,$current_level,$current_point,$current_life_acupoint);
-			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point);
+			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point,$category);
 
 			
 
@@ -303,13 +307,13 @@ class Wallet extends Model
 			$award_bal_before				= $mainledger->current_life_acupoint;
 			$award_bal_after				= $award_bal_before+$credit_bal;
 			$award_current_bal				= $award_bal_before+$credit_bal;
-
+			$category                       = 'D';
 			
 
 			// Self::updatemainledger($memberid,$balance_before,$current_balance,$current_bet,$current_life,$current_level,$current_point,$current_life_acupoint);
 			// Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$credit_type,$award_bal_before,$award_bal_after,$award_current_bal,$current_point);
 			Self::updatemainledger($memberid,$balance_before,$current_balance,$current_bet,$current_life,$current_level,$current_point,$current_life_acupoint);
-			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point);
+			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point,$category);
 
 			
 
@@ -355,7 +359,7 @@ public static function updatemainledger($memberid,$balance_before,$current_balan
 }
 
 
-public static function postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point)
+public static function postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point,$category = FALSE)
 {
 	$now = Carbon::now()->toDateTimeString();
 
@@ -369,7 +373,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 	'balance_before' 			=>	$award_bal_before,
 	'balance_after' 		    =>	$award_bal_after,
 	'current_balance'           =>  $award_current_bal,
-	'credit_type'	            =>  'PNT',
+	'credit_type'	            =>  $category.'PNT',
 	);
 
 
@@ -384,7 +388,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 	'balance_before' 			=>	$balance_before,
 	'balance_after' 		    =>	$balance_after,
 	'current_balance'           =>  $current_balance,
-	'credit_type'	            =>  'BAL',
+	'credit_type'	            =>  $category.'BAL',
 	);
 
 
@@ -499,7 +503,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			'balance_before' 			=>	$balance_before,
 			'balance_after' 		    =>	$balance_after,
 			'current_balance'           =>  $current_balance,
-			'credit_type'	            =>  'BAL_REDEEM',
+			'credit_type'	            =>  'RBAL',
 		);
 
 
@@ -527,7 +531,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			'balance_before' 			=>	$award_bal_before,
 			'balance_after' 		    =>	$award_bal_after,
 			'current_balance'           =>  $award_current_bal,
-			'credit_type'	            =>  'PNT_REDEEM',
+			'credit_type'	            =>  'RPNT',
 
 		);
 
@@ -558,7 +562,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			'balance_before' 			=>	$crd_bal_before,
 			'balance_after' 		    =>	$crd_bal_after,
 			'current_balance'           =>  $crd_current_bal,
-			'credit_type'	            =>  'CRD_REDEEM',
+			'credit_type'	            =>  'CRPNT',
 
 		);
 
