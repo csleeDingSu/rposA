@@ -347,10 +347,9 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get('/report/redeem_product', 'ReportController@redeem_product')->name('report.redeem.product');
 	Route::get('/report/point_report', 'ReportController@ledger_report')->name('report.point.report');
 	Route::get('/report/redeem_life', 'ReportController@redeem_life')->name('report.redeem.life');
-		
 	
+	Route::get('/package/get-gameinfo', 'ReportController@gameinfo')->name('get.gameinfo');
 	
-	Route::get('/package/get-quantity', 'ReportController@gameinfo')->name('get.gameinfo');
 } );
 //END
 
