@@ -181,7 +181,8 @@ class GameController extends Controller
 		$glevel = '';
 		$status = 'lose';
 		$is_win = null;
-		$player_level = 1;		
+		$player_level = 1;	
+		$type = 1;
 		$gameid   = $request->gameid;
 		$memberid = $request->memberid;
 		$drawid   = $request->drawid;
@@ -192,11 +193,14 @@ class GameController extends Controller
 		$life		= 'yes';
 		$table    = 'member_game_result';
 		
-		if ($vip) $table = 'vip_member_game_result';
+		if ($vip) {
+			$table = 'vip_member_game_result';
+			$type  = 2;
+		}
 
 		//add checking bet amount from member_game_bet_temp temporary table
 		if (empty($bet)) {
-			$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->where('level', $request->level)->first();			
+			$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->where('level', $request->level)->where('gametype', $type)->first();			
 			if (!empty($res)) {
 
 				$bet = $res->bet;
@@ -604,7 +608,7 @@ class GameController extends Controller
 
 	public function update_game_temp(Request $request)
     {	
-    	$required = ['gameid','memberid','drawid'];
+    	$required = ['gameid','memberid','drawid','gametype'];
 
     	foreach($required as $element){
 		  if($request->input($element) == null){
@@ -616,10 +620,10 @@ class GameController extends Controller
 	
 		//update deleted_at - remove old bet
 		//member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->update(['deleted_at' => Carbon::now()]);
-		member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->whereNull('deleted_at')->update(['deleted_at' => Carbon::now()]);
+		member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->update(['deleted_at' => Carbon::now()]);
 
 		//insert new bet
-		$params = ['gameid' => $request->gameid, 'memberid' => $request->memberid, 'drawid' => $request->drawid, 'bet' => $request->bet, 'betamt' =>$request->betamt, 'level' => $request->level];
+		$params = ['gameid' => $request->gameid, 'memberid' => $request->memberid, 'drawid' => $request->drawid, 'bet' => $request->bet, 'betamt' =>$request->betamt, 'level' => $request->level, 'gametype' => $request->gametype];
 		$res = member_game_bet_temp::Create($params)->id;
 
         if ($res > 0) {
@@ -637,7 +641,7 @@ class GameController extends Controller
 
 	public function get_update_game_temp(Request $request)
     {	
-    	$required = ['gameid','memberid','drawid'];
+    	$required = ['gameid','memberid','drawid','gametype'];
 
     	foreach($required as $element){
 		  if($request->input($element) == null){
@@ -647,7 +651,7 @@ class GameController extends Controller
 		  }
 		}
 
-		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->first();
+		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->where('gametype', $request->gametype)->first();
 
 		if (empty($res)) {
 
