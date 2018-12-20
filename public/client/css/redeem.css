@@ -461,6 +461,11 @@ html, body {
 	margin-top: 30%;
 }
 
+.vip-card-content {
+	background: #ffffff;
+	margin-top: 80%;
+}
+
 .vip-tab-pane {
 	padding: 8px;
 }
@@ -560,6 +565,18 @@ textarea {
 	color: #99adfe;
 }
 
+.img-wrapper {
+	right: 5px;
+	position: absolute;
+	margin-top: -10px;
+}
+
+.btn-close-wrapper {
+	right: 5px;
+	position: absolute;
+	margin-top: -30px;
+}
+
 @media only screen and (max-width: 360px) {
 
 	.modal-sm-vip {
@@ -579,6 +596,42 @@ textarea {
 
 	.vip-tab-pane {
 		padding: 6px;
+	}
+
+	.textarea-link-wrapper {
+		width: 260px;
+	}
+
+	textarea {
+	  width: 260px;
+	  height: 80px;
+	  padding: 5px;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+
+	.modal-sm-vip {
+		width: 280px;
+	}
+	.modal-body {
+		padding: 8px;
+	}
+
+	.vip-content {
+		margin-top: 20%;
+	}
+
+	.modal-description {
+		font-size: 10px;
+	}
+
+	.vip-tab-pane {
+		padding: 6px;
+	}
+
+	.textarea-link-wrapper {
+		width: 245px;
 	}
 
 	textarea {

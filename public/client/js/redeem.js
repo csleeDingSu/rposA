@@ -160,6 +160,9 @@ function getProductList(token) {
                         htmlmodel += '<!-- Modal starts -->' +
                                         '<div class="modal fade col-lg-12" id="viewvouchermode_p'+ i +'" tabindex="-1" >' +
                                             '<div class="modal-dialog modal-sm-vip" role="document">' +
+                                                '<div class="btn-close-wrapper">' +
+                                                    '<img class="closeeditmodel_p'+ i +'" src="/client/images/btn-close-modal.png" width="22" height="22" />' +
+                                                '</div>' +
                                                 '<div class="modal-content vip-content">' +
                                                     '<div class="modal-body">' +
                                                         '<div class="modal-row">' +
@@ -314,6 +317,10 @@ function getProductList(token) {
                     $('.openeditmodel_p' + i).click(function() {
                         $('#viewvouchermode_p' + i).modal('show');
                     });
+
+                    $('.closeeditmodel_p' + i).click(function() {
+                        $('#viewvouchermode_p' + i).modal('hide');
+                    });
                 });
 
                 $.each(records, function(i, item) {
@@ -324,6 +331,10 @@ function getProductList(token) {
 
                 $('.open-card-no-modal').click(function() {
                     $('#card-no-modal').modal('show');
+                });
+
+                $('.btn-close-card').click(function() {
+                    $('#card-no-modal').modal('hide');
                 });
             }
         } // end success
