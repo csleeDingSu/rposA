@@ -397,9 +397,9 @@ function redeemHistory(token) {
                                 '</div>' + 
                             '</div>' +
                         '<div id="content-p-' + item.id + '" class="collapse">' +
-                            '<div>卡号： <span class="numbers"></span> 密码：<span class="codes">' + item.passcode + '</span></div>' +
-                            '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
-                            '</div>' +
+                            '<div>卡号： <span class="numbers"></span> 密码：<span class="codes">' + item.passcode + '</span>' +
+                            '&nbsp;&nbsp;<button style="background-image: linear-gradient(#ffc549, #ff8e29);border:none;border-radius: 20px;" class="btn-info" data-id="'+item.passcode+'" onClick="confirmredeemvip(\''+ token +'\', \''+ item.id +'\', \''+ item.passcode +'\')"  >VIP</button></div>' +
+                            '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！></div>' +    
                         '</div>';
                     } else {
                         html += '</div>';
@@ -520,5 +520,28 @@ function requestVip(token, package_id, type, index){
             }
         }
     });
+}
+
+function confirmredeemvip(token,id,code)
+{
+	var member_id = $('#hidUserId').val();
+	$('[data-id='+code+']').prop('disabled', true);
+	$.ajax({
+        type: 'POST',
+        url: "/api/redeem-vip",
+        data: { 'memberid': member_id, 'passcode': code },
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error.responseText);$('[data-id='+code+']').prop('disabled', false); },
+        success: function(data) {
+            if(data.success){
+                window.location.href = "/arcade";
+            }
+        }
+    });
+	
+	
 }
         

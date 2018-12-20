@@ -144,7 +144,7 @@ class Package extends Model
 	
 	public static function get_vip_list($memberid, $limit = 100)
 	{
-		$result =  DB::table('view_vip_list')->select('*',DB::raw("(CASE WHEN redeem_state='3' THEN '0' WHEN redeem_state='2' THEN '0' ELSE passcode  END) as passcode"))->where('member_id', $memberid)->get();
+		$result =  DB::table('view_vip_list')->select('*',DB::raw("(CASE WHEN redeem_state='3' THEN passcode WHEN redeem_state='2' THEN passcode ELSE ''  END) as passcode"))->where('member_id', $memberid)->get();
 		return $result;
 	}
 	
