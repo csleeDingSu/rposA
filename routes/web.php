@@ -349,6 +349,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get('/report/redeem_life', 'ReportController@redeem_life')->name('report.redeem.life');
 		
 	
+	
 	Route::get('/package/get-gameinfo', 'ReportController@gameinfo')->name('get.gameinfo');
 } );
 //END
