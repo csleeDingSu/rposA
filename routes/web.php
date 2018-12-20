@@ -12,6 +12,15 @@
 */
 
 
+//language route
+
+Route::get('locale/{locale}', function ($locale) {
+
+	Session::put('locale', $locale);
+
+	return redirect()->back();
+} );
+
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
@@ -342,6 +351,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get('/package/get-quantity', 'ProductController@get_quantity')->name('get.package.quantity');
 	
 	Route::post('/package/adjust-quantity', 'ProductController@adjust_quantity')->name('post.package.adjustquantity');
+	
 	
 	Route::get('/package/get-quantity', 'ReportController@gameinfo')->name('get.gameinfo');
 } );
