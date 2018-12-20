@@ -371,8 +371,10 @@ function redeemHistory(token) {
 
             } else {
 
+                var counter = 0;
+
                 $.each(package, function(i, item) {
-                    var counter = i + 1;
+                    counter += 1;
 
                     html += '<div class="history-row">' +
                         '<div class="col-xs-2 column-4">' +
@@ -406,7 +408,7 @@ function redeemHistory(token) {
                 });
 
                 $.each(records, function(i, item) {
-                    var counter = i + 1;
+                    counter += 1;
 
                     html += '<div class="history-row">' +
                         '<div class="col-xs-2 column-4">' +
