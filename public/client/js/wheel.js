@@ -20,6 +20,8 @@ $(function () {
 
             var balance_html = '<div class="number long number-vip"><span class="balance-vip" id="spanPoint">0</span><div class="btn-calculate-wrapper"><div class="btn-calculate-vip">结算</div></div></div>';
 
+            var footer_html = '<i class="nVip">&nbsp;</i><p class="vip-life">VIP专场 剩余<span class="spanVipLife">&nbsp;</span>次</p>';
+
             $('#hidHall', window.parent.document).val('vip');
 
         } else {
@@ -27,11 +29,14 @@ $(function () {
 
             var balance_html = '<div class="number long"><span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span><div class="btn-calculate-wrapper"><div class="btn-calculate">结算</div> </div></div>';
 
+            var footer_html = '<i class="nTxt">&nbsp;</i><p>剩余闯关</p>';
+
             $('#hidHall', window.parent.document).val('normal');
         }
 
         $("#btn-vip-wrapper", window.parent.document).html(wrapper_html);
         $("#balance-wrapper", window.parent.document).html(balance_html);
+        $("#footer-life", window.parent.document).html(footer_html);
 
         getToken();
 
@@ -178,6 +183,7 @@ function initUser(token){
                     $('.packet-acupoint', window.parent.document).html(acupoint);
                     $('#hidBalance', window.parent.document).val(balance);
                     $(".nTxt", window.parent.document).html(life);
+                    $(".spanVipLife", window.parent.document).html(vip_life);
                     $(".spanLife", window.parent.document).html(life);
 
                     setBalance();
