@@ -164,20 +164,27 @@ function getProductList(token) {
                                                     '<img class="closeeditmodel_p'+ i +'" src="/client/images/btn-close-modal.png" width="22" height="22" />' +
                                                 '</div>' +
                                                 '<div class="modal-content vip-content">' +
+
+                                                    '<div class="wrapper modal-full-height bg-vip-copy modal-body">' +
+                                                        '<span class="vip-copy">复制淘口令，打开淘宝APP购买<br />' +
+                                                        '每100元可兑换一次VIP入场卷</span>' +
+                                                        '<div class="modal-card">' +
+                                                            '<div id="cut" class="copyvoucher">¥ K8454DFGH45H</div>' +
+                                                            '<div class="cutBtn">一键复制</div>' +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                    
                                                     '<div class="modal-body">' +
                                                         '<div class="modal-row">' +
                                                             '<ul class="nav nav-pills">' +
                                                               '<li class="active take-all-space-you-can"><a data-toggle="tab" href="#single">单张提交</a></li>' +
                                                               '<li class="take-all-space-you-can"><a data-toggle="tab" href="#multiple">批量提交</a></li>' +
                                                             '</ul>' +
-
                                                             '<div class="tab-content">' +
                                                               '<div id="single" class="tab-pane fade in active vip-tab-pane">' +
                                                                 '卡号： <input id="txt_cardno" type="text" name="card_no" placeholder="请输入卡号" /><br /><hr>' +
                                                                 '密码： <input id="txt_password" type="text" name="password" placeholder="请输入密码" /><br /><hr>' +
-                                                                '<span class="modal-description">提交面值为100元，【卡密规则】 卡号15位，密码19位<br />' +
-                                                                '100元充值卡换VIP专场1次，200元充值卡换VIP专场2次<br />' +
-                                                                '以此类推</span>' +
+                                                                '<span class="modal-description">注意事项：请提交面值为100元的话费卷，如果提交多次错误花费卷，您的账号会被封号</span>' +
                                                                 '<div class="modal-card">' +
                                                                     '<div id="request-'+ item.id +'" onClick="requestVip(\'' + token + '\', \''+ item.id +'\', \'single\', '+ i +');">' +
                                                                         '<a class="btn btn-submit-vip">提交</a>' +
@@ -190,9 +197,7 @@ function getProductList(token) {
                                                                 '<div class="textarea-link-wrapper">' +
                                                                 '<div class="textarea-link open-card-no-modal">卡密示例</div>' +
                                                                 '</div>' +
-                                                                '<span class="modal-description">提交面值为100元，【卡密规则】 卡号15位，密码19位<br />' +
-                                                                '100元充值卡换VIP专场1次，200元充值卡换VIP专场2次<br />' +
-                                                                '以此类推</span>' +
+                                                                '<span class="modal-description">注意事项：请提交面值为100元的话费卷，如果提交多次错误花费卷，您的账号会被封号</span>' +
                                                                 '<div class="modal-card">' +
                                                                     '<div id="request-'+ item.id +'" onClick="requestVip(\'' + token + '\', \''+ item.id +'\', \'multiple\', '+ i +');">' +
                                                                         '<a class="btn btn-submit-vip" >提交</a>' +
@@ -201,14 +206,7 @@ function getProductList(token) {
                                                               '</div>' +
                                                             '</div>' +
 
-                                                            '<div class="wrapper modal-full-height">' +
-                                                                '<span class="vip-copy">通过以下方式获得话费充值卡<br />' +
-                                                                '复制话费卷淘宝口令，打开手机淘宝购买</span>' +
-                                                                '<div class="modal-card">' +
-                                                                    '<div id="cut" class="copyvoucher">¥ K8454DFGH45H</div>' +
-                                                                    '<div class="cutBtn">一键复制</div>' +
-                                                                '</div>' +
-                                                            '</div>' +
+                                                            
                                                         '</div>' +
                                                     '</div>' +
                                                 '</div>' +
