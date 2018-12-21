@@ -799,8 +799,12 @@ class GameController extends Controller
 			Game::reset_member_game_level($memberid , $gameid,'1');
 			return response()->json(['success' => true]); 
 		}
+		else 
+		{
+			return response()->json(['success' => false, 'message' => 'nothing to reset']); 
+		}
 		
-		return response()->json(['success' => false, 'message' => 'nothing to reset']); 
+		
 	}
 
 }
