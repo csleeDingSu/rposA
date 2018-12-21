@@ -226,6 +226,12 @@ function initGame(token){
                         $('.barBox', window.parent.document).removeClass("barBox-4");
                         $('.barBox', window.parent.document).removeClass("barBox-5");
                         $('.barBox', window.parent.document).removeClass("barBox-6");
+
+                        $('.span-1', window.parent.document).html("10");
+                        $('.span-2', window.parent.document).html("30");
+                        $('.span-3', window.parent.document).html("70");
+                        $('.span-4', window.parent.document).html("150");
+                        $('.span-5', window.parent.document).html("310");
                         break;
                     case 2:
                         bet_amount = 30;
