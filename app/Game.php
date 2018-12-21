@@ -655,6 +655,15 @@ class Game extends Model
             ->insert($data);
 	}
 	
+	
+	
+	public static function get_current_result($gameid)
+	{
+		return $result = DB::table('game_result')->where('game_id', $gameid)->first();
+		
+		if ($result) return $result->id;
+		else return '1';
+	}
 }
 
 
