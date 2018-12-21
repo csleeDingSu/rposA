@@ -54,12 +54,8 @@
 				  </div>
 				  <div class="col-xs-4">
 				  	剩余次数<br />
-				  	<span class="life numbers">
-				  		@if($wallet->vip_life > 0)
-				  			{{ $wallet->current_life + $wallet->vip_life }}
-				  		@else
-				  			{{ $wallet->current_life }}
-				  		@endif
+				  	<span class="life numbers">				  		
+				  		{{ $wallet->current_life }}
 				  	</span><br />
 				  	<a href="/share"><span class="button">马上增加</span></a>
 				  </div>
@@ -78,20 +74,24 @@
 				</a>
 			</div>
 			<ul class="list-group">
-				@if($wallet->vip_life > 0)
-				<a href="/arcade">
+
+				<a href= " {{ ($wallet->vip_life > 0) ? '/arcade' : '/redeem' }}">
 					<li class="list-group-item first-item">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						<div class="vip-count">{{ $wallet->vip_life }}</div>
+						@if($wallet->vip_life > 0)
+							<div class="vip-inprogress">@lang('dingsu.inprogress')</div>
+						@else
+							<div class="vip-redeemticket">@lang('dingsu.redeem_vip_ticket')</div>
+						@endif
 						VIP专场
 					</li>
 				</a>
-				@endif
+				
 				<a href="/invitation_list">
-					<li class="list-group-item {{ ($wallet->vip_life > 0)? '' : 'first-item' }}">
+					<li class="list-group-item">
 						<div class="icon-wrapper">
 							<div class="icon-add-friend"></div>
 						</div>
