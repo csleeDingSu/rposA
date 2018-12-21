@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>首页</title>
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all" />
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all" />
+  <link rel="stylesheet" href="../../layuiadmin/style/being.css" media="all" />
+</head>
+
+<style>
+  html,
+    body {
+      height: 100%;
+      overflow-y: auto;
+    }
+  </style>
+
+<body style="background:#2f8cff;">
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md9">
+        <div class="layui-card" style="background:none;box-shadow: none">
+          <h2 class="b-title">待办事项</h2>
+          <div class="layui-row layui-col-space20">
+            <div class="layui-col-md6">
+              <div class="homeIn">
+                <h1>充值申请</h1>
+                <img src="../../layuiadmin/images/imgIcon.png" />
+                <h2>
+                  <font color="#f75f5f">750</font>人
+                </h2>
+                <p>申请充值未处理</p>
+                <a class="layui-btn layui-btn-normal layui-btn-radius">查看处理</a>
+              </div>
+            </div>
+            <div class="layui-col-md6">
+              <div class="homeIn">
+                <h1>提现申请</h1>
+                <img src="../../layuiadmin/images/imgIcon-2.png" />
+                <h2>
+                  <font color="#f75f5f">750</font>人
+                </h2>
+                <p>申请提现未处理</p>
+                <a class="layui-btn layui-btn-normal layui-btn-radius">查看处理</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card" style="background:none;box-shadow: none">
+          <h2 class="b-title">投注数据</h2>
+          <div class="layui-card-body" style="background:#fff; border-radius:10px">
+            <ul class="layui-row">
+              <li class="layui-col-md5">
+                <div class="b-btnBox">
+                  <a class="on">今日投注</a> <a>本周投注</a> <a>本月投注</a>
+                </div>
+              </li>
+              <li class="layui-col-md7">
+                <div class="layui-form-item" style=" text-align: right">
+                  <div class="layui-inline">
+                    <label class="layui-form-label">日期选择</label>
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="date1" placeholder="yyyy年MM月dd日"
+                        lay-key="13" />
+                    </div>
+                    <label class="layui-form-mid">至</label>
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="date2" placeholder="dd/MM/yyyy"
+                        lay-key="14" />
+                    </div>
+                  </div>
+                  <div class="layui-inline">
+                    <button class="layui-btn layui-btn-normal">筛选</button>
+                  </div>
+                </div>
+
+              </li>
+            </ul>
+            <ul class="layui-row homeList">
+              <li class="layui-col-xs4">
+                <h2>平台收入</h2>
+                <h3>
+                  <font color="#f75f5f">¥852222.00</font>
+                </h3>
+                <p>平台收入金额</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>平台支出</h2>
+                <h3>
+                  <font color="#0ac805">¥852222.00</font>
+                </h3>
+                <p>平台支出金额</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>未中金额</h2>
+                <h3>¥852222.00</h3>
+                <p>未中奖金币值</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>中奖金币</h2>
+                <h3>36350.00</h3>
+                <p>中奖金币值</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>投注人数</h2>
+                <h3>
+                  <font color="#2f8cff">300</font>
+                </h3>
+                <p>投注用户数量</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>中奖率</h2>
+                <h3>
+                  <font color="#2f8cff">20%</font>
+                </h3>
+                <p>中奖概率百分值</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md3">
+        <div class="layui-card" style="background:none;box-shadow: none">
+          <h2 class="b-title">正在进行</h2>
+          <div class="layui-card-body" style="background:#fff; border-radius:10px; min-height:200px; box-sizing: border-box; padding:18px 0 0 30px ;">
+            <h2 style="line-height:30px; font-size:18px;">当前期数：讲述快线32134781212345</h2>
+            <h2 style="line-height:30px; font-size:18px;">投注人数：345人</h2>
+            <h2 style="line-height:30px; font-size:18px;">投注金币：12000</h2>
+            <h2 style="line-height:30px;margin-bottom: 10px; font-size:18px;">开奖结果：2，3,6，和值 /<font color="#2f8cff">进行中</font>
+            </h2>
+            <a class="layui-btn layui-btn-normal layui-btn-radius">查看详情</a>
+          </div>
+        </div>
+        <div class="layui-card" style="background:none;box-shadow: none">
+          <h2 class="b-title">平台数据</h2>
+          <div class="layui-card-body home-total" style="background:#fff; border-radius:10px; height: 428px;">
+            <h2 class="home-title">用户总量</h2>
+            <div class="b-btnBox">
+              <a class="on">今日</a> <a>本周</a> <a>本月</a><a>全部</a>
+            </div>
+            <h3>
+              <font>546</font>人
+            </h3>
+            <p>当前在线用户：<font color="#f87b7b">150人</font></p>
+            <h2 class="home-title">金币总量</h2>
+            <div class="b-btnBox">
+              <a class="on">今日</a> <a>本周</a> <a>本月</a><a>全部</a>
+            </div>
+            <h3>
+              <font>546</font>币
+            </h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../../layuiadmin/layui/layui.js"></script>
+  <script>
+    layui.config({
+      base: "../../layuiadmin/" //静态资源所在路径
+    }).extend({
+      index: "lib/index" //主入口模块
+    }).use(["index", "sample",'laydate'],function(){
+      var laydate = layui.laydate;
+          //日期时间选择器
+laydate.render({ 
+  elem: '#date1'
+  ,type: 'date'
+  ,theme: '#1E9FFF'
+});
+laydate.render({ 
+  elem: '#date2'
+  ,type: 'date'
+  ,theme: '#1E9FFF'
+});
+    });
+    
+  </script>
+</body>
+
+</html>

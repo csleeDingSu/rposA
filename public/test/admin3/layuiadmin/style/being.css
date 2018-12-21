@@ -1,0 +1,61 @@
+/**
+ @Author：bieng
+ */
+ .b-title{ font-size: 24px;color: #fff; line-height:70px;  clear: both;}
+.homeIn{
+  background: #fff;
+  border-radius:10px;
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  -ms-border-radius:10px;
+  -o-border-radius:10px;
+  overflow: hidden;
+  min-height: 200px;
+  padding: 0 20px;
+}
+.homeIn img{
+  float: left;
+  width: 114px; 
+  height: 114px;
+  margin-left: 45px;
+  margin-right: 36px;
+}
+
+.homeIn h1{
+ text-align:right;
+ height: 42px;
+ line-height:56px;
+ font-size: 20px;color: #000
+}
+
+.homeIn h2{ font-size:24px; line-height: 80px; height: 80px;}
+.homeIn h2 font{ font-size: 70px;}
+.homeIn p{ font-size: 18px;color: #666;}
+.homeIn a{float: right;}
+
+.b-btnBox{ overflow: hidden; margin-bottom: 15px;}
+.b-btnBox a{  cursor: pointer; display: inline-block; line-height: 38px; width:130px; border:1px solid #e6e6e6; text-align: center;float: left; background: #f2f2f2; }
+.b-btnBox a.on{ background: #fff;}
+
+.homeList{ text-align: center;}
+.homeList li{ border-top: 1px solid #ebebeb; border-left:1px solid #ebebeb; height:185px ;}
+.homeList li:nth-of-type(1),
+.homeList li:nth-of-type(2),
+.homeList li:nth-of-type(3){border-top:none;}
+.homeList li:nth-of-type(3n+1){border-left:none;}
+.homeList li h2{ line-height: 60px; text-align: left;font-size: 18px; padding: 0 20px;}
+.homeList li h3{font-size:30px; color: #000; line-height: 60px;}
+.homeList li p{ font-size: 14px; color: #000}
+
+.home-total{
+  text-align: center;
+}
+
+.home-total h2{
+  font-size: 20px;color: #333; line-height: 50px; margin-bottom: 10px;
+}
+.home-total .b-btnBox{ text-align: center; font-size: 0;}
+.home-total a{ width: auto; padding: 0 10px; float: none; font-size: 14px;}
+.home-total  h3{font-size: 24px;color: #000; line-height: 70px;}
+.home-total  h3 font{ font-size: 30px; font-weight: bold;}
+.home-total p{ font-size: 14px; line-height:30px; padding-bottom:25px; border-bottom: 1px solid #ebebeb ; }
