@@ -60,7 +60,6 @@
 	content: '';
 	display: block;
 	position: absolute;
-	bottom:-.2rem;
 	left:.5rem;
 	border:.1rem solid rgba(0,0,0,0.2);
 	border-right:.1rem solid transparent;
