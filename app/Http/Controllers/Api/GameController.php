@@ -737,13 +737,16 @@ class GameController extends Controller
 		$package      = Package::get_current_package($memberid,'all');
 		
 		$redeemcount  = Package::get_redeemed_package_count($memberid);
-		
+		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
 		//Rules
 		//1st time min win 150
 		//2nd time min win 200
 		
+		print_r($package);
+		print_r($redeemcount);
+		print_r($redeemreward);
 		
-		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
+		
 		switch($redeemcount)
 		{
 			case '1':
