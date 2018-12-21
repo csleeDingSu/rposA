@@ -719,8 +719,12 @@ class GameController extends Controller
 	}
 	
 	
-	public function vip_life_redemption($memberid, $gameid)
+	public function vip_life_redemption(Request $request)
     {
+		
+		$memberid = $request->memberid;
+        $gameid   = $request->gameid;      
+		
 		$reset        = null;
 		$wallet       = Wallet::get_wallet_details_all($memberid);
 		
