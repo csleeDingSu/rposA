@@ -273,7 +273,7 @@ function initGame(token){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id + "&gametype=1",
+                    url: "/api/get-game-result-temp?gameid=101&gametype=1&memberid=" + user_id + "&drawid=" + draw_id,
                     dataType: "json",
                     beforeSend: function( xhr ) {
                         xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -319,7 +319,10 @@ function initGame(token){
 
                             $.ajax({
                                 type: 'GET',
-                                url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet="+ selected +"&betamt=" + bet_amount,
+                                url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                                + "&drawid=" + draw_id 
+                                + "&bet="+ selected 
+                                +"&betamt=" + bet_amount,
                                 dataType: "json",
                                 beforeSend: function( xhr ) {
                                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -450,7 +453,7 @@ function bindBetButton(token){
 
             $.ajax({
                 type: 'GET',
-                url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id 
+                url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
                 + "&drawid=" + draw_id 
                 + "&bet=&betamt=",
                 dataType: "json",
@@ -478,7 +481,7 @@ function bindBetButton(token){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id 
+                    url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
                     + "&drawid=" + draw_id 
                     + "&bet="+ selected 
                     + "&betamt=" + bet_amount

@@ -123,19 +123,13 @@ function initUser(token){
                     var vip_point =  parseInt(data.record.vip_point);
                     var vip_life =  parseInt(data.record.vip_life);
 
-                    var hall = $('#hidHall', window.parent.document).val();
-
                     if(life == 0){
                         balance = 0;
                     }
 
                     var total_balance = balance + acupoint;
 
-                    if(hall == 'vip'){
-                        $('#spanPoint', window.parent.document).html(vip_point);
-                    } else {
-                        $('#spanPoint', window.parent.document).html(total_balance);
-                    }
+                    $('#spanPoint', window.parent.document).html(vip_point);
                     
                     $('#hidTotalBalance', window.parent.document).val(total_balance);
                     $('.packet-point', window.parent.document).html(point);
@@ -279,7 +273,7 @@ function initGame(token){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id + "&gametype=2",
+                    url: "/api/get-game-result-temp?gameid=101&gametype=2&memberid=" + user_id + "&drawid=" + draw_id,
                     dataType: "json",
                     beforeSend: function( xhr ) {
                         xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -325,7 +319,10 @@ function initGame(token){
 
                             $.ajax({
                                 type: 'GET',
-                                url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet="+ selected +"&betamt=" + bet_amount,
+                                url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
+                                + "&drawid=" + draw_id 
+                                + "&bet="+ selected 
+                                +"&betamt=" + bet_amount,
                                 dataType: "json",
                                 beforeSend: function( xhr ) {
                                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -456,7 +453,7 @@ function bindBetButton(token){
 
             $.ajax({
                 type: 'GET',
-                url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id 
+                url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
                 + "&drawid=" + draw_id 
                 + "&bet=&betamt=",
                 dataType: "json",
@@ -484,7 +481,7 @@ function bindBetButton(token){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id 
+                    url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
                     + "&drawid=" + draw_id 
                     + "&bet="+ selected 
                     + "&betamt=" + bet_amount
@@ -526,7 +523,7 @@ function bindBetButton(token){
 }
 
 function bindCalculateButton(token){
-    $('.btn-calculate', window.parent.document).click(function(){
+    $('.btn-calculate-vip', window.parent.document).click(function(){
         var acupoint = $('.spanAcuPoint', window.parent.document).html();
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         var level = parseInt($('#hidLevel', window.parent.document).val());
