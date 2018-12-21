@@ -45,6 +45,73 @@ class Wallet extends Model
 		return $result;
 	}
 	
+	public static function merge_vip_wallet($memberid,$notes = FALSE)
+	{
+		$newpoint     = '';
+		
+		
+		$wallet    = self::get_wallet_details_all($memberid);
+		if ($wallet)
+		{
+			$now = Carbon::now();
+			if ($wallet->vip_point > 0)
+			{
+				//update VIP point
+				$newpoint = 0;
+				
+				$history = [
+					'created_at' 	    => $now,
+					'updated_at' 	    => $now,
+					'member_id'         => $memberid,
+					'credit'	        => '0',
+					'debit'	            => $wallet->vip_point,
+					'before_vip_point'  => $wallet->vip_point,
+					'current_vip_point' => $newpoint,
+					'notes'             => $wallet->vip_point." VIP POINTS MERGED TO POINT. ".$notes,
+					'credit_type'	    => 'DPVIP',
+					];
+
+				$data = [ 
+					'updated_at'   => $now,
+					'vip_point'    => $newpoint,
+				];
+				
+				
+				
+				$history = self::add_ledger_history($history);			
+				
+				$newpoint = $wallet->vip_point + $wallet->current_point;
+				
+				$history = [
+					'created_at' 	    => $now,
+					'updated_at' 	    => $now,
+					'member_id'         => $memberid,
+					'credit'	        => $newpoint,
+					'debit'	            => 0,
+					'balance_before'    => $wallet->current_point,
+					'balance_after'     => $newpoint ,
+					'current_balance'   => $newpoint ,
+					'notes'             => $wallet->vip_point." VIP POINTS MERGED TO POINT. ".$notes,
+					'credit_type'	    => 'APNT',
+					];
+
+				$data = [ 
+					'updated_at'    => $now,
+					'current_point' => $newpoint,
+					'vip_point'     => 0,
+				];
+				
+				$ledger  = DB::table('mainledger')
+					   ->where('member_id', $memberid)
+					   ->update($data);
+				
+				
+				$history = self::add_ledger_history($history);
+				
+			}
+		}
+	}
+	
 	public static function update_vip_wallet($memberid,$life = 0,$point = 0,$category = 'VIP',$type = 'credit', $notes = FALSE)
 	{
 		$newpoint     = '';

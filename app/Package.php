@@ -161,6 +161,43 @@ class Package extends Model
 		return $result;
 	}
 	
+	public static function get_current_package($memberid)
+	{
+		$result =  DB::table('vip_redeemed')->select('id')->where('member_id', $memberid)->where('redeem_state', 3)->first();
+		
+		return $result;
+	}
+	
+	public static function reset_current_package($id)
+	{	
+		if (!empty($id))
+		{
+			return $result = DB::table('vip_redeemed')
+            ->where('id', $id)
+            ->update(['redeem_state'=>4]);
+		}		 		
+	}
+	
+	public static function get_redeemed_package_count($memberid)
+	{
+		$count = DB::table('vip_redeemed')->where('redeem_state',4)->count();
+		
+		if (!$count) $count = 1;
+		
+		return $count;
+	}
+	
+	public static function get_redeemed_package_count($packageid = FALSE,$memberid = FALSE)
+	{
+		$result = DB::table('view_vip_betting');
+		
+		if (!$memberid)  $result->where('member_id',$memberid);
+		
+		if (!$packageid) $result->where('package_id',$packageid);
+		
+		return $result->sum('rewardamt');
+	}
+	
 }
 
 
