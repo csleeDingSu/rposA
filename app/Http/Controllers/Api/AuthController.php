@@ -54,7 +54,7 @@ class AuthController extends Controller {
 		
 		$user = Member::where('id' , request( 'id' ))->first();
 		
-		if ($suer)
+		if ($user)
 		{
 			if ($user->active_session == request( 'token' ))
 			{			
