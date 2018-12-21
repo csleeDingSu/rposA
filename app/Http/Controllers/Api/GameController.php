@@ -95,6 +95,7 @@ class GameController extends Controller
 	
 	public function play_vip_game($vipdata)
     { 
+		$point        = 0;
 		$reward       = 0;
 		$glevel       = '';
 		$status       = 'lose';
@@ -167,15 +168,15 @@ class GameController extends Controller
 				if (!$is_win) 
 				{
 					$close  = Game::get_consecutive_lose($memberid, $gameid,'1');
-					echo 	$close ;
 					if ($close == 'yes') {
 						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
-						Game::reset_member_game_level($memberid , $gameid,'1');
+						$point = Wallet::merge_vip_wallet($memberid);
+						Game::reset_member_game_level($memberid , $gameid,'1');						
 						Package::reset_current_package($packageid->id);
 					}
 				}
                 				
-				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
+				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'mergepoint' => $point]); 
 			}
 	}
 	
