@@ -108,6 +108,9 @@ class GameController extends Controller
 		$game_result  = $vipdata['game_result'];
 		$drawid       = $vipdata['drawid'];
 		
+		
+		$packageid = get_current_package($memberid);
+		
 		//check playable status
 		$wallet = Wallet::get_wallet_details($memberid);
 		
@@ -169,6 +172,23 @@ class GameController extends Controller
 				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
 			}
 	}
+	
+	public function new_update_game(Request $request)
+    {
+		//check game type 
+		
+		//get rules
+		
+		//play with rules
+		
+		//route to wallet update 
+		
+		//route to game play update
+		
+		//return statements
+		
+	}
+	
 	
 	/**
 	 *
