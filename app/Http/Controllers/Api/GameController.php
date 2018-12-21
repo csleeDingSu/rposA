@@ -737,6 +737,11 @@ class GameController extends Controller
 		
 		$package      = Package::get_current_package($memberid,'all');
 		
+		if (!$package) 
+		{				
+			return response()->json(['success' => false,  'message' => 'no active vip subscriptions']); 
+		}
+		
 		$redeemcount  = Package::get_redeemed_package_count($memberid);
 		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
 		//Rules
@@ -784,14 +789,7 @@ class GameController extends Controller
 		{	
 			Wallet::update_vip_wallet($memberid,1,'','debit','life reseted');
 			$reset = TRUE;
-			if ($packageid) 
-			{
-				Package::reset_current_package($packageid->id);				
-				
-			}
-			else {				
-				return response()->json(['success' => false,  'message' => 'no active vip subscriptions']); 
-			}	
+			Package::reset_current_package($packageid->id);	
 		}
 		
 		if ($reset)
