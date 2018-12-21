@@ -475,4 +475,9 @@ return [
 	'total_inactive_users' => '非活动用户总数',
 	'total_wabao_coin' => '挖宝币总数',
 	'total_wabao_bet' => '总挖宝币投注',
+
+	'inprogress' => '正在进行中',
+	'redeem_vip_ticket' => '兑换VIP入场卷',
+	'vip_ticket_not_yet_used' => '入场卷未使用',
+	
 ];

@@ -28,7 +28,7 @@ class AuthController extends Controller {
 			//$user = Auth::guard('member');
 			$user = Member::where('phone' , request( 'username' ))->first();
 			
-			$this->revoke_token($user);		
+			//$this->revoke_token($user);		
 			
 			
 			$tokenResult = $user->createToken('APITOKEN');
