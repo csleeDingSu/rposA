@@ -508,7 +508,7 @@
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
-
+			
 			$('.btn-rules').click(function(){
 				$('#game-rules').modal('show');
 				$('.rules-bubble', window.parent.document).hide();

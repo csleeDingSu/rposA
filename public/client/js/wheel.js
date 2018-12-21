@@ -214,17 +214,22 @@ function initGame(token){
                 }
 
                 switch (level) {
-                    default:
+                    default:                        
                     case 1:
                         bet_amount = 10;
                         $('.level-one', window.parent.document).next().addClass("active");
+                        if(balance == 1200) {
+                            $('.button-card', window.parent.document).click(function(){
+                                $('#game-rules', window.parent.document).modal('show');
+                            });    
+                        }
                         break;
                     case 2:
                         bet_amount = 30;
                         $('.level-two', window.parent.document).next().addClass("active");
                         $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
                         break;
-                    case 3:
+                    case 3:                    
                         bet_amount = 70;
                         $('.level-three', window.parent.document).next().addClass("active");
                         $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
