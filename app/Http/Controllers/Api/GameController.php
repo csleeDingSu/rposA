@@ -167,7 +167,8 @@ class GameController extends Controller
 				if (!$is_win) 
 				{
 					$close  = Game::get_consecutive_lose($memberid, $gameid,'1');
-					if ($close == 'yes') {
+					echo 	$close ;
+					if ($close == 'yess') {
 						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
 						Game::reset_member_game_level($memberid , $gameid,'1');
 						Package::reset_current_package($packageid->id);
