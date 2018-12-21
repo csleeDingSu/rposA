@@ -78,4 +78,7 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 		
 	Route::post('/redeem-vip', 'ProductController@redeem_vip')->name('api.vip.redeem');	
 	
+	Route::post('/reset-vip', 'GameController@vip_life_redemption')->name('api.vip.reset');	
+	
+	
  });	
