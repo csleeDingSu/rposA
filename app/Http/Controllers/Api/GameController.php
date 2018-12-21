@@ -13,7 +13,7 @@ use App\member_game_result;
 use App\member_game_bet_temp;
 
 use App\member_game_notification;
-
+use App\Package;
 class GameController extends Controller
 {
     
@@ -167,6 +167,7 @@ class GameController extends Controller
 				if (!$is_win) 
 				{
 					$close  = Game::get_consecutive_lose($memberid, $gameid,'1');
+					echo 	$close ;
 					if ($close == 'yes') {
 						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
 						Game::reset_member_game_level($memberid , $gameid,'1');
@@ -211,6 +212,9 @@ class GameController extends Controller
 		$gameid   = $request->gameid;
 		$memberid = $request->memberid;
 		$drawid   = $request->drawid;
+		
+		$drawid   = Game::get_current_result($gameid);
+		
 		$bet      = $request->bet;
 		$betamt   = $request->betamt;	
 		$gamelevel  = $request->level;
@@ -719,8 +723,12 @@ class GameController extends Controller
 	}
 	
 	
-	public function vip_life_redemption($memberid, $gameid)
+	public function vip_life_redemption(Request $request)
     {
+		
+		$memberid = $request->memberid;
+        $gameid   = $request->gameid;      
+		
 		$reset        = null;
 		$wallet       = Wallet::get_wallet_details_all($memberid);
 		
@@ -729,13 +737,16 @@ class GameController extends Controller
 		$package      = Package::get_current_package($memberid,'all');
 		
 		$redeemcount  = Package::get_redeemed_package_count($memberid);
-		
+		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
 		//Rules
 		//1st time min win 150
 		//2nd time min win 200
 		
+		print_r($package);
+		print_r($redeemcount);
+		print_r($redeemreward);
 		
-		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
+		
 		switch($redeemcount)
 		{
 			case '1':
