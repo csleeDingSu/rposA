@@ -185,7 +185,7 @@ class ProductController extends Controller
 
 					Wallet::update_ledger($memberid,'debit',$package->min_point,'PNT',$package->min_point.' Point reserved for VIP package');
 
-					$dd = Package::save_vip_package($data);echo $dd;
+					$dd = Package::save_vip_package($data);
 
 					return response()->json(['success' => true, 'message' => 'success']);
 				}
