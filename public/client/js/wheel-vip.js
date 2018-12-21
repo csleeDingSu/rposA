@@ -9,11 +9,6 @@ $(function () {
         closeModal();
     }
 
-    $('.btn-vip', window.parent.document).click(showVip);
-
-    function showVip() {
-        $('#vip-modal', window.parent.document).modal('show');
-    }
 });
 
 function updateResult(token){
@@ -125,12 +120,22 @@ function initUser(token){
                     var point = parseInt(data.record.point);
                     var acupoint =  parseInt(data.record.acupoint);
 
+                    var vip_point =  parseInt(data.record.vip_point);
+                    var vip_life =  parseInt(data.record.vip_life);
+
+                    var hall = $('#hidHall', window.parent.document).val();
+
                     if(life == 0){
                         balance = 0;
                     }
 
                     var total_balance = balance + acupoint;
-                    $('#spanPoint', window.parent.document).html(total_balance);
+
+                    if(hall == 'vip'){
+                        $('#spanPoint', window.parent.document).html(vip_point);
+                    } else {
+                        $('#spanPoint', window.parent.document).html(total_balance);
+                    }
                     
                     $('#hidTotalBalance', window.parent.document).val(total_balance);
                     $('.packet-point', window.parent.document).html(point);
@@ -138,6 +143,7 @@ function initUser(token){
                     $('.packet-acupoint', window.parent.document).html(acupoint);
                     $('#hidBalance', window.parent.document).val(balance);
                     $(".nTxt", window.parent.document).html(life);
+                    $(".spanVipLife", window.parent.document).html(vip_life);
                     $(".spanLife", window.parent.document).html(life);
 
                     setBalance();
@@ -273,7 +279,7 @@ function initGame(token){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id + "&gametype=1",
+                    url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id + "&gametype=2",
                     dataType: "json",
                     beforeSend: function( xhr ) {
                         xhr.setRequestHeader ("Authorization", "Bearer " + token);

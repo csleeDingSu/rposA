@@ -31,9 +31,15 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/details/{id?}', 'VoucherController@get_voucher_detail' )->name( 'get.voucher.detail' );
 
 	Route::get( '/arcade', 'ClientController@member_access_game' )->name( 'client.arcade' );
+
+	Route::get( '/vip', 'ClientController@member_access_vip' )->name( 'client.vip' );
 	
 	Route::get( '/wheel', function () {
 		return view( 'client/wheel' );
+	} );
+
+	Route::get( '/wheel-vip', function () {
+		return view( 'client/wheel-vip' );
 	} );
 
 	Route::get( '/faq', function () {

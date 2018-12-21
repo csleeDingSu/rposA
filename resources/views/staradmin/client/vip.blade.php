@@ -31,43 +31,24 @@
 		<div class="grid-container">
 			<div class="box">
 				<div class="coin"></div>
-				@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 				<div id="balance-wrapper">
-					<div class="number long">
-						<span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span>
+					<div class="number long number-vip">
+						<span class="balance-vip" id="spanPoint">0</span>
 						<div class="btn-calculate-wrapper">
-							<div class="btn-calculate">结算</div>
+							<div class="btn-calculate-vip">结算</div>
 						</div>
 					</div>
 				</div>
-				@else
-				<div class="number long">
-					<span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span>
-					<div class="btn-calculate-wrapper">
-						<div class="btn-calculate">结算</div>
-					</div>
-				</div>
-				@endif
 			</div>
 
-			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-vip vip-margin-negative"></div>
 				<div class="btn-rules-wrapper">
-					<a href="/vip">
-						<div class="btn-rules-vip">进入VIP专场</div>
+					<a href="/arcade">
+						<div class="btn-rules-vip">返回普通场</div>
 					</a>
 					<div style="clear:both"></div>
 				</div>
 			</div>
-			@else
-			<div class="box">
-				<div class="btn-vip vip-margin"></div>
-				<div class="btn-rules">规则介绍</div>
-				<div style="clear:both"></div>
-				<div class="rules-bubble blink">请看介绍</div>
-			</div>
-			@endif
 
 			<input id="hidTotalBalance" type="hidden" value="" />
 			<input id="hidBalance" type="hidden" value="" />
@@ -85,27 +66,6 @@
 	</div>
 	<!-- end information table -->
 
-	<!-- swiper iframe -->
-	<!--div class="swiper-container">
-		<div class="swiper-wrapper">
-			<div class="swiper-slide">
-				<iframe id="ifm_result" class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no" align="middle">
-			</iframe>
-			</div>
-			<div class="swiper-slide">
-				<iframe id="ifm_wheel" class="embed-responsive-item" src="/wheel" allowtransparency="true" frameBorder="0" scrolling="no">
-			</iframe>
-			</div>
-			<div class="swiper-slide">
-				<iframe id="ifm_history" class="embed-responsive-item" src="/history" allowtransparency="true" frameBorder="0" scrolling="no">
-			</iframe>
-			</div>
-		</div>
-
-		<div class="swiper-button-next"></div>
-		<div class="swiper-button-prev"></div>
-	</div-->
-
 	<div class="swiper-container">
 		<div class="carousel-cell">
 			<iframe id="ifm_result" class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no" align="middle">
@@ -113,7 +73,7 @@
 		</div>
 
 		<div class="carousel-cell">
-			<iframe id="ifm_wheel" class="embed-responsive-item" src="/wheel" allowtransparency="true" frameBorder="0" scrolling="no">
+			<iframe id="ifm_wheel" class="embed-responsive-item" src="/wheel-vip" allowtransparency="true" frameBorder="0" scrolling="no">
 			</iframe>
 		</div>
 

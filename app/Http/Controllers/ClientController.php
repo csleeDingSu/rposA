@@ -91,6 +91,32 @@ class ClientController extends BaseController
 
 	}
 
+	public function member_access_vip()
+	{
+		if (!Auth::Guard('member')->check())
+		{
+			$msg = trans('dingsu.please_login');
+			\Session::flash('success',$msg);
+
+			return redirect('/nlogin');
+
+		} else {
+
+			$member = Auth::guard('member')->user()->id	;
+			$data['member'] = Member::get_member($member);
+
+			if (is_null($data['member']->wechat_name)) {
+
+				//return redirect('/verify');
+
+			}
+
+		}
+
+		return view('client/vip');
+
+	}
+
 	public function member_update_wechatname(Request $request)
 	{
 		$memberid = $request->input('memberid');
