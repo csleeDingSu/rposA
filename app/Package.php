@@ -187,7 +187,7 @@ class Package extends Model
 		return $count;
 	}
 	
-	public static function get_redeemed_package_count($packageid = FALSE,$memberid = FALSE)
+	public static function get_redeemed_package_reward($packageid = FALSE,$memberid = FALSE)
 	{
 		$result = DB::table('view_vip_betting');
 		
