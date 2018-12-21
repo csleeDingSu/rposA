@@ -794,7 +794,7 @@ class GameController extends Controller
 		
 		if ($reset)
 		{
-			Package::reset_current_package($packageid->id);	
+			Package::reset_current_package($package->id);	
 			//reset game level
 			Game::reset_member_game_level($memberid , $gameid,'1');
 			return response()->json(['success' => true]); 
