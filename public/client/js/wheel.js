@@ -232,6 +232,13 @@ function initGame(token){
                         $('.span-3', window.parent.document).html("70");
                         $('.span-4', window.parent.document).html("150");
                         $('.span-5', window.parent.document).html("310");
+
+                        if(balance == 1200) {
+                            $('.button-card', window.parent.document).click(function(){
+                                $('#game-rules', window.parent.document).modal('show');
+                            });    
+                        }
+
                         break;
                     case 2:
                         bet_amount = 30;
@@ -240,7 +247,7 @@ function initGame(token){
                         $('.barBox', window.parent.document).removeClass("barBox-1");
                         $('.span-1', window.parent.document).html("-10");                        
                         break;
-                    case 3:
+                    case 3:                    
                         bet_amount = 70;
                         payout_info = '猜中得70，扣除前2次亏损40，赚30挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-3");
