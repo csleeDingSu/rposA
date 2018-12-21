@@ -52,26 +52,30 @@ class AuthController extends Controller {
 	
 	public function get_token() {
 		
-		$user = Member::where('username' , request( 'username' ))->first();
+		$user = Member::where('id' , request( 'id' ))->first();
 		
-		if ($user->active_session == request( 'token' ))
-		{			
-			//$this->revoke_token($user);	
-		
-			$tokenResult = $user->createToken('APITOKEN');
-			$token = $tokenResult->token;
-			$token->expires_at = Carbon::now()->addMinutes(10);
-			$token->save();
-			return response()->json([
-				'success' => true,
-				'access_token' => $tokenResult->accessToken,
-				'token_type' => 'Bearer',
-				'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
-				'requested_time' => Carbon::now()->toDateTimeString()
-			]);
-			
-			return response()->json(['success' => true, 'token' => $token],$this->successStatus); 
+		if ($suer)
+		{
+			if ($user->active_session == request( 'token' ))
+			{			
+				//$this->revoke_token($user);	
+
+				$tokenResult = $user->createToken('APITOKEN');
+				$token = $tokenResult->token;
+				$token->expires_at = Carbon::now()->addMinutes(10);
+				$token->save();
+				return response()->json([
+					'success' => true,
+					'access_token' => $tokenResult->accessToken,
+					'token_type' => 'Bearer',
+					'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
+					'requested_time' => Carbon::now()->toDateTimeString()
+				]);
+				return response()->json(['success' => true, 'token' => $token],$this->successStatus); 
+			}
 		}
+		
+		
 		return response()->json( [ 'success' => 'false', 'error' => 'Unauthorised' ], 401 );				
 	}
 	
