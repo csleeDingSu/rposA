@@ -789,11 +789,12 @@ class GameController extends Controller
 		{	
 			Wallet::update_vip_wallet($memberid,1,'','debit','life reseted');
 			$reset = TRUE;
-			Package::reset_current_package($packageid->id);	
+			
 		}
 		
 		if ($reset)
 		{
+			Package::reset_current_package($packageid->id);	
 			//reset game level
 			Game::reset_member_game_level($memberid , $gameid,'1');
 			return response()->json(['success' => true]); 
