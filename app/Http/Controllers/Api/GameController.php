@@ -742,6 +742,7 @@ class GameController extends Controller
 		//1st time min win 150
 		//2nd time min win 200
 		
+		print_r($package);
 		
 		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
 		switch($redeemcount)
