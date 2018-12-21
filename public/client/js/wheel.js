@@ -221,17 +221,24 @@ function initGame(token){
                         bet_amount = 10;
                         payout_info = '猜中得10，赚10挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-1");
+                        $('.barBox', window.parent.document).removeClass("barBox-2");
+                        $('.barBox', window.parent.document).removeClass("barBox-3");
+                        $('.barBox', window.parent.document).removeClass("barBox-4");
+                        $('.barBox', window.parent.document).removeClass("barBox-5");
+                        $('.barBox', window.parent.document).removeClass("barBox-6");
                         break;
                     case 2:
                         bet_amount = 30;
                         payout_info = '猜中得30，扣除之前亏损10，赚20挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-2");
+                        $('.barBox', window.parent.document).removeClass("barBox-1");
                         $('.span-1', window.parent.document).html("-10");                        
                         break;
                     case 3:
                         bet_amount = 70;
                         payout_info = '猜中得70，扣除前2次亏损40，赚30挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-3");
+                        $('.barBox', window.parent.document).removeClass("barBox-2");
                         $('.span-1', window.parent.document).html("-10");
                         $('.span-2', window.parent.document).html("-30");
                         break;
@@ -239,6 +246,7 @@ function initGame(token){
                         bet_amount = 150;
                         payout_info = '猜中得150，扣除前3次亏损110，赚40挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-4");
+                        $('.barBox', window.parent.document).removeClass("barBox-3");
                         $('.span-1', window.parent.document).html("-10");
                         $('.span-2', window.parent.document).html("-30");
                         $('.span-3', window.parent.document).html("-70");
@@ -247,6 +255,7 @@ function initGame(token){
                         bet_amount = 310;
                         payout_info = '猜中得310，扣除前4次亏损260，赚50挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-5");
+                        $('.barBox', window.parent.document).removeClass("barBox-4");
                         $('.span-1', window.parent.document).html("-10");
                         $('.span-2', window.parent.document).html("-30");
                         $('.span-3', window.parent.document).html("-70");
@@ -256,6 +265,7 @@ function initGame(token){
                         bet_amount = 630;
                         payout_info = '猜中得630，扣除前5次亏损570，赚60挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-6");
+                        $('.barBox', window.parent.document).removeClass("barBox-5");
                         $('.span-1', window.parent.document).html("-10");
                         $('.span-2', window.parent.document).html("-30");
                         $('.span-3', window.parent.document).html("-70");
@@ -265,7 +275,7 @@ function initGame(token){
                 }
 
                 $('.span-balance', window.parent.document).html(balance);
-                $('.payout-info', window.parent.document).html(payout_info);
+                $('.payout-info', window.parent.document).html(payout_info).addClass('hide');
                 $('.bet-container', window.parent.document).html(bet_amount);
 
                 setBalance();
