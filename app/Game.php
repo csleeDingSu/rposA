@@ -315,7 +315,7 @@ class Game extends Model
 				->select('games.game_name','game_category.id as categoryid', 'game_category.game_time as result_time','game_category.block_time as freeze_time')
 				->join('game_category', 'games.game_category', '=', 'game_category.id')
 				->where('games.id', $id)
-				->get()->first();
+				->first();
 		}
 		
 		return $result;

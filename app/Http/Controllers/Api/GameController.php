@@ -109,7 +109,11 @@ class GameController extends Controller
 		$drawid       = $vipdata['drawid'];
 		
 		
-		$packageid = get_current_package($memberid);
+		$packageid = Package::get_current_package($memberid);
+		
+		
+		if (!$packageid) return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'No active vip subscriptions']);
+		
 		
 		//check playable status
 		$wallet = Wallet::get_wallet_details($memberid);
@@ -156,7 +160,7 @@ class GameController extends Controller
 				//Update Memeber game play history		
 				$now     = Carbon::now()->toDateTimeString();
 					
-				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid,'reward' => $reward];				
+				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid,'reward' => $reward,'package_id'=>$packageid->id];				
 				
 				$records =  Game::add_vip_play_history($insdata);
 			
@@ -166,6 +170,7 @@ class GameController extends Controller
 					if ($close == 'yes') {
 						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
 						Game::reset_member_game_level($memberid , $gameid,'1');
+						Package::reset_current_package($packageid->id);
 					}
 				}
                 				
@@ -711,6 +716,80 @@ class GameController extends Controller
         $gameid   = $request->gameid;        
         $record   = member_game_notification::select('memberid', 'gameid','flag_status')->where('memberid', $memberid)->where('gameid', $gameid)->first();    
         return response()->json(['success' => true, 'record' => $record ]);
+	}
+	
+	
+	public function vip_life_redemption($memberid, $gameid)
+    {
+		$reset        = null;
+		$wallet       = Wallet::get_wallet_details_all($memberid);
+		
+		$gamelevel    = Game::get_member_current_level($gameid, $memberid,'1');
+		
+		$package      = Package::get_current_package($memberid,'all');
+		
+		$redeemcount  = Package::get_redeemed_package_count($memberid);
+		
+		//Rules
+		//1st time min win 150
+		//2nd time min win 200
+		
+		
+		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
+		switch($redeemcount)
+		{
+			case '1':
+				if ($redeemreward< 150)
+				{
+					if ($wallet->vip_life >= 1 )
+					{ 
+						return response()->json(['success' => false, 'message' => 'you must win 150 points']); 
+					}
+				}
+				break;
+			case '2':
+				if ($redeemreward< 200)
+				{
+					if ($wallet->vip_life >= 1 )
+					{ 
+						return response()->json(['success' => false, 'message' => 'you must win 200 points']); 
+					}
+				}
+				break;
+			default:
+				break;
+		}
+		
+		
+		if ($wallet->vip_point > 0 )
+		{
+			//merge point
+			Wallet::merge_vip_wallet($memberid);
+			$reset = TRUE;
+		}
+		
+		if ($wallet->vip_life >= 1) 
+		{	
+			Wallet::update_vip_wallet($memberid,1,'','debit','life reseted');
+			$reset = TRUE;
+			if ($packageid) 
+			{
+				Package::reset_current_package($packageid->id);				
+				
+			}
+			else {				
+				return response()->json(['success' => false,  'message' => 'no active vip subscriptions']); 
+			}	
+		}
+		
+		if ($reset)
+		{
+			//reset game level
+			Game::reset_member_game_level($memberid , $gameid,'1');
+			return response()->json(['success' => true]); 
+		}
+		
+		return response()->json(['success' => false, 'message' => 'nothing to reset']); 
 	}
 
 }
