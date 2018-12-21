@@ -6,6 +6,7 @@
     @parent
 
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game.css') }}" />
     
 
@@ -87,45 +88,103 @@
 	<div class="instruction">请猜下一局幸运号是单数或双数</div>
 
 	<!-- progress bar -->
-	<div class="progress-bar-container">
-    	<div class="progress-bar">
-    		<span class="speech-bubble level-one hide">猜中得20分，扣之前投入10分，赚10分。</span>
-    		<div class="circle">
-    			<span class="label"></span>
-    			<div class="bet-title">10</div>
-            </div>
-            <span class="bar"></span>
-            <span class="speech-bubble level-two hide">猜中得60分，扣前两次投入40分，赚20分。</span>
-            <div class="circle">
-            	<span class="label"></span>
-                <div class="bet-title">30</div>
-            </div>
-            <span class="bar-long"></span>
-            <span class="speech-bubble level-three hide">猜中得140分，扣前3次投入110分，赚30分。</span>
-            <div class="circle">
-            	<span class="label"></span>
-                <div class="bet-title">70</div>
-            </div>
-            <span class="bar-long"></span>
-            <span class="speech-bubble level-four hide">猜中得300分，扣前4次投入260分，赚40分。</span>
-            <div class="circle">
-            	<span class="label"></span>
-                <div class="bet-title">150</div>
-            </div>
-            <span class="bar-longer"></span>
-            <span class="speech-bubble level-five hide">猜中得620分，扣前5次投入570分，赚50分。</span>
-            <div class="circle">
-            	<span class="label"></span>
-                <div class="bet-title">310</div>
-            </div>
-            <span class="bar-last"></span>
-            <span class="speech-bubble level-six hide">猜中得1260分，扣前6次投入1200分，赚60分。</span>
-            <div class="circle">
-            	<span class="label"></span>
-                <div class="bet-title">630</div>
-            </div>
-    	</div>
-	</div>
+	<section class="barWrapper">
+      	<article class="barBox">
+	      <div class="rule">
+	          <h2 class="payout-info hide"></h2>
+	        <ul>
+	          <li>
+	            <span class="span-1">10</span>
+	            <dl>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	            </dl>
+	          </li>
+	          <li>
+	            <span class="span-2">30</span>
+	            <dl>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	            </dl>
+	          </li>
+	          <li>
+	            <span class="span-3">70</span>
+	            <dl>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	            </dl>
+	          </li>
+	          <li>
+	            <span class="span-4">150</span>
+	            <dl>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	            </dl>
+	          </li>
+	          <li>
+	            <span class="span-5">310</span>
+	            <dl>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	            </dl>
+	          </li>
+	          <li>
+	            <span class="span-6">630</span>
+	            <dl>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	              <dd></dd>
+	            </dl>
+	          </li>
+	        </ul>
+	      </div>
+	      <div class="barIn">
+	        <p><span class="span-balance">1200</span> / 1200</p>
+	        <div class="barImg"></div>
+	      </div>
+	    </article>
+    </section>
 	<!-- end progress bar -->
 
 	<!-- button wrapper -->
