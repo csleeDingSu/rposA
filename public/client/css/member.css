@@ -234,6 +234,7 @@ html, body {
     .list-group-item {
 		font-size: 12px;
 	}
+
 }
 
 .glyphicon {
@@ -247,6 +248,30 @@ html, body {
 	margin-right: 2px;
 	font-weight: 500;
 	color: red;
+}
+
+.vip-inprogress {
+	float: right;
+	margin-top: -3px;
+	margin-right: 2px;
+	font-weight: 600;
+	color: #007cef;
+}
+
+.vip-redeemticket {
+	float: right;
+	margin-top: -3px;
+	margin-right: 2px;
+	font-weight: 600;
+	color: #686868;
+}
+
+.vip-ticketnotinused {
+	float: right;
+	margin-top: -3px;
+	margin-right: 2px;
+	font-weight: 600;
+	color: #686868;
 }
 
 .icon-wrapper {

@@ -495,5 +495,9 @@ return [
 	'deducted' => 'Deducted',
 	'acpoint' => 'Accumulated point',
 	'added' => 'Added',
+
+	'inprogress' => 'In Progress',
+	'redeem_vip_ticket' => 'Redeem VIP Ticket',
+	'vip_ticket_not_yet_used' => 'VIP Ticket Not Yet Used',
 	
 ];

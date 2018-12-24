@@ -9,42 +9,7 @@ $(function () {
         closeModal();
     }
 
-    $(".btn-rules-vip", window.parent.document).click(vipHall);
-
-    function vipHall() {
-
-        var val = $(this).html();
-
-        if(val == '进入VIP专场'){
-            var wrapper_html = '<div class="btn-rules-wrapper"><div class="btn-rules-vip">返回普通场</div><div style="clear:both"></div></div>';
-
-            var balance_html = '<div class="number long number-vip"><span class="balance-vip" id="spanPoint">0</span><div class="btn-calculate-wrapper"><div class="btn-calculate-vip">结算</div></div></div>';
-
-            var footer_html = '<i class="nVip">&nbsp;</i><p class="vip-life">VIP专场 剩余<span class="spanVipLife">&nbsp;</span>次</p>';
-
-            $('#hidHall', window.parent.document).val('vip');
-
-        } else {
-            var wrapper_html = '<div class="btn-vip vip-margin-negative"></div><div class="btn-rules-wrapper"><div class="btn-rules-vip">进入VIP专场</div><div style="clear:both"></div></div>';
-
-            var balance_html = '<div class="number long"><span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span><div class="btn-calculate-wrapper"><div class="btn-calculate">结算</div> </div></div>';
-
-            var footer_html = '<i class="nTxt">&nbsp;</i><p>剩余闯关</p>';
-
-            $('#hidHall', window.parent.document).val('normal');
-        }
-
-        $("#btn-vip-wrapper", window.parent.document).html(wrapper_html);
-        $("#balance-wrapper", window.parent.document).html(balance_html);
-        $("#footer-life", window.parent.document).html(footer_html);
-
-        getToken();
-
-        $(".btn-rules-vip", window.parent.document).click(vipHall);
-        $('.btn-vip', window.parent.document).click(showVip);
-
-    
-    }
+    $('.btn-vip', window.parent.document).click(showVip);
 
     function showVip() {
         $('#vip-modal', window.parent.document).modal('show');
@@ -160,22 +125,12 @@ function initUser(token){
                     var point = parseInt(data.record.point);
                     var acupoint =  parseInt(data.record.acupoint);
 
-                    var vip_point =  parseInt(data.record.vip_point);
-                    var vip_life =  parseInt(data.record.vip_life);
-
-                    var hall = $('#hidHall', window.parent.document).val();
-
                     if(life == 0){
                         balance = 0;
                     }
 
                     var total_balance = balance + acupoint;
-
-                    if(hall == 'vip'){
-                        $('#spanPoint', window.parent.document).html(vip_point);
-                    } else {
-                        $('#spanPoint', window.parent.document).html(total_balance);
-                    }
+                    $('#spanPoint', window.parent.document).html(total_balance);
                     
                     $('#hidTotalBalance', window.parent.document).val(total_balance);
                     $('.packet-point', window.parent.document).html(point);
@@ -183,7 +138,6 @@ function initUser(token){
                     $('.packet-acupoint', window.parent.document).html(acupoint);
                     $('#hidBalance', window.parent.document).val(balance);
                     $(".nTxt", window.parent.document).html(life);
-                    $(".spanVipLife", window.parent.document).html(vip_life);
                     $(".spanLife", window.parent.document).html(life);
 
                     setBalance();
@@ -245,6 +199,7 @@ function initGame(token){
                 var consecutive_lose = data.record.consecutive_lose;
                 var life = $(".nTxt", window.parent.document).html();
                 var balance = $('#hidBalance', window.parent.document).val();
+                var payout_info = '';
 
                 $('#hidLevel', window.parent.document).val(level);
                 $('#hidLevelId', window.parent.document).val(level_id);
@@ -260,48 +215,80 @@ function initGame(token){
                 }
 
                 switch (level) {
+
                     default:
                     case 1:
                         bet_amount = 10;
-                        $('.level-one', window.parent.document).next().addClass("active");
+                        payout_info = '猜中得10，赚10挖宝币。';
+                        $('.barBox', window.parent.document).addClass("barBox-1");
+                        $('.barBox', window.parent.document).removeClass("barBox-2");
+                        $('.barBox', window.parent.document).removeClass("barBox-3");
+                        $('.barBox', window.parent.document).removeClass("barBox-4");
+                        $('.barBox', window.parent.document).removeClass("barBox-5");
+                        $('.barBox', window.parent.document).removeClass("barBox-6");
+
+                        $('.span-1', window.parent.document).html("10");
+                        $('.span-2', window.parent.document).html("30");
+                        $('.span-3', window.parent.document).html("70");
+                        $('.span-4', window.parent.document).html("150");
+                        $('.span-5', window.parent.document).html("310");
+
+                        if(balance == 1200) {
+                            $('.button-card', window.parent.document).click(function(){
+                                $('#game-rules', window.parent.document).modal('show');
+                            });    
+                        }
+
                         break;
                     case 2:
                         bet_amount = 30;
-                        $('.level-two', window.parent.document).next().addClass("active");
-                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
+                        payout_info = '猜中得30，扣除之前亏损10，赚20挖宝币。';
+                        $('.barBox', window.parent.document).addClass("barBox-2");
+                        $('.barBox', window.parent.document).removeClass("barBox-1");
+                        $('.span-1', window.parent.document).html("-10");                        
                         break;
-                    case 3:
+                    case 3:                    
                         bet_amount = 70;
-                        $('.level-three', window.parent.document).next().addClass("active");
-                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
+                        payout_info = '猜中得70，扣除前2次亏损40，赚30挖宝币。';
+                        $('.barBox', window.parent.document).addClass("barBox-3");
+                        $('.barBox', window.parent.document).removeClass("barBox-2");
+                        $('.span-1', window.parent.document).html("-10");
+                        $('.span-2', window.parent.document).html("-30");
                         break;
                     case 4:
                         bet_amount = 150;
-                        $('.level-four', window.parent.document).next().addClass("active");
-                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
+                        payout_info = '猜中得150，扣除前3次亏损110，赚40挖宝币。';
+                        $('.barBox', window.parent.document).addClass("barBox-4");
+                        $('.barBox', window.parent.document).removeClass("barBox-3");
+                        $('.span-1', window.parent.document).html("-10");
+                        $('.span-2', window.parent.document).html("-30");
+                        $('.span-3', window.parent.document).html("-70");
                         break;
                     case 5:
                         bet_amount = 310;
-                        $('.level-five', window.parent.document).next().addClass("active");
-                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-four', window.parent.document).next().addClass("done").find('.label').html('x');
+                        payout_info = '猜中得310，扣除前4次亏损260，赚50挖宝币。';
+                        $('.barBox', window.parent.document).addClass("barBox-5");
+                        $('.barBox', window.parent.document).removeClass("barBox-4");
+                        $('.span-1', window.parent.document).html("-10");
+                        $('.span-2', window.parent.document).html("-30");
+                        $('.span-3', window.parent.document).html("-70");
+                        $('.span-4', window.parent.document).html("-150");
                         break;
                     case 6:
                         bet_amount = 630;
-                        $('.level-six', window.parent.document).next().addClass("active");
-                        $('.level-one', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-two', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-three', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-four', window.parent.document).next().addClass("done").find('.label').html('x');
-                        $('.level-five', window.parent.document).next().addClass("done").find('.label').html('x');
+                        payout_info = '猜中得630，扣除前5次亏损570，赚60挖宝币。';
+                        $('.barBox', window.parent.document).addClass("barBox-6");
+                        $('.barBox', window.parent.document).removeClass("barBox-5");
+                        $('.span-1', window.parent.document).html("-10");
+                        $('.span-2', window.parent.document).html("-30");
+                        $('.span-3', window.parent.document).html("-70");
+                        $('.span-4', window.parent.document).html("-150");
+                        $('.span-5', window.parent.document).html("-310");
                         break;
                 }
 
+                $('.span-balance', window.parent.document).html(balance);
+                $('.payout-info', window.parent.document).html(payout_info).addClass('hide');
                 $('.bet-container', window.parent.document).html(bet_amount);
 
                 setBalance();
@@ -319,7 +306,7 @@ function initGame(token){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/get-game-result-temp?gameid=101&memberid=" + user_id + "&drawid=" + draw_id,
+                    url: "/api/get-game-result-temp?gameid=101&gametype=1&memberid=" + user_id + "&drawid=" + draw_id,
                     dataType: "json",
                     beforeSend: function( xhr ) {
                         xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -341,31 +328,12 @@ function initGame(token){
                             $('#spanPoint', window.parent.document).html(newtotalbalance);
                             $('.instruction', window.parent.document).css('visibility', 'hidden');
 
-                            switch (level) {
-                                default:
-                                case 1:
-                                    $('.level-one', window.parent.document).removeClass("hide");
-                                    break;
-                                case 2:
-                                    $('.level-two', window.parent.document).removeClass("hide");
-                                    break;
-                                case 3:
-                                    $('.level-three', window.parent.document).removeClass("hide");
-                                    break;
-                                case 4:
-                                    $('.level-four', window.parent.document).removeClass("hide");
-                                    break;
-                                case 5:
-                                    $('.level-five', window.parent.document).removeClass("hide");
-                                    break;
-                                case 6:
-                                    $('.level-six', window.parent.document).removeClass("hide");
-                                    break;
-                            }
-
                             $.ajax({
                                 type: 'GET',
-                                url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id + "&drawid=" + draw_id + "&bet="+ selected +"&betamt=" + bet_amount,
+                                url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                                + "&drawid=" + draw_id 
+                                + "&bet="+ selected 
+                                +"&betamt=" + bet_amount,
                                 dataType: "json",
                                 beforeSend: function( xhr ) {
                                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -383,10 +351,10 @@ function initGame(token){
 }
 
 function getToken(){
-    var username = $('#hidUsername', window.parent.document).val();
+    var id = $('#hidUserId', window.parent.document).val();
     var session = $('#hidSession', window.parent.document).val();
 
-    $.getJSON( "/api/gettoken?username=" + username + "&token=" + session, function( data ) {
+    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
             $('#hidToken', window.parent.document).val(data.access_token);
@@ -493,10 +461,12 @@ function bindBetButton(token){
 
             $('#spanPoint', window.parent.document).html(total_balance);
             $('.instruction', window.parent.document).css('visibility', 'visible');
-
+            $('.payout-info', window.parent.document).addClass("hide");
+            $('.span-balance', window.parent.document).html(balance);
+            
             $.ajax({
                 type: 'GET',
-                url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id 
+                url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
                 + "&drawid=" + draw_id 
                 + "&bet=&betamt=",
                 dataType: "json",
@@ -524,7 +494,7 @@ function bindBetButton(token){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/update-game-result-temp?gameid=101&memberid="+ user_id 
+                    url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
                     + "&drawid=" + draw_id 
                     + "&bet="+ selected 
                     + "&betamt=" + bet_amount
@@ -539,27 +509,8 @@ function bindBetButton(token){
                 });
             }
 
-            switch (level) {
-                default:
-                case 1:
-                    $('.level-one', window.parent.document).removeClass("hide");
-                    break;
-                case 2:
-                    $('.level-two', window.parent.document).removeClass("hide");
-                    break;
-                case 3:
-                    $('.level-three', window.parent.document).removeClass("hide");
-                    break;
-                case 4:
-                    $('.level-four', window.parent.document).removeClass("hide");
-                    break;
-                case 5:
-                    $('.level-five', window.parent.document).removeClass("hide");
-                    break;
-                case 6:
-                    $('.level-six', window.parent.document).removeClass("hide");
-                    break;
-            }
+            $('.payout-info', window.parent.document).removeClass("hide");
+            $('.span-balance', window.parent.document).html(newbalance);
         }
 
     });

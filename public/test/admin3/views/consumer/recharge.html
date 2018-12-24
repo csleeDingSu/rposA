@@ -1,0 +1,210 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>用户管理 - 充值申请</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<style>
+    html,
+      body {
+        height: 100%;
+        overflow-y: auto;
+      }
+    </style>
+<body>
+
+  <div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+      <a lay-href="">主页</a>
+      <a><cite>组件</cite></a>
+      <a><cite>数据表格</cite></a>
+      <a><cite>简单用法</cite></a>
+    </div>
+  </div>
+  
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">充值申请</div>
+          <div class="layui-card-body">
+
+              <div class="layui-form-item">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-normal">批量删除</button>
+                </div>
+                <div class="layui-inline">
+                    <input type="text" class="layui-input" style="width:250px" placeholder="搜索用户：输入用户手机号码"/>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-normal">搜索</button>
+                </div>
+                  <div class="layui-inline">
+                    <label class="layui-form-label">申请日期</label>
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="date1" placeholder="yyyy年MM月dd日"
+                        lay-key="13" />
+                    </div>
+                    <label class="layui-form-mid">至</label>
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="date2" placeholder="dd/MM/yyyy"
+                        lay-key="14" />
+                    </div>
+                  </div>
+                  <div class="layui-inline">
+                      <button class="layui-btn layui-btn-normal">筛选</button>
+                  </div>
+                  <div class="layui-inline layui-form">
+                      <select name="city" lay-verify="">
+                          <option value="">申请状态</option>
+                          <option value="">成功</option>
+                          <option value="">失败</option>
+                        </select>
+                  </div>
+                </div>
+            <table class="layui-hide" id="table"  lay-filter="table"></table>
+
+
+            <script type="text/html" id="table-type">
+              <!-- 充值状态 -->
+              {{#  if(d.tzDetailType == 1){ }}
+              <font color="#ff0000">充值失败</font>
+              {{#  } else if(d.tzDetailType == 2) { }}
+              <font color="#16ba00">已完成付款</font>
+            {{#  } else { }}
+            <font color="#2f8cff"> 付款超时</font>
+            {{#  } }} 
+             
+            </script>
+         
+            <script type="text/html" id="test-table-operate-barDemo">
+              <a class="layui-btn layui-btn-xs" lay-event="chongzhi">充币</a>
+              <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="refuse">拒绝</a>
+              <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'table','form','laydate'], function(){
+    var table = layui.table;
+    var laydate = layui.laydate;
+
+//日期时间选择器
+laydate.render({ 
+elem: '#date1'
+,type: 'date'
+,theme: '#1E9FFF'
+});
+laydate.render({ 
+elem: '#date2'
+,type: 'date'
+,theme: '#1E9FFF'
+});
+  
+    table.render({
+      elem: '#table'
+     
+      ,url: layui.setter.base + 'json/test.js'
+      ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+      ,page:{theme: '#0290ff'}
+      ,cols: [[
+      {type:'checkbox'}
+        ,{field:'id',width:'120', title: 'ID'}
+        ,{field:'czMoney2',width:'120',  title: '充值金额', sort: true, style:"color:#ff4b4b"}
+        ,{field:'czCion',width:'120',  title: ' 充兑金币', sort: true, style:"color:#ff4b4b"}
+        ,{field:'czName',width:'350', title: '充值卡号',}
+        ,{field:'cardTime',width:'180',  title: '申请时间',sort: true, } 
+        ,{field:'czType', title: '申请状态',width:'180', templet: '#table-type',}
+        , { align:'center',title:'操作', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
+      ]]
+    });
+    
+       //监听表格复选框选择
+       table.on('checkbox(table)', function(obj){
+      console.log(obj)
+    });
+    //监听工具条
+    table.on('tool(table)', function(obj){
+      var data = obj.data;
+      if(obj.event === 'chongzhi'){
+        layer.open({
+          type: 2
+          ,title: '充币'
+          ,content: 'goCz.html'
+          ,maxmin: true
+          ,area: ['500px', '180px']
+          ,btn: ['确定', '取消']
+          ,yes: function(index, layero){
+            var iframeWindow = window['layui-layer-iframe'+ index]
+            ,submitID = 'LAY-user-front-submit'
+            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+
+            //监听提交
+            iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+              var field = data.field; //获取提交的字段
+              
+              //提交 Ajax 成功后，静态更新表格中的数据
+              //$.ajax({});
+              table.reload('LAY-user-front-submit'); //数据刷新
+              layer.close(index); //关闭弹层
+            });  
+            
+            submit.trigger('click');
+          }
+        }); 
+      } else if(obj.event === 'del'){
+        layer.confirm('确定删除该数据？', function(index){
+          obj.del();
+          layer.close(index);
+        });
+      } else if(obj.event === 'refuse'){
+        layer.open({
+          type: 2
+          ,title: '拒绝理由'
+          ,content: 'refuse.html'
+          ,maxmin: true
+          ,area: ['500px', '240px']
+          ,btn: ['确定', '取消']
+          ,yes: function(index, layero){
+            var iframeWindow = window['layui-layer-iframe'+ index]
+            ,submitID = 'LAY-user-front-submit'
+            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+
+            //监听提交
+            iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+              var field = data.field; //获取提交的字段
+              
+              //提交 Ajax 成功后，静态更新表格中的数据
+              //$.ajax({});
+              table.reload('LAY-user-front-submit'); //数据刷新
+              layer.close(index); //关闭弹层
+            });  
+            
+            submit.trigger('click');
+          }
+        }); 
+      }
+    });
+
+      
+  
+  });
+  </script>
+</body>
+</html>

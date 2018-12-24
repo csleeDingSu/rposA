@@ -640,3 +640,9 @@ textarea {
 	  padding: 5px;
 	}
 }
+
+.bg-vip-copy {
+	background: #f8f5f1;
+    border-radius:10px;
+
+}
