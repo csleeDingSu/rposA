@@ -752,7 +752,7 @@ class GameController extends Controller
 		switch($redeemcount)
 		{
 			case '1':
-				if ($redeemreward< 150)
+				if ($redeemreward < 150)
 				{
 					if ($wallet->vip_life >= 1 )
 					{ 
@@ -761,7 +761,7 @@ class GameController extends Controller
 				}
 				break;
 			case '2':
-				if ($redeemreward< 200)
+				if ($redeemreward < 200)
 				{
 					if ($wallet->vip_life >= 1 )
 					{ 
