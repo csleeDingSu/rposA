@@ -24,8 +24,9 @@ $(document).ready(function () {
 function getToken(){
     var username = $('#hidUsername', window.parent.document).val();
     var session = $('#hidSession', window.parent.document).val();
+    var id = $('#hidUserId', window.parent.document).val();
 
-    $.getJSON( "/api/gettoken?username=" + username + "&token=" + session, function( data ) {
+    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
             getProductList(data.access_token);
