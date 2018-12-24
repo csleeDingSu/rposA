@@ -748,7 +748,7 @@ class GameController extends Controller
 		//Rules
 		//1st time min win 150
 		//2nd time min win 200
-				
+
 		switch($redeemcount)
 		{
 			case '1':
