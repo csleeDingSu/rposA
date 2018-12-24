@@ -749,10 +749,6 @@ class GameController extends Controller
 		//1st time min win 150
 		//2nd time min win 200
 		
-		print_r($package);
-		print_r($redeemcount);
-		print_r($redeemreward);
-		
 		
 		switch($redeemcount)
 		{
