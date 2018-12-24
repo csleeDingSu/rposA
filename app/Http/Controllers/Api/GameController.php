@@ -215,7 +215,7 @@ class GameController extends Controller
 		$memberid = $request->memberid;
 		$drawid   = $request->drawid;
 		
-		$drawid   = Game::get_current_result($gameid);
+		//$drawid   = Game::get_current_result($gameid);
 		
 		$bet      = $request->bet;
 		$betamt   = $request->betamt;	
@@ -748,8 +748,7 @@ class GameController extends Controller
 		//Rules
 		//1st time min win 150
 		//2nd time min win 200
-		
-		
+
 		switch($redeemcount)
 		{
 			case '1':
