@@ -15,7 +15,7 @@
 //language route
 
 Route::get('locale/{locale}', function ($locale) {
-
+//test
 	Session::put('locale', $locale);
 
 	return redirect()->back();
