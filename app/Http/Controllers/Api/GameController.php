@@ -726,8 +726,7 @@ class GameController extends Controller
 	
 	
 	public function vip_life_redemption(Request $request)
-    {
-		
+    {		
 		$memberid = $request->memberid;
         $gameid   = $request->gameid;      
 		
@@ -748,7 +747,7 @@ class GameController extends Controller
 		
 		//Rules are based on redeem_condition table
 		$redeemrules  = \App\Admin::list_redeem_condition();
-		
+		$redeemcount = 8;
 		$verifyrule   = \App\Admin::check_redeem_condition($redeemcount);
 		
 		if ($redeemreward < $verifyrule->minimum_point)
@@ -758,32 +757,8 @@ class GameController extends Controller
 				return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points']); 
 			}
 		}
-		
-		switch($redeemcount)
-		{
-			case '1':
-				if ($redeemreward < 150)
-				{
-					if ($wallet->vip_life >= 1 )
-					{ 
-						return response()->json(['success' => false, 'message' => 'you must win 150 points']); 
-					}
-				}
-				break;
-			case '2':
-				if ($redeemreward < 200)
-				{
-					if ($wallet->vip_life >= 1 )
-					{ 
-						return response()->json(['success' => false, 'message' => 'you must win 200 points']); 
-					}
-				}
-				break;
-			default:
-				break;
-		}
-		
-		
+			
+		die();
 		if ($wallet->vip_point > 0 )
 		{
 			//merge point
