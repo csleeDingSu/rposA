@@ -1017,8 +1017,37 @@ iframe {
 }
 
 .rules-content {
-	color: #8c8c8c;
+	font-size: 12px;
+	/*color: #8c8c8c;*/
+	color: white;
 	text-align: left;
+	padding-top: 15px;
+	padding-bottom: 20px;
+}
+
+.rules-title {
+	color: white;
+	text-align: center;
+	font-size: 24px;
+	padding-bottom: 20px;
+}
+
+.rules-content-1 {
+	color: white;
+	font-size: 14px;
+	text-align: left;
+}
+
+.rules-content-2 {
+	color: red;
+	font-size: 14px;
+	text-align: left;
+	padding-bottom: 10px;
+}
+
+.rules-content-img-timeline {
+	width: 250px;
+    /*height: 426px;*/
 }
 
 /* VIP Modal */
@@ -1104,6 +1133,18 @@ iframe {
 	padding: 6px;
 	background-image: linear-gradient(#ffcc4e, #ff8624);
 	margin-top: 20px;
+}
+
+.btn-rules-close {
+  
+	background: url('/client/images/rules_btn_gamestart.png') no-repeat top center;
+	font-size: 0.4rem;
+	color: white;
+	height: 40px;
+	padding: 5px 0px 5px 0;
+	background-size: cover;
+	max-width: 100%;
+
 }
 
 @media only screen and (max-width: 360px) {

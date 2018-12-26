@@ -472,22 +472,35 @@
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
                                 
-				<div class="modal-body">				
+				<div class="modal-body" style="background-color: black;border-radius: 5px;">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								
-								<div class="rules-content">
-									转盘每60秒转动一次，随机获得一个幸运号。<br />
-									<br />
-									玩家竞猜【单数】或【双数】，猜中即可获得奖励。<br />
-									<br />
-									每次挖宝机会有1200挖宝币，玩家根据系统设定的6次押宝积分去玩。<br />
-									最多可赚取150挖宝币，赚取的积分能兑换奖品，150挖宝币约等于15元红包。<br />
-									<br />
-									如果连续6次都没猜中，代表挖宝失败，并且会清零本次挖宝所赚的挖宝币。
+								<div class="rules-title">
+									游戏规则说明
 								</div>
-													
+								<div class="rules-content-1">
+									使用一次挖宝机会，兑换成1200游戏积分，游戏积分可用来竞猜单数或双数。
+								</div>
+								<div class="rules-content-2">
+									游戏规则: 压多少猜中赚多少，猜错就扣除。
+									1200积分不能1次全压，而是分为6次，如下图:
+								</div>
+								<img src="{{ asset('/client/images/rules_timeline.png') }}" class="rules-content-img-timeline"/>
+								<br/>
+								<div class="rules-content">
+									玩法规则解释:<br />
+									第一次压10分，如果猜错下次压30，如果还错下次压70，如果再错下次压150，一直错就一直增加，直到猜中为止！<br />
+									猜中后，返回10分重新开始，按此规则不停循环，每次最多可赚150分，可兑换红包15元。<br />									
+									如果6次全错，扣除本局赚的积分，游戏结束。
+								</div>
+
+								@if($betting_count > 0)
+									<div class="btn-rules-close">返回游戏</div>
+								@else
+									<div class="btn-rules-close">使用1次机会 开始抽奖</div>
+								@endif
+							
 							</div>
 						</div>
 					</div>							
@@ -542,7 +555,7 @@
 	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/game.js') }}"></script>
-	<script src="{{ asset('/client/js/NoSleep.js') }}"></script>
+	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
 
 	<script type="text/javascript">
 		$(document).ready(function () {
@@ -577,9 +590,13 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
+			$('.btn-rules-close').click(function(){
+		        $('#game-rules').modal('hide');		        
+		    });
+
 		});	
 
-		var noSleep = new NoSleep();
+		// var noSleep = new NoSleep();
 
 		// function enableNoSleep() {
 		//   noSleep.enable();
