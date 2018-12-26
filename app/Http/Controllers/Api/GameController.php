@@ -215,7 +215,7 @@ class GameController extends Controller
 		$memberid = $request->memberid;
 		$drawid   = $request->drawid;
 		
-		//$drawid   = Game::get_current_result($gameid);
+		$drawid   = Game::get_current_result($gameid);
 		
 		$bet      = $request->bet;
 		$betamt   = $request->betamt;	
