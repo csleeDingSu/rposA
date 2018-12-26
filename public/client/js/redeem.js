@@ -178,11 +178,11 @@ function getProductList(token) {
                                                     '<div class="modal-body">' +
                                                         '<div class="modal-row">' +
                                                             '<ul class="nav nav-pills">' +
-                                                              '<li class="active take-all-space-you-can"><a data-toggle="tab" href="#single">单张提交</a></li>' +
+                                                              '<li class="active take-all-space-you-can"><a data-toggle="tab" href="#single-tab">单张提交</a></li>' +
                                                               '<li class="take-all-space-you-can"><a data-toggle="tab" href="#multiple">批量提交</a></li>' +
                                                             '</ul>' +
                                                             '<div class="tab-content">' +
-                                                              '<div id="single" class="tab-pane fade in active vip-tab-pane">' +
+                                                              '<div id="single-tab" class="tab-pane fade in active vip-tab-pane">' +
                                                                 '卡号： <input id="txt_cardno" type="text" name="card_no" placeholder="请输入卡号" /><br /><hr>' +
                                                                 '密码： <input id="txt_password" type="text" name="password" placeholder="请输入密码" /><br /><hr>' +
                                                                 '<span class="modal-description">注意事项：请提交面值为100元的话费卷，如果提交多次错误花费卷，您的账号会被封号</span>' +
