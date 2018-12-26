@@ -750,13 +750,16 @@ class GameController extends Controller
 		$redeemcount = 8;
 		$verifyrule   = \App\Admin::check_redeem_condition($redeemcount);
 		
-		if ($redeemreward < $verifyrule->minimum_point)
-		{
-			if ($wallet->vip_life >= 1 )
-			{ 
-				return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points']); 
+		if ($verifyrule){
+			if ($redeemreward < $verifyrule->minimum_point)
+			{
+				if ($wallet->vip_life >= 1 )
+				{ 
+					return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points']); 
+				}
 			}
 		}
+		
 			
 		die();
 		if ($wallet->vip_point > 0 )
