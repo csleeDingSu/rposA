@@ -85,11 +85,11 @@ class ClientController extends BaseController
 		} else {
 
 			$member = Auth::guard('member')->user()->id	;
-			$betting_count = member_game_result::where("member_id", $member)->get()->count();
+			$data['betting_count'] = member_game_result::where("member_id", $member)->get()->count();
 
 		}
 
-		return view('client/game', compact('betting_count'));
+		return view('client/game', $data);
 
 	}
 
