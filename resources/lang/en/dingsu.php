@@ -501,4 +501,8 @@ return [
 	'vip_ticket_not_yet_used' => 'VIP Ticket Not Yet Used',
 	'waiting_for_approve' => 'Waiting for Approve',
 	
+	
+	'redeem_condition' => 'Redeem condition',
+	'num_of_redeem' => ' # of Redeem',
+	
 ];

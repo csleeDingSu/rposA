@@ -160,12 +160,14 @@ class Package extends Model
 		
 		return $result;
 	}
-	
-	public static function get_current_package($memberid)
-	{
-		$result =  DB::table('vip_redeemed')->select('id')->where('member_id', $memberid)->where('redeem_state', 3)->first();
 		
-		return $result;
+	public static function get_current_package($memberid,$all = FALSE)
+	{
+		$result =  DB::table('vip_redeemed');
+		if (!$all) $result->select('id');
+		
+		$out = $result->where('member_id', $memberid)->where('redeem_state', 3)->first();
+		return $out;
 	}
 	
 	public static function reset_current_package($id)
