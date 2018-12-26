@@ -202,7 +202,7 @@ class Package extends Model
 		$result->sum('rewardamt');
 		
 		$queries = \DB::getQueryLog();
-		dd($queries);
+		print_r($queries);
 		return $out ;
 		
 	}
