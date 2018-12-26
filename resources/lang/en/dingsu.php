@@ -504,5 +504,6 @@ return [
 	
 	'redeem_condition' => 'Redeem condition',
 	'num_of_redeem' => ' # of Redeem',
+	'condition' => 'condition',
 	
 ];
