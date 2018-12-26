@@ -575,12 +575,24 @@ class Game extends Model
 		
 		return $result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();		
 	}
+	
+	
+	public static function get_latest_game_result($memberid , $gameid, $vip = FALSE)
+	{
+		$table = 'member_game_result';
+		if ($vip) $table = 'vip_member_game_result';
+		$result = DB::table($table)->where('member_id', $memberid);
+		if ($gameid) $result->where('game_id', $gameid);
+		$out = $result->latest()->first();
+		return $out;
+	}
+	
 	public static function reset_member_game_level($memberid , $gameid, $vip = FALSE)	
 	{
 		$table = 'member_game_result';
 		if ($vip) $table = 'vip_member_game_result';
 		
-		$level = self::get_latest_member_result($memberid , $gameid,$vip);
+		$level = self::get_latest_game_result($memberid , $gameid,$vip);
 		
 		if ($level)
 		{
