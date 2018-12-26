@@ -357,6 +357,14 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	Route::get('/package/get-gameinfo', 'ReportController@gameinfo')->name('get.gameinfo');
 	
+	
+	//redeem condition
+	Route::get('/admin/redeem-condition', 'AdminController@listredeem_condition')->name('list.redeemcondition');
+	Route::get('/admin/get-redeem-condition', 'AdminController@get_redeem_condition')->name('get.redeemcondition');
+	Route::post('/admin/add-redeem-condition', 'AdminController@saveredeem_condition')->name('create.redeemcondition');
+	Route::post('/admin/edit-redeem-condition', 'AdminController@update_redeem_condition')->name('edit.redeemcondition');
+	Route::delete('/admin/delete-redeem-condition', 'AdminController@delete_redeem_condition')->name('remove.redeemcondition');
+	
 } );
 //END
 
