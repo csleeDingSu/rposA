@@ -256,7 +256,7 @@ class ProductController extends Controller
 			
 			if ($passcode === $package->passcode)
 			{
-				Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'VIP','');
+				Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'VIP');
 				
 				$now = Carbon::now();
 				$data = ['redeem_state'=>3,'redeemed_at'=>$now];
