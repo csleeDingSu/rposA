@@ -8,12 +8,7 @@ $(function () {
         getToken();
         closeModal();
     }
-
-    $('.btn-vip', window.parent.document).click(showVip);
-
-    function showVip() {
-        $('#vip-modal', window.parent.document).modal('show');
-    }
+    
 });
 
 function updateResult(token){
