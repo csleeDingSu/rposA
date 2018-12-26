@@ -727,13 +727,9 @@ class GameController extends Controller
 	
 	public function vip_life_redemption(Request $request)
     {		
+		$reset    = null;		
 		$memberid = $request->memberid;
-        $gameid   = $request->gameid;      
-		
-		$reset        = null;
-		$wallet       = Wallet::get_wallet_details_all($memberid);
-		
-		$gamelevel    = Game::get_member_current_level($gameid, $memberid,'1');
+        $gameid   = $request->gameid; 		
 		
 		$package      = Package::get_current_package($memberid,'all');
 		
@@ -741,15 +737,17 @@ class GameController extends Controller
 		{				
 			return response()->json(['success' => false,  'message' => 'no active vip subscriptions']); 
 		}
-		
+		$wallet       = Wallet::get_wallet_details_all($memberid);
 		$redeemcount  = Package::get_redeemed_package_count($memberid);
 		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
 		
 		//Rules are based on redeem_condition table
 		$redeemrules  = \App\Admin::list_redeem_condition();
-		$redeemcount = 8;
+		
 		$verifyrule   = \App\Admin::check_redeem_condition($redeemcount);
 		
+		
+		//return error message if user have vip life & didnt match the redeem criteria,
 		if ($verifyrule){
 			if ($redeemreward < $verifyrule->minimum_point)
 			{
@@ -760,24 +758,23 @@ class GameController extends Controller
 			}
 		}
 		
-			
-		die();
+		//Merge all vip points into current point
 		if ($wallet->vip_point > 0 )
 		{
 			//merge point
 			Wallet::merge_vip_wallet($memberid);
 			$reset = TRUE;
 		}
-		
+		//deduct a vip life
 		if ($wallet->vip_life >= 1) 
 		{	
 			Wallet::update_vip_wallet($memberid,1,'','debit','life reseted');
-			$reset = TRUE;
-			
+			$reset = TRUE;			
 		}
 		
 		if ($reset)
 		{
+			//change package status to completed 
 			Package::reset_current_package($package->id);	
 			//reset game level
 			Game::reset_member_game_level($memberid , $gameid,'1');
