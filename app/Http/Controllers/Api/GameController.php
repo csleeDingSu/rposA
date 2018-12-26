@@ -759,11 +759,6 @@ class GameController extends Controller
 			}
 		}
 		
-		print_r($redeemreward); 
-		print_r($verifyrule->minimum_point); 
-		print_r($package); 
-		die();
-
 		switch($redeemcount)
 		{
 			case '1':
