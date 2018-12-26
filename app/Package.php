@@ -195,9 +195,9 @@ class Package extends Model
 		
 		$result = DB::table('view_vip_betting');
 		
-		if (!$memberid)  $result->where('member_id',$memberid);
+		if ($memberid)  $result->where('member_id',$memberid);
 		
-		if (!$packageid) $result->where('package_id',$packageid);
+		if ($packageid) $result->where('package_id',$packageid);
 		
 		$result->sum('rewardamt');
 		
