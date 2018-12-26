@@ -807,4 +807,110 @@ class AdminController extends BaseController
 		return response()->json(['success' => true, 'message' => 'done']);
 	}
 	/**Banner END**/
+	
+	
+	/**Game Redeem Condition**/
+	public function get_redeem_condition(Request $request)
+    {
+		$id = $request->id;
+		$record = Admin::get_redeem_condition($id);
+		return response()->json(['success' => true, 'record' => $record]);
+	}	
+	
+	public function listredeem_condition (Request $request)
+	{				
+		$result =  \DB::table('redeem_condition');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);		
+    			
+		$result =  $result->orderby('position','ASC')->paginate(30);
+				
+		$data['page']    = 'redeem.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('redeem.ajaxlist', ['result' => $result])->render();  
+        }					
+		return view('main', $data);	
+	}
+	
+	public function saveredeem_condition(Request $request)
+    {		
+		$data = $request->_datav;
+		
+		foreach($data as $val)
+		{			
+			$dbi[$val['name']] = $val['value'];		
+		}
+				
+		if ($dbi['mode'] =='edit')
+		{
+			return $this->updateredeem_condition($dbi);
+		}
+		
+		$input = [
+					'position'     => $dbi['seq'],
+					'minimum_point' => $dbi['min_point'],
+					'description' => $dbi['description']
+			  	 ];
+		
+		$validator = Validator::make($input, [			
+			'minimum_point'    => 'required|numeric|min:1|max:9999',
+			'position'     => 'required|numeric|min:1|max:99|unique:redeem_condition,position',
+		]);
+		
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$now  = Carbon::now();
+		$data = ['position' => $input['position'],'minimum_point' => $input['minimum_point'],'description' => $input['description'],'created_at' => $now];
+		
+		$id = Admin::create_redeem_condition($data);
+				
+		$tip  = Admin::get_redeem_condition($id);
+		$row  = '<tr id=tr_'.$tip->id.'>';
+		$row .= '<td>'.$tip->id.'</td>';
+		$row .= '<td id="sp_'.$tip->id.'">'.$tip->position.'</td>';
+		$row .= '<td id="sm_'.$tip->id.'">'.$tip->minimum_point.'</td>';
+		$row .= '<td id="sd_'.$tip->id.'">'.$tip->description.'</td>';
+		$row .= '<td><a href="javascript:void(0)" data-id="'.$tip->id.'"  class="editrecord btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>';
+		$row .= '<a href="javascript:void(0)" onClick="confirm_Delete('.$tip->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a></td>';
+		$row .= '</tr>';
+		
+		return response()->json(['success' => true, 'message' => trans('dingsu.tips_update_success_msg'),'record'=>$row]);
+	}
+	
+	//for update tip from ajax
+	public function updateredeem_condition ($data)
+	{
+		$id = $data['hidden_void'];
+		
+		$input = [			
+					'position'      => $data['seq'],
+					'minimum_point' => $data['min_point'],
+					'description'   => $data['description']
+			  	 ];
+		$validator = Validator::make($input, [
+			 'position'       => 'required|numeric|min:1|max:99|unique:redeem_condition,position,'.$id,
+			 'minimum_point'  => 'required|numeric|min:1|max:9999',
+		]);
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}	
+		
+		$res = Admin::update_redeem_condition($id,$input);		
+		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$input]);
+	}
+		
+	public function delete_redeem_condition (Request $request)
+	{
+		$id = $request->id;
+		Admin::delete_redeem_condition($id);
+		return response()->json(['success' => true, 'message' => 'success']);
+	}
+	
+	/**Game Redeem Condition END**/
 }

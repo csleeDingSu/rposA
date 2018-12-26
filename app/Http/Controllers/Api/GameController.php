@@ -745,14 +745,29 @@ class GameController extends Controller
 		
 		$redeemcount  = Package::get_redeemed_package_count($memberid);
 		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
-		//Rules
-		//1st time min win 150
-		//2nd time min win 200
+		
+		//Rules are based on redeem_condition table
+		$redeemrules  = \App\Admin::list_redeem_condition();
+		
+		$verifyrule   = \App\Admin::check_redeem_condition($redeemcount);
+		
+		if ($redeemreward < $verifyrule->minimum_point)
+		{
+			if ($wallet->vip_life >= 1 )
+			{ 
+				return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points']); 
+			}
+		}
+		
+		print_r($redeemreward); 
+		print_r($verifyrule->minimum_point); 
+		print_r($package); 
+		die();
 
 		switch($redeemcount)
 		{
 			case '1':
-				if ($redeemreward< 150)
+				if ($redeemreward < 150)
 				{
 					if ($wallet->vip_life >= 1 )
 					{ 
@@ -761,7 +776,7 @@ class GameController extends Controller
 				}
 				break;
 			case '2':
-				if ($redeemreward< 200)
+				if ($redeemreward < 200)
 				{
 					if ($wallet->vip_life >= 1 )
 					{ 

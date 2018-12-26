@@ -108,6 +108,7 @@ class Wallet extends Model
 				
 				$history = self::add_ledger_history($history);
 				
+				return $wallet->vip_point;
 			}
 		}
 	}

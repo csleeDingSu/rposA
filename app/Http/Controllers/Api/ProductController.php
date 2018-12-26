@@ -223,7 +223,6 @@ class ProductController extends Controller
 		return response()->json(['success' => false, 'message' => 'insufficient point']);
 	}
 	
-	
 	public function redeem_vip(Request $request)
     {
 		$memberid  = $request->memberid;
@@ -243,10 +242,18 @@ class ProductController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
+				
 		$package   = Package::get_redeem_package_passcode($passcode, $memberid );
 		
 		if ($package)
 		{
+			$cpackage = Package::get_current_package($memberid);	
+		
+			if ($cpackage)
+			{
+				return response()->json(['success' => false, 'message' => 'user already entitled with VIP']);
+			}
+			
 			if ($passcode === $package->passcode)
 			{
 				Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'VIP');
@@ -263,5 +270,7 @@ class ProductController extends Controller
 		
 		return response()->json(['success' => false, 'message' => 'unknown vip package / user not authorise to use this package']);
 	}	
+	
+	
 	
 }

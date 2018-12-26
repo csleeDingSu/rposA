@@ -27,6 +27,10 @@ use App\Members as Member;
 
 use App\tips;
 
+use App\member_game_result;
+
+use App\view_vip_status;
+
 //use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
@@ -60,6 +64,8 @@ class ClientController extends BaseController
 			
 			$data['wallet'] = Wallet::get_wallet_details_all($member);
 			$data['page'] = 'client.member'; 
+			$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
+
 			return view('client/member', $data);
 
 		
@@ -67,6 +73,8 @@ class ClientController extends BaseController
 
 	public function member_access_game()
 	{
+		$betting_count = 0;
+
 		if (!Auth::Guard('member')->check())
 		{
 			$msg = trans('dingsu.please_login');
@@ -77,17 +85,11 @@ class ClientController extends BaseController
 		} else {
 
 			$member = Auth::guard('member')->user()->id	;
-			$data['member'] = Member::get_member($member);
-
-			if (is_null($data['member']->wechat_name)) {
-
-				//return redirect('/verify');
-
-			}
+			$betting_count = member_game_result::where("member_id", $member)->get()->count();
 
 		}
 
-		return view('client/game');
+		return view('client/game', compact('betting_count'));
 
 	}
 

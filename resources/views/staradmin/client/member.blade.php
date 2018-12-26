@@ -75,14 +75,27 @@
 			</div>
 			<ul class="list-group">
 
-				<a href= " {{ ($wallet->vip_life > 0) ? '/arcade' : '/redeem' }}">
+				@if(count($vip_status->where('redeem_state', '3')) > 0)
+					<a href= "/vip">
+				@elseif(count($vip_status->where('redeem_state', '2')) > 0)
+					<a href= "/redeem/history">
+				@elseif(count($vip_status->where('redeem_state', '1')) > 0)
+					<a href= "/redeem/history">
+				@else
+					<a href= "/redeem">
+				@endif
+				
 					<li class="list-group-item first-item">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						@if($wallet->vip_life > 0)
+						@if(count($vip_status->where('redeem_state', '3')) > 0)
 							<div class="vip-inprogress">@lang('dingsu.inprogress')</div>
+						@elseif(count($vip_status->where('redeem_state', '2')) > 0)
+							<div class="vip-redeemticket">@lang('dingsu.vip_ticket_not_yet_used')</div>
+						@elseif(count($vip_status->where('redeem_state', '1')) > 0)
+							<div class="vip-redeemticket">@lang('dingsu.waiting_for_approve')</div>
 						@else
 							<div class="vip-redeemticket">@lang('dingsu.redeem_vip_ticket')</div>
 						@endif

@@ -133,4 +133,41 @@ class Admin extends Model
 		 return DB::table('banner')->delete($id);
 	}
 	
+	public static function list_redeem_condition()
+	{
+		$result = DB::table('redeem_condition')->get();
+		
+		return $result;
+	}
+	public static function get_redeem_condition($id = null)
+	{
+		$result = DB::table('redeem_condition')->where('id',$id)->first();
+		
+		return $result;
+	}
+	public static function create_redeem_condition($data)
+	{	
+		
+		 return $result = DB::table('redeem_condition')
+            ->insertGetId($data);
+	}
+	public static function update_redeem_condition($id,$data)
+	{	
+		
+		 return $result = DB::table('redeem_condition')
+            ->where('id', $id)
+            ->update($data);
+	}
+	public static function delete_redeem_condition($id)
+	{			
+		 return DB::table('redeem_condition')->delete($id);
+	}
+	
+	public static function check_redeem_condition($seq = FALSE)
+	{			
+		 $result = DB::table('redeem_condition')->where('position',$seq)->first();
+		
+		return $result;
+	}
+	
 }
