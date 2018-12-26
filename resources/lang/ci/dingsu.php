@@ -479,5 +479,6 @@ return [
 	'inprogress' => '正在进行中',
 	'redeem_vip_ticket' => '兑换VIP入场卷',
 	'vip_ticket_not_yet_used' => '入场卷未使用',
-	
+	'waiting_for_approve' => '等待审核',
+
 ];
