@@ -53,20 +53,21 @@
 
 			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-vip vip-margin-negative"></div>
 				<div class="btn-rules-wrapper">
 					<a href="/vip">
+						<div class="btn-vip"></div>
 						<div class="btn-rules-vip">进入VIP专场</div>
 					</a>
 					<div style="clear:both"></div>
 				</div>
 			</div>
 			@else
-			<div class="box">
-				<div class="btn-vip vip-margin"></div>
-				<div class="btn-rules">规则介绍</div>
-				<div style="clear:both"></div>
-				<div class="rules-bubble blink">请看介绍</div>
+			<div class="box" id="btn-vip-wrapper">
+				<div class="btn-rules-wrapper btn-vip-modal">
+						<div class="btn-vip"></div>
+						<div class="btn-rules-normal">进入VIP专场收益增10倍</div>
+					<div style="clear:both"></div>
+				</div>
 			</div>
 			@endif
 
@@ -504,13 +505,13 @@
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content vip-background">
                 <div class="vip-logo-wrapper">
-                	<img class="vip-logo" src="{{ asset('/client/images/vip/vip-big.png') }}" width="44" height="40" />
+                	<img class="vip-logo" src="{{ asset('/client/images/vip/vip-big.png') }}" width="53" height="48" />
                 </div>
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card vip-modal-card">
-								<img class="vip-title" src="{{ asset('/client/images/vip/vip-title.png') }}" width="160" height="30" />
+								<img class="vip-title" src="{{ asset('/client/images/vip/vip-title.png') }}" width="250" height="28" />
 								<div class="vip-card">
 									<img class="img-vip" src="{{ asset('/client/images/vip/v1.png') }}" width="20" height="17" /><div class="vip-card-title">VIP场的结算方式：</div>
 									<div style="clear: both;"></div>
@@ -521,8 +522,8 @@
 									<div style="clear: both;"></div>
 									<div class="normal-card-desc">原始积分1200不可结算，最多可挖宝150，只能结算150挖宝币。</div>
 								</div>
-								<div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费卷</div>
-								<a href="/redeem"><div class="btn-vip-submit">提交</div></a>
+								<!--div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费卷</div-->
+								<a href="/redeem"><div class="btn-vip-submit">兑换VIP入场卷</div></a>
 							</div>
 						</div>
 					</div>							
@@ -554,7 +555,7 @@
 				$('.rules-bubble', window.parent.document).hide();
 			});
 
-			$('.btn-vip').click(function(){
+			$('.btn-vip-modal').click(function(){
 				$('#vip-modal').modal('show');
 			});
 
