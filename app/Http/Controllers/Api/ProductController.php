@@ -242,9 +242,9 @@ class ProductController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		$wallet    = Wallet::get_wallet_details($memberid);	
+		$cpackage = Package::get_current_package($memberid);	
 		
-		if ($wallet->vip_life)
+		if ($cpackage)
 		{
 			return response()->json(['success' => false, 'message' => 'it was already entitled']);
 		}
