@@ -191,18 +191,14 @@ class Package extends Model
 	
 	public static function get_redeemed_package_reward($packageid = FALSE,$memberid = FALSE)
 	{
-		\DB::connection()->enableQueryLog();
-		
 		$result = DB::table('view_vip_betting');
 		
-		if (!$memberid)  $result->where('member_id',$memberid);
+		if ($memberid)  $result->where('member_id',$memberid);
 		
-		if (!$packageid) $result->where('package_id',$packageid);
+		if ($packageid) $result->where('package_id',$packageid);
 		
-		$result->sum('rewardamt');
+		$out = $result->sum('rewardamt');
 		
-		$queries = \DB::getQueryLog();
-		dd($queries);
 		return $out ;
 		
 	}
