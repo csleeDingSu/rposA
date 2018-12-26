@@ -223,7 +223,6 @@ class ProductController extends Controller
 		return response()->json(['success' => false, 'message' => 'insufficient point']);
 	}
 	
-	
 	public function redeem_vip(Request $request)
     {
 		$memberid  = $request->memberid;
@@ -243,13 +242,20 @@ class ProductController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
+		$wallet    = Wallet::get_wallet_details($memberid);	
+		
+		if ($wallet->vip_life)
+		{
+			return response()->json(['success' => false, 'message' => 'it was already entitled']);
+		}
+		
 		$package   = Package::get_redeem_package_passcode($passcode, $memberid );
 		
 		if ($package)
 		{
 			if ($passcode === $package->passcode)
 			{
-				Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'VIP');
+				Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'VIP','');
 				
 				$now = Carbon::now();
 				$data = ['redeem_state'=>3,'redeemed_at'=>$now];
@@ -263,5 +269,7 @@ class ProductController extends Controller
 		
 		return response()->json(['success' => false, 'message' => 'unknown vip package / user not authorise to use this package']);
 	}	
+	
+	
 	
 }
