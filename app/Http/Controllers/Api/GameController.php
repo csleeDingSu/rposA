@@ -742,7 +742,7 @@ class GameController extends Controller
 		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
 		
 		//Rules are based on redeem_condition table
-		$redeemrules  = \App\Admin::list_redeem_condition();
+		//$redeemrules  = \App\Admin::list_redeem_condition();
 		
 		$verifyrule   = \App\Admin::check_redeem_condition($redeemcount);
 		
