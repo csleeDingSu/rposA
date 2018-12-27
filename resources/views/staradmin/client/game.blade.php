@@ -468,7 +468,7 @@
 
 <!-- Game Rules Modal -->
 
-	<div class="modal fade col-md-12 col-sm-10" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="game-ruleslabel" aria-hidden="true">
+	<div class="modal fade col-md-12 col-sm-10" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="game-ruleslabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
                                 
@@ -562,7 +562,7 @@
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
-			
+
 			$('.btn-rules').click(function(){
 				$('#game-rules').modal('show');
 				$('.rules-bubble', window.parent.document).hide();
