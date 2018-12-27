@@ -470,14 +470,14 @@ html, body {
 
 .modal-row > .nav-pills > .active > a {
 	text-decoration: none;
-    color: #666666 !important;
-    background-color: #f1f1f1 !important;
+    color: #ff6f48 !important;
+    background-color: #ffffff !important;
 }
 .modal-row > .nav-pills > li > a{
 	border-radius:0px;
     color:#333333;
     font-weight: 500;
-    background: #ffffff;
+    background: #f1f1f1;
     font-size: 14px;
     border-top: 1px solid #dadada;
 }
