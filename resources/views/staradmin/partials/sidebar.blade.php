@@ -193,6 +193,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/admin/banner">@lang('dingsu.banner')</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/redeem-condition">@lang('dingsu.redeem') @lang('dingsu.condition')</a>
+					</li>
 				</ul>
 			</div>
 		</li>
