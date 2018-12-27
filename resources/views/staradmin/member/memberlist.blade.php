@@ -630,6 +630,16 @@ function confirm_Delete(id)	{
                 getdatalist(url);
                 
             });
+		
+		
+			$(document).ready(function() {								
+				var wes = " {{ app('request')->input('wechat') }}";
+				if (wes)
+				{
+					$("#s_wechatstatus").val("1");
+					getdatalist('');
+				}							
+			});
 
             function getdatalist(url) {				
 				if (!url) {

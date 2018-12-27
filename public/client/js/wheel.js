@@ -195,6 +195,8 @@ function initGame(token){
                 var life = $(".nTxt", window.parent.document).html();
                 var balance = $('#hidBalance', window.parent.document).val();
                 var payout_info = '';
+                var acupoint = parseInt($('.spanAcuPoint', window.parent.document).html());
+
 
                 $('#hidLevel', window.parent.document).val(level);
                 $('#hidLevelId', window.parent.document).val(level_id);
@@ -228,9 +230,11 @@ function initGame(token){
                         $('.span-4', window.parent.document).html("150");
                         $('.span-5', window.parent.document).html("310");
 
-                        $('.button-card', window.parent.document).click(function(){
-                            $('#game-rules', window.parent.document).modal();
-                        });
+                        if (balance == 1200 && acupoint == 0) {
+                            $('.button-card', window.parent.document).click(function(){
+                                $('#game-rules', window.parent.document).modal();
+                            });
+                        }
                         break;
                     case 2:
                         bet_amount = 30;
