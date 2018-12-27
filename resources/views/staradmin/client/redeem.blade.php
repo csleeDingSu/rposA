@@ -76,29 +76,40 @@
 	        		<img class="btn-close-card" src="{{ asset('/client/images/btn-close.png') }}" width="22" height="22" />
 	        	</div>
                 <div class="modal-row">
-                      <div id="single" class="tab-pane fade in active vip-tab-pane">
-                        <span class="card-no-description">
+                      <span class="card-no-description">
                         	卡号与卡密之间请用“空格”隔开，<br />
                         	每张卡张勇一行用“回车（Enter键）”隔开，<br />
                         	例：<br />
                         </span>
                         <span class="card-no-example">123456789456125 5878596541257456987</span>
-                      </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Modal Ends -->
+
+<!-- Modal starts -->
+<div class="modal fade col-lg-12" id="using-vip-modal" tabindex="-1" style="z-index: 9999">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content vip-using-content">
+            <div class="modal-body">
+                <div class="modal-row">
+                        <div class="using-description">
+                        	您上次的VIP入场卷<br />
+                        	还未结算
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-close-modal">返回继续</div>
+    </div>
+</div>
+<!-- Modal Ends -->
 @endsection
-
-
-
-
 
 @section('footer-javascript')
     @parent
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
     <script src="{{ asset('/client/js/redeem.js') }}"></script>
-
 @endsection
