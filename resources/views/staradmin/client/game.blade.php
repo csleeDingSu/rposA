@@ -65,7 +65,7 @@
 			<div class="box" id="btn-vip-wrapper">
 				<div class="btn-rules-wrapper btn-vip-modal">
 						<div class="btn-vip"></div>
-						<div class="btn-rules-normal">进入VIP专场收益增10倍</div>
+						<div class="btn-rules-normal">VIP专场收益增10倍</div>
 					<div style="clear:both"></div>
 				</div>
 			</div>

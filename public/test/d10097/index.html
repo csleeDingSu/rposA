@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>首页</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script>
+		function copy(_btn){
+			var clipboard = new ClipboardJS(_btn);
+
+		    clipboard.on('success', function(e) {
+		        $(_btn).addClass('success');
+		        $(_btn).html('复制成功');
+		    });
+
+		    clipboard.on('error', function(e) {
+		        $(_btn).addClass('false');
+		        $(_btn).html('复制失败');
+		    });
+
+		};
+	   	
+		
+    </script>
+</head>
+<body>
+	<div class="page-content" id="pege">
+		<h1>这次，经常网购的人亏惨了！有的可能已经亏了数万元。</h1>
+		<div class="detail">
+			<p>前几天在朋友圈晒了一张图，闺蜜看了当场崩溃！</p>
+			<p class="img01"><img src="images/img01.png" alt=""></p>
+			<p>同样的店家，一样的产品，我花9.9元买了，而闺蜜却花了59.9元，闺蜜的心情是这样的。。。</p>
+			<p class="img02"><img src="images/img02.png" alt=""></p>
+			<p>其实很多人不懂找优惠券，浪费很多钱。。。<br />费多少呢？不算不知道，一算吓一跳。</p>
+			<p class="split orange">据估算，如果买淘宝产品时有用优惠券：<br /><span class="orange">累计买超过10000元，预计可省下2500元。<br />累计买超过50000元，预计可剩下12500元。</span></p>
+			<p>赶紧算算，你以前买了多少，亏了多少钱？</p>
+			<p class="img03"><img src="images/img03.png" alt=""></p>
+			<p>所以逛淘宝，必须要懂得找优惠券，除非你家里有矿！<br />那怎么找到优惠券呢？<br />可以找这个微信<span class="red">「挖宝大额优惠券」</span></p>
+			<div class="wechat">
+				<div class="icon"><img src="images/icon01.png" alt=""></div>
+				<p>请复制微信号，到微信添加。</p>
+				<p class="number" id="number_01">4343434</p>
+				<div class="btn num01" data-clipboard-action="copy" data-clipboard-target="#number_01" onclick="copy('.num01')">复制微信号码</div>
+			</div>
+			<p>她的优惠券都比较大，100多元的东西领完券只要20~30元，真的优惠好多！<br>朋友圈会不定期的发送一些品牌的优惠券，这些都是被疯抢，有时候手慢了还抢不到。</p>
+			<p class="img04"><img src="images/img04.png" alt=""></p>
+			<p>现在加她好友，还能获得<span class="red">「45元的代金券」</span><br>代金券可以用来购买淘宝任何商品，非常酸爽！！<br>她的微信是下面这个：</p>
+			<div class="wechat">
+				<div class="icon"><img src="images/icon01.png" alt=""></div>
+				<p>请复制微信号，到微信添加。</p>
+				<p class="number" id="number_02">242424</p>
+				<div class="btn num02" data-clipboard-action="copy" data-clipboard-target="#number_02" onclick="copy('.num02')">复制微信号码</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
