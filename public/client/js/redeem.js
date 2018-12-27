@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('.tab').click(function(){
         var title = $(this).html();
         $('.navbar-brand').html(title); 
@@ -213,8 +214,7 @@ function getProductList(token) {
                                                 '</div>' +
                                             '</div>' +
                                         '</div>' +
-                                        '<!-- Modal Ends -->';
-                
+                                        '<!-- Modal Ends -->';                
                     }
                 });
 
@@ -386,20 +386,57 @@ function redeemHistory(token) {
 
                     if(item.redeem_state == 1) { // Pending
                         html += '<div class="col-xs-3 column-6">' +
-                                    '<div class="btn-pending">等待发放</div>' +
+                                    '<div class="btn-pending-vip">等待发放</div>' +
                                 '</div>' + 
                             '</div>';
 
                     } else if (item.redeem_state == 2) { // Confirmed
                         html += '<div class="col-xs-3 column-6">' +
-                                    '<div class="btn-card" data-toggle="collapse" data-target="#content-p-' + item.id + '">查看卡号</div>' +
+                                    '<div class="btn-card-vip" data-toggle="collapse" data-target="#content-p-' + item.id + '">查看密码</div>' +
                                 '</div>' + 
                             '</div>' +
                         '<div id="content-p-' + item.id + '" class="collapse">' +
-                            '<div>卡号： <span class="numbers"></span> 密码：<span class="codes">' + item.passcode + '</span>' +
-                            '&nbsp;&nbsp;<button style="background-image: linear-gradient(#ffc549, #ff8e29);border:none;border-radius: 20px;" class="btn-info" data-id="'+item.passcode+'" onClick="confirmredeemvip(\''+ token +'\', \''+ item.id +'\', \''+ item.passcode +'\')"  >VIP</button></div>' +
-                            '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！></div>' +    
+                            '<div class="card-wrapper">挖宝密码：<span class="codes-vip">' + item.passcode + '</span>' +
+                            '&nbsp;&nbsp;<button class="btn-vip" data-id="'+item.passcode+'" onClick="confirmredeemvip(\''+ token +'\', \''+ item.id +'\', \''+ item.passcode +'\')"  >进入VIP专场</button></div>' +
+                            '<div class="instruction">进入VIP专场 > 打开挖宝页面VIP专场 > 粘帖密码 > 进入VIP专场</div>' +    
                         '</div>';
+
+                        html += '<!-- Modal starts -->' +
+                                        '<div class="modal fade col-lg-12" id="enter-vip-modal-' + item.id + '" tabindex="-1" style="z-index: 9999">' +
+                                            '<div class="modal-dialog modal-sm" role="document">' +
+                                                '<div class="modal-content enter-vip-content">' +
+                                                    '<div class="modal-body">' +
+                                                        '<div class="modal-row">' +
+                                                            '<div class="vip-label">' +
+                                                                'VIP专场挖宝密码' +
+                                                            '</div>' +
+                                                            '<div class="vip-code">' +
+                                                                item.passcode +
+                                                            '</div>' +
+                                                            '<a href="/arcade">' +
+                                                                '<div class="btn-enter-vip">' +
+                                                                    '进入专场' +
+                                                                '</div>' +
+                                                            '</a>' +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                        '<!-- Modal Ends -->';
+
+                    } else if (item.redeem_state == 3) { // Redeemed
+                        html += '<div class="col-xs-3 column-6">' +
+                                    '<div class="btn-pending">正在使用</div>' +
+                                '</div>' + 
+                            '</div>';
+                    } else if (item.redeem_state == 4) { // Used
+                        html += '<div class="col-xs-3 column-6">' +
+                                    '<div class="btn-used-wrapper">' +
+                                        '<div class="btn-used"></div>' +
+                                    '</div>' + 
+                                '</div>' + 
+                            '</div>';
                     } else {
                         html += '</div>';
                     }
@@ -430,7 +467,7 @@ function redeemHistory(token) {
                                 '</div>' + 
                             '</div>' +
                         '<div id="content-' + item.id + '" class="collapse">' +
-                            '<div>卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="codes">' + item.passcode + '</span></div>' +
+                            '<div class="card-wrapper">卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="codes">' + item.passcode + '</span></div>' +
                             '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
                             '</div>' +
                         '</div>';
@@ -536,7 +573,13 @@ function confirmredeemvip(token,id,code)
         error: function (error) { console.log(error.responseText);$('[data-id='+code+']').prop('disabled', false); },
         success: function(data) {
             if(data.success){
-                window.location.href = "/arcade";
+                $('#enter-vip-modal-' + id).modal('show');
+            } else {
+                $('#using-vip-modal').modal('show');
+
+                $('.btn-close-modal').click(function() {
+                    $('#using-vip-modal').modal('hide');
+                });
             }
         }
     });
