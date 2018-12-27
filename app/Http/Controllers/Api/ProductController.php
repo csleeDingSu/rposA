@@ -272,5 +272,40 @@ class ProductController extends Controller
 	}	
 	
 	
-	
+	public function vip_life_redemption(Request $request)
+    {		
+		$reset    = null;		
+		$memberid = $request->memberid;
+        $gameid   = $request->gameid; 		
+		
+		$package      = Package::get_current_package($memberid,'all');
+		
+		if (!$package) 
+		{				
+			return response()->json(['success' => false,  'message' => 'no active vip subscriptions']); 
+		}
+		$wallet       = Wallet::get_wallet_details_all($memberid);
+		$redeemcount  = Package::get_redeemed_package_count($memberid);
+		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
+		
+		//Rules are based on redeem_condition table
+		$redeemrules  = \App\Admin::list_redeem_condition();
+		
+		$verifyrule   = \App\Admin::check_redeem_condition($redeemcount);
+		
+		
+		//return error message if user have vip life & didnt match the redeem criteria,
+		if ($verifyrule){
+			if ($redeemreward < $verifyrule->minimum_point)
+			{
+				if ($wallet->vip_life >= 1 )
+				{ 
+					return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points','point'=>$verifyrule->minimum_point,'vip_point'=>$wallet->vip_point]); 
+				}
+			}
+		}
+		
+		return response()->json(['success' => true]);  
+		
+	}
 }
