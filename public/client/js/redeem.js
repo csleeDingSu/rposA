@@ -413,7 +413,7 @@ function redeemHistory(token) {
                                                             '<div class="vip-code">' +
                                                                 item.passcode +
                                                             '</div>' +
-                                                            '<a href="/arcade">' +
+                                                            '<a href="/vip">' +
                                                                 '<div class="btn-enter-vip">' +
                                                                     '进入专场' +
                                                                 '</div>' +
