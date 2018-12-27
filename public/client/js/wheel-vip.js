@@ -147,6 +147,9 @@ function initUser(token){
                     } else if (user_id > 0 && acupoint >= 150) {
                         bindResetLifeButton(token);
                         $('#reset-life-max', window.parent.document).modal({backdrop: 'static', keyboard: false});
+                        $('#btn-close-max', window.parent.document).click(function(){
+                            $('#reset-life-max', window.parent.document).modal('hide');
+                        });
                     }
 
                     $.ajax({
@@ -437,6 +440,9 @@ function bindBetButton(token){
         if (user_id > 0 && acupoint >= 150) {
             bindResetLifeButton(token);
             $('#reset-life-max', window.parent.document).modal();
+            $('#btn-close-max', window.parent.document).click(function(){
+                $('#reset-life-max', window.parent.document).modal('hide');
+            });
         }
 
 
@@ -525,9 +531,15 @@ function bindCalculateButton(token){
             } else if(acupoint > 0 && acupoint < 150) {
                 bindResetLifeButton(token);
                 $('#reset-life-play', window.parent.document).modal();
+                $('#btn-close-play', window.parent.document).click(function(){
+                    $('#reset-life-play', window.parent.document).modal('hide');
+                });
             } else if (acupoint >= 150) {
                 bindResetLifeButton(token);
                 $('#reset-life-max', window.parent.document).modal();
+                $('#btn-close-max', window.parent.document).click(function(){
+                    $('#reset-life-max', window.parent.document).modal('hide');
+                });
             }
         } else {
             $('#reset-life-bet', window.parent.document).modal();

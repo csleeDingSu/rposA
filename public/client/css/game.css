@@ -686,6 +686,10 @@ body{
 }
 
 .packet-point {
+	display: inline-block;
+}
+
+.div-wabao {
 	font-size: 80px;
 	color: #ffee56;
 	display: inline-block;
@@ -738,18 +742,56 @@ body{
 	color: #c81b1b;
 }
 
-.modal-message-title {
-	color: #656565;
+.modal-message-title, .modal-warning-title {
+	color: #f03838;
 	font-size: 22px;
-	font-weight: 700;
 }
 
-.modal-message-content {
+.modal-lose-title {
+	color: #666666;
+	font-size: 22px;
+	padding-bottom: 10px;
+}
+
+.modal-warning-title {
+	color: #656565;
+}
+
+.modal-message-content, .modal-warning-content {
+	color: #b0b0b0;
+	font-size: 14px;
+	padding-bottom: 30px;
+}
+
+.modal-lose-content {
+	color: #ff6868;
+	font-size: 20px;
+}
+
+.modal-lose-instruction {
+	color: #ff6868;
+	font-size: 14px;
+	padding-bottom: 20px;
+}
+
+.modal-warning-content {
 	color: #9a9a9a;
 	font-size: 16px;
-	font-weight: 700;
 	padding-top: 10px;
-	padding-bottom: 30px;
+}
+
+.modal-message-balance {
+	color: #333333;
+	font-size: 14px;
+	padding-bottom: 10px;
+}
+
+.btn-close-wabao {
+	color: #fff100;
+	text-align: center;
+	font-size: 16px;
+	padding: 10px;
+	cursor: pointer;
 }
 
 .img-warning {
@@ -759,15 +801,30 @@ body{
 	margin-bottom: 15px;
 }
 
-.modal-message-button {
-	background: #f8db9f;
-	color: #9c731b;
+.img-wabao {
+	width: 80px;
+	height: 95px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.modal-message-button, .modal-warning-button {
+	background: #ff6868;
+	color: #ffffff;
 	padding: 5px;
-	font-weight: 700;
-	font-size: 22px;
-	border-radius: 5px;
+	font-size: 16px;
+	border-radius: 30px;
 	margin-left: 5%;
 	margin-right: 5%;
+	cursor: pointer;
+}
+
+.modal-warning-button {
+	background: #f8db9f;
+	color: #9c731b;
+	font-size: 22px;
+	border-radius: 5px;
+
 }
 
 @media only screen and (max-width: 360px) {

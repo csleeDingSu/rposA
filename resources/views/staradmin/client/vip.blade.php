@@ -255,68 +255,63 @@
 
 
 <!-- Start Reset Life Max -->
-
-	<div class="modal fade" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg modal-packet-wrapper" role="document">
-			<div class="modal-packet">
+	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="packet-title">恭喜获得150挖宝币</div>
-							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
-							您当前已经封顶
-							</div>
-							<div class="packet-instruction">您拥有总挖宝币</div>
-							<div class="packet-coin-wrapper">
-								<div class="packet-coin"></div>
-								<div class="packet-point">&nbsp;</div>
-							</div>
-							<div class="btn-reset-life-continue packet-button">
-								<div class="packet-button-name">结算并继续挖宝</div>
-								<div class="packet-button-note">将消耗1次挖宝机会</div>
-							</div>
-							<div class="btn-reset-life packet-button">
-								结算并兑换奖品
+							<div class="modal-card">
+								<img src="{{ asset('/client/images/vip/icon-win.png') }}" class="img-wabao" />
+								<div class="modal-message-title">
+									恭喜获得150挖宝币
+								</div>
+								<div class="modal-message-content">
+									结算后的挖宝币可兑换奖品
+								</div>
+								<div class="modal-message-balance">
+									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
+								</div>
+								<div class="modal-message-button btn-reset-life">
+									确认结算 结束本次挖宝
+								</div>												
 							</div>
 						</div>
 					</div>							
 				</div>
 			</div>
+			<div id="btn-close-max" class="btn-close-wabao">暂不结算 返回本次挖宝</div>
 		</div>
 	</div>
-
 <!--  end -->
 
-<!-- Start Reset Life Max -->
-
-	<div class="modal fade" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg modal-packet-wrapper" role="document">
-			<div class="modal-packet">
+<!-- Start Reset Life Play -->
+	<div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="packet-title">恭喜获得<span class="spanAcuPoint"></span>挖宝币</div>
-							<div class="packet-note">每次挖宝最多可获得150挖宝币<br />
-							您还可以继续挖
-							</div>
-							<div class="packet-instruction">您拥有总挖宝币</div>
-							<div class="packet-coin-wrapper">
-								<div class="packet-coin"></div>
-								<div class="packet-point">&nbsp;</div>
-							</div>
-							<div class="btn-reset-life packet-button">
-								<div class="packet-button-name">确定结算</div>
-								<div class="packet-button-note">结算后本次挖宝结束</div>
-							</div>
-
-							<div class="close-modal packet-button">
-								<div class="packet-button-name">返回继续挖宝</div>
-								<div class="packet-button-note">每局最多获得150挖宝币</div>
+							<div class="modal-card">
+								<img src="{{ asset('/client/images/vip/icon-win.png') }}" class="img-wabao" />
+								<div class="modal-message-title">
+									恭喜获得<span class="spanAcuPoint"></span>挖宝币
+								</div>
+								<div class="modal-message-content">
+									结算后的挖宝币可兑换奖品
+								</div>
+								<div class="modal-message-balance">
+									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
+								</div>
+								<div class="modal-message-button btn-reset-life">
+									确认结算 结束本次挖宝
+								</div>												
 							</div>
 						</div>
 					</div>							
 				</div>
 			</div>
+			<div id="btn-close-play" class="btn-close-wabao">暂不结算 返回本次挖宝</div>
 		</div>
 	</div>
 
@@ -363,14 +358,14 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
-								<div class="modal-message-title">
+								<div class="modal-warning-title">
 									当前不能结算
 								</div>
-								<div class="modal-message-content">
+								<div class="modal-warning-content">
 									本局挖宝尚未完成
 								</div>
 
-								<div class="close-modal modal-message-button">
+								<div class="close-modal modal-warning-button">
 									继续挖宝
 								</div>												
 							</div>
@@ -392,16 +387,21 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
-								<div class="modal-message-title">
-									挖宝失败
+								<img src="{{ asset('/client/images/vip/icon-lose.png') }}" class="img-wabao" />
+								<div class="modal-lose-title">
+									本次挖宝失败
 								</div>
-								<div class="modal-message-content">
-									将扣除本次挖宝所赚取的 <span class="spanAcuPoint"></span> 挖宝币
+								<div class="modal-lose-content">
+									<span class="spanAcuPoint"></span>挖宝币等待结算
 								</div>
-
-								<div class="btn-reset-life-continue modal-message-button">
-									继续挖宝
+								<div class="modal-lose-instruction">
+									你需要结算后，才能继续进入VIP场
+								</div>
+								<div class="modal-message-balance">
+									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
+								</div>
+								<div class="modal-message-button btn-reset-life">
+									确认结算
 								</div>												
 							</div>
 						</div>
@@ -413,7 +413,7 @@
 
 <!--  end -->
 
-<!-- Start Reset Life Lose -->
+<!-- Start Reset Life Start -->
 
 	<div class="modal fade col-md-12" id="reset-life-start" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
@@ -423,14 +423,14 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
-								<div class="modal-message-title">
+								<div class="modal-warning-title">
 									当前不能挖宝
 								</div>
-								<div class="modal-message-content">
+								<div class="modal-warning-content">
 									您必须把挖宝机会兑换成挖宝币
 								</div>
 
-								<div class="btn-reset-life-continue modal-message-button">
+								<div class="btn-reset-life-continue modal-warning-button">
 									兑换挖宝币
 								</div>												
 							</div>
