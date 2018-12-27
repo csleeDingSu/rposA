@@ -591,7 +591,7 @@
 			});
 
 			$('.btn-rules-close').click(function(){
-		        $('#game-rules').modal('hide');		        
+				$('#game-rules', window.parent.document).addClass('hide');
 		    });
 
 		});	
