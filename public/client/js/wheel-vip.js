@@ -130,7 +130,7 @@ function initUser(token){
 
                     $('#spanPoint', window.parent.document).html(vip_point);                    
                     $('#hidTotalBalance', window.parent.document).val(total_balance);
-                    $('.packet-point', window.parent.document).html(vip_point);
+                    $('.packet-point', window.parent.document).html(acupoint);
                     $('.spanAcuPoint', window.parent.document).html(acupoint);
                     $('.packet-acupoint', window.parent.document).html(acupoint);
                     $('#hidBalance', window.parent.document).val(balance);
@@ -391,24 +391,10 @@ function bindBetButton(token){
             return false;
         }
 
-        //console.log(user_id +":" + balance + ":" + life );
-        if(user_id > 0 && life > 0){
-
-            if(balance < 630) {
-                if(consecutive_lose == 'yes'){
-                    bindResetLifeButton(token);
-                    $('#reset-life-lose', window.parent.document).modal();
-                } else {
-                    bindResetLifeButton(token);
-                    $('#reset-life-start', window.parent.document).modal();
-                }
-
-            }
-
-        } else if(user_id > 0 && life == 0){
-                $('#reset-life-share', window.parent.document).modal();
+        if(consecutive_lose == 'yes'){
+            bindResetLifeButton(token);
+            $('#reset-life-lose', window.parent.document).modal();
         }
-
 
         $('.radio-primary', window.parent.document).not(this).find('.radio').removeClass('clicked');
         $('.radio-primary', window.parent.document).not(this).find('.bet-container').hide();
@@ -481,13 +467,41 @@ function bindBetButton(token){
 
 function bindCalculateButton(token){
     $('.btn-calculate-vip', window.parent.document).click(function(){
-        var acupoint = $('.spanAcuPoint', window.parent.document).html();
-        var selected = $('div.clicked', window.parent.document).find('input:radio').val();
+        var user_id = $('#hidUserId', window.parent.document).val();
+        $.ajax({
+            type: 'POST',
+            url: "/api/check-redeem",
+            data: { 'memberid': user_id },
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            error: function (error) { console.log(error.responseText) },
+            success: function(data) {
+                console.log(data);
+                if(data.success){
+                    var acupoint = data.wabao_point;
+                    var vip_point = data.vip_point;
+
+                    $('.spanVipPoint', window.parent.document).html(vip_point);
+                    $('.packet-point', window.parent.document).html(acupoint);
+
+                    $('#reset-life-max', window.parent.document).modal();
+                    bindResetLifeButton(token);
+                    $('#btn-close-max', window.parent.document).click(function(){
+                        $('#reset-life-max', window.parent.document).modal('hide');
+                    });
+                } else {
+                    $('#reset-life-bet', window.parent.document).modal();
+                }
+            }
+        });
+        /*var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         var level = parseInt($('#hidLevel', window.parent.document).val());
         var consecutive_lose = $('#hidConsecutiveLose', window.parent.document).val();
 
         if (typeof selected == 'undefined'){
-            if (acupoint == 0 || level > 1) {
+            if (level > 1) {
                 $('#reset-life-bet', window.parent.document).modal();
             } else if (level == 1 && consecutive_lose == 'yes') {
                 bindResetLifeButton(token);
@@ -501,7 +515,7 @@ function bindCalculateButton(token){
             }
         } else {
             $('#reset-life-bet', window.parent.document).modal();
-        }
+        }*/
     });
 }
 
@@ -513,14 +527,15 @@ function bindResetLifeButton(token){
         if(user_id > 0){
             $.ajax({
                 type: 'POST',
-                url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 101, 'life': 'yes' },
+                url: "/api/reset-vip",
+                data: { 'memberid': user_id, 'gameid': 101 },
                 dataType: "json",
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
                 },
                 error: function (error) { console.log(error.responseText) },
                 success: function(data) {
+                    console.log(data);
                     if(data.success){
                         window.parent.location.href = "/redeem";
                     }

@@ -433,7 +433,7 @@ function redeemHistory(token) {
                     } else if (item.redeem_state == 4) { // Used
                         html += '<div class="col-xs-3 column-6">' +
                                     '<div class="btn-used-wrapper">' +
-                                        '<div class="btn-used"></div>' +
+                                        '<div class="btn-used"><img src="/client/images/vip/vip-used.png" width="50" height="50" /></div>' +
                                     '</div>' + 
                                 '</div>' + 
                             '</div>';
