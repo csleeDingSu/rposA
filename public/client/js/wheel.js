@@ -652,11 +652,11 @@ function startTimer(duration, timer, freeze_time, token) {
             clearInterval(timerInterval);
             getToken();
 
-        } else if (timer <= trigger_time) {
+        } else if (timer <= trigger_time && trigger == false) {
+            trigger = true;
             //Lock the selection
             $('.radio-primary', window.parent.document).unbind('click');
 
-            if (trigger == false) {
                 var freeze_time = timer + 1;
                 $('#freeze_time').val(freeze_time);
 
@@ -719,10 +719,8 @@ function startTimer(duration, timer, freeze_time, token) {
                         });
 
                         $( "#btnWheel" ).trigger( "click" );
-                        trigger = true;
                     }
                 });
-            }
         }
         
     }, 1000);
