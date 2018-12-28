@@ -294,9 +294,9 @@ class ProductController extends Controller
 		$verifyrule   = \App\Admin::check_redeem_condition($redeemcount);
 		
 		
-		print_r($redeemcount);
-		print_r($redeemreward);
-		print_r($verifyrule);
+		echo 'rc-';print_r($redeemcount);
+		echo 'rr-';print_r($redeemreward);
+		echo 'ru-';print_r($verifyrule);
 		
 		//return error message if user have vip life & didnt match the redeem criteria,
 		if ($verifyrule){
