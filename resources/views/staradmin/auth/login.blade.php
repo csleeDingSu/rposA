@@ -62,6 +62,7 @@
 @endsection
 
 @section('content')
+@parent
     <div class="loginBox">
                 <div class="hd flex">                    
                     <a class="on">账号登录</a>
@@ -92,7 +93,7 @@
                                     <button class="dologin" name="dologin" id="dologin" type="button">登录</button>
                                 </li>
                                 <li>
-                                    <p>忘记密码?<a href="javascript:void(0)">请联系客服</a>
+                                    <p>忘记密码?<a href="javascript:void(0)" id="customerservice" class="customerservice">请联系客服</a>
                                     </p>
                                 </li>
                             </ul>
@@ -161,6 +162,10 @@
             </div>
 
 @endsection
+
+
+@include('auth.customer_service_model')
+
 
 @section('footer-javascript')
     @parent

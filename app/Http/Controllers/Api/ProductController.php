@@ -273,11 +273,10 @@ class ProductController extends Controller
 	}	
 	
 	
-	public function vip_life_redemption(Request $request)
+	public function vip_redeem_condition(Request $request)
     {		
 		$reset    = null;		
-		$memberid = $request->memberid;
-        $gameid   = $request->gameid; 		
+		$memberid = $request->memberid;	
 		
 		$package      = Package::get_current_package($memberid,'all');
 		
@@ -301,12 +300,12 @@ class ProductController extends Controller
 			{
 				if ($wallet->vip_life >= 1 )
 				{ 
-					return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points','point'=>$verifyrule->minimum_point,'vip_point'=>$wallet->vip_point]); 
+					return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points','min_point'=>$verifyrule->minimum_point,'vip_point'=>$wallet->vip_point,'win_point'=>$redeemreward]); 
 				}
 			}
 		}
 		
-		return response()->json(['success' => true]);  
+		return response()->json(['success' => 'true','message' => 'eligible to withdraw','vip_point'=>$wallet->vip_point,'wabao_point'=>$wallet->current_point,'redeem_point'=>$wallet->vip_point]);  
 		
 	}
 }
