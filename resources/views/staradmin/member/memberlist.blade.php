@@ -636,6 +636,7 @@ function confirm_Delete(id)	{
 				var wes = " {{ app('request')->input('wechat') }}";
 				if (wes != null)
 				{
+					alert(wes);
 					$("#s_wechatstatus").val("1");
 					getdatalist('');
 				}							
