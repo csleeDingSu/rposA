@@ -273,11 +273,10 @@ class ProductController extends Controller
 	}	
 	
 	
-	public function vip_life_redemption(Request $request)
+	public function vip_redeem_condition(Request $request)
     {		
 		$reset    = null;		
-		$memberid = $request->memberid;
-        $gameid   = $request->gameid; 		
+		$memberid = $request->memberid;	
 		
 		$package      = Package::get_current_package($memberid,'all');
 		
