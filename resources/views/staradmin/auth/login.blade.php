@@ -93,7 +93,7 @@
                                     <button class="dologin" name="dologin" id="dologin" type="button">登录</button>
                                 </li>
                                 <li>
-                                    <p>忘记密码?<a href="javascript:void(0)">请联系客服</a>
+                                    <p>忘记密码?<a href="javascript:void(0)" id="customerservice" class="customerservice">请联系客服</a>
                                     </p>
                                 </li>
                             </ul>
