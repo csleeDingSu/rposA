@@ -235,6 +235,7 @@ function initGame(token){
                         $('.span-3', window.parent.document).html("70");
                         $('.span-4', window.parent.document).html("150");
                         $('.span-5', window.parent.document).html("310");
+
                         break;
                     case 2:
                         bet_amount = 30;
@@ -243,11 +244,12 @@ function initGame(token){
                         $('.barBox', window.parent.document).removeClass("barBox-1");
                         $('.span-1', window.parent.document).html("-10");                        
                         break;
-                    case 3:
+                    case 3:                    
                         bet_amount = 70;
                         payout_info = '猜中得70，扣除前2次亏损40，赚30挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-3");
                         $('.barBox', window.parent.document).removeClass("barBox-2");
+                        $('.barBox', window.parent.document).removeClass("barBox-1");
                         $('.span-1', window.parent.document).html("-10");
                         $('.span-2', window.parent.document).html("-30");
                         break;
@@ -256,6 +258,8 @@ function initGame(token){
                         payout_info = '猜中得150，扣除前3次亏损110，赚40挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-4");
                         $('.barBox', window.parent.document).removeClass("barBox-3");
+                        $('.barBox', window.parent.document).removeClass("barBox-2");
+                        $('.barBox', window.parent.document).removeClass("barBox-1");
                         $('.span-1', window.parent.document).html("-10");
                         $('.span-2', window.parent.document).html("-30");
                         $('.span-3', window.parent.document).html("-70");
@@ -265,6 +269,9 @@ function initGame(token){
                         payout_info = '猜中得310，扣除前4次亏损260，赚50挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-5");
                         $('.barBox', window.parent.document).removeClass("barBox-4");
+                        $('.barBox', window.parent.document).removeClass("barBox-3");
+                        $('.barBox', window.parent.document).removeClass("barBox-2");
+                        $('.barBox', window.parent.document).removeClass("barBox-1");
                         $('.span-1', window.parent.document).html("-10");
                         $('.span-2', window.parent.document).html("-30");
                         $('.span-3', window.parent.document).html("-70");
@@ -275,6 +282,10 @@ function initGame(token){
                         payout_info = '猜中得630，扣除前5次亏损570，赚60挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-6");
                         $('.barBox', window.parent.document).removeClass("barBox-5");
+                        $('.barBox', window.parent.document).removeClass("barBox-4");
+                        $('.barBox', window.parent.document).removeClass("barBox-3");
+                        $('.barBox', window.parent.document).removeClass("barBox-2");
+                        $('.barBox', window.parent.document).removeClass("barBox-1");
                         $('.span-1', window.parent.document).html("-10");
                         $('.span-2', window.parent.document).html("-30");
                         $('.span-3', window.parent.document).html("-70");
@@ -368,6 +379,7 @@ function getToken(){
 function resetGame() {
     $('div.clicked', window.parent.document).find('.bet').hide();
     $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
+    $('.payout-info', window.parent.document).addClass('hide');
     $('.instruction', window.parent.document).css('visibility', 'visible');
 }
 
@@ -461,7 +473,7 @@ function bindBetButton(token){
             $('#spanPoint', window.parent.document).html(total_balance);
             $('.instruction', window.parent.document).css('visibility', 'visible');
             $('.payout-info', window.parent.document).addClass("hide");
-            $('.span-balance', window.parent.document).html(balance);
+            //$('.span-balance', window.parent.document).html(balance);
 
             $.ajax({
                 type: 'GET',
@@ -509,7 +521,7 @@ function bindBetButton(token){
             }
 
             $('.payout-info', window.parent.document).removeClass("hide");
-            $('.span-balance', window.parent.document).html(newbalance);
+            //$('.span-balance', window.parent.document).html(newbalance);
         }
 
     });

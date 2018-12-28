@@ -32,23 +32,12 @@
 		<div class="grid-container">
 			<div class="box">
 				<div class="coin"></div>
-				@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
-				<div id="balance-wrapper">
-					<div class="number long">
-						<span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span>
-						<div class="btn-calculate-wrapper">
-							<div class="btn-calculate">结算</div>
-						</div>
-					</div>
-				</div>
-				@else
 				<div class="number long">
-					<span class="balance" id="spanPoint">0</span> <span class="life-balance">(</span><span class="life-balance spanAcuPoint">0</span><span class="life-balance">)</span>
+					<span class="balance spanAcuPoint">0</span>
 					<div class="btn-calculate-wrapper">
 						<div class="btn-calculate">结算</div>
 					</div>
 				</div>
-				@endif
 			</div>
 
 			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
