@@ -634,7 +634,7 @@ function confirm_Delete(id)	{
 		
 			$(document).ready(function() {								
 				var wes = " {{ app('request')->input('wechat') }}";
-				if (wes != null)
+				if (wes == 'p')
 				{
 					alert(wes);
 					$("#s_wechatstatus").val("1");
