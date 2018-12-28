@@ -57,6 +57,7 @@
 			<input id="hidLevelId" type="hidden" value="" />
 			<input id="hidLatestResult" type="hidden" value="" />
 			<input id="hidConsecutiveLose" type="hidden" value="" />
+			<input id="hidMergePoint" type="hidden" value="" />
 			<input id="hidHall" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />

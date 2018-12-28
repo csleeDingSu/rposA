@@ -130,7 +130,7 @@ function initUser(token){
 
                     $('#spanPoint', window.parent.document).html(vip_point);                    
                     $('#hidTotalBalance', window.parent.document).val(total_balance);
-                    $('.packet-point', window.parent.document).html(acupoint);
+                    $('.packet-point', window.parent.document).html(point);
                     $('.spanAcuPoint', window.parent.document).html(acupoint);
                     $('.packet-acupoint', window.parent.document).html(acupoint);
                     $('#hidBalance', window.parent.document).val(balance);
@@ -179,15 +179,9 @@ function initGame(token){
                 $('#hidLevel', window.parent.document).val(level);
                 $('#hidLevelId', window.parent.document).val(level_id);
                 $('#hidLatestResult', window.parent.document).val(previous_result);
-                $('#hidConsecutiveLose', window.parent.document).val(consecutive_lose);
 
                 $('.speech-bubble', window.parent.document).addClass("hide");
                 $('.speech-bubble', window.parent.document).next().removeClass("done").removeClass("active").find('.label').html('');
-                
-                if (consecutive_lose == 'yes' && life > 0 && balance == 0) {
-                    bindResetLifeButton(token);
-                    $('#reset-life-lose', window.parent.document).modal();
-                }
 
                 switch (level) {
 
@@ -380,7 +374,6 @@ function bindBetButton(token){
         var life = $(".nTxt", window.parent.document).html();
         var acupoint = parseInt($('.spanAcuPoint', window.parent.document).html());
         var draw_id = $('#draw_id').val();
-        var consecutive_lose = $('#hidConsecutiveLose', window.parent.document).val();
 
         var user_id = $('#hidUserId', window.parent.document).val();
         if(user_id == 0){
@@ -389,11 +382,6 @@ function bindBetButton(token){
 
         if(isNaN(balance)){
             return false;
-        }
-
-        if(consecutive_lose == 'yes'){
-            bindResetLifeButton(token);
-            $('#reset-life-lose', window.parent.document).modal();
         }
 
         $('.radio-primary', window.parent.document).not(this).find('.radio').removeClass('clicked');
@@ -480,42 +468,23 @@ function bindCalculateButton(token){
             success: function(data) {
                 console.log(data);
                 if(data.success){
-                    var acupoint = data.wabao_point;
+                    var point = data.wabao_point;
                     var vip_point = data.vip_point;
 
                     $('.spanVipPoint', window.parent.document).html(vip_point);
-                    $('.packet-point', window.parent.document).html(acupoint);
+                    $('.packet-point', window.parent.document).html(point);
 
                     $('#reset-life-max', window.parent.document).modal();
                     bindResetLifeButton(token);
                     $('#btn-close-max', window.parent.document).click(function(){
                         $('#reset-life-max', window.parent.document).modal('hide');
                     });
+
                 } else {
                     $('#reset-life-bet', window.parent.document).modal();
                 }
             }
         });
-        /*var selected = $('div.clicked', window.parent.document).find('input:radio').val();
-        var level = parseInt($('#hidLevel', window.parent.document).val());
-        var consecutive_lose = $('#hidConsecutiveLose', window.parent.document).val();
-
-        if (typeof selected == 'undefined'){
-            if (level > 1) {
-                $('#reset-life-bet', window.parent.document).modal();
-            } else if (level == 1 && consecutive_lose == 'yes') {
-                bindResetLifeButton(token);
-                $('#reset-life-lose', window.parent.document).modal();
-            } else {
-                bindResetLifeButton(token);
-                $('#reset-life-max', window.parent.document).modal();
-                $('#btn-close-max', window.parent.document).click(function(){
-                    $('#reset-life-max', window.parent.document).modal('hide');
-                });
-            }
-        } else {
-            $('#reset-life-bet', window.parent.document).modal();
-        }*/
     });
 }
 
@@ -586,17 +555,29 @@ function startTimer(duration, timer, freeze_time, token) {
 
         --timer;
 
-        if (timer < 0) {
+        if (timer < 0) {            
             timer = duration;
-
             clearInterval(timerInterval);
-            getToken();
 
-        } else if (timer <= trigger_time) {
+            var consecutive_loss = $('#hidConsecutiveLose', window.parent.document).val();
+            var mergepoint = parseInt($('#hidMergePoint', window.parent.document).val()) || 0;
+
+            if (consecutive_loss == 'yes') {
+                $('.spanVipPoint', window.parent.document).html(mergepoint);
+
+                $('#reset-life-lose', window.parent.document).modal();
+                $('.btn-reset-life', window.parent.document).click(function(){
+                    window.top.location.href = "/member";
+                });
+            } else {
+                getToken();
+            }
+
+        } else if (timer <= trigger_time && trigger == false) {
+            trigger = true;
             //Lock the selection
             $('.radio-primary', window.parent.document).unbind('click');
 
-            if (trigger == false) {
                 var freeze_time = timer + 1;
                 $('#freeze_time').val(freeze_time);
 
@@ -628,6 +609,8 @@ function startTimer(duration, timer, freeze_time, token) {
                         console.log(data);
                         var freeze_time = $('#freeze_time').val();
                         var result = data.game_result;
+                        $('#hidConsecutiveLose', window.parent.document).val(data.consecutive_loss);
+                        $('#hidMergePoint', window.parent.document).val(data.mergepoint);
                         $('#result').val(result);
 
                         if(data.status == 'win'){
@@ -661,10 +644,8 @@ function startTimer(duration, timer, freeze_time, token) {
                         });
 
                         $( "#btnWheel" ).trigger( "click" );
-                        trigger = true;
                     }
                 });
-            }
         }
         
     }, 1000);
