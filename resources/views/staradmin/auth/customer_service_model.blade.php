@@ -1,11 +1,11 @@
 
 
-@push('top-css')
+@section('top-css')
     <link href="{{ asset('client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }} " rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('/client/css/customer_service.css') }}"/>
-@endpush
+@endsection
 
-@push('content')
+@section('content')
 <!-- customer service modal -->
 <div class="modal fade" id="csModal" tabindex="-1" role="dialog" aria-labelledby="csModal_la" aria-hidden="true">
 	<div class="modal-title">
@@ -36,8 +36,8 @@
 </div>
 <!-- customer service modal Ends -->
 
-@endpush
-@push('footer-javascript')
+@endsection
+@section('footer-javascript')
 
  <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
     <script type="text/javascript">
@@ -65,4 +65,4 @@
         }); 
     </script>
 
-@endpush
+@endsection
