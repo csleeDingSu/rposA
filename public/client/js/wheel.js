@@ -205,6 +205,7 @@ function initGame(token){
 
                 $('.speech-bubble', window.parent.document).addClass("hide");
                 $('.speech-bubble', window.parent.document).next().removeClass("done").removeClass("active").find('.label').html('');
+                $('.barBox', window.parent.document).find('li').removeClass('on');
                 
                 if (consecutive_lose == 'yes' && life > 0 && balance == 0) {
                     bindResetLifeButton(token);
@@ -473,6 +474,9 @@ function bindBetButton(token){
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         if (typeof selected == 'undefined'){
 
+            checked(level, false);
+            changbar(level);
+
             $('#spanPoint', window.parent.document).html(total_balance);
             $('.instruction', window.parent.document).css('visibility', 'visible');
             $('.payout-info', window.parent.document).addClass("hide");
@@ -493,6 +497,9 @@ function bindBetButton(token){
             });
 
         } else {
+
+            checked(level, true);
+            changbar(level);
 
             var bet_amount = parseInt($('.bet-container', window.parent.document).html());
             var newbalance = balance - bet_amount;
@@ -785,3 +792,26 @@ DomeWebController = {
         });
     }
 };
+
+function checked(number, selected){
+    let bar = $('.barBox', window.parent.document);
+    let i=number;
+
+    if (selected) {
+      //已选择
+      bar.find('ul').children('li').eq(i-1).addClass('on');
+      bar.find('h2').fadeIn(150);
+      bar.find('.barIn').addClass('on');
+    } else {
+      //未选择
+      bar.find('li').removeClass('on');
+      bar.find('h2').fadeOut(0);
+      bar.find('.barIn').removeClass('on');
+    }
+}
+
+function changbar(number){
+    let bar = $('.barBox', window.parent.document);
+    let i=number;
+    bar.addClass('barBox-'+i);
+}
