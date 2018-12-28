@@ -171,8 +171,8 @@ class GameController extends Controller
 					//echo 	$close ;
 					if ($close == 'yes') {
 						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
-						$point = Wallet::merge_vip_wallet($memberid);
-						Game::reset_member_game_level($memberid , $gameid,'1');						
+						Game::reset_member_game_level($memberid , $gameid,'1');			
+						$point = Wallet::merge_vip_wallet($memberid);									
 						Package::reset_current_package($packageid->id);
 					}
 				}
