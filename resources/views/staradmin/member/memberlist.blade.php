@@ -633,11 +633,10 @@ function confirm_Delete(id)	{
 		
 		
 			$(document).ready(function() {								
-				var wes = " {{ app('request')->input('wechat') }}";
+				var wes = "'"+"  {{ app('request')->input('wechat') }}  "+"'";
 				var wes = wes.trim();
 				if (wes != null)
 				{
-					alert(wes);
 					$("#s_wechatstatus").val("1");
 					getdatalist('');
 				}							
