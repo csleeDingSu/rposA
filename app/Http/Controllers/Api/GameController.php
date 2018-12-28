@@ -177,7 +177,7 @@ class GameController extends Controller
 					}
 				}
                 				
-				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'mergepoint' => $point]); 
+				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'mergepoint' => $point,'consecutive_loss'=>$close]); 
 			}
 	}
 	
