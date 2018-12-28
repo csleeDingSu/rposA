@@ -305,7 +305,7 @@ class ProductController extends Controller
 			}
 		}
 		
-		return response()->json(['success' => 'true','vip_point'=>$wallet->vip_point,'wabao_point'=>$wallet->current_point,'redeem_point'=>$wallet->vip_point]);  
+		return response()->json(['success' => 'true','message' => 'eligible to withdraw','vip_point'=>$wallet->vip_point,'wabao_point'=>$wallet->current_point,'redeem_point'=>$wallet->vip_point]);  
 		
 	}
 }
