@@ -1,11 +1,13 @@
 
 
 @section('top-css')
+ @parent
     <link href="{{ asset('client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }} " rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('/client/css/customer_service.css') }}"/>
 @endsection
 
 @section('content')
+ @parent
 <!-- customer service modal -->
 <div class="modal fade" id="csModal" tabindex="-1" role="dialog" aria-labelledby="csModal_la" aria-hidden="true">
 	<div class="modal-title">
@@ -38,7 +40,7 @@
 
 @endsection
 @section('footer-javascript')
-
+ @parent
  <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
     <script type="text/javascript">
         $(document).ready(function () {
