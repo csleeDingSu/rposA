@@ -94,7 +94,6 @@ function updateHistory(token){
 }
 
 function initUser(token){
-    bindRulesButton(token);
 
     var user_id = $('#hidUserId', window.parent.document).val();
 
@@ -123,49 +122,21 @@ function initUser(token){
                     var vip_point =  parseInt(data.record.vip_point);
                     var vip_life =  parseInt(data.record.vip_life);
 
-                    if(life == 0){
-                        balance = 0;
+                    if(vip_life == 0){
+                        vip_point = 0;
                     }
 
-                    var total_balance = balance + acupoint;
+                    var total_balance = vip_point;
 
-                    $('#spanPoint', window.parent.document).html(vip_point);
-                    
+                    $('#spanPoint', window.parent.document).html(vip_point);                    
                     $('#hidTotalBalance', window.parent.document).val(total_balance);
-                    $('.packet-point', window.parent.document).html(point);
+                    $('.packet-point', window.parent.document).html(vip_point);
                     $('.spanAcuPoint', window.parent.document).html(acupoint);
                     $('.packet-acupoint', window.parent.document).html(acupoint);
                     $('#hidBalance', window.parent.document).val(balance);
                     $(".nTxt", window.parent.document).html(life);
                     $(".spanVipLife", window.parent.document).html(vip_life);
                     $(".spanLife", window.parent.document).html(life);
-
-                    setBalance();
-
-                    if(life == 0){
-                        $('#reset-life-share', window.parent.document).modal();
-                    } else if (user_id > 0 && acupoint >= 150) {
-                        bindResetLifeButton(token);
-                        $('#reset-life-max', window.parent.document).modal({backdrop: 'static', keyboard: false});
-                        $('#btn-close-max', window.parent.document).click(function(){
-                            $('#reset-life-max', window.parent.document).modal('hide');
-                        });
-                    }
-
-                    $.ajax({
-                        type: 'GET',
-                        url: "/api/get-game-notification?gameid=101&memberid=" + user_id,
-                        dataType: "json",
-                        beforeSend: function( xhr ) {
-                            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                        },
-                        error: function (error) { console.log(error.responseText) },
-                        success: function(data) {
-                            if(!data.record && point < 150){
-                                $('.rules-bubble', window.parent.document).show();
-                            }
-                        }
-                    });
                 }
             }
             
@@ -182,7 +153,7 @@ function initGame(token){
     
     $.ajax({
         type: 'GET',
-        url: "/api/game-setting?gameid=101&memberid=" + user_id,
+        url: "/api/game-setting?gameid=101&vip=1&memberid=" + user_id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -192,6 +163,7 @@ function initGame(token){
             console.log(data);
             if(data.success) {
                 var bet_amount = 0;
+                var span_balance = 1200;
                 var duration = data.record.duration;
                 var timer = data.record.remaining_time;
                 var freeze_time = data.record.freeze_time;
@@ -222,6 +194,7 @@ function initGame(token){
                     default:
                     case 1:
                         bet_amount = 10;
+
                         payout_info = '猜中得10，赚10挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-1");
                         $('.barBox', window.parent.document).removeClass("barBox-2");
@@ -239,6 +212,8 @@ function initGame(token){
                         break;
                     case 2:
                         bet_amount = 30;
+                        span_balance = 1190;
+
                         payout_info = '猜中得30，扣除之前亏损10，赚20挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-2");
                         $('.barBox', window.parent.document).removeClass("barBox-1");
@@ -246,6 +221,8 @@ function initGame(token){
                         break;
                     case 3:                    
                         bet_amount = 70;
+                        span_balance = 1160;
+
                         payout_info = '猜中得70，扣除前2次亏损40，赚30挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-3");
                         $('.barBox', window.parent.document).removeClass("barBox-2");
@@ -255,6 +232,8 @@ function initGame(token){
                         break;
                     case 4:
                         bet_amount = 150;
+                        span_balance = 1090;
+
                         payout_info = '猜中得150，扣除前3次亏损110，赚40挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-4");
                         $('.barBox', window.parent.document).removeClass("barBox-3");
@@ -266,6 +245,8 @@ function initGame(token){
                         break;
                     case 5:
                         bet_amount = 310;
+                        span_balance = 940;
+
                         payout_info = '猜中得310，扣除前4次亏损260，赚50挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-5");
                         $('.barBox', window.parent.document).removeClass("barBox-4");
@@ -279,6 +260,8 @@ function initGame(token){
                         break;
                     case 6:
                         bet_amount = 630;
+                        span_balance = 630;
+
                         payout_info = '猜中得630，扣除前5次亏损570，赚60挖宝币。';
                         $('.barBox', window.parent.document).addClass("barBox-6");
                         $('.barBox', window.parent.document).removeClass("barBox-5");
@@ -294,11 +277,9 @@ function initGame(token){
                         break;
                 }
 
-                $('.span-balance', window.parent.document).html(balance);
+                $('.span-balance', window.parent.document).html(span_balance);
                 $('.payout-info', window.parent.document).html(payout_info).addClass('hide');
                 $('.bet-container', window.parent.document).html(bet_amount);
-
-                setBalance();
 
                 $('#freeze_time').val(freeze_time);
                 $('#draw_id').val(draw_id);
@@ -383,27 +364,6 @@ function resetGame() {
     $('.instruction', window.parent.document).css('visibility', 'visible');
 }
 
-function setBalance() {
-    var selected = $('div.clicked', window.parent.document).find('input:radio').val();
-    if (typeof selected == 'undefined'){
-        //do nothing
-    } else {
-        var bet_amount = parseInt($('.bet-container', window.parent.document).html());
-        var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
-        var balance = parseInt($('#hidBalance', window.parent.document).val());
-        var acupoint = parseInt($('.spanAcuPoint', window.parent.document).html());
-
-        var newbalance = balance - bet_amount;
-        var newtotalbalance = total_balance - bet_amount;
-        //console.log(balance + " - " + bet_amount + " = " + newbalance);
-        if(newbalance < 0){
-
-        } else {
-            $('#spanPoint', window.parent.document).html(newtotalbalance);
-        }
-    }
-}
-
 function closeModal() {
     $('.close-modal', window.parent.document).click(function(){
         $('#reset-life-play', window.parent.document).modal('hide');
@@ -449,14 +409,6 @@ function bindBetButton(token){
                 $('#reset-life-share', window.parent.document).modal();
         }
 
-        if (user_id > 0 && acupoint >= 150) {
-            bindResetLifeButton(token);
-            $('#reset-life-max', window.parent.document).modal();
-            $('#btn-close-max', window.parent.document).click(function(){
-                $('#reset-life-max', window.parent.document).modal('hide');
-            });
-        }
-
 
         $('.radio-primary', window.parent.document).not(this).find('.radio').removeClass('clicked');
         $('.radio-primary', window.parent.document).not(this).find('.bet-container').hide();
@@ -470,7 +422,7 @@ function bindBetButton(token){
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         if (typeof selected == 'undefined'){
 
-            $('#spanPoint', window.parent.document).html(total_balance);
+            //$('#spanPoint', window.parent.document).html(total_balance);
             $('.instruction', window.parent.document).css('visibility', 'visible');
             $('.payout-info', window.parent.document).addClass("hide");
             //$('.span-balance', window.parent.document).html(balance);
@@ -500,7 +452,7 @@ function bindBetButton(token){
                 $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
                 return false;
             } else {
-                $('#spanPoint', window.parent.document).html(newtotalbalance);
+                //$('#spanPoint', window.parent.document).html(newtotalbalance);
                 $('.instruction', window.parent.document).css('visibility', 'hidden');
 
                 $.ajax({
@@ -540,13 +492,7 @@ function bindCalculateButton(token){
             } else if (level == 1 && consecutive_lose == 'yes') {
                 bindResetLifeButton(token);
                 $('#reset-life-lose', window.parent.document).modal();
-            } else if(acupoint > 0 && acupoint < 150) {
-                bindResetLifeButton(token);
-                $('#reset-life-play', window.parent.document).modal();
-                $('#btn-close-play', window.parent.document).click(function(){
-                    $('#reset-life-play', window.parent.document).modal('hide');
-                });
-            } else if (acupoint >= 150) {
+            } else {
                 bindResetLifeButton(token);
                 $('#reset-life-max', window.parent.document).modal();
                 $('#btn-close-max', window.parent.document).click(function(){
@@ -611,30 +557,6 @@ function bindResetLifeButton(token){
     });
 }
 
-function bindRulesButton(token){
-
-    $('.btn-rules', window.parent.document).click(function(){
-        var user_id = $('#hidUserId', window.parent.document).val();
-
-        // add points from additional life.
-        if(user_id > 0){
-            $.ajax({
-                type: 'POST',
-                url: "/api/change-game-notification",
-                data: { 'memberid': user_id, 'gameid': 101, 'flag': 0 },
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { console.log(error.responseText) },
-                success: function(data) {
-                    $('.rules-bubble', window.parent.document).hide();
-                }
-            });
-        }
-    });
-}
-
 function startTimer(duration, timer, freeze_time, token) {
 
     var trigger_time = freeze_time - 1;
@@ -679,7 +601,8 @@ function startTimer(duration, timer, freeze_time, token) {
                         drawid : draw_id, 
                         bet : selected, 
                         betamt : bet_amount,
-                        level : level_id
+                        level : level_id,
+                        vip : 1,
                     }, 
                     dataType: "json",
                     beforeSend: function( xhr ) {
@@ -687,6 +610,7 @@ function startTimer(duration, timer, freeze_time, token) {
                     },
                     error: function (error) { console.log(error.responseText) },
                     success: function(data) {
+                        console.log(data);
                         var freeze_time = $('#freeze_time').val();
                         var result = data.game_result;
                         $('#result').val(result);
