@@ -62,6 +62,7 @@
 @endsection
 
 @section('content')
+@parent
     <div class="loginBox">
                 <div class="hd flex">                    
                     <a class="on">账号登录</a>
