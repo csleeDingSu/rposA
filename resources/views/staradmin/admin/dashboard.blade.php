@@ -10,7 +10,7 @@
 								<p class="card-text mb-0">@lang('dingsu.pending_wechat_verification')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
-										<a href="/member/list?wechat=p" class="text-decoration">{{$result->pending_wechat}}</a>
+										<a href="/member/list?wechat=12" class="text-decoration">{{$result->pending_wechat}}</a>
 										</h3>
 								
 								</div>
