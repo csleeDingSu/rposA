@@ -2,7 +2,6 @@
 
 @section('top-css')
  @parent
-    <link href="{{ asset('client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }} " rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('/client/css/customer_service.css') }}"/>
 @endsection
 
