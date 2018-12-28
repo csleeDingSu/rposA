@@ -162,6 +162,10 @@
 
 @endsection
 
+
+@yield('customer_service_model')
+
+
 @section('footer-javascript')
     @parent
             <script>
