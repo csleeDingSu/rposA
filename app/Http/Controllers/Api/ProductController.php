@@ -300,12 +300,12 @@ class ProductController extends Controller
 			{
 				if ($wallet->vip_life >= 1 )
 				{ 
-					return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points','point'=>$verifyrule->minimum_point,'vip_point'=>$wallet->vip_point,'win_point'=>$redeemreward]); 
+					return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points','min_point'=>$verifyrule->minimum_point,'vip_point'=>$wallet->vip_point,'win_point'=>$redeemreward]); 
 				}
 			}
 		}
 		
-		return response()->json(['success' => true]);  
+		return response()->json(['success' => 'true','vip_point'=>$wallet->vip_point,'wabao_point'=>$wallet->current_point,'redeem_point'=>$wallet->vip_point]);  
 		
 	}
 }
