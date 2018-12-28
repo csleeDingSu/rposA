@@ -198,6 +198,10 @@ class Package extends Model
 		if ($packageid) $result->where('package_id',$packageid);
 		
 		$out = $result->sum('rewardamt');
+		if (empty($out))
+		{
+			$out = '0';
+		}
 		
 		return $out ;
 		
