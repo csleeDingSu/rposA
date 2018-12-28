@@ -290,16 +290,10 @@ html, body {
 
 .btn-used-wrapper {
 	height: 60px;
-	width: 110px;
+	width: 80px;
 }
 
 .btn-used {
-	background: url('/client/images/vip/vip-used.png') no-repeat;
-	width: 89px;
-	height: 89px;
-	transform: scale(0.6); 
-	-webkit-transform: scale(0.6);
-	-webkit-transform-origin:left top;
 	float: right;
 }
 
