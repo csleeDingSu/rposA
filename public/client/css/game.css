@@ -1257,7 +1257,7 @@ iframe {
 if it's not present, don't show loader */
 .no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
-.se-pre-con {
+.loading {
 	position: fixed;
 	left: 0px;
 	top: 0px;
@@ -1265,5 +1265,18 @@ if it's not present, don't show loader */
 	height: 100%;
 	z-index: 9999;
 	background: url('/client/images/preloader.gif') center no-repeat;
-	background-color: rgba(255, 255, 255, 0.9);
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.reload {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('/client/images/reload.png') center no-repeat;
+	background-color: rgba(255, 255, 255, 1);
+	cursor: pointer;
 }
