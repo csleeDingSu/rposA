@@ -25,7 +25,8 @@
 @endsection
 
 @section('content')
-<div class="se-pre-con"></div>
+<div class="loading"></div>
+<div class="reload"></div>
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
@@ -552,6 +553,10 @@
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 
+			$('.reload').click(function(){
+				window.location.href = window.location.href;
+			});
+			
 			$('.btn-rules').click(function(){
 				$('#game-rules').modal('show');
 				$('.rules-bubble', window.parent.document).hide();
@@ -560,7 +565,7 @@
 			$('.btn-vip-modal').click(function(){
 				$('#vip-modal').modal('show');
 			});
-
+			
 			if(wechat_status > 0) {
 				$('#verify-steps').modal({backdrop: 'static', keyboard: false});
 			}
@@ -578,10 +583,6 @@
 				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
-
-			$('.btn-rules-close').click(function(){
-				$('#game-rules', window.parent.document).addClass('hide');
-		    });
 
 		});	
 

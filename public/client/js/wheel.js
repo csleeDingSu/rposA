@@ -1,4 +1,5 @@
 var trigger = false;
+var has_seen = false;
 
 $(function () {
     var wechat_status = $('#hidWechatId', window.parent.document).val();
@@ -168,6 +169,7 @@ function initUser(token){
 function initGame(token){
     $( '.btn-reset-life', window.parent.document ).unbind( "click" );
     $( '.btn-reset-life-continue', window.parent.document ).unbind( "click" );
+    $('.radio-primary', window.parent.document).unbind('click');
     
     var user_id = $('#hidUserId', window.parent.document).val();
     trigger = false;
@@ -179,7 +181,7 @@ function initGame(token){
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error.responseText) },
+        error: function (error) { $(".reload", window.parent.document).show(); },
         success: function(data) {
             console.log(data);
             if(data.success) {
@@ -301,22 +303,26 @@ function initGame(token){
                 DomeWebController.init();
                 startTimer(duration, timer, freeze_time, token);
 
-                if (balance == 1200 && acupoint == 0) {
+                if (balance == 1200 && acupoint == 0 && has_seen === false) {
                     $('.button-card', window.parent.document).click(function(){
                         $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
-                    });
-                    setTimeout(function(){                        
-                        $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
-                        bindBetButton(token);
-                    }, 10000);
-                    
+
+                        setTimeout(function(){ 
+                            $('.btn-rules-close', window.parent.document).click(function(){
+                                $('#game-rules', window.parent.document).addClass('hide');
+                            });                       
+                            $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
+                            has_seen = true;
+                            bindBetButton(token);
+                        }, 10000);
+                    });                    
                 } else {
                     bindBetButton(token);
                 }
 
                 bindCalculateButton(token);
 
-                $(".se-pre-con", window.parent.document).fadeOut("slow");
+                $(".loading", window.parent.document).fadeOut("slow");
 
                 $.ajax({
                     type: 'GET',
@@ -359,8 +365,10 @@ function initGame(token){
                         }
                     }
                 }); // ajax get-game-result-temp
+            } else { // else if data.success == false
+                $(".reload", window.parent.document).show();
             }
-        }
+        } // end success
     });
 }
 
@@ -368,18 +376,19 @@ function getToken(){
     var id = $('#hidUserId', window.parent.document).val();
     var session = $('#hidSession', window.parent.document).val();
 
-    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
-        //console.log(data);
-        if(data.success) {
+    $.ajax({
+        type: 'GET',
+        url: "/api/gettoken?id=" + id + "&token=" + session,
+        dataType: "json",
+        error: function (error) { $(".reload", window.parent.document).show(); },
+        success: function(data) {
             $('#hidToken', window.parent.document).val(data.access_token);
             initUser(data.access_token);
             resetGame();
             updateResult(data.access_token);
             updateHistory(data.access_token);
             initGame(data.access_token);
-        } else {
-            return false;
-        }      
+        }
     });
 }
 
