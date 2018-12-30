@@ -374,9 +374,27 @@ html, body {
 /* End Redeem History Content */
 
 /* Modal Box */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
 .modal-content {
 	background: #f8f8f8;
-	margin-top: 50%;
 }
 
 .modal-full-height {
@@ -498,27 +516,24 @@ html, body {
 
 .vip-content {
 	background: #ffffff;
-	margin-top: 30%;
 }
 
 .vip-card-content {
 	background: #ffffff;
-	margin-top: 80%;
 }
 
 .vip-using-content {
 	background: #ffffff;
-	margin-top: 80%;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	width: 300px;
 }
 
 .enter-vip-content {
-	margin-top: 80%;
 	background: #252436;
 	text-align: center;
 	font-size: 16px;
@@ -670,6 +685,7 @@ textarea {
 	text-align: center;
 	font-size: 16px;
 	padding: 10px;
+	width: 300px;
 }
 
 .using-description {
@@ -686,10 +702,6 @@ textarea {
 	}
 	.modal-body {
 		padding: 10px;
-	}
-
-	.vip-content {
-		margin-top: 20%;
 	}
 
 	.modal-description {
@@ -718,10 +730,6 @@ textarea {
 	}
 	.modal-body {
 		padding: 8px;
-	}
-
-	.vip-content {
-		margin-top: 20%;
 	}
 
 	.modal-description {

@@ -584,10 +584,6 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
-			$('.btn-rules-close').click(function(){
-				$('#game-rules', window.parent.document).addClass('hide');
-		    });
-
 		});	
 
 		// var noSleep = new NoSleep();

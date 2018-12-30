@@ -564,12 +564,30 @@ body{
 }
 
 /* Modal Box */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
 .modal-content, .modal-title {
 	background: white;
 	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 40%;
 }
 
 .modal-full-height {
@@ -610,7 +628,6 @@ body{
 .modal-packet-wrapper {
 	width: 360px;
 	height: 390px;
-	top: 20%;
 	margin: 0 auto;
 }
 
@@ -669,7 +686,7 @@ body{
 
 .packet-coin-wrapper {
 	margin: -20px auto 30px auto;
-	width: 300px;
+	width: 600px;
 }
 
 .packet-coin {
@@ -920,7 +937,6 @@ body{
 @media only screen and (max-width: 360px) {
 	.modal-content, .modal-title {
 		width: 270px;
-		margin-top: 40%;
 	}
 
 	.modal-card {
@@ -1195,7 +1211,7 @@ iframe {
 .btn-rules-close {
  	visibility: hidden;
 	background: url('/client/images/rules_btn_gamestart.png') no-repeat top center;
-	font-size: 0.4rem;
+	font-size: 20px;
 	color: white;
 	height: 40px;
 	padding: 5px 0px 5px 0;
@@ -1249,6 +1265,14 @@ iframe {
 
 	.btn-vip-submit {
 		font-size: 16px;
+	}
+
+	.btn-rules-close {
+		height: auto;
+	}
+
+	.rules-content-img-timeline {
+		width: 240px;
 	}
 }
 
