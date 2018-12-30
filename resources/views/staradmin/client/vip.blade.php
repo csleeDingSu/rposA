@@ -25,7 +25,8 @@
 @endsection
 
 @section('content')
-<div class="se-pre-con"></div>
+<div class="loading"></div>
+<div class="reload"></div>
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
@@ -528,6 +529,10 @@
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
+
+			$('.reload').click(function(){
+				window.location.href = window.location.href;
+			});
 
 			$('.btn-rules').click(function(){
 				$('#game-rules').modal('show');

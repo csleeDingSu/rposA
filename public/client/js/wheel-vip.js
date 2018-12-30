@@ -105,7 +105,7 @@ function initUser(token){
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error.responseText) },
+        error: function (error) { console.log(error.responseText); },
         success: function(data) {
             console.log(data);
             // Do something with the request
@@ -159,7 +159,7 @@ function initGame(token){
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error.responseText) },
+        error: function (error) { $(".reload", window.parent.document).show(); },
         success: function(data) {
             console.log(data);
             if(data.success) {
@@ -286,7 +286,7 @@ function initGame(token){
                 bindBetButton(token);
                 bindCalculateButton(token);
 
-                $(".se-pre-con", window.parent.document).fadeOut("slow");
+                $(".loading", window.parent.document).fadeOut("slow");
 
                 $.ajax({
                     type: 'GET',
@@ -329,8 +329,10 @@ function initGame(token){
                         }
                     }
                 }); // ajax get-game-result-temp
+            } else { // else if data.success == false
+                $(".reload", window.parent.document).show();
             }
-        }
+        } // end success
     });
 }
 
@@ -338,18 +340,19 @@ function getToken(){
     var id = $('#hidUserId', window.parent.document).val();
     var session = $('#hidSession', window.parent.document).val();
 
-    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
-        //console.log(data);
-        if(data.success) {
+    $.ajax({
+        type: 'GET',
+        url: "/api/gettoken?id=" + id + "&token=" + session,
+        dataType: "json",
+        error: function (error) { $(".reload", window.parent.document).show(); },
+        success: function(data) {
             $('#hidToken', window.parent.document).val(data.access_token);
             initUser(data.access_token);
             resetGame();
             updateResult(data.access_token);
             updateHistory(data.access_token);
             initGame(data.access_token);
-        } else {
-            return false;
-        }      
+        }
     });
 }
 
