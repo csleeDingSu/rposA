@@ -49,7 +49,20 @@ function getProductList(token) {
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
-            $('.wabao-coin').html(data.current_point);
+            var previous_point = Cookies.get('previous_point');
+            if(previous_point !== undefined){
+                $('.wabao-coin')
+                  .prop('number', previous_point)
+                  .animateNumber(
+                    {
+                      number: data.current_point
+                    },
+                    1000
+                  );
+                Cookies.remove('previous_point');
+            } else {
+                $('.wabao-coin').html(data.current_point);
+            }            
 
             var records = data.records.data;
             var packages = data.packages;
@@ -433,7 +446,7 @@ function redeemHistory(token) {
                     } else if (item.redeem_state == 4) { // Used
                         html += '<div class="col-xs-3 column-6">' +
                                     '<div class="btn-used-wrapper">' +
-                                        '<div class="btn-used"></div>' +
+                                        '<div class="btn-used"><img src="/client/images/vip/vip-used.png" width="50" height="50" /></div>' +
                                     '</div>' + 
                                 '</div>' + 
                             '</div>';

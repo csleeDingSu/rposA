@@ -182,7 +182,7 @@ class Package extends Model
 	
 	public static function get_redeemed_package_count($memberid)
 	{
-		$count = DB::table('vip_redeemed')->where('redeem_state',4)->count();
+		$count = DB::table('vip_redeemed')->where('member_id',$memberid)->where('redeem_state',4)->count();
 		
 		if (!$count) $count = 1;
 		
@@ -198,6 +198,10 @@ class Package extends Model
 		if ($packageid) $result->where('package_id',$packageid);
 		
 		$out = $result->sum('rewardamt');
+		if (empty($out))
+		{
+			$out = '0';
+		}
 		
 		return $out ;
 		

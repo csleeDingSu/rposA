@@ -130,7 +130,7 @@ function initUser(token){
 
                     $('#spanPoint', window.parent.document).html(vip_point);                    
                     $('#hidTotalBalance', window.parent.document).val(total_balance);
-                    $('.packet-point', window.parent.document).html(vip_point);
+                    $('.packet-point', window.parent.document).html(point);
                     $('.spanAcuPoint', window.parent.document).html(acupoint);
                     $('.packet-acupoint', window.parent.document).html(acupoint);
                     $('#hidBalance', window.parent.document).val(balance);
@@ -147,6 +147,7 @@ function initUser(token){
 function initGame(token){
     $( '.btn-reset-life', window.parent.document ).unbind( "click" );
     $( '.btn-reset-life-continue', window.parent.document ).unbind( "click" );
+    $( '.btn-calculate-vip', window.parent.document ).unbind( "click" );
     
     var user_id = $('#hidUserId', window.parent.document).val();
     trigger = false;
@@ -179,16 +180,11 @@ function initGame(token){
                 $('#hidLevel', window.parent.document).val(level);
                 $('#hidLevelId', window.parent.document).val(level_id);
                 $('#hidLatestResult', window.parent.document).val(previous_result);
-                $('#hidConsecutiveLose', window.parent.document).val(consecutive_lose);
 
                 $('.speech-bubble', window.parent.document).addClass("hide");
                 $('.speech-bubble', window.parent.document).next().removeClass("done").removeClass("active").find('.label').html('');
+                $('.barBox', window.parent.document).find('li').removeClass('on');
                 
-                if (consecutive_lose == 'yes' && life > 0 && balance == 0) {
-                    bindResetLifeButton(token);
-                    $('#reset-life-lose', window.parent.document).modal();
-                }
-
                 switch (level) {
 
                     default:
@@ -380,7 +376,6 @@ function bindBetButton(token){
         var life = $(".nTxt", window.parent.document).html();
         var acupoint = parseInt($('.spanAcuPoint', window.parent.document).html());
         var draw_id = $('#draw_id').val();
-        var consecutive_lose = $('#hidConsecutiveLose', window.parent.document).val();
 
         var user_id = $('#hidUserId', window.parent.document).val();
         if(user_id == 0){
@@ -390,25 +385,6 @@ function bindBetButton(token){
         if(isNaN(balance)){
             return false;
         }
-
-        //console.log(user_id +":" + balance + ":" + life );
-        if(user_id > 0 && life > 0){
-
-            if(balance < 630) {
-                if(consecutive_lose == 'yes'){
-                    bindResetLifeButton(token);
-                    $('#reset-life-lose', window.parent.document).modal();
-                } else {
-                    bindResetLifeButton(token);
-                    $('#reset-life-start', window.parent.document).modal();
-                }
-
-            }
-
-        } else if(user_id > 0 && life == 0){
-                $('#reset-life-share', window.parent.document).modal();
-        }
-
 
         $('.radio-primary', window.parent.document).not(this).find('.radio').removeClass('clicked');
         $('.radio-primary', window.parent.document).not(this).find('.bet-container').hide();
@@ -421,6 +397,9 @@ function bindBetButton(token){
 
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         if (typeof selected == 'undefined'){
+
+            checked(level, false);
+            changbar(level);
 
             //$('#spanPoint', window.parent.document).html(total_balance);
             $('.instruction', window.parent.document).css('visibility', 'visible');
@@ -442,6 +421,9 @@ function bindBetButton(token){
             });
 
         } else {
+
+            checked(level, true);
+            changbar(level);
 
             var bet_amount = parseInt($('.bet-container', window.parent.document).html());
             var newbalance = balance - bet_amount;
@@ -481,47 +463,60 @@ function bindBetButton(token){
 
 function bindCalculateButton(token){
     $('.btn-calculate-vip', window.parent.document).click(function(){
-        var acupoint = $('.spanAcuPoint', window.parent.document).html();
-        var selected = $('div.clicked', window.parent.document).find('input:radio').val();
-        var level = parseInt($('#hidLevel', window.parent.document).val());
-        var consecutive_lose = $('#hidConsecutiveLose', window.parent.document).val();
+        var user_id = $('#hidUserId', window.parent.document).val();
+        $.ajax({
+            type: 'POST',
+            url: "/api/check-redeem",
+            data: { 'memberid': user_id },
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            error: function (error) { console.log(error.responseText) },
+            success: function(data) {
+                console.log(data);
+                if(data.success){
+                    var point = data.wabao_point;
+                    var vip_point = data.vip_point;
 
-        if (typeof selected == 'undefined'){
-            if (acupoint == 0 || level > 1) {
-                $('#reset-life-bet', window.parent.document).modal();
-            } else if (level == 1 && consecutive_lose == 'yes') {
-                bindResetLifeButton(token);
-                $('#reset-life-lose', window.parent.document).modal();
-            } else {
-                bindResetLifeButton(token);
-                $('#reset-life-max', window.parent.document).modal();
-                $('#btn-close-max', window.parent.document).click(function(){
-                    $('#reset-life-max', window.parent.document).modal('hide');
-                });
+                    $('.spanVipPoint', window.parent.document).html(vip_point);
+                    $('.packet-point', window.parent.document).html(point);
+
+                    $('#reset-life-max', window.parent.document).modal();
+                        
+                    bindResetLifeButton(token);
+                    $('#btn-close-max', window.parent.document).click(function(){
+                        $('#reset-life-max', window.parent.document).modal('hide');
+                    });
+
+                } else {
+                    $('#reset-life-bet', window.parent.document).modal();
+                }
             }
-        } else {
-            $('#reset-life-bet', window.parent.document).modal();
-        }
+        });
     });
 }
 
 function bindResetLifeButton(token){
     $( '.btn-reset-life', window.parent.document ).click( function(){
         var user_id = $('#hidUserId', window.parent.document).val();
-
+        var previous_point = $('.packet-point', window.parent.document).html();
+        
         // add points from additional life.
         if(user_id > 0){
             $.ajax({
                 type: 'POST',
-                url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 101, 'life': 'yes' },
+                url: "/api/reset-vip",
+                data: { 'memberid': user_id, 'gameid': 101 },
                 dataType: "json",
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
                 },
                 error: function (error) { console.log(error.responseText) },
                 success: function(data) {
+                    console.log(data);
                     if(data.success){
+                        Cookies.set('previous_point', previous_point);
                         window.parent.location.href = "/redeem";
                     }
                 }
@@ -571,17 +566,31 @@ function startTimer(duration, timer, freeze_time, token) {
 
         --timer;
 
-        if (timer < 0) {
+        if (timer < 0) {            
             timer = duration;
-
             clearInterval(timerInterval);
-            getToken();
 
-        } else if (timer <= trigger_time) {
+            var consecutive_loss = $('#hidConsecutiveLose', window.parent.document).val();
+            var mergepoint = parseInt($('#hidMergePoint', window.parent.document).val()) || 0;
+            var previous_point = $('.packet-point', window.parent.document).html();
+
+            if (consecutive_loss == 'yes') {
+                $('.spanVipPoint', window.parent.document).html(mergepoint);
+
+                $('#reset-life-lose', window.parent.document).modal();
+                $('.btn-reset-life', window.parent.document).click(function(){
+                    Cookies.set('previous_point', previous_point);
+                    window.top.location.href = "/redeem";
+                });
+            } else {
+                getToken();
+            }
+
+        } else if (timer <= trigger_time && trigger == false) {
+            trigger = true;
             //Lock the selection
             $('.radio-primary', window.parent.document).unbind('click');
 
-            if (trigger == false) {
                 var freeze_time = timer + 1;
                 $('#freeze_time').val(freeze_time);
 
@@ -613,6 +622,8 @@ function startTimer(duration, timer, freeze_time, token) {
                         console.log(data);
                         var freeze_time = $('#freeze_time').val();
                         var result = data.game_result;
+                        $('#hidConsecutiveLose', window.parent.document).val(data.consecutive_loss);
+                        $('#hidMergePoint', window.parent.document).val(data.mergepoint);
                         $('#result').val(result);
 
                         if(data.status == 'win'){
@@ -646,10 +657,8 @@ function startTimer(duration, timer, freeze_time, token) {
                         });
 
                         $( "#btnWheel" ).trigger( "click" );
-                        trigger = true;
                     }
                 });
-            }
         }
         
     }, 1000);
@@ -714,3 +723,26 @@ DomeWebController = {
         });
     }
 };
+
+function checked(number, selected){
+    let bar = $('.barBox', window.parent.document);
+    let i=number;
+
+    if (selected) {
+      //已选择
+      bar.find('ul').children('li').eq(i-1).addClass('on');
+      bar.find('h2').fadeIn(150);
+      bar.find('.barIn').addClass('on');
+    } else {
+      //未选择
+      bar.find('li').removeClass('on');
+      bar.find('h2').fadeOut(0);
+      bar.find('.barIn').removeClass('on');
+    }
+}
+
+function changbar(number){
+    let bar = $('.barBox', window.parent.document);
+    let i=number;
+    bar.addClass('barBox-'+i);
+}

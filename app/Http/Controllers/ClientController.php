@@ -107,16 +107,16 @@ class ClientController extends BaseController
 			$member = Auth::guard('member')->user()->id	;
 			$data['member'] = Member::get_member($member);
 
-			if (is_null($data['member']->wechat_name)) {
+			if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0) {
 
-				//return redirect('/verify');
+				return view('client/vip');
 
+			} else {
+
+				return redirect('/arcade');
 			}
 
 		}
-
-		return view('client/vip');
-
 	}
 
 	public function member_update_wechatname(Request $request)

@@ -41,11 +41,12 @@
 .barBox .rule ul li{ flex:1;text-align: center; height: .35rem; position: relative; border-right:.04rem solid rgba(255,255,255,0.4);}
 
 .barBox h2{
+	display: none;
 	position: absolute;
 	top:.2rem;
 	left: .2rem;
 	background: rgba(0,0,0,0.2);
- font-size: .22rem;
+	font-size: .22rem;
 	color: #fff;
 	height: .46rem;
 	line-height: .46rem;
@@ -60,6 +61,7 @@
 	content: '';
 	display: block;
 	position: absolute;
+	bottom:-.2rem;
 	left:.5rem;
 	border:.1rem solid rgba(0,0,0,0.2);
 	border-right:.1rem solid transparent;
@@ -104,7 +106,7 @@
 .barIn .barImg{
 	position: absolute;
 	z-index: 50;
-	left: .03rem;
+	width:calc(100% - .03rem);
 	top:.03rem;
 	bottom:.03rem;
 	right:.03rem;
@@ -113,69 +115,85 @@
 	-moz-border-radius: .5rem;
 	-ms-border-radius: .5rem;
 	-o-border-radius: .5rem;
-	background: url(/client/images/full.png) left top no-repeat;
+	 /* background: url(../images/full.png) left top no-repeat;  */
 	background-size:100% 100%; 
-	transition: all .2s;
-	-webkit-transition: all .2s;
-	-moz-transition: all .2s;
-	-ms-transition: all .2s;
-	-o-transition: all .2s;
-}
-.barBox.barBox-1 .barImg{
-	background: -webkit-linear-gradient(to right,rgba(255,255,255,0.2) 1% , #78ba63 4% ,#633fbd );
-	background: -o-linear-gradient(to right,rgba(255,255,255,0.2) 1% , #78ba63 4% ,#633fbd );
-	background: -moz-linear-gradient(to right,rgba(255,255,255,0.2) 1% , #78ba63 4% ,#633fbd);
-	background: linear-gradient(to right,rgba(255,255,255,0.2) 1% , #78ba63 4% ,#633fbd  );
+	transition: width .2s;
+	overflow: hidden;
 }
 
-
-.barBox.barBox-2 .barImg{
-	background: -webkit-linear-gradient(to right,rgba(255,255,255,0.2) 17%  , #78ba63 20% ,#633fbd );
-	background: -o-linear-gradient(to right,rgba(255,255,255,0.2) 17%  , #78ba63 20% ,#633fbd );
-	background: -moz-linear-gradient(to right,rgba(255,255,255,0.2) 17%  , #78ba63 20% ,#633fbd );
-	background: linear-gradient(to right,rgba(255,255,255,0.2) 17%  , #78ba63 20% ,#633fbd  );
+.barBox.barBox-1 .barImg::before{
 
 }
 
-.barBox.barBox-3 .barImg{
-	background: -webkit-linear-gradient(to right,rgba(255,255,255,0.2) 32%, #78ba63 35% ,#633fbd  80% );
-	background: -o-linear-gradient(to right,rgba(255,255,255,0.2) 32%, #78ba63 35% ,#633fbd  80% );
-	background: -moz-linear-gradient(to right,rgba(255,255,255,0.2) 32%, #78ba63 35% ,#633fbd  80% );
-	background: linear-gradient(to right,rgba(255,255,255,0.2) 32%, #78ba63 35% ,#633fbd  80% );
+.barBox.barBox-2 .barImg::before{
+	width:100%;
+
 }
-.barBox.barBox-4 .barImg{
-	background: -webkit-linear-gradient(to right,rgba(255,255,255,0.2) 47%, #78ba63 51% ,#633fbd  80%  );
-	background: -o-linear-gradient(to right,rgba(255,255,255,0.2) 47%, #78ba63 51% ,#633fbd  80%  );
-	background: -moz-linear-gradient(to right,rgba(255,255,255,0.2) 47%, #78ba63 51% ,#633fbd  80% );
-	background: linear-gradient(to right,rgba(255,255,255,0.2) 47%, #78ba63 51% ,#633fbd  80% );
+.barBox.barBox-3 .barImg::before{
+	width: 84%;
 }
-.barBox.barBox-5 .barImg{
-	background: -webkit-linear-gradient(to right,rgba(255,255,255,0.2) 63%, #78ba63 66% ,#633fbd  94%  );
-	background: -o-linear-gradient(to right,rgba(255,255,255,0.2) 63%, #78ba63 66% ,#633fbd  94%  );
-	background: -moz-linear-gradient(to right,rgba(255,255,255,0.2) 63%, #78ba63 66% ,#633fbd  94%  );
-	background: linear-gradient(to right,rgba(255,255,255,0.2) 63%, #78ba63 66% ,#633fbd  94% );
+.barBox.barBox-4 .barImg::before{
+	width: 68%;
+
 }
-.barBox.barBox-6 .barImg{
-	background: -webkit-linear-gradient(to right,rgba(255,255,255,0.2) 78% , #78ba63 81% ,#633fbd 96%);
-	background: -o-linear-gradient(to right,rgba(255,255,255,0.2) 78% , #78ba63 81% ,#633fbd 96% );
-	background: -moz-linear-gradient(to right,rgba(255,255,255,0.2) 78% , #78ba63 81% ,#633fbd 96% );
-	background: linear-gradient(to right,rgba(255,255,255,0.2) 78%, #78ba63 81% ,#633fbd  96% );
+.barBox.barBox-5 .barImg::before{
+	width: 51.5%;
 }
-.barBox.barBox-7 .barImg{
-	background: -webkit-linear-gradient(to right,rgba(255,255,255,0.2) 100% , #78ba63 81% ,#633fbd 96%);
-	background: -o-linear-gradient(to right,rgba(255,255,255,0.2) 100% , #78ba63 81% ,#633fbd 96% );
-	background: -moz-linear-gradient(to right,rgba(255,255,255,0.2) 100% , #78ba63 81% ,#633fbd 96% );
-	background: linear-gradient(to right,rgba(255,255,255,0.2) 100%, #78ba63 81% ,#633fbd  96% );
+.barBox.barBox-6 .barImg::before{
+	width: 35.8%
+}
+.barBox.barBox-7 .barImg::before{
+	width: 19.5%
+}
+.barBox.barBox-8 .barImg::before{
+	
+}
+
+.barBox .barImg::before{
+	content: '';
+	position:absolute;
+	display:block;
+	width:102%;
+	right:0;
+	height: 100%;
+	z-index: 1;
+	transition: width .2s;
+	background: -webkit-linear-gradient(to right,rgba(255,255,255,0) 2% , #78ba63 4% ,#633fbd );
+	background: -o-linear-gradient(to right,rgba(255,255,255,0) 2% , #78ba63 4% ,#633fbd );
+	background: -moz-linear-gradient(to right,rgba(255,255,255,0) 2% , #78ba63 4% ,#633fbd);
+	background: linear-gradient(to right,rgba(255,255,255,0) 2% , #78ba63 4% ,#633fbd  );
+}
+
+.barBox .barIn .barImg::after{
+	z-index: 2;
+	content: '';
+	position:absolute;
+	display:none;
+	height:.51rem;
+	width: calc(100% - .05rem);
+	-webkit-border-radius:16px;
+	border-radius:16px;
+	top:0;
+	right:.03rem;
+	background: url(/client/images/bgpaopao.png);
+	-webkit-animation:sparkle 1500ms linear infinite;
+    -moz-animation:sparkle 1500ms linear infinite;
+    -o-animation:sparkle 1500ms linear infinite;
+    animation:sparkle 1500ms linear infinite;
+	opacity:0.2;
+	transition: width .2s ;
+}
+
+
+.barBox .barIn.on .barImg::after{
+	display:block;
 }
 
 
 
-.barBox.barBox-1 li:nth-child(1) span, 
-.barBox.barBox-2 li:nth-child(2) span,
-.barBox.barBox-3 li:nth-child(3) span,
-.barBox.barBox-4 li:nth-child(4) span,
-.barBox.barBox-5 li:nth-child(5) span,
-.barBox.barBox-6 li:nth-child(6) span{color: #b7f99f; font-size: .26rem; font-weight: bold;}
+
+.barBox.barBox li.on span{color: #b7f99f; font-size: .26rem; font-weight: bold;}
+
 
 .barBox.barBox-2 li:nth-child(-n+1) span{ color:#000;}
 .barBox.barBox-3 li:nth-child(-n+2) span{ color:#000;}
@@ -184,20 +202,63 @@
 .barBox.barBox-6 li:nth-child(-n+5) span{ color:#000;}
 .barBox.barBox-7 li:nth-child(-n+6) span{ color:#000;}
 
+
 .barBox.barBox-2 h2{ left: .5rem}
 .barBox.barBox-2 h2::after{left:1.2rem;}
-
 .barBox.barBox-3 h2{ left: 1.5rem}
 .barBox.barBox-3 h2::after{left:1.2rem;}
-
 .barBox.barBox-4 h2{ left:auto; right:0rem}
 .barBox.barBox-4 h2::after{left:auto; right:2.7rem;}
-
 .barBox.barBox-5 h2{ left:auto; right:0rem}
 .barBox.barBox-5 h2::after{left:auto; right:1.7rem;}
-
 .barBox.barBox-6 h2{left:auto; right:0rem}
 .barBox.barBox-6 h2::after{ left:auto; right:.7rem;}
 
 
 .barIn p{ text-align: center;font-size: .25rem; line-height: .57rem; color: #fff; position: relative;z-index: 300}
+
+
+
+.barBox.barBox-1 .barImg::after{
+	width: 100%;
+}
+.barBox.barBox-2 .barImg::after{
+	width: 98%;
+}
+.barBox.barBox-3 .barImg::after{
+	width:82%;
+}
+.barBox.barBox-4 .barImg::after{
+	width:66%;
+}
+.barBox.barBox-5 .barImg::after{
+	width:50%;
+}
+.barBox.barBox-6 .barImg::after{
+	width:35%;
+}
+.barBox.barBox-7 .barImg::after{
+	width:19.5%;
+}
+
+.barBox.barBox-7 .barImg::after{
+	/* left: 100%; */
+	width:0%;
+}
+
+@-webkit-keyframes sparkle {
+	from {background-position:0 0;}
+	to {background-position:0 -64px;}
+}
+@-moz-keyframes sparkle {
+	from {background-position:0 0;}
+	to {background-position:0 -64px;}
+}
+@-o-keyframes sparkle {
+	from {background-position:0 0;}
+	to {background-position:0 -64px;}
+}
+@keyframes sparkle {
+	from {background-position:0 0;}
+	to {background-position:0 -64px;}
+}

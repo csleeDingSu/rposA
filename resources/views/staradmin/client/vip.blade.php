@@ -57,6 +57,7 @@
 			<input id="hidLevelId" type="hidden" value="" />
 			<input id="hidLatestResult" type="hidden" value="" />
 			<input id="hidConsecutiveLose" type="hidden" value="" />
+			<input id="hidMergePoint" type="hidden" value="" />
 			<input id="hidHall" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
@@ -264,7 +265,7 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/vip/icon-win.png') }}" class="img-wabao" />
 								<div class="modal-message-title">
-									恭喜获得150挖宝币
+									恭喜获得<span class="spanVipPoint"></span>挖宝币
 								</div>
 								<div class="modal-message-content">
 									结算后的挖宝币可兑换奖品
@@ -295,7 +296,7 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/vip/icon-win.png') }}" class="img-wabao" />
 								<div class="modal-message-title">
-									恭喜获得<span class="spanAcuPoint"></span>挖宝币
+									恭喜获得<span class="spanVipPoint"></span>挖宝币
 								</div>
 								<div class="modal-message-content">
 									结算后的挖宝币可兑换奖品
@@ -392,7 +393,7 @@
 									本次挖宝失败
 								</div>
 								<div class="modal-lose-content">
-									<span class="spanAcuPoint"></span>挖宝币等待结算
+									<span class="spanVipPoint"></span>挖宝币等待结算
 								</div>
 								<div class="modal-lose-instruction">
 									你需要结算后，才能继续进入VIP场
