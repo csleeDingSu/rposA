@@ -1,4 +1,5 @@
 var trigger = false;
+var has_seen = false;
 
 $(function () {
     var wechat_status = $('#hidWechatId', window.parent.document).val();
@@ -168,6 +169,7 @@ function initUser(token){
 function initGame(token){
     $( '.btn-reset-life', window.parent.document ).unbind( "click" );
     $( '.btn-reset-life-continue', window.parent.document ).unbind( "click" );
+    $('.radio-primary', window.parent.document).unbind('click');
     
     var user_id = $('#hidUserId', window.parent.document).val();
     trigger = false;
@@ -301,15 +303,19 @@ function initGame(token){
                 DomeWebController.init();
                 startTimer(duration, timer, freeze_time, token);
 
-                if (balance == 1200 && acupoint == 0) {
+                if (balance == 1200 && acupoint == 0 && has_seen === false) {
                     $('.button-card', window.parent.document).click(function(){
                         $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
-                    });
-                    setTimeout(function(){                        
-                        $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
-                        bindBetButton(token);
-                    }, 10000);
-                    
+
+                        setTimeout(function(){ 
+                            $('.btn-rules-close', window.parent.document).click(function(){
+                                $('#game-rules', window.parent.document).addClass('hide');
+                            });                       
+                            $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
+                            has_seen = true;
+                            bindBetButton(token);
+                        }, 10000);
+                    });                    
                 } else {
                     bindBetButton(token);
                 }
