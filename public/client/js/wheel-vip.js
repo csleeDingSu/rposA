@@ -147,6 +147,7 @@ function initUser(token){
 function initGame(token){
     $( '.btn-reset-life', window.parent.document ).unbind( "click" );
     $( '.btn-reset-life-continue', window.parent.document ).unbind( "click" );
+    $( '.btn-calculate-vip', window.parent.document ).unbind( "click" );
     
     var user_id = $('#hidUserId', window.parent.document).val();
     trigger = false;
@@ -482,6 +483,7 @@ function bindCalculateButton(token){
                     $('.packet-point', window.parent.document).html(point);
 
                     $('#reset-life-max', window.parent.document).modal();
+                        
                     bindResetLifeButton(token);
                     $('#btn-close-max', window.parent.document).click(function(){
                         $('#reset-life-max', window.parent.document).modal('hide');
@@ -498,7 +500,8 @@ function bindCalculateButton(token){
 function bindResetLifeButton(token){
     $( '.btn-reset-life', window.parent.document ).click( function(){
         var user_id = $('#hidUserId', window.parent.document).val();
-
+        var previous_point = $('.packet-point', window.parent.document).html();
+        
         // add points from additional life.
         if(user_id > 0){
             $.ajax({
@@ -513,6 +516,7 @@ function bindResetLifeButton(token){
                 success: function(data) {
                     console.log(data);
                     if(data.success){
+                        Cookies.set('previous_point', previous_point);
                         window.parent.location.href = "/redeem";
                     }
                 }
@@ -568,12 +572,14 @@ function startTimer(duration, timer, freeze_time, token) {
 
             var consecutive_loss = $('#hidConsecutiveLose', window.parent.document).val();
             var mergepoint = parseInt($('#hidMergePoint', window.parent.document).val()) || 0;
+            var previous_point = $('.packet-point', window.parent.document).html();
 
             if (consecutive_loss == 'yes') {
                 $('.spanVipPoint', window.parent.document).html(mergepoint);
 
                 $('#reset-life-lose', window.parent.document).modal();
                 $('.btn-reset-life', window.parent.document).click(function(){
+                    Cookies.set('previous_point', previous_point);
                     window.top.location.href = "/redeem";
                 });
             } else {

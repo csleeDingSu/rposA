@@ -111,5 +111,7 @@
 @section('footer-javascript')
     @parent
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
+    <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
+    <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
     <script src="{{ asset('/client/js/redeem.js') }}"></script>
 @endsection
