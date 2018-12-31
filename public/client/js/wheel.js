@@ -181,9 +181,9 @@ function initGame(token){
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { $(".reload", window.parent.document).show(); },
+        error: function (error) { console.log(error.responseText) },
         success: function(data) {
-            console.log(data);
+            //console.log(data);
             if(data.success) {
                 var bet_amount = 0;
                 var duration = data.record.duration;
@@ -214,86 +214,7 @@ function initGame(token){
                     $('#reset-life-lose', window.parent.document).modal();
                 }
 
-                switch (level) {
-
-                    default:
-                    case 1:
-                        bet_amount = 10;
-                        payout_info = '猜中得10，赚10挖宝币。';
-                        $('.barBox', window.parent.document).addClass("barBox-1");
-                        $('.barBox', window.parent.document).removeClass("barBox-2");
-                        $('.barBox', window.parent.document).removeClass("barBox-3");
-                        $('.barBox', window.parent.document).removeClass("barBox-4");
-                        $('.barBox', window.parent.document).removeClass("barBox-5");
-                        $('.barBox', window.parent.document).removeClass("barBox-6");
-
-                        $('.span-1', window.parent.document).html("10");
-                        $('.span-2', window.parent.document).html("30");
-                        $('.span-3', window.parent.document).html("70");
-                        $('.span-4', window.parent.document).html("150");
-                        $('.span-5', window.parent.document).html("310");
-
-                        break;
-                    case 2:
-                        bet_amount = 30;
-                        payout_info = '猜中得30，扣除之前亏损10，赚20挖宝币。';
-                        $('.barBox', window.parent.document).addClass("barBox-2");
-                        $('.barBox', window.parent.document).removeClass("barBox-1");
-                        $('.span-1', window.parent.document).html("-10");                        
-                        break;
-                    case 3:                    
-                        bet_amount = 70;
-                        payout_info = '猜中得70，扣除前2次亏损40，赚30挖宝币。';
-                        $('.barBox', window.parent.document).addClass("barBox-3");
-                        $('.barBox', window.parent.document).removeClass("barBox-2");
-                        $('.barBox', window.parent.document).removeClass("barBox-1");
-                        $('.span-1', window.parent.document).html("-10");
-                        $('.span-2', window.parent.document).html("-30");
-                        break;
-                    case 4:
-                        bet_amount = 150;
-                        payout_info = '猜中得150，扣除前3次亏损110，赚40挖宝币。';
-                        $('.barBox', window.parent.document).addClass("barBox-4");
-                        $('.barBox', window.parent.document).removeClass("barBox-3");
-                        $('.barBox', window.parent.document).removeClass("barBox-2");
-                        $('.barBox', window.parent.document).removeClass("barBox-1");
-                        $('.span-1', window.parent.document).html("-10");
-                        $('.span-2', window.parent.document).html("-30");
-                        $('.span-3', window.parent.document).html("-70");
-                        break;
-                    case 5:
-                        bet_amount = 310;
-                        payout_info = '猜中得310，扣除前4次亏损260，赚50挖宝币。';
-                        $('.barBox', window.parent.document).addClass("barBox-5");
-                        $('.barBox', window.parent.document).removeClass("barBox-4");
-                        $('.barBox', window.parent.document).removeClass("barBox-3");
-                        $('.barBox', window.parent.document).removeClass("barBox-2");
-                        $('.barBox', window.parent.document).removeClass("barBox-1");
-                        $('.span-1', window.parent.document).html("-10");
-                        $('.span-2', window.parent.document).html("-30");
-                        $('.span-3', window.parent.document).html("-70");
-                        $('.span-4', window.parent.document).html("-150");
-                        break;
-                    case 6:
-                        bet_amount = 630;
-                        payout_info = '猜中得630，扣除前5次亏损570，赚60挖宝币。';
-                        $('.barBox', window.parent.document).addClass("barBox-6");
-                        $('.barBox', window.parent.document).removeClass("barBox-5");
-                        $('.barBox', window.parent.document).removeClass("barBox-4");
-                        $('.barBox', window.parent.document).removeClass("barBox-3");
-                        $('.barBox', window.parent.document).removeClass("barBox-2");
-                        $('.barBox', window.parent.document).removeClass("barBox-1");
-                        $('.span-1', window.parent.document).html("-10");
-                        $('.span-2', window.parent.document).html("-30");
-                        $('.span-3', window.parent.document).html("-70");
-                        $('.span-4', window.parent.document).html("-150");
-                        $('.span-5', window.parent.document).html("-310");
-                        break;
-                }
-
-                $('.span-balance', window.parent.document).html(balance);
-                $('.payout-info', window.parent.document).html(payout_info).addClass('hide');
-                $('.bet-container', window.parent.document).html(bet_amount);
+                showProgressBar(false);
 
                 setBalance();
 
@@ -335,6 +256,9 @@ function initGame(token){
                     success: function(data) {
 
                         if(data.success && data.record.bet != null){
+
+                            showProgressBar(true);
+
                             var selected = data.record.bet;
                             var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
                             var bet_amount = parseInt(data.record.betamt);
@@ -345,7 +269,7 @@ function initGame(token){
                             btn_rectangle.find('.bet-container').show();
                             btn_rectangle.find('.bet').show();
 
-                            $('#spanPoint', window.parent.document).html(newtotalbalance);
+                            //$('#spanPoint', window.parent.document).html(newtotalbalance);
                             $('.instruction', window.parent.document).css('visibility', 'hidden');
 
                             $.ajax({
@@ -415,7 +339,7 @@ function setBalance() {
         if(newbalance < 0){
 
         } else {
-            $('#spanPoint', window.parent.document).html(newtotalbalance);
+            //$('#spanPoint', window.parent.document).html(newtotalbalance);
         }
     }
 }
@@ -519,7 +443,7 @@ function bindBetButton(token){
                 $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
                 return false;
             } else {
-                $('#spanPoint', window.parent.document).html(newtotalbalance);
+                //$('#spanPoint', window.parent.document).html(newtotalbalance);
                 $('.instruction', window.parent.document).css('visibility', 'hidden');
 
                 $.ajax({
@@ -646,6 +570,87 @@ function bindRulesButton(token){
             });
         }
     });
+}
+
+function showProgressBar(bol_show){
+    var level = parseInt($('#hidLevel', window.parent.document).val());
+    var bet_amount = 0;
+    var payout_info = '';
+    var span_balance = 1200;
+
+    switch (level) {
+
+        default:
+        case 1:
+            bet_amount = 10;
+
+            payout_info = '猜中得10，赚10挖宝币。';
+            $('.span-1', window.parent.document).html("10");
+            $('.span-2', window.parent.document).html("30");
+            $('.span-3', window.parent.document).html("70");
+            $('.span-4', window.parent.document).html("150");
+            $('.span-5', window.parent.document).html("310");
+
+            break;
+        case 2:
+            bet_amount = 30;
+            span_balance = 1190;
+
+            payout_info = '猜中得30，扣除之前亏损10，赚20挖宝币。';
+            $('.span-1', window.parent.document).html("-10");                        
+            break;
+        case 3:                    
+            bet_amount = 70;
+            span_balance = 1160;
+
+            payout_info = '猜中得70，扣除前2次亏损40，赚30挖宝币。';
+            $('.span-1', window.parent.document).html("-10");
+            $('.span-2', window.parent.document).html("-30");
+            break;
+        case 4:
+            bet_amount = 150;
+            span_balance = 1090;
+
+            payout_info = '猜中得150，扣除前3次亏损110，赚40挖宝币。';
+            $('.span-1', window.parent.document).html("-10");
+            $('.span-2', window.parent.document).html("-30");
+            $('.span-3', window.parent.document).html("-70");
+            break;
+        case 5:
+            bet_amount = 310;
+            span_balance = 940;
+
+            payout_info = '猜中得310，扣除前4次亏损260，赚50挖宝币。';
+            $('.span-1', window.parent.document).html("-10");
+            $('.span-2', window.parent.document).html("-30");
+            $('.span-3', window.parent.document).html("-70");
+            $('.span-4', window.parent.document).html("-150");
+            break;
+        case 6:
+            bet_amount = 630;
+            span_balance = 630;
+
+            payout_info = '猜中得630，扣除前5次亏损570，赚60挖宝币。';
+            $('.span-1', window.parent.document).html("-10");
+            $('.span-2', window.parent.document).html("-30");
+            $('.span-3', window.parent.document).html("-70");
+            $('.span-4', window.parent.document).html("-150");
+            $('.span-5', window.parent.document).html("-310");
+            break;
+    }
+
+    $('.span-balance', window.parent.document).html(span_balance);
+    $('.bet-container', window.parent.document).html(bet_amount);
+
+    if(bol_show) {
+        $('.payout-info', window.parent.document).html(payout_info).removeClass('hide');
+        checked(level, true);
+        changbar(level);
+    } else {
+        $('.payout-info', window.parent.document).html(payout_info).addClass('hide');
+        checked(level, false);
+        changbar(level);
+    }
 }
 
 function startTimer(duration, timer, freeze_time, token) {
@@ -822,5 +827,6 @@ function checked(number, selected){
 function changbar(number){
     let bar = $('.barBox', window.parent.document);
     let i=number;
-    bar.addClass('barBox-'+i);
+    bar.removeClass();
+    bar.addClass('barBox barBox-'+i);
 }
