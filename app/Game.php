@@ -634,7 +634,7 @@ class Game extends Model
 			}
 		}
 		
-		if ($i < 6) return '';
+		//if ($i < 6) return '';
 		
 		if ($win <= 0) return 'yes';
 		return '';
