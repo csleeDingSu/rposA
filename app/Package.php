@@ -182,9 +182,9 @@ class Package extends Model
 	
 	public static function get_redeemed_package_count($memberid)
 	{
-		$count = DB::table('vip_redeemed')->where('member_id',$memberid)->where('redeem_state',4)->count();
+		//$count = DB::table('vip_redeemed')->where('member_id',$memberid)->where('redeem_state',4)->count();
 		
-		$count = DB::table('view_vip_status')->where('member_id',$memberid)->where('redeem_state',4)->first()->count;
+		$count = DB::table('view_vip_status')->where('member_id',$memberid)->where('redeem_state',4)->first();
 		
 		print_r($count);
 		
