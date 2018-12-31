@@ -635,7 +635,9 @@ class Game extends Model
 			}
 		}
 		
-		if ($i < $lmt) return '';
+		$count = count($result);
+		
+		echo $count;
 		
 		if ($win <= 0) return 'yes';
 		return '';
