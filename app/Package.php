@@ -188,9 +188,8 @@ class Package extends Model
 		
 		print_r($count);
 		
-		//if (!$count) $count = 1;
-		
-		return $count;
+		if (!$count) return 0;
+		else return $count->count;
 	}
 	
 	public static function get_redeemed_package_reward($packageid = FALSE,$memberid = FALSE)
