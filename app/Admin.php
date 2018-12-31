@@ -165,14 +165,10 @@ class Admin extends Model
 	
 	public static function check_redeem_condition($seq = FALSE)
 	{			
-		if (!$seq) $seq = 1;
-		
+		if (!$seq) $seq = 1;		
 		$result = DB::table('redeem_condition')->where('position',$seq)->first();
-		DB::enableQueryLog();
-		//if (!$result) 
-			$result = DB::table('redeem_condition')->max('position');
-		print_r(DB::getQueryLog()); 
-		print_r($result);
+		if (!$result) 
+			$result =  DB::table('redeem_condition')->find(DB::table('redeem_condition')->max('position'));
 		return $result;
 	}
 	
