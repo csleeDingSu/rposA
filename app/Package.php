@@ -188,7 +188,7 @@ class Package extends Model
 		
 		print_r($count);
 		
-		if (!$count) $count = 1;
+		//if (!$count) $count = 1;
 		
 		return $count;
 	}
