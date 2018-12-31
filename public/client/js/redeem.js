@@ -97,7 +97,7 @@ function getProductList(token) {
                         reserved_quantity = 0;
                     }
 
-                    var total_used = parseInt(used_quantity) + parseInt(reserved_quantity);
+                    var total_used = parseInt(used_quantity) + parseInt(reserved_quantity) || 0;
 
                     //console.log(item);
                         html += '<div class="row">' +
@@ -248,7 +248,7 @@ function getProductList(token) {
                         reserved_quantity = 0;
                     }
 
-                    var total_used = parseInt(used_quantity) + parseInt(reserved_quantity);
+                    var total_used = parseInt(used_quantity) + parseInt(reserved_quantity) || 0;
 
                     html += '<div class="row">' +
                                 '<div class="col-xs-3 column-1">' +
