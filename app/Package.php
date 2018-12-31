@@ -184,7 +184,7 @@ class Package extends Model
 	{
 		$count = DB::table('vip_redeemed')->where('member_id',$memberid)->where('redeem_state',4)->count();
 		
-		$count = DB::table('view_vip_status')->where('member_id',$memberid)->where('redeem_state',4)->pluck('count');
+		$count = DB::table('view_vip_status')->where('member_id',$memberid)->where('redeem_state',4)->first()->count;
 		
 		print_r($count);
 		
