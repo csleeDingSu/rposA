@@ -171,7 +171,8 @@ class Admin extends Model
 		DB::enableQueryLog();
 		//if (!$result) 
 			$result = DB::table('redeem_condition')->max('position');
-		print_r(DB::getQueryLog());     
+		print_r(DB::getQueryLog()); 
+		print_r($result);
 		return $result;
 	}
 	
