@@ -42,14 +42,14 @@ function updateHistory(token){
 
     $.ajax({
         type: 'GET',
-        url: "/api/betting-history?gameid=101&memberid=" + user_id,
+        url: "/api/betting-history?gameid=101&vip=yes&memberid=" + user_id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
-
+            console.log(data);
             var records = data.records;
             var length = Object.keys(records).length;
             var maxCount = 8;
