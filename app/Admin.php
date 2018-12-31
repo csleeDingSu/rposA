@@ -168,9 +168,9 @@ class Admin extends Model
 		if (!$seq) $seq = 1;
 		
 		$result = DB::table('redeem_condition')->where('position',$seq)->first();
-		
+		DB::enableQueryLog();
 		if (!$result) $result = DB::table('redeem_condition')->max('position')->first();
-		
+		print_r(DB::getQueryLog());     
 		return $result;
 	}
 	
