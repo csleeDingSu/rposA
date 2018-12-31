@@ -170,7 +170,7 @@ class Admin extends Model
 		$result = DB::table('redeem_condition')->where('position',$seq)->first();
 		DB::enableQueryLog();
 		//if (!$result) 
-			$result = DB::table('redeem_condition')->max('position')->first();
+			$result = DB::table('redeem_condition')->max('position');
 		print_r(DB::getQueryLog());     
 		return $result;
 	}
