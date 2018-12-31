@@ -426,10 +426,11 @@ class GameController extends Controller
 	
 	public function get_betting_history(Request $request)
     {
-		$gameid   = $request->gameid;
+		$gameid     = $request->gameid;
 		$memberid   = $request->memberid;
+		$vip        = $request->vip;
 		
-		$result = Game::get_betting_history_grouped($gameid, $memberid);
+		$result = Game::get_betting_history_grouped($gameid, $memberid, $vip);
 	
 		return response()->json(['success' => true, 'records' => $result]); 
 	}
