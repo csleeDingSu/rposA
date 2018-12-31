@@ -609,10 +609,11 @@ class Game extends Model
 	}
 	
 	//@todo:- get consecutive Limit from env
+	// 31-12-2018 added count calculation to fix first consecutive lose
 	public static function get_consecutive_lose($memberid , $gameid,$vip = FALSE)
 	{
 		$win = 0;
-		$lmt = 0;
+		$lmt = 6;
 		$table = 'member_game_result';
 		if ($vip) $table = 'vip_member_game_result';
 		
@@ -624,7 +625,10 @@ class Game extends Model
                  ->limit($lmt)
 				 ->get();
 		
-				
+		$count = count($result);
+		
+		if ($count < $lmt) return '';		
+		
 		if ($result)
 		{
 			$i = 0 ; 
@@ -634,8 +638,6 @@ class Game extends Model
 				$i++;
 			}
 		}
-		
-		if ($i < $lmt) return '';
 		
 		if ($win <= 0) return 'yes';
 		return '';
