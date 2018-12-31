@@ -626,11 +626,15 @@ class Game extends Model
 				
 		if ($result)
 		{
+			$i = 0 ; 
 			foreach ($result as $row)
 			{
 				$win = $row->is_reset + $row->is_win + $win;
+				$i++;
 			}
 		}
+		
+		if ($i < 6) return '';
 		
 		if ($win <= 0) return 'yes';
 		return '';
