@@ -8,6 +8,9 @@ $(function () {
     if(wechat_status == 0 && wechat_name != null) {
         getToken();
         closeModal();
+    } else {
+        $(".loading", window.parent.document).fadeOut("slow");
+        return false;
     }
     
 });
@@ -540,7 +543,7 @@ function bindResetLifeButton(token){
                         $('#reset-life-play', window.parent.document).modal('hide');
                         $('#reset-life-lose', window.parent.document).modal('hide');
                         $('#reset-life-start', window.parent.document).modal('hide');
-                        getToken();
+                        window.location.href = window.location.href;
                     }
                 }
             });
@@ -671,7 +674,7 @@ function startTimer(duration, timer, freeze_time, token) {
             timer = duration;
 
             clearInterval(timerInterval);
-            getToken();
+            window.location.href = window.location.href;
 
         } else if (timer <= trigger_time && trigger == false) {
             trigger = true;

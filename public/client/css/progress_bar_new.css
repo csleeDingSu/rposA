@@ -125,24 +125,24 @@
 }
 
 .barBox.barBox-2 .barImg::before{
-	width:100%;
+	width:84%;
 
 }
 .barBox.barBox-3 .barImg::before{
-	width: 84%;
+	width: 67%;
 }
 .barBox.barBox-4 .barImg::before{
-	width: 68%;
+	width: 51.5%;
 
 }
 .barBox.barBox-5 .barImg::before{
-	width: 51.5%;
+	width: 35.8%;
 }
 .barBox.barBox-6 .barImg::before{
-	width: 35.8%
+	width: 19.5%
 }
 .barBox.barBox-7 .barImg::before{
-	width: 19.5%
+
 }
 .barBox.barBox-8 .barImg::before{
 	
@@ -222,22 +222,22 @@
 	width: 100%;
 }
 .barBox.barBox-2 .barImg::after{
-	width: 98%;
+	width: 82%;
 }
 .barBox.barBox-3 .barImg::after{
-	width:82%;
+	width:65%;
 }
 .barBox.barBox-4 .barImg::after{
-	width:66%;
-}
-.barBox.barBox-5 .barImg::after{
 	width:50%;
 }
-.barBox.barBox-6 .barImg::after{
+.barBox.barBox-5 .barImg::after{
 	width:35%;
 }
-.barBox.barBox-7 .barImg::after{
+.barBox.barBox-6 .barImg::after{
 	width:19.5%;
+}
+.barBox.barBox-7 .barImg::after{
+
 }
 
 .barBox.barBox-7 .barImg::after{
