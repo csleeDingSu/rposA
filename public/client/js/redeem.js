@@ -567,7 +567,7 @@ function requestVip(token, package_id, type, index){
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
             if(data.success){
-                $('#viewvouchermode_p' + index).modal('hide');
+                window.location.href = "/redeem/history";
             }
         }
     });

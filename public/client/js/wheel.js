@@ -8,6 +8,9 @@ $(function () {
     if(wechat_status == 0 && wechat_name != null) {
         getToken();
         closeModal();
+    } else {
+        $(".loading", window.parent.document).fadeOut("slow");
+        return false;
     }
     
 });
