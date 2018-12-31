@@ -222,7 +222,7 @@ function initGame(token){
                             btn_rectangle.find('.bet-container').show();
                             btn_rectangle.find('.bet').show();
 
-                            $('#spanPoint', window.parent.document).html(newtotalbalance);
+                            //$('#spanPoint', window.parent.document).html(newtotalbalance);
                             $('.instruction', window.parent.document).css('visibility', 'hidden');
 
                             $.ajax({
