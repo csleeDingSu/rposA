@@ -1139,13 +1139,13 @@ iframe {
 	height: 20px;
 	position: relative;
 	text-align: center;
+	margin-top: -18px;
 }
 
 .vip-logo {
-  	position: absolute;
-    display: inline-block;
-    top: -16px;
-    margin-left: -16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .vip-title {
@@ -1154,7 +1154,7 @@ iframe {
 
 .vip-modal-card {
 	width: 280px;
-	margin-top: 10px;
+	margin-top: 30px;
 }
 
 .vip-card {
@@ -1226,8 +1226,8 @@ iframe {
 		height: 347px;
 	}
 
-	.vip-logo {
-	    margin-left: -50px;
+	.vip-logo-wrapper {
+		width: 260px;
 	}
 
 	.vip-modal-card {
