@@ -612,6 +612,7 @@ class Game extends Model
 	public static function get_consecutive_lose($memberid , $gameid,$vip = FALSE)
 	{
 		$win = 0;
+		$lmt = 0;
 		$table = 'member_game_result';
 		if ($vip) $table = 'vip_member_game_result';
 		
@@ -620,7 +621,7 @@ class Game extends Model
                  ->where('member_id', $memberid)
 				 ->where('game_id', $gameid)
 				 ->orderBy('created_at', 'DESC')
-                 ->limit(6)
+                 ->limit($lmt)
 				 ->get();
 		
 				
@@ -634,7 +635,7 @@ class Game extends Model
 			}
 		}
 		
-		if ($i < 6) return '';
+		if ($i < $lmt) return '';
 		
 		if ($win <= 0) return 'yes';
 		return '';
