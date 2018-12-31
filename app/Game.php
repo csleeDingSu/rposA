@@ -639,6 +639,9 @@ class Game extends Model
 		
 		echo $count;
 		
+		if ($count < $lmt) return '';
+		
+		
 		if ($win <= 0) return 'yes';
 		return '';
 		
