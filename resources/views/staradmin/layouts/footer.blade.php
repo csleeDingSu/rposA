@@ -10,11 +10,16 @@
 
 
 			<dt class="dbox0">
-				<a href="/arcade">
+				@if(Request::is('vip'))
+					<a href="/vip">
+				@else
+					<a href="/arcade">
+				@endif
 					<div id="footer-life">
 						@if(Request::is('vip'))
 							<i class="nVip">&nbsp;</i>
-							<p class="vip-life">VIP专场 剩余<span class="spanVipLife">&nbsp;</span>次</p>
+							<!-- <p class="vip-life">VIP专场 剩余<span class="spanVipLife">&nbsp;</span>次</p> -->
+							<p class="vip-life">VIP专场</p>
 						@else
 							<i class="nTxt">{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? ((Auth::Guard('member')->user()->wechat_verification_status == 0) ? Auth::Guard('member')->user()->current_life : 0) : 0}}</i>
 							<p>剩余闯关</p>
