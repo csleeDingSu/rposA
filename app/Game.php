@@ -345,9 +345,12 @@ class Game extends Model
 		return $result =  DB::table('member_game_result')->select('id','gameid','game_level_id','is_win','game_result as result','bet','bet_amount')->where('game_id',$gameid)->paginate(20);
 	}
 	
-	public static function get_betting_history_grouped($gameid, $memberid)
+	public static function get_betting_history_grouped($gameid, $memberid,$vip = FALSE)
 	{				
-		$result =  DB::table('member_game_result')->select('id','game_id','game_level_id','is_win','game_result as result','bet','bet_amount','player_level','created_at','wallet_point','reward')->where('member_id',$memberid)->where('game_id',$gameid)->where('wallet_point','!=',null)->orderBy('created_at', 'DESC')->paginate(50);
+		$table = 'member_game_result';
+		if ($vip) $table = 'vip_member_game_result';
+		
+		$result =  DB::table($table)->select('id','game_id','game_level_id','is_win','game_result as result','bet','bet_amount','player_level','created_at','wallet_point','reward')->where('member_id',$memberid)->where('game_id',$gameid)->where('wallet_point','!=',null)->orderBy('created_at', 'DESC')->paginate(50);
 		
 		//@todo add osrting function
 		
@@ -407,11 +410,12 @@ class Game extends Model
 	}
 	
 	
-	public static function get_member_next_level($gameid, $memberid)
+	public static function get_member_next_level($gameid, $memberid, $vip = FALSE)
 	{
 		// $result =  DB::table('member_game_result')->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->latest()->first();
-		
-		$result = DB::table('member_game_result')->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
+		$table = 'member_game_result';
+		if ($vip) $table = 'vip_member_game_result';
+		$result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
 		
 		//print_r($result);
 		
