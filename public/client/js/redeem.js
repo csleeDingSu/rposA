@@ -67,7 +67,7 @@ function getProductList(token) {
             var records = data.records.data;
             var packages = data.packages;
             var html = '';
-             var htmlmodel = '';
+            var htmlmodel = '';
 
             if(records.length === 0){
 
@@ -370,6 +370,7 @@ function redeemHistory(token) {
             var records = data.records.data;
             var package = data.package;
             var html = '';
+            var htmlmodel = '';
 
             if(records.length === 0 && package.length === 0){
 
@@ -414,7 +415,7 @@ function redeemHistory(token) {
                             '<div class="instruction">进入VIP专场 > 打开挖宝页面VIP专场 > 粘帖密码 > 进入VIP专场</div>' +    
                         '</div>';
 
-                        html += '<!-- Modal starts -->' +
+                        htmlmodel += '<!-- Modal starts -->' +
                                         '<div class="modal fade col-lg-12" id="enter-vip-modal-' + item.id + '" tabindex="-1" style="z-index: 9999">' +
                                             '<div class="modal-dialog modal-sm" role="document">' +
                                                 '<div class="modal-content enter-vip-content">' +
@@ -491,6 +492,7 @@ function redeemHistory(token) {
                 });
 
                 $('#history').html(html);
+                $( ".cardFull" ).after( htmlmodel);
             }
         }
     });
