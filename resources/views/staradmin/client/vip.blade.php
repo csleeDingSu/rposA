@@ -207,6 +207,9 @@
 	<!-- end button wrapper -->
 </div>
 
+@endsection
+
+@section('footer-javascript')
 
 
 <!-- Steps Modal starts -->
@@ -513,9 +516,7 @@
 	</div>
 
 <!--  end -->
-@endsection
 
-@section('footer-javascript')
 	@parent
 	
 	<script src="{{ asset('/client/cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js') }}"></script>
