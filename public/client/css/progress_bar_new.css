@@ -175,10 +175,10 @@
 	top:0;
 	right:.03rem;
 	background: url(/client/images/bgpaopao.png);
-	-webkit-animation:sparkle 2500ms linear infinite;
-    -moz-animation:sparkle 2500ms linear infinite;
-    -o-animation:sparkle 2500ms linear infinite;
-    animation:sparkle 2500ms linear infinite;
+	-webkit-animation:sparkle 3000ms linear infinite;
+    -moz-animation:sparkle 3000ms linear infinite;
+    -o-animation:sparkle 3000ms linear infinite;
+    animation:sparkle 3000ms linear infinite;
 	opacity:0.2;
 	transition: width .2s ;
 }
