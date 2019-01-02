@@ -350,7 +350,7 @@ class Game extends Model
 		$table = 'member_game_result';
 		if ($vip) $table = 'vip_member_game_result';
 		
-		$result =  DB::table($table)->select('id','game_id','game_level_id','is_win','game_result as result','bet','bet_amount','player_level','created_at','wallet_point','reward')->where('member_id',$memberid)->where('game_id',$gameid)->where('wallet_point','!=',null)->orderBy('created_at', 'DESC')->paginate(50);
+		$result =  DB::table($table)->select('id','game_id','game_level_id','is_win','game_result as result','bet','bet_amount','player_level','created_at','wallet_point','reward')->where('member_id',$memberid)->where('game_id',$gameid)->orderBy('created_at', 'DESC')->paginate(50);
 		
 		//@todo add osrting function
 		
