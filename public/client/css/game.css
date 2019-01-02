@@ -385,8 +385,8 @@ body{
 	background: url('/client/images/game.png') no-repeat -1512px -820px;
 	width: 82px;
 	height: 82px;
-	transform: scale(0.3); 
-	-webkit-transform: scale(0.3);
+	transform: scale(0.35); 
+	-webkit-transform: scale(0.35);
 	-webkit-transform-origin:left top;
 	float: left;
 	z-index: 100;
@@ -439,8 +439,8 @@ body{
 	min-width: 60px;
 	font-size: 0.7em;
 	padding-right: 5px;
-	padding-top: 0px;
-	height:22px;
+	padding-top: 2px;
+	height:26px;
 	width: auto;
 	text-align: left;
 }
@@ -475,12 +475,12 @@ body{
 	-webkit-transform: scale(0.42);
 	-webkit-transform-origin:left top;
 	padding: 0px 0px 0px 0px;
-	font-size: 1.5em;
+	font-size: 33px;
 	cursor: pointer;
 	color: #ffffff;
 	margin-top: -3px;
 	text-align: left;
-	padding-left: 70px;
+	padding-left: 40px;
 	padding-top: 6px;
 }
 
@@ -488,11 +488,11 @@ body{
 	background: url('/client/images/vip/vip-bg.png') no-repeat;
 	width: 350px;
 	height: 69px;
-	transform: scale(0.42); 
-	-webkit-transform: scale(0.42);
+	transform: scale(0.45); 
+	-webkit-transform: scale(0.45);
 	-webkit-transform-origin:left top;
 	padding: 2px 5px 0px 15px;
-	font-size: 1.5em;
+	font-size: 33px;
 	cursor: pointer;
 	color: #ffffff;
 	margin-top: -3px;
@@ -519,7 +519,7 @@ body{
 }
 
 .long {
-	min-width: 110px;
+	min-width: 100px;
 	padding-left: 15px;
 	padding-right: 5px;
 
@@ -532,9 +532,9 @@ body{
 .btn-calculate-wrapper {
 	float: right;
 	height:21px;
-    width:30px;
+    width:35px;
     font-size: 2em;
-    margin-top: 2px;
+    margin-top: 1px;
     margin-right: 2px;
     display: inline-block;
 }
@@ -543,8 +543,8 @@ body{
 	background: #1ea20c;
 	width: 105px;
 	height: 54px;
-	transform: scale(0.33); 
-	-webkit-transform: scale(0.33);
+	transform: scale(0.35); 
+	-webkit-transform: scale(0.35);
 	-webkit-transform-origin:left top;
 	float: left;
 	text-align: center;
