@@ -1,11 +1,14 @@
 var trigger = false;
-var has_seen = false;
 
 $(function () {
     var wechat_status = $('#hidWechatId', window.parent.document).val();
     var wechat_name = $('#hidWechatName', window.parent.document).val();
 
     if(wechat_status == 0 && wechat_name != null) {
+        if(Cookies.get('previous_result') !== 'undefined'){
+            $('#hidLatestResult', window.parent.document).val(Cookies.get('previous_result'));
+            DomeWebController.init();
+        }
         getToken();
         closeModal();
     } else {
@@ -227,7 +230,9 @@ function initGame(token){
                 DomeWebController.init();
                 startTimer(duration, timer, freeze_time, token);
 
-                if (balance == 1200 && acupoint == 0 && has_seen === false) {
+                var show_game_rules = Cookies.get('show_game_rules');
+
+                if (balance == 1200 && acupoint == 0 && show_game_rules == undefined) {
                     $('.button-card', window.parent.document).click(function(){
                         $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
 
@@ -236,11 +241,12 @@ function initGame(token){
                                 $('#game-rules', window.parent.document).addClass('hide');
                             });                       
                             $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
-                            has_seen = true;
+                            Cookies.set('show_game_rules', false);
                             bindBetButton(token);
                         }, 10000);
                     });                    
                 } else {
+                    Cookies.remove('show_game_rules');
                     bindBetButton(token);
                 }
 
@@ -711,6 +717,7 @@ function startTimer(duration, timer, freeze_time, token) {
                         var freeze_time = $('#freeze_time').val();
                         var result = data.game_result;
                         $('#result').val(result);
+                        Cookies.set('previous_result', result);
 
                         if(data.status == 'win'){
                             var level = parseInt($('#hidLevel', window.parent.document).val());
