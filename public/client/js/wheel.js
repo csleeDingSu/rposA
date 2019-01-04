@@ -519,14 +519,14 @@ function bindResetLifeButton(token){
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
                 },
-                error: function (error) { console.log(error) },
+                error: function (error) { console.log(error.responseText) },
                 success: function(data) {
                     if(data.success){
                         window.parent.location.href = "/redeem";
                     }
                 },
                 complete: function (){
-                    console.log('complete');
+                    $('.btn-reset-life', window.parent.document).unbind('click');
                 }
             });
         }
