@@ -225,20 +225,25 @@ function initGame(token){
 
                 var show_game_rules = Cookies.get('show_game_rules');
 
-                if (balance == 1200 && acupoint == 0 && show_game_rules == undefined) {
-                    $('.button-card', window.parent.document).click(function(){
-                        $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
+                if (balance == 1200 && acupoint == 0) {
+                    if(show_game_rules == undefined) {
+                        $('.button-card', window.parent.document).click(function(){
+                            $('#game-rules', window.parent.document).show();
+                            $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
 
-                        setTimeout(function(){ 
-                            $('.btn-rules-close', window.parent.document).click(function(){
-                                $('#game-rules', window.parent.document).hide();
-                                Cookies.set('show_game_rules', false);
-                            });                       
-                            $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
-                            //$('.button-card', window.parent.document).unbind('click');
-                            bindBetButton(token);
-                        }, 10000);
-                    });                    
+                            setTimeout(function(){ 
+                                $('.btn-rules-close', window.parent.document).click(function(){
+                                    $('#game-rules', window.parent.document).hide();
+                                    Cookies.set('show_game_rules', false);
+                                });                       
+                                $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
+                                //$('.button-card', window.parent.document).unbind('click');
+                                bindBetButton(token);
+                            }, 10000);
+                        });
+                    } else {
+                        bindBetButton(token);
+                    }
                 } else {
                     Cookies.remove('show_game_rules');
                     bindBetButton(token);
@@ -356,7 +361,9 @@ function closeModal() {
 }
 
 function bindBetButton(token){
+
     $('.radio-primary', window.parent.document).click(function( event ){
+        event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance', window.parent.document).val());
         var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
@@ -409,6 +416,7 @@ function bindBetButton(token){
         $(this).find('.radio').toggleClass('clicked');
 
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
+
         if (typeof selected == 'undefined'){
 
             checked(level, false);
@@ -504,6 +512,8 @@ function bindCalculateButton(token){
 function bindResetLifeButton(token){
     $( '.btn-reset-life', window.parent.document ).click( function( event ){
         $(this).off('click');
+        event.stopImmediatePropagation();
+
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
@@ -528,6 +538,8 @@ function bindResetLifeButton(token){
 
     $( '.btn-reset-life-continue', window.parent.document ).click( function( event ){
         $(this).off('click');
+        event.stopImmediatePropagation();
+        
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
