@@ -505,8 +505,7 @@ function bindCalculateButton(token){
 
 function bindResetLifeButton(token){
     $( '.btn-reset-life', window.parent.document ).click( function( event ){
-        event.stopPropagation();
-        event.preventDefault();
+        $(this).off('click');
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
@@ -524,17 +523,13 @@ function bindResetLifeButton(token){
                     if(data.success){
                         window.parent.location.href = "/redeem";
                     }
-                },
-                complete: function (){
-                    $('.btn-reset-life', window.parent.document).unbind('click');
                 }
             });
         }
     });
 
     $( '.btn-reset-life-continue', window.parent.document ).click( function( event ){
-        event.stopPropagation();
-        event.preventDefault();
+        $(this).off('click');
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
