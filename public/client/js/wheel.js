@@ -5,10 +5,6 @@ $(function () {
     var wechat_name = $('#hidWechatName', window.parent.document).val();
 
     if(wechat_status == 0 && wechat_name != null) {
-        if(Cookies.get('previous_result') !== 'undefined'){
-            $('#hidLatestResult', window.parent.document).val(Cookies.get('previous_result'));
-            DomeWebController.init();
-        }
         getToken();
         closeModal();
     } else {
@@ -173,10 +169,7 @@ function initUser(token){
 }
 
 function initGame(token){
-    $( '.btn-reset-life', window.parent.document ).unbind( "click" );
-    $( '.btn-reset-life-continue', window.parent.document ).unbind( "click" );
-    $('.radio-primary', window.parent.document).unbind('click');
-    
+
     var user_id = $('#hidUserId', window.parent.document).val();
     trigger = false;
     
@@ -362,7 +355,8 @@ function closeModal() {
 }
 
 function bindBetButton(token){
-    $('.radio-primary', window.parent.document).click(function(){
+    $('.radio-primary', window.parent.document).click(function( event ){
+        event.stopPropagation();
         var balance = parseInt($('#hidBalance', window.parent.document).val());
         var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
         var level = parseInt($('#hidLevel', window.parent.document).val());
@@ -506,7 +500,8 @@ function bindCalculateButton(token){
 }
 
 function bindResetLifeButton(token){
-    $( '.btn-reset-life', window.parent.document ).click( function(){
+    $( '.btn-reset-life', window.parent.document ).click( function( event ){
+        event.stopPropagation();
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
@@ -529,7 +524,8 @@ function bindResetLifeButton(token){
         }
     });
 
-    $( '.btn-reset-life-continue', window.parent.document ).click( function(){
+    $( '.btn-reset-life-continue', window.parent.document ).click( function( event ){
+        event.stopPropagation();
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
@@ -549,7 +545,7 @@ function bindResetLifeButton(token){
                         $('#reset-life-play', window.parent.document).modal('hide');
                         $('#reset-life-lose', window.parent.document).modal('hide');
                         $('#reset-life-start', window.parent.document).modal('hide');
-                        window.location.href = window.location.href;
+                        getToken();
                     }
                 }
             });
@@ -680,7 +676,7 @@ function startTimer(duration, timer, freeze_time, token) {
             timer = duration;
 
             clearInterval(timerInterval);
-            window.location.href = window.location.href;
+            getToken();
 
         } else if (timer <= trigger_time && trigger == false) {
             trigger = true;
@@ -717,7 +713,6 @@ function startTimer(duration, timer, freeze_time, token) {
                         var freeze_time = $('#freeze_time').val();
                         var result = data.game_result;
                         $('#result').val(result);
-                        Cookies.set('previous_result', result);
 
                         if(data.status == 'win'){
                             var level = parseInt($('#hidLevel', window.parent.document).val());
