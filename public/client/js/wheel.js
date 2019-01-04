@@ -547,6 +547,7 @@ function bindResetLifeButton(token){
                         $('#reset-life-play', window.parent.document).modal('hide');
                         $('#reset-life-lose', window.parent.document).modal('hide');
                         $('#reset-life-start', window.parent.document).modal('hide');
+                        $('#game-rules', window.parent.document).show();
                         getToken();
                     }
                 }
