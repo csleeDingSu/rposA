@@ -913,4 +913,87 @@ class AdminController extends BaseController
 	}
 	
 	/**Game Redeem Condition END**/
+	
+	
+	
+	/**Cron manager**/
+	public function get_cron(Request $request)
+    {
+		$id = $request->id;
+		$record = \DB::table('cron_manager')->where('id',$id)->first();
+		return response()->json(['success' => true, 'record' => $record]);
+	}	
+	
+	public function cronlist (Request $request)
+	{				
+		$result =  \DB::table('cron_manager');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+		$result =  $result->paginate(30);
+				
+		$data['page']    = 'cronmanager.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('cronmanager.ajaxlist', ['result' => $result])->render();  
+        }					
+		return view('main', $data);	
+	}
+	
+	
+	public function edit_cron (Request $request)
+	{
+		
+		$data = $request->_datav;
+		
+		foreach($data as $val)
+		{
+			
+				$dbi[$val['name']] = $val['value'];
+		
+		}
+		
+		
+		$id = $dbi['hidden_void'];
+		
+		$input = [	'status'      => $dbi['model_status']	 ];
+		$validator = Validator::make($input, [
+			 'status'  => 'required',
+		]);
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}	
+		
+		DB::table('cron_manager')
+            	->where('id', $id)
+            	->update($input);
+		
+		$badge = '';
+		
+		switch ( $dbi['model_status'] )
+			{
+				case '1':
+					$badge = "<label class='badge badge-success'>".trans('dingsu.active')."</label> ";
+				break;
+				case '2':
+					$badge = "<label class='badge badge-info'>".trans('dingsu.onhold')."</label> ";
+				break;	
+				case '3':
+					$badge = "<label class='badge badge-danger'>".trans('dingsu.suspended')."</label> ";
+				break;
+				case '4':
+					$badge = "<label class='badge badge-warning'>".trans('dingsu.restart')."</label> ";
+				break;
+					
+			}
+		$input['status'] = $badge ;
+		
+		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$input]);
+	}
+	
+	
+	
 }
