@@ -231,7 +231,7 @@ function initGame(token){
 
                         setTimeout(function(){ 
                             $('.btn-rules-close', window.parent.document).click(function(){
-                                $('#game-rules', window.parent.document).addClass('hide');
+                                $('#game-rules', window.parent.document).modal('hide');
                             });                       
                             $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
                             Cookies.set('show_game_rules', false);
@@ -672,7 +672,7 @@ function startTimer(duration, timer, freeze_time, token) {
 
         --timer;
 
-        if (timer < 0) {
+        if (timer <= 0) {
             timer = duration;
 
             clearInterval(timerInterval);
