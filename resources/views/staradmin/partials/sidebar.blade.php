@@ -196,6 +196,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/admin/redeem-condition">@lang('dingsu.redeem') @lang('dingsu.condition')</a>
 					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/cron-list">@lang('dingsu.cron') @lang('dingsu.list')</a>
+					</li>
 				</ul>
 			</div>
 		</li>
