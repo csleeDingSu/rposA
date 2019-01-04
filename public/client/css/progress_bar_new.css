@@ -204,8 +204,8 @@
 
 .barBox.barBox-2 h2{ left: .5rem}
 .barBox.barBox-2 h2::after{left:1.2rem;}
-.barBox.barBox-3 h2{ left: 1.5rem}
-.barBox.barBox-3 h2::after{left:1.2rem;}
+.barBox.barBox-3 h2{ left: .5rem}
+.barBox.barBox-3 h2::after{left:2.2rem;}
 .barBox.barBox-4 h2{ left:auto; right:0rem}
 .barBox.barBox-4 h2::after{left:auto; right:2.7rem;}
 .barBox.barBox-5 h2{ left:auto; right:0rem}
