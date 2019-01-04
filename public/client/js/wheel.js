@@ -227,6 +227,7 @@ function initGame(token){
 
                 if (balance == 1200 && acupoint == 0 && show_game_rules == undefined) {
                     $('.button-card', window.parent.document).click(function(){
+                        $('#game-rules', window.parent.document).show();
                         $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
 
                         setTimeout(function(){ 
@@ -359,7 +360,7 @@ function bindBetButton(token){
     console.log('bind radio-primary');
     $('.radio-primary', window.parent.document).click(function(){
         event.stopImmediatePropagation();
-        
+
         var balance = parseInt($('#hidBalance', window.parent.document).val());
         var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
         var level = parseInt($('#hidLevel', window.parent.document).val());
@@ -550,7 +551,6 @@ function bindResetLifeButton(token){
                         $('#reset-life-play', window.parent.document).modal('hide');
                         $('#reset-life-lose', window.parent.document).modal('hide');
                         $('#reset-life-start', window.parent.document).modal('hide');
-                        $('#game-rules', window.parent.document).show();
                         getToken();
                     }
                 }
