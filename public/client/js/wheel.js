@@ -241,7 +241,9 @@ function initGame(token){
                                 bindBetButton(token);
                             }, 10000);
                         });
-                    }         
+                    } else {
+                        bindBetButton(token);
+                    }
                 } else {
                     Cookies.remove('show_game_rules');
                     bindBetButton(token);
@@ -359,7 +361,7 @@ function closeModal() {
 }
 
 function bindBetButton(token){
-    console.log('bind radio-primary');
+
     $('.radio-primary', window.parent.document).click(function( event ){
         event.stopImmediatePropagation();
 
@@ -414,7 +416,7 @@ function bindBetButton(token){
         $(this).find('.radio').toggleClass('clicked');
 
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
-        console.log('selected:' + selected);
+
         if (typeof selected == 'undefined'){
 
             checked(level, false);
@@ -689,7 +691,6 @@ function startTimer(duration, timer, freeze_time, token) {
 
         } else if (timer <= trigger_time) {
             //Lock the selection
-            console.log('unbind radio-primary');
             $('.radio-primary', window.parent.document).unbind('click');
 
             if (trigger == false) {
