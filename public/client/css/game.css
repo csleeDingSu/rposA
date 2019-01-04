@@ -442,7 +442,8 @@ body{
 	padding-top: 2px;
 	height:26px;
 	width: auto;
-	text-align: left;
+	text-align: center;
+	font-weight: 700;
 }
 
 .number-vip {
@@ -461,7 +462,7 @@ body{
 }
 
 .btn-rules-wrapper {
-	width: 145px;
+	width: 165px;
 	height: 22px;
 	margin-top: 1px;
 	float: right;
@@ -471,25 +472,26 @@ body{
 	background: url('/client/images/vip/vip-bg.png') no-repeat;
 	width: 350px;
 	height: 69px;
-	transform: scale(0.42); 
-	-webkit-transform: scale(0.42);
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
 	padding: 0px 0px 0px 0px;
-	font-size: 33px;
+	font-size: 30px;
 	cursor: pointer;
 	color: #ffffff;
 	margin-top: -3px;
 	text-align: left;
 	padding-left: 40px;
 	padding-top: 6px;
+	font-weight: 700;
 }
 
 .btn-rules-vip {
 	background: url('/client/images/vip/vip-bg.png') no-repeat;
 	width: 350px;
 	height: 69px;
-	transform: scale(0.45); 
-	-webkit-transform: scale(0.45);
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
 	padding: 2px 5px 0px 15px;
 	font-size: 33px;
@@ -499,6 +501,7 @@ body{
 	text-align: left;
 	padding-left: 90px;
 	padding-top: 6px;
+	font-weight: 700;
 }
 
 .balance {
