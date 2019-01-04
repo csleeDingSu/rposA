@@ -35,12 +35,7 @@ class DispatchJob extends Command
     {
         parent::__construct();
     }
-	
-	 public function fire()
-    {
-		// $this->call('game:gs', [ ]);		
-    }
-	
+		 
 	private function runtask()
 	{
 		$this->comment('Stared:'.'----------'.Carbon::now()->toDateTimeString().'----------');
@@ -57,9 +52,9 @@ class DispatchJob extends Command
 		
 		if ($row)
 		{
-			if ($row->status == 1)
+			if ($row->status == 1 || $row->status == 2)
 			{
-				return FALSE;
+				$this->error('--> Cron already running or hold by another process.');exit();return FALSE;
 			}
 			
 			$data = ['last_run'=>Carbon::now(),'status'=>1,'notes'=>'','unix_last_run'=>Carbon::now()->timestamp];			
@@ -75,7 +70,6 @@ class DispatchJob extends Command
 		return TRUE;
 	}
 	
-	
 
     /**
      * Execute the console command.
@@ -84,16 +78,14 @@ class DispatchJob extends Command
      */
     public function handle()
     {
-        $cname  = 'game_generate_result';
-		ob_start();
-		$hb = $this->heartbeat();
+        $cname  = 'game_generate_result';		 
 		
-		if (!$hb)
-		{
-			$this->error('Cron already running.');exit();
-		}
+		ob_start();
 		
 		$x = 1;
+		
+		$this->holdprocess('yes');
+		
 		while($x <= 5) {
 			
 			$date  = Carbon::now();
@@ -105,7 +97,7 @@ class DispatchJob extends Command
 			//$chunk =  ['last_run_end'=>$date,'last_run_status'=>'end','notes'=>'success'];
 			//$idd = \DB::table('test')->where('id', $id)->update($chunk);
 			
-			$chunk = ['last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'status'=>1,'notes'=>'success'];
+			$chunk = ['last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'notes'=>'success'];
 			\DB::table('cron_manager')->where('cron_name', $cname)->update($chunk);
 			$x = 1;
 			//$x++;
@@ -113,10 +105,65 @@ class DispatchJob extends Command
 			{
 				$this->error('Cleared Memory Cache.');
 				ob_end_clean();
-			}			
-			sleep(4);
+			}	
+			sleep(3);
+			$this->holdprocess();
+			sleep(1);
 		}		
     }
+	
+	public function getcronmanager($cname = 'game_generate_result' , $status = FALSE)
+	{
+		$row  = \DB::table('cron_manager')->where('cron_name',$cname);
+		
+		if ($status) $row->where('status',$status);
+		
+		$result = $row->first();
+		
+		return $result;
+		
+	}
+	
+	public function holdprocess($heartbeat = FALSE)
+	{
+		if ($heartbeat) $this->heartbeat();
+		
+		$this->line('--> cheking cron status');
+		$x = 1;
+		while($x <= 5) {				
+
+			$row = $this->getcronmanager('game_generate_result');
+						
+			if ($row) 
+			{
+				if ($row->status == 2)
+				{
+					$x = 1;
+					$this->info('cron on Hold..');
+					sleep(10);
+				}
+				elseif ($row->status == 3)
+				{
+					$this->info('--> stopping ResultGenerator...');
+					$this->error('--> process killed itself...');
+					die();
+				}
+				elseif ($row->status == 4)
+				{
+					$x = 1;
+					$this->info('--> cron on reset mood..');
+					$this->heartbeat();
+					$this->info('--> cron reseted to active');
+					return;
+				}
+				else{
+					$x = 10;
+					return;
+				}
+			}
+		}
+		
+	}
 		
 	public function shutdown()
     {
