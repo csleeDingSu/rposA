@@ -49,6 +49,27 @@ class GameController extends Controller
 		//print_r($level);
 	}
 	
+	
+	public function master_out(Request $request)
+	{
+		$gamesetting = get_game_setting($request);
+		$gamenotific = get_game_notification($request);
+		
+		
+		$bethistory  = get_betting_history($request);
+		$gamehistory = get_game_history($request->gameid);
+		
+		
+		$game_temp   = get_update_game_temp($request);
+		$wallet      = Wallet::get_wallet_details($request->memberid);
+		
+		
+		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,]);  
+		
+		
+	}
+	
+	
 	public function get_game_setting(Request $request)
     {
 		$gameid   = $request->gameid;

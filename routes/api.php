@@ -83,4 +83,8 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	Route::post('/check-redeem', 'ProductController@vip_redeem_condition')->name('api.vip.redeem_condition');
 	
 	
+	
+	Route::any('/master-call', 'GameController@master_out')->name('api.master.call');
+	
+	
  });	
