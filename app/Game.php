@@ -179,13 +179,6 @@ class Game extends Model
 	
 	
 	
-	//New
-	
-	
-	
-	
-	
-	
 	public static function get_game_options($id = FALSE)
 	{
 		if ($gameid == FALSE) return FALSE;
@@ -195,7 +188,8 @@ class Game extends Model
 	
 	public static function insert_gameresult($chunk)
 	{
-		DB::table('game_result')->insert($chunk);
+		$id = DB::table('game_result')->insertGetId($chunk);
+		return $id;
 	}
 	
 	public static function get_gameresult($id)
