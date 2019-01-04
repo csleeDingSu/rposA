@@ -61,7 +61,7 @@ class GameController extends Controller
 		$game_temp   = $this->get_update_game_temp($request);
 		$wallet      = Wallet::get_wallet_details($request->memberid);		
 		
-		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,]);  
+		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => $gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,]);  
 		
 		
 	}
