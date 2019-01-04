@@ -502,7 +502,7 @@ function bindCalculateButton(token){
 }
 
 function bindResetLifeButton(token){
-    $( '.btn-reset-life', window.parent.document ).click( function( event ){
+    $( '.btn-reset-life', window.parent.document ).one('click', function( event ){
         event.stopPropagation();
         var user_id = $('#hidUserId', window.parent.document).val();
 
@@ -526,7 +526,7 @@ function bindResetLifeButton(token){
         }
     });
 
-    $( '.btn-reset-life-continue', window.parent.document ).click( function( event ){
+    $( '.btn-reset-life-continue', window.parent.document ).one('click', function( event ){
         event.stopPropagation();
         var user_id = $('#hidUserId', window.parent.document).val();
 
