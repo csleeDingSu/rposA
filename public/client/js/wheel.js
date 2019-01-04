@@ -231,11 +231,11 @@ function initGame(token){
 
                         setTimeout(function(){ 
                             $('.btn-rules-close', window.parent.document).click(function(){
-                                $('#game-rules', window.parent.document).modal('hide');
+                                $('#game-rules', window.parent.document).hide();
                                 Cookies.set('show_game_rules', false);
                             });                       
                             $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
-                            $('.button-card', window.parent.document).unbind('click');
+                            //$('.button-card', window.parent.document).unbind('click');
                             bindBetButton(token);
                         }, 10000);
                     });                    
@@ -370,7 +370,7 @@ function bindBetButton(token){
         if(user_id == 0){
             window.top.location.href = "/member";
         }
-console.log('Balance: ' + balance);
+
         if(isNaN(balance)){
             return false;
         }
@@ -441,7 +441,7 @@ console.log('Balance: ' + balance);
             var bet_amount = parseInt($('.bet-container', window.parent.document).html());
             var newbalance = balance - bet_amount;
             var newtotalbalance = total_balance - bet_amount;
-console.log('New Balance: ' + newbalance);
+
             if(newbalance < 0){
                  $('div.clicked', window.parent.document).find('.bet').hide();
                 $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
