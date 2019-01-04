@@ -357,8 +357,7 @@ function closeModal() {
 
 function bindBetButton(token){
     $('.radio-primary', window.parent.document).click(function( event ){
-        event.stopPropagation();
-        event.preventDefault();
+
         var balance = parseInt($('#hidBalance', window.parent.document).val());
         var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
         var level = parseInt($('#hidLevel', window.parent.document).val());
@@ -477,8 +476,7 @@ function bindBetButton(token){
 
 function bindCalculateButton(token){
     $('.btn-calculate', window.parent.document).click(function( event ){
-        event.stopPropagation();
-        event.preventDefault();
+
         var acupoint = $('.spanAcuPoint', window.parent.document).html();
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         var level = parseInt($('#hidLevel', window.parent.document).val());
@@ -560,8 +558,7 @@ function bindResetLifeButton(token){
 function bindRulesButton(token){
 
     $('.btn-rules', window.parent.document).click(function( event ){
-        event.stopPropagation();
-        event.preventDefault();
+
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
