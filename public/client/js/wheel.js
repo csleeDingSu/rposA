@@ -232,9 +232,10 @@ function initGame(token){
                         setTimeout(function(){ 
                             $('.btn-rules-close', window.parent.document).click(function(){
                                 $('#game-rules', window.parent.document).modal('hide');
+                                Cookies.set('show_game_rules', false);
                             });                       
                             $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
-                            Cookies.set('show_game_rules', false);
+                            $('.button-card', window.parent.document).unbind('click');
                             bindBetButton(token);
                         }, 10000);
                     });                    
