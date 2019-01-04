@@ -511,5 +511,7 @@ return [
 	'cron_name' => 'Cron name',
 	'last_run' => 'Last run',
 	'cron_update_success_msg' => 'Cron successfully Updated',
+	'cron' => 'Cron',
+	'cron_manager' => 'Cron Manager',
 	
 ];
