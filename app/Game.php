@@ -96,19 +96,35 @@ class Game extends Model
 				->update($data);
 			}		 		
 		}
-		public static function get_game_category($id = FALSE)
+		
+		public static function get_game_category($id = FALSE, $time = FALSE)
 		{
-			
+
 			if (!empty($id))
 			{
 				$result = DB::table('game_category')->where('id', $id)->first();
 			}
+			else if (!empty($time))
+			{
+				//$now  = Carbon::now();
+				//$to   = $now->addSeconds(5);
+				$queries = DB::enableQueryLog();
+
+
+				$result = DB::table('game_category')->Where('unix_next_run', '<=', $time['unix_next_run'])->orwhereBetween('next_run', [$time['now'], $time['to']])->get();
+				//$queries = DB::enableQueryLog();
+				//print_r(DB::getQueryLog());
+
+				return $result;
+			}
 			else{
 				$result = DB::table('game_category')->get();
 			}
-			
+
 			return json_encode($result);
 		}
+
+	
 
 
 
@@ -686,6 +702,59 @@ class Game extends Model
 		
 		if ($result) return $result->id;
 		else return '1';
+	}
+	
+	
+	
+	//new
+	
+	public static function get_game_bycategory($id)
+	{
+		$result = DB::table('games')->where('game_category', $id)->get();
+		
+		return $result;
+	}
+	
+	public static function update_category($id, $data = [])
+	{
+		if ($id)
+		{
+			DB::table('game_category')
+            	->where('id', $id)
+            	->update($data);
+		}
+		
+	}
+	
+	public static function get_expiredresult($time, $gameid = FALSE)
+	{
+		//$queries = DB::enableQueryLog();
+		
+		$result =  DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('unix_expiry_time', '<=', $time);
+		
+		if ($gameid) $result->where('game_id', '=', $gameid);
+		
+		$result->get();
+		
+		
+		//print_r(DB::getQueryLog());
+		return $result;
+	}
+	
+	public static function clean_expiredresult($time, $gameid = FALSE)
+	{
+		$result = DB::table('game_result')
+                ->where('unix_expiry_time', '<=', $time);
+		
+		if ($gameid) $result->where('game_id', '=', $gameid);
+		
+        $result->delete();
+	}
+	
+	
+	public static function testins($chunk)
+	{
+		DB::table('test')->insert($chunk);
 	}
 }
 
