@@ -365,6 +365,13 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::post('/admin/edit-redeem-condition', 'AdminController@update_redeem_condition')->name('edit.redeemcondition');
 	Route::delete('/admin/delete-redeem-condition', 'AdminController@delete_redeem_condition')->name('remove.redeemcondition');
 	
+	
+	//cron manager	
+	Route::get('/admin/cron-list', 'AdminController@cronlist')->name('list.cronmanager');
+	Route::get('/admin/get-cron', 'AdminController@get_cron')->name('get.cron');
+	Route::post('/admin/edit-cron', 'AdminController@edit_cron')->name('update.cron');
+	
+	
 } );
 //END
 

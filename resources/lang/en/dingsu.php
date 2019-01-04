@@ -506,4 +506,12 @@ return [
 	'num_of_redeem' => ' # of Redeem',
 	'condition' => 'condition',
 	
+	'onhold' => 'On Hold',
+	'restart' => 'Restart',
+	'cron_name' => 'Cron name',
+	'last_run' => 'Last run',
+	'cron_update_success_msg' => 'Cron successfully Updated',
+	'cron' => 'Cron',
+	'cron_manager' => 'Cron Manager',
+	
 ];

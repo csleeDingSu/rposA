@@ -728,11 +728,11 @@ class Game extends Model
 		
 		if ($gameid) $result->where('game_id', '=', $gameid);
 		
-		$result->get();
+		$out = $result->get();
 		
 		
 		//print_r(DB::getQueryLog());
-		return $result;
+		return $out;
 	}
 	
 	public static function clean_expiredresult($time, $gameid = FALSE)
