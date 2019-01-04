@@ -224,7 +224,7 @@ function initGame(token){
                 startTimer(duration, timer, freeze_time, token);
 
                 var show_game_rules = Cookies.get('show_game_rules');
-
+console.log('show_game_rules:' + show_game_rules);
                 if (balance == 1200 && acupoint == 0) {
                     if(show_game_rules == undefined) {
                         $('.button-card', window.parent.document).click(function(){
@@ -539,7 +539,7 @@ function bindResetLifeButton(token){
     $( '.btn-reset-life-continue', window.parent.document ).click( function( event ){
         $(this).off('click');
         event.stopImmediatePropagation();
-        
+
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
