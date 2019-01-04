@@ -474,7 +474,8 @@ function bindBetButton(token){
 }
 
 function bindCalculateButton(token){
-    $('.btn-calculate', window.parent.document).click(function(){
+    $('.btn-calculate', window.parent.document).click(function( event ){
+        event.stopPropagation();
         var acupoint = $('.spanAcuPoint', window.parent.document).html();
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
         var level = parseInt($('#hidLevel', window.parent.document).val());
@@ -555,7 +556,8 @@ function bindResetLifeButton(token){
 
 function bindRulesButton(token){
 
-    $('.btn-rules', window.parent.document).click(function(){
+    $('.btn-rules', window.parent.document).click(function( event ){
+        event.stopPropagation();
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
@@ -678,11 +680,12 @@ function startTimer(duration, timer, freeze_time, token) {
             clearInterval(timerInterval);
             getToken();
 
-        } else if (timer <= trigger_time && trigger == false) {
-            trigger = true;
+        } else if (timer <= trigger_time) {
             //Lock the selection
             $('.radio-primary', window.parent.document).unbind('click');
 
+            if (trigger == false) {
+                trigger = true;
                 var freeze_time = timer + 1;
                 $('#freeze_time').val(freeze_time);
 
@@ -747,6 +750,7 @@ function startTimer(duration, timer, freeze_time, token) {
                         $( "#btnWheel" ).trigger( "click" );
                     }
                 });
+            }
         }
         
     }, 1000);
