@@ -512,6 +512,8 @@ function bindCalculateButton(token){
 function bindResetLifeButton(token){
     $( '.btn-reset-life', window.parent.document ).click( function( event ){
         $(this).off('click');
+        event.stopImmediatePropagation();
+
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
@@ -536,6 +538,8 @@ function bindResetLifeButton(token){
 
     $( '.btn-reset-life-continue', window.parent.document ).click( function( event ){
         $(this).off('click');
+        event.stopImmediatePropagation();
+        
         var user_id = $('#hidUserId', window.parent.document).val();
 
         // add points from additional life.
