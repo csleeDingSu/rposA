@@ -358,7 +358,7 @@ function closeModal() {
 
 function bindBetButton(token){
     console.log('bind radio-primary');
-    $('.radio-primary', window.parent.document).click(function(){
+    $('.radio-primary', window.parent.document).click(function( event ){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance', window.parent.document).val());
