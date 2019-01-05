@@ -302,7 +302,7 @@ body{
 }
 
 .hide {
-	visibility: none;
+	visibility: hidden;
 }
 
 .level-one, .level-two {
@@ -619,7 +619,7 @@ body{
 	font-weight: 700;
 }
 
-.modal-card {
+.modal-card, .txtTimer {
 	width: 250px;
 	margin: 0 auto;
 	font-size: 16px;
@@ -939,11 +939,20 @@ body{
 		width: 270px;
 	}
 
-	.modal-card {
+	.modal-card, .txtTimer {
 		width: 230px;
 		margin: 0 auto;
 		font-size: 16px;
 	}
+}
+
+.txtTimer {
+	visibility: visible;
+	color: white;
+	font-size: 18px;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
 }
 /* End Modal box */
 

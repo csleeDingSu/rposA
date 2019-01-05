@@ -227,22 +227,8 @@ function initGame(token){
 
                 if (balance == 1200 && acupoint == 0) {
                     if(show_game_rules == undefined) {
-                        $('.button-card', window.parent.document).click(function( event ){
-                            event.stopImmediatePropagation();
-
-                            $('#game-rules', window.parent.document).show();
-                            $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
-
-                            setTimeout(function(){ 
-                                $('.btn-rules-close', window.parent.document).click(function(){
-                                    $('#game-rules', window.parent.document).hide();
-                                    Cookies.set('show_game_rules', false);
-                                });                       
-                                $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
-                                //$('.button-card', window.parent.document).unbind('click');
-                                bindBetButton(token);
-                            }, 10000);
-                        });
+                        $('.radio-primary', window.parent.document).off('click');
+                        $('.button-card', window.parent.document).on('click', { token: token }, showGameRules);
                     } else {
                         bindBetButton(token);
                     }
@@ -857,4 +843,48 @@ function changbar(number){
     let i=number;
     bar.removeClass();
     bar.addClass('barBox barBox-'+i);
+}
+
+function showGameRules( event ){
+    $('.button-card', window.parent.document).off('click', showGameRules);
+    var token = event.data.token;
+    event.stopImmediatePropagation();
+
+    $('.btn-rules-close', window.parent.document).css('visibility', 'hidden');
+    $( ".txtTimer", window.parent.document ).removeClass('hide');
+    $('#game-rules', window.parent.document).show();
+    $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
+
+    var counter = 11;
+    var interval = setInterval(function() {
+        --counter;
+        seconds = counter;
+        
+        if(counter <= 0){
+            seconds = '';
+        } else if(counter < 10) {
+            seconds = "0" + counter;
+        }
+
+        // Display 'counter' wherever you want to display it.
+        $( ".txtTimer", window.parent.document ).html(seconds);
+
+        if (counter <= 0) {
+            // Display a login box
+            $( ".txtTimer", window.parent.document ).addClass('hide');
+            clearInterval(interval);
+        }
+
+    }, 1000);
+
+    setTimeout(function(){ 
+
+        $('.btn-rules-close', window.parent.document).click(function(){
+            $('#game-rules', window.parent.document).hide();
+            Cookies.set('show_game_rules', false);
+        });
+
+        $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
+        bindBetButton(token);
+    }, 11000);
 }
