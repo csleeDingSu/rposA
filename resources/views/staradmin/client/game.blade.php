@@ -490,6 +490,7 @@
 									如果6次全错，扣除本局赚的积分，游戏结束。
 								</div>
 
+								<div class="txtTimer"></div>
 								@if($betting_count > 0)
 									<div class="btn-rules-close">返回游戏</div>
 								@else
