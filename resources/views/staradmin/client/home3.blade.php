@@ -242,6 +242,7 @@
 				</div>
 
 				<a class="btn" href="/arcade"><img src="{{ asset('/test/main/images/wabao.png') }}"></a>
+				<a class="btn" href="/redeem"><div class="btn-redeem">兑换商品</div></a>
 
 			</div>
 		</div> 
