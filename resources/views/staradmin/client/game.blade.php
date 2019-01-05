@@ -26,7 +26,9 @@
 
 @section('content')
 <div class="loading"></div>
-<div class="reload"></div>
+<div class="reload">
+	<div class="center-content">加载失败，请安刷新</div>
+</div>
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
@@ -195,26 +197,28 @@
 	        <p><span class="span-balance">1200</span> / 1200</p>
 	        <div class="barImg"></div>
 	      </div>
+
+	      <!-- button wrapper -->
+		<div class="button-wrapper">
+	        <div class="button-card radio-primary">
+	        	<div class="radio btn-rectangle">
+					<input name="rdbBet" class="invisible" type="radio" value="odd">单数
+					<span class="bet">押</span><span class="bet-container">0</span>
+				</div>
+			  </div>
+			  <div class="button-card radio-primary right">
+				<div class="radio btn-rectangle">
+					<input name="rdbBet" class="invisible" type="radio" value="even">双数
+					<span class="bet">押</span><span class="bet-container">0</span>
+				</div>
+			  </div>
+		</div>
+		<!-- end button wrapper -->
 	    </article>
     </section>
 	<!-- end progress bar -->
 
-	<!-- button wrapper -->
-	<div class="button-wrapper">
-        <div class="button-card radio-primary">
-        	<div class="radio btn-rectangle">
-				<input name="rdbBet" class="invisible" type="radio" value="odd">单数
-				<span class="bet">押</span><span class="bet-container">0</span>
-			</div>
-		  </div>
-		  <div class="button-card radio-primary right">
-			<div class="radio btn-rectangle">
-				<input name="rdbBet" class="invisible" type="radio" value="even">双数
-				<span class="bet">押</span><span class="bet-container">0</span>
-			</div>
-		  </div>
-	</div>
-	<!-- end button wrapper -->
+	
 </div>
 @endsection
 
