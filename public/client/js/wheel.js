@@ -518,6 +518,7 @@ function bindResetLifeButton(token){
         event.stopImmediatePropagation();
 
         var user_id = $('#hidUserId', window.parent.document).val();
+        var previous_point = $('.packet-point', window.parent.document).html();
 
         // add points from additional life.
         if(user_id > 0){
@@ -532,6 +533,7 @@ function bindResetLifeButton(token){
                 error: function (error) { console.log(error.responseText) },
                 success: function(data) {
                     if(data.success){
+                        Cookies.set('previous_point', previous_point);
                         window.parent.location.href = "/redeem";
                     }
                 }

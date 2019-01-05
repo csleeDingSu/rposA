@@ -576,7 +576,7 @@ function requestVip(token, package_id, type, index){
 function confirmredeemvip(token,id,code)
 {
 	var member_id = $('#hidUserId').val();
-	$('[data-id='+code+']').prop('disabled', true);
+    
 	$.ajax({
         type: 'POST',
         url: "/api/redeem-vip",
@@ -585,7 +585,7 @@ function confirmredeemvip(token,id,code)
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error.responseText);$('[data-id='+code+']').prop('disabled', false); },
+        error: function (error) { console.log(error.responseText);},
         success: function(data) {
             if(data.success){
                 $('#enter-vip-modal-' + id).modal('show');

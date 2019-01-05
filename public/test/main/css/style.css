@@ -584,7 +584,7 @@ p.vip-life {
 }
 .showBao .iconImg img{ vertical-align: middle; width: .23rem;margin-right: .05rem}
 .showBao .iconImg span{ display: inline-block; vertical-align: middle;font-size: .22rem; color: #fff;}
-.showBao a{ display: block; margin: 0 auto; width: 5.02rem;}
+.showBao a{ display: block; margin: 0 auto; width: 5.02rem; }
 .showBao a img{ width: 100%;}
 
 .copyvoucher {
@@ -627,4 +627,16 @@ p.vip-life {
 
   }
 
+}
+
+.btn-redeem {
+  margin-top: 10px;
+  border-radius: 30px;
+  font-size: .32rem;
+  color: #ff7b99;
+  padding-top: 4px;
+  padding-bottom: 6px;
+  background: #ffffff;
+  border: 1px solid #ff7b99;
+  width: 100%;
 }
