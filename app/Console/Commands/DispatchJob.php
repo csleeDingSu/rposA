@@ -102,7 +102,7 @@ class DispatchJob extends Command
 			
 			$chunk = ['last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'notes'=>'success'];
 			\DB::table('cron_manager')->where('cron_name', $cname)->update($chunk);
-			$x = 1;
+			//$x = 1;
 			//$x++;
 			if ( ob_get_length() or ob_get_contents() ) 
 			{
