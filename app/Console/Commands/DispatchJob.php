@@ -86,6 +86,13 @@ class DispatchJob extends Command
 		
 		$x = 1;
 		$count = 445;
+		$count = env('GAME_GENERATOR_COUNT');
+		
+		if (empty($count) or $count <= 10000 )
+		{
+			$count = 445;
+		}
+		
 		//$count = 45;
 		$this->holdprocess('yes');
 		
