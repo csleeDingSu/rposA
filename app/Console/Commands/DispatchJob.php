@@ -113,7 +113,7 @@ class DispatchJob extends Command
 			$this->error('--> Disconnecting DB...');
 			\DB::disconnect('mysql');
 			
-			$this->info('Running Count : $x / '.$count);
+			$this->info('Running Count : '.$x.' / '.$count);
 			$x++;
 			
 			sleep(1);
