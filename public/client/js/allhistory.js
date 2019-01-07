@@ -3,12 +3,12 @@ $(function () {
 });
 
 function getToken(){
-    
-    var username = $('#hidUsername', window.parent.document).val();
-    var session = $('#hidSession', window.parent.document).val();
 
-    $.getJSON( "/api/gettoken?username=" + username + "&token=" + session, function( data ) {
-        console.log(data);
+    var id = $('#hidUserId').val();
+    var session = $('#hidSession').val();
+
+    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
+        //console.log(data);
         if(data.success) {
             getBettingHistory(data.access_token);
         }     
@@ -17,7 +17,6 @@ function getToken(){
 
 function getBettingHistory(token) {
     var user_id = $('#hidUserId').val();
-
 
         var container = $('#pagination');
 
@@ -31,6 +30,7 @@ function getBettingHistory(token) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
                 },
                 success: function(data) {
+                    //console.log(data);
                     var records = data.records;
                     var arr = [];
                     var results = [];
@@ -51,7 +51,7 @@ function getBettingHistory(token) {
             });
           },
           callback: function (response, pagination) {
-            window.console && console.log(response, pagination);
+            //window.console && console.log(response, pagination);
             var length = response.length;
 
             $('#history').html('');
