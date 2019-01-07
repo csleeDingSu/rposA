@@ -86,6 +86,7 @@ class DispatchJob extends Command
 		
 		$x = 1;
 		$count = 445;
+		$count = 45;
 		$this->holdprocess('yes');
 		
 		while($x <= $count) {
@@ -113,11 +114,23 @@ class DispatchJob extends Command
 			$this->error('--> Disconnecting DB...');
 			\DB::disconnect('mysql');
 			
-			$this->info('Running Count : '.$x.' / '.$count);
+			$this->info('Running Count : '.$x.' / '.$count);		
+			
+			
 			$x++;
 			
 			sleep(1);
-		}		
+		}
+		
+		
+		
+		
+		//Stopping Result Generator
+		$data = ['last_run'=>Carbon::now(),'status'=>3,'notes'=>'Stopped.','unix_last_run'=>Carbon::now()->timestamp];			
+			
+		\DB::table('cron_manager')
+			->where('cron_name', $cname)
+			->update($data);
     }
 	
 	public function getcronmanager($cname = 'game_generate_result' , $status = FALSE)
@@ -175,8 +188,10 @@ class DispatchJob extends Command
 		
 	public function shutdown()
     {
-        $this->info('stopping ResultGenerator...');
+        $this->info('--> stopping ResultGenerator...');
+		$this->error('--> process killed itself...');		
         $this->run = false;
+		die();
     }
 	
 }
