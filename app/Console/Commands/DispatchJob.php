@@ -85,10 +85,10 @@ class DispatchJob extends Command
 		ob_start();
 		
 		$x = 1;
-		
+		$count = 445;
 		$this->holdprocess('yes');
 		
-		while($x <= 5) {
+		while($x <= $count) {
 			
 			$date  = Carbon::now();
 			//$chunk =  ['created_at'=>$date,'last_run_end'=>'','last_run_status'=>'stared','notes'=>''];
@@ -112,6 +112,10 @@ class DispatchJob extends Command
 			$this->holdprocess();
 			$this->error('--> Disconnecting DB...');
 			\DB::disconnect('mysql');
+			
+			$this->info('Running Count : $x / '.$count);
+			$x++;
+			
 			sleep(1);
 		}		
     }
