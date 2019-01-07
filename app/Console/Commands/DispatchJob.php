@@ -68,7 +68,7 @@ class DispatchJob extends Command
 		$data  = ['cron_name'=>$cname,'last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'status'=>1,'notes'=>'new task created'];
 		$id    = \DB::table('cron_manager')->insertGetId($data);
 		
-		\DB::disconnect('mysql');
+		
 		return TRUE;
 	}
 	
@@ -110,6 +110,8 @@ class DispatchJob extends Command
 			}	
 			sleep(3);
 			$this->holdprocess();
+			$this->error('--> Disconnecting DB...');
+			\DB::disconnect('mysql');
 			sleep(1);
 		}		
     }
