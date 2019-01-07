@@ -17,7 +17,7 @@ class DispatchJob extends Command
     protected $signature = 'game:generateresult';
 	
 	
-	protected $cronname  = 'game_generate_result';
+	public $cronname  = 'game_generate_result';
 
     /**
      * The console command description.
@@ -48,7 +48,7 @@ class DispatchJob extends Command
 	private function heartbeat()
 	{
 		$cname  = 'game_generate_result';
-		$row    = \DB::table('cron_manager')->where('cron_name',$cname)->first();
+		$row    = \DB::table('cron_manager')->where('cron_name',$this->cronname)->first();
 		
 		if ($row)
 		{
@@ -60,12 +60,12 @@ class DispatchJob extends Command
 			$data = ['last_run'=>Carbon::now(),'status'=>1,'notes'=>'','unix_last_run'=>Carbon::now()->timestamp];			
 			
 			\DB::table('cron_manager')
-            	->where('cron_name', $cname)
+            	->where('cron_name', $this->cronname)
             	->update($data);
 			
 			return TRUE;			
 		}
-		$data  = ['cron_name'=>$cname,'last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'status'=>1,'notes'=>'new task created'];
+		$data  = ['cron_name'=>$this->cronname,'last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'status'=>1,'notes'=>'new task created'];
 		$id    = \DB::table('cron_manager')->insertGetId($data);
 		
 		
@@ -108,7 +108,7 @@ class DispatchJob extends Command
 			//$idd = \DB::table('test')->where('id', $id)->update($chunk);
 			
 			$chunk = ['last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'notes'=>'success'];
-			\DB::table('cron_manager')->where('cron_name', $cname)->update($chunk);
+			\DB::table('cron_manager')->where('cron_name', $this->cronname)->update($chunk);
 			//$x = 1;
 			//$x++;
 			if ( ob_get_length() or ob_get_contents() ) 
@@ -135,9 +135,9 @@ class DispatchJob extends Command
 		
     }
 	
-	public function getcronmanager($cname = 'game_generate_result' , $status = FALSE)
+	public function getcronmanager($status = FALSE)
 	{
-		$row  = \DB::table('cron_manager')->where('cron_name',$cname);
+		$row  = \DB::table('cron_manager')->where('cron_name',$this->cronname);
 		
 		if ($status) $row->where('status',$status);
 		
@@ -155,7 +155,7 @@ class DispatchJob extends Command
 		$x = 1;
 		while($x <= 5) {				
 
-			$row = $this->getcronmanager('game_generate_result');
+			$row = $this->getcronmanager();
 						
 			if ($row) 
 			{
@@ -196,7 +196,7 @@ class DispatchJob extends Command
 		$data = ['last_run'=>Carbon::now(),'status'=>3,'notes'=>'Stopped.','unix_last_run'=>Carbon::now()->timestamp];			
 			
 		\DB::table('cron_manager')
-			->where('cron_name', $cname)
+			->where('cron_name', $this->cronname)
 			->update($data);
 		$this->info('--> Process kill itself');	
 		die();
