@@ -679,7 +679,7 @@ function startTimer(duration, timer, freeze_time, token) {
 
         --timer;
 
-        if (timer <= 0) {
+        if (timer < 0) {
             timer = duration;
 
             clearInterval(timerInterval);
