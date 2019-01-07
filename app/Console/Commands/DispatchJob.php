@@ -88,7 +88,7 @@ class DispatchJob extends Command
 		$count = 445;
 		$count = env('GAME_GENERATOR_COUNT');
 		
-		if (empty($count) or $count <= 10000 )
+		if (empty($count) or $count >= 10000 )
 		{
 			$count = 445;
 		}
