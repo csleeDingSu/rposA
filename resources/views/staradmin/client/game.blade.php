@@ -563,7 +563,6 @@
 			
 			$('.btn-rules').click(function(){
 				$('#game-rules').modal('show');
-				$('.rules-bubble', window.parent.document).hide();
 			});
 
 			$('.btn-vip-modal').click(function(){
