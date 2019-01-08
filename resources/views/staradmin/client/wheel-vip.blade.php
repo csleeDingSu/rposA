@@ -8,6 +8,7 @@
     <script src="{{ asset('/client/js/jquery.wheelOfFortune.js') }}"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
+    <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
     <script src="{{ asset('/client/js/wheel-vip.js') }}"></script>
 </head>
 
