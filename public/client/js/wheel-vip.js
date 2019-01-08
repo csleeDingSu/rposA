@@ -11,140 +11,94 @@ $(function () {
 
 });
 
-function updateResult(token){
+function updateResult(records){
 
     var iframe_result = $('#ifm_result', window.parent.document).contents();
 
-    $.ajax({
-        type: 'GET',
-        url: "/api/result-history/101",
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-
-            var records = data.records.data;
-
-            $.each(records, function(i, item) {
-                var counter = i + 1;
-                iframe_result.find('#result-' + counter).html(item.result);
-            });
-        }
+    $.each(records, function(i, item) {
+        var counter = i + 1;
+        iframe_result.find('#result-' + counter).html(item.result);
     });
 }
 
-function updateHistory(token){
+function updateHistory(records){
 
     var iframe_history = $('#ifm_history', window.parent.document).contents();
-    var user_id = $('#hidUserId', window.parent.document).val();
+    var length = Object.keys(records).length;
+    var maxCount = 8;
 
-    $.ajax({
-        type: 'GET',
-        url: "/api/betting-history?gameid=101&vip=yes&memberid=" + user_id,
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            console.log(data);
-            var records = data.records;
-            var length = Object.keys(records).length;
-            var maxCount = 8;
+    if(length < maxCount){
+        maxCount = parseInt(length);
+    }
+    //console.log(records);
+    for(var r = 1; r <= maxCount; r++){
+        var last = Object.keys(records)[Object.keys(records).length-1];
+        var last_record = records[last];
+        var history = '';
 
-            if(length < maxCount){
-                maxCount = parseInt(length);
+        iframe_history.find('#row-' + r).find('.number').html(last);
+        iframe_history.find('#row-' + r).find('.history').html('');
+
+        var betCount = Object.keys(last_record).length;
+
+        for(var i = 0; i < betCount; i++){
+
+            var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
+            var last_bet = last_record[last_key];
+            //console.log(last_bet);
+            var className = last_bet.bet;
+
+            if(last_bet.is_win == null){
+                className = last_bet.bet + '-fail'; 
             }
-            //console.log(records);
-            for(var r = 1; r <= maxCount; r++){
-                var last = Object.keys(records)[Object.keys(records).length-1];
-                var last_record = records[last];
-                var history = '';
 
-                iframe_history.find('#row-' + r).find('.number').html(last);
-                iframe_history.find('#row-' + r).find('.history').html('');
+            history =  '<div class="' + className + '">' +
+                            '<span class="label">' + last_bet.result +'</span>'
+                        '</div>';
 
-                var betCount = Object.keys(last_record).length;
-
-                for(var i = 0; i < betCount; i++){
-
-                    var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
-                    var last_bet = last_record[last_key];
-                    //console.log(last_bet);
-                    var className = last_bet.bet;
-
-                    if(last_bet.is_win == null){
-                        className = last_bet.bet + '-fail'; 
-                    }
-
-                    history =  '<div class="' + className + '">' +
-                                    '<span class="label">' + last_bet.result +'</span>'
-                                '</div>';
-
-                    iframe_history.find('#row-' + r).find('.history').append(history);
-                    delete last_record[last_key];
-                }
-
-                delete records[last];
-            }
+            iframe_history.find('#row-' + r).find('.history').append(history);
+            delete last_record[last_key];
         }
-    });
+
+        delete records[last];
+    }
 }
 
-function initUser(token){
+function initUser(records, token){
 
     var user_id = $('#hidUserId', window.parent.document).val();
 
-    $.ajax({
-        type: 'POST',
-        url: "/api/wallet-detail",
-        data: { 'memberid': user_id, 'gameid': 101 },
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText); },
-        success: function(data) {
-            console.log(data);
-            // Do something with the request
-            if(data.success) {
-                if (data.record.length === 0) {
-                    $('#spanPoint', window.parent.document).html(0);
-                    $('.packet-point', window.parent.document).html(0);
-                } else {
-                    var balance = parseInt(data.record.balance);
-                    var life = data.record.life;
-                    var point = parseInt(data.record.point);
-                    var acupoint =  parseInt(data.record.acupoint);
+    if (records.length === 0) {
+        $('#spanPoint', window.parent.document).html(0);
+        $('.packet-point', window.parent.document).html(0);
+    } else {
+        var balance = parseInt(records.balance);
+        var life = records.life;
+        var point = parseInt(records.point);
+        var acupoint =  parseInt(records.acupoint);
 
-                    var vip_point =  parseInt(data.record.vip_point);
-                    var vip_life =  parseInt(data.record.vip_life);
+        var vip_point =  parseInt(records.vip_point);
+        var vip_life =  parseInt(records.vip_life);
 
-                    if(vip_life == 0){
-                        vip_point = 0;
-                    }
-
-                    var total_balance = vip_point;
-
-                    $('#spanPoint', window.parent.document).html(vip_point);                    
-                    $('#hidTotalBalance', window.parent.document).val(total_balance);
-                    $('.packet-point', window.parent.document).html(point);
-                    $('.spanAcuPoint', window.parent.document).html(acupoint);
-                    $('.packet-acupoint', window.parent.document).html(acupoint);
-                    $('#hidBalance', window.parent.document).val(balance);
-                    $(".nTxt", window.parent.document).html(life);
-                    $(".spanVipLife", window.parent.document).html(vip_life);
-                    $(".spanLife", window.parent.document).html(life);
-                }
-            }
-            
+        if(vip_life == 0){
+            vip_point = 0;
         }
-    });
+
+        var total_balance = vip_point;
+
+        $('#spanPoint', window.parent.document).html(vip_point);                    
+        $('#hidTotalBalance', window.parent.document).val(total_balance);
+        $('.packet-point', window.parent.document).html(point);
+        $('.spanAcuPoint', window.parent.document).html(acupoint);
+        $('.packet-acupoint', window.parent.document).html(acupoint);
+        $('#hidBalance', window.parent.document).val(balance);
+        $(".nTxt", window.parent.document).html(life);
+        $(".spanVipLife", window.parent.document).html(vip_life);
+        $(".spanLife", window.parent.document).html(life);
+    }
 }
 
-function initGame(token){
+function initGame(data, token){
     $( '.btn-reset-life', window.parent.document ).unbind( "click" );
     $( '.btn-reset-life-continue', window.parent.document ).unbind( "click" );
     $( '.btn-calculate-vip', window.parent.document ).unbind( "click" );
@@ -152,100 +106,115 @@ function initGame(token){
     var user_id = $('#hidUserId', window.parent.document).val();
     trigger = false;
     
+    if(data.success) {
+        var bet_amount = 0;
+        var span_balance = 1200;
+        var duration = data.record.duration;
+        var timer = data.record.remaining_time;
+        var freeze_time = data.record.freeze_time;
+        var draw_id = data.record.drawid;
+        var level = data.record.level.position;
+        var level_id = data.record.level.levelid;
+        var previous_result = data.record.latest_result.game_result;
+        var consecutive_lose = data.record.consecutive_lose;
+        var life = $(".nTxt", window.parent.document).html();
+        var balance = $('#hidBalance', window.parent.document).val();
+        var payout_info = '';
+
+        $('#hidLevel', window.parent.document).val(level);
+        $('#hidLevelId', window.parent.document).val(level_id);
+        $('#hidLatestResult', window.parent.document).val(previous_result);
+
+        $('.speech-bubble', window.parent.document).addClass("hide");
+        $('.speech-bubble', window.parent.document).next().removeClass("done").removeClass("active").find('.label').html('');
+        $('.barBox', window.parent.document).find('li').removeClass('on');
+        
+        showProgressBar(false);
+
+        $('#freeze_time').val(freeze_time);
+        $('#draw_id').val(draw_id);
+
+        DomeWebController.init();
+        startTimer(duration, timer, freeze_time, token);
+
+        bindBetButton(token);
+        bindCalculateButton(token);
+
+        $(".loading", window.parent.document).fadeOut("slow");
+
+        $.ajax({
+            type: 'GET',
+            url: "/api/get-game-result-temp?gameid=101&gametype=2&memberid=" + user_id + "&drawid=" + draw_id,
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            error: function (error) { console.log(error.responseText) },
+            success: function(data) {
+
+                if(data.success && data.record.bet != null){
+
+                    showProgressBar(true);
+
+                    var selected = data.record.bet;
+                    var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
+                    var bet_amount = parseInt(data.record.betamt);
+                    var newtotalbalance = total_balance - bet_amount;
+
+                    var btn_rectangle = $("input[value='"+ selected +"']", window.parent.document).parent();
+                    btn_rectangle.addClass('clicked');
+                    btn_rectangle.find('.bet-container').show();
+                    btn_rectangle.find('.bet').show();
+
+                    //$('#spanPoint', window.parent.document).html(newtotalbalance);
+                    $('.instruction', window.parent.document).css('visibility', 'hidden');
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
+                        + "&drawid=" + draw_id 
+                        + "&bet="+ selected 
+                        +"&betamt=" + bet_amount,
+                        dataType: "json",
+                        beforeSend: function( xhr ) {
+                            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                        },
+                        error: function (error) { console.log(error.responseText) },
+                        success: function(data) {
+                        }
+                    });
+                }
+            }
+        }); // ajax get-game-result-temp
+    } else { // else if data.success == false
+        $(".reload", window.parent.document).show();
+    }
+}
+
+function initGameMaster(token){
+    var user_id = $('#hidUserId', window.parent.document).val();
+    
     $.ajax({
         type: 'GET',
-        url: "/api/game-setting?gameid=101&vip=1&memberid=" + user_id,
+        url: "/api/master-call?gameid=101&vip=yes&memberid=" + user_id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error.responseText); },
+        error: function (error) { console.log(error.responseText) },
         success: function(data) {
-            //console.log(data);
-            if(data.success) {
-                var bet_amount = 0;
-                var span_balance = 1200;
-                var duration = data.record.duration;
-                var timer = data.record.remaining_time;
-                var freeze_time = data.record.freeze_time;
-                var draw_id = data.record.drawid;
-                var level = data.record.level.position;
-                var level_id = data.record.level.levelid;
-                var previous_result = data.record.latest_result.game_result;
-                var consecutive_lose = data.record.consecutive_lose;
-                var life = $(".nTxt", window.parent.document).html();
-                var balance = $('#hidBalance', window.parent.document).val();
-                var payout_info = '';
+            var betting_records = data.bethistory.original.records;
+            updateHistory(betting_records);
 
-                $('#hidLevel', window.parent.document).val(level);
-                $('#hidLevelId', window.parent.document).val(level_id);
-                $('#hidLatestResult', window.parent.document).val(previous_result);
+            var result_records = data.gamehistory.original.records.data;
+            updateResult(result_records);
 
-                $('.speech-bubble', window.parent.document).addClass("hide");
-                $('.speech-bubble', window.parent.document).next().removeClass("done").removeClass("active").find('.label').html('');
-                $('.barBox', window.parent.document).find('li').removeClass('on');
-                
-                showProgressBar(false);
-
-                $('#freeze_time').val(freeze_time);
-                $('#draw_id').val(draw_id);
-
-                DomeWebController.init();
-                startTimer(duration, timer, freeze_time, token);
-
-                bindBetButton(token);
-                bindCalculateButton(token);
-
-                $(".loading", window.parent.document).fadeOut("slow");
-
-                $.ajax({
-                    type: 'GET',
-                    url: "/api/get-game-result-temp?gameid=101&gametype=2&memberid=" + user_id + "&drawid=" + draw_id,
-                    dataType: "json",
-                    beforeSend: function( xhr ) {
-                        xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                    },
-                    error: function (error) { console.log(error.responseText) },
-                    success: function(data) {
-
-                        if(data.success && data.record.bet != null){
-
-                            showProgressBar(true);
-
-                            var selected = data.record.bet;
-                            var total_balance = parseInt($('#hidTotalBalance', window.parent.document).val());
-                            var bet_amount = parseInt(data.record.betamt);
-                            var newtotalbalance = total_balance - bet_amount;
-
-                            var btn_rectangle = $("input[value='"+ selected +"']", window.parent.document).parent();
-                            btn_rectangle.addClass('clicked');
-                            btn_rectangle.find('.bet-container').show();
-                            btn_rectangle.find('.bet').show();
-
-                            //$('#spanPoint', window.parent.document).html(newtotalbalance);
-                            $('.instruction', window.parent.document).css('visibility', 'hidden');
-
-                            $.ajax({
-                                type: 'GET',
-                                url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
-                                + "&drawid=" + draw_id 
-                                + "&bet="+ selected 
-                                +"&betamt=" + bet_amount,
-                                dataType: "json",
-                                beforeSend: function( xhr ) {
-                                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                                },
-                                error: function (error) { console.log(error.responseText) },
-                                success: function(data) {
-                                }
-                            });
-                        }
-                    }
-                }); // ajax get-game-result-temp
-            } else { // else if data.success == false
-                $(".reload", window.parent.document).show();
-            }
-        } // end success
+            var wallet_records = data.wallet;
+            initUser(wallet_records, token);
+            
+            var game_records = data.gamesetting.original;
+            initGame(game_records, token);
+        }
     });
 }
 
@@ -260,11 +229,8 @@ function getToken(){
         error: function (error) { $(".reload", window.parent.document).show(); },
         success: function(data) {
             $('#hidToken', window.parent.document).val(data.access_token);
-            initUser(data.access_token);
             resetGame();
-            updateResult(data.access_token);
-            updateHistory(data.access_token);
-            initGame(data.access_token);
+            initGameMaster(data.access_token);
         }
     });
 }
