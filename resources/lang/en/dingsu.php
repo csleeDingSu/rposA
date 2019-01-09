@@ -514,4 +514,5 @@ return [
 	'cron' => 'Cron',
 	'cron_manager' => 'Cron Manager',
 	
+	'passcode' => 'passcode',
 ];

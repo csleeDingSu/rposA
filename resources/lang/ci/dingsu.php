@@ -481,4 +481,6 @@ return [
 	'vip_ticket_not_yet_used' => '入场卷未使用',
 	'waiting_for_approve' => '等待审核',
 
+	'passcode' => '密码',
+
 ];
