@@ -355,36 +355,42 @@ function bindBetButton(token){
 function bindCalculateButton(token){
     $('.btn-calculate-vip', window.parent.document).click(function(){
         var user_id = $('#hidUserId', window.parent.document).val();
-        $.ajax({
-            type: 'POST',
-            url: "/api/check-redeem",
-            data: { 'memberid': user_id },
-            dataType: "json",
-            beforeSend: function( xhr ) {
-                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            },
-            error: function (error) { console.log(error.responseText) },
-            success: function(data) {
-                console.log(data);
-                if(data.success){
-                    var point = data.wabao_point;
-                    var vip_point = data.vip_point;
+        var selected = $('div.clicked', window.parent.document).find('input:radio').val();
 
-                    $('.spanVipPoint', window.parent.document).html(vip_point);
-                    $('.packet-point', window.parent.document).html(point);
+        if (typeof selected == 'undefined'){
+            $.ajax({
+                type: 'POST',
+                url: "/api/check-redeem",
+                data: { 'memberid': user_id },
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                },
+                error: function (error) { console.log(error.responseText) },
+                success: function(data) {
+                    console.log(data);
+                    if(data.success){
+                        var point = data.wabao_point;
+                        var vip_point = data.vip_point;
 
-                    $('#reset-life-max', window.parent.document).modal();
-                        
-                    bindResetLifeButton(token);
-                    $('#btn-close-max', window.parent.document).click(function(){
-                        $('#reset-life-max', window.parent.document).modal('hide');
-                    });
+                        $('.spanVipPoint', window.parent.document).html(vip_point);
+                        $('.packet-point', window.parent.document).html(point);
 
-                } else {
-                    $('#reset-life-bet', window.parent.document).modal();
+                        $('#reset-life-max', window.parent.document).modal();
+                            
+                        bindResetLifeButton(token);
+                        $('#btn-close-max', window.parent.document).click(function(){
+                            $('#reset-life-max', window.parent.document).modal('hide');
+                        });
+
+                    } else {
+                        $('#reset-life-bet', window.parent.document).modal();
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            $('#reset-life-bet', window.parent.document).modal();
+        }
     });
 }
 
