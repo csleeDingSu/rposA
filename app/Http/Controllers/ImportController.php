@@ -79,8 +79,7 @@ class ImportController extends BaseController
   //       );
 		
 		$extension = $request->file->getClientOriginalExtension(); //$request->file->extension();
-		
-		
+						
 		$filename = 'softpin'.time(); 
 		
 		$path = $request->file->storeAs('softpins', $filename.'.'.$extension, 'public_uploads');
