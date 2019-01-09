@@ -1,5 +1,4 @@
 var trigger = false;
-var timerInterval = 0;
 
 $(function () {
     var wechat_status = $('#hidWechatId', window.parent.document).val();
@@ -11,7 +10,7 @@ $(function () {
         closeModal();
 
         ifvisible.on("wakeup", function(){
-            clearInterval(timerInterval);
+            clearInterval(parent.timerInterval);
             getToken();
         });
     }  else {
@@ -552,7 +551,7 @@ function showProgressBar(bol_show){
 function startTimer(duration, timer, freeze_time, token) {
 
     var trigger_time = freeze_time - 1;
-    timerInterval = setInterval(function () {
+    parent.timerInterval = setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 61, 10);
 
@@ -565,7 +564,7 @@ function startTimer(duration, timer, freeze_time, token) {
 
         if (timer < 0) {            
             timer = duration;
-            clearInterval(timerInterval);
+            clearInterval(parent.timerInterval);
 
             var consecutive_loss = $('#hidConsecutiveLose', window.parent.document).val();
             var mergepoint = parseInt($('#hidMergePoint', window.parent.document).val()) || 0;
