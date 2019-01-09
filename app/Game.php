@@ -192,9 +192,11 @@ class Game extends Model
 		return $id;
 	}
 	
-	public static function get_gameresult($id)
+	public static function get_gameresult($id,$now = FALSE)
 	{
-		$result =  DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('game_id', $id)->first();
+		//$now     = Carbon::now()->toDateTimeString();
+		$now = date('Y-m-d H:i:s');
+		$result =  DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('game_id', $id)->where('created_at', '<=', $now)->where('expiry_time', '>=', $now)->first();
 		return $result;
 	}
 	
@@ -695,9 +697,9 @@ class Game extends Model
 	
 	
 	
-	public static function get_current_result($gameid)
+	public static function get_current_result($gameid,$now = FALSE)
 	{
-		$result = DB::table('game_result')->where('game_id', $gameid)->first();
+		$result = DB::table('game_result')->where('game_id', $gameid)->where('created_at', '<=', $now)->where('expiry_time', '>=', $now)->first();
 		
 		if ($result) return $result->id;
 		else return '1';

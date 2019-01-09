@@ -1,3 +1,5 @@
+var timerInterval = 0;
+
 $(function () {
   
 	$('.swiper-container').flickity({
@@ -8,5 +10,12 @@ $(function () {
 		initialIndex: 1,
 		freeScroll: false,
 		contain: true,
+	});
+
+	$('.swiper-container').on( 'change.flickity', function( event, index ) {
+		if(index == 1) {
+			document.getElementById('ifm_wheel').contentWindow.clearInterval(timerInterval);
+			document.getElementById('ifm_wheel').contentWindow.getToken();
+		}
 	});
 });
