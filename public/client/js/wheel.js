@@ -1,12 +1,20 @@
 var trigger = false;
+var timerInterval = 0;
 
 $(function () {
     var wechat_status = $('#hidWechatId', window.parent.document).val();
     var wechat_name = $('#hidWechatName', window.parent.document).val();
 
     if(wechat_status == 0 && wechat_name != null) {
+
         getToken();
         closeModal();
+
+        ifvisible.on("wakeup", function(){
+            clearInterval(timerInterval);
+            getToken();
+        });
+
     } else {
         $(".loading", window.parent.document).fadeOut("slow");
         return false;
@@ -592,7 +600,8 @@ function showProgressBar(bol_show){
 function startTimer(duration, timer, freeze_time, token) {
 
     var trigger_time = freeze_time - 1;
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
+
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 61, 10);
 
