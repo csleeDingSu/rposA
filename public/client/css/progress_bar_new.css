@@ -142,10 +142,7 @@
 	width: 19.5%
 }
 .barBox.barBox-7 .barImg::before{
-
-}
-.barBox.barBox-8 .barImg::before{
-	
+	width: 0%
 }
 
 .barBox .barImg::before{
@@ -236,10 +233,6 @@
 .barBox.barBox-6 .barImg::after{
 	width:19.5%;
 }
-.barBox.barBox-7 .barImg::after{
-
-}
-
 .barBox.barBox-7 .barImg::after{
 	/* left: 100%; */
 	width:0%;
