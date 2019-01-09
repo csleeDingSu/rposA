@@ -208,10 +208,15 @@ class Game extends Model
 		return $result;
 	}
 	
-	public static function get_single_gameresult_by_gameid($id)
+	public static function get_single_gameresult_by_gameid($id,$now = FALSE)
 	{
-		$result =  DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('game_id', $id)->first();
-		
+		$result =  DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('game_id', $id)->where('created_at', '<=', $now)->where('expiry_time', '>=', $now)->first();
+		return $result;
+	}
+	
+	public static function get_future_result($id,$now = FALSE)
+	{
+		$result =  DB::table('game_result')->select('id as draw_id','game_id','created_at','expiry_time')->where('game_id', $id)->where('expiry_time', '>', $now)->skip(1)->take(5)->get();				
 		return $result;
 	}
 	
