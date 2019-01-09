@@ -148,6 +148,7 @@ html, body {
 	padding-left: 16px;
 	cursor: pointer;
 	background-image: linear-gradient(#ffc549, #ff8e29);
+	border: none;
 }
 
 .description {
@@ -404,8 +405,9 @@ html, body {
 }
 
 .modal-card {
-	width: 250px !important;
+	width: 250px;
 	margin: 0 auto;
+	font-size: 16px;
 }
 
 .modal-center {
@@ -755,4 +757,127 @@ textarea {
 	background: #f8f5f1;
     border-radius:10px;
 
+}
+
+/* Wechat Modal */
+.modal-wechat {
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#verify-steps .modal-content, .modal-title {
+	background: white;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.modal-title {
+	background: #4c89e2;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+}
+
+.modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-weight: 700;
+}
+
+.btn-close {
+	color: #ffd200;
+	font-size: 16px;
+	margin-top: 10px;
+	width: 270px;
+	padding-left: 30px;
+	display: inline-block;
+}
+
+.btn-close a {
+	text-decoration: none;
+	color: #ffd200;
+}
+
+#verify-steps .glyphicon {
+	font-size: 20px;
+	display: block;
+	float: left;
+	padding-left: 10px;
+}
+
+.left {
+	display: block;
+	padding-bottom: 3px;
+	float: left;
+	padding-left: 10px;
+}
+
+.instructions, .instructions-dark {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #cdcdcd;
+}
+
+.instructions-dark {
+	color: #bababa;
+}
+
+#verify-steps .copyvoucher {
+	border: 1px solid #e3e3e3;
+	background: #f0f0f0;
+	color: #4380d9;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 30px;
+	margin-top: 0;
+	padding: 0;
+	border-radius: 5px;
+	font-size: 30px;
+	text-align: center;
+}
+
+#verify-steps .cutBtn, #verify-steps .cutBtn-success, #verify-steps .cutBtn-fail {
+	margin: 0;
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 30px;
+	font-size: 20px;
+	color: white;
+	padding: 6px;
+	background-image: linear-gradient(#ffaf08, #ff830b);
+	border: none;
+	text-align: center;
+}
+
+#verify-steps .cutBtn-success {
+	background: #1ba908;
+}
+
+#verify-steps .cutBtn-fail {
+	background: #838383;
+}
+
+#verify-steps .row {
+	width: auto;
+	margin: 0px;
+	margin-right: -15px;
+	margin-left: -15px;
+	padding: 0px;
+	background-color: #ffffff;
+	text-align: center;
+}
+
+@media only screen and (max-width: 360px) {
+
+	#verify-steps .row {
+		margin: 0px;
+	}
 }

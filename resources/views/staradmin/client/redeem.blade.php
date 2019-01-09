@@ -25,6 +25,7 @@
 		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
 		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
+		<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
 
 		<div class="card left">
 			<div class="icon-coin-wrapper">
@@ -109,6 +110,51 @@
     </div>
 </div>
 <!-- Modal Ends -->
+
+<!-- Steps Modal starts -->
+<form class="form-sample" name="frm-steps" id="frm-steps" action="" method="post" autocomplete="on" >
+	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-title">
+				<h1>请加客服微信</h1>
+				通过审核才能享受网站福利
+			</div>
+			<div class="modal-content modal-wechat">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="instructions">
+									客服微信在线时间：早上8点-晚上9点
+								</div>								
+							</div>
+							<div class="row">
+								<div id="cut" class="copyvoucher">WABAO666</div>
+								<div class="cutBtn">一键复制</div>
+							</div>
+							<div class="modal-card">
+								<div class="instructions-dark">
+									请按复制按钮，复制成功后到微信添加。<br />
+									如复制不成功，请到微信手动输入添加。
+								</div>								
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+
+			<div class="modal-card">
+				<div class="btn-close">
+					<a href="/">
+						<div class="glyphicon glyphicon-remove-circle"></div>
+						<div class="left"> 不想认证，先逛逛看。</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form> 
+<!-- Steps Modal Ends -->
 
     @parent
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
