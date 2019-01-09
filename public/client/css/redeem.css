@@ -811,13 +811,6 @@ textarea {
 	padding-left: 10px;
 }
 
-.left {
-	display: block;
-	padding-bottom: 3px;
-	float: left;
-	padding-left: 10px;
-}
-
 .instructions, .instructions-dark {
 	margin-top: 10px;
 	margin-bottom: 5px;
@@ -873,6 +866,13 @@ textarea {
 	padding: 0px;
 	background-color: #ffffff;
 	text-align: center;
+}
+
+#verify-steps .left {
+	display: block;
+	padding-bottom: 3px;
+	float: left;
+	padding-left: 10px;
 }
 
 @media only screen and (max-width: 360px) {
