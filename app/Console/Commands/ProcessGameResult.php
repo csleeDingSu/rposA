@@ -42,7 +42,7 @@ class ProcessGameResult extends Command
     public function handle()
     {
 		//Get Game category
-		
+		$this->error('This not in use');exit();
 		$this->info('-------------Getting Game Category----------');
 		$rdate['now']    = $data['last_run'] = Carbon::now()->toDateTimeString();
 		$rdate['to']     = $to   = Carbon::now()->addSeconds(2)->toDateTimeString(); 
