@@ -20,7 +20,7 @@ class GenerateGameResult extends Command
      *
      * @var string
      */
-    protected $description = 'Generate the Game result every x min';
+    protected $description = 'Generate the Game result every day';
 
     /**
      * Create a new command instance.
@@ -55,7 +55,8 @@ class GenerateGameResult extends Command
 				{
 					//fortune game
 					case '1':
-						$result = $this->GenerateRandomresult($game,$category);
+						//$result = $this->GenerateRandomresult($game,$category);
+						$result = $this->GenerateGameRandomresult($game,$category->game_time);
 					break;
 				}
 			}
@@ -65,6 +66,94 @@ class GenerateGameResult extends Command
 		
 		$this->info('-------------All done----------');
     }
+	
+	private function GenerateGameRandomresult($game,$game_time = 30)
+	{
+		$result  = '';
+		
+		$insdata = [];
+		
+		$now = Carbon::now()->toDateTimeString();
+		
+		$sec = 0;
+		$tomorrow = Carbon::tomorrow();
+		$i = 1;
+		$unix = 0;
+		while ($i<=3)
+		{			
+			
+			$someTime = Carbon::now()->addSeconds($sec);
+			
+			$d['now'] = $someTime->toDateTimeString();
+			
+			$someTime1 = $someTime->addSeconds($game_time);
+			
+			$unix = $someTime1->timestamp;
+			
+			$d['expiry'] = $someTime1;
+			$d['unix'] = $unix;
+			
+			
+			$da    = $this->ResultGenerate($game->id,$d);
+			$sec = $sec +  $game_time;			
+						
+			$insdata[] = $da;			
+			$this->info('----------- '.$i.' - Generating result----------');			
+			if ($d['expiry'] > $tomorrow)
+			{
+				$i = 10;
+			}
+		}
+		foreach (array_chunk($insdata,800) as $t) {
+		   \DB::table('game_result')->insert($t);
+		}
+		
+		$id = '1';
+		
+		$this->info('-------------New Result set Inserted----------');
+		
+		
+		
+		$this->info('-------------Clean expired Result----------');
+        $this->Cleanexpiredresult($game->id);
+		
+		return $result;
+	}
+	
+	private function ResultGenerate($id,$date)
+	{
+		$now     = $date['now'];
+		$expiry  = $date['expiry'];
+		$unixnow = $date['unix'];
+		
+		$row['game_id']           = $id; 
+		$row['game_level_id']     = null;			
+		$row['created_at']        = $now; 
+		$row['updated_at']        = $now; 		
+		$row['expiry_time']       = $expiry; 
+		$row['unix_expiry_time']  = $unixnow; 
+		$row['game_result']       = generate_random_number(1,6); //generate random number		
+		return $row;
+	}
+	
+	
+	private function Cleanexpiredresult($gameid = FALSE)
+	{
+		$now = Carbon::now()->timestamp;
+		$items = Game::get_expiredresult($now, $gameid);	
+		
+		//print_r($items);die();
+		if ($items)
+		{
+			echo 'imin';//remove expired results
+			Game::archive_data($items);
+		}
+		
+		//delete old data
+		Game::clean_expiredresult($now, $gameid);
+	}
+	
+	
 	private function GenerateRandomresult($game,$category = false)
 	{
 		$result  = '';

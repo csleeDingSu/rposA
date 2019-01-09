@@ -238,62 +238,6 @@ body{
 	}
 }
 
-.speech-bubble { 
-	display: inline-block;
-	position: absolute; 
-	background-color: rgba(119, 82, 165, 0.5);
-	border-radius: .4em;
-	padding: 25px;
-	z-index: 10;
-	margin-top: -150px;
-	font-size:40px;
-} 
-.speech-bubble:after { 
-	content: ''; 
-	position: absolute; 
-	bottom: 0;  
-	width: 0; 
-	height: 0; 
-	border: 10px solid transparent;
-	border-top-color: rgba(119, 82, 165, 0.5); 
-	border-bottom: 0; 
-	margin-left: -10px; 
-	margin-bottom: -10px; 
-	left: 50%;
-}
-
-.rules-bubble {
-	position: relative;
-	background: #f1b847;
-	border-radius: 1em;
-	font-size:16px;
-	margin-top: 6px;
-	margin-right: 10px;
-	text-shadow:
-        1px  1px 0 #a7781a,
-       -1px -1px 0 #a7781a,  
-        1px -1px 0 #a7781a,
-       -1px  1px 0 #a7781a,
-        1px  1px 0 #a7781a;
-    animation: blink 1s infinite;
-    display: none;
-}
-
-.rules-bubble:after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 90%;
-	width: 0;
-	height: 0;
-	border: 8px solid transparent;
-	border-bottom-color: #f1b847;
-	border-top: 0;
-	border-right: 0;
-	margin-left: -16px;
-	margin-top: -8px;
-}
-
 @keyframes blink 
 {  
  0% { opacity: 1.0; }

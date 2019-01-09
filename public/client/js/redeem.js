@@ -1,11 +1,17 @@
 $(document).ready(function () {
 
-    $('.tab').click(function(){
-        var title = $(this).html();
-        $('.navbar-brand').html(title); 
-    });
+    var wechat_status = $('#hidWechatId').val();
+    
+    if(wechat_status > 0) {
+        $('#verify-steps').modal({backdrop: 'static', keyboard: false});
+    } else {
+        $('.tab').click(function(){
+            var title = $(this).html();
+            $('.navbar-brand').html(title); 
+        });
 
-    getToken();
+        getToken();
+    }    
 
     var clipboard = new ClipboardJS('.cutBtn', {
         target: function () {
@@ -417,7 +423,7 @@ function redeemHistory(token) {
 
                         htmlmodel += '<!-- Modal starts -->' +
                                         '<div class="modal fade col-lg-12" id="enter-vip-modal-' + item.id + '" tabindex="-1" style="z-index: 9999">' +
-                                            '<div class="modal-dialog modal-sm" role="document">' +
+                                            '<div class="modal-dialog" role="document">' +
                                                 '<div class="modal-content enter-vip-content">' +
                                                     '<div class="modal-body">' +
                                                         '<div class="modal-row">' +
