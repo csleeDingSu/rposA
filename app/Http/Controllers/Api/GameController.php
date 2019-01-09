@@ -52,6 +52,7 @@ class GameController extends Controller
 	
 	public function master_out(Request $request)
 	{
+		$now         = Carbon::now();
 		$gamesetting = $this->get_game_setting($request);
 		$gamenotific = $this->get_game_notification($request);	
 		
@@ -59,9 +60,11 @@ class GameController extends Controller
 		$gamehistory = $this->get_game_history($request->gameid);	
 		
 		$game_temp   = $this->get_update_game_temp($request);
-		$wallet      = Wallet::get_wallet_details($request->memberid);		
+		$wallet      = Wallet::get_wallet_details($request->memberid);	
 		
-		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => $gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,]);  
+		$futureresult= Game::get_future_result($request->gameid, $now );
+		
+		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => $gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,'futureresults' => $futureresult]);  
 		
 		
 	}
@@ -76,7 +79,7 @@ class GameController extends Controller
 		$level  =  Game::get_member_current_level($gameid, $memberid, $vip);
 		
 		$now        = Carbon::now();
-		$out = Game::get_single_gameresult_by_gameid($gameid);
+		$out = Game::get_single_gameresult_by_gameid($gameid,$now );
 		
 		$latest_result = Game::get_latest_result($gameid);
 			
