@@ -86,5 +86,8 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	
 	Route::any('/master-call', 'GameController@master_out')->name('api.master.call');
 	
+	Route::any('/master-call-nobet', 'GameController@master_withoutbet')->name('api.master.withoutbet');
+	
+	
 	
  });	
