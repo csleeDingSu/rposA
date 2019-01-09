@@ -695,9 +695,9 @@ class Game extends Model
 	
 	
 	
-	public static function get_current_result($gameid)
+	public static function get_current_result($gameid,$now = FALSE)
 	{
-		$result = DB::table('game_result')->where('game_id', $gameid)->first();
+		$result = DB::table('game_result')->where('game_id', $gameid)->where('created_at', '<=', $now)->where('expiry_time', '>=', $now)->first();
 		
 		if ($result) return $result->id;
 		else return '1';
