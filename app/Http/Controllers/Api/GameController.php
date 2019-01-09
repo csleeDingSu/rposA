@@ -50,6 +50,21 @@ class GameController extends Controller
 	}
 	
 	
+	//without game bet
+	public function master_withoutbet(Request $request)
+	{
+		$now         = Carbon::now();
+		$gamesetting = $this->get_game_setting($request);
+		$gamenotific = $this->get_game_notification($request);	
+		
+		$gamehistory = $this->get_game_history($request->gameid);		
+		
+		$futureresult= Game::get_future_result($request->gameid, $now );
+		
+		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'gamehistory' => $gamehistory,'futureresults' => $futureresult]); 
+	}
+	
+	//with  bet	
 	public function master_out(Request $request)
 	{
 		$now         = Carbon::now();
@@ -65,8 +80,6 @@ class GameController extends Controller
 		$futureresult= Game::get_future_result($request->gameid, $now );
 		
 		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => $gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,'futureresults' => $futureresult]);  
-		
-		
 	}
 	
 	
