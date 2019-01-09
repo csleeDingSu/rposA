@@ -144,14 +144,14 @@ class ImportController extends BaseController
 		$all_ext = implode(',', $this->document_ext);
 		
 		
-		$validator = $this->validate(
-            $request,
-            [
-                'file' => 'required|file|mimes:' . $all_ext 
-            ]
-        );
+		// $validator = $this->validate(
+  //           $request,
+  //           [
+  //               'file' => 'required|file|mimes:' . $all_ext 
+  //           ]
+  //       );
 		
-		$extension = $request->file->extension();
+		$extension = $request->file->getClientOriginalExtension(); //$request->file->extension();
 		
 		
 		$filename = 'upv'.time(); 
@@ -328,7 +328,7 @@ class ImportController extends BaseController
   //           ]
   //       );
 		
-		$extension = $request->file->extension();
+		$extension = $request->file->getClientOriginalExtension(); //$request->file->extension();
 		$extension = empty($extension) ? 'xls' : $extension;
 		
 		$filename = 'ads'.time(); 
