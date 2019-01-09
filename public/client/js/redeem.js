@@ -1,11 +1,17 @@
 $(document).ready(function () {
 
-    $('.tab').click(function(){
-        var title = $(this).html();
-        $('.navbar-brand').html(title); 
-    });
+    var wechat_status = $('#hidWechatId').val();
+    
+    if(wechat_status > 0) {
+        $('#verify-steps').modal({backdrop: 'static', keyboard: false});
+    } else {
+        $('.tab').click(function(){
+            var title = $(this).html();
+            $('.navbar-brand').html(title); 
+        });
 
-    getToken();
+        getToken();
+    }    
 
     var clipboard = new ClipboardJS('.cutBtn', {
         target: function () {

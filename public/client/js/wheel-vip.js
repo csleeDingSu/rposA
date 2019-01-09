@@ -13,6 +13,9 @@ $(function () {
             clearInterval(timerInterval);
             getToken();
         });
+    }  else {
+        $(".loading", window.parent.document).fadeOut("slow");
+        return false;
     }
 
 });
