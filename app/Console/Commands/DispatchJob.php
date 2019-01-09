@@ -81,6 +81,7 @@ class DispatchJob extends Command
     public function handle()
     {
         $cname  = 'game_generate_result';		 
+		$this->error('This not in use');exit();
 		
 		ob_start();
 		
