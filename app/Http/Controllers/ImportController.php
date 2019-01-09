@@ -79,8 +79,6 @@ class ImportController extends BaseController
   //       );
 		
 		$extension = $request->file->getClientOriginalExtension(); //$request->file->extension();
-		
-		$extension = $request->file->getClientOriginalExtension(); //$request->file->extension();
 						
 		$filename = 'softpin'.time(); 
 		
