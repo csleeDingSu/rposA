@@ -491,7 +491,7 @@ class GameController extends Controller
 	public function get_game_time($gameid = false)
     {
 		$now        = Carbon::now();
-		$out = Game::get_single_gameresult_by_gameid($gameid);		
+		$out = Game::get_single_gameresult_by_gameid($gameid,$now );		
 		if ($out)
 		{
 			$result_time = $this->processgametime( $now,$out );

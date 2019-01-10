@@ -102,15 +102,15 @@
 					
 					<div class="banner">
 
-						<img data-lazy="{{ asset('/test/main/images/demo/banner.png') }}">
+						<!--<img data-lazy="{{ asset('/test/main/images/demo/banner.png') }}">-->
 						
-<!--
-						{{-- @if(isset($banner)) --}}					
-						{{-- @foreach($banner as $bner) --}}	
-							<img data-lazy="{{url('/')}}/ad/banner/{{-- $bner->banner_image --}}"  >					
-						{{-- @endforeach --}}					
-						{{-- @endif --}}
--->						
+
+						 @if(isset($banner)) 				
+						 @foreach($banner as $bner) 	
+							<img data-lazy="{{url('/')}}/ad/banner/{{$bner->banner_image}}"  >					
+						 @endforeach 				
+						 @endif 
+					
 					</div>
 
 				@endif
@@ -257,7 +257,7 @@
       
 		  $(".banner").slick({
 			  autoplay:true,
-			  autoplaySpeed:1000,
+			  autoplaySpeed:10000,
 			  arrows:false,
 			  lazyLoad: 'ondemand', // ondemand progressive anticipated
 			  infinite: true,
