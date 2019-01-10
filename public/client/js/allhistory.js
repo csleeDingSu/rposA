@@ -83,17 +83,15 @@ function getBettingHistory(token) {
                     var last = null;
                     var loopCount = 0;
 
-                    $.each(bvalue, function(key, val){
-                        
-
-                        if(key == 0) {
-                            first_bet = val;
+                    while( betCount-- ) {
+                        if(loopCount == 0) {
+                            first_bet = bvalue[betCount];
                         }
 
                         var className = 'pass';
                         var faIcon = 'fa-check';
 
-                        if(val.is_win == null){
+                        if(bvalue[betCount].is_win == null){
                             className = 'fail';
                             faIcon = 'fa-times';
                             loseCount++;
@@ -107,16 +105,16 @@ function getBettingHistory(token) {
 
                         loopCount++;
 
-                        if(betCount == loopCount){
-                            last_bet = val;
+                        if(betCount == 0){
+                            last_bet = bvalue[betCount];
                         }
-                    });
+                    }
 
                     if(winCount) {
                         points = (winCount + loseCount) * 10;
                     }
 
-                    if(betCount == loopCount){
+                    if(betCount == -1){
                         history += '<div style="clear: both"></div>' +
                                         '<div class="date">' + first_bet.created_at + ' 至 ' + last_bet.created_at + '</div>' +
                                     '</div>' +
