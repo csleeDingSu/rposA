@@ -3,7 +3,8 @@
 								@foreach($vouchers as $item)
 									<li class="dbox">
 										<a class="dbox0 imgBox" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}">
-											<img src="{{$item->product_picurl}}_460x460Q90.jpg" alt="{{$item->product_name}}">
+											<img src="{{$item->product_picurl}}{{$setting->mobile_default_image_url}}" alt="{{$item->product_name}}">
+											<h3>{{$setting->mobile_default_image_url}}</h3>
 										</a>
 										<div class="dbox1">
 											<h2>{{$item->product_name}}</h2>

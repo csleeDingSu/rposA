@@ -50,22 +50,24 @@ class AdminController extends BaseController
       			'maintenance_start_time'  => 'required_with:auto_maintenance,on',
 				'maintenance_end_time'    => 'required_with:auto_maintenance,on',
                 'introduce_life' => 'required|integer|between:0,10',
-                'game_default_life' => 'required|integer|between:0,10',
+				'game_default_life' => 'required|integer|between:0,10',
             ]
         );
 		
 		
 
 		
-		$data = ['allow_login'            => $request->allow_login,
-				 'allow_registration'     => $request->allow_registration,
-				 'site_maintenance'       => $request->site_maintenance,
-				 'maintenance_message'    => $request->maintenance_message,
-				 'auto_maintenance'       => $request->auto_maintenance,
-				 'maintenance_start_time' => $request->maintenance_start_time,
-				 'maintenance_end_time'   => $request->maintenance_end_time,
-                 'introduce_life'         => $request->introduce_life,
-                 'game_default_life'      => $request->game_default_life,
+		$data = ['allow_login'            	=> $request->allow_login,
+				 'allow_registration'     	=> $request->allow_registration,
+				 'site_maintenance'       	=> $request->site_maintenance,
+				 'maintenance_message'    	=> $request->maintenance_message,
+				 'auto_maintenance'       	=> $request->auto_maintenance,
+				 'maintenance_start_time' 	=> $request->maintenance_start_time,
+				 'maintenance_end_time'   	=> $request->maintenance_end_time,
+                 'introduce_life'         	=> $request->introduce_life,
+				 'game_default_life'      	=> $request->game_default_life,
+				 'mobile_default_image_url' => $request->mobile_default_image_url,
+				 'desktop_default_image_url'=> $request->desktop_default_image_url,
                 ];
 		
 		
