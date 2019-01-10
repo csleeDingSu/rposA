@@ -129,7 +129,6 @@ class GenerateGameResult extends Command
 		
 		$this->info('-------------New Result set Inserted----------');
 		
-		
 		$this->info('-------------Clean expired Result----------');
         $this->Cleanexpiredresult($game->id);
 		
@@ -158,10 +157,8 @@ class GenerateGameResult extends Command
 		$now = Carbon::now()->timestamp;
 		$items = Game::get_expiredresult($now, $gameid);	
 		
-		//print_r($items);die();
 		if ($items)
 		{
-			echo 'imin';//remove expired results
 			Game::archive_data($items);
 		}
 		
