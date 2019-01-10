@@ -215,7 +215,7 @@ class Game extends Model
 		$queries = DB::enableQueryLog();
 			
 		$result =  DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('game_id', $id)->where('created_at', '<=', $now)->where('expiry_time', '>=', $now)->first();
-		print_r(DB::getQueryLog());
+		// print_r(DB::getQueryLog());
 		return $result;
 	}
 	
