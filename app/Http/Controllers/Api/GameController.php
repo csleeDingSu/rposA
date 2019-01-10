@@ -239,6 +239,7 @@ class GameController extends Controller
 	 **/
 	public function update_game(Request $request)
     {	
+		$now     = Carbon::now()->toDateTimeString();
 		$reward = 0;
 		$glevel = '';
 		$status = 'lose';
@@ -249,7 +250,7 @@ class GameController extends Controller
 		$memberid = $request->memberid;
 		$drawid   = $request->drawid;
 		
-		$drawid   = Game::get_current_result($gameid);
+		$drawid   = Game::get_current_result($gameid, $now);
 		
 		$bet      = $request->bet;
 		$betamt   = $request->betamt;	
