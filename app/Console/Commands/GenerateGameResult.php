@@ -74,13 +74,14 @@ class GenerateGameResult extends Command
 		$totalDuration = 0;
 		$result =  \DB::table('game_result')->where('game_id', '=', $game->id)->latest()->first();
 		
-		$gexptime = Carbon::parse($result->expiry_time);
 		
-		
-		$now = Carbon::now()->toDateTimeString();
 		
 		if ($result)
 		{
+			$gexptime = Carbon::parse($result->expiry_time);		
+		
+			$now = Carbon::now()->toDateTimeString();
+			
 			$totalDuration = $tomorrow->diffInSeconds($gexptime);
 		}
 		
