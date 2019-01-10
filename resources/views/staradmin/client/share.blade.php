@@ -65,7 +65,8 @@ imagefill( $mainimg, 0, 0, $white );
 // Merge the red image onto the PNG image
 //imagecopymerge( $image, $mainimg, -10, 611, 0, 0, 190, 190, 100 );
 
-imagecopymerge( $image, $mainimg, 13, 641, 0, 0, 132, 132, 100 );
+// imagecopymerge( $image, $mainimg, 13, 641, 0, 0, 132, 132, 100 );
+imagecopymerge( $image, $mainimg, 0, 641, 0, 0, 132, 132, 100 );
 
 
 ob_start();
