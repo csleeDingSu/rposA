@@ -642,14 +642,14 @@ html, body {
 	color: #ffd200;
 }
 
-.glyphicon {
+#verify-steps .glyphicon {
 	font-size: 20px;
 	display: block;
 	float: left;
 	padding-left: 10px;
 }
 
-.left {
+#verify-steps .left {
 	display: block;
 	padding-bottom: 3px;
 	float: left;
