@@ -64,9 +64,10 @@ return [
     | ahead and set this to a sensible default for you out of the box.
     |
     */
-
-    'timezone' => 'Asia/Kuala_Lumpur',
+  
+    // 'timezone' => 'Asia/Kuala_Lumpur',
     // 'timezone' => 'Asia/Shanghai',
+    'timezone' => env('timezone', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
