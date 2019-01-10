@@ -105,11 +105,11 @@
 						<!--<img data-lazy="{{ asset('/test/main/images/demo/banner.png') }}">-->
 						
 
-						{{ @if(isset($banner)) }}					
-						{{ @foreach($banner as $bner) }}	
+						 @if(isset($banner)) 				
+						 @foreach($banner as $bner) 	
 							<img data-lazy="{{url('/')}}/ad/banner/{{$bner->banner_image}}"  >					
-						{{ @endforeach }}					
-						{{ @endif }}
+						 @endforeach 				
+						 @endif 
 					
 					</div>
 
