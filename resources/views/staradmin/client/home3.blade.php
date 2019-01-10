@@ -257,7 +257,7 @@
       
 		  $(".banner").slick({
 			  autoplay:true,
-			  autoplaySpeed:1000,
+			  autoplaySpeed:30000,
 			  arrows:false,
 			  lazyLoad: 'ondemand', // ondemand progressive anticipated
 			  infinite: true,
