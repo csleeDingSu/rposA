@@ -75,6 +75,7 @@
 			</div>
 			<ul class="list-group">
 
+				<!-- VIP专场 -->
 				@if(count($vip_status->where('redeem_state', '3')) > 0)
 					<a href= "/vip">
 				@elseif(count($vip_status->where('redeem_state', '2')) > 0)
@@ -103,25 +104,7 @@
 					</li>
 				</a>
 				
-				<a href="/invitation_list">
-					<li class="list-group-item">
-						<div class="icon-wrapper">
-							<div class="icon-add-friend"></div>
-						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						邀请记录
-					</li>
-				</a>
-				<a href="/redeem/history">
-					<li class="list-group-item">
-						<div class="icon-wrapper">
-							<div class="icon-play"></div>
-						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						我的奖品
-					</li>
-				</a>
-
+				<!-- 兑换奖品 -->
 				<a href="/redeem">
 					<li class="list-group-item">					
 							<div class="icon-wrapper">
@@ -132,6 +115,29 @@
 					</li>
 				</a>
 
+				<!-- 我的奖品 -->
+				<a href="/redeem/history">
+					<li class="list-group-item">
+						<div class="icon-wrapper">
+							<div class="icon-play"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						我的奖品
+					</li>
+				</a>
+
+				<!-- 邀请记录 -->
+				<a href="/invitation_list">
+					<li class="list-group-item">
+						<div class="icon-wrapper">
+							<div class="icon-add-friend"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						邀请记录
+					</li>
+				</a>			
+
+				<!-- 挖宝记录 -->
 				<a href="/allhistory">
 					<li class="list-group-item">
 						<div class="icon-wrapper">
@@ -142,6 +148,7 @@
 					</li>
 				</a>
 
+				<!-- 挖宝攻略 -->
 				<a href="/tips">
 					<li class="list-group-item">
 						<div class="icon-wrapper">
@@ -167,7 +174,7 @@
 					</li>
 				</a>
 
-				<!-- <a href="/customer_service"> -->
+				<a href="#">
 					<li class="list-group-item" id="csBtn">
 						<div class="icon-wrapper">
 							<div class="icon-customer"></div>
@@ -175,7 +182,7 @@
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						联系客服
 					</li>
-				<!-- </a> -->
+				</a>
 
 				<a href = "/logout">
 					<li class="list-group-item">					

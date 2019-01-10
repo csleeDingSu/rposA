@@ -211,10 +211,12 @@ html, body {
 }
 
 .list-group-item {
-	border-bottom: 1px solid #eeeeee;
+	border-top: 1px solid #d9d9d9;
 	border-left: none;
 	border-right: none;
-	font-weight: 600;
+	border-bottom: none;
+	font-size: 16px;
+	padding: 15px 15px;
 }
 
 .first-item {
@@ -229,10 +231,6 @@ html, body {
 	.image-wrapper {
 		width: 280px;
 		height: 70px;
-	}
-
-    .list-group-item {
-		font-size: 12px;
 	}
 
 }
@@ -254,8 +252,8 @@ html, body {
 	float: right;
 	margin-top: -3px;
 	margin-right: 2px;
-	font-weight: 600;
 	color: #007cef;
+	font-size: 16px;
 }
 
 .vip-redeemticket {
@@ -284,22 +282,24 @@ html, body {
 	background: url('/client/images/vip/v3.png') no-repeat;
 	width: 37px;
 	height: 37px;
-	transform: scale(0.52); 
-	-webkit-transform: scale(0.52);
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
+	margin-top: 3px;
 }
 
 .icon-add-friend {
 	background: url('/client/images/game.png') no-repeat -1670px -805px;
 	width: 80px;
 	height: 80px;
-	transform: scale(0.26); 
-	-webkit-transform: scale(0.26);
+	transform: scale(0.28); 
+	-webkit-transform: scale(0.28);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
+	margin-top: 2px;
 }
 
 .icon-play {
@@ -311,28 +311,31 @@ html, body {
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
+	margin-top: 3px;
 }
 
 .icon-play-history {
 	background: url('/client/images/game.png') no-repeat -1670px -962px;
 	width: 80px;
 	height: 60px;
-	transform: scale(0.32); 
-	-webkit-transform: scale(0.32);
+	transform: scale(0.34); 
+	-webkit-transform: scale(0.34);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
+	margin-top: 2px;
 }
 
 .icon-redeem {
 	background: url('/client/images/game.png') no-repeat -1670px -1015px;
 	width: 80px;
 	height: 50px;
-	transform: scale(0.32); 
-	-webkit-transform: scale(0.32);
+	transform: scale(0.34); 
+	-webkit-transform: scale(0.34);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
+	margin-top: 3px;
 }
 
 .icon-withdraw {
@@ -350,11 +353,12 @@ html, body {
 	background: url('/client/images/game.png') no-repeat -1670px -1140px;
 	width: 80px;
 	height: 80px;
-	transform: scale(0.3); 
-	-webkit-transform: scale(0.3);
+	transform: scale(0.28); 
+	-webkit-transform: scale(0.28);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
+	margin-top: 3px;
 }
 
 .icon-customer {
@@ -366,6 +370,7 @@ html, body {
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
+	margin-top: 3px;
 }
 
 .note {
@@ -439,26 +444,6 @@ html, body {
 	font-size: 16px;
 }
 
-.modal-packet-wrapper {
-	width: 360px;
-	height: 390px;
-	top: 10%;
-	margin: 0 auto;
-}
-
-.modal-packet {
-	width: 730px;
-	height: 830px;
-	font-size: 16px;
-	margin: 0 auto;
-	background-image: url("/client/images/packet.png");
-	background-color: transparent;
-	background-repeat: no-repeat;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
-	-webkit-transform-origin:left top;
-}
-
 .copyvoucher {
 	border: 1px solid #e3e3e3;
 	background: #f0f0f0;
@@ -480,102 +465,16 @@ html, body {
 	background-image: linear-gradient(#ffaf08, #ff830b);
 }
 
+.cutBtn {
+	cursor: pointer;
+}
+
 .cutBtn-success {
 	background: #1ba908;
 }
 
 .cutBtn-fail {
 	background: #838383;
-}
-
-.packet-title {
-	color: #3f9e06;
-	font-size: 50px;
-	font-weight: 700;
-	margin-top: 50px;
-}
-
-.packet-title.lose {
-	color: #393939;
-}
-
-.packet-coin-wrapper {
-	margin: -20px auto 30px auto;
-	width: 300px;
-}
-
-.packet-coin {
-	background: url('/client/images/game.png') no-repeat -1674px -715px;
-	width: 82px;
-	height: 82px;
-	transform: scale(1); 
-	-webkit-transform: scale(1);
-	-webkit-transform-origin:left top;
-	display: inline-block;
-	z-index: 100;
-	position: relative;
-	margin-top: 15px;
-}
-
-.packet-point {
-	font-size: 80px;
-	color: #ffee56;
-	display: inline-block;
-    vertical-align:top;
-    padding: 0;
-    margin: 0;
-}
-
-.packet-note {
-	color: #c07e27;
-	font-weight: 700;
-	font-size: 25px;
-	margin-top: 20px;
-}
-
-.packet-instruction {
-	color: white;
-	font-size: 40px;
-	margin-top: 80px;
-	padding-bottom: 20px;
-}
-
-.packet-button {
-	font-size: 40px;
-	color: #e05c96;
-	font-weight: 700;
-	width: 360px;
-	height: 100px;
-	margin: 0 auto;
-	margin-bottom: 25px;
-	padding-top: 20px;
-	cursor: pointer;
-}
-
-.packet-button-note {
-	color: #787878;
-	font-size: 20px;
-	margin-top: -5px;
-}
-
-.packet-button-name {
-	margin-top: -12px;
-}
-
-.packet-acupoint {
-	color: #c81b1b;
-}
-
-@media only screen and (max-width: 360px) {
-	.modal-packet-wrapper {
-		width: 301px;
-		height: 337px;
-	}
-
-	.modal-packet {
-		transform: scale(0.42); 
-		-webkit-transform: scale(0.42);
-	}
 }
 
 .link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
