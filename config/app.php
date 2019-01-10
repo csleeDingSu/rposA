@@ -65,8 +65,8 @@ return [
     |
     */
 
-    // 'timezone' => 'Asia/Kuala_Lumpur',
-    'timezone' => 'Asia/Shanghai',
+    'timezone' => 'Asia/Kuala_Lumpur',
+    // 'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
