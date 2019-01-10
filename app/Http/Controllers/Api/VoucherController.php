@@ -38,15 +38,18 @@ class VoucherController extends Controller
 
     public function show($cid = false,Request $request)
     {
+		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url')->first();
+
         if ($cid)
 		{
-			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);			
+			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);		
 			//pagination already have the count data so no need to call again
 			//$vouchers_total = Voucher::where('category' ,'=' , $cid)->count(); 
 			
 		}
 		else{
 			$vouchers = Voucher::latest()->paginate(5);
+			
 		}
 
 		if ($request->ajax()) {
@@ -73,7 +76,7 @@ class VoucherController extends Controller
         }
 
 		
-        return view('client.home3', compact('vouchers','category','cid','banner','member_mainledger'));
+        return view('client.home3', compact('vouchers','category','cid','banner','member_mainledger', "setting"));
 		
     }
 }

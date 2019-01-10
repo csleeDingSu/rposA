@@ -126,10 +126,10 @@ return [
 	'is_override_core_setting' => '覆盖核心设置',
 	
 	'pending_wechat_verification' => '待验证',
-	'' => '',
-	'' => '',
-	'' => '',
-	'' => '',
+	'mobile' => 'Mobile',
+	'desktop' => 'Desktop',
+	'mobile_default_image_url' => 'Mobile Default Image URL',
+	'desktop_default_image_url' => 'Desktop Default Image URL',
 	'' => '',
 	
 	

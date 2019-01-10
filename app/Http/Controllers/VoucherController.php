@@ -174,7 +174,8 @@ class VoucherController extends BaseController
 			$out = $result[0];
 			if ($out->duplicate_count>0)
 			{
-				echo '<code class="text-danger text-bold display-3"><mark><a href="/voucher/un-showduplicate">'.$out->duplicate_count.'</a></mark></code>';
+				echo '<code class="text-danger text-bold display-3"><mark><a href="/voucher/un-
+				duplicate">'.$out->duplicate_count.'</a></mark></code>';
 			}
 		}
 		else

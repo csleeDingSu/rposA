@@ -114,6 +114,7 @@
                           </div>
                         </div>
                       </div>
+                     
 						  
                     </div>
 					  
@@ -140,9 +141,30 @@
                     </div>
 					  
 					  
-						 
-						 
-						 
+            <div class="row"> 
+                    <div class="col-md-6">
+                        <div class="form-group row"> 
+          							<label for="mobile_default_image_url" class="col-sm-3 col-form-label">@lang('dingsu.mobile_default_image_url')</label>
+                          <div class="col-sm-9">
+                            <select id="mobile_default_image_url" name="mobile_default_image_url" class="form-control">
+                              <option {{old('mobile_default_image_url',$record->mobile_default_image_url)=="_160x160.jpg"? 'selected':''}} value="_160x160.jpg" >@lang('dingsu.mobile')</option>
+                              <option {{old('mobile_default_image_url',$record->mobile_default_image_url)=="_460x460Q90.jpg"? 'selected':''}} value="_460x460Q90.jpg">@lang('dingsu.desktop')</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row"> 
+          							<label for="desktop_default_image_url" class="col-sm-3 col-form-label">@lang('dingsu.desktop_default_image_url')</label>
+                          <div class="col-sm-9">
+                            <select id="desktop_default_image_url" name="desktop_default_image_url" class="form-control">
+                              <option {{old('desktop_default_image_url',$record->desktop_default_image_url)=="_160x160.jpg"? 'selected':''}} value="_160x160.jpg" >@lang('dingsu.mobile')</option>
+                              <option {{old('desktop_default_image_url',$record->desktop_default_image_url)=="_460x460Q90.jpg"? '            selected':''}} value="_460x460Q90.jpg">@lang('dingsu.desktop')</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+              </div>
 						 
 					  
                     <button type="submit" class="btn btn-success mr-2">@lang('dingsu.submit')</button>
