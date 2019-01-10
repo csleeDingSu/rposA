@@ -69,17 +69,20 @@ class GenerateGameResult extends Command
 	
 	private function GenerateGameRandomresult($game,$game_time = 30)
 	{
+		$sec = 0;
+		$tomorrow = Carbon::tomorrow();
+		$totalDuration = 0;
 		$result =  \DB::table('game_result')->where('game_id', '=', $game->id)->latest()->first();
 		
 		$gexptime = Carbon::parse($result->expiry_time);
-		$insdata = [];
+		
 		
 		$now = Carbon::now()->toDateTimeString();
 		
-		$sec = 0;
-		$tomorrow = Carbon::tomorrow();
-		
-		$totalDuration = $tomorrow->diffInSeconds($gexptime);
+		if ($result)
+		{
+			$totalDuration = $tomorrow->diffInSeconds($gexptime);
+		}
 		
 		if ($totalDuration>0)
 		{
@@ -95,8 +98,7 @@ class GenerateGameResult extends Command
 		$i = 1;
 		$unix = 0;
 		while ($i<=3)
-		{			
-			
+		{				
 			$someTime = Carbon::now()->addSeconds($sec);
 			
 			$d['now'] = $someTime->toDateTimeString();
@@ -106,8 +108,7 @@ class GenerateGameResult extends Command
 			$unix = $someTime1->timestamp;
 			
 			$d['expiry'] = $someTime1;
-			$d['unix'] = $unix;
-			
+			$d['unix'] = $unix;			
 			
 			$da    = $this->ResultGenerate($game->id,$d);
 			$sec = $sec +  $game_time;			
@@ -126,7 +127,6 @@ class GenerateGameResult extends Command
 		$id = '1';
 		
 		$this->info('-------------New Result set Inserted----------');
-		
 		
 		
 		$this->info('-------------Clean expired Result----------');
