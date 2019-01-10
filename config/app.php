@@ -67,7 +67,7 @@ return [
 
     // 'timezone' => 'Asia/Kuala_Lumpur',
     // 'timezone' => 'Asia/Shanghai',
-    'timezone' => 'UTC',
+    'timezone' => env('timezone', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
