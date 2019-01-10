@@ -110,10 +110,15 @@ function getProductList(token) {
                                     '<div class="col-xs-3 column-1">' +
                                         '<img class="img-voucher" src="'+ item.package_picurl +'" alt="'+item.package_name+'">' +
                                     '</div>' +
-                                    '<div class="col-xs-6 column-2">' +
-                                        '<div class="description">' + item.package_name + '</div>' +
-                                        '<div class="note">可兑换支付宝红包' + parseInt(data.current_point) + '元</div>' +
-                                        '<div class="icon-coin-wrapper">' +
+                                    '<div class="col-xs-6 column-2">' +                               
+                                        '<div class="description">' + item.package_name + '</div>';
+                                         if (item.min_point > 0) {
+                                            html += '<div class="note">VIP场，收益增10倍！</div>';
+                                         } else {
+                                            html += '<div class="note">积分不够，可用话费卡来兑换。</div>';
+                                         }                               
+                                        //'<div class="note">可兑换支付宝红包' + parseInt(data.current_point) + '元</div>' +                                        
+                                html +='<div class="icon-coin-wrapper">' +
                                             '<div class="icon-coin"></div>' +
                                         '</div>' +
                                         '<div class="w-coin">'+ item.min_point +'</div>' +
@@ -188,7 +193,7 @@ function getProductList(token) {
 
                                                     '<div class="wrapper modal-full-height bg-vip-copy modal-body">' +
                                                         '<span class="vip-copy">复制淘口令，打开淘宝APP购买<br />' +
-                                                        '每100元可兑换一次VIP入场卷</span>' +
+                                                        '每' + item.package_price + '元可兑换一次VIP入场卷</span>' +
                                                         '<div class="modal-card">' +
                                                             '<div id="cut" class="copyvoucher">¥ K8454DFGH45H</div>' +
                                                             '<div class="cutBtn">一键复制</div>' +
@@ -262,7 +267,7 @@ function getProductList(token) {
                                 '</div>' +
                                 '<div class="col-xs-6 column-2">' +
                                     '<div class="description">' + item.product_name + '</div>' +
-                                    '<div class="note">可兑换支付宝红包' + parseInt(data.current_point) + '元</div>' +
+                                    '<div class="note">兑换支付宝红包' + item.product_price + '元</div>' +
                                     '<div class="icon-coin-wrapper">' +
                                         '<div class="icon-coin"></div>' +
                                     '</div>' +
