@@ -71,9 +71,8 @@ class VoucherController extends BaseController
 		return response()->json(['success' => false, 'record' => '']);
 	}
 	public function get_voucher_list()
-	{
-		
-		$result =  DB::table('vouchers')->paginate(200);
+	{		
+		$result =  DB::table('vouchers')->latest()->paginate(200);
 		$data['page'] = 'voucher.voucherlist'; 
 		$data['sys_title']  = Voucher::get_csvtitle(); 		
 		$data['result'] = $result;
