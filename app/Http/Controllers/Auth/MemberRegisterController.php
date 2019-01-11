@@ -62,6 +62,9 @@ class MemberRegisterController extends Controller
 			'phone.required' =>trans('auth.phone_empty'),
 			'password.min' =>trans('auth.password_not_min'),
 			'password.confirmed' =>trans('auth.password_not_same'),
+			'username.exists' =>trans('auth.username_notavailable'),
+			'phone.exists' =>trans('auth.phone_notavailable'),
+			
 			
 		]);
 		
@@ -78,6 +81,8 @@ class MemberRegisterController extends Controller
 				'phone.required' =>trans('auth.phone_empty'),
 				'password.min' =>trans('auth.password_not_min'),
 				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.exists' =>trans('auth.phone_notavailable'),
 				
 			]
         );
@@ -153,6 +158,9 @@ class MemberRegisterController extends Controller
 				'password.min' =>trans('auth.password_not_min'),
 				'phone.min' =>trans('auth.phone_not_min'),
 				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.exists' =>trans('auth.phone_notavailable'),
+				
 				
 			]
         );
