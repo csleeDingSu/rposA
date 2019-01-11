@@ -146,29 +146,46 @@ class MemberLoginController extends Controller
              'username'   => $request['username'],			
 		     'password'   => $request['password'],
               ];
+
+        // if (preg_match('/^[0-9]{7}+$/', $request['username'])) {
+        //    $rule = 'exists:members,phone';
+        // }
+        // else {
+        //    $rule = 'exists:members,username';
+        // }
 		
 		$validator = Validator::make($input, 
             [
-                'username' => 'required|string|min:1|max:50',
+                // 'username' => 'required|string|min:1|max:50',
                 'password' => 'required|alphaNum|min:5|max:50',
-                //'username' => 'required|string|min:1|max:50|exists:members,username',
-                //'password' => 'required|alphaNum|min:5|max:50|exists:members,password',
+                'username' => 'required|string|min:1|max:50|exists:members,username',
             ],
 			[
                 'username.required' =>trans('auth.username_empty'),
                 'password.required' =>trans('auth.password_empty'),
                 'password.min' =>trans('auth.password_not_min'),
-                
-				//'username.required' =>trans('auth.log_username_empty'),
-                //'password.required' =>trans('auth.log_password_empty'),
-                //'password.min' =>trans('auth.log_password_not_min'),
-                //'username.exists' =>trans('auth.username_notexists'),
-                //'password.exists' =>trans('auth.password_notexists'),
+                'username.exists' =>trans('auth.username_notexists'),
 			]
         );
 		
 		if ($validator->fails()) {
-            return response()->json(['success' => false, 'message' => $validator->errors()->all()],200);
+            //2nd validation
+            $validator = Validator::make($input, 
+                [
+                    'username' => 'required|string|min:1|max:50|exists:members,phone',
+                ],
+                [
+                    'username.required' =>trans('auth.username_empty'),
+                    'username.exists' =>trans('auth.username_notexists'),
+                ]
+            );
+
+            if ($validator->fails()) {
+
+                return response()->json(['success' => false, 'message' => $validator->errors()->all()],200);
+            
+            }
+
 		}
                
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
