@@ -24,9 +24,9 @@ return [
     'password_not_min' => 'The password must be at least 5 characters.',
     'phone_not_min' => 'The phone number must be at least 4 characters.',
     'password_not_same' => 'Confirmation password not same.',  
+    'username_notavailable' => 'The username has been taken.', 
+    'phone_notavailable' => 'The phone number has been taken.',
 
-
-    too_many_login_attempts
 
 
 
