@@ -357,8 +357,9 @@ function bindCalculateButton(token){
 
         var user_id = $('#hidUserId', window.parent.document).val();
         var selected = $('div.clicked', window.parent.document).find('input:radio').val();
+        var level = parseInt($('#hidLevel', window.parent.document).val());
 
-        if (typeof selected == 'undefined'){
+        if (typeof selected == 'undefined' && level == 1) {
             $.ajax({
                 type: 'POST',
                 url: "/api/check-redeem",
