@@ -13,7 +13,21 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
+    //'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'username_empty' => 'Please key in your username.',
+    'password_empty' => 'Please key in your password.',
+    'username_notexists' => 'Username does not exist.',
+    'too_many_login_attempts' => 'You have attempts failed too many times',
+    'username_notexists' => 'Username does not exist.',
+    'phone_empty' => 'Please key in your phone number.',
+    'password_not_min' => 'The password must be at least 5 characters.',
+    'phone_not_min' => 'The phone number must be at least 4 characters.',
+    'password_not_same' => 'Confirmation password not same.',  
+
+
+    too_many_login_attempts
+
+
 
 ];
