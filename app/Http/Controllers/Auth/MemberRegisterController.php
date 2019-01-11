@@ -55,7 +55,18 @@ class MemberRegisterController extends Controller
             'username' => 'required|string|min:4|max:50',
             'email' => 'required|string|email|max:255|unique:members',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+        ],
+		[
+			'username.required' =>trans('auth.username_empty'),
+			'password.required' =>trans('auth.password_empty'),
+			'phone.required' =>trans('auth.phone_empty'),
+			'password.min' =>trans('auth.password_not_min'),
+			'password.confirmed' =>trans('auth.password_not_same'),
+			'username.exists' =>trans('auth.username_notavailable'),
+			'phone.exists' =>trans('auth.phone_notavailable'),
+			
+			
+		]);
 		
 		
 		return $validator = $this->validate(
@@ -63,7 +74,17 @@ class MemberRegisterController extends Controller
             [
                 'username' => 'required|string|min:4|max:50',
                 'password' => 'required|alphaNum|min:5|max:50',
-            ]
+            ],
+			[
+				'username.required' =>trans('auth.username_empty'),
+				'password.required' =>trans('auth.password_empty'),
+				'phone.required' =>trans('auth.phone_empty'),
+				'password.min' =>trans('auth.password_not_min'),
+				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.exists' =>trans('auth.phone_notavailable'),
+				
+			]
         );
     }
 	
@@ -129,7 +150,19 @@ class MemberRegisterController extends Controller
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
 				//'email' => 'required|email|min:4|max:50|unique:members,email',
                 'password' => 'required|alphaNum|min:5|max:50|confirmed',                
-            ]
+            ],
+			[
+				'username.required' =>trans('auth.username_empty'),
+				'phone.required' =>trans('auth.phone_empty'),
+				'password.required' =>trans('auth.password_empty'),
+				'password.min' =>trans('auth.password_not_min'),
+				'phone.min' =>trans('auth.phone_not_min'),
+				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.exists' =>trans('auth.phone_notavailable'),
+				
+				
+			]
         );
 		
 		if ($validator->fails()) {
