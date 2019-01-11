@@ -15,6 +15,12 @@ return [
 
     //'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'username_empty' => 'Please key in your username.',
+    'password_empty' => 'Please key in your password.',
+    'username_notexists' => 'Username does not exist.',
+    'phone_empty' => 'Please key in your phone number.',
+    'password_not_min' => 'The password must be at least 5 characters.',
+    'failed' => 'These credentials do not match our records.',
     'reg_username_empty' => 'Please key in your username.',
     'reg_password_empty' => 'Please key in your password.',
     'reg_phone_empty' => 'Please key in your phone number.',
