@@ -394,26 +394,128 @@ html, body {
   vertical-align: middle;
 }
 
+/* Modal Box */
 .modal-content, .modal-title {
+    background: white;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-full-height {
+    text-align:center;
+    padding-bottom: 10px;
+    margin: 0 auto;
+}
+
+.modal-wechat {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.modal-title {
+    background: #4c89e2;
+    color: white;
+    text-align: center;
+    margin-top: 10%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.modal-title h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.modal-card {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.copyvoucher {
+    border: 1px solid #e3e3e3;
+    background: #f0f0f0;
+    color: #4380d9;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    font-size: 30px;
+}
+
+.cutBtn, .cutBtn-success, .cutBtn-fail {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 30px;
+    font-size: 20px;
+    color: white;
+    padding: 6px;
+    background-image: linear-gradient(#ffaf08, #ff830b);
+}
+
+.cutBtn {
+	cursor: pointer;
+}
+
+.cutBtn-success {
+    background: #1ba908;
+}
+
+.cutBtn-fail {
+    background: #838383;
+}
+
+.instructions, .instructions-dark {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #cdcdcd;
+}
+
+.instructions-dark {
+    color: #bababa;
+}
+
+@media only screen and (max-width: 360px) {
+    .modal-content, .modal-title {
+        width: 270px;
+    }
+
+    .modal-card {
+        width: 230px;
+        margin: 0 auto;
+        font-size: 16px;
+    }
+}
+/* End Modal box */
+
+/* Wechat Modal */
+#verify-steps .modal-content, #verify-steps .modal-title {
 	background: white;
 	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.modal-full-height {
+#verify-steps .modal-full-height {
 	text-align:center;
-	padding-bottom: 10px;
 	margin: 0 auto;
 }
 
-.modal-wechat {
+#verify-steps .modal-wechat {
 	margin-top: 0;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
 
-.modal-title {
+#verify-steps .modal-title {
 	background: #4c89e2;
 	color: white;
 	text-align: center;
@@ -423,114 +525,84 @@ html, body {
 	font-weight: 700;
 }
 
-.modal-title h1 {
+#verify-steps .modal-title h1 {
 	font-size: 20px;
 	margin-bottom: 10px;
 	margin-top: 5px;
 	font-weight: 700;
 }
 
-.modal-card {
+#verify-steps .modal-card {
 	width: 250px;
 	margin: 0 auto;
 	font-size: 16px;
 }
 
-.copyvoucher {
-	border: 1px solid #e3e3e3;
-	background: #f0f0f0;
-	color: #4380d9;
+#verify-steps .copyvoucher {
+	border: 1px solid #dfdfdf;
+	background: #f7f7f7;
+	color: #51abff;
 	margin-left: 10%;
 	margin-right: 10%;
-	margin-bottom: 30px;
+	margin-bottom: 5px;
 	border-radius: 5px;
-	font-size: 30px;
+	padding: 6px;
+	font-size: 20px;
 }
 
-.cutBtn, .cutBtn-success, .cutBtn-fail {
+#verify-steps .cutBtn, #verify-steps .cutBtn-success, #verify-steps .cutBtn-fail {
 	margin-left: 10%;
 	margin-right: 10%;
-	border-radius: 30px;
-	font-size: 20px;
+	border-radius: 5px;
+	font-size: 18px;
 	color: white;
 	padding: 6px;
-	background-image: linear-gradient(#ffaf08, #ff830b);
+	background-color: #51acff;
+	background-image: none;
 }
 
-.cutBtn {
+#verify-steps .cutBtn {
 	cursor: pointer;
 }
 
-.cutBtn-success {
+#verify-steps .cutBtn-success {
 	background: #1ba908;
 }
 
-.cutBtn-fail {
+#verify-steps .cutBtn-fail {
 	background: #838383;
 }
 
-.link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
-	text-decoration: none;
-}
-
-.icon-verify-wrapper {
-	height: 120px;
-	width: 120px;
-	display: inline-block;
-}
-
-.icon-verify {
-	background: url('/client/images/game.png') no-repeat -1389px -17px;
-	width: 380px;
-	height: 380px;
-	transform: scale(0.3); 
-	-webkit-transform: scale(0.3);
-	-webkit-transform-origin:left top;
-	float: left;
-	position: relative;
-	color: #000;
-}
-
-.instructions, .instructions-dark {
-	margin-top: 10px;
-	margin-bottom: 5px;
+#verify-steps .instructions, #verify-steps .instructions-dark {
+	margin-top: 5px;
+	margin-bottom: 10px;
 	font-size: 12px;
 	font-weight: 500;
-	color: #cdcdcd;
+	color: #999;
 }
 
-.instructions-dark {
-	color: #bababa;
+#verify-steps .instructions-dark {
+	margin-bottom: 0px;
 }
 
-.img-step {
-	width: 100%;
-	height: 100%;
-	border-radius: 5px;
-}
-
-.step {
-	margin-top: 5px;
-	color: #f1ff0a;
-}
-
-.step-details {
-	color: white;
-	margin-top: 10px;
-}
-
-.btn-close {
+#verify-steps .btn-close {
 	color: #ffd200;
 	font-size: 16px;
 	margin-top: 10px;
-	width: 270px;
-	padding-left: 30px;
-	display: inline-block;
+	display: block;
+	text-align: center;
+	width: 250px;
+
 }
 
-.btn-close a {
-	text-decoration: none;
-	color: #ffd200;
+#verify-steps .btn-close a {
+	text-decoration: underline;
+	color: #f7ff22;
+}
+
+#verify-steps .body-title {
+	color: #51abff;
+	font-size: 18px;
 }
 
 #verify-steps .glyphicon {
@@ -547,16 +619,39 @@ html, body {
 	padding-left: 10px;
 }
 
-@media only screen and (max-width: 360px) {
-	.modal-content, .modal-title {
-		width: 270px;
-	}
-
-	.modal-card {
-		width: 230px;
-		margin: 0 auto;
-		font-size: 16px;
-	}
+#verify-steps .modal-title {
+	background: url('/client/images/wechat-header.png') no-repeat;
+	background-size: contain;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+	width: 300px !important;
+	height: 255px;
 }
-/* End Modal box */
+
+#verify-steps .modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 0px;
+	margin-top: 100px;
+	font-weight: 500;
+}
+
+#verify-steps .reward {
+	font-size: 16px;
+}
+
+#verify-steps .reward-amount {
+	font-size: 50px;
+	font-weight: 500;
+}
+
+#verify-steps .reward-instructions {
+	color: #f2ee10;
+	font-weight: 500;
+	font-size: 15px;
+}
+/* End Wechat Modal*/
 

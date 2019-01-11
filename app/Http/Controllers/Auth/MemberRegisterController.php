@@ -52,18 +52,19 @@ class MemberRegisterController extends Controller
     {
         
 		return Validator::make($request, [
-            'username' => 'required|string|min:4|max:50',
+            'username' => 'required|string|min:4|max:50|exists:members,username',
             'email' => 'required|string|email|max:255|unique:members',
             'password' => 'required|string|min:6|confirmed',
         ],
 		[
-			'username.required' =>trans('auth.username_empty'),
-			'password.required' =>trans('auth.password_empty'),
-			'phone.required' =>trans('auth.phone_empty'),
-			'password.min' =>trans('auth.password_not_min'),
-			'password.confirmed' =>trans('auth.password_not_same'),
+			'username.required' =>trans('auth.reg_username_empty'),
+			'password.required' =>trans('auth.reg_password_empty'),
 			'username.exists' =>trans('auth.username_notavailable'),
-			'phone.exists' =>trans('auth.phone_notavailable'),
+			'phone.required' =>trans('auth.reg_phone_empty'),
+			'username.min' =>trans('auth.reg_username_not_min'),
+			'password.min' =>trans('auth.reg_password_not_min'),
+			'username.unique' =>trans('auth.username_notavailable'),
+			'phone.unique' =>trans('auth.phone_notavailable'),
 			
 			
 		]);
@@ -72,17 +73,19 @@ class MemberRegisterController extends Controller
 		return $validator = $this->validate(
             $request,
             [
-                'username' => 'required|string|min:4|max:50',
+                'username' => 'required|string|min:4|max:50|exists:members,username',
                 'password' => 'required|alphaNum|min:5|max:50',
             ],
 			[
-				'username.required' =>trans('auth.username_empty'),
-				'password.required' =>trans('auth.password_empty'),
-				'phone.required' =>trans('auth.phone_empty'),
-				'password.min' =>trans('auth.password_not_min'),
-				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.required' =>trans('auth.reg_username_empty'),
+				'password.required' =>trans('auth.reg_password_empty'),
 				'username.exists' =>trans('auth.username_notavailable'),
-				'phone.exists' =>trans('auth.phone_notavailable'),
+				'phone.required' =>trans('auth.reg_phone_empty'),
+				'username.min' =>trans('auth.reg_username_not_min'),
+				'password.min' =>trans('auth.reg_password_not_min'),
+				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.unique' =>trans('auth.username_notavailable'),
+				'phone.unique' =>trans('auth.phone_notavailable'),
 				
 			]
         );
@@ -152,14 +155,16 @@ class MemberRegisterController extends Controller
                 'password' => 'required|alphaNum|min:5|max:50|confirmed',                
             ],
 			[
-				'username.required' =>trans('auth.username_empty'),
-				'phone.required' =>trans('auth.phone_empty'),
-				'password.required' =>trans('auth.password_empty'),
-				'password.min' =>trans('auth.password_not_min'),
+				'username.required' =>trans('auth.reg_username_empty'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.required' =>trans('auth.reg_phone_empty'),
+				'username.min' =>trans('auth.reg_username_not_min'),
+				'password.required' =>trans('auth.reg_password_empty'),
+				'password.min' =>trans('auth.reg_password_not_min'),
 				'phone.min' =>trans('auth.phone_not_min'),
 				'password.confirmed' =>trans('auth.password_not_same'),
-				'username.exists' =>trans('auth.username_notavailable'),
-				'phone.exists' =>trans('auth.phone_notavailable'),
+				'username.unique' =>trans('auth.username_notavailable'),
+				'phone.unique' =>trans('auth.phone_notavailable'),
 				
 				
 			]

@@ -72,6 +72,10 @@ body {
     background-image: linear-gradient(#ffaf08, #ff830b);
 }
 
+.cutBtn {
+    cursor: pointer;
+}
+
 .cutBtn-success {
     background: #1ba908;
 }
