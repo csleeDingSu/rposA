@@ -52,18 +52,42 @@ class MemberRegisterController extends Controller
     {
         
 		return Validator::make($request, [
-            'username' => 'required|string|min:4|max:50',
+            'username' => 'required|string|min:4|max:50|exists:members,username',
             'email' => 'required|string|email|max:255|unique:members',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+        ],
+		[
+			'username.required' =>trans('auth.reg_username_empty'),
+			'password.required' =>trans('auth.reg_password_empty'),
+			'username.exists' =>trans('auth.username_notavailable'),
+			'phone.required' =>trans('auth.reg_phone_empty'),
+			'username.min' =>trans('auth.reg_username_not_min'),
+			'password.min' =>trans('auth.reg_password_not_min'),
+			'username.unique' =>trans('auth.username_notavailable'),
+			'phone.unique' =>trans('auth.phone_notavailable'),
+			
+			
+		]);
 		
 		
 		return $validator = $this->validate(
             $request,
             [
-                'username' => 'required|string|min:4|max:50',
+                'username' => 'required|string|min:4|max:50|exists:members,username',
                 'password' => 'required|alphaNum|min:5|max:50',
-            ]
+            ],
+			[
+				'username.required' =>trans('auth.reg_username_empty'),
+				'password.required' =>trans('auth.reg_password_empty'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.required' =>trans('auth.reg_phone_empty'),
+				'username.min' =>trans('auth.reg_username_not_min'),
+				'password.min' =>trans('auth.reg_password_not_min'),
+				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.unique' =>trans('auth.username_notavailable'),
+				'phone.unique' =>trans('auth.phone_notavailable'),
+				
+			]
         );
     }
 	
@@ -129,7 +153,21 @@ class MemberRegisterController extends Controller
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
 				//'email' => 'required|email|min:4|max:50|unique:members,email',
                 'password' => 'required|alphaNum|min:5|max:50|confirmed',                
-            ]
+            ],
+			[
+				'username.required' =>trans('auth.reg_username_empty'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.required' =>trans('auth.reg_phone_empty'),
+				'username.min' =>trans('auth.reg_username_not_min'),
+				'password.required' =>trans('auth.reg_password_empty'),
+				'password.min' =>trans('auth.reg_password_not_min'),
+				'phone.min' =>trans('auth.phone_not_min'),
+				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.unique' =>trans('auth.username_notavailable'),
+				'phone.unique' =>trans('auth.phone_notavailable'),
+				
+				
+			]
         );
 		
 		if ($validator->fails()) {

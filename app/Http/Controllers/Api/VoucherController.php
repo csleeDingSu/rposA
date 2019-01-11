@@ -53,7 +53,7 @@ class VoucherController extends Controller
 		}
 
 		if ($request->ajax()) {
-    		$view = view('client.ajaxhome',compact('vouchers'))->render();
+    		$view = view('client.ajaxhome',compact('vouchers', 'setting'))->render();
             return response()->json(['html'=>$view]);
         }
 		

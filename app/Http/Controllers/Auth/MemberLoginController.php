@@ -138,6 +138,7 @@ class MemberLoginController extends Controller
         );
     }
     
+
     
     public function dologin(Request $request) {		
 		
@@ -148,9 +149,25 @@ class MemberLoginController extends Controller
 		
 		$validator = Validator::make($input, 
             [
-                'username' => 'required|string|min:1|max:50',
-                'password' => 'required|alphaNum|min:5|max:50',
-            ]
+                'username' => 'required|string|min:1|max:50|exists:members,username',
+                'password' => 'required|alphaNum|min:5|max:50|exists:members,password',
+            ],
+			[
+				'username.required' =>trans('auth.log_username_empty'),
+                'password.required' =>trans('auth.log_password_empty'),
+                'password.min' =>trans('auth.log_password_not_min'),
+                'username.exists' =>trans('auth.username_notexists'),
+                'password.exists' =>trans('auth.password_notexists'),
+
+
+
+
+                
+                
+
+
+				
+			]
         );
 		
 		if ($validator->fails()) {

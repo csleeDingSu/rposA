@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>数据报表</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<style>
+  html,
+      body {
+        height: 100%;
+        overflow-y: auto;
+      }
+    </style>
+
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+
+      <div class="layui-col-md12">
+
+        <div class="layui-card">
+          <div class="layui-card-header">数据报表</div>
+          <div class="layui-card-body">
+            <div class="layui-form-item">
+              <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal caiwu">财务数据</button>
+              </div>
+              <div class="layui-inline">
+                <button class="layui-btn layui-btn-primary yonghu">用户数据</button>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-inline">
+                <input type="text" class="layui-input" style="width:250px" placeholder="搜索用户：输入用户手机号码" />
+              </div>
+              <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal">搜索</button>
+              </div>
+              <div class="layui-inline">
+                <label class="layui-form-label">注册日期</label>
+                <div class="layui-input-inline">
+                  <input type="text" class="layui-input" id="date1" placeholder="yyyy年MM月dd日" lay-key="13" />
+                </div>
+                <label class="layui-form-mid">至</label>
+                <div class="layui-input-inline">
+                  <input type="text" class="layui-input" id="date2" placeholder="dd/MM/yyyy" lay-key="14" />
+                </div>
+              </div>
+              <div class="layui-inline">
+                <button class="layui-btn layui-btn-normal">筛选</button>
+              </div>
+            </div>
+
+            <table class="layui-hide" id="table" lay-filter="table"></table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../layuiadmin/layui/layui.js"></script>
+  <script>
+    layui.config({
+      base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+      index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'table', 'laydate'], function () {
+      var $ = layui.$
+        , admin = layui.admin
+        , element = layui.element
+        , form = layui.form;
+      var table = layui.table;
+      var laydate = layui.laydate;
+      //日期时间选择器
+      laydate.render({
+        elem: '#date1'
+        , type: 'date'
+        , theme: '#1E9FFF'
+      });
+      laydate.render({
+        elem: '#date2'
+        , type: 'date'
+        , theme: '#1E9FFF'
+      });
+
+      table.render({
+        elem: '#table'
+        , url: layui.setter.base + 'json/test.js'
+        , cellMinWidth: 140 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        , totalRow: true
+        , cols: [[
+          // {type:'checkbox'},
+          { field: 'loginTime', width: '10%', title: '日期', totalRowText: '合计', }
+          , { field: 'czMoney2', title: '平台收入', totalRow: true }
+          , { field: 'cashMoney', title: '平台支出', }
+          , { field: 'cashMoney', title: '中奖金额', }
+          , { field: 'cashMoney', title: '未中奖金额', }
+          , { field: 'tzDetail', title: '盈亏金额', }
+          , { field: 'tzTotal', title: '充值次数', }
+          , { field: 'total', title: '充值用户', }
+          , { field: 'tzTotal', title: '提现次数', }
+          , { field: 'total', title: '提现用户', }
+        ]]
+        , page: { theme: '#0290ff' }
+      });
+
+      $('.caiwu').click(function () {
+        $(this).addClass('layui-btn-normal').removeClass('layui-btn-primary');
+        $('.yonghu').addClass('layui-btn-primary').removeClass('layui-btn-normal');
+        table.render({
+        elem: '#table'
+        , url: layui.setter.base + 'json/test.js'
+        , cellMinWidth: 140 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        , totalRow: true
+        , cols: [[
+          // {type:'checkbox'},
+          { field: 'loginTime', width: '10%', title: '日期', totalRowText: '合计', }
+          , { field: 'czMoney2', title: '平台收入', totalRow: true }
+          , { field: 'cashMoney', title: '平台支出', }
+          , { field: 'cashMoney', title: '中奖金额', }
+          , { field: 'cashMoney', title: '未中奖金额', }
+          , { field: 'tzDetail', title: '盈亏金额', }
+          , { field: 'tzTotal', title: '充值次数', }
+          , { field: 'total', title: '充值用户', }
+          , { field: 'tzTotal', title: '提现次数', }
+          , { field: 'total', title: '提现用户', }
+        ]]
+        , page: { theme: '#0290ff' }
+      });
+      });
+
+      $('.yonghu').click(function () {
+        $(this).addClass('layui-btn-normal').removeClass('layui-btn-primary');
+        $('.caiwu').addClass('layui-btn-primary').removeClass('layui-btn-normal');
+        table.render({
+        elem: '#table'
+        , url: layui.setter.base + 'json/test.js'
+        , cellMinWidth: 140 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+        , totalRow: true
+        , cols: [[
+          // {type:'checkbox'},
+          { field: 'loginTime', width: '10%', title: '日期', totalRowText: '合计', }
+          , { field: 'cashIcon', title: '新注册用户', totalRow: true }
+          , { field: 'cashIcon', title: '在线IP', }
+          , { field: 'cashIcon', title: '首冲人数', }
+          , { field: 'cashIcon', title: '压住人数', }
+          , { field: 'cashIcon', title: '目前总人数', }
+          , { field: 'cashIcon', title: '自选投注', }
+          , { field: 'cashIcon', title: '方案投注', }
+        ]]
+        , page: { theme: '#0290ff' }
+      });
+      });
+
+    });
+  </script>
+</body>
+
+</html>
