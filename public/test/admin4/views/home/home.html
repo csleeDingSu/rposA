@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>首页</title>
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all" />
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all" />
+  <link rel="stylesheet" href="../../layuiadmin/style/being.css" media="all" />
+</head>
+
+<style>
+  html,
+    body {
+      height: 100%;
+      overflow-y: auto;
+    }
+  </style>
+
+<body style="background:#2f8cff;">
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md9">
+        <div class="layui-card" style="background:none;box-shadow: none">
+          <h2 class="b-title">待办事项</h2>
+          <div class="layui-row layui-col-space20">
+            <div class="layui-col-md6">
+              <div class="homeIn">
+                <h1>充值申请</h1>
+                <img src="../../layuiadmin/images/imgIcon.png" />
+                <h2>
+                  <font color="#f75f5f">750</font>人
+                </h2>
+                <p>申请充值未处理</p>
+                <a class="layui-btn layui-btn-normal layui-btn-radius">查看处理</a>
+              </div>
+            </div>
+            <div class="layui-col-md6">
+              <div class="homeIn">
+                <h1>提现申请</h1>
+                <img src="../../layuiadmin/images/imgIcon-2.png" />
+                <h2>
+                  <font color="#f75f5f">750</font>人
+                </h2>
+                <p>申请提现未处理</p>
+                <a class="layui-btn layui-btn-normal layui-btn-radius">查看处理</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card" style="background:none;box-shadow: none">
+          <h2 class="b-title">投注数据</h2>
+          <div class="layui-card-body" style="background:#fff; border-radius:10px">
+            <ul class="layui-row">
+              <li class="layui-col-md5">
+                <div class="b-btnBox">
+                  <a class="on">今日投注</a> <a>本周投注</a> <a>本月投注</a>
+                </div>
+              </li>
+              <li class="layui-col-md7">
+                <div class="layui-form-item" style=" text-align: right">
+                  <div class="layui-inline">
+                    <label class="layui-form-label">日期选择</label>
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="date1" placeholder="yyyy年MM月dd日" lay-key="13" />
+                    </div>
+                    <label class="layui-form-mid">至</label>
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="date2" placeholder="dd/MM/yyyy" lay-key="14" />
+                    </div>
+                  </div>
+                  <div class="layui-inline">
+                    <button class="layui-btn layui-btn-normal">筛选</button>
+                  </div>
+                </div>
+
+              </li>
+            </ul>
+            <ul class="layui-row homeList">
+              <li class="layui-col-xs4">
+                <h2>平台收入</h2>
+                <h3>
+                  <font color="#f75f5f">¥852222.00</font>
+                </h3>
+                <p>平台收入金额</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>平台支出</h2>
+                <h3>
+                  <font color="#0ac805">¥852222.00</font>
+                </h3>
+                <p>平台支出金额</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>投注人数</h2>
+                <h3>
+                  <font>300</font>
+                </h3>
+                <p>投注人数统计</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>中奖金额</h2>
+                <h3>36350.00</h3>
+                <p>用户中奖数额</p>
+              </li>
+              <li class="layui-col-md4">
+                <h2>未中奖金额</h2>
+                <h3>
+                  <font color="#2f8cff">¥852222.00</font>
+                </h3>
+                <p>用户未中奖数额</p>
+              </li>
+
+              <li class="layui-col-md4">
+                <h2>盈亏金额</h2>
+                <h3>
+                  <font color="#f75f5f">+2500</font>
+                  <font color="#0ac805">-2500</font>
+                </h3>
+                <p>平台盈亏数额</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md3">
+        <div class="layui-card" style="background:none;box-shadow: none">
+          <h2 class="b-title tabhd"><a class="on">江苏快3</a><a>急速快3</a></h2>
+
+          <div class="layui-card-body tabbd" style="padding:0">
+            <div class="tab" style="background:#fff; border-radius:10px; min-height:200px; box-sizing: border-box; padding:18px 0 0 30px ;">
+              <h2 style="line-height:30px; font-size:16px;">当前期数：江苏线32134781212345</h2>
+              <h2 style="line-height:30px; font-size:16px;">投注人数：345人</h2>
+              <h2 style="line-height:30px; font-size:16px;">投注金币：<font color="f75f5f">12000</font>
+              </h2>
+              <h2 style="line-height:30px;margin-bottom: 10px; font-size:16px;">开奖时间:2018-08-08 15:06</font>
+              </h2>
+              <a class="layui-btn layui-btn-normal layui-btn-radius">查看详情</a>
+            </div>
+            <div class="tab dn" style="background:#fff; border-radius:10px; min-height:200px; box-sizing: border-box; padding:18px 0 0 30px ;">
+              <h2 style="line-height:30px; font-size:16px;">当前期数：急速快线32134781212345</h2>
+              <h2 style="line-height:30px; font-size:16px;">投注人数：345人</h2>
+              <h2 style="line-height:30px; font-size:16px;">投注金币：<font color="f75f5f">12000</font>
+              </h2>
+              <h2 style="line-height:30px;margin-bottom: 10px; font-size:16px;">开奖时间:2018-08-08 15:06</font>
+              </h2>
+              <a class="layui-btn layui-btn-normal layui-btn-radius">查看详情</a>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card" style="background:none;box-shadow: none">
+          <h2 class="b-title">平台数据</h2>
+          <div class="layui-card-body home-total" style="background:#fff; border-radius:10px; height: 428px;">
+            <div class="title">
+              <p>注册用户</p>
+              <span>首冲人数：<font color="#f00">160人</font></span>
+              <span>在线：<font color="#f00">160人</font></span>
+            </div>
+            <div class="layui-card">
+              <div class="layui-carousel layadmin-carousel" style="height:230px" data-anim="fade" lay-filter="LAY-index-normcol">
+                <div carousel-item id="echart1">
+                  <div></div>
+                </div>
+              </div>
+              <hr style="margin:5px 0">
+              <div class="layui-carousel layadmin-carousel" style="height:230px" data-anim="fade" lay-filter="LAY-index-normcol">
+                  <div carousel-item id="echart2">
+                    <div></div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="../../layuiadmin/layui/layui.js"></script>
+    <script>
+      layui.config({
+        base: "../../layuiadmin/" //静态资源所在路径
+      }).extend({
+        index: "lib/index" //主入口模块
+      }).use(["index", "sample", 'laydate', 'jquery', 'carousel', 'echarts'], function () {
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+        var echarts = layui.echarts;
+
+        //日期时间选择器
+        laydate.render({
+          elem: '#date1'
+          , type: 'date'
+          , theme: '#1E9FFF'
+        });
+        laydate.render({
+          elem: '#date2'
+          , type: 'date'
+          , theme: '#1E9FFF'
+        });
+
+        $('.tabhd').on('click', 'a', function () {
+          let that = $(this);
+          let i = that.index();
+          that.addClass('on').siblings().removeClass('on');
+          console.log(i);
+          $('.tabbd').find('.tab').eq(i).fadeIn(0).siblings().fadeOut(0);
+        });
+
+        //标准柱状图
+        var echnormcol = [], normcol = [
+          {
+            title: {
+              show: false,
+            },
+            tooltip: {
+              show: false,
+            },
+            legend: {
+              show: false,
+              data: ['首冲人数']
+            },
+            calculable: true,
+            grid: {
+              x: '30',
+              x2: '10',
+              y: '20',
+              y2: '30',
+              borderWidth:0,
+            },
+            xAxis: [
+              {
+                splitLine:{show: false},//去除网格线
+                splitArea : {show : false},//保留网格区域
+                type: 'category',
+                data: ['一', '二', '三', '四', '五', '六', '七',],
+                axisLine: {
+                  lineStyle: {
+                    width: '1',
+                    color: "#333"
+                  }
+                },
+              }
+            ],
+            yAxis: [
+              {
+                splitArea : {show : false},//保留网格区域
+                splitLine:{show: false},//去除网格线
+                name: '人数',
+                type: 'value',
+                axisLine: {
+                  lineStyle: {
+                    width: '1',
+                    color: "#333"
+                  }
+                },
+              }
+            ],
+            series: [
+              {
+                name: '人数',
+                type: 'bar',
+                data: [2, 4, 7, 23, 25, 76, 135,],
+                itemStyle: {
+                  normal: {
+                    color: '#ffb83d',
+                    label: {
+                      show: true, //开启显示
+                      position: 'top', //在上方显示
+                      textStyle: { //数值样式
+                        color: 'black',
+                        fontSize: 16
+                      }
+                    }
+                  }
+                },
+
+              },
+
+            ]
+          }
+        ]
+          , elemNormcol = $('#echart1').children('div')
+          , renderNormcol = function (index) {
+            echnormcol[index] = echarts.init(elemNormcol[index], layui.echartsTheme);
+            echnormcol[index].setOption(normcol[index]);
+            window.onresize = echnormcol[index].resize;
+          };
+        if (!elemNormcol[0]) return;
+        renderNormcol(0);
+
+         //标准柱状图
+         var echnormcol = [], normcol = [
+          {
+            title: {
+              show: false,
+            },
+            tooltip: {
+              show: false,
+            },
+            legend: {
+              show: false,
+              data: ['首冲人数']
+            },
+            calculable: true,
+            grid: {
+              x: '30',
+              x2: '10',
+              y: '20',
+              y2: '30',
+              borderWidth:0,
+            },
+            xAxis: [
+              {
+                 splitLine:{show: false},//去除网格线
+                splitArea : {show : false},//保留网格区域
+                type: 'category',
+                data: ['一', '二', '三', '四', '五', '六', '七',],
+                axisLine: {
+                  lineStyle: {
+                    width: '1',
+                    color: "#333"
+                  }
+                },
+              }
+            ],
+            yAxis: [
+              {
+                splitLine:{show: false},//去除网格线
+                splitArea : {show : false},//保留网格区域
+                name: 'IP数',
+                type: 'value',
+                axisLine: {
+                  lineStyle: {
+                    width: '1',
+                    color: "#333"
+                  }
+                },
+              }
+            ],
+            series: [
+              {
+                name: 'IP数',
+                type: 'bar',
+                data: [222, 42, 117, 223, 235, 764, 135,],
+                itemStyle: {
+                  normal: {
+                    color: '#2f8cff',
+                    label: {
+                      show: true, //开启显示
+                      position: 'top', //在上方显示
+                      textStyle: { //数值样式
+                        color: 'black',
+                        fontSize: 16
+                      }
+                    }
+                  }
+                },
+
+              },
+
+            ]
+          }
+        ]
+          , elemNormcol = $('#echart2').children('div')
+          , renderNormcol = function (index) {
+            echnormcol[index] = echarts.init(elemNormcol[index], layui.echartsTheme);
+            echnormcol[index].setOption(normcol[index]);
+            window.onresize = echnormcol[index].resize;
+          };
+        if (!elemNormcol[0]) return;
+        renderNormcol(0);
+
+
+      });
+
+    </script>
+</body>
+
+</html>
