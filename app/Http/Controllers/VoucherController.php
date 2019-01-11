@@ -135,7 +135,7 @@ class VoucherController extends BaseController
 	{
 		
 		
-		$result =  DB::table('unreleased_vouchers')->paginate(204);
+		$result =  DB::table('unreleased_vouchers')->latest()->paginate(204);
 		$data['page'] = 'voucher.unreleasedvoucherlist'; 	
 		$data['files'] =  DB::table('excel_upload')->select('filename')->distinct()->get();
 		$data['sys_title']  = Voucher::get_csvtitle(); 
