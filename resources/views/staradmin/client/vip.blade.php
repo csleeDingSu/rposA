@@ -216,20 +216,26 @@
 
 
 <!-- Steps Modal starts -->
-<form class="form-sample" name="frm-steps" id="frm-steps" action="" method="post" autocomplete="on" >
-	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
+	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: #666666;">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title">
-				<h1>请加客服微信</h1>
-				通过审核才能享受网站福利
+				<h1>您有红包等待领取</h1>
+				<div class="reward">
+					¥ <span class="reward-amount">45.00</span>
+				</div>
+				<div class="reward-instructions">
+					认证后能获得3次挖宝机会<br />
+					每次挖宝机会会能获得15元
+				</div>
 			</div>
 			<div class="modal-content modal-wechat">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
+								<div class="body-title">添加客服认证</div>
 								<div class="instructions">
-									客服微信在线时间：早上8点-晚上9点
+									在线时间：早上8：00～晚上21：00
 								</div>								
 							</div>
 							<div class="row">
@@ -238,8 +244,8 @@
 							</div>
 							<div class="modal-card">
 								<div class="instructions-dark">
-									请按复制按钮，复制成功后到微信添加。<br />
-									如复制不成功，请到微信手动输入添加。
+									请按复制按钮，复制成功后到微信添加<br />
+									如复制不成功，请到微信手动输入添加
 								</div>								
 							</div>
 						</div>
@@ -250,16 +256,13 @@
 			<div class="modal-card">
 				<div class="btn-close">
 					<a href="/">
-						<div class="glyphicon glyphicon-remove-circle"></div>
-						<div class="left"> 不想认证，先逛逛看。</div>
+						不要红包先逛逛看
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-</form> 
 <!-- Steps Modal Ends -->
-
 
 
 <!-- Start Reset Life Max -->
@@ -451,75 +454,6 @@
 
 <!--  end -->
 
-
-<!-- Game Rules Modal -->
-
-	<div class="modal fade col-md-12 col-sm-10" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="game-ruleslabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
-                                
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								
-								<div class="rules-content">
-									转盘每60秒转动一次，随机获得一个幸运号。<br />
-									<br />
-									玩家竞猜【单数】或【双数】，猜中即可获得奖励。<br />
-									<br />
-									每次挖宝机会有1200挖宝币，玩家根据系统设定的6次押宝积分去玩。<br />
-									最多可赚取150挖宝币，赚取的积分能兑换奖品，150挖宝币约等于15元红包。<br />
-									<br />
-									如果连续6次都没猜中，代表挖宝失败，并且会清零本次挖宝所赚的挖宝币。
-								</div>
-													
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
-
-
-<!-- VIP Modal -->
-
-	<div class="modal fade col-md-12 col-sm-10" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content vip-background">
-                <div class="vip-logo-wrapper">
-                	<img class="vip-logo" src="{{ asset('/client/images/vip/vip-big.png') }}" width="44" height="40" />
-                </div>
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card vip-modal-card">
-								<img class="vip-title" src="{{ asset('/client/images/vip/vip-title.png') }}" width="160" height="30" />
-								<div class="vip-card">
-									<img class="img-vip" src="{{ asset('/client/images/vip/v1.png') }}" width="20" height="17" /><div class="vip-card-title">VIP场的结算方式：</div>
-									<div style="clear: both;"></div>
-									<div class="vip-card-desc">原始积分1200可结算，挖宝无上限，想挖多少就挖多少。</div>
-								</div>
-								<div class="vip-card">
-									<img class="img-vip" src="{{ asset('/client/images/vip/v2.png') }}" width="20" height="17" /><div class="normal-card-title">普通场的结算方式：</div>
-									<div style="clear: both;"></div>
-									<div class="normal-card-desc">原始积分1200不可结算，最多可挖宝150，只能结算150挖宝币。</div>
-								</div>
-								<div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费卷</div>
-								<a href="/redeem"><div class="btn-vip-submit">提交</div></a>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
-
 	@parent
 	
 	<script src="{{ asset('/client/cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js') }}"></script>
@@ -536,10 +470,6 @@
 
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
-			});
-
-			$('.btn-rules').click(function(){
-				$('#game-rules').modal('show');
 			});
 
 			if(wechat_status > 0) {

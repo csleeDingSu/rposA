@@ -761,12 +761,6 @@ textarea {
 }
 
 /* Wechat Modal */
-.modal-wechat {
-	margin-top: 0;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-}
-
 #verify-steps .modal-content, .modal-title {
 	background: white;
 	width: 300px;
@@ -774,7 +768,18 @@ textarea {
 	margin-right: auto;
 }
 
-.modal-title {
+#verify-steps .modal-full-height {
+	text-align:center;
+	margin: 0 auto;
+}
+
+#verify-steps .modal-wechat {
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#verify-steps .modal-title {
 	background: #4c89e2;
 	color: white;
 	text-align: center;
@@ -784,71 +789,47 @@ textarea {
 	font-weight: 700;
 }
 
-.modal-title h1 {
+#verify-steps .modal-title h1 {
 	font-size: 20px;
 	margin-bottom: 10px;
 	margin-top: 5px;
 	font-weight: 700;
 }
 
-.btn-close {
-	color: #ffd200;
+#verify-steps .modal-card {
+	width: 250px;
+	margin: 0 auto;
 	font-size: 16px;
-	margin-top: 10px;
-	width: 270px;
-	padding-left: 30px;
-	display: inline-block;
-}
-
-.btn-close a {
-	text-decoration: none;
-	color: #ffd200;
-}
-
-#verify-steps .glyphicon {
-	font-size: 20px;
-	display: block;
-	float: left;
-	padding-left: 10px;
-}
-
-.instructions, .instructions-dark {
-	margin-top: 10px;
-	margin-bottom: 5px;
-	font-size: 12px;
-	font-weight: 500;
-	color: #cdcdcd;
-}
-
-.instructions-dark {
-	color: #bababa;
 }
 
 #verify-steps .copyvoucher {
-	border: 1px solid #e3e3e3;
-	background: #f0f0f0;
-	color: #4380d9;
+	border: 1px solid #dfdfdf;
+	background: #f7f7f7;
+	color: #51abff;
 	margin-left: 10%;
 	margin-right: 10%;
-	margin-bottom: 30px;
-	margin-top: 0;
-	padding: 0;
+	margin-bottom: 5px;
 	border-radius: 5px;
-	font-size: 30px;
+	padding: 6px;
+	font-size: 20px;
 	text-align: center;
 }
 
 #verify-steps .cutBtn, #verify-steps .cutBtn-success, #verify-steps .cutBtn-fail {
-	margin: 0;
 	margin-left: 10%;
 	margin-right: 10%;
-	border-radius: 30px;
-	font-size: 20px;
+	border-radius: 5px;
+	font-size: 18px;
 	color: white;
 	padding: 6px;
-	background-image: linear-gradient(#ffaf08, #ff830b);
+	background-color: #51acff;
+	background-image: none;
 	border: none;
 	text-align: center;
+}
+
+#verify-steps .cutBtn {
+	cursor: pointer;
 }
 
 #verify-steps .cutBtn-success {
@@ -859,14 +840,43 @@ textarea {
 	background: #838383;
 }
 
-#verify-steps .row {
-	width: auto;
-	margin: 0px;
-	margin-right: -15px;
-	margin-left: -15px;
-	padding: 0px;
-	background-color: #ffffff;
+#verify-steps .instructions, #verify-steps .instructions-dark {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #999;
+}
+
+#verify-steps .instructions-dark {
+	margin-bottom: 0px;
+}
+
+#verify-steps .btn-close {
+	color: #ffd200;
+	font-size: 16px;
+	margin-top: 10px;
+	display: block;
 	text-align: center;
+	width: 250px;
+
+}
+
+#verify-steps .btn-close a {
+	text-decoration: underline;
+	color: #f7ff22;
+}
+
+#verify-steps .body-title {
+	color: #51abff;
+	font-size: 18px;
+}
+
+#verify-steps .glyphicon {
+	font-size: 20px;
+	display: block;
+	float: left;
+	padding-left: 10px;
 }
 
 #verify-steps .left {
@@ -876,9 +886,38 @@ textarea {
 	padding-left: 10px;
 }
 
-@media only screen and (max-width: 360px) {
-
-	#verify-steps .row {
-		margin: 0px;
-	}
+#verify-steps .modal-title {
+	background: url('/client/images/wechat-header.png') no-repeat;
+	background-size: contain;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+	width: 300px !important;
+	height: 255px;
 }
+
+#verify-steps .modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 0px;
+	margin-top: 100px;
+	font-weight: 500;
+}
+
+#verify-steps .reward {
+	font-size: 16px;
+}
+
+#verify-steps .reward-amount {
+	font-size: 50px;
+	font-weight: 500;
+}
+
+#verify-steps .reward-instructions {
+	color: #f2ee10;
+	font-weight: 500;
+	font-size: 15px;
+}
+/* End Wechat Modal*/
