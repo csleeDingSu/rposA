@@ -112,20 +112,26 @@
 <!-- Modal Ends -->
 
 <!-- Steps Modal starts -->
-<form class="form-sample" name="frm-steps" id="frm-steps" action="" method="post" autocomplete="on" >
-	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: grey;">
+	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: #666666;">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title">
-				<h1>请加客服微信</h1>
-				通过审核才能享受网站福利
+				<h1>您有红包等待领取</h1>
+				<div class="reward">
+					¥ <span class="reward-amount">45.00</span>
+				</div>
+				<div class="reward-instructions">
+					认证后能获得3次挖宝机会<br />
+					每次挖宝机会会能获得15元
+				</div>
 			</div>
 			<div class="modal-content modal-wechat">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
+								<div class="body-title">添加客服认证</div>
 								<div class="instructions">
-									客服微信在线时间：早上8点-晚上9点
+									在线时间：早上8：00～晚上21：00
 								</div>								
 							</div>
 							<div class="row">
@@ -134,8 +140,8 @@
 							</div>
 							<div class="modal-card">
 								<div class="instructions-dark">
-									请按复制按钮，复制成功后到微信添加。<br />
-									如复制不成功，请到微信手动输入添加。
+									请按复制按钮，复制成功后到微信添加<br />
+									如复制不成功，请到微信手动输入添加
 								</div>								
 							</div>
 						</div>
@@ -146,14 +152,12 @@
 			<div class="modal-card">
 				<div class="btn-close">
 					<a href="/">
-						<div class="glyphicon glyphicon-remove-circle"></div>
-						<div class="left"> 不想认证，先逛逛看。</div>
+						不要红包先逛逛看
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-</form> 
 <!-- Steps Modal Ends -->
 
     @parent
