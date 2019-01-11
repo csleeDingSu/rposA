@@ -632,6 +632,10 @@ hr {
 	border: 1px solid #ff6f48;
 }
 
+.cutBtn {
+	cursor: pointer;
+}
+
 .cutBtn-success {
 	border: 1px solid #1ba908;
 	color: #1ba908;
@@ -826,10 +830,6 @@ textarea {
 	background-image: none;
 	border: none;
 	text-align: center;
-}
-
-#verify-steps .cutBtn {
-	cursor: pointer;
 }
 
 #verify-steps .cutBtn-success {
