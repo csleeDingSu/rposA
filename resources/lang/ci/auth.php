@@ -15,6 +15,11 @@ return [
 
     //'failed' => trans('dingsu.login_credentials_failed'),
     'throttle' => trans('dingsu.login_throttle') . 'seconds seconds.',
+    'username_empty' => '请输入正确手机号码或账户名.',
+    'password_empty' => '请设置登录密码.',
+    'phone_empty' => '请输入正确手机号码或账户名.',
+    'failed' => '账号或密码不匹配, 登录失败.',
+    'password_not_min' => '设置密码数字提示“密码必须6-12位数.',
     'reg_username_empty' => '请输入正确账户名.',
     'reg_phone_empty' => '请输入正确手机号码.',
     'reg_password_empty' => '请设置登录密码.',

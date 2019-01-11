@@ -149,24 +149,21 @@ class MemberLoginController extends Controller
 		
 		$validator = Validator::make($input, 
             [
-                'username' => 'required|string|min:1|max:50|exists:members,username',
-                'password' => 'required|alphaNum|min:5|max:50|exists:members,password',
+                'username' => 'required|string|min:1|max:50',
+                'password' => 'required|alphaNum|min:5|max:50',
+                //'username' => 'required|string|min:1|max:50|exists:members,username',
+                //'password' => 'required|alphaNum|min:5|max:50|exists:members,password',
             ],
 			[
-				'username.required' =>trans('auth.log_username_empty'),
-                'password.required' =>trans('auth.log_password_empty'),
-                'password.min' =>trans('auth.log_password_not_min'),
-                'username.exists' =>trans('auth.username_notexists'),
-                'password.exists' =>trans('auth.password_notexists'),
-
-
-
-
+                'username.required' =>trans('auth.username_empty'),
+                'password.required' =>trans('auth.password_empty'),
+                'password.min' =>trans('auth.password_not_min'),
                 
-                
-
-
-				
+				//'username.required' =>trans('auth.log_username_empty'),
+                //'password.required' =>trans('auth.log_password_empty'),
+                //'password.min' =>trans('auth.log_password_not_min'),
+                //'username.exists' =>trans('auth.username_notexists'),
+                //'password.exists' =>trans('auth.password_notexists'),
 			]
         );
 		
