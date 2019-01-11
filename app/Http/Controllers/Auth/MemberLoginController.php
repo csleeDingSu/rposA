@@ -150,7 +150,15 @@ class MemberLoginController extends Controller
             [
                 'username' => 'required|string|min:1|max:50',
                 'password' => 'required|alphaNum|min:5|max:50',
-            ]
+            ],
+			[
+				'username.required' =>trans('auth.username_empty'),
+                'password.required' =>trans('auth.password_empty'),
+                'password.min' =>trans('auth.password_not_min'),
+
+
+				
+			]
         );
 		
 		if ($validator->fails()) {
