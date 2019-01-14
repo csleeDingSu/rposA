@@ -24,8 +24,26 @@
 									</select>
 								</div>
 							</div>
+						</div>						
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="c_totallimit" class="col-sm-3 col-form-label">@lang('dingsu.total_limit')</label>
+								<div class="col-sm-9">
+									<span id="total_limit" class="total_limit">&nbsp;</span>
+								</div>
+							</div>
 						</div>
-						
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="model_processed" class="col-sm-3 col-form-label">@lang('dingsu.processed') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<span id="processed" class="processed">&nbsp;</span>
+								</div>
+							</div>
+						</div>
 					</div>
 					
 					
