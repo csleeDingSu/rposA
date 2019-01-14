@@ -216,9 +216,8 @@ class DispatchJob extends Command
 		die();
     }
 	
-	public function justupdate()
+	public function justupdate($data)
 	{
-		$data = ['last_run'=>Carbon::now(),'status'=>3,'notes'=>$notes,'unix_last_run'=>Carbon::now()->timestamp];
 		\DB::table('cron_manager')
 			->where('cron_name', $this->cronname)
 			->update($data);
