@@ -82,11 +82,15 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	
 	Route::post('/check-redeem', 'ProductController@vip_redeem_condition')->name('api.vip.redeem_condition');
 	
-	
-	
 	Route::any('/master-call', 'GameController@master_out')->name('api.master.call');
 	
 	Route::any('/master-call-nobet', 'GameController@master_withoutbet')->name('api.master.withoutbet');
+	
+	Route::any('/member-referral-count', 'MemberController@get_introducer_count')->name('api.referral.count');
+	
+	Route::any('/member-referral-list', 'MemberController@get_introducer_history')->name('api.referral.list');
+	
+	Route::any('/member-point-list', 'MemberController@get_wabao_coin_history')->name('api.point.list');
 	
 	
 	

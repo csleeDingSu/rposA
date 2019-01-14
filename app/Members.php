@@ -106,4 +106,25 @@ class Members extends Model
 		$result = DB::table('settings')->select('introduce_life')->where('id', $id)->first();
 		return $result;
 	}
+	
+	public static function get_introducer_count($id)
+	{
+		$result = DB::table('view_member_introduce_count')->where('memberid', $id)->get();
+		
+		return $result;
+	}
+	
+	public static function get_introducer_history($id)
+	{
+		$result = DB::table('members')->select('id','username','firstname','created_at','phone','introducer_life','wechat_verification_status')->where('referred_by', $id)->orderby('created_at','DESC')->get();
+		
+		return $result;
+	}
+	
+	public static function get_wabao_coin_history($id)
+	{
+		$result = DB::table('view_member_introduce_count')->where('memberid', $id)->get();
+		
+		return $result;
+	}
 }
