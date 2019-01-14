@@ -530,6 +530,7 @@ function showProgressBar(bol_show){
         $('.span-balance', window.parent.document).html(0);
 
         $('.payout-info', window.parent.document).html(payout_info).addClass('hide');
+        $('.spanAcuPoint', window.parent.document).html(0);
         checked(7, false);
         changbar(7);
     } else {
@@ -667,6 +668,7 @@ function startTimer(duration, timer, freeze_time, token) {
                     },
                     error: function (error) { console.log(error.responseText) },
                     success: function(data) {
+                        console.log(data);
                         var freeze_time = $('#freeze_time').val();
                         var result = data.game_result;
                         $('#result').val(result);

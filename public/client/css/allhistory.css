@@ -18,6 +18,44 @@ html, body {
 	background-color: #f3f3f3;
 }
 
+/* Tabs */
+.full-width-tabs > .nav-pills > .active > a {
+	text-decoration: none;
+    color: #ff6a42 !important;
+    background-color: #ffffff !important;
+}
+.full-width-tabs > .nav-pills > li > a{
+    border-radius:0px;
+    color:#666666;
+    font-weight: 500;
+    background: #ffffff;
+    font-size: 18px;
+    border-top: 1px solid #f2f2f2;
+    padding: 15px 15px;
+}
+
+.full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.full-width-tabs > ul.nav.nav-pills > li, .modal-row > ul.nav.nav-pills > li{
+	float: none;
+	display: table-cell;
+}
+.full-width-tabs > ul.nav.nav-pills > li > a, .modal-row > ul.nav.nav-pills > li > a{
+	text-align: center;
+}
+
+.take-all-space-you-can{
+	width:100%;
+}
+/* End Tabs */
+
+.tab-content {
+	margin-top: 10px;
+}
+
 .row {
 	height: 70px;
 	color: #cccccc;
@@ -29,8 +67,8 @@ html, body {
 	background: #ffffff;
 }
 
-.row:last-child {
-	border-bottom: 1px solid #e3e3e3;
+.row:first-child {
+	border-top: none;
 }
 
 .column-1 {
