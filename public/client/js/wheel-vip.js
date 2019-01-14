@@ -456,6 +456,7 @@ function bindResetLifeButton(token){
 function showProgressBar(bol_show){
     var level = parseInt($('#hidLevel', window.parent.document).val());
     var consecutive_lose = $('#hidConsecutiveLose', window.parent.document).val();
+    var mergepoint = $('#hidMergePoint', window.parent.document).val();
     var bet_amount = 0;
     var payout_info = '';
     var span_balance = 1200;
@@ -470,6 +471,7 @@ function showProgressBar(bol_show){
         $('.span-balance', window.parent.document).html(0);
 
         $('.payout-info', window.parent.document).html(payout_info).addClass('hide');
+        $('#spanPoint', window.parent.document).html(mergepoint);
         checked(7, false);
         changbar(7);
     } else {
@@ -577,6 +579,7 @@ function startTimer(duration, timer, freeze_time, token) {
             if (consecutive_loss == 'yes') {
                 showProgressBar(false);
                 $('.spanVipPoint', window.parent.document).html(mergepoint);
+                $('#spanPoint', window.parent.document).html(mergepoint);
 
                 $('#reset-life-lose', window.parent.document).modal({backdrop: 'static', keyboard: false});
                 $('.btn-reset-life', window.parent.document).click(function(){
