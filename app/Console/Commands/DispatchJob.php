@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Game;
+use App\CronManager;
 
 class DispatchJob extends Command
 {
@@ -14,23 +15,23 @@ class DispatchJob extends Command
      *
      * @var string
      */
-    protected $signature = 'game:generateresult';
+    protected $signature = 'cron:dispatch {type=noaction}';
 	
-	
-	public $cronname  = 'game_generate_result';
-
-    /**
+	/**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Process Game results';
+    protected $description = 'Initiate Cron Process';
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
+	
+	public $cronname = '';
+	
     public function __construct()
     {
         parent::__construct();
@@ -39,7 +40,7 @@ class DispatchJob extends Command
 	private function runtask()
 	{
 		$this->comment('Stared:'.'----------'.Carbon::now()->toDateTimeString().'----------');
-		$this->call('game:gs', [ ]);
+		$this->call($this->console, $this->argvm);
 		$this->info(' ');			
 		$this->info('-------------Waiting for next queue----------');
 		$this->info(' ');	
@@ -47,7 +48,6 @@ class DispatchJob extends Command
 	
 	private function heartbeat()
 	{
-		$cname  = 'game_generate_result';
 		$row    = \DB::table('cron_manager')->where('cron_name',$this->cronname)->first();
 		
 		if ($row)
@@ -57,7 +57,7 @@ class DispatchJob extends Command
 				$this->error('--> Cron already running or hold by another process.');exit();return FALSE;
 			}
 			
-			$data = ['last_run'=>Carbon::now(),'status'=>1,'notes'=>'','unix_last_run'=>Carbon::now()->timestamp];			
+			$data = ['last_run'=>Carbon::now(),'status'=>1,'notes'=>'','unix_last_run'=>Carbon::now()->timestamp,'total_limit'=>$this->tcount];			
 			
 			\DB::table('cron_manager')
             	->where('cron_name', $this->cronname)
@@ -80,21 +80,26 @@ class DispatchJob extends Command
      */
     public function handle()
     {
-        $cname  = 'game_generate_result';		 
-		$this->error('This not in use');exit();
+        $arguments = $this->argument('type');
+		
+		$cron = CronManager::getcron($arguments);
+		
+		if (!$cron) { $this->error('Unknown Cron...');exit(); }
 		
 		ob_start();
 		
 		$x = 1;
-		$count = 445;
-		$count = env('GAME_GENERATOR_COUNT');
+		$this->tcount   = $count = $cron['limit'];
+		$this->cronname = $cron['name'];
+		$this->console  = $cron['action'];
+		$this->argvm    = $cron['argvm'];
+		//$count = env('GAME_GENERATOR_COUNT');
 		
 		if (empty($count) or $count >= 10000 )
 		{
-			$count = 445;
+			$count = 100;
 		}
 		
-		//$count = 45;
 		$this->holdprocess('yes');
 		
 		while($x <= $count) {
@@ -108,7 +113,7 @@ class DispatchJob extends Command
 			//$chunk =  ['last_run_end'=>$date,'last_run_status'=>'end','notes'=>'success'];
 			//$idd = \DB::table('test')->where('id', $id)->update($chunk);
 			
-			$chunk = ['last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'notes'=>'success'];
+			$chunk = ['last_run'=>Carbon::now(),'unix_last_run'=>Carbon::now()->timestamp,'notes'=>'success','processed'=>$x];
 			\DB::table('cron_manager')->where('cron_name', $this->cronname)->update($chunk);
 			//$x = 1;
 			//$x++;
@@ -117,7 +122,7 @@ class DispatchJob extends Command
 				$this->error('Cleared Memory Cache.');
 				ob_end_clean();
 			}	
-			sleep(3);
+			//sleep(3);
 			$this->holdprocess();
 			$this->error('--> Disconnecting DB...');
 			\DB::disconnect('mysql');
@@ -125,14 +130,11 @@ class DispatchJob extends Command
 			$this->info('Running Count : '.$x.' / '.$count);		
 			
 			
-			$x++;
-			
-			sleep(1);
+			$x++;			
+			//sleep(5);
 		}
 		$this->error('--> Reached Maximum routine...');
 		$this->shutdown();
-		
-		
 		
     }
 	
@@ -185,8 +187,7 @@ class DispatchJob extends Command
 					return;
 				}
 			}
-		}
-		
+		}		
 	}
 		
 	public function shutdown()

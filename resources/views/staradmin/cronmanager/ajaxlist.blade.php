@@ -12,6 +12,8 @@
 								
 								<th>@lang('dingsu.cron_name')</th>
 								<th>@lang('dingsu.last_run')</th>
+								<th>@lang('dingsu.processed')</th>
+								<th>@lang('dingsu.total_limit')</th>								
 								<th>@lang('dingsu.status')</th>
 								<th class="">@lang('dingsu.action')</th>
 							</tr>
@@ -22,7 +24,8 @@
 								<td>{{ $list->id }}</td>
 								<td id="sp_{{$list->id}}">{{ $list->cron_name }}</td>
 								<td id="sl_{{$list->id}}">{{ $list->last_run }}</td>
-								
+								<td id="lp_{{$list->id}}">{{ $list->processed }}</td>		
+								<td id="lu_{{$list->id}}">{{ $list->total_limit }}</td>														
 								<td id="ss_{{$list->id}}">
 									@if($list->status == 1)
 									<label class="badge badge-success">@lang('dingsu.active')</label> 
