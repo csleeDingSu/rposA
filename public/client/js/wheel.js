@@ -668,7 +668,7 @@ function startTimer(duration, timer, freeze_time, token) {
                     },
                     error: function (error) { console.log(error.responseText) },
                     success: function(data) {
-                        console.log(data);
+                        //console.log(data);
                         var freeze_time = $('#freeze_time').val();
                         var result = data.game_result;
                         $('#result').val(result);
