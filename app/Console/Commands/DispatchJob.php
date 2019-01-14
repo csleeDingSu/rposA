@@ -32,7 +32,7 @@ class DispatchJob extends Command
 	
 	public $cronname  = '';
 	
-	public $timelimit = 30;
+	public $timelimit = '30';
 	
     public function __construct()
     {
