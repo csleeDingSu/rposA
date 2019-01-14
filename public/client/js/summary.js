@@ -10,98 +10,47 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getNormalBettingHistory(data.access_token);
-            getVipBettingHistory(data.access_token);
+            getBettingHistory(data.access_token);
         }     
     });
 }
 
-function getNormalBettingHistory(token) {
+function getBettingHistory(token) {
     var user_id = $('#hidUserId').val();
 
-        var container = $('#normal-pagination');
+    $.ajax({
+        type: 'GET',
+        url: "/api/betting-history?gameid=101&memberid=" + user_id,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        success: function(data) {
+            //console.log(data);
+            var records = data.records;
+            var arr = [];
+            var results = [];
 
-        var options = {
-          dataSource: function(done) {
-            $.ajax({
-                type: 'GET',
-                url: "/api/betting-history?gameid=101&memberid=" + user_id,
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                success: function(data) {
-                    //console.log(data);
-                    var results = reverse(data);
-                    //console.log(results);
-                    done(results);
+            for( var name in records ) {
+                arr[name] = records[name];
+            }
+
+            var len = arr.length;
+            while( len-- ) {
+                if( arr[len] !== undefined ) {
+                    results.push(arr[len]);
                 }
-            });
-          },
-          callback: function (response, pagination) {
-            showBettingHistory(response, 'normal');
-          }
-        };
+            }
 
-        container.pagination(options);
-
-}
-
-function getVipBettingHistory(token) {
-    var user_id = $('#hidUserId').val();
-
-        var container = $('#vip-pagination');
-
-        var options = {
-          dataSource: function(done) {
-            $.ajax({
-                type: 'GET',
-                url: "/api/betting-history?gameid=101&vip=yes&memberid=" + user_id,
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                success: function(data) {
-                    //console.log(data);
-                    var results = reverse(data);
-                    //console.log(results);
-                    done(results);
-                }
-            });
-          },
-          callback: function (response, pagination) {
-            showBettingHistory(response, 'vip');
-          }
-        };
-
-        container.pagination(options);
-
-}
-
-function reverse(data) {
-    var records = data.records;
-    var arr = [];
-    var results = [];
-
-    for( var name in records ) {
-        arr[name] = records[name];
-    }
-
-    var len = arr.length;
-    while( len-- ) {
-        if( arr[len] !== undefined ) {
-            results.push(arr[len]);
+            showBettingHistory(results);
         }
-    }
-
-    return results;
+    });
 }
 
-function showBettingHistory(response, type) {
-    //window.console && console.log(response, pagination);
-    var length = response.length;
+ function showBettingHistory(results) {
+    var length = results.length;
 
-    $('#'+ type + '-history').html('');
+    $('#history').html('');
 
      if(length === 0){
         var history =   '<div class="row">' +
@@ -110,11 +59,11 @@ function showBettingHistory(response, type) {
                             '</div>' +
                         '</div>';
 
-        $('#'+ type + '-history').append(history);
+        $('#history').append(history);
 
     } else {
-        //console.log(response);
-        $.each(response, function(bkey, bvalue){
+        //console.log(results);
+        $.each(results, function(bkey, bvalue){
             var history = '';
 
             var betCount = bvalue.length;
@@ -178,7 +127,7 @@ function showBettingHistory(response, type) {
                             '</div>' +
                         '</div>';
 
-                $('#'+ type + '-history').append(history);
+                $('#history').append(history);
             }
         });
     }

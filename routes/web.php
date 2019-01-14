@@ -75,7 +75,9 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/allhistory' );
 	} );
 
-	
+	Route::get( '/summary', function () {
+		return view( 'client/summary' );
+	} );	
 	
 	Route::get( '/results', function () {
 		return view( 'client/results' );

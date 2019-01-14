@@ -534,6 +534,9 @@ function showProgressBar(bol_show){
                 break;
         }
 
+        setTimeout(function(){ 
+            $('.instruction', window.parent.document).html('请猜下一局幸运号是单数或双数');
+        }, 5000);
         $('.span-balance', window.parent.document).html(span_balance);
         $('.bet-container', window.parent.document).html(bet_amount);
 
