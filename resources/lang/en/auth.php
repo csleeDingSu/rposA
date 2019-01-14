@@ -13,7 +13,7 @@ return [
     |
     */
 
-    //'failed' => 'These credentials do not match our records.',
+    'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'reg_username_empty' => 'Please key in your username.',
     'reg_password_empty' => 'Please key in your password.',
@@ -29,6 +29,6 @@ return [
     'reg_username_not_min' => 'Please enter the correct account name.',
     'reg_password_not_min' => 'Password must be 6-12 digits.',
     'log_password_not_min' => 'Password must be 6-12 digits.',
-    'password_notexists' => 'The password is incorrect.',
+    //'password_notexists' => 'The password is incorrect.',
 ];
 
