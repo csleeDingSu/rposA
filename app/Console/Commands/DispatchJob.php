@@ -111,7 +111,7 @@ class DispatchJob extends Command
 			//$chunk =  ['created_at'=>$date,'last_run_end'=>'','last_run_status'=>'stared','notes'=>''];
 			//$id    = \DB::table('test')->insertGetId($chunk);
 			
-			//$this->runtask();
+			$this->runtask();
 			
 			//$chunk =  ['last_run_end'=>$date,'last_run_status'=>'end','notes'=>'success'];
 			//$idd = \DB::table('test')->where('id', $id)->update($chunk);
