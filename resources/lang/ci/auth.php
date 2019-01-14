@@ -13,7 +13,7 @@ return [
     |
     */
 
-    //'failed' => trans('dingsu.login_credentials_failed'),
+    'failed' => '登录密码输入错误.',
     'throttle' => trans('dingsu.login_throttle') . 'seconds seconds.',
     'username_empty' => '请输入正确手机号码或账户名.',
     'password_empty' => '请设置登录密码.',
@@ -36,6 +36,6 @@ return [
     'username_notavailable' => '该账户名已被注册.', 
     'phone_notavailable' => '手机号已注册.', 
     'username_notexists' => '输入账号未注册.',
-    'password_notexists' => '登录密码输入错误.',
+    //'password_notexists' => '登录密码输入错误.',
 
 ];
