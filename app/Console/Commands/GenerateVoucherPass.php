@@ -59,7 +59,7 @@ class GenerateVoucherPass extends Command
             if ($row->product_detail_link)
             {
                 $pass =  $this->getcurl($keyword);
-                
+                $pass =  trim($pass);
                 if ($pass) 
                 {
                     $flag = 1;
