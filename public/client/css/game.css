@@ -387,8 +387,14 @@ body{
 	font-weight: 700;
 }
 
+.long {
+	min-width: 100px;
+	padding-left: 15px;
+	padding-right: 5px;
+}
+
 .number-vip {
-	text-align: left;
+	min-width: 115px;
 }
 
 .btn-rules {
@@ -460,13 +466,6 @@ body{
 
 #spanAcuPoint {
 	padding-right: 5px;
-}
-
-.long {
-	min-width: 100px;
-	padding-left: 15px;
-	padding-right: 5px;
-
 }
 
 .btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {
