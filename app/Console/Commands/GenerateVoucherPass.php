@@ -59,7 +59,7 @@ class GenerateVoucherPass extends Command
             if ($row->product_detail_link)
             {
                 $pass =  $this->getcurl($keyword);
-                
+                $pass =  trim($pass);
                 if ($pass) 
                 {
                     $flag = 1;
@@ -91,14 +91,12 @@ class GenerateVoucherPass extends Command
         $this->info('Process Start Time :'.$starttime);
         $this->info('Process End Time   :'.$endtime);
         
-        $this->line('------- All done -------');
-        
+        $this->line('------- All done -------');        
 		
     }
     
     private function getcurl($keyword)
-    {
-        
+    {        
         //'https://detail.tmall.com/item.htm?id=579853855835',
         $curl = curl_init();
         
@@ -128,9 +126,14 @@ class GenerateVoucherPass extends Command
 		$to   = '￥';
 		$sub  = substr($arr[0], strpos($arr[0],$from)+strlen($from),strlen($arr[0]));
 		$sub  = substr($sub,0,strpos($sub,$to));
-        
-        $sub = '￥'.$sub.'￥';
-		return $sub;
+		$sub  = trim($sub);
+		
+		if ($sub)
+		{
+			$sub = '￥'.$sub.'￥';
+			return $sub;
+		}		
+        return FALSE;
     }
 }
 
