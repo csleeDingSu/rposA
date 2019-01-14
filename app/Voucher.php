@@ -95,7 +95,7 @@ class Voucher extends Model
 	 
 	public static function get_voucher_withoutpass($table = 'vouchers', $limit = 5)
 	{	
-        $result = DB::table($table)->where('pass_access_flag','2')->select('id', 'product_detail_link', 'pass_access_flag')->limit($limit)->get($limit);
+        $result = DB::table($table)->where('pass_access_flag','0')->select('id', 'product_detail_link', 'pass_access_flag')->limit($limit)->get($limit);
 		return $result;
 	}
     
