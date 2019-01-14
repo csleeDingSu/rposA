@@ -59,5 +59,23 @@ class MemberController extends Controller
 		return response()->json(['success' => true,'result' => $result]);
 	}
 	
+	public function get_introducer_count(Request $request)
+	{
+		$result = Member::get_introducer_count($request->memberid);  
+		return response()->json(['success' => true,'result' => $result]);
+	}
 	
+	public function get_introducer_history(Request $request)
+	{
+		$result = Member::get_introducer_history($request->memberid); 
+		return response()->json(['success' => true,'result' => $result]);
+	}
+	
+	
+	public function get_wabao_coin_history(Request $request)
+	{
+		
+		$result = Member::get_wabao_coin_history($request->memberid); 
+		return response()->json(['success' => true,'result' => $result]);
+	}
 }
