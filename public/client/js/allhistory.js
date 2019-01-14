@@ -98,7 +98,7 @@ function reverse(data) {
 }
 
 function showBettingHistory(response, type) {
-    //window.console && console.log(response, pagination);
+    //window.console && console.log(response);
     var length = response.length;
 
     $('#'+ type + '-history').html('');
@@ -162,6 +162,8 @@ function showBettingHistory(response, type) {
             }
 
             if(betCount == -1){
+                var wallet_point = parseInt(last_bet.wallet_point);
+
                 history += '<div style="clear: both"></div>' +
                                 '<div class="date">' + first_bet.created_at + ' 至 ' + last_bet.created_at + '</div>' +
                             '</div>' +
@@ -173,7 +175,7 @@ function showBettingHistory(response, type) {
                                     '</div>' +
                                     
                                     '<div style="clear: both"></div>' +
-                                    '<div class="balance">'+ last_bet.wallet_point +'</div>' +
+                                    '<div class="balance">'+ (isNaN(wallet_point) ? '' : wallet_point) +'</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
