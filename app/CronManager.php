@@ -71,13 +71,13 @@ class CronManager extends Model
 		{
 			case 'voucher_update_pass':
 				$cron['name']   = 'voucher_update_pass';
-				$cron['limit']  = 5;
+				$cron['limit']  = 100;
 				$cron['action'] = 'generate:vpass';
 				$cron['argvm']  = ['type'=> 'vo'];
 			break;
 			case 'unreleasedvoucher_update_pass':
 				$cron['name']   = 'unreleasedvoucher_update_pass';
-				$cron['limit']  = 5;
+				$cron['limit']  = 100;
 				$cron['action'] = 'generate:vpass';
 				$cron['argvm']  = ['type'=> 'uv'];
 			break;		
