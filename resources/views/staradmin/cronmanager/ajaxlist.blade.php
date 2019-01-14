@@ -15,6 +15,7 @@
 								<th>@lang('dingsu.processed')</th>
 								<th>@lang('dingsu.total_limit')</th>								
 								<th>@lang('dingsu.status')</th>
+								<th>@lang('dingsu.notes')</th>
 								<th class="">@lang('dingsu.action')</th>
 							</tr>
 						</thead>
@@ -38,7 +39,7 @@
 									@else 
 									@endif
 								</td>							
-								
+								<td>{{ $list->notes }}</td>
 								<td>
 									<a href="javascript:void(0)" data-id="{{ $list->id }}"  class="editrecord btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>									
 								</td>
