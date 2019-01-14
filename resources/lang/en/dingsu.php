@@ -513,5 +513,13 @@ return [
 	'cron_update_success_msg' => 'Cron successfully Updated',
 	'cron' => 'Cron',
 	'cron_manager' => 'Cron Manager',
+		
+	'cron_update_success_msg' => 'Cron successfully Updated',
+	'processed' => 'Processed',
+	'total_limit' => 'Limit',
+	'not_updated' => 'Not Updated',
+	
+	
+	
 	
 ];

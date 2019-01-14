@@ -59,6 +59,8 @@
 								
 								$('#c_status').val(data.status);
 								$('#lastrun').html(data.last_run);
+								$('#total_limit').html(data.total_limit);
+								$('#processed').html(data.processed);
 								
 								
 								$('#hidden_void').val(id);
