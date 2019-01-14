@@ -30,7 +30,9 @@ class DispatchJob extends Command
      * @return void
      */
 	
-	public $cronname = '';
+	public $cronname  = '';
+	
+	public $timelimit = 300;
 	
     public function __construct()
     {
@@ -84,7 +86,7 @@ class DispatchJob extends Command
 		
 		$cron = CronManager::getcron($arguments);
 		
-		if (!$cron) { $this->error('Unknown Cron...');exit(); }
+		if (!$cron) { $this->error('New process terminated / Unknown Cron...');exit(); }
 		
 		ob_start();
 		
@@ -100,6 +102,7 @@ class DispatchJob extends Command
 			$count = 100;
 		}
 		
+		 
 		$this->holdprocess('yes');
 		
 		while($x <= $count) {
@@ -108,7 +111,7 @@ class DispatchJob extends Command
 			//$chunk =  ['created_at'=>$date,'last_run_end'=>'','last_run_status'=>'stared','notes'=>''];
 			//$id    = \DB::table('test')->insertGetId($chunk);
 			
-			$this->runtask();
+			//$this->runtask();
 			
 			//$chunk =  ['last_run_end'=>$date,'last_run_status'=>'end','notes'=>'success'];
 			//$idd = \DB::table('test')->where('id', $id)->update($chunk);
@@ -131,10 +134,12 @@ class DispatchJob extends Command
 			
 			
 			$x++;			
-			//sleep(5);
+			//sleep(1);
+			
+			$this->successrun = Carbon::now()->toDateTimeString(); 
 		}
 		$this->error('--> Reached Maximum routine...');
-		$this->shutdown();
+		$this->shutdown('Stopped on success');
 		
     }
 	
@@ -146,8 +151,7 @@ class DispatchJob extends Command
 		
 		$result = $row->first();
 		
-		return $result;
-		
+		return $result;		
 	}
 	
 	public function holdprocess($heartbeat = FALSE)
@@ -165,14 +169,20 @@ class DispatchJob extends Command
 				if ($row->status == 2)
 				{
 					$x = 1;
-					$this->info('cron on Hold..');
+					$this->info('process on Hold..');					
+					$finishTime = Carbon::now() ;
+					$totalDuration = $finishTime->diffInSeconds($this->successrun);
+					if ($totalDuration >= $this->timelimit)
+					{
+						$this->error('--> Time Limit Exceeded. process going to kill itself');
+						$this->shutdown();
+					}
 					sleep(10);
 				}
 				elseif ($row->status == 3)
 				{
-					$this->info('--> stopping ResultGenerator...');
-					$this->error('--> process killed itself...');
-					die();
+					$this->error('--> Stopped by Admin');
+					$this->shutdown('Stopped by Admin');
 				}
 				elseif ($row->status == 4)
 				{
@@ -190,17 +200,17 @@ class DispatchJob extends Command
 		}		
 	}
 		
-	public function shutdown()
+	public function shutdown($notes = 'Stopped by cron')
     {
         $this->info('--> stopping ResultGenerator...');	
         $this->run = false;
 		//Stopping Result Generator
-		$data = ['last_run'=>Carbon::now(),'status'=>3,'notes'=>'Stopped.','unix_last_run'=>Carbon::now()->timestamp];			
+		$data = ['last_run'=>Carbon::now(),'status'=>3,'notes'=>$notes,'unix_last_run'=>Carbon::now()->timestamp];			
 			
 		\DB::table('cron_manager')
 			->where('cron_name', $this->cronname)
 			->update($data);
-		$this->info('--> Process kill itself');	
+		$this->info('--> Process killed itself');	
 		die();
     }
 	
