@@ -13,13 +13,13 @@ return [
     |
     */
 
-    'failed' => '登录密码输入错误.',
+    //'failed' => '登录密码输入错误.',
     'throttle' => trans('dingsu.login_throttle') . 'seconds seconds.',
-    'username_empty' => '请输入正确手机号码或账户名.',
-    'password_empty' => '请设置登录密码.',
-    'phone_empty' => '请输入正确手机号码或账户名.',
-    'failed' => '账号或密码不匹配, 登录失败.',
-    'password_not_min' => '设置密码数字提示“密码必须6-12位数.',
+    'username_empty' => '请输入账户与密码.',
+    'password_empty' => '请输入密码.',
+    'phone_empty' => '请输入账户与密码.',
+    'failed' => '登录密码输入错误.',
+    'password_not_min' => '密码必须6-12位数.',
     'reg_username_empty' => '请输入正确账户名.',
     'reg_phone_empty' => '请输入正确手机号码.',
     'reg_password_empty' => '请设置登录密码.',
@@ -28,7 +28,6 @@ return [
     'reg_username_not_min' => '请输入正确账户名.',
     'reg_password_not_min' => '密码必须6-12位数.',
     'log_password_not_min' => '密码必须6-12位数.',
-
 
 
     'phone_not_min' => '请输入正确手机号码.',

@@ -947,17 +947,12 @@ class AdminController extends BaseController
 	
 	
 	public function edit_cron (Request $request)
-	{
-		
-		$data = $request->_datav;
-		
+	{		
+		$data = $request->_datav;		
 		foreach($data as $val)
-		{
-			
-				$dbi[$val['name']] = $val['value'];
-		
-		}
-		
+		{	
+			$dbi[$val['name']] = $val['value'];		
+		}		
 		
 		$id = $dbi['hidden_void'];
 		
@@ -969,11 +964,13 @@ class AdminController extends BaseController
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}	
 		
-		DB::table('cron_manager')
-            	->where('id', $id)
-            	->update($input);
+		//DB::table('cron_manager')
+            //	->where('id', $id)
+            //	->update($input);
 		
 		$badge = '';
+		
+		$dbi['model_status'] = \App\CronManager::cron($id,$dbi['model_status']);
 		
 		switch ( $dbi['model_status'] )
 			{
@@ -989,7 +986,9 @@ class AdminController extends BaseController
 				case '4':
 					$badge = "<label class='badge badge-warning'>".trans('dingsu.restart')."</label> ";
 				break;
-					
+				case '99':
+					$badge = "<label class='badge badge-warning'>".trans('dingsu.not_updated')."</label> ";
+				break;					
 			}
 		$input['status'] = $badge ;
 		

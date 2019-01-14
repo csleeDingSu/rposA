@@ -10,12 +10,12 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getBettingHistory(data.access_token);
+            getSummary(data.access_token);
         }     
     });
 }
 
-function getBettingHistory(token) {
+function getSummary(token) {
     var user_id = $('#hidUserId').val();
 
     $.ajax({
@@ -42,36 +42,36 @@ function getBettingHistory(token) {
                 }
             }
 
-            showBettingHistory(results);
+            showSummary(results);
         }
     });
 }
 
- function showBettingHistory(results) {
+ function showSummary(results) {
     var length = results.length;
 
-    $('#history').html('');
+    //$('#summary').html('');
 
      if(length === 0){
-        var history =   '<div class="row">' +
+        var summary =   '<div class="row">' +
                             '<div class="col-xs-12">' +
                                 '<div class="empty">对不起 - 你现在还没有数据。</div>' +
                             '</div>' +
                         '</div>';
 
-        $('#history').append(history);
+        //$('#summary').append(summary);
 
     } else {
         //console.log(results);
         $.each(results, function(bkey, bvalue){
-            var history = '';
+            var summary = '';
 
             var betCount = bvalue.length;
             var winCount = 0;
             var loseCount = 0;
             var points = 0;
 
-            history =   '<div class="row">' +
+            summary =   '<div class="row">' +
                             '<div class="col-xs-9 column-1">';
 
 
@@ -95,7 +95,7 @@ function getBettingHistory(token) {
                     winCount++;                        
                 }
 
-                history +=   '<div class="' + className + '">' +
+                summary +=   '<div class="' + className + '">' +
                                 '<span class="label"><i class="fa '+ faIcon +'"></i></span>' +
                             '</div>';
 
@@ -111,7 +111,7 @@ function getBettingHistory(token) {
             }
 
             if(betCount == -1){
-                history += '<div style="clear: both"></div>' +
+                summary += '<div style="clear: both"></div>' +
                                 '<div class="date">' + first_bet.created_at + ' 至 ' + last_bet.created_at + '</div>' +
                             '</div>' +
                             '<div class="col-xs-3 column-2">' +
@@ -127,7 +127,7 @@ function getBettingHistory(token) {
                             '</div>' +
                         '</div>';
 
-                $('#history').append(history);
+                //$('#summary').append(summary);
             }
         });
     }

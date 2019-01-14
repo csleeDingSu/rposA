@@ -14,7 +14,7 @@ class GenerateVoucherPass extends Command
      */
     protected $signature = 'generate:vpass {type=vo}';
     
-    public $limit = 100;
+    public $limit = 1;
     public $table = 'vouchers';
 
     /**
@@ -45,7 +45,7 @@ class GenerateVoucherPass extends Command
         $frate = 0;
         $starttime = Carbon::now()->toDateTimeString();
        
-        $this->comment('Stared:'.'----------'.$starttime.'----------');
+       // $this->comment('Stared:'.'----------'.$starttime.'----------');
         
         $arguments = $this->argument('type');
         
@@ -88,10 +88,10 @@ class GenerateVoucherPass extends Command
         $this->info('Processed Count :'.$count);
         $this->info('Success Process Count :'.$srate);
         $this->info('Failed Process Count :'.$frate);
-        $this->info('Process Start Time :'.$starttime);
+        //$this->info('Process Start Time :'.$starttime);
         $this->info('Process End Time   :'.$endtime);
         
-        $this->line('------- All done -------');        
+        $this->line(' ');        
 		
     }
     
