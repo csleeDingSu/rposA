@@ -20,29 +20,15 @@ function getSummary(token) {
 
     $.ajax({
         type: 'GET',
-        url: "/api/betting-history?gameid=101&memberid=" + user_id,
+        url: "/api/member-point-list?memberid=" + user_id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
+        error: function (error) { console.log(error.responseText) },
         success: function(data) {
-            //console.log(data);
-            var records = data.records;
-            var arr = [];
-            var results = [];
-
-            for( var name in records ) {
-                arr[name] = records[name];
-            }
-
-            var len = arr.length;
-            while( len-- ) {
-                if( arr[len] !== undefined ) {
-                    results.push(arr[len]);
-                }
-            }
-
-            showSummary(results);
+            console.log(data);
+            //showSummary(results);
         }
     });
 }
