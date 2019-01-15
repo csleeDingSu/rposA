@@ -153,6 +153,7 @@ html, body {
 
 .description {
 	font-size: 14px;
+	font-weight: bold;
 	color: #626262;
 }
 
@@ -218,7 +219,7 @@ html, body {
 	}
 
 	.description {
-		font-size: 12px;
+		font-size: 14px;
 	}
 
 	.note {
