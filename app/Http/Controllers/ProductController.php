@@ -695,7 +695,7 @@ class ProductController extends BaseController
 				
 		$data['result'] = $result; 
 		
-		
+		print_r($result);die();
 		 if ($request->ajax()) {
             return view('package.pendinglist.ajaxlist', ['result' => $result])->render();  
         }
