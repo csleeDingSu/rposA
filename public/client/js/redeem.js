@@ -112,11 +112,14 @@ function getProductList(token) {
                                     '</div>' +
                                     '<div class="col-xs-6 column-2">' +                               
                                         '<div class="description">' + item.package_name + '</div>';
+                                        html += '<div class="note"></div>';
+                                        /*
                                          if (item.min_point > 0) {
                                             html += '<div class="note">VIP场，收益增10倍！</div>';
                                          } else {
                                             html += '<div class="note">积分不够，可用话费卡来兑换。</div>';
-                                         }                               
+                                         }
+                                         */                               
                                         //'<div class="note">可兑换支付宝红包' + parseInt(data.current_point) + '元</div>' +                                        
                                 html +='<div class="icon-coin-wrapper">' +
                                             '<div class="icon-coin"></div>' +
@@ -267,7 +270,10 @@ function getProductList(token) {
                                 '</div>' +
                                 '<div class="col-xs-6 column-2">' +
                                     '<div class="description">' + item.product_name + '</div>' +
+                                    '<div class="note"></div>' +
+                                    /*
                                     '<div class="note">兑换支付宝红包' + item.product_price + '元</div>' +
+                                    */
                                     '<div class="icon-coin-wrapper">' +
                                         '<div class="icon-coin"></div>' +
                                     '</div>' +
