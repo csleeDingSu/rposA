@@ -14,8 +14,7 @@ $(function () {
 
 	$('.swiper-container').on( 'change.flickity', function( event, index ) {
 		if(index == 1) {
-			document.getElementById('ifm_wheel').contentWindow.clearInterval(timerInterval);
-			document.getElementById('ifm_wheel').contentWindow.getToken();
+			document.getElementById('ifm_wheel').contentWindow.resetTimer();
 		}
 	});
 });
