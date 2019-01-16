@@ -8,7 +8,7 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>@lang('dingsu.id')</th>
+								
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.product') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.username')</th>
