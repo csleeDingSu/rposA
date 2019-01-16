@@ -1,0 +1,55 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>确认提现</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+</head>
+<body>
+
+  <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
+      <h2 style="font-size:20px;color:#f70202; margin-bottom:20px;text-align:center">请核实确认，若用户已完成提现，减去用户金币</h2>
+    <div class="layui-form-item">
+    
+      <label class="layui-form-label">应减金币</label>
+      <div class="layui-input-inline">
+        <input type="text" placeholder="" autocomplete="off" class="layui-input">
+      </div>
+    
+    </div>
+    <div class="layui-form-item">
+    
+        <label class="layui-form-label"></label>
+        <div class="layui-input-block">
+            当前用户金币：<font color="#f84242">1500</font>   提现后剩余金币：<font color="#f84242">500</font>
+        </div>
+      </div>
+    
+     
+   
+    <div class="layui-form-item layui-hide">
+      <input type="button" class="layui-btn layui-btn-normal" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-front-submit" value="修改保存">
+    </div>
+  </div>
+
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form', 'upload'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,upload = layui.upload ;
+    
+
+  })
+  </script>
+</body>
+</html>
