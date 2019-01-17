@@ -17,26 +17,34 @@ function getToken(){
 
 function getSummary(token) {
     var user_id = $('#hidUserId').val();
+    var container = $('#pagination');
 
-    $.ajax({
-        type: 'GET',
-        url: "/api/member-point-list?memberid=" + user_id,
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            console.log(data);
-            //showSummary(results);
-        }
-    });
+    var options = {
+      dataSource: function(done) {
+        $.ajax({
+            type: 'GET',
+            url: "/api/member-point-list?memberid=" + user_id,
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            success: function(data) {
+                done(data.result);
+            }
+        });
+      },
+      callback: function (response, pagination) {
+        showSummary(response);
+      }
+    };
+
+    container.pagination(options);
 }
 
  function showSummary(results) {
     var length = results.length;
 
-    //$('#summary').html('');
+    $('#summary').html('');
 
      if(length === 0){
         var summary =   '<div class="row">' +
@@ -45,76 +53,61 @@ function getSummary(token) {
                             '</div>' +
                         '</div>';
 
-        //$('#summary').append(summary);
+        $('#summary').append(summary);
 
     } else {
-        //console.log(results);
-        $.each(results, function(bkey, bvalue){
-            var summary = '';
+        var summary = '';
+        $.each(results, function(key, value){
+            //console.log(value);
+            var str_type = '';
+            var str_points = '';
+            var d = new Date(value.created_at);
+            var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
+                                ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
-            var betCount = bvalue.length;
-            var winCount = 0;
-            var loseCount = 0;
-            var points = 0;
+            switch(value.credit_type){
+                case 'CRPNT':
+                    str_type = '挖宝成功收益结算';
+                    str_points = '+' + parseInt(value.credit);
+                break;
 
-            summary =   '<div class="row">' +
-                            '<div class="col-xs-9 column-1">';
+                case 'DPNT':
+                    str_type = '兑换话费卡';
+                    str_points = '-' + parseInt(value.debit);
+                break;
 
+                case 'DPVIP':
+                    str_type = '兑换VIP入场卷';
+                    str_points = '-' + parseInt(value.debit);
+                break;
 
-            var first_bet = null;
-            var last = null;
-            var loopCount = 0;
-
-            while( betCount-- ) {
-                if(loopCount == 0) {
-                    first_bet = bvalue[betCount];
-                }
-
-                var className = 'pass';
-                var faIcon = 'fa-check';
-
-                if(bvalue[betCount].is_win == null){
-                    className = 'fail';
-                    faIcon = 'fa-times';
-                    loseCount++;
-                } else {
-                    winCount++;                        
-                }
-
-                summary +=   '<div class="' + className + '">' +
-                                '<span class="label"><i class="fa '+ faIcon +'"></i></span>' +
-                            '</div>';
-
-                loopCount++;
-
-                if(betCount == 0){
-                    last_bet = bvalue[betCount];
-                }
+                case 'DPNT':
+                    str_type = '兑换商品';
+                    str_points = '-' + parseInt(value.debit);
+                break; 
             }
 
-            if(winCount) {
-                points = (winCount + loseCount) * 10;
-            }
-
-            if(betCount == -1){
-                summary += '<div style="clear: both"></div>' +
-                                '<div class="date">' + first_bet.created_at + ' 至 ' + last_bet.created_at + '</div>' +
+            summary +=   '<div class="row">' +
+                            '<div class="col-xs-8 column-1">' +
+                                '<div class="item">'+ str_type +'</div>' +
+                                '<div class="date">' + str_date + '</div>' +
                             '</div>' +
-                            '<div class="col-xs-3 column-2">' +
+                            '<div class="col-xs-4 column-2">' +
                                 '<div class="right-wrapper">' +
-                                    '<div class="points">'+ points +'</div>' +
+                                    '<div class="points">'+ str_points +'</div>' +
                                     '<div class="icon-coin-wrapper">' +
                                         '<div class="icon-coin"></div>' +
                                     '</div>' +
                                     
                                     '<div style="clear: both"></div>' +
-                                    '<div class="balance">'+ last_bet.wallet_point +'</div>' +
+                                    '<div class="balance">'+ value.balance_before +'</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
+            
+        });            
 
-                //$('#summary').append(summary);
-            }
-        });
+        $('#summary').append(summary);
+
     }
 }

@@ -168,3 +168,9 @@ html, body {
 	font-size: 12px;
 	color: #ff8624;
 }
+
+#normal-pagination, #vip-pagination {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	margin-left: 10px;
+}
