@@ -405,6 +405,9 @@ function redeemHistory(token) {
 
                 $.each(package, function(i, item) {
                     counter += 1;
+                    var d = new Date(item.created_at);
+                    var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
+                                ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
                     html += '<div class="history-row">' +
                         '<div class="col-xs-2 column-4">' +
@@ -412,7 +415,7 @@ function redeemHistory(token) {
                         '</div>' +
                         '<div class="col-xs-7 column-5">' +
                             '<div class="description">'+ item.package_name + ' ' + item.package_price + '</div>' +
-                            '<div class="balance">兑换时间:'+ item.created_at +'</div>' +
+                            '<div class="balance">兑换时间:'+ str_date +'</div>' +
                         '</div>';
 
                     if(item.redeem_state == 1) { // Pending
@@ -476,6 +479,9 @@ function redeemHistory(token) {
 
                 $.each(records, function(i, item) {
                     counter += 1;
+                    var d = new Date(item.created_at);
+                    var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
+                                ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
                     html += '<div class="history-row">' +
                         '<div class="col-xs-2 column-4">' +
@@ -483,7 +489,7 @@ function redeemHistory(token) {
                         '</div>' +
                         '<div class="col-xs-7 column-5">' +
                             '<div class="description">'+ item.product_name + ' ' + item.pin_name + '</div>' +
-                            '<div class="balance">兑换时间:'+ item.created_at +'</div>' +
+                            '<div class="balance">兑换时间:'+ str_date +'</div>' +
                         '</div>';
 
                     if(item.pin_status == 4) { // Pending
