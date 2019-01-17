@@ -107,7 +107,7 @@
 
 						 @if(isset($banner)) 				
 						 @foreach($banner as $bner) 	
-							<img data-lazy="{{env('banner_url', 'https://wabao666.com/ad/banner/') . $bner->banner_image}}"  >					
+							<img data-lazy="{{env('banner_url', 'https://wabao666.com/banner/') . $bner->banner_image}}"  >					
 						 @endforeach 				
 						 @endif 
 					
