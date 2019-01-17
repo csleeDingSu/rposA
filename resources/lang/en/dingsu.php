@@ -523,4 +523,12 @@ return [
 	
 	
 	'passcode' => 'passcode',
+	
+	
+	
+	'current_point' => 'Current Point',
+	'add_point' => 'Add Point',
+	
+	
+	 
 ];
