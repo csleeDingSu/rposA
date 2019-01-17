@@ -98,7 +98,7 @@ class ProductController extends Controller
 			
 			$data = ['member_id'=>$memberid,'pin_status'=>4,'request_at'=>$now,'used_point'=>$product->min_point];
 			
-			Wallet::update_ledger($memberid,'debit',$product->min_point,'PNT');
+			Wallet::update_ledger($memberid,'debit',$product->min_point,'RPO');
 			
 			Product::update_pin($product->id, $data);
 			
@@ -183,8 +183,8 @@ class ProductController extends Controller
 					$passcode = unique_random('vip_redeemed','passcode',8);
 					
 					$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>2,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'confimed_at'=>$now,'passcode'=>$passcode];
-
-					Wallet::update_ledger($memberid,'debit',$package->min_point,'PNT',$package->min_point.' Point reserved for VIP package');
+					
+					Wallet::update_vip_wallet($memberid,0,$package->min_point, 'VOP','debit', $package->min_point.' Point reserved for VIP package');
 
 					$dd = Package::save_vip_package($data);
 
@@ -257,7 +257,7 @@ class ProductController extends Controller
 			
 			if ($passcode === $package->passcode)
 			{
-				Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'VIP');
+				Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'RV');
 				
 				$now = Carbon::now();
 				$data = ['redeem_state'=>3,'redeemed_at'=>$now];

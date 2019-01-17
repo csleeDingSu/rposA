@@ -92,7 +92,7 @@ class Wallet extends Model
 					'balance_after'     => $newpoint ,
 					'current_balance'   => $newpoint ,
 					'notes'             => $wallet->vip_point." VIP POINTS MERGED FROM POINT. ".$notes,
-					'credit_type'	    => 'APNT',
+					'credit_type'	    => 'APMNT',
 					];
 
 				$data = [ 

@@ -804,7 +804,7 @@ class GameController extends Controller
 		//deduct a vip life
 		if ($wallet->vip_life >= 1) 
 		{	
-			Wallet::update_vip_wallet($memberid,1,'','debit','life reseted');
+			Wallet::update_vip_wallet($memberid,1,'','RVL','debit','life reseted');
 			$reset = TRUE;			
 		}
 		
