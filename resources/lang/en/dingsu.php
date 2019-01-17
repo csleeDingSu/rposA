@@ -539,6 +539,7 @@ return [
 	'amended' => 'Amended',
 	'added_vip_point_by_redeemed' => 'Added VIP Point by redeemed',
 	'added_vip_life_by_redeemed' => 'Added VIP Life by redeemed',
+	'added_vip_life_by_redeemed' => 'Added VIP life by redeem',
 	
 	
 	 
