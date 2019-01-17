@@ -152,7 +152,7 @@
 </form>
 <!-- Modal Ends -->
 
-<!--Reset Password Modal starts -->
+<!--Add Life/point Modal starts -->
 <form class="form-sample" name="formtopup" id="formtopup" action="" method="post" autocomplete="on">
 	<div class="modal fade" id="topupmode" tabindex="-1" role="dialog" aria-labelledby="topupmode" aria-hidden="true">
 		<div class="modal-dialog modal-md" role="document">
@@ -168,7 +168,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
-								<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.current_life') <span class="text-danger">*</span></label>
+								<label for="clife" class="col-sm-3 col-form-label">@lang('dingsu.current_life')</label>
 								<div class="col-sm-9">
 									<input type="text" readonly class="form-control" name="clife" id="clife" value="" maxlength="50">
 								</div>
@@ -178,7 +178,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
-								<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.add_life')<span class="text-danger">*</span></label>
+								<label for="addlife" class="col-sm-3 col-form-label">@lang('dingsu.add_life')<span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="addlife" id="addlife">
 										<option value="1">1</option>
@@ -191,6 +191,32 @@
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
+								<label for="cpoint" class="col-sm-3 col-form-label">@lang('dingsu.current_point') </label>
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control" name="cpoint" id="cpoint" value="" maxlength="50">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
+								<label for="apoint" class="col-sm-3 col-form-label">@lang('dingsu.add_point')<span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="apoint" id="apoint" value="" maxlength="5">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
@@ -593,6 +619,7 @@ function confirm_Delete(id)	{
 						if (data != null)
 							{
 								$('#clife').val(data.life);
+								$('#cpoint').val(data.current_point);								
 								$('#tid').val(id);
 								$('#topupmode').modal('show');
 							}

@@ -30,7 +30,7 @@
 								</td>
 								<td id="st_{{$list->id}}">
 								
-								<img style="width: 200px !important;height: 200px !important" width="300px" height="200px" class="bannerimg bannerimg_{{$list->id}} img-md  mb-4 mb-md-0 d-block mx-md-auto" src="/ad/banner/{{ $list->banner_image }}" alt="image">
+								<img style="width: 200px !important;height: 200px !important" width="300px" height="200px" class="bannerimg bannerimg_{{$list->id}} img-md  mb-4 mb-md-0 d-block mx-md-auto" src="/banner/{{ $list->banner_image }}" alt="image">
 								
 								</td>
 								

@@ -14,8 +14,8 @@
 							<th>@lang('dingsu.name')</th>
 							<th>@lang('dingsu.create_Date')</th>
 							<th>@lang('dingsu.referred_count')</th>							
-							<th>@lang('dingsu.referred_by')</th>
-							<th>@lang('dingsu.wechat') @lang('dingsu.name')</th>
+							<th>@lang('dingsu.life')</th>
+							<th>@lang('dingsu.current_point') </th>
 							<th>@lang('dingsu.wechat_status')</th>
 							<th>@lang('dingsu.status')</th>
 							<th class="">@lang('dingsu.action')</th>
@@ -39,10 +39,10 @@
 							</td>
 							<td><h6 class="ShowChildMembers text-info font-weight-semibold ml-2" data-id="{{ $list->id }}" data-count="{{ $list->totalcount }}" >{{ $list->totalcount }}</h6> </td>
 							<td>
-								{{ $list->parent }}
+								{{ $list->current_life }}
 							</td>
-							<td class="show_wechat_name_{{ $list->id }}" id="show_wechat_name_{{ $list->id }}">
-								{{ $list->wechat_name }}
+							<td >
+								{{ $list->current_point }}
 							</td>
 							<td onClick="OpenWechatVerification('{{ $list->id }}','{{ $list->wechat_notes }}')" class="show_wechat_verification_{{ $list->id }}">
 								@if($list->wechat_verification_status == 0)
