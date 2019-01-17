@@ -37,7 +37,7 @@
 									<option value="DLRVL">@lang('dingsu.reset') @lang('dingsu.vip') @lang('dingsu.life')</option>
 									<option value="APMNT">@lang('dingsu.vip') @lang('dingsu.point') @lang('dingsu.merged')</option>
 									<option value="APRFN">@lang('dingsu.vip') @lang('dingsu.refund')</option>
-									<option value="ALPRV">@lang('dingsu.added_vip_life_by_redeemed package')</option>
+									<option value="ALPRV">@lang('dingsu.added_vip_life_by_redeemed') @lang('dingsu.package')</option>
 									<option value="APLRV">@lang('dingsu.added_vip_point_by_redeemed')</option>
 									<option value="ALACL">@lang('dingsu.admin') @lang('dingsu.amended') @lang('dingsu.life')</option>
 									<option value="WVRFE">@lang('dingsu.fee') </option>
