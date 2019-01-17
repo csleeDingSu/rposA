@@ -465,7 +465,7 @@ class ProductController extends BaseController
 			}
 		}
 		
-		$result =  $result->orderby('id','DESC')->paginate(30);
+		$result =  $result->orderby('created_at','DESC')->paginate(30);
 				
 		$data['page'] = 'product.redeemhistory'; 	
 				
@@ -695,8 +695,7 @@ class ProductController extends BaseController
 				
 		$data['result'] = $result; 
 		
-		
-		 if ($request->ajax()) {
+		if ($request->ajax()) {
             return view('package.pendinglist.ajaxlist', ['result' => $result])->render();  
         }
 					

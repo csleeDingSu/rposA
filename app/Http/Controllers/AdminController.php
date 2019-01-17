@@ -730,7 +730,7 @@ class AdminController extends BaseController
 		$now = Carbon::now();
 		$image = $request->file('banner_image');
         $imagename = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('ad/banner');
+        $destinationPath = public_path('banner');
         $image->move($destinationPath, $imagename);		
 		
 		$data = ['banner_image' => $imagename,'is_status' => $input['status'],'created_at' => $now];
@@ -752,7 +752,7 @@ class AdminController extends BaseController
 					
 			}
 		$row .= "<td>$badge</td>";
-		$row .= '<td id="ss_'.$bnr->id.'"><img style="width: 200px !important;height: 200px !important" width="300px" height="200px" class="img-md  mb-4 mb-md-0 d-block mx-md-auto" src="/ad/banner/'.$bnr->banner_image.'" alt="image"></td>';
+		$row .= '<td id="ss_'.$bnr->id.'"><img style="width: 200px !important;height: 200px !important" width="300px" height="200px" class="img-md  mb-4 mb-md-0 d-block mx-md-auto" src="/banner/'.$bnr->banner_image.'" alt="image"></td>';
 		$row .= '<td><a href="javascript:void(0)" data-id="'.$bnr->id.'"  class="editbanner btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>';
 		$row .= '<a href="javascript:void(0)" onClick="confirm_Delete('.$bnr->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a></td>';
 		$row .= '</tr>';
@@ -782,7 +782,7 @@ class AdminController extends BaseController
 		{
 			$image = $data->file('banner_image');
 			$imagename = time().'.'.$image->getClientOriginalExtension();
-			$destinationPath = public_path('ad/banner');
+			$destinationPath = public_path('banner');
 			$image->move($destinationPath, $imagename);
 			$insdata['banner_image'] = $imagename;
 		}
