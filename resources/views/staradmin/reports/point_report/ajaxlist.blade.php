@@ -70,6 +70,45 @@
 										@case('DLVIP')
 											@lang('dingsu.deducted') @lang('dingsu.vip') @lang('dingsu.life')											
 											@break
+										@case('DLRVL')
+											@lang('dingsu.reset') @lang('dingsu.vip') @lang('dingsu.life')
+											@break
+										@case('APMNT')
+											@lang('dingsu.vip') @lang('dingsu.point') @lang('dingsu.merged')
+											@break
+										@case('APRFN')
+											@lang('dingsu.vip') @lang('dingsu.refund')
+											@break
+										@case('ALPRV')
+											@lang('dingsu.added_vip_life_by_redeemed package')
+											@break
+										@case('APLRV')
+											@lang('dingsu.added_vip_point_by_redeemed')
+											@break
+										@case('ALACL')
+											@lang('dingsu.admin') @lang('dingsu.amended') @lang('dingsu.life')
+											@break
+										@case('WVRFE')
+											@lang('dingsu.fee') 
+											@break	
+										@case('ALILE')
+											@lang('dingsu.introduction') @lang('dingsu.life') 
+											@break
+										@case('APACP')
+											@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.point') 
+											@break 
+										@case('ADAVP')
+											@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.point')  
+											@break
+										@case('ADAVL')
+											@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')  
+											@break
+										@case('DPRPO')
+											@lang('dingsu.redeem_product_using_point') 
+											@break
+										@case('DPBVP')
+											@lang('dingsu.buy_vip_using_point') 
+											@break	
 										@default
 											@lang('dingsu.credit_type_UNK')
 									@endswitch									

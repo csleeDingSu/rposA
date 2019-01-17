@@ -516,4 +516,23 @@ return [
 	'total_limit' => 'Limit',
 	'not_updated' => 'Not Updated',
 	'passcode' => 'passcode',
+	
+	
+	
+	'current_point' => 'Current Point',
+	'add_point' => 'Add Point',
+	
+	'merged' => 'Merged',
+	'refund' => 'Refund',
+	'fee' => 'Fee',
+	'introduction' => 'Introduction',
+	'buy_vip_using_point' => 'BuyVip Point using point',
+	'redeem_product_using_point' => 'Product redeemed using point',
+	'admin' => 'Admin',
+	'amended' => 'Amended',
+	'added_vip_point_by_redeemed' => 'Added VIP Point by redeemed',
+	'added_vip_life_by_redeemed' => 'Added VIP Life by redeemed',
+	
+	
+	 
 ];

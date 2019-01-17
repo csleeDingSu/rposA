@@ -80,7 +80,7 @@ class LedgerController extends BaseController
 			$data[$val['name']] = $val['value'];			
 		}
 		
-		$record = Wallet::update_ledger_life($memberid, $data['addlife'],'LFE',$data['tnotes']);
+		$record = Wallet::update_ledger_life($memberid, $data['addlife'],'LACL',$data['tnotes']);
 		
 		if ($record['success']) return response()->json(['success' => true,'record'=>$record]);
 		else return response()->json(['success' => false, 'message' => 'unknown wallet record']);

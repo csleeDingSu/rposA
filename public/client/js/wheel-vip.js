@@ -293,9 +293,16 @@ function resetGame() {
 
 function closeModal() {
     $('.close-modal', window.parent.document).click(function(){
-        $('#reset-life-play', window.parent.document).modal('hide');
         $('#reset-life-bet', window.parent.document).modal('hide');
         $('#reset-life-lose', window.parent.document).modal('hide');
+    });
+
+    $('.modal-message-manual', window.parent.document).click(function(){
+        $('#reset-life-manual', window.parent.document).modal();
+    });
+
+    $('.modal-manual-button', window.parent.document).click(function(){
+        $('#reset-life-manual', window.parent.document).modal('hide');
     });
 }
 
@@ -484,9 +491,7 @@ function bindResetLifeButton(token){
                 success: function(data) {
                     if(data.success){
                         $('#reset-life-max', window.parent.document).modal('hide');
-                        $('#reset-life-play', window.parent.document).modal('hide');
                         $('#reset-life-lose', window.parent.document).modal('hide');
-                        $('#reset-life-start', window.parent.document).modal('hide');
                         getToken();
                     }
                 }
