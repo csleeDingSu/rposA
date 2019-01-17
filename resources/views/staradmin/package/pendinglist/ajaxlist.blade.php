@@ -11,6 +11,8 @@
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.name')</th>
+								<th>@lang('dingsu.card') @lang('dingsu.name')</th>
+								<th>@lang('dingsu.card') @lang('dingsu.passcode')</th>
 								<th>@lang('dingsu.username')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.point')</th>
@@ -24,6 +26,8 @@
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
 								<td>{{ $list->package_name }}</td>
+								<td>{{ $list->cardnum }}</td>
+								<td>{{ $list->cardpass }}</td>
 								<td>
 									{{ $list->username }}
 								</td>
