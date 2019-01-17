@@ -278,13 +278,19 @@
 									恭喜获得<span class="spanVipPoint"></span>挖宝币
 								</div>
 								<div class="modal-message-content">
-									结算后的挖宝币可兑换奖品
+									结算需扣除200手续费，最终到账1000
+								</div>
+								<div class="modal-message-manual">
+									查看说明
 								</div>
 								<div class="modal-message-balance">
 									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
 								</div>
 								<div class="modal-message-button btn-reset-life">
 									确认结算 结束本次挖宝
+								</div>
+								<div class="modal-message-footer">
+									结算后的挖宝币可兑换奖品
 								</div>												
 							</div>
 						</div>
@@ -296,59 +302,37 @@
 	</div>
 <!--  end -->
 
-<!-- Start Reset Life Play -->
-	<div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+<!-- Start Reset Life Lose -->
+
+	<div class="modal fade col-md-12" id="reset-life-lose" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<img src="{{ asset('/client/images/vip/icon-win.png') }}" class="img-wabao" />
+								<img src="{{ asset('/client/images/vip/icon-lose.png') }}" class="img-wabao" />
+								<div class="modal-lose-title">
+									本次挖宝失败
+								</div>
 								<div class="modal-message-title">
 									恭喜获得<span class="spanVipPoint"></span>挖宝币
 								</div>
 								<div class="modal-message-content">
-									结算后的挖宝币可兑换奖品
+									结算需扣除200手续费，最终到账1000
+								</div>
+								<div class="modal-message-manual">
+									查看说明
 								</div>
 								<div class="modal-message-balance">
 									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
 								</div>
 								<div class="modal-message-button btn-reset-life">
-									确认结算 结束本次挖宝
-								</div>												
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-			<div id="btn-close-play" class="btn-close-wabao">暂不结算 返回本次挖宝</div>
-		</div>
-	</div>
-
-<!--  end -->
-
-<!-- Start Reset Life Share -->
-
-	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
-								<div class="modal-message-title">
-									您当前没有挖宝次数
+									确认结算
 								</div>
-								<div class="modal-message-content">
-									邀请好友注册将获得挖宝次数
+								<div class="modal-message-footer">
+									你需要结算后，才能继续进入VIP场
 								</div>
-								<a href="/share" class="link-button">
-									<div class="modal-message-button">
-										邀请好友加入
-									</div>
-								</a>													
 							</div>
 						</div>
 					</div>							
@@ -389,60 +373,23 @@
 
 <!--  end -->
 
-<!-- Start Reset Life Lose -->
+<!-- Start Reset Life Manual -->
 
-	<div class="modal fade col-md-12" id="reset-life-lose" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12" id="reset-life-manual" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<img src="{{ asset('/client/images/vip/icon-lose.png') }}" class="img-wabao" />
-								<div class="modal-lose-title">
-									本次挖宝失败
+								<div class="modal-manual-title">
+									手续费说明
 								</div>
-								<div class="modal-lose-content">
-									<span class="spanVipPoint"></span>挖宝币等待结算
+								<div class="modal-manual-content">
+									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000挖宝币或100元话费卷兑换1200原始积分，当玩家挖宝赢得挖宝币结算时，需返还200作为挖宝手续费。
 								</div>
-								<div class="modal-lose-instruction">
-									你需要结算后，才能继续进入VIP场
-								</div>
-								<div class="modal-message-balance">
-									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
-								</div>
-								<div class="modal-message-button btn-reset-life">
-									确认结算
-								</div>												
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
-
-<!-- Start Reset Life Start -->
-
-	<div class="modal fade col-md-12" id="reset-life-start" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
-								<div class="modal-warning-title">
-									当前不能挖宝
-								</div>
-								<div class="modal-warning-content">
-									您必须把挖宝机会兑换成挖宝币
-								</div>
-
-								<div class="btn-reset-life-continue modal-warning-button">
-									兑换挖宝币
+								<div class="modal-manual-button">
+									我知道了
 								</div>												
 							</div>
 						</div>
