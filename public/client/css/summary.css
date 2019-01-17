@@ -108,3 +108,9 @@ html, body {
 	color: #999999;
 	padding-top: 3px;
 }
+
+#pagination {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	margin-left: 10px;
+}

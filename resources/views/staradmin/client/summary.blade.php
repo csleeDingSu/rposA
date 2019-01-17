@@ -11,6 +11,7 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/summary.css') }}" />
+    <link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('top-javascript')
@@ -94,12 +95,14 @@
                 </div>
             </div>
 		</div>
+        <div id="pagination"></div>
 	</div>
 </div>
 @endsection
 
 @section('footer-javascript')
 	@parent
+    <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
 	<script src="{{ asset('/client/js/summary.js') }}"></script>
 
 @endsection
