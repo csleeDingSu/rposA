@@ -98,7 +98,7 @@ class ProductController extends Controller
 			
 			$data = ['member_id'=>$memberid,'pin_status'=>4,'request_at'=>$now,'used_point'=>$product->min_point];
 			
-			Wallet::update_ledger($memberid,'debit',$product->min_point,'RPO');
+			Wallet::update_ledger($memberid,'debit',$product->min_point,'PRPO');
 			
 			Product::update_pin($product->id, $data);
 			
