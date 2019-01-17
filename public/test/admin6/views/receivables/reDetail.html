@@ -1,0 +1,84 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>收款管理-收款记录</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+  <style>
+    html,body{
+      background: #fff;
+    }</style>
+
+  <div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+      <a lay-href="">主页</a>
+
+    </div>
+  </div>
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <table class="layui-hide" id="table"  lay-filter="table"></table>
+            
+            <script type="text/html" id="openRes">
+              {{#  if(d.openType == 1){ }}
+             {{d.tzRes}}
+            {{#  } else { }}
+            <font color="#2f8cff">进行中</font>
+            {{#  } }}              
+             </script>
+             <script type="text/html" id="tzDetailTem">
+              {{#  if(d.tzDetailType == 1){ }}
+              <font color="#ea003d">{{d.tzDetail}}</font>
+              {{#  } else if(d.tzDetailType == 2) { }}
+              <font color="#16ba00">{{d.tzDetail}}</font>
+            {{#  } else { }}
+            未核算  
+            {{#  } }} 
+</script>
+    </div>
+  </div>
+  
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'table'], function(){
+    var table = layui.table;
+  
+    table.render({
+      elem: '#table'
+      ,url: layui.setter.base + 'json/test.js'
+      ,cellMinWidth: 140 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+      ,page:{theme: '#0290ff'}
+      ,height: 'full-100'
+      ,cols: [[
+        {field:'cashMoney',width:"20%", title: '收款金额'}
+        ,{field:'fromAbout',width:"20%", title: '来源',}
+        ,{field:'cardName',width:"18%", title: '姓名'}
+        ,{field:'fromName',width:"25%", title: '充值账号'}
+         ,{field:'zjTime', title: '时间'}
+      ]]
+    });
+
+
+
+   
+    
+   
+      
+  
+  });
+  </script>
+</body>
+</html>
