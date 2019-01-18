@@ -44,7 +44,7 @@
 									<option value="ALACL">@lang('dingsu.admin') @lang('dingsu.amended') @lang('dingsu.life')</option>
 									<option value="ALILE">@lang('dingsu.introduction') @lang('dingsu.life')</option>
 									<option value="APACP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.point')</option>
-									<option value="ADAVP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.point')</option>
+									<option value="APAVP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.point')</option>
 									<option value="ALAVL">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')</option>
 									<option value="DPRPO">@lang('dingsu.redeem_product_using_point')</option>
 									<option value="DPBVP">@lang('dingsu.buy_vip_using_point')</option>

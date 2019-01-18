@@ -97,7 +97,7 @@
 										@case('APACP')
 											@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.point') 
 											@break 
-										@case('ADAVP')
+										@case('APAVP')
 											@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.point')  
 											@break
 										@case('ALAVL')
