@@ -68,9 +68,10 @@ class LedgerController extends BaseController
 	
 	
 	
-
+	//Deprecated
 	public function adjust_life (Request $request)
 	{
+		return FALSE;
 		$inputs   = $request->input('datav');
 		$memberid = $request->input('id');
 		
