@@ -82,19 +82,27 @@ class ReportController extends BaseController
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
 		
+		$order_by = 'DESC';
+		
     	if ($input) 
 		{
 			//filter					
 			if (!empty($input['s_username'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
 			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
 						
 			if (isset($input['s_type'])) {
 				if ($input['s_type'] != '' )
 					$result = $result->where('credit_type','=',$input['s_type']);
 			}
+			if (!empty($input['order_by'])) {
+				$order_by = $input['order_by'] ;				
+			}
 		}		
-		$result         =  $result->orderby('created_at','DESC')->paginate(30);
+		$result         =  $result->orderby('created_at',$order_by)->paginate(50);
 				
 		$data['page']   = 'reports.point_report.list'; 	
 				

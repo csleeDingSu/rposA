@@ -92,12 +92,26 @@ class ProductController extends Controller
 		
 		$product   = Product::get_available_pin($productid,$wallet->point);
 		
+		$setting   = \App\Admin::get_setting();
+		
+		
 		if ($product)
 		{
 			$now = Carbon::now();
 			
-			$data = ['member_id'=>$memberid,'pin_status'=>4,'request_at'=>$now,'used_point'=>$product->min_point];
+			//$pin_status = 4;
 			
+			$data = ['member_id'=>$memberid,'pin_status'=>$pin_status,'request_at'=>$now,'used_point'=>$product->min_point];
+			
+			$data['pin_status'] = 4;
+			
+			if($setting->auto_product_redeem =='Y')
+			{
+				$data['pin_status']  = 2;
+				$data['redeemed_at'] = $now;
+				$data['confirmed_at'] = $now;
+			}
+
 			Wallet::update_ledger($memberid,'debit',$product->min_point,'PRPO');
 			
 			Product::update_pin($product->id, $data);
@@ -182,9 +196,9 @@ class ProductController extends Controller
 					
 					$passcode = unique_random('vip_redeemed','passcode',8);
 					
-					$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>2,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'confimed_at'=>$now,'passcode'=>$passcode];
+					$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>2,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'confirmed_at'=>$now,'passcode'=>$passcode];
 					
-					Wallet::update_vip_wallet($memberid,0,$package->min_point, 'BVP','debit', $package->min_point.' Point reserved for VIP package');
+					Wallet::update_basic_wallet($memberid,0,$package->min_point, 'BVP','debit', $package->min_point.' Point reserved for VIP package');
 
 					$dd = Package::save_vip_package($data);
 

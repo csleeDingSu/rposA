@@ -38,10 +38,10 @@
 								{{ $list->created_at }}
 							</td>
 							<td><h6 class="ShowChildMembers text-info font-weight-semibold ml-2" data-id="{{ $list->id }}" data-count="{{ $list->totalcount }}" >{{ $list->totalcount }}</h6> </td>
-							<td>
+							<td id="cl_{{ $list->id }}">
 								{{ $list->current_life }}
 							</td>
-							<td >
+							<td id="cp_{{ $list->id }}">
 								{{ $list->current_point }}
 							</td>
 							<td onClick="OpenWechatVerification('{{ $list->id }}','{{ $list->wechat_notes }}')" class="show_wechat_verification_{{ $list->id }}">
