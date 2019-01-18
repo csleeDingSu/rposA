@@ -540,7 +540,10 @@ return [
 	'added_vip_point_by_redeemed' => 'Added VIP Point by redeemed',
 	'added_vip_life_by_redeemed' => 'Added VIP Life by redeemed',
 	'nothing_to_change' => 'Nothing to Change',
-	
+	'current_vip_point' => 'Current VIP point',
+	'add_vip_point' => 'Add VIP point',
+	'add_vip_life' => 'Add VIP life',
+	'current_vip_life' => 'Current VIP life',
 	
 	 
 ];

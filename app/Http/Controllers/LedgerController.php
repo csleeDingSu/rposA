@@ -101,7 +101,7 @@ class LedgerController extends BaseController
 		foreach ($inputs as $key=>$val)
 		{
 			$data[$val['name']] = $val['value'];			
-		}
+		}						
 		if ($data['addlife'] >= 1) 
 		{
 			$record = Wallet::update_ledger_life($memberid, $data['addlife'],'LACL',$data['tnotes']);	
