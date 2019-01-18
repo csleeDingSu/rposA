@@ -56,6 +56,35 @@ class Wallet extends Model
 			$now = Carbon::now();
 			if ($wallet->vip_point > 0)
 			{
+				//Fee
+				$setting     = \App\Admin::get_setting();
+				$rfee = $fee = $setting->wabao_fee;
+				
+				
+				if ($rfee >=1 ) 
+				{
+					if ($wallet->vip_point >= $fee)
+					{
+						$wallet->vip_point = $adminfee = $wallet->vip_point - $fee;
+					}
+					else
+					{
+						$fee = $fee - $wallet->vip_point;
+						$wallet->vip_point = 0;
+					}
+					$history = [
+						'created_at' 	    => $now,
+						'updated_at' 	    => $now,
+						'member_id'         => $memberid,
+						'credit'	        => $fee,
+						'debit'	            => '0',
+						'notes'             => $adminfee." Fee collected. ",
+						'credit_type'	    => 'WVRFE',
+						];
+
+					$history = self::add_ledger_history($history);
+				
+				}
 				//update VIP point
 				$newpoint = 0;
 				
@@ -78,7 +107,10 @@ class Wallet extends Model
 				
 				
 				
-				$history = self::add_ledger_history($history);			
+				$history = self::add_ledger_history($history);
+				
+				
+				
 				
 				$newpoint = $wallet->vip_point + $wallet->current_point;
 				

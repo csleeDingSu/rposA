@@ -223,6 +223,9 @@ function initGameMaster(token){
             
             var game_records = data.gamesetting.original;
             initGame(game_records, token);
+
+            $('#hidFee', window.parent.document).val(data.wabaofee);
+            $('.spanFee', window.parent.document).html(data.wabaofee);
         }
     });
 }
@@ -423,8 +426,11 @@ function bindCalculateButton(token){
                     if(data.success){
                         var point = data.wabao_point;
                         var vip_point = data.vip_point;
+                        var fee = $('#hidFee', window.parent.document).val();
+                        var net_vip_point = parseInt(vip_point) - parseInt(fee);
 
                         $('.spanVipPoint', window.parent.document).html(vip_point);
+                        $('.spanNetVip', window.parent.document).html(net_vip_point);
                         $('.packet-point', window.parent.document).html(point);
 
                         $('#reset-life-max', window.parent.document).modal();
@@ -622,10 +628,18 @@ function startTimer(duration, timer, freeze_time, token) {
             var consecutive_loss = $('#hidConsecutiveLose', window.parent.document).val();
             var mergepoint = parseInt($('#hidMergePoint', window.parent.document).val()) || 0;
             var previous_point = $('.packet-point', window.parent.document).html();
+            var fee = $('#hidFee', window.parent.document).val();
+            var net_vip_point = parseInt(mergepoint) - parseInt(fee);
+
+            if(net_vip_point < 0) {
+                net_vip_point = 0;
+            }
 
             if (consecutive_loss == 'yes') {
                 showProgressBar(false);
                 $('.spanVipPoint', window.parent.document).html(mergepoint);
+                $('.spanNetVip', window.parent.document).html(net_vip_point);
+
                 $('#spanPoint', window.parent.document).html(mergepoint);
 
                 $('#reset-life-lose', window.parent.document).modal({backdrop: 'static', keyboard: false});
