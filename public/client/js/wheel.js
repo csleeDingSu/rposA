@@ -387,7 +387,7 @@ function bindBetButton(token){
 
         if (user_id > 0 && acupoint >= 150) {
             bindResetLifeButton(token);
-            $('#reset-life-max', window.parent.document).modal();
+            $('#reset-life-max', window.parent.document).modal({backdrop: 'static', keyboard: false});
         }
 
 

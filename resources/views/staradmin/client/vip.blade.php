@@ -39,7 +39,7 @@
 					<div class="number long number-vip">
 						<span class="balance-vip" id="spanPoint">0</span>
 						<div class="btn-calculate-wrapper">
-							<div class="btn-calculate-vip">结算</div>
+							<div class="btn-calculate-vip">兑换红包</div>
 						</div>
 					</div>
 				</div>
