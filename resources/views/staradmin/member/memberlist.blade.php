@@ -155,7 +155,7 @@
 <!--Add Life/point Modal starts -->
 <form class="form-sample" name="formtopup" id="formtopup" action="" method="post" autocomplete="on">
 	<div class="modal fade" id="topupmode" tabindex="-1" role="dialog" aria-labelledby="topupmode" aria-hidden="true">
-		<div class="modal-dialog modal-md" role="document">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">@lang('dingsu.add') @lang('dingsu.life') </h5>
@@ -642,6 +642,7 @@ function confirm_Delete(id)	{
 		$(".datalist").on("click",".opentopupmodel", function(){
 			var id=$(this).data('id');
 			$('#rid').val(id);
+			$('#formtopup')[0].reset(); 
 			swal( {
 				title: '@lang("dingsu.please_wait")',
 				text: '@lang("dingsu.fetching_data")..',
