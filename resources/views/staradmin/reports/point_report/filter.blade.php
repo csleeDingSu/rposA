@@ -61,7 +61,7 @@
 						
 						
 						<div class="col">
-							<label>@lang('dingsu.soft_by')</label>
+							<label>@lang('dingsu.sort_by')</label>
 							<div id="bloodhound">
 								<select id="s_type" name="s_type" class="form-control">
 									<option value="DESC" selected>@lang('dingsu.descending') @lang('dingsu.order')</option>
