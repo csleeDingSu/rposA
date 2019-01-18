@@ -413,7 +413,7 @@ class ProductController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['pin_status'=>2,'confimed_at'=>$now];
+			$data = ['pin_status'=>2,'confirmed_at'=>$now];
 			Product::update_pin($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
 		}
@@ -429,7 +429,7 @@ class ProductController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['pin_status'=>3,'confimed_at'=>$now];
+			$data = ['pin_status'=>3,'confirmed_at'=>$now];
 						
 			Wallet::update_ledger($record->member_id,'credit',$record->used_point,'RFN','redeem rejected,point refund to customer');
 			
@@ -750,7 +750,7 @@ class ProductController extends BaseController
 		{
 			$now = Carbon::now();
 			$passcode = unique_random('vip_redeemed','passcode',8);
-			$data = ['redeem_state'=>2,'confimed_at'=>$now,'passcode'=>$passcode];
+			$data = ['redeem_state'=>2,'confirmed_at'=>$now,'passcode'=>$passcode];
 			Package::update_vip($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
 		}
@@ -768,7 +768,7 @@ class ProductController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['redeem_state'=>0,'confimed_at'=>$now];
+			$data = ['redeem_state'=>0,'confirmed_at'=>$now];
 						
 			Wallet::update_ledger($record->member_id,'credit',$record->used_point,'RFN','vip package rejected,point refund to customer');
 			
