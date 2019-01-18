@@ -549,4 +549,6 @@ return [
 	'descending' => 'Descending',
 	'ascending' => 'Ascending',
 	'order' => 'order',
+	'sort_by' => 'Sort by',
+	
 ];
