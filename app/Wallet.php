@@ -57,31 +57,34 @@ class Wallet extends Model
 			if ($wallet->vip_point > 0)
 			{
 				//Fee
-				$fee = 200;
+				$setting     = \App\Admin::get_setting();
+				$rfee = $fee = $setting->wabao_fee;
 				
 				
-				if ($wallet->vip_point >= $fee)
+				if ($rfee >=1 ) 
 				{
-					$wallet->vip_point = $adminfee = $wallet->vip_point - $fee;
+					if ($wallet->vip_point >= $fee)
+					{
+						$wallet->vip_point = $adminfee = $wallet->vip_point - $fee;
+					}
+					else
+					{
+						$fee = $fee - $wallet->vip_point;
+						$wallet->vip_point = 0;
+					}
+					$history = [
+						'created_at' 	    => $now,
+						'updated_at' 	    => $now,
+						'member_id'         => $memberid,
+						'credit'	        => $fee,
+						'debit'	            => '0',
+						'notes'             => $adminfee." Fee collected. ",
+						'credit_type'	    => 'WVRFE',
+						];
+
+					$history = self::add_ledger_history($history);
+				
 				}
-				else
-				{
-					$fee = $fee - $wallet->vip_point;
-					$wallet->vip_point = 0;
-				}
-				
-				$history = [
-					'created_at' 	    => $now,
-					'updated_at' 	    => $now,
-					'member_id'         => $memberid,
-					'credit'	        => $fee,
-					'debit'	            => '0',
-					'notes'             => $adminfee." Fee collected. ",
-					'credit_type'	    => 'WVRFE',
-					];
-				
-				$history = self::add_ledger_history($history);
-				
 				//update VIP point
 				$newpoint = 0;
 				
