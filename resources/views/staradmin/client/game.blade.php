@@ -35,7 +35,7 @@
 		<div class="grid-container">
 			<div class="box">
 				<div class="coin"></div>
-				<div class="number long">
+				<div class="number">
 					<span class="balance spanAcuPoint">0</span>
 					<div class="btn-calculate-wrapper">
 						<div class="btn-calculate">兑换红包</div>

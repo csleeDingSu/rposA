@@ -36,10 +36,10 @@
 			<div class="box">
 				<div class="coin"></div>
 				<div id="balance-wrapper">
-					<div class="number long number-vip">
+					<div class="number number-vip">
 						<span class="balance-vip" id="spanPoint">0</span>
-						<div class="btn-calculate-wrapper">
-							<div class="btn-calculate-vip">兑换红包</div>
+						<div class="btn-calculate-vip-wrapper">
+							<div class="btn-calculate-vip">结算</div>
 						</div>
 					</div>
 				</div>
@@ -62,6 +62,7 @@
 			<input id="hidConsecutiveLose" type="hidden" value="" />
 			<input id="hidMergePoint" type="hidden" value="" />
 			<input id="hidHall" type="hidden" value="" />
+			<input id="hidFee" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
 			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
@@ -278,7 +279,7 @@
 									恭喜获得<span class="spanVipPoint"></span>挖宝币
 								</div>
 								<div class="modal-message-content">
-									结算需扣除200手续费，最终到账1000
+									结算需扣除<span class="spanFee"></span>手续费，最终到账<span class="spanNetVip"></span>
 								</div>
 								<div class="modal-message-manual">
 									查看说明
@@ -319,7 +320,7 @@
 									恭喜获得<span class="spanVipPoint"></span>挖宝币
 								</div>
 								<div class="modal-message-content">
-									结算需扣除200手续费，最终到账1000
+									结算需扣除<span class="spanFee"></span>手续费，最终到账<span class="spanNetVip"></span>
 								</div>
 								<div class="modal-message-manual">
 									查看说明
@@ -386,7 +387,7 @@
 									手续费说明
 								</div>
 								<div class="modal-manual-content">
-									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000挖宝币或100元话费卷兑换1200原始积分，当玩家挖宝赢得挖宝币结算时，需返还200作为挖宝手续费。
+									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000挖宝币或100元话费卷兑换1200原始积分，当玩家挖宝赢得挖宝币结算时，需返还<span class="spanFee"></span>作为挖宝手续费。
 								</div>
 								<div class="modal-manual-button">
 									我知道了

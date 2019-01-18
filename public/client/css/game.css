@@ -377,9 +377,10 @@ body{
 	background-color: #63147f;
 	border-top-right-radius: 15px;
 	border-bottom-right-radius: 15px;
-	min-width: 60px;
+	min-width: 135px;
 	font-size: 0.7em;
-	padding-right: 5px;
+	padding-left: 15px;
+	padding-right: 2px;
 	padding-top: 2px;
 	height:26px;
 	width: auto;
@@ -387,14 +388,8 @@ body{
 	font-weight: 700;
 }
 
-.long {
-	min-width: 135px;
-	padding-left: 15px;
-	padding-right: 5px;
-}
-
 .number-vip {
-	min-width: 150px;
+	min-width: 115px;
 }
 
 .btn-rules {
@@ -472,7 +467,7 @@ body{
 	color: white;
 }
 
-.btn-calculate-wrapper {
+.btn-calculate-wrapper, .btn-calculate-vip-wrapper {
 	float: right;
 	height:21px;
     width:70px;
@@ -480,6 +475,10 @@ body{
     margin-top: 1px;
     margin-right: 2px;
     display: inline-block;
+}
+
+.btn-calculate-vip-wrapper {
+    width:35px;
 }
 
 .btn-calculate, .btn-calculate-vip {
@@ -498,6 +497,7 @@ body{
 
 .btn-calculate-vip {
 	background: #e95d00;
+	width: 35px;
 }
 
 .right {
