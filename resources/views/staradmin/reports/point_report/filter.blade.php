@@ -58,6 +58,18 @@
 								</select>
 							</div>
 						</div>
+						
+						
+						<div class="col">
+							<label>@lang('dingsu.soft_by')</label>
+							<div id="bloodhound">
+								<select id="s_type" name="s_type" class="form-control">
+									<option value="DESC" selected>@lang('dingsu.descending') @lang('dingsu.order')</option>
+									<option value="ASC">@lang('dingsu.ascending') @lang('dingsu.order')</option>
+									
+								</select>
+							</div>
+						</div>
 
 						<div class="col">
 							<label>@lang('dingsu.action')</label>
