@@ -178,9 +178,10 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
-								<label for="addlife" class="col-sm-3 col-form-label">@lang('dingsu.add_life')<span class="text-danger">*</span></label>
+								<label for="addlife" class="col-sm-3 col-form-label">@lang('dingsu.add_life')</label>
 								<div class="col-sm-9">
 									<select class="form-control" name="addlife" id="addlife">
+										<option value="0">@lang('dingsu.nothing_to_change')</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -207,9 +208,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
-								<label for="apoint" class="col-sm-3 col-form-label">@lang('dingsu.add_point')<span class="text-danger">*</span></label>
+								<label for="apoint" class="col-sm-3 col-form-label">@lang('dingsu.add_point')</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" name="apoint" id="apoint" value="" maxlength="5">
+									<input type="text" class="form-control" name="apoint" id="apoint" value="" maxlength="5" placeholder="@lang('dingsu.nothing_to_change')">
 								</div>
 							</div>
 						</div>
@@ -619,7 +620,7 @@ function confirm_Delete(id)	{
 						if (data != null)
 							{
 								$('#clife').val(data.life);
-								$('#cpoint').val(data.current_point);								
+								$('#cpoint').val(data.point);								
 								$('#tid').val(id);
 								$('#topupmode').modal('show');
 							}
