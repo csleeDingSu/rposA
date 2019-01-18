@@ -544,6 +544,6 @@ return [
 	'add_vip_point' => 'Add VIP point',
 	'add_vip_life' => 'Add VIP life',
 	'current_vip_life' => 'Current VIP life',
-	
+	'adjust_wallet' => 'Adjust wallet',
 	 
 ];
