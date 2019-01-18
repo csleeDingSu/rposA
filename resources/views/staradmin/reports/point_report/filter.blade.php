@@ -39,12 +39,13 @@
 									<option value="APRFN">@lang('dingsu.vip') @lang('dingsu.refund')</option>
 									<option value="ALPRV">@lang('dingsu.added_vip_life_by_redeemed') @lang('dingsu.package')</option>
 									<option value="APLRV">@lang('dingsu.added_vip_point_by_redeemed')</option>
-									<option value="ALACL">@lang('dingsu.admin') @lang('dingsu.amended') @lang('dingsu.life')</option>
+									
 									<option value="WVRFE">@lang('dingsu.fee') </option>
+									<option value="ALACL">@lang('dingsu.admin') @lang('dingsu.amended') @lang('dingsu.life')</option>
 									<option value="ALILE">@lang('dingsu.introduction') @lang('dingsu.life')</option>
 									<option value="APACP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.point')</option>
 									<option value="ADAVP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.point')</option>
-									<option value="ADAVL">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')</option>
+									<option value="ALAVL">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')</option>
 									<option value="DPRPO">@lang('dingsu.redeem_product_using_point')</option>
 									<option value="DPBVP">@lang('dingsu.buy_vip_using_point')</option>
 								</select>
