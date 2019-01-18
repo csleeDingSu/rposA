@@ -399,6 +399,11 @@
 						
 						$('#formtopup')[0].reset();
 						$('#topupmode').modal('hide');
+						
+						$("#cl_"+id).html(data.life);
+						$("#cp_"+id).html(result.point);
+						
+						
 					} else {						
 						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
 					}
