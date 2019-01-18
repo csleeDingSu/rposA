@@ -57,8 +57,8 @@ class Wallet extends Model
 			if ($wallet->vip_point > 0)
 			{
 				//Fee
-				$fee = 200;
-				
+				$setting     = \App\Admin::get_setting();
+				$fee = $setting->wabao_fee;
 				
 				if ($wallet->vip_point >= $fee)
 				{
