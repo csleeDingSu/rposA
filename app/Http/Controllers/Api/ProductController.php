@@ -112,7 +112,7 @@ class ProductController extends Controller
 				$data['confirmed_at'] = $now;
 			}			
 			
-			Wallet::update_basic_wallet($memberid,0,$package->min_point, 'PRPO','debit', $package->min_point.' Point used for buy product');
+			Wallet::update_basic_wallet($memberid,0,$product->min_point, 'PRPO','debit', $product->min_point.' Point used for buy product');
 
 			Product::update_pin($product->id, $data);
 			

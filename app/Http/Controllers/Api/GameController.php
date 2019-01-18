@@ -571,6 +571,8 @@ class GameController extends Controller
 			$wallet = Wallet::get_wallet_details($memberid);
 			
 			$gamelevel = Game::get_member_current_level($gameid, $memberid);
+			
+			$close = Game::get_consecutive_lose($memberid,$gameid);
 
 			if ($wallet) 
 			{	
@@ -580,15 +582,24 @@ class GameController extends Controller
 				}
 				if ($wallet->life >= 1) 
 				{
+					
+					
+					if ($close != 'yes') {
+						
+						if ($wallet->acupoint < 150) 
+						{
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+						}
+						
+						if($wallet->acupoint>150){
+							$wallet->acupoint=150;
+						}
 
-					if ($wallet->acupoint < 150) 
-					{
-						return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+					}else{
+						$wallet->acupoint=0;
 					}
 					
-					if($wallet->acupoint>150){
-						$wallet->acupoint=150;
-					}
+					
 
 					$status 		= false;
 					$current_life	= $wallet->life-1;
@@ -640,7 +651,7 @@ class GameController extends Controller
 					Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
 
 					//Reset latest member game level
-					Game::reset_member_game_level($memberid , $gameid);
+					Game::reset_member_game_level($memberid , $gameid);					
 
 					return response()->json(['success' => true,  'Acupoint' => $wallet->acupoint]); 
 					//return response()->json(['success' => true]); 
@@ -659,10 +670,17 @@ class GameController extends Controller
 					{
 						$debit = 150;
 					}
-					else if ($wallet->acupoint < 150) 
-					{
-						return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+										
+					
+					if ($close != 'yes') {
+						
+						if ($wallet->acupoint < 150) 
+						{
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+						}
 					}
+					
+					
 					
 					Wallet::update_ledger($memberid,'acpoint',$debit,$category = 'PNT',$notes = FALSE);
 					
