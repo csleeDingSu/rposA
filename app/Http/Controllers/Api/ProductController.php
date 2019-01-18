@@ -110,13 +110,6 @@ class ProductController extends Controller
 				$data['pin_status']  = 2;
 				//$data['redeemed_at'] = $now;
 				$data['confirmed_at'] = $now;
-<<<<<<< HEAD
-			}
-
-			Wallet::update_ledger($memberid,'debit',$product->min_point,'PRPO');
-=======
-			}			
->>>>>>> prem
 			
 			Wallet::update_basic_wallet($memberid,0,$package->min_point, 'PRPO','debit', $package->min_point.' Point used for buy product');
 
