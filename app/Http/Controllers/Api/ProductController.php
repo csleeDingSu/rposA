@@ -325,4 +325,10 @@ class ProductController extends Controller
 		return response()->json(['success' => 'true','message' => 'eligible to withdraw','vip_point'=>$wallet->vip_point,'wabao_point'=>$wallet->current_point,'redeem_point'=>$wallet->vip_point]);  
 		
 	}
+	
+	public function waobaofee(Request $request)
+    {
+		$setting   = \App\Admin::get_setting();
+		return response()->json(['success' => 'true','wabaofee' => $setting->wabao_fee]); 
+	}
 }
