@@ -92,11 +92,18 @@ class ProductController extends Controller
 		
 		$product   = Product::get_available_pin($productid,$wallet->point);
 		
+		$setting   = \App\Admin::get_setting();
+		
+		
 		if ($product)
 		{
 			$now = Carbon::now();
 			
-			$data = ['member_id'=>$memberid,'pin_status'=>4,'request_at'=>$now,'used_point'=>$product->min_point];
+			$pin_status = 4;
+			
+			if($setting->auto_product_redeem =='Y') $pin_status = 2;
+			
+			$data = ['member_id'=>$memberid,'pin_status'=>$pin_status,'request_at'=>$now,'used_point'=>$product->min_point];
 			
 			Wallet::update_ledger($memberid,'debit',$product->min_point,'PRPO');
 			
