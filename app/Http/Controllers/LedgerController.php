@@ -59,7 +59,7 @@ class LedgerController extends BaseController
 		if ($msg) return response()->json(['success' => true, 'record' => '']);
 		else return response()->json(['success' => false, 'record' => '']);
 	}
-	public function get_life (Request $request)
+	public function get_wallet (Request $request)
 	{
 		$id     = $request->input('id');
 		$record = Wallet::get_wallet_details($id);
