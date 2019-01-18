@@ -88,13 +88,16 @@ class ReportController extends BaseController
 			if (!empty($input['s_username'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
 			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
 						
 			if (isset($input['s_type'])) {
 				if ($input['s_type'] != '' )
 					$result = $result->where('credit_type','=',$input['s_type']);
 			}
 		}		
-		$result         =  $result->orderby('created_at','DESC')->paginate(30);
+		$result         =  $result->orderby('created_at','DESC')->paginate(50);
 				
 		$data['page']   = 'reports.point_report.list'; 	
 				
