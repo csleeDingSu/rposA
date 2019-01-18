@@ -166,7 +166,7 @@
 				<div class="modal-body">
 					<div class="" id="rvalidation-errors"></div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="form-group row">
 								<label for="clife" class="col-sm-3 col-form-label">@lang('dingsu.current_life')</label>
 								<div class="col-sm-9">
@@ -174,9 +174,8 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
+					
+						<div class="col-md-6">
 							<div class="form-group row">
 								<label for="addlife" class="col-sm-3 col-form-label">@lang('dingsu.add_life')</label>
 								<div class="col-sm-9">
@@ -196,7 +195,7 @@
 					
 					
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="form-group row">
 								<label for="cpoint" class="col-sm-3 col-form-label">@lang('dingsu.current_point') </label>
 								<div class="col-sm-9">
@@ -204,9 +203,8 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
+					
+						<div class="col-md-6">
 							<div class="form-group row">
 								<label for="apoint" class="col-sm-3 col-form-label">@lang('dingsu.add_point')</label>
 								<div class="col-sm-9">
@@ -217,6 +215,58 @@
 					</div>
 					
 					
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="cviplife" class="col-sm-3 col-form-label">@lang('dingsu.current_vip_life')</label>
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control" name="cviplife" id="cviplife" value="" maxlength="50">
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="viplife" class="col-sm-3 col-form-label">@lang('dingsu.add_vip_life')</label>
+								<div class="col-sm-9">
+									<select class="form-control" name="viplife" id="viplife">
+										<option value="0">@lang('dingsu.nothing_to_change')</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>				
+					
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="cvapoint" class="col-sm-3 col-form-label">@lang('dingsu.current_vip_point') </label>
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control" name="cvapoint" id="cvapoint" value="" maxlength="50">
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="vapoint" class="col-sm-3 col-form-label">@lang('dingsu.add_vip_point')</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="vapoint" id="vapoint" value="" maxlength="5" placeholder="@lang('dingsu.nothing_to_change')">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+								
 					
 					<div class="row">
 						<div class="col-md-12">
@@ -620,7 +670,12 @@ function confirm_Delete(id)	{
 						if (data != null)
 							{
 								$('#clife').val(data.life);
-								$('#cpoint').val(data.point);								
+								$('#cpoint').val(data.point);	
+								
+								$('#cviplife').val(data.vip_life);
+								$('#cvapoint').val(data.vip_point);
+								
+								
 								$('#tid').val(id);
 								$('#topupmode').modal('show');
 							}
