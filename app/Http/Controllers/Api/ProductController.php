@@ -101,19 +101,17 @@ class ProductController extends Controller
 			
 			//$pin_status = 4;
 			
-			$data = ['member_id'=>$memberid,'pin_status'=>$pin_status,'request_at'=>$now,'used_point'=>$product->min_point];
+			$data = ['member_id'=>$memberid, 'request_at'=>$now,'used_point'=>$product->min_point];
 			
 			$data['pin_status'] = 4;
 			
 			if($setting->auto_product_redeem =='Y')
 			{
 				$data['pin_status']  = 2;
-				$data['redeemed_at'] = $now;
+				//$data['redeemed_at'] = $now;
 				$data['confirmed_at'] = $now;
 			}
-			
-			
-			
+
 			Wallet::update_ledger($memberid,'debit',$product->min_point,'PRPO');
 			
 			Product::update_pin($product->id, $data);
