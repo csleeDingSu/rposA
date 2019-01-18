@@ -326,6 +326,7 @@ class ProductController extends Controller
 		
 	}
 	
+	//check Setting table
 	public function waobaofee(Request $request)
     {
 		$setting   = \App\Admin::get_setting();
