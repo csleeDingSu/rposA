@@ -15,6 +15,13 @@
 								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
 							</div>
 						</div>
+						
+						<div class="col">
+							<label>@lang('dingsu.phone')</label>
+							<div id="the-basics">
+								<input type="text" class="form-control typeahead tt-input" name="s_phone" id="s_phone" placeholder="@lang('dingsu.phone')">
+							</div>
+						</div>
 
 						<div class="col">
 							<label>@lang('dingsu.credit_type')</label>
@@ -48,6 +55,18 @@
 									<option value="ALAVL">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')</option>
 									<option value="DPRPO">@lang('dingsu.redeem_product_using_point')</option>
 									<option value="DPBVP">@lang('dingsu.buy_vip_using_point')</option>
+								</select>
+							</div>
+						</div>
+						
+						
+						<div class="col">
+							<label>@lang('dingsu.sort_by')</label>
+							<div id="bloodhound">
+								<select id="s_type" name="s_type" class="form-control">
+									<option value="DESC" selected>@lang('dingsu.descending') @lang('dingsu.order')</option>
+									<option value="ASC">@lang('dingsu.ascending') @lang('dingsu.order')</option>
+									
 								</select>
 							</div>
 						</div>
