@@ -333,7 +333,7 @@
 				}
 			} )
 			$.ajax( {
-				url: "{{route('post.ledger.adjustlife')}}",
+				url: "{{route('post.ledger.adjustwallet')}}",
 				type: 'post',
 				dataType: "json",
 				data: {
