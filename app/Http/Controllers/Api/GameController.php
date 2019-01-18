@@ -61,7 +61,9 @@ class GameController extends Controller
 		
 		$futureresult= Game::get_future_result($request->gameid, $now );
 		
-		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'gamehistory' => $gamehistory,'futureresults' => $futureresult]); 
+		$setting     = \App\Admin::get_setting();
+		
+		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'gamehistory' => $gamehistory,'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee]); 
 	}
 	
 	//with  bet	
@@ -78,8 +80,8 @@ class GameController extends Controller
 		$wallet      = Wallet::get_wallet_details($request->memberid);	
 		
 		$futureresult= Game::get_future_result($request->gameid, $now );
-		
-		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => $gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,'futureresults' => $futureresult]);  
+		$setting     = \App\Admin::get_setting();
+		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => $gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee]);  
 	}
 	
 	

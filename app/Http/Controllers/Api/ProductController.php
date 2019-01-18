@@ -110,10 +110,10 @@ class ProductController extends Controller
 				$data['pin_status']  = 2;
 				//$data['redeemed_at'] = $now;
 				$data['confirmed_at'] = $now;
-			}
-
-			Wallet::update_ledger($memberid,'debit',$product->min_point,'PRPO');
+			}			
 			
+			Wallet::update_basic_wallet($memberid,0,$package->min_point, 'PRPO','debit', $package->min_point.' Point used for buy product');
+
 			Product::update_pin($product->id, $data);
 			
 			return response()->json(['success' => true, 'message' => 'success']);
@@ -324,5 +324,12 @@ class ProductController extends Controller
 		
 		return response()->json(['success' => 'true','message' => 'eligible to withdraw','vip_point'=>$wallet->vip_point,'wabao_point'=>$wallet->current_point,'redeem_point'=>$wallet->vip_point]);  
 		
+	}	
+	//check Setting table
+	public function wabaofee(Request $request)
+    {
+		$setting   = \App\Admin::get_setting();
+		return response()->json(['success' => 'true','wabaofee' => $setting->wabao_fee]); 
 	}
+	
 }
