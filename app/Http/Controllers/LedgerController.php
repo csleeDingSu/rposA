@@ -97,6 +97,7 @@ class LedgerController extends BaseController
 		$memberid = $request->input('id');
 		$life     = 0;
 		$point    = 0;
+		$error    = TRUE;
 		foreach ($inputs as $key=>$val)
 		{
 			$data[$val['name']] = $val['value'];			
@@ -104,21 +105,35 @@ class LedgerController extends BaseController
 		if ($data['addlife'] >= 1) 
 		{
 			$record = Wallet::update_ledger_life($memberid, $data['addlife'],'LACL',$data['tnotes']);	
-			
+			$error  = FALSE;
 			if ($record['success']) $result['life'] = $record['life'];
 		}
 		
-		else if ($data['apoint'] >= 1) 
+		if ($data['apoint'] >= 1) 
 		{
 			$record = Wallet::update_basic_wallet($memberid, 0,$data['apoint'],'ACP','credit',$data['tnotes']);
-			
+			$error  = FALSE;
 			if ($record['success']) $result['point'] = $record['point'];
-		}	
-		else 
-		{
-			return response()->json(['success' => false,'record'=>'']);
 		}
 		
+		if ($data['viplife'] >= 1) 
+		{
+			$record = Wallet::update_vip_wallet($memberid, $data['viplife'], 0,'AVL','credit',$data['tnotes']);
+			$error  = FALSE;
+			if ($record['success']) $result['point'] = $record['point'];
+		}		
+		
+		if ($data['vapoint'] >= 1) 
+		{
+			$record = Wallet::update_vip_wallet($memberid, 0,$data['vapoint'],'AVP','credit',$data['tnotes']);
+			$error  = FALSE;
+			if ($record['success']) $result['vippoint'] = $record['point'];
+		}
+		
+		if ($error) 
+		{
+			return response()->json(['success' => false,'record'=>'']);
+		}		
 		return response()->json(['success' => true,'record'=>$result]);
 		
 	}
