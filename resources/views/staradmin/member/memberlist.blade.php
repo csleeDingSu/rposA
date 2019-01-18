@@ -333,7 +333,7 @@
 				}
 			} )
 			$.ajax( {
-				url: "{{route('post.ledger.adjustlife')}}",
+				url: "{{route('post.ledger.adjustwallet')}}",
 				type: 'post',
 				dataType: "json",
 				data: {
@@ -604,7 +604,7 @@ function confirm_Delete(id)	{
 				}
 			} )
 			$.ajax( {
-				url: "{{route('get.ledger.life')}}",
+				url: "{{route('get.ledger.detail')}}",
 				type: 'get',
 				dataType: "json",
 				data: {
