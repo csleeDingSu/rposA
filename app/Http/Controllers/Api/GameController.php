@@ -590,11 +590,16 @@ class GameController extends Controller
 						{
 							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
 						}
+						
+						if($wallet->acupoint>150){
+							$wallet->acupoint=150;
+						}
+
+					}else{
+						$wallet->acupoint=0;
 					}
 					
-					if($wallet->acupoint>150){
-						$wallet->acupoint=150;
-					}
+					
 
 					$status 		= false;
 					$current_life	= $wallet->life-1;
