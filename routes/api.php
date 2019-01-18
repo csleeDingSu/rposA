@@ -92,6 +92,8 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	
 	Route::any('/member-point-list', 'MemberController@get_wabao_coin_history')->name('api.point.list');
 	
+	Route::any('/wabaoo-fee', 'MemberController@waobaofee')->name('api.waobaofee');
+	
 	
 	
  });	
