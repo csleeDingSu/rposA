@@ -30,15 +30,17 @@ function getSummary(token) {
             var result = data.result;
             var total = 0;
             var total_fail = 0;
+            var total_pending = 0;
+            var total_successful = 0;
 
             $.each(result, function(i, item) {
                 
                 if(item.wechat_verification_status == 0){
-                    $('#total-successful').html(item.count);
+                    total_successful += parseInt(item.count);                    
                     total += parseInt(item.count);
 
                 } else if (item.wechat_verification_status == 1) {
-                    $('#total-pending').html(item.count);
+                    total_pending += parseInt(item.count);
                     total += parseInt(item.count);
 
                 } else if (item.wechat_verification_status == 2 || item.wechat_verification_status == 3) {
@@ -50,6 +52,8 @@ function getSummary(token) {
 
             $('#total-invite').html(total);
             $('#total-fail').html(total_fail);
+            $('#total-successful').html(total_successful);
+            $('#total-pending').html(total_pending);
         }
     });
 }
