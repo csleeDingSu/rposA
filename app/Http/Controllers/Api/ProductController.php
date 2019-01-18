@@ -111,9 +111,7 @@ class ProductController extends Controller
 				$data['redeemed_at'] = $now;
 				$data['confirmed_at'] = $now;
 			}
-			
-			
-			
+
 			Wallet::update_ledger($memberid,'debit',$product->min_point,'PRPO');
 			
 			Product::update_pin($product->id, $data);
