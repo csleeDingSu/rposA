@@ -43,57 +43,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-8 column-1">
-	                <div class="item">兑换话费卡</div>
-	                <div class="date">2018-12-20</div>
-	            </div>
-	            <div class="col-xs-4 column-2">
-                    <div class="right-wrapper">
-                        <div class="points negative">-500</div>
-                        <div class="icon-coin-wrapper">
-                            <div class="icon-coin"></div>
-                        </div>
-                        
-                        <div style="clear: both"></div>
-                        <div class="balance">1550</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-8 column-1">
-	                <div class="item">兑换VIP入场卷</div>
-	                <div class="date">2018-12-20</div>
-	            </div>
-	            <div class="col-xs-4 column-2">
-                    <div class="right-wrapper">
-                        <div class="points negative">-300</div>
-                        <div class="icon-coin-wrapper">
-                            <div class="icon-coin"></div>
-                        </div>
-                        
-                        <div style="clear: both"></div>
-                        <div class="balance">1250</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-8 column-1">
-	                <div class="item">兑换商品</div>
-	                <div class="date">2018-12-20</div>
-	            </div>
-	            <div class="col-xs-4 column-2">
-                    <div class="right-wrapper">
-                        <div class="points negative">-1250</div>
-                        <div class="icon-coin-wrapper">
-                            <div class="icon-coin"></div>
-                        </div>
-                        
-                        <div style="clear: both"></div>
-                        <div class="balance">0</div>
-                    </div>
-                </div>
-            </div>
 		</div>
         <div id="pagination"></div>
 	</div>

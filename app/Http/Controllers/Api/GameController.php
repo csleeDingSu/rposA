@@ -61,7 +61,9 @@ class GameController extends Controller
 		
 		$futureresult= Game::get_future_result($request->gameid, $now );
 		
-		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'gamehistory' => $gamehistory,'futureresults' => $futureresult]); 
+		$setting     = \App\Admin::get_setting();
+		
+		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'gamehistory' => $gamehistory,'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee]); 
 	}
 	
 	//with  bet	
@@ -78,8 +80,8 @@ class GameController extends Controller
 		$wallet      = Wallet::get_wallet_details($request->memberid);	
 		
 		$futureresult= Game::get_future_result($request->gameid, $now );
-		
-		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => $gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,'futureresults' => $futureresult]);  
+		$setting     = \App\Admin::get_setting();
+		return response()->json(['success' => true, 'gamesetting' => $gamesetting, 'gamenotification' => $gamenotific,'bethistory' => $bethistory,'gamehistory' => $gamehistory,'game_temp' => $game_temp,'wallet' => $wallet,'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee]);  
 	}
 	
 	
@@ -569,6 +571,8 @@ class GameController extends Controller
 			$wallet = Wallet::get_wallet_details($memberid);
 			
 			$gamelevel = Game::get_member_current_level($gameid, $memberid);
+			
+			$close = Game::get_consecutive_lose($memberid,$gameid);
 
 			if ($wallet) 
 			{	
@@ -578,10 +582,14 @@ class GameController extends Controller
 				}
 				if ($wallet->life >= 1) 
 				{
-
-					if ($wallet->acupoint < 150) 
-					{
-						return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+					
+					
+					if ($close != 'yes') {
+						
+						if ($wallet->acupoint < 150) 
+						{
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+						}
 					}
 					
 					if($wallet->acupoint>150){
@@ -638,7 +646,7 @@ class GameController extends Controller
 					Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
 
 					//Reset latest member game level
-					Game::reset_member_game_level($memberid , $gameid);
+					Game::reset_member_game_level($memberid , $gameid);					
 
 					return response()->json(['success' => true,  'Acupoint' => $wallet->acupoint]); 
 					//return response()->json(['success' => true]); 
@@ -657,10 +665,17 @@ class GameController extends Controller
 					{
 						$debit = 150;
 					}
-					else if ($wallet->acupoint < 150) 
-					{
-						return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+										
+					
+					if ($close != 'yes') {
+						
+						if ($wallet->acupoint < 150) 
+						{
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+						}
 					}
+					
+					
 					
 					Wallet::update_ledger($memberid,'acpoint',$debit,$category = 'PNT',$notes = FALSE);
 					

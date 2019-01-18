@@ -429,9 +429,8 @@ class ProductController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['pin_status'=>3,'confirmed_at'=>$now];
-						
-			Wallet::update_ledger($record->member_id,'credit',$record->used_point,'RFN','redeem rejected,point refund to customer');
+			$data = ['pin_status'=>3,'confirmed_at'=>$now];						
+			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', 'redeem rejected,point refund to customer');			
 			
 			Product::update_pin($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
@@ -770,7 +769,7 @@ class ProductController extends BaseController
 			$now = Carbon::now();
 			$data = ['redeem_state'=>0,'confirmed_at'=>$now];
 						
-			Wallet::update_ledger($record->member_id,'credit',$record->used_point,'RFN','vip package rejected,point refund to customer');
+			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', 'vip package rejected,point refund to customer');
 			
 			Package::update_vip($record->id, $data);
 			

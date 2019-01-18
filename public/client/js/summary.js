@@ -42,6 +42,7 @@ function getSummary(token) {
 }
 
  function showSummary(results) {
+    //console.log(results);
     var length = results.length;
 
     $('#summary').html('');
@@ -61,6 +62,7 @@ function getSummary(token) {
             //console.log(value);
             var str_type = '';
             var str_points = '';
+            var cls_negative = '';
             var d = new Date(value.created_at);
             var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
                                 ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
@@ -71,20 +73,17 @@ function getSummary(token) {
                     str_points = '+' + parseInt(value.credit);
                 break;
 
-                case 'DPNT':
+                case 'DPRPO':
                     str_type = '兑换话费卡';
                     str_points = '-' + parseInt(value.debit);
+                    cls_negative = 'negative';
                 break;
 
-                case 'DPVIP':
+                case 'DPBVP':
                     str_type = '兑换VIP入场卷';
                     str_points = '-' + parseInt(value.debit);
+                    cls_negative = 'negative';
                 break;
-
-                case 'DPNT':
-                    str_type = '兑换商品';
-                    str_points = '-' + parseInt(value.debit);
-                break; 
             }
 
             summary +=   '<div class="row">' +
@@ -94,7 +93,7 @@ function getSummary(token) {
                             '</div>' +
                             '<div class="col-xs-4 column-2">' +
                                 '<div class="right-wrapper">' +
-                                    '<div class="points">'+ str_points +'</div>' +
+                                    '<div class="points ' + cls_negative +'">'+ str_points +'</div>' +
                                     '<div class="icon-coin-wrapper">' +
                                         '<div class="icon-coin"></div>' +
                                     '</div>' +
