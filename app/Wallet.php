@@ -173,6 +173,7 @@ class Wallet extends Model
 					'debit'	            => $debit,
 					'balance_before'    => $wallet->current_point,
 					'balance_after'	    => $newpoint,
+					'current_balance'	=> $newpoint,
 					'notes'             => $point." POINTS $action_type ".$notes,
 					'credit_type'	    => $prefix.'P'.$category,
 					];
