@@ -59,7 +59,7 @@ class LedgerController extends BaseController
 		if ($msg) return response()->json(['success' => true, 'record' => '']);
 		else return response()->json(['success' => false, 'record' => '']);
 	}
-	public function get_life (Request $request)
+	public function get_wallet (Request $request)
 	{
 		$id     = $request->input('id');
 		$record = Wallet::get_wallet_details($id);
@@ -68,9 +68,10 @@ class LedgerController extends BaseController
 	
 	
 	
-
+	//Deprecated
 	public function adjust_life (Request $request)
 	{
+		return FALSE;
 		$inputs   = $request->input('datav');
 		$memberid = $request->input('id');
 		
@@ -86,6 +87,54 @@ class LedgerController extends BaseController
 		else return response()->json(['success' => false, 'message' => 'unknown wallet record']);
 		
 		return response()->json(['success' => false, 'message' => 'unknown record']);
+		
+	}
+	
+	
+	public function adjust_life_point (Request $request)
+	{
+		$inputs   = $request->input('datav');
+		$memberid = $request->input('id');
+		$life     = 0;
+		$point    = 0;
+		$error    = TRUE;
+		foreach ($inputs as $key=>$val)
+		{
+			$data[$val['name']] = $val['value'];			
+		}						
+		if ($data['addlife'] >= 1) 
+		{
+			$record = Wallet::update_ledger_life($memberid, $data['addlife'],'LACL',$data['tnotes']);	
+			$error  = FALSE;
+			if ($record['success']) $result['life'] = $record['life'];
+		}
+		
+		if ($data['apoint'] >= 1) 
+		{
+			$record = Wallet::update_basic_wallet($memberid, 0,$data['apoint'],'ACP','credit',$data['tnotes']);
+			$error  = FALSE;
+			if ($record['success']) $result['point'] = $record['point'];
+		}
+		
+		if ($data['viplife'] >= 1) 
+		{
+			$record = Wallet::update_vip_wallet($memberid, $data['viplife'], 0,'AVL','credit',$data['tnotes']);
+			$error  = FALSE;
+			if ($record['success']) $result['point'] = $record['point'];
+		}		
+		
+		if ($data['vapoint'] >= 1) 
+		{
+			$record = Wallet::update_vip_wallet($memberid, 0,$data['vapoint'],'AVP','credit',$data['tnotes']);
+			$error  = FALSE;
+			if ($record['success']) $result['vippoint'] = $record['point'];
+		}
+		
+		if ($error) 
+		{
+			return response()->json(['success' => false,'record'=>'']);
+		}		
+		return response()->json(['success' => true,'record'=>$result]);
 		
 	}
 	

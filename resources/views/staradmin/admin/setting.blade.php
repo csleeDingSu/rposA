@@ -99,6 +99,26 @@
                       </div>
                     </div>
 					  
+					  
+					  <div class="row"> 
+						
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="auto_product_redeem" class="col-sm-3 col-form-label">@lang('dingsu.auto_product_redeem')</label>
+                          <div class="col-sm-9">
+                            <select id="auto_product_redeem" name="auto_product_redeem" class="form-control">
+                              <option {{old('auto_product_redeem',$record->auto_product_redeem)=="Y"? 'selected':''}}  value="Y" >@lang('dingsu.yes')</option>
+                              <option {{old('auto_product_redeem',$record->auto_product_redeem)=="N"? 'selected':''}} value="N">@lang('dingsu.no')</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                     
+                    </div>
+					  
+					  
+					  
+					  
 					 <div class="row">
 						
                      

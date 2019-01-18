@@ -284,9 +284,12 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::post( '/product/ad-importprocess', 'ImportController@AdProcessImport' )->name( 'ad.process.import' );
 
 	//ledger
-	Route::get( '/ledger/get-life', 'LedgerController@get_life' )->name( 'get.ledger.life' );
-	Route::post( '/ledger/adjust-life', 'LedgerController@adjust_life' )->name( 'post.ledger.adjustlife' );
-
+	//Route::get( '/ledger/get-life', 'LedgerController@get_life' )->name( 'get.ledger.life' ); //deprecated
+	//Route::post( '/ledger/adjust-life', 'LedgerController@adjust_life' )->name( 'post.ledger.adjustlife' ); //deprecated
+	
+	Route::get( '/ledger/get-ledger', 'LedgerController@get_wallet' )->name( 'get.ledger.detail' );
+	Route::post( '/ledger/adjust-wallet', 'LedgerController@adjust_life_point' )->name( 'post.ledger.adjustwallet' );
+	
 	
 
 	//User 

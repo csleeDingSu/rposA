@@ -15,6 +15,13 @@
 								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
 							</div>
 						</div>
+						
+						<div class="col">
+							<label>@lang('dingsu.phone')</label>
+							<div id="the-basics">
+								<input type="text" class="form-control typeahead tt-input" name="s_phone" id="s_phone" placeholder="@lang('dingsu.phone')">
+							</div>
+						</div>
 
 						<div class="col">
 							<label>@lang('dingsu.credit_type')</label>
@@ -37,16 +44,28 @@
 									<option value="DLRVL">@lang('dingsu.reset') @lang('dingsu.vip') @lang('dingsu.life')</option>
 									<option value="APMNT">@lang('dingsu.vip') @lang('dingsu.point') @lang('dingsu.merged')</option>
 									<option value="APRFN">@lang('dingsu.vip') @lang('dingsu.refund')</option>
-									<option value="ALPRV">@lang('dingsu.added_vip_life_by_redeemed package')</option>
+									<option value="ALPRV">@lang('dingsu.added_vip_life_by_redeemed') @lang('dingsu.package')</option>
 									<option value="APLRV">@lang('dingsu.added_vip_point_by_redeemed')</option>
-									<option value="ALACL">@lang('dingsu.admin') @lang('dingsu.amended') @lang('dingsu.life')</option>
+									
 									<option value="WVRFE">@lang('dingsu.fee') </option>
+									<option value="ALACL">@lang('dingsu.admin') @lang('dingsu.amended') @lang('dingsu.life')</option>
 									<option value="ALILE">@lang('dingsu.introduction') @lang('dingsu.life')</option>
 									<option value="APACP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.point')</option>
-									<option value="ADAVP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.point')</option>
-									<option value="ADAVL">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')</option>
+									<option value="APAVP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.point')</option>
+									<option value="ALAVL">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')</option>
 									<option value="DPRPO">@lang('dingsu.redeem_product_using_point')</option>
 									<option value="DPBVP">@lang('dingsu.buy_vip_using_point')</option>
+								</select>
+							</div>
+						</div>
+						
+						
+						<div class="col">
+							<label>@lang('dingsu.sort_by')</label>
+							<div id="bloodhound">
+								<select id="order_by" name="order_by" class="form-control">
+									<option value="DESC" selected>@lang('dingsu.descending') @lang('dingsu.order')</option>
+									<option value="ASC">@lang('dingsu.ascending') @lang('dingsu.order')</option>									
 								</select>
 							</div>
 						</div>

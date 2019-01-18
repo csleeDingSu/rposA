@@ -523,4 +523,35 @@ return [
 	
 	
 	'passcode' => 'passcode',
+	
+	
+	
+	'current_point' => 'Current Point',
+	'add_point' => 'Add Point',
+	
+	'merged' => 'Merged',
+	'refund' => 'Refund',
+	'fee' => 'Fee',
+	'introduction' => 'Introduction',
+	'buy_vip_using_point' => 'BuyVip Point using point',
+	'redeem_product_using_point' => 'Product redeemed using point',
+	'admin' => 'Admin',
+	'amended' => 'Amended',
+	'added_vip_point_by_redeemed' => 'Added VIP Point by redeemed',
+	'added_vip_life_by_redeemed' => 'Added VIP Life by redeemed',
+	'nothing_to_change' => 'Nothing to Change',
+	'current_vip_point' => 'Current VIP point',
+	'add_vip_point' => 'Add VIP point',
+	'add_vip_life' => 'Add VIP life',
+	'current_vip_life' => 'Current VIP life',
+	'adjust_wallet' => 'Adjust wallet',
+	
+	'descending' => 'Descending',
+	'ascending' => 'Ascending',
+	'order' => 'order',
+	'sort_by' => 'Sort by',
+	'auto_product_redeem' => 'Auto product redeem',
+	
+	
+	
 ];

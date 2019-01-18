@@ -579,6 +579,11 @@ class GameController extends Controller
 				if ($wallet->life >= 1) 
 				{
 
+					if ($wallet->acupoint < 150) 
+					{
+						return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+					}
+					
 					if($wallet->acupoint>150){
 						$wallet->acupoint=150;
 					}
@@ -648,9 +653,13 @@ class GameController extends Controller
 					$credit        	= 0;
 					$debit        	= $wallet->acupoint; 
 					
-					if ($debit > 150 )
+					if ($debit >= 150 )
 					{
 						$debit = 150;
+					}
+					else if ($wallet->acupoint < 150) 
+					{
+						return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
 					}
 					
 					Wallet::update_ledger($memberid,'acpoint',$debit,$category = 'PNT',$notes = FALSE);

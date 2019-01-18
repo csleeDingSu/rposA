@@ -68,6 +68,7 @@ class AdminController extends BaseController
 				 'game_default_life'      	=> $request->game_default_life,
 				 'mobile_default_image_url' => $request->mobile_default_image_url,
 				 'desktop_default_image_url'=> $request->desktop_default_image_url,
+				 'auto_product_redeem'      => $request->auto_product_redeem,
                 ];
 		
 		
