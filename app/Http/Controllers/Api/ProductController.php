@@ -333,7 +333,7 @@ class ProductController extends Controller
 	}
 	
 	//check Setting table
-	public function waobaofee(Request $request)
+	public function wabaofee(Request $request)
     {
 		$setting   = \App\Admin::get_setting();
 		return response()->json(['success' => 'true','wabaofee' => $setting->wabao_fee]); 
