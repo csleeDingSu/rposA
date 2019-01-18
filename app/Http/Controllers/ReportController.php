@@ -82,6 +82,8 @@ class ReportController extends BaseController
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
 		
+		$order_by = 'DESC';
+		
     	if ($input) 
 		{
 			//filter					
@@ -96,8 +98,11 @@ class ReportController extends BaseController
 				if ($input['s_type'] != '' )
 					$result = $result->where('credit_type','=',$input['s_type']);
 			}
+			if (!empty($input['order_by'])) {
+				$order_by = $input['order_by'] ;				
+			}
 		}		
-		$result         =  $result->orderby('created_at','DESC')->paginate(50);
+		$result         =  $result->orderby('created_at',$order_by)->paginate(50);
 				
 		$data['page']   = 'reports.point_report.list'; 	
 				

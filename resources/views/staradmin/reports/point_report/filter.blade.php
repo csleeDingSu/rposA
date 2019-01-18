@@ -63,10 +63,9 @@
 						<div class="col">
 							<label>@lang('dingsu.sort_by')</label>
 							<div id="bloodhound">
-								<select id="s_type" name="s_type" class="form-control">
+								<select id="order_by" name="order_by" class="form-control">
 									<option value="DESC" selected>@lang('dingsu.descending') @lang('dingsu.order')</option>
-									<option value="ASC">@lang('dingsu.ascending') @lang('dingsu.order')</option>
-									
+									<option value="ASC">@lang('dingsu.ascending') @lang('dingsu.order')</option>									
 								</select>
 							</div>
 						</div>
