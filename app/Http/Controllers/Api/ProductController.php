@@ -332,4 +332,5 @@ class ProductController extends Controller
 		$setting   = \App\Admin::get_setting();
 		return response()->json(['success' => 'true','wabaofee' => $setting->wabao_fee]); 
 	}
+	
 }
