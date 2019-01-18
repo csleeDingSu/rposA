@@ -104,14 +104,14 @@ class LedgerController extends BaseController
 		{
 			$record = Wallet::update_ledger_life($memberid, $data['addlife'],'LACL',$data['tnotes']);	
 			
-			if ($record['success']) $result['life'] = $record['success']['life'];
+			if ($record['success']) $result['life'] = $record['life'];
 		}
 		
 		else if ($data['apoint'] >= 1) 
 		{
-			$record = Wallet::update_ledger_point($memberid, $data['apoint'],'PACP',$data['tnotes']);
+			$record = Wallet::update_basic_wallet($memberid, 0,$data['apoint'],'ACP','credit',$data['tnotes']);
 			
-			if ($record['success']) $result['point'] = $record['success']['point'];
+			if ($record['success']) $result['point'] = $record['point'];
 		}	
 		else 
 		{
