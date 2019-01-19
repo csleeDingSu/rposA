@@ -317,7 +317,7 @@ class ProductController extends Controller
 			{
 				if ($wallet->vip_life >= 1 )
 				{ 
-					return response()->json(['success' => false, 'message' => 'you must win '.$verifyrule->minimum_point.' points','min_point'=>$verifyrule->minimum_point,'vip_point'=>$wallet->vip_point,'win_point'=>$redeemreward,'redeem_count'=>$redeemcount]); 
+					return response()->json(['success' => false, 'message' => '你必须赢得'.$verifyrule->minimum_point.'积分','min_point'=>$verifyrule->minimum_point,'vip_point'=>$wallet->vip_point,'win_point'=>$redeemreward,'redeem_count'=>$redeemcount]); 
 				}
 			}
 		}
