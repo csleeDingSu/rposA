@@ -709,12 +709,12 @@ p.vip-life {
 #game-rules .instructions {
   margin-top: 5px;
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: #717171;
   text-align: justify;
   line-height: 25px;
-  padding: 0 15px;
+  padding: 0 13px;
 }
 
 #game-rules .btn-game-rules {
