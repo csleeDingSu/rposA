@@ -837,45 +837,51 @@ function changbar(number){
 }
 
 function showGameRules( event ){
+    event.stopImmediatePropagation();
     $('.button-card', window.parent.document).off('click', showGameRules);
     var token = event.data.token;
-    event.stopImmediatePropagation();
+    var bet_count = $('#hidbetting_count', window.parent.document).val();
 
-    $('.btn-rules-close', window.parent.document).css('visibility', 'hidden');
     $( ".txtTimer", window.parent.document ).removeClass('hide');
-    $('#game-rules', window.parent.document).show();
     $('#game-rules', window.parent.document).modal({backdrop: 'static', keyboard: false});
 
-    var counter = 11;
-    var interval = setInterval(function() {
-        --counter;
-        seconds = counter;
-        
-        if(counter <= 0){
-            seconds = '';
-        } else if(counter < 10) {
-            seconds = "0" + counter;
-        }
-
-        // Display 'counter' wherever you want to display it.
-        $( ".txtTimer", window.parent.document ).html(seconds);
-
-        if (counter <= 0) {
-            // Display a login box
-            $( ".txtTimer", window.parent.document ).addClass('hide');
-            clearInterval(interval);
-        }
-
-    }, 1000);
-
-    setTimeout(function(){ 
-
+    if(bet_count > 0) {
         $('.btn-rules-close', window.parent.document).click(function(){
             $('#game-rules', window.parent.document).hide();
             Cookies.set('show_game_rules', false);
+            bindBetButton(token);
         });
+    } else {
+        var counter = 11;
+        var interval = setInterval(function() {
+            --counter;
+            seconds = counter;
+            
+            if(counter <= 0){
+                seconds = '';
+            } else if(counter < 10) {
+                seconds = "0" + counter;
+            }
 
-        $('.btn-rules-close', window.parent.document).css('visibility', 'visible');
-        bindBetButton(token);
-    }, 11000);
+            // Display 'counter' wherever you want to display it.
+            $( ".txtTimer", window.parent.document ).html("(" + seconds + ")");
+
+            if (counter <= 0) {
+                // Display a login box
+                $( ".txtTimer", window.parent.document ).addClass('hide');
+                clearInterval(interval);
+            }
+
+        }, 1000);
+
+        setTimeout(function(){ 
+
+            $('.btn-rules-timer', window.parent.document).click(function(){
+                $('#game-rules', window.parent.document).hide();
+                Cookies.set('show_game_rules', false);
+            });
+
+            bindBetButton(token);
+        }, 11000);
+    }
 }

@@ -560,7 +560,7 @@ body{
 	font-weight: 700;
 }
 
-.modal-card, .txtTimer {
+.modal-card {
 	width: 250px;
 	margin: 0 auto;
 	font-size: 16px;
@@ -922,15 +922,6 @@ body{
 	float: left;
 	padding-left: 10px;
 }
-
-.txtTimer {
-	visibility: visible;
-	color: white;
-	font-size: 18px;
-	position: absolute;
-	margin-left: auto;
-	margin-right: auto;
-}
 /* End Modal box */
 
 /* Wechat Modal */
@@ -1095,6 +1086,51 @@ body{
 	font-size: 15px;
 }
 /* End Wechat Modal*/
+
+/* Game Rules Modal */
+#game-rules .modal-title {
+	background: url('/client/images/modal_header.png') no-repeat;
+	background-size: contain;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+	width: 310px !important;
+	height: 74px;
+	padding: 0;
+	z-index: 10000;
+	position:relative;
+}
+
+#game-rules .modal-title h1 {
+	font-size: 20px;
+	padding-top: 30px;
+	font-weight: 500;
+}
+
+#game-rules .modal-content {
+	margin-top: -12px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	width: 296px;
+	z-index: 9999;
+	position:relative;
+}
+
+#game-rules .instructions {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #717171;
+	text-align: justify;
+	line-height: 2;
+	padding: 0 5px;
+}
+
+/* End Game Rules Modal */
 
 /* Swiper */
 
@@ -1282,16 +1318,17 @@ iframe {
 	margin-top: 20px;
 }
 
-.btn-rules-close {
- 	visibility: hidden;
+.btn-game-rules {
 	background: url('/client/images/rules_btn_gamestart.png') no-repeat top center;
 	font-size: 20px;
 	color: white;
-	height: 40px;
-	padding: 5px 0px 5px 0;
-	background-size: cover;
-	max-width: 100%;
-
+	background-size: contain;
+	width: 250px;
+	height: 42px;
+	padding-top: 5px;
+	margin-top: 20px;
+	cursor: pointer;
+	text-align: center;
 }
 
 @media only screen and (max-width: 360px) {
@@ -1339,14 +1376,6 @@ iframe {
 
 	.btn-vip-submit {
 		font-size: 16px;
-	}
-
-	.btn-rules-close {
-		height: auto;
-	}
-
-	.rules-content-img-timeline {
-		width: 240px;
 	}
 }
 

@@ -454,43 +454,33 @@
 
 <!--  end -->
 
-
-<!-- Game Rules Modal -->
-
-	<div class="modal fade col-md-12 col-sm-10" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="game-ruleslabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-		<div class="modal-dialog modal-sm" role="document">
+<!-- Game Rules starts -->
+	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-title">
+				<h1>游戏规则说明</h1>
+			</div>
 			<div class="modal-content">
-                                
-				<div class="modal-body" style="background-color: black;border-radius: 5px;">				
+				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="rules-title">
-									游戏规则说明
-								</div>
-								<div class="rules-content-1">
-									使用一次挖宝机会，兑换成1200游戏积分，游戏积分可用来竞猜单数或双数。
-								</div>
-								<div class="rules-content-2">
-									游戏规则: 压多少猜中赚多少，猜错就扣除。
-									1200积分不能1次全压，而是分为6次，如下图:
+								<div class="instructions">
+									每局拥有1200的游戏积分，分6次来玩。
 								</div>
 								<img src="{{ asset('/client/images/rules_timeline.png') }}" class="rules-content-img-timeline"/>
-								<br/>
-								<div class="rules-content">
-									玩法规则解释:<br />
-									第一次压10分，如果猜错下次压30，如果还错下次压70，如果再错下次压150，一直错就一直增加，直到猜中为止！<br />
-									猜中后，返回10分重新开始，按此规则不停循环，每次最多可赚150分，可兑换红包15元。<br />									
-									如果6次全错，扣除本局赚的积分，游戏结束。
+								<div class="instructions">
+									第一次押10积分，如果不中下次押30，如果还不中下次押70，不停的增加投入。<br />
+									如果猜中，就返回10积分重新押起。<br />
+									所以只要6次内猜中一次，就能无限循环不停赚积分，赚的积分可提现。<br />
+									6次全错的话，扣除赚到的积分。
 								</div>
 
-								<div class="txtTimer"></div>
 								@if($betting_count > 0)
-									<div class="btn-rules-close">返回游戏</div>
+									<div class="btn-game-rules btn-rules-close">开始游戏</div>
 								@else
-									<div class="btn-rules-close">使用1次机会 开始抽奖</div>
+									<div class="btn-game-rules btn-rules-timer">请阅读游戏规则 <span class="txtTimer"></span></div>	
 								@endif
-							
 							</div>
 						</div>
 					</div>							
@@ -498,8 +488,7 @@
 			</div>
 		</div>
 	</div>
-
-<!--  end -->
+<!-- Steps Modal Ends -->
 
 
 <!-- VIP Modal -->
@@ -554,7 +543,7 @@
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
 			});
-			
+
 			$('.btn-rules').click(function(){
 				$('#game-rules').modal('show');
 			});

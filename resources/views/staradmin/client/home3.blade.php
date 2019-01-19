@@ -10,6 +10,7 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
 	<title>@lang('dingsu.home')</title>
+	<link rel="stylesheet" href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
@@ -117,72 +118,6 @@
 
 				@endif
 
-				<!--
-				<div class="banners">
-					<img src="{{ asset('/test/main/images/demo/banner.png') }}">
-				</div>
-
-				<div class="product">
-					<div class="title">
-						<span>今日用户已领走<font color="#f63556">  </font>元产品</span>
-						<h2>免费挖宝 免费领取</h2>
-					</div>
-					<ul class="list-1 fix">
-						<li>
-							<a href="#">
-								<span>¥178.00</span>
-								<img src="{{ asset('/test/main/images/demo/d-img.png') }}">
-							</a>
-							<h2>
-								<font>李明东</font>挖到了
-							</h2>
-							<h3>刚刚</h3>
-						</li>
-						<li>
-							<a href="#">
-								<span>¥178.00</span>
-								<img src="{{ asset('/test/main/images/demo/d-img.png') }}">
-							</a>
-							<h2>
-								<font>李明东</font>挖到了
-							</h2>
-							<h3>1分钟之前</h3>
-						</li>
-						<li>
-							<a href="#">
-								<span>¥178.00</span>
-								<img src="{{ asset('/test/main/images/demo/d-img.png') }}">
-
-							</a>
-							<h2>
-								<font>李明东</font>挖到了
-							</h2>
-							<h3>30分钟之前</h3>
-						</li>
-						<li>
-							<a href="#">
-								<span>¥178.00</span>
-								<img src="{{ asset('/test/main/images/demo/d-img.png') }}">
-							</a>
-							<h2>
-								<font>李明东</font>挖到了
-							</h2>
-							<h3>30分钟之前</h3>
-						</li>
-						<li>
-							<a href="#">
-								<span>¥178.00</span>
-								<img src="{{ asset('/test/main/images/demo/d-img.png') }}">
-							</a>
-							<h2>
-								<font>李明东</font>挖到了
-							</h2>
-							<h3>刚刚</h3>
-						</li>
-					</ul>
-				</div>
-				 -->
-
 				<div class="product">
 					<div class="title">
 						<span>共有<font color="#f63556">{{ $vouchers->total() }}</font>款产品</span>
@@ -247,10 +182,45 @@
 				<a class="btn" href="/redeem"><div class="btn-redeem">兑换商品</div></a>
 
 			</div>
-		</div> 
-		
+		</div>
+
+		<div class="showTips dflex scaleHide" id="game-rules">
+			<div class="inBox">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-title">
+					<h1>挖宝赚钱攻略</h1>
+				</div>
+				<div class="modal-content">
+					<div class="modal-body">				
+						<div class="modal-row">
+							<div class="wrapper modal-full-height">
+								<div class="modal-card">
+									<div class="instructions">
+										挖宝是为了鼓励用户分享，而设立的免费竞猜游戏 「猜单双，6次内猜中就有奖」<br />
+										<ul class="tips-list">
+											<li class="tips-title">如何赚钱？</li>
+											每次机会有99%概率获得15元，新注册用户有3次机会，能获得45元。<br />
+											<div class="div-tips">小编偷偷讲：以后会调低奖励，现在已经注册的，赶紧抓住机会赚一波。</div>
+											<li class="tips-title">如何赚更多钱？</li>
+											每邀请1个新用户能获得1次机会，邀请10个赚150元「被邀请的能获得3次机会」 <br />
+											非常容易邀请到很多人注册，大力分享！
+										</ul>
+									</div>
+									<a href="/arcade">
+										<div class="btn-game-rules">进入赚钱</div>
+									</a>
+								</div>
+							</div>
+						</div>							
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
 	</section>
 	
+	
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script>
@@ -298,56 +268,6 @@
 				}
 			});
 
-
-			// $('.product .list-2 .dbox a.dbox0').click((e) => {
-
-			// 	alert($(e.target).data('t_id'));
-
-			// 	item_id = $(e.target).data('t_id');
-			// 	product_name = $(e.target).data('t_product_name');
-			// 	product_price = $(e.target).data('t_product_price');
-			// 	product_img = $(e.target).data('t_product_img');
-
-			// 	 // alert(product_name);
-			
-			// 	being.wrapShow();
-
-			// 	document.getElementById("product_name").textContent = product_name;
-			// 	// $(this).find("#product_name").innerHTML = product_name;
-			// 	document.getElementById("product_price").textContent = '淘宝原价：￥' + product_price;
-			// 	document.getElementById("product_discount_price").textContent = '优惠价：' + product_price + '元';
-			// 	document.getElementById("product_img").src = product_img;
-
-			// 	being.scaleShow('.showBao');
-			
-		
-			// });
-/*
-			$('.product .list-2 .mset a.type').click((e) => {
-
-				item_id = $(e.target).data('tt_id');
-				product_name = $(e.target).data('tt_product_name');
-				product_price = $(e.target).data('tt_product_price');
-				product_img = $(e.target).data('tt_product_img');
-
-				// alert(product_img);
-			
-				being.wrapShow();
-
-				document.getElementById("product_name").textContent = product_name;
-				// $(this).find("#product_name").innerHTML = product_name;
-				document.getElementById("product_price").textContent = '淘宝原价：￥' + product_price;
-				document.getElementById("product_discount_price").textContent = '优惠价：' + product_price + '元';
-				document.getElementById("product_img").src = product_img;
-
-
-				being.scaleShow('.showBao');
-				
-				
-		
-			});
-			
-			*/
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
 				$( ".copyvoucher" ).html($(this).data('voucher'));
@@ -367,18 +287,22 @@
 			});
 			
 			
-			$("body").on("click",".mset a.type",function(e) {				
-				item_id       = $(e.target).data('tt_id');
-				product_name  = $(e.target).data('tt_product_name');
-				product_price = $(e.target).data('tt_product_price');
-				product_img   = $(e.target).data('tt_product_img');
-				product_discount_price = $(e.target).data('tt_product_discount_price');
-				voucher_price = $(e.target).data('tt_voucher_price');
-				
-				showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price);
+			$("body").on("click",".mset a.type",function(e) {
+				being.wrapShow();
+				being.scaleShow('.showTips');
 			});
 			
-			
+			$('.showTips').click((e) => {
+				var target = $(e.target).closest('.inBox').length;
+				console.log(target);
+				if (target > 0) {
+					return;
+				} else {
+					being.scaleHide('.showTips');
+					being.wrapHide();
+				}
+			});
+
 			function showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price)
 			{
 				being.wrapShow();
