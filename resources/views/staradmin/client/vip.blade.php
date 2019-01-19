@@ -357,7 +357,7 @@
 								<div class="modal-warning-title">
 									当前不能结算
 								</div>
-								<div class="modal-warning-content">
+								<div class="modal-warning-content redeem-error">
 									本局挖宝尚未完成
 								</div>
 
