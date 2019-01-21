@@ -275,18 +275,6 @@
 				being.scaleShow('.showQuan');
 			});
 			
-			$("body").on("click",".imgBox",function(){
-				item_id       = $(this).data('tt_id');
-				product_name  = $(this).data('tt_product_name');
-				product_price = $(this).data('tt_product_price');
-				product_img   = $(this).data('tt_product_img');
-				product_discount_price   = $(this).data('tt_product_discount_price');
-				voucher_price = $(this).data('tt_voucher_price');
-
-				showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price);
-			});
-			
-			
 			$("body").on("click",".mset a.type",function(e) {
 				being.wrapShow();
 				being.scaleShow('.showTips');
@@ -303,30 +291,9 @@
 				}
 			});
 
-			function showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price)
-			{
+			$("body").on("click",".imgBox",function(){
 				being.wrapShow();
-
-				document.getElementById("product_name").textContent = product_name;
-				// $(this).find("#product_name").innerHTML = product_name;
-				document.getElementById("product_price").textContent = '淘宝原价：￥' + product_price;
-				document.getElementById("product_discount_price").textContent = '优惠价：' + product_discount_price + '元';
-				document.getElementById("product_img").src = product_img;
-				document.getElementById("voucher_price").textContent = Math.round((product_price - voucher_price) * 10);
-
-				being.scaleShow('.showBao');
-			}
-			
-
-			$('.showBao').click((e) => {
-				var target = $(e.target).closest('.inBox').length;
-				console.log(target);
-				if (target > 0) {
-					return;
-				} else {
-					being.scaleHide('.showBao ');
-					being.wrapHide();
-				}
+				being.scaleShow('.showTips');
 			});
 
 			var clipboard = new ClipboardJS('.cutBtn', {
