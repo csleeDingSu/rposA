@@ -551,7 +551,7 @@ return [
 	'order' => 'order',
 	'sort_by' => 'Sort by',
 	'auto_product_redeem' => 'Auto product redeem',
-	
+	'wabao_fee' => 'Redeem fee',
 	
 	
 ];
