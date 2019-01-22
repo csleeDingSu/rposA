@@ -472,15 +472,6 @@ class GameController extends Controller
 		return response()->json(['success' => true, 'records' => $result]); 
 	}
 	
-	public function o9999_get_betting_history(Request $request)
-    {
-		$gameid   = $request->gameid;
-		$memberid   = $request->memberid;
-		
-		$result = Game::get_betting_history($gameid, $memberid);
-		return response()->json(['success' => true, 'records' => $result]); 
-	}
-	
 	public function get_wallet_details(Request $request)
     {
 		$gameid   = $request->gameid;
