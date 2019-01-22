@@ -48,6 +48,11 @@ class ProductController extends Controller
 	public function get_redeem_history(Request $request)
     {
 		$member_id = $request->memberid;
+		$result    = Product::get_redeem_history($member_id,30);		
+		return response()->json(['success' => true, 'records' => $result]);
+		
+		//deprecated 
+		return FALSE;
 		$result    = Product::get_redeemlist_history($member_id,30);
 		$result->getCollection()->transform(function ($value) {
 			$code = $value->code;
@@ -61,8 +66,7 @@ class ProductController extends Controller
 			}
 			return $value;
 		});		
-		$package    = Package::get_vip_list($member_id); 
-		
+		$package    = Package::get_vip_list($member_id); 		
 		
 		return response()->json(['success' => true, 'records' => $result, 'package' => $package]);
 	}
@@ -332,28 +336,5 @@ class ProductController extends Controller
 		return response()->json(['success' => 'true','wabaofee' => $setting->wabao_fee]); 
 	}
 	
-	
-	
-	public function get_redeem_history_new(Request $request)
-    {
-		$member_id = $request->memberid;
-		$result    = Product::get_redeem_history($member_id,30);
-		$result->getCollection()->transform(function ($value) {
-			$code = $value->code;
-			$passcode = $value->passcode;
-			$value->code = null;
-			$value->passcode = null;
-			if ( $value->pin_status == 1 or $value->pin_status == 2 )
-			{
-				$value->code     = $code;
-				$value->passcode = $passcode;
-			}
-			return $value;
-		});		
-		$package    = Package::get_vip_list($member_id); 
-		
-		
-		return response()->json(['success' => true, 'records' => $result, 'package' => $package]);
-	}
 	
 }

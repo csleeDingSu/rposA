@@ -924,3 +924,8 @@ textarea {
 	font-size: 15px;
 }
 /* End Wechat Modal*/
+
+#redeem-pagination {
+	margin-top: 10px;
+	margin-left: 10px;
+}

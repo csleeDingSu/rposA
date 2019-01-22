@@ -455,7 +455,7 @@
 <!--  end -->
 
 <!-- Game Rules starts -->
-	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title">
 				<h1>游戏规则说明</h1>
