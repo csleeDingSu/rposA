@@ -66,13 +66,14 @@ class Product extends Model
 		return $result;
 	}
 	
+	//deprecated
 	public static function get_redeemlist_history($memberid, $limit = 100)
 	{
 		$result =  DB::table('view_redeem_list')->where('member_id', $memberid)->orderBy('request_at', 'DESC')->paginate($limit);
 		
 		return $result;
 	}
-	
+	//deprecated
 	public static function get_redeemlist_by_view($limit = 100)
 	{
 		$result =  DB::table('view_redeem_list')->paginate($limit);
@@ -256,6 +257,14 @@ class Product extends Model
 	public static function clean($ids = false)
 	{
 		$result = DB::table('ad_display')->truncate();
+		return $result;
+	}
+	
+	
+	public static function get_redeem_history($memberid, $limit = 100)
+	{
+		$result =  DB::table('view_redeem_history_all')->where('member_id', $memberid)->orderBy('request_at', 'DESC')->paginate($limit);
+		
 		return $result;
 	}
 	
