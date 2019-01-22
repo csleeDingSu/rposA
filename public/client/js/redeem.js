@@ -55,19 +55,22 @@ function getProductList(token) {
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
+            var current_point = parseInt(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
+                previous_point = parseInt(previous_point);
+
                 $('.wabao-coin')
                   .prop('number', previous_point)
                   .animateNumber(
                     {
-                      number: data.current_point
+                      number: current_point
                     },
                     1000
                   );
                 Cookies.remove('previous_point');
             } else {
-                $('.wabao-coin').html(data.current_point);
+                $('.wabao-coin').html(current_point);
             }            
 
             var records = data.records.data;
@@ -403,7 +406,7 @@ function redeemHistory(token) {
 }
 
 function populateHistoryData(records, pagination, token) {
-    console.log(pagination);
+    console.log(records);
     var html = '';
     var htmlmodel = '';
     var counter = (parseInt(pagination.pageNumber) - 1) * parseInt(pagination.pageSize);
@@ -433,7 +436,7 @@ function populateHistoryData(records, pagination, token) {
                         counter +
                     '</div>' +
                     '<div class="col-xs-7 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + item.package_price + '</div>' +
+                        '<div class="description">'+ item.product_name + ' ' + item.product_price + '</div>' +
                         '<div class="balance">兑换时间:'+ str_date +'</div>' +
                     '</div>';
 

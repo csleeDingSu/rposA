@@ -343,7 +343,6 @@ function setBalance() {
 function closeModal() {
     $('.close-modal', window.parent.document).click(function(){
         $('#reset-life-play', window.parent.document).modal('hide');
-        $('#reset-life-bet', window.parent.document).modal('hide');
         $('#reset-life-lose', window.parent.document).modal('hide');
     });
 }
@@ -480,7 +479,7 @@ function bindCalculateButton(token){
 
         if (typeof selected == 'undefined'){
             if (acupoint == 0 || level > 1) {
-                $('#reset-life-bet', window.parent.document).modal();
+                $('#reset-life-play', window.parent.document).modal();
             } else if (level == 1 && consecutive_lose == 'yes') {
                 bindResetLifeButton(token);
                 $('#reset-life-lose', window.parent.document).modal({backdrop: 'static', keyboard: false});
@@ -492,7 +491,7 @@ function bindCalculateButton(token){
                 $('#reset-life-max', window.parent.document).modal();
             }
         } else {
-            $('#reset-life-bet', window.parent.document).modal();
+            $('#reset-life-play', window.parent.document).modal();
         }
     });
 }
