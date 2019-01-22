@@ -338,7 +338,7 @@ class ProductController extends Controller
     {
 		$member_id = $request->memberid;
 		$result    = Product::get_redeem_history($member_id,30);
-		$result->getCollection()->transform(function ($value) {
+		/*$result->getCollection()->transform(function ($value) {
 			$code = $value->code;
 			$passcode = $value->passcode;
 			$value->code = null;
@@ -351,7 +351,7 @@ class ProductController extends Controller
 			return $value;
 		});		
 		$package    = Package::get_vip_list($member_id); 
-		
+		*/
 		
 		return response()->json(['success' => true, 'records' => $result, 'package' => $package]);
 	}
