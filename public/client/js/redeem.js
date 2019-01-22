@@ -383,7 +383,7 @@ function redeemHistory(token) {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            //console.log(data);
+            console.log(data);
             var records = data.records.data;
             var package = data.package;
             var html = '';
@@ -401,118 +401,113 @@ function redeemHistory(token) {
 
             } else {
 
-                var counter = 0;
+                $.each(records, function(i, item) {
+                    var counter = 0;
 
-                $.each(package, function(i, item) {
-                    counter += 1;
-                    var d = new Date(item.created_at);
+                    var d = new Date(item.request_at);
                     var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
                                 ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
-                    html += '<div class="history-row">' +
-                        '<div class="col-xs-2 column-4">' +
-                            counter +
-                        '</div>' +
-                        '<div class="col-xs-7 column-5">' +
-                            '<div class="description">'+ item.package_name + ' ' + item.package_price + '</div>' +
-                            '<div class="balance">兑换时间:'+ str_date +'</div>' +
-                        '</div>';
-
-                    if(item.redeem_state == 1) { // Pending
-                        html += '<div class="col-xs-3 column-6">' +
-                                    '<div class="btn-pending-vip">等待发放</div>' +
-                                '</div>' + 
+                    if (item.type == 'vip') {
+                        html += '<div class="history-row">' +
+                            '<div class="col-xs-2 column-4">' +
+                                counter +
+                            '</div>' +
+                            '<div class="col-xs-7 column-5">' +
+                                '<div class="description">'+ item.package_name + ' ' + item.package_price + '</div>' +
+                                '<div class="balance">兑换时间:'+ str_date +'</div>' +
                             '</div>';
 
-                    } else if (item.redeem_state == 2) { // Confirmed
-                        html += '<div class="col-xs-3 column-6">' +
-                                    '<div class="btn-card-vip" data-toggle="collapse" data-target="#content-p-' + item.id + '">查看密码</div>' +
-                                '</div>' + 
-                            '</div>' +
-                        '<div id="content-p-' + item.id + '" class="collapse">' +
-                            '<div class="card-wrapper">挖宝密码：<span class="codes-vip">' + item.passcode + '</span>' +
-                            '&nbsp;&nbsp;<button class="btn-vip" data-id="'+item.passcode+'" onClick="confirmredeemvip(\''+ token +'\', \''+ item.id +'\', \''+ item.passcode +'\')"  >进入VIP专场</button></div>' +
-                            '<div class="instruction">进入VIP专场 > 打开挖宝页面VIP专场 > 粘帖密码 > 进入VIP专场</div>' +    
-                        '</div>';
+                        if(item.redeem_state == 1) { // Pending
+                            html += '<div class="col-xs-3 column-6">' +
+                                        '<div class="btn-pending-vip">等待发放</div>' +
+                                    '</div>' + 
+                                '</div>';
 
-                        htmlmodel += '<!-- Modal starts -->' +
-                                        '<div class="modal fade col-lg-12" id="enter-vip-modal-' + item.id + '" tabindex="-1" style="z-index: 9999">' +
-                                            '<div class="modal-dialog" role="document">' +
-                                                '<div class="modal-content enter-vip-content">' +
-                                                    '<div class="modal-body">' +
-                                                        '<div class="modal-row">' +
-                                                            '<div class="vip-label">' +
-                                                                'VIP专场挖宝密码' +
-                                                            '</div>' +
-                                                            '<div class="vip-code">' +
-                                                                item.passcode +
-                                                            '</div>' +
-                                                            '<a href="/vip">' +
-                                                                '<div class="btn-enter-vip">' +
-                                                                    '进入专场' +
+                        } else if (item.redeem_state == 2) { // Confirmed
+                            html += '<div class="col-xs-3 column-6">' +
+                                        '<div class="btn-card-vip" data-toggle="collapse" data-target="#content-p-' + item.id + '">查看密码</div>' +
+                                    '</div>' + 
+                                '</div>' +
+                            '<div id="content-p-' + item.id + '" class="collapse">' +
+                                '<div class="card-wrapper">挖宝密码：<span class="codes-vip">' + item.passcode + '</span>' +
+                                '&nbsp;&nbsp;<button class="btn-vip" data-id="'+item.passcode+'" onClick="confirmredeemvip(\''+ token +'\', \''+ item.id +'\', \''+ item.passcode +'\')"  >进入VIP专场</button></div>' +
+                                '<div class="instruction">进入VIP专场 > 打开挖宝页面VIP专场 > 粘帖密码 > 进入VIP专场</div>' +    
+                            '</div>';
+
+                            htmlmodel += '<!-- Modal starts -->' +
+                                            '<div class="modal fade col-lg-12" id="enter-vip-modal-' + item.id + '" tabindex="-1" style="z-index: 9999">' +
+                                                '<div class="modal-dialog" role="document">' +
+                                                    '<div class="modal-content enter-vip-content">' +
+                                                        '<div class="modal-body">' +
+                                                            '<div class="modal-row">' +
+                                                                '<div class="vip-label">' +
+                                                                    'VIP专场挖宝密码' +
                                                                 '</div>' +
-                                                            '</a>' +
+                                                                '<div class="vip-code">' +
+                                                                    item.passcode +
+                                                                '</div>' +
+                                                                '<a href="/vip">' +
+                                                                    '<div class="btn-enter-vip">' +
+                                                                        '进入专场' +
+                                                                    '</div>' +
+                                                                '</a>' +
+                                                            '</div>' +
                                                         '</div>' +
                                                     '</div>' +
                                                 '</div>' +
                                             '</div>' +
-                                        '</div>' +
-                                        '<!-- Modal Ends -->';
+                                            '<!-- Modal Ends -->';
 
-                    } else if (item.redeem_state == 3) { // Redeemed
-                        html += '<div class="col-xs-3 column-6">' +
-                                    '<div class="btn-pending">正在使用</div>' +
-                                '</div>' + 
-                            '</div>';
-                    } else if (item.redeem_state == 4) { // Used
-                        html += '<div class="col-xs-3 column-6">' +
-                                    '<div class="btn-used-wrapper">' +
-                                        '<div class="btn-used"><img src="/client/images/vip/vip-used.png" width="50" height="50" /></div>' +
+                        } else if (item.redeem_state == 3) { // Redeemed
+                            html += '<div class="col-xs-3 column-6">' +
+                                        '<div class="btn-pending">正在使用</div>' +
                                     '</div>' + 
-                                '</div>' + 
-                            '</div>';
+                                '</div>';
+                        } else if (item.redeem_state == 4) { // Used
+                            html += '<div class="col-xs-3 column-6">' +
+                                        '<div class="btn-used-wrapper">' +
+                                            '<div class="btn-used"><img src="/client/images/vip/vip-used.png" width="50" height="50" /></div>' +
+                                        '</div>' + 
+                                    '</div>' + 
+                                '</div>';
+                        } else {
+                            html += '</div>';
+                        }
+
                     } else {
-                        html += '</div>';
+                        html += '<div class="history-row">' +
+                            '<div class="col-xs-2 column-4">' +
+                                counter +
+                            '</div>' +
+                            '<div class="col-xs-7 column-5">' +
+                                '<div class="description">'+ item.product_name + ' ' + item.pin_name + '</div>' +
+                                '<div class="balance">兑换时间:'+ str_date +'</div>' +
+                            '</div>';
+
+                        if(item.pin_status == 4) { // Pending
+                            html += '<div class="col-xs-3 column-6">' +
+                                        '<div class="btn-pending">等待发放</div>' +
+                                    '</div>' + 
+                                '</div>';
+
+                        } else if (item.pin_status == 2) { // Confirmed
+                            html += '<div class="col-xs-3 column-6">' +
+                                        '<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">查看卡号</div>' +
+                                    '</div>' + 
+                                '</div>' +
+                            '<div id="content-' + item.id + '" class="collapse">' +
+                                '<div class="card-wrapper">卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="codes">' + item.passcode + '</span></div>' +
+                                '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
+                                '</div>' +
+                            '</div>';
+                        } else {
+                            html += '</div>';
+                        }
                     }
 
                 });
 
-                $.each(records, function(i, item) {
-                    counter += 1;
-                    var d = new Date(item.created_at);
-                    var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
-                                ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
-
-                    html += '<div class="history-row">' +
-                        '<div class="col-xs-2 column-4">' +
-                            counter +
-                        '</div>' +
-                        '<div class="col-xs-7 column-5">' +
-                            '<div class="description">'+ item.product_name + ' ' + item.pin_name + '</div>' +
-                            '<div class="balance">兑换时间:'+ str_date +'</div>' +
-                        '</div>';
-
-                    if(item.pin_status == 4) { // Pending
-                        html += '<div class="col-xs-3 column-6">' +
-                                    '<div class="btn-pending">等待发放</div>' +
-                                '</div>' + 
-                            '</div>';
-
-                    } else if (item.pin_status == 2) { // Confirmed
-                        html += '<div class="col-xs-3 column-6">' +
-                                    '<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">查看卡号</div>' +
-                                '</div>' + 
-                            '</div>' +
-                        '<div id="content-' + item.id + '" class="collapse">' +
-                            '<div class="card-wrapper">卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="codes">' + item.passcode + '</span></div>' +
-                            '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
-                            '</div>' +
-                        '</div>';
-                    } else {
-                        html += '</div>';
-                    }
-
-                });
 
                 $('#history').html(html);
                 $( ".cardFull" ).after( htmlmodel);
