@@ -146,7 +146,12 @@ function initGame(data, token){
         clearInterval(parent.timerInterval);
         startTimer(duration, timer, freeze_time, token);
 
-        bindBetButton(token);
+        if (timer <= freeze_time) {
+            $('.radio-primary', window.parent.document).unbind('click');
+        } else {
+            bindBetButton(token);
+        }
+
         bindCalculateButton(token);
 
         $(".loading", window.parent.document).fadeOut("slow");
@@ -288,6 +293,7 @@ function restartTimer(token){
 }
 
 function resetGame() {
+    $('.radio-primary', window.parent.document).unbind('click');
     $('div.clicked', window.parent.document).find('.bet').hide();
     $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
     $('.payout-info', window.parent.document).addClass('hide');

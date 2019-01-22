@@ -160,7 +160,9 @@ function initGame(data, token){
 
         var show_game_rules = Cookies.get('show_game_rules');
 
-        if (balance == 1200 && acupoint == 0) {
+        if (timer <= freeze_time) {
+            $('.radio-primary', window.parent.document).unbind('click');
+        } else if (balance == 1200 && acupoint == 0) {
             if(show_game_rules == undefined) {
                 $('.radio-primary', window.parent.document).off('click');
                 $('.button-card', window.parent.document).on('click', { token: token }, showGameRules);
@@ -310,6 +312,7 @@ function restartTimer(token){
 }
 
 function resetGame() {
+    $('.radio-primary', window.parent.document).unbind('click');
     $('div.clicked', window.parent.document).find('.bet').hide();
     $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
     $('.payout-info', window.parent.document).addClass('hide');
