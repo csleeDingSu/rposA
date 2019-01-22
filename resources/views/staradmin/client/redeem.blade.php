@@ -11,6 +11,7 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/redeem.css') }}" />
+	<link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('top-javascript')
@@ -59,6 +60,8 @@
 
 				<!-- redeem history content -->
 				<div id="history" class="tab-pane fade {{ (!empty($slug) and $slug == 'history') ? 'in active' : '' }}">
+					<div id="redeem-history"></div>
+					<div id="redeem-pagination"></div>
 				</div>
 				<!-- end redeem list content -->
 			</div>
@@ -161,6 +164,7 @@
 <!-- Steps Modal Ends -->
 
     @parent
+    <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
