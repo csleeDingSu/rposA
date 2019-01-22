@@ -493,7 +493,7 @@
 
 <!-- VIP Modal -->
 
-	<div class="modal fade col-md-12 col-sm-10" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12 col-sm-10" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content vip-background">
                 <div class="vip-logo-wrapper">
