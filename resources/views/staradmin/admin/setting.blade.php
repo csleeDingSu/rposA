@@ -185,6 +185,21 @@
                         </div>
                       </div>
               </div>
+					  
+					  
+					  
+					  <div class="row"> 
+						
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="wabao_fee" class="col-sm-3 col-form-label">@lang('dingsu.wabao_fee')</label>
+                          <div class="col-sm-9">
+                            <input id="wabao_fee" name="wabao_fee" class="form-control" type="text"  value="{{$record->wabao_fee}}" maxlength="5">
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
 						 
 					  
                     <button type="submit" class="btn btn-success mr-2">@lang('dingsu.submit')</button>
