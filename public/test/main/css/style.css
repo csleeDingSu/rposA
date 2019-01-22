@@ -675,6 +675,12 @@ p.vip-life {
   margin: 0 auto;
 }
 
+#game-rules .modal-card {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
 #game-rules .modal-title {
   background: url('/client/images/modal_header.png') no-repeat;
   background-size: contain;
@@ -714,7 +720,7 @@ p.vip-life {
   color: #717171;
   text-align: justify;
   line-height: 25px;
-  padding: 0 13px;
+  padding: 0 3px;
 }
 
 #game-rules .btn-game-rules {

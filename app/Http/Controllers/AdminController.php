@@ -51,6 +51,7 @@ class AdminController extends BaseController
 				'maintenance_end_time'    => 'required_with:auto_maintenance,on',
                 'introduce_life' => 'required|integer|between:0,10',
 				'game_default_life' => 'required|integer|between:0,10',
+				'wabao_fee' => 'required|integer|between:0,1000',
             ]
         );
 		
@@ -69,6 +70,7 @@ class AdminController extends BaseController
 				 'mobile_default_image_url' => $request->mobile_default_image_url,
 				 'desktop_default_image_url'=> $request->desktop_default_image_url,
 				 'auto_product_redeem'      => $request->auto_product_redeem,
+				 'wabao_fee'     			=> $request->wabao_fee,
                 ];
 		
 		
