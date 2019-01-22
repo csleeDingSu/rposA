@@ -94,6 +94,6 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	
 	Route::any('/wabao-fee', 'ProductController@wabaofee')->name('api.wabaofee'); //new
 	
-	
+	Route::get('/redeem-hn', 'ProductController@get_redeem_history_new')->name('api.redeem.historynew');
 	
  });	
