@@ -377,39 +377,26 @@ function redeemHistory(token) {
 
     var member_id = $('#hidUserId').val();
 
-    var container = $('#redeem-pagination');
-
-    var options = {
-      dataSource: function(done) {
-        $.ajax({
-            type: 'GET',
-            url: "/api/redeem-history?memberid=" + member_id, 
-            dataType: "json",
-            beforeSend: function( xhr ) {
-                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            },
-            error: function (error) { console.log(error) },
-            success: function(data) {
-                var records = data.records.data;
-                done(records);
-            }
-        });
-      },
-      callback: function (response, pagination) {
-        populateHistoryData(response, pagination, token);
-      }
-    };
-
-    container.pagination(options);
-
-    
+    $.ajax({
+        type: 'GET',
+        url: "/api/redeem-history?memberid=" + member_id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        success: function(data) {
+            var records = data.records.data;
+            populateHistoryData(records, token);
+        }
+    });    
 }
 
-function populateHistoryData(records, pagination, token) {
+function populateHistoryData(records, token) {
     console.log(records);
     var html = '';
     var htmlmodel = '';
-    var counter = (parseInt(pagination.pageNumber) - 1) * parseInt(pagination.pageSize);
+    var counter = 0;
 
     if(records.length === 0){
 

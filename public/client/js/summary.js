@@ -17,28 +17,18 @@ function getToken(){
 
 function getSummary(token) {
     var user_id = $('#hidUserId').val();
-    var container = $('#pagination');
 
-    var options = {
-      dataSource: function(done) {
-        $.ajax({
-            type: 'GET',
-            url: "/api/member-point-list?memberid=" + user_id,
-            dataType: "json",
-            beforeSend: function( xhr ) {
-                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            },
-            success: function(data) {
-                done(data.result);
-            }
-        });
-      },
-      callback: function (response, pagination) {
-        showSummary(response);
-      }
-    };
-
-    container.pagination(options);
+    $.ajax({
+        type: 'GET',
+        url: "/api/member-point-list?memberid=" + user_id,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        success: function(data) {
+            showSummary(data.result);
+        }
+    });
 }
 
  function showSummary(results) {

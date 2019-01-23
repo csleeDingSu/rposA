@@ -61,7 +61,6 @@
 				<!-- redeem history content -->
 				<div id="history" class="tab-pane fade {{ (!empty($slug) and $slug == 'history') ? 'in active' : '' }}">
 					<div id="redeem-history"></div>
-					<div id="redeem-pagination"></div>
 				</div>
 				<!-- end redeem list content -->
 			</div>
