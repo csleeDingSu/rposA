@@ -19,63 +19,40 @@ function getToken(){
 function getNormalBettingHistory(token) {
     var user_id = $('#hidUserId').val();
 
-        var container = $('#normal-pagination');
-
-        var options = {
-          dataSource: function(done) {
-            $.ajax({
-                type: 'GET',
-                url: "/api/betting-history?gameid=101&memberid=" + user_id,
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                success: function(data) {
-                    //console.log(data);
-                    var results = reverse(data);
-                    //console.log(results);
-                    done(results);
-                }
-            });
-          },
-          callback: function (response, pagination) {
-            showBettingHistory(response, 'normal');
-          }
-        };
-
-        container.pagination(options);
+    $.ajax({
+        type: 'GET',
+        url: "/api/betting-history?gameid=101&memberid=" + user_id,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        success: function(data) {
+            //console.log(data);
+            var results = reverse(data);
+            //console.log(results);
+            showBettingHistory(results, 'normal');
+        }
+    });
 
 }
 
 function getVipBettingHistory(token) {
     var user_id = $('#hidUserId').val();
 
-        var container = $('#vip-pagination');
-
-        var options = {
-          dataSource: function(done) {
-            $.ajax({
-                type: 'GET',
-                url: "/api/betting-history?gameid=101&vip=yes&memberid=" + user_id,
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                success: function(data) {
-                    //console.log(data);
-                    var results = reverse(data);
-                    //console.log(results);
-                    done(results);
-                }
-            });
-          },
-          callback: function (response, pagination) {
-            showBettingHistory(response, 'vip');
-          }
-        };
-
-        container.pagination(options);
-
+    $.ajax({
+        type: 'GET',
+        url: "/api/betting-history?gameid=101&vip=yes&memberid=" + user_id,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        success: function(data) {
+            //console.log(data);
+            var results = reverse(data);
+            //console.log(results);
+            showBettingHistory(results, 'vip');
+        }
+    });
 }
 
 function reverse(data) {
