@@ -20,7 +20,7 @@
 				<div class="col-xs-6 member-wrapper">
 					<div class="name">{{ $member->username }}</div>
 					<div style="clear: both;"></div>
-					<div class="member-id">ID:{{ $member->id }}</div>
+					<div class="member-id">&nbsp;</div>
 				</div>
 				<div class="col-xs-6 member-wrapper">
 					@if($member->wechat_verification_status == 0)
