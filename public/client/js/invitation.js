@@ -136,6 +136,30 @@ function getList(token) {
 
             });
 
+            if(html_pending === '') {
+                html_pending = '<div class="row">' + 
+                                    '<div class="col-xs-12">' + 
+                                        '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
+                                    '</div>' + 
+                                '</div>';
+            }
+
+            if(html_success === '') {
+                html_success = '<div class="row">' + 
+                                    '<div class="col-xs-12">' + 
+                                        '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
+                                    '</div>' + 
+                                '</div>';
+            }
+
+            if(html_fail === '') {
+                html_fail = '<div class="row">' + 
+                                    '<div class="col-xs-12">' + 
+                                        '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
+                                    '</div>' + 
+                                '</div>';
+            }
+
             $('#pending-tab').html(html_pending);
             $('#success-tab').html(html_success);
             $('#fail-tab').html(html_fail);
