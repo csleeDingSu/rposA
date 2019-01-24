@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/results.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/history.css') }}" />
     
 
     <style>
@@ -54,7 +56,10 @@
 				</div>
 			</div>
 
-			<input id="hidTotalBalance" type="hidden" value="" />
+			<input id="result" type="hidden" value="6">
+		    <input id="freeze_time" type="hidden" value="">
+		    <input id="draw_id" type="hidden" value="">
+		    <input id="hidTotalBalance" type="hidden" value="" />
 			<input id="hidBalance" type="hidden" value="" />
 			<input id="hidLevel" type="hidden" value="" />
 			<input id="hidLevelId" type="hidden" value="" />
@@ -72,20 +77,207 @@
 	</div>
 	<!-- end information table -->
 
+	<!-- swiper iframe -->
 	<div class="swiper-container">
 		<div class="carousel-cell">
-			<iframe id="ifm_result" class="embed-responsive-item" src="/results" allowtransparency="true" frameBorder="0" scrolling="no" align="middle">
-			</iframe>
+			<div class="frame-wrapper">
+				<div class="results-body">
+					<div class=".results-wrapper">
+					<div class="results-row">
+						<div class="chain-wrapper results-left"></div>
+						<div class="box-wrapper">
+							<div id="result-1" class="results-box">1</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-2" class="results-box">2</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-3" class="results-box">3</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-4" class="results-box">4</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-5" class="results-box">5</div>
+						</div>
+						<div class="chain-wrapper results-right">
+							<div class="right-chain"></div>
+						</div>
+				  	</div>
+
+
+				  	<div class="results-row">
+				  		<div class="chain-wrapper results-left">
+				  			<div class="left-chain"></div>
+				  		</div>
+				  		<div class="box-wrapper">
+							<div id="result-10" class="results-box">1</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-9" class="results-box">2</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-8" class="results-box">3</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-7" class="results-box">4</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-6" class="results-box">5</div>
+						</div>
+						<div class="chain-wrapper results-right"></div>
+				  	</div>
+
+				  	<div class="results-row">
+				  		<div class="chain-wrapper results-left"></div>
+				  		<div class="box-wrapper">
+							<div id="result-11" class="results-box">1</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-12" class="results-box">2</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-13" class="results-box">3</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-14" class="results-box">4</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-15" class="results-box">5</div>
+						</div>
+						<div class="chain-wrapper results-right">
+							<div class="right-chain results-right"></div>
+						</div>
+				  	</div>
+
+				  	<div class="results-row">
+				  		<div class="chain-wrapper results-left">
+				  			<div class="left-chain"></div>
+				  		</div>
+				  		<div class="box-wrapper">
+							<div id="result-20" class="results-box">1</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-19" class="results-box">2</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-18" class="results-box">3</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-17" class="results-box">4</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-16" class="results-box">5</div>
+						</div>
+						<div class="chain-wrapper results-right"></div>		
+				  	</div>
+
+				  	<div class="results-row">
+				  		<div class="chain-wrapper results-left"></div>
+				  		<div class="box-wrapper">
+							<div id="result-21" class="results-box">1</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-22" class="results-box">2</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-23" class="results-box">3</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-24" class="results-box">4</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-25" class="results-box">5</div>
+						</div>
+						<div class="chain-wrapper results-right">
+							<div class="right-chain"></div>
+						</div>
+				  	</div>
+
+				  	<div class="results-row">
+				  		<div class="chain-wrapper results-left"></div>
+				  		<div class="box-wrapper">
+							<div id="result-30" class="results-box">1</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-29" class="results-box">2</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-28" class="results-box">3</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-27" class="results-box">4</div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-26" class="results-box">5</div>
+						</div>
+						<div class="chain-wrapper results-right"></div>
+				  	</div>
+				  </div>
+				</div>
+			</div>
 		</div>
 
 		<div class="carousel-cell">
-			<iframe id="ifm_wheel" class="embed-responsive-item" src="/wheel-vip" allowtransparency="true" frameBorder="0" scrolling="no">
-			</iframe>
+			<div class="frame-wrapper">
+		        <div id="wheel_container"></div>
+		    </div>
 		</div>
 
 		<div class="carousel-cell">
-			<iframe id="ifm_history" class="embed-responsive-item" src="/history" allowtransparency="true" frameBorder="0" scrolling="no">
-			</iframe>
+			<div class="frame-wrapper">
+				<div class="history-body">
+					<div class="history-wrapper">
+						<table class="history-table">
+						    <tbody>
+						        <tr id="row-1">
+						            <td class="history-number"></td>
+						            <td class="history">
+						            	<!--div class="points">630 <span class="additional">+40</span></div-->
+							        </td>
+						        </tr>
+						        <tr id="row-2">
+						            <td class="history-number"></td>
+						            <td class="history">
+						            </td>
+						        </tr>
+						        <tr id="row-3">
+						            <td class="history-number"></td>
+						            <td class="history">
+						            </td>
+						        </tr>
+						        <tr id="row-4">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
+						        </tr>
+						        <tr id="row-5">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
+						        </tr>
+						        <tr id="row-6">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
+						        </tr>
+						        <tr id="row-7">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
+						        </tr>
+						        <tr id="row-8">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
+						        </tr>
+						        <tr>
+						        	<td class="legend" colspan="2">
+						        		<div class="even"><span class="history-label"></span></div><div class="legend-item">代表双数</div>
+						        		<div class="odd"><span class="history-label"></span></div><div class="legend-item">代表单数</div>
+						        		<div class="odd-fail"><span class="history-label"></span></div><div class="even-fail overlap"><span class="history-label"></span></div><div class="legend-item">代表失败</div>
+						        	</td>
+						        </tr>
+						    </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- end swiper iframe -->
@@ -404,10 +596,15 @@
 
 	@parent
 	
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="{{ asset('/client/cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
-	<script src="{{ asset('/client/js/game.js') }}"></script>
+	<script src="{{ asset('/client/js/jquery.rotate.min.js') }}"></script>
+    <script src="{{ asset('/client/js/jquery.wheelOfFortune.js') }}"></script>
+    <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
+    <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
+	<script src="{{ asset('/client/js/vip.js') }}"></script>
 	<script src="{{ asset('/client/js/NoSleep.js') }}"></script>
 
 	<script type="text/javascript">

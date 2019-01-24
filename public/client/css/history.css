@@ -1,24 +1,21 @@
-html {
+.history-body {
     display: table;
     margin: auto;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
 }
 
-body {
+.history-wrapper {
     display: table-cell;
 }
 
-.wrapper {
-    margin: 0 auto;
-    width: 100%;
-}
-
-table {
+.history-table {
     border-collapse: separate;
     border-spacing: 3px;
     margin: 0 auto;
 }
 
-tbody td {
+.history-table td {
     background-color: rgba(255, 255, 255, 0.5);
     padding: 0px 10px 3px 10px;
     margin: 20px auto;
@@ -32,25 +29,25 @@ td.history {
     width: 248px;
 }
 
+.history-number {
+    width: 20px;
+    font-size: 12px;
+}
+
 /* iPhone 5 ----------- */
-@media only screen and (max-width: 360px) {
-    tbody td {
-        padding: 0px 5px 3px 5px;
+@media only screen and (max-width: 500px) {
+    .history-table td {
+        padding: 2px 6px 3px 6px;
         height: 26px;
         margin-right: 100px;
     }
 
     td.history {
-        width: 210px;
-    }
-
-    .number {
-        width: 20px;
-        font-size: 14px;
+        width: 220px;
     }
 }
 
-.legend {
+td.legend {
     background-color: transparent;
 }
 
@@ -67,7 +64,7 @@ td.history {
 }
 
 /* iPhone 5 ----------- */
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 500px) {
     .legend-item {
         padding-top: 10px;
         padding-right: 10px;
@@ -79,7 +76,7 @@ td.history {
     }
 }
 
-table .label {
+table .history-label {
     display: inline-block;
     width: 25px;
     height: 25px;
@@ -87,7 +84,7 @@ table .label {
     border-radius: 25px;
     margin-top: 4px;
     color: #b5b5ba;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 table .odd, .even, .odd-fail, .even-fail {
@@ -96,12 +93,12 @@ table .odd, .even, .odd-fail, .even-fail {
 }
 
 /* Done / Active */
-table .odd .label {
+table .odd .history-label {
     color: #FFF;
     background: #54d41d;
 }
 
-table .even .label {
+table .even .history-label {
     color: #FFF;
     background: #ff7200;
 }
@@ -111,31 +108,31 @@ table .odd-fail {
     position: relative;
 }
 
-table .odd-fail .label {
+table .odd-fail .history-label {
     color: #FFF;
     background: #585858;
     border: 2px solid #54d41d;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 22px;
 }
 
-table .even-fail .label {
+table .even-fail .history-label {
     color: #FFF;
     background: #585858;
     border: 2px solid #ff7200;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 22px;
 }
 
 /* iPhone 5 ----------- */
-@media only screen and (max-width: 360px) {
-    table .label {
+@media only screen and (max-width: 500px) {
+    table .history-label {
         width: 20px;
         height: 20px;
         line-height: 20px;
@@ -148,12 +145,12 @@ table .even-fail .label {
         margin-right: 5px;
     }
 
-    table .odd-fail .label {
+    table .odd-fail .history-label {
         font-size: 12px;
         line-height: 18px;
     }
 
-    table .even-fail .label {
+    table .even-fail .history-label {
         font-size: 12px;
         line-height: 18px;
     }
