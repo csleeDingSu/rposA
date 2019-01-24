@@ -123,7 +123,7 @@ class Members extends Model
 	
 	public static function get_wabao_coin_history($id)
 	{
-		$result = DB::table('view_wabao_point')->where('memberid', $id)->get();
+		$result = DB::table('view_wabao_point')->where('memberid', $id)->orderby('created_at','DESC')->get();
 		
 		return $result;
 	}
