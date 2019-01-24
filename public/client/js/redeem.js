@@ -413,7 +413,8 @@ function populateHistoryData(records, token) {
         $.each(records, function(i, item) {
             counter += 1;
 
-            var d = new Date(item.request_at);
+            var t = item.request_at.split(/[- :]/);
+            var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
             var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
                         ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 

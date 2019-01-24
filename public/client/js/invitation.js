@@ -78,7 +78,8 @@ function getList(token) {
             var html_fail = '';
 
             $.each(result, function(i, item) {
-                var date = new Date(item.created_at);
+                var t = item.created_at.split(/[- :]/);
+                var date = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
                 var str_date = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + 
                                 ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
                 

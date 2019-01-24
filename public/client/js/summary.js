@@ -53,7 +53,9 @@ function getSummary(token) {
             var str_type = '';
             var str_points = '';
             var cls_negative = '';
-            var d = new Date(value.created_at);
+
+            var t = value.created_at.split(/[- :]/);
+            var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
             var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
                                 ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
