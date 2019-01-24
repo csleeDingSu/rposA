@@ -101,39 +101,38 @@ function initUser(records, token){
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
 
-        if(life == 0){
-            balance = 0;
+        var vip_point =  parseInt(records.vip_point);
+        var vip_life =  parseInt(records.vip_life);
+
+        if(vip_life == 0){
+            vip_point = 0;
         }
 
-        var total_balance = balance + acupoint;
-        $('#spanPoint').html(total_balance);
-        
+        var total_balance = vip_point;
+
+        $('#spanPoint').html(vip_point);                    
         $('#hidTotalBalance').val(total_balance);
         $('.packet-point').html(point);
         $('.spanAcuPoint').html(acupoint);
         $('.packet-acupoint').html(acupoint);
         $('#hidBalance').val(balance);
         $(".nTxt").html(life);
+        $(".spanVipLife").html(vip_life);
         $(".spanLife").html(life);
-
-        setBalance();
-
-        if(life == 0){
-            $('#reset-life-share').modal();
-        } else if (user_id > 0 && acupoint >= 150) {
-            bindResetLifeButton(token);
-            $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
-        }
     }
 }
 
 function initGame(data, token){
-
+    $( '.btn-reset-life' ).unbind( "click" );
+    $( '.btn-reset-life-continue' ).unbind( "click" );
+    $( '.btn-calculate-vip' ).unbind( "click" );
+    
     var user_id = $('#hidUserId').val();
     trigger = false;
-    console.log(data);
+    
     if(data.success) {
         var bet_amount = 0;
+        var span_balance = 1200;
         var duration = data.record.duration;
         var timer = data.record.remaining_time;
         var freeze_time = data.record.freeze_time;
@@ -145,25 +144,14 @@ function initGame(data, token){
         var life = $(".nTxt").html();
         var balance = $('#hidBalance').val();
         var payout_info = '';
-        var acupoint = parseInt($('.spanAcuPoint').html());
-
 
         $('#hidLevel').val(level);
         $('#hidLevelId').val(level_id);
         $('#hidLatestResult').val(previous_result);
-        $('#hidConsecutiveLose').val(consecutive_lose);
 
         $('.barBox').find('li').removeClass('on');
         
-        if (consecutive_lose == 'yes' && life > 0 && balance == 0) {
-            showProgressBar(false);
-            bindResetLifeButton(token);
-            $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
-        }
-
         showProgressBar(false);
-
-        setBalance();
 
         $('#freeze_time').val(freeze_time);
         $('#draw_id').val(draw_id);
@@ -173,19 +161,9 @@ function initGame(data, token){
         clearInterval(parent.timerInterval);
         startTimer(duration, timer, freeze_time, token);
 
-        var show_game_rules = Cookies.get('show_game_rules');
-
         if (timer <= freeze_time) {
             $('.radio-primary').unbind('click');
-        } else if (balance == 1200 && acupoint == 0) {
-            if(show_game_rules == undefined) {
-                $('.radio-primary').off('click');
-                $('.button-card').on('click', { token: token }, showGameRules);
-            } else {
-                bindBetButton(token);
-            }
         } else {
-            Cookies.remove('show_game_rules');
             bindBetButton(token);
         }
 
@@ -195,12 +173,12 @@ function initGame(data, token){
 
         $.ajax({
             type: 'GET',
-            url: "/api/get-game-result-temp?gameid=101&gametype=1&memberid=" + user_id + "&drawid=" + draw_id,
+            url: "/api/get-game-result-temp?gameid=101&gametype=2&memberid=" + user_id + "&drawid=" + draw_id,
             dataType: "json",
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
             },
-            error: function (error) { console.log(error) },
+            error: function (error) { console.log(error.responseText) },
             success: function(data) {
 
                 if(data.success && data.record.bet != null){
@@ -222,7 +200,7 @@ function initGame(data, token){
 
                     $.ajax({
                         type: 'GET',
-                        url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                        url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
                         + "&drawid=" + draw_id 
                         + "&bet="+ selected 
                         +"&betamt=" + bet_amount,
@@ -247,14 +225,13 @@ function initGameMaster(token){
     
     $.ajax({
         type: 'GET',
-        url: "/api/master-call?gameid=101&memberid=" + user_id,
+        url: "/api/master-call?gameid=101&vip=yes&memberid=" + user_id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
-            console.log(data);
             var betting_records = data.bethistory.original.records;
             updateHistory(betting_records);
 
@@ -266,6 +243,9 @@ function initGameMaster(token){
             
             var game_records = data.gamesetting.original;
             initGame(game_records, token);
+
+            $('#hidFee').val(data.wabaofee);
+            $('.spanFee').html(data.wabaofee);
         }
     });
 }
@@ -335,37 +315,24 @@ function resetGame() {
     $('.instruction').css('visibility', 'visible');
 }
 
-function setBalance() {
-    var selected = $('div.clicked').find('input:radio').val();
-    if (typeof selected == 'undefined'){
-        //do nothing
-    } else {
-        var bet_amount = parseInt($('.bet-container').html());
-        var total_balance = parseInt($('#hidTotalBalance').val());
-        var balance = parseInt($('#hidBalance').val());
-        var acupoint = parseInt($('.spanAcuPoint').html());
-
-        var newbalance = balance - bet_amount;
-        var newtotalbalance = total_balance - bet_amount;
-        //console.log(balance + " - " + bet_amount + " = " + newbalance);
-        if(newbalance < 0){
-
-        } else {
-            //$('#spanPoint').html(newtotalbalance);
-        }
-    }
-}
-
 function closeModal() {
     $('.close-modal').click(function(){
-        $('#reset-life-play').modal('hide');
+        $('.redeem-error').html('本局挖宝尚未完成');
+        $('#reset-life-bet').modal('hide');
         $('#reset-life-lose').modal('hide');
+    });
+
+    $('.modal-message-manual').click(function(){
+        $('#reset-life-manual').modal();
+    });
+
+    $('.modal-manual-button').click(function(){
+        $('#reset-life-manual').modal('hide');
     });
 }
 
 function bindBetButton(token){
-
-    $('.radio-primary').click(function( event ){
+    $('.radio-primary').click(function(event){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
@@ -374,7 +341,6 @@ function bindBetButton(token){
         var life = $(".nTxt").html();
         var acupoint = parseInt($('.spanAcuPoint').html());
         var draw_id = $('#draw_id').val();
-        var consecutive_lose = $('#hidConsecutiveLose').val();
 
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
@@ -385,30 +351,6 @@ function bindBetButton(token){
             return false;
         }
 
-        //console.log(user_id +":" + balance + ":" + life );
-        if(user_id > 0 && life > 0){
-
-            if(balance < 630) {
-                if(consecutive_lose == 'yes'){
-                    bindResetLifeButton(token);
-                    $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
-                } else {
-                    bindResetLifeButton(token);
-                    $('#reset-life-start').modal();
-                }
-
-            }
-
-        } else if(user_id > 0 && life == 0){
-                $('#reset-life-share').modal();
-        }
-
-        if (user_id > 0 && acupoint >= 150) {
-            bindResetLifeButton(token);
-            $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
-        }
-
-
         $('.radio-primary').not(this).find('.radio').removeClass('clicked');
         $('.radio-primary').not(this).find('.bet-container').hide();
         $('.radio-primary').not(this).find('.bet').hide();
@@ -418,20 +360,19 @@ function bindBetButton(token){
         $(this).find('.radio').toggleClass('clicked');
 
         var selected = $('div.clicked').find('input:radio').val();
-
         if (typeof selected == 'undefined'){
 
             checked(level, false);
             changbar(level);
 
-            $('#spanPoint').html(total_balance);
+            //$('#spanPoint').html(total_balance);
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
             //$('.span-balance').html(balance);
-            
+
             $.ajax({
                 type: 'GET',
-                url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
                 + "&drawid=" + draw_id 
                 + "&bet=&betamt=",
                 dataType: "json",
@@ -462,7 +403,7 @@ function bindBetButton(token){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                    url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
                     + "&drawid=" + draw_id 
                     + "&bet="+ selected 
                     + "&betamt=" + bet_amount
@@ -485,53 +426,73 @@ function bindBetButton(token){
 }
 
 function bindCalculateButton(token){
-    $('.btn-calculate').click(function( event ){
-        event.stopImmediatePropagation();
-
-        var acupoint = $('.spanAcuPoint').html();
-        var selected = $('div.clicked').find('input:radio').val();
-        var level = parseInt($('#hidLevel').val());
-        var consecutive_lose = $('#hidConsecutiveLose').val();
-
-        if (typeof selected == 'undefined'){
-            if (acupoint == 0 || level > 1) {
-                $('#reset-life-play').modal();
-            } else if (level == 1 && consecutive_lose == 'yes') {
-                bindResetLifeButton(token);
-                $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
-            } else if(acupoint > 0 && acupoint < 150) {
-                bindResetLifeButton(token);
-                $('#reset-life-play').modal();
-            } else if (acupoint >= 150) {
-                bindResetLifeButton(token);
-                $('#reset-life-max').modal();
-            }
-        } else {
-            $('#reset-life-play').modal();
-        }
-    });
-}
-
-function bindResetLifeButton(token){
-    $( '.btn-reset-life' ).click( function( event ){
-        $(this).off('click');
+    $('.btn-calculate-vip').click(function( event ){
         event.stopImmediatePropagation();
 
         var user_id = $('#hidUserId').val();
-        var previous_point = $('.packet-point').html();
+        var selected = $('div.clicked').find('input:radio').val();
+        var level = parseInt($('#hidLevel').val());
 
-        // add points from additional life.
-        if(user_id > 0){
+        if (typeof selected == 'undefined' && level == 1) {
             $.ajax({
                 type: 'POST',
-                url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 101, 'life': 'yes' },
+                url: "/api/check-redeem",
+                data: { 'memberid': user_id },
                 dataType: "json",
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
                 },
                 error: function (error) { console.log(error.responseText) },
                 success: function(data) {
+                    console.log(data);
+                    if(data.success){
+                        var point = data.wabao_point;
+                        var vip_point = data.vip_point;
+                        var fee = $('#hidFee').val();
+                        var net_vip_point = parseInt(vip_point) - parseInt(fee);
+
+                        $('.spanVipPoint').html(vip_point);
+                        $('.spanNetVip').html(net_vip_point);
+                        $('.packet-point').html(point);
+
+                        $('#reset-life-max').modal();
+                            
+                        bindResetLifeButton(token);
+                        $('#btn-close-max').click(function(){
+                            $('#reset-life-max').modal('hide');
+                        });
+
+                    } else {
+                        $('.redeem-error').html(data.message);
+                        $('#reset-life-bet').modal();
+                    }
+                }
+            });
+        } else {
+            $('#reset-life-bet').modal();
+        }
+    });
+}
+
+function bindResetLifeButton(token){
+    $( '.btn-reset-life' ).click( function(event){
+        event.stopImmediatePropagation();
+        var user_id = $('#hidUserId').val();
+        var previous_point = $('.packet-point').html();
+        
+        // add points from additional life.
+        if(user_id > 0){
+            $.ajax({
+                type: 'POST',
+                url: "/api/reset-vip",
+                data: { 'memberid': user_id, 'gameid': 101 },
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                },
+                error: function (error) { console.log(error.responseText) },
+                success: function(data) {
+                    console.log(data);
                     if(data.success){
                         Cookies.set('previous_point', previous_point);
                         window.parent.location.href = "/redeem";
@@ -541,10 +502,8 @@ function bindResetLifeButton(token){
         }
     });
 
-    $( '.btn-reset-life-continue' ).click( function( event ){
-        $(this).off('click');
+    $( '.btn-reset-life-continue' ).click( function(event){
         event.stopImmediatePropagation();
-
         var user_id = $('#hidUserId').val();
 
         // add points from additional life.
@@ -561,9 +520,7 @@ function bindResetLifeButton(token){
                 success: function(data) {
                     if(data.success){
                         $('#reset-life-max').modal('hide');
-                        $('#reset-life-play').modal('hide');
                         $('#reset-life-lose').modal('hide');
-                        $('#reset-life-start').modal('hide');
                         getToken();
                     }
                 }
@@ -575,6 +532,7 @@ function bindResetLifeButton(token){
 function showProgressBar(bol_show){
     var level = parseInt($('#hidLevel').val());
     var consecutive_lose = $('#hidConsecutiveLose').val();
+    var mergepoint = $('#hidMergePoint').val();
     var bet_amount = 0;
     var payout_info = '';
     var span_balance = 1200;
@@ -589,7 +547,7 @@ function showProgressBar(bol_show){
         $('.span-balance').html(0);
 
         $('.payout-info').html(payout_info).addClass('hide');
-        $('.spanAcuPoint').html(0);
+        $('#spanPoint').html(mergepoint);
         checked(7, false);
         changbar(7);
     } else {
@@ -605,7 +563,6 @@ function showProgressBar(bol_show){
                 $('.span-3').html("70");
                 $('.span-4').html("150");
                 $('.span-5').html("310");
-                $('.span-6').html("630");
 
                 break;
             case 2:
@@ -674,7 +631,6 @@ function startTimer(duration, timer, freeze_time, token) {
 
     var trigger_time = freeze_time - 1;
     parent.timerInterval = setInterval(function () {
-
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 61, 10);
 
@@ -685,17 +641,41 @@ function startTimer(duration, timer, freeze_time, token) {
 
         --timer;
 
-        if (timer < 0) {
+        if (timer < 0) {            
             timer = duration;
+            clearInterval(parent.timerInterval);
 
-            getToken();
+            var consecutive_loss = $('#hidConsecutiveLose').val();
+            var mergepoint = parseInt($('#hidMergePoint').val()) || 0;
+            var previous_point = $('.packet-point').html();
+            var fee = $('#hidFee').val();
+            var net_vip_point = parseInt(mergepoint) - parseInt(fee);
 
-        } else if (timer <= trigger_time) {
+            if(net_vip_point < 0) {
+                net_vip_point = 0;
+            }
+
+            if (consecutive_loss == 'yes') {
+                showProgressBar(false);
+                $('.spanVipPoint').html(mergepoint);
+                $('.spanNetVip').html(net_vip_point);
+
+                $('#spanPoint').html(mergepoint);
+
+                $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
+                $('.btn-reset-life').click(function(){
+                    Cookies.set('previous_point', previous_point);
+                    window.top.location.href = "/redeem";
+                });
+            } else {
+                getToken();
+            }
+
+        } else if (timer <= trigger_time && trigger == false) {
+            trigger = true;
             //Lock the selection
             $('.radio-primary').unbind('click');
 
-            if (trigger == false) {
-                trigger = true;
                 var freeze_time = timer + 1;
                 $('#freeze_time').val(freeze_time);
 
@@ -715,7 +695,8 @@ function startTimer(duration, timer, freeze_time, token) {
                         drawid : draw_id, 
                         bet : selected, 
                         betamt : bet_amount,
-                        level : level_id
+                        level : level_id,
+                        vip : 1,
                     }, 
                     dataType: "json",
                     beforeSend: function( xhr ) {
@@ -723,9 +704,11 @@ function startTimer(duration, timer, freeze_time, token) {
                     },
                     error: function (error) { console.log(error.responseText) },
                     success: function(data) {
-                        //console.log(data);
+                        console.log(data);
                         var freeze_time = $('#freeze_time').val();
                         var result = data.game_result;
+                        $('#hidConsecutiveLose').val(data.consecutive_loss);
+                        $('#hidMergePoint').val(data.mergepoint);
                         $('#result').val(result);
 
                         if(data.status == 'win'){
@@ -761,7 +744,6 @@ function startTimer(duration, timer, freeze_time, token) {
                         $( "#btnWheel" ).trigger( "click" );
                     }
                 });
-            }
         }
         
     }, 1000);
@@ -849,54 +831,4 @@ function changbar(number){
     let i=number;
     bar.removeClass();
     bar.addClass('barBox barBox-'+i);
-}
-
-function showGameRules( event ){
-    event.stopImmediatePropagation();
-    $('.button-card').off('click', showGameRules);
-    var token = event.data.token;
-    var bet_count = $('#hidbetting_count').val();
-
-    $( ".txtTimer" ).removeClass('hide');
-    $('#game-rules').modal({backdrop: 'static', keyboard: false});
-
-    if(bet_count > 0) {
-        $('.btn-rules-close').click(function(){
-            $('#game-rules').modal('hide');
-            Cookies.set('show_game_rules', false);
-            bindBetButton(token);
-        });
-    } else {
-        var counter = 11;
-        var interval = setInterval(function() {
-            --counter;
-            seconds = counter;
-            
-            if(counter <= 0){
-                seconds = '';
-            } else if(counter < 10) {
-                seconds = "0" + counter;
-            }
-
-            // Display 'counter' wherever you want to display it.
-            $( ".txtTimer" ).html("(" + seconds + ")");
-
-            if (counter <= 0) {
-                // Display a login box
-                $( ".txtTimer" ).addClass('hide');
-                clearInterval(interval);
-            }
-
-        }, 1000);
-
-        setTimeout(function(){ 
-
-            $('.btn-rules-timer').click(function(){
-                $('#game-rules').modal('hide');
-                Cookies.set('show_game_rules', false);
-            });
-
-            bindBetButton(token);
-        }, 11000);
-    }
 }

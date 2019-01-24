@@ -1,43 +1,43 @@
-html {
+.results-body {
     display: table;
     margin: auto;
+    font-family: "Microsoft YaHei", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
 }
 
-body {
+.results-wrapper {
     display: table-cell;
 }
 
-.row > div.box-wrapper {
+.results-row > div.box-wrapper {
   float: left;
   width: 55px;
   height: 50px;
 }
 
-.row > div.chain-wrapper {
+.results-row > div.chain-wrapper {
   width: 20px;
   float: left;
   height: 50px;
 }
 
-.row > div.right {
+.results-row > div.results-right {
   margin-left: 0px;
 }
 
-.row > div.left {
+.results-row > div.results-left {
   margin-left: 0px;
 }
 
-.box {
+.results-box {
   background: url('/client/images/game.png') no-repeat -65px -64px;
-  width: 93px;
-  height: 84px;
+  width: 146px;
+  height: 126px;
   transform: scale(0.33); 
   -webkit-transform: scale(0.33);
   -webkit-transform-origin:left top;
-  font-size: 60px;
+  font-size: 50px;
   color: #000;
   padding: 20px;
-  padding-left: 52px;
 }
 
 .right-chain {
@@ -63,27 +63,22 @@ body {
 }
 
 /* iPhone 5 ----------- */
-@media only screen and (max-width: 360px) {
-    .row > div.box-wrapper {
+@media only screen and (max-width: 400px) {
+    .results-row > div.box-wrapper {
       width: 45px;
     }
 
-    .row > div.right {
+    .results-row > div.results-right {
       margin-left: 0px;
     }
 
-    .row > div.left {
+    .results-row > div.results-left {
       margin-left: 0px;
     }
 
-    .box {
+    .results-box {
      transform: scale(0.3); 
       -webkit-transform: scale(0.3);
-      -webkit-transform-origin:left top;
-      font-size: 60px;
-      padding: 20px;
-      padding-left: 52px;
-      padding-right: 0px;
     }
 
     .right-chain {
