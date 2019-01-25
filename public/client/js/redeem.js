@@ -388,11 +388,17 @@ function redeemHistory(token) {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            $('#max_page').val(data.records.last_page);
+            var current_page = parseInt(data.records.current_page);
+            var last_page = parseInt(data.records.last_page);
+            $('#max_page').val(last_page);
             var records = data.records;
             scrollBottom(token);
             var html = populateHistoryData(records, token);
             $('#redeem-history').html(html);
+
+            if(current_page == last_page){
+                $(".isnext").html(end_of_result);
+            }
         }
     });    
 }
@@ -446,6 +452,7 @@ function populateHistoryData(records, token) {
     var html = '';
     var htmlmodel = '';
     var counter = (current_page - 1) * limit;
+    var str_date = '';
 
     if(data.length === 0){
 
@@ -459,10 +466,12 @@ function populateHistoryData(records, token) {
         $.each(data, function(i, item) {
             counter += 1;
 
-            var t = item.request_at.split(/[- :]/);
-            var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-            var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
-                        ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+            if(item.request_at){
+                var t = item.request_at.split(/[- :]/);
+                var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+                str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
+                            ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+            }
 
             if (item.type == 'vip') {
                 html += '<div class="history-row">' +
@@ -517,7 +526,7 @@ function populateHistoryData(records, token) {
 
                 } else if (item.redeem_state == 3) { // Redeemed
                     html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-pending">正在使用</div>' +
+                                '<a href="/vip"><div class="btn-pending">正在使用</div></a>' +
                             '</div>' + 
                         '</div>';
                 } else if (item.redeem_state == 4) { // Used
