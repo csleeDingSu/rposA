@@ -140,10 +140,14 @@ function showBettingHistory(response, type) {
 
             if(betCount == -1){
                 var wallet_point = parseInt(last_bet.wallet_point);
-                var first_date = new Date(first_bet.created_at);
+
+                var f = first_bet.created_at.split(/[- :]/);
+                var first_date = new Date(f[0], f[1]-1, f[2], f[3], f[4], f[5]);
                 var str_first_date = first_date.getFullYear() + "-" + ("0"+(first_date.getMonth()+1)).slice(-2) + "-" + ("0" + first_date.getDate()).slice(-2) + " " + 
                                 ("0" + first_date.getHours()).slice(-2) + ":" + ("0" + first_date.getMinutes()).slice(-2);
-                var last_date = new Date(last_bet.created_at);
+
+                var l = last_bet.created_at.split(/[- :]/);
+                var last_date = new Date(l[0], l[1]-1, l[2], l[3], l[4], l[5]);
                 var str_last_date = last_date.getFullYear() + "-" + ("0"+(last_date.getMonth()+1)).slice(-2) + "-" + ("0" + last_date.getDate()).slice(-2) + " " + 
                                 ("0" + last_date.getHours()).slice(-2) + ":" + ("0" + last_date.getMinutes()).slice(-2);
 

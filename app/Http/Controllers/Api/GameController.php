@@ -266,17 +266,22 @@ class GameController extends Controller
 			$type  = 2;
 		}
 
-		//add checking bet amount from member_game_bet_temp temporary table
-		if (empty($bet)) {
-			$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->where('level', $request->level)->where('gametype', $type)->first();			
-			if (!empty($res)) {
+		//add checking bet amount from member_game_bet_temp temporary table		
+		// if (empty($bet)) {
+		// 	$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->where('level', $request->level)->where('gametype', $type)->first();			
+		// 	if (!empty($res)) {
 
-				$bet = $res->bet;
-				$betamt = $res->betamt;
+		// 		$bet = $res->bet;
+		// 		$betamt = $res->betamt;
 
-			}
-		}
-				
+		// 	}
+		// }
+
+		//bet => direct get from member_game_bet_temp
+		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('drawid', $drawid)->where('gametype', $type)->first();	
+		$bet = isset($res->bet) ? $res->bet : '';	
+		$betamt = isset($res->betamt) ? $res->betamt : '';
+	
 		$input = [
              'gameid'    => $gameid,
 			 'memberid'  => $memberid,
