@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller as BaseController;
+use App\cron_test;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
 class TestController extends BaseController
 {
@@ -74,6 +75,14 @@ class TestController extends BaseController
     {
     	//return response()->json(['success' => true, 'message' => ' any .. vue test'], 200);      
         return view('test.test');
+    }
+
+    public function cron_test()
+    {
+        $array = ['name' => Carbon::now(), 'description' => '', 'value' => Carbon::now()->timestamp];
+        $filter = ['name' => Carbon::now()]; 
+        $result = cron_test::updateOrCreate($filter, $array)->id;
+        return $result;
     }
 
 }
