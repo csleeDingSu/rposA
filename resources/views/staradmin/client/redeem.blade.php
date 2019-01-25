@@ -17,6 +17,7 @@
 @section('top-javascript')
 	@parent
 	<script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 @endsection
 
 @section('content') 
@@ -27,6 +28,8 @@
 		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 		<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
+		<input type="hidden" id="page" value="1" />
+		<input type="hidden" id="max_page" value="1" />
 
 		<div class="card left">
 			<div class="icon-coin-wrapper">
@@ -61,6 +64,7 @@
 				<!-- redeem history content -->
 				<div id="history" class="tab-pane fade {{ (!empty($slug) and $slug == 'history') ? 'in active' : '' }}">
 					<div id="redeem-history"></div>
+					<p class="isnext">下拉显示更多...</p>
 				</div>
 				<!-- end redeem list content -->
 			</div>
@@ -168,4 +172,7 @@
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
     <script src="{{ asset('/client/js/redeem.js') }}"></script>
+    <script type="text/javascript">
+    	var end_of_result = "@lang('dingsu.end_of_result')";
+    </script>
 @endsection
