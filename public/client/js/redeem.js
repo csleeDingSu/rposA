@@ -1,3 +1,5 @@
+var page = 1;
+
 $(document).ready(function () {
 
     var wechat_status = $('#hidWechatId').val();
@@ -54,7 +56,7 @@ function getProductList(token) {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            //console.log(data);
+            console.log(data);
             var current_point = parseInt(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
@@ -386,37 +388,90 @@ function redeemHistory(token) {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            var records = data.records.data;
-            populateHistoryData(records, token);
+            var current_page = parseInt(data.records.current_page);
+            var last_page = parseInt(data.records.last_page);
+            $('#max_page').val(last_page);
+            var records = data.records;
+            scrollBottom(token);
+            var html = populateHistoryData(records, token);
+            $('#redeem-history').html(html);
+
+            if(current_page == last_page){
+                $(".isnext").html(end_of_result);
+            }
         }
     });    
 }
 
+function scrollBottom(token){
+    being.scrollBottom('.cardBody', '.container', () => { 
+        page++;
+        var max_page = parseInt($('#max_page').val());
+        if(page > max_page) {
+            
+        }else{
+            getPosts(page, token);
+        }   
+    });
+}
+
+function getPosts(page, token){
+
+    var member_id = $('#hidUserId').val();
+
+    $.ajax({
+        type: "GET",
+        url: "/api/redeem-history?memberid=" + member_id + "&page=" + page, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        complete: function(){ 
+          $('#loading').remove
+        },
+        success: function(data) {
+            var current_page = parseInt(data.records.current_page);
+            var last_page = parseInt(data.records.last_page);
+            var records = data.records;
+            var html = populateHistoryData(records, token);
+            $('#redeem-history').append(html);
+
+            if(current_page == last_page){
+                $(".isnext").html(end_of_result);
+            }
+        }
+     });
+}
+
 function populateHistoryData(records, token) {
-    console.log(records);
+    var data = records.data;
+    var current_page = parseInt(records.current_page);
+    var limit = parseInt(records.per_page);
+
     var html = '';
     var htmlmodel = '';
-    var counter = 0;
+    var counter = (current_page - 1) * limit;
+    var str_date = '';
 
-    if(records.length === 0){
+    if(data.length === 0){
 
         html += '<div class="history-row">' +
                     '<div class="col-xs-12">' +
                         '<div class="empty">对不起 - 你现在还没有数据。</div>' +
                     '</div>' +
                 '</div>';
-
-        $('#redeem-history').html(html);
-
     } else {
 
-        $.each(records, function(i, item) {
+        $.each(data, function(i, item) {
             counter += 1;
 
-            var t = item.request_at.split(/[- :]/);
-            var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-            var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
-                        ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+            if(item.request_at){
+                var t = item.request_at.split(/[- :]/);
+                var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+                str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
+                            ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+            }
 
             if (item.type == 'vip') {
                 html += '<div class="history-row">' +
@@ -424,7 +479,7 @@ function populateHistoryData(records, token) {
                         counter +
                     '</div>' +
                     '<div class="col-xs-7 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + item.product_price + '</div>' +
+                        '<div class="description">'+ item.product_name + ' ' + (item.product_price || '') + '</div>' +
                         '<div class="balance">兑换时间:'+ str_date +'</div>' +
                     '</div>';
 
@@ -471,7 +526,7 @@ function populateHistoryData(records, token) {
 
                 } else if (item.redeem_state == 3) { // Redeemed
                     html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-pending">正在使用</div>' +
+                                '<a href="/vip"><div class="btn-pending">正在使用</div></a>' +
                             '</div>' + 
                         '</div>';
                 } else if (item.redeem_state == 4) { // Used
@@ -491,7 +546,7 @@ function populateHistoryData(records, token) {
                         counter +
                     '</div>' +
                     '<div class="col-xs-7 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + item.pin_name + '</div>' +
+                        '<div class="description">'+ item.product_name + ' ' + (item.pin_name || '') + '</div>' +
                         '<div class="balance">兑换时间:'+ str_date +'</div>' +
                     '</div>';
 
@@ -518,10 +573,10 @@ function populateHistoryData(records, token) {
 
         });
 
-
-        $('#redeem-history').html(html);
         $( ".cardFull" ).after( htmlmodel);
     }
+
+    return html;
 
 }
 
