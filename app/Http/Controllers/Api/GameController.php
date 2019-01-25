@@ -278,7 +278,7 @@ class GameController extends Controller
 		// }
 
 		//bet => direct get from member_game_bet_temp
-		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('drawid', $drawid)->where('level', $level)->where('gametype', $type)->first();	
+		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('drawid', $drawid)->where('level', $gamelevel)->where('gametype', $type)->first();	
 		$bet = isset($res->bet) ? $res->bet : '';	
 		$betamt = isset($res->betamt) ? $res->betamt : '';
 				
