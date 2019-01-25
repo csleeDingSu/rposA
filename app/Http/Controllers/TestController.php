@@ -80,7 +80,7 @@ class TestController extends BaseController
     public function cron_test()
     {
         $array = ['name' => Carbon::now(), 'description' => '', 'value' => Carbon::now()->timestamp];
-        $filter = []; 
+        $filter = ['name' => Carbon::now()]; 
         $result = cron_test::updateOrCreate($filter, $array)->id;
         return $result;
     }
