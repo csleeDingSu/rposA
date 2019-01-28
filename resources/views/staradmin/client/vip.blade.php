@@ -221,6 +221,7 @@
 		<div class="carousel-cell">
 			<div class="frame-wrapper">
 		        <div id="wheel_container"></div>
+		        <div class="spinning">转盘转动中不能选号</div>
 		    </div>
 		</div>
 

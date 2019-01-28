@@ -211,3 +211,11 @@ html, body {
 .successful {
     color: #333333;
 }
+
+.isnext {
+     text-align: center;
+     font-size: .26rem;
+     color: #999;
+     line-height: 1.6em;
+     padding: .15rem 0;
+}

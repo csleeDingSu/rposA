@@ -313,6 +313,7 @@ function resetGame() {
     $('div.clicked').removeClass('clicked').find('.bet-container').hide();
     $('.payout-info').addClass('hide');
     $('.instruction').css('visibility', 'visible');
+    $('.spinning').css('visibility', 'hidden');
 }
 
 function closeModal() {
@@ -328,6 +329,15 @@ function closeModal() {
 
     $('.modal-manual-button').click(function(){
         $('#reset-life-manual').modal('hide');
+    });
+}
+
+function bindSpinningButton() {
+    $('.radio-primary').click(function( event ){
+        $('.spinning').css('visibility', 'visible');
+        setTimeout(function(){ 
+            $('.spinning').css('visibility', 'hidden');
+        }, 3000);
     });
 }
 
@@ -675,7 +685,8 @@ function startTimer(duration, timer, freeze_time, token) {
             trigger = true;
             //Lock the selection
             $('.radio-primary').unbind('click');
-
+            bindSpinningButton();
+            
                 var freeze_time = timer + 1;
                 $('#freeze_time').val(freeze_time);
 
