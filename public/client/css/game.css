@@ -1421,3 +1421,10 @@ if it's not present, don't show loader */
 	height: 20px;
 	margin: 50px 0 0 -60px;
 }
+
+.spinning {
+	color: #e07f5f;
+	font-size: 16px;
+	margin: 10px;
+	visibility: hidden;
+}
