@@ -370,6 +370,8 @@ class Game extends Model
 		
 		$result =  DB::table($table)->select('id','game_id','game_level_id','is_win','game_result as result','bet','bet_amount','player_level','created_at','wallet_point','reward')->where('member_id',$memberid)->where('game_id',$gameid)->orderBy('created_at', 'DESC')->paginate(50);
 		
+		return $result;
+		
 		//@todo add osrting function
 		
 		$newOptions = [];
