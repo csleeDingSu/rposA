@@ -55,21 +55,8 @@ class MemberController extends Controller
 	
 	public function child_list(Request $request)
 	{
-		$status = '';
-		switch ($request->status)
-		{
-			case 'success':
-				$status = ['0'];
-			break;
-			case 'pending':
-				$status = ['1'];
-			break;
-			case 'failed':
-				$status = ['2','3'];
-			break;	
-		}
 		
-		$result = Member::get_child_with_page($request->memberid,$status);  
+		$result = Member::get_child($request->memberid);  
 		return response()->json(['success' => true,'result' => $result]);
 	}
 	
@@ -81,7 +68,20 @@ class MemberController extends Controller
 	
 	public function get_introducer_history(Request $request)
 	{
-		$result = Member::get_introducer_history($request->memberid); 
+		$status = '';
+		switch ($request->status)
+		{
+			case 'verified':
+				$status = ['0'];
+			break;
+			case 'pending':
+				$status = ['1'];
+			break;
+			case 'failed':
+				$status = ['2','3'];
+			break;	
+		}
+		$result = Member::get_introducer_history($request->memberid, $status); 
 		return response()->json(['success' => true,'result' => $result]);
 	}
 	
