@@ -161,7 +161,7 @@ function populateInvitationData(records, token) {
                                         '<span class="' + str_class + '">'+ str_status +'</span>' +
                                     '</div>' +                                                
                                     '<div style="clear: both"></div>' +
-                                    '<div class="additional">'+ counter +'</div>' +
+                                    '<div class="additional">'+ str_additional +'</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
