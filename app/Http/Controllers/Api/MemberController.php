@@ -55,7 +55,7 @@ class MemberController extends Controller
 	
 	public function child_list(Request $request)
 	{
-		$result = Member::get_child($request->memberid);  
+		$result = Member::get_child_with_page($request->memberid,$request->status);  
 		return response()->json(['success' => true,'result' => $result]);
 	}
 	
