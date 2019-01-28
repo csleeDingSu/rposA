@@ -69,11 +69,11 @@ class Members extends Model
 		return $result;
 	}
 	
-	public static function get_child_with_page($refid,$status = '',$limit = 50)
+	public static function get_child_with_page($refid,$status,$limit = 50)
 	{
 		$result = Members::select('username','created_at','wechat_name','wechat_verification_status','member_status')->where('referred_by', $refid);
 				
-		if ($status != '') $result->where('wechat_verification_status', '=', $status);
+		if ($status != '') $result->whereIn('wechat_verification_status', $status);
 		
 		$out = $result->paginate($limit);
 		return $out;
