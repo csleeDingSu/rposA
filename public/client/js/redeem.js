@@ -479,7 +479,7 @@ function populateHistoryData(records, token) {
                         counter +
                     '</div>' +
                     '<div class="col-xs-7 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + (item.product_price || '') + '</div>' +
+                        '<div class="description">'+ item.product_name + ' ' + (item.used_point || '') + '挖宝币</div>' +
                         '<div class="balance">兑换时间:'+ str_date +'</div>' +
                     '</div>';
 
