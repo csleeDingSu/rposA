@@ -58,7 +58,7 @@ class MemberController extends Controller
 		$status = '';
 		switch ($request->status)
 		{
-			case 'success':
+			case 'verified':
 				$status = ['0'];
 			break;
 			case 'pending':
