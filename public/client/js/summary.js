@@ -61,6 +61,7 @@ function getSummary(token) {
 
             switch(value.credit_type){
                 case 'CRPNT':
+                case 'APMNT':
                     str_type = '挖宝成功收益结算';
                     str_points = '+' + parseInt(value.credit);
                 break;
