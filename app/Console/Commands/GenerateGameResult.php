@@ -56,7 +56,7 @@ class GenerateGameResult extends Command
 					//fortune game
 					case '1':
 						//$result = $this->GenerateRandomresult($game,$category);
-						$result = $this->GenerateGameRandomresult($game,$category->game_time);
+						$result = $this->GenerateGameRandomresult($game,$category->game_time,$category->block_time);
 					break;
 				}
 			}
@@ -67,14 +67,12 @@ class GenerateGameResult extends Command
 		$this->info('-------------All done----------');
     }
 	
-	private function GenerateGameRandomresult($game,$game_time = 30)
+	private function GenerateGameRandomresult($game,$game_time = 30,$freeze_time = 10)
 	{
 		$sec = 0;
 		$tomorrow = Carbon::tomorrow();
 		$totalDuration = 0;
 		$result =  \DB::table('game_result')->where('game_id', '=', $game->id)->latest()->first();
-		
-		
 		
 		if ($result)
 		{
@@ -102,16 +100,23 @@ class GenerateGameResult extends Command
 		{				
 			$someTime = Carbon::now()->addSeconds($sec);
 			
-			$d['now'] = $someTime->toDateTimeString();
+			$d['now']   = $someTime->toDateTimeString();
 			
-			$someTime1 = $someTime->addSeconds($game_time);
-			
+			$someTime1  = $someTime->addSeconds($game_time);			
+					
 			$unix = $someTime1->timestamp;
 			
 			$d['expiry'] = $someTime1;
-			$d['unix'] = $unix;			
+			$d['unix']   = $unix;
+			
+			$sds = Carbon::parse($someTime1);
+			
+			$someTime2  = $sds->subSeconds($freeze_time);
+			
+			$d['block_time'] = $someTime2;
 			
 			$da    = $this->ResultGenerate($game->id,$d);
+			
 			$sec = $sec +  $game_time;			
 						
 			$insdata[] = $da;			
@@ -120,13 +125,13 @@ class GenerateGameResult extends Command
 			{
 				$i = 10;
 			}
+			
+			//$i++;
 		}
 		foreach (array_chunk($insdata,800) as $t) {
 		   \DB::table('game_result')->insert($t);
 		}
-		
-		$id = '1';
-		
+				
 		$this->info('-------------New Result set Inserted----------');
 		
 		$this->info('-------------Clean expired Result----------');
@@ -140,11 +145,13 @@ class GenerateGameResult extends Command
 		$now     = $date['now'];
 		$expiry  = $date['expiry'];
 		$unixnow = $date['unix'];
+		$b_time  = $date['block_time'];
 		
 		$row['game_id']           = $id; 
 		$row['game_level_id']     = null;			
 		$row['created_at']        = $now; 
-		$row['updated_at']        = $now; 		
+		$row['updated_at']        = $now; 
+		$row['result_generation_time']        = $b_time;
 		$row['expiry_time']       = $expiry; 
 		$row['unix_expiry_time']  = $unixnow; 
 		$row['game_result']       = generate_random_number(1,6); //generate random number		
