@@ -562,10 +562,46 @@ function populateHistoryData(records, token) {
                             '</div>' + 
                         '</div>' +
                     '<div id="content-' + item.id + '" class="collapse">' +
-                        '<div class="card-wrapper">卡号： <span class="numbers">'+ item.code +'</span> 密码：<span class="codes">' + item.passcode + '</span></div>' +
-                        '<div class="instruction">打开支付宝APP>[更多]>[话费卡转让]，输入卡密即可充值成功！' +
+                        '<div class="card-wrapper">卡号： <span id="number' + item.id + '" class="numbers">'+ item.code +'</span> <span id="copynumber' + item.id + '" class="copynumber">复制</span>' + 
+                        '<br />密码：<span id="code' + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.id + '" class="copycode">复制</span></div>' +
+                        '<div class="instruction">打开支付宝APP>更多>话费卡转让，输入卡号和卡密即可兑换成红包。' +
                         '</div>' +
                     '</div>';
+
+                    // Copy card number
+                    var clipboard_cardno = new ClipboardJS('#copynumber' + item.id, {
+                        target: function () {
+                            return document.querySelector('#number' + item.id);
+                        }
+                    });
+
+                    clipboard_cardno.on('success', function (e) {
+                        $('.copynumber').removeClass('copy-success').html('复制');
+                        $('.copycode').removeClass('copy-success').html('复制');
+                        $('#copynumber' + item.id).addClass('copy-success').html('成功');
+                    });
+
+                    clipboard_cardno.on('error', function (e) {
+                        $('#copynumber' + item.id).addClass('copy-fail').html('失败');
+                    });
+
+                    // Copy passcode
+                    var clipboard_code = new ClipboardJS('#copycode' + item.id, {
+                        target: function () {
+                            return document.querySelector('#code' + item.id);
+                        }
+                    });
+
+                    clipboard_code.on('success', function (e) {
+                        $('.copynumber').removeClass('copy-success').html('复制');
+                        $('.copycode').removeClass('copy-success').html('复制');
+                        $('#copycode' + item.id).addClass('copy-success').html('成功');
+                    });
+
+                    clipboard_code.on('error', function (e) {
+                        $('#copycode' + item.id).addClass('copy-fail').html('失败');
+                    });
+
                 } else {
                     html += '</div>';
                 }
