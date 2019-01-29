@@ -67,14 +67,12 @@ class GenerateGameResult extends Command
 		$this->info('-------------All done----------');
     }
 	
-	private function GenerateGameRandomresult($game,$game_time = 30,$freeze_time = 5)
+	private function GenerateGameRandomresult($game,$game_time = 30,$freeze_time = 10)
 	{
 		$sec = 0;
 		$tomorrow = Carbon::tomorrow();
 		$totalDuration = 0;
 		$result =  \DB::table('game_result')->where('game_id', '=', $game->id)->latest()->first();
-		
-		
 		
 		if ($result)
 		{
@@ -104,17 +102,21 @@ class GenerateGameResult extends Command
 			
 			$d['now']   = $someTime->toDateTimeString();
 			
-			$someTime1  = $someTime->addSeconds($game_time);
-			
-			$freezeTime = $someTime->subSeconds($freeze_time);			
-			
+			$someTime1  = $someTime->addSeconds($game_time);			
+					
 			$unix = $someTime1->timestamp;
 			
 			$d['expiry'] = $someTime1;
-			$d['unix']   = $unix;			
-			$d['block_time'] = $freezeTime;		
+			$d['unix']   = $unix;
+			
+			$sds = Carbon::parse($someTime1);
+			
+			$someTime2  = $sds->subSeconds($freeze_time);
+			
+			$d['block_time'] = $someTime2;
 			
 			$da    = $this->ResultGenerate($game->id,$d);
+			
 			$sec = $sec +  $game_time;			
 						
 			$insdata[] = $da;			
@@ -123,12 +125,14 @@ class GenerateGameResult extends Command
 			{
 				$i = 10;
 			}
+			
+			$i++;
 		}
 		foreach (array_chunk($insdata,800) as $t) {
 		   \DB::table('game_result')->insert($t);
 		}
 		
-		$id = '1';
+		//$id = '1';
 		
 		$this->info('-------------New Result set Inserted----------');
 		
@@ -149,7 +153,7 @@ class GenerateGameResult extends Command
 		$row['game_level_id']     = null;			
 		$row['created_at']        = $now; 
 		$row['updated_at']        = $now; 
-		$row['block_time']        = $b_time;
+		$row['result_generation_time']        = $b_time;
 		$row['expiry_time']       = $expiry; 
 		$row['unix_expiry_time']  = $unixnow; 
 		$row['game_result']       = generate_random_number(1,6); //generate random number		
