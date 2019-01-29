@@ -1,5 +1,6 @@
 var status = 'default';
 var page = 1;
+var page_count = 1;
 
 $(function () {
     getToken();    
@@ -19,6 +20,7 @@ function getToken(){
 
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 page = 1;
+                page_count = 1;
                 status = $(e.target).attr('data-status');
                 getPosts(page, data.access_token, status);
             });
@@ -71,7 +73,7 @@ function getSummary(token) {
 
 function scrollBottom(token){
     being.scrollBottom('.cardBody', '.container', () => { 
-        page++;
+        page = parseInt($('#page').val());
         var max_page = parseInt($('#max_page').val());
         if(page > max_page) {
             
@@ -93,9 +95,6 @@ function getPosts(page, token, status){
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         error: function (error) { console.log(error) },
-        complete: function(){ 
-          $('#loading').remove
-        },
         success: function(data) {
             //console.log(data);
             var current_page = parseInt(data.result.current_page);
@@ -113,6 +112,9 @@ function getPosts(page, token, status){
             if(current_page == last_page){
                 $(".isnext").html(end_of_result);
             }
+
+            page++;
+            $('#page').val(page);
         }
     });
 }
@@ -125,6 +127,13 @@ function populateInvitationData(records, token) {
             var counter = (current_page - 1) * limit;
             var result = records.data;
             var html = '';
+
+            if(page_count != page && current_page == page){
+                return false;
+            }
+
+            console.log(page_count + ":" + current_page);
+            page_count++;
 
             $.each(result, function(i, item) {
                 counter += 1;

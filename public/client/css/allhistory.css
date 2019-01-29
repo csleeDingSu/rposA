@@ -54,6 +54,7 @@ html, body {
 
 .tab-content {
 	margin-top: 10px;
+	padding-bottom: 20px;
 }
 
 .row {
@@ -173,4 +174,12 @@ html, body {
 	margin-top: 10px;
 	margin-bottom: 30px;
 	margin-left: 10px;
+}
+
+.isnext {
+     text-align: center;
+     font-size: .26rem;
+     color: #999;
+     line-height: 1.6em;
+     padding: .15rem 0;
 }
