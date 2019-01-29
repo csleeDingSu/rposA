@@ -126,14 +126,12 @@ class GenerateGameResult extends Command
 				$i = 10;
 			}
 			
-			$i++;
+			//$i++;
 		}
 		foreach (array_chunk($insdata,800) as $t) {
 		   \DB::table('game_result')->insert($t);
 		}
-		
-		//$id = '1';
-		
+				
 		$this->info('-------------New Result set Inserted----------');
 		
 		$this->info('-------------Clean expired Result----------');
