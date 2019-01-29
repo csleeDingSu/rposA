@@ -233,7 +233,7 @@ function initGameMaster(token){
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
             var betting_records = data.bethistory.original.records;
-            updateHistory(betting_records);
+            //updateHistory(betting_records);
 
             var result_records = data.gamehistory.original.records.data;
             updateResult(result_records);
