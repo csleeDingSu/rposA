@@ -1,3 +1,7 @@
+var type = 'normal';
+var page = 1;
+var page_count = 1;
+
 $(function () {
     getToken();    
 });
@@ -10,53 +14,101 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getNormalBettingHistory(data.access_token);
-            getVipBettingHistory(data.access_token);
+            getPosts(page, data.access_token, type);
+            scrollBottom(data.access_token);
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                page = 1;
+                page_count = 1;
+                type = $(e.target).attr('data-type');
+                getPosts(page, data.access_token, type);
+                scrollBottom(data.access_token);
+            });
         }     
     });
 }
 
-function getNormalBettingHistory(token) {
-    var user_id = $('#hidUserId').val();
+function scrollBottom(token){
+    being.scrollBottom('.cardBody', '.container', () => { 
+        page = parseInt($('#page').val());
 
-    $.ajax({
-        type: 'GET',
-        url: "/api/betting-history?gameid=101&memberid=" + user_id,
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        success: function(data) {
-            //console.log(data);
-            var results = reverse(data);
-            //console.log(results);
-            showBettingHistory(results, 'normal');
-        }
+        var max_page = parseInt($('#max_page').val());
+        if(page > max_page) {
+            
+        }else{
+            getPosts(page, token, type);
+        }   
     });
-
 }
 
-function getVipBettingHistory(token) {
-    var user_id = $('#hidUserId').val();
+function getPosts(page, token, type){
+
+   var user_id = $('#hidUserId').val();
+   var url ="/api/betting-history?gameid=101&memberid=" + user_id + "&page=" + page;
+
+   if(type == 'vip'){
+        url += '&vip=yes';
+   }
 
     $.ajax({
-        type: 'GET',
-        url: "/api/betting-history?gameid=101&vip=yes&memberid=" + user_id,
+        type: "GET",
+        url: url,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
+        error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
-            var results = reverse(data);
-            //console.log(results);
-            showBettingHistory(results, 'vip');
+            var current_page = parseInt(data.records.current_page);
+            var last_page = parseInt(data.records.last_page);
+            $('#max_page').val(last_page);
+            var html = showBettingHistory(data.records);
+
+            if(current_page == 1){
+                $('#' + type + '-history').html(html);
+            } else {
+                $('#' + type + '-history').append(html);
+            }
+
+            if(current_page == last_page){
+                $(".isnext").html(end_of_result);
+            }
+
+            page++;
+            $('#page').val(page);
         }
     });
+}
+
+function groupHistory(records) {
+
+    var newOptions = [];
+    var prev_level = 0;
+    var counter = 0;
+
+    if (records.length > 0)
+    {
+        $.each(records, function(i, item) {
+            var level = item.player_level;
+
+            if(prev_level == level) {
+                counter++;
+            } else {
+                counter = 0;
+                newOptions[level] = [];
+                prev_level = item.player_level;
+            }
+
+            newOptions[level][counter] = item;
+        });       
+    }
+
+    return newOptions;
 }
 
 function reverse(data) {
-    var records = data.records;
+    var records = data;
     var arr = [];
     var results = [];
 
@@ -74,11 +126,23 @@ function reverse(data) {
     return results;
 }
 
-function showBettingHistory(response, type) {
+function showBettingHistory(response) {
     //window.console && console.log(response);
-    var length = response.length;
+    var results = groupHistory(response.data);
+    results = reverse(results);
+    var length = results.length;
+    var history = '';
+    var current_page = parseInt(response.current_page);
+    var last_page = parseInt(response.last_page);
+    var limit = parseInt(response.per_page);
+    var counter = (current_page - 1) * limit;
 
-    $('#'+ type + '-history').html('');
+    if(page_count != page && current_page == page){
+        return false;
+    }
+
+    console.log(page_count + ":" + current_page);
+    page_count++;
 
      if(length === 0){
         var history =   '<div class="row">' +
@@ -87,19 +151,16 @@ function showBettingHistory(response, type) {
                             '</div>' +
                         '</div>';
 
-        $('#'+ type + '-history').append(history);
-
     } else {
-        //console.log(response);
-        $.each(response, function(bkey, bvalue){
-            var history = '';
-
+        //console.log(results);
+        $.each(results, function(bkey, bvalue){
+            counter += 1;
             var betCount = bvalue.length;
             var winCount = 0;
             var loseCount = 0;
             var points = 0;
 
-            history =   '<div class="row">' +
+            history +=   '<div class="row">' +
                             '<div class="col-xs-9 column-1">';
 
 
@@ -167,8 +228,9 @@ function showBettingHistory(response, type) {
                             '</div>' +
                         '</div>';
 
-                $('#'+ type + '-history').append(history);
             }
         });
     }
+
+    return history;
 }

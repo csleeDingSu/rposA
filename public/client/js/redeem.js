@@ -1,4 +1,5 @@
 var page = 1;
+var page_count = 1;
 
 $(document).ready(function () {
 
@@ -39,7 +40,8 @@ function getToken(){
         //console.log(data);
         if(data.success) {
             getProductList(data.access_token);
-            redeemHistory(data.access_token);
+            getPosts(page, data.access_token);
+            scrollBottom(data.access_token);
         }      
     });
 }
@@ -56,7 +58,7 @@ function getProductList(token) {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            console.log(data);
+            //console.log(data);
             var current_point = parseInt(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
@@ -375,37 +377,9 @@ function getProductList(token) {
     }); // end $.ajax
 } // end function
 
-function redeemHistory(token) {
-
-    var member_id = $('#hidUserId').val();
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/redeem-history?memberid=" + member_id, 
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error) },
-        success: function(data) {
-            var current_page = parseInt(data.records.current_page);
-            var last_page = parseInt(data.records.last_page);
-            $('#max_page').val(last_page);
-            var records = data.records;
-            scrollBottom(token);
-            var html = populateHistoryData(records, token);
-            $('#redeem-history').html(html);
-
-            if(current_page == last_page){
-                $(".isnext").html(end_of_result);
-            }
-        }
-    });    
-}
-
 function scrollBottom(token){
     being.scrollBottom('.cardBody', '.container', () => { 
-        page++;
+        page = parseInt($('#page').val());
         var max_page = parseInt($('#max_page').val());
         if(page > max_page) {
             
@@ -427,19 +401,25 @@ function getPosts(page, token){
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         error: function (error) { console.log(error) },
-        complete: function(){ 
-          $('#loading').remove
-        },
         success: function(data) {
             var current_page = parseInt(data.records.current_page);
             var last_page = parseInt(data.records.last_page);
+            $('#max_page').val(last_page);
             var records = data.records;
             var html = populateHistoryData(records, token);
-            $('#redeem-history').append(html);
+
+            if(current_page == 1){
+                $('#redeem-history').html(html);
+            } else {
+                $('#redeem-history').append(html);
+            }
 
             if(current_page == last_page){
                 $(".isnext").html(end_of_result);
             }
+
+            page++;
+            $('#page').val(page);
         }
      });
 }
@@ -453,6 +433,13 @@ function populateHistoryData(records, token) {
     var htmlmodel = '';
     var counter = (current_page - 1) * limit;
     var str_date = '';
+
+    if(page_count != page && current_page == page){
+        return false;
+    }
+
+    console.log(page_count + ":" + current_page);
+    page_count++;
 
     if(data.length === 0){
 

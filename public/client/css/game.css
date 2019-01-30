@@ -97,8 +97,8 @@ body{
 
 @media only screen and (max-width: 360px) {
     .btn-rectangle, .btn-rectangle:active {
-		transform: scale(0.3); 
-		-webkit-transform: scale(0.3);
+		transform: scale(0.27); 
+		-webkit-transform: scale(0.27);
 		-webkit-transform-origin:left top;
 	    font-size: 60px;
 	    padding-top: 30px;
@@ -106,25 +106,16 @@ body{
 	}
 
 	.btn-rectangle.clicked {
-		width: 510px;
-		height: 200px;
-		transform: scale(0.3); 
-		-webkit-transform: scale(0.3);
+		transform: scale(0.27); 
+		-webkit-transform: scale(0.27);
 		-webkit-transform-origin:left top;
 	    font-size: 60px;
 	    padding-top: 30px;
 	  /* other styles */
 	}
 
-	.button-wrapper {
-		margin: 0 auto;
-		height: 120px;
-		position: relative;
-		margin-top: 20px;
-	}
-
 	.button-card {
-		width: 150px !important;
+		width: 135px !important;
 		height: 70px;
 		float: left;
 	}
@@ -1141,6 +1132,12 @@ body{
 	display:block;    
 }
 
+@media only screen and (max-width: 360px) {
+    .frame-wrapper {
+    	width: 320px;
+	}
+}
+
 #wheel_container {
     margin: 0 auto;
     width: 100%;
@@ -1149,7 +1146,7 @@ body{
 #txtCounter {
     font-size: 25px;
     color: white;
-    padding-top: 6px;
+    padding-top: 7px;
     text-shadow:
         2px  2px 0 #5e0f8c,
        -1px -1px 0 #5e0f8c,  
@@ -1169,11 +1166,6 @@ body{
     .swiper-container {
     	width: 100%;
 	  	height: 300px;
-	}
-
-	iframe {
-		width: 350px;
-		height: 300px;
 	}
 }
 

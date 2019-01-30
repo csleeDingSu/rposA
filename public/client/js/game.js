@@ -255,8 +255,8 @@ function initGameMaster(token){
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
             console.log(data);
-            var betting_records = data.bethistory.original.records;
-            //updateHistory(betting_records);
+            var betting_records = groupHistory(data.bethistory.original.records.data);
+            updateHistory(betting_records);
 
             var result_records = data.gamehistory.original.records.data;
             updateResult(result_records);
@@ -268,6 +268,32 @@ function initGameMaster(token){
             initGame(game_records, token);
         }
     });
+}
+
+function groupHistory(records) {
+
+    var newOptions = [];
+    var prev_level = 0;
+    var counter = 0;
+
+    if (records.length > 0)
+    {
+        $.each(records, function(i, item) {
+            var level = item.player_level;
+
+            if(prev_level == level) {
+                counter++;
+            } else {
+                counter = 0;
+                newOptions[level] = [];
+                prev_level = item.player_level;
+            }
+
+            newOptions[level][counter] = item;
+        });       
+    }
+
+    return newOptions;
 }
 
 function getToken(){
