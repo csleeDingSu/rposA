@@ -14,25 +14,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 
     <script>
-		///socket5
-         html = ',';
-		//var socket = io.connect('http://127.0.0.1:6001/?auth_id='+$('#auth_id').val());
-		
-		var url = {{ env('APP_URL'), 'http://192.168.1.154' }};
+		///game example page
+        html = '';
+		var url = "{{ env('APP_URL'), 'http://192.168.1.154' }}";
 		var port = {{ env('REDIS_CLI_PORT'), '6001' }};
 		
 		var c_url = url + ':' + port;
 		var socket = io.connect(c_url+'?auth_id='+$('#auth_id').val());
-		//var socket = io.connect('http://192.168.1.154:6001/?auth_id='+$('#auth_id').val());
-		
 		this.socket.on('connect_error', function() {
 			console.log('Connection failed');
 		});
 		this.socket.on('reconnect_failed', function() {
 			console.log('Reconnection failed');
 		});
-		
-		
 		
 		//init setting Script
 		this.socket.on("initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
@@ -52,23 +46,35 @@
 			console.log('call userbetting');
 			console.log(data);
 		 }.bind(this));
-		
-		
-		//Trigger On page load & Event Load
-		this.socket.on("bettinghistory" + ":App\\Events\\EventBettingHistory" , function(data){
-			console.log('call bettinghistory');
+		 
+		//wallet changes
+		this.socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWallet", function(data){
+			console.log('member wallet details');
 			console.log(data);
+			
 		 }.bind(this));
 		
-		/*
+		//betting history On page load 
+		this.socket.on("bettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventBettingHistory", function(data){
+			console.log('members recent bettinghistory');
+			console.log(data);
+			
+		 }.bind(this));
+		 
+		//betting history on Event Load
+		this.socket.on("bettinghistory" + ":App\\Events\\EventBettingHistory" , function(data){
+			console.log('members recent bettinghistory');
+			console.log(data);
+		 }.bind(this));
+		 			
 		
-		//Trigger On page load & Event Load
-		this.socket.on("new-betting" + ":App\\Events\\NewBetting" , function(data){
-			console.log('call bettinghistory');
+		//Trigger on Event Load
+		this.socket.on("new-betting" + ":App\\Events\\NewBettingStatus" , function(data){
+			console.log('call betting status update');
 			console.log(data);
 		 }.bind(this));
 			
-		*/
+		
 		
     </script>
 @stop
