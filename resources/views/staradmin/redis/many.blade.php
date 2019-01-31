@@ -17,8 +17,9 @@
 		///game example page
         html = '';
 		var url = "{{ env('APP_URL'), 'http://192.168.1.154' }}";
-		var port = {{ env('REDIS_CLI_PORT'), '6001' }};
-		
+		//var port = {{ env('REDIS_CLI_PORT'), '6001' }};
+		var port = '6001';
+				
 		var c_url = url + ':' + port;
 		var socket = io.connect(c_url+'?auth_id='+$('#auth_id').val());
 		this.socket.on('connect_error', function() {
