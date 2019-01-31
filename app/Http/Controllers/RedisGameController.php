@@ -52,8 +52,9 @@ class RedisGameController extends Controller
 	
 	public function userbetting(Request $request)
 	{
+		$memberid = $request->memberid;
 		$data = \DB::table('member_game_bet_temp')->latest()->limit(10)->get();
-		event(new \App\Events\EventBettingHistory($data));
+		event(new \App\Events\EventBettingHistory($data, $memberid));
 		print_r($data);
 	}
 	//without game bet
