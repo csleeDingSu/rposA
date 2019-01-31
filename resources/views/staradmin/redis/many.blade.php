@@ -16,8 +16,9 @@
     <script>
 		///game example page
         html = '';
-		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";
+		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";		
 		//var port = {{ env('REDIS_CLI_PORT'), '6001' }};
+		var url = 'http://boge56.com';
 		var port = '6001';
 				
 		var c_url = url + ':' + port;
