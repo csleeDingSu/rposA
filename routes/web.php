@@ -18,13 +18,17 @@ Route::any('/master-call-nobet', 'RedisGameController@master_withoutbet')->name(
 
 Route::any('/userbetting', 'RedisGameController@userbetting')->name('api.redis.userbetting');
 
-
 Route::get('generateresult/{drawid}', function ($drawid) {
-
-	$exitCode = Artisan::call( "generate:br $drawid" );
-	return 'result generated';
+	//if (empty($drawid) $drawid = 0;
+	Artisan::call('generate:br', ['drawid' => $drawid]);
+	dd( 'result generated' );
 } );
 
+Route::get('open-draw/{drawid?}', function ($drawid) {
+	//if (empty($drawid) $drawid = 0;
+	Artisan::call('game:opendraw', ['drawid' => $drawid]);
+	dd( 'draw open to all connected members' );
+} );
 
 Route::get('many', function () {
     return view('redis.many');

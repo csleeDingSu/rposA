@@ -5,7 +5,7 @@ var redis = new Redis();
 var Request = require("request");
 var UserId = 0;
 
-var url = "http://localhost:8000/";
+var url = "http://boge56.com:8088/";
 var userNotification = {};
 var port = 6001;
 app.listen(port, function() {
@@ -32,7 +32,7 @@ io.on('connection', function(socket, channel, message) {
 	
 	UserId = socket.handshake.query.auth_id;	
 	
-	console.log(UserId);
+	console.log('Connected -'+UserId);
 		
 	//call member betting function
 	Request.get(url+"master-call-nobet?memberid="+UserId, (error, response, body) => {
