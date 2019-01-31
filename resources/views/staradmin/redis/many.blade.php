@@ -15,7 +15,7 @@
 
     <script>
 		///socket5
-         html = '';
+         html = ',';
 		//var socket = io.connect('http://127.0.0.1:6001/?auth_id='+$('#auth_id').val());
 		
 		var url = {{ env('APP_URL'), 'http://192.168.1.154' }};
