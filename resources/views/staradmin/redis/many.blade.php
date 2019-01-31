@@ -2,14 +2,14 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha256-azvvU9xKluwHFJ0Cpgtf0CYzK7zgtOznnzxV4924X1w=" crossorigin="anonymous" />
-
+<br><input type="text" value="<?php echo $_GET['id']?>" id="auth_id">
     <p id="display">please wait..</p>
 
 <div class="data" id="data"><ul class=""></ul></div>
 @stop
 
 @section('footer')
-<input type="text" value="<?php echo $_GET['id']?>" id="auth_id">
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 
@@ -31,6 +31,7 @@
 		//init setting Script
 		this.socket.on("initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
 			console.log('user-initsetting');
+			
 			console.log(data);
 			
 		 }.bind(this));
