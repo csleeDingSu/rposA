@@ -11,6 +11,27 @@
 |
 */
 
+//redis example 
+Route::any('/master-call', 'RedisGameController@master_out')->name('api.redis.master.call');
+	
+Route::any('/master-call-nobet', 'RedisGameController@master_withoutbet')->name('api.redis.master.withoutbet');
+
+Route::any('/userbetting', 'RedisGameController@userbetting')->name('api.redis.userbetting');
+
+
+Route::get('generateresult/{drawid}', function ($drawid) {
+
+	$exitCode = Artisan::call( "generate:br $drawid" );
+	return 'result generated';
+} );
+
+
+Route::get('many', function () {
+    return view('redis.many');
+});
+//end
+
+
 
 //language route
 
