@@ -16,7 +16,23 @@
     <script>
 		///socket5
          html = '';
-		var socket = io.connect('http://127.0.0.1:6001/?auth_id='+$('#auth_id').val());
+		//var socket = io.connect('http://127.0.0.1:6001/?auth_id='+$('#auth_id').val());
+		
+		var url = {{ env('APP_URL'), 'http://192.168.1.154' }};
+		var port = {{ env('REDIS_CLI_PORT'), '6001' }};
+		
+		var c_url = url + ':' + port;
+		var socket = io.connect(c_url+'?auth_id='+$('#auth_id').val());
+		//var socket = io.connect('http://192.168.1.154:6001/?auth_id='+$('#auth_id').val());
+		
+		this.socket.on('connect_error', function() {
+			console.log('Connection failed');
+		});
+		this.socket.on('reconnect_failed', function() {
+			console.log('Reconnection failed');
+		});
+		
+		
 		
 		//init setting Script
 		this.socket.on("initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
