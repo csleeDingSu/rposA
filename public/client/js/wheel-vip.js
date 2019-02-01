@@ -10,10 +10,10 @@ $(function () {
         closeModal();
 
         ifvisible.on("wakeup", function(){
-            clearInterval(parent.timerInterval);
-            getToken();
+            resetTimer();
         });
-    }  else {
+
+    } else {
         $(".loading", window.parent.document).fadeOut("slow");
         return false;
     }
@@ -142,6 +142,8 @@ function initGame(data, token){
         $('#draw_id').val(draw_id);
 
         DomeWebController.init();
+        trigger = false;
+        clearInterval(parent.timerInterval);
         startTimer(duration, timer, freeze_time, token);
 
         bindBetButton(token);
@@ -242,6 +244,46 @@ function getToken(){
     });
 }
 
+function resetTimer(){
+    var id = $('#hidUserId', window.parent.document).val();
+    var session = $('#hidSession', window.parent.document).val();
+
+    $.ajax({
+        type: 'GET',
+        url: "/api/gettoken?id=" + id + "&token=" + session,
+        dataType: "json",
+        error: function (error) { console.log(error.responseText); },
+        success: function(data) {
+            var token = data.access_token;
+            $('#hidToken', window.parent.document).val(token);
+            restartTimer(token);
+        }
+    });
+}
+
+function restartTimer(token){
+    var user_id = $('#hidUserId', window.parent.document).val();
+
+    $.ajax({
+        type: 'GET',
+        url: "/api/game-setting?gameid=101&memberid=" + user_id,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            var duration = data.record.duration;
+            var timer = data.record.remaining_time;
+            var freeze_time = data.record.freeze_time;
+
+            trigger = false;
+            clearInterval(parent.timerInterval);
+            startTimer(duration, timer, freeze_time, token);
+        }
+    });
+}
+
 function resetGame() {
     $('div.clicked', window.parent.document).find('.bet').hide();
     $('div.clicked', window.parent.document).removeClass('clicked').find('.bet-container').hide();
@@ -251,9 +293,16 @@ function resetGame() {
 
 function closeModal() {
     $('.close-modal', window.parent.document).click(function(){
-        $('#reset-life-play', window.parent.document).modal('hide');
         $('#reset-life-bet', window.parent.document).modal('hide');
         $('#reset-life-lose', window.parent.document).modal('hide');
+    });
+
+    $('.modal-message-manual', window.parent.document).click(function(){
+        $('#reset-life-manual', window.parent.document).modal();
+    });
+
+    $('.modal-manual-button', window.parent.document).click(function(){
+        $('#reset-life-manual', window.parent.document).modal('hide');
     });
 }
 
@@ -442,9 +491,7 @@ function bindResetLifeButton(token){
                 success: function(data) {
                     if(data.success){
                         $('#reset-life-max', window.parent.document).modal('hide');
-                        $('#reset-life-play', window.parent.document).modal('hide');
                         $('#reset-life-lose', window.parent.document).modal('hide');
-                        $('#reset-life-start', window.parent.document).modal('hide');
                         getToken();
                     }
                 }

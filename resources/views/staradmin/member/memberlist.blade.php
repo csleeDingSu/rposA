@@ -152,13 +152,13 @@
 </form>
 <!-- Modal Ends -->
 
-<!--Reset Password Modal starts -->
+<!--Add Life/point Modal starts -->
 <form class="form-sample" name="formtopup" id="formtopup" action="" method="post" autocomplete="on">
 	<div class="modal fade" id="topupmode" tabindex="-1" role="dialog" aria-labelledby="topupmode" aria-hidden="true">
-		<div class="modal-dialog modal-md" role="document">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">@lang('dingsu.add') @lang('dingsu.life') </h5>
+					<h5 class="modal-title">@lang('dingsu.adjust_wallet')</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>				
@@ -166,21 +166,21 @@
 				<div class="modal-body">
 					<div class="" id="rvalidation-errors"></div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.current_life') <span class="text-danger">*</span></label>
+								<label for="clife" class="col-sm-3 col-form-label">@lang('dingsu.current_life')</label>
 								<div class="col-sm-9">
 									<input type="text" readonly class="form-control" name="clife" id="clife" value="" maxlength="50">
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
+					
+						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.add_life')<span class="text-danger">*</span></label>
+								<label for="addlife" class="col-sm-3 col-form-label">@lang('dingsu.add_life')</label>
 								<div class="col-sm-9">
 									<select class="form-control" name="addlife" id="addlife">
+										<option value="0">@lang('dingsu.nothing_to_change')</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -191,6 +191,83 @@
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="cpoint" class="col-sm-3 col-form-label">@lang('dingsu.current_point') </label>
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control" name="cpoint" id="cpoint" value="" maxlength="50">
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="apoint" class="col-sm-3 col-form-label">@lang('dingsu.add_point')</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="apoint" id="apoint" value="" maxlength="5" placeholder="@lang('dingsu.nothing_to_change')">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="cviplife" class="col-sm-3 col-form-label">@lang('dingsu.current_vip_life')</label>
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control" name="cviplife" id="cviplife" value="" maxlength="50">
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="viplife" class="col-sm-3 col-form-label">@lang('dingsu.add_vip_life')</label>
+								<div class="col-sm-9">
+									<select class="form-control" name="viplife" id="viplife">
+										<option value="0">@lang('dingsu.nothing_to_change')</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>				
+					
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="cvapoint" class="col-sm-3 col-form-label">@lang('dingsu.current_vip_point') </label>
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control" name="cvapoint" id="cvapoint" value="" maxlength="50">
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="vapoint" class="col-sm-3 col-form-label">@lang('dingsu.add_vip_point')</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="vapoint" id="vapoint" value="" maxlength="5" placeholder="@lang('dingsu.nothing_to_change')">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+								
+					
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
@@ -306,7 +383,7 @@
 				}
 			} )
 			$.ajax( {
-				url: "{{route('post.ledger.adjustlife')}}",
+				url: "{{route('post.ledger.adjustwallet')}}",
 				type: 'post',
 				dataType: "json",
 				data: {
@@ -322,6 +399,11 @@
 						
 						$('#formtopup')[0].reset();
 						$('#topupmode').modal('hide');
+						
+						$("#cl_"+id).html(data.life);
+						$("#cp_"+id).html(result.point);
+						
+						
 					} else {						
 						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
 					}
@@ -565,6 +647,7 @@ function confirm_Delete(id)	{
 		$(".datalist").on("click",".opentopupmodel", function(){
 			var id=$(this).data('id');
 			$('#rid').val(id);
+			$('#formtopup')[0].reset(); 
 			swal( {
 				title: '@lang("dingsu.please_wait")',
 				text: '@lang("dingsu.fetching_data")..',
@@ -577,7 +660,7 @@ function confirm_Delete(id)	{
 				}
 			} )
 			$.ajax( {
-				url: "{{route('get.ledger.life')}}",
+				url: "{{route('get.ledger.detail')}}",
 				type: 'get',
 				dataType: "json",
 				data: {
@@ -593,6 +676,12 @@ function confirm_Delete(id)	{
 						if (data != null)
 							{
 								$('#clife').val(data.life);
+								$('#cpoint').val(data.point);	
+								
+								$('#cviplife').val(data.vip_life);
+								$('#cvapoint').val(data.vip_point);
+								
+								
 								$('#tid').val(id);
 								$('#topupmode').modal('show');
 							}

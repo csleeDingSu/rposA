@@ -92,7 +92,7 @@ class Wallet extends Model
 					'balance_after'     => $newpoint ,
 					'current_balance'   => $newpoint ,
 					'notes'             => $wallet->vip_point." VIP POINTS MERGED FROM POINT. ".$notes,
-					'credit_type'	    => 'APNT',
+					'credit_type'	    => 'APMNT',
 					];
 
 				$data = [ 
@@ -111,6 +111,86 @@ class Wallet extends Model
 				return $wallet->vip_point;
 			}
 		}
+	}
+	
+	public static function update_basic_wallet($memberid,$life = 0,$point = 0,$category = 'PNT',$type = 'credit', $notes = FALSE)
+	{
+		$newpoint     = '';
+		$newlife      = '';
+		$action_sym   = '-1';
+		$action_type  = 'DEBITED';
+		$debit        = $point ; 
+		$credit       = '';
+		$prefix       = 'D';
+		if ($type == 'credit')
+		{
+			$action_sym  = '1';
+			$action_type = 'CREDITED';
+			$credit      = $point;
+			$debit       = '' ; 
+			$prefix      = 'A';
+		}
+		
+		$wallet    = self::get_wallet_details_all($memberid);
+		if ($wallet)
+		{
+			$now = Carbon::now();
+			if ($life > 0)
+			{
+				$newlife = $wallet->current_life + ($life * $action_sym) ;
+				$history = [
+					'created_at' 	   => $now,
+					'updated_at' 	   => $now,
+					'member_id'        => $memberid,
+					'credit'	       => '0',
+					'debit'	           => '0',
+					'before_life'      => $wallet->current_life,
+					'current_life'     => $newlife,					
+					'notes'            => $life." LIFE $action_type ".$notes,
+					'credit_type'	   => $prefix.'L'.$category,
+					];
+
+				$data = [ 
+					'updated_at'    => $now,
+					'current_life'  => $newlife,
+				];
+				
+				$ledger  = DB::table('mainledger')
+					   ->where('member_id', $memberid)
+					   ->update($data);
+
+				$history = self::add_ledger_history($history);
+			}
+
+			if ($point > 0)
+			{
+				$newpoint = $wallet->current_point + ($point * $action_sym);
+				$history = [
+					'created_at' 	    => $now,
+					'updated_at' 	    => $now,
+					'member_id'         => $memberid,
+					'credit'	        => $credit,
+					'debit'	            => $debit,
+					'balance_before'    => $wallet->current_point,
+					'balance_after'	    => $newpoint,
+					'current_balance'	=> $newpoint,
+					'notes'             => $point." POINTS $action_type ".$notes,
+					'credit_type'	    => $prefix.'P'.$category,
+					];
+
+				$data = [ 
+					'updated_at'    => $now,
+					'current_point' => $newpoint,
+				];
+				
+				$ledger  = DB::table('mainledger')
+					   ->where('member_id', $memberid)
+					   ->update($data);
+				$history = self::add_ledger_history($history);
+			}			
+			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint];		
+		}
+		return ['success'=>false,'message'=>'unknown record'];
 	}
 	
 	public static function update_vip_wallet($memberid,$life = 0,$point = 0,$category = 'VIP',$type = 'credit', $notes = FALSE)

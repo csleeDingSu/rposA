@@ -163,9 +163,15 @@ function showBettingHistory(response, type) {
 
             if(betCount == -1){
                 var wallet_point = parseInt(last_bet.wallet_point);
+                var first_date = new Date(first_bet.created_at);
+                var str_first_date = first_date.getFullYear() + "-" + ("0"+(first_date.getMonth()+1)).slice(-2) + "-" + ("0" + first_date.getDate()).slice(-2) + " " + 
+                                ("0" + first_date.getHours()).slice(-2) + ":" + ("0" + first_date.getMinutes()).slice(-2);
+                var last_date = new Date(last_bet.created_at);
+                var str_last_date = last_date.getFullYear() + "-" + ("0"+(last_date.getMonth()+1)).slice(-2) + "-" + ("0" + last_date.getDate()).slice(-2) + " " + 
+                                ("0" + last_date.getHours()).slice(-2) + ":" + ("0" + last_date.getMinutes()).slice(-2);
 
                 history += '<div style="clear: both"></div>' +
-                                '<div class="date">' + first_bet.created_at + ' 至 ' + last_bet.created_at + '</div>' +
+                                '<div class="date">' + str_first_date + ' 至 ' + str_last_date + '</div>' +
                             '</div>' +
                             '<div class="col-xs-3 column-2">' +
                                 '<div class="right-wrapper">' +

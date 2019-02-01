@@ -62,7 +62,7 @@ class MemberController extends BaseController
 	
 	public function member_list(Request $request)
 	{
-		$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent','wechat_notes','totalcount']);		
+		$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent','wechat_notes','totalcount','current_life', 'current_point', 'vip_life', 'vip_point']);		
 		
 		$input = array();
 		
@@ -304,7 +304,7 @@ class MemberController extends BaseController
 			{
 				//$life   = \Config::get('app.introducer_life');
 				$life   = Member::get_introducer_life();
-				$wallet = Wallet::update_ledger_life($record->referred_by, $life->introduce_life,'LFE',' Introducer bonus life.Introduced user :'.$record->username);
+				$wallet = Wallet::update_ledger_life($record->referred_by, $life->introduce_life,'LILE',' Introducer bonus life.Introduced user :'.$record->username);
 				
 				if ($wallet['success'])
 				{

@@ -14,12 +14,41 @@
 @endsection
 
 @section('content')
-<div class="container demo">
+<div class="full-height">
+    <div class="container">
+        <input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
+        <input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+        <input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
+        <div class="information-table">
+            <div class="col-xs-12">
+                <div class="image-wrapper">
+                    <img src="{{ asset('/client/images/summary_bg.png') }}" alt="summary background">
+                    <div class="summary-table">
+                        <div id="total-invite" class="number">&nbsp;</div>
+                        <div class="description">您已累计邀请人次</div>
+                        <a href="/share"><div class="btn-invite">马上邀请</div></a>
+                    </div>
+                </div>
+            </div>
+              <div class="col-xs-4">
+                <div id="total-pending" class="total-pending">&nbsp;</div>
+                <div class="total-pending">等待验证</div>
+              </div>
+              <div class="col-xs-4">
+                <div id="total-successful">&nbsp;</div>
+                <div>验证成功</div>
+              </div>
+              <div class="col-xs-4">
+                <div id="total-fail">&nbsp;</div>
+                <div>验证失败</div>
+              </div>
+        </div>
 
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div id="invitation">
+
         @if ($invitation_list->isEmpty())
 
-            <div class="invitation-row">
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="empty">对不起 - 你现在还没有数据。</div>
                 </div>
@@ -28,56 +57,44 @@
         @else
 
             @foreach ($invitation_list as $l)
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="heading-{{ $l->id }}">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $l->id }}" aria-expanded="true" aria-controls="collapse{{ $l->id }}">
-                            <!-- <i class="more-less glyphicon glyphicon-menu-right"></i> -->
-                            @if ($l->wechat_verification_status == 0)
-                                <span style="color: green; float: right; font-weight: 600;">已认证 挖宝次数+1</span>
-                            @elseif ($l->wechat_verification_status == 1)
-                                <span style="color: blue; float: right; font-weight: 600;">等待认证</span>
-                            @else
-                                <span style="color: red; float: right; font-weight: 600;">认证失败</span>
-                            @endif
-                            
-                            <div class="invitation-title">{{ $l->username }} 
-                            </div>
-
-                        </a>
-                    </h4>
+            <div class="row">
+                <div class="col-xs-8 column-1">
+                    <div class="item">{{ $l->username }}</div>
+                    <div class="date">{{ date('Y-m-d H:i', strtotime($l->created_at)) }}</div>
                 </div>
-                <div id="collapse{{ $l->id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{ $l->id }}">
-                    <div class="panel-body">
-                        用户名: {{ $l->username }}，
-                        电话: {{ str_pad(substr($l->phone, 0, (strlen($l->phone) - 3)), strlen($l->phone), '*', STR_PAD_RIGHT) }}，
-                        微信: {{ $l->wechat_name }}
+                <div class="col-xs-4 column-2">
+                    <div class="right-wrapper">
+                        <div class="status">
+                            @if ($l->wechat_verification_status == 0)
+                                <span class="successful">验证成功</span>
+                            @elseif ($l->wechat_verification_status == 1)
+                                <span class="pending">等待验证</span>
+                            @else
+                                <span class="fail">验证失败</span>
+                            @endif
+                        </div>
+                        
+                        <div style="clear: both"></div>
+                        <div class="additional">
+                            @if ($l->wechat_verification_status == 0)
+                            +1
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
             @endforeach
 
-        @endif
-        
-    </div><!-- panel-group -->
-    
-    
-</div><!-- container -->
+        @endif   
+
+        </div><!-- invitation -->
+    </div>
+</div>
 
 @endsection
 
-
 @section('footer-javascript')
-	@parent
+    @parent
+    <script src="{{ asset('/client/js/invitation.js') }}"></script>
 
-	<script type="text/javascript">		
-		function toggleIcon(e) {
-		    $(e.target)
-		        .prev('.panel-heading')
-		        .find(".more-less")
-		        .toggleClass('glyphicon-menu-right glyphicon-menu-down');
-		}
-		$('.panel-group').on('hidden.bs.collapse', toggleIcon);
-		$('.panel-group').on('shown.bs.collapse', toggleIcon);
-	</script>
 @endsection

@@ -323,7 +323,7 @@ body{
 }
 
 .coin {
-	background: url('/client/images/game.png') no-repeat -1512px -820px;
+	background: url('/client/images/game.png') no-repeat -1674px -715px;
 	width: 82px;
 	height: 82px;
 	transform: scale(0.35); 
@@ -388,13 +388,13 @@ body{
 }
 
 .long {
-	min-width: 100px;
+	min-width: 135px;
 	padding-left: 15px;
 	padding-right: 5px;
 }
 
 .number-vip {
-	min-width: 115px;
+	min-width: 150px;
 }
 
 .btn-rules {
@@ -475,7 +475,7 @@ body{
 .btn-calculate-wrapper {
 	float: right;
 	height:21px;
-    width:35px;
+    width:70px;
     font-size: 2em;
     margin-top: 1px;
     margin-right: 2px;
@@ -484,18 +484,16 @@ body{
 
 .btn-calculate, .btn-calculate-vip {
 	background: #1ea20c;
-	width: 105px;
-	height: 54px;
-	transform: scale(0.35); 
-	-webkit-transform: scale(0.35);
-	-webkit-transform-origin:left top;
+	width: 70px;
+	height: 19px;	
 	float: left;
 	text-align: center;
 	position: relative;
     display: inline-block;
     border-radius: 30px;
-    font-size: 1.4em;
+    font-size: 12px;
     cursor: pointer;
+    padding-top: 1px;
 }
 
 .btn-calculate-vip {
@@ -702,30 +700,48 @@ body{
 	color: #c81b1b;
 }
 
-.modal-message-title, .modal-warning-title {
+.modal-message-title, .modal-warning-title, .modal-manual-title {
 	color: #f03838;
 	font-size: 22px;
 }
 
 .modal-lose-title {
-	color: #666666;
+	color: #373737;
 	font-size: 22px;
-	padding-bottom: 10px;
 }
 
 .modal-warning-title {
-	color: #656565;
+	color: #333333;
 }
 
-.modal-message-content, .modal-warning-content {
-	color: #b0b0b0;
+.modal-manual-title {
+	color: #333333;
+}
+
+.modal-message-content, .modal-lose-content {
+	color: #4f7172;
 	font-size: 14px;
-	padding-bottom: 30px;
+	padding-bottom: 0px;
+}
+
+.modal-manual-content {
+	color: #6a6a6a;
+	font-size: 16px;
+	padding: 20px;
+	text-align: justify;
+}
+
+.modal-message-manual {
+	color: #6db5ec;
+	text-decoration: underline;
+	font-size: 14px;
+	cursor: pointer;
+	margin-left: 30%;
+	margin-right: 30%;
 }
 
 .modal-lose-content {
-	color: #ff6868;
-	font-size: 20px;
+	padding-bottom: 30px;
 }
 
 .modal-lose-instruction {
@@ -735,15 +751,41 @@ body{
 }
 
 .modal-warning-content {
-	color: #9a9a9a;
-	font-size: 16px;
-	padding-top: 10px;
+	color: #8e8e8e;
+	font-size: 14px;
+	padding-bottom: 30px;
+}
+
+#reset-life-play .modal-body {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#reset-life-play .modal-card {
+	width: 100%;
+}
+
+#reset-life-play .modal-warning-title {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+#reset-life-play .modal-warning-content {
+	padding-top: 20px;
+	padding-bottom: 30px;
 }
 
 .modal-message-balance {
-	color: #333333;
+	color: #666666;
 	font-size: 14px;
 	padding-bottom: 10px;
+	padding-top: 30px;
+}
+
+.modal-message-footer {
+	color: #c5c5c5;
+	font-size: 14px;
+	padding-top: 10px;
 }
 
 .btn-close-wabao {
@@ -768,7 +810,7 @@ body{
 	margin-bottom: 15px;
 }
 
-.modal-message-button, .modal-warning-button {
+.modal-message-button, .modal-warning-button, .modal-manual-button {
 	background: #ff6868;
 	color: #ffffff;
 	padding: 5px;
@@ -781,10 +823,14 @@ body{
 
 .modal-warning-button {
 	background: #f8db9f;
-	color: #9c731b;
-	font-size: 22px;
+	color: #a17c3c;
+	font-size: 18px;
 	border-radius: 5px;
 
+}
+
+.modal-manual-button {
+	background: #0091e5;
 }
 
 @media only screen and (max-width: 360px) {
@@ -875,18 +921,6 @@ body{
 	padding-bottom: 3px;
 	float: left;
 	padding-left: 10px;
-}
-
-@media only screen and (max-width: 360px) {
-	.modal-content, .modal-title {
-		width: 270px;
-	}
-
-	.modal-card, .txtTimer {
-		width: 230px;
-		margin: 0 auto;
-		font-size: 16px;
-	}
 }
 
 .txtTimer {

@@ -413,7 +413,7 @@ class ProductController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['pin_status'=>2,'confimed_at'=>$now];
+			$data = ['pin_status'=>2,'confirmed_at'=>$now];
 			Product::update_pin($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
 		}
@@ -429,9 +429,8 @@ class ProductController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['pin_status'=>3,'confimed_at'=>$now];
-						
-			Wallet::update_ledger($record->member_id,'credit',$record->used_point,'PNT','redeem rejected,point refund to customer');
+			$data = ['pin_status'=>3,'confirmed_at'=>$now];						
+			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', 'redeem rejected,point refund to customer');			
 			
 			Product::update_pin($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
@@ -465,7 +464,7 @@ class ProductController extends BaseController
 			}
 		}
 		
-		$result =  $result->orderby('id','DESC')->paginate(30);
+		$result =  $result->orderby('created_at','DESC')->paginate(30);
 				
 		$data['page'] = 'product.redeemhistory'; 	
 				
@@ -695,8 +694,7 @@ class ProductController extends BaseController
 				
 		$data['result'] = $result; 
 		
-		
-		 if ($request->ajax()) {
+		if ($request->ajax()) {
             return view('package.pendinglist.ajaxlist', ['result' => $result])->render();  
         }
 					
@@ -751,7 +749,7 @@ class ProductController extends BaseController
 		{
 			$now = Carbon::now();
 			$passcode = unique_random('vip_redeemed','passcode',8);
-			$data = ['redeem_state'=>2,'confimed_at'=>$now,'passcode'=>$passcode];
+			$data = ['redeem_state'=>2,'confirmed_at'=>$now,'passcode'=>$passcode];
 			Package::update_vip($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
 		}
@@ -769,9 +767,9 @@ class ProductController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['redeem_state'=>0,'confimed_at'=>$now];
+			$data = ['redeem_state'=>0,'confirmed_at'=>$now];
 						
-			Wallet::update_ledger($record->member_id,'credit',$record->used_point,'PNT','vip package rejected,point refund to customer');
+			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', 'vip package rejected,point refund to customer');
 			
 			Package::update_vip($record->id, $data);
 			

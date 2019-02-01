@@ -10,125 +10,103 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getBettingHistory(data.access_token);
+            getSummary(data.access_token);
         }     
     });
 }
 
-function getBettingHistory(token) {
+function getSummary(token) {
     var user_id = $('#hidUserId').val();
+    var container = $('#pagination');
 
-    $.ajax({
-        type: 'GET',
-        url: "/api/betting-history?gameid=101&memberid=" + user_id,
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        success: function(data) {
-            //console.log(data);
-            var records = data.records;
-            var arr = [];
-            var results = [];
-
-            for( var name in records ) {
-                arr[name] = records[name];
+    var options = {
+      dataSource: function(done) {
+        $.ajax({
+            type: 'GET',
+            url: "/api/member-point-list?memberid=" + user_id,
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            success: function(data) {
+                done(data.result);
             }
+        });
+      },
+      callback: function (response, pagination) {
+        showSummary(response);
+      }
+    };
 
-            var len = arr.length;
-            while( len-- ) {
-                if( arr[len] !== undefined ) {
-                    results.push(arr[len]);
-                }
-            }
-
-            showBettingHistory(results);
-        }
-    });
+    container.pagination(options);
 }
 
- function showBettingHistory(results) {
+ function showSummary(results) {
+    //console.log(results);
     var length = results.length;
 
-    $('#history').html('');
+    $('#summary').html('');
 
      if(length === 0){
-        var history =   '<div class="row">' +
+        var summary =   '<div class="row">' +
                             '<div class="col-xs-12">' +
                                 '<div class="empty">对不起 - 你现在还没有数据。</div>' +
                             '</div>' +
                         '</div>';
 
-        $('#history').append(history);
+        $('#summary').append(summary);
 
     } else {
-        //console.log(results);
-        $.each(results, function(bkey, bvalue){
-            var history = '';
+        var summary = '';
+        $.each(results, function(key, value){
+            //console.log(value);
+            var str_type = '';
+            var str_points = '';
+            var cls_negative = '';
+            var d = new Date(value.created_at);
+            var str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
+                                ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
-            var betCount = bvalue.length;
-            var winCount = 0;
-            var loseCount = 0;
-            var points = 0;
+            switch(value.credit_type){
+                case 'CRPNT':
+                    str_type = '挖宝成功收益结算';
+                    str_points = '+' + parseInt(value.credit);
+                break;
 
-            history =   '<div class="row">' +
-                            '<div class="col-xs-9 column-1">';
+                case 'DPRPO':
+                    str_type = '兑换话费卡';
+                    str_points = '-' + parseInt(value.debit);
+                    cls_negative = 'negative';
+                break;
 
-
-            var first_bet = null;
-            var last = null;
-            var loopCount = 0;
-
-            while( betCount-- ) {
-                if(loopCount == 0) {
-                    first_bet = bvalue[betCount];
-                }
-
-                var className = 'pass';
-                var faIcon = 'fa-check';
-
-                if(bvalue[betCount].is_win == null){
-                    className = 'fail';
-                    faIcon = 'fa-times';
-                    loseCount++;
-                } else {
-                    winCount++;                        
-                }
-
-                history +=   '<div class="' + className + '">' +
-                                '<span class="label"><i class="fa '+ faIcon +'"></i></span>' +
-                            '</div>';
-
-                loopCount++;
-
-                if(betCount == 0){
-                    last_bet = bvalue[betCount];
-                }
+                case 'DPBVP':
+                    str_type = '兑换VIP入场卷';
+                    str_points = '-' + parseInt(value.debit);
+                    cls_negative = 'negative';
+                break;
             }
 
-            if(winCount) {
-                points = (winCount + loseCount) * 10;
-            }
-
-            if(betCount == -1){
-                history += '<div style="clear: both"></div>' +
-                                '<div class="date">' + first_bet.created_at + ' 至 ' + last_bet.created_at + '</div>' +
+            summary +=   '<div class="row">' +
+                            '<div class="col-xs-8 column-1">' +
+                                '<div class="item">'+ str_type +'</div>' +
+                                '<div class="date">' + str_date + '</div>' +
                             '</div>' +
-                            '<div class="col-xs-3 column-2">' +
+                            '<div class="col-xs-4 column-2">' +
                                 '<div class="right-wrapper">' +
-                                    '<div class="points">'+ points +'</div>' +
+                                    '<div class="points ' + cls_negative +'">'+ str_points +'</div>' +
                                     '<div class="icon-coin-wrapper">' +
                                         '<div class="icon-coin"></div>' +
                                     '</div>' +
                                     
                                     '<div style="clear: both"></div>' +
-                                    '<div class="balance">'+ last_bet.wallet_point +'</div>' +
+                                    '<div class="balance">'+ value.balance_before +'</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
+            
+        });            
 
-                $('#history').append(history);
-            }
-        });
+        $('#summary').append(summary);
+
     }
 }

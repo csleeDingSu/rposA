@@ -32,7 +32,7 @@ class DispatchJob extends Command
 	
 	public $cronname  = '';
 	
-	public $timelimit = 30;
+	public $timelimit = '30';
 	
     public function __construct()
     {
@@ -177,6 +177,8 @@ class DispatchJob extends Command
 						$this->error('--> Time Limit Exceeded. process going to kill itself');
 						$this->shutdown();
 					}
+					$data = ['last_run'=>Carbon::now(),'notes'=>$totalDuration];		
+					$this->justupdate($data);
 					sleep(10);
 				}
 				elseif ($row->status == 3)
@@ -213,5 +215,12 @@ class DispatchJob extends Command
 		$this->info('--> Process killed itself');	
 		die();
     }
+	
+	public function justupdate($data)
+	{
+		\DB::table('cron_manager')
+			->where('cron_name', $this->cronname)
+			->update($data);
+	}
 	
 }
