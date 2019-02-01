@@ -132,6 +132,7 @@ return [
 	'product_list' => 'Product List',
 	'redeem_history' => 'Redeem History',
 	'pending_redeem' => 'Pending Redeem',
+	'featured' => 'Featured',
 	'' => '',
 	'' => '',
 	'' => '',

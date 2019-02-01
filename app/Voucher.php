@@ -39,11 +39,29 @@ class Voucher extends Model
 	
 	public static function get_category()
 	{
-		$result = DB::table('category')->select('id', 'display_name')->get();
+		$result = DB::table('category')->select('id', 'display_name', 'position' )->get();
 				
 		return $result;
 	}
 	
+	public static function tag_voucher($id, $data)
+	{
+		$result = DB::table('voucher_category')
+		->where('id', $id)
+		->update($data);
+		
+		return $result;
+	}
+
+	public static function get_categorytag($id)
+	{
+		$result = DB::table('voucher_category')->where('voucher_id', $id)-> select('id', 'voucher_id', 'category')->get();
+				
+		return $result;
+	}
+
+
+
 	public static function delete_excel_upload($filename)
 	{
 		$result = DB::table('excel_upload')->where('filename', $filename)->delete();
@@ -69,6 +87,16 @@ class Voucher extends Model
 		return $result;
 		
 	}
+
+
+	public static function get_voucher($id = null)
+	{
+		$result = DB::table('voucher')->where('id',$id)->first();
+		
+		return $result;
+	}
+
+
 	
 	public static function remove_duplicate($type = 'voucher_id')
 	{
@@ -86,6 +114,14 @@ class Voucher extends Model
 		//DB::insert($chunk->toArray());
 		DB::table('vouchers')->insert($chunk->toArray());
 	}
+
+	public static function vouchers_inserttag($chunk)
+	{
+		//DB::insert($chunk->toArray());
+		DB::table('vouchers')->insert($chunk->toArray());
+	}
+
+
 	public static function archived_vouchers_insert($chunk)
 	{
 		//$ddd = $chunk->toArray();

@@ -111,6 +111,7 @@ return [
 	'level_update_success_message' => '成功更新级别',
 	'categories' => '类别',
 	'block' => '封锁',
+	'featured' => '精选',
 	'is_support_multiplayer' => '支持多人游戏',
 	'is_support_tournament' => '支持比赛',
 	'is_track_user' => '跟踪用户',
