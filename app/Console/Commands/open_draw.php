@@ -13,11 +13,8 @@ use App\member_game_bet_temp;
 use App\member_game_notification;
 use App\Package;
 
-
 use App\Http\Controllers\RedisGameController;
-
-
-
+use App\Events\EventGameSetting ;
 class open_draw extends Command
 {
     /**
@@ -56,7 +53,7 @@ class open_draw extends Command
 		
 		$drawid = $this->argument('drawid');
         
-        if ($drawid == '0') $drawid = 66487;		
+        if ($drawid == '0') $drawid = 67123;		
 		
 		//$drawid = 5676  ;
 		
@@ -65,7 +62,7 @@ class open_draw extends Command
 		if (!$draw) dd('unknown draw');		
 
 		$gameid = $draw->game_id;
-
+		$event_data = [];
 		$mers = \DB::table('redis')->select('member_id')->get();
 		$ReportController = new RedisGameController(); 
         				
@@ -82,19 +79,30 @@ class open_draw extends Command
 			{
 				$memberid = $val->member_id;
 				$vip = '';
-				$level            =  Game::get_member_current_level($gameid, $memberid, $vip);
+				$level            = Game::get_member_current_level($gameid, $memberid, $vip);
 				$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 				$gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
 				
-				$data         = ['drawid'=> $draw->id, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'setting' => $setting,'latest_result' => $latest_result,'gamesetting' => $gamesetting,'gamehistory' => $gamehistory];
-
-				//print_r($data);die();
-				event(new \App\Events\EventGameSetting($val->member_id,$data)); //@todo:-move to outisde of the loop
-
-				$this->line('yes--');
+				$data         = [ 'drawid'=> $draw->id, 
+								  'futureresults' => $futureresult,
+								  'wabaofee' => $setting->wabao_fee,
+								  'setting' => $setting,
+								  'latest_result' => $latest_result,
+								  'gamesetting' => $gamesetting,
+								  'gamehistory' => $gamehistory
+								];
+				$event_data[$val->member_id] = 	$data ;	
 			}
 		}
 			
+
+		foreach ($event_data as $key=>$val)
+		{
+			
+			event(new \App\Events\EventGameSetting($key,$val));
+			$this->line('yes--'.$key);
+		}	
+
 		$this->line('End:'.'-------------'.Carbon::now()->toDateTimeString().'----------');
 		
 		$this->info('-------------All done----------');
