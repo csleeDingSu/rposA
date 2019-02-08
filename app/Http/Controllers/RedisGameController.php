@@ -68,24 +68,22 @@ class RedisGameController extends Controller
 			['member_id' => $memberid]
 		);
 		
-		$now         = Carbon::now();
-		$gamesetting = $this->get_game_setting($request);
-		$gamenotific = $this->get_game_notification($request);	
-		
-		$gamehistory = $this->get_game_history($request->gameid);		
-		
-		$futureresult= Game::get_future_result($gameid, $now );
-		
-		$setting     = \App\Admin::get_setting();
+		$now           = Carbon::now();
+		$latest_result = Game::get_latest_result($gameid);
+		$gamesetting   = $this->get_game_setting($latest_result, $now);
+		$gamenotific   = $this->get_game_notification($memberid,$gameid);			
+		$gamehistory   = $this->get_game_history($request->gameid);		
+		$futureresult  = Game::get_future_result($gameid, $now );		
+		$setting       = \App\Admin::get_setting();
 		
 		$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee];
 		
 		event(new \App\Events\EventGameSetting($memberid,$data));
 		echo 'ad';
 		
-	}
 	
 	//with  bet	
+		//no more use
 	public function master_out(Request $request)
 	{
 		$now     = Carbon::now()->toDateTimeString();
