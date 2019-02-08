@@ -15,6 +15,7 @@ use App\Package;
 
 use App\Http\Controllers\RedisGameController;
 use App\Events\EventGameSetting ;
+
 class open_draw extends Command
 {
     /**
@@ -53,7 +54,7 @@ class open_draw extends Command
 		
 		$drawid = $this->argument('drawid');
         
-        if ($drawid == '0') $drawid = 67123;		
+        if ($drawid == '0') $drawid = 67451;		
 		
 		//$drawid = 5676  ;
 		
@@ -74,7 +75,7 @@ class open_draw extends Command
 			$futureresult  = Game::get_future_result($draw->game_id, $now );
 			$gamesetting   = $ReportController->get_game_setting($draw , $now); 
 			$gamehistory   = $ReportController->get_game_history($draw->game_id);			
-			
+			$this->comment('Get Data:'.'--------'.Carbon::now()->toDateTimeString().'----------');	
 			foreach ($mers as $key => $val)
 			{
 				$memberid = $val->member_id;
@@ -92,9 +93,17 @@ class open_draw extends Command
 								  'gamehistory' => $gamehistory
 								];
 				$event_data[$val->member_id] = 	$data ;	
+
+				$channel[] = 'initsetting-'.$val->member_id;
+				$message[] = $data ;	
 			}
 		}
 			
+			
+		//foreach (array_chunk($event_data,500) as $key=>$val) {
+		//   print_r($key);
+		   //die();
+		//}
 
 		foreach ($event_data as $key=>$val)
 		{
