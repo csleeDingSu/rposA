@@ -12,7 +12,7 @@
 */
 
 //redis example 
-Route::any('/master-call', 'RedisGameController@master_out')->name('api.redis.master.call');
+Route::any('/master-call', 'RedisGameController@master_out')->name('api.redis.master.call'); //deprecated 
 	
 Route::any('/master-call-nobet', 'RedisGameController@master_withoutbet')->name('api.redis.master.withoutbet');
 
