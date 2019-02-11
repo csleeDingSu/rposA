@@ -19,14 +19,14 @@ class Bresult extends Command
      *
      * @var string
      */
-    protected $signature = 'generate:br {drawid=0}';
+    protected $signature = 'generate:vip_result {drawid=0}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate the Game result every day';
+    protected $description = 'Generate the VIP Game result every day';
 
     /**
      * Create a new command instance.
@@ -54,7 +54,7 @@ class Bresult extends Command
         
         if ($drawid == '0') $drawid = 1546;  
 		
-		$bettinglist =  \DB::table('member_game_bet_temp')->where('drawid', '=', $drawid)->where('gametype', '=', 1)->get();
+		$bettinglist =  \DB::table('member_game_bet_temp')->where('drawid', '=', $drawid)->where('gametype', '=', 2)->get();
 		
 		$current_result = Game::get_single_gameresult($drawid);
 		
@@ -73,7 +73,7 @@ class Bresult extends Command
 		foreach ($out as $key=> $re)
 		{
 			echo 'here-'. $key;
-			event(new \App\Events\EventBetting($key, $re));
+			event(new \App\Events\EventVIPBetting($key, $re));
 		}
 		
 		$game_result = !empty($current_result->game_result) ? $current_result->game_result  : '' ;
@@ -85,7 +85,7 @@ class Bresult extends Command
 		{
 			foreach ($mers as $key => $val)
 			{
-				event(new \App\Events\EventNoBetting($val->member_id, $gresult));
+				event(new \App\Events\EventNoBetting($val->member_id, $gresult,'vip'));
 			}
 		}
 		
@@ -94,6 +94,103 @@ class Bresult extends Command
 		$this->info('-------------All done----------');
     }
 	
+	public function play_vip_game($vipdata)
+    { 
+		$point        = 0;
+		$reward       = 0;
+		$glevel       = '';
+		$status       = 'lose';
+		$is_win       = null;
+		$player_level = 1;
+		$close        = null;
+		$memberid     = $vipdata['memberid'];
+		$gameid       = $vipdata['gameid'];
+		$level	      = $vipdata['gamelevel'];
+		$bet          = $vipdata['bet'];
+		$game_result  = $vipdata['game_result'];
+		$drawid       = $vipdata['drawid'];
+		
+		
+		$packageid = Package::get_current_package($memberid);		
+		
+		if (!$packageid)
+		{
+			$this->error('No active vip subscriptions');
+			return ['success' => false, 'game_result' => $game_result,'message' => 'No active vip subscriptions'];
+		}
+				
+		//check playable status
+		$wallet = Wallet::get_wallet_details($memberid);
+		
+		if ($wallet->vip_life < 1) 
+		{
+			$this->error('not enough life to play');
+			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough life to play']);
+		}
+		
+		if ($wallet->vip_point < $level->bet_amount) 
+		{
+			$this->error('not enough points to play');
+			return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough points to play']);
+		}
+		
+		//check game result
+		
+		/**
+		 * if player & histoy win the increse to 1
+		 * if player fail keep the value 
+		 **/		
+
+		$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $level,1);
+
+		$gamelevel    = $game_p_level['gamelevel'];
+		$player_level = $game_p_level['player_level'];
+
+		$gen_result  = check_odd_even($game_result);
+		if ($gen_result === $bet)
+		{
+			$status = 'win';
+			$is_win = TRUE;				
+		}	
+		
+		//update wallet
+		
+		if ($is_win) 
+		{
+			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP');
+			$reward = $level->point_reward;
+		}
+		else
+		{
+			
+			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP','debit');
+		}
+			
+		//update game history
+		if ($wallet)
+			{
+				//Update Memeber game play history		
+				$now     = Carbon::now()->toDateTimeString();
+					
+				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid,'reward' => $reward,'package_id'=>$packageid->id];				
+				
+				$records =  Game::add_vip_play_history($insdata);
+			
+				if (!$is_win) 
+				{
+					$close  = Game::get_consecutive_lose($memberid, $gameid,'1');
+					//echo 	$close ;
+					if ($close == 'yes') {
+						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
+						Game::reset_member_game_level($memberid , $gameid,'1');			
+						$point = Wallet::merge_vip_wallet($memberid);									
+						Package::reset_current_package($packageid->id);
+					}
+				}
+                				
+				return ['success' => true, 'status' => $status, 'game_result' => $game_result,'mergepoint' => $point,'consecutive_loss'=>$close]; 
+			}
+	}
 	
 	public function GenerateBettingResult($row, $current_result)
     {	
@@ -170,93 +267,6 @@ class Bresult extends Command
 		$vipdata['drawid']      = $drawid;
 		
 		if ($vip) return $this->play_vip_game($vipdata);
-		
-		$res = Wallet::playable_status($memberid,$gameid,$levelid);
-		$is_playable = $res['playablestatus'];	
-		$is_redeemable = $res['redeempointstatus'];
-
-		if ($res['life']<1)
-		{
-			$this->error('not enough life to play'); 
-			return ['success' => false, 'game_result' => $game_result,'message' => 'not enough life to play'];
-			
-		}
-		if (empty($is_playable)&&empty($is_redeemable))// 0
-		{
-			$this->error('not enough balance to play'); 
-			return ['success' => false, 'game_result' => $game_result,'message' => 'not enough balance to play'];
-			
-		}elseif (empty($is_playable)&&!empty($is_redeemable))//1
-		{
-			$this->error('exceeded the coin limit'); 
-			return ['success' => false, 'game_result' => $game_result,'message' => 'exceeded the coin limit'];
-		}		
-		else{
-			/**
-			 * if player & histoy win the increse to 1
-			 * if player fail keep the value 
-			 **/		
-			
-			$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $gamelevel);
-			
-			$gamelevel    = $game_p_level['gamelevel'];
-			$player_level = $game_p_level['player_level'];
-			
-			$gen_result  = check_odd_even($game_result);
-			
-			
-			//$gen_result  = 'even';
-			if ($gen_result === $bet)
-			{
-				//win change balance
-				$status = 'win';
-				$is_win = TRUE;				
-			}			
-			
-			//Add wallet update functions 				
-			//$wallet = '100';
-			$wallet = Wallet::game_walletupdate ($memberid, $gameid, $status, $gamelevel);
-			
-			$level = \DB::table('game_levels')->where('id', $gamelevel)->get()->first();
-			
-					
-			if ($wallet)
-			{
-				
-				if ($wallet['status'] =='win')
-				{
-					$this->info('win');
-				}
-				else 
-				{
-					$this->error('lose');
-				}
-				
-				$this->info('success');
-				
-				return ['status' => $status, 'game_result' => $game_result];
-				
-				//Update Memeber game play history		
-				$now     = Carbon::now()->toDateTimeString();
-				
-				if ($wallet['status'] =='win') $reward = $level->point_reward;
-				
-					
-				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$current_result->game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid,'wallet_point' => $wallet['point'],'reward' => $reward];
-				
-				
-				$filter = ['member_id'=>$memberid,'game_id'=>$gameid,'draw_id' => $drawid];		
-
-				$records =  Game::add_play_history($insdata,$filter);
-				
-                if ($wallet['acupoint'] >= 150 ) $this->update_notification($memberid, $gameid,'0');
-				
-				return ['success' => true, 'status' => $status, 'game_result' => $game_result]; 
-			}
-			
-			return ['success' => false, 'message' => 'not enough points to play']; 
-		}
-		
 	}
 	
 	

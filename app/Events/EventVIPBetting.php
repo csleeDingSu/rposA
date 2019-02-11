@@ -10,25 +10,21 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class EventNoBetting implements ShouldBroadcast
+class EventVIPBetting implements ShouldBroadcast
 {
     use SerializesModels;
 
     public $data;
 	public $id;
-	
-    public function __construct($id, $data,$type = '')
+
+    public function __construct($id, $data)
     {
       $this->id   = $id;
 	  $this->data = $data;
-	  $this->type = $type;
     }
+
     public function broadcastOn()
     {
-		if (!$this->type)
-		{
-			return ['no-betting-user-'. $this->id ];
-		}		
-		return ['no-vipbetting-user-'. $this->id ];
+		return ['uservipbetting-'. $this->id ];
     }
 }
