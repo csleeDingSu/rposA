@@ -80,6 +80,7 @@ class RedisGameController extends Controller
 		
 		event(new \App\Events\EventGameSetting($memberid,$data));
 		echo 'ad';
+	}
 		
 	
 	//with  bet	
@@ -841,10 +842,8 @@ class RedisGameController extends Controller
         return true;
     }
 	
-	public function get_game_notification(Request $request)
-    {
-        $memberid = $request->memberid;
-        $gameid   = $request->gameid;        
+	public function get_game_notification($memberid, $gameid )
+    {               
         $record   = member_game_notification::select('memberid', 'gameid','flag_status')->where('memberid', $memberid)->where('gameid', $gameid)->first();    
         return $record;
 		return response()->json(['success' => true, 'record' => $record ]);
