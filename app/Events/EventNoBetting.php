@@ -16,8 +16,9 @@ class EventNoBetting implements ShouldBroadcast
 
     public $data;
 	public $id;
+	public $type;
 	
-    public function __construct($id, $data,$type = '')
+    public function __construct($id, $data,$type = FALSE)
     {
       $this->id   = $id;
 	  $this->data = $data;
