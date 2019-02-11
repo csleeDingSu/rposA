@@ -53,15 +53,14 @@ class open_draw extends Command
 		$this->comment('Stared:'.'----------'.Carbon::now()->toDateTimeString().'----------');	
 		
 		$drawid = $this->argument('drawid');
-        
-        if ($drawid == '0') $drawid = 67451;		
-		
-		//$drawid = 5676  ;
+        $now           = Carbon::now();
+        if ($drawid == '0') $drawid   = 6666;		
 		
 		$draw =  \DB::table('game_result')->where('id', '=', $drawid)->first();		
 		
 		if (!$draw) dd('unknown draw');		
-
+		$this->info('Draw ID :'.'--------'.$drawid.'----------');	
+		
 		$gameid = $draw->game_id;
 		$event_data = [];
 		$mers = \DB::table('redis')->select('member_id')->get();
