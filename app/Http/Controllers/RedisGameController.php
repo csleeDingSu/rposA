@@ -162,22 +162,10 @@ class RedisGameController extends Controller
 	}
 	
 	
-	public function get_game_setting(Request $request)
+	public function get_game_setting($out, $now)
     {
-		$gameid   = $request->gameid;
-		$memberid = $request->memberid;
-		$vip       = $request->vip;	
 		
-		$level  =  Game::get_member_current_level($gameid, $memberid, $vip);
-		
-		$now        = Carbon::now();
-		$out = Game::get_single_gameresult_by_gameid($gameid,$now );
-		
-		$latest_result = Game::get_latest_result($gameid);
-			
-		$setting =  Game::gamesetting($gameid);
-		
-		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
+		$setting =  Game::gamesetting($out->game_id);		
 		
 		if ($out)
 		{
@@ -192,11 +180,10 @@ class RedisGameController extends Controller
 				//@todo :- get from config
 				if ($setting->freeze_time>=30 or $setting->freeze_time<5) $setting->freeze_time = 5;	
 				
-				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time,'level'=>$level,'latest_result'=>$latest_result,'consecutive_lose'=>$consecutive_lose];
+				$result = ['drawid'=>$out->id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time];
 				return $result;
 			}
-			return 'result expired';
-			 
+			return 'result expired';			 
 		}
 		return 'invalid game';
 		return response()->json(['success' => false, 'record' => '', 'message' => 'invalid game']);
@@ -607,9 +594,8 @@ class RedisGameController extends Controller
 		
 	}
 	
-	public function get_latest_result(Request $request)
+	public function get_latest_result($gameid = 101)
     {	
-		$gameid   = $request->gameid;
 		
 		if ($gameid)
 		{
