@@ -44,19 +44,24 @@
 			console.log(data);
 		 }.bind(this));
 		
+		//No betting vip
+		this.socket.on("no-vipbetting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
+			console.log('call no-vip-betting');
+			console.log(data);
+		 }.bind(this));
+		
 		//betting
 		this.socket.on("userbetting-" + $('#auth_id').val() + ":App\\Events\\EventBetting" , function(data){
 			console.log('call userbetting');
 			console.log(data);
 		 }.bind(this));
-		 
-		//wallet changes
-		this.socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWallet", function(data){
-			console.log('member wallet details');
-			console.log(data);
-			
-		 }.bind(this));
 		
+		//betting vip
+		this.socket.on("uservipbetting-" + $('#auth_id').val() + ":App\\Events\\EventBetting" , function(data){
+			console.log('call uservipbetting');
+			console.log(data);
+		 }.bind(this));
+		 
 		//betting history On page load 
 		this.socket.on("bettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventBettingHistory", function(data){
 			console.log('members recent bettinghistory');
@@ -68,6 +73,15 @@
 		this.socket.on("bettinghistory" + ":App\\Events\\EventBettingHistory" , function(data){
 			console.log('members recent bettinghistory');
 			console.log(data);
+		 }.bind(this));
+		
+		//below functions are still on development
+		
+		//wallet changes
+		this.socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWallet", function(data){
+			console.log('member wallet details');
+			console.log(data);
+			
 		 }.bind(this));
 		 			
 		
