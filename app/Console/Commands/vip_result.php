@@ -12,7 +12,7 @@ use App\member_game_bet_temp;
 
 use App\member_game_notification;
 use App\Package;
-class Bresult extends Command
+class vip_result extends Command
 {
     /**
      * The name and signature of the console command.
