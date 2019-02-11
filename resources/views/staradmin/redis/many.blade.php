@@ -16,9 +16,11 @@
     <script>
 		///game example page
         html = '';
-		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";		
+		//var url = "{{ env('APP_URL'), 'http://boge56.com' }}";		
 		//var port = {{ env('REDIS_CLI_PORT'), '6001' }};
-		var url = 'http://boge56.com';
+		//var url = 'http://boge56.com';
+		
+		var url = 'http://192.168.1.154';
 		var port = '6001';
 				
 		var c_url = url + ':' + port;
@@ -57,7 +59,7 @@
 		 }.bind(this));
 		
 		//betting vip
-		this.socket.on("uservipbetting-" + $('#auth_id').val() + ":App\\Events\\EventBetting" , function(data){
+		this.socket.on("uservipbetting-" + $('#auth_id').val() + ":App\\Events\\EventVIPBetting" , function(data){
 			console.log('call uservipbetting');
 			console.log(data);
 		 }.bind(this));
