@@ -19,8 +19,13 @@ Route::any('/master-call-nobet', 'RedisGameController@master_withoutbet')->name(
 Route::any('/userbetting', 'RedisGameController@userbetting')->name('api.redis.userbetting');
 
 Route::get('generateresult/{drawid}', function ($drawid) {
-	//if (empty($drawid) $drawid = 0;
 	Artisan::call('generate:br', ['drawid' => $drawid]);
+	dd( 'result generated' );
+} );
+
+
+Route::get('generatevipresult/{drawid}', function ($drawid) {
+	Artisan::call('generate:vip_result', ['drawid' => $drawid]);
 	dd( 'result generated' );
 } );
 
