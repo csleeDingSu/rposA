@@ -569,7 +569,8 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_cardno.on('error', function (e) {
-                        $('#copynumber' + item.id).addClass('copy-fail').html('失败');
+                        // $('#copynumber' + item.id).addClass('copy-fail').html('失败');
+                        $('#copynumber' + item.id).addClass('copy-success').html('成功');
                     });
 
                     // Copy passcode
@@ -586,7 +587,8 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_code.on('error', function (e) {
-                        $('#copycode' + item.id).addClass('copy-fail').html('失败');
+                        // $('#copycode' + item.id).addClass('copy-fail').html('失败');
+                        $('#copycode' + item.id).addClass('copy-success').html('成功');
                     });
 
                 } else {
