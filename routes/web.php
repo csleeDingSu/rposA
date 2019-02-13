@@ -32,7 +32,11 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::get( '/arcade', 'ClientController@member_access_game' )->name( 'client.arcade' );
 
+	Route::get( '/arcade-node', 'ClientController@member_access_game_node' )->name( 'client.arcade-node' );
+
 	Route::get( '/vip', 'ClientController@member_access_vip' )->name( 'client.vip' );
+
+	Route::get( '/vip-node', 'ClientController@member_access_vip_node' )->name( 'client.vip-node' );
 	
 	Route::get( '/wheel', function () {
 		return view( 'client/wheel' );
