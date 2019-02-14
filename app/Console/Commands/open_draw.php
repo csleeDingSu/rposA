@@ -81,15 +81,24 @@ class open_draw extends Command
 				$vip = '';
 				$level            = Game::get_member_current_level($gameid, $memberid, $vip);
 				$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
+				
+				$vip = 'yes';
+				$vip_level        = Game::get_member_current_level($gameid, $memberid, $vip);
+				$vip_con_lose     = Game::get_consecutive_lose($memberid,$gameid, $vip);
+				
 				$gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
 				
-				$data         = [ 'drawid'=> $draw->id, 
-								  'futureresults' => $futureresult,
-								  'wabaofee' => $setting->wabao_fee,
-								  'setting' => $setting,
-								  'latest_result' => $latest_result,
-								  'gamesetting' => $gamesetting,
-								  'gamehistory' => $gamehistory
+				$data         = [ 'drawid'               => $draw->id, 
+								  'futureresults'		 => $futureresult,
+								  'wabaofee' 			 => $setting->wabao_fee,
+								  'setting' 		     => $setting,
+								  'latest_result' 		 => $latest_result,
+								  'gamesetting' 		 => $gamesetting,
+								  'gamehistory' 		 => $gamehistory,
+								  'level'				 => $level,
+								  'viplevel' 			 => $vip_level,
+								  'consecutive_lose'     => $consecutive_lose,
+								  'vip_consecutive_lose' => $vip_con_lose
 								];
 				$event_data[$val->member_id] = 	$data ;	
 
