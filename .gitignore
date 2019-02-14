@@ -16,3 +16,4 @@ yarn-error.log
 /public/client/qr
 /storage/uploads/excel
 app/Game.php
+app/Http/Controllers/RedisGameController - Copy.php

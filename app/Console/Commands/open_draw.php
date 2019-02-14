@@ -91,7 +91,6 @@ class open_draw extends Command
 				$data         = [ 'drawid'               => $draw->result_id, 
 								  'futureresults'		 => $futureresult,
 								  'wabaofee' 			 => $setting->wabao_fee,
-								  'setting' 		     => $setting,
 								  'latest_result' 		 => $latest_result,
 								  'gamesetting' 		 => $gamesetting,
 								  'gamehistory' 		 => $gamehistory,
