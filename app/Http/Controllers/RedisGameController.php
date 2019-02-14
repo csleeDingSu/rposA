@@ -69,7 +69,7 @@ class RedisGameController extends Controller
 		);
 		
 		$now           = Carbon::now();
-		$latest_result = Game::get_latest_result($gameid);
+		$latest_result = Game::get_gameresult($gameid, $now);
 		$gamesetting   = $this->get_game_setting($latest_result, $now);
 		$gamenotific   = $this->get_game_notification($memberid,$gameid);			
 		$gamehistory   = $this->get_game_history($request->gameid);		
@@ -181,7 +181,7 @@ class RedisGameController extends Controller
 				//@todo :- get from config
 				if ($setting->freeze_time>=30 or $setting->freeze_time<5) $setting->freeze_time = 5;	
 				
-				$result = ['drawid'=>$out->id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time];
+				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time];
 				return $result;
 			}
 			return 'result expired';			 
