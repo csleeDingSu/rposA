@@ -56,7 +56,7 @@ class open_draw extends Command
         $now           = Carbon::now();
         if ($drawid == '0') $drawid   = 6666;		
 		
-		$draw =  \DB::table('game_result')->where('id', '=', $drawid)->first();		
+		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('id', '=', $drawid)->first();		
 		
 		if (!$draw) dd('unknown draw');		
 		$this->info('Draw ID :'.'--------'.$drawid.'----------');	
@@ -88,7 +88,7 @@ class open_draw extends Command
 				
 				$gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
 				
-				$data         = [ 'drawid'               => $draw->id, 
+				$data         = [ 'drawid'               => $draw->result_id, 
 								  'futureresults'		 => $futureresult,
 								  'wabaofee' 			 => $setting->wabao_fee,
 								  'setting' 		     => $setting,
