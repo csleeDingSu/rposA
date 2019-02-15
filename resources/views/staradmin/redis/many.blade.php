@@ -80,7 +80,7 @@
 		//below functions are still on development
 		
 		//wallet changes
-		this.socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWallet", function(data){
+		this.socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWalletUpdate", function(data){
 			console.log('member wallet details');
 			console.log(data);
 			
