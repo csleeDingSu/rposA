@@ -71,14 +71,14 @@
 			
 		 }.bind(this));
 		
-		//betting VIP history {{ new }}
+		//betting VIP history -- new --
 		this.socket.on("vipbettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventBettingHistory", function(data){
 			console.log('members recent bettinghistory');
 			console.log(data);
 			
 		 }.bind(this));
 		
-		//wallet changes {{ new }}
+		//wallet changes -- new --
 		this.socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWalletUpdate", function(data){
 			console.log('member wallet details');
 			console.log(data);
