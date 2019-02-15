@@ -72,8 +72,8 @@
 		 }.bind(this));
 		
 		//betting VIP history -- new --
-		this.socket.on("vipbettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventBettingHistory", function(data){
-			console.log('members recent bettinghistory');
+		this.socket.on("vipbettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventVipBettingHistory", function(data){
+			console.log('members recent Vip bettinghistory');
 			console.log(data);
 			
 		 }.bind(this));
