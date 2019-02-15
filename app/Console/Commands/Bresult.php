@@ -251,6 +251,10 @@ class Bresult extends Command
 				
                 if ($wallet['acupoint'] >= 150 ) $this->update_notification($memberid, $gameid,'0');
 				
+				
+				$result = Game::get_betting_history_grouped($gameid, $memberid, '');
+                event(new \App\Events\EventBettingHistory($result,$memberid));
+				
 				return ['success' => true, 'status' => $status, 'game_result' => $game_result]; 
 			}
 			

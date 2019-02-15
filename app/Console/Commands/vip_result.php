@@ -187,7 +187,8 @@ class vip_result extends Command
 						Package::reset_current_package($packageid->id);
 					}
 				}
-                				
+				$result = Game::get_betting_history_grouped($gameid, $memberid, 'vip');
+                event(new \App\Events\EventVipBettingHistory($result,$memberid));				
 				return ['success' => true, 'status' => $status, 'game_result' => $game_result,'mergepoint' => $point,'consecutive_loss'=>$close]; 
 			}
 	}
