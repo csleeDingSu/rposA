@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Events;
+
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+
+class EventWalletUpdate implements ShouldBroadcast
+{
+    use SerializesModels;
+
+    public $data;
+	public $id;
+
+    public function __construct($id)
+    {
+      $this->id   = $id;
+    }
+
+    public function broadcastOn()
+    {
+		return ['userbetting-'. $this->id ];
+    }
+	
+	public function broadcastWith()
+	{
+		return [ 'data' => \App\Wallet::get_wallet_details_all($this->id) ];
+	}
+	
+}
