@@ -69,19 +69,20 @@ class RedisGameController extends Controller
 			['member_id' => $memberid]
 		);
 		
-		$now           = Carbon::now();
-		$latest_result = Game::get_gameresult($gameid, $now);
-		$gamesetting   = $this->get_game_setting($latest_result, $now);
-		$gamenotific   = $this->get_game_notification($memberid,$gameid);			
-		$gamehistory   = $this->get_game_history($gameid);		
-		$futureresult  = Game::get_future_result($gameid, $now );
+		$now              = Carbon::now();
+		$latest_result    = Game::get_gameresult($gameid, $now);
+		$gamesetting      = $this->get_game_setting($latest_result, $now);
+		$gamenotific      = $this->get_game_notification($memberid,$gameid);			
+		$gamehistory      = $this->get_game_history($gameid);		
+		$futureresult     = Game::get_future_result($gameid, $now );
 		$level            = Game::get_member_current_level($gameid, $memberid, $vip);
 		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
-		$setting       = \App\Admin::get_setting();
-		$latest_result = Game::get_latest_result($gameid);
-		$bethistory  = $this->get_betting_history($request);
+		$setting          = \App\Admin::get_setting();
+		$latest_result    = Game::get_latest_result($gameid);
+		$bethistory       = $this->get_betting_history($request);		
+		$wallet           = \App\Wallet::get_wallet_details($memberid);
 		
-		$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result,'bettinghistory' => $bethistory];
+		$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result,'bettinghistory' => $bethistory,'wallet' => $wallet];
 		
 		event(new \App\Events\EventGameSetting($memberid,$data));
 		echo 'ad--';
