@@ -83,7 +83,7 @@ class RedisGameController extends Controller
 		$wallet           = \App\Wallet::get_wallet_details($memberid);
 		
 		$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result,'bettinghistory' => $bethistory,'wallet' => $wallet];
-		
+		print_r($bethistory);
 		event(new \App\Events\EventGameSetting($memberid,$data));
 		echo 'ad--';
 	}
