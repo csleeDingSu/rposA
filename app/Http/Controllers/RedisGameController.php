@@ -79,8 +79,9 @@ class RedisGameController extends Controller
 		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 		$setting       = \App\Admin::get_setting();
 		$latest_result = Game::get_latest_result($gameid);
+		$bethistory  = $this->get_betting_history($request);
 		
-		$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result];
+		$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result,'bettinghistory' => $bethistory];
 		
 		event(new \App\Events\EventGameSetting($memberid,$data));
 		echo 'ad--';
@@ -536,12 +537,8 @@ class RedisGameController extends Controller
 		return response()->json(['success' => true, 'records' => $result]); 
 	}
 	
-	public function get_betting_history(Request $request)
+	public function get_betting_history($gameid, $memberid, $vip = FALSE)
     {
-		$gameid     = $request->gameid;
-		$memberid   = $request->memberid;
-		$vip        = $request->vip;
-		
 		$result = Game::get_betting_history_grouped($gameid, $memberid, $vip);
 	
 		return response()->json(['success' => true, 'records' => $result]); 
