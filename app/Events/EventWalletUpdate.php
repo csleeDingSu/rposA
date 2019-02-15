@@ -25,12 +25,13 @@ class EventWalletUpdate implements ShouldBroadcast
 
     public function broadcastOn()
     {
-		return ['userbetting-'. $this->id ];
+		return ['wallet-'. $this->id ];
     }
 	
 	public function broadcastWith()
 	{
-		return [ 'data' => \App\Wallet::get_wallet_details_all($this->id) ];
+		return [ 'data' => \App\Wallet::get_wallet_details($this->id) ];
 	}
+	
 	
 }
