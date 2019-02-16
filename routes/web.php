@@ -38,6 +38,11 @@ Route::get('open-draw/{drawid?}', function ($drawid) {
 Route::get('many', function () {
     return view('redis.many');
 });
+
+Route::get('r-auth', function () {
+    return view('redis.auth');
+});
+Route::get('token', 'TokenController@token');
 //end
 
 
