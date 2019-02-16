@@ -104,6 +104,11 @@
             socket.on('user-name', function (data) {
                 $('#name').html(data);
             });
+			//On user logout
+			socket.on('userlogout-' +$('#auth_id').val(), function (data) {
+                console.log('user-logout');
+				socketIOConnectionUpdate('user-logout');	
+            });
 			
 			//init setting Script
 			socket.on("initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
