@@ -1,25 +1,3 @@
-/*
-var app = require('http').createServer(handler);
-var io = require('socket.io')(app);
-var Redis = require('ioredis');
-var redis = new Redis();
-var Request = require("request");
-var UserId = 0;
-var socketioJwt = require('socketio-jwt');
-require('dotenv').config({path: '.env'});
-
-var userNotification = {};
-var url   = process.env.APP_URL;
-var aport = process.env.APP_PORT;
-
-if (aport) {
-	url = url + ':' + aport;
-}
-
-var port  = process.env.REDIS_CLI_PORT;
-*/
-
-
 
 var express = require('express');
 var app = express();
@@ -34,13 +12,14 @@ require('dotenv').config({path: '.env'});
 var port  = process.env.REDIS_CLI_PORT;
 console.log(process.env.JWT_SECRET);
 
-
 var url   = process.env.APP_URL;
+
 var aport = process.env.APP_PORT;
 
 if (aport) {
 	url = url + ':' + aport;
 }
+console.log(url);
 var clients = {}
 var port  = process.env.REDIS_CLI_PORT;
 
@@ -48,14 +27,13 @@ var UserID = '';
 
 var sub = Redis.createClient(), pub = Redis.createClient();
 
-
 io.on('connection', socketioJwt.authorize({
     secret: process.env.JWT_SECRET,
     timeout: 15000
 }));
 io.on('connect', function (socket) {
 	token = socket.handshake.query.token;
-	
+	//console.log(token);
 	jwt.verify(socket.handshake.query.token, process.env.JWT_SECRET, function(err, decoded) {	
 	  if(err){
 		  console.log('Error--Invalid token');
@@ -67,21 +45,16 @@ io.on('connect', function (socket) {
 		
 });
 io.on('authenticated', function (socket) {
-    console.log('authenticated');
-	
-	var dsub = Redis.createClient();
-	
+    console.log('authenticated');	
+	var dsub = Redis.createClient();	
 	var user = socket.decoded_token;
     socket.emit('user-id', socket.decoded_token.userid);
-	UserId = user.userid;
-		
+	UserId = user.userid;		
 	Request.get(url+"/master-call-nobet?memberid="+UserId, (error, response, body) => {
 	});	
+	clients[socket.id] = socket;
 	
-	 clients[socket.id] = socket;
-	
-	redis.sadd("members", UserId);
-	
+	redis.sadd("members", UserId);	
 	
 	socket.on('disconnect', function() {
 		console.log('disconnect');
@@ -98,16 +71,12 @@ io.on('authenticated', function (socket) {
 		
 	});
 	
-	
 });
-
-
 
 
 redis.on("error", function (err) {
       console.log("Error " + err)
 });
-
 
 //sub.psubscribe('initsetting-*','userlogout-*','*');
 sub.psubscribe('*');

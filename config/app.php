@@ -168,6 +168,11 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 		
 		Laravel\Passport\PassportServiceProvider::class,
+
+        //custom
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+
+        Barryvdh\Cors\ServiceProvider::class,
   
 
     ],

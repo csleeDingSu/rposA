@@ -22,12 +22,14 @@
 	var c_url = url + ':' + port;
 	var socket = io.connect(c_url+'?auth_id='+$('#auth_id').val());
 	*/
-
+	var url  = "{{ env('APP_URL'), 'http://boge56.com' }}";		
+	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+	
 	$(document).ready(function () {
         socketIOConnectionUpdate('Requesting JWT Token from Laravel');
 
         $.ajax({
-            url: 'http://localhost:8000/token'
+            url: '/token'
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             htm = '<p class="text-warning">Unauthorized.</p>';
@@ -37,8 +39,7 @@
 
 			socketIOConnectionUpdate('Response from Laravel');
 			
-			var url  = "{{ env('APP_URL'), 'http://boge56.com' }}";		
-			var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+			
 			//var url = 'http://boge56.com';
 
 			//var url = 'http://192.168.1.154';
@@ -50,7 +51,7 @@
 			
 			//Output have userid , token and username 
 			
-			var socket = new io.connect('http://localhost:6001', {
+			var socket = new io.connect(c_url, {
                 'reconnection': true,
                 'reconnectionDelay': 1000,
                 'reconnectionDelayMax' : 5000,
@@ -63,6 +64,7 @@
             */
             socket.on('connect', function () {
                 socketIOConnectionUpdate('Connected to SocketIO, Authenticating')
+                console.log('Token: '+result.token);
 				socket.emit('authenticate', {token: result.token});
             });
 
@@ -104,71 +106,71 @@
             });
 			
 			//init setting Script
-			this.socket.on("initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
+			socket.on("initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
 				console.log('user-initsetting');
 
 				console.log(data);
 
-			 }.bind(this));
+			 });
 
 			//No betting
-			this.socket.on("no-betting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
+			socket.on("no-betting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
 				console.log('call no-betting');
 				console.log(data);
-			 }.bind(this));
+			 });
 
 			//No betting vip
-			this.socket.on("no-vipbetting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
+			socket.on("no-vipbetting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
 				console.log('call no-vip-betting');
 				console.log(data);
-			 }.bind(this));
+			  });
 
 			//betting
-			this.socket.on("userbetting-" + $('#auth_id').val() + ":App\\Events\\EventBetting" , function(data){
+			socket.on("userbetting-" + $('#auth_id').val() + ":App\\Events\\EventBetting" , function(data){
 				console.log('call userbetting');
 				console.log(data);
-			 }.bind(this));
+			  });
 
 			//betting vip
-			this.socket.on("uservipbetting-" + $('#auth_id').val() + ":App\\Events\\EventVIPBetting" , function(data){
+			socket.on("uservipbetting-" + $('#auth_id').val() + ":App\\Events\\EventVIPBetting" , function(data){
 				console.log('call uservipbetting');
 				console.log(data);
-			 }.bind(this));
+			  });
 
 			//betting history 
-			this.socket.on("bettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventBettingHistory", function(data){
+			socket.on("bettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventBettingHistory", function(data){
 				console.log('members recent bettinghistory');
 				console.log(data);
 
-			 }.bind(this));
+			  });
 
 			//betting VIP history -- new --
-			this.socket.on("vipbettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventVipBettingHistory", function(data){
+			socket.on("vipbettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventVipBettingHistory", function(data){
 				console.log('members recent Vip bettinghistory');
 				console.log(data);
 
-			 }.bind(this));
+			 });
 
 			//wallet changes -- new --
-			this.socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWalletUpdate", function(data){
+			socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWalletUpdate", function(data){
 				console.log('member wallet details');
 				console.log(data);
 
-			 }.bind(this));
+			  });
 
 			//betting history on Event Load - no use
-			this.socket.on("bettinghistory" + ":App\\Events\\EventBettingHistory" , function(data){
+			socket.on("bettinghistory" + ":App\\Events\\EventBettingHistory" , function(data){
 				console.log('members recent bettinghistory');
 				console.log(data);
-			 }.bind(this));
+			  });
 
 			//below functions are still on development		 			
 
 			//Trigger on Event Load
-			this.socket.on("new-betting" + ":App\\Events\\NewBettingStatus" , function(data){
+			socket.on("new-betting" + ":App\\Events\\NewBettingStatus" , function(data){
 				console.log('call betting status update');
 				console.log(data);
-			 }.bind(this));
+			  });
 
 
             /* 
