@@ -17,19 +17,14 @@ class EventUserLogout implements ShouldBroadcast
     public $id;
 	public $data;
 	
-    public function __construct($id = 73, $data = [])
+    public function __construct($id = 0, $data = [])
     {
       $this->id   = $id;
-	  $this->data   = $id;		
+	  $this->data = $id;		
     }
     public function broadcastOn()
     {	
 		\DB::table('redis')->where('member_id', $this->id)->delete();
-		//return new PrivateChannel("user.{$this->id}.logout");
-		echo 'imhere';
-		//return ['userlogout-'. $this->id ];
 		return ['userlogout' ];
-		
-		return ['userlogout-'. $this->id ];
     }
 }
