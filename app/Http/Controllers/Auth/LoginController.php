@@ -194,19 +194,16 @@ class LoginController extends Controller
     {
         $token = $request->bearerToken();		
 		
-		$user = Auth::guard('member')->user();		
-		
-		$claims = ['userid' => $user->id];
-
-        $token = $auth->fromUser($user, $claims);
-		
-		JWTAuth::setToken($token)->invalidate();
+		$user = Auth::guard('member')->user();
 		Auth::logout();
 		$this->guard()->logout();
 		$request->session()->flush();		
 		$request->session()->regenerate();
 		if ($user)
 		{
+			$claims = ['userid' => $user->id];
+			$token = $auth->fromUser($user, $claims);
+			JWTAuth::setToken($token)->invalidate();
 			event(new \App\Events\EventUserLogout($user->id));			
 		}
 		return redirect('/');
