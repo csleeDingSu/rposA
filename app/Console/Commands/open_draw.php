@@ -118,7 +118,6 @@ class open_draw extends Command
 			{
 			   event(new \App\Events\EventGameSetting($val['member'],$val));
 			   $this->line('yes--'.$val['member']);
-				die();
 			}		   
 		}
 		
