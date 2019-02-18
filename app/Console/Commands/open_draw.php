@@ -112,12 +112,16 @@ class open_draw extends Command
 		   //die();
 		//}
 
-		foreach ($event_data as $key=>$val)
-		{
-			
-			event(new \App\Events\EventGameSetting($key,$val));
-			$this->line('yes--'.$key);
-		}	
+				
+		foreach (array_chunk($event_data,500) as $keyc=>$event) {
+			foreach ($event as $val)
+			{
+			   event(new \App\Events\EventGameSetting($val['member'],$val));
+			   $this->line('yes--'.$val['member']);
+				die();
+			}		   
+		}
+		
 
 		$this->line('End:'.'-------------'.Carbon::now()->toDateTimeString().'----------');
 		
