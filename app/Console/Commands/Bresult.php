@@ -85,8 +85,9 @@ class Bresult extends Command
 		{
 			foreach ($mers as $key => $val)
 			{
-				event(new \App\Events\EventNoBetting($val->member_id, $gresult));
+				$broadcast_channel[] = 'no-betting-user-'.$val->member_id;
 			}
+			event(new \App\Events\EventNoBetting($broadcast_channel, $gresult));
 		}
 		
 		$this->line('End:'.'-------------'.Carbon::now()->toDateTimeString().'----------');

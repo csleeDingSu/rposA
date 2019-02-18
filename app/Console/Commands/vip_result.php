@@ -81,12 +81,14 @@ class vip_result extends Command
 				
 		$mers = \DB::table('redis')->select('member_id')->whereNotIn('member_id', $memid)->get();
 				
+				
 		if ($mers)
 		{
 			foreach ($mers as $key => $val)
 			{
-				event(new \App\Events\EventNoBetting($val->member_id, $gresult,'vip'));
+				$broadcast_channel[] = 'no-vipbetting-user-'.$val->member_id;
 			}
+			event(new \App\Events\EventNoBetting($broadcast_channel, $gresult,'vip'));
 		}
 		
 		$this->line('End:'.'-------------'.Carbon::now()->toDateTimeString().'----------');

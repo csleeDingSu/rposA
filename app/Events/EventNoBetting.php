@@ -26,10 +26,14 @@ class EventNoBetting implements ShouldBroadcast
     }
     public function broadcastOn()
     {
-		if (!$this->type)
+		$id = $this->id;
+		$this->id = NULL;
+		return $id;
+		/*if (!$this->type)
 		{
 			return ['no-betting-user-'. $this->id ];
 		}		
 		return ['no-vipbetting-user-'. $this->id ];
+		*/
     }
 }
