@@ -49,8 +49,9 @@ io.on('authenticated', function (socket) {
 	var dsub = Redis.createClient();	
 	var user = socket.decoded_token;
     socket.emit('user-id', socket.decoded_token.userid);
-	UserId = user.userid;		
-	Request.get(url+"/master-call-nobet?memberid="+UserId, (error, response, body) => {
+	UserId = user.userid;	
+	var vip = socket.handshake.query.vip;	
+	Request.get(url+"/master-call-nobet?memberid="+UserId+'&vip='+vip, (error, response, body) => {
 	});	
 	clients[socket.id] = socket;
 	
