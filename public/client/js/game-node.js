@@ -23,7 +23,8 @@ $(function () {
     var wechat_name = $('#hidWechatName').val();
 
     if(wechat_status == 0 && wechat_name != null) {
-        getToken();
+
+        getSocket();
         closeModal();
 
         ifvisible.on("wakeup", function(){
@@ -231,35 +232,7 @@ function initGame(token, data, level, latest_result, consecutive_lose){
         }); // ajax get-game-result-temp
 }
 
-function initGameMaster(token){
-    var user_id = $('#hidUserId').val();
-    
-    $.ajax({
-        type: 'GET',
-        url: "/api/master-call?gameid=101&memberid=" + user_id,
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            //console.log(data);
-            var betting_records = groupHistory(data.bethistory.original.records.data);
-            updateHistory(betting_records);
-
-            var result_records = data.gamehistory.original.records.data;
-            updateResult(result_records);
-
-            var wallet_records = data.wallet;
-            initUser(wallet_records, token);
-            
-            var game_records = data.gamesetting.original;
-            initGame(game_records, token);
-        }
-    });
-}
-
-function getSocket(token){
+function getSocket(){
 console.log("getSocket");
     var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     //var port = {{ env('REDIS_CLI_PORT'), '6001' }};
@@ -335,16 +308,26 @@ console.log("getSocket");
                 var level = data.data.level;
                 var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
-                initGame(token, game_records, level, latest_result, consecutive_lose);
-
                 var wallet_records = data.data.wallet;
-                initUser(token, wallet_records);
-
                 var result_records = data.data.gamehistory.data;
-                updateResult(result_records);
-
                 var betting_records = groupHistory(data.data.bettinghistory.data);
-                updateHistory(betting_records);
+                
+                var id = $('#hidUserId').val();
+                var session = $('#hidSession').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: "/api/gettoken?id=" + id + "&token=" + session,
+                    dataType: "json",
+                    error: function (error) { $(".reload").show(); },
+                    success: function(data) {
+                        $('#hidToken').val(data.access_token);
+                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
+                        initUser(data.access_token, wallet_records);
+                        updateResult(result_records);
+                        updateHistory(betting_records);
+                    }
+                });
 
              });
 
@@ -355,6 +338,7 @@ console.log("getSocket");
 
                 $('#result').val(data.data.game_result);
                 triggerResult();
+                resetTimer();
             });
 
             //betting
@@ -373,6 +357,8 @@ console.log("getSocket");
 
                     $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
                 }
+
+                resetTimer();
             });
 
             //betting history on Event Load - no use
@@ -407,24 +393,6 @@ function groupHistory(records) {
     }
 
     return newOptions;
-}
-
-function getToken(){
-
-    var id = $('#hidUserId').val();
-    var session = $('#hidSession').val();
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/gettoken?id=" + id + "&token=" + session,
-        dataType: "json",
-        error: function (error) { $(".reload").show(); },
-        success: function(data) {
-            $('#hidToken').val(data.access_token);
-            getSocket(data.access_token);
-            //initGameMaster(data.access_token);
-        }
-    });
 }
 
 function resetTimer(){
@@ -714,7 +682,7 @@ function bindResetLifeButton(token){
                         $('#reset-life-play').modal('hide');
                         $('#reset-life-lose').modal('hide');
                         $('#reset-life-start').modal('hide');
-                        getToken();
+                        resetGame();
                     }
                 }
             });
@@ -838,7 +806,7 @@ function startTimer(duration, timer, freeze_time, token) {
         if (timer < 0) {
             timer = duration;
 
-            getToken();
+            resetGame();
 
         } else if (timer <= trigger_time) {
             //Lock the selection
@@ -858,18 +826,6 @@ function triggerResult(){
     //console.log(data);
     var freeze_time = $('#freeze_time').val();
     var result = $('#result').val();
-
-    /*if(data.status == 'win'){
-        var level = parseInt($('#hidLevel').val());
-        var win_amount = level * 10;
-
-        $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
-    } else if (data.status == 'lose') {
-        var level = parseInt($('#hidLevel').val());
-        var chance = 6 - level;
-
-        $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
-    }*/
 
     //Trigger the wheel
     DomeWebController.getEle("$wheelContainer").wheelOfFortune({
