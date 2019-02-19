@@ -235,7 +235,7 @@ class Bresult extends Command
 				
 				$this->info('success');
 				
-				return ['status' => $status, 'game_result' => $game_result];
+				//return ['status' => $status, 'game_result' => $game_result];
 				
 				//Update Memeber game play history		
 				$now     = Carbon::now()->toDateTimeString();
