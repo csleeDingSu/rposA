@@ -86,9 +86,15 @@
             document.title="请在浏览器中打开...";
             return false;
         }else{
+            var sCurrentHostName = window.location.hostname;
+            var sFindThis = "waboa666";
+            if (!sCurrentHostName.includes(sFindThis)) {
 
-           window.location.href = "{{env('APP_URL_share','https://www.wabao666.com')}}" + window.location.pathname;
-          // window.location.href = "https://www.google.com";
+               window.location.href = "{{env('APP_URL_share','https://www.wabao666.com')}}" + window.location.pathname;
+               // window.location.href = "https://www.google.com";
+
+            }
+
 
         }
 
