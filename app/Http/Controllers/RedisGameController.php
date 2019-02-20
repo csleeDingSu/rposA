@@ -75,15 +75,38 @@ class RedisGameController extends Controller
 		$gamenotific      = $this->get_game_notification($memberid,$gameid);			
 		$gamehistory      = $this->get_game_history($gameid);		
 		$futureresult     = Game::get_future_result($gameid, $now );
-		$level            = Game::get_member_current_level($gameid, $memberid, $vip);
-		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
+		//$level            = Game::get_member_current_level($gameid, $memberid, $vip);
+		//$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 		$setting          = \App\Admin::get_setting();
 		$latest_result    = Game::get_latest_result($gameid);
 		$bethistory       = Game::get_betting_history_grouped($gameid, $memberid, $vip);
 		$wallet           = \App\Wallet::get_wallet_details($memberid);
+
+		$level            = Game::get_member_current_level($gameid, $memberid, '');
+		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, '');
+		$vip_level        = Game::get_member_current_level($gameid, $memberid, 'yes');
+		$vip_con_lose     = Game::get_consecutive_lose($memberid,$gameid, 'yes');
 		
-		$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result,'bettinghistory' => $bethistory,'wallet' => $wallet];
-		print_r($bethistory);
+		//$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result,'bettinghistory' => $bethistory,'wallet' => $wallet];
+
+		$data    = [  'member'               => $memberid, 
+					  'vip'                  => $vip, 
+					  'gamenotification'     => $gamenotific,
+					  'futureresults'		 => $futureresult,
+					  'wabaofee' 			 => $setting->wabao_fee,
+					  'latest_result' 		 => $latest_result,
+					  'gamesetting' 		 => $gamesetting,
+					  'gamehistory' 		 => $gamehistory,
+					  'level'				 => $level,
+					  'viplevel' 			 => $vip_level,
+					  'consecutive_lose'     => $consecutive_lose,
+					  'vip_consecutive_lose' => $vip_con_lose,
+					  'bettinghistory'       => $bethistory,
+					  'wallet'               => $wallet
+					];
+
+
+		//print_r($bethistory);
 		event(new \App\Events\EventGameSetting($memberid,$data));
 		echo 'ad--';
 	}
