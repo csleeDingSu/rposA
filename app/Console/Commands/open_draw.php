@@ -88,7 +88,8 @@ class open_draw extends Command
 				
 				$gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
 				
-				$data         = [ 'drawid'               => $draw->result_id, 
+				$data         = [ 'member'               => $memberid, 
+								  'drawid'               => $draw->result_id, 
 								  'futureresults'		 => $futureresult,
 								  'wabaofee' 			 => $setting->wabao_fee,
 								  'latest_result' 		 => $latest_result,
@@ -116,6 +117,7 @@ class open_draw extends Command
 		foreach (array_chunk($event_data,500) as $keyc=>$event) {
 			foreach ($event as $val)
 			{
+			   //print_r($val);die();
 			   event(new \App\Events\EventGameSetting($val['member'],$val));
 			   $this->line('yes--'.$val['member']);
 			}		   
