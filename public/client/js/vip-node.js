@@ -88,7 +88,7 @@ function updateHistory(records){
     }
 }
 
-function initUser(token, records){
+function initUser(records){
 
     var user_id = $('#hidUserId').val();
 
@@ -322,7 +322,7 @@ console.log("getSocket");
                         updateResult(result_records);
 
                         if(wallet){
-                            initUser(data.access_token, wallet_records);
+                            initUser(wallet_records);
                         }
 
                         if(betting_history){
@@ -353,12 +353,12 @@ console.log("getSocket");
                 $('#hidConsecutiveLose').val(data.consecutive_loss);
                 $('#hidMergePoint').val(data.mergepoint);
 
-                if(status == 'win'){
+                if(data.status == 'win'){
                     var level = parseInt($('#hidLevel').val());
                     var win_amount = level * 10;
 
                     $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
-                } else if (status == 'lose') {
+                } else if (data.status == 'lose') {
                     var level = parseInt($('#hidLevel').val());
                     var chance = 6 - level;
 
@@ -369,10 +369,22 @@ console.log("getSocket");
                 triggerResult();
             });
 
+            //wallet changes -- new --
+            socket.on("wallet-" + user_id + ":App\\Events\\EventWalletUpdate", function(data){
+                console.log('member wallet details');
+                console.log(data);
+
+                initUser(data.data);
+
+              });
+
             //betting VIP history -- new --
             socket.on("vipbettinghistory-" + user_id + ":App\\Events\\EventVipBettingHistory", function(data){
                 console.log('members recent Vip bettinghistory');
                 console.log(data);
+
+                var betting_records = groupHistory(data.data.data);
+                updateHistory(betting_records);
             });          
         });
 }
