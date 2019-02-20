@@ -24,7 +24,9 @@
             return false;
         }else{
 
-           window.location.href = "https://www.wabao666.com" + window.location.pathname;
+            var sCurrentPathName = window.location.pathname;
+            var sNewPathName = sCurrentPathName.replace("vregister", "register");
+            window.location.href = "https://www.wabao666.com" + sNewPathName;
         
         }
 
