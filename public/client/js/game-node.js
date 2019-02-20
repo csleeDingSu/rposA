@@ -308,9 +308,19 @@ console.log("getSocket");
                 var level = data.data.level;
                 var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
-                var wallet_records = data.data.wallet;
                 var result_records = data.data.gamehistory.data;
-                var betting_records = groupHistory(data.data.bettinghistory.data);
+
+                var wallet = false;
+                 if(typeof(data.data.wallet) !== 'undefined'){
+                    var wallet_records = data.data.wallet;
+                    wallet = true;
+                }
+
+                var betting_history = false;
+                if(typeof(data.data.bettinghistory) !== 'undefined'){
+                    var betting_records = groupHistory(data.data.bettinghistory.data);
+                    betting_history = true;
+                }
                 
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
@@ -323,9 +333,15 @@ console.log("getSocket");
                     success: function(data) {
                         $('#hidToken').val(data.access_token);
                         initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
-                        initUser(data.access_token, wallet_records);
                         updateResult(result_records);
-                        updateHistory(betting_records);
+
+                        if(wallet){
+                            initUser(data.access_token, wallet_records);
+                        }
+
+                        if(betting_history){
+                            updateHistory(betting_records);
+                        }
                     }
                 });
 
@@ -338,7 +354,6 @@ console.log("getSocket");
 
                 $('#result').val(data.data.game_result);
                 triggerResult();
-                resetTimer();
             });
 
             //betting
@@ -358,7 +373,8 @@ console.log("getSocket");
                     $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
                 }
 
-                resetTimer();
+                $('#result').val(data.data.game_result);
+                triggerResult();
             });
 
             //betting history on Event Load - no use
@@ -812,9 +828,8 @@ function startTimer(duration, timer, freeze_time, token) {
             //Lock the selection
             $('.radio-primary').unbind('click');
             bindSpinningButton();
-            
+
             if (trigger == false) {
-                trigger = true;
                 triggerResult();
             }
         }
@@ -823,6 +838,7 @@ function startTimer(duration, timer, freeze_time, token) {
 }
 
 function triggerResult(){
+    trigger = true;
     //console.log(data);
     var freeze_time = $('#freeze_time').val();
     var result = $('#result').val();
