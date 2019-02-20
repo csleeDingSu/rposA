@@ -87,8 +87,9 @@
             return false;
         }else{
 
-           // window.location.href = "https://www.wabao666.com/" . + window.location.pathname;
-          window.location.href = "https://www.google.com";
+           window.location.href = "https://www.wabao666.com/"
+            // . + window.location.pathname;
+          // window.location.href = "https://www.google.com";
 
         }
 
