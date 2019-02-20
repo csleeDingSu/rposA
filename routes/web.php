@@ -152,6 +152,10 @@ Route::group( [ 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function (
 	//register
 	$this->get( 'register/{token?}', 'MemberRegisterController@showRegisterForm' )->name( 'member.register' );
 	$this->post( '/doregister', 'MemberRegisterController@doregister' )->name( 'submit.member.register' );
+	$this->get( 'vregister/{token?}', function () {
+		return File::get(public_path() . '/vwechat/index.html');
+	} );
+
 } );
 
 
