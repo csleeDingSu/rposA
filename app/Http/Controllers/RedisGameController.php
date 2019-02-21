@@ -117,7 +117,7 @@ class RedisGameController extends Controller
 
 
 		//print_r($bethistory);
-		event(new \App\Events\EventGameSetting($memberid,$data));
+		event(new \App\Events\EventGameSetting($memberid,$data, 'pageload'));
 		echo 'ad--';
 	}
 		
