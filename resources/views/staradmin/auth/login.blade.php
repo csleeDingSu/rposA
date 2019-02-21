@@ -73,9 +73,9 @@
     }
     var bg;
     if (isPIA() == 1) {
-        bg = "./images/ios_wx.jpg";
+        bg = window.location.origin + "/vwechat/images/ios_wx.jpg";
     }else if (isPIA() == 2) {
-        bg = "./images/android_wx.jpg";
+        bg = window.location.origin + "/vwechat/images/android_wx.jpg";
     }
     document.writeln("<div id=\"weixinTips\" style=\"display:none;background:rgba(255, 255, 255,1);width:100%;height:100%;position:fixed;left:0;top:0;z-index:9999\"><div id=\"weixinTipsImg\" style=\"background:url("+bg+") top center no-repeat;background-size:100%;width:100%;height:100%\"><\/div><\/div>");
     var ua = navigator.userAgent.toLowerCase();
@@ -84,18 +84,13 @@
         if (ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) {
             document.getElementById("weixinTips").style.display = "block";
             document.title="请在浏览器中打开...";
-            return false;
+            // return false;
         }else{
-            // var sCurrentHostName = window.location.hostname;
-            // var sFindThis = "waboa666";
-            // if (!sCurrentHostName.includes(sFindThis)) {
 
-            //    window.location.href = "{{env('APP_URL_share','https://www.wabao666.com')}}" + window.location.pathname;
-            //    // window.location.href = "https://www.google.com";
-
-            }
-
-
+            // var sCurrentPathName = window.location.pathname;
+            // var sNewPathName = sCurrentPathName.replace("vregister", "register");
+            // window.location.href = "https://www.wabao666.com" + sNewPathName;
+        
         }
 
 
