@@ -155,7 +155,7 @@ function initGame(token, data, level, latest_result, consecutive_lose){
         
         if (consecutive_lose == 'yes' && life > 0 && balance == 0) {
             showProgressBar(false);
-            bindResetLifeButton();
+            bindResetLifeButton(token);
             $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
         }
 
@@ -434,13 +434,14 @@ console.log("getSocket");
                 initUser(data.data);
               });
 
-            //betting history on Event Load - no use
-            socket.on("bettinghistory" + ":App\\Events\\EventBettingHistory" , function(data){
+            //betting history 
+            socket.on("bettinghistory-" + user_id + ":App\\Events\\EventBettingHistory", function(data){
                 console.log('members recent bettinghistory');
                 console.log(data);
 
                 var betting_records = groupHistory(data.data.data);
                 updateHistory(betting_records);
+
             });          
         });
 }

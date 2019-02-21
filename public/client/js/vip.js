@@ -252,7 +252,7 @@ console.log("getSocket");
             */
             socket.on('connect', function () {
                 console.log('Connected to SocketIO, Authenticating');
-                console.log('Token: '+result.token);
+                //console.log('Token: '+result.token);
                 socket.emit('authenticate', {token: result.token});
             });
 
@@ -287,7 +287,7 @@ console.log("getSocket");
             socket.on("loadsetting-" + user_id + ":App\\Events\\EventGameSetting", function(data){
                 console.log('load user game setting-on page load');
 
-                console.log(data);
+                //console.log(data);
 
                 var game_records = data.data.gamesetting;
                 var level = data.data.viplevel;
@@ -338,7 +338,6 @@ console.log("getSocket");
             //init setting Script
             socket.on("initsetting-" + user_id + ":App\\Events\\EventGameSetting", function(data){
                 console.log('user-initsetting');
-
                 console.log(data);
 
                 resetGame();
@@ -390,8 +389,8 @@ console.log("getSocket");
 
             //No betting vip
             socket.on("no-vipbetting-user-" + user_id + ":App\\Events\\EventNoBetting" , function(data){
-                console.log('call no-vip-betting');
-                console.log(data);
+                //console.log('call no-vip-betting');
+                //console.log(data);
 
                 $('#result').val(data.data.game_result);
                 triggerResult();
