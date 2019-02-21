@@ -17,14 +17,19 @@ class EventGameSetting implements ShouldBroadcast
     public $data;
 	public $id;
 	
-    public function __construct($id, $data)
+    public function __construct($id, $data, $onload = FALSE)
     {
       $this->id   = $id;
 	  $this->data = $data; 
+	  $this->type = $onload; 
 	  
     }
     public function broadcastOn()
     {
-		echo 'yes-';return ['initsetting-'. $this->id ];
+		echo 'yes-';
+		
+		if ($this->type) return ['loadsetting-'. $this->id ];
+		
+		return ['initsetting-'. $this->id ];
     }
 }

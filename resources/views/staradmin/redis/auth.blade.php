@@ -110,6 +110,14 @@
 				socketIOConnectionUpdate('user-logout');	
             });
 			
+			//on page load game setting Script
+			socket.on("loadsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
+				console.log('load user game setting-on page load');
+
+				console.log(data);
+
+			 });
+			
 			//init setting Script
 			socket.on("initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
 				console.log('user-initsetting');
