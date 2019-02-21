@@ -71,6 +71,12 @@ class RedisGameController extends Controller
 		
 		$now              = Carbon::now();
 		$latest_result    = Game::get_gameresult($gameid, $now);
+		if (!$latest_result) {
+			event(new \App\Events\EventGameSetting($memberid,['status'=>'unknown record set']));
+			dd('unknown record set');
+			return;
+
+		}
 		$gamesetting      = $this->get_game_setting($latest_result, $now);
 		$gamenotific      = $this->get_game_notification($memberid,$gameid);			
 		$gamehistory      = $this->get_game_history($gameid);		
