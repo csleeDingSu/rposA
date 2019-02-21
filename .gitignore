@@ -16,6 +16,7 @@ yarn-error.log
 /public/client/qr
 /storage/uploads/excel
 app/Game.php
+
 composer.lock
 package.json
 package.json
@@ -43,3 +44,5 @@ package-lock.json
 package.json
 composer.lock
 composer.json
+
+app/Http/Controllers/RedisGameController - Copy.php

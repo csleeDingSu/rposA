@@ -140,6 +140,8 @@ class Wallet extends Model
 				
 				$history = self::add_ledger_history($history);
 				
+				event(new \App\Events\EventWalletUpdate($memberid));
+				
 				return $wallet->vip_point;
 			}
 		}
@@ -219,7 +221,8 @@ class Wallet extends Model
 					   ->where('member_id', $memberid)
 					   ->update($data);
 				$history = self::add_ledger_history($history);
-			}			
+			}	
+			event(new \App\Events\EventWalletUpdate($memberid));
 			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
@@ -298,7 +301,8 @@ class Wallet extends Model
 					   ->where('member_id', $memberid)
 					   ->update($data);
 				$history = self::add_ledger_history($history);
-			}			
+			}
+			event(new \App\Events\EventWalletUpdate($memberid));
 			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
@@ -332,7 +336,7 @@ class Wallet extends Model
 					   ->update($data);
 
 			$history = self::add_ledger_history($history);
-			
+			event(new \App\Events\EventWalletUpdate($memberid));
 			return ['success'=>true,'life'=>$newlife];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
@@ -408,6 +412,8 @@ class Wallet extends Model
 				   ->update($data);
 		
 		$history = self::add_ledger_history($history);
+		
+		event(new \App\Events\EventWalletUpdate($memberid));
 	}
 	
 		
@@ -492,6 +498,7 @@ class Wallet extends Model
 		   // amend the mainledger
 		   // add history
 		   // life
+		event(new \App\Events\EventWalletUpdate($memberid));
 		return ['status'=>$status,'point'=>$current_point,'balance'=>$current_balance,'acupoint'=>$current_life_acupoint];
 		return $status;
 	}
@@ -519,7 +526,7 @@ public static function updatemainledger($memberid,$balance_before,$current_balan
 		DB::table('mainledger')->
 			where('member_id', $memberid)
 			->update($updatemainledger);
-	
+	event(new \App\Events\EventWalletUpdate($memberid));
 	return true;
 }
 

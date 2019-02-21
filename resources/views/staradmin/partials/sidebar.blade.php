@@ -16,7 +16,7 @@
 	<ul class="nav">
 		<li class="nav-item">
 			<a class="nav-link" href="/admin/dashboard">
-              <i class="menu-icon  icon-home  text-primary"></i>
+              <i class="menu-icon  icon-home  text-primary "></i>
               <span class="menu-title text-capitalize"> @lang('dingsu.dashboard')</span>
             </a>		
 		</li>
