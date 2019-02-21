@@ -297,6 +297,55 @@ console.log("getSocket");
                 console.log('user-logout');
             });
 
+            //on page load game setting Script
+            socket.on("loadsetting-" + user_id + ":App\\Events\\EventGameSetting", function(data){
+                console.log('load user game setting-on page load');
+
+                console.log(data);
+
+                var game_records = data.data.gamesetting;
+                var level = data.data.level;
+                var latest_result = data.data.latest_result;
+                var consecutive_lose = data.data.consecutive_lose;
+                var result_records = data.data.gamehistory.data;
+
+                var wallet = false;
+                 if(typeof(data.data.wallet) !== 'undefined'){
+                    var wallet_records = data.data.wallet;
+                    wallet = true;
+                }
+
+                var betting_history = false;
+                if(typeof(data.data.bettinghistory) !== 'undefined'){
+                    var betting_records = groupHistory(data.data.bettinghistory.data);
+                    betting_history = true;
+                }
+                
+                var id = $('#hidUserId').val();
+                var session = $('#hidSession').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: "/api/gettoken?id=" + id + "&token=" + session,
+                    dataType: "json",
+                    error: function (error) { $(".reload").show(); },
+                    success: function(data) {
+                        $('#hidToken').val(data.access_token);
+                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
+                        updateResult(result_records);
+
+                        if(wallet){
+                            initUser(wallet_records);
+                        }
+
+                        if(betting_history){
+                            updateHistory(betting_records);
+                        }
+                    }
+                });
+
+             });
+
             //init setting Script
             socket.on("initsetting-" + user_id + ":App\\Events\\EventGameSetting", function(data){
                 console.log('user-initsetting');
