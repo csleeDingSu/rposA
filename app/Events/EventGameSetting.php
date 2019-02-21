@@ -16,6 +16,7 @@ class EventGameSetting implements ShouldBroadcast
 
     public $data;
 	public $id;
+	public $type;
 	
     public function __construct($id, $data, $onload = FALSE)
     {
