@@ -79,13 +79,16 @@ class RedisGameController extends Controller
 		//$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 		$setting          = \App\Admin::get_setting();
 		$latest_result    = Game::get_latest_result($gameid);
-		$bethistory       = Game::get_betting_history_grouped($gameid, $memberid, $vip);
+		
 		$wallet           = \App\Wallet::get_wallet_details($memberid);
 
 		$level            = Game::get_member_current_level($gameid, $memberid, '');
 		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, '');
 		$vip_level        = Game::get_member_current_level($gameid, $memberid, 'yes');
 		$vip_con_lose     = Game::get_consecutive_lose($memberid,$gameid, 'yes');
+		
+		$vipbethis        = Game::get_betting_history_grouped($gameid, $memberid, 'yes');
+		$bethistory       = Game::get_betting_history_grouped($gameid, $memberid, '');
 		
 		//$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result,'bettinghistory' => $bethistory,'wallet' => $wallet];
 
@@ -102,6 +105,7 @@ class RedisGameController extends Controller
 					  'consecutive_lose'     => $consecutive_lose,
 					  'vip_consecutive_lose' => $vip_con_lose,
 					  'bettinghistory'       => $bethistory,
+					  'vipbethistory'        => $vipbethis,
 					  'wallet'               => $wallet
 					];
 
