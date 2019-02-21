@@ -1,5 +1,7 @@
 var trigger = false;
 var timerInterval = 0;
+var update_wallet = false;
+var wallet_data = null;
 
 $(function () {
 
@@ -123,10 +125,7 @@ function initUser(records){
 }
 
 function initGame(token, data, level, latest_result, consecutive_lose){
-    $( '.btn-reset-life' ).unbind( "click" );
-    $( '.btn-reset-life-continue' ).unbind( "click" );
-    $( '.btn-calculate-vip' ).unbind( "click" );
-    
+
     var user_id = $('#hidUserId').val();
     trigger = false;
     
@@ -219,7 +218,7 @@ function initGame(token, data, level, latest_result, consecutive_lose){
 }
 
 function getSocket(){
-console.log("getSocket");
+
     var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     //var port = {{ env('REDIS_CLI_PORT'), '6001' }};
     var url = 'http://boge56.com';
@@ -346,12 +345,6 @@ console.log("getSocket");
                 var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.vip_consecutive_lose;
                 var result_records = data.data.gamehistory.data;
-                
-                var wallet = false;
-                 if(typeof(data.data.wallet) !== 'undefined'){
-                    var wallet_records = data.data.wallet;
-                    wallet = true;
-                }
 
                 var betting_history = false;
                 if(typeof(data.data.bettinghistory) !== 'undefined'){
@@ -372,8 +365,9 @@ console.log("getSocket");
                         initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
                         updateResult(result_records);
 
-                        if(wallet){
-                            initUser(wallet_records);
+                        if(update_wallet){
+                            initUser(wallet_data);
+                            update_wallet = false;
                         }
 
                         if(betting_history){
@@ -401,15 +395,15 @@ console.log("getSocket");
                 console.log('call uservipbetting');
                 console.log(data);
 
-                $('#hidConsecutiveLose').val(data.consecutive_loss);
-                $('#hidMergePoint').val(data.mergepoint);
+                $('#hidConsecutiveLose').val(data.data.consecutive_loss);
+                $('#hidMergePoint').val(data.data.mergepoint);
 
-                if(data.status == 'win'){
+                if(data.data.status == 'win'){
                     var level = parseInt($('#hidLevel').val());
                     var win_amount = level * 10;
 
                     $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
-                } else if (data.status == 'lose') {
+                } else if (data.data.status == 'lose') {
                     var level = parseInt($('#hidLevel').val());
                     var chance = 6 - level;
 
@@ -425,7 +419,8 @@ console.log("getSocket");
                 console.log('member wallet details');
                 console.log(data);
 
-                initUser(data.data);
+                wallet_data = data.data;
+                update_wallet = true;
 
               });
 
