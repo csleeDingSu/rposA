@@ -2,6 +2,9 @@ var trigger = false;
 var timerInterval = 0;
 var update_wallet = false;
 var wallet_data = null;
+var update_betting_history = false;
+var betting_data = null;
+var token = '';
 
 $(function () {
 
@@ -90,7 +93,7 @@ function updateHistory(records){
     }
 }
 
-function initUser(token, records){
+function initUser(records){
 
     var user_id = $('#hidUserId').val();
 
@@ -123,13 +126,13 @@ function initUser(token, records){
         if(life == 0){
             $('#reset-life-share').modal();
         } else if (user_id > 0 && acupoint >= 150) {
-            bindResetLifeButton(token);
+            bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
         }
     }
 }
 
-function initGame(token, data, level, latest_result, consecutive_lose){
+function initGame(data, level, latest_result, consecutive_lose){
 
     var user_id = $('#hidUserId').val();
     trigger = false;
@@ -157,7 +160,7 @@ function initGame(token, data, level, latest_result, consecutive_lose){
         
         if (consecutive_lose == 'yes' && life > 0 && balance == 0) {
             showProgressBar(false);
-            bindResetLifeButton(token);
+            bindResetLifeButton();
             $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
         }
 
@@ -171,20 +174,20 @@ function initGame(token, data, level, latest_result, consecutive_lose){
         DomeWebController.init();
         trigger = false;
         clearInterval(parent.timerInterval);
-        startTimer(duration, timer, freeze_time, token);
+        startTimer(duration, timer, freeze_time);
 
         var show_game_rules = Cookies.get('show_game_rules');
 
         if (timer <= freeze_time) {
             $('.radio-primary').unbind('click');
         } else if (balance == 1200 && acupoint == 0) {
-            bindBetButton(token);
+            bindBetButton();
         } else {
             Cookies.remove('show_game_rules');
-            bindBetButton(token);
+            bindBetButton();
         }
 
-        bindCalculateButton(token);
+        bindCalculateButton();
 
         $(".loading").fadeOut("slow");
 
@@ -324,12 +327,12 @@ function getSocket(){
                     dataType: "json",
                     error: function (error) { $(".reload").show(); },
                     success: function(data) {
-                        $('#hidToken').val(data.access_token);
-                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
+                        token = data.access_token;
+                        initGame(game_records, level, latest_result, consecutive_lose);
                         updateResult(result_records);
 
                         if(wallet){
-                            initUser(data.access_token, wallet_records);
+                            initUser(wallet_records);
                         }
 
                         if(betting_history){
@@ -351,37 +354,22 @@ function getSocket(){
                 var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
                 var result_records = data.data.gamehistory.data;
-
-                var betting_history = false;
-                if(typeof(data.data.bettinghistory) !== 'undefined'){
-                    var betting_records = groupHistory(data.data.bettinghistory.data);
-                    betting_history = true;
-                }
                 
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
 
-                $.ajax({
-                    type: 'GET',
-                    url: "/api/gettoken?id=" + id + "&token=" + session,
-                    dataType: "json",
-                    error: function (error) { $(".reload").show(); },
-                    success: function(data) {
-                        $('#hidToken').val(data.access_token);
-                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
-                        updateResult(result_records);
+                initGame(game_records, level, latest_result, consecutive_lose);
+                updateResult(result_records);
 
-                        if(update_wallet){
-                            initUser(data.access_token, wallet_data);
-                            update_wallet = false;
-                        }
+                if(update_wallet){
+                    initUser(wallet_data);
+                    update_wallet = false;
+                }
 
-                        if(betting_history){
-                            updateHistory(betting_records);
-                        }
-                    }
-                });
-
+                if(update_betting_history){
+                    updateHistory(betting_data);
+                    update_betting_history = false;
+                }
              });
 
             //No betting
@@ -420,7 +408,6 @@ function getSocket(){
                 console.log(data);
 
                 wallet_data = data.data;
-                console.log(wallet_data);
                 update_wallet = true;
             });
 
@@ -429,8 +416,8 @@ function getSocket(){
                 console.log('members recent bettinghistory');
                 console.log(data);
 
-                var betting_records = groupHistory(data.data.data);
-                updateHistory(betting_records);
+                betting_data = groupHistory(data.data.data);
+                update_betting_history = true;
 
             });          
         });
@@ -463,23 +450,6 @@ function groupHistory(records) {
 }
 
 function resetTimer(){
-    var id = $('#hidUserId').val();
-    var session = $('#hidSession').val();
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/gettoken?id=" + id + "&token=" + session,
-        dataType: "json",
-        error: function (error) { console.log(error.responseText); },
-        success: function(data) {
-            var token = data.access_token;
-            $('#hidToken').val(token);
-            restartTimer(token);
-        }
-    });
-}
-
-function restartTimer(token){
     var user_id = $('#hidUserId').val();
 
     $.ajax({
@@ -497,7 +467,7 @@ function restartTimer(token){
 
             trigger = false;
             clearInterval(parent.timerInterval);
-            startTimer(duration, timer, freeze_time, token);
+            startTimer(duration, timer, freeze_time);
         }
     });
 }
@@ -548,7 +518,7 @@ function bindSpinningButton() {
     });
 }
 
-function bindBetButton(token){
+function bindBetButton(){
 
     $('.radio-primary').click(function( event ){
         event.stopImmediatePropagation();
@@ -575,10 +545,10 @@ function bindBetButton(token){
 
             if(balance < 630) {
                 if(consecutive_lose == 'yes'){
-                    bindResetLifeButton(token);
+                    bindResetLifeButton();
                     $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
                 } else {
-                    bindResetLifeButton(token);
+                    bindResetLifeButton();
                     $('#reset-life-start').modal();
                 }
 
@@ -589,7 +559,7 @@ function bindBetButton(token){
         }
 
         if (user_id > 0 && acupoint >= 150) {
-            bindResetLifeButton(token);
+            bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
         }
 
@@ -669,7 +639,7 @@ function bindBetButton(token){
     });
 }
 
-function bindCalculateButton(token){
+function bindCalculateButton(){
     $('.btn-calculate').click(function( event ){
         event.stopImmediatePropagation();
 
@@ -682,13 +652,13 @@ function bindCalculateButton(token){
             if (acupoint == 0 || level > 1) {
                 $('#reset-life-play').modal();
             } else if (level == 1 && consecutive_lose == 'yes') {
-                bindResetLifeButton(token);
+                bindResetLifeButton();
                 $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
             } else if(acupoint > 0 && acupoint < 150) {
-                bindResetLifeButton(token);
+                bindResetLifeButton();
                 $('#reset-life-play').modal();
             } else if (acupoint >= 150) {
-                bindResetLifeButton(token);
+                bindResetLifeButton();
                 $('#reset-life-max').modal();
             }
         } else {
@@ -697,7 +667,7 @@ function bindCalculateButton(token){
     });
 }
 
-function bindResetLifeButton(token){
+function bindResetLifeButton(){
     $( '.btn-reset-life' ).click( function( event ){
         $(this).off('click');
         event.stopImmediatePropagation();
@@ -855,7 +825,7 @@ function showProgressBar(bol_show){
     }
 }
 
-function startTimer(duration, timer, freeze_time, token) {
+function startTimer(duration, timer, freeze_time) {
 
     var trigger_time = freeze_time - 1;
     parent.timerInterval = setInterval(function () {
@@ -1002,7 +972,7 @@ function changbar(number){
 function showGameRules( event ){
     event.stopImmediatePropagation();
     $('.button-card').off('click', showGameRules);
-    var token = event.data.token;
+
     var bet_count = $('#hidbetting_count').val();
 
     $( ".txtTimer" ).removeClass('hide');
@@ -1012,7 +982,7 @@ function showGameRules( event ){
         $('.btn-rules-close').click(function(){
             $('#game-rules').modal('hide');
             Cookies.set('show_game_rules', false);
-            bindBetButton(token);
+            bindBetButton();
         });
     } else {
         var counter = 11;
@@ -1044,7 +1014,7 @@ function showGameRules( event ){
                 Cookies.set('show_game_rules', false);
             });
 
-            bindBetButton(token);
+            bindBetButton();
         }, 11000);
     }
 }

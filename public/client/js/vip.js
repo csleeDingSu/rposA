@@ -2,6 +2,9 @@ var trigger = false;
 var timerInterval = 0;
 var update_wallet = false;
 var wallet_data = null;
+var update_betting_history = false;
+var betting_data = null;
+var token = '';
 
 $(function () {
 
@@ -124,7 +127,7 @@ function initUser(records){
     }
 }
 
-function initGame(token, data, level, latest_result, consecutive_lose){
+function initGame(data, level, latest_result, consecutive_lose){
 
     var user_id = $('#hidUserId').val();
     trigger = false;
@@ -158,15 +161,15 @@ function initGame(token, data, level, latest_result, consecutive_lose){
         DomeWebController.init();
         trigger = false;
         clearInterval(parent.timerInterval);
-        startTimer(duration, timer, freeze_time, token);
+        startTimer(duration, timer, freeze_time);
 
         if (timer <= freeze_time) {
             $('.radio-primary').unbind('click');
         } else {
-            bindBetButton(token);
+            bindBetButton();
         }
 
-        bindCalculateButton(token);
+        bindCalculateButton();
 
         $(".loading").fadeOut("slow");
 
@@ -308,8 +311,8 @@ function getSocket(){
                     dataType: "json",
                     error: function (error) { $(".reload").show(); },
                     success: function(data) {
-                        $('#hidToken').val(data.access_token);
-                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
+                        token = data.access_token;
+                        initGame(game_records, level, latest_result, consecutive_lose);
                         updateResult(result_records);
 
                         if(wallet){
@@ -339,35 +342,21 @@ function getSocket(){
                 var consecutive_lose = data.data.vip_consecutive_lose;
                 var result_records = data.data.gamehistory.data;
 
-                var betting_history = false;
-                if(typeof(data.data.bettinghistory) !== 'undefined'){
-                    var betting_records = groupHistory(data.data.bettinghistory.data);
-                    betting_history = true;
-                }
-
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
 
-                $.ajax({
-                    type: 'GET',
-                    url: "/api/gettoken?id=" + id + "&token=" + session,
-                    dataType: "json",
-                    error: function (error) { $(".reload").show(); },
-                    success: function(data) {
-                        $('#hidToken').val(data.access_token);
-                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
-                        updateResult(result_records);
+                initGame(game_records, level, latest_result, consecutive_lose);
+                updateResult(result_records);
 
-                        if(update_wallet){
-                            initUser(wallet_data);
-                            update_wallet = false;
-                        }
+                if(update_wallet){
+                    initUser(wallet_data);
+                    update_wallet = false;
+                }
 
-                        if(betting_history){
-                            updateHistory(betting_records);
-                        }
-                    }
-                });
+                if(update_betting_history){
+                    updateHistory(betting_data);
+                    update_betting_history = false;
+                }
 
                 $('#hidFee').val(data.data.wabaofee);
                 $('.spanFee').html(data.data.wabaofee);
@@ -422,8 +411,8 @@ function getSocket(){
                 console.log('members recent Vip bettinghistory');
                 console.log(data);
 
-                var betting_records = groupHistory(data.data.data);
-                updateHistory(betting_records);
+                betting_data = groupHistory(data.data.data);
+                update_betting_history = true;
             });          
         });
 }
@@ -455,23 +444,6 @@ function groupHistory(records) {
 }
 
 function resetTimer(){
-    var id = $('#hidUserId').val();
-    var session = $('#hidSession').val();
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/gettoken?id=" + id + "&token=" + session,
-        dataType: "json",
-        error: function (error) { console.log(error.responseText); },
-        success: function(data) {
-            var token = data.access_token;
-            $('#hidToken').val(token);
-            restartTimer(token);
-        }
-    });
-}
-
-function restartTimer(token){
     var user_id = $('#hidUserId').val();
 
     $.ajax({
@@ -489,7 +461,7 @@ function restartTimer(token){
 
             trigger = false;
             clearInterval(parent.timerInterval);
-            startTimer(duration, timer, freeze_time, token);
+            startTimer(duration, timer, freeze_time);
         }
     });
 }
@@ -528,7 +500,7 @@ function bindSpinningButton() {
     });
 }
 
-function bindBetButton(token){
+function bindBetButton(){
     $('.radio-primary').click(function(event){
         event.stopImmediatePropagation();
 
@@ -622,7 +594,7 @@ function bindBetButton(token){
     });
 }
 
-function bindCalculateButton(token){
+function bindCalculateButton(){
     $('.btn-calculate-vip').click(function( event ){
         event.stopImmediatePropagation();
 
@@ -654,7 +626,7 @@ function bindCalculateButton(token){
 
                         $('#reset-life-max').modal();
                             
-                        bindResetLifeButton(token);
+                        bindResetLifeButton();
                         $('#btn-close-max').click(function(){
                             $('#reset-life-max').modal('hide');
                         });
@@ -671,7 +643,7 @@ function bindCalculateButton(token){
     });
 }
 
-function bindResetLifeButton(token){
+function bindResetLifeButton(){
     $( '.btn-reset-life' ).click( function(event){
         event.stopImmediatePropagation();
         var user_id = $('#hidUserId').val();
@@ -824,7 +796,7 @@ function showProgressBar(bol_show){
     }
 }
 
-function startTimer(duration, timer, freeze_time, token) {
+function startTimer(duration, timer, freeze_time) {
 
     var trigger_time = freeze_time - 1;
     parent.timerInterval = setInterval(function () {
