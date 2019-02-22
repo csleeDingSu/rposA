@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Session;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 class LoginController extends Controller
 {
     /*
@@ -190,6 +190,24 @@ class LoginController extends Controller
 		
     }
 	
-	
+	public function logout(Request $request, \Tymon\JWTAuth\JWTAuth $auth)
+    {
+        $token = $request->bearerToken();		
+		
+		$user = Auth::guard('member')->user();
+		Auth::logout();
+		$this->guard()->logout();
+		$request->session()->flush();		
+		$request->session()->regenerate();
+		if ($user)
+		{
+			$claims = ['userid' => $user->id];
+			$token = $auth->fromUser($user, $claims);
+			JWTAuth::setToken($token)->invalidate();
+			event(new \App\Events\EventUserLogout($user->id));			
+		}
+		return redirect('/');
+        
+    }
 	
 }

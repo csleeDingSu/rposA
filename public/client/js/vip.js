@@ -1,5 +1,7 @@
 var trigger = false;
 var timerInterval = 0;
+var update_wallet = false;
+var wallet_data = null;
 
 $(function () {
 
@@ -24,7 +26,7 @@ $(function () {
 
     if(wechat_status == 0 && wechat_name != null) {
 
-        getToken();
+        getSocket();
         closeModal();
 
         ifvisible.on("wakeup", function(){
@@ -88,7 +90,7 @@ function updateHistory(records){
     }
 }
 
-function initUser(records, token){
+function initUser(records){
 
     var user_id = $('#hidUserId').val();
 
@@ -122,25 +124,22 @@ function initUser(records, token){
     }
 }
 
-function initGame(data, token){
-    $( '.btn-reset-life' ).unbind( "click" );
-    $( '.btn-reset-life-continue' ).unbind( "click" );
-    $( '.btn-calculate-vip' ).unbind( "click" );
-    
+function initGame(token, data, level, latest_result, consecutive_lose){
+
     var user_id = $('#hidUserId').val();
     trigger = false;
     
-    if(data.success) {
+
         var bet_amount = 0;
         var span_balance = 1200;
-        var duration = data.record.duration;
-        var timer = data.record.remaining_time;
-        var freeze_time = data.record.freeze_time;
-        var draw_id = data.record.drawid;
-        var level = data.record.level.position;
-        var level_id = data.record.level.levelid;
-        var previous_result = data.record.latest_result.game_result;
-        var consecutive_lose = data.record.consecutive_lose;
+        var duration = data.duration;
+        var timer = data.remaining_time;
+        var freeze_time = data.freeze_time;
+        var draw_id = data.drawid;
+        var level = level.position;
+        var level_id = level.levelid;
+        var previous_result = latest_result.game_result;
+        var consecutive_lose = consecutive_lose;
         var life = $(".nTxt").html();
         var balance = $('#hidBalance').val();
         var payout_info = '';
@@ -215,39 +214,225 @@ function initGame(data, token){
                 }
             }
         }); // ajax get-game-result-temp
-    } else { // else if data.success == false
-        $(".reload").show();
-    }
+
 }
 
-function initGameMaster(token){
-    var user_id = $('#hidUserId').val();
+function getSocket(){
+
+    var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
+    //var port = {{ env('REDIS_CLI_PORT'), '6001' }};
+    var url = 'http://boge56.com';
     
-    $.ajax({
-        type: 'GET',
-        url: "/api/master-call?gameid=101&vip=yes&memberid=" + user_id,
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            var betting_records = groupHistory(data.bethistory.original.records.data);
-            updateHistory(betting_records);
-
-            var result_records = data.gamehistory.original.records.data;
-            updateResult(result_records);
-
-            var wallet_records = data.wallet;
-            initUser(wallet_records, token);
+    //var url = 'http://wabao666.local';
+    var port = '6001';
             
-            var game_records = data.gamesetting.original;
-            initGame(game_records, token);
+    var c_url = url + ':' + port;
 
-            $('#hidFee').val(data.wabaofee);
-            $('.spanFee').html(data.wabaofee);
-        }
-    });
+    var user_id = $('#hidUserId').val();
+
+        $.ajax({
+            url: '/token'
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        })
+        .done(function (result, textStatus, jqXHR) {
+            //console.log('connecting URL: '+c_url);
+            var socket = new io.connect(c_url, {
+                'reconnection': true,
+                'reconnectionDelay': 1000,
+                'reconnectionDelayMax' : 5000,
+                'reconnectionAttempts': 2,
+                 query: 'token='+result.token+'&vip=yes'
+            });
+
+            /* 
+            connect with socket io
+            */
+            socket.on('connect', function () {
+                console.log('Connected to SocketIO, Authenticating');
+                //console.log('Token: '+result.token);
+                socket.emit('authenticate', {token: result.token});
+            });
+
+            /* 
+            If token authenticated successfully then here will get message 
+            */
+            socket.on('authenticated', function () {
+                console.log('Authenticated');
+                $(".loading").fadeOut("slow");
+            });
+
+            /* 
+            If token unauthorized then here will get message 
+            */
+            socket.on('unauthorized', function (data) {
+                console.log('Unauthorized, error msg: ' + data.message);
+            });
+
+            /* 
+            If disconnect socketio then here will get message 
+            */
+            socket.on('disconnect', function () {
+                console.log('Disconnected');
+            });
+
+            //On user logout
+            socket.on('userlogout-' + user_id, function (data) {
+                console.log('user-logout');
+            });
+
+            //on page load game setting Script
+            socket.on("loadsetting-" + user_id + ":App\\Events\\EventGameSetting", function(data){
+                console.log('load user game setting-on page load');
+
+                //console.log(data);
+
+                var game_records = data.data.gamesetting;
+                var level = data.data.viplevel;
+                var latest_result = data.data.latest_result;
+                var consecutive_lose = data.data.vip_consecutive_lose;
+                var result_records = data.data.gamehistory.data;
+                
+                var wallet = false;
+                 if(typeof(data.data.wallet) !== 'undefined'){
+                    var wallet_records = data.data.wallet;
+                    wallet = true;
+                }
+
+                var betting_history = false;
+                if(typeof(data.data.vipbethistory) !== 'undefined'){
+                    var betting_records = groupHistory(data.data.vipbethistory.data);
+                    betting_history = true;
+                }
+
+                var id = $('#hidUserId').val();
+                var session = $('#hidSession').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: "/api/gettoken?id=" + id + "&token=" + session,
+                    dataType: "json",
+                    error: function (error) { $(".reload").show(); },
+                    success: function(data) {
+                        $('#hidToken').val(data.access_token);
+                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
+                        updateResult(result_records);
+
+                        if(wallet){
+                            initUser(wallet_records);
+                        }
+
+                        if(betting_history){
+                            updateHistory(betting_records);
+                        }
+                    }
+                });
+
+                $('#hidFee').val(data.data.wabaofee);
+                $('.spanFee').html(data.data.wabaofee);
+
+             });
+
+            //init setting Script
+            socket.on("initsetting-" + user_id + ":App\\Events\\EventGameSetting", function(data){
+                console.log('user-initsetting');
+                console.log(data);
+
+                resetGame();
+                var game_records = data.data.gamesetting;
+                var level = data.data.viplevel;
+                var latest_result = data.data.latest_result;
+                var consecutive_lose = data.data.vip_consecutive_lose;
+                var result_records = data.data.gamehistory.data;
+
+                var betting_history = false;
+                if(typeof(data.data.bettinghistory) !== 'undefined'){
+                    var betting_records = groupHistory(data.data.bettinghistory.data);
+                    betting_history = true;
+                }
+
+                var id = $('#hidUserId').val();
+                var session = $('#hidSession').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: "/api/gettoken?id=" + id + "&token=" + session,
+                    dataType: "json",
+                    error: function (error) { $(".reload").show(); },
+                    success: function(data) {
+                        $('#hidToken').val(data.access_token);
+                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
+                        updateResult(result_records);
+
+                        if(update_wallet){
+                            initUser(wallet_data);
+                            update_wallet = false;
+                        }
+
+                        if(betting_history){
+                            updateHistory(betting_records);
+                        }
+                    }
+                });
+
+                $('#hidFee').val(data.data.wabaofee);
+                $('.spanFee').html(data.data.wabaofee);
+
+             });
+
+            //No betting vip
+            socket.on("no-vipbetting-user-" + user_id + ":App\\Events\\EventNoBetting" , function(data){
+                //console.log('call no-vip-betting');
+                //console.log(data);
+
+                $('#result').val(data.data.game_result);
+                triggerResult();
+            });
+
+            //betting vip
+            socket.on("uservipbetting-" + user_id + ":App\\Events\\EventVIPBetting" , function(data){
+                console.log('call uservipbetting');
+                console.log(data);
+
+                $('#hidConsecutiveLose').val(data.data.consecutive_loss);
+                $('#hidMergePoint').val(data.data.mergepoint);
+
+                if(data.data.status == 'win'){
+                    var level = parseInt($('#hidLevel').val());
+                    var win_amount = level * 10;
+
+                    $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
+                } else if (data.data.status == 'lose') {
+                    var level = parseInt($('#hidLevel').val());
+                    var chance = 6 - level;
+
+                    $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
+                }
+
+                $('#result').val(data.data.game_result);
+                triggerResult();
+            });
+
+            //wallet changes -- new --
+            socket.on("wallet-" + user_id + ":App\\Events\\EventWalletUpdate", function(data){
+                console.log('member wallet details');
+                console.log(data);
+
+                wallet_data = data.data;
+                update_wallet = true;
+
+              });
+
+            //betting VIP history -- new --
+            socket.on("vipbettinghistory-" + user_id + ":App\\Events\\EventVipBettingHistory", function(data){
+                console.log('members recent Vip bettinghistory');
+                console.log(data);
+
+                var betting_records = groupHistory(data.data.data);
+                updateHistory(betting_records);
+            });          
+        });
 }
 
 function groupHistory(records) {
@@ -274,23 +459,6 @@ function groupHistory(records) {
     }
 
     return newOptions;
-}
-
-function getToken(){
-    var id = $('#hidUserId').val();
-    var session = $('#hidSession').val();
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/gettoken?id=" + id + "&token=" + session,
-        dataType: "json",
-        error: function (error) { $(".reload").show(); },
-        success: function(data) {
-            $('#hidToken').val(data.access_token);
-            resetGame();
-            initGameMaster(data.access_token);
-        }
-    });
 }
 
 function resetTimer(){
@@ -557,7 +725,7 @@ function bindResetLifeButton(token){
                     if(data.success){
                         $('#reset-life-max').modal('hide');
                         $('#reset-life-lose').modal('hide');
-                        getToken();
+                        resetGame();
                     }
                 }
             });
@@ -667,6 +835,7 @@ function startTimer(duration, timer, freeze_time, token) {
 
     var trigger_time = freeze_time - 1;
     parent.timerInterval = setInterval(function () {
+
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 61, 10);
 
@@ -679,7 +848,6 @@ function startTimer(duration, timer, freeze_time, token) {
 
         if (timer < 0) {            
             timer = duration;
-            clearInterval(parent.timerInterval);
 
             var consecutive_loss = $('#hidConsecutiveLose').val();
             var mergepoint = parseInt($('#hidMergePoint').val()) || 0;
@@ -704,86 +872,47 @@ function startTimer(duration, timer, freeze_time, token) {
                     window.top.location.href = "/redeem";
                 });
             } else {
-                getToken();
+                resetGame();
             }
 
-        } else if (timer <= trigger_time && trigger == false) {
-            trigger = true;
+        } else if (timer <= trigger_time) {
             //Lock the selection
             $('.radio-primary').unbind('click');
             bindSpinningButton();
-            
-                var freeze_time = timer + 1;
-                $('#freeze_time').val(freeze_time);
 
-                //Get selected option
-                var selected = $('div.clicked').find('input:radio').val();
-                var bet_amount = $('.bet-container').html();
-                var draw_id = $('#draw_id').val();
-                var user_id = $('#hidUserId').val();
-                var level_id = $('#hidLevelId').val();
-
-                $.ajax({
-                    type: 'POST',
-                    url: "/api/update-game-result",
-                    data: { 
-                        gameid : 101, 
-                        memberid : user_id, 
-                        drawid : draw_id, 
-                        bet : selected, 
-                        betamt : bet_amount,
-                        level : level_id,
-                        vip : 1,
-                    }, 
-                    dataType: "json",
-                    beforeSend: function( xhr ) {
-                        xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                    },
-                    error: function (error) { console.log(error.responseText) },
-                    success: function(data) {
-                        console.log(data);
-                        var freeze_time = $('#freeze_time').val();
-                        var result = data.game_result;
-                        $('#hidConsecutiveLose').val(data.consecutive_loss);
-                        $('#hidMergePoint').val(data.mergepoint);
-                        $('#result').val(result);
-
-                        if(data.status == 'win'){
-                            var level = parseInt($('#hidLevel').val());
-                            var win_amount = level * 10;
-
-                            $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
-                        } else if (data.status == 'lose') {
-                            var level = parseInt($('#hidLevel').val());
-                            var chance = 6 - level;
-
-                            $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
-                        }
-
-                        //Trigger the wheel
-                        DomeWebController.getEle("$wheelContainer").wheelOfFortune({
-                            'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
-                            'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
-                            'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
-                            'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-                            'rotateNum': 12,//转多少圈(默认12)
-                            'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
-                            'click': function () {
-                                if(1==1){}
-                                var key = result;
-                                DomeWebController.getEle("$wheelContainer").wheelOfFortune('rotate', key);
-                            },//点击按钮的回调
-                            'rotateCallback': function (key) {
-                                //alert("左:" + key);
-                            }//转完的回调
-                        });
-
-                        $( "#btnWheel" ).trigger( "click" );
-                    }
-                });
+            if (trigger == false) {
+                triggerResult();
+            }
         }
         
     }, 1000);
+}
+
+function triggerResult(){
+    trigger = true;
+    //console.log(data);
+    var freeze_time = $('#freeze_time').val();
+    var result = $('#result').val();
+
+    //Trigger the wheel
+    DomeWebController.getEle("$wheelContainer").wheelOfFortune({
+        'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+        'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
+        'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
+        'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
+        'rotateNum': 12,//转多少圈(默认12)
+        'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
+        'click': function () {
+            if(1==1){}
+            var key = result;
+            DomeWebController.getEle("$wheelContainer").wheelOfFortune('rotate', key);
+        },//点击按钮的回调
+        'rotateCallback': function (key) {
+            //alert("左:" + key);
+        }//转完的回调
+    });
+
+    $( "#btnWheel" ).trigger( "click" );
 }
 
 DomeWebController = {
