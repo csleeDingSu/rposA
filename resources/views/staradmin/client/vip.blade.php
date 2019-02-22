@@ -606,10 +606,12 @@
     <script src="{{ asset('/client/js/jquery.wheelOfFortune.js') }}"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
     <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
-	<script src="{{ asset('/client/js/vip.js') }}"></script>
 	<script src="{{ asset('/client/js/NoSleep.js') }}"></script>
 
 	<script type="text/javascript">
+		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
+    	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+
 		$(document).ready(function () {
 
 			var wechat_status = $('#hidWechatId').val();
@@ -659,4 +661,5 @@
 		//noSleep.disable();
 
 	</script>
+	<script src="{{ asset('/client/js/vip.js') }}"></script>
 @endsection
