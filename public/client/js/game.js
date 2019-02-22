@@ -235,13 +235,6 @@ function initGame(token, data, level, latest_result, consecutive_lose){
 }
 
 function getSocket(){
-
-    var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
-    //var port = {{ env('REDIS_CLI_PORT'), '6001' }};
-    var url = 'http://boge56.com';
-    
-    //var url = 'http://wabao666.local';
-    var port = '6001';
             
     var c_url = url + ':' + port;
 
