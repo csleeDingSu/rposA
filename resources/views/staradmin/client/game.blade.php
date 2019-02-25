@@ -91,6 +91,12 @@
 			<div class="frame-wrapper">
 				<div class="results-body">
 					<div class=".results-wrapper">
+					<div class="timer-row">
+						<div class="timer-wrapper">
+		        			<div class="icon-timer"></div>
+		        		</div>
+						开奖倒计时：<span class="span-timer"></span>秒
+					</div>
 					<div class="results-row">
 						<div class="chain-wrapper results-left"></div>
 						<div class="box-wrapper">
@@ -197,28 +203,6 @@
 						<div class="box-wrapper">
 							<div id="result-25" class="results-box">5</div>
 						</div>
-						<div class="chain-wrapper results-right">
-							<div class="right-chain"></div>
-						</div>
-				  	</div>
-
-				  	<div class="results-row">
-				  		<div class="chain-wrapper results-left"></div>
-				  		<div class="box-wrapper">
-							<div id="result-30" class="results-box">1</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-29" class="results-box">2</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-28" class="results-box">3</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-27" class="results-box">4</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-26" class="results-box">5</div>
-						</div>
 						<div class="chain-wrapper results-right"></div>
 				  	</div>
 				  </div>
@@ -239,6 +223,14 @@
 					<div class="history-wrapper">
 						<table class="history-table">
 						    <tbody>
+						    	<tr>
+						        	<td class="timer" colspan="2">
+						        		<div class="timer-wrapper">
+						        			<div class="icon-timer"></div>
+						        		</div>
+						        		开奖倒计时：<span class="span-timer"></span>秒
+						        	</td>
+						        </tr>
 						        <tr id="row-1">
 						            <td class="history-number"></td>
 						            <td class="history">
@@ -268,10 +260,6 @@
 						            <td class="history"></td>
 						        </tr>
 						        <tr id="row-7">
-						            <td class="history-number"></td>
-						            <td class="history"></td>
-						        </tr>
-						        <tr id="row-8">
 						            <td class="history-number"></td>
 						            <td class="history"></td>
 						        </tr>

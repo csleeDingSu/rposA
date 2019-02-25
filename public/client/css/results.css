@@ -8,6 +8,12 @@
     display: table-cell;
 }
 
+div.timer-row {
+  font-size: 16px;
+  color: white;
+  padding-bottom: 10px;
+}
+
 .results-row > div.box-wrapper {
   float: left;
   width: 55px;
