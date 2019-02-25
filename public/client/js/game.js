@@ -19,9 +19,7 @@ $(function () {
 	});
 
 	$('.swiper-container').on( 'change.flickity', function( event, index ) {
-		if(index == 1) {
-			resetTimer();
-		}
+		resetTimer();
 	});
 
 	var wechat_status = $('#hidWechatId').val();
@@ -44,17 +42,19 @@ $(function () {
 });
 
 function updateResult(records){
-
+    var counter = 0;
     $.each(records, function(i, item) {
-        var counter = i + 1;
-        $('.results-body').find('#result-' + counter).html(item.result);
+        var list = i + 1;
+        $('.results-body').find('#result-' + list).html(item.result);
+        counter++;
+        return counter < 25;
     });
 }
 
 function updateHistory(records){
 
     var length = Object.keys(records).length;
-    var maxCount = 8;
+    var maxCount = 7;
 
     if(length < maxCount){
         maxCount = parseInt(length);
@@ -837,6 +837,7 @@ function startTimer(duration, timer, freeze_time) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         $( "#txtCounter" ).html(seconds);
+        $( ".span-timer" ).html(seconds);
 
         --timer;
 
