@@ -71,7 +71,7 @@ class open_draw extends Command
 			$setting       = \App\Admin::get_setting();
 			$now           = Carbon::now();
 			$latest_result = Game::get_latest_result($draw->game_id);
-			$futureresult  = Game::get_future_result($draw->game_id, $now );
+			//$futureresult  = Game::get_future_result($draw->game_id, $now );
 			$gamesetting   = $ReportController->get_game_setting($draw , $now); 
 			$gamehistory   = $ReportController->get_game_history($draw->game_id);			
 			$this->comment('Get Data:'.'--------'.Carbon::now()->toDateTimeString().'----------');	
@@ -90,7 +90,7 @@ class open_draw extends Command
 				
 				$data         = [ 'member'               => $memberid, 
 								  'drawid'               => $draw->result_id, 
-								  'futureresults'		 => $futureresult,
+								 // 'futureresults'		 => $futureresult,
 								  'wabaofee' 			 => $setting->wabao_fee,
 								  'latest_result' 		 => $latest_result,
 								  'gamesetting' 		 => $gamesetting,

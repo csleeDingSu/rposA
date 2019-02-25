@@ -80,7 +80,7 @@ class RedisGameController extends Controller
 		$gamesetting      = $this->get_game_setting($latest_result, $now);
 		$gamenotific      = $this->get_game_notification($memberid,$gameid);			
 		$gamehistory      = $this->get_game_history($gameid);		
-		$futureresult     = Game::get_future_result($gameid, $now );
+		//$futureresult     = Game::get_future_result($gameid, $now );
 		//$level            = Game::get_member_current_level($gameid, $memberid, $vip);
 		//$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 		$setting          = \App\Admin::get_setting();
@@ -101,7 +101,7 @@ class RedisGameController extends Controller
 		$data    = [  'member'               => $memberid, 
 					  'vip'                  => $vip, 
 					  'gamenotification'     => $gamenotific,
-					  'futureresults'		 => $futureresult,
+					  //'futureresults'		 => $futureresult,
 					  'wabaofee' 			 => $setting->wabao_fee,
 					  'latest_result' 		 => $latest_result,
 					  'gamesetting' 		 => $gamesetting,
