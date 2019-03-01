@@ -97,6 +97,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/voucher/import"> @lang('dingsu.import_voucher')  </a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/voucher/setting"> @lang('dingsu.voucher')@lang('dingsu.setting')  </a>
+					</li>
 				</ul>
 			</div>
 		</li>

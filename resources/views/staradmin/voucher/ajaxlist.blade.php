@@ -10,7 +10,7 @@
 	</div>
 	<div class=" col-md-9">
 	<form class="form-sample" name="voucher_tag" id="voucher_tag" action="" method="post" autocomplete="on" >
-	<label for="system_category" class="col-sm-1 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
+	<label for="system_category" class="col-sm-1 col-form-label">@lang('dingsu.category')</label>
 			@foreach ($category as $cate) 
 			<input type="checkbox" id="cate_tag" name="cate_tag[]" value="{{$cate->id}}"  checked:>{{$cate->display_name}}
 			@endforeach
@@ -29,10 +29,7 @@
 		<div class="col">
 			<select class="form-control" name="product_action" id="product_action">
 				<option value="0">@lang('dingsu.default_select')</option>
-				
 				<option value="delete">@lang('dingsu.delete')</option>
-				<option value="tag">@lang('dingsu.tag')</option>
-				
 			</select>
 		</div>
 		<div class="col">

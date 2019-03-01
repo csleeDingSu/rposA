@@ -133,7 +133,7 @@ return [
 	'redeem_history' => 'Redeem History',
 	'pending_redeem' => 'Pending Redeem',
 	'featured' => 'Featured',
-	'' => '',
+	'sub_cate' => 'Sub-Category',
 	'' => '',
 	'' => '',
 	'' => '',

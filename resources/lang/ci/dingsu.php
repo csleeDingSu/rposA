@@ -131,8 +131,13 @@ return [
 	'desktop' => 'Desktop',
 	'mobile_default_image_url' => 'Mobile Default Image URL',
 	'desktop_default_image_url' => 'Desktop Default Image URL',
-	'' => '',
-	
+	//setting
+	'category_setting' => '类别设定',
+	'sub_category' => '子类别',
+	'number' => '号',
+	'voucher_category' => '优惠卷类别',
+	'sub_cate' => '子类别',
+	'sub_cate' => '子类别',
 	
 	
 	//messages

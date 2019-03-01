@@ -38,7 +38,7 @@
 								<div class="col-sm-9">
 										
 									@foreach ($category as $cate) 
-									<input type="checkbox" id="system_category[{{$cate->position}}]" name="system_category[]" value="{{$cate->position}}"checked />{{$cate->display_name}}
+									<input type="checkbox" id="system_category[{{$cate->id}}]" name="system_category[]" value="{{$cate->id}}" />{{$cate->display_name}}
 									@endforeach
 								</div>
 							</div>
@@ -146,8 +146,11 @@ function Update_voucher()
 }
 			
 $(document).ready(function() {
-		$('.openeditmodel').click(function() {
+	$( 'body' ).on( 'click', '.openeditmodel', function ( e ) {
+		//$('.openeditmodel').click(function() {
 			var id=$(this).data('id');
+			
+			$('#formupdatevoucher')[0].reset();
 			swal( {
 				title: '@lang("dingsu.please_wait")',
 				text: '@lang("dingsu.fetching_data")..',
@@ -172,24 +175,33 @@ $(document).ready(function() {
 						
 						var data = result.record;
 						var data_tagcategory = result.tagcategory;
+						console.log(data);
 						console.log(data_tagcategory);
 						var vcategory = null;
-
+						
 						$("input[name='system_category[]']").each( function () {
 							cposition = $(this).val();
-							
-							for(var tagcat in data_tagcategory) {
-								
+							$.each( data_tagcategory, function( key, value ) {
+							tags= value.category;
 
-								console.log(tagcat[0].category);								
-									if (tagcat == cposition) {
-										document.getElementById('system_category[' + cposition + ']').checked = true;										
-									} else {
-										document.getElementById('system_category[' + cposition + ']').checked = false;	
-									}						
-							}
+							if (document.getElementById('system_category[' + cposition + ']').checked== true)
+								{
+									console.log('true'+'system_category[' + cposition + ']');
+									console.log(tags);
+								}
 
-						});						
+							if (tags == cposition) {
+								document.getElementById('system_category[' + cposition + ']').checked = true;		
+								// console.log('true');						
+							} else if (tags != cposition && document.getElementById('system_category[' + cposition + ']').checked== false){
+								document.getElementById('system_category[' + cposition + ']').checked = false;	
+								// console.log('unchecked');
+							}	
+						});
+						
+					});
+
+										
 					
 						
 						@foreach($sys_title as $items)
@@ -214,22 +226,10 @@ $(document).ready(function() {
 						var tag = result.tagcategory;
 						//if( tag['category'==])
 						var category = result.syscategory;
-						var tags= tag['category'];
+						//var tags= tag['category'];
 						var categories= category['position'];
 						
 
-						// if( tags == categories){
-						// 	document.getElementById("system_category[{{$cate->position}}]").checked = true;
-						// }else{
-						// 	document.getElementById("system_category[{{$cate->position}}]").checked = false;
-						// }
-
-
-
-
-						
-						// var_dump(tags);
-						// var_dump(categories);
 
 						 $('#system_category')
 							  .find('option')
@@ -411,6 +411,7 @@ function save_tag()
 					},
 					success: function ( result ) {
 						if ( result.success != true ) {
+							$('#voucher_tag')[0].reset();
 							swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
 						} else {
 							swal( "Done!", '@lang("dingsu.voucher_update_success_message")', "success" );
