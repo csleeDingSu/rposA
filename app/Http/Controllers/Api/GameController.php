@@ -721,7 +721,7 @@ class GameController extends Controller
 				'gametype' => $request->gametype
 			];
 
-
+		$res = 0;
 		//insert | Update
 		if(!empty($request->bet) && !empty($request->betamt))
 		{
@@ -738,7 +738,7 @@ class GameController extends Controller
 	
 		//update deleted_at - remove old bet
 		//member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('drawid', $request->drawid)->update(['deleted_at' => Carbon::now()]);
-		member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->update(['deleted_at' => Carbon::now()]);
+	//	member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->update(['deleted_at' => Carbon::now()]);
 		
 
 		//insert new bet
