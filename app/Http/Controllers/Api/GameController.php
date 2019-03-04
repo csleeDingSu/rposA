@@ -725,7 +725,10 @@ class GameController extends Controller
 		//insert | Update
 		if(!empty($request->bet) && !empty($request->betamt))
 		{
-			$res = member_game_bet_temp::updateOrCreate($params)->id;
+			
+			member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->delete();
+			
+			$res = member_game_bet_temp::insertGetId($params);
 		}
 		else 
 		{
