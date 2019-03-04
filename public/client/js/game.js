@@ -157,8 +157,8 @@ function initGame(data, level, latest_result, consecutive_lose){
         $('#hidConsecutiveLose').val(consecutive_lose);
 
         $('.barBox').find('li').removeClass('on');
-        
-        if (consecutive_lose == 'yes' && life > 0 && balance == 0) {
+
+        if (consecutive_lose == 'yes' && life > 0) {
             showProgressBar(false);
             bindResetLifeButton();
             $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
