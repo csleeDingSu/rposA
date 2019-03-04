@@ -183,7 +183,7 @@ class VoucherController extends BaseController
 		$data['page'] = 'voucher.unreleasedvoucherlist'; 	
 		$data['files'] =  DB::table('excel_upload')->select('filename')->distinct()->get();
 		$data['sys_title']  = Voucher::get_csvtitle(); 
-		$data['category']  = Voucher::get_category();  
+		$data['category']  = Voucher::get_maincategory();  
 		$data['result'] = $result;
 		
 		return view('main', $data);

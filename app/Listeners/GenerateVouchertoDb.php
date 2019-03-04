@@ -8,6 +8,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Storage;
 
 use App\Voucher;
+use App\Voucher_category;
+use Carbon\Carbon;
 use Excel;
 use DB;
 class GenerateVouchertoDb
@@ -40,6 +42,7 @@ class GenerateVouchertoDb
 		$queuet   = Voucher::QueuedList($filename)->toArray();
 		$systitle = Voucher::get_csvtitle()->toArray();
 		
+		$now = Carbon::now()->toDateTimeString();
 		$cfile = array();
 		$flist = $queuet;
 		foreach ($systitle as $key=>$filecolumn)
@@ -89,36 +92,37 @@ class GenerateVouchertoDb
 							$insdata[$re_field] = $val[$mva];
 							$insdata['source_file'] = $filename;
 
+
 							if ($re_field == 'product_category')
-							// if ($re_field == 'product_category' && !$bTemp)
 							{
 								
 								$_data= explode("/", $insdata['product_category']);
-
-								foreach($_data as $key=> $item){
-									//if(empty($kk[$i])){
-									$get_data = self::sort_voucher($item, $categories);
-									print($get_data);
-									//if(!empty($get_data)){
-									$array_data[]=$get_data;
+								
+								
+									if(empty($kk[$i])){
+										foreach($_data as $key=> $item){
+											$get_data = self::sort_voucher($item, $categories);
+											// if(!empty($get_data)){
+											$array_data[]=$get_data;
+											// print_r("123");
+											// }
+											//print_r($array_data);
+											//print_r($array_data);
+											//  print_r("check1");
+											//  
+										}
 									$kk[$i] = $array_data;
-										
-									//}
-									//}
-									
+									unset($array_data);
 								}
+								
 								
 							}
 
-
 						}
+						
 						$m++;
 					}
 				}	
-				
-				
-				// var_dump($array_data);
-				///print_r($kk[]);
 			
 
 				if (!empty($insdata))
@@ -127,12 +131,20 @@ class GenerateVouchertoDb
 				}
 				$i++;
 			}
-			// foreach (array_chunk($dbc,800) as $t) {
 			foreach ($dbc as $key=> $t) {
 
-			   //$id = DB::table('unreleased_vouchers')->insertGetId($t);
+			   $id = DB::table('unreleased_vouchers')->insertGetId($t);
+
+			   foreach($kk[$key] as $key=>$val)
+				{
+					$catedata['unr_voucher_id']  = $id; 
+
+					$catedata['category']  = $val; 
+					$catedata['updated_at']  = $now; 
+					$catedata['created_at']  = $now; 
+					DB::table('voucher_category')->insert($catedata);
+				}
 			}
-			die();
 		}
 		else { die('File Missing/No excel rows to process'); }
 	}
@@ -142,25 +154,23 @@ class GenerateVouchertoDb
 	private function sort_voucher($gencate, $categories)
 	{
 
-				$category= '';
-
-				
 				foreach($categories as $key=> $cate){
 					$category= '';
-					//print_r($cate->parent_id)
-
-					// echo 'GC--'.$gencate.'--';	echo 'DN---'.$cate->display_name;
 
 					if($gencate == $cate->display_name){
 						$category= $cate->parent_id;
-						// echo '--YES';
+						// echo 'GC--'.$gencate;
+						// echo 'DN---'.$cate->display_name;
+						// echo '<br><br>';
+						// echo 'PI---'.$cate->parent_id;
+						// echo '<br><br>';
+						//  echo '--YES';
 						return $category;
-						
+					// }
+					}else{
+						$category= '';
 					}
-					// echo '<br><br>';
 				}
-		//print_r($category);
-		// print_r("check");
 		return $category;
 	}
 
