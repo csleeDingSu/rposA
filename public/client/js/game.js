@@ -181,7 +181,12 @@ function initGame(data, level, latest_result, consecutive_lose){
         if (timer <= freeze_time) {
             $('.radio-primary').unbind('click');
         } else if (balance == 1200 && acupoint == 0) {
-            bindBetButton();
+            if(show_game_rules == undefined) {
+                $('.radio-primary').off('click');
+                $('.button-card').on('click', showGameRules);
+            } else {
+                bindBetButton();
+            }
         } else {
             Cookies.remove('show_game_rules');
             bindBetButton();
@@ -305,18 +310,8 @@ function getSocket(){
                 var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
                 var result_records = data.data.gamehistory.data;
-
-                var wallet = false;
-                 if(typeof(data.data.wallet) !== 'undefined'){
-                    var wallet_records = data.data.wallet;
-                    wallet = true;
-                }
-
-                var betting_history = false;
-                if(typeof(data.data.bettinghistory) !== 'undefined'){
-                    var betting_records = groupHistory(data.data.bettinghistory.data);
-                    betting_history = true;
-                }
+                var wallet_records = data.data.wallet;
+                var betting_records = groupHistory(data.data.bettinghistory.data);
                 
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
@@ -328,16 +323,10 @@ function getSocket(){
                     error: function (error) { $(".reload").show(); },
                     success: function(data) {
                         token = data.access_token;
+                        initUser(wallet_records);
                         initGame(game_records, level, latest_result, consecutive_lose);
                         updateResult(result_records);
-
-                        if(wallet){
-                            initUser(wallet_records);
-                        }
-
-                        if(betting_history){
-                            updateHistory(betting_records);
-                        }
+                        updateHistory(betting_records);
                     }
                 });
 
