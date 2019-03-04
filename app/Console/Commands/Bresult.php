@@ -54,7 +54,11 @@ class Bresult extends Command
         
         if ($drawid == '0') $drawid = 1546;  
 		
-		$bettinglist =  \DB::table('member_game_bet_temp')->where('drawid', '=', $drawid)->where('gametype', '=', 1)->get();
+		//$bettinglist =  \DB::table('member_game_bet_temp')->where('drawid', '=', $drawid)->where('gametype', '=', 1)->get();
+
+
+		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 1)->get() ;
+
 		
 		$current_result = Game::get_single_gameresult($drawid);
 		

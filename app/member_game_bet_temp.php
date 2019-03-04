@@ -2,9 +2,15 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class member_game_bet_temp extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'member_game_bet_temp';
+
+    protected $softDelete = true;
 
     protected $connection = 'mysql';
 
