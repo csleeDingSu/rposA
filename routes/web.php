@@ -426,7 +426,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 
 Route::get('nlogin/{token?}', 'Auth\MemberRegisterController@showAuthForm')->name('render.member.register');
-Route::post('nlogin', 'Auth\MemberLoginController@dologin')->name('submit.member.login');
+Route::any('nlogin', 'Auth\MemberLoginController@dologin')->name('submit.member.login');
 Route::post('nreg', 'Auth\MemberRegisterController@doreg')->name('submit.member.newregister');
 
 
