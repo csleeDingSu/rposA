@@ -40,7 +40,7 @@
 				<div class="number">
 					<span class="balance spanAcuPoint">0</span>
 					<div class="btn-calculate-wrapper">
-						<div class="btn-calculate">兑换红包</div>
+						<div class="btn-calculate">赚钱规则</div>
 					</div>
 				</div>
 			</div>
