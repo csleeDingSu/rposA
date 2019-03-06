@@ -55,14 +55,14 @@ class vip_result extends Command
         if ($drawid == '0') $drawid = 1546;  
 		
 		sleep(1); //fix for last sec betting
-		
+		/*
 		//Testing
 		$now      = Carbon::now()->toDateTimeString();
-		$drawid   = Game::get_current_result(101, $now);
-		
+		$drawid   = Game::get_current_result(101, $now);		
 		$this->info('DrawID:'.$drawid);
 		//End
-		
+		*/
+			
 		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 2)->get() ;
 		
 		$current_result = Game::get_single_gameresult($drawid);
@@ -81,7 +81,7 @@ class vip_result extends Command
 		
 		foreach ($out as $key=> $re)
 		{
-			echo 'here-'. $key;
+			$this->line('event key'. $key);
 			event(new \App\Events\EventVIPBetting($key, $re));
 		}
 		
