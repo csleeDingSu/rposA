@@ -221,7 +221,7 @@ class MemberRegisterController extends Controller
 			
 			//update members table
 			Members::where('id', $id)
-				->update(['game_life' => $setting->game_default_life]);
+				->update(['current_life' => $setting->game_default_life]);
 			
 			
 			
