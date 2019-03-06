@@ -56,7 +56,8 @@ class Bresult extends Command
 		
 		//$bettinglist =  \DB::table('member_game_bet_temp')->where('drawid', '=', $drawid)->where('gametype', '=', 1)->get();
 
-
+		sleep(1); //fix for last sec betting
+		
 		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 1)->get() ;
 
 		
