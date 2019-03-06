@@ -126,11 +126,12 @@ class MemberRegisterController extends Controller
 			
 		}
 		$setting = \App\Admin::get_setting();
-		$id = 9696969;
+		$id = 9696961;
 		$wallet = \App\Wallet::create([
 				'current_life' => $setting->game_default_life,
 				'member_id' =>$id
 			]);
+		echo $setting->game_default_life;
 		die();
 		
 		return view('auth.login', $data);
