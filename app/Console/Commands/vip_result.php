@@ -59,6 +59,8 @@ class vip_result extends Command
 		//Testing
 		$now      = Carbon::now()->toDateTimeString();
 		$drawid   = Game::get_current_result(101, $now);
+		
+		$this->info('DrawID:'.$drawid);
 		//End
 		
 		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 1)->get() ;
