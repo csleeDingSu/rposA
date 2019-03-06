@@ -6,7 +6,7 @@ use Carbon\Carbon;
 class Wallet extends Model
 {   
     protected $fillable = [
-        'member_id',
+        'member_id','current_life','current_balance','balance_before'
     ];
 
     /**
