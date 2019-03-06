@@ -93,10 +93,14 @@ function getProductList(token) {
                 $('#prize').html(html);
 
             } else {
+                var current_life = parseInt($(".nTxt").html());
+
                 $.each(packages, function(i, item) {
                     var available_quantity = item.available_quantity;
                     var used_quantity = item.used_quantity;
                     var reserved_quantity = item.reserved_quantity;
+                    var cannot_redeem = false;
+                    var cls_cannot_redeem = '';
 
                     if(available_quantity === null){
                         available_quantity = 0;
@@ -108,6 +112,15 @@ function getProductList(token) {
 
                     if(reserved_quantity === null){
                         reserved_quantity = 0;
+                    }
+
+                    if (item.min_point > parseInt(data.current_point)){
+                        cannot_redeem = true;
+                        cls_cannot_redeem = 'btn-cannot-redeem';
+                    }
+
+                    if(available_quantity == 0){
+                        cls_cannot_redeem = 'btn-cannot-redeem';
                     }
 
                     var total_used = parseInt(used_quantity) + parseInt(reserved_quantity) || 0;
@@ -136,9 +149,19 @@ function getProductList(token) {
                                         '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ total_used +' 张</div>' +
                                     '</div>' +
                                     '<div class="col-xs-3 column-3">' +
-                                        '<div class="btn-redeem openeditmodel_p'+ i +'">兑换</div>' +
-                                    '</div>' +
-                                '</div>';
+                                        '<div class="btn-redeem openeditmodel_p'+ i + ' ' + cls_cannot_redeem + '">兑换</div>' +
+                                    '</div>';
+
+                            if (cannot_redeem || current_life == 0) {
+                                html +='<div class="horizontal"></div>' +
+                                    '<div class="col-xs-9 insufficient">不够积分兑换，邀请一个好友赚450积分！</div>' + 
+                                    '<div class="col-xs-3 btn-insufficient-wrapper">' +
+                                        '<a href="/share"><div class="btn-insufficient">马上邀请</div></a>' +
+                                    '</div>';
+                            }
+
+                                html +='</div>';
+
 
                     if(item.package_type == 1){
                         htmlmodel += '<!-- Modal starts -->' +
@@ -256,6 +279,8 @@ function getProductList(token) {
                     var available_quantity = item.available_quantity;
                     var used_quantity = item.used_quantity;
                     var reserved_quantity = item.reserved_quantity;
+                    var cannot_redeem = false;
+                    var cls_cannot_redeem = '';
 
                     if(available_quantity === null){
                         available_quantity = 0;
@@ -267,6 +292,15 @@ function getProductList(token) {
 
                     if(reserved_quantity === null){
                         reserved_quantity = 0;
+                    }
+
+                    if (item.min_point > parseInt(data.current_point)){
+                        cannot_redeem = true;
+                        cls_cannot_redeem = 'btn-cannot-redeem';
+                    }
+
+                    if(available_quantity == 0){
+                        cls_cannot_redeem = 'btn-cannot-redeem';
                     }
 
                     var total_used = parseInt(used_quantity) + parseInt(reserved_quantity) || 0;
@@ -289,9 +323,18 @@ function getProductList(token) {
                                     '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ total_used +' 张</div>' +
                                 '</div>' +
                                 '<div class="col-xs-3 column-3">' +
-                                    '<div class="btn-redeem openeditmodel'+ i +'">兑换</div>' +
-                                '</div>' +
-                            '</div>';
+                                    '<div class="btn-redeem openeditmodel'+ i + ' ' + cls_cannot_redeem +'">兑换</div>' +
+                                '</div>';
+
+                        if (cannot_redeem || current_life == 0) {
+                            html += '<div class="horizontal"></div>' +
+                                    '<div class="col-xs-9 insufficient">不够积分兑换，邀请一个好友赚450积分！</div>' + 
+                                    '<div class="col-xs-3 btn-insufficient-wrapper">' +
+                                        '<a href="/share"><div class="btn-insufficient">马上邀请</div></a>' +
+                                    '</div>';
+                        }
+
+                            html += '</div>';
 
                     htmlmodel += '<!-- Modal starts -->' +
                             '<div class="modal fade col-lg-12" id="viewvouchermode'+ i +'" tabindex="-1" >' +
