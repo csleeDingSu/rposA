@@ -19,6 +19,7 @@ class Members extends Model
 		'wechat_name',
 		'phone',
 		'wechat_verification_status',
+		'game_life'
     ];
 
     /**
