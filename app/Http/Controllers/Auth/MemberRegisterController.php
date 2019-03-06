@@ -220,8 +220,8 @@ class MemberRegisterController extends Controller
 				]);
 			
 			//update members table
-			Members::where('id', $id)
-				->update(['game_life' => $setting->game_default_life]);
+			/*Members::where('id', $id)
+				->update(['game_life' => $setting->game_default_life]);*/
 			
 			
 			
