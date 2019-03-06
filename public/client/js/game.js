@@ -629,7 +629,8 @@ function bindBetButton(){
 }
 
 function bindCalculateButton(){
-    $('.btn-calculate').click(function( event ){
+    $('.btn-calculate').on('click', showGameRules);
+    /*$('.btn-calculate').click(function( event ){
         event.stopImmediatePropagation();
 
         var acupoint = $('.spanAcuPoint').html();
@@ -653,7 +654,7 @@ function bindCalculateButton(){
         } else {
             $('#reset-life-play').modal();
         }
-    });
+    });*/
 }
 
 function bindResetLifeButton(){
