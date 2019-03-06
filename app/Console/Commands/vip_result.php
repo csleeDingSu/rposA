@@ -54,6 +54,8 @@ class vip_result extends Command
         
         if ($drawid == '0') $drawid = 1546;  
 		
+		sleep(1); //fix for last sec betting
+		
 		$bettinglist =  \DB::table('member_game_bet_temp')->where('drawid', '=', $drawid)->where('gametype', '=', 2)->get();
 		
 		$current_result = Game::get_single_gameresult($drawid);
