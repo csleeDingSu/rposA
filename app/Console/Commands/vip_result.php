@@ -56,6 +56,11 @@ class vip_result extends Command
 		
 		sleep(1); //fix for last sec betting
 		
+		//Testing
+		$now      = Carbon::now()->toDateTimeString();
+		$drawid   = Game::get_current_result(101, $now);
+		//End
+		
 		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 1)->get() ;
 		
 		$current_result = Game::get_single_gameresult($drawid);
