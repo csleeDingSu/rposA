@@ -207,7 +207,7 @@ class MemberRegisterController extends Controller
 				'wechat_verification_status' => 1,
 			]);
 			
-			$id = $member->id;
+			$id = $member->id;echo $id;die();
 			//Get Setting Life 
 			$setting = Admin::get_setting();
 			
