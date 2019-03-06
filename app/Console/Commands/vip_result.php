@@ -154,7 +154,7 @@ class vip_result extends Command
 		if ($gen_result === $bet)
 		{
 			$status = 'win';
-			$is_win = TRUE;				
+			$is_win = TRUE;	
 		}	
 		
 		//update wallet
@@ -163,10 +163,11 @@ class vip_result extends Command
 		{
 			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP');
 			$reward = $level->point_reward;
+			$this->info('User Win');
 		}
 		else
 		{
-			
+			$this->error('User Lose');
 			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP','debit');
 		}
 			
@@ -189,10 +190,12 @@ class vip_result extends Command
 						Game::reset_member_game_level($memberid , $gameid,'1');			
 						$point = Wallet::merge_vip_wallet($memberid);									
 						Package::reset_current_package($packageid->id);
+						$this->error('User Consecutive Lose');
 					}
 				}
 				$result = Game::get_betting_history_grouped($gameid, $memberid, 'vip');
-                event(new \App\Events\EventVipBettingHistory($result,$memberid));				
+                event(new \App\Events\EventVipBettingHistory($result,$memberid));
+				$this->info('Event Triggerd');
 				return ['success' => true, 'status' => $status, 'game_result' => $game_result,'mergepoint' => $point,'consecutive_loss'=>$close]; 
 			}
 	}
