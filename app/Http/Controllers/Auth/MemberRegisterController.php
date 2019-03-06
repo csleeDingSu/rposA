@@ -210,11 +210,6 @@ class MemberRegisterController extends Controller
 			$id = $member->id;
 			//Get Setting Life 
 			$setting = Admin::get_setting();
-			//update members table
-			$mem = new Members();
-			$mem->game_life = $setting->game_default_life;
-			$mem->id = $id; 
-			$mem->save();
 			
 			
 			$wallet = \App\Wallet::create([
@@ -223,6 +218,10 @@ class MemberRegisterController extends Controller
 					'current_balance' => 1200,
 					'balance_before'  => 1200
 				]);
+			
+			//update members table
+			Members::where('id', $id)
+				->update(['game_life' => $setting->game_default_life]);
 			
 			
 			
