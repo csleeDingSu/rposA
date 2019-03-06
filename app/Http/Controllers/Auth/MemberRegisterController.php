@@ -196,7 +196,7 @@ class MemberRegisterController extends Controller
 			// 	'referred_by'   => $referred_by,
 			// ]);
 
-			Members::create([
+			$member = Members::create([
 				'username' => $data['username'],
 				'email' => $data['phone'] . '@email.com',
 				'password' => Hash::make($data['password']),
@@ -205,7 +205,23 @@ class MemberRegisterController extends Controller
 				'phone' => $data['phone'],
 				//'wechat_name' => $data['username'],//(isset($data['wechat_name']) ? $data['wechat_name'] : null),
 				'wechat_verification_status' => 1,
-			]);			
+			]);
+			
+			$id = $member->id;
+			//Get Setting Life 
+			$setting = Admin::get_setting();
+			//update members table
+			$mem = new Members();
+			$mem->game_life = $setting->game_default_life;
+			$mem->id = $id; 
+			$mem->save();
+			
+			$wallet = \App\Wallet::create([
+				'current_life' => $setting->game_default_life,
+				'member_id' =>$id
+			]);
+			
+			
 			
 			//Send Welcome Mail			
 					
