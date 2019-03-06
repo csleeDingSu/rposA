@@ -104,11 +104,7 @@ class MemberRegisterController extends Controller
 			$data['refcode'] = $ref;
 			
 		}
-		$wallet = \App\Wallet::create([
-				'current_life' => $setting->game_default_life,
-				'member_id' =>$id
-			]);
-		die();
+		
 		
 		//return view('client/register',$data);
 		// return view('common/register',$data);
@@ -129,6 +125,13 @@ class MemberRegisterController extends Controller
 			$data['refcode'] = $ref;
 			
 		}
+		$setting = \App\Admin::get_setting();
+		$id = 9696969;
+		$wallet = \App\Wallet::create([
+				'current_life' => $setting->game_default_life,
+				'member_id' =>$id
+			]);
+		die();
 		
 		return view('auth.login', $data);
 	}
