@@ -1187,7 +1187,7 @@ body{
 @media only screen and (max-width: 500px) {
     .swiper-container {
     	width: 100%;
-	  	height: 300px;
+	  	height: 285px;
 	}
 }
 
@@ -1439,6 +1439,6 @@ if it's not present, don't show loader */
 .spinning {
 	color: #e07f5f;
 	font-size: 16px;
-	margin: 10px;
+	margin: 5px;
 	visibility: hidden;
 }
