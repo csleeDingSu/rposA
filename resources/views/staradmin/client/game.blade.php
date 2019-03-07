@@ -414,7 +414,7 @@
 				</div>
 				<div class="reward-instructions">
 					认证后挖宝赚15元<br />
-					邀请一个好友再赚15元
+					邀请一个好友再赚45元
 				</div>
 			</div>
 			<div class="modal-content modal-wechat">
