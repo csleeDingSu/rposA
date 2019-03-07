@@ -49,6 +49,8 @@ td.history {
 
 td.legend, td.timer {
     background-color: transparent;
+    padding: 0 0 0 6px;
+    height: 20px;
 }
 
 td.timer {
