@@ -527,8 +527,9 @@
 								<div class="modal-warning-title">
 									您当前没有挖宝次数
 								</div>
-								<div class="modal-warning-content">
-									邀请好友注册将获得挖宝次数
+								<div class="modal-invite-content">
+									<span class="modal-invite-title">邀请1位好友</span><br />
+									奖励3次挖宝机会，赚45元红包
 								</div>
 								<a href="/share" class="link-button">
 									<div class="modal-warning-button">
