@@ -137,7 +137,7 @@ return [
 	'number' => '号',
 	'voucher_category' => '优惠卷类别',
 	'sub_cate' => '子类别',
-	'sub_cate' => '子类别',
+	'search' => '搜索',
 	
 	
 	//messages

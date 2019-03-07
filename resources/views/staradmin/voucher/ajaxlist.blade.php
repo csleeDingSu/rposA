@@ -3,40 +3,50 @@
 
 		{!! $result->render() !!}
 <div class="row">
+
 	<div class=" col-xs-6 col-md-1">
 			<span class="duplicatefinder" id="duplicatefinder"></span>
 			<a onClick="RemoveDuplicatevoucher()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-danger btnduplicate" id="btnduplicate">{{ trans('dingsu.remove') }}@lang('dingsu.duplicate')</a>
 
 	</div>
+
+
 	<div class=" col-md-9">
-	<form class="form-sample" name="voucher_tag" id="voucher_tag" action="" method="post" autocomplete="on" >
-	<label for="system_category" class="col-sm-1 col-form-label">@lang('dingsu.category')</label>
-			@foreach ($category as $cate) 
-			<input type="checkbox" id="cate_tag" name="cate_tag[]" value="{{$cate->id}}"  checked:>{{$cate->display_name}}
-			@endforeach
-			<a onClick="save_tag()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-success btnsubmit" id="btnsubmit">@lang('dingsu.submit')</a>
+		<form class="form-sample" name="voucher_tag" id="voucher_tag" action="" method="post" autocomplete="on" >
+		<label for="system_category" class="col-sm-1 col-form-label">@lang('dingsu.category')</label>
+				@foreach ($category as $cate) 
+				<input type="checkbox" id="cate_tag" name="cate_tag[]" value="{{$cate->id}}"  checked:>{{$cate->display_name}}
+				@endforeach
+				<a onClick="save_tag()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-success btnsubmit" style="float: right;" id="btnsubmit">@lang('dingsu.submit')</a>
+		</form>	
 	</div>
 	
-	</form>	
+	</div>
 	
-	<div class="form-group row">
-		<div class="col">
+	<div class="row">
+	<div class="col-md-3">
 			<div class=" form-check form-check-flat">
 				<label for="checkall" class="form-check-label">
 							<input class="form-check-input " type="checkbox" name="checkall" id="checkall" onClick="return Checkall();"> @lang('dingsu.check_all')</label>
 			</div>
 		</div>
-		<div class="col">
+
+		<div class="col-sd-3">
 			<select class="form-control" name="product_action" id="product_action">
 				<option value="0">@lang('dingsu.default_select')</option>
 				<option value="delete">@lang('dingsu.delete')</option>
 			</select>
+			<div>
+			</div>
 		</div>
-		<div class="col">
-			<a onClick="ProductAction()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-success btnsubmit" id="btnsubmit">@lang('dingsu.submit')</a>
+
+		<div class="col-md-6">
+		<a onClick="ProductAction()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-success btnsubmit" id="btnsubmit">@lang('dingsu.submit')</a>
+			
 		</div>
 	</div>
-</div>
+
+
 
 
 		<form action="" name="productdisplayform" id="productdisplayform">
