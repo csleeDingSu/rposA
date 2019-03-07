@@ -747,6 +747,17 @@ body{
 	padding-bottom: 30px;
 }
 
+.modal-invite-title {
+	font-size: 20px;
+}
+
+.modal-invite-content {
+	color: #bd9e4a;
+	font-size: 16px;
+	padding-bottom: 40px;
+	padding-top: 10px;
+}
+
 #reset-life-play .modal-body {
 	padding-left: 0;
 	padding-right: 0;
@@ -801,7 +812,7 @@ body{
 	margin-bottom: 15px;
 }
 
-.modal-message-button, .modal-warning-button, .modal-manual-button {
+.modal-message-button, .modal-warning-button, .modal-manual-button, .modal-confirm-button, .modal-invite-button {
 	background: #ff6868;
 	color: #ffffff;
 	padding: 5px;
@@ -818,6 +829,17 @@ body{
 	font-size: 18px;
 	border-radius: 5px;
 
+}
+
+.modal-confirm-button {
+	background: #ffffff;
+	color: #ff6868;
+	border: 1px solid #ff6868;
+}
+
+.modal-invite-button {
+	border: 1px solid #ff6868;
+	margin-top: 10px;
 }
 
 .modal-manual-button {

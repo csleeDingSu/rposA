@@ -410,11 +410,11 @@
 			<div class="modal-title">
 				<h1>您有红包等待领取</h1>
 				<div class="reward">
-					¥ <span class="reward-amount">45.00</span>
+					¥ <span class="reward-amount">60.00</span>
 				</div>
 				<div class="reward-instructions">
-					认证后能获得3次挖宝机会<br />
-					每次挖宝机会会能获得15元
+					认证后挖宝赚15元<br />
+					邀请一个好友再赚15元
 				</div>
 			</div>
 			<div class="modal-content modal-wechat">
@@ -472,9 +472,14 @@
 								<div class="modal-message-balance">
 									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
 								</div>
-								<div class="modal-message-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life">
 									确认结算
-								</div>												
+								</div>
+								<a href="/share">
+								<div class="modal-invite-button">
+									分享好友获挖宝机会
+								</div>
+								</a>										
 							</div>
 						</div>
 					</div>							
@@ -527,8 +532,9 @@
 								<div class="modal-warning-title">
 									您当前没有挖宝次数
 								</div>
-								<div class="modal-warning-content">
-									邀请好友注册将获得挖宝次数
+								<div class="modal-invite-content">
+									<span class="modal-invite-title">邀请1位好友</span><br />
+									奖励3次挖宝机会，赚45元红包
 								</div>
 								<a href="/share" class="link-button">
 									<div class="modal-warning-button">
@@ -591,9 +597,14 @@
 								<div class="modal-lose-content">
 									本局盈利的挖宝币清零
 								</div>
-								<div class="modal-message-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life">
 									继续挖宝
 								</div>
+								<a href="/share">
+								<div class="modal-invite-button">
+									分享好友获挖宝机会
+								</div>
+								</a>
 							</div>
 						</div>
 					</div>							
