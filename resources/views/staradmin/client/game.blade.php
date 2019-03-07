@@ -472,9 +472,14 @@
 								<div class="modal-message-balance">
 									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
 								</div>
-								<div class="modal-message-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life">
 									确认结算
-								</div>												
+								</div>
+								<a href="/share">
+								<div class="modal-invite-button">
+									分享好友获挖宝机会
+								</div>
+								</a>										
 							</div>
 						</div>
 					</div>							
@@ -592,9 +597,14 @@
 								<div class="modal-lose-content">
 									本局盈利的挖宝币清零
 								</div>
-								<div class="modal-message-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life">
 									继续挖宝
 								</div>
+								<a href="/share">
+								<div class="modal-invite-button">
+									分享好友获挖宝机会
+								</div>
+								</a>
 							</div>
 						</div>
 					</div>							
