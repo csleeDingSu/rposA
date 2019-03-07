@@ -657,14 +657,19 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="instructions">
-									每局拥有1200的游戏积分，分6次来玩。
-								</div>
-								<img src="{{ asset('/client/images/rules_timeline.png') }}" class="rules-content-img-timeline"/>
-								<div class="instructions">
-									第一次押10积分，如果不中下次押30，如果还不中下次押70，不停的增加投入。<br />
-									如果猜中，就返回10积分重新押起。<br />
-									所以只要6次内猜中一次，就能无限循环不停赚积分，赚的积分可提现。<br />
-									6次全错的话，扣除赚到的积分。
+									这是个猜单双的游戏，原始游戏积分为1200。
+									每次下注有50%中奖概率，<span class="highlight">但把积分1200分成6次下注，猜中概率高达99.9%</span>，<br />
+									原理如下：<br />
+
+									<div class="speech-bubble">
+										1200依次分[10，30，70，150，310，640]
+										第一次下注10，如果猜错，第二次下注30。
+										如果中了，不仅捞回第一次亏的10，还赚20。
+										共有6次的机会，6次里中一次都能回本并盈利。
+									</div>
+
+									赢的积分可兑换红包，每次挖宝机会最多赢到
+									150积分封顶，10积分可兑换1元红包。
 								</div>
 
 								@if($betting_count > 0)
