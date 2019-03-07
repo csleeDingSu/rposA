@@ -747,6 +747,17 @@ body{
 	padding-bottom: 30px;
 }
 
+.modal-invite-title {
+	font-size: 20px;
+}
+
+.modal-invite-content {
+	color: #bd9e4a;
+	font-size: 16px;
+	padding-bottom: 40px;
+	padding-top: 10px;
+}
+
 #reset-life-play .modal-body {
 	padding-left: 0;
 	padding-right: 0;
