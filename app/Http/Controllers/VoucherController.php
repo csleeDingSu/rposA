@@ -398,13 +398,7 @@ class VoucherController extends BaseController
 		
 		
 		//$result =  \DB::table('tips');
-		//$result =  \DB::table('vouchers');
-
-		$result = \DB::table('voucher_category')
-			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id');
-			//->where('voucher_category.category' ,'=' , $cid)
-			//->paginate(5);
-			
+		$result =  \DB::table('vouchers');
 		$data['page'] = 'voucher.list'; 
 		$data['sys_title']  = Voucher::get_csvtitle();
 		$data['category']  = Voucher::get_maincategory();
