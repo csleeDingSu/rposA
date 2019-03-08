@@ -501,7 +501,7 @@
 								<div class="modal-message-title">
 									恭喜获得<span class="spanVipPoint"></span>挖宝币
 								</div>
-								<div class="modal-message-content">
+								<div class="modal-message-content" id="div-fee">
 									结算需扣除<span class="spanFee"></span>手续费，最终到账<span class="spanNetVip"></span>
 								</div>
 								<div class="modal-message-manual">

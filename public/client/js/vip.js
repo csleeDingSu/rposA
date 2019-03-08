@@ -830,6 +830,7 @@ function startTimer(duration, timer, freeze_time) {
                     $('.spanVipPoint').html(mergepoint);
                     $('.spanNetVip').html(net_vip_point);
 
+                    $('#div-fee').hide();
                     $('#spanPoint').html(mergepoint);
 
                     $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
