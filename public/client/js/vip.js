@@ -339,8 +339,8 @@ function getSocket(){
                 var game_records = data.data.gamesetting;
                 var level = data.data.viplevel;
                 var latest_result = data.data.latest_result;
-                var consecutive_lose = data.data.vip_consecutive_lose;
                 var result_records = data.data.gamehistory.data;
+                var consecutive_lose = $('#hidConsecutiveLose').val();
 
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
@@ -348,7 +348,7 @@ function getSocket(){
                 initGame(game_records, level, latest_result, consecutive_lose);
                 updateResult(result_records);
 
-                if(update_wallet){
+                if(update_wallet && consecutive_lose == ""){
                     initUser(wallet_data);
                     update_wallet = false;
                 }
@@ -812,32 +812,35 @@ function startTimer(duration, timer, freeze_time) {
 
         --timer;
 
-        if (timer < 0) {            
-            timer = duration;
+        if (timer <= 0) {
 
-            var consecutive_loss = $('#hidConsecutiveLose').val();
-            var mergepoint = parseInt($('#hidMergePoint').val()) || 0;
-            var previous_point = $('.packet-point').html();
-            var fee = $('#hidFee').val();
-            var net_vip_point = parseInt(mergepoint) - parseInt(fee);
+            if(timer == 0){
+                var consecutive_loss = $('#hidConsecutiveLose').val();
+                var mergepoint = parseInt($('#hidMergePoint').val()) || 0;
+                var previous_point = $('.packet-point').html();
+                var fee = $('#hidFee').val();
+                var net_vip_point = parseInt(mergepoint); // No charging fee;
 
-            if(net_vip_point < 0) {
-                net_vip_point = 0;
-            }
+                if(net_vip_point < 0) {
+                    net_vip_point = 0;
+                }
 
-            if (consecutive_loss == 'yes') {
-                showProgressBar(false);
-                $('.spanVipPoint').html(mergepoint);
-                $('.spanNetVip').html(net_vip_point);
+                if (consecutive_loss == 'yes') {
+                    showProgressBar(false);
+                    $('.spanVipPoint').html(mergepoint);
+                    $('.spanNetVip').html(net_vip_point);
 
-                $('#spanPoint').html(mergepoint);
+                    $('#spanPoint').html(mergepoint);
 
-                $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
-                $('.btn-reset-life').click(function(){
-                    Cookies.set('previous_point', previous_point);
-                    window.top.location.href = "/redeem";
-                });
-            } else {
+                    $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
+
+                    $('.btn-reset-life').click(function(){
+                        Cookies.set('previous_point', previous_point);
+                        window.top.location.href = "/redeem";
+                    });
+                }
+            } else {            
+                timer = duration;
                 resetGame();
             }
 
