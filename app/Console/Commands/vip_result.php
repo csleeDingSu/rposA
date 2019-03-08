@@ -63,7 +63,7 @@ class vip_result extends Command
 		//End
 		*/
 			
-		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 2)->get() ;
+		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 2)->get() ;		
 		
 		$current_result = Game::get_single_gameresult($drawid);
 		
