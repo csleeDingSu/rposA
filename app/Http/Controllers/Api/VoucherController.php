@@ -51,6 +51,7 @@ class VoucherController extends Controller
 			$vouchers = \DB::table('voucher_category')
 			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
 			->where('voucher_category.category' ,'=' , $cid)
+			->groupBy('vouchers.id')
 			->paginate(5);
 
 			//$vouchers = Voucher::get_vouchers($cid)->paginate(5);

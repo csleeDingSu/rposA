@@ -138,7 +138,7 @@ class Voucher extends Model
 			
 		return $result;
 	}
-	public static function check_duplicate($type = 'voucher_id')
+	public static function check_duplicate($type = 'product_name')
 	{
 		$result = DB::select("SELECT count(1) AS duplicate_count
 		FROM (
@@ -166,7 +166,7 @@ class Voucher extends Model
 	}
 
 	
-	public static function remove_duplicate($type = 'voucher_id')
+	public static function remove_duplicate($type = 'product_name')
 	{
 		$result = DB::select("DELETE n1 FROM vouchers n1, vouchers n2 WHERE n1.id > n2.id AND n1.$type= n2.$type");
 		return TRUE;
