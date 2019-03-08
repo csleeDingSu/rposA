@@ -131,18 +131,24 @@ class GenerateVouchertoDb
 				}
 				$i++;
 			}
+
+			// print_r($dbc);
+			// die();
 			foreach ($dbc as $key=> $t) {
 
-			   $id = DB::table('unreleased_vouchers')->insertGetId($t);
-
-			   foreach($kk[$key] as $key=>$val)
-				{
-					$catedata['unr_voucher_id']  = $id; 
-
-					$catedata['category']  = $val; 
-					$catedata['updated_at']  = $now; 
-					$catedata['created_at']  = $now; 
-					DB::table('voucher_category')->insert($catedata);
+			   
+				// print_r($kk[$key]);
+			   //die();
+			   if(!empty($kk[$key])){
+				$id = DB::table('unreleased_vouchers')->insertGetId($t);
+				foreach($kk[$key] as $vkey=>$val)
+					{
+						$catedata['unr_voucher_id']  = $id; 
+						$catedata['category']  = $val; 
+						$catedata['updated_at']  = $now; 
+						$catedata['created_at']  = $now; 
+						DB::table('voucher_category')->insert($catedata);
+					}
 				}
 			}
 		}
