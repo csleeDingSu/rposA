@@ -158,6 +158,12 @@ class Voucher extends Model
 		return $result;
 	}
 
+	public static function get_vouchers($id = null)
+	{
+		$result = DB::table('voucher_category')->where('category',$id)->first();
+		
+		return $result;
+	}
 
 	
 	public static function remove_duplicate($type = 'voucher_id')

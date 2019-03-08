@@ -350,6 +350,7 @@ class VoucherController extends BaseController
 			
 			$row['created_at']  = $now; 
 			$row['updated_at']  = $now; 
+			$array_id[]=$row['id'];
 			unset($row['id']);
 			
 			$insdata[] = $row;
@@ -363,13 +364,17 @@ class VoucherController extends BaseController
 		{
 			case 'move':
 
-				foreach ($insdata as $row)
+				foreach ($insdata as $key=>$row)
 				{
-					//print_r($row);die();
+					// print_r($array_id);
+					// die('--ll');
 					$id = DB::table('vouchers')->insertGetId($row);
-					echo $id;
-					Voucher::update_voucher_id($dbi, $id);
+					Voucher::update_voucher_id($array_id[$key], $id);
+					// echo $id;
+					// Voucher::update_voucher_id($dbi, $id);
 				}
+
+
 
 
 			break;

@@ -7,7 +7,7 @@
 
 
 <link rel="stylesheet" href=" {{ asset('staradmin/css/voucher.css') }}">
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-6">
 
 				<a href="/voucher/upload" class="btn btn-success mr-2">@lang('dingsu.add')</a>
@@ -45,7 +45,7 @@
 					</div>
 				</form>
 			</div>
-		</div>
+		</div> -->
 
 
 		{!! $result->render() !!}
