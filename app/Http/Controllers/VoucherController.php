@@ -301,7 +301,7 @@ class VoucherController extends BaseController
 			case 'delete':
 				Voucher::destroy($dbi);
 				//print_r($dbi);
-				die();
+				// die();
 			break;	
 			// case 'tag':
 			// 	Voucher::tag_voucher($id, $data);
@@ -669,7 +669,7 @@ class VoucherController extends BaseController
 		// {			
 
 			foreach($dbi as $datav){
-				DB::table('voucher_category') -> where('voucher_id', $datav) ->delete();
+				//DB::table('voucher_category') -> where('voucher_id', $datav) ->delete();
 				// $temp_t['unr_voucher_id'] = $datav;
 					// DB::table('voucher_category')
 					// 		->insert($temp_t);
