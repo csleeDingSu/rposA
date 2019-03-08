@@ -45,7 +45,7 @@ class Wallet extends Model
 		return $result;
 	}
 	
-	public static function merge_vip_wallet($memberid,$notes = FALSE)
+	public static function merge_vip_wallet($memberid,$notes = FALSE,$nofee = FALSE)
 	{
 		$newpoint     = '';
 		
@@ -59,7 +59,8 @@ class Wallet extends Model
 				//Fee
 				$setting     = \App\Admin::get_setting();
 				$rfee = $fee = $setting->wabao_fee;
-				
+				//To avoid Admin Fee
+				if ($nofee) $rfee = 0; 
 				
 				if ($rfee >=1 ) 
 				{
