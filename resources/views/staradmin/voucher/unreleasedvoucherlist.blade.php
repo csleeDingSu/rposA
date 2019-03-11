@@ -4,131 +4,13 @@
 </section>
 
 
+<section class="datalist">
+	@include('voucher.ajax_unr_list')
+</section>
 
 
-<link rel="stylesheet" href=" {{ asset('staradmin/css/voucher.css') }}">
-		<!-- <div class="row">
-			<div class="col-md-6">
-
-				<a href="/voucher/upload" class="btn btn-success mr-2">@lang('dingsu.add')</a>
-
-				<a href="/voucher/import" class="btn btn-info mr-2">@lang('dingsu.upload')</a>
-
-			</div>
-
-			<div class="col-md-6">
-				<form class="form-sample" action="" method="post" name="publishsource" id="publishsource">
-					<div class="row">
-						<div class="col-md-8">
-							<div class="form-group row">
-
-								<div class="col-sm-9">
-									<select class="form-control" name="filedata" id="filedata">
-										<option value="0">@lang('dingsu.please_select_to_move')</option>
-										@foreach ($files as $file)
-										<option value="{{$file->filename}}">{{$file->filename}}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group row">
 
 
-								<a onClick="PublishFile()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-success btnmove" id="btnmove">@lang('dingsu.move')</a>
-					
-								
-
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div> -->
-
-
-		{!! $result->render() !!}
-<div class="row">
-	<!--
-<div class="card">
-<div class="card-body">-->
-	<div class=" col-md-7">
-		<p class="card-description display-4" id="">
-			<span class="duplicatefinder" id="duplicatefinder"></span>
-			<a onClick="RemoveDuplicatevoucher()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-danger btnduplicate" id="btnduplicate">@lang('dingsu.remove') @lang('dingsu.duplicate')</a>
-		</p>
-	</div>
-	<div class=" col-md-5 ">
-
-		<div class="form-group row">
-			<div class="col">
-				<div class=" form-check form-check-flat">
-					<label for="checkall" class="form-check-label">
-                                <input class="form-check-input " type="checkbox" name="checkall" id="checkall" onClick="return Checkall();"> @lang('dingsu.check_all')</label>
-				</div>
-			</div>
-			<div class="col">
-				<select class="form-control" name="product_action" id="product_action">
-					<option value="0">@lang('dingsu.default_select')</option>
-					
-					<option value="move">@lang('dingsu.move')</option>
-					<option value="delete">@lang('dingsu.delete')</option>
-					
-				</select>
-			</div>
-			<div class="col">
-				<a onClick="ProductAction()" data-token="{{ csrf_token() }}" href="#" class="btn btn-inverse-success  btn-outline-success btnsubmit" id="btnsubmit">@lang('dingsu.submit')</a>
-			</div>
-		</div>
-
-
-		<!--
-</div>
-</div>-->
-	</div>
-</div>
-
-
-		<form action="" name="productdisplayform" id="productdisplayform">
-
-
-			<ul class="row list-unstyled productlist" id="productlist">
-				@foreach($result as $item)
-				
-				<li class="divprolist_{{$item->id}} col-md-2 row is-flex justify-content-around mr-md-2 mt-2" id="divprolist_{{$item->id}}" >
-					
-					<div class="d-flex justify-content-around">
-					
-					<div class="prolist_{{$item->id}} card " >
-						<div class="card-body" onclick="CheckorUncheck('{{$item->id}}')">
-							<input type="hidden" class="prc_{{$item->id}}" data-id="prc_{{$item->id}}" name="{{$item->id}}" id="prc[]" value="{{$item->id}}">
-							
-							<div class="price-off">{{$item->product_price}} $</div>
-						<img class="zoom card-img-top img-fluid" src="{{$item->product_picurl}}" alt="{{$item->product_name}}">
-							<h5 class="card-title mt-0">{{$item->product_name}}</h5>
-							<p class="card-text mt-0">{{$item->product_category}}</p>
-							<p class="card-text mt-0">{{$item->seller_name}}</p>							
-						</div>
-						
-						<div class="card-body border-top pt-1 mt-auto d-flex align-items-end ">
-							<div class="btn-toolbar">
-							<button type="button" data-id="{{$item->id}}" id="{{$item->id}}" class="btn btn-inverse-info openeditmodel  ">@lang('dingsu.edit')</button>&nbsp;
-							<button type="button" onClick="return Deletevoucher({{$item->id}});return false;" class="btn btn-inverse-danger  ">@lang('dingsu.delete')</button>
-							</div>
-						</div>
-							
-					</div>
-					</div>
-				</li>
-				@endforeach
-			</ul>
-		</form>
-		{!! $result->render() !!}
-@unless (count($result))    
-	@include ('common.norecord')
-@endunless
-		
 
 <!-- Modal starts -->
 <form class="form-sample" name="formupdatevoucher" id="formupdatevoucher" action="" method="post" autocomplete="on" >
@@ -336,8 +218,10 @@ function Update_voucher()
 			}
 		} );
 }
-	$(document).ready(function() {
-		$('.openeditmodel').click(function() {
+
+$(document).ready(function() {
+	$( 'body' ).on( 'click', '.openeditmodel', function ( e ) {
+		//$('.openeditmodel').click(function() {
 			var id=$(this).data('id');
 
 			$('#formupdatevoucher')[0].reset();

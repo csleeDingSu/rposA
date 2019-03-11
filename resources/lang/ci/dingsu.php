@@ -131,6 +131,13 @@ return [
 	'desktop' => 'Desktop',
 	'mobile_default_image_url' => 'Mobile Default Image URL',
 	'desktop_default_image_url' => 'Desktop Default Image URL',
+	'product_detail_link' => '产品详细链接地址',
+	'product_pic_url' => '产品图片链接地址',
+	'product_category' => '产品第一类别',
+	'taobao_guest_link' => '淘宝客串链接',
+	'monthly_sales' => '每月销售额',
+	'voucher_price' => '优惠券价格',
+	'discount_ratio' => '折扣率',
 	//setting
 	'category_setting' => '类别设定',
 	'sub_category' => '子类别',
@@ -138,6 +145,7 @@ return [
 	'voucher_category' => '优惠卷类别',
 	'sub_cate' => '子类别',
 	'search' => '搜索',
+
 	
 	
 	//messages
