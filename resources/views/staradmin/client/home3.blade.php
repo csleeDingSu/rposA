@@ -99,7 +99,7 @@
 		<div class="cardBody">
 			<div class="box">
 
-				{{-- @if($cid == 1) --}}
+				@if($cid == env('voucher_featured_id','220'))
 					
 					<div class="banner">
 
@@ -116,7 +116,7 @@
 					
 					</div>
 
-				{{-- @endif --}}
+				@endif
 
 				<div class="product">
 					<div class="title">
