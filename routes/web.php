@@ -191,6 +191,9 @@ Route::group( [ 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function (
 		// return File::get(public_path() . '/vwechat/index.html');
 		return view( 'client/angpao' );
 	} );
+	$this->get( 'vvregister/{token?}', function () {
+		return File::get(public_path() . '/vwechat/index.html');
+	} );
 
 } );
 

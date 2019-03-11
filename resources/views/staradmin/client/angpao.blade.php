@@ -15,7 +15,7 @@
 @section('footer-javascript')
 <script type="text/javascript">
     var sCurrentPathName = window.location.pathname;
-    var sNewPathName = sCurrentPathName; //sCurrentPathName.replace("vregister", "register");
+    var sNewPathName = sCurrentPathName.replace("vregister", "vvregister");
     var href_ = "http://www.wabao777.com" + sNewPathName;
     var bg_ = window.location.origin + "/vwechat/images/share.png";
 
