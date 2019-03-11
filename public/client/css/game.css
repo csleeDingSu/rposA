@@ -709,6 +709,12 @@ body{
 	color: #333333;
 }
 
+.modal-win-title {
+	color: #333333;
+	font-weight: 500;
+	font-size: 22px;
+}
+
 .modal-message-content, .modal-lose-content {
 	color: #4f7172;
 	font-size: 14px;
@@ -812,7 +818,8 @@ body{
 	margin-bottom: 15px;
 }
 
-.modal-message-button, .modal-warning-button, .modal-manual-button, .modal-confirm-button, .modal-invite-button {
+.modal-message-button, .modal-warning-button, .modal-manual-button, 
+.modal-confirm-button, .modal-invite-button, .modal-redeem-button {
 	background: #ff6868;
 	color: #ffffff;
 	padding: 5px;
@@ -844,6 +851,14 @@ body{
 
 .modal-manual-button {
 	background: #0091e5;
+}
+
+.modal-redeem-button {
+	background: #ff8b3e;
+	margin-left: 0;
+	margin-right: 0;
+	font-size: 20px;
+	padding: 8px;
 }
 
 @media only screen and (max-width: 360px) {
@@ -1468,4 +1483,83 @@ if it's not present, don't show loader */
 	border-top: 0;
 	margin-left: -10px;
 	margin-top: -10px;
+}
+
+/* Wechat Modal */
+
+#win-modal .modal-content{
+	background: #f9f9f9;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+#win-modal .modal-body {
+	padding-top: 0;
+}
+
+.separator {
+	margin-top: -10px;
+}
+
+h2 {
+    margin: 10px auto;
+    text-align: center;
+    font-size: 14px;
+}
+
+h2.background {
+    position: relative;
+    z-index: 1;
+    color: #c0c0c0;
+}
+
+h2.background:before {
+	border-top: 1px dashed #ececec;
+    content:"";
+    margin: 0 auto; /* this centers the line to the full width specified */
+    position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+    top: 50%; left: 0; right: 0; bottom: 0;
+    width: 95%;
+    z-index: -1;
+}
+
+h2.background span { 
+    /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+    background: #fff; 
+    padding: 0 5px; 
+}
+
+.modal-lose {
+	color: #bbbbbb;
+	font-size: 16px;
+}
+
+.modal-final {
+	color: #55d400;
+	padding: 5px 0 15px 0;
+	font-size: 18px;
+}
+
+.modal-point {
+	float: left;
+	color: #acacac;
+	margin-left: 25px;
+	padding-top: 10px;
+	font-weight: 500;
+	font-size: 12px;
+}
+
+.modal-add {
+	float: right;
+	color: #11b500;
+	margin-right: 30px;
+	padding-top: 10px;
+	font-weight: 500;
+	font-size: 12px;
 }
