@@ -99,7 +99,7 @@
 		<div class="cardBody">
 			<div class="box">
 
-				{{-- @if($cid == 1) --}}
+				@if($cid == env('voucher_featured_id','220'))
 					
 					<div class="banner">
 
@@ -116,7 +116,7 @@
 					
 					</div>
 
-				{{-- @endif --}}
+				@endif
 
 				<div class="product">
 					<div class="title">
@@ -199,10 +199,10 @@
 										挖宝是为了鼓励用户分享，而设立的免费竞猜游戏 「猜单双，6次内猜中就有奖」<br />
 										<ul class="tips-list">
 											<li class="tips-title">如何赚钱？</li>
-											每次机会有99%概率获得15元，新注册用户有3次机会，能获得45元。<br />
+											每次机会有99%概率获得15元，新注册用户有1次机会，能获得15元。<br />
 											<div class="div-tips">小编偷偷讲：以后会调低奖励，现在已经注册的，赶紧抓住机会赚一波。</div>
 											<li class="tips-title">如何赚更多钱？</li>
-											每邀请1个新用户能获得1次机会，邀请10个赚150元「被邀请的能获得3次机会」 <br />
+											每邀请1个新用户能获得3次机会，邀请10个赚450元「被邀请的能获得1次机会」 <br />
 											非常容易邀请到很多人注册，大力分享！
 										</ul>
 									</div>

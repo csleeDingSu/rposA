@@ -164,7 +164,13 @@ class GenerateVouchertoDb
 					$category= '';
 
 					if($gencate == $cate->display_name){
-						$category= $cate->parent_id;
+						
+						if($cate->parent_id == '0'){
+							$category= $cate->id;
+
+						}else{
+							$category= $cate->parent_id;
+						}
 						// echo 'GC--'.$gencate;
 						// echo 'DN---'.$cate->display_name;
 						// echo '<br><br>';

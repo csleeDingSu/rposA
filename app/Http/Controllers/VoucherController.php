@@ -175,19 +175,59 @@ class VoucherController extends BaseController
 	{
 		return Voucher::search($request, 'unreleased');
 	}
-	public function get_unreleasedvoucher_list()
+
+	public function get_unreleasedvoucher_list(Request $request)
 	{
 		
-		
-		$result =  DB::table('unreleased_vouchers')->latest()->paginate(204);
+		//$result =  DB::table('unreleased_vouchers');
+
+		$result = DB::table('unreleased_vouchers')
+			->join('voucher_category', 'unreleased_vouchers.id', '=', 'voucher_category.unr_voucher_id')
+			->join('category', 'voucher_category.category', '=', 'category.id')
+			->select('unreleased_vouchers.*' )
+			->groupBy('unreleased_vouchers.id');
+
 		$data['page'] = 'voucher.unreleasedvoucherlist'; 	
 		$data['files'] =  DB::table('excel_upload')->select('filename')->distinct()->get();
 		$data['sys_title']  = Voucher::get_csvtitle(); 
-		$data['category']  = Voucher::get_maincategory();  
+		$data['category']  = Voucher::get_maincategory();
+		$data['categories']  = Voucher::get_category();  
+		$category = $data['category']; 
 		$data['result'] = $result;
 		
+        $input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{				
+			if (!empty($input['s_title'])) {
+				
+				$result = $result->where('category.display_name','LIKE', "%{$input['s_title']}%") ;		
+					
+			}
+		}
+
+
+		$result =  $result->orderby('unreleased_vouchers.id','DESC')->paginate(200);
+		//$result =  $result->orderby('id','DESC')->paginate(30);
+				
+		$data['page']    = 'voucher.unreleasedvoucherlist'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+			
+			return view('voucher.ajax_unr_list', ['result' => $result, 'category' =>$category])->render();  
+			
+
+        }
+					
 		return view('main', $data);
+		
+		
 	}
+
 	public function check_voucher_duplicate()
 	{
 		//check_dulicate
@@ -398,7 +438,14 @@ class VoucherController extends BaseController
 		
 		
 		//$result =  \DB::table('tips');
-		$result =  \DB::table('vouchers');
+		// $result =  \DB::table('vouchers');
+		$result = DB::table('vouchers')
+			->join('voucher_category', 'vouchers.id', '=', 'voucher_category.voucher_id')
+			->join('category', 'voucher_category.category', '=', 'category.id')
+			->select('vouchers.*' )
+			->groupBy('vouchers.id');
+
+
 		$data['page'] = 'voucher.list'; 
 		$data['sys_title']  = Voucher::get_csvtitle();
 		$data['category']  = Voucher::get_maincategory();
@@ -429,7 +476,7 @@ class VoucherController extends BaseController
 		{
 			//filter					
 			if (!empty($input['s_title'])) {
-				$result = $result->where('product_category','LIKE', "%{$input['s_title']}%") ;				
+				$result = $result->where('category.display_name','LIKE', "%{$input['s_title']}%") ;				
 			}
 		}
 
@@ -444,7 +491,7 @@ class VoucherController extends BaseController
 
 
 		
-		$result =  $result->orderby('id','DESC')->paginate(200);
+		$result =  $result->orderby('vouchers.id','DESC')->paginate(200);
 		//$result =  $result->orderby('id','DESC')->paginate(30);
 				
 		$data['page']    = 'voucher.list'; 	

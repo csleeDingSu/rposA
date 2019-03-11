@@ -134,9 +134,16 @@ return [
 	'pending_redeem' => 'Pending Redeem',
 	'featured' => 'Featured',
 	'sub_cate' => 'Sub-Category',
+	'search' => 'Search',
+	'product_detail_link' => 'Product details page link address',
+	'product_category' => 'Product first category',
+	'taobao_guest_link' => 'Taobao guest link',
+	'monthly_sales' => 'Monthly sales',
+	'voucher_price' => 'Voucher price',
+	'discount_ratio' => 'Discount ratio',
 	'' => '',
 	'' => '',
-	'' => '',
+
 	
 	
 	'pending_wechat_verification' => 'Pending Verfication',
@@ -513,9 +520,16 @@ return [
 	'last_run' => 'Last run',
 	'cron_update_success_msg' => 'Cron successfully Updated',
 	'cron' => 'Cron',
+	'cron_manager' => 'Cron Manager',
+		
+	'cron_update_success_msg' => 'Cron successfully Updated',
 	'processed' => 'Processed',
 	'total_limit' => 'Limit',
 	'not_updated' => 'Not Updated',
+	
+	
+	
+	
 	'passcode' => 'passcode',
 	
 	
@@ -545,7 +559,7 @@ return [
 	'order' => 'order',
 	'sort_by' => 'Sort by',
 	'auto_product_redeem' => 'Auto product redeem',
-	'wabao_fee' => 'Redeem fee',
+	
 	
 	
 ];
