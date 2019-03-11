@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Voucher;
+use App\Voucher_category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -32,7 +33,10 @@ class VoucherController extends Controller
         //return view('client.home', compact('vouchers','category'));
         return view('client.home3', compact('vouchers','category','total','cid'));
 		*/
-		return redirect('/cs/1');
+
+		$category = Category::where('display_name',env('voucher_featured_label','精选'))->where('parent_id',0)->select('id')->first();
+
+		return redirect('/cs/' . $category->id);
 		
     }
 
@@ -42,7 +46,15 @@ class VoucherController extends Controller
 
         if ($cid)
 		{
-			$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);		
+			//$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
+			//$vouchers = Voucher_category::latest()
+			$vouchers = \DB::table('voucher_category')
+			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
+			->where('voucher_category.category' ,'=' , $cid)
+			->groupBy('vouchers.id')
+			->paginate(5);
+
+			//$vouchers = Voucher::get_vouchers($cid)->paginate(5);
 			//pagination already have the count data so no need to call again
 			//$vouchers_total = Voucher::where('category' ,'=' , $cid)->count(); 
 			
@@ -59,7 +71,7 @@ class VoucherController extends Controller
 		
 		//$total = ['redeemed' => redeemed::count(), 'vouchers' => $vouchers_total];
 		
-		$category = Category::orderby('position','ASC')->get();
+		$category = Category::where('parent_id', 0)->orderby('position','ASC')->get();
 		
         $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
 

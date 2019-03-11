@@ -414,7 +414,7 @@
 				</div>
 				<div class="reward-instructions">
 					认证后挖宝赚15元<br />
-					邀请一个好友再赚15元
+					邀请一个好友再赚45元
 				</div>
 			</div>
 			<div class="modal-content modal-wechat">
@@ -472,9 +472,14 @@
 								<div class="modal-message-balance">
 									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
 								</div>
-								<div class="modal-message-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life">
 									确认结算
-								</div>												
+								</div>
+								<a href="/share">
+								<div class="modal-invite-button">
+									分享好友获挖宝机会
+								</div>
+								</a>										
 							</div>
 						</div>
 					</div>							
@@ -527,8 +532,9 @@
 								<div class="modal-warning-title">
 									您当前没有挖宝次数
 								</div>
-								<div class="modal-warning-content">
-									邀请好友注册将获得挖宝次数
+								<div class="modal-invite-content">
+									<span class="modal-invite-title">邀请1位好友</span><br />
+									奖励3次挖宝机会，赚45元红包
 								</div>
 								<a href="/share" class="link-button">
 									<div class="modal-warning-button">
@@ -591,9 +597,14 @@
 								<div class="modal-lose-content">
 									本局盈利的挖宝币清零
 								</div>
-								<div class="modal-message-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life">
 									继续挖宝
 								</div>
+								<a href="/share">
+								<div class="modal-invite-button">
+									分享好友获挖宝机会
+								</div>
+								</a>
 							</div>
 						</div>
 					</div>							
@@ -646,14 +657,19 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="instructions">
-									每局拥有1200的游戏积分，分6次来玩。
-								</div>
-								<img src="{{ asset('/client/images/rules_timeline.png') }}" class="rules-content-img-timeline"/>
-								<div class="instructions">
-									第一次押10积分，如果不中下次押30，如果还不中下次押70，不停的增加投入。<br />
-									如果猜中，就返回10积分重新押起。<br />
-									所以只要6次内猜中一次，就能无限循环不停赚积分，赚的积分可提现。<br />
-									6次全错的话，扣除赚到的积分。
+									这是个猜单双的游戏，原始游戏积分为1200。
+									每次下注有50%中奖概率，<span class="highlight">但把积分1200分成6次下注，猜中概率高达99.9%</span>，<br />
+									原理如下：<br />
+
+									<div class="speech-bubble">
+										1200依次分[10，30，70，150，310，640]
+										第一次下注10，如果猜错，第二次下注30。
+										如果中了，不仅捞回第一次亏的10，还赚20。
+										共有6次的机会，6次里中一次都能回本并盈利。
+									</div>
+
+									赢的积分可兑换红包，每次挖宝机会最多赢到
+									150积分封顶，10积分可兑换1元红包。
 								</div>
 
 								@if($betting_count > 0)

@@ -645,6 +645,7 @@ function confirm_Delete(id)	{
 		
 		
 		$(".datalist").on("click",".opentopupmodel", function(){
+			
 			var id=$(this).data('id');
 			$('#rid').val(id);
 			$('#formtopup')[0].reset(); 

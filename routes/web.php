@@ -252,12 +252,15 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 
 	//Voucher Routes
-	Route::get( '/voucher/', 'VoucherController@get_voucher_list' );
-	Route::get( '/voucher/list', 'VoucherController@get_voucher_list' );
-	Route::get( '/voucher/unreleased', 'VoucherController@get_unreleasedvoucher_list' );
-	Route::get( '/voucher/category', 'VoucherController@get_category' );
-	Route::get( '/voucher/category/add', 'VoucherController@add_category' );
-	Route::post( '/voucher/category/add', 'VoucherController@save_category' );
+	Route::get( '/voucher/', 'VoucherController@listvoucher' );
+	//Route::get( '/voucher/list', 'VoucherController@get_voucher_list' );
+	//Route::get( '/voucher/list', 'VoucherController@listvoucher' );
+
+
+	Route::get( '/voucher/unreleased', 'VoucherController@get_unreleasedvoucher_list' )->name( 'unreleasedvoucherlist' );
+	//Route::get( '/voucher/category', 'VoucherController@get_category' );
+	//Route::get( '/voucher/category/add', 'VoucherController@add_category' );
+	//Route::post( '/voucher/category/add', 'VoucherController@save_category' );
 	Route::get( '/voucher/category/edit/{id}', 'VoucherController@edit_category' );
 	Route::post( '/voucher/category/edit/{id}', 'VoucherController@edit_category' );
 	Route::post( '/voucher/category/delete/{id}', 'VoucherController@delete_category' );
@@ -268,7 +271,24 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::delete( '/voucher/bulkupdate', 'VoucherController@bulkdata_update' );
 	Route::delete( '/voucher/bulk-unreleased-update', 'VoucherController@bulkdata_unrv_update' )->name( 'unrv_update' );
 	Route::get( '/voucher/edit/{id}', 'VoucherController@edit_voucher' );
-	Route::get( '/voucher/addlevel/{id}', 'VoucherController@add_level' );
+	// Route::get( '/voucher/addlevel/{id}', 'VoucherController@add_level' );
+
+	// setting
+	Route::get( '/voucher/edit/{id}', 'VoucherController@edit_voucher' );
+	Route::get( '/voucher/edit/{id}', 'VoucherController@edit_voucher' );
+
+	//faq
+	Route::get( '/voucher/list', 'VoucherController@listvoucher' )->name( 'voucher.list' );
+	Route::get( '/voucher/category/add', 'AdminController@getvoucher' )->name( 'voucher.get' );
+	Route::post( '/voucher/category/add', 'AdminController@savevoucher' )->name( 'voucher.create' );
+	Route::post( '/voucher/category/edit', 'AdminController@editvoucher' )->name( 'voucher.edit' );
+	Route::delete( '/voucher/category/delete/{id}', 'AdminController@delete_voucher' )->name( 'voucher.remove' );
+	
+
+	
+
+
+
 
 	//import voucher
 	Route::get( '/voucher/import', 'ImportController@getImport' )->name( 'import' );
@@ -286,7 +306,21 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get( '/voucher/show-unrv/{id}', 'VoucherController@show_unreleased_voucher' )->name( 'showunreleasedvoucher' );
 	Route::post( '/voucher/ajaxupdate-unrv-voucher', 'VoucherController@ajax_unrv_update_voucher' )->name( 'ajax_unrv_updatevoucher' );
 	Route::post( '/voucher/ajaxupdatevoucher', 'VoucherController@ajax_update_voucher' )->name( 'ajaxupdatevoucher' );
+	Route::post( '/voucher/ajaxupdate-unr-vouchertag', 'VoucherController@ajax_update_unr_tag' )->name( 'ajaxupdateunrvouchertag' );
+	Route::post( '/voucher/ajaxupdatevouchertag', 'VoucherController@ajax_update_tag' )->name( 'ajaxupdatevouchertag' );
+	Route::get( '/voucher/category/add', 'AdminController@getvoucher' )->name( 'voucher.get' );
 
+	//setting
+	Route::get( '/voucher/setting', 'VoucherController@listvouchersetting' )->name( 'voucher.setting' );
+	Route::get( '/voucher/setting/category/edit/{id}', 'VoucherController@edit_category' )->name( 'voucher.edit_category' );
+	Route::post( '/voucher/setting/category/add_category', 'VoucherController@add_cate' )->name( 'voucher.add_cate' );
+	Route::post( '/voucher/setting/category/add_sub_category', 'VoucherController@add_subcate' )->name( 'voucher.add_subcate' );
+	Route::delete( '/voucher/setting/category/delete/{id}', 'VoucherController@delete_category' )->name( 'voucher.remove_category' );
+	Route::delete( '/voucher/setting/category/delete_sub_category/{id}', 'VoucherController@delete_subcategory' )->name( 'voucher.remove_subcategory' );
+	//Route::post('/voucher/favorite', 'VoucherController@add_subcate')->name( 'voucher.add_subcate' );
+	Route::post( '/voucher/setting/category/edit/{id}', 'VoucherController@update_category' )->name( 'voucher.update_category' );
+	
+	
 	//product
 	Route::get( '/product/', 'ProductController@list_product' )->name( 'product.list.all' );
 	Route::get( '/product/list', 'ProductController@list_product' )->name( 'product.list' );

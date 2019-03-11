@@ -63,7 +63,7 @@ class vip_result extends Command
 		//End
 		*/
 			
-		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 2)->get() ;
+		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 2)->get() ;		
 		
 		$current_result = Game::get_single_gameresult($drawid);
 		
@@ -195,7 +195,7 @@ class vip_result extends Command
 					if ($close == 'yes') {
 						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
 						Game::reset_member_game_level($memberid , $gameid,'1');			
-						$point = Wallet::merge_vip_wallet($memberid);									
+						$point = Wallet::merge_vip_wallet($memberid,'','nofee');									
 						Package::reset_current_package($packageid->id);
 						$this->error('User Consecutive Lose');
 					}

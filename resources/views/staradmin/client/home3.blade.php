@@ -99,7 +99,7 @@
 		<div class="cardBody">
 			<div class="box">
 
-				@if($cid == 1)
+				{{-- @if($cid == 1) --}}
 					
 					<div class="banner">
 
@@ -116,7 +116,7 @@
 					
 					</div>
 
-				@endif
+				{{-- @endif --}}
 
 				<div class="product">
 					<div class="title">

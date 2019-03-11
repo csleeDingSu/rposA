@@ -747,6 +747,17 @@ body{
 	padding-bottom: 30px;
 }
 
+.modal-invite-title {
+	font-size: 20px;
+}
+
+.modal-invite-content {
+	color: #bd9e4a;
+	font-size: 16px;
+	padding-bottom: 40px;
+	padding-top: 10px;
+}
+
 #reset-life-play .modal-body {
 	padding-left: 0;
 	padding-right: 0;
@@ -801,7 +812,7 @@ body{
 	margin-bottom: 15px;
 }
 
-.modal-message-button, .modal-warning-button, .modal-manual-button {
+.modal-message-button, .modal-warning-button, .modal-manual-button, .modal-confirm-button, .modal-invite-button {
 	background: #ff6868;
 	color: #ffffff;
 	padding: 5px;
@@ -818,6 +829,17 @@ body{
 	font-size: 18px;
 	border-radius: 5px;
 
+}
+
+.modal-confirm-button {
+	background: #ffffff;
+	color: #ff6868;
+	border: 1px solid #ff6868;
+}
+
+.modal-invite-button {
+	border: 1px solid #ff6868;
+	margin-top: 10px;
 }
 
 .modal-manual-button {
@@ -868,6 +890,10 @@ body{
 
 .instructions-dark {
 	color: #bababa;
+}
+
+.highlight {
+	color: #e48f00;
 }
 
 .img-step {
@@ -1165,7 +1191,7 @@ body{
 @media only screen and (max-width: 500px) {
     .swiper-container {
     	width: 100%;
-	  	height: 300px;
+	  	height: 285px;
 	}
 }
 
@@ -1417,6 +1443,29 @@ if it's not present, don't show loader */
 .spinning {
 	color: #e07f5f;
 	font-size: 16px;
-	margin: 10px;
+	margin: 5px;
 	visibility: hidden;
+}
+
+.speech-bubble {
+	position: relative;
+	background: #f1f1f1;
+	border-radius: .4em;
+	margin: 10px 0;
+	padding: 10px;
+	font-size: 11px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 10%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-bottom-color: #f1f1f1;
+	border-top: 0;
+	margin-left: -10px;
+	margin-top: -10px;
 }
