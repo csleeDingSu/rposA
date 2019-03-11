@@ -11,6 +11,41 @@
 |
 */
 
+//redis example 
+Route::any('/master-call', 'RedisGameController@master_out')->name('api.redis.master.call'); //deprecated 
+	
+Route::any('/master-call-nobet', 'RedisGameController@master_withoutbet')->name('api.redis.master.withoutbet');
+
+Route::any('/userbetting', 'RedisGameController@userbetting')->name('api.redis.userbetting');
+
+Route::get('generateresult/{drawid}', function ($drawid) {
+	Artisan::call('generate:br', ['drawid' => $drawid]);
+	dd( 'result generated' );
+} );
+
+
+Route::get('generatevipresult/{drawid}', function ($drawid) {
+	Artisan::call('generate:vip_result', ['drawid' => $drawid]);
+	dd( 'result generated' );
+} );
+
+Route::get('open-draw/{drawid?}', function ($drawid) {
+	//if (empty($drawid) $drawid = 0;
+	Artisan::call('game:opendraw', ['drawid' => $drawid]);
+	dd( 'draw open to all connected members' );
+} );
+
+Route::get('many', function () {
+    return view('redis.many');
+});
+
+Route::get('r-auth', function () {
+    return view('redis.auth');
+});
+Route::get('token', 'TokenController@token');
+//end
+
+
 
 //language route
 
@@ -32,7 +67,11 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::get( '/arcade', 'ClientController@member_access_game' )->name( 'client.arcade' );
 
+	Route::get( '/arcade-node', 'ClientController@member_access_game_node' )->name( 'client.arcade-node' );
+
 	Route::get( '/vip', 'ClientController@member_access_vip' )->name( 'client.vip' );
+
+	Route::get( '/vip-node', 'ClientController@member_access_vip_node' )->name( 'client.vip-node' );
 	
 	Route::get( '/wheel', function () {
 		return view( 'client/wheel' );
@@ -242,6 +281,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get( '/voucher/edit/{id}', 'VoucherController@edit_voucher' );
 	Route::get( '/voucher/edit/{id}', 'VoucherController@edit_voucher' );
 
+	//faq
 	Route::get( '/voucher/list', 'VoucherController@listvoucher' )->name( 'voucher.list' );
 	Route::get( '/voucher/category/add', 'AdminController@getvoucher' )->name( 'voucher.get' );
 	Route::post( '/voucher/category/add', 'AdminController@savevoucher' )->name( 'voucher.create' );
@@ -424,7 +464,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 
 Route::get('nlogin/{token?}', 'Auth\MemberRegisterController@showAuthForm')->name('render.member.register');
-Route::post('nlogin', 'Auth\MemberLoginController@dologin')->name('submit.member.login');
+Route::any('nlogin', 'Auth\MemberLoginController@dologin')->name('submit.member.login');
 Route::post('nreg', 'Auth\MemberRegisterController@doreg')->name('submit.member.newregister');
 
 
