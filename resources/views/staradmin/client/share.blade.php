@@ -34,7 +34,7 @@
 
 $affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
 
-$url = env('APP_URL_share', 'http://wabao777.com') . '/vregister/' . $affiliate_id;
+$url = env('APP_URL_share', 'https://wabao666.com') . '/vregister/' . $affiliate_id;
 
 include(app_path().'/Lib/qr/qrlib.php');
 
