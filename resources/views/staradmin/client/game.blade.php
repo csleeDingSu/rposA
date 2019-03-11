@@ -27,7 +27,7 @@
 @endsection
 
 @section('content')
-<div class="loading"></div>
+<!--div class="loading"></div-->
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
@@ -722,6 +722,42 @@
 
 <!--  end -->
 
+<!-- Start Win -->
+
+	<div class="modal fade col-md-12" id="win-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-title">
+				<div class="modal-win-title">
+					恭喜你猜中了
+				</div>
+				<h2 class="background"><span>本次奖励说明</span></h2>
+				<img class="" src="{{ asset('/client/images/progress-bar/10.png') }}" width="250" height="50" />
+				<div class="modal-point">第1局下注10积分</div>
+				<div class="modal-add">成功+10</div>
+				<div style="clear: both;"></div>
+			</div>
+
+			<div class="modal-content">
+				<img class="separator" src="{{ asset('/client/images/progress-bar/separator.png') }}" width="300" height="13" />
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-lose">第1局猜中赚10扣除前0次亏0</div>
+								<div class="modal-final">最终获得10挖宝币</div>
+								<div class="close-modal modal-redeem-button">
+									领取奖励
+								</div>												
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -747,7 +783,7 @@
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
 			});
-
+$('#win-modal').modal('show');
 			$('.btn-vip-modal').click(function(){
 				$('#vip-modal').modal('show');
 			});
