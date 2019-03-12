@@ -1507,19 +1507,17 @@ if it's not present, don't show loader */
 	margin-top: -10px;
 }
 
-h2 {
-    margin: 10px auto;
+.background {
+	margin: 10px auto;
     text-align: center;
     font-size: 14px;
-}
-
-h2.background {
     position: relative;
     z-index: 1;
     color: #c0c0c0;
+    font-weight: 500;
 }
 
-h2.background:before {
+.background:before {
 	border-top: 1px dashed #ececec;
     content:"";
     margin: 0 auto; /* this centers the line to the full width specified */
@@ -1529,7 +1527,7 @@ h2.background:before {
     z-index: -1;
 }
 
-h2.background span { 
+.background span { 
     /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
     background: #fff; 
     padding: 0 5px; 
@@ -1557,12 +1555,13 @@ h2.background span {
 	padding-top: 5px;
 	font-weight: 500;
 	font-size: 12px;
+	width: 170px;
+	text-align: left;
 }
 
 .modal-add, .modal-minus {
-	float: right;
+	float: left;
 	color: #11b500;
-	margin-right: 30px;
 	padding-top: 5px;
 	font-weight: 500;
 	font-size: 12px;
