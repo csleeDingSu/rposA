@@ -851,7 +851,7 @@ function showWinModal(){
             gain = 20;
             lose = '第2局猜中赚30扣除前1次亏10';
             image = '/client/images/progress-bar/30.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
             html += '<div class="modal-point">第2局下注30积分</div><div class="modal-add">成功+30</div>';
         break;
 
@@ -859,8 +859,8 @@ function showWinModal(){
             gain = 30;
             lose = '第3局猜中赚70扣除前2次亏40';
             image = '/client/images/progress-bar/70.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败-30</div>';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败 -30</div>';
             html += '<div class="modal-point">第3局下注70积分</div><div class="modal-add">成功+70</div>';
         break;
 
@@ -868,9 +868,9 @@ function showWinModal(){
             gain = 40;
             lose = '第4局猜中赚150扣除前3次亏110';
             image = '/client/images/progress-bar/150.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败-30</div>';
-            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败-70</div>';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败 -30</div>';
+            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败 -70</div>';
             html += '<div class="modal-point">第4局下注150积分</div><div class="modal-add">成功+150</div>';
         break;
 
@@ -878,10 +878,10 @@ function showWinModal(){
             gain = 50;
             lose = '第5局猜中赚310扣除前4次亏260';
             image = '/client/images/progress-bar/310.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败-30</div>';
-            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败-70</div>';
-            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-minus">失败-150</div>';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败 -30</div>';
+            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败 -70</div>';
+            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-minus">失败 -150</div>';
             html += '<div class="modal-point">第5局下注310积分</div><div class="modal-add">成功+310</div>';
         break;
 
@@ -889,11 +889,11 @@ function showWinModal(){
             gain = 60;
             lose = '第6局猜中赚630扣除前5次亏570';
             image = '/client/images/progress-bar/630.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败-30</div>';
-            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败-70</div>';
-            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-minus">失败-150</div>';
-            html += '<div class="modal-point">第5局下注310积分</div><div class="modal-minus">成功-310</div>';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败 -30</div>';
+            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败 -70</div>';
+            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-minus">失败 -150</div>';
+            html += '<div class="modal-point">第5局下注310积分</div><div class="modal-minus">成功 -310</div>';
             html += '<div class="modal-point">第6局下注630积分</div><div class="modal-add">成功+610</div>';
         break;
 
