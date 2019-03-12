@@ -5,6 +5,8 @@ var wallet_data = null;
 var update_betting_history = false;
 var betting_data = null;
 var token = '';
+var show_win = false;
+var first_win = true;
 
 $(function () {
 
@@ -79,6 +81,8 @@ function updateHistory(records){
 
             if(last_bet.is_win == null){
                 className = last_bet.bet + '-fail'; 
+            } else {
+                first_win = false;
             }
 
             history =  '<div class="' + className + '">' +
@@ -380,6 +384,12 @@ function getSocket(){
                     var win_amount = level * 10;
 
                     $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
+
+                    if(first_win){
+                        show_win = true;
+                        showWinModal();
+                    }
+
                 } else if (data.data.status == 'lose') {
                     var level = parseInt($('#hidLevel').val());
                     var chance = 6 - level;
@@ -468,6 +478,11 @@ function resetGame() {
     $('.payout-info').addClass('hide');
     $('.instruction').css('visibility', 'visible');
     $('.spinning').css('visibility', 'hidden');
+
+    if(show_win){
+        $('#win-modal').modal('show');
+        show_win = false;
+    }
 }
 
 function setBalance() {
@@ -495,6 +510,7 @@ function closeModal() {
     $('.close-modal').click(function(){
         $('#reset-life-play').modal('hide');
         $('#reset-life-lose').modal('hide');
+        $('#win-modal').modal('hide');
     });
 }
 
@@ -813,6 +829,80 @@ function showProgressBar(bol_show){
             changbar(level);
         }
     }
+}
+
+function showWinModal(){
+    var level = parseInt($('#hidLevel').val());
+    var html = '';
+    var image = '';
+    var gain = '';
+    var lose = '';
+
+    switch (level) {
+
+        case 1:
+            gain = 10;
+            lose = '第1局猜中赚10扣除前0次亏0';
+            image = '/client/images/progress-bar/10.png';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-add">成功+10</div>';
+        break;
+
+        case 2:
+            gain = 20;
+            lose = '第2局猜中赚30扣除前1次亏10';
+            image = '/client/images/progress-bar/30.png';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-add">成功+30</div>';
+        break;
+
+        case 3:
+            gain = 30;
+            lose = '第3局猜中赚70扣除前2次亏40';
+            image = '/client/images/progress-bar/70.png';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败-30</div>';
+            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-add">成功+70</div>';
+        break;
+
+        case 4:
+            gain = 40;
+            lose = '第4局猜中赚150扣除前3次亏110';
+            image = '/client/images/progress-bar/150.png';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败-30</div>';
+            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败-70</div>';
+            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-add">成功+150</div>';
+        break;
+
+        case 5:
+            gain = 50;
+            lose = '第5局猜中赚310扣除前4次亏260';
+            image = '/client/images/progress-bar/310.png';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败-30</div>';
+            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败-70</div>';
+            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-minus">失败-150</div>';
+            html += '<div class="modal-point">第5局下注310积分</div><div class="modal-add">成功+310</div>';
+        break;
+
+        case 6:
+            gain = 60;
+            lose = '第6局猜中赚630扣除前5次亏570';
+            image = '/client/images/progress-bar/630.png';
+            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败-10</div>';
+            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败-30</div>';
+            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败-70</div>';
+            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-minus">失败-150</div>';
+            html += '<div class="modal-point">第5局下注310积分</div><div class="modal-minus">成功-310</div>';
+            html += '<div class="modal-point">第6局下注630积分</div><div class="modal-add">成功+610</div>';
+        break;
+
+    }
+
+    $('.modal-progress-bar').attr("src", image);
+    $('.modal-history').html(html);
+    $('.modal-lose').html(lose);
+    $('.span-final').html(gain);
 }
 
 function startTimer(duration, timer, freeze_time) {
