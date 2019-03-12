@@ -23,30 +23,6 @@
 		@show
     </head>
     <body>
-        @section('top-navbar')
-            <!-- Static navbar -->
-				<nav id="header" class="navbar navbar-default">
-				  <div class="container-fluid">
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="col-xs-3">
-						@yield('left-menu')
-					</div>
-					<div class="col-xs-6">
-						<div class="navbar-title">
-						  <div class="navbar-brand">@yield('title')</div>
-						</div>
-					</div>
-				
-					<div class="col-xs-3">
-					  	<div class="menu-wrapper">
-					  		@yield('menu')
-					  	</div>
-					</div>
-				  </div>
-				  <!-- /.container-fluid -->
-				</nav>
-			<!-- End Static navbar -->
-        @show
 
         <section class="cardFull card-flex">
 			<div class="cardBody">
