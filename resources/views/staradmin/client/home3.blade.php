@@ -293,16 +293,20 @@
 			});
 
 			$("body").on("click",".imgBox",function(){
-				item_id       = $(this).data('tt_id');
-				product_name  = $(this).data('tt_product_name');
-				product_price = $(this).data('tt_product_price');
-				product_img   = $(this).data('tt_product_img');
-				product_discount_price   = $(this).data('tt_product_discount_price');
-				voucher_price = $(this).data('tt_voucher_price');
-				showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price);
+				// item_id       = $(this).data('tt_id');
+				// product_name  = $(this).data('tt_product_name');
+				// product_price = $(this).data('tt_product_price');
+				// product_img   = $(this).data('tt_product_img');
+				// product_discount_price   = $(this).data('tt_product_discount_price');
+				// voucher_price = $(this).data('tt_voucher_price');
+				// showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price);
 
 				// being.wrapShow();
 				// being.scaleShow('.showTips');
+
+				$( ".copyvoucher" ).html($(this).data('voucher'));
+				being.wrapShow();
+				being.scaleShow('.showQuan');
 			});
 
 			function showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price)
