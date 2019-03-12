@@ -1535,6 +1535,10 @@ h2.background span {
     padding: 0 5px; 
 }
 
+.modal-progress-bar {
+	margin-bottom: 5px;
+}
+
 .modal-lose {
 	color: #bbbbbb;
 	font-size: 16px;
@@ -1550,16 +1554,20 @@ h2.background span {
 	float: left;
 	color: #acacac;
 	margin-left: 25px;
-	padding-top: 10px;
+	padding-top: 5px;
 	font-weight: 500;
 	font-size: 12px;
 }
 
-.modal-add {
+.modal-add, .modal-minus {
 	float: right;
 	color: #11b500;
 	margin-right: 30px;
-	padding-top: 10px;
+	padding-top: 5px;
 	font-weight: 500;
 	font-size: 12px;
+}
+
+.modal-minus {
+	color: #e55858;
 }
