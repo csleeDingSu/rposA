@@ -730,7 +730,7 @@
 				<div class="modal-win-title">
 					恭喜你猜中了
 				</div>
-				<h2 class="background"><span>本次奖励说明</span></h2>
+				<div class="background"><span>本次奖励说明</span></div>
 				<img class="modal-progress-bar" src="{{ asset('/client/images/progress-bar/10.png') }}" width="250" height="50" />
 				<div class="modal-history"></div>
 				<div style="clear: both;"></div>
