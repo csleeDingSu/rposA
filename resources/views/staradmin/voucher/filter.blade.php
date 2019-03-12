@@ -11,7 +11,12 @@
 						<div class="col">
 							<label>@lang('dingsu.category')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_title" id="s_title" placeholder="@lang('dingsu.category')">
+								<select class="form-control" name="s_title" id="s_title">
+									<option value=" "></option>
+								@foreach ($category as $cate) 
+									<option value="{{$cate->display_name}}">{{$cate->display_name}}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 
