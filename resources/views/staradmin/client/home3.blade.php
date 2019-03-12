@@ -57,6 +57,7 @@
 				<div class="main rel">
 					<div class="dbox">
 						<div class="dbox1 txt">
+							{{$current_cat_name = null}}
 							@if(isset($category))
 								@foreach($category as $cat)
 
