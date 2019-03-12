@@ -23,8 +23,6 @@
 
 @section('content')
 
-<!-- <div class="full-height"> -->
-
 	<div class="angpao_container">
 	
 		<!-- <div class="panel-step1">
@@ -33,16 +31,6 @@
         <div class="panel-step2"></div>
         <a href="/arcade"><div class="panel-step2-btn"></div></a>
     -->
-    </div><!-- panel-group -->
-    
-    
-<!-- </div> -->
-<!-- container -->
+    </div>
 
-
-<!-- <a href='{{str_replace('vregister','vvregister', \Request::url())}}'>
-    	<div id="weixinTips2" style="background:rgba(255, 255, 255,1);width:100%;height:100%;position:fixed;left:0;top:0;z-index:9999">
-    		<div id="weixinTipsImg" style="background:url('/vwechat/images/share.png') top center no-repeat;background-size:100%;width:100%;height:100%"></div>
-    	</div>
-    </a> -->
 @endsection
