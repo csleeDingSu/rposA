@@ -25,12 +25,18 @@
 
 	<div class="angpao_container">
 	
-		<!-- <div class="panel-step1">
+		<div class="panel-dummy-message">
+			<ul>
+				<li>1秒钟前 *晓峰分享了8个好友 提现了360元</li>
+				<li>1秒钟前 *晓峰分享了8个好友 提现了360元</li>
+				<li>1秒钟前 *晓峰分享了8个好友 提现了360元</li>
+				<li>1秒钟前 *晓峰分享了8个好友 提现了360元</li>
+				<li>1秒钟前 *晓峰分享了8个好友 提现了360元</li>
+				<li>1秒钟前 *晓峰分享了8个好友 提现了360元</li>
+
+			</ul>
 		</div>
-		<a href="/share"><div class="panel-step1-btn"></div></a>
-        <div class="panel-step2"></div>
-        <a href="/arcade"><div class="panel-step2-btn"></div></a>
-    -->
+
     </div>
 
 @endsection

@@ -88,55 +88,20 @@ body {
 
 }
 
-.panel-step1 {
+.panel-dummy-message {
 
     background-size: 65%;
     height: 190px;
     width: 100%;
-    background-image: url("/client/images/tips_step1.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
+    /*background-image: url("/client/images/tips_step1.png");*/
+    /*background-color: transparent;*/
+    /*background-repeat: no-repeat;*/
 
     margin-top: 325px;
-    margin-left: 55px;
+    margin-left: 50px;
     display: inline-block;
-}
-
-.panel-step1-btn {
-    background-size: 45%;
-    height: 40px;
-    width: 100%;
-    margin: 0 auto;
-    background-image: url("/client/images/btn-share.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-
-    margin-left: 95px;
-    display: inline-block;
-}
-
-.panel-step2 {
-    background-size: 68%;
-    height: 190px;
-    width: 100%;
-    background-image: url("/client/images/tips_step2.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-    margin-top: 77px;
-    margin-left: 56px;
-    display: inline-block;
-}
-
-.panel-step2-btn {
-    background-size: 45%;
-    height: 40px;
-    width: 100%;
-    margin: 0 auto;
-    background-image: url("/client/images/btn-game.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-    margin-left: 95px;
-    display: inline-block;
+    /*transform: scale(0.5); */
+    /*-webkit-transform: scale(0.5);*/
 }
 
 @media only screen and (min-width: 300px) {
@@ -147,16 +112,10 @@ body {
         
     }
 
-    .panel-step1 {
+    .panel-dummy-message {
         height: 170px;
         margin-top: 290px;
     }
-
-    .panel-step2 {
-        height: 180px;
-        margin-top: 50px;
-    }
-
 
 }
 
@@ -168,17 +127,11 @@ body {
         
     }
     
-    .panel-step1 {
-        height: 185px;
-        margin-top: 325px;
+    .panel-dummy-message {
+        height: 100px;
+        margin-top: 500px;
     }
 
-    .panel-step2 {
-     
-        height: 190px;
-        margin-top: 80px;
-     
-    }
 
 }
 
@@ -190,16 +143,9 @@ body {
         
     }
 
-    .panel-step1 {
+    .panel-dummy-message {
         height: 200px;
         margin-top: 340px;
-    }
-
-    .panel-step2 {
-     
-        height: 215px;
-        margin-top: 65px;
-     
     }
 
 }
@@ -212,17 +158,11 @@ body {
         
     }
 
-    .panel-step1 {
+    .panel-dummy-message {
         height: 210px;
         margin-top: 370px;
     }
 
-    .panel-step2 {
-     
-        height: 225px;
-        margin-top: 85px;
-     
-    }
 }
 
 @media only screen and (min-width: 410px) {
@@ -233,17 +173,11 @@ body {
         
     }
 
-    .panel-step1 {
+    .panel-dummy-message {
         height: 210px;
         margin-top: 375px;
     }
 
-    .panel-step2 {
-     
-        height: 225px;
-        margin-top: 85px;
-     
-    }
 }
 
 
@@ -254,37 +188,19 @@ body {
         
     }
 
-    .panel-step1 {
+    .panel-dummy-message {
         height: 380px;
-        margin-top: 650px;
-        margin-left: 115px;
+        margin-top: 1000px;
+        /*margin-left: 115px;*/
         display: inline-block;
     }
 
-    .panel-step1-btn {
 
-        height: 80px;
-        margin-left: 195px;
-        display: inline-block;
-    }
-
-    .panel-step2 {
-        height: 410px;
-        margin-top: 155px;
-        margin-left: 130px;
-        display: inline-block;
-    }
-
-    .panel-step2-btn {
-        height: 80px;
-        margin-left: 195px;
-        display: inline-block;
-    }
 }
 
 @media only screen and (min-width: 700px) {
     
-    .panel-step1 {
+    .panel-dummy-message {
         height: 400px;
         margin-top: 660px;
     }
@@ -292,7 +208,7 @@ body {
 
 @media only screen and (min-width: 900px) {
     
-    .panel-step1 {
+    .panel-dummy-message {
 
         margin-top: 690px;
     }
@@ -300,7 +216,7 @@ body {
 
 @media only screen and (min-width: 950px) {
     
-    .panel-step1 {
+    .panel-dummy-message {
         margin-top: 680px;
     }
 }
