@@ -187,11 +187,11 @@
                                 </li>
                                 @if(!empty($refcode) and isset($ref->id))
                                 <li>
-                                    <div class="flexSp">
+                                    <div style="text-align: center">
                                         <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
 
-                                        <span>注册码</span>
-                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly  style="color: lightgrey;">
+                                        <span style="color: lightgrey;">注册码 : </span>
+                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly  style="color: lightgrey; width: 32%; border: 0;">
                                     </div>
                                 </li>
                                 @endif
