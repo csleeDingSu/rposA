@@ -1156,10 +1156,20 @@ body{
 	margin-bottom: 10px;
 	font-size: 12px;
 	font-weight: 500;
-	color: #717171;
+	color: #515151;
 	text-align: justify;
 	line-height: 2;
 	padding: 0 5px;
+}
+
+#game-rules .game-title {
+	color: #f39f1c;
+	font-size: 18px;
+}
+
+#game-rules .game-max-rules {
+	color: #b9b9b9;
+	font-size: 12px;
 }
 
 /* End Game Rules Modal */

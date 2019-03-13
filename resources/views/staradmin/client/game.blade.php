@@ -656,6 +656,8 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
+								<div class="game-title">10挖宝币兑换1元红包</div>
+								<div class="game-max-rules">(满150挖宝币可结算)</div>
 								<div class="instructions">
 									这是个猜单双的游戏，原始游戏积分为1200。
 									每次下注有50%中奖概率，<span class="highlight">但把积分1200分成6次下注，猜中概率高达99.9%</span>，<br />
@@ -667,13 +669,10 @@
 										如果中了，不仅捞回第一次亏的10，还赚20。
 										共有6次的机会，6次里中一次都能回本并盈利。
 									</div>
-
-									赢的积分可兑换红包，每次挖宝机会最多赢到
-									150积分封顶，10积分可兑换1元红包。
 								</div>
 
 								@if($betting_count > 0)
-									<div class="btn-game-rules btn-rules-close">开始游戏</div>
+									<div class="btn-game-rules btn-rules-close">进入挖宝</div>
 								@else
 									<div class="btn-game-rules btn-rules-timer">请阅读游戏规则 <span class="txtTimer"></span></div>	
 								@endif
