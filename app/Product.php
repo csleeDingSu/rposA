@@ -267,6 +267,21 @@ class Product extends Model
 		
 		return $result;
 	}
+
+	public static function IsFirstWin($memberid)
+	{
+		$result =  DB::table('view_redeem_list')->where('member_id',$memberid)->where('pin_status',2)->count();
+		if ($result == 1) 
+		{
+			$out =  DB::table('member_game_result')->where('member_id',$memberid)->where('is_win',1)->count();
+
+			if (empty($out))
+			{
+				return 'yes';
+			}			
+		}
+		return '';
+	}
 	
 }
 

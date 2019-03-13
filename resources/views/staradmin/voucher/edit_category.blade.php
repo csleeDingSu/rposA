@@ -162,7 +162,7 @@ function Update_subcate()
 							swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
 						} else {
 							swal( "Done!", '@lang("dingsu.voucher_update_success_message")', "success" );
-              //$('#add_subcate').modal('hide');
+              $('#add_subcate').modal('hide');
               $('#insert_form')[0].reset();
 
 						}

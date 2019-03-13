@@ -674,7 +674,7 @@
 								@if($betting_count > 0)
 									<div class="btn-game-rules btn-rules-close">进入挖宝</div>
 								@else
-									<div class="btn-game-rules btn-rules-timer">请阅读游戏规则 <span class="txtTimer"></span></div>	
+									<div class="btn-game-rules btn-rules-timer"><span class="span-read">请阅读游戏规则</span> <span class="txtTimer"></span></div>	
 								@endif
 							</div>
 						</div>
