@@ -88,75 +88,54 @@ body {
 
 }
 
-.panel-step1 {
+.panel-dummy-message {
 
     background-size: 65%;
-    height: 190px;
+    height: 120px;
     width: 100%;
-    background-image: url("/client/images/tips_step1.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
+    /*background-image: url("/client/images/tips_step1.png");*/
+    /*background-color: transparent;*/
+    /*background-repeat: no-repeat;*/
 
     margin-top: 325px;
-    margin-left: 55px;
+    margin-left: 50px;
     display: inline-block;
-}
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow-x: auto; 
 
-.panel-step1-btn {
-    background-size: 45%;
-    height: 40px;
-    width: 100%;
-    margin: 0 auto;
-    background-image: url("/client/images/btn-share.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
 
-    margin-left: 95px;
-    display: inline-block;
-}
-
-.panel-step2 {
-    background-size: 68%;
-    height: 190px;
-    width: 100%;
-    background-image: url("/client/images/tips_step2.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-    margin-top: 77px;
-    margin-left: 56px;
-    display: inline-block;
-}
-
-.panel-step2-btn {
-    background-size: 45%;
-    height: 40px;
-    width: 100%;
-    margin: 0 auto;
-    background-image: url("/client/images/btn-game.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-    margin-left: 95px;
-    display: inline-block;
 }
 
 @media only screen and (min-width: 300px) {
     
     .angpao_container {
         
-        height: 850px;
+        height: 650px;
         
     }
 
-    .panel-step1 {
-        height: 170px;
-        margin-top: 290px;
+    .panel-dummy-message {
+        height: 120px;
+        margin-top: 500px;
     }
 
-    .panel-step2 {
-        height: 180px;
-        margin-top: 50px;
+}
+
+@media only screen and (min-width: 320px) {
+    
+    .angpao_container {
+        
+        height: 580px;
+        
     }
 
+    .panel-dummy-message {
+        height: 100px;
+        margin-top: 445px;
+        margin-left: 40px;
+        font-size: 12px;
+    }
 
 }
 
@@ -168,16 +147,11 @@ body {
         
     }
     
-    .panel-step1 {
-        height: 185px;
-        margin-top: 325px;
-    }
-
-    .panel-step2 {
-     
-        height: 190px;
-        margin-top: 80px;
-     
+    .panel-dummy-message {
+        height: 120px;
+        margin-top: 500px;
+        margin-left: 45px;
+        font-size: 14px;
     }
 
 }
@@ -190,17 +164,28 @@ body {
         
     }
 
-    .panel-step1 {
-        height: 200px;
+    .panel-dummy-message {
+        height: 120px;
         margin-top: 340px;
     }
 
-    .panel-step2 {
-     
-        height: 215px;
-        margin-top: 65px;
-     
+}
+
+@media only screen and (min-width: 375px) {
+    
+    .angpao_container {
+        
+        height: 700px;
+        
     }
+
+    .panel-dummy-message {        
+        height: 135px;
+        margin-top: 515px;
+        margin-left: 40px;
+        font-size: 16px;
+    }
+
 
 }
 
@@ -208,100 +193,128 @@ body {
     
     .angpao_container {
         
-        height: 1100px;
+        height: 720px;
         
     }
 
-    .panel-step1 {
-        height: 210px;
-        margin-top: 370px;
+    .panel-dummy-message {
+        height: 135px;
+        margin-top: 555px;
+        margin-left: 50px;
+        font-size: 16px;
     }
 
-    .panel-step2 {
-     
-        height: 225px;
-        margin-top: 85px;
-     
-    }
 }
 
 @media only screen and (min-width: 410px) {
     
     .angpao_container {
         
-        height: 1100px;
+        height: 740px;
         
     }
 
-    .panel-step1 {
-        height: 210px;
-        margin-top: 375px;
+    .panel-dummy-message {
+        height: 135px;
+        margin-top: 570px;
+        margin-left: 55px;
+        font-size: 16px;
     }
 
-    .panel-step2 {
-     
-        height: 225px;
-        margin-top: 85px;
-     
+}
+
+@media only screen and (min-width: 414px) {
+    
+    .angpao_container {
+        
+        height: 740px;
+        
     }
+
+    .panel-dummy-message {
+        height: 135px;
+        margin-top: 575px;
+        margin-left: 55px;
+        font-size: 16px;
+    }
+
 }
 
 
 @media only screen and (min-width: 500px) {
     .angpao_container {
         
-        height: 1300px;
+        height: 900px;
         
     }
 
-    .panel-step1 {
-        height: 380px;
-        margin-top: 650px;
-        margin-left: 115px;
-        display: inline-block;
+    .panel-dummy-message {
+        height: 170px;
+        margin-top: 690px;
+        margin-left: 60px;
+        font-size: 20px;
     }
 
-    .panel-step1-btn {
 
-        height: 80px;
-        margin-left: 195px;
-        display: inline-block;
-    }
-
-    .panel-step2 {
-        height: 410px;
-        margin-top: 155px;
-        margin-left: 130px;
-        display: inline-block;
-    }
-
-    .panel-step2-btn {
-        height: 80px;
-        margin-left: 195px;
-        display: inline-block;
-    }
 }
 
 @media only screen and (min-width: 700px) {
+    .angpao_container {
+        
+        height: 1300px;
+        
+    }
+    .panel-dummy-message {
+        height: 250px;
+        margin-top: 995px;
+        margin-left: 80px;
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    .angpao_container {
+        
+        height: 1350px;
+        
+    }
     
-    .panel-step1 {
-        height: 400px;
-        margin-top: 660px;
+    .panel-dummy-message {
+        height: 250px;
+        margin-top: 1035px;
+        margin-left: 90px;
+        font-size: 30px;
     }
 }
 
 @media only screen and (min-width: 900px) {
     
-    .panel-step1 {
-
-        margin-top: 690px;
+    .panel-dummy-message {
+        height: 250px;
+        margin-top: 1035px;
+        margin-left: 90px;
+        font-size: 30px;
     }
 }
 
 @media only screen and (min-width: 950px) {
     
-    .panel-step1 {
-        margin-top: 680px;
+    .panel-dummy-message {
+        height: 250px;
+        margin-top: 1010px;
+        margin-left: 80px;
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    
+    .panel-dummy-message {
+        height: 250px;
+        margin-top: 1035px;
+        margin-left: 90px;
+        font-size: 30px;
     }
 }
 
