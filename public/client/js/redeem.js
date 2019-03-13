@@ -146,7 +146,7 @@ function getProductList(token) {
                                         '</div>' +
                                         '<div class="w-coin">'+ item.min_point +'</div>' +
                                         '<div style="clear: both;"></div>' +
-                                        '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ total_used +' 张</div>' +
+                                        '<div class="remaining">已兑换 '+ total_used +' 张</div>' +
                                     '</div>' +
                                     '<div class="col-xs-3 column-3">' +
                                         '<div class="btn-redeem openeditmodel_p'+ i + ' ' + cls_cannot_redeem + '">兑换</div>' +
@@ -320,7 +320,7 @@ function getProductList(token) {
                                     '</div>' +
                                     '<div class="w-coin">'+ item.min_point +'</div>' +
                                     '<div style="clear: both;"></div>' +
-                                    '<div class="remaining">剩余 '+ available_quantity +' 张 已兑换 '+ total_used +' 张</div>' +
+                                    '<div class="remaining">已兑换 '+ total_used +' 张</div>' +
                                 '</div>' +
                                 '<div class="col-xs-3 column-3">' +
                                     '<div class="btn-redeem openeditmodel'+ i + ' ' + cls_cannot_redeem +'">兑换</div>' +
