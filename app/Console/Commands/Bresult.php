@@ -116,6 +116,7 @@ class Bresult extends Command
 		$type     = $row->gametype;			
 		$vip      = '';
 		$table    = 'member_game_result';
+		$firstwin = '';
 		
 		if ($type == 2) {
 			$table = 'vip_member_game_result';
@@ -230,6 +231,8 @@ class Bresult extends Command
 				if ($wallet['status'] =='win')
 				{
 					$this->info('win');
+					//check first life win
+					$firstwin = \App\Product::IsFirstWin($memberid);
 				}
 				else 
 				{
@@ -259,7 +262,7 @@ class Bresult extends Command
 				$result = Game::get_betting_history_grouped($gameid, $memberid, '');
                 event(new \App\Events\EventBettingHistory($result,$memberid));
 				
-				return ['success' => true, 'status' => $status, 'game_result' => $game_result]; 
+				return ['success' => true, 'status' => $status, 'game_result' => $game_result,'IsfirstWin' => $firstwin]; 
 			}
 			
 			return ['success' => false, 'message' => 'not enough points to play']; 
