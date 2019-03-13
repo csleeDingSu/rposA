@@ -234,6 +234,7 @@ html, body {
 	color: #afb1b1;
 	text-align: left;
 	padding-left: 20px;
+	padding-right: 10px;
 }
 
 @media only screen and (max-width: 360px) {
