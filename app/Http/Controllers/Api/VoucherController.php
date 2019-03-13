@@ -71,7 +71,7 @@ class VoucherController extends Controller
 		
 		//$total = ['redeemed' => redeemed::count(), 'vouchers' => $vouchers_total];
 		
-		$category = Category::where('parent_id', 0)->orderby('position','ASC')->get();
+		$category = Category::where('parent_id', 0)->orderby('position','DESC')->get();
 		
         $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
 
