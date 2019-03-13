@@ -197,6 +197,13 @@ class Voucher extends Model
 		//print_r($ddd);die();
 		DB::table('archived_vouchers')->insert($chunk->toArray());
 	}
+
+	public static function archived_unr_vouchers_insert($chunk)
+	{
+		//$ddd = $chunk->toArray();
+		//print_r($ddd);die();
+		DB::table('archived_vouchers')->insert($chunk);
+	}
 	 
 	public static function get_voucher_withoutpass($table = 'vouchers', $limit = 5)
 	{	
@@ -209,6 +216,20 @@ class Voucher extends Model
         $ledger  = DB::table($table)
 				   ->where('id', $id)
 				   ->update($data);
-    }
+	}
+	
+	public static function delete_voucher_category($id)
+	{
+	DB::table('voucher_category')
+			->where('voucher_id',$id)
+			->delete();
+	}
+
+	public static function delete_unr_voucher_category($id)
+	{
+			DB::table('voucher_category')
+			->where('unr_voucher_id',$id)
+			->delete();
+	}
 	
 }
