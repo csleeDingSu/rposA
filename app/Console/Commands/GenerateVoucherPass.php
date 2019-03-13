@@ -14,7 +14,7 @@ class GenerateVoucherPass extends Command
      */
     protected $signature = 'generate:vpass {type=vo}';
     
-    public $limit = 60;
+    public $limit = 1000;
     public $table = 'vouchers';
 
     /**
