@@ -403,9 +403,8 @@ imagedestroy( $image );
  <div class="container">
   <div class="detail">
       
-      <h2>分享给好友赚挖宝机会</h2>
+      <h2>分享广告图到微信</h2>
        <h3>每邀请<span style="color: red;"> 1 </span>个好友获得<span style="color: red;"> {{ env('sharetofriend_youwillget', '3') }} </span>次机会</h3>
-     <h3>被邀请的好友获得<span style="color: red;"> {{ env('sharetofriend_friendwillget', '1') }} </span>次机会</h3>
      
 </div>
 
@@ -420,7 +419,7 @@ imagedestroy( $image );
                     
                     
                     <div class="ribbon ribbon-top-left">
-                      <span>@lang('dingsu.copy')</span>
+                      <span>@lang('dingsu.ads_picture')</span>
                     </div>
                     
                     

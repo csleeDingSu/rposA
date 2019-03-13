@@ -156,16 +156,7 @@
                                         <div class="" id="validation-errors"></div>
                                     </div>
                                 </li>
-                                @if(!empty($refcode) and isset($ref->id))
-                                <li>
-                                    <div class="flexSp">
-                                        <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
-
-                                        <span><i class="fa fa-hashtag fa-2x" style="color: lightgrey;height: 0.5rem;"></i></span>
-                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly  style="color: lightgrey;">
-                                    </div>
-                                </li>
-                                @endif
+                                
                                 <li>
                                     <div class="flexSp">
                                         <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
@@ -194,6 +185,16 @@
                                 <li>
                                     <button class="doregi" name="doregi" id="doregi" type="button">注册</button>
                                 </li>
+                                @if(!empty($refcode) and isset($ref->id))
+                                <li>
+                                    <div class="flexSp">
+                                        <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
+
+                                        <span>注册码</span>
+                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly  style="color: lightgrey;">
+                                    </div>
+                                </li>
+                                @endif
                             </ul>
                         </form>
                     </div>
