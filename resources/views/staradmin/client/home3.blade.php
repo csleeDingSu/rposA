@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="{{ asset('/client/css/slick-theme.css') }}" />
 
 	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
@@ -234,7 +235,8 @@
 			  arrows:false,
 			  lazyLoad: 'ondemand', // ondemand progressive anticipated
 			  infinite: true,
-			  adaptiveHeight: false
+			  adaptiveHeight: false,
+			  dots: true,
 		  });
 		});
 		
