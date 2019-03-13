@@ -1083,6 +1083,7 @@ function showGameRules( event ){
             if (counter <= 0) {
                 // Display a login box
                 $( ".txtTimer" ).addClass('hide');
+                $( ".span-read" ).html('进入挖宝');
                 clearInterval(interval);
             }
 
