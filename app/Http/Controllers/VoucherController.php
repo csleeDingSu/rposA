@@ -42,6 +42,7 @@ class VoucherController extends BaseController
 			unset($record['source_file']);
             Voucher::archived_vouchers_insert($record);
 			Unreleasedvouchers::destroy($id);
+			Voucher::delete_unr_voucher_category($id);
 			return response()->json(['success' => true, 'record' => '']);
 		}
 		else{
@@ -66,6 +67,8 @@ class VoucherController extends BaseController
 			unset($record['source_file']);
             Voucher::archived_vouchers_insert($record);
 			Voucher::destroy($id);
+			Voucher::delete_voucher_category($id);
+
 			return response()->json(['success' => true, 'record' => '']);
 		}
 		return response()->json(['success' => false, 'record' => '']);
@@ -340,7 +343,12 @@ class VoucherController extends BaseController
 			
 			case 'delete':
 				Voucher::destroy($dbi);
-				//print_r($dbi);
+				// Voucher::delete_voucher_category($dbi);
+				
+				foreach($dbi as $val)
+				{
+					Voucher::delete_voucher_category($val);
+				}
 				// die();
 			break;	
 			// case 'tag':
@@ -394,12 +402,7 @@ class VoucherController extends BaseController
 			unset($row['id']);
 			
 			$insdata[] = $row;
-			
 		}
-
-
-
-		
 		switch ($type)
 		{
 			case 'move':
@@ -413,13 +416,22 @@ class VoucherController extends BaseController
 					// echo $id;
 					// Voucher::update_voucher_id($dbi, $id);
 				}
-
-
-
-
 			break;
 			case 'delete':
-				Voucher::archived_vouchers_insert($models);
+				Voucher::archived_unr_vouchers_insert($insdata);
+				
+				foreach($models as $key=>$val)
+				{
+					$id = $val['id'];
+				// 	// $val['created_at']  = $now; 
+				// 	// $val['updated_at']  = $now; 
+				// 	// //print_r($key);
+				// 	// print_r($val['id']);
+				// 	//Voucher::archived_unr_vouchers_insert($val);
+					Voucher::destroy($id);
+					Voucher::delete_unr_voucher_category($id);
+				}
+				
 				
 			break;	
 		}
