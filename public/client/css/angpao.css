@@ -111,13 +111,30 @@ body {
     
     .angpao_container {
         
-        height: 850px;
+        height: 650px;
         
     }
 
     .panel-dummy-message {
         height: 120px;
-        margin-top: 290px;
+        margin-top: 500px;
+    }
+
+}
+
+@media only screen and (min-width: 320px) {
+    
+    .angpao_container {
+        
+        height: 580px;
+        
+    }
+
+    .panel-dummy-message {
+        height: 100px;
+        margin-top: 445px;
+        margin-left: 40px;
+        font-size: 12px;
     }
 
 }
@@ -133,8 +150,9 @@ body {
     .panel-dummy-message {
         height: 120px;
         margin-top: 500px;
+        margin-left: 45px;
+        font-size: 14px;
     }
-
 
 }
 
@@ -153,17 +171,37 @@ body {
 
 }
 
+@media only screen and (min-width: 375px) {
+    
+    .angpao_container {
+        
+        height: 700px;
+        
+    }
+
+    .panel-dummy-message {        
+        height: 135px;
+        margin-top: 515px;
+        margin-left: 40px;
+        font-size: 16px;
+    }
+
+
+}
+
 @media only screen and (min-width: 400px) {
     
     .angpao_container {
         
-        height: 1100px;
+        height: 720px;
         
     }
 
     .panel-dummy-message {
-        height: 120px;
-        margin-top: 370px;
+        height: 135px;
+        margin-top: 555px;
+        margin-left: 50px;
+        font-size: 16px;
     }
 
 }
@@ -172,13 +210,32 @@ body {
     
     .angpao_container {
         
-        height: 1100px;
+        height: 740px;
         
     }
 
     .panel-dummy-message {
-        height: 120px;
-        margin-top: 375px;
+        height: 135px;
+        margin-top: 570px;
+        margin-left: 55px;
+        font-size: 16px;
+    }
+
+}
+
+@media only screen and (min-width: 414px) {
+    
+    .angpao_container {
+        
+        height: 740px;
+        
+    }
+
+    .panel-dummy-message {
+        height: 135px;
+        margin-top: 575px;
+        margin-left: 55px;
+        font-size: 16px;
     }
 
 }
@@ -187,40 +244,77 @@ body {
 @media only screen and (min-width: 500px) {
     .angpao_container {
         
-        height: 1300px;
+        height: 900px;
         
     }
 
     .panel-dummy-message {
-        height: 120px;
-        margin-top: 1000px;
-        /*margin-left: 115px;*/
-        display: inline-block;
+        height: 170px;
+        margin-top: 690px;
+        margin-left: 60px;
+        font-size: 20px;
     }
 
 
 }
 
 @media only screen and (min-width: 700px) {
+    .angpao_container {
+        
+        height: 1300px;
+        
+    }
+    .panel-dummy-message {
+        height: 250px;
+        margin-top: 995px;
+        margin-left: 80px;
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    .angpao_container {
+        
+        height: 1350px;
+        
+    }
     
     .panel-dummy-message {
-        height: 120px;
-        margin-top: 660px;
+        height: 250px;
+        margin-top: 1035px;
+        margin-left: 90px;
+        font-size: 30px;
     }
 }
 
 @media only screen and (min-width: 900px) {
     
     .panel-dummy-message {
-
-        margin-top: 690px;
+        height: 250px;
+        margin-top: 1035px;
+        margin-left: 90px;
+        font-size: 30px;
     }
 }
 
 @media only screen and (min-width: 950px) {
     
     .panel-dummy-message {
-        margin-top: 680px;
+        height: 250px;
+        margin-top: 1010px;
+        margin-left: 80px;
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    
+    .panel-dummy-message {
+        height: 250px;
+        margin-top: 1035px;
+        margin-left: 90px;
+        font-size: 30px;
     }
 }
 
