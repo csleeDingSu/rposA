@@ -560,6 +560,6 @@ return [
 	'sort_by' => 'Sort by',
 	'auto_product_redeem' => 'Auto product redeem',
 	
-	
+	'ads_picture' => '广告图',
 	
 ];

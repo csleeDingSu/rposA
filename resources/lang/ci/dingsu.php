@@ -525,5 +525,6 @@ return [
 	'refund' => 'Refund',
 	'fee' => 'Fee',
 
+	'ads_picture' => '广告图',
 		
 ];
