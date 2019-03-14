@@ -64,7 +64,7 @@ class GenerateDashboardReport extends Command
 		$report['today_package_redeem']  		= Report::total_package_redeem($today);
 		$report['ledger_points']    			= Report::ledger_points();
 		$report['ledger_vip_points']  			= Report::ledger_points('vip');
-		$report['unreleased_voucher_count']     = Report::voucher_count('unreleased');
+		$report['unreleased_voucher_count']     = Report::voucher_count(true);
 		
 		$re = Report::wabao_redeem_user();		
 		foreach ($re as $ruser)
