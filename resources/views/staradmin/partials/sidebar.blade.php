@@ -157,15 +157,12 @@
 			</div>
 		</li>
 
-		<li class="nav-item">
+		<!-- <li class="nav-item">
 			<a class="nav-link" href="/product/product-new">
               <i class="menu-icon  icon-list text-danger"></i>
               <span class="menu-title text-capitalize"> @lang('dingsu.redeem') 2 </span>
-            </a>	
-
-		</li>
-
-		
+            </a>
+		</li> -->
 		
 		<li class="nav-item">
 			<a class="nav-link" href="/admin/faq">
@@ -174,12 +171,12 @@
             </a>
 		</li>
 		
-		<li class="nav-item">
+		<!-- <li class="nav-item">
 			<a class="nav-link" href="/admin/tips">
               <i class="menu-icon icon-speech  text-info"></i>
               <span class="menu-title text-capitalize"> @lang('dingsu.tips')</span>
             </a>	
-		</li>
+		</li> -->
 		
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uisetting" aria-expanded="false" aria-controls="uisetting">
@@ -216,9 +213,9 @@
 		
 			<div class="collapse" id="uireport">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link" href="/report/redeem_life">@lang('dingsu.redeem_life')</a>
-					</li>
+					</li> -->
 					<li class="nav-item">
 						<a class="nav-link" href="/report/point_report">@lang('dingsu.point_report')</a>
 					</li>
