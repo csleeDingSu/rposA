@@ -207,7 +207,8 @@ class LoginController extends Controller
 			event(new \App\Events\EventUserLogout($user->id));			
 		}
 
-		$request->session()->forget(['refcode']);
+		// $request->session()->forget(['refcode']);
+		Session::forget('refcode');
 
 		return redirect('/');
         
