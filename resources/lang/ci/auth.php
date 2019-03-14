@@ -36,5 +36,6 @@ return [
     'phone_notavailable' => '手机号已注册.', 
     'username_notexists' => '输入账号未注册.',
     //'password_notexists' => '登录密码输入错误.',
-
+    
+    'alpha_num' => '密码只能包含字母和数字。',
 ];

@@ -36,5 +36,7 @@ return [
     'reg_password_not_min' => 'Password must be 6-12 digits.',
     'log_password_not_min' => 'Password must be 6-12 digits.',
     //'password_notexists' => 'The password is incorrect.',
+
+    'alpha_num' => 'The password may only contain letters and numbers.',
 ];
 
