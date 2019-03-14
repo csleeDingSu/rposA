@@ -177,6 +177,7 @@ class MemberLoginController extends Controller
                 'username.required' =>trans('auth.username_empty'),
                 'password.required' =>trans('auth.password_empty'),
                 'password.min' =>trans('auth.password_not_min'),
+                'password.alpha_num' => trans('auth.alpha_num'),
 			]
         );
 		

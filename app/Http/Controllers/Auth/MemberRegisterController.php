@@ -65,7 +65,7 @@ class MemberRegisterController extends Controller
 			'password.min' =>trans('auth.reg_password_not_min'),
 			'username.unique' =>trans('auth.username_notavailable'),
 			'phone.unique' =>trans('auth.phone_notavailable'),
-			
+			'password.alpha_num' => trans('auth.alpha_num'),
 			
 		]);
 		
@@ -86,6 +86,7 @@ class MemberRegisterController extends Controller
 				'password.confirmed' =>trans('auth.password_not_same'),
 				'username.unique' =>trans('auth.username_notavailable'),
 				'phone.unique' =>trans('auth.phone_notavailable'),
+				'password.alpha_num' => trans('auth.alpha_num'),
 				
 			]
         );
@@ -165,7 +166,7 @@ class MemberRegisterController extends Controller
 				'password.confirmed' =>trans('auth.password_not_same'),
 				'username.unique' =>trans('auth.username_notavailable'),
 				'phone.unique' =>trans('auth.phone_notavailable'),
-				
+				'password.alpha_num' => trans('auth.alpha_num'),
 				
 			]
         );
