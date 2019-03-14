@@ -206,6 +206,9 @@ class LoginController extends Controller
 			JWTAuth::setToken($token)->invalidate();
 			event(new \App\Events\EventUserLogout($user->id));			
 		}
+
+		$request->session()->forget(['refcode']);
+
 		return redirect('/');
         
     }

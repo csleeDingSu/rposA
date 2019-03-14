@@ -100,9 +100,13 @@ class MemberRegisterController extends Controller
 		
 		if (!empty($ref))
 		{
-			$data['ref']     = Members::CheckReferral($ref);
+			$data['ref']  = Members::CheckReferral($ref);
 			
 			$data['refcode'] = $ref;
+
+			if (!empty($data['ref'])) {
+				session(['refcode' => $ref]);	
+			}
 			
 		}
 		
@@ -124,6 +128,10 @@ class MemberRegisterController extends Controller
 			$data['ref']     = Members::CheckReferral($ref);
 			
 			$data['refcode'] = $ref;
+
+			if (!empty($data['ref'])) {
+				session(['refcode' => $ref]);	
+			}
 			
 		}
 		

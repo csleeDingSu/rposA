@@ -185,16 +185,19 @@
                                 <li>
                                     <button class="doregi" name="doregi" id="doregi" type="button">注册</button>
                                 </li>
-                                @if(!empty($refcode) and isset($ref->id))
+                                @if((!empty($refcode) and isset($ref->id)) || !empty(Session::get('refcode')))
                                 <li>
                                     <div style="text-align: center">
                                         <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
 
                                         <span style="color: lightgrey;">注册码 : </span>
-                                        <input name="refcode" id="refcode" type="text" value="{{$refcode}}" readonly  style="color: lightgrey; width: 32%; border: 0;">
+                                        <input name="refcode" id="refcode" type="text" value="{{ Session::get('refcode')}}" readonly  style="color: lightgrey; width: 32%; border: 0;">
+
+
                                     </div>
                                 </li>
                                 @endif
+                                
                             </ul>
                         </form>
                     </div>
