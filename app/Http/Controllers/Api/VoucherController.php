@@ -6,6 +6,7 @@ use App\Voucher;
 use App\Voucher_category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 
 
 use App\Unreleasedvouchers;
@@ -91,5 +92,27 @@ class VoucherController extends Controller
 		
         return view('client.home3', compact('vouchers','category','cid','banner','member_mainledger', "setting"));
 		
+    }
+
+    public function search($strSearch = '', Request $request)
+    {
+    	$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url')->first();
+
+        $vouchers = new Paginator([], 5);
+
+    	if ($strSearch)
+		{
+	    	$vouchers = \DB::table('vouchers')
+	    		->where('product_name', 'LIKE', '%'.$strSearch.'%')
+				->orderby('vouchers.created_at','DESC')
+				->paginate(5);			
+		}
+
+		if ($request->ajax()) {
+    		$view = view('client.ajaxhome',compact('vouchers', 'setting'))->render();
+            return response()->json(['html'=>$view]);
+        }
+
+    	return view('client.search', compact('vouchers', 'setting', 'strSearch'));
     }
 }

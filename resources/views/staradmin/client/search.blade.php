@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/module.css') }}"/>
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
 	<link rel="stylesheet" href="{{ asset('/client/css/slick-theme.css') }}" />
@@ -25,103 +26,86 @@
 	
 	
 .isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
-	
+
+		.header {
+		    height: 1.2rem;
+		}
+
+		.header .top li {
+			line-height: 0.7rem;
+		}
+
+		.header .top li a, .header .top li a:hover {
+			margin-left: 0;
+			text-decoration: none;
+		}
+
+        .inBox {
+		  padding-top: 0.2rem;
+		  padding-left: 0.2rem;
+		  float: left;
+		}
+
+		.flexSp {
+		  background: #ffffff;
+		  border-radius: 0.42rem;
+		  -webkit-border-radius: 0.42rem;
+		  -moz-border-radius: 0.42rem;
+		  -ms-border-radius: 0.42rem;
+		  -o-border-radius: 0.42rem;
+		  height: 0.74rem;
+		  width: 6.2rem;
+		  align-items: center;
+		  padding: 0 0.2rem;
+		}
+
+        .flexSp input {
+		  display: flex;
+		  width: 100%;
+		  box-sizing: border-box;
+		  padding-left: 0.25rem;
+		  font-size: 0.32rem;
+		  line-height: 2em;
+		  background: none;
+		  border: none;
+		}
+
+		.flexSp input::placeholder {
+		  color: #bdbdbd;
+		}
+		.flexSp input::-webkit-placeholder {
+		  color: #bdbdbd;
+		}
+
 	</style>
-<body style="background:#efefef">
+<body style="background:#ffffff">
 <input type="hidden" id="page" value="1" />
-<input type="hidden" id="max_page" value="{{$vouchers->lastPage()}}" />
+@if(count($vouchers))
+<input type="hidden" id="max_page" value="{{ $vouchers->lastPage() }}" />
+@else
+<input type="hidden" id="max_page" value="0" />
+@endif
 
 	<section class="cardFull card-flex">
 		<div class="cardHeader">
 			<div class="header">
-				<ul class="dbox top">
-					
-						@if (isset(Auth::Guard('member')->user()->username))
-							<a class="login-title" href="/member" style="color: white; font-size: 0.3rem;">{{ Auth::Guard('member')->user()->username }}</a>
-							<a class="logout-title" href="/logout" style="font-size: 0.3rem;">退出</a>
-						@else
-						<li class="dbox0">
-					  		<a href="/nlogin" style="color: white; font-size: 0.3rem;">@lang('dingsu.login') / @lang('dingsu.register')</a>
-					  	</li>
-					  	@endif
-					  	<!-- <a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a> -->
-				  						
-					<li class="dbox1 logo"><img src="{{ asset('/test/main/images/logo.png') }}"></li>				
-					<li class="dbox0"><a href="/search" style="color: white; font-size: 0.3rem;"><img src="{{ asset('/client/images/search_btn.png') }}" style="height: 0.3rem;"> 搜索</a></li>
-
-					
+				<ul class="dbox top">			
+					<li class="dbox0">
+		                <div class="inBox">
+                            <div class="flexSp">
+                                <input type="text" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="30" value="{{ $strSearch }}">
+                            </div>
+		                </div>
+						<div class="inBox"><a id="btn_search" href="#" style="color: white; font-size: 0.3rem;">搜索</a></div>
+					</li>					
 				</ul>
-				<div class="main rel">
-					<div class="dbox">
-						<div class="dbox1 txt">
-							{{$current_cat_name = null}}
-							@if(isset($category))
-								@foreach($category as $cat)
-
-									@if ($cat->id == $cid)
-										{{$current_cat_name = $cat->display_name}}
-										<a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
-										<!-- <a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a> -->
-									@else
-										<a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
-									@endif
-
-								    @break($cat->number == 6)
-								@endforeach
-							@else
-								<a class="on">精选</a>
-								<a>女装</a>
-								<a>男装</a>
-								<a>鞋帽</a>
-								<a>食饮</a>
-								<a>没装</a>
-							@endif							
-						</div>
-						<a class="downIcon dbox0"><img src="{{ asset('/test/main/images/downIcon.png') }}"></a>
-					</div>
-					<div class="slideMore dn">
-						<h2>全部分类<a class="close"><img src="{{ asset('/test/main/images/closeIcon.png') }}"></a></h2>
-						<p>
-							@foreach($category as $cat)
-								@if ($cat->id == $cid)
-									<a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
-								@else
-									<a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
-								@endif
-							@endforeach							
-						</p>
-					</div>
-				</div>
 			</div>
 		</div>
+		
+
 		<div class="cardBody">
 			<div class="box">
-
-				@if($cid == env('voucher_featured_id','220'))
-					
-					<div class="banner">
-
-						<!--<img data-lazy="{{ asset('/test/main/images/demo/banner.png') }}">-->
-						
-
-						 @if(isset($banner)) 				
-						 @foreach($banner as $bner) 	
-						<!--	<img data-lazy="{{env('banner_url', 'https://wabao666.com/banner/') . $bner->banner_image}}"  >		-->
-						
-						<img data-lazy="/banner/{{$bner->banner_image}}"  >	
-						 @endforeach 				
-						 @endif 
-					
-					</div>
-
-				@endif
-
-				<div class="product">
-					<div class="title">
-						<span>共有<font color="#f63556">{{ $vouchers->total() }}</font>款产品</span>
-						<h2>{{ is_null($current_cat_name) ? 精选 : $current_cat_name }}大额优惠券</h2>
-					</div>
-					
+				<div class="product">					
 					<div class="infinite-scroll">
 						<ul class="list-2">								
 								@include('client.ajaxhome')
@@ -222,39 +206,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script>
-		
-		$(document).on('ready', function() {
-      
-		  $(".banner").slick({
-			  autoplay:true,
-			  autoplaySpeed:10000,
-			  arrows:false,
-			  lazyLoad: 'ondemand', // ondemand progressive anticipated
-			  infinite: true,
-			  adaptiveHeight: false,
-			  dots: true,
-		  });
-		});
-		
-		
-		
+
 		$(document).ready(function(){
 		//$(function () {
-			
-			$('.downIcon').click(function () {
-				$('.cardHeader').css({ 'z-index': '11' });
-				being.wrapShow('.cardBody');
-				$('.slideMore').fadeIn(150);
+			$("#btn_search").on("click", function() {
+				var strSearch = $('#strSearch').val();
+				window.location.href = "/search/" + strSearch;
 			});
 
-			$('.slideMore .close').click(function () {
-			
-				$('.slideMore').fadeOut(150);
-				being.wrapHide('.cardBody', () => {
-					$('.cardHeader').removeAttr('style');
-				});
-			});
-			
 			$('.showQuan').click((e) => {
 				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-1.png') }} ");
 				var target = $(e.target).closest('.inBox').length;
@@ -346,8 +305,10 @@
 				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
 			});
 
-			being.scrollBottom('.cardBody', '.box', () => {			
+			being.scrollBottom('.cardBody', '.box', () => {
+
 				page++;
+				console.log(page);
 				var max_page = parseInt($('#max_page').val());
 				if(page > max_page) {
 					$('#page').val(page);
@@ -363,12 +324,11 @@
 		$('ul.pagination').hide();
 		
 		var page=1;
-		
-		/*$('.cardBody').on('scroll', function() {
-        	if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {            
-				//scroll
-			}
-		})*/
+		var max_page = parseInt($('#max_page').val());
+
+		if(max_page == 0){
+			$(".isnext").html("@lang('dingsu.end_of_result')");
+		}
 				
 		function getPosts(page){
 			$.ajax({
