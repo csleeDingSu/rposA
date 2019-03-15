@@ -33,6 +33,8 @@
 
 		.header .top li {
 			line-height: 0.7rem;
+			font-size: 1em;
+			text-align: left;
 		}
 
 		.header .top li a, .header .top li a:hover {
@@ -78,6 +80,7 @@
 		}
 
 	</style>
+	<link type="text/css" rel="stylesheet" href="{{ asset('/client/css/jquery.searchHistory.css') }}">
 <body style="background:#ffffff">
 <input type="hidden" id="page" value="1" />
 @if(count($vouchers))
@@ -89,16 +92,20 @@
 	<section class="cardFull card-flex">
 		<div class="cardHeader">
 			<div class="header">
+				<form id="historyForm" action="" method="GET">
 				<ul class="dbox top">			
 					<li class="dbox0">
 		                <div class="inBox">
                             <div class="flexSp">
-                                <input type="text" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="30" value="{{ $strSearch }}">
+                            
+                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="30" value="{{ $strSearch }}">
+                            
                             </div>
 		                </div>
 						<div class="inBox"><a id="btn_search" href="#" style="color: white; font-size: 0.3rem;">搜索</a></div>
 					</li>					
 				</ul>
+				</form>
 			</div>
 		</div>
 		
@@ -205,6 +212,8 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script src="{{ asset('/client/js/jquery.searchHistory.js') }}" ></script>
 	<script>
 
 		$(document).ready(function(){
@@ -212,6 +221,23 @@
 			$("#btn_search").on("click", function() {
 				var strSearch = $('#strSearch').val();
 				window.location.href = "/search/" + strSearch;
+			});
+
+			$('#historyForm').searchHistory({
+	      		'sendWhenSelect':false
+	      	});
+
+			$( "#historyForm" ).submit(function( event ) {
+			  	var strSearch = $('#strSearch').val();
+				$.ajax({
+			        type: 'GET',
+			        url: $(this).attr('action'),
+			        dataType: 'json',
+			        success: function(json) {
+			           window.location.href = "/search/" + strSearch;
+			        }
+			    })
+			    return false;
 			});
 
 			$('.showQuan').click((e) => {
