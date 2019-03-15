@@ -91,6 +91,8 @@ class GenerateVouchertoDb
 							
 							$insdata[$re_field] = $val[$mva];
 							$insdata['source_file'] = $filename;
+							$insdata['updated_at']  = $now; 
+							$insdata['created_at']  = $now; 
 
 
 							if ($re_field == 'product_category')
@@ -180,7 +182,7 @@ class GenerateVouchertoDb
 						return $category;
 					// }
 					}else{
-						$category= '';
+						$category= '180';
 					}
 				}
 		return $category;

@@ -214,10 +214,44 @@ class ImportController extends BaseController
 	
 	public function ProcessparseImport(Request $request)
 	{
+		ini_set('memory_limit', '3024M'); // or you could use 1G
 		
-		$file_title = $request->file_title;
-		$sys_title  = $request->sys_tit;
-		$filename  = $request->filename;
+		$max_size = (int)ini_get('upload_max_filesize') * 10000;
+		
+		
+		$max_size = 900000 ;
+		
+		$all_ext = implode(',', $this->document_ext);
+		
+		
+		// $validator = $this->validate(
+  //           $request,
+  //           [
+  //               'file' => 'required|file|mimes:' . $all_ext 
+  //           ]
+  //       );
+		
+		$extension = $request->file->getClientOriginalExtension(); //$request->file->extension();
+		
+		
+		
+		$filename = 'upv'.time(); 
+		
+		$path = $request->file->storeAs('excel', $filename.'.'.$extension, 'public_uploads');
+		
+		$url = Storage::url('uploads/'.$path);
+		
+		$excelChecker = Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
+				
+		$arrayhead = $excelChecker[0];
+				
+		$data['page'] = 'voucher.importparse'; 
+		$data['file_title'] = array_keys($arrayhead);
+		$data['sys_title']  = Voucher::get_csvtitle(); 
+		$data['filename']   = $filename;
+
+		$file_title = array(1,2,3,4,5,6,7);
+		$sys_title  = array(1,2,3,4,5,6,7);
 		
 		$vouchercombination = new Voucher();
 		

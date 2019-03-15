@@ -232,27 +232,12 @@ return [
 	
 	//Voucher
 	'product_name' => 'Product name',
-	'product_picurl' => 'Product pic url',
-	'product_detail_link' => 'Product details page link address',
-	'product_category' => 'Product first category',
-	'taobao_guest_link' => 'Taobao guest link',
+	'product_picurl' => 'Product picture URL',
+	'product_detail_link' => 'Product detail link',
+	'product_category' => 'Product category',
 	'product_price' => 'Product price',
 	'month_sales' => 'Monthly sales',
-	'income_ratio' => 'Income ratio',
-	'commision' => 'Commision',
-	'seller_name' => 'Seller name',
-	'seller_id' => 'Seller ID',
-	'seller_platform' => 'Seller Shop Platforn',
-	'voucher_id' => 'Voucher ID',
-	'available_voucher' => 'Total voucher available',
-	'current_available_voucher' => 'Current voucher available',
-	'coupon_denomination' => 'Coupon denomination',
-	'voucher_starttime' => 'Voucher start time',
-	'voucher_expiry' => 'Voucher expiry',
-	'voucher_link' => 'Voucher link',
-	'product_voucher' => 'Product voucher',
-	'ads_link' => 'Ads link',
-	
+	'coupon_denomination' => 'Voucher demonination',
 
 
 	
