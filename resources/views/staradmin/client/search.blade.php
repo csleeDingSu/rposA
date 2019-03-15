@@ -98,7 +98,7 @@
 		                <div class="inBox">
                             <div class="flexSp">
                             
-                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="30" value="{{ $strSearch }}">
+                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="30" value="{{ $strSearch }}" autofocus>
                             
                             </div>
 		                </div>
