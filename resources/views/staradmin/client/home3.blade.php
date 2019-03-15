@@ -20,6 +20,50 @@
 
 	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
+
+
+<script type="text/javascript">
+    //这里是微信和qq遮罩提示层
+    function isPIA(){
+        var u = navigator.userAgent, app = navigator.appVersion;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isiOS) {return 1;}
+        if(isAndroid) {return 2};
+    }
+    var bg;
+    if (isPIA() == 1) {
+        bg = window.location.origin + "/vwechat/images/ios_wx.jpg";
+    }else if (isPIA() == 2) {
+        bg = window.location.origin + "/vwechat/images/android_wx.jpg";
+    }
+    // document.writeln("<div id=\"weixinTips\" style=\"display:none;background:rgba(255, 255, 255,1);width:100%;height:100%;position:fixed;left:0;top:0;z-index:9999\"><div id=\"weixinTipsImg\" style=\"background:url("+bg+") top center no-repeat;background-size:100%;width:100%;height:100%\"><\/div><\/div>");
+    var ua = navigator.userAgent.toLowerCase();
+    //alert(ua);
+    function checkDownload() {
+        if (ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) {
+            document.writeln("<div id=\"weixinTips\" style=\"display:block;background:rgba(255, 255, 255,1);width:100%;height:100%;position:fixed;left:0;top:0;z-index:9999\"><div id=\"weixinTipsImg\" style=\"background:url("+bg+") top center no-repeat;background-size:100%;width:100%;height:100%\"><\/div><\/div>");
+
+            // document.getElementById("weixinTips").style.display = "block";
+            document.title="请在浏览器中打开...";
+            // return false;
+        }else{
+
+        	var wabao666_domain = "<?php Print(env('wabao666_domain', 'www.wabao666.com'));?>";
+            var sCurrentPathName = window.location.pathname;
+            var sNewPathName = sCurrentPathName; //sCurrentPathName.replace("vvregister", "register");
+            if (window.location.hostname != wabao666_domain) {
+            	window.location.href = window.location.protocol + "//" + wabao666_domain + sNewPathName;	
+            }
+            // window.location.href = "https://www.wabao666.com" + sNewPathName;
+            // var href_ = "https://www.wabao666.com" + sNewPathName;
+
+        }
+
+    }
+    checkDownload();
+</script>
+
 </head>
 <style>
 	
@@ -200,7 +244,7 @@
 											每次机会有99%概率获得15元，新注册用户有1次机会，能获得15元。<br />
 											<div class="div-tips">小编偷偷讲：以后会调低奖励，现在已经注册的，赶紧抓住机会赚一波。</div>
 											<li class="tips-title">如何赚更多钱？</li>
-											每邀请1个新用户能获得3次机会，邀请10个赚450元「被邀请的能获得1次机会」 <br />
+											每邀请1个新用户能获得{{env('sharetofriend_youwillget','3')}}次机会，邀请10个赚{{env('sharetofriend_youwillget_bonus','450') * 10}}元「被邀请的能获得1次机会」 <br />
 											非常容易邀请到很多人注册，大力分享！
 										</ul>
 									</div>

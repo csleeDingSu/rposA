@@ -410,11 +410,10 @@
 			<div class="modal-title">
 				<h1>您有红包等待领取</h1>
 				<div class="reward">
-					¥ <span class="reward-amount">60.00</span>
+					<span class="reward-amount">{{env('newbie_willget_bonus', '60.00')}}</span>元
 				</div>
 				<div class="reward-instructions">
-					认证后挖宝赚15元<br />
-					邀请一个好友再赚45元
+					需要微信认证才能领取
 				</div>
 			</div>
 			<div class="modal-content modal-wechat">
@@ -422,9 +421,9 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="body-title">添加客服认证</div>
+								<div class="body-title">添加客服微信号</div>
 								<div class="instructions">
-									在线时间：早上8：00～晚上21：00
+									在线时间：早上9：00～晚上21：00
 								</div>								
 							</div>
 							<div class="row">
@@ -534,7 +533,7 @@
 								</div>
 								<div class="modal-invite-content">
 									<span class="modal-invite-title">邀请1位好友</span><br />
-									奖励3次挖宝机会，赚45元红包
+									奖励{{env('sharetofriend_youwillget', '3')}}次挖宝机会，赚{{env('sharetofriend_youwillget_bonus', '45')}}元红包
 								</div>
 								<a href="/share" class="link-button">
 									<div class="modal-warning-button">
