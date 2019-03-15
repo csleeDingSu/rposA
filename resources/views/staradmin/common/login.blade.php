@@ -91,10 +91,10 @@
 	<!-- endinject -->
 	<!-- inject:js -->
 	<script src="{{ asset('staradmin/js/off-canvas.js') }}"></script>
-	<script src="{{ asset('staradmin/js/hoverable-collapse.js') }}"></script>
+	<!-- <script src="{{ asset('staradmin/js/hoverable-collapse.js') }}"></script> -->
 	<script src="{{ asset('staradmin/js/misc.js') }}"></script>
-	<script src="{{ asset('staradmin/js/settings.js') }}"></script>
-	<script src="{{ asset('staradmin/js/todolist.js') }}"></script>
+	<!-- <script src="{{ asset('staradmin/js/settings.js') }}"></script> -->
+	<!-- <script src="{{ asset('staradmin/js/todolist.js') }}"></script> -->
 	<!-- endinject -->
 </body>
 
