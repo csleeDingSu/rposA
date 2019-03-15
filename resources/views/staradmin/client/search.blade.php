@@ -37,7 +37,7 @@
 			text-align: left;
 		}
 
-		.header .top li a, .header .top li a:hover {
+		.header .top li a, .header .top li a:hover, .header .top li a:focus {
 			margin-left: 0;
 			text-decoration: none;
 		}
