@@ -3,6 +3,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Carbon\Carbon;
 
 class Report extends Model
 {
@@ -47,17 +48,17 @@ class Report extends Model
 	
 	public static function total_active_user()
 	{		
-		return $count = DB::table('members')->where('member_status','0')->count();	
+		return $count = DB::table('members')->where('updated_at', '>', Carbon::now()->subMonths(1))->count();	
 	}
 	
 	public static function total_inactive_user()
 	{		
-		return $count = DB::table('members')->where('member_status','1')->count();	
+		return $count = DB::table('members')->where('updated_at', '<=', Carbon::now()->subMonths(1))->count();	
 	}
 	
 	public static function today_user_registration($date)
 	{		
-		return $count = DB::table('members')->where('created_at',$date)->count();	
+		return $count = DB::table('members')->whereDate('created_at', $date->today())->count();	
 	}
 	
 	public static function total_game_bet($date = FALSE, $vip = FALSE)
@@ -68,7 +69,7 @@ class Report extends Model
 		$balance = DB::table($table);		
 		if ($date)
 		{
-			$balance->where('created_at',$date);	
+			$balance->whereDate('created_at',$date->today());	
 		}	
 		
 		return $balance->sum('bet_amount');	
@@ -83,7 +84,7 @@ class Report extends Model
 		$balance = DB::table($table);	
 		if ($date)
 		{
-			$balance->where('created_at',$date);	
+			$balance->whereDate('created_at',$date->today());	
 		}
 		return $balance->where('is_win',null)->sum('bet_amount');	
 	}
@@ -96,7 +97,7 @@ class Report extends Model
 		$balance = DB::table($table);	
 		if ($date)
 		{
-			$balance->where('created_at',$date);	
+			$balance->whereDate('created_at',$date->today());	
 		}
 		return $balance->groupBy('member_id')->count();
 	}
@@ -106,7 +107,7 @@ class Report extends Model
 		$count = DB::table('redeemed');	
 		if ($date)
 		{
-			$count->where('redeemed_at',$date);	
+			$count->whereDate('redeemed_at',$date->today());	
 		}
 		return $count->wherein('redeem_state' ,['2','1'])->count();
 			
@@ -117,7 +118,7 @@ class Report extends Model
 		$count = DB::table('vip_redeemed');	
 		if ($date)
 		{
-			$count->where('redeemed_at',$date);	
+			$count->whereDate('redeemed_at',$date->today());	
 		}
 		return $count->wherein('redeem_state' ,['2','3'])->count();
 	}
@@ -164,7 +165,7 @@ class Report extends Model
 		$data = DB::table($table);		
 		if ($date)
 		{
-			$data->where('created_at',$date);	
+			$data->whereDate('created_at',$date->today());	
 		}	
 		
 		return $data->count();		
