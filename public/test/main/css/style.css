@@ -121,6 +121,15 @@
   margin-top: 0.3rem;
   background: #fff;
 }
+
+.login-title {
+  padding: 0.25rem 0 0.3rem 0.18rem;
+}
+
+.logout-title, .logout-title:hover {
+  color: #fdf633;
+}
+
 .title {
   padding: 0.25rem 0.18rem 0.3rem 0.18rem;
 }
