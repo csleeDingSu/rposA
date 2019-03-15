@@ -534,7 +534,7 @@
 								</div>
 								<div class="modal-invite-content">
 									<span class="modal-invite-title">邀请1位好友</span><br />
-									奖励3次挖宝机会，赚45元红包
+									奖励{{env('sharetofriend_youwillget', '3')}}次挖宝机会，赚{{env('sharetofriend_youwillget_bonus', '45')}}元红包
 								</div>
 								<a href="/share" class="link-button">
 									<div class="modal-warning-button">
