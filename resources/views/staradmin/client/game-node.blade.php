@@ -434,9 +434,9 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="body-title">添加客服认证</div>
+								<div class="body-title">添加客服微信号</div>
 								<div class="instructions">
-									在线时间：早上8：00～晚上21：00
+									在线时间：早上9：00～晚上21：00
 								</div>								
 							</div>
 							<div class="row">

@@ -1097,25 +1097,35 @@ body{
 }
 
 #verify-steps .modal-title h1 {
-	font-size: 20px;
+	/*font-size: 20px;*/
 	margin-bottom: 0px;
 	margin-top: 100px;
-	font-weight: 500;
+	/*font-weight: 500;*/
+	font-size: 14px !important;
+	font-weight: 200 !important;
+	color: #fffc22 !important;
 }
 
 #verify-steps .reward {
-	font-size: 16px;
+	/*font-size: 16px;*/
+	color: #fffc22;
+	font-weight: 200 !important;
+	padding: 0 !important;
+	margin-top: 0px;
 }
 
 #verify-steps .reward-amount {
-	font-size: 50px;
+	font-size: 55px;
 	font-weight: 500;
+	color: #fffc22;
 }
 
 #verify-steps .reward-instructions {
-	color: #f2ee10;
+	/*color: #f2ee10;*/
 	font-weight: 500;
-	font-size: 15px;
+	/*font-size: 15px;*/
+	font-size: 16px;
+	color: white;
 }
 /* End Wechat Modal*/
 

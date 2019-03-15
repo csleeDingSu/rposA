@@ -208,13 +208,12 @@
 	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: #666666;">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title">
-				<h1>您有红包等待领取</h1>
+				<h1>您有红包等待领取</h1>				
 				<div class="reward">
-					¥ <span class="reward-amount">{{env('newbie_willget_bonus', '60.00')}}</span>
+					<span class="reward-amount">{{env('newbie_willget_bonus', '60.00')}}</span>元
 				</div>
 				<div class="reward-instructions">					
-					认证后能获得{{env('newbie_willget','3')}}次挖宝机会<br />
-					每次挖宝机会能获得{{env('every_time_play_you_will_get','5')}}元				
+					需要微信认证才能领取
 				</div>
 			</div>
 			<div class="modal-content modal-wechat">
@@ -222,9 +221,9 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="body-title">添加客服认证</div>
+								<div class="body-title">添加客服微信号</div>
 								<div class="instructions">
-									在线时间：早上8：00～晚上21：00
+									在线时间：早上9：00～晚上21：00
 								</div>								
 							</div>
 							<div class="row">
