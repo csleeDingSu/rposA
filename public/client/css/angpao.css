@@ -272,6 +272,20 @@ body {
     }
 }
 
+@media only screen and (min-width: 720px) {
+    .angpao_container {
+        
+        height: 1300px;
+        
+    }
+    .panel-dummy-message {
+        height: 250px;
+        margin-top: 1015px;
+        margin-left: 80px;
+        font-size: 30px;
+    }
+}
+
 @media only screen and (min-width: 768px) {
 
     .angpao_container {
