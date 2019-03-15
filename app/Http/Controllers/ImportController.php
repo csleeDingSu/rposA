@@ -275,8 +275,8 @@ class ImportController extends BaseController
 		
 		$data['msg']  = 'message_import_success';
 		
-		return view('main', $data);
-		
+		// return view('main', $data);
+		return redirect('voucher/unreleased')->with('message', 'Successfully imported! 导入完成!');
 	}
 	
 		
