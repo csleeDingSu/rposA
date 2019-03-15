@@ -1,0 +1,106 @@
+.search-history {
+    width: 100%;
+    margin-top: 0.6rem;
+    margin-left: -0.4rem;
+    position: absolute;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #fff;
+    z-index: 1000;
+}
+
+.search-history-show {
+    display: block;
+}
+
+.search-history-hide {
+    display: none;
+}
+
+.header .top li .history-list {
+    list-style: none;
+    position: absolute;
+    padding: 0;
+    line-height: 26px;
+    font-size: 1em;
+    color: #999999;
+    text-align: left;
+    z-index: 1000;
+    background: #fff;
+    width: 100%;
+}
+
+.header .top li .history-item {
+    cursor: pointer;
+    padding: 0em 0.85em;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #999999;
+    text-align: left;
+    font-size: 1em;
+}
+
+    .history-item:hover {
+        /* Hover State */
+        background-color: #f0f0f0;
+    }
+
+.history-item-selected {
+    /* Selected State */
+    background-color: #f0f0f0;
+}
+
+.history-clear {
+    padding: 0em 0.85em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: 1px solid #d2d2d2;
+}
+
+    .history-clear .history-clear-op {
+        float: right;
+    }
+
+        .history-clear .history-clear-op:link {
+            color: #fe4e4e;
+            text-decoration: none;
+        }
+
+        .history-clear .history-clear-op:visited {
+            color: #fe4e4e;
+        }
+
+        .history-clear .history-clear-op:hover {
+            color: #fe4e4e;
+            text-decoration: underline;
+        }
+
+        .history-clear .history-clear-op:active {
+            color: #fe4e4e;
+        }
+
+        .history-clear .history-clear-op img {
+            border: none;
+        }
+
+    .history-clear:before {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        display: table;
+        content: "";
+    }
+
+    .history-clear:after {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        display: table;
+        content: "";
+        clear: both;
+    }
+
+    .search-title {
+        color: #333333;
+    }
