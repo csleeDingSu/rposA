@@ -404,11 +404,11 @@
 			<div class="modal-title">
 				<h1>您有红包等待领取</h1>
 				<div class="reward">
-					¥ <span class="reward-amount">45.00</span>
+					¥ <span class="reward-amount">{{env('newbie_willget_bonus','45.00')}}</span>
 				</div>
 				<div class="reward-instructions">
-					认证后能获得3次挖宝机会<br />
-					每次挖宝机会会能获得15元
+					认证后能获得{{env('newbie_willget','3')}}次挖宝机会<br />
+					每次挖宝机会会能获得{{env('every_time_play_you_will_get','15')}}元
 				</div>
 			</div>
 			<div class="modal-content modal-wechat">

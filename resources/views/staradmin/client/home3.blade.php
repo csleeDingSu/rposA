@@ -49,10 +49,11 @@
             // return false;
         }else{
 
+        	var wabao666_domain = "<?php Print(env('wabao666_domain', 'www.wabao666.com'));?>";
             var sCurrentPathName = window.location.pathname;
             var sNewPathName = sCurrentPathName; //sCurrentPathName.replace("vvregister", "register");
-            if (window.location.origin != "https://www.wabao666.com") {
-            	window.location.href = "https://www.wabao666.com" + sNewPathName;	
+            if (window.location.hostname != wabao666_domain) {
+            	window.location.href = window.location.protocol + "//" + wabao666_domain + sNewPathName;	
             }
             // window.location.href = "https://www.wabao666.com" + sNewPathName;
             // var href_ = "https://www.wabao666.com" + sNewPathName;
@@ -247,7 +248,7 @@
 											每次机会有99%概率获得15元，新注册用户有1次机会，能获得15元。<br />
 											<div class="div-tips">小编偷偷讲：以后会调低奖励，现在已经注册的，赶紧抓住机会赚一波。</div>
 											<li class="tips-title">如何赚更多钱？</li>
-											每邀请1个新用户能获得3次机会，邀请10个赚450元「被邀请的能获得1次机会」 <br />
+											每邀请1个新用户能获得{{env('sharetofriend_youwillget','3')}}次机会，邀请10个赚{{env('sharetofriend_youwillget_bonus','450') * 10}}元「被邀请的能获得1次机会」 <br />
 											非常容易邀请到很多人注册，大力分享！
 										</ul>
 									</div>

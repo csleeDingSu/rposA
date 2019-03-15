@@ -26,9 +26,13 @@
             // return false;
         }else{
 
+            var wabao666_domain = "<?php Print(env('wabao666_domain', 'www.wabao666.com'));?>";
             var sCurrentPathName = window.location.pathname;
             var sNewPathName = sCurrentPathName.replace("vvregister", "register");
-            window.location.href = "https://www.wabao666.com" + sNewPathName;
+            if (window.location.hostname != wabao666_domain) {
+                window.location.href = window.location.protocol + "//" + wabao666_domain + sNewPathName;    
+            }
+
             // var href_ = "https://www.wabao666.com" + sNewPathName;
 
             // var bg_ = window.location.origin + "/vwechat/images/share.png";
