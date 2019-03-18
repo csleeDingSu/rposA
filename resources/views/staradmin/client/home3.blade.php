@@ -87,7 +87,9 @@
 					
 						@if (isset(Auth::Guard('member')->user()->username))
 							<a class="login-title" href="/member" style="color: white; font-size: 0.3rem;">{{ Auth::Guard('member')->user()->username }}</a>
-							<a class="logout-title" href="/logout" style="font-size: 0.3rem;">退出</a>
+							@if (isset(Auth::Guard('member')->user()->wechat_verification_status) && (Auth::Guard('member')->user()->wechat_verification_status > 0))
+								<a class="logout-title" href="/logout" style="font-size: 0.3rem;">退出</a>
+							@endif
 						@else
 						<li class="dbox0">
 					  		<a href="/nlogin" style="color: white; font-size: 0.3rem;">@lang('dingsu.login') / @lang('dingsu.register')</a>
