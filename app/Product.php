@@ -272,7 +272,7 @@ class Product extends Model
 	{
 		$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS firstwin'))->where('member_id',$memberid)->first();
 		
-		if ($result->firstwin == 0)
+		if ($result->firstwin <= 2)
 		{
 			return 'yes';
 		}
