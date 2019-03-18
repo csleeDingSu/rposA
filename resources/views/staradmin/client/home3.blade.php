@@ -71,7 +71,6 @@
 .isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
 	
 	.header .top li a, .header .top li a:hover, .header .top li a:focus {
-			margin-left: 0;
 			text-decoration: none;
 		}
 		
