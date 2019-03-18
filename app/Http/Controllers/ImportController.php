@@ -250,8 +250,8 @@ class ImportController extends BaseController
 		$data['sys_title']  = Voucher::get_csvtitle(); 
 		$data['filename']   = $filename;
 
-		$file_title = array(1,2,3,4,5,6,7);
-		$sys_title  = array(1,2,3,4,5,6,7);
+		$file_title = array(1,2,3,4,5,6,7,8);
+		$sys_title  = array(1,2,3,4,5,6,7,8);
 		
 		$vouchercombination = new Voucher();
 		
@@ -264,8 +264,6 @@ class ImportController extends BaseController
 			
 			$dbc[] = $arr;
 		}
-		
-		//die();
 		
 		DB::table('excel_upload')->insert($dbc);
 		
