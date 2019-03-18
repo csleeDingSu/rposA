@@ -2,7 +2,7 @@
 	<div class="card">
 		<div class="card-body">
 			<h4 class="card-title">@lang('dingsu.import_voucher')</h4>
-			 <form class="form-horizontal" method="POST" action="{{ route('importparse') }}" enctype="multipart/form-data">
+			 <form class="form-horizontal" method="POST" action="{{ route('importpost') }}" enctype="multipart/form-data">
                            
 				{{ csrf_field() }} 
 				 

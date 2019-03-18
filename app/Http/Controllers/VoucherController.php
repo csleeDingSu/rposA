@@ -174,20 +174,20 @@ class VoucherController extends BaseController
 	
 	
 	
-	public function post_unreleasedvoucher_list()
-	{
-		return Voucher::search($request, 'unreleased');
-	}
+	// public function post_unreleasedvoucher_list()
+	// {
+	// 	return Voucher::search($request, 'unreleased');
+	// }
 
 	public function get_unreleasedvoucher_list(Request $request)
 	{
 		
 		//$result =  DB::table('unreleased_vouchers');
-
+		//print_r("check");
 		$result = DB::table('unreleased_vouchers')
 			->join('voucher_category', 'unreleased_vouchers.id', '=', 'voucher_category.unr_voucher_id')
 			->join('category', 'voucher_category.category', '=', 'category.id')
-			->select('unreleased_vouchers.*' )
+			->select('unreleased_vouchers.*')
 			->groupBy('unreleased_vouchers.id');
 
 		$data['page'] = 'voucher.unreleasedvoucherlist'; 	
@@ -814,7 +814,7 @@ class VoucherController extends BaseController
 		// {			
 			
 			foreach($dbi as $datav){
-				DB::table('voucher_category') -> where('unr_voucher_id', $datav) ->delete();
+				//DB::table('voucher_category') -> where('unr_voucher_id', $datav) ->delete();
 
 				foreach($datat as $data_){
 

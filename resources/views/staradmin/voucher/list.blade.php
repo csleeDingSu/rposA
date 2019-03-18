@@ -352,6 +352,7 @@ $(document).ready(function() {
 											$target.hide( 'slow', function () {
 												$target.remove();
 											} );
+											window.location.href = "list";
 
 										});
 										

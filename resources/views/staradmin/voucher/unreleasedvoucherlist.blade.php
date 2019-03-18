@@ -1,3 +1,10 @@
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
+
 <div class="clearfix">&nbsp;</div>
 <section class="filter">
 	@include('voucher.filter')
@@ -408,6 +415,7 @@ $(document).ready(function() {
 											$target.hide( 'slow', function () {
 												$target.remove();
 											} );
+											window.location.href = "unreleased";
 
 										});
 										
