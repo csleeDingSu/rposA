@@ -363,12 +363,12 @@ $(document).ready(function() {
 			
 				swal( {
 					title: '@lang("dingsu.delete_confirmation")',
-					text: '@lang("dingsu.delete_conf_text")',
+					text: '@lang("dingsu.move_to_voucher_list_text")',
 					icon: "warning",
 					closeModal: false,
 					buttons: [
 						'@lang("dingsu.cancel")',
-						'@lang("dingsu.delete")'
+						'@lang("dingsu.move")'
 					],
 
 					allowOutsideClick: false,
