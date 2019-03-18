@@ -262,7 +262,7 @@ class Bresult extends Command
 				$result = Game::get_betting_history_grouped($gameid, $memberid, '');
                 event(new \App\Events\EventBettingHistory($result,$memberid));
 				
-				return ['success' => true, 'status' => $status, 'game_result' => $game_result,'IsfirstWin' => $firstwin]; 
+				return ['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]; 
 			}
 			
 			return ['success' => false, 'message' => 'not enough points to play']; 
