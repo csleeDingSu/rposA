@@ -380,7 +380,7 @@ $(document).ready(function() {
 						if ( preConfirm ) {
 							swal( {
 								title: '@lang("dingsu.please_wait")',
-								text: '@lang("dingsu.deleting_data")..',
+								text: '@lang("dingsu.moving_data")..',
 								allowOutsideClick: false,
 								closeOnEsc: false,
 								allowEnterKey: false,
@@ -403,7 +403,7 @@ $(document).ready(function() {
 									if ( result == false ) {
 										swal( '@lang("dingsu.publish_error")', '@lang("dingsu.try_again")', "error" );
 									} else {
-										swal( "Done!", '@lang("dingsu.vouchers_deleted_success")', "success" );
+										swal( '@lang("dingsu.done")', '@lang("dingsu.vouchers_deleted_success")', "success" );
 										
 										var obj = JSON.parse(result);
 										$.each(obj, function(key,val){
