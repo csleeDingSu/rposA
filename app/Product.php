@@ -270,15 +270,11 @@ class Product extends Model
 
 	public static function IsFirstWin($memberid)
 	{
-		$result =  DB::table('view_redeem_list')->where('member_id',$memberid)->where('pin_status',2)->count();
-		if ($result == 1) 
+		$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS firstwin'))->where('member_id',$memberid)->first();
+		
+		if ($result->firstwin == 0)
 		{
-			$out =  DB::table('member_game_result')->where('member_id',$memberid)->where('is_win',1)->count();
-
-			if (empty($out))
-			{
-				return 'yes';
-			}			
+			return 'yes';
 		}
 		return '';
 	}
