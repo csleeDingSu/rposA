@@ -77,14 +77,20 @@ class GenerateVouchertoDb
 			$i = 1;
 			foreach ($data as $key=> $val) 
 			{
+				if (is_null($val['product_name'])) {
+
+					break;
+
+				}
+
 				$ke = array_keys($val);
-				
+
 				foreach ($val as $akey=>$voar) 
 				{	
 					$m = 0;
 					$insdata = array();
 					foreach($ke as $mkey=>$mva)
-					{						
+					{	
 						if (!empty($cfile[$m]))
 						{
 							$re_field = $cfile[$m];
