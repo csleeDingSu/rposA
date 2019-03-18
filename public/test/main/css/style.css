@@ -126,7 +126,7 @@
   padding: 0.25rem 0 0.3rem 0.18rem;
 }
 
-.logout-title, .logout-title:hover {
+.logout-title, .logout-title:link, .logout-title:visited, .logout-title:hover, .logout-title:active {
   color: #fdf633;
 }
 
