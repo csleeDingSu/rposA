@@ -6,7 +6,6 @@ var update_betting_history = false;
 var betting_data = null;
 var token = '';
 var show_win = false;
-var first_win = true;
 
 $(function () {
 
@@ -81,8 +80,6 @@ function updateHistory(records){
 
             if(last_bet.is_win == null){
                 className = last_bet.bet + '-fail'; 
-            } else {
-                first_win = false;
             }
 
             history =  '<div class="' + className + '">' +
@@ -385,7 +382,7 @@ function getSocket(){
 
                     $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
 
-                    if(first_win){
+                    if(data.data.IsFirstLifeWin == 'yes'){
                         show_win = true;
                         showWinModal();
                     }
