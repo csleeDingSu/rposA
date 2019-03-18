@@ -184,7 +184,7 @@ return [
 	'user_inactive_error' => 'the user is inactive. Please contact support to reset/active the account.',
 	
 	
-	'please_select_to_move' => "Please select option to move",
+	'please_select_to_move' => "请选择要移动的选项",
 	'vouchers_publish_success' => "优惠卷已成功发布",
 	'voucher_update_success_message' => "优惠卷内容已成功更新",
 	'voucher_update_error_message' => "我们无法更新此优惠卷内容",
@@ -192,17 +192,17 @@ return [
 	'login_credentials_failed' => '这些凭据与我们的记录不符。',
 	'login_throttle' => '登录尝试次数过多。 请稍后再试：',
 	
-	'delete_error' => 'Error deleting!',
+	'delete_error' => '删除失败!',
 	'try_again' => '请再试一次',
 	'delete_success' => '它已成功删除!',
 	'delete_conf_text' => '这将从服务器中删除数据',
-	'move_to_voucher_list' => '这将转移到优惠卷列表',
-	'deleting_data' => 'We are deleting the records',
-	'fetching_data' => 'We are fetching the records',
-	'moving_data' => 'We are moving the records',
-	'updating_data' => 'We are updating the record details',
-	'edit_conf_text' => 'This will update the record details',
-	'error' => 'Error',
+	'move_to_voucher_list_text' => '这将转到优惠卷列表',
+	'deleting_data' => '这将删除记录',
+	'moving_data' => '我们正在转移优惠卷',
+	'fetching_data' => '我们正在取得记录',
+	'updating_data' => '我们正在更新记录',
+	'edit_conf_text' => '这将更新记录',
+	'error' => '错误',
 	
 	//buttons
  	'submit' => '提交',
@@ -234,7 +234,6 @@ return [
 	'month_sales' => '每月销售额',
 	'coupon_denomination' => '优惠券面额',
 	'move_to_voucher_list' => '转到优惠券列表',
-	'move_to_voucher_list' => 'Move to voucher list',
 	
 	//Password reset
 	'email_reset_password' => '重设密码',
