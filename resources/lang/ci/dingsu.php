@@ -232,7 +232,8 @@ return [
 	'product_price' => '产品原价格',
 	'month_sales' => '每月销售额',
 	'coupon_denomination' => '优惠券面额',
-
+	'move_to_voucher_list' => '转到优惠券列表',
+	
 	//Password reset
 	'email_reset_password' => '重设密码',
 	'email_body_title' => '你好, ',
