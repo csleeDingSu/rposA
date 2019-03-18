@@ -201,6 +201,7 @@ return [
 	'try_again' => 'Please try again',
 	'delete_success' => 'It was succesfully deleted!',
 	'delete_conf_text' => 'This will delete data from server',
+	'move_to_voucher_list' => 'This will move to voucher list',
 	'deleting_data' => 'We are deleting the records',
 	'fetching_data' => 'We are fetching the records',
 	'moving_data' => 'We are moving the records',
@@ -238,7 +239,6 @@ return [
 	'product_price' => 'Product price',
 	'month_sales' => 'Monthly sales',
 	'coupon_denomination' => 'Voucher demonination',
-	'move_to_voucher_list' => 'Move to voucher list',
 
 
 	

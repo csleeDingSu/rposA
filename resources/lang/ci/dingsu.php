@@ -196,6 +196,7 @@ return [
 	'try_again' => '请再试一次',
 	'delete_success' => '它已成功删除!',
 	'delete_conf_text' => '这将从服务器中删除数据',
+	'move_to_voucher_list' => '这将转移到优惠卷列表',
 	'deleting_data' => 'We are deleting the records',
 	'fetching_data' => 'We are fetching the records',
 	'moving_data' => 'We are moving the records',
@@ -217,7 +218,7 @@ return [
 	'continue' => '继续',
 	'back' => '返回',
 	'click_here' => '点击这里',
-	'move' => 'Move',
+	'move' => '转移',
 	'filter' => '筛选',
 	'remove' => '删除',
 	'duplicate' => '重复',
@@ -233,6 +234,7 @@ return [
 	'month_sales' => '每月销售额',
 	'coupon_denomination' => '优惠券面额',
 	'move_to_voucher_list' => '转到优惠券列表',
+	'move_to_voucher_list' => 'Move to voucher list',
 	
 	//Password reset
 	'email_reset_password' => '重设密码',
