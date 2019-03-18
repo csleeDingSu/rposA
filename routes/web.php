@@ -248,11 +248,11 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 	//import voucher
 	Route::get( '/voucher/import', 'ImportController@getImport' )->name( 'import' );
-	Route::post( '/voucher/import', 'ImportController@parseImport' )->name( 'importparse' );
+	//Route::post( '/voucher/import', 'ImportController@parseImport' )->name( 'importparse' );
 	Route::post( '/voucher/importprocess', 'ImportController@ProcessparseImport' )->name( 'importpost' );
 
 	Route::post( '/voucher/publishvoucher/{id}', 'VoucherController@publishvoucher' );
-	Route::post( '/voucher/unreleased', 'VoucherController@post_unreleasedvoucher_list' );
+	//Route::post( '/voucher/unreleased', 'VoucherController@post_unreleasedvoucher_list' );
 	Route::post( '/voucher/publishfile/{id}', 'VoucherController@publishfile' );
 	Route::get( '/voucher/un-duplicate-finder', 'VoucherController@check_unrvoucher_duplicate' )->name( 'ajaxfindunrvoucherduplicate' );
 	Route::get( '/voucher/vo-duplicate-finder', 'VoucherController@check_voucher_duplicate' )->name( 'ajaxfindvoucherduplicate' );
