@@ -34,7 +34,7 @@
 		<div class="col-sd-3">
 			<select class="form-control" name="product_action" id="product_action">
 				<option value="0">@lang('dingsu.default_select')</option>
-				<option value="move">@lang('dingsu.move')</option>
+				<option value="move">@lang('dingsu.move_to_voucher_list')</option>
 				<option value="delete">@lang('dingsu.delete')</option>
 			</select>
 			<div>

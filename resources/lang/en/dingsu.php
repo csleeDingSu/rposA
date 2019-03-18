@@ -238,6 +238,7 @@ return [
 	'product_price' => 'Product price',
 	'month_sales' => 'Monthly sales',
 	'coupon_denomination' => 'Voucher demonination',
+	'move_to_voucher_list' => 'Move to voucher list',
 
 
 	
