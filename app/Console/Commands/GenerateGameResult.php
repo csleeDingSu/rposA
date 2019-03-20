@@ -145,7 +145,7 @@ class GenerateGameResult extends Command
 		
 		$this->info('-------------Clean expired Result----------');
         $this->Cleanexpiredresult($game->id);
-		
+		$this->updatecron('draw_master');
 		return $result;
 	}
 	
@@ -207,7 +207,7 @@ class GenerateGameResult extends Command
 		
 		Game::insert_gameresult($insdata);
 
-		$this->updatecron('draw_master');
+		
 		return $result;
 	}
 	
