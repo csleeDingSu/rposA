@@ -79,6 +79,9 @@ return [
 	'product_link' => '产品 Link',
 	'check_all' => '选择所有',
 	'select_all' => '选择所有',
+	'sortby' => '排序方式',
+	'upload_date' => '上传日期',
+
 
 	'allow' => '允许',
 	'registration' => '注册',
@@ -234,6 +237,8 @@ return [
 	'month_sales' => '每月销售额',
 	'coupon_denomination' => '优惠券面额',
 	'move_to_voucher_list' => '转到优惠券列表',
+	'descending' => '逆序',
+	'ascending' => '顺序',
 	
 	//Password reset
 	'email_reset_password' => '重设密码',
@@ -346,6 +351,7 @@ return [
 	'please_login' => '未登录，请登录以继续.',
 	'please_fill_wechatid' => '请填写您的真实姓名',
 	'success_update_wechatid' => '您的真实姓名已成功更新，等候认证。',
+
 
 	
 	'discount_price' => '卷后价',
@@ -501,8 +507,8 @@ return [
 	'onhold' => '暂停',
 	'restart' => '重新启动',
 
-	'descending' => '降',
-	'ascending' => '升',
+	// 'descending' => '降',
+	// 'ascending' => '升',
 	'order' => '序',
 	'sort_by' => '排序方式',
 
@@ -513,5 +519,6 @@ return [
 	'refund' => 'Refund',
 	'fee' => 'Fee',
 
-		
+	'ads_picture' => '广告图',
+	
 ];
