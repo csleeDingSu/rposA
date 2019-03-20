@@ -240,6 +240,8 @@ return [
 	'product_price' => 'Product price',
 	'month_sales' => 'Monthly sales',
 	'coupon_denomination' => 'Voucher demonination',
+	'sortby' => 'Sortby',
+	'upload_date' => 'Upload date',
 
 
 	

@@ -65,10 +65,12 @@
 								<input type="hidden" class="prc_{{$item->id}}" data-id="prc_{{$item->id}}" name="{{$item->id}}" id="prc[]" value="{{$item->id}}">
 								
 								<div class="price-off">{{$item->product_price}} $</div>
-							<img class="zoom card-img-top img-fluid" src="{{$item->product_picurl}}" alt="{{$item->product_name}}">
+							<img class="card-img-top img-fluid" src="{{$item->product_picurl}}" alt="{{$item->product_name}}">
 								<h5 class="card-title mt-0">{{$item->product_name}}</h5>
-								<p class="card-text mt-0">{{$item->product_category}}</p>
-								<p class="card-text mt-0">{{$item->seller_name}}</p>							
+								{{$item->product_category}}<br>
+								@lang('dingsu.month_sales'): {{$item->month_sales}}<br>
+								@lang('dingsu.voucher_price'): {{$item->voucher_price}}<br>
+								@lang('dingsu.upload_date'): {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}<br>								
 							</div>
 							
 							<div class="card-body border-top pt-1 mt-auto d-flex align-items-end ">

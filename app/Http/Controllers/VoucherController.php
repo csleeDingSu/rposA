@@ -182,13 +182,15 @@ class VoucherController extends BaseController
 	public function get_unreleasedvoucher_list(Request $request)
 	{
 		
-		//$result =  DB::table('unreleased_vouchers');
-		//print_r("check");
 		$result = DB::table('unreleased_vouchers')
 			->join('voucher_category', 'unreleased_vouchers.id', '=', 'voucher_category.unr_voucher_id')
 			->join('category', 'voucher_category.category', '=', 'category.id')
 			->select('unreleased_vouchers.*')
 			->groupBy('unreleased_vouchers.id');
+			//->orderBy('unreleased_vouchers'."."."{$sortby}",'DESC');
+			// ->orderBy('unreleased_vouchers.month_sales','DESC');
+			// ->orderBy('unreleased_vouchers.product_price','DESC');
+			// ->orderBy('unreleased_vouchers.voucher_price','DESC');
 
 		$data['page'] = 'voucher.unreleasedvoucherlist'; 	
 		$data['files'] =  DB::table('excel_upload')->select('filename')->distinct()->get();
@@ -202,17 +204,59 @@ class VoucherController extends BaseController
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
 		
-    	if ($input) 
-		{				
-			if (!empty($input['s_title'])) {
-				
-				$result = $result->where('category.display_name','LIKE', "%{$input['s_title']}%") ;		
-					
+
+			if ($input) 
+			{
+				//filter
+				if (!empty($input['s_title'])) { 
+					$result = $result->where('product_name','LIKE', "%{$input['s_title']}%");
+				}
+				if (isset($input['s_cate'])) {
+					if ($input['s_cate'] != '' )
+					$result = $result->where('category.display_name','LIKE', "%{$input['s_cate']}%") ;							
+				}
+				if (isset($input['s_sort'])) {
+					if ($input['s_sort'] != '' ){
+						if($input['s_sort'] =='created_at')
+						{
+							$sortby = "{$input['s_sort']}";
+						}
+						else if($input['s_sort'] == 'month_sales')
+						{
+							$sortby = "{$input['s_sort']}";
+						}
+						else if($input['s_sort'] == 'product_price')
+						{
+							$sortby = "{$input['s_sort']}";
+						}
+						else if($input['s_sort'] == 'voucher_price')
+						{
+							$sortby = "{$input['s_sort']}";
+						}
+					}
+				}
+			}else{
+				$sortby= 'created_at';
 			}
-		}
 
+			if (isset($input['s_order'])) {
+				if ($input['s_order'] != '' ){
+					if($input['s_order'] =='ASC')
+					{
+						$orderby = "{$input['s_order']}";
+					}
+					else if($input['s_order'] == 'DESC')
+					{
+						$orderby = "{$input['s_order']}";
+					}
+				}
+			}else{
+				$orderby= 'DESC';
+			}
 
-		$result =  $result->orderby('unreleased_vouchers.id','DESC')->paginate(200);
+		$result =  $result->orderBy('unreleased_vouchers'."."."{$sortby}","{$orderby}")->paginate(200);
+		// $result =  $result->orderBy('unreleased_vouchers.month_sales','DESC')->paginate(200);
+		// $result =  $result->orderby('unreleased_vouchers.id','DESC')->paginate(200);
 		//$result =  $result->orderby('id','DESC')->paginate(30);
 				
 		$data['page']    = 'voucher.unreleasedvoucherlist'; 	
@@ -485,13 +529,53 @@ class VoucherController extends BaseController
 		$input = array_map('trim', $input);
 		
     	if ($input) 
-		{
-			//filter					
-			if (!empty($input['s_title'])) {
-				$result = $result->where('category.display_name','LIKE', "%{$input['s_title']}%") ;				
+			{
+				//filter
+				if (!empty($input['s_title'])) { 
+					$result = $result->where('product_name','LIKE', "%{$input['s_title']}%");
+				}
+				if (isset($input['s_cate'])) {
+					if ($input['s_cate'] != '' )
+					$result = $result->where('category.display_name','LIKE', "%{$input['s_cate']}%") ;							
+				}
+				if (isset($input['s_sort'])) {
+					if ($input['s_sort'] != '' ){
+						if($input['s_sort'] =='created_at')
+						{
+							$sortby = "{$input['s_sort']}";
+						}
+						else if($input['s_sort'] == 'month_sales')
+						{
+							$sortby = "{$input['s_sort']}";
+						}
+						else if($input['s_sort'] == 'product_price')
+						{
+							$sortby = "{$input['s_sort']}";
+						}
+						else if($input['s_sort'] == 'voucher_price')
+						{
+							$sortby = "{$input['s_sort']}";
+						}
+					}
+				}
+			}else{
+				$sortby= 'created_at';
 			}
-		}
 
+			if (isset($input['s_order'])) {
+				if ($input['s_order'] != '' ){
+					if($input['s_order'] =='ASC')
+					{
+						$orderby = "{$input['s_order']}";
+					}
+					else if($input['s_order'] == 'DESC')
+					{
+						$orderby = "{$input['s_order']}";
+					}
+				}
+			}else{
+				$orderby= 'DESC';
+			}
 
 		// public function getfaq(Request $request)
 		// {
@@ -502,8 +586,8 @@ class VoucherController extends BaseController
 
 
 
-		
-		$result =  $result->orderby('vouchers.id','DESC')->paginate(200);
+		$result =  $result->orderBy('vouchers'."."."{$sortby}","{$orderby}")->paginate(200);
+		// $result =  $result->orderby('vouchers.id','DESC')->paginate(200);
 		//$result =  $result->orderby('id','DESC')->paginate(30);
 				
 		$data['page']    = 'voucher.list'; 	
