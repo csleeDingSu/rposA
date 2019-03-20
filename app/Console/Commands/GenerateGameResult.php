@@ -41,6 +41,15 @@ class GenerateGameResult extends Command
     {
         
 		$this->comment('Stared:'.'----------'.Carbon::now()->toDateTimeString().'----------');
+		
+		$excuted = \App\CronManager::where('cron_name','draw_master')->where('last_run', 'like', '%' . Carbon::now()->toDateString() . '%')->get();
+		
+		if (!$excuted->isEmpty())
+		{
+			$this->error('-- cron already excuted.process Terminated');
+			return 'error:cron excuted already';
+		}
+
 		//get Game list
 		$gamelist  = Game::all();
  
@@ -197,6 +206,8 @@ class GenerateGameResult extends Command
 		Game::force_delete($game->id);
 		
 		Game::insert_gameresult($insdata);
+
+		$this->updatecron('draw_master');
 		return $result;
 	}
 	
@@ -249,6 +260,12 @@ class GenerateGameResult extends Command
 		$row['game_result']  = generate_random_number(1,6); //generate random number
 		
 		return $row;
+	}
+
+	private function updatecron($cron)
+	{
+		$cron = \App\CronManager::where('cron_name','draw_master')->first();
+		$cron->update(array("last_run" => Carbon::now()->toDateTimeString()));
 	}
 }
 
