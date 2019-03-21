@@ -550,5 +550,6 @@ return [
 	'auto_product_redeem' => 'Auto product redeem',
 	
 	'ads_picture' => '广告图',
+	'standard' => 'normal',
 	
 ];

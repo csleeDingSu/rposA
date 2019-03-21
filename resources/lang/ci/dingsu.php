@@ -520,5 +520,17 @@ return [
 	'fee' => 'Fee',
 
 	'ads_picture' => '广告图',
-	
+
+	'current_point' => '总挖币数',
+	'add_point' => '增加挖宝币',
+	'standard' => '普通',	
+
+	'added_vip_point_by_redeemed' => 'Added VIP Point by redeemed',
+	'added_vip_life_by_redeemed' => 'Added VIP Life by redeemed',
+	'nothing_to_change' => '没有改变',
+	'current_vip_point' => '目前的VIP积分',
+	'add_vip_point' => '增加VIP积分',
+	'add_vip_life' => '增加VIP次数',
+	'current_vip_life' => '目前的VIP次数',
+	'adjust_wallet' => '调整挖宝账号',
 ];
