@@ -45,8 +45,9 @@ class GenerateGameResult extends Command
 		$excuted = \App\CronManager::where('cron_name','draw_master')->where('last_run', 'like', '%' . Carbon::now()->toDateString() . '%')->get();
 		
 		if (!$excuted->isEmpty())
-		{
-			$this->error('-- cron already excuted.process Terminated');
+		{			
+			$this->error('-- cron already excuted.process Terminated');			
+			$this->updatecron_updated_at_field('draw_master');
 			return 'error:cron excuted already';
 		}
 
@@ -266,6 +267,12 @@ class GenerateGameResult extends Command
 	{
 		$cron = \App\CronManager::where('cron_name','draw_master')->first();
 		$cron->update(array("last_run" => Carbon::now()->toDateTimeString()));
+	}
+
+	private function updatecron_updated_at_field($_cron)
+	{
+		$cron = \App\CronManager::where('cron_name',$_cron)->first();
+		$cron->update(array("updated_at" => Carbon::now()->toDateTimeString()));
 	}
 }
 
