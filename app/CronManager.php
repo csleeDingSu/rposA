@@ -18,7 +18,7 @@ class CronManager extends Model
      * @var array
      */
     protected $fillable = [
-        'cron_name', 'status', 'last_run', 'unix_last_run',
+        'cron_name', 'status', 'last_run', 'unix_last_run', 'updated_at',
     ];
 
     /**
