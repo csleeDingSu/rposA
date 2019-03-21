@@ -46,7 +46,7 @@
 								
 								<a href="/game/edit/{{ $list->id }}"  class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>
 								
-								<a href="javascript:void(0)" onClick="confirm_Delete({{ $list->id }}, '{{ csrf_token() }}')" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a>
+								<!-- <a href="javascript:void(0)" onClick="confirm_Delete({{ $list->id }}, '{{ csrf_token() }}')" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a> -->
 								
 							</td>
 						</tr>

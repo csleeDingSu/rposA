@@ -13,7 +13,7 @@
 				</div>
 				@endif
 
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-6">
 						<div class="form-group row">
 							<label for="allow_login" class="col-sm-3 col-form-label">@lang('dingsu.allow_login')</label>
@@ -59,7 +59,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="row">
 					<div class="col-md-6">
@@ -95,7 +95,7 @@
 				</div>
 
 
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-6">
 						<div class="form-group row">
 							<label for="auto_maintenance" class="col-sm-3 col-form-label">@lang('dingsu.auto_maintenance')</label>
@@ -162,10 +162,10 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<button type="submit" class="btn btn-success mr-2">@lang('dingsu.submit')</button>
-				<a href="" type="submit" class="btn btn-light mr-2">@lang('dingsu.reset')</a>
+				<a href="/admin" type="submit" class="btn btn-light mr-2">@lang('dingsu.back')</a>
 				<div class="row">
 			</form>
 			</div>

@@ -318,7 +318,7 @@ return [
 	'yes' => 'Yes',
 	'no' => 'No',
 	'maintenance_message_placeholder' => 'This message will display when maintenance mode enabled',
-	'product' => 'product',
+	'product' => 'Product',
 	'softpins' => 'softpins',
 	'pending' => 'pending',
 	

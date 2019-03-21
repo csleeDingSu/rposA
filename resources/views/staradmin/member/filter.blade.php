@@ -13,7 +13,7 @@
 		<div class="col-md-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title">Search</h4>
+					<h4 class="card-title">@lang('dingsu.search')</h4>
 					<div class="form-group row">
 						<div class="col">
 							<label>@lang('dingsu.username')</label>
