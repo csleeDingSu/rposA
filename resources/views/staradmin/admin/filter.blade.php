@@ -14,7 +14,7 @@
 			<div class="card">
 				<form class="form-sample" name="searchform" id="searchform" action="" method="get" autocomplete="on">
 				<div class="card-body">
-					<h4 class="card-title">Search</h4>
+					<h4 class="card-title">@lang('dingsu.search')</h4>
 					<div class="form-group row">
 										
 

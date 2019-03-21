@@ -6,7 +6,7 @@
 			<div class="card">
 				<div class="card-body">
 					<form class="" name="searchform" id="searchform" action="" method="get" autocomplete="on">
-					<h4 class="card-title">Search</h4>
+					<h4 class="card-title">@lang('dingsu.search')</h4>
 					<div class="form-group row">
 						<div class="col">
 							<label>@lang('dingsu.product') @lang('dingsu.name')</label>
