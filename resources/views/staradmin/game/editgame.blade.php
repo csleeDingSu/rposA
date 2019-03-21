@@ -1,7 +1,7 @@
 <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">@lang('dingsu.edit_product')</h4>
+                  <h4 class="card-title">@lang('dingsu.edit_game')</h4>
                   <form class="form-sample" action="" method="post" autocomplete="on">
 					  
 					  {{ csrf_field() }}
@@ -165,7 +165,7 @@
 					</td>
 					<td>
 					<a href="/game/level/edit/{{ $level->id }}"  class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>
-					<a href="javascript:void(0)" onClick="confirm_Delete({{ $level->id }}, '{{ csrf_token() }}')" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a>
+					<!-- <a href="javascript:void(0)" onClick="confirm_Delete({{ $level->id }}, '{{ csrf_token() }}')" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a> -->
 																	
 					<!-- <a onClick="confirm_Delete({{ $level->id }}, '{{ csrf_token() }}')" data-token="{{ csrf_token() }}" href="#" class="btn btn-danger btn-fw">@lang('dingsu.delete')</a> -->
 					</td>

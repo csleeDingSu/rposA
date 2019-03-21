@@ -51,21 +51,23 @@
 						</div>
 						<div class="col-md-6">
 						  <div class="form-group row">
-							<label for="env_file_name" class="col-sm-3 col-form-label">@lang('dingsu.env_file_name')</label>
-							<div class="col-sm-9">
-							  <input id="env_file_name" name="env_file_name" class="form-control" type="text" value="{{ old('env_file_name', $out->env_file_name) }}">
-							</div>
-						  </div>
-						</div>
-					  </div>
-						
-						
-					<div class="row"> 
-					  <div class="col-md-6">
-						  <div class="form-group row">
 						  <label for="game_time" class="col-sm-3 col-form-label">@lang('dingsu.game_time')</label>
                           <div class="col-sm-9">
                                 <input id="game_time" name="game_time" class="form-control" type="text" value="{{ old('game_time', $out->game_time) }}">
+							</div>
+						  </div>
+						</div>
+						
+					  </div>
+						
+<!-- 						
+					<div class="row"> 
+
+					<div class="col-md-6">
+						  <div class="form-group row">
+							<label for="env_file_name" class="col-sm-3 col-form-label">@lang('dingsu.env_file_name')</label>
+							<div class="col-sm-9">
+							  <input id="env_file_name" name="env_file_name" class="form-control" type="text" value="{{ old('env_file_name', $out->env_file_name) }}">
 							</div>
 						  </div>
 						</div>
@@ -175,7 +177,7 @@
 							</div>
 						  </div>
 						</div>
-					  </div>
+					  </div> -->
 
 
                     <button type="submit" class="btn btn-success mr-2">@lang('dingsu.submit')</button>
