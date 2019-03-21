@@ -21,7 +21,17 @@
             </a>		
 		</li>
 
+
 		<li class="nav-item">
+			<a class="nav-link" href="/game/category">
+			<i class="menu-icon icon-game-controller  text-info"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.game_setting')</span>
+            </a>
+		</li>
+
+
+
+		<!-- <li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uigame" aria-expanded="false" aria-controls="uigame">
               <i class="menu-icon icon-game-controller  text-info"></i>
               <span class="menu-title text-capitalize"> @lang('dingsu.game_setting')</span>
@@ -39,7 +49,7 @@
 					
 				</ul>
 			</div>
-		</li>
+		</li> -->
 
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uimember" aria-expanded="false" aria-controls="uimember">

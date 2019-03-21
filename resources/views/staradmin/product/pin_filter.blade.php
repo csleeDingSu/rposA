@@ -9,7 +9,7 @@
 					<h4 class="card-title">@lang('dingsu.search')</h4>
 					<div class="form-group row">
 						<div class="col">
-							<label>@lang('dingsu.product') @lang('dingsu.name')</label>
+							<label>@lang('dingsu.product')@lang('dingsu.name')</label>
 							<div id="the-basics">
 								<input type="text" class="form-control typeahead tt-input" name="s_product_name" id="s_product_name" placeholder="@lang('dingsu.product')">
 							</div>

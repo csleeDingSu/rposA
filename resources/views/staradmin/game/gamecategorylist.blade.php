@@ -4,14 +4,14 @@
 <div class="col-lg-12 grid-margin stretch-card">	
 	<div class="card">
 		<div class="card-body">
-			<h4 class="card-title">@lang('dingsu.game') @lang('dingsu.categories')</h4>
+			<h4 class="card-title">@lang('dingsu.game')</h4>
 			<div class="table-responsive">				
 				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>@lang('dingsu.name')</th>	
 							<th>@lang('dingsu.created') @lang('dingsu.at')</th>
-							<th>@lang('dingsu.game') @lang('dingsu.type')</th>	
+							<!-- <th>@lang('dingsu.game') @lang('dingsu.type')</th>	 -->
 							<th>@lang('dingsu.game') @lang('dingsu.time')</th>	
 							<th>@lang('dingsu.block') @lang('dingsu.time')</th>	
 							<th class="">@lang('dingsu.action')</th>
@@ -22,7 +22,7 @@
 						<tr id="tr_{{ $list->id }}">
 							<td>{{ $list->name }}</td>
 							<td>{{ $list->created_at }}</td>
-							<td>{{ $list->game_type }}</td>
+							<!-- <td>{{ $list->game_type }}</td> -->
 							
 							<td>
 								{{ $list->game_time }}
