@@ -193,13 +193,10 @@
 				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
 				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
 
-				@if (isset(Auth::Guard('member')->user()->username))
+				
 					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
 					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
 					<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
-				@else
-					<h3 id="cut">请先注册，才能领取优惠券</h3>
-				@endif
 				
 				
 			</div>

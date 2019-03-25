@@ -10,7 +10,9 @@
 
 @section('content')
 
-<input id="hidWechatStatus" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
+<!-- <input id="hidWechatStatus" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
+
+<input id="hidWechatStatus" type="hidden" value="0" />
 
 <div class="full-height">
 	<div class="container">
