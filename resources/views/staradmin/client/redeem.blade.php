@@ -27,8 +27,7 @@
 		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
 		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
-		<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
-		<input id="hidWechatId" type="hidden" value="0" />
+		<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
 		<input type="hidden" id="page" value="1" />
 		<input type="hidden" id="max_page" value="1" />
 
@@ -160,6 +159,37 @@
 					<a href="/">
 						不要红包先逛逛看
 					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Steps Modal Ends -->
+
+<!-- Steps Modal starts -->
+	<div class="modal fade col-md-12" id="wechat-verification-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content modal-wechat">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="body-title">联系客服发放兑换红包</div>
+								<div class="instructions">
+									添加客服微信号
+								</div>								
+							</div>
+							<div class="modal-card">
+								<div id="cutVerify" class="copyvoucher">WABAO666</div>
+								<div class="cutBtn">一键复制</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+
+			<div class="modal-card">
+				<div class="btn-close btn-close-verify">
+					暂不兑换
 				</div>
 			</div>
 		</div>

@@ -3,18 +3,13 @@ var page_count = 1;
 
 $(document).ready(function () {
 
-    var wechat_status = $('#hidWechatId').val();
-    
-    if(wechat_status > 0) {
-        $('#verify-steps').modal({backdrop: 'static', keyboard: false});
-    } else {
-        $('.tab').click(function(){
-            var title = $(this).html();
-            $('.navbar-brand').html(title); 
-        });
 
-        getToken();
-    }    
+    $('.tab').click(function(){
+        var title = $(this).html();
+        $('.navbar-brand').html(title); 
+    });
+
+    getToken();  
 
     var clipboard = new ClipboardJS('.cutBtn', {
         target: function () {
@@ -28,6 +23,24 @@ $(document).ready(function () {
 
     clipboard.on('error', function (e) {
         $('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+    });
+
+    var clipboard_verify = new ClipboardJS('.cutBtn', {
+        target: function () {
+            return document.querySelector('#cutVerify');
+        }
+    });
+
+    clipboard_verify.on('success', function (e) {
+        $('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+    });
+
+    clipboard_verify.on('error', function (e) {
+        $('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+    });
+
+    $('.btn-close-verify').click(function() {
+        $('#wechat-verification-modal').modal('hide');
     });
 });
 
@@ -392,9 +405,15 @@ function getProductList(token) {
                 $('#prize').html(html);
                 $( ".cardFull" ).after( htmlmodel);
 
+                var wechat_status = $('#hidWechatId').val();
+
                 $.each(packages, function(i, item) {
                     $('.openeditmodel_p' + i).click(function() {
-                        $('#viewvouchermode_p' + i).modal('show');
+                        if(wechat_status > 0){
+                            $('#wechat-verification-modal').modal({backdrop: 'static', keyboard: false});
+                        } else {
+                            $('#viewvouchermode_p' + i).modal('show');
+                        }
                     });
 
                     $('.closeeditmodel_p' + i).click(function() {
@@ -404,7 +423,11 @@ function getProductList(token) {
 
                 $.each(records, function(i, item) {
                     $('.openeditmodel' + i).click(function() {
-                        $('#viewvouchermode' + i).modal('show');
+                        if(wechat_status > 0){
+                            $('#wechat-verification-modal').modal({backdrop: 'static', keyboard: false});
+                        } else {
+                            $('#viewvouchermode' + i).modal('show');
+                        }
                     });
                 });
 
