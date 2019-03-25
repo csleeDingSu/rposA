@@ -313,7 +313,7 @@
                             var sdf = '@lang("dingsu.member_registration_success_message")';
                             $('#validation-errors').append('<div class="alert alert-success isa_success">'+sdf+'</div');
                             
-                            url = "/profile";
+                            url = "/";
                             $(location).attr("href", url);
                         }
                     else 
