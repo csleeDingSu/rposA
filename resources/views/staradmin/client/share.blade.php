@@ -47,7 +47,8 @@ $showIcon = $filename;
 
 //echo $filename;
 //die();
-$showimage = public_path( 'client/bar/image.jpg' );
+//$showimage = public_path( 'client/bar/image.jpg' );
+$showimage = public_path( 'client/bar/'.$data->filename );
 
 //$showIcon = "https://chart.googleapis.com/chart?chs=190x190&cht=qr&chl=$url&choe=UTF-8";
 
@@ -287,6 +288,26 @@ imagedestroy( $image );
         line-height: 0.7rem;
         text-align: center;
       }
+		
+		.overlay {
+		  position: absolute;
+		  margin-top: 35px;
+		  margin-right: 40px;color:#F5F654;
+		  right: 0;
+		  top: 0;
+		  width: 100%;
+		  z-index: 1;
+		  font-size: 20px;
+		  text-align: center;
+		  line-height: 20px;
+          opacity: 1.2;
+		  background:rgba(0,0,0,0.3);
+		font-size: 27px;border-radius: 25px;
+		vertical-align:middle;
+    max-width: 100px;
+    padding: 11px;
+    text-align: center;cursor:pointer;
+	}
 
        
     </style>
@@ -421,7 +442,10 @@ imagedestroy( $image );
                     <div class="ribbon ribbon-top-left">
                       <span>@lang('dingsu.ads_picture')</span>
                     </div>
-                    
+                    <div class="overlay" >
+                      <a href="javascript:void(0)" onClick="location.reload();" class="icon"><img  src="{{ asset('client/bar/refresh.png') }}"> </a>
+						 refresh 
+                    </div>
                     
                     <?php echo '<img  class="small-img" id="copyurl"  src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
                 </div>
