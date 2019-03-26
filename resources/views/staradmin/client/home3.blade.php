@@ -227,30 +227,43 @@
 			</div>
 		</div>
 
-		<div class="showTips dflex scaleHide" id="game-rules">
+		<div class="showTips dflex scaleHide" id="promotion">
 			<div class="inBox">
 			<div class="modal-dialog modal-lg" role="document">
-				<div class="modal-title">
-					<h1>挖宝赚钱攻略</h1>
-				</div>
 				<div class="modal-content">
 					<div class="modal-body">				
 						<div class="modal-row">
 							<div class="wrapper modal-full-height">
 								<div class="modal-card">
 									<div class="instructions">
-										挖宝是为了鼓励用户分享，而设立的免费竞猜游戏 「猜单双，6次内猜中就有奖」<br />
-										<ul class="tips-list">
-											<li class="tips-title">如何赚钱？</li>
-											每次机会有99%概率获得15元，新注册用户有1次机会，能获得15元。<br />
-											<div class="div-tips">小编偷偷讲：以后会调低奖励，现在已经注册的，赶紧抓住机会赚一波。</div>
-											<li class="tips-title">如何赚更多钱？</li>
-											每邀请1个新用户能获得{{env('sharetofriend_youwillget','3')}}次机会，邀请10个赚{{env('sharetofriend_youwillget_bonus','450') * 10}}元「被邀请的能获得1次机会」 <br />
-											非常容易邀请到很多人注册，大力分享！
-										</ul>
+										<h2>0元购物攻略</h2>
+										玩猜单双游戏，赢金币换<span class="highlight">购物补助金<br />
+										（可提现到支付宝）</span>再去购买商品，<br />不花自己的钱！<br />
 									</div>
+									<div class="modal-label">您拥有金币：</div>
+									<div class="modal-number">
+										<div class="icon-coin-wrapper">
+											<div class="icon-coin"></div>
+										</div>
+										@if (isset($member_mainledger->current_point))
+											{{ number_format($member_mainledger->current_point, 0, '.', '') }}
+										@else
+											0
+										@endif
+									</div>
+									<div style="clear: both;"></div>
+									<div class="modal-label">可兑换购物补助金：</div>
+									<div class="modal-number">￥
+										@if (isset($member_mainledger->current_point))
+											{{ number_format($member_mainledger->current_point/10, 0, '.', '') }}
+										@else
+											0
+										@endif
+										元
+									</div>
+									<div style="clear: both;"></div>
 									<a href="/arcade">
-										<div class="btn-game-rules">进入赚钱</div>
+										<div class="btn-wabao">去赚金币</div>
 									</a>
 								</div>
 							</div>

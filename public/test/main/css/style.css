@@ -609,12 +609,19 @@ p.vip-life {
 
 .showBao .balance em{ display: inline-block; vertical-align: middle; color: #ffb221; font-size: .34rem;}
 
+.icon-coin-wrapper {
+  height: 20px;
+  width: 20px;
+  margin-top: 2px;
+  float: left;
+}
+
 .icon-coin {
   background: url('/client/images/game.png') no-repeat -1674px -715px;
   width: 82px;
   height: 82px;
-  transform: scale(0.28); 
-  -webkit-transform: scale(0.28);
+  transform: scale(0.2); 
+  -webkit-transform: scale(0.2);
   -webkit-transform-origin:left top;
   float: left;
   z-index: 100;
@@ -765,6 +772,97 @@ p.vip-life {
   font-size: 11px;
   line-height: 18px;
   padding-bottom: 8px;
+}
+
+/* End Game Rules Modal */
+
+#promotion .modal-card {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+#promotion .modal-content {
+  background: url('/client/images/modal-background.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  width: 310px !important;
+  height: 438px;
+  padding: 0;
+  position:relative;
+}
+
+#promotion .modal-content {
+  margin-top: -12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 296px;
+  z-index: 9999;
+  position:relative;
+}
+
+#promotion .instructions {
+  margin-top: 140px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8c8882;
+  text-align: justify;
+  line-height: 20px;
+  padding: 10px 20px;
+}
+
+#promotion .highlight {
+  color: #f07f43;
+  font-weight: 700;
+}
+
+#promotion .instructions h2{
+  color: #654c27;
+  font-size: 16px;
+  text-align: center;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+#promotion .modal-number{
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 12px;
+  float: right;
+}
+
+#promotion .modal-label{
+  color: #fef637;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 12px;
+  float: left;
+}
+
+#promotion .btn-wabao {
+  background: url('/client/images/btn-wabao.png') no-repeat top center;
+  font-size: 16px;
+  color: #db3c26;
+  background-size: contain;
+  width: 250px;
+  height: 40px;
+  padding-top: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+
+#promotion .rules-content-img-timeline {
+  width: 250px;
+    /*height: 426px;*/
 }
 
 /* End Game Rules Modal */
