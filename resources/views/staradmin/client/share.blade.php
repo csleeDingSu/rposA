@@ -40,7 +40,7 @@ include(app_path().'/Lib/qr/qrlib.php');
 
 $filename = public_path().'/client/qr/'.$affiliate_id.'.png';
 
-QRcode::png($url, $filename, 'L', '7', 2); 
+QRcode::png($url, $filename, 'L', '3', 2); 
 
 $showIcon = $filename;
 
@@ -67,7 +67,7 @@ imagefill( $mainimg, 0, 0, $white );
 //imagecopymerge( $image, $mainimg, -10, 611, 0, 0, 190, 190, 100 );
 
 // imagecopymerge( $image, $mainimg, 13, 641, 0, 0, 132, 132, 100 );
-imagecopymerge( $image, $mainimg, 133, 412, 0, 0, 230, 230, 100 );
+imagecopymerge( $image, $mainimg, 21, 663, 0, 0, 100, 100, 100 );
 
 
 ob_start();
