@@ -165,13 +165,13 @@ function getProductList(token) {
                                         '<div class="btn-redeem openeditmodel_p'+ i + ' ' + cls_cannot_redeem + '">兑换</div>' +
                                     '</div>';
 
-                            if (cannot_redeem || current_life == 0) {
-                                html +='<div class="horizontal"></div>' +
-                                    '<div class="col-xs-9 insufficient">不够积分兑换，邀请一个好友赚450积分！</div>' + 
-                                    '<div class="col-xs-3 btn-insufficient-wrapper">' +
-                                        '<a href="/share"><div class="btn-insufficient">马上邀请</div></a>' +
-                                    '</div>';
-                            }
+                            // if (cannot_redeem || current_life == 0) {
+                            //     html +='<div class="horizontal"></div>' +
+                            //         '<div class="col-xs-9 insufficient">不够积分兑换，邀请一个好友赚450积分！</div>' + 
+                            //         '<div class="col-xs-3 btn-insufficient-wrapper">' +
+                            //             '<a href="/share"><div class="btn-insufficient">马上邀请</div></a>' +
+                            //         '</div>';
+                            // }
 
                                 html +='</div>';
 
@@ -339,13 +339,13 @@ function getProductList(token) {
                                     '<div class="btn-redeem openeditmodel'+ i + ' ' + cls_cannot_redeem +'">兑换</div>' +
                                 '</div>';
 
-                        if (cannot_redeem || current_life == 0) {
-                            html += '<div class="horizontal"></div>' +
-                                    '<div class="col-xs-9 insufficient">不够积分兑换，邀请一个好友赚450积分！</div>' + 
-                                    '<div class="col-xs-3 btn-insufficient-wrapper">' +
-                                        '<a href="/share"><div class="btn-insufficient">马上邀请</div></a>' +
-                                    '</div>';
-                        }
+                        // if (cannot_redeem || current_life == 0) {
+                        //     html += '<div class="horizontal"></div>' +
+                        //             '<div class="col-xs-9 insufficient">不够积分兑换，邀请一个好友赚450积分！</div>' + 
+                        //             '<div class="col-xs-3 btn-insufficient-wrapper">' +
+                        //                 '<a href="/share"><div class="btn-insufficient">马上邀请</div></a>' +
+                        //             '</div>';
+                        // }
 
                             html += '</div>';
 
