@@ -238,30 +238,38 @@
 									<div class="instructions">
 										<h2>0元购物攻略</h2>
 										玩猜单双游戏，赢金币换<span class="highlight">购物补助金<br />
-										（可提现到支付宝）</span>再去购买商品，<br />不花自己的钱！<br />
+										（可提现到支付宝）</span>再去购买商品，<br />
+										<span class="highlight">补助金最少30元</span>起，任你领不停。<br />
 									</div>
-									<div class="modal-label">您拥有金币：</div>
-									<div class="modal-number">
+									<div class="modal-label">
 										<div class="icon-coin-wrapper">
 											<div class="icon-coin"></div>
 										</div>
-										@if (isset($member_mainledger->current_point))
-											{{ number_format($member_mainledger->current_point, 0, '.', '') }}
+										<div class="icon-label">您当前拥有
+											<span class="modal-point">
+											@if (isset($member_mainledger->current_point))
+												{{ number_format($member_mainledger->current_point, 0, '.', '') }}
+											@else
+												0
+											@endif
+											</span>
+											金币
+										</div>
+									</div>
+									<div style="clear: both;"></div>
+									<div class="modal-number">你还有
+										@if (isset($member_mainledger->current_life))
+											{{ number_format($member_mainledger->current_life, 0, '.', '') }}
 										@else
 											0
 										@endif
-									</div>
-									<div style="clear: both;"></div>
-									<div class="modal-label">可兑换购物补助金：</div>
-									<div class="modal-number">￥
-										@if (isset($member_mainledger->current_point))
-											{{ number_format($member_mainledger->current_point/10, 0, '.', '') }}
+									次游戏机会 可赚
+										@if (isset($member_mainledger->current_life))
+											{{ number_format($member_mainledger->current_life * 150, 0, '.', '') }}
 										@else
 											0
 										@endif
-										元
-									</div>
-									<div style="clear: both;"></div>
+									金币</div>
 									<a href="/arcade">
 										<div class="btn-wabao">去赚金币</div>
 									</a>
