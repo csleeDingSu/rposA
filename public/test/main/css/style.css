@@ -610,23 +610,29 @@ p.vip-life {
 .showBao .balance em{ display: inline-block; vertical-align: middle; color: #ffb221; font-size: .34rem;}
 
 .icon-coin-wrapper {
-  height: 20px;
-  width: 20px;
-  margin-top: 2px;
-  float: left;
+  height: 22px;
+  width: 22px;
+  display: inline-block;
+  padding-top: 5px;
 }
 
 .icon-coin {
   background: url('/client/images/game.png') no-repeat -1674px -715px;
   width: 82px;
   height: 82px;
-  transform: scale(0.2); 
-  -webkit-transform: scale(0.2);
+  transform: scale(0.25); 
+  -webkit-transform: scale(0.25);
   -webkit-transform-origin:left top;
   float: left;
   z-index: 100;
   position: relative;
   
+}
+
+.icon-label {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 17px;
 }
 
 .showBao .group img {
@@ -808,7 +814,7 @@ p.vip-life {
 
 #promotion .instructions {
   margin-top: 140px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   font-size: 12px;
   font-weight: 500;
   color: #8c8882;
@@ -832,18 +838,19 @@ p.vip-life {
 
 #promotion .modal-number{
   color: white;
-  font-size: 15px;
   text-align: center;
-  padding-top: 12px;
-  float: right;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 #promotion .modal-label{
-  color: #fef637;
-  font-size: 15px;
+  color: white;
+  font-size: 16px;
   text-align: center;
-  padding-top: 12px;
-  float: left;
+}
+
+#promotion .modal-point{
+  color: #fef637;
 }
 
 #promotion .btn-wabao {
