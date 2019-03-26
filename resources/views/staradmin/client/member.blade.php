@@ -30,11 +30,11 @@
 						<div class="icon-verified-wrapper">
 							<div class="icon-verified"></div>
 						</div>
-						<div class="verified">已通过实名认证</div>
+						<div class="verified">已通过微信认证</div>
 					</div>
 					@else
 					<div class="button-unverified">
-						<div class="unverified">还没通过实名认证</div>
+						<div class="unverified">还没通过微信认证</div>
 					</div>
 					@endif
 				</div>
