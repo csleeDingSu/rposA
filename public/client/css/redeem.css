@@ -1050,6 +1050,10 @@ textarea {
 
 }
 
+#wechat-verification-modal .btn-close a {
+	text-decoration: underline;
+}
+
 #wechat-verification-modal .body-title {
 	color: #f99d1c;
 	font-size: 18px;
