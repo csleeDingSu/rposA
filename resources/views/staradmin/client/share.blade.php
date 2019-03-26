@@ -442,8 +442,8 @@ imagedestroy( $image );
                     <div class="ribbon ribbon-top-left">
                       <span>@lang('dingsu.ads_picture')</span>
                     </div>
-                    <div class="overlay" >
-                      <a href="javascript:void(0)" onClick="location.reload();" class="icon"><img  src="{{ asset('client/bar/refresh.png') }}"> </a>
+                    <div class="overlay" onClick="location.reload();">
+                      <a href="javascript:void(0)" class="icon"><img  src="{{ asset('client/bar/refresh.png') }}"> </a>
 						 refresh 
                     </div>
                     
