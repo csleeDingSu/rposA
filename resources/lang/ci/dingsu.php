@@ -533,4 +533,6 @@ return [
 	'add_vip_life' => '增加VIP次数',
 	'current_vip_life' => '目前的VIP次数',
 	'adjust_wallet' => '调整挖宝账号',
+
+	'change_picture' => '换一张',
 ];

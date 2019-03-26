@@ -291,22 +291,25 @@ imagedestroy( $image );
 		
 		.overlay {
 		  position: absolute;
-		  margin-top: 35px;
-		  margin-right: 40px;color:#F5F654;
+		  margin-top: 30px;
+		  margin-right: 30px;
+      color:#F5F654;
 		  right: 0;
 		  top: 0;
-		  width: 100%;
+		  width: 60px;
 		  z-index: 1;
-		  font-size: 20px;
 		  text-align: center;
-		  line-height: 20px;
+		  /*line-height: 20px;*/
           opacity: 1.2;
 		  background:rgba(0,0,0,0.3);
-		font-size: 27px;border-radius: 25px;
+    
 		vertical-align:middle;
-    max-width: 100px;
-    padding: 11px;
-    text-align: center;cursor:pointer;
+    max-width: 80px;
+    padding: 2px;
+    /*text-align: center;cursor:pointer;*/
+
+border-radius: 20px;
+    font-size: 10px;
 	}
 
        
@@ -443,7 +446,7 @@ imagedestroy( $image );
                       <span>@lang('dingsu.ads_picture')</span>
                     </div>
                     <div class="overlay" onClick="location.reload();">
-                      <a href="javascript:void(0)" class="icon"><img  src="{{ asset('client/bar/refresh.png') }}"> </a>
+                      <a href="javascript:void(0)" class="icon"><img  src="{{ asset('client/bar/refresh.png') }}" style="height: 10px; margin-bottom: 3px;"> </a>
 						  @lang('dingsu.change_picture')  
                     </div>
                     
