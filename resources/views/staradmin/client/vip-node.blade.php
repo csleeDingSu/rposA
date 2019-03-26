@@ -469,7 +469,7 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/vip/icon-win.png') }}" class="img-wabao" />
 								<div class="modal-message-title">
-									恭喜获得<span class="spanVipPoint"></span>挖宝币
+									恭喜获得<span class="spanVipPoint"></span>金币
 								</div>
 								<div class="modal-message-content">
 									结算需扣除<span class="spanFee"></span>手续费，最终到账<span class="spanNetVip"></span>
@@ -478,13 +478,13 @@
 									查看说明
 								</div>
 								<div class="modal-message-balance">
-									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
+									您当前总金币：<div class="packet-point">&nbsp;</div>
 								</div>
 								<div class="modal-message-button btn-reset-life">
 									确认结算 结束本次挖宝
 								</div>
 								<div class="modal-message-footer">
-									结算后的挖宝币可兑换奖品
+									结算后的金币可兑换奖品
 								</div>												
 							</div>
 						</div>
@@ -510,7 +510,7 @@
 									本次挖宝失败
 								</div>
 								<div class="modal-message-title">
-									恭喜获得<span class="spanVipPoint"></span>挖宝币
+									恭喜获得<span class="spanVipPoint"></span>金币
 								</div>
 								<div class="modal-message-content">
 									结算需扣除<span class="spanFee"></span>手续费，最终到账<span class="spanNetVip"></span>
@@ -519,7 +519,7 @@
 									查看说明
 								</div>
 								<div class="modal-message-balance">
-									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
+									您当前总金币：<div class="packet-point">&nbsp;</div>
 								</div>
 								<div class="modal-message-button btn-reset-life">
 									确认结算
@@ -580,7 +580,7 @@
 									手续费说明
 								</div>
 								<div class="modal-manual-content">
-									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000挖宝币兑换1200原始积分，当玩家挖宝赢得挖宝币结算时，需返还<span class="spanFee"></span>作为挖宝手续费。
+									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000金币兑换1200原始积分，当玩家挖宝赢得金币结算时，需返还<span class="spanFee"></span>作为挖宝手续费。
 								</div>
 								<div class="modal-manual-button">
 									我知道了

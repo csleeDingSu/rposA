@@ -365,7 +365,7 @@ console.log("getSocket");
                     var level = parseInt($('#hidLevel').val());
                     var win_amount = level * 10;
 
-                    $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'挖宝币！');
+                    $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'金币！');
                 } else if (data.status == 'lose') {
                     var level = parseInt($('#hidLevel').val());
                     var chance = 6 - level;
@@ -744,7 +744,7 @@ function showProgressBar(bol_show){
             case 1:
                 bet_amount = 10;
 
-                payout_info = '猜中得10，赚10挖宝币。';
+                payout_info = '猜中得10，赚10金币。';
                 $('.span-1').html("10");
                 $('.span-2').html("30");
                 $('.span-3').html("70");
@@ -757,14 +757,14 @@ function showProgressBar(bol_show){
                 bet_amount = 30;
                 span_balance = 1190;
 
-                payout_info = '猜中得30，扣除之前亏损10，赚20挖宝币。';
+                payout_info = '猜中得30，扣除之前亏损10，赚20金币。';
                 $('.span-1').html("-10");                        
                 break;
             case 3:                    
                 bet_amount = 70;
                 span_balance = 1160;
 
-                payout_info = '猜中得70，扣除前2次亏损40，赚30挖宝币。';
+                payout_info = '猜中得70，扣除前2次亏损40，赚30金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 break;
@@ -772,7 +772,7 @@ function showProgressBar(bol_show){
                 bet_amount = 150;
                 span_balance = 1090;
 
-                payout_info = '猜中得150，扣除前3次亏损110，赚40挖宝币。';
+                payout_info = '猜中得150，扣除前3次亏损110，赚40金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -781,7 +781,7 @@ function showProgressBar(bol_show){
                 bet_amount = 310;
                 span_balance = 940;
 
-                payout_info = '猜中得310，扣除前4次亏损260，赚50挖宝币。';
+                payout_info = '猜中得310，扣除前4次亏损260，赚50金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -791,7 +791,7 @@ function showProgressBar(bol_show){
                 bet_amount = 630;
                 span_balance = 630;
 
-                payout_info = '猜中得630，扣除前5次亏损570，赚60挖宝币。';
+                payout_info = '猜中得630，扣除前5次亏损570，赚60金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");

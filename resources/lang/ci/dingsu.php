@@ -319,7 +319,7 @@ return [
 	
 	'available_quantity' => '可用数量',
 	'reserved_quantity' => '保留数量',
-	'min_point' => '最低限度挖宝币',
+	'min_point' => '最低限度金币',
 	'reserved' => '保留',
 	'add_new_product' => '添新产品',
 	'product_update_success_message' => '产品已成功添加/更新',
@@ -441,9 +441,9 @@ return [
 	'point' => '计分',
 
 	'vip_price' => '价格',
-	'vip_consumed_point' => '消耗挖宝币',
+	'vip_consumed_point' => '消耗金币',
 	'vip_convertible_life' => '可得到的挖宝机会',
-	'vip_convertible_point' => '可兑换挖宝币',
+	'vip_convertible_point' => '可兑换金币',
 	'vip_package_image_url' => 'Package图像网址',
 
 	'used_quantity' => '使用了的数量',
@@ -481,8 +481,8 @@ return [
 	'today_items' => '当前记录',
 	'played_user' => '当前在线玩游戏人数',
 	'total_inactive_users' => '非活动用户总数',
-	'total_wabao_coin' => '挖宝币总数',
-	'total_wabao_bet' => '总挖宝币投注',
+	'total_wabao_coin' => '金币总数',
+	'total_wabao_bet' => '总金币投注',
 
 	'inprogress' => '正在进行中',
 	'redeem_vip_ticket' => '兑换VIP入场卷',
@@ -521,8 +521,8 @@ return [
 
 	'ads_picture' => '广告图',
 
-	'current_point' => '总挖币数',
-	'add_point' => '增加挖宝币',
+	'current_point' => '总金币数',
+	'add_point' => '增加金币',
 	'standard' => '普通',	
 
 	'added_vip_point_by_redeemed' => 'Added VIP Point by redeemed',

@@ -198,11 +198,11 @@ function getProductList(token) {
                                                                 '<div class="icon-coin-wrapper modal-icon">' +
                                                                     '<div class="icon-coin"></div>' +
                                                                 '</div>' +
-                                                                '<div class="wabao-price">'+ item.min_point +'挖宝币</div>' +
+                                                                '<div class="wabao-price">'+ item.min_point +'金币</div>' +
                                                         '</div>' +
 
                                                         '<div class="modal-card">' +
-                                                            '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 挖宝币</div>' +
+                                                            '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 金币</div>' +
                                                         '</div>' +
 
                                                         '<div id="error-'+ item.id + '" class="error"></div>';
@@ -370,11 +370,11 @@ function getProductList(token) {
                                                             '<div class="icon-coin-wrapper modal-icon">' +
                                                                 '<div class="icon-coin"></div>' +
                                                             '</div>' +
-                                                            '<div class="wabao-price">'+ item.min_point +'挖宝币</div>' +
+                                                            '<div class="wabao-price">'+ item.min_point +'金币</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 挖宝币</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 金币</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
@@ -532,7 +532,7 @@ function populateHistoryData(records, token) {
                         counter +
                     '</div>' +
                     '<div class="col-xs-7 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + (item.used_point || '') + '挖宝币</div>' +
+                        '<div class="description">'+ item.product_name + ' ' + (item.used_point || '') + '金币</div>' +
                         '<div class="balance">兑换时间:'+ str_date +'</div>' +
                     '</div>';
 
