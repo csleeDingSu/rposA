@@ -267,7 +267,7 @@
 				<h3>
 					<font id="product_discount_price">优惠价：39元</font><em id = "product_price">淘宝原价：￥360</em>
 				</h3>
-				<h1>390挖宝币 免费兑换</h1>
+				<h1>390金币 免费兑换</h1>
 				<div class="iconImg"><img src="{{ asset('/test/main/images/icon-2.png') }}"><span>10兑换1元红包</span></div>
 				<a class="btn" href="/arcade"><img src="{{ asset('/test/main/images/wabao.png') }}"></a>
 			</div>

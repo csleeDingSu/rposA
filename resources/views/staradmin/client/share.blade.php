@@ -40,14 +40,15 @@ include(app_path().'/Lib/qr/qrlib.php');
 
 $filename = public_path().'/client/qr/'.$affiliate_id.'.png';
 
-QRcode::png($url, $filename, 'L', '7', 2); 
+QRcode::png($url, $filename, 'L', '3', 2); 
 
 $showIcon = $filename;
 
 
 //echo $filename;
 //die();
-$showimage = public_path( 'client/bar/image.jpg' );
+//$showimage = public_path( 'client/bar/image.jpg' );
+$showimage = public_path( 'client/bar/'.$data->filename );
 
 //$showIcon = "https://chart.googleapis.com/chart?chs=190x190&cht=qr&chl=$url&choe=UTF-8";
 
@@ -66,7 +67,7 @@ imagefill( $mainimg, 0, 0, $white );
 //imagecopymerge( $image, $mainimg, -10, 611, 0, 0, 190, 190, 100 );
 
 // imagecopymerge( $image, $mainimg, 13, 641, 0, 0, 132, 132, 100 );
-imagecopymerge( $image, $mainimg, 133, 412, 0, 0, 230, 230, 100 );
+imagecopymerge( $image, $mainimg, 21, 663, 0, 0, 100, 100, 100 );
 
 
 ob_start();
@@ -287,6 +288,29 @@ imagedestroy( $image );
         line-height: 0.7rem;
         text-align: center;
       }
+		
+		.overlay {
+		  position: absolute;
+		  margin-top: 30px;
+		  margin-right: 30px;
+      color:#F5F654;
+		  right: 0;
+		  top: 0;
+		  width: 60px;
+		  z-index: 1;
+		  text-align: center;
+		  /*line-height: 20px;*/
+          opacity: 1.2;
+		  background:rgba(0,0,0,0.3);
+    
+		vertical-align:middle;
+    max-width: 80px;
+    padding: 2px;
+    /*text-align: center;cursor:pointer;*/
+
+border-radius: 20px;
+    font-size: 10px;
+	}
 
        
     </style>
@@ -421,7 +445,10 @@ imagedestroy( $image );
                     <div class="ribbon ribbon-top-left">
                       <span>@lang('dingsu.ads_picture')</span>
                     </div>
-                    
+                    <div class="overlay" onClick="location.reload();">
+                      <a href="javascript:void(0)" class="icon"><img  src="{{ asset('client/bar/refresh.png') }}" style="height: 10px; margin-bottom: 3px;"> </a>
+						  @lang('dingsu.change_picture')  
+                    </div>
                     
                     <?php echo '<img  class="small-img" id="copyurl"  src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
                 </div>

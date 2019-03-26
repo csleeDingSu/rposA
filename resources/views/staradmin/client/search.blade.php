@@ -160,11 +160,11 @@
 
 				<div class="group">
 				 	<img src="{{ asset('/test/main/images/icon-2.png') }}" />
-					<span><em id = 'voucher_price'>390挖宝币 免费兑换</em></span>
+					<span><em id = 'voucher_price'>390金币 免费兑换</em></span>
 				</div>
 
 				<div class="group" style="text-align: center;">
-					<div class="balance">你当前拥有 <em id='current_point'> {{ isset($member_mainledger->current_point) ? number_format($member_mainledger->current_point, 0, ".", "") : 0 }}</em> 挖宝币</div>
+					<div class="balance">你当前拥有 <em id='current_point'> {{ isset($member_mainledger->current_point) ? number_format($member_mainledger->current_point, 0, ".", "") : 0 }}</em> 金币</div>
 				</div>
 
 				<a class="btn" href="/arcade"><img src="{{ asset('/test/main/images/wabao.png') }}"></a>

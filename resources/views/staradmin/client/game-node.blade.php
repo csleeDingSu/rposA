@@ -475,14 +475,14 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/vip/icon-win.png') }}" class="img-wabao" />
 								<div class="modal-message-title">
-									恭喜获得150挖宝币
+									恭喜获得150金币
 								</div>
 								<div class="modal-message-content">
-									每次最多可获得150挖宝币<br />
+									每次最多可获得150金币<br />
 									您当前已经封顶
 								</div>
 								<div class="modal-message-balance">
-									您当前总挖宝币：<div class="packet-point">&nbsp;</div>
+									您当前总金币：<div class="packet-point">&nbsp;</div>
 								</div>
 								<div class="modal-message-button btn-reset-life">
 									确认结算
@@ -509,8 +509,8 @@
 									兑换说明
 								</div>
 								<div class="modal-warning-content">
-									需满150挖宝币，系统会自动结算。<br />
-									150挖宝币约等于15元红包，请再接再厉。
+									需满150金币，系统会自动结算。<br />
+									150金币约等于15元红包，请再接再厉。
 								</div>
 
 								<div class="close-modal modal-warning-button">
@@ -601,7 +601,7 @@
 									本次挖宝失败
 								</div>
 								<div class="modal-lose-content">
-									本局盈利的挖宝币清零
+									本局盈利的金币清零
 								</div>
 								<div class="modal-message-button btn-reset-life">
 									继续挖宝
@@ -630,11 +630,11 @@
 									当前不能挖宝
 								</div>
 								<div class="modal-warning-content">
-									您必须把挖宝机会兑换成挖宝币
+									您必须把挖宝机会兑换成金币
 								</div>
 
 								<div class="btn-reset-life-continue modal-warning-button">
-									兑换挖宝币
+									兑换金币
 								</div>												
 							</div>
 						</div>
@@ -704,7 +704,7 @@
 								<div class="vip-card">
 									<img class="img-vip" src="{{ asset('/client/images/vip/v2.png') }}" width="20" height="17" /><div class="normal-card-title">普通场的结算方式：</div>
 									<div style="clear: both;"></div>
-									<div class="normal-card-desc">原始积分1200不可结算，最多可挖宝150，只能结算150挖宝币。</div>
+									<div class="normal-card-desc">原始积分1200不可结算，最多可挖宝150，只能结算150金币。</div>
 								</div>
 								<!--div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费卷</div-->
 								<a href="/redeem"><div class="btn-vip-submit">兑换VIP入场卷</div></a>

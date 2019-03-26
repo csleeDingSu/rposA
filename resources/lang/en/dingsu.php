@@ -551,5 +551,6 @@ return [
 	
 	'ads_picture' => '广告图',
 	'standard' => 'normal',
+	'change_picture' => 'Change',
 	
 ];

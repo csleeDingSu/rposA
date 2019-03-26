@@ -108,7 +108,7 @@
 
 						<div class="modal-card">
 							<div class="wabao-price center-text">
-								390挖宝币 免费兑换
+								390金币 免费兑换
 							</div>
 							<div class="clear"></div>
 						</div>

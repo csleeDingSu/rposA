@@ -16,7 +16,7 @@
 				<div class="icon-verify"></div>
 			</div>
 			<div class="instructions">
-				您需要通过实名认证
+				您需要通过微信认证
 				<br />
 				才能享受网站的福利
 			</div>

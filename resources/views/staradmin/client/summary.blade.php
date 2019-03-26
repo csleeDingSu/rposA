@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '挖宝币明细')
+@section('title', '金币明细')
 
 @section('left-menu')
     <a href="/profile" class="back">

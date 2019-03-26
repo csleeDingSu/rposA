@@ -107,11 +107,8 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 //Member routes with member guard
 Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	
-	
-	Route::get( '/share', function () {
-		return view( 'client/share' );
-	} );
-	
+	Route::get('/share', 'ClientController@share')->name('show.link.share');
+		
 	Route::get( '/allhistory', function () {
 		return view( 'client/allhistory' );
 	} );

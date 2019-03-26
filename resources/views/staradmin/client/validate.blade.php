@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '实名认证')
+@section('title', '微信认证')
 
 @section('top-css')
     @parent

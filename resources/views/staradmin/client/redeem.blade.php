@@ -35,8 +35,8 @@
 			<div class="icon-coin-wrapper">
 				<div class="icon-coin"></div>
 			</div>
-			<div class="label-coin">当前可用挖宝币</div>
-			<div class="label-coin right"><a href="/summary">挖宝币明细</a></div>
+			<div class="label-coin">当前可用金币</div>
+			<div class="label-coin right"><a href="/summary">金币明细</a></div>
 
 			<div style="clear: both;"></div>
 			

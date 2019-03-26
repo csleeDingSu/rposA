@@ -95,7 +95,7 @@ class RedisGameController extends Controller
 		
 		$vipbethis        = Game::get_betting_history_grouped($gameid, $memberid, 'yes');
 		$bethistory       = Game::get_betting_history_grouped($gameid, $memberid, '');
-		
+		$firstwin         = \App\Product::IsFirstWin($memberid);
 		//$data = ['gamesetting' => $gamesetting, 'gamenotification' => $gamenotific , 'gamehistory' => $gamehistory, 'futureresults' => $futureresult,'wabaofee' => $setting->wabao_fee,'level'=>$level,'consecutive_lose'=>$consecutive_lose,'latest_result'=>$latest_result,'bettinghistory' => $bethistory,'wallet' => $wallet];
 
 		$data    = [  'member'               => $memberid, 
@@ -112,7 +112,8 @@ class RedisGameController extends Controller
 					  'vip_consecutive_lose' => $vip_con_lose,
 					  'bettinghistory'       => $bethistory,
 					  'vipbethistory'        => $vipbethis,
-					  'wallet'               => $wallet
+					  'wallet'               => $wallet,
+					  'IsFirstLifeWin'       => $firstwin
 					];
 
 
