@@ -444,7 +444,7 @@ imagedestroy( $image );
                     </div>
                     <div class="overlay" onClick="location.reload();">
                       <a href="javascript:void(0)" class="icon"><img  src="{{ asset('client/bar/refresh.png') }}"> </a>
-						 refresh 
+						  @lang('dingsu.change_picture')  
                     </div>
                     
                     <?php echo '<img  class="small-img" id="copyurl"  src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
