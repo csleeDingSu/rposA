@@ -174,6 +174,9 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="body-title">联系客服发放兑换红包</div>
+								<div style="padding-top: 15px">
+					        		<img src="{{ asset('/client/images/cs_qrcode.png') }}" width="150" height="150" />
+					        	</div>
 								<div class="instructions">
 									添加客服微信号
 								</div>								
