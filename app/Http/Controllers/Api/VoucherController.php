@@ -113,6 +113,18 @@ class VoucherController extends Controller
             return response()->json(['html'=>$view]);
         }
 
-    	return view('client.search', compact('vouchers', 'setting', 'strSearch'));
+        if (Auth::Guard('member')->check()) {
+
+			$member_id = Auth::guard('member')->user()->id;
+
+        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();	
+		}
+        else{
+
+        	$member_mainledger = null;
+
+        }
+
+    	return view('client.search', compact('vouchers', 'setting', 'strSearch', 'member_mainledger'));
     }
 }
