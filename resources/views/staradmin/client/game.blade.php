@@ -725,24 +725,22 @@
 
 	<div class="modal fade col-md-12" id="win-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-title">
-				<div class="modal-win-title">
-					恭喜你猜中了
-				</div>
-				<div class="background"><span>本次奖励说明</span></div>
-				<img class="modal-progress-bar" src="{{ asset('/client/images/progress-bar/10.png') }}" width="250" height="50" />
-				<div class="modal-history"></div>
-				<div style="clear: both;"></div>
+			<div class="modal-title modal-win-header">
+				<div class="modal-win-title">恭喜你猜对了</div>
+				<div class="modal-result">+10</div>
+				大约可兑换现金￥1元				
 			</div>
 
 			<div class="modal-content">
 				<img class="separator" src="{{ asset('/client/images/progress-bar/separator.png') }}" width="300" height="13" />
+				<div class="background">奖励规则说明</div>
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="modal-lose">第1局猜中赚10扣除前0次亏0</div>
-								<div class="modal-final">最终获得<span class="span-final">10</span>金币</div>
+								<img class="modal-progress-bar" src="{{ asset('/client/images/progress-bar/10.png') }}" width="250" height="50" />
+								<div class="modal-instruction">游戏原始积分1200，你前0次都猜错了，亏损<span class="modal-minus">0积分</span>，第1次猜对，赚了<span class="modal-add">+10积分</span>。<br />
+								所以最终赚到10积分（10-0=10）</div>
 								<div class="close-modal modal-redeem-button">
 									领取奖励
 								</div>												
