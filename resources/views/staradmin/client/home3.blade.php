@@ -235,14 +235,14 @@
 						<div class="modal-row">
 							<div class="wrapper modal-full-height">
 								<div class="modal-card">
-									<div class="instructions">
+									<div class="instructions" style="padding:10px 11px 10px 11px !important;">
 										<!-- <h2>0元购物攻略</h2>
 										玩猜单双游戏，赢金币换<span class="highlight">购物补助金<br />
 										（可提现到支付宝）</span>再去购买商品，<br />
 										<span class="highlight">补助金最少30元</span>起，任你领不停。<br />
 										-->
-										玩猜猜乐，赢金币换<span class="highlight">购物红包（可提现）</span>30元、50元、100元任你领！
-新人注册就送3次猜猜乐<span class="highlight">（最多赚45元）</span>, 分享给好友还能获得更多次猜猜乐！
+										玩猜猜乐，赢金币换<span class="highlight">购物红包（可提现）</span>30元、50元、100元任你领！<br/>
+新人注册就送3次猜猜乐<span class="highlight">（最多赚45元）</span>, 分享给好友还能获得更多次猜猜乐！<br/>
 从此购物不花自己钱，<span class="highlight">你购物我帮你买单！</span>
 									</div>
 									<div class="modal-label">
