@@ -993,7 +993,7 @@ textarea {
 }
 
 #wechat-verification-modal .modal-card {
-	width: 250px;
+	width: 280px;
 	margin: 0 auto;
 	font-size: 16px;
 }
@@ -1035,8 +1035,8 @@ textarea {
 #wechat-verification-modal .instructions {
 	margin-top: 5px;
 	padding: 10px 0;
-	font-size: 16px;
-	font-weight: 500;
+	font-size: 19px;
+	/*font-weight: 500;*/
 	color: #6f6f6f;
 }
 
@@ -1056,8 +1056,8 @@ textarea {
 
 #wechat-verification-modal .body-title {
 	color: #f99d1c;
-	font-size: 18px;
-	font-weight: 700;
+	font-size: 23px;
+	font-weight: 500;
 	padding-top: 15px;
 }
 
