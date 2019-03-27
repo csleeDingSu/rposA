@@ -147,7 +147,7 @@
 
 				@if($cid == env('voucher_featured_id','220'))
 					
-					<div class="banner">
+					<div class="banner" style="background-color: white;">
 
 						<!--<img data-lazy="{{ asset('/test/main/images/demo/banner.png') }}">-->
 						
@@ -164,7 +164,7 @@
 
 				@endif
 
-				<div class="product">
+				<div class="product" style="margin-top: 0px;">
 					<div class="title">
 						<span>共有<font color="#f63556">{{ $vouchers->total() }}</font>款产品</span>
 						<h2>{{ is_null($current_cat_name) ? 精选 : $current_cat_name }}大额优惠券</h2>
