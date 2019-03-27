@@ -242,9 +242,17 @@
 										<span class="highlight">补助金最少30元</span>起，任你领不停。<br />
 									</div> -->
 									<div class="instructions" style="padding:10px 11px 10px 11px !important;">	
-										玩猜猜乐，赢金币换<span class="highlight">购物红包（可提现）</span>30元、50元、100元任你领！<br/>
-新人注册就送3次猜猜乐<span class="highlight">（最多赚45元）</span>, 分享给好友还能获得更多次猜猜乐！<br/>
-从此购物不花自己钱，<span class="highlight">你购物我帮你买单！</span>
+										<span style="font-weight: bold;">
+											玩猜猜乐，赢金币换<span class="highlight">购物红包（可提现）</span>
+										</span>
+										<ul style="color: #a8adaa;">
+											<li> • 30元、50元、100元任你领！</li>
+											<li> • 新人注册就送3次猜猜乐（最多赚45元）</li> 
+											<li> • 分享给好友赚更多</li>
+										</ul>
+										<span style="font-weight: bold;">
+											从此购物不花自己钱，<span class="highlight">你购物我帮你买单！</span>
+										</span>
 									</div>
 									<div class="modal-label">
 										<div class="icon-coin-wrapper">

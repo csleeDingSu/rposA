@@ -176,13 +176,13 @@
 				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
 				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
 
-				@if (isset(Auth::Guard('member')->user()->username))
+				{{-- @if (isset(Auth::Guard('member')->user()->username)) --}}
 					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
 					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
 					<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
-				@else
-					<h3 id="cut">请先注册，才能领取优惠券</h3>
-				@endif
+				{{-- @else --}}
+					<!-- <h3 id="cut">请先注册，才能领取优惠券</h3> -->
+				{{-- @endif --}}
 				
 				
 			</div>
@@ -229,10 +229,18 @@
 										（可提现到支付宝）</span>再去购买商品，<br />
 										<span class="highlight">补助金最少30元</span>起，任你领不停。<br />
 									</div> -->
-									<div class="instructions" style="padding:5px 11px 10px 11px !important;">
-										玩猜猜乐，赢金币换<span class="highlight">购物红包（可提现）</span>30元、50元、100元任你领！<br/>
-新人注册就送3次猜猜乐<span class="highlight">（最多赚45元）</span>, 分享给好友还能获得更多次猜猜乐！<br/>
-从此购物不花自己钱，<span class="highlight">你购物我帮你买单！</span>
+									<div class="instructions" style="padding:5px 11px 10px 11px !important;">	
+										<span style="font-weight: bold;">
+											玩猜猜乐，赢金币换<span class="highlight">购物红包（可提现）</span>
+										</span>
+										<ul style="color: #a8adaa;">
+											<li> • 30元、50元、100元任你领！</li>
+											<li> • 新人注册就送3次猜猜乐（最多赚45元）</li> 
+											<li> • 分享给好友赚更多</li>
+										</ul>
+										<span style="font-weight: bold;">
+											从此购物不花自己钱，<span class="highlight">你购物我帮你买单！</span>
+										</span>
 									</div>
 									<div class="modal-label">
 										<div class="icon-coin-wrapper">
