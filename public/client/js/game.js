@@ -6,6 +6,7 @@ var update_betting_history = false;
 var betting_data = null;
 var token = '';
 var show_win = false;
+var show_lose = false;
 
 $(function () {
 
@@ -392,6 +393,11 @@ function getSocket(){
                     var chance = 6 - level;
 
                     $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
+
+                    if(data.data.IsFirstLifeWin == 'yes'){
+                        show_lose = true;
+                        showLoseModal();
+                    }
                 }
 
                 $('#result').val(data.data.game_result);
@@ -479,6 +485,11 @@ function resetGame() {
     if(show_win){
         $('#win-modal').modal('show');
         show_win = false;
+    }
+
+    if(show_lose){
+        $('#win-modal').modal('show');
+        show_lose = false;
     }
 }
 
@@ -832,74 +843,97 @@ function showWinModal(){
     var level = parseInt($('#hidLevel').val());
     var html = '';
     var image = '';
-    var gain = '';
-    var lose = '';
 
     switch (level) {
 
         case 1:
-            gain = 10;
-            lose = '第1局猜中赚10扣除前0次亏0';
+            instruction = '游戏原始积分1200，你前0次都猜错了，亏损<span class="modal-minus">0积分</span>，第1次猜对，赚了<span class="modal-add">+10积分</span>。<br />所以最终赚到10积分（10-0=10）';
             image = '/client/images/progress-bar/10.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-add">成功+10</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+10金币</div>大约可兑换现金￥1元';
         break;
 
         case 2:
-            gain = 20;
-            lose = '第2局猜中赚30扣除前1次亏10';
+            instruction = '游戏原始积分1200，你前1次都猜错了，亏损<span class="modal-minus">-10积分</span>，第2次猜对，赚了<span class="modal-add">+30积分</span>。<br />所以最终赚到20积分（30-10=20）';
             image = '/client/images/progress-bar/30.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-add">成功+30</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+20金币</div>大约可兑换现金￥2元';
         break;
 
         case 3:
-            gain = 30;
-            lose = '第3局猜中赚70扣除前2次亏40';
+            instruction = '游戏原始积分1200，你前2次都猜错了，亏损<span class="modal-minus">-40积分</span>，第3次猜对，赚了<span class="modal-add">+70积分</span>。<br />所以最终赚到30积分（70-40=30）';
             image = '/client/images/progress-bar/70.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败 -30</div>';
-            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-add">成功+70</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+30金币</div>大约可兑换现金￥3元';
         break;
 
         case 4:
-            gain = 40;
-            lose = '第4局猜中赚150扣除前3次亏110';
+            instruction = '游戏原始积分1200，你前3次都猜错了，亏损<span class="modal-minus">-110积分</span>，第4次猜对，赚了<span class="modal-add">+150积分</span>。<br />所以最终赚到40积分（150-110=40）';
             image = '/client/images/progress-bar/150.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败 -30</div>';
-            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败 -70</div>';
-            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-add">成功+150</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+40金币</div>大约可兑换现金￥4元';
         break;
 
         case 5:
-            gain = 50;
-            lose = '第5局猜中赚310扣除前4次亏260';
+            instruction = '游戏原始积分1200，你前4次都猜错了，亏损<span class="modal-minus">-260积分</span>，第5次猜对，赚了<span class="modal-add">+310积分</span>。<br />所以最终赚到50积分（310-260=50）';
             image = '/client/images/progress-bar/310.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败 -30</div>';
-            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败 -70</div>';
-            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-minus">失败 -150</div>';
-            html += '<div class="modal-point">第5局下注310积分</div><div class="modal-add">成功+310</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+50金币</div>大约可兑换现金￥5元';
         break;
 
         case 6:
-            gain = 60;
-            lose = '第6局猜中赚630扣除前5次亏570';
+            instruction = '游戏原始积分1200，你前5次都猜错了，亏损<span class="modal-minus">-570积分</span>，第6次猜对，赚了<span class="modal-add">+630积分</span>。<br />所以最终赚到60积分（630-570=60）';
             image = '/client/images/progress-bar/630.png';
-            html += '<div class="modal-point">第1局下注10积分</div><div class="modal-minus">失败 -10</div>';
-            html += '<div class="modal-point">第2局下注30积分</div><div class="modal-minus">失败 -30</div>';
-            html += '<div class="modal-point">第3局下注70积分</div><div class="modal-minus">失败 -70</div>';
-            html += '<div class="modal-point">第4局下注150积分</div><div class="modal-minus">失败 -150</div>';
-            html += '<div class="modal-point">第5局下注310积分</div><div class="modal-minus">成功 -310</div>';
-            html += '<div class="modal-point">第6局下注630积分</div><div class="modal-add">成功+610</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+60金币</div>大约可兑换现金￥6元';
         break;
 
     }
 
     $('.modal-progress-bar').attr("src", image);
-    $('.modal-history').html(html);
-    $('.modal-lose').html(lose);
-    $('.span-final').html(gain);
+    $('.modal-win-header').html(html);
+    $('.modal-instruction').html(instruction);
+    $('.modal-redeem-button').html('领取奖励');
+}
+
+function showLoseModal(){
+    var level = parseInt($('#hidLevel').val());
+    var html = '';
+    var image = '';
+
+    switch (level) {
+
+        case 1:
+            instruction = '游戏原始积分1200，你猜错1次，亏损了10积分，下次下注30积分，如果猜中就能得到30积分。减去亏损的10积分，还赚20积分，6次里猜中一次，就能赚积分！';
+            image = '/client/images/progress-bar/lose_10.png';
+            html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有5次机会</div>6次内猜中 就能获得奖励';
+        break;
+
+        case 2:
+            instruction = '游戏原始积分1200，你猜错2次，亏损了40积分，下次下注70积分，如果猜中就能得到70积分。减去亏损的40积分，还赚30积分，6次里猜中一次，就能赚积分！';
+            image = '/client/images/progress-bar/lose_30.png';
+            html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有4次机会</div>6次内猜中 就能获得奖励';
+        break;
+
+        case 3:
+            instruction = '游戏原始积分1200，你猜错3次，亏损了110积分，下次下注150积分，如果猜中就能得到150积分。减去亏损的110积分，还赚40积分，6次里猜中一次，就能赚积分！';
+            image = '/client/images/progress-bar/lose_70.png';
+            html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有3次机会</div>6次内猜中 就能获得奖励';
+        break;
+
+        case 4:
+            instruction = '游戏原始积分1200，你猜错4次，亏损了260积分，下次下注310积分，如果猜中就能得到310积分。减去亏损的260积分，还赚50积分，6次里猜中一次，就能赚积分！';
+            image = '/client/images/progress-bar/lose_150.png';
+            html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有2次机会</div>6次内猜中 就能获得奖励';
+        break;
+
+        case 5:
+            instruction = '游戏原始积分1200，你猜错5次，亏损了570积分，下次下注630积分，如果猜中就能得到630积分。减去亏损的570积分，还赚60积分，6次里猜中一次，就能赚积分！';
+            image = '/client/images/progress-bar/lose_310.png';
+            html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有1次机会</div>6次内猜中 就能获得奖励';
+        break;
+
+    }
+
+    $('.modal-progress-bar').attr("src", image);
+    $('.modal-win-header').html(html);
+    $('.modal-instruction').html(instruction);
+    $('.modal-redeem-button').html('知道了');
+
 }
 
 function startTimer(duration, timer, freeze_time) {

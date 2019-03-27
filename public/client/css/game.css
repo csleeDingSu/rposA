@@ -709,12 +709,6 @@ body{
 	color: #333333;
 }
 
-.modal-win-title {
-	color: #333333;
-	font-weight: 500;
-	font-size: 22px;
-}
-
 .modal-message-content, .modal-lose-content {
 	color: #4f7172;
 	font-size: 14px;
@@ -1506,6 +1500,16 @@ if it's not present, don't show loader */
 }
 
 /* Wechat Modal */
+#win-modal .modal-title {
+	font-size: 11px;
+	color: #bbbbbb;
+	font-weight: 500;
+}
+
+.modal-win-title {
+	font-weight: 500;
+	font-size: 15px;
+}
 
 #win-modal .modal-content{
 	background: #f9f9f9;
@@ -1523,70 +1527,42 @@ if it's not present, don't show loader */
 	padding-top: 0;
 }
 
+#win-modal .modal-instruction {
+	color: #707070;
+	font-size: 11px;
+	text-align: left;
+	padding: 5px 10px 20px 6px;
+}
+
 .separator {
 	margin-top: -10px;
 }
 
 .background {
-	margin: 10px auto;
+	margin: 0px auto;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     position: relative;
     z-index: 1;
     color: #c0c0c0;
     font-weight: 500;
-}
-
-.background:before {
-	border-top: 1px dashed #ececec;
-    content:"";
-    margin: 0 auto; /* this centers the line to the full width specified */
-    position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
-    top: 50%; left: 0; right: 0; bottom: 0;
-    width: 95%;
-    z-index: -1;
-}
-
-.background span { 
-    /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
-    background: #fff; 
-    padding: 0 5px; 
+    padding-bottom: 10px;
 }
 
 .modal-progress-bar {
 	margin-bottom: 5px;
 }
 
-.modal-lose {
-	color: #bbbbbb;
-	font-size: 16px;
-}
-
-.modal-final {
-	color: #55d400;
-	padding: 5px 0 15px 0;
-	font-size: 18px;
-}
-
-.modal-point {
-	float: left;
-	color: #acacac;
-	margin-left: 25px;
-	padding-top: 5px;
+.modal-result{
+	color: #44c024;
 	font-weight: 500;
-	font-size: 12px;
-	width: 170px;
-	text-align: left;
-}
-
-.modal-add, .modal-minus {
-	float: left;
-	color: #11b500;
-	padding-top: 5px;
-	font-weight: 500;
-	font-size: 12px;
+	font-size: 24px;
 }
 
 .modal-minus {
 	color: #e55858;
+}
+
+.modal-add {
+	color: #11b500;
 }
