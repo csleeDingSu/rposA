@@ -231,15 +231,28 @@
 			<div class="inBox">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
-					<div class="modal-body">				
+					<div class="modal-body" style="padding:10px !important;">				
 						<div class="modal-row">
 							<div class="wrapper modal-full-height">
 								<div class="modal-card">
-									<div class="instructions">
-										<h2>0元购物攻略</h2>
+									<!-- <div class="instructions">
+										 <h2>0元购物攻略</h2>
 										玩猜单双游戏，赢金币换<span class="highlight">购物补助金<br />
 										（可提现到支付宝）</span>再去购买商品，<br />
 										<span class="highlight">补助金最少30元</span>起，任你领不停。<br />
+									</div> -->
+									<div class="instructions" style="padding:10px 11px 10px 11px !important;">	
+										<span style="font-weight: bold;">
+											玩猜猜乐，赢金币换<span class="highlight">购物红包（可提现）</span>
+										</span>
+										<ul style="color: #a8adaa;">
+											<li> • 30元、50元、100元任你领！</li>
+											<li> • 新人注册就送3次猜猜乐（最多赚45元）</li> 
+											<li> • 分享给好友赚更多</li>
+										</ul>
+										<span style="font-weight: bold;">
+											从此购物不花自己钱，<span class="highlight">你购物我帮你买单！</span>
+										</span>
 									</div>
 									<div class="modal-label">
 										<div class="icon-coin-wrapper">

@@ -268,8 +268,19 @@ class Product extends Model
 		return $result;
 	}
 
-	public static function IsFirstWin($memberid)
+	public static function IsFirstWin($memberid,$type = 'lose')
 	{
+		/*
+		switch($type)
+		{
+			case'win':
+				$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS firstwin'))->where('member_id',$memberid)->first();
+			break;
+			case'lose':
+				$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS firstwin'))->where('member_id',$memberid)->first();
+			break;	
+		}
+		*/
 		$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS firstwin'))->where('member_id',$memberid)->first();
 		
 		if ($result->firstwin <= 2)

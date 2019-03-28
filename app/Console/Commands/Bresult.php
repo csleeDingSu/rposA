@@ -232,11 +232,12 @@ class Bresult extends Command
 				{
 					$this->info('win');
 					//check first life win
-					$firstwin = \App\Product::IsFirstWin($memberid);
+					$firstwin = \App\Product::IsFirstWin($memberid,'win');
 				}
 				else 
 				{
 					$this->error('lose');
+					$firstwin = \App\Product::IsFirstWin($memberid,'lose');
 				}
 				
 				$this->info('success');
