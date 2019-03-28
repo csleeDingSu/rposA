@@ -741,7 +741,7 @@
 								<img class="modal-progress-bar" src="{{ asset('/client/images/progress-bar/10.png') }}" width="250" height="50" />
 								<div class="modal-instruction">游戏原始积分1200，你前0次都猜错了，亏损<span class="modal-minus">0积分</span>，第1次猜对，赚了<span class="modal-add">+10积分</span>。<br />
 								所以最终赚到10积分（10-0=10）</div>
-								<div class="close-modal modal-redeem-button">
+								<div class="close-win-modal modal-redeem-button">
 									领取奖励
 								</div>												
 							</div>
@@ -765,6 +765,7 @@
     <script src="{{ asset('/client/js/jquery.wheelOfFortune.js') }}"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
     <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
+    <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
 	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
 
 	<script type="text/javascript">

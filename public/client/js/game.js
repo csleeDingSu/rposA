@@ -7,6 +7,8 @@ var betting_data = null;
 var token = '';
 var show_win = false;
 var show_lose = false;
+var previous_point = 0;
+var current_point = 0;
 
 $(function () {
 
@@ -107,6 +109,7 @@ function initUser(records){
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
+        current_point = parseInt(records.acupoint);
 
         if(life == 0){
             balance = 0;
@@ -117,7 +120,11 @@ function initUser(records){
         
         $('#hidTotalBalance').val(total_balance);
         $('.packet-point').html(point);
-        $('.spanAcuPoint').html(acupoint);
+        if(show_win){
+            show_win = false;
+        } else {
+            $('.spanAcuPoint').html(acupoint);
+        }
         $('.packet-acupoint').html(acupoint);
         $('#hidBalance').val(balance);
         $(".nTxt").html(life);
@@ -381,6 +388,7 @@ function getSocket(){
                     if(data.data.IsFirstLifeWin == 'yes'){
                         show_win = true;
                         showWinModal();
+                        closeWinModal();
                     }
 
                 } else if (data.data.status == 'lose') {
@@ -392,6 +400,7 @@ function getSocket(){
                     if(data.data.IsFirstLifeWin == 'yes'){
                         show_lose = true;
                         showLoseModal();
+                        closeWinModal();
                     }
                 }
 
@@ -404,8 +413,10 @@ function getSocket(){
                 console.log('member wallet details');
                 console.log(data);
 
+                previous_point = parseInt($('.spanAcuPoint').html());
                 wallet_data = data.data;
                 update_wallet = true;
+                
             });
 
             //betting history 
@@ -479,7 +490,6 @@ function resetGame() {
 
     if(show_win){
         $('#win-modal').modal('show');
-        show_win = false;
     }
 
     if(show_lose){
@@ -513,7 +523,22 @@ function closeModal() {
     $('.close-modal').click(function(){
         $('#reset-life-play').modal('hide');
         $('#reset-life-lose').modal('hide');
+    });
+}
+
+function closeWinModal() {
+    $('.close-win-modal').click(function(){
+        $(this).off('click');
         $('#win-modal').modal('hide');
+
+        $('.spanAcuPoint')
+          .prop('number', previous_point)
+          .animateNumber(
+            {
+              number: current_point
+            },
+            1000
+          );
     });
 }
 
