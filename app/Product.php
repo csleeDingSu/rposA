@@ -285,7 +285,7 @@ class Product extends Model
 		
 		if ($result->firstwin <= 2)
 		{
-			return $type;
+			return 'yes';
 		}
 		return '';
 	}
