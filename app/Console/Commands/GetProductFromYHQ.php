@@ -2,9 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Carbon\Carbon;
 use App\vouchers_yhq;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 class GetProductFromYHQ extends Command
 {
     /**
@@ -83,30 +84,26 @@ class GetProductFromYHQ extends Command
             // echo 'I completed! ' . $response->getBody();
             echo 'Completed! ';
             $res = $response->getBody();
-            //$this->info($res);
+            $this->info($res);
             $content = $this->filter_content($res);
             $this->info($content);
 
         });
         $promise->wait();
+        
+        // $file = File::get(storage_path('yhq_test.txt'));
+        // $content = $this->filter_content($file);
 
-        // $payload = [];
-        // $headers = []; //['Content-Type: application/x-www-form-urlencoded'];
-        // $option = []; //['connect_timeout' => 60, 'timeout' => 180];
-        // // $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-        // $client = new \GuzzleHttp\Client();
-        // $request = $client->get($url, ['headers' => $headers, 'form params' => $payload]);
-        // // $request = $client->get($url);
-        // $response = $request->getBody()->getContents();
-        // return $response;
     }
     
     private function filter_content($content) 
     {
+        $items = [];
+
         //get total page
         $str  = '<a class="item more" href="javascript:void(0);">...</a>';
         $arr  = explode($str, $content);
-        if ($arr[1]) {
+        if (isset($arr[1])) {
             $arr  = explode('<a class="next-page"', $arr[1]);   
             $from = '">';
             $to   = '</a>';
@@ -114,10 +111,52 @@ class GetProductFromYHQ extends Command
             $sub  = substr($sub,0,strpos($sub,$to));
             $pages  = trim($sub);    
         } else {
-            $pages = $content;
+            $pages = -1;
         }
+
+        //get product list
+        $str  = '<div class="list_cent">';
+        $arr  = explode($str, $content);
+        if (isset($arr[1])) {
+            //products
+            $arr  = explode('<a target="_blank" class="goods_list', $arr[1]);   
+            $from = 'href="';
+            $to   = '">';
+            $sub  = substr($arr[0], strpos($arr[0],$from)+strlen($from),strlen($arr[0]));
+            $sub  = substr($sub,0,strpos($sub,$to));
+            $items[]  = trim($sub);    
         
-		return $pages;
+            // $products = $arr[1];
+
+            // do{
+            //     $_str  = '<a target="_blank" class="goods_list" ';
+            //     $_arr  = explode($_str, $products);
+            //     if ($_arr[1]) {
+
+            //         //get product detail url
+            //         $from = 'href="';
+            //         $to   = '">';
+            //         $sub  = substr($_arr[0], strpos($_arr[0],$from)+strlen($from),strlen($_arr[0]));
+            //         $sub  = substr($sub,0,strpos($sub,$to));
+            //         $product_detail_url  = trim($sub);
+            //         $items[] = $product_detail_url;
+
+            //         //get next product
+            //         $__str  = '<a target="_blank" class="goods_list" ';
+            //         $products  = explode($__str, $products);
+
+            //     } else {
+            //         break;
+            //     }
+            // }while(false);
+                
+        }
+
+        $result = ['pages' => $pages, 'items' => $items];
+        var_dump($result);
+        die('dasdsa');
+        
+		return $result;
     }
 }
 
