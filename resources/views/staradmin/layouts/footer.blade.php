@@ -23,7 +23,7 @@
 						@else
 							<!-- <i class="nTxt">{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? ((Auth::Guard('member')->user()->wechat_verification_status == 0) ? Auth::Guard('member')->user()->current_life : 0) : 0}}</i> -->
 							<i class="nTxt">{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</i>
-							<p>剩余闯关</p>
+							<p>我要免单</p>
 						@endif
 					</div>
 				</a>
