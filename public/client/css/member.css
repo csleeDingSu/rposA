@@ -23,12 +23,9 @@ html, body {
 }
 
 .card {
-	background-color: white;
-	padding: 0px 20px 0px 20px;
+	background-color: #8b6cfe;
 	font-size: 16px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	color: #333333;
+	color: white;
 }
 
 .member-wrapper {
@@ -36,70 +33,36 @@ html, body {
 }
 
 .name {
-	font-size: 30px;
+	font-size: 26px;
 	float: left;
+	padding-top: 6px;
+	padding-bottom: 12px;
 }
 
-.member-id {
-	font-size: 14px;
-	color: #666666;
-}
-
-.button-verified, .button-unverified {
+.button-wrapper {
+	padding-top: 12px;
 	float: right;
-	background: #f4fff2;
-	color: #15b400;
-	border: 1px solid #b2ebaa;
-	padding: 2px 10px 2px 10px;
-	border-radius: 10px;
-	margin-top: 18px;
-}
-
-.button-unverified {
-	background: #ffe1e1;
-	color: #d40c0c;
-	border: 1px solid #d40c0c;
-}
-
-.verified, .unverified {
-	font-size: 12px;
-	float: left;
-	padding-left: 0px;
-}
-
-.icon-verified-wrapper {
-	height: 15px;
-	width: 18px;
-	float: left;
-}
-
-.icon-verified {
-	background: url('/client/images/game.png') no-repeat -1693px -1300px;
-	width: 60px;
-	height: 50px;
-	transform: scale(0.3); 
-	-webkit-transform: scale(0.3);
-	-webkit-transform-origin:left top;
-	float: left;
-	position: relative;
 }
 
 .information-table {
-	padding-top:5px;
+	padding-top:10px;
 	background: white;
-	height: 100px;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+	height: 145px;
+	border-radius: 10px;
+	box-shadow: 0 3px 10px -6px rgba(0, 0, 0, 1);
 }
 
-.information-table  div[class^="col"] {
+.information-table .col-xs-12, .information-table .col-xs-6 {
 	background: white;
-	text-align: center;
-	padding-top: 8px;
-	color: #333333;
-	font-size: 12px;
-	padding-right: 10px;
-    padding-left: 10px;
+	text-align: left;
+	color: #666666;
+	font-size: 14px;
+	padding-right: 20px;
+    padding-left: 20px;
+}
+
+.information-table .col-xs-6 {
+	font-size: 13px;
 }
 
 .information-table a {
@@ -113,27 +76,32 @@ html, body {
 
 .numbers{
     font-size:25px;
+    display: inline-block;
 }
 
 .point {
-	color: #ff4343;
+	color: #ff5c56;
+	font-size: 36px;
+	line-height: 42px;
+	margin-bottom: 15px;
 }
 
 .balance {
-	color: #ff5656;
+	color: #ff5c56;
+	line-height: 25px;
 }
 
 .life {
-	color: #007cef;
+	color: #666666;
+	line-height: 25px;
 }
 
-.button {
-	background-color: #eef9ff;
-	font-size: 10px;
-	color: #007cef;
-	border-radius: 10px;
-	border: 1px solid #007cef;
-	padding: 2px 10px 2px 10px;
+.button-redeem {
+	display: inline-block;
+	color: #8b6cfe;
+	font-size: 18px;
+	vertical-align: top;
+	padding: 10px;
 }
 
 .left {
@@ -142,20 +110,18 @@ html, body {
 
 .member-box {
 	width: 440px;
-	height: 150px;
+	height: 50px;
 	position: absolute;
-	margin-top: 3%;
 	left:0;
 	right:0;
 	margin-left:auto;
 	margin-right:auto;
-	background-color: #384065;
+	background-color: #8b6cfe;
 }
 
 @media only screen and (max-width: 500px) {
     .member-box {
 		width: 90%;
-		margin-top: 4%;
 	}
 }
 
@@ -165,20 +131,19 @@ html, body {
 }
 
 .top-background {
-	background-color: #384065;
-	height: 100px;
+	background-color: #8b6cfe;
+	height: 160px;
 }
 
 .bottom-background {
-	background-color: #f2f2f2;
-	height: 100px;
+	background-color: white;
+	height: 40px;
 }
 
 .listing-table {
 	text-align: left;
 	color: #686868;
 	font-size: 14px;
-	margin-top: 10px;
 	background-color: white;
 	/*height: 100%;*/
 }
@@ -190,7 +155,7 @@ html, body {
 .image-wrapper {
 	width: 90%;
 	height: 90%;
-	margin: 10px auto;
+	margin: 0 auto;
 	padding-top: 10px;
 }
 

@@ -22,21 +22,15 @@
 				<div class="col-xs-6 member-wrapper">
 					<div class="name">{{ $member->username }}</div>
 					<div style="clear: both;"></div>
-					<div class="member-id">&nbsp;</div>
 				</div>
 				<div class="col-xs-6 member-wrapper">
-					@if($member->wechat_verification_status == 0)
-					<div class="button-verified">
-						<div class="icon-verified-wrapper">
-							<div class="icon-verified"></div>
-						</div>
-						<div class="verified">已通过微信认证</div>
-					</div>
+					<div class="button-wrapper">
+					@if($member->wechat_verification_status == 0)				
+						<img src="{{ asset('/client/images/verified.png') }}" width="130" height="30" alt="verified" />
 					@else
-					<div class="button-unverified">
-						<div class="unverified">还没通过微信认证</div>
-					</div>
+						<img src="{{ asset('/client/images/unverify.png') }}" width="130" height="30" alt="unverify" />					
 					@endif
+					</div>
 				</div>
 				<div style="clear: both;"></div>
 			</div>
@@ -44,22 +38,23 @@
 
 			<!-- member details -->
 			<div class="information-table">
-				  <div class="col-xs-4">
-				  	总挖币数<br />
-				  	<span class="point numbers">{{ number_format($wallet->current_point, 0, '.', '') }}</span><br />
-				  	<a href="/redeem"><span class="button">兑换奖品</span></a>
+				  <div class="col-xs-12">
+				  	<img src="{{ asset('/client/images/coin.png') }}" width="16" height="16" alt="button redeem" /> 金币总数<br />
+				  	<div class="point numbers">{{ number_format($wallet->current_point, 0, '.', '') }}</div>
+				  	<a href="/redeem">
+					  	<div class="button-redeem">兑换红包<img src="{{ asset('/client/images/right.png') }}" width="20" height="20" alt="button redeem" />
+					  	</div>
+					</a>
 				  </div>
-				  <div class="col-xs-4 middle-border">
-				  	未结算<br />
-				  	<span class="balance numbers">{{ number_format($wallet->current_life_acupoint, 0, '.', '') }}</span><br />
-				  	<a href="/arcade"><span class="button">继续挖宝</span></a>
+				  <div class="col-xs-6">
+				  	未结算金币<br />
+				  	<div class="balance numbers">{{ number_format($wallet->current_life_acupoint, 0, '.', '') }}</div>
 				  </div>
-				  <div class="col-xs-4">
-				  	剩余次数<br />
-				  	<span class="life numbers">				  		
+				  <div class="col-xs-6">
+				  	已兑换金币<br />
+				  	<div class="life numbers">				  		
 				  		{{ $wallet->current_life }}
-				  	</span><br />
-				  	<a href="/share"><span class="button">马上增加</span></a>
+				  	</div>
 				  </div>
 			</div>
 			<!-- end member details -->
