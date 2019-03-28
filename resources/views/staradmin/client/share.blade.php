@@ -40,18 +40,13 @@ include(app_path().'/Lib/qr/qrlib.php');
 
 $filename = public_path().'/client/qr/'.$affiliate_id.'.png';
 
-QRcode::png($url, $filename, 'L', '3', 2); 
-
+//QRcode::png($url, $filename, 'L', '3', 2);  //old
+QRcode::png($url, $filename, 'L', '3.6', 5); 
 $showIcon = $filename;
 
-
-//echo $filename;
-//die();
-//$showimage = public_path( 'client/bar/image.jpg' );
 $showimage = public_path( 'client/bar/'.$data->filename );
 
 //$showIcon = "https://chart.googleapis.com/chart?chs=190x190&cht=qr&chl=$url&choe=UTF-8";
-
 //$mainimg = imagecreatetruecolor( 500, 500 );
 
 $mainimg = imagecreatefrompng( $showIcon );
@@ -67,8 +62,8 @@ imagefill( $mainimg, 0, 0, $white );
 //imagecopymerge( $image, $mainimg, -10, 611, 0, 0, 190, 190, 100 );
 
 // imagecopymerge( $image, $mainimg, 13, 641, 0, 0, 132, 132, 100 );
-imagecopymerge( $image, $mainimg, 21, 663, 0, 0, 100, 100, 100 );
-
+//imagecopymerge( $image, $mainimg, 21, 663, 0, 0, 100, 100, 100 ); //old
+imagecopymerge( $image, $mainimg, 177, 355, 0, 0, 140, 125, 100 );
 
 ob_start();
 imagepng( $image );
