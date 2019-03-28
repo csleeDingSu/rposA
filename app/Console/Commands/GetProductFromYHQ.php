@@ -77,8 +77,8 @@ class GetProductFromYHQ extends Command
     private function getcurl($url)
     {        
         $payload = [];
-        $headers = [];//['Content-Type: application/x-www-form-urlencoded'];
-        $option = ['connect_timeout' => 60, 'timeout' => 180];
+        $headers = []; //['Content-Type: application/x-www-form-urlencoded'];
+        $option = []; //['connect_timeout' => 60, 'timeout' => 180];
         $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
         $request = $client->get($url, ['headers' => $headers, 'form params' => $payload]);
         $response = $request->getBody()->getContents();
