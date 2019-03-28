@@ -183,12 +183,7 @@ function initGame(data, level, latest_result, consecutive_lose){
         if (timer <= freeze_time) {
             $('.radio-primary').unbind('click');
         } else if (balance == 1200 && acupoint == 0) {
-            if(show_game_rules == undefined) {
-                $('.radio-primary').off('click');
-                $('.button-card').on('click', showGameRules);
-            } else {
-                bindBetButton();
-            }
+            bindBetButton();
         } else {
             Cookies.remove('show_game_rules');
             bindBetButton();
