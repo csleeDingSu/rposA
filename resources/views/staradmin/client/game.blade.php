@@ -780,10 +780,6 @@
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
 			});
-
-			$('.btn-vip-modal').click(function(){
-				$('#vip-modal').modal('show');
-			});
 			
 			if(wechat_status > 0) {
 				$('#verify-steps').modal({backdrop: 'static', keyboard: false});

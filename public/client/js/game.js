@@ -316,6 +316,16 @@ function getSocket(){
                 var result_records = data.data.gamehistory.data;
                 var wallet_records = data.data.wallet;
                 var betting_records = groupHistory(data.data.bettinghistory.data);
+                var isFirstLifeWin = data.data.IsFirstLifeWin;
+                
+                if(isFirstLifeWin == 'yes'){
+                    $('.btn-rules-normal').html('游戏规则说明').addClass('padding-left');
+                    $('.btn-vip-modal').on('click', showGameRules);
+                } else {
+                    $('.btn-vip-modal').click(function(){
+                        $('#vip-modal').modal('show');
+                    });
+                }
                 
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
@@ -1110,7 +1120,18 @@ function showGameRules( event ){
     $( ".txtTimer" ).removeClass('hide');
     $('#game-rules').modal({backdrop: 'static', keyboard: false});
 
-    if(bet_count > 0) {
+    $( ".span-read" ).html('进入挖宝');
+
+    $('.btn-rules-close').click(function(){
+        $('#game-rules').modal('hide');
+        bindBetButton();
+    });
+
+    $('.btn-rules-timer').click(function(){
+        $('#game-rules').modal('hide');
+    });
+
+    /*if(bet_count > 0) {
         $('.btn-rules-close').click(function(){
             $('#game-rules').modal('hide');
             Cookies.set('show_game_rules', false);
@@ -1149,5 +1170,5 @@ function showGameRules( event ){
 
             bindBetButton();
         }, 11000);
-    }
+    }*/
 }
