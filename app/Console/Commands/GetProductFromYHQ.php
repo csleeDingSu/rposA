@@ -112,12 +112,12 @@ class GetProductFromYHQ extends Command
             $to   = '</a>';
             $sub  = substr($arr[0], strpos($arr[0],$from)+strlen($from),strlen($arr[0]));
             $sub  = substr($sub,0,strpos($sub,$to));
-            $sub  = trim($sub);    
+            $pages  = trim($sub);    
         } else {
-            $sub = $content;
+            $pages = $content;
         }
         
-		return $sub;
+		return $pages;
     }
 }
 
