@@ -13,7 +13,7 @@ class GetProductFromYHQ extends Command
      *
      * @var string
      */
-    protected $signature = 'getproduct';
+    protected $signature = 'getproduct {arg=main}';
     
     public $limit = 60;
     public $table = 'vouchers_yhq';
@@ -47,7 +47,27 @@ class GetProductFromYHQ extends Command
         $this->info('Process Start Time   :'.$starttime);
 
         //url 
-        $url = "http://yhq.cn"; //"http://yhq.cn/index.php?r=l&u=767538&cid=4"; //居家日用 
+        $url = ""; //"http://yhq.cn/index.php?r=l&u=767538"; //"http://yhq.cn"; //"http://yhq.cn/
+
+        //get arguments
+        $arguments = $this->argument('arg');
+
+        switch ($arguments) {
+            case "main":
+                $url = "http://yhq.cn";
+                break;
+            case "selection":
+                $url = "http://yhq.cn/index.php?r=l&u=767538";
+                break;
+            case "green":
+                echo "Your favorite color is green!";
+                break;
+            default:
+                echo "Your favorite color is neither red, blue, nor green!";
+        }
+        
+        //url 
+        $url = "http://yhq.cn/index.php?r=l&u=767538"; //"http://yhq.cn"; //"http://yhq.cn/index.php?r=l&u=767538&cid=4"; //居家日用 
         $this->info('URL :'.$url);
 
         //response
@@ -69,10 +89,14 @@ class GetProductFromYHQ extends Command
 
             if (count($content['items']) > 0) {
 
-                var_dump(json_encode($content['items']));
+                foreach($content['items'] as $i) {
+
+                    var_dump($i->voucher_id);
+
+                }
 
             } else {
-                $this->warning("do nothing");
+                $this->error("do nothing");
             }
             
             // //update data into database
@@ -192,13 +216,14 @@ class GetProductFromYHQ extends Command
 
                 // break;
 
-            }while(isset($arr_[$t]));
-            // }while($t == 2);
+            // }while(isset($arr_[$t]));
+            }while($t == 2);
                 
         }
 
         $result = ['pages' => $pages, 'items' => $items];
-        
+        var_dump($result);
+        die('dsadsa');
 		return $result;
     }
 }
