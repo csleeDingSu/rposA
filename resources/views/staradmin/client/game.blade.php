@@ -499,15 +499,52 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="modal-warning-title">
-									兑换说明
+									您拥有<span class="spanAcuPoint">0</span>金币
 								</div>
-								<div class="modal-warning-content">
-									需满150金币，系统会自动结算。<br />
-									150金币约等于15元红包，请再接再厉。
+								<div class="speech-balloon">
+								  <div class="arrow top right"></div>
+								  您有<span class="spanAcuPoint">0</span>金币未结算 需满150才能结算
 								</div>
+								<div class="modal-content-wrapper">
+									<div class="modal-warning-content">
+										<div class="col-xs-4 voucher-wrapper">
+											<div class="voucher-value"><span class="voucher-yuan">￥</span>30</div>
+											<div class="voucher-label">购物补助金</div>
+										</div>
+										<div class="col-xs-8">
+											<div class="voucher-description">30元购物补助金</div>
+											<div class="voucher-instruction">需要300金币兑换</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-content-wrapper">
+									<div class="modal-warning-content">
+										<div class="col-xs-4 voucher-wrapper">
+											<div class="voucher-value"><span class="voucher-yuan">￥</span>50</div>
+											<div class="voucher-label">购物补助金</div>
+										</div>
+										<div class="col-xs-8">
+											<div class="voucher-description">50元购物补助金</div>
+											<div class="voucher-instruction">需要500金币兑换</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-content-wrapper">
+									<div class="modal-warning-content">
+										<div class="col-xs-4 voucher-wrapper">
+											<div class="voucher-value"><span class="voucher-yuan">￥</span>100</div>
+											<div class="voucher-label">购物补助金</div>
+										</div>
+										<div class="col-xs-8">
+											<div class="voucher-description">100元购物补助金</div>
+											<div class="voucher-instruction">需要1000金币兑换</div>
+										</div>
+									</div>
+								</div>
+								<div style="clear: both"></div>
 
 								<div class="close-modal modal-warning-button">
-									我知道了
+									返回玩赚免单
 								</div>												
 							</div>
 						</div>

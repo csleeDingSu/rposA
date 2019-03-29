@@ -683,7 +683,10 @@ function bindBetButton(){
 }
 
 function bindCalculateButton(){
-    $('.btn-calculate').on('click', showGameRules);
+    $('.btn-calculate').click( function() {
+        $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+    });
+
     /*$('.btn-calculate').click(function( event ){
         event.stopImmediatePropagation();
 
