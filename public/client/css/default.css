@@ -6,8 +6,8 @@ navbar-nav > li > a, .navbar-brand {
 }
 
 .navbar {
-	min-height:35px !important;
-    padding-top: 2px;
+	min-height:45px !important;
+    padding-top: 5px;
 
 }
 /* End Adjust Navbar Height */
@@ -37,7 +37,7 @@ navbar-nav > li > a, .navbar-brand {
 
 @media only screen and (max-width: 500px) {
     .full-height {
-		padding-top: 35px;
+		padding-top: 45px;
 	}
 }
 
@@ -97,4 +97,21 @@ navbar-nav > li > a, .navbar-brand {
 		float: left;
 		margin-left: 10px;
 	}
+}
+
+.left-menu {
+	padding-top: 2px;
+	font-size: 20px;
+	padding-left: 0;
+	padding-left: 0;
+	text-align: center;
+}
+
+.left-menu img {
+	margin-top: -3px;
+}
+
+.left-menu a {
+	color: #a6a6a6;
+	text-decoration: none;
 }
