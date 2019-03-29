@@ -141,7 +141,7 @@
 							<div class="icon-play-history"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						挖宝记录
+						玩赚记录
 					</li>
 				</a>
 
@@ -152,7 +152,7 @@
 							<div class="icon-withdraw"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						挖宝攻略
+						免单攻略
 					</li>
 				</a>
 			</ul>
@@ -162,7 +162,7 @@
 			<ul class="list-group">
 
 				<a href="/faq">
-					<li class="list-group-item first-item">
+					<li class="list-group-item">
 						<div class="icon-wrapper">
 							<div class="icon-faq"></div>
 						</div>
