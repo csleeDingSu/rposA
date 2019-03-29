@@ -4,7 +4,7 @@
 
 @section('left-menu')
     <a href="/profile" class="back">
-        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
+        <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
     </a>
 @endsection
 

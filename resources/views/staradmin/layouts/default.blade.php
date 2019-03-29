@@ -70,7 +70,7 @@
 				<nav id="header" class="navbar navbar-default">
 				  <div class="container-fluid">
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="col-xs-3">
+					<div class="col-xs-3 left-menu">
 						@yield('left-menu')
 					</div>
 					<div class="col-xs-6">
