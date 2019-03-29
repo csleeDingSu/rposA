@@ -1298,6 +1298,24 @@ body{
 #wheel_container {
     margin: 0 auto;
     width: 100%;
+    top: 12px;
+}
+
+#wheel_banner {
+	margin: 0 auto;
+    width: 100%;
+	width: 260px;
+}
+
+#wheel_banner img {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 100; 
+	width:200px;
+	height:69px;
 }
 
 #txtCounter {
