@@ -156,7 +156,7 @@
 						 @foreach($banner as $bner) 	
 						<!--	<img data-lazy="{{env('banner_url', 'https://wabao666.com/banner/') . $bner->banner_image}}"  >		-->
 						
-						<a href="{{ $bner->banner_url or '#' }} "> <img data-lazy="/banner/{{$bner->banner_image}}"  >	</a>
+						<a href="{{ $bner->banner_url }} "> <img data-lazy="/banner/{{$bner->banner_image}}"  >	</a>
 						 @endforeach 				
 						 @endif 
 					
