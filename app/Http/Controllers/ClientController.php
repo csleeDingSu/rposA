@@ -57,18 +57,14 @@ class ClientController extends BaseController
 	
 	public function member_profile()
 	{
-		//if (Auth::Guard('member')->check()) {
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member);
+		$data['usedpoint'] = \DB::table('view_usedpoint')->where('member_id',$member)->sum('point');
+		$data['page'] = 'client.member'; 
+		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
 
-			$member = Auth::guard('member')->user()->id	;
-			$data['member'] = Member::get_member($member);
-			
-			$data['wallet'] = Wallet::get_wallet_details_all($member);
-			$data['page'] = 'client.member'; 
-			$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
-
-			return view('client/member', $data);
-
-		
+		return view('client/member', $data);
 	}
 
 	public function member_access_game()
