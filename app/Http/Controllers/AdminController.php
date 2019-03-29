@@ -719,6 +719,7 @@ class AdminController extends BaseController
 		$input = [
 					'status'   => $request->status, 			 
 					'banner_image' =>$request->banner_image,
+					'banner_url' =>$request->banner_url,
 			  	 ];
 		
 		$validator = Validator::make($input, [			
@@ -736,7 +737,7 @@ class AdminController extends BaseController
         $destinationPath = public_path('banner');
         $image->move($destinationPath, $imagename);		
 		
-		$data = ['banner_image' => $imagename,'is_status' => $input['status'],'created_at' => $now];
+		$data = ['banner_image' => $imagename,'is_status' => $input['status'],'created_at' => $now,'banner_url' => $banner_url];
 		$badge = '';
 		$id = Admin::create_banner($data);
 		
@@ -790,7 +791,8 @@ class AdminController extends BaseController
 			$insdata['banner_image'] = $imagename;
 		}
 		
-		$insdata['is_status'] = $data->status;
+		$insdata['is_status']  = $data->status;
+		$insdata['banner_url'] = $data->banner_url;
 				
 		$res = Admin::update_banner($id,$insdata);		
 		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$insdata]);

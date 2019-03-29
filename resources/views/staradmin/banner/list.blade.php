@@ -64,6 +64,23 @@
 						</div>
 						
 					</div>
+				
+				
+				<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="status" class="col-sm-3 col-form-label">@lang('dingsu.url') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									
+									<input id="banner_url" name="banner_url" class="form-control" type="text" >
+									
+								</div>
+							</div>
+							
+						</div>
+						
+						
+					</div>
 					
 					
 				</div>
@@ -223,6 +240,7 @@
 		
 		formData.append('id', id);
 		formData.append('status', $('#status').val());
+		formData.append('banner_url', $('#banner_url').val());
 		formData.append('image', image);
 		formData.append('_token', "{{ csrf_token() }}");
 		
