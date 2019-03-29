@@ -53,7 +53,7 @@
 				  <div class="col-xs-6">
 				  	已兑换金币<br />
 				  	<div class="life numbers">				  		
-				  		{{ $wallet->current_life }}
+				  		{{ number_format($usedpoint, 0, '.', '') }}
 				  	</div>
 				  </div>
 			</div>
