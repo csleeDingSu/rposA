@@ -34,6 +34,7 @@ class ShareProductController extends BaseController
 
 	public function temp_log()
 	{
+		$gameid = $gametype = $memberid = $drawid = $bet = $betamt = $level = $error = null;
 
 		$data = $_POST['data'];
 		$arr  = explode('&', $data); 
@@ -60,6 +61,9 @@ class ShareProductController extends BaseController
 			if ($_a[0] == 'level') {
 				$level = $_a[1];
 			}
+			if ($_a[0] == 'error') {
+				$error = $_a[1];
+			}
 			
 		}
 
@@ -70,7 +74,7 @@ class ShareProductController extends BaseController
 		// fwrite($file, $data);
 		// fclose($file);
 
-		$array = ['log' => $data, 'gameid' => $gameid, 'gametype' => $gametype, 'memberid' => $memberid, 'drawid' => $drawid, 'bet' => $bet, 'betamt' => $betamt, 'level' => $level];
+		$array = ['log' => $data, 'gameid' => $gameid, 'gametype' => $gametype, 'memberid' => $memberid, 'drawid' => $drawid, 'bet' => $bet, 'betamt' => $betamt, 'level' => $level, 'error' => $error];
 		$res = member_game_bet_temp_log::Create($array)->id;
 
 		return "done";
