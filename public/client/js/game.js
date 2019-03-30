@@ -681,8 +681,13 @@ function bindBetButton(){
                     beforeSend: function( xhr ) {
                         xhr.setRequestHeader ("Authorization", "Bearer " + token);
                     },
-                    error: function (error) { console.log(error.responseText) },
+                    error: function (error) { 
+                        console.log(error.responseText);
+                        // alert('下注失败');
+                        window.top.location.href = "/arcade"; 
+                    },
                     success: function(data) {
+                        // alert('下注成功');
                     }
                 });
             }
