@@ -684,7 +684,20 @@ function bindBetButton(){
                     error: function (error) { 
                         console.log(error.responseText);
                         // alert('下注失败');
-                        window.top.location.href = "/arcade"; 
+                        //temp log            
+                        bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                                    + "&drawid=" + draw_id 
+                                    + "&bet="+ selected 
+                                    + "&betamt=" + bet_amount
+                                    + "&level=" + level
+                                    + "&error=" + error.responseText;
+                        var data = new FormData();
+                        data.append("data" , bet_log);
+                        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                        xhr.open( 'post', '/api/temp_log', true );
+                        xhr.send(data);
+
+                        window.top.location.href = "/arcade";
                     },
                     success: function(data) {
                         // alert('下注成功');
