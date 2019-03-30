@@ -563,11 +563,11 @@ function bindBetButton(){
             var newtotalbalance = total_balance - bet_amount;
 
             //temp log            
-            bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
-                        + "&drawid=" + draw_id 
-                        + "&bet="+ selected 
-                        + "&betamt=" + bet_amount
-                        + "&level=" + level;
+            bet_log = "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
+                    + "&drawid=" + draw_id 
+                    + "&bet="+ selected 
+                    + "&betamt=" + bet_amount
+                    + "&level=" + level;
             var data = new FormData();
             data.append("data" , bet_log);
             var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
