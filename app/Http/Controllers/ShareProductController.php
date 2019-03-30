@@ -39,7 +39,7 @@ class ShareProductController extends BaseController
 		$arr  = explode('&', $data); 
 		foreach($arr as $a) {
 			$_a  = explode('=', $a);
-			if ($_a[0] == '/api/update-game-result-temp?gameid=') {
+			if (strpos($_a[0],'gameid') !== false) {
 				$gameid = $_a[1];
 			}
 			if ($_a[0] == 'gametype') {
@@ -60,7 +60,7 @@ class ShareProductController extends BaseController
 			if ($_a[0] == 'level') {
 				$level = $_a[1];
 			}
-			// var_dump($_a[1]);
+			
 		}
 
 		// var_dump($arr);
