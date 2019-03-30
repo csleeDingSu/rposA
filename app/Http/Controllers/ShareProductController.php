@@ -70,7 +70,7 @@ class ShareProductController extends BaseController
 		// fwrite($file, $data);
 		// fclose($file);
 
-		$array = ['log' => $data, 'memberid' => $memberid, 'drawid' => $drawid, 'bet' => $bet, 'betamt' => $betamt, 'level' => $level];
+		$array = ['log' => $data, 'gameid' => $gameid, 'gametype' => $gametype, 'memberid' => $memberid, 'drawid' => $drawid, 'bet' => $bet, 'betamt' => $betamt, 'level' => $level];
 		$res = member_game_bet_temp_log::Create($array)->id;
 
 		return "done";
