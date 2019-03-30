@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 //Route::post('login', 'API\AuthController@login');
 //Route::post('register', 'API\AuthController@register');
 
+Route::post('temp_log', 'ShareProductController@temp_log');
 
 Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	Route::get('details', 'AuthController@details');

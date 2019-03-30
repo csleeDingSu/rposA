@@ -59,15 +59,13 @@ class GetProductFromYHQ extends Command
             case "selection":
                 $url = "http://yhq.cn/index.php?r=l&u=767538";
                 break;
-            case "green":
-                echo "Your favorite color is green!";
+            case "home":
+                $url = "http://yhq.cn/index.php?r=l&u=767538&cid=4"; //居家日用 
                 break;
             default:
-                echo "Your favorite color is neither red, blue, nor green!";
+                $url = "";
         }
         
-        //url 
-        $url = "http://yhq.cn/index.php?r=l&u=767538"; //"http://yhq.cn"; //"http://yhq.cn/index.php?r=l&u=767538&cid=4"; //居家日用 
         $this->info('URL :'.$url);
 
         //response
