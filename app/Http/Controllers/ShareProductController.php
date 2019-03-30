@@ -27,7 +27,7 @@ class ShareProductController extends BaseController
 	
 	public function index() {		
 
-		$data['voucher'] = vouchers_yhq::where('id',1)->select('*')->first();
+		$data['voucher'] = vouchers_yhq::select('*')->first();
 		
 		return view('client/share_product', $data);
 	}
@@ -36,13 +36,41 @@ class ShareProductController extends BaseController
 	{
 
 		$data = $_POST['data'];
+		$arr  = explode('&', $data); 
+		foreach($arr as $a) {
+			$_a  = explode('=', $a);
+			if ($_a[0] == '/api/update-game-result-temp?gameid=') {
+				$gameid = $_a[1];
+			}
+			if ($_a[0] == 'gametype') {
+				$gametype = $_a[1];
+			}
+			if ($_a[0] == 'memberid') {
+				$memberid = $_a[1];
+			}
+			if ($_a[0] == 'drawid') {
+				$drawid = $_a[1];
+			}
+			if ($_a[0] == 'bet') {
+				$bet = $_a[1];
+			}
+			if ($_a[0] == 'betamt') {
+				$betamt = $_a[1];
+			}
+			if ($_a[0] == 'level') {
+				$level = $_a[1];
+			}
+			// var_dump($_a[1]);
+		}
+
+		// var_dump($arr);
 		// $fname = time() . ".txt";//generates random name
 
 		// $file = fopen("http://localhost:8877/" .$fname, 'w');//creates new file
 		// fwrite($file, $data);
 		// fclose($file);
 
-		$array = ['log' => $data];
+		$array = ['log' => $data, 'memberid' => $memberid, 'drawid' => $drawid, 'bet' => $bet, 'betamt' => $betamt, 'level' => $level];
 		$res = member_game_bet_temp_log::Create($array)->id;
 
 		return "done";
