@@ -254,25 +254,27 @@ class ImportController extends BaseController
 		
 		print_r($data['file_title']);
 		
-		die();
+		//die();
 
-		$file_title = array(1,2,3,4,5,6,7,8);
+		$file_title = array(1,2,3,4,5,6,7,8,9);
 		//$sys_title  = array(1,2,3,4,5,6,7,8);
 		
 		$vouchercombination = new Voucher();
 		
 		foreach ($sys_title as $key=>$val)
 		{
-			
-			$arr['sys_field_id'] = $val;
-			$arr['file_title_loc_id'] = $file_title[$key];
-			$arr['filename'] = $filename;
-			
-			$dbc[] = $arr;
+			if ($file_title($key) )
+			{
+				$arr['sys_field_id'] = $val;
+				$arr['file_title_loc_id'] = $file_title[$key];
+				$arr['filename'] = $filename;
+				$dbc[] = $arr;
+			}
 		}
 		
 		DB::table('excel_upload')->insert($dbc);
 		
+		die();
 		event(new GenerateVoucher($request,$filename));
 		
 		$data['page'] = 'common.success'; 
