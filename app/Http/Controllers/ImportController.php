@@ -291,7 +291,7 @@ class ImportController extends BaseController
 		}
 		
 		
-		print_r($dbc);die();
+		//print_r($dbc);die();
 		DB::table('excel_upload')->insert($dbc);
 		
 		//die();
