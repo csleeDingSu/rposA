@@ -119,8 +119,8 @@ class GenerateVouchertoDb
 						{
 							$re_field = $cfile[$m];
 							
-							$insdata[$re_field] = $val[$m];
-							//$insdata[$re_field] = $val[$mva];
+							//$insdata[$re_field] = $val[$m];
+							$insdata[$re_field] = $val[$mva];
 							$insdata['source_file'] = $filename;
 							$insdata['updated_at']  = $now; 
 							$insdata['created_at']  = $now;
