@@ -250,9 +250,9 @@ class ImportController extends BaseController
 		$data['sys_title'] = $sys_title = Voucher::get_csvtitle(15); 
 		$data['filename']   = $filename;
 		
-		print_r($sys_title);echo '<br><Br><br>';
+		//print_r($sys_title);echo '<br><Br><br>';
 		
-		print_r($data['file_title']);
+		//print_r($data['file_title']);
 		
 		//die();
 
@@ -274,7 +274,7 @@ class ImportController extends BaseController
 		
 		DB::table('excel_upload')->insert($dbc);
 		
-		die();
+		//die();
 		event(new GenerateVoucher($request,$filename));
 		
 		$data['page'] = 'common.success'; 
