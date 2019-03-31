@@ -263,7 +263,7 @@ class ImportController extends BaseController
 		
 		foreach ($sys_title as $key=>$val)
 		{
-			if ($file_title($key) )
+			if ($file_title[$key] )
 			{
 				$arr['sys_field_id'] = $val;
 				$arr['file_title_loc_id'] = $file_title[$key];
