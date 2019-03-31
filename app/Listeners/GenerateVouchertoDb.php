@@ -65,6 +65,9 @@ class GenerateVouchertoDb
 		$filename = $filename.'.xls';
 		$path = 'uploads/excel/'.$filename;
 		$url = Storage::url($path);
+		
+		print_r($cfile);echo '<br><br>';
+		print_r($file);echo '<br><br>';
 
 		$array_data = [];
 		
