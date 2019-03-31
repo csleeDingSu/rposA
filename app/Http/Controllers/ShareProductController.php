@@ -27,7 +27,7 @@ class ShareProductController extends BaseController
 	
 	public function index() {		
 
-		$data['voucher'] = vouchers_yhq::select('*')->first();
+		$data['item'] = vouchers_yhq::select('*')->first();
 		
 		return view('client/share_product', $data);
 	}
