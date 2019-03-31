@@ -86,10 +86,23 @@ class GenerateVouchertoDb
 
 				}
 				
-				if (!empty($val['id']))
+				//new
+				/*foreach ($val as $akey=>$voar) 
 				{
-					unset($val['id']);
+					$insdata = array();
+					foreach ($flist as $key=>$filecolumn) 
+					{
+						
+					}
+		
 				}
+				*/
+				//end
+				
+				//if (!empty($val['id']))
+				//{
+				//	unset($val['id']);
+				//}
 
 				$ke = array_keys($val);
 				
@@ -99,6 +112,7 @@ class GenerateVouchertoDb
 				{	
 					$m = 0;
 					$insdata = array();
+					print_r($cfile);die();
 					foreach($ke as $mkey=>$mva)
 					{	
 						if (!empty($cfile[$m]))
@@ -114,8 +128,7 @@ class GenerateVouchertoDb
 							if ($re_field == 'product_category')
 							{
 								
-								$_data= explode("/", $insdata['product_category']);
-								
+								$_data= explode("/", $insdata['product_category']);								
 								
 									if(empty($kk[$i])){
 										foreach($_data as $key=> $item){
@@ -131,17 +144,13 @@ class GenerateVouchertoDb
 										}
 									$kk[$i] = $array_data;
 									unset($array_data);
-								}
-								
+								}						
 								
 							}
-
-						}
-						
+						}						
 						$m++;
 					}
 				}	
-
 
 				if (!empty($insdata))
 				{
