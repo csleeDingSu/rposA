@@ -249,6 +249,8 @@ class ImportController extends BaseController
 		$data['file_title'] = array_keys($arrayhead);
 		$data['sys_title'] = $sys_title = Voucher::get_csvtitle(15); 
 		$data['filename']   = $filename;
+		
+		print_r($sys_title);die();
 
 		$file_title = array(1,2,3,4,5,6,7,8);
 		//$sys_title  = array(1,2,3,4,5,6,7,8);
@@ -259,7 +261,7 @@ class ImportController extends BaseController
 		{
 			
 			$arr['sys_field_id'] = $val;
-			$arr['file_title_loc_id'] = $file_title->{$key};
+			$arr['file_title_loc_id'] = $file_title[$key];
 			$arr['filename'] = $filename;
 			
 			$dbc[] = $arr;
