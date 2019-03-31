@@ -88,7 +88,7 @@ class GenerateVouchertoDb
 
 				$ke = array_keys($val);
 				
-				print_r($ke);echo '<br><br>';
+				print_r($val);echo '<br><br>';
 
 				foreach ($val as $akey=>$voar) 
 				{	
