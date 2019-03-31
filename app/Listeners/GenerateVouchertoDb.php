@@ -66,8 +66,8 @@ class GenerateVouchertoDb
 		$path = 'uploads/excel/'.$filename;
 		$url = Storage::url($path);
 		
-		print_r($cfile);echo '<br><br>';
-		print_r($file);echo '<br><br>';
+		//print_r($cfile);echo '<br><br>';
+		//print_r($file);echo '<br><br>';
 
 		$array_data = [];
 		
@@ -85,10 +85,15 @@ class GenerateVouchertoDb
 					break;
 
 				}
+				
+				if (!empty($val['id']))
+				{
+					unset($val['id']);
+				}
 
 				$ke = array_keys($val);
 				
-				print_r($val);echo '<br><br>';
+				//print_r($val);echo '<br><br>';
 
 				foreach ($val as $akey=>$voar) 
 				{	
@@ -137,7 +142,7 @@ class GenerateVouchertoDb
 					}
 				}	
 				
-				print_r($insdata);die();
+				//print_r($insdata);die();
 			
 
 				if (!empty($insdata))
