@@ -260,7 +260,7 @@ class ImportController extends BaseController
 		
 		//die();
 
-		$file_title = array(1,2,3,4,5,6,7,8,9);
+		//$file_title = array(1,2,3,4,5,6,7,8,9);
 		//$sys_title  = array(1,2,3,4,5,6,7,8);
 		
 		$vouchercombination = new Voucher();
