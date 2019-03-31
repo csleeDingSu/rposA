@@ -252,7 +252,7 @@ class ImportController extends BaseController
 		
 		//print_r($sys_title);echo '<br><Br><br>';
 		
-		//print_r($data['file_title']);
+		print_r($data['file_title']);echo '<br><Br><br>';
 		
 		//die();
 
@@ -265,6 +265,7 @@ class ImportController extends BaseController
 		{
 			if (!empty($file_title[$key] ) )
 			{
+				echo $file_title[$key];echo $val->title;echo '<br<br>';
 				if ($file_title[$key] == $val->title)
 				{				
 					$arr['sys_field_id'] = $val->id;
@@ -274,7 +275,7 @@ class ImportController extends BaseController
 				}
 			}
 		}
-		
+		die();
 		DB::table('excel_upload')->insert($dbc);
 		
 		//die();
