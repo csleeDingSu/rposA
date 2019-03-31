@@ -283,7 +283,7 @@ class ImportController extends BaseController
 				if ($file_title[$fkey] == $val->title)
 				{				
 					$arr['sys_field_id'] = $val->id;
-					$arr['file_title_loc_id'] = $file_title[$key];
+					$arr['file_title_loc_id'] = $fkey;
 					$arr['filename'] = $filename;
 					$dbc[] = $arr;
 				}
