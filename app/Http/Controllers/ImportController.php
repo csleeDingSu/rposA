@@ -259,7 +259,7 @@ class ImportController extends BaseController
 		{
 			
 			$arr['sys_field_id'] = $val;
-			$arr['file_title_loc_id'] = $file_title[$key];
+			$arr['file_title_loc_id'] = $file_title->{$key};
 			$arr['filename'] = $filename;
 			
 			$dbc[] = $arr;
