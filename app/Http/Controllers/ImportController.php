@@ -250,8 +250,8 @@ class ImportController extends BaseController
 		$data['sys_title']  = Voucher::get_csvtitle(); 
 		$data['filename']   = $filename;
 
-		$file_title = array(1,2,3,4,5,6,7,8);
-		$sys_title  = array(1,2,3,4,5,6,7,8);
+		$file_title = array(1,2,3,4,5,6,7,8,9);
+		$sys_title  = array(1,2,3,4,5,6,7,8,9);
 		
 		$vouchercombination = new Voucher();
 		
