@@ -40,7 +40,7 @@
 		margin-top: -30px !important;
 	}
 	
-	.innerBody {
+	.infinite-scroll {
 
 		position:relative !important;	
 	    background: white;
@@ -54,22 +54,99 @@
 	    border-bottom-right-radius: 6px;
 	    padding: 10px;
 	    font-weight: 700;
-	    height: 5rem !important;
+	    height: 7rem !important;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      /*line-height: 2px !important;*/
 
 	}
 
-	.innerBody .imgBox {
+	.infinite-scroll .imgBox {
 	  margin: 0 auto;
-	  border: 0.01rem solid #efefef;
-	  padding: 0.15rem;
+	  /*border: 0.01rem solid #efefef;*/
+	  /*padding: 0.15rem;*/
+	  padding-right: 0.3rem;
 	  font-size: 0;
 	  display: inline-block;
 	  margin-bottom: 0.2rem;
 	}
 
-	.innerBody .imgBox img {
-	  max-width: 2rem;
+	.infinite-scroll .imgBox img {
+	  max-width: 2.5rem;
+	}
+
+	.infinite-scroll h2 {
+	  font-size: 0.30rem;
+	  font-weight: 500;
+	  color: grey;
+
+	}
+
+	.infinite-scroll .price1{
+		margin-top: 50px;
+	}
+
+	.infinite-scroll .price1 h3{
+
+		font-size: 0.26rem;
+	  	font-weight: 0;
+	  	color: grey;
+	  	  /*text-decoration: line-through;*/
+
+	}
+
+	.infinite-scroll .price1 .price2{
+
+		font-size: 0.4rem;
+	  	font-weight: 500;
+	  	color: red;
+	  	  /*text-decoration: line-through;*/
+
+	}
+
+	.infinite-scroll .price1 .price3{
+
+		text-decoration: line-through;
+
+	}
+
+	.infinite-scroll .button a {
+	  width: 100%;
+	  padding: 15px;
+	  /*margin-left: 0.18rem;*/
+	  margin-right: 0.18rem;
+	  text-align: center;
+	  border-radius: 0.1rem;
+	  display: inline-block;
+	  font-size: 0.4rem;	  
+	  line-height: 0.48rem;	  
+	  -webkit-border-radius: 0.1rem;
+	  -moz-border-radius: 0.1rem;
+	  -ms-border-radius: 0.1rem;
+	  -o-border-radius: 0.1rem;
+	}
+
+	.getvoucher {
+
+		margin-top: 0.4rem;
+		font-weight: 300;
+		color: #ff5949;
+		border: 0.01rem solid #ff5949;
+
+	}
+
+	.playgame {
+
+		margin-top: 0.3rem;
+		font-weight: bold;
+		color: white;
+		background-color: #ff4e4e;
+
+	}
+
+	.playgame a:hover {
+
+		color: none !important;
+
 	}
 
 	</style>
@@ -89,14 +166,33 @@
 			</div>
 		</div>
 		<div class="cardBody">
-			<div class="innerBody">
-				<div class="imgBox">
-					<img id="product_img" src="{{ asset('/test/main/images/demo/d-img3.png') }}">
+			<div class="infinite-scroll">
+				<ul class="list-2">
+					<li class="dbox">
+						<a class="dbox0 imgBox" href="#">
+							<img src="{{$item->product_picurl}}_160x160.jpg" alt="{{$item->product_name}}">
+						</a>
+						<div class="dbox1">
+							<span>
+								<h2>{{$item->product_name}}</h2>
+								<div class="price1">
+									<h3>券后
+									<span class="price2">￥{{number_format($item->voucher_price,2)}} </span>
+									<span class="price3">
+									淘宝价￥{{number_format($item->product_price, 2)}}
+									</span>
+									</h3>
+									
+								</div>
+							</span>							
+						</div>
+					</li>
+				</ul>
+
+				<div class="button">
+					<a class="getvoucher" href="#">领60元优惠券购买</a>
+					<a class="playgame" href="#">玩赚免单</a>
 				</div>
-				<h2 style="white-space: nowrap;
-				  overflow: hidden;
-				  text-overflow: ellipsis ;" id = 'product_name'>INS网红手表时尚潮流手表女士韩版 抖音时来运转石英表休闲
-				</h2>
 			</div>
 		</div>
 		
