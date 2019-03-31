@@ -249,7 +249,7 @@ class ImportController extends BaseController
 		$data['file_title'] = $file_title = array_keys($arrayhead);
 		$data['sys_title'] = $sys_title = Voucher::get_csvtitle(15); 
 		$data['filename']   = $filename;
-		
+		$dbc = [];
 		//print_r($sys_title);echo '<br><Br><br>';
 		
 		//print_r($data['file_title']);echo '<br><Br><br>';
@@ -269,7 +269,7 @@ class ImportController extends BaseController
 		{
 			if (!empty($file_title[$key] ) )
 			{
-				//echo $key;print_r($file_title[$key]);echo $val->title;echo '<br<br>';
+				echo $file_title[$key];echo $val->title;echo '<br<br>';
 				if ($file_title[$key] == $val->title)
 				{				
 					$arr['sys_field_id'] = $val->id;
@@ -279,7 +279,9 @@ class ImportController extends BaseController
 				}
 			}
 		}
-		//die();
+		
+		
+		print_r($dbc);die();
 		DB::table('excel_upload')->insert($dbc);
 		
 		//die();
