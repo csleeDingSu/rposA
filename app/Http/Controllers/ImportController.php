@@ -246,15 +246,15 @@ class ImportController extends BaseController
 		$arrayhead = $excelChecker[0];
 				
 		$data['page'] = 'voucher.importparse'; 
-		$data['file_title'] = array_keys($arrayhead);
+		$data['file_title'] = $file_title = array_keys($arrayhead);
 		$data['sys_title'] = $sys_title = Voucher::get_csvtitle(15); 
 		$data['filename']   = $filename;
 		
 		//print_r($sys_title);echo '<br><Br><br>';
 		
-		//print_r($data['file_title']);
+		print_r($data['file_title']);
 		
-		//die();
+		die();
 
 		$file_title = array(1,2,3,4,5,6,7,8,9);
 		//$sys_title  = array(1,2,3,4,5,6,7,8);
