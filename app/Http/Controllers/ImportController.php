@@ -265,7 +265,7 @@ class ImportController extends BaseController
 		{
 			if (!empty($file_title[$key] ) )
 			{
-				$arr['sys_field_id'] = $val;
+				$arr['sys_field_id'] = $val->id;
 				$arr['file_title_loc_id'] = $file_title[$key];
 				$arr['filename'] = $filename;
 				$dbc[] = $arr;
