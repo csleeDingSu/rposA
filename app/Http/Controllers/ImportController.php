@@ -252,9 +252,9 @@ class ImportController extends BaseController
 		
 		//print_r($sys_title);echo '<br><Br><br>';
 		
-		print_r($data['file_title']);
+		//print_r($data['file_title']);
 		
-		die();
+		//die();
 
 		$file_title = array(1,2,3,4,5,6,7,8,9);
 		//$sys_title  = array(1,2,3,4,5,6,7,8);
@@ -265,10 +265,13 @@ class ImportController extends BaseController
 		{
 			if (!empty($file_title[$key] ) )
 			{
-				$arr['sys_field_id'] = $val->id;
-				$arr['file_title_loc_id'] = $file_title[$key];
-				$arr['filename'] = $filename;
-				$dbc[] = $arr;
+				if ($file_title[$key] == $val->title)
+				{				
+					$arr['sys_field_id'] = $val->id;
+					$arr['file_title_loc_id'] = $file_title[$key];
+					$arr['filename'] = $filename;
+					$dbc[] = $arr;
+				}
 			}
 		}
 		
