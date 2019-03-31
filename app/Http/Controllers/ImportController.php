@@ -251,10 +251,10 @@ class ImportController extends BaseController
 		$data['filename']   = $filename;
 		$dbc = [];
 		
-		if (!empty($file_title[0] == 'id'))
-		{
-			unset($file_title[0]);
-		}
+		//if (!empty($file_title[0] == 'id'))
+		//{
+		//	unset($file_title[0]);
+		//}
 
 		//print_r($sys_title);echo '<br><Br><br>';
 		
@@ -279,7 +279,8 @@ class ImportController extends BaseController
 				
 				$fkey = array_search($val->title,$file_title);
 				//print_r($d);echo '<br<br>';
-				//$fkey = 
+				//$fkey =
+				echo $file_title[$fkey].'--'.$val->title;echo '<br>';
 				if ($file_title[$fkey] == $val->title)
 				{				
 					$arr['sys_field_id'] = $val->id;
@@ -291,7 +292,7 @@ class ImportController extends BaseController
 		}
 		
 		
-		//print_r($dbc);die();
+		print_r($dbc);die();
 		DB::table('excel_upload')->insert($dbc);
 		
 		//die();
