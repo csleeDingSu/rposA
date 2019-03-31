@@ -77,7 +77,7 @@ class GenerateVouchertoDb
 			$i = 1;
 			foreach ($data as $key=> $val) 
 			{
-				if (is_null($val['product_name'])) {
+				if (empty($val['product_name'])) {
 
 					break;
 
