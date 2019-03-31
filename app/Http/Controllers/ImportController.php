@@ -254,7 +254,9 @@ class ImportController extends BaseController
 		
 		print_r($data['file_title']);echo '<br><Br><br>';
 		
-		print_r($file_title[1]);echo '<br><Br><br>';
+		$rr = 2;
+		
+		print_r($file_title[$rr]);echo '<br><Br><br>';
 		
 		//die();
 
