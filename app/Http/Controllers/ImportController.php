@@ -250,7 +250,11 @@ class ImportController extends BaseController
 		$data['sys_title'] = $sys_title = Voucher::get_csvtitle(15); 
 		$data['filename']   = $filename;
 		
-		print_r($sys_title);die();
+		print_r($sys_title);echo '<br><Br><br>';
+		
+		print_r($data['file_title']);
+		
+		die();
 
 		$file_title = array(1,2,3,4,5,6,7,8);
 		//$sys_title  = array(1,2,3,4,5,6,7,8);
