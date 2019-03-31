@@ -277,9 +277,10 @@ class ImportController extends BaseController
 			{
 				echo $file_title[$key];echo $val->title;
 				
-				$d = array_search($val->title,$file_title);
-				print_r($d);echo '<br<br>';
-				if ($file_title[$key] == $val->title)
+				$fkey = array_search($val->title,$file_title);
+				//print_r($d);echo '<br<br>';
+				//$fkey = 
+				if ($file_title[$fkey] == $val->title)
 				{				
 					$arr['sys_field_id'] = $val->id;
 					$arr['file_title_loc_id'] = $file_title[$key];
