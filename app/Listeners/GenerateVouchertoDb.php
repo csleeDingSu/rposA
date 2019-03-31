@@ -132,6 +132,7 @@ class GenerateVouchertoDb
 					}
 				}	
 			
+				print_r($insdata);die();
 
 				if (!empty($insdata))
 				{
