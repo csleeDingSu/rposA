@@ -52,7 +52,7 @@ class GenerateVouchertoDb
 		
 		foreach ($flist as $key=>$filecolumn)
 		{
-			if (!empty($filecolumn->file_title_loc_id))
+			if (isset($filecolumn->file_title_loc_id))
 			{
 				$file[$filecolumn->file_title_loc_id] = $filecolumn->sys_field_id;
 				
