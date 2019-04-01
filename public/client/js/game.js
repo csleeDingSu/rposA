@@ -257,6 +257,10 @@ function getSocket(){
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown);
+            if(errorThrown == 'Unauthorized'){
+                $(".loading").fadeOut("slow");
+                $('#red-packet-modal').modal({backdrop: 'static', keyboard: false});
+            }
         })
         .done(function (result, textStatus, jqXHR) {
             console.log('connecting URL: '+c_url);

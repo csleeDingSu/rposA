@@ -71,7 +71,7 @@ class ClientController extends BaseController
 	{
 		$betting_count = 0;
 
-		if (!Auth::Guard('member')->check())
+		/*if (!Auth::Guard('member')->check())
 		{
 			$msg = trans('dingsu.please_login');
 			\Session::flash('success',$msg);
@@ -83,6 +83,15 @@ class ClientController extends BaseController
 			$member = Auth::guard('member')->user()->id	;
 			$data['betting_count'] = member_game_result::where("member_id", $member)->get()->count();
 
+		}*/
+
+		if (Auth::Guard('member')->check())
+		{
+			$member = Auth::guard('member')->user()->id	;
+			$data['betting_count'] = member_game_result::where("member_id", $member)->get()->count();
+
+		} else {
+			$data['betting_count'] = 0;
 		}
 
 		return view('client/game', $data);
