@@ -36,6 +36,8 @@
 				<option value="0">@lang('dingsu.default_select')</option>
 				<option value="move">@lang('dingsu.move_to_voucher_list')</option>
 				<option value="delete">@lang('dingsu.delete')</option>
+				<option value="move_all">@lang('dingsu.move_all')</option>
+				<option value="delete_all">@lang('dingsu.delete_all')</option>
 			</select>
 			<div>
 			</div>
