@@ -508,7 +508,7 @@ class VoucherController extends BaseController
 					
 				}
 				
-				
+				Unreleasedvouchers::truncate();
 			break;		
 		}
 		
