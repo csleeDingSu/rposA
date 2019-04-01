@@ -1298,12 +1298,11 @@ body{
 #wheel_container {
     margin: 0 auto;
     width: 100%;
-    top: 12px;
+    top: 42px;
 }
 
 #wheel_banner {
 	margin: 0 auto;
-    width: 100%;
 	width: 260px;
 }
 
@@ -1314,8 +1313,9 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 	z-index: 100; 
-	width:200px;
-	height:69px;
+	width:260px;
+	height:260px;
+	margin-top: 11px;
 }
 
 #txtCounter {
