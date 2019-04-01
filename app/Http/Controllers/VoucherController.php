@@ -424,8 +424,13 @@ class VoucherController extends BaseController
 				$dbi[] = $val['name'];
 			}
 		}
+		$models = Unreleasedvouchers::select('*');
 		//DB::enableQueryLog();
-		$models = Unreleasedvouchers::whereIn('id', $dbi)->get();
+		if ($type != 'move_all' || $type != 'delete_all')
+		{
+			$models = $models->whereIn('id', $dbi);
+		}
+		$models = $models->get();
 		$models = $models->toArray();
 		//print_r(DB::getQueryLog());
 		
@@ -478,6 +483,27 @@ class VoucherController extends BaseController
 				
 				
 			break;	
+				
+			case 'move_all':
+				foreach (array_chunk($insdata,800) as $t) {	
+					foreach ($t as $key=>$row)
+					{
+						$id = DB::table('vouchers')->insertGetId($row);
+						Voucher::update_voucher_id($array_id[$key], $id);
+					}
+				}
+			break;
+				
+			case 'delete_all':
+				Voucher::archived_unr_vouchers_insert($insdata);
+				
+				foreach($models as $key=>$val)
+				{
+					$id = $val['id'];
+					Voucher::destroy($id);
+					Voucher::delete_unr_voucher_category($id);
+				}
+			break;		
 		}
 		Unreleasedvouchers::destroy($dbi);
 		
