@@ -1114,7 +1114,7 @@ DomeWebController = {
             'wheelImg': "/client/images/wheel.png",//转轮图片
             'pointerImg': "/client/images/pointer.png",//指针图片
             'buttonImg': "/client/images/button.png",//开始按钮图片
-            'wSide': 260,//转轮边长(默认使用图片宽度)
+            'wSide': 200,//转轮边长(默认使用图片宽度)
             'pSide': 100,//指针边长(默认使用图片宽度)
             'bSide': 50,//按钮边长(默认使用图片宽度)
             'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
