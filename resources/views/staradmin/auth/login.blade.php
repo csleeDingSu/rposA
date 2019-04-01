@@ -63,7 +63,7 @@
           text-align: center;
           font-size: 0.32rem;
           color: #ff5949;
-          border: 0.01rem solid #ff5949;
+          border: 0.03rem solid #ff5949;
           line-height: 0.84rem;
           outline: none;
           border-radius: 0.42rem;
