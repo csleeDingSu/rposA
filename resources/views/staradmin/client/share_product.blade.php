@@ -75,9 +75,9 @@
 	}
 
 	.infinite-scroll h2 {
-	  font-size: 0.30rem;
+	  font-size: 0.31rem;
 	  font-weight: 500;
-	  color: grey;
+	  color: #999999;
 
 	}
 
@@ -89,7 +89,7 @@
 
 		font-size: 0.26rem;
 	  	font-weight: 0;
-	  	color: grey;
+	  	color: #999999;
 	  	  /*text-decoration: line-through;*/
 
 	}
