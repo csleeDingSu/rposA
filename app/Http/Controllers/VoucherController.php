@@ -429,7 +429,7 @@ class VoucherController extends BaseController
 		
 		if (!in_array($type, array("move_all", "delete_all")))
 		{
-			echo 'imhere';$models = $models->whereIn('id', $dbi);
+			$models = $models->whereIn('id', $dbi);
 		}
 		$models = $models->get();
 		$models = $models->toArray();
@@ -439,7 +439,8 @@ class VoucherController extends BaseController
 		
 		foreach ($models as $row)
 		{
-			if ($type != 'move') {
+			if (!in_array($type, array("move_all", "move")))
+				//if ($type != 'move') {
 				$row['source_type'] = '1'; 
 				unset($row['source_file']);
 			}
