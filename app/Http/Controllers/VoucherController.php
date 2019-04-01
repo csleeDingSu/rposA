@@ -429,7 +429,7 @@ class VoucherController extends BaseController
 		
 		if ($type != 'move_all' || $type != 'delete_all')
 		{
-			$models = $models->whereIn('id', $dbi);
+			echo 'imhere';$models = $models->whereIn('id', $dbi);
 		}
 		$models = $models->get();
 		$models = $models->toArray();
