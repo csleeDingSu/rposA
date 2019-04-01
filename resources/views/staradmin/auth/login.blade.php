@@ -56,6 +56,23 @@
             display:none !important;
         }
 
+        .button_reg {
+          display: block;
+          width: 100%;
+          background-color: white;
+          text-align: center;
+          font-size: 0.32rem;
+          color: #ff5949;
+          border: 0.01rem solid #ff5949;
+          line-height: 0.84rem;
+          outline: none;
+          border-radius: 0.42rem;
+          -webkit-border-radius: 0.42rem;
+          -moz-border-radius: 0.42rem;
+          -ms-border-radius: 0.42rem;
+          -o-border-radius: 0.42rem;
+        }
+
     </style>
 
 
@@ -132,6 +149,9 @@
                                 </li>
                                 <li>
                                     <button class="dologin" name="dologin" id="dologin" type="button">登录</button>
+                                </li>
+                                <li>
+                                    <a class="button_reg" name="button_reg" id="button_reg" type="button">还没有注册？ 去注册</a>
                                 </li>
                                 <li>
                                     <p>忘记密码?<a href="javascript:void(0)" id="customerservice" class="customerservice">请联系客服</a>
@@ -239,6 +259,12 @@
                     {
                         $( "#authusername" ).focus();                        
                     }
+                } );
+
+                $( '.button_reg' ).click( function () {
+                    $( '.loginBox .bd' ).children( '.inBox' ).eq( 1 ).fadeIn( 0 ).siblings().fadeOut( 0 ); 
+                    $( '.loginBox .hd a').removeClass('on');
+                    $('#reg').addClass( 'on' );
                 } )
             } )
 
