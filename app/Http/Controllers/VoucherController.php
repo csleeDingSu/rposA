@@ -464,6 +464,8 @@ class VoucherController extends BaseController
 					// echo $id;
 					// Voucher::update_voucher_id($dbi, $id);
 				}
+				
+				Unreleasedvouchers::destroy($dbi);
 			break;
 			case 'delete':
 				Voucher::archived_unr_vouchers_insert($insdata);
@@ -491,6 +493,8 @@ class VoucherController extends BaseController
 						Voucher::update_voucher_id($array_id[$key], $id);
 					}
 				}
+				
+				Unreleasedvouchers::truncate();
 			break;
 				
 			case 'delete_all':
@@ -504,7 +508,7 @@ class VoucherController extends BaseController
 					
 				}
 				
-				Unreleasedvouchers::truncate();
+				
 			break;		
 		}
 		
