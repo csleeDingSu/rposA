@@ -424,20 +424,17 @@ class VoucherController extends BaseController
 				$dbi[] = $val['name'];
 			}
 		}
-		DB::enableQueryLog();
+		//DB::enableQueryLog();
 		$models = Unreleasedvouchers::select('*');
 		
-		echo $type;
 		if (!in_array($type, array("move_all", "delete_all")))
 		{
 			echo 'imhere';$models = $models->whereIn('id', $dbi);
 		}
 		$models = $models->get();
 		$models = $models->toArray();
-		print_r(DB::getQueryLog());
-		
-		print_r($models);
-		
+		//print_r(DB::getQueryLog());
+				
 		$now = Carbon::now()->toDateTimeString();
 		
 		foreach ($models as $row)
