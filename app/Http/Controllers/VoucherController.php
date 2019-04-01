@@ -434,7 +434,7 @@ class VoucherController extends BaseController
 		$models = $models->toArray();
 		//print_r(DB::getQueryLog());
 		
-		
+		print_r($models);
 		
 		$now = Carbon::now()->toDateTimeString();
 		
