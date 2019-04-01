@@ -439,7 +439,8 @@ class VoucherController extends BaseController
 		
 		foreach ($models as $row)
 		{
-			if (!in_array($type, array("move_all", "move")))
+			if (!in_array($type, array("move_all", "move"))) 
+			{
 				//if ($type != 'move') {
 				$row['source_type'] = '1'; 
 				unset($row['source_file']);
