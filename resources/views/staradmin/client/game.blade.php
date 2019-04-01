@@ -794,6 +794,34 @@
 
 <!--  end -->
 
+<!-- Start Win -->
+	<div class="modal fade col-md-12" id="red-packet-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="packet-title">恭喜你获得免单红包</div>
+				<div class="modal-body" style="padding:10px !important;">
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">							
+							<div class="modal-card">
+								<div class="packet-value"><span class="packet-sign">￥</span>45</div>
+								<div class="packet-info">可提现支付宝</div>
+								<div class="instructions">
+									<h1 class="divider">领取方式</h1>
+									注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币换领取<br />
+									新人免费玩3次 可赚45元
+								</div>
+								<a href="/login">
+									<div class="btn-red-packet">注册</div>
+								</a>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+<!--  end -->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
