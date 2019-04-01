@@ -427,7 +427,8 @@ class VoucherController extends BaseController
 		DB::enableQueryLog();
 		$models = Unreleasedvouchers::select('*');
 		
-		if ($type != 'move_all' || $type != 'delete_all')
+		echo $type;
+		if (!in_array($type, array("move_all", "delete_all")))
 		{
 			echo 'imhere';$models = $models->whereIn('id', $dbi);
 		}
