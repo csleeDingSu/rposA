@@ -424,15 +424,16 @@ class VoucherController extends BaseController
 				$dbi[] = $val['name'];
 			}
 		}
+		DB::enableQueryLog();
 		$models = Unreleasedvouchers::select('*');
-		//DB::enableQueryLog();
+		
 		if ($type != 'move_all' || $type != 'delete_all')
 		{
 			$models = $models->whereIn('id', $dbi);
 		}
 		$models = $models->get();
 		$models = $models->toArray();
-		//print_r(DB::getQueryLog());
+		print_r(DB::getQueryLog());
 		
 		print_r($models);
 		
