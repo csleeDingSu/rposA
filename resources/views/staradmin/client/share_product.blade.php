@@ -195,10 +195,73 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- 领取优惠券  -->
+		<div class="showQuan dflex scaleHide">
+			<div class="inBox">
+				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
+				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
+
+				
+					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
+					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
+					<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
+				
+				
+			</div>
+		</div>
 		
 		@include('layouts/footer')
 
 	</section>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
+	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
+	<script>
+		
+		$(document).ready(function(){
+			
+			$('.showQuan').click((e) => {
+				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-1.png') }} ");
+				var target = $(e.target).closest('.inBox').length;
+				console.log(target);
+				if (target > 0) {
+					return;
+				} else {
+					being.scaleHide('.showQuan');
+					being.wrapHide();
+				}
+			});
+
+			$("body").on("click",".button a.getvoucher",function(e) {
+				$( ".copyvoucher" ).html($(this).data('voucher'));
+				being.wrapShow();
+				being.scaleShow('.showQuan');
+			});
+			
+			$("body").on("click",".imgBox",function(){			
+				$( ".copyvoucher" ).html($(this).data('voucher'));
+				being.wrapShow();
+				being.scaleShow('.showQuan');
+			});
+
+			var clipboard = new ClipboardJS('.cutBtn', {
+				target: function () {
+					return document.querySelector('#cut');
+				}
+			});
+			clipboard.on('success', function (e) {
+				console.log(e);
+				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
+			});
+
+			clipboard.on('error', function (e) {
+				console.log(e);
+				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
+			});
+		})
+		
+	</script>
 	
 </body>
 
