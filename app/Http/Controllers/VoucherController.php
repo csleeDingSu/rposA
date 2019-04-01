@@ -480,7 +480,7 @@ class VoucherController extends BaseController
 					Voucher::delete_unr_voucher_category($id);
 				}
 				
-				
+				Unreleasedvouchers::destroy($dbi);
 			break;	
 				
 			case 'move_all':
@@ -501,10 +501,13 @@ class VoucherController extends BaseController
 					$id = $val['id'];
 					Voucher::destroy($id);
 					Voucher::delete_unr_voucher_category($id);
+					
 				}
+				
+				Unreleasedvouchers::truncate();
 			break;		
 		}
-		Unreleasedvouchers::destroy($dbi);
+		
 		
 		echo json_encode($dbi);
 	
