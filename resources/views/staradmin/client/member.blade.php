@@ -60,7 +60,9 @@
 			<!-- end member details -->
 		</div>
 		
-		<div class="top-background"></div>
+		<div class="top-background">
+			<img src="{{ asset('/client/images/top-background.png') }}" />
+		</div>
 		<div class="bottom-background"></div>
 
 		<!-- member listing -->
