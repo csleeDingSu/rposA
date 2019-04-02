@@ -542,7 +542,7 @@ function closeModal() {
 }
 
 function closeWinModal() {
-    $('.close-win-modal').click(function(){
+    $('.close-win-modal').click(function(event){
         $(this).off('click');
         event.stopImmediatePropagation();
         $('#win-modal').modal('hide');
