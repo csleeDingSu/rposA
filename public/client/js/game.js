@@ -294,6 +294,7 @@ function getSocket(){
             */
             socket.on('unauthorized', function (data) {
                 console.log('Unauthorized, error msg: ' + data.message);
+                $(".reload").show();
             });
 
             /* 
@@ -301,6 +302,7 @@ function getSocket(){
             */
             socket.on('disconnect', function () {
                 console.log('Disconnected');
+                $(".reload").show();
             });
 
             //On user logout
@@ -543,7 +545,12 @@ function closeModal() {
 function closeWinModal() {
     $('.close-win-modal').click(function(){
         $(this).off('click');
+        event.stopImmediatePropagation();
         $('#win-modal').modal('hide');
+
+        if(g_current_point > 150){
+            g_current_point = 150;
+        }
 
         console.log("closeWinModal");
         $('.spanAcuPoint')
