@@ -35,9 +35,10 @@ class VoucherController extends Controller
         return view('client.home3', compact('vouchers','category','total','cid'));
 		*/
 
-		$category = Category::where('display_name',env('voucher_featured_label','精选'))->where('parent_id',0)->select('id')->first();
+		//$category = Category::where('display_name',env('voucher_featured_label','精选'))->where('parent_id',0)->select('id')->first();
 
-		return redirect('/cs/' . $category->id);
+		// return redirect('/cs/' . $category->id);
+		return redirect('/cs/' . env('voucher_featured_id','220'));
 		
     }
 
