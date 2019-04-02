@@ -167,7 +167,7 @@
 				<div class="product" style="margin-top: 0px;">
 					<div class="title">
 						<span>共有<font color="#f63556">{{ $vouchers->total() }}</font>款产品</span>
-						<h2>{{ is_null($current_cat_name) ? 精选 : $current_cat_name }}大额优惠券</h2>
+						<h2>{{ is_null($current_cat_name) ? "精选" : $current_cat_name }}大额优惠券</h2>
 					</div>
 					
 					<div class="infinite-scroll">
