@@ -333,7 +333,7 @@
 
 				<div class="button">
 					<a class="getvoucher" href="#">{{ env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买') }}</a>
-					<a class="playgame" href="#">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
+					<a class="playgame" href="/login">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
 				</div>
 			</div>
 		</div>
@@ -432,21 +432,21 @@
 				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
 			});
 
-			$("body").on("click",".button a.playgame",function(e) {
-				being.wrapShow();
-				being.scaleShow('.showTips');
-			});
+			// $("body").on("click",".button a.playgame",function(e) {
+			// 	being.wrapShow();
+			// 	being.scaleShow('.showTips');
+			// });
 
-			$('.showTips').click((e) => {
-				var target = $(e.target).closest('.inBox').length;
-				console.log(target);
-				if (target > 0) {
-					return;
-				} else {
-					being.scaleHide('.showTips');
-					being.wrapHide();
-				}
-			});
+			// $('.showTips').click((e) => {
+			// 	var target = $(e.target).closest('.inBox').length;
+			// 	console.log(target);
+			// 	if (target > 0) {
+			// 		return;
+			// 	} else {
+			// 		being.scaleHide('.showTips');
+			// 		being.wrapHide();
+			// 	}
+			// });
 
 		})
 		
