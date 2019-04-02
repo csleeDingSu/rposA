@@ -478,11 +478,11 @@
 								<div class="modal-confirm-button btn-reset-life">
 									确认结算
 								</div>
-								<a href="/share">
+								<!--a href="/share">
 								<div class="modal-invite-button">
 									分享好友获挖宝机会
 								</div>
-								</a>										
+								</a-->										
 							</div>
 						</div>
 					</div>							
@@ -640,11 +640,11 @@
 								<div class="modal-confirm-button btn-reset-life">
 									继续挖宝
 								</div>
-								<a href="/share">
+								<!--a href="/share">
 								<div class="modal-invite-button">
 									分享好友获挖宝机会
 								</div>
-								</a>
+								</a-->
 							</div>
 						</div>
 					</div>							
