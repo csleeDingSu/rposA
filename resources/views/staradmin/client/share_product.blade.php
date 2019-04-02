@@ -149,6 +149,148 @@
 
 	}
 
+	.showTips .inBox {
+	  /*background: #fff;*/
+	  /*width: 5.9rem;
+	  border-radius: 0.1rem;
+	  -webkit-border-radius: 0.1rem;
+	  -moz-border-radius: 0.1rem;
+	  -ms-border-radius: 0.1rem;
+	  -o-border-radius: 0.1rem;
+	  text-align: center;
+	  box-sizing: border-box;
+	  position: relative;
+	  padding-bottom: 0.85rem;*/
+	}
+
+	/* Red Packet Modal */
+#red-packet-modal .packet-title {
+	padding-top: 20px;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+#red-packet-modal .modal-card {
+    width: 260px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+#red-packet-modal .packet-value {
+	font-size: 90px;
+	color: #ff3e3e;
+	font-weight: 500;
+	margin-left: -20px;
+	height: 100px;
+}
+
+#red-packet-modal .packet-info {
+	font-size: 14px;
+	font-weight: 500;
+	color: #ff3e3e;
+}
+
+#red-packet-modal .packet-sign {
+	font-size: 33px;
+}
+
+#red-packet-modal .modal-content {
+  background: url('/client/images/packet-background.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  width: 301px !important;
+  height: 382px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+#red-packet-modal .modal-content {
+  margin-top: -12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 296px;
+  z-index: 9999;
+  position:relative;
+}
+
+#red-packet-modal .instructions {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  line-height: 28px;
+  padding: 25px 0px 5px 0px;
+}
+
+#red-packet-modal .instructions img{
+  margin-top: -2px;
+}
+
+#red-packet-modal .highlight {
+  color: #ffe613;
+  font-weight: 700;
+}
+
+#red-packet-modal .instructions h2{
+  color: #ffffff;
+  font-size: 16px;
+  text-align: center;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+#red-packet-modal .btn-red-packet {
+  background: url('/client/images/btn-red-packet.png') no-repeat top center;
+  font-size: 18px;
+  color: #ff3e3e;
+  background-size: contain;
+  width: 250px;
+  height: 40px;
+  padding-top: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+
+#red-packet-modal .divider{
+    color:#ffffff;
+    width:90%;
+    margin:10px auto;
+    overflow:hidden;
+    text-align:center;   
+    line-height:1.2em;
+    font-size: 16px;
+}
+
+#red-packet-modal .divider:before, #red-packet-modal .divider:after{
+    content:"";
+    vertical-align:middle;
+    display:inline-block;
+    width:50%;
+    border-bottom:1px dashed #ffffff;
+    margin:0 2% 0 -55%;
+}
+
+#red-packet-modal .divider:after{
+    margin:0 -55% 0 2%;
+}
+
+#red-packet-modal h1:nth-child(2){
+    font-size:3em;
+}
+/* Red Packet Modal */
+
 	</style>
 <body>
 	<section class="cardFull card-flex">
@@ -170,16 +312,16 @@
 				<ul class="list-2">
 					<li class="dbox">
 						<a class="dbox0 imgBox" href="#">
-							<img src="{{$item->product_picurl}}_160x160.jpg" alt="{{$item->product_name}}">
+							<img src="{{env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg_160x160.jpg')}}">
 						</a>
 						<div class="dbox1">
 							<span>
-								<h2>{{$item->product_name}}</h2>
+								<h2>{{env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋')}}</h2>
 								<div class="price1">
 									<h3>券后
-									<span class="price2">￥{{number_format($item->voucher_price,2)}} </span>
+									<span class="price2">￥{{number_format(env('shareproduct_pricebefore',20),2)}} </span>
 									<span class="price3">
-									淘宝价￥{{number_format($item->product_price, 2)}}
+									淘宝价￥{{number_format(env('shareproduct_priceafter', 55), 2)}}
 									</span>
 									</h3>
 									
@@ -190,8 +332,8 @@
 				</ul>
 
 				<div class="button">
-					<a class="getvoucher" href="#">领60元优惠券购买</a>
-					<a class="playgame" href="#">玩赚免单</a>
+					<a class="getvoucher" href="#">{{ env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买') }}</a>
+					<a class="playgame" href="#">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
 				</div>
 			</div>
 		</div>
@@ -212,10 +354,33 @@
 		</div>
 
 		<!-- 玩赚免单 -->
-		<div class="showInfo dflex scaleHide">
+		<div class="showTips dflex scaleHide">
 			<div class="inBox">
-				test
-				
+				<div id="red-packet-modal">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="packet-title">恭喜你获得免单红包</div>
+							<div class="modal-body" style="padding:10px !important;">
+								<div class="modal-row">
+									<div class="wrapper modal-full-height">							
+										<div class="modal-card">
+											<div class="packet-value"><span class="packet-sign">￥</span>45</div>
+											<div class="packet-info">可提现支付宝</div>
+											<div class="instructions">
+												<h1 class="divider">领取方式</h1>
+												注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币换领取<br />
+												新人免费玩3次 可赚45元
+											</div>
+											<a href="/login">
+												<div class="btn-red-packet">注册</div>
+											</a>
+										</div>
+									</div>
+								</div>							
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		@include('layouts/footer')
@@ -269,7 +434,18 @@
 
 			$("body").on("click",".button a.playgame",function(e) {
 				being.wrapShow();
-				being.scaleShow('.showInfo');
+				being.scaleShow('.showTips');
+			});
+
+			$('.showTips').click((e) => {
+				var target = $(e.target).closest('.inBox').length;
+				console.log(target);
+				if (target > 0) {
+					return;
+				} else {
+					being.scaleHide('.showTips');
+					being.wrapHide();
+				}
 			});
 
 		})
