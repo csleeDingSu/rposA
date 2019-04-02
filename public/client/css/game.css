@@ -1298,7 +1298,7 @@ body{
 #wheel_container {
     margin: 0 auto;
     width: 100%;
-    top: 42px;
+    top: 30px;
 }
 
 #wheel_banner {
@@ -1315,7 +1315,6 @@ body{
 	z-index: 100; 
 	width:260px;
 	height:260px;
-	margin-top: 11px;
 }
 
 #txtCounter {
@@ -1592,8 +1591,14 @@ if it's not present, don't show loader */
 .spinning {
 	color: #e07f5f;
 	font-size: 16px;
-	margin: 5px;
 	visibility: hidden;
+	width: 260px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	top: 260px;
 }
 
 .speech-bubble {
