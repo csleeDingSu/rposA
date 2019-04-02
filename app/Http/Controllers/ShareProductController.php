@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 
 use App;
+use App\Voucher;
 use App\member_game_bet_temp_log;
 use App\vouchers_yhq;
 use Auth;
@@ -27,7 +28,7 @@ class ShareProductController extends BaseController
 	
 	public function index() {		
 
-		$data['item'] = vouchers_yhq::select('*')->first();
+		$data['item'] = Voucher::where('share_product',1)->orderBy('updated_at', 'desc')->select('*')->first();
 		
 		return view('client/share_product', $data);
 	}

@@ -312,16 +312,16 @@
 				<ul class="list-2">
 					<li class="dbox">
 						<a class="dbox0 imgBox" href="#">
-							<img src="{{env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg_160x160.jpg')}}">
+							<img src="{{empty($item->product_picurl) ? env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg') : $item->product_picurl }}">
 						</a>
 						<div class="dbox1">
 							<span>
-								<h2>{{env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋')}}</h2>
+								<h2>{{empty($item->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $item->product_name}}</h2>
 								<div class="price1">
 									<h3>券后
-									<span class="price2">￥{{number_format(env('shareproduct_pricebefore',20),2)}} </span>
+									<span class="price2">￥{{number_format(empty($item->discount_price) ? env('shareproduct_pricebefore',20) : $item->discount_price,2)}} </span>
 									<span class="price3">
-									淘宝价￥{{number_format(env('shareproduct_priceafter', 55), 2)}}
+									淘宝价￥{{number_format( empty($item->product_price) ? env('shareproduct_priceafter', 55) : $item->product_price,2)}}
 									</span>
 									</h3>
 									
@@ -333,7 +333,7 @@
 
 				<div class="button">
 					<a class="getvoucher" href="#">{{ env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买') }}</a>
-					<a class="playgame" href="/login">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
+					<a class="playgame" href="#">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
 				</div>
 			</div>
 		</div>
@@ -345,7 +345,7 @@
 				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
 
 				
-					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
+					<h3 id="cut" class="copyvoucher"> {{empty($item->voucher_pass) ? "￥K8454DFGH45H" : $item->voucher_pass}}</h3>
 					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
 					<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
 				
@@ -432,21 +432,21 @@
 				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
 			});
 
-			// $("body").on("click",".button a.playgame",function(e) {
-			// 	being.wrapShow();
-			// 	being.scaleShow('.showTips');
-			// });
+			$("body").on("click",".button a.playgame",function(e) {
+				being.wrapShow();
+				being.scaleShow('.showTips');
+			});
 
-			// $('.showTips').click((e) => {
-			// 	var target = $(e.target).closest('.inBox').length;
-			// 	console.log(target);
-			// 	if (target > 0) {
-			// 		return;
-			// 	} else {
-			// 		being.scaleHide('.showTips');
-			// 		being.wrapHide();
-			// 	}
-			// });
+			$('.showTips').click((e) => {
+				var target = $(e.target).closest('.inBox').length;
+				console.log(target);
+				if (target > 0) {
+					return;
+				} else {
+					being.scaleHide('.showTips');
+					being.wrapHide();
+				}
+			});
 
 		})
 		
