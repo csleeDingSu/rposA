@@ -149,7 +149,7 @@
 				<a href="/tips">
 					<li class="list-group-item">
 						<div class="icon-wrapper">
-							<div class="icon-withdraw"></div>
+							<div class="icon-tips"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						免单攻略
@@ -183,8 +183,8 @@
 
 				<a href = "/logout">
 					<li class="list-group-item">					
-						<div class="icon-wrapper" style="padding: 0px 5px 5px 6px">
-							<i class="fa fa-sign-out-alt"></i>						
+						<div class="icon-wrapper">
+							<div class="icon-logout"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						{{ trans('dingsu.logout') }}					
