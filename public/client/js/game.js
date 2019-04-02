@@ -294,7 +294,6 @@ function getSocket(){
             */
             socket.on('unauthorized', function (data) {
                 console.log('Unauthorized, error msg: ' + data.message);
-                $(".reload").show();
             });
 
             /* 
@@ -412,7 +411,7 @@ function getSocket(){
 
                     $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
 
-                    if(data.data.IsFirstLifeWin == 'yes'){
+                    if(data.data.IsFirstLifeWin == 'yes' && level < 6){
                         show_lose = true;
                         showLoseModal();
                     }
@@ -543,7 +542,7 @@ function closeModal() {
 }
 
 function closeWinModal() {
-    $('.close-win-modal').click(function(){
+    $('.close-win-modal').click(function(event){
         $(this).off('click');
         event.stopImmediatePropagation();
         $('#win-modal').modal('hide');

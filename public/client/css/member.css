@@ -134,7 +134,17 @@ html, body {
 	background-color: #8b6cfe;
 	height: 160px;
 }
-
+/*
+.top-background {
+	background: url('/client/images/top-background.png') no-repeat;
+	width: 750px;
+	height: 501px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	z-index: -1;
+}
+*/
 .bottom-background {
 	background-color: white;
 	height: 40px;
@@ -233,98 +243,110 @@ html, body {
 }
 
 .icon-vip {
-	background: url('/client/images/vip/v3.png') no-repeat;
-	width: 37px;
-	height: 37px;
+	background: url('/client/images/icon-vip.png') no-repeat;
+	width: 44px;
+	height: 44px;
 	transform: scale(0.55); 
 	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
-	margin-top: 3px;
+	margin-top: 0px;
 }
 
 .icon-add-friend {
-	background: url('/client/images/game.png') no-repeat -1670px -805px;
-	width: 80px;
-	height: 80px;
-	transform: scale(0.28); 
-	-webkit-transform: scale(0.28);
+	background: url('/client/images/icon-invite.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
-	margin-top: 2px;
+	margin-top: 0px;
 }
 
 .icon-play {
-	background: url('/client/images/game.png') no-repeat -1670px -885px;
-	width: 80px;
-	height: 82px;
-	transform: scale(0.26); 
-	-webkit-transform: scale(0.26);
+	background: url('/client/images/icon-play.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
-	margin-top: 3px;
+	margin-top: 0px;
 }
 
 .icon-play-history {
-	background: url('/client/images/game.png') no-repeat -1670px -962px;
-	width: 80px;
-	height: 60px;
-	transform: scale(0.34); 
-	-webkit-transform: scale(0.34);
+	background: url('/client/images/icon-history.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
-	margin-top: 2px;
+	margin-top: 0px;
 }
 
 .icon-redeem {
-	background: url('/client/images/game.png') no-repeat -1670px -1015px;
-	width: 80px;
-	height: 50px;
-	transform: scale(0.34); 
-	-webkit-transform: scale(0.34);
+	background: url('/client/images/icon-redeem.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
-	margin-top: 3px;
+	margin-top: 0px;
 }
 
-.icon-withdraw {
-	background: url('/client/images/game.png') no-repeat -1670px -1059px;
-	width: 80px;
-	height: 82px;
-	transform: scale(0.3); 
-	-webkit-transform: scale(0.3);
+.icon-tips {
+	background: url('/client/images/icon-tips.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
 }
 
 .icon-faq {
-	background: url('/client/images/game.png') no-repeat -1670px -1140px;
-	width: 80px;
-	height: 80px;
-	transform: scale(0.28); 
-	-webkit-transform: scale(0.28);
+	background: url('/client/images/icon-faq.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
-	margin-top: 3px;
+	margin-top: 0px;
 }
 
 .icon-customer {
-	background: url('/client/images/game.png') no-repeat -1670px -1220px;
-	width: 80px;
-	height: 80px;
-	transform: scale(0.32); 
-	-webkit-transform: scale(0.32);
+	background: url('/client/images/icon-wechat.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
 	-webkit-transform-origin:left top;
 	float: left;
 	position: relative;
-	margin-top: 3px;
+	margin-top: 0px;
+}
+
+.icon-logout {
+	background: url('/client/images/icon-logout.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
 }
 
 .note {
