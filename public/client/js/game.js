@@ -7,8 +7,8 @@ var betting_data = null;
 var token = '';
 var show_win = false;
 var show_lose = false;
-var previous_point = 0;
-var current_point = 0;
+var g_previous_point = 0;
+var g_current_point = 0;
 
 $(function () {
 
@@ -109,7 +109,7 @@ function initUser(records){
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
-        current_point = parseInt(records.acupoint);
+        g_current_point = parseInt(records.acupoint);
 
         if(life == 0){
             balance = 0;
@@ -402,7 +402,6 @@ function getSocket(){
                     if(data.data.IsFirstLifeWin == 'yes'){
                         show_win = true;
                         showWinModal();
-                        closeWinModal();
                     }
 
                 } else if (data.data.status == 'lose') {
@@ -414,7 +413,6 @@ function getSocket(){
                     if(data.data.IsFirstLifeWin == 'yes'){
                         show_lose = true;
                         showLoseModal();
-                        closeWinModal();
                     }
                 }
 
@@ -427,7 +425,7 @@ function getSocket(){
                 console.log('member wallet details');
                 console.log(data);
 
-                previous_point = parseInt($('.spanAcuPoint').html());
+                g_previous_point = parseInt($('.spanAcuPoint').html());
                 wallet_data = data.data;
                 update_wallet = true;
                 
@@ -503,12 +501,14 @@ function resetGame() {
     $('.spinning').css('visibility', 'hidden');
 
     if(show_win){
-        $('#win-modal').modal('show');
+        $('#win-modal').modal({backdrop: 'static', keyboard: false});
+        closeWinModal();
     }
 
     if(show_lose){
-        $('#win-modal').modal('show');
+        $('#win-modal').modal({backdrop: 'static', keyboard: false});
         show_lose = false;
+        closeWinModal();
     }
 }
 
@@ -546,10 +546,10 @@ function closeWinModal() {
         $('#win-modal').modal('hide');
 
         $('.spanAcuPoint')
-          .prop('number', previous_point)
+          .prop('number', g_previous_point)
           .animateNumber(
             {
-              number: current_point
+              number: g_current_point
             },
             1000
           );
