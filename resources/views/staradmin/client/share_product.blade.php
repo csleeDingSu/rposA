@@ -210,7 +210,14 @@
 				
 			</div>
 		</div>
-		
+
+		<!-- 玩赚免单 -->
+		<div class="showInfo dflex scaleHide">
+			<div class="inBox">
+				test
+				
+			</div>
+		</div>
 		@include('layouts/footer')
 
 	</section>
@@ -259,6 +266,12 @@
 				console.log(e);
 				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
 			});
+
+			$("body").on("click",".button a.playgame",function(e) {
+				being.wrapShow();
+				being.scaleShow('.showInfo');
+			});
+
 		})
 		
 	</script>
