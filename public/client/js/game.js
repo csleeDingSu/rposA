@@ -294,7 +294,6 @@ function getSocket(){
             */
             socket.on('unauthorized', function (data) {
                 console.log('Unauthorized, error msg: ' + data.message);
-                $(".reload").show();
             });
 
             /* 
