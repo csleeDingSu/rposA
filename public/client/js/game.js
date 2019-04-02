@@ -412,7 +412,7 @@ function getSocket(){
 
                     $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
 
-                    if(data.data.IsFirstLifeWin == 'yes'){
+                    if(data.data.IsFirstLifeWin == 'yes' && level < 6){
                         show_lose = true;
                         showLoseModal();
                     }
