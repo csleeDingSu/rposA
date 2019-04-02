@@ -134,7 +134,17 @@ html, body {
 	background-color: #8b6cfe;
 	height: 160px;
 }
-
+/*
+.top-background {
+	background: url('/client/images/top-background.png') no-repeat;
+	width: 750px;
+	height: 501px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	z-index: -1;
+}
+*/
 .bottom-background {
 	background-color: white;
 	height: 40px;
