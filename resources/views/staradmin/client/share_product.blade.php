@@ -312,16 +312,16 @@
 				<ul class="list-2">
 					<li class="dbox">
 						<a class="dbox0 imgBox" href="#">
-							<img src="{{$item->product_picurl}}_160x160.jpg" alt="{{$item->product_name}}">
+							<img src="{{env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg_160x160.jpg')}}">
 						</a>
 						<div class="dbox1">
 							<span>
-								<h2>{{$item->product_name}}</h2>
+								<h2>{{env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋')}}</h2>
 								<div class="price1">
 									<h3>券后
-									<span class="price2">￥{{number_format($item->voucher_price,2)}} </span>
+									<span class="price2">￥{{number_format(env('shareproduct_pricebefore',20),2)}} </span>
 									<span class="price3">
-									淘宝价￥{{number_format($item->product_price, 2)}}
+									淘宝价￥{{number_format(env('shareproduct_priceafter', 55), 2)}}
 									</span>
 									</h3>
 									
@@ -332,8 +332,8 @@
 				</ul>
 
 				<div class="button">
-					<a class="getvoucher" href="#">领60元优惠券购买</a>
-					<a class="playgame" href="#">玩赚免单</a>
+					<a class="getvoucher" href="#">{{ env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买') }}</a>
+					<a class="playgame" href="#">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
 				</div>
 			</div>
 		</div>
