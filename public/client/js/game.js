@@ -545,6 +545,7 @@ function closeWinModal() {
         $(this).off('click');
         $('#win-modal').modal('hide');
 
+        console.log("closeWinModal");
         $('.spanAcuPoint')
           .prop('number', g_previous_point)
           .animateNumber(
