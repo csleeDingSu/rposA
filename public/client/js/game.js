@@ -642,17 +642,17 @@ function bindBetButton(){
                 },
                 error: function (error) { 
                     console.log(error.responseText);
-                    //temp log            
-                    bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
-                                + "&drawid=" + draw_id 
-                                + "&bet=&betamt=&error=" + error.responseText;
-                    var data = new FormData();
-                    data.append("data" , bet_log);
-                    var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-                    xhr.open( 'post', '/api/temp_log', true );
-                    xhr.send(data);
+                    // //temp log            
+                    // bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                    //             + "&drawid=" + draw_id 
+                    //             + "&bet=&betamt=&error=" + error.responseText;
+                    // var data = new FormData();
+                    // data.append("data" , bet_log);
+                    // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                    // xhr.open( 'post', '/api/temp_log', true );
+                    // xhr.send(data);
 
-                    window.top.location.href = "/arcade";
+                    // window.top.location.href = "/arcade";
                 },
                 success: function(data) {
                 }
@@ -667,17 +667,17 @@ function bindBetButton(){
             var newbalance = balance - bet_amount;
             var newtotalbalance = total_balance - bet_amount;
 
-            //temp log            
-            bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
-                        + "&drawid=" + draw_id 
-                        + "&bet="+ selected 
-                        + "&betamt=" + bet_amount
-                        + "&level=" + level;
-            var data = new FormData();
-            data.append("data" , bet_log);
-            var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-            xhr.open( 'post', '/api/temp_log', true );
-            xhr.send(data);
+            // //temp log            
+            // bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+            //             + "&drawid=" + draw_id 
+            //             + "&bet="+ selected 
+            //             + "&betamt=" + bet_amount
+            //             + "&level=" + level;
+            // var data = new FormData();
+            // data.append("data" , bet_log);
+            // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+            // xhr.open( 'post', '/api/temp_log', true );
+            // xhr.send(data);
 
             if(newbalance < 0){
                  $('div.clicked').find('.bet').hide();
@@ -701,20 +701,20 @@ function bindBetButton(){
                     error: function (error) { 
                         console.log(error.responseText);
                         // alert('下注失败');
-                        //temp log            
-                        bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
-                                    + "&drawid=" + draw_id 
-                                    + "&bet="+ selected 
-                                    + "&betamt=" + bet_amount
-                                    + "&level=" + level
-                                    + "&error=" + error.responseText;
-                        var data = new FormData();
-                        data.append("data" , bet_log);
-                        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-                        xhr.open( 'post', '/api/temp_log', true );
-                        xhr.send(data);
+                        // // //temp log            
+                        // // bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                        // //             + "&drawid=" + draw_id 
+                        // //             + "&bet="+ selected 
+                        // //             + "&betamt=" + bet_amount
+                        // //             + "&level=" + level
+                        // //             + "&error=" + error.responseText;
+                        // // var data = new FormData();
+                        // // data.append("data" , bet_log);
+                        // // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                        // // xhr.open( 'post', '/api/temp_log', true );
+                        // // xhr.send(data);
 
-                        window.top.location.href = "/arcade";
+                        // window.top.location.href = "/arcade";
                     },
                     success: function(data) {
                         // alert('下注成功');
