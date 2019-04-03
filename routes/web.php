@@ -29,6 +29,7 @@ Route::get('generatevipresult/{drawid}', function ($drawid) {
 	dd( 'result generated' );
 } );
 
+
 Route::get('open-draw/{drawid?}', function ($drawid) {
 	//if (empty($drawid) $drawid = 0;
 	Artisan::call('game:opendraw', ['drawid' => $drawid]);
@@ -480,3 +481,16 @@ Route::get( 'logout', 'Auth\LoginController@logout' );
 Route::post( 'logout', 'Auth\LoginController@logout' )->name( 'logout' );
 
 $this->get( '/share_product/{id?}', 'ShareProductController@index' )->name( 'share.product' );
+
+Route::any('asyncmysqlevent/{api}/{drawid}', function ($api, $drawid) {
+	$url = env('APP_URL', 'wabao666.com') . "/$api/$drawid";
+    // var_dump($url);
+    $client = new \GuzzleHttp\Client();
+    // Send an asynchronous request.
+    $request = new \GuzzleHttp\Psr7\Request('GET', $url);
+    $promise = $client->sendAsync($request)->then(function ($response) {
+    //echo 'I completed! ' . $response->getBody();
+     echo 'Completed!';
+	});
+    $promise->wait();
+});
