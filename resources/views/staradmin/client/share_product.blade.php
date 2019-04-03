@@ -130,7 +130,7 @@
 		margin-top: 0.4rem;
 		font-weight: 300;
 		color: #ff5949;
-		border: 0.01rem solid #ff5949;
+		border: 0.03rem solid #ff5949;
 
 	}
 
