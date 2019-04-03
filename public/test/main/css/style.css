@@ -308,6 +308,10 @@
   background: #f6f6f6;
 }
 
+.footer-icon img {
+  margin-top: 5px;
+}
+
 .homeIcon {
   display: inline-block;
   width: 0.4rem;
@@ -339,8 +343,9 @@
 .navBox p {
   text-align: center;
   font-size: 0.22rem;
-  color: #696969;
+  color: #999999;
   line-height: 0.32rem;
+  font-weight: 500;
 }
 
 .navBox dd {
@@ -361,6 +366,10 @@
 
 .navBox dd a:active {
   background: rgba(0, 0, 0, 0.1);
+}
+
+p.active {
+  color: #ff6153;
 }
 
 .nTxt {
