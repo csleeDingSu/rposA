@@ -9,7 +9,6 @@
         "arcanedev/log-viewer": "^4.5",
         "barryvdh/laravel-cors": "^0.11.2",
         "fideloper/proxy": "^4.0",
-        "imponeer/composer-yarn-installer": "dev-master",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
