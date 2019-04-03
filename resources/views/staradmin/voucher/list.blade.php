@@ -71,10 +71,9 @@
 						<div class="form-group row">
 							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.share_product') </label>
 							<div class="col-sm-9">
-								<input type="checkbox" id="share_product" name="share_product" value="1" />
+								<input type="checkbox" id="share_product" name="share_product" value="1" onClick="showurl()" />&nbsp;&nbsp;
 								<span class="shareurl" id="shareurl">
-									{{ Config::get('app.shareurl' ) }}
-									<span class="shareid" id="shareid"></span>
+									{{ Config::get('app.shareurl') }}<span class="shareid" id="shareid"></span>
 									</span>
 							</div>
 						</div>
