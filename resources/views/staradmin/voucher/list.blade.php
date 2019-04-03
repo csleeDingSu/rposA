@@ -108,10 +108,10 @@ function showurl()
 {
 	if(document.getElementById('share_product').checked) 
 	{
-		alert('show');$(".shareurl").show();
+		$(".shareurl").show();
 	}
 	else{
-		alert('hide');$(".shareurl").hide();
+		$(".shareurl").hide();
 	}
 }			
 function Update_voucher()
