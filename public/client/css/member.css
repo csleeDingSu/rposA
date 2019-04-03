@@ -32,36 +32,53 @@ html, body {
 }
 
 .name {
-	font-size: 26px;
+	font-size: 32px;
 	float: left;
 	padding-top: 6px;
 	padding-bottom: 12px;
 }
 
+.unverify {
+	cursor: pointer;
+}
+
 .button-wrapper {
-	padding-top: 12px;
+	padding-top: 16px;
 	float: right;
 }
 
 .information-table {
 	padding-top:10px;
 	background: white;
-	height: 145px;
+	height: 180px;
 	border-radius: 10px;
 	box-shadow: 0 3px 10px 0px rgba(241, 233, 219, 1);
 }
 
 .information-table .col-xs-12, .information-table .col-xs-6 {
 	background: white;
-	text-align: left;
-	color: #666666;
-	font-size: 14px;
+	color: #888888;
+	font-size: 16px;
 	padding-right: 20px;
     padding-left: 20px;
 }
 
+.information-table .col-xs-12:after {
+  	content: ""; /* This is necessary for the pseudo element to work. */ 
+    display: block; /* This will put the pseudo element on its own line. */
+    margin: 0 auto; /* This will center the border. */
+    width: 99%; /* Change this to whatever width you want. */
+    border-bottom: 1px solid #eeeeee; /* This creates the border. Replace black with whatever color you want. */
+}
+
 .information-table .col-xs-6 {
-	font-size: 13px;
+	font-size: 16px;
+	margin-top: 5px;
+	padding: 5px 0;
+}
+
+.information-table .border-right {
+	border-right: 1px solid #eeeeee;
 }
 
 .information-table a {
@@ -74,33 +91,32 @@ html, body {
 }
 
 .numbers{
-    font-size:25px;
+    font-size:16px;
     display: inline-block;
 }
 
 .point {
-	color: #ff5c56;
-	font-size: 36px;
+	color: #505050;
+	font-size: 54px;
 	line-height: 42px;
-	margin-bottom: 15px;
 }
 
 .balance {
-	color: #ff5c56;
-	line-height: 25px;
+	color: #ff6a52;
 }
 
 .life {
-	color: #666666;
-	line-height: 25px;
+	color: #505050;
 }
 
 .button-redeem {
-	display: inline-block;
-	color: #8b6cfe;
-	font-size: 18px;
-	vertical-align: top;
-	padding: 10px;
+	color: white;
+	font-size: 14px;
+	padding: 3px 5px 5px 5px;
+	border-radius: 20px;
+	background-color: #ff6a52;
+	width: 90px;
+	margin: 5px auto 20px auto;
 }
 
 .left {
@@ -122,9 +138,13 @@ html, body {
 }
 
 .top-background img {
-	margin-top: -25%;
+	margin-top: -15%;
 	width: 100%;
     height: 100%;
+}
+
+.bottom-background {
+	background-color: white;
 }
 
 @media only screen and (max-width: 500px) {
@@ -133,18 +153,27 @@ html, body {
 	}
 
 	.top-background img {
-		margin-top: -20%;
+		margin-top: -10%;
+	}
+
+	.bottom-background {
+		height: 16px;
+	}
+}
+
+@media only screen and (max-width:400px) {
+	.top-background img {
+		margin-top: -5%;
+	}
+
+	.bottom-background {
+		height: 20px;
 	}
 }
 
 @media only screen and (max-width: 360px) {
     .member-box {
 	}
-}
-
-.bottom-background {
-	background-color: white;
-	height: 40px;
 }
 
 .listing-table {
@@ -156,14 +185,16 @@ html, body {
 }
 
 .long{
-	margin-bottom: 60px;
+	margin-top: 10px;
+	margin-bottom: 40px;
 }
 
 .image-wrapper {
 	width: 90%;
 	height: 90%;
 	margin: 0 auto;
-	padding-top: 10px;
+	padding-top: 19px;
+	padding-bottom: 10px;
 }
 
 .listing-table img {
@@ -200,7 +231,8 @@ html, body {
 
 .glyphicon {
 	float: right;
-	color: #ababab;
+	color: #ccc;
+	margin-top: 2px;
 }
 
 .vip-count {
@@ -216,21 +248,23 @@ html, body {
 	margin-top: -3px;
 	margin-right: 2px;
 	color: #007cef;
-	font-size: 16px;
+	font-size: 18px;
 }
 
 .vip-redeemticket {
 	float: right;
 	margin-top: -3px;
 	margin-right: 2px;
-	color: #686868;
+	color: #ccc;
+	font-size: 18px;
 }
 
 .vip-ticketnotinused {
 	float: right;
 	margin-top: -3px;
 	margin-right: 2px;
-	color: #686868;
+	color: #ccc;
+	font-size: 18px;
 }
 
 .icon-wrapper {
@@ -593,6 +627,7 @@ html, body {
 	display: block;
 	float: left;
 	padding-left: 10px;
+	margin-top: 0px;
 }
 
 #verify-steps .left {

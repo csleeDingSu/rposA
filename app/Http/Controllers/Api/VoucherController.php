@@ -82,16 +82,19 @@ class VoucherController extends Controller
 
 			$member_id = Auth::guard('member')->user()->id;
 
-        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();	
+        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();
+			
+			$firstwin = \App\Product::IsFirstWin($member_id);
 		}
         else{
 
         	$member_mainledger = null;
+			$firstwin 		   = null;
 
         }
 
 		
-        return view('client.home3', compact('vouchers','category','cid','banner','member_mainledger', "setting"));
+        return view('client.home3', compact('vouchers','category','cid','banner','member_mainledger', "setting",'firstwin'));
 		
     }
 
