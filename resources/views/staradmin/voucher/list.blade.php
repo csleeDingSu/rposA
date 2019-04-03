@@ -65,6 +65,19 @@
 					</div>
 					@endforeach 
 					
+					
+					<div class="row">
+						<div class="col-md-6">
+						<div class="form-group row">
+							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.share_product') </label>
+							<div class="col-sm-9">
+								<input type="checkbox" id="share_product" name="share_product" value="1" />
+							</div>
+						</div>
+					</div>
+						
+						</div>
+					
 					 
 
 				</div>
@@ -180,7 +193,10 @@ $(document).ready(function() {
 						console.log(data);
 						console.log(data_tagcategory);
 						var vcategory = null;
-						
+						if (data.share_product == 1)
+						{
+							document.getElementById('share_product').checked = true;
+						}
 						$("input[name='system_category[]']").each( function () {
 							cposition = $(this).val();
 							$.each( data_tagcategory, function( key, value ) {
