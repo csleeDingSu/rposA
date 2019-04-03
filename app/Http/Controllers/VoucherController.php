@@ -568,6 +568,9 @@ class VoucherController extends BaseController
 				if (!empty($input['s_title'])) { 
 					$result = $result->where('product_name','LIKE', "%{$input['s_title']}%");
 				}
+				if (!empty($input['s_share'])) { 
+					if ($input['s_share'] == 1 ) $result = $result->where('share_product', 1);
+				}
 				if (isset($input['s_cate'])) {
 					if ($input['s_cate'] != '' )
 					$result = $result->where('category.display_name','LIKE', "%{$input['s_cate']}%") ;							
