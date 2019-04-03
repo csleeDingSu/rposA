@@ -29,6 +29,16 @@
 							</div>
 						</div>
 						<div class="col">
+							<label>@lang('dingsu.share_product')</label>
+							<div id="bloodhound">
+							<select class="form-control" name="s_share" id="s_share">
+								<option value="0">@lang('dingsu.no')</option>
+								<option value="1">@lang('dingsu.yes')</option>
+							</select>
+
+							</div>
+						</div>
+						<div class="col">
 							<label>@lang('dingsu.sortby')</label>
 							<div id="bloodhound">
 							<select class="form-control" name="s_sort" id="s_sort">
