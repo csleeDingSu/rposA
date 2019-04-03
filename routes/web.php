@@ -479,4 +479,4 @@ Route::get( 'logout', 'Auth\LoginController@logout' );
 
 Route::post( 'logout', 'Auth\LoginController@logout' )->name( 'logout' );
 
-$this->get( '/share_product', 'ShareProductController@index' )->name( 'share.product' );
+$this->get( '/share_product/{id?}', 'ShareProductController@index' )->name( 'share.product' );

@@ -26,9 +26,17 @@ class ShareProductController extends BaseController
 {
     // use AuthorizesRequests, DispatchesJobs, ValidatesRequests;	
 	
-	public function index() {		
+	public function index($id = FALSE) {		
 
-		$data['item'] = Voucher::where('share_product',1)->orderBy('updated_at', 'desc')->select('*')->first();
+		if (is_null($id)) {
+
+			$data['item'] = Voucher::where('share_product',1)->orderBy('updated_at', 'desc')->select('*')->first();
+
+		} else {
+
+			$data['item'] = Voucher::where('id',$id)->select('*')->first();
+
+		}		
 		
 		return view('client/share_product', $data);
 	}
