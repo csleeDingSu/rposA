@@ -2,9 +2,14 @@
 	<div class="navBox">
 		<dl class="dbox">
 			<dd class="dbox1">
-				<a href="{{ url('home') }}">
-					<i class="homeIcon"></i>
-					<p>首页</p>
+				<a href="{{ url('home') }}" class="footer-icon">
+					@if(Request::is('cs/*'))
+						<img src="{{ asset('/client/images/icon-home-active.png') }}" width="25" height="25" />
+						<p class="active">首页</p>
+					@else
+						<img src="{{ asset('/client/images/icon-home.png') }}" width="25" height="25" />
+						<p>首页</p>
+					@endif
 				</a>
 			</dd>
 
@@ -29,9 +34,14 @@
 				</a>
 			</dt>
 			<dd class="dbox1">
-				<a href="/member">
-					<i class="userIcon"></i>
-					<p>个人中心</p>
+				<a href="/member" class="footer-icon">
+					@if(Request::is('profile'))
+						<img src="{{ asset('/client/images/icon-user-active.png') }}" width="25" height="25" />
+						<p class="active">个人中心</p>
+					@else
+						<img src="{{ asset('/client/images/icon-user.png') }}" width="25" height="25" />
+						<p>个人中心</p>
+					@endif
 				</a>
 			</dd>
 		</dl>

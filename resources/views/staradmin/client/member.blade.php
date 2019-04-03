@@ -28,7 +28,7 @@
 					@if($member->wechat_verification_status == 0)				
 						<img src="{{ asset('/client/images/verified.png') }}" width="130" height="30" alt="verified" />
 					@else
-						<img src="{{ asset('/client/images/unverify.png') }}" width="130" height="30" alt="unverify" />					
+						<img class="unverify" src="{{ asset('/client/images/unverify.png') }}" width="130" height="30" alt="unverify" />					
 					@endif
 					</div>
 				</div>
@@ -39,19 +39,18 @@
 			<!-- member details -->
 			<div class="information-table">
 				  <div class="col-xs-12">
-				  	<img src="{{ asset('/client/images/coin.png') }}" width="16" height="16" alt="button redeem" /> 金币总数<br />
+				  	<img src="{{ asset('/client/images/coin.png') }}" width="22" height="22" alt="button redeem" /> 可用金币<br />
 				  	<div class="point numbers">{{ number_format($wallet->current_point, 0, '.', '') }}</div>
 				  	<a href="/redeem">
-					  	<div class="button-redeem">兑换红包<img src="{{ asset('/client/images/right.png') }}" width="20" height="20" alt="button redeem" />
-					  	</div>
+					  	<div class="button-redeem">兑换红包</div>
 					</a>
 				  </div>
-				  <div class="col-xs-6">
-				  	未结算金币<br />
+				  <div class="col-xs-6 border-right">
+				  	未结算
 				  	<div class="balance numbers">{{ number_format($wallet->current_life_acupoint, 0, '.', '') }}</div>
 				  </div>
 				  <div class="col-xs-6">
-				  	已兑换金币<br />
+				  	已兑换
 				  	<div class="life numbers">				  		
 				  		{{ number_format($usedpoint, 0, '.', '') }}
 				  	</div>
@@ -164,7 +163,7 @@
 			<ul class="list-group">
 
 				<a href="/faq">
-					<li class="list-group-item">
+					<li class="list-group-item first-item">
 						<div class="icon-wrapper">
 							<div class="icon-faq"></div>
 						</div>
@@ -204,7 +203,7 @@
 
 @section('footer-javascript')
 <!-- Steps Modal starts -->
-	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: #666666;">
+	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title">
 				<h1>您有红包等待领取</h1>				
@@ -290,9 +289,9 @@
 		$(document).ready(function () {
 			var wechat_status = $('#hidWechatStatus').val();
 			
-			if(wechat_status > 0) {
-				$('#verify-steps').modal({backdrop: 'static', keyboard: false});
-			}
+			$('.unverify').click(function(){
+				$('#csModal').modal();
+			});
 
 			var clipboard = new ClipboardJS('.cutBtn', {
 				target: function () {
