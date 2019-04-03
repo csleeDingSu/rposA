@@ -570,11 +570,11 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
 								<div class="modal-warning-title">
-									您当前没有挖宝次数
+									您当前没有次数
 								</div>
 								<div class="modal-invite-content">
 									<span class="modal-invite-title">邀请1位好友</span><br />
-									奖励{{env('sharetofriend_youwillget', '3')}}次挖宝机会，赚{{env('sharetofriend_youwillget_bonus', '45')}}元红包
+									奖励{{env('sharetofriend_youwillget', '1')}}次玩赚免单机会，赚{{env('sharetofriend_youwillget_bonus', '15')}}元
 								</div>
 								<a href="/share" class="link-button">
 									<div class="modal-warning-button">
