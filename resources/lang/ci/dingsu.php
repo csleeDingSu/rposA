@@ -535,4 +535,6 @@ return [
 	'adjust_wallet' => '调整挖宝账号',
 
 	'change_picture' => '换一张',
+
+	'share_product' => '分享产品',
 ];
