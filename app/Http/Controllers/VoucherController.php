@@ -750,6 +750,11 @@ class VoucherController extends BaseController
 					$arr_system_category[] = $val['value'];
 				}
 			}
+			
+			if (!isset($insdata['share_product']))
+			{
+				$insdata['share_product']  = '0'; 
+			}
 
 			if (is_array($arr_system_category))
 			{
