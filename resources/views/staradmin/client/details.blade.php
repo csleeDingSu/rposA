@@ -64,16 +64,6 @@
 		</div>
 	</div>
 
-@else
-	<div class="wrapper full-height">
-		<div class="card"> 
-			@lang('dingsu.no_record_found')
-		</div>
-	</div>
-@endif
-
-
-
 
 <!-- Modal starts -->
 <form class="form-sample" name="formvoucher" id="formvoucher" action="" method="post" autocomplete="on" >
@@ -130,6 +120,15 @@
 </div>
 </form> 
 <!-- Modal Ends -->
+
+@else
+	<div class="wrapper full-height">
+		<div class="card"> 
+			@lang('dingsu.no_record_found')
+		</div>
+	</div>
+@endif
+
 @endsection
 
 @section('footer-javascript')
