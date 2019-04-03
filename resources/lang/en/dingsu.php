@@ -552,5 +552,8 @@ return [
 	'ads_picture' => '广告图',
 	'standard' => 'normal',
 	'change_picture' => 'Change',
+
+	'share_product' => 'share product',
+	'voucher_pass' => 'tabao code',
 	
 ];
