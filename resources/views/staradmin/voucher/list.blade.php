@@ -72,6 +72,10 @@
 							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.share_product') </label>
 							<div class="col-sm-9">
 								<input type="checkbox" id="share_product" name="share_product" value="1" />
+								<span class="shareurl" id="shareurl">
+									{{ Config::get('app.shareurl' ) }}
+									<span class="shareid" id="shareid"></span>
+									</span>
 							</div>
 						</div>
 					</div>
@@ -100,6 +104,16 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
 
 		<script language="javascript">
+function showurl()
+{
+	if(document.getElementById('share_product').checked) 
+	{
+		$(".shareurl").show();
+	}
+	else{
+		$(".shareurl").hide();
+	}
+}			
 function Update_voucher()
 {
 	
@@ -164,7 +178,7 @@ $(document).ready(function() {
 	$( 'body' ).on( 'click', '.openeditmodel', function ( e ) {
 		//$('.openeditmodel').click(function() {
 			var id=$(this).data('id');
-			
+			$(".shareurl").hide();
 			$('#formupdatevoucher')[0].reset();
 			swal( {
 				title: '@lang("dingsu.please_wait")',
@@ -193,9 +207,11 @@ $(document).ready(function() {
 						console.log(data);
 						console.log(data_tagcategory);
 						var vcategory = null;
+						$("#shareid").html(data.id);
 						if (data.share_product == 1)
 						{
-							document.getElementById('share_product').checked = true;
+							document.getElementById('share_product').checked = true;							
+							$(".shareurl").show();
 						}
 						$("input[name='system_category[]']").each( function () {
 							cposition = $(this).val();
