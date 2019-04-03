@@ -554,5 +554,6 @@ return [
 	'change_picture' => 'Change',
 
 	'share_product' => 'share product',
+	'voucher_pass' => 'tabao code',
 	
 ];

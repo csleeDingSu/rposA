@@ -537,4 +537,5 @@ return [
 	'change_picture' => '换一张',
 
 	'share_product' => '分享产品',
+	'voucher_pass' => '淘宝二维码',
 ];
