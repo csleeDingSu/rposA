@@ -537,5 +537,7 @@ return [
 	'change_picture' => '换一张',
 
 	'share_product' => '分享产品',
-	'voucher_pass' => '淘宝二维码',
+	'voucher_pass' => '淘宝二维码',	
+	'move_all' => '将所有记录移至优惠卷列表',
+	'delete_all' => '将所有记录删除',
 ];
