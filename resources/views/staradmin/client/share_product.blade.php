@@ -361,7 +361,7 @@
 												注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币换领取<br />
 												新人免费玩3次 可赚45元
 											</div>
-											<a href="/login">
+											<a href="/member/login/register">
 												<div class="btn-red-packet">注册</div>
 											</a>
 										</div>
