@@ -78,6 +78,34 @@
 	<div class="col-md-4 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
+				<h2 class="card-title text-primary ">@lang('dingsu.current_items')</h2>
+				<div class="wrapper d-flex justify-content-between">
+					<div class="side-left">
+						<p class="card-text mb-0">@lang('dingsu.today_game_player')</p>
+					</div>
+					<div class="side-right">
+						<small class="display-4 mb-4 font-weight-light">{{$result->current_game_player}}</small>
+					</div>
+				</div>
+
+				<div class="wrapper d-flex justify-content-between">
+					<div class="side-left">
+						<p class="card-text mb-0">@lang('dingsu.today_vip_game_player')</p>
+					</div>
+					<div class="side-right">
+						<small class="display-4 mb-4 font-weight-light">{{$result->current_vip_game_player}} </small>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="col-md-4 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
 				<h2 class="card-title text-primary ">@lang('dingsu.today') @lang('dingsu.users')</h2>
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
@@ -107,13 +135,6 @@
 				</div>
 
 			</div>
-		</div>
-
-	</div>
-
-
-	<div class="col-md-4 grid-margin stretch-card">
-		<div class="card">
 			<div class="card-body">
 				<h2 class="card-title text-primary ">@lang('dingsu.today') @lang('dingsu.redeemtion')</h2>
 				<div class="wrapper d-flex justify-content-between">
