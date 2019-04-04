@@ -555,5 +555,7 @@ return [
 
 	'share_product' => 'share product',
 	'voucher_pass' => 'tabao code',
+	'move_all' => 'move all to voucher',
+	'delete_all' => 'remove all records',
 	
 ];
