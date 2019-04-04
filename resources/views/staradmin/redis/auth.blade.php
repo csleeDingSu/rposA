@@ -52,7 +52,7 @@
 			//Output have userid , token and username 
 			
 			var socket = new io.connect(c_url, {
-                'reconnection': true,
+                'reconnection': false,
                 'reconnectionDelay': 1000,
                 'reconnectionDelayMax' : 5000,
                 'reconnectionAttempts': 2,
