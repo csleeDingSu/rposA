@@ -133,7 +133,7 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get( '/redeem/{slug}', function ($slug = '') {
 		return view( 'client/redeem', compact('slug'));
 	} );
-	
+
 	Route::get( '/validate', function () {
 		return view( 'client/validate' );
 	} );
@@ -170,6 +170,7 @@ Route::prefix( 'admin' )->group( function () {
 
 Route::group( [ 'prefix' => 'member', 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function () {
 	Route::get( 'login', 'MemberLoginController@showLoginForm' )->name( 'memberlogin' );
+	Route::get( 'login/{slug}', 'MemberLoginController@showLoginForm' )->name( 'memberregister' );
 	Route::post( 'login', 'MemberLoginController@login' )->name( 'memberlogin.submit' );
 
 	// Password Reset Routes...
