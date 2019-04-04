@@ -123,11 +123,11 @@
 @parent
     <div class="loginBox">
                 <div class="hd flex">                    
-                    <a class="on">账号登录</a>
-                    <a id="reg">快速注册</a>
+                    <a class="{{ empty($slug) ? 'on' : '' }}">账号登录</a>
+                    <a class="{{ !empty($slug)? 'on' : '' }}" id="reg">快速注册</a>
                 </div>
                 <div class="bd">
-                    <div class="inBox on">
+                    <div class="inBox {{ empty($slug) ? 'on' : '' }}">
                         <form class="authform" name="authform" id="authform" action="" method="post" autocomplete="on">
                             <ul>
                                 <li>
@@ -161,7 +161,7 @@
                         </form>
                     </div>
 
-                    <div class="inBox">
+                    <div class="inBox {{ !empty($slug) ? 'on' : '' }}">
                         <form class="registerform" name="registerform" id="registerform" action="" method="post" autocomplete="off">
                             <ul>
                                 @if(!empty($refcode) and !isset($ref->id))

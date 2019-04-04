@@ -309,7 +309,9 @@
 }
 
 .footer-icon img {
-  margin-top: 5px;
+  margin-top: 0.1rem;
+  width: 0.55rem;
+  height: 0.55rem;
 }
 
 .homeIcon {
@@ -889,3 +891,39 @@ p.vip-life {
 }
 
 /* End Game Rules Modal */
+
+/* Speech Bubble */
+.speech-balloon-home { 
+  position: absolute; 
+  background: #ff9e13; 
+  border-radius: .4em; 
+  z-index: 100;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
+  width: 5rem;
+  height: 0.7rem;
+  margin-top: -1.6rem;
+  color: white;
+  text-align: center;
+  font-size: 0.3rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  cursor: pointer;
+} 
+
+.speech-balloon-home:after { 
+  content: ''; 
+  position: absolute; 
+  bottom: 0; 
+  left: 50%; 
+  width: 0; 
+  height: 0; 
+  border: 6px solid transparent; 
+  border-top-color: #ff9e13; 
+  border-bottom: 0; 
+  margin-left: -6px; 
+  margin-bottom: -6px; 
+}
+/* End Speech Bubble */

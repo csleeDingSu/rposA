@@ -78,6 +78,7 @@
 <body style="background:#efefef">
 <input type="hidden" id="page" value="1" />
 <input type="hidden" id="max_page" value="{{$vouchers->lastPage()}}" />
+<input type="hidden" id="firstwin" value="{{ $firstwin }}" />
 
 	<section class="cardFull card-flex">
 		<div class="cardHeader">
@@ -182,7 +183,8 @@
 				</div>
 			</div>
 		</div>
-		
+
+		<div class="speech-balloon-home hide">你有3次玩赚免单机会，可赚45元</div>
 		@include('layouts/footer')
 
 		<!-- 领取优惠券  -->
@@ -319,7 +321,18 @@
 		
 		$(document).ready(function(){
 		//$(function () {
-			
+
+			var firstwin = $('#firstwin').val();
+			console.log(firstwin);
+
+			if(firstwin == 'yes'){
+				$('.speech-balloon-home').click(function () {
+					$(this).hide();
+				});
+				
+				$('.speech-balloon-home').removeClass('hide').animate({'margin-top': '-1.4rem'}, 500);
+			}
+
 			$('.downIcon').click(function () {
 				$('.cardHeader').css({ 'z-index': '11' });
 				being.wrapShow('.cardBody');
