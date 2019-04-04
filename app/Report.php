@@ -177,6 +177,20 @@ class Report extends Model
 		$result = DB::table('view_package_type_usercount')->select('count','package_type')->get();
 		return $result ;		
 	}
+
+	public static function current_game_player($date,$vip = FALSE)
+	{
+		$balance = null;
+		$temp_date = new $date;
+		$temp_date = $temp_date->subMinutes(5)->toDateTimeString();	
+		if ($vip) {
+			$balance = DB::table('vip_member_game_result')->where('created_at','>=', $temp_date)->groupBy('member_id')->get()->count();
+		} else {
+			$balance = DB::table('member_game_result')->where('created_at','>=', $temp_date)->groupBy('member_id')->get()->count();			
+		}
+
+		return $balance;
+	}
 	
 	 //DB::enableQueryLog();
 		//$result = DB::table($table)->where('pass_access_flag','=','3')->select('id', 'product_detail_link', 'pass_access_flag')->limit($limit)->get($limit);

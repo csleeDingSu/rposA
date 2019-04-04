@@ -39,7 +39,7 @@ class GenerateDashboardReport extends Command
      */
     public function handle()
     {
-        $today = Carbon::today();
+        $today = Now(); //Carbon::today();
 		$this->comment('Stared:'.'----------'.Carbon::now()->toDateTimeString().'----------');
 		//get Game list
 		$report['pending_wechat']               = Report::pending_wechat();
@@ -65,6 +65,10 @@ class GenerateDashboardReport extends Command
 		$report['ledger_points']    			= Report::ledger_points();
 		$report['ledger_vip_points']  			= Report::ledger_points('vip');
 		$report['unreleased_voucher_count']     = Report::voucher_count(true);
+		
+		//right now data
+		$report['current_game_player']  			= Report::current_game_player( $today );
+		$report['current_vip_game_player']  			= Report::current_game_player($today, 'vip');
 		
 		$re = Report::wabao_redeem_user();		
 		foreach ($re as $ruser)
