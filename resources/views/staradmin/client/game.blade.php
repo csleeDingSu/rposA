@@ -696,23 +696,17 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="game-title">10金币兑换1元红包</div>
-								<div class="game-max-rules">(满150金币可结算)</div>
 								<div class="instructions">
-									这是个猜单双的游戏，原始游戏积分为1200。
-									每次下注有50%中奖概率，<span class="highlight">但把积分1200分成6次下注，猜中概率高达99.9%</span>，<br />
-									原理如下：<br />
-
-									<div class="speech-bubble">
-										1200依次分[10，30，70，150，310，630]
-										第一次下注10，如果猜错，第二次下注30。
-										如果中了，不仅捞回第一次亏的10，还赚20。
-										共有6次的机会，6次里中一次都能回本并盈利。
-									</div>
+									这是个猜单双的游戏，原始积分为1200，依次被分成6次供玩家下注[10,30,70,150,310, 640]<br />
+									<span class="highlight">玩法解释：</span><br />
+									第一局下注10积分，如果猜错，第二局下注30积分，这样能保证第二局猜中后，不仅把第一局亏的填补上，而且还能赚积分。<br />
+									一共被分成6次下注，只要6次内猜中一次，就能不停循环的赚取更多积分。<br />
+									<span class="highlight">如何兑换红包：</span><br />
+									赚到的积分可兑换免单红包（可提现），大约兑换比率：10金币兑换1元。
 								</div>
 
 								@if($betting_count > 0)
-									<div class="btn-game-rules btn-rules-close">进入挖宝</div>
+									<div class="btn-game-rules btn-rules-close">返回玩赚免单</div>
 								@else
 									<div class="btn-game-rules btn-rules-timer"><span class="span-read">请阅读游戏规则</span> <span class="txtTimer"></span></div>	
 								@endif
