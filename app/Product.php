@@ -287,7 +287,7 @@ class Product extends Model
 		{
 			return 'yes';
 		}
-		return 'yes'; //for testing
+		// return 'yes'; //for testing
 		return '';
 	}
 	
