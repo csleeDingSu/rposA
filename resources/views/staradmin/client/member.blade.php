@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '个人中心')
+@section('title', '')
 
 @section('top-css')
     @parent
@@ -250,6 +250,33 @@
 	</div>
 <!-- Steps Modal Ends -->
 
+<!-- Steps Modal starts -->
+	<div class="modal fade col-md-12" id="verify-wechat" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+								<div class="wechat-instructions">
+									你的账号还未通过微信认证，<br />
+									不能兑换红包，请先认证。
+								</div>								
+							</div>
+							<div class="row">
+								<a href="#">
+									<img src="{{ asset('/client/images/btn-verify.png') }}" width="154" height="44" alt="Verify" />
+								</a>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Steps Modal Ends -->
+
 <!-- customer service modal -->
 <div class="modal fade col-md-12" id="csModal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -289,8 +316,9 @@
 		$(document).ready(function () {
 			var wechat_status = $('#hidWechatStatus').val();
 			
+			//$('#verify-wechat').modal();
 			$('.unverify').click(function(){
-				$('#csModal').modal();
+				$('#verify-wechat').modal();
 			});
 
 			var clipboard = new ClipboardJS('.cutBtn', {

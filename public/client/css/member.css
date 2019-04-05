@@ -683,3 +683,9 @@ html, body {
 }
 /* End Wechat Modal*/
 
+.wechat-instructions {
+	padding-top: 15px;
+	padding-bottom: 20px;
+	font-size: 17px;
+	color: #b2b2b2;
+}
