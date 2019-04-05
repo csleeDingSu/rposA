@@ -173,7 +173,7 @@ section {
 	position: relative; 
 	z-index: 1; 
 	text-align: center; 
-	margin-top:9.2rem;
+	margin-top:10.9rem;
 }
 
 .showTips img {
@@ -185,6 +185,11 @@ section {
     object-fit: contain;
 
 }
+
+.showTips .ply {
+	padding-left:0.04rem;
+}
+
 
 #speech-packet-modal {
   color: white;
@@ -207,6 +212,12 @@ section {
 	font-size: 3.5vw;
 	text-align: center; padding-left:0.75rem;
 }
+
+.wrapBox {
+	height: 13.9rem;
+
+}
+
 	</style>
 <body>
 
@@ -268,6 +279,14 @@ section {
 						</a>
 					</div>
 					
+				</div>
+				<div class="ply">
+					<a href="/member/login/register">
+						<div id="footer-life">
+							<i class="nTxt">0</i>
+							<!-- <p>玩赚免单</p> -->
+						</div>
+					</a>
 				</div>
 			</div>
 		</div>
