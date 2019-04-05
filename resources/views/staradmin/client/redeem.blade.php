@@ -168,31 +168,24 @@
 <!-- Steps Modal starts -->
 	<div class="modal fade col-md-12" id="wechat-verification-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content modal-wechat">
+			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="body-title">联系客服发放兑换红包</div>
-								<div style="padding-top: 15px">
-					        		<img src="{{ asset('/client/images/cs_qrcode.png') }}" width="150" height="150" />
-					        	</div>
-								<div class="instructions">
-									添加客服微信号
+								<img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+								<div class="wechat-instructions">
+									你的账号还未通过微信认证，<br />
+									不能兑换红包，请先认证。
 								</div>								
 							</div>
-							<div class="modal-card">
-								<div id="cutVerify" class="copyvoucher">WABAO666</div>
-								<div class="cutBtn">一键复制</div>
+							<div>
+								<a href="/validate">
+									<img src="{{ asset('/client/images/btn-verify.png') }}" width="154" height="44" alt="Verify" />
+								</a>
 							</div>
 						</div>
 					</div>							
-				</div>
-			</div>
-
-			<div class="modal-card">
-				<div class="btn-close btn-close-verify">
-					暂不兑换
 				</div>
 			</div>
 		</div>
