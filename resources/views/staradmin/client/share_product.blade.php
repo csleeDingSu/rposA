@@ -93,7 +93,7 @@ section {
 	  -o-border-radius: 0.1rem;
 	  background-color: #f75656;
 	  font-size: 100%;
-	  font-size: 3.8vw;
+	  font-size: 0.3rem;
 	  color: #fff;
 	  font-weight: 0 !important;
 	}
@@ -103,11 +103,11 @@ section {
 	  
 		/*font-size: 0.4rem;*/
 		/*font-size: 100%;*/
-		font-size: 7vw;
+		font-size: 0.6rem;
 	  	font-weight: 700;
 	  	color: #f75656;
-	  	padding-left: 10px;
-	  	padding-right: 10px;
+	  	padding-left: 0.2rem;
+	  	padding-right: 0.2rem;
 
 	}
 
@@ -116,20 +116,20 @@ section {
 		width: 30%;
 	  
 		font-size: 24px;
-		font-size: 4vw;
+		font-size: 0.3rem;
 		color: #bbbbbb;
 		text-decoration: line-through;
 
 	}
 
 	.infinite-scroll .button {
-		padding: 10px;
-		padding-top: 30px
+		padding: 0.3rem;
+		padding-top: 0.5rem;
 	}
 
 	.infinite-scroll .button a {
-	  width: 100%;
-	  padding: 10px;
+	  width: 5.5rem;
+	  padding: 0.25rem;
 	  /*margin-left: 0.18rem;*/
 	  /*margin-right: 0.18rem;*/
 	  text-align: center;
@@ -149,7 +149,8 @@ section {
 		color: #f75656;
 		border: 0.02rem solid #ff5949;
 		font-size: 100%;
-		font-size: 5.8vw;
+		/*font-size: 5.8vw;*/
+		font-size: 0.4rem;
 
 	}
 
@@ -160,20 +161,27 @@ section {
 		color: #fff;
 		background-color: #f75656;
 		font-size: 100%;
-		font-size: 6.2vw;
+		/*font-size: 6.2vw;*/
+		font-size: 0.45rem;
 	  	
 	}
 
 	.getvoucher:hover { color:#f75656 ; text-decoration: none; }
 	.playgame:hover { color:#fff ; text-decoration: none; }
 
+.showTips .inBox {
+	position: relative; 
+	z-index: 1; 
+	text-align: center; 
+	margin-top:9.2rem;
+}
 
 .showTips img {
 	margin: 0 auto;
 	  font-size: 0;
 	  display: inline-block;
 	  margin-bottom: 0.2rem;
-	width: 310px !important; 
+	width: 6.5rem !important; 
     object-fit: contain;
 
 }
@@ -181,19 +189,23 @@ section {
 #speech-packet-modal {
   color: white;
   text-align: center;
-      position: relative; //changed to relative from fixed also works if position is not there
+  /*position: relative; //changed to relative from fixed also works if position is not there*/
+
+  position: absolute; top: 0rem; z-index: 3;
 
 }
 
 #speech-packet-modal h4{	
 	color: white;
 	font-size: 5.5vw;
-	padding: 5px;
+	padding: 0.1rem;
+	text-align: center; padding-top:0.4rem; padding-left:0.75rem;
  }
 
 #speech-packet-modal h5{
 	color: white;
 	font-size: 3.5vw;
+	text-align: center; padding-left:0.75rem;
 }
 	</style>
 <body>
@@ -245,15 +257,14 @@ section {
 				</div>
 			</div>
 
-			<!-- 玩赚免单 -->
-			
+			<!-- 玩赚免单 -->			
 			<div class="showTips dflex scaleHide">
-				<div class="inBox" style="position: relative; z-index: 1; text-align: center; margin-top:480px;">
+				<div class="inBox">
 					<img src="{{ asset('/client/images/share_product_speech.png') }}">
-					<div id="speech-packet-modal" style="position: absolute; top: 0px; z-index: 3;">
+					<div id="speech-packet-modal">
 						<a href="/member/login/register">
-							<h4 style="text-align: center; padding-top:20px; padding-left:35px;">点击这里，免单红包任你拿</h4>
-							<h5 style="text-align: center; padding-left:35px;">新人送3次机会 可赚45元 （ 可提现 ）</h5>
+							<h4>点击这里，免单红包任你拿</h4>
+							<h5>新人送3次机会 可赚45元 （ 可提现 ）</h5>
 						</a>
 					</div>
 					
