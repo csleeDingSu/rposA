@@ -1,109 +1,94 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
 
 body {
-	background: #698fc0;
+	background: #ffffff;
+}
+
+.navbar {
+	background: #f0f0f0;
+	color: #97969e;
+}
+
+.navbar-default .navbar-brand {
+	color: #303030;
 }
 
 .card {
-	width: 280px !important;
 	margin: 0 auto;
-	padding: 10px 0;	
-}
-
-.card-margin {
-	margin: 10px 0;
-}
-
-.btn-rectangle, .btn-rectangle:hover {
-	width: 280px !important;
-	height: 45px !important;
-	background-color: #3cd5c1;
-	color: white;
-	font-size: 24px;
-	padding-top: 5px;
-	margin-bottom: 20px;
-}
-
-.img-title {
-	width: 320px;
-	margin: 0 auto;
-	background-color: #485d7c;
-}
-
-.img-validate {
-    margin: 0 auto;
-	width: 250px;
-	height: 250px;
-}
-
-.title{
-    font-size:20px;
-	font-weight: 500;
-	padding-bottom: 5px;
+	padding: 0 10px;	
 }
 
 .full-height {
 	padding-top: 60px;
-	font-size:20px;
+	font-size:12px;
     font-family: 'Lato',verdana, sans-serif;
-    color: #fff;
-    text-align:center;
-    background:#698fc0;
+    color: #a9a9a9;
+    text-align:left;
+    background:#ffffff;
 }
 
-.text {
-	font-size:16px;
+.title {
+	color: #313131;
+	font-size: 20px;
+	padding: 0 0 10px 0;
 }
 
-.left {
-	text-align: left;
+.sub-title {
+	color: #828282;
+	font-size: 14px;
+	padding: 10px 0;
 }
 
-input[type=text]{
-	width: 100%;
-	/*margin-top: 20px;*/
-	outline: none;
-	padding: 8px;
-	box-sizing: border-box;
-	background-color: #485d7c;
-	border: none;
-	font-size: 16px;
+.instructions {
+	color: #616161;
+	font-size: 12px;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #78879c;
-    opacity: 1; /* Firefox */
+.step {
+	color: #808080;
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #78879c;
+.highlight {
+	color: #639cf3;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: #78879c;
+.img-settings {
+	margin: 10px 0 20px 0;
 }
 
-.inputWithIcon input[type=text]{
-	padding-left: 40px;
+.wechat_card {
+	background: #f5f5f5;
+	border-radius: 10px;
+	font-size: 18px;
+	color: #aaaaaa;
+	text-align: center;
+	width: 290px;
+	padding: 5px 40px 20px 40px;
+	margin: 40px 0 20px 0;
 }
 
-.inputWithIcon {
-	position: relative;
+.img-wechat {
+	margin-top: -30px;
 }
 
-.inputWithIcon .name {
-	position: absolute;
-	left: -25px;
-	top: -3px;
-	padding: 9px 8px;
-	color: #fff;
-	transition:.3s;
+.wechat_id {
+	color: #7fc409;
 }
 
-div.name {
-	background: url('/client/images/icon.png') no-repeat -780px -750px;
-	transform: scale(0.3); /* Equal to scaleX(0.7) scaleY(0.7) */
-	-webkit-transform: scale(0.3);
-	width: 90px;
-	height: 90px;
+.cutBtn, .cutBtn-success, .cutBtn-fail {
+	background: #75c700;
+	color: white;
+	padding: 5px;
+	border-radius: 6px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+.cutBtn {
+	cursor: pointer;
+}
+
+.cutBtn-fail {
+    background: #999999;
 }
