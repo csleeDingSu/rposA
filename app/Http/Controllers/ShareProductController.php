@@ -30,7 +30,8 @@ class ShareProductController extends BaseController
 
 		if (is_null($id)) {
 
-			$data['item'] = Voucher::where('share_product',1)->orderBy('updated_at', 'desc')->select('*')->first();
+			// $data['item'] = Voucher::where('share_product',1)->orderBy('updated_at', 'desc')->select('*')->first();
+			$data['item'] = Voucher::select('*')->first();
 
 		} else {
 
