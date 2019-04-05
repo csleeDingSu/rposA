@@ -23,7 +23,11 @@
 
 </head>
 <style>
-	
+
+body {
+	background-color: #f6f6f6;
+	padding: 20px;
+}	
 	
 .isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
 	
@@ -37,7 +41,7 @@
 	    background: white;
 	    color: black;
 	    /*text-align: center;*/
-	    margin: 20px;
+	    /*margin: 20px;*/
 	    border-top-left-radius: 6px;
 	    border-top-right-radius: 6px;
 	    border-bottom-left-radius: 6px;
@@ -293,7 +297,7 @@
 /* Red Packet Modal */
 
 	</style>
-<body style="background-color: #f6f6f6;">
+<body>
 
 	<section>
 		<div class="infinite-scroll">
@@ -323,7 +327,7 @@
 			</ul>
 
 			<div class="button">
-				<a class="getvoucher" href="#"><?=str_replace('60', number_format(empty($item->voucher_price) ? 0 : $item->voucher_price,0), env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买'))?></a>
+				<a class="getvoucher" href="#"><?=str_replace('60', number_format(empty($item->voucher_price) ? 10 : $item->voucher_price,0), env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买'))?></a>
 				<a class="playgame" href="#">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
 			</div>
 
