@@ -84,7 +84,11 @@ class VoucherController extends Controller
 
         	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();
 			
-			$firstwin = \App\Product::IsFirstWin($member_id);
+			if($request->session()->get('firstwin') == 'no'){
+				$firstwin = null;
+			} else {
+				$firstwin = \App\Product::IsFirstWin($member_id);
+			}
 		}
         else{
 
@@ -131,4 +135,8 @@ class VoucherController extends Controller
 
     	return view('client.search', compact('vouchers', 'setting', 'strSearch', 'member_mainledger'));
     }
+
+    public function put_first_win(Request $request){
+		$request->session()->put('firstwin', 'no');
+	}
 }

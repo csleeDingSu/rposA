@@ -319,6 +319,7 @@
 		
 		
 		
+
 		$(document).ready(function(){
 		//$(function () {
 
@@ -326,8 +327,11 @@
 			console.log(firstwin);
 
 			if(firstwin == 'yes'){
-				$('.speech-balloon-home').click(function () {
-					$(this).hide();
+				$(document).click(function() {
+					$('.speech-balloon-home').hide();
+					$.ajax({
+				         url: "/firstwin"
+				    });
 				});
 				
 				$('.speech-balloon-home').removeClass('hide').animate({'margin-top': '-1.4rem'}, 500);

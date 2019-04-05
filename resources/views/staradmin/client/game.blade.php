@@ -828,6 +828,7 @@
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
     <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
+    <script src="{{ asset('/client/js/public.js') }}" ></script>
 	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
 
 	<script type="text/javascript">
