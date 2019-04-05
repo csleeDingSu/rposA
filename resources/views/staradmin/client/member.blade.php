@@ -1,11 +1,14 @@
 @extends('layouts.default')
 
-@section('title', '')
+@section('title', '个人中心')
 
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/client/css/member.css') }}" />
+@endsection
+
+@section('top-navbar')
 @endsection
 
 @section('content')
@@ -14,7 +17,7 @@
 
 <input id="hidWechatStatus" type="hidden" value="0" />
 
-<div class="full-height">
+<div class="full-height no-header">
 	<div class="container">
 		<div class="member-box">
 			<!-- member id -->
@@ -265,7 +268,7 @@
 								</div>								
 							</div>
 							<div class="row">
-								<a href="#">
+								<a href="/validate">
 									<img src="{{ asset('/client/images/btn-verify.png') }}" width="154" height="44" alt="Verify" />
 								</a>
 							</div>
@@ -316,7 +319,6 @@
 		$(document).ready(function () {
 			var wechat_status = $('#hidWechatStatus').val();
 			
-			//$('#verify-wechat').modal();
 			$('.unverify').click(function(){
 				$('#verify-wechat').modal();
 			});
