@@ -911,6 +911,8 @@ p.vip-life {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   cursor: pointer;
+  animation: MoveUpDown 1s linear infinite;
+  position: absolute;
 } 
 
 .speech-balloon-home:after { 
@@ -925,5 +927,14 @@ p.vip-life {
   border-bottom: 0; 
   margin-left: -6px; 
   margin-bottom: -6px; 
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 90px;
+  }
+  50% {
+    bottom: 80px;
+  }
 }
 /* End Speech Bubble */

@@ -314,6 +314,7 @@
 
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
+	<script src="{{ asset('/client/js/public.js') }}" ></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function () {
