@@ -365,6 +365,7 @@ function getSocket(){
                 console.log(data);
 
                 resetGame();
+                showWinModal();
                 var game_records = data.data.gamesetting;
                 var level = data.data.level;
                 var latest_result = data.data.latest_result;
@@ -511,7 +512,9 @@ function resetGame() {
     $('.payout-info').addClass('hide');
     $('.instruction').css('visibility', 'visible');
     $('.spinning').css('visibility', 'hidden');
+}
 
+function showWinModal(){
     if(show_win){
         $('#win-modal').modal({backdrop: 'static', keyboard: false});
         closeWinModal();
