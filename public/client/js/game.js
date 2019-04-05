@@ -121,7 +121,7 @@ function initUser(records){
         $('#hidTotalBalance').val(total_balance);
         $('.packet-point').html(point);
         if(show_win){
-            show_win = false;
+            
         } else {
             $('.spanAcuPoint').html(acupoint);
         }
@@ -168,12 +168,17 @@ function initGame(data, level, latest_result, consecutive_lose){
         $('.barBox').find('li').removeClass('on');
 
         if (consecutive_lose == 'yes' && life > 0) {
-            showProgressBar(false);
+            if(show_lose !== true && show_win !== true){
+                showProgressBar(false);
+            }
             bindResetLifeButton();
             $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
         }
 
-        showProgressBar(false);
+        if(show_lose !== true && show_win !== true){
+            console.log("Show Lose: " + show_lose + " Show Win: "+ show_win);
+            showProgressBar(false);
+        }
 
         setBalance();
 
@@ -212,7 +217,10 @@ function initGame(data, level, latest_result, consecutive_lose){
 
                 if(data.success && data.record.bet != null){
 
-                    showProgressBar(true);
+                    if(show_lose !== true && show_win !== true){
+                        console.log("Show Lose: " + show_lose + " Show Win: "+ show_win);
+                        showProgressBar(true);
+                    }
 
                     var selected = data.record.bet;
                     var total_balance = parseInt($('#hidTotalBalance').val());
@@ -378,6 +386,9 @@ function getSocket(){
                     updateHistory(betting_data);
                     update_betting_history = false;
                 }
+
+                show_win = false;
+                show_lose = false;
              });
 
             //No betting
@@ -508,7 +519,6 @@ function resetGame() {
 
     if(show_lose){
         $('#win-modal').modal({backdrop: 'static', keyboard: false});
-        show_lose = false;
         closeWinModal();
     }
 }
@@ -560,6 +570,12 @@ function closeWinModal() {
             },
             1000
           );
+
+        console.log("Show Lose: " + show_lose + " Show Win: "+ show_win);
+        setTimeout(function () {
+            showProgressBar(false);
+        }, 1000);
+        
     });
 }
 
