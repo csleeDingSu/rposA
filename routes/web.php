@@ -109,7 +109,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	
 	Route::get('/share', 'ClientController@share')->name('show.link.share');
-	Route::get('/share', 'ClientController@sharetest')->name('show.link.sharetest');
+	Route::get('/nshare', 'ClientController@sharetest')->name('show.link.sharetest');
 		
 	Route::get( '/allhistory', function () {
 		return view( 'client/allhistory' );
