@@ -294,6 +294,7 @@
 
 	</style>
 <body style="background-color: #f6f6f6;">
+
 	<section>
 		<div class="infinite-scroll">
 			<ul class="list-2">
@@ -322,57 +323,57 @@
 			</ul>
 
 			<div class="button">
-				<a class="getvoucher" href="#">{{ env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买') }}</a>
+				<a class="getvoucher" href="#"><?=str_replace('60', number_format(empty($item->voucher_price) ? 0 : $item->voucher_price,0), env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买'))?></a>
 				<a class="playgame" href="#">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
 			</div>
-		</div>
 
-		<!-- 领取优惠券  -->
-		<div class="showQuan dflex scaleHide">
-			<div class="inBox">
-				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
-				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
+			<!-- 领取优惠券  -->
+			<div class="showQuan dflex scaleHide">
+				<div class="inBox">
+					<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
+					<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
 
-				
-					<h3 id="cut" class="copyvoucher"> {{empty($item->voucher_pass) ? "￥K8454DFGH45H" : $item->voucher_pass}}</h3>
-					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
-					<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
-				
-				
+					
+						<h3 id="cut" class="copyvoucher"> {{empty($item->voucher_pass) ? "￥K8454DFGH45H" : $item->voucher_pass}}</h3>
+						<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
+						<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
+					
+					
+				</div>
 			</div>
-		</div>
 
-		<!-- 玩赚免单 -->
-		<div class="showTips dflex scaleHide">
-			<div class="inBox">
-				<div id="red-packet-modal">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
-							<div class="packet-title">恭喜你获得免单红包</div>
-							<div class="modal-body" style="padding:10px !important;">
-								<div class="modal-row">
-									<div class="wrapper modal-full-height">							
-										<div class="modal-card">
-											<div class="packet-value"><span class="packet-sign">￥</span>45</div>
-											<div class="packet-info">可提现支付宝</div>
-											<div class="instructions">
-												<h1 class="divider">领取方式</h1>
-												注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币兑换领取<br />
-												新人免费玩3次 可赚45元
+			<!-- 玩赚免单 -->
+			<div class="showTips dflex scaleHide">
+				<div class="inBox">
+					<div id="red-packet-modal">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="packet-title">恭喜你获得免单红包</div>
+								<div class="modal-body" style="padding:10px !important;">
+									<div class="modal-row">
+										<div class="wrapper modal-full-height">							
+											<div class="modal-card">
+												<div class="packet-value"><span class="packet-sign">￥</span>45</div>
+												<div class="packet-info">可提现支付宝</div>
+												<div class="instructions">
+													<h1 class="divider">领取方式</h1>
+													注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币兑换领取<br />
+													新人免费玩3次 可赚45元
+												</div>
+												<a href="/member/login/register">
+													<div class="btn-red-packet">注册</div>
+												</a>
 											</div>
-											<a href="/member/login/register">
-												<div class="btn-red-packet">注册</div>
-											</a>
 										</div>
-									</div>
-								</div>							
+									</div>							
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	
+
 	</section>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
