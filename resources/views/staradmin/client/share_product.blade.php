@@ -88,25 +88,29 @@
 	  -ms-border-radius: 0.1rem;
 	  -o-border-radius: 0.1rem;
 	  background-color: #f75656;
-	  font-size: 22px;
-	  font-size: 4vw;
+	  font-size: 100%;
+	  font-size: 3.8vw;
 	  color: #fff;
 	  font-weight: 0 !important;
 	}
 
 	.infinite-scroll .price1 .price2{
-
+		width: 50%;
+	  
 		/*font-size: 0.4rem;*/
-		font-size: 42px;
+		/*font-size: 100%;*/
 		font-size: 7vw;
 	  	font-weight: 700;
 	  	color: #f75656;
+	  	padding-left: 10px;
 	  	padding-right: 10px;
 
 	}
 
 	.infinite-scroll .price1 .price3{
 
+		width: 30%;
+	  
 		font-size: 24px;
 		font-size: 4vw;
 		color: #bbbbbb;
@@ -140,27 +144,25 @@
 		font-weight: 500;
 		color: #f75656;
 		border: 0.02rem solid #ff5949;
-		font-size: 36px;
-		font-size: 6vw;
+		font-size: 100%;
+		font-size: 5.8vw;
+
 	}
 
 	.playgame {
 
 		margin-top: 0.3rem;
-		font-weight: 550;
-		color: white;
+		font-weight: 600;
+		color: #fff;
 		background-color: #f75656;
-		font-size: 40px;
-		font-size: 6.5vw;
+		font-size: 100%;
+		font-size: 6.2vw;
 	  	
-
 	}
 
-	.playgame a:hover {
+	.getvoucher:hover { color:#f75656 ; text-decoration: none; }
+	.playgame:hover { color:#fff ; text-decoration: none; }
 
-		color: none !important;
-
-	}
 
 	/* Red Packet Modal */
 #red-packet-modal .packet-title {
@@ -355,7 +357,7 @@
 											<div class="packet-info">可提现支付宝</div>
 											<div class="instructions">
 												<h1 class="divider">领取方式</h1>
-												注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币换领取<br />
+												注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币兑换领取<br />
 												新人免费玩3次 可赚45元
 											</div>
 											<a href="/member/login/register">
