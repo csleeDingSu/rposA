@@ -399,7 +399,8 @@
 
 				// being.wrapShow();
 				// being.scaleShow('.showTips');
-
+				$("#showIcon").attr("src",$(this).data('imgurl'));
+				
 				$( ".copyvoucher" ).html($(this).data('voucher'));
 				being.wrapShow();
 				being.scaleShow('.showQuan');
