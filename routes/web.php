@@ -97,6 +97,8 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	$this->get( '/search/{strSearch?}', 'Api\VoucherController@search' )->name( 'api.slist' );
 
+	$this->get( '/firstwin', 'Api\VoucherController@put_first_win' )->name( 'api.firstwin' );
+
 	Route::any( '/invitation_list', 'ClientController@invitation_list' )->name( 'client.invitation_list' );
 
 	Route::get( '/customer_service', function () {

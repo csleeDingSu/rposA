@@ -24,7 +24,7 @@
 </head>
 <style>
 
-body {
+section {
 	background-color: #f6f6f6;
 	padding: 20px;
 }	
@@ -93,7 +93,7 @@ body {
 	  -o-border-radius: 0.1rem;
 	  background-color: #f75656;
 	  font-size: 100%;
-	  font-size: 3.8vw;
+	  font-size: 0.3rem;
 	  color: #fff;
 	  font-weight: 0 !important;
 	}
@@ -103,11 +103,11 @@ body {
 	  
 		/*font-size: 0.4rem;*/
 		/*font-size: 100%;*/
-		font-size: 7vw;
+		font-size: 0.6rem;
 	  	font-weight: 700;
 	  	color: #f75656;
-	  	padding-left: 10px;
-	  	padding-right: 10px;
+	  	padding-left: 0.2rem;
+	  	padding-right: 0.2rem;
 
 	}
 
@@ -116,20 +116,20 @@ body {
 		width: 30%;
 	  
 		font-size: 24px;
-		font-size: 4vw;
+		font-size: 0.3rem;
 		color: #bbbbbb;
 		text-decoration: line-through;
 
 	}
 
 	.infinite-scroll .button {
-		padding: 10px;
-		padding-top: 30px
+		padding: 0.3rem;
+		padding-top: 0.5rem;
 	}
 
 	.infinite-scroll .button a {
-	  width: 100%;
-	  padding: 10px;
+	  width: 5.5rem;
+	  padding: 0.25rem;
 	  /*margin-left: 0.18rem;*/
 	  /*margin-right: 0.18rem;*/
 	  text-align: center;
@@ -149,7 +149,8 @@ body {
 		color: #f75656;
 		border: 0.02rem solid #ff5949;
 		font-size: 100%;
-		font-size: 5.8vw;
+		/*font-size: 5.8vw;*/
+		font-size: 0.4rem;
 
 	}
 
@@ -160,141 +161,62 @@ body {
 		color: #fff;
 		background-color: #f75656;
 		font-size: 100%;
-		font-size: 6.2vw;
+		/*font-size: 6.2vw;*/
+		font-size: 0.45rem;
 	  	
 	}
 
 	.getvoucher:hover { color:#f75656 ; text-decoration: none; }
 	.playgame:hover { color:#fff ; text-decoration: none; }
 
-
-	/* Red Packet Modal */
-#red-packet-modal .packet-title {
-	padding-top: 20px;
-	color: #ffffff;
-	font-size: 16px;
-	font-weight: 500;
+.showTips .inBox {
+	position: relative; 
+	z-index: 1; 
+	text-align: center; 
+	margin-top:10.9rem;
 }
 
-#red-packet-modal .modal-card {
-    width: 260px;
-    margin: 0 auto;
-    font-size: 16px;
+.showTips img {
+	margin: 0 auto;
+	  font-size: 0;
+	  display: inline-block;
+	  margin-bottom: 0.2rem;
+	width: 6.5rem !important; 
+    object-fit: contain;
+
 }
 
-#red-packet-modal .packet-value {
-	font-size: 90px;
-	color: #ff3e3e;
-	font-weight: 500;
-	margin-left: -20px;
-	height: 100px;
+.showTips .ply {
+	padding-left:0.04rem;
 }
 
-#red-packet-modal .packet-info {
-	font-size: 14px;
-	font-weight: 500;
-	color: #ff3e3e;
-}
 
-#red-packet-modal .packet-sign {
-	font-size: 33px;
-}
-
-#red-packet-modal .modal-content {
-  background: url('/client/images/packet-background.png') no-repeat;
-  background-size: contain;
+#speech-packet-modal {
   color: white;
   text-align: center;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  padding: 10px;
-  font-weight: 700;
-  width: 301px !important;
-  height: 382px;
-  padding: 0;
-  position:relative;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  border: none;
+  /*position: relative; //changed to relative from fixed also works if position is not there*/
+
+  position: absolute; top: 0rem; z-index: 3;
+
 }
 
-#red-packet-modal .modal-content {
-  margin-top: -12px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  width: 296px;
-  z-index: 9999;
-  position:relative;
+#speech-packet-modal h4{	
+	color: white;
+	font-size: 5.5vw;
+	padding: 0.1rem;
+	text-align: center; padding-top:0.4rem; padding-left:0.75rem;
+ }
+
+#speech-packet-modal h5{
+	color: white;
+	font-size: 3.5vw;
+	text-align: center; padding-left:0.75rem;
 }
 
-#red-packet-modal .instructions {
-  font-size: 12px;
-  font-weight: 500;
-  color: #ffffff;
-  text-align: center;
-  line-height: 28px;
-  padding: 25px 0px 5px 0px;
-}
+.wrapBox {
+	height: 13.9rem;
 
-#red-packet-modal .instructions img{
-  margin-top: -2px;
 }
-
-#red-packet-modal .highlight {
-  color: #ffe613;
-  font-weight: 700;
-}
-
-#red-packet-modal .instructions h2{
-  color: #ffffff;
-  font-size: 16px;
-  text-align: center;
-  padding-bottom: 10px;
-  font-weight: 700;
-}
-
-#red-packet-modal .btn-red-packet {
-  background: url('/client/images/btn-red-packet.png') no-repeat top center;
-  font-size: 18px;
-  color: #ff3e3e;
-  background-size: contain;
-  width: 250px;
-  height: 40px;
-  padding-top: 6px;
-  margin-top: 10px;
-  cursor: pointer;
-  text-align: center;
-  font-weight: 500;
-}
-
-#red-packet-modal .divider{
-    color:#ffffff;
-    width:90%;
-    margin:10px auto;
-    overflow:hidden;
-    text-align:center;   
-    line-height:1.2em;
-    font-size: 16px;
-}
-
-#red-packet-modal .divider:before, #red-packet-modal .divider:after{
-    content:"";
-    vertical-align:middle;
-    display:inline-block;
-    width:50%;
-    border-bottom:1px dashed #ffffff;
-    margin:0 2% 0 -55%;
-}
-
-#red-packet-modal .divider:after{
-    margin:0 -55% 0 2%;
-}
-
-#red-packet-modal h1:nth-child(2){
-    font-size:3em;
-}
-/* Red Packet Modal */
 
 	</style>
 <body>
@@ -346,39 +268,33 @@ body {
 				</div>
 			</div>
 
-			<!-- 玩赚免单 -->
+			<!-- 玩赚免单 -->			
 			<div class="showTips dflex scaleHide">
 				<div class="inBox">
-					<div id="red-packet-modal">
-						<div class="modal-dialog modal-lg" role="document">
-							<div class="modal-content">
-								<div class="packet-title">恭喜你获得免单红包</div>
-								<div class="modal-body" style="padding:10px !important;">
-									<div class="modal-row">
-										<div class="wrapper modal-full-height">							
-											<div class="modal-card">
-												<div class="packet-value"><span class="packet-sign">￥</span>45</div>
-												<div class="packet-info">可提现支付宝</div>
-												<div class="instructions">
-													<h1 class="divider">领取方式</h1>
-													注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币兑换领取<br />
-													新人免费玩3次 可赚45元
-												</div>
-												<a href="/member/login/register">
-													<div class="btn-red-packet">注册</div>
-												</a>
-											</div>
-										</div>
-									</div>							
-								</div>
-							</div>
-						</div>
+					<img src="{{ asset('/client/images/share_product_speech.png') }}">
+					<div id="speech-packet-modal">
+						<a href="/member/login/register">
+							<h4>点击这里，免单红包任你拿</h4>
+							<h5>新人送3次机会 可赚45元 （ 可提现 ）</h5>
+						</a>
 					</div>
+					
+				</div>
+				<div class="ply">
+					<a href="/member/login/register">
+						<div id="footer-life">
+							<i class="nTxt">0</i>
+							<!-- <p>玩赚免单</p> -->
+						</div>
+					</a>
 				</div>
 			</div>
 		</div>
 
+
 	</section>
+
+@include('layouts/footer')
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>

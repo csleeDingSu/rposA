@@ -1087,3 +1087,10 @@ textarea {
 .copy-fail {
 	color: #fe6262;
 }
+
+.wechat-instructions {
+	padding-top: 15px;
+	padding-bottom: 20px;
+	font-size: 17px;
+	color: #b2b2b2;
+}
