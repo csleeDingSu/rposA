@@ -366,6 +366,8 @@
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
 				$( ".copyvoucher" ).html($(this).data('voucher'));
+				var dd = $(this).data('imgurl');
+				$("#showIcon").attr("src",dd);
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 			});
