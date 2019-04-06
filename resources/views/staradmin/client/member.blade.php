@@ -42,7 +42,7 @@
 			<!-- member details -->
 			<div class="information-table">
 				  <div class="col-xs-12">
-				  	<img src="{{ asset('/client/images/coin.png') }}" width="22" height="22" alt="button redeem" /> 可用金币<br />
+				  	<img src="{{ asset('/client/images/coin.png') }}" width="22" height="22" alt="button redeem" /> <div class="label-title">可用金币</div><br />
 				  	<div class="point numbers">{{ number_format($wallet->current_point, 0, '.', '') }}</div>
 				  	<a href="/redeem">
 					  	<div class="button-redeem">兑换红包</div>

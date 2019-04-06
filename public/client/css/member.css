@@ -85,6 +85,11 @@ html, body {
 	text-decoration: none;
 }
 
+.label-title {
+	display: inline-block;
+	vertical-align: -2px;
+}
+
 .middle-border {
 	border-left: 1px solid #e8e8e8;
 	border-right: 1px solid #e8e8e8;
@@ -99,6 +104,7 @@ html, body {
 	color: #505050;
 	font-size: 54px;
 	line-height: 42px;
+	padding-top: 5px;
 }
 
 .balance {
