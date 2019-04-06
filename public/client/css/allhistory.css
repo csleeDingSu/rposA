@@ -139,6 +139,7 @@ html, body {
 	float: right;
 	margin-top: 6px;
 	margin-right: 3px;
+	padding-top: 0;
 }
 
 .icon-coin {
