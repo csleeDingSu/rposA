@@ -577,7 +577,7 @@ function closeWinModal() {
         console.log("Show Lose: " + show_lose + " Show Win: "+ show_win);
         setTimeout(function () {
             showProgressBar(false);
-        }, 100);
+        }, 500);
         
     });
 }
