@@ -472,6 +472,7 @@ p.vip-life {
   position: relative;
   padding-bottom: 0.85rem;
 }
+/*
 .showQuan .inBox::before {
   content: "";
   display: block;
@@ -508,6 +509,27 @@ p.vip-life {
   position: relative;
   z-index: 2;
 }
+*/
+
+/*new*/
+.showQuan .inBox img.icon {  
+  width: 90%;
+ /* height: 36vh;*/
+  object-fit: cover;
+  padding-top: 20px;
+}
+
+.showQuan .inBox h2 {
+  font-size: 0.27rem;
+  color: #999999;
+  line-height: 0.94rem;
+  position: relative;
+  z-index: 2;
+}
+
+/*end*/
+
+
 .showQuan .inBox h3 {
   display: inline-block;
   width: 4.78rem;
@@ -538,7 +560,7 @@ p.vip-life {
 .showQuan .inBox h4 {
   font-size: 0.2rem;
   color: #999999;
-  line-height: 0.4rem;
+  line-height: 0.1rem; /*prem*/
 }
 
 .showBao .inBox {

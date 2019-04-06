@@ -190,8 +190,8 @@
 		<!-- 领取优惠券  -->
 		<div class="showQuan dflex scaleHide">
 			<div class="inBox">
-				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
-				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
+				<img id="showIcon" src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
+				<h2>点击下面复制按钮，打开淘宝APP领券</h2>
 
 				
 					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
@@ -366,6 +366,8 @@
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
 				$( ".copyvoucher" ).html($(this).data('voucher'));
+				var dd = $(this).data('imgurl');
+				$("#showIcon").attr("src",dd);
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 			});
