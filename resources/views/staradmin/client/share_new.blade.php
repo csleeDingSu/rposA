@@ -138,7 +138,7 @@ h1:after {
 	{
 		/*position: absolute; new*/
 		/*padding-bottom: 20px !important;*/
-		position: absolute;
+		position: relative;
     	top: 0; right: 0; bottom: 0; left: 0;
 		background-image: url("{{ asset('cshare/images/bgnew.png') }}");
         background-repeat: no-repeat;
@@ -146,14 +146,14 @@ h1:after {
 		background-size: 100% 100%;
 		background-color: #FF6d7d;
 		max-width: 100%;
-    	max-height: 100%;
 		background-position: top;
 		
 		display: flex;
   		flex-flow: column wrap;
     	width: auto;
-		max-width: 65%;
+		/*max-width: 65%;*/
         max-height: 80%;
+		/*height: calc(100vh - 50px);
     /*height: 2000px;*/
 		
 	}
@@ -171,15 +171,23 @@ h1:after {
 		margin-bottom: 15px;
 	}
 	.ribbon-holder {
-  overflow: hidden;
+  
   position: relative;
-		max-width: 72%;
+		/**/
+/*
 
-margin-left: 7%;
 
-margin-top: 47%;
+margin-top: 47%;*/
+		max-width: 77%;
+		margin-left: 7%;
+		
+		padding: 44% 0 0 0;
+		padding-right: 4px;
+        clip: rect(auto, 80px, auto, auto);
+	border-top: solid 35% rgba(0, 0, 0, 0);
 }
-.ribbon {
+ .ribbons {
+	
   position: absolute;
   background: yellow;
   color: black;
@@ -188,7 +196,69 @@ margin-top: 47%;
   top: -21%;
   left: -19%;
   width: 145px;
+	
+	 /*
+	width: 250px;
+  background: #e43;
+  position: absolute;
+  /*top: 25px;* /
+  left: -50px;
+  text-align: center;
+  line-height: 30px;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  overflow: hidden;
+	 text-overflow:ellipsis;
+	white-space: nowrap;*/
 }
+.ribbon {
+  position: absolute;
+  /*left: -5px; top: 141px;*/
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+	top: 21.6%;
+}
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #FFDE03;
+  background: linear-gradient(#FFDE03 0%, #FFDE03 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+ 
+	left: -27px;
+}
+	/*
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #A72107;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #A72107;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #A72107;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #A72107;
+}*/	
 	
 	
 	.clickribbon {
@@ -197,9 +267,9 @@ margin-top: 47%;
   color: black;
   background-color: #e43;
   text-align: center;
-  top: -22%;
-  right: 6%;
-  min-width: 90px;
+  top: 25%;
+  right: 10%;
+  min-width: 70px;
 		opacity: 1.2;
 		  background:rgba(0,0,0,0.3);
 		color: #F5F654;z-index: 1;
@@ -215,9 +285,9 @@ margin-top: 47%;
   color: black;
   background-color: #e43;
   text-align: center;
-  top: 43%;
-  right: 10%;
-  min-width: 255px;
+  top: 68%;
+  right: 12%;
+  min-width: 195px;
 		opacity: 1.2;
 		  background:rgba(0,0,0,0.3);
 		color: #FFF;z-index: 1;
@@ -236,17 +306,19 @@ margin-top: 47%;
 <div class="container">
 	
 	
-	<div class="ribbon-holder">
-  <div class="ribbon ribbon-holder">@lang('dingsu.ads_picture')</div>
+	<div class="ribbon-holder" align="center">
+  
 		
-		<div class="clickribbon ribbon-holder"> <img  src="{{ asset('client/bar/refresh.png') }}" style="height: 15px; margin-bottom: 3px;">&nbsp; @lang('dingsu.ads_picture')</div>
-		<div class="btn_ribbon ribbon-holder">查看分享方法</div>
+		<div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div>
+		
+		<div class="clickribbon"> <img  src="{{ asset('client/bar/refresh.png') }}" style="height: 15px; margin-bottom: 3px;">&nbsp; @lang('dingsu.ads_picture')</div>
+		<div class="btn_ribbon ">查看分享方法</div>
 		
 		
  <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?><div class="bottom">
 			<h1>This</h1>
 			<div class="bottomdiv">
-			asfasdf asdfasdfas dfasfsdaf asdf<br>asdfdsafsdfsafdf
+			asfasdf asdfasdfas sd<br>asdfdsafsdfsafdf
 			</div>
 		</div>
 </div>
