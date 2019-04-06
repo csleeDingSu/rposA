@@ -202,5 +202,5 @@ section {
 
 .cardFoot {
     position: relative;
-    z-index: 20;
+    z-index: 30;
 }
