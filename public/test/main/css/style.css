@@ -931,10 +931,10 @@ p.vip-life {
 
 @keyframes MoveUpDown {
   0%, 100% {
-    bottom: 90px;
+    bottom: 1.9rem;
   }
   50% {
-    bottom: 80px;
+    bottom: 1.6rem;
   }
 }
 /* End Speech Bubble */
