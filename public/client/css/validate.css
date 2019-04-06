@@ -27,6 +27,10 @@ body {
     background:#ffffff;
 }
 
+.container {
+	width: 100%;
+}
+
 .title {
 	color: #313131;
 	font-size: 20px;
@@ -56,7 +60,7 @@ body {
 	margin: 10px 0 20px 0;
 	height: 100%; 
 	width: 100%; 
-	object-fit: contain
+	object-fit: contain;
 }
 
 .wechat_card {
@@ -83,9 +87,10 @@ body {
 	color: white;
 	padding: 5px;
 	border-radius: 6px;
-	margin-left: 20px;
-	margin-right: 20px;
+	width:4rem;
 	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .cutBtn {
