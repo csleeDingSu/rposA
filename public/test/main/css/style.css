@@ -520,7 +520,7 @@ p.vip-life {
 }
 
 .showQuan .inBox h2 {
-  font-size: 0.31rem;
+  font-size: 0.27rem;
   color: #999999;
   line-height: 0.94rem;
   position: relative;
@@ -560,7 +560,7 @@ p.vip-life {
 .showQuan .inBox h4 {
   font-size: 0.2rem;
   color: #999999;
-  line-height: 0.4rem;
+  line-height: 0.1rem; /*prem*/
 }
 
 .showBao .inBox {
