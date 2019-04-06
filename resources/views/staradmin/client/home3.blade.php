@@ -190,7 +190,7 @@
 		<!-- 领取优惠券  -->
 		<div class="showQuan dflex scaleHide">
 			<div class="inBox">
-				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
+				<img id="showIcon" src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
 				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
 
 				
