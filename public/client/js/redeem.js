@@ -410,7 +410,7 @@ function getProductList(token) {
                 $.each(packages, function(i, item) {
                     $('.openeditmodel_p' + i).click(function() {
                         if(wechat_status > 0){
-                            $('#wechat-verification-modal').modal({backdrop: 'static', keyboard: false});
+                            $('#wechat-verification-modal').modal('show');
                         } else {
                             $('#viewvouchermode_p' + i).modal('show');
                         }
@@ -424,7 +424,7 @@ function getProductList(token) {
                 $.each(records, function(i, item) {
                     $('.openeditmodel' + i).click(function() {
                         if(wechat_status > 0){
-                            $('#wechat-verification-modal').modal({backdrop: 'static', keyboard: false});
+                            $('#wechat-verification-modal').modal('show');
                         } else {
                             $('#viewvouchermode' + i).modal('show');
                         }
