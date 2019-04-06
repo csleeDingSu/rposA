@@ -52,10 +52,13 @@
 			//Output have userid , token and username 
 			
 			var socket = new io.connect(c_url, {
-                'reconnection': false,
-                'reconnectionDelay': 1000,
+                'reconnection': true,
+                'reconnectionDelay': 1000, //1 sec
                 'reconnectionDelayMax' : 5000,
                 'reconnectionAttempts': 2,
+				'transports': ['websocket'],
+				'timeout' : 10000, //1 min
+				'force new connection' : true,
 				 query: 'token='+result.token
             });
 
@@ -87,6 +90,7 @@
             If disconnect socketio then here will get message 
             */
             socket.on('disconnect', function () {
+				console.log('disconnect--');
 				htm = '<p class="text-danger">Disconnected.</p>';
                 socketIOConnectionUpdate(htm);
             });
