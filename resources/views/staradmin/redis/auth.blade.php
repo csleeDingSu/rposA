@@ -90,6 +90,7 @@
             If disconnect socketio then here will get message 
             */
             socket.on('disconnect', function () {
+				console.log('disconnect--');
 				htm = '<p class="text-danger">Disconnected.</p>';
                 socketIOConnectionUpdate(htm);
             });
