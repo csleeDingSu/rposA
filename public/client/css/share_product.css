@@ -174,22 +174,39 @@ section {
   text-align: center;
   /*position: relative; //changed to relative from fixed also works if position is not there*/
 
-  position: absolute; top: 0rem; z-index: 3;
+  position: absolute; 
+  top: 0rem;
+  z-index: 3;
+  width: 100%;
 
 }
 
 #speech-packet-modal h4{	
 	color: white;
-	font-size: 5.5vw;
 	padding: 0.1rem;
-	text-align: center; padding-top:0.4rem; padding-left:0.75rem;
+	text-align: center; 
+	padding-top:0.4rem;
+	font-size: 3.5vw;
  }
 
 #speech-packet-modal h5{
 	color: white;
-	font-size: 3.5vw;
-	text-align: center; padding-left:0.75rem;
+	font-size: 2.5vw;
+	text-align: center; 
+	padding: 0 auto;
 }
+
+@media only screen and (max-width: 800px) {
+    #speech-packet-modal h4{
+    	font-size: 5.5vw;
+	 }
+
+	#speech-packet-modal h5{
+		font-size: 3.5vw;
+	}
+}
+
+
 
 @keyframes MoveUpDown {
   0%, 100% {
