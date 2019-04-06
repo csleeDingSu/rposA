@@ -309,7 +309,7 @@ function getSocket(){
             */
             socket.on('disconnect', function () {
                 console.log('Disconnected');
-                $(".reload").show();
+                //$(".reload").show();
             });
 
             //On user logout
@@ -577,7 +577,7 @@ function closeWinModal() {
         console.log("Show Lose: " + show_lose + " Show Win: "+ show_win);
         setTimeout(function () {
             showProgressBar(false);
-        }, 1000);
+        }, 100);
         
     });
 }
@@ -1196,7 +1196,7 @@ function showGameRules( event ){
     $( ".txtTimer" ).removeClass('hide');
     $('#game-rules').modal({backdrop: 'static', keyboard: false});
 
-    $( ".span-read" ).html('进入挖宝');
+    $( ".span-read" ).html('返回玩赚免单');
 
     $('.btn-rules-close').click(function(){
         $('#game-rules').modal('hide');
