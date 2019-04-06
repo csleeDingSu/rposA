@@ -1,0 +1,205 @@
+
+section {
+	background-color: #f6f6f6;
+}	
+	
+	.header .top li a, .header .top li a:hover, .header .top li a:focus {
+			text-decoration: none;
+		}
+		
+	.infinite-scroll {
+
+		position:relative !important;	
+	    background: white;
+	    color: black;
+	    /*text-align: center;*/
+	    margin: 0.4rem;
+	    border-top-left-radius: 6px;
+	    border-top-right-radius: 6px;
+	    border-bottom-left-radius: 6px;
+	    border-bottom-right-radius: 6px;
+	    padding: 15px;
+	    padding-bottom: 30px;
+	    font-weight: 700;
+	    /*height: 7rem !important;*/
+      /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);*/
+      /*line-height: 2px !important;*/
+
+	}
+
+	.infinite-scroll .imgBox {
+	  margin: 0 auto;
+	  /*border: 0.01rem solid #efefef;*/
+	  /*padding: 0.15rem;*/
+	  /*padding-right: 0.3rem;*/
+	  font-size: 0;
+	  display: inline-block;
+	  margin-bottom: 0.2rem;
+	}
+
+	.infinite-scroll .imgBox img {
+		width: 100%; 
+	    height: 100%; 
+	    object-fit: contain;
+	    /*max-width: 6rem;*/
+	}
+
+	.infinite-scroll h2 {
+		font-size: 26px;
+		font-size: 4vw;
+
+	  font-weight: 510;
+	  color: #666666;
+	  margin-bottom: 0.4rem;
+	}
+
+	.lbl{
+		width: 20%;
+	  text-align: center;
+	  border-radius: 0.1rem;
+	  display: block;
+	  line-height: 0.48rem;	  
+	  -webkit-border-radius: 0.1rem;
+	  -moz-border-radius: 0.1rem;
+	  -ms-border-radius: 0.1rem;
+	  -o-border-radius: 0.1rem;
+	  background-color: #f75656;
+	  font-size: 100%;
+	  font-size: 0.3rem;
+	  color: #fff;
+	  font-weight: 0 !important;
+	  float: left;
+	  line-height: 0.53rem;
+	}
+
+	.infinite-scroll .price1 .price2{
+		width: 40%;
+	  
+		/*font-size: 0.4rem;*/
+		/*font-size: 100%;*/
+		font-size: 0.5rem;
+	  	font-weight: 700;
+	  	color: #f75656;
+	  	padding-left: 0.2rem;
+	  	margin-bottom: -0.2rem;
+	  	float: left;
+
+	}
+
+	.infinite-scroll .price1 .price3{
+
+		width: 40%;
+	  
+		font-size: 0.3rem;
+		color: #bbbbbb;
+		text-decoration: line-through;
+		line-height: 0.6rem;
+		float: left;
+
+	}
+
+	.infinite-scroll .button {
+		padding: 0.3rem 0;
+	}
+
+	.infinite-scroll .button a {
+	  width: 100%;
+	  padding: 0.25rem;
+	  /*margin-left: 0.18rem;*/
+	  /*margin-right: 0.18rem;*/
+	  text-align: center;
+	  border-radius: 0.1rem;
+	  display: inline-block;
+	  /*font-size: 0.4rem;	  */
+	  line-height: 0.48rem;	  
+	  -webkit-border-radius: 0.1rem;
+	  -moz-border-radius: 0.1rem;
+	  -ms-border-radius: 0.1rem;
+	  -o-border-radius: 0.1rem;
+	}
+
+	.getvoucher {
+		/*margin-top: 0.3rem;*/
+		font-weight: 500;
+		color: #f75656;
+		border: 0.02rem solid #ff5949;
+		font-size: 100%;
+		/*font-size: 5.8vw;*/
+		font-size: 0.4rem;
+
+	}
+
+	.playgame {
+
+		margin-top: 0.3rem;
+		font-weight: 600;
+		color: #fff;
+		background-color: #f75656;
+		font-size: 100%;
+		/*font-size: 6.2vw;*/
+		font-size: 0.45rem;
+		text-decoration: none;
+	  	
+	}
+
+	.getvoucher:hover { color:#f75656 ; text-decoration: none; }
+	.playgame:link, .playgame:visited, .playgame:hover, .playgame:active { color:#fff ; text-decoration: none; }
+
+.showTips .inBox {
+	position: absolute; 
+	z-index: 1; 
+	text-align: center; 
+	bottom: 0;
+	margin-bottom: 1.3rem;
+	animation: MoveUpDown 1s linear infinite;
+}
+
+.showTips img {
+	margin: 0 auto;
+	  font-size: 0;
+	  display: inline-block;
+	  margin-bottom: 0.2rem;
+	width: 6.5rem !important; 
+    object-fit: contain;
+
+}
+
+.showTips .ply {
+	padding-left:0.04rem;
+}
+
+
+#speech-packet-modal {
+  color: white;
+  text-align: center;
+  /*position: relative; //changed to relative from fixed also works if position is not there*/
+
+  position: absolute; top: 0rem; z-index: 3;
+
+}
+
+#speech-packet-modal h4{	
+	color: white;
+	font-size: 5.5vw;
+	padding: 0.1rem;
+	text-align: center; padding-top:0.4rem; padding-left:0.75rem;
+ }
+
+#speech-packet-modal h5{
+	color: white;
+	font-size: 3.5vw;
+	text-align: center; padding-left:0.75rem;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0.3rem;
+  }
+  50% {
+    bottom: 0rem;
+  }
+}
+
+.cardFoot {
+	z-index: 20;
+}
