@@ -17,6 +17,8 @@
 			<dt class="dbox0">
 				@if(Request::is('vip'))
 					<a href="/vip">
+				@elseif(Request::is('share_product'))
+					<a href="/member/login/register">
 				@else
 					<a href="/arcade">
 				@endif
@@ -25,6 +27,9 @@
 							<i class="nVip">&nbsp;</i>
 							<!-- <p class="vip-life">VIP专场 剩余<span class="spanVipLife">&nbsp;</span>次</p> -->
 							<p class="vip-life">VIP专场</p>
+						@elseif(Request::is('share_product'))
+							<i class="nTxt">0</i>
+							<p>玩赚免单</p>
 						@else
 							<!-- <i class="nTxt">{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? ((Auth::Guard('member')->user()->wechat_verification_status == 0) ? Auth::Guard('member')->user()->current_life : 0) : 0}}</i> -->
 							<i class="nTxt">{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</i>

@@ -1362,7 +1362,7 @@ body{
 
 .flickity-prev-next-button.previous {
   left: 0px;
-  top: 110px;
+  top: 75px;
   right: auto;
   background: url('/client/images/game.png') no-repeat -65px -640px;
   width: 80px;
@@ -1373,7 +1373,7 @@ body{
 }
 
 .flickity-prev-next-button.next {
-  top: 110px;
+  top: 75px;
   background: url('/client/images/game.png') no-repeat -65px -240px;
   width: 80px;
   height: 400px;
