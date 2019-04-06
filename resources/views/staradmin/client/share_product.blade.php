@@ -48,7 +48,11 @@
 			
 		</div>
 	</section>
+@endsection
 
+
+
+@section('footer-javascript')
 	<!-- 领取优惠券  -->
 	<div class="showQuan dflex scaleHide">
 		<div class="inBox">
@@ -77,12 +81,7 @@
 			
 		</div>
 	</div>
-
-@endsection
-
-
-
-@section('footer-javascript')
+	
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script>
