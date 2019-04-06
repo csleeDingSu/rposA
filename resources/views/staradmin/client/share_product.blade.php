@@ -47,36 +47,36 @@
 
 			
 		</div>
-		<!-- 领取优惠券  -->
-			<div class="showQuan dflex scaleHide">
-				<div class="inBox">
-					<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
-					<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
-
-					
-						<h3 id="cut" class="copyvoucher"> {{empty($item->voucher_pass) ? "￥K8454DFGH45H" : $item->voucher_pass}}</h3>
-						<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
-						<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
-					
-					
-				</div>
-			</div>
-
-			<!-- 玩赚免单 -->			
-			<div class="showTips dflex scaleHide">
-				<div class="inBox">
-					<img src="{{ asset('/client/images/share_product_speech.png') }}">
-					<div id="speech-packet-modal">
-						<a href="/member/login/register">
-							<h4>点击这里，免单红包任你拿</h4>
-							<h5>新人送3次机会 可赚45元 （ 可提现 ）</h5>
-						</a>
-					</div>
-					
-				</div>
-			</div>
-
 	</section>
+
+	<!-- 领取优惠券  -->
+	<div class="showQuan dflex scaleHide">
+		<div class="inBox">
+			<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
+			<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
+
+			
+				<h3 id="cut" class="copyvoucher"> {{empty($item->voucher_pass) ? "￥K8454DFGH45H" : $item->voucher_pass}}</h3>
+				<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
+				<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
+			
+			
+		</div>
+	</div>
+
+	<!-- 玩赚免单 -->			
+	<div class="showTips dflex scaleHide">
+		<div class="inBox">
+			<img src="{{ asset('/client/images/share_product_speech.png') }}">
+			<div id="speech-packet-modal">
+				<a href="/member/login/register">
+					<h4>点击这里，免单红包任你拿</h4>
+					<h5>新人送3次机会 可赚45元 （ 可提现 ）</h5>
+				</a>
+			</div>
+			
+		</div>
+	</div>
 
 @endsection
 
