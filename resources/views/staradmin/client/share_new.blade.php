@@ -100,11 +100,8 @@ imagedestroy( $image );
 
 <style>
 	
-	body {overflow: hidden;background-color: #FF6d7d;}
-	html { 
-	 
-		background-color: #FF6d7d;
-	}
+	body {overflow: hidden;}
+	
 	.bottom {
   text-align: center;color: #FFF;font-style: normal;
 			   margin-bottom: 40px;
@@ -139,13 +136,13 @@ h1:after {
 		/*position: absolute; new*/
 		/*padding-bottom: 20px !important;*/
 		position: relative;
-    	top: 0; right: 0; bottom: 0; left: 0;
+    	/*top: 0; right: 0; bottom: 0; left: 0;*/
 		background-image: url("{{ asset('cshare/images/bgnew.png') }}");
         background-repeat: no-repeat;
         background-size: cover;
 		background-size: 100% 100%;
 		background-color: #FF6d7d;
-		max-width: 100%;
+		max-width: 500px;
 		background-position: top;
 		
 		display: flex;
