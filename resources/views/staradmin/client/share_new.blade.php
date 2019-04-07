@@ -100,7 +100,7 @@ imagedestroy( $image );
 
 <style>
 	
-	body {overflow: hidden;}
+	body {overflow: hidden;background-color: #FF6d7d;}
 	
 	.bottom {
   text-align: center;color: #FFF;font-style: normal;
