@@ -124,6 +124,14 @@ class GenerateVouchertoDb
 							$insdata['source_file'] = $filename;
 							$insdata['updated_at']  = $now; 
 							$insdata['created_at']  = $now;
+							
+							if ($re_field == 'is_featured')
+							{
+								if ($val[$mva] != 1)
+								{
+									$insdata[$re_field] = 0;
+								}
+							}
 
 
 							if ($re_field == 'product_category')

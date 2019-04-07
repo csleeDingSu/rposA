@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default_without_footer')
 
 @section('title', '个人中心')
 
@@ -42,7 +42,10 @@
 
 			<div class="button">
 				<a class="getvoucher" href="#"><?=str_replace('60', number_format(empty($item->voucher_price) ? 10 : $item->voucher_price,0), env('shareproduct_captionbtnforgetvoucher', '领60元优惠券购买'))?></a>
-				<a class="playgame" href="#">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
+				<!-- temporary hide
+					<a class="playgame" href="#">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a> -->
+
+				<a class="playgame" href="/">{{ env('shareproduct_captionbtnforplaygame', '玩赚免单') }}</a>
 			</div>
 
 			
@@ -127,10 +130,11 @@
 				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
 			});
 
-			$("body").on("click",".button a.playgame",function(e) {
-				being.wrapShow();
-				being.scaleShow('.showTips');
-			});
+			//temporary hide
+			// $("body").on("click",".button a.playgame",function(e) {
+			// 	being.wrapShow();
+			// 	being.scaleShow('.showTips');
+			// });
 
 			$('.showTips').click((e) => {
 				var target = $(e.target).closest('.inBox').length;
