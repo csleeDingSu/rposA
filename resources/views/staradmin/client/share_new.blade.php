@@ -74,12 +74,70 @@ imagedestroy( $image );
 </section>
 
 
+<span id="copy" class="offscreen url" aria-hidden="true">{{$url}}</span>
+
 
 
                 
 <script type="text/javascript">
  
+ function set_body_height() { // set body height = window height
+        $('body').height($(window).height());
+    }
+    $(document).ready(function() {
+        $(window).bind('resize', set_body_height);
+        set_body_height();
+    });
+                                
+					var clipboard = new ClipboardJS('.copyurl');
+                    console.log(clipboard);
+					clipboard.on('success', function(e) {
+						
+						e.clearSelection();
+                       // alert('success');
+						/*swal({  type: 'success',  title: '@lang("dingsu.copied")!',text: '@lang("dingsu.text_copied")', confirmButtonText: '@lang("dingsu.okay")',customClass: 'swal-size-sm',}).then(
+						  function () { 
+							   if( navigator.userAgent.match(/Android/i)
+								 || navigator.userAgent.match(/webOS/i)
+								 || navigator.userAgent.match(/iPhone/i)
+								 || navigator.userAgent.match(/iPad/i)
+								 || navigator.userAgent.match(/iPod/i)
+								 || navigator.userAgent.match(/BlackBerry/i)
+								 || navigator.userAgent.match(/Windows Phone/i)
+								 ){
+							  // window.open(
+								  // 'weixin://',
+								  // '_blank' 
+								// ); 
+							   }
+						  },
 
+						)
+                        */
+					});
+
+					clipboard.on('error', function(e) {
+						console.error('Action:', e.action);
+						console.error('Trigger:', e.trigger);
+					});
+
+    
+    
+                    $("#closebtn").click(() => {
+                        being.wrapHide();
+                        $(".openFrom").slideDown(150);
+                        $(".openFrom").hide();
+                        
+                      });
+    
+                            $(".btn_ribbon").click(() => { 
+                                being.wrapShow();
+                                $(".openFrom").slideDown(150);
+                                $(".wrapBox ").click(function (e) {
+                                  being.wrapHide();
+                                  $(".openFrom").slideUp(150);
+                                });
+                              });
 </script>
 
 @endsection 
@@ -101,10 +159,7 @@ imagedestroy( $image );
 <style>
 	
 	body {overflow: hidden;background-color: #FF6d7d;}
-	html { 
-	 
-		background-color: #FF6d7d;
-	}
+	
 	.bottom {
   text-align: center;color: #FFF;font-style: normal;
 			   margin-bottom: 40px;
@@ -139,13 +194,13 @@ h1:after {
 		/*position: absolute; new*/
 		/*padding-bottom: 20px !important;*/
 		position: relative;
-    	top: 0; right: 0; bottom: 0; left: 0;
+    	/*top: 0; right: 0; bottom: 0; left: 0;*/
 		background-image: url("{{ asset('cshare/images/bgnew.png') }}");
         background-repeat: no-repeat;
         background-size: cover;
 		background-size: 100% 100%;
 		background-color: #FF6d7d;
-		max-width: 100%;
+		max-width: 500px;
 		background-position: top;
 		
 		display: flex;
@@ -304,7 +359,12 @@ margin-top: 47%;*/
 	
 	 </style>
 <div class="container">
-	
+	<div class="detail">
+      
+      <h2>分享广告图到微信</h2>
+       <h3>每邀请<span style="color: red;"> 1 </span>个好友获得<span style="color: red;"> {{ env('sharetofriend_youwillget', '3') }} </span>次机会</h3>
+     
+</div>
 	
 	<div class="ribbon-holder" align="center">
   
@@ -312,6 +372,7 @@ margin-top: 47%;*/
 		<div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div>
 		
 		<div class="clickribbon"> <img  src="{{ asset('client/bar/refresh.png') }}" style="height: 15px; margin-bottom: 3px;">&nbsp; @lang('dingsu.ads_picture')</div>
+		
 		<div class="btn_ribbon ">查看分享方法</div>
 		
 		
@@ -325,26 +386,12 @@ margin-top: 47%;*/
 	
 	
 
-	<!--
-	<div class="child copyurl" align="center" data-clipboard-target="#copy">
-
-		<div class="myov"><div class="cr cr-top cr-left cr-sticky cr-red ">@lang('dingsu.ads_picture')</div>
-			<!--
-			<div class="rpic ">
-			<a href="javascript:void(0)" class="icon"> 
-			<img  src="{{ asset('client/bar/refresh.png') }}" style="height: 15px; margin-bottom: 3px;">&nbsp;@lang('dingsu.change_picture')
-			</a>						
-			</div>
-			<button class="c_button" name="c_button" id="c_button" type="button">查看分享方法</button>
-			-- >
-			
-		</div>
-		
-		
-
-	</div> -->
-	 
 </div>
 
-
+<script>
+  $(window).load(function() {
+    
+    $('#loading').hide();
+});
+</script>
 @endsection
