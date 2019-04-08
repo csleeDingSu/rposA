@@ -367,9 +367,11 @@ border-radius: 20px;
 	
 	.bottom {
   text-align: center;color: #FFF;font-style: normal;
-			   margin-bottom: 40px;
-}h1 {
-  text-align: center;color: #FFF;font-size: 32px;
+			   margin-bottom: 0.4rem;
+}
+h1 {
+  text-align: center;color: #FFF;font-size: 0.35rem;
+  padding:0.2rem;
 }
 
 h1:before, h1:after {
@@ -383,210 +385,140 @@ h1:before {
   background: url("{{ asset('cshare/images/bottomline.png') }}") ;
 	vertical-align: middle;
 	background-position: 6%,10%;
+  margin-right:20px;
 }
 
 h1:after {
   background: url("{{ asset('cshare/images/bottomline.png') }}") right no-repeat ;
 	vertical-align: middle;
 	background-position: 96%;
+  margin-left:20px;
 }
 	.bottomdiv
 	{
-		font-size: 24px;
+		font-size: 0.23rem;
 	}
 	.container
 	{
-		/*position: absolute; new*/
-		/*padding-bottom: 20px !important;*/
-		position: relative;
-    	/*top: 0; right: 0; bottom: 0; left: 0;*/
-		background-image: url("{{ asset('cshare/images/bgnew.png') }}");
-        background-repeat: no-repeat;
-        background-size: cover;
-		background-size: 100% 100%;
-		background-color: #FF6d7d;
-		max-width: 500px;
-		background-position: top;
-		
-		display: flex;
-  		flex-flow: column wrap;
-    	width: auto;
-		/*max-width: 65%;*/
-        /*max-height: 80%;*/
-		/*height: calc(100vh - 50px);
-    /*height: 2000px;*/
-		
-		background-position: 0px -30px; 
-		max-height: 800px;
-		
+    background-image: url("{{ asset('cshare/images/bgnew.png') }}");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-color: #FF6d7d;
 	}
 	
 	.small-img
 	{
-		border:15px solid #EFEFEF;
+		border:0.4rem solid #EFEFEF;
    		background-color:#EFEFEF;
-		width: auto;
+		/*width: auto;*/
+    width: 10rem;
 		height: auto;
 		max-width: 100%;
         max-height: 100%;
-		margin-bottom: 15px;
+		margin-bottom: 0.2rem;
+
+    background: linear-gradient(#FFDE03 0%, #FFDE03 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+
 	}
 	.ribbon-holder {
   
   position: relative;
-		/**/
-/*
-
-
-margin-top: 47%;*/
-		max-width: 77%;
-		margin-left: 13%;
-		
-		padding: 44% 0 0 0;
-		padding-right: 4px;
-        clip: rect(auto, 80px, auto, auto);
-	border-top: solid 35% rgba(0, 0, 0, 0);
+  padding: 0.2rem !important;
+  padding-top: 2.1rem !important;
 }
- .ribbons {
-	
-  position: absolute;
-  background: yellow;
-  color: black;
-  transform: rotate(-45deg);
-  text-align: center;
-  top: -21%;
-  left: -19%;
-  width: 145px;
-	
-	 /*
-	width: 250px;
-  background: #e43;
-  position: absolute;
-  /*top: 25px;* /
-  left: -50px;
-  text-align: center;
-  line-height: 30px;
-  letter-spacing: 1px;
-  color: #f0f0f0;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  overflow: hidden;
-	 text-overflow:ellipsis;
-	white-space: nowrap;*/
-}
+
 .ribbon {
   position: absolute;
+  object-fit: contain;
   /*left: -5px; top: 141px;*/
   z-index: 1;
   overflow: hidden;
-  width: 75px; height: 75px;
-  text-align: right;
-	top: 21.6%;
+  width: 35%; height: 15%;
+  /*text-align: right;*/
+	/*top: 21.6%;*/
 }
 .ribbon span {
-  font-size: 10px;
+  margin:0.2rem;
+  font-size: 0.3rem;
   font-weight: bold;
   color: #FFF;
   text-transform: uppercase;
   text-align: center;
-  line-height: 20px;
-  transform: rotate(-45deg);
+  line-height: 0.6rem;
+  /*transform: rotate(-45deg);*/
   -webkit-transform: rotate(-45deg);
-  width: 100px;
+  width: 100%;
   display: block;
-  background: #FFDE03;
+  /*background: #FFDE03;*/
   background: linear-gradient(#FFDE03 0%, #FFDE03 100%);
   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
   position: absolute;
- 
-	left: -27px;
-}
-	/*
-.ribbon span::before {
-  content: "";
-  position: absolute; left: 0px; top: 100%;
-  z-index: -1;
-  border-left: 3px solid #A72107;
-  border-right: 3px solid transparent;
-  border-bottom: 3px solid transparent;
-  border-top: 3px solid #A72107;
-}
-.ribbon span::after {
-  content: "";
-  position: absolute; right: 0px; top: 100%;
-  z-index: -1;
-  border-left: 3px solid transparent;
-  border-right: 3px solid #A72107;
-  border-bottom: 3px solid transparent;
-  border-top: 3px solid #A72107;
-}*/	
-	
+ 	left: -1rem;
+}	
 	
 	.clickribbon {
-  position: absolute;
-  background: yellow;
-  color: black;
-  background-color: #e43;
-  text-align: center;
-  top: 25%;
-  right: 10%;
-  min-width: 70px;
+    position: absolute;
+  object-fit: contain;
+  overflow: hidden;
+  
+  background: #fff;
+  background-color: #fff;
+  top: 2.6rem;
+  right: 0.7rem;
 		opacity: 1.2;
 		  background:rgba(0,0,0,0.3);
-		color: #F5F654;z-index: 1;
+		color: #fff;
+    z-index: 1;
 		text-align: center;vertical-align:middle;
-		border-radius: 25px;
-		padding: 4px;
+		border-radius: 0.3rem;
+		padding: 0.1rem;
 		cursor: pointer;
+    width: 20%;
+    font-size:0.25rem;
 }
 	
 .btn_ribbon {
   position: absolute;
-  background: yellow;
-  color: black;
   background-color: #e43;
-  text-align: center;
-  top: 68%;
-  right: 12%;
-  min-width: 195px;
+  top: 10.2rem;
+  right: 0.89rem;
 		opacity: 1.2;
-		  background:rgba(0,0,0,0.3);
+		  background:rgba(0,0,0,0.0);
 		color: #FFF;z-index: 1;
 		text-align: center;vertical-align:middle;
-		border-radius: 25px;
-		padding: 14px;
+		border-radius: 0.25rem;
+		padding: 0.2rem;
 		cursor: pointer;
 	 background-image: url("{{ asset('cshare/images/btn.png') }}");
         background-repeat: no-repeat;
         background-size: cover;background-size: 100% 100%;
-	font-size: 0.2rem;
+	font-size: 0.4rem;
+  width: 75%;
 }	
 	
 	
 	 </style>
 <div class="container">
-	
-	
+
 	<div class="ribbon-holder" align="center">
-  
-		
-		<div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div>
-		
-		<div class="clickribbon"> <img  src="{{ asset('client/bar/refresh.png') }}" style="height: 15px; margin-bottom: 3px;">&nbsp; @lang('dingsu.ads_picture')</div>
+    <div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div>
+		<div class="clickribbon"> @lang('dingsu.change_picture') </div>
 		
 		<div class="btn_ribbon ">查看分享方法</div>
-		
-		
- <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?><div class="bottom">
-			<h1>This</h1>
-			<div class="bottomdiv">
-			asfasdf asdfasdfas sd<br>asdfdsafsdfsafdf
-			</div>
-		</div>
-</div>
-	
-	
 
+    <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
+		
+      <div class="bottom">
+  			<h1>友情提示</h1>
+  			<div class="bottomdiv">
+  			好友需通过网站的微信认证，你才能得到玩赚免单次数。
+        <br>
+        严厉打击小号注册，大号会被封号处理。
+  			</div>
+  		</div>
+  </div>
+	
 </div>
 
 <script>
