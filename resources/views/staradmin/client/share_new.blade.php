@@ -1,4 +1,35 @@
-<?php
+<style>
+   #loading {
+	   /*
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    display: block;
+    opacity: 0.95;
+    background-color: #ff4456;
+    z-index: 99;
+    text-align: center;
+	   */
+	   
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('/client/images/preloader.gif') center no-repeat;
+		background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+</style>	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<div id="loading">
+    
+</div><?php
 
 $affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
 
@@ -45,6 +76,180 @@ imagedestroy( $image );
     
     </style>
 
+
+    <style>
+    
+        .offscreen {
+            position: absolute;
+            left: -999em;
+        }
+        
+        @media only screen and (min-device-width:1000px) {
+            .fotos {
+                left: -100px;
+            }
+        }
+        
+        .child
+        {
+          overflow: hidden; /* required */
+          width: 80%; /* for demo only */
+          position: relative; /* required  for demo*/
+
+          margin: 0 auto;
+          text-align: center;
+          vertical-align:middle;
+          
+          padding: 25 25 25 25;
+          margin-bottom:5px;
+          background: url("{{ asset('cshare/images/bg.png') }}") no-repeat;
+          background-size: 100%;
+         
+          /*this to solve "the content will not be cut when the window is smaller than the content": */
+          max-width:100%;
+          max-height:100%;
+        }
+        
+      .child img {
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+      }
+      .closebtn {
+        display: block;
+        width: 80%; 
+        border: thin;
+        font-size: 0.4rem;
+        color: #57606f;
+        line-height: 0.84rem;
+        outline: none;
+        border-radius: 0.42rem;
+        -webkit-border-radius: 0.42rem;
+        -moz-border-radius: 0.42rem;
+        -ms-border-radius: 0.42rem;
+        -o-border-radius: 0.42rem;
+        background-color: #e6e6e6;
+      }
+        
+      .box{
+        min-width:160;
+        padding: 10 10 10 10;
+        text-align: center;
+      }
+        
+      .openFrom{
+         background: #fff;
+         border-radius:.1rem .1rem 0 0 ;
+         -webkit-border-radius:.1rem .1rem 0 0 ;
+         -moz-border-radius:.1rem .1rem 0 0 ;
+         -ms-border-radius:.1rem .1rem 0 0 ;
+         -o-border-radius:.1rem .1rem 0 0 ;
+         position: absolute;
+         display: none;
+         bottom:0;
+         max-height: 80%;
+         overflow-y: auto;
+         z-index: 20;
+         width: 100%;
+         left: 0;
+      }
+
+      .openFrom .title{
+          font-size: .36rem; 
+          padding: 0 !important;
+          text-align: center;
+          color: #333;
+          border-bottom:.012rem solid #e0e0e0;
+          margin-left: 0px !important;
+      }
+
+      .modelimg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: url("{{ asset('cshare/images/model.png') }} ");
+          background-repeat: no-repeat;
+          background-size: contain;float: left;
+      }
+         
+      .swal-size-sm 
+      {
+         width: 200px !important;
+          height: 200px !important;
+      }
+      
+      .fit { /* set relative picture size */
+          max-width: 100%;
+          max-height: 100%;
+      }
+      .center {
+          display: block;
+          margin: auto;
+      }
+      .head2
+      {
+
+        font-size: 0.4rem;
+        color: grey;
+        line-height: 0.7rem;
+        text-align: center;
+      }
+
+      .head3
+      {
+
+        font-size: 0.3rem;
+        color: grey;
+        line-height: 0.6rem;
+        text-align: center;
+      }
+
+      .detail {
+        padding: 0.24rem 0.24rem 0.24rem;
+      }
+
+      .detail h2 {
+        color: grey;
+        font-size: 0.5rem;
+        line-height: 0.8rem;
+        text-align: center;
+      }
+
+      .detail h3 {
+        font-size: 0.35rem;
+        color: grey;
+        line-height: 0.7rem;
+        text-align: center;
+      }
+		
+		.overlay {
+		  position: absolute;
+		  margin-top: 30px;
+		  margin-right: 30px;
+      color:#F5F654;
+		  right: 0;
+		  top: 0;
+		  width: 60px;
+		  z-index: 1;
+		  text-align: center;
+		  /*line-height: 20px;*/
+          opacity: 1.2;
+		  background:rgba(0,0,0,0.3);
+    
+		vertical-align:middle;
+    max-width: 80px;
+    padding: 2px;
+    /*text-align: center;cursor:pointer;*/
+
+border-radius: 20px;
+    font-size: 10px;
+	}
+
+       
+    </style>
+
 @section('top-javascript')
 @endsection 
 
@@ -73,11 +278,11 @@ imagedestroy( $image );
     
 </section>
 
-
 <span id="copy" class="offscreen url" aria-hidden="true">{{$url}}</span>
 
 
 
+            
                 
 <script type="text/javascript">
  
@@ -130,7 +335,7 @@ imagedestroy( $image );
                         
                       });
     
-                            $(".btn_ribbon").click(() => { 
+                            $(".btn_ribbon").click(() => {  
                                 being.wrapShow();
                                 $(".openFrom").slideDown(150);
                                 $(".wrapBox ").click(function (e) {
@@ -158,7 +363,7 @@ imagedestroy( $image );
 
 <style>
 	
-	body {overflow: hidden;background-color: #FF6d7d;}
+	body {overflow: hidden;}
 	
 	.bottom {
   text-align: center;color: #FFF;font-style: normal;
@@ -207,7 +412,7 @@ h1:after {
   		flex-flow: column wrap;
     	width: auto;
 		/*max-width: 65%;*/
-        max-height: 80%;
+        /*max-height: 80%;*/
 		/*height: calc(100vh - 50px);
     /*height: 2000px;*/
 		
@@ -359,12 +564,7 @@ margin-top: 47%;*/
 	
 	 </style>
 <div class="container">
-	<div class="detail">
-      
-      <h2>分享广告图到微信</h2>
-       <h3>每邀请<span style="color: red;"> 1 </span>个好友获得<span style="color: red;"> {{ env('sharetofriend_youwillget', '3') }} </span>次机会</h3>
-     
-</div>
+	
 	
 	<div class="ribbon-holder" align="center">
   
