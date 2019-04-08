@@ -194,10 +194,9 @@
 				<h2>点击下面复制按钮，打开淘宝APP领券</h2>
 
 				
-					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
+					<!-- <h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3> -->
 					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
-					<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
-				
+					<h4>优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
 				
 			</div>
 		</div>
@@ -365,7 +364,7 @@
 
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
-				$( ".copyvoucher" ).html($(this).data('voucher'));
+				$( ".copyvoucher" ).html($(this).data('voucher'));			
 				var dd = $(this).data('imgurl');
 				$("#showIcon").attr("src",dd);
 				being.wrapShow();
@@ -401,7 +400,7 @@
 				// being.scaleShow('.showTips');
 				$("#showIcon").attr("src",$(this).data('imgurl'));
 				
-				$( ".copyvoucher" ).html($(this).data('voucher'));
+				$( ".copyvoucher" ).html($(this).data('voucher'));	
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 			});
