@@ -605,11 +605,11 @@
 									当前不能结算
 								</div>
 								<div class="modal-warning-content">
-									本局挖宝尚未完成
+									本局游戏尚未完成
 								</div>
 
 								<div class="close-modal modal-warning-button">
-									继续挖宝
+									继续游戏
 								</div>												
 							</div>
 						</div>
