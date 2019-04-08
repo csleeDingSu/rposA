@@ -38,6 +38,8 @@ class ShareProductController extends BaseController
 			$data['item'] = Voucher::where('id',$id)->select('*')->first();
 
 		}		
+
+		$data['item_featured'] = Voucher::where('is_featured', 1)->select('*')->orderBy('created_at', 'desc')->take(4)->get();
 		
 		return view('client/share_product', $data);
 	}

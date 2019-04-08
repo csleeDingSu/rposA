@@ -1,6 +1,6 @@
 
 section {
-	background-color: #dbdbdb;
+	background-color: #f6f6f6;
 }	
 	
 	.header .top li a, .header .top li a:hover, .header .top li a:focus {
@@ -18,8 +18,8 @@ section {
 	    border-top-right-radius: 6px;
 	    border-bottom-left-radius: 6px;
 	    border-bottom-right-radius: 6px;
-	    padding: 0.3rem;
-	    /*padding-bottom: 30px;*/
+	    padding: 15px;
+	    padding-bottom: 30px;
 	    font-weight: 700;
 	    /*height: 7rem !important;*/
       /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);*/
@@ -54,54 +54,47 @@ section {
 	}
 
 	.lbl{
-		/*width: 20%;*/
+		width: 20%;
 	  text-align: center;
-	  /*border-radius: 0.1rem;*/
-	  /*display: block;*/
-	  /*line-height: 0.48rem;	  */
-	  /*-webkit-border-radius: 0.1rem;*/
-	  /*-moz-border-radius: 0.1rem;*/
-	  /*-ms-border-radius: 0.1rem;*/
-	  /*-o-border-radius: 0.1rem;*/
-	  /*background-color: #f75656;*/
+	  border-radius: 0.1rem;
+	  display: block;
+	  line-height: 0.48rem;	  
+	  -webkit-border-radius: 0.1rem;
+	  -moz-border-radius: 0.1rem;
+	  -ms-border-radius: 0.1rem;
+	  -o-border-radius: 0.1rem;
+	  background-color: #f75656;
 	  font-size: 100%;
 	  font-size: 0.3rem;
-	  color: #bebebe;
+	  color: #fff;
 	  font-weight: 0 !important;
-	  line-height: 0.6rem;
-	}
-
-	.lbl_cur{
-		/*width: 5%;*/
-	  text-align: center;
-	  font-size: 100%;
-	  font-size: 0.3rem;
-	  color: #e5615c;
-	  font-weight: 0 !important;
-	  line-height: 0.6rem;
+	  float: left;
+	  line-height: 0.53rem;
 	}
 
 	.infinite-scroll .price1 .price2{
-		/*width: 35%;*/
+		width: 40%;
 	  
 		/*font-size: 0.4rem;*/
 		/*font-size: 100%;*/
 		font-size: 0.5rem;
 	  	font-weight: 700;
 	  	color: #f75656;
-	  	padding-right: 0.1rem;
-	  	/*margin-bottom: -0.2rem;*/
-	  	line-height: 0.6rem;
+	  	padding-left: 0.2rem;
+	  	margin-bottom: -0.2rem;
+	  	float: left;
+
 	}
 
 	.infinite-scroll .price1 .price3{
 
-		/*width: 40%;*/
+		width: 40%;
 	  
 		font-size: 0.3rem;
-		color: #bebebe;
-		/*text-decoration: line-through;*/
+		color: #bbbbbb;
+		text-decoration: line-through;
 		line-height: 0.6rem;
+		float: left;
 
 	}
 
@@ -227,160 +220,4 @@ section {
 .cardFoot {
     position: relative;
     z-index: 30;
-}
-
-.dbox2 {
-	position: relative;
-	text-align: center;
-}
-.imgShareBtn {
-	/*position: relative;*/
-	width: 100%;
-}
-
-.sharebtn_text {
-	position: absolute;
-	font-weight: 100;
-	width: 100%;
-	text-align: left;	
-}
-
-.sharebtn_text .cur {
-	color: #fff;
-	font-size: 0.3rem;
-	position: absolute;
-	text-align: left;
-	bottom: 0.2rem;
-}
-
-.sharebtn_text .vprice {
-	color: #fff;
-	font-size:0.6rem;
-	font-weight: 700;
-	position: absolute;
-	text-align: center;
-	bottom: 0.2rem;
-	left:0.25rem;
-}
-
-.sharebtn_text .vpass {
-	color: #fff;
-	font-size: 0.2rem;
-	position: absolute;
-	text-align: center;
-	bottom: 0.2rem;
-	left:2rem;
-	line-height: 0.3rem;
-}
-
-.sharebtn_text .vlink {
-	color: #fff;
-	font-size: 0.3rem;
-	position: absolute;
-	text-align: center;
-	bottom: 0.35rem;
-	left:4.4rem;
-
-}
-
-.titleimg {
-	width: 100%;
-	padding: 0.3rem;
-}
-
-.columnval {
-  float: left;
-  width: 44%;
-  position:relative; /* and this has to be relative */
-  margin:0.1rem;
-
-}
- 
-.rowval::after {
-  clear: both;
-  display: table;
-  align-content: center;
-  text-align: center;
-}
-
-.marginleft {	
-  margin-left: 0.3rem;
-}
-
-.marginright {	
-  margin-right: 0.3rem;
-}
-
-.marginbottom {
-	margin-bottom: 0.5rem;
-}
-
-.free {
-    position:absolute;
-    background-image: url("../images/share_product_free.png");
-    background-repeat: no-repeat;
-    background-size: cover;background-size: 100% 100%;
-    height:1.5rem;
-    width:1.5rem;
-    top:-0.03rem;
-    left:-0.03rem;
-}
-
-.featuredbg {
-
-	position:relative;	
-    background: white;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    padding: 0.2rem;
-    height: 4.4rem;
-}
-
-.featureddetail h2 {
-	color: #9c9c9c;
-	font-size: 0.24rem;
-	padding-top: 0.2rem;
-}
-
-.featureddetail h3 .lbl{
-	color: #e46158;
-	font-size: 0.24rem;
-}
-
-.featureddetail h3 .lbl_cur{
-	color: #e46158;
-	font-size: 0.24rem;
-}
-
-.featureddetail h3 .price2{
-	color: #e46158;
-	font-size: 0.30rem;
-}
-
-.featureddetail h3 .price3{
-	color: #c6c6c6;
-	font-size: 0.24rem;
-	text-decoration: line-through;
-}
-
-.cvoucher {
-
-	position:absolute;	
-    background: grey;
-    color: white;
-	text-align: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 0.3rem;
-    font-weight: 500;
-    width: 70%;
-    height: 8%;
-    top:7rem;
-    left:1.1rem;
-    display: none;
-
 }
