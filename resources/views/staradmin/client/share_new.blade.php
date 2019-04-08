@@ -416,10 +416,11 @@ h1:after {
 		/*height: calc(100vh - 50px);
     /*height: 2000px;*/
 		
-	}
-	.child{
+		background-position: 0px -30px; 
+		max-height: 800px;
 		
 	}
+	
 	.small-img
 	{
 		border:15px solid #EFEFEF;
@@ -439,7 +440,7 @@ h1:after {
 
 margin-top: 47%;*/
 		max-width: 77%;
-		margin-left: 7%;
+		margin-left: 13%;
 		
 		padding: 44% 0 0 0;
 		padding-right: 4px;
