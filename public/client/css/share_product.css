@@ -54,47 +54,54 @@ section {
 	}
 
 	.lbl{
-		width: 20%;
+		/*width: 20%;*/
 	  text-align: center;
-	  border-radius: 0.1rem;
-	  display: block;
-	  line-height: 0.48rem;	  
-	  -webkit-border-radius: 0.1rem;
-	  -moz-border-radius: 0.1rem;
-	  -ms-border-radius: 0.1rem;
-	  -o-border-radius: 0.1rem;
-	  background-color: #f75656;
+	  /*border-radius: 0.1rem;*/
+	  /*display: block;*/
+	  /*line-height: 0.48rem;	  */
+	  /*-webkit-border-radius: 0.1rem;*/
+	  /*-moz-border-radius: 0.1rem;*/
+	  /*-ms-border-radius: 0.1rem;*/
+	  /*-o-border-radius: 0.1rem;*/
+	  /*background-color: #f75656;*/
 	  font-size: 100%;
 	  font-size: 0.3rem;
-	  color: #fff;
+	  color: #bebebe;
 	  font-weight: 0 !important;
-	  float: left;
-	  line-height: 0.53rem;
+	  line-height: 0.6rem;
+	}
+
+	.lbl_cur{
+		/*width: 5%;*/
+	  text-align: center;
+	  font-size: 100%;
+	  font-size: 0.3rem;
+	  color: #e5615c;
+	  font-weight: 0 !important;
+	  line-height: 0.6rem;
 	}
 
 	.infinite-scroll .price1 .price2{
-		width: 40%;
+		/*width: 35%;*/
 	  
 		/*font-size: 0.4rem;*/
 		/*font-size: 100%;*/
 		font-size: 0.5rem;
 	  	font-weight: 700;
 	  	color: #f75656;
-	  	padding-left: 0.2rem;
-	  	margin-bottom: -0.2rem;
-	  	float: left;
-
+	  	padding-right: 0.1rem;
+	  	/*margin-bottom: -0.2rem;*/
+	  	line-height: 0.6rem;
 	}
 
 	.infinite-scroll .price1 .price3{
 
-		width: 40%;
+		/*width: 40%;*/
 	  
 		font-size: 0.3rem;
-		color: #bbbbbb;
-		text-decoration: line-through;
+		color: #bebebe;
+		/*text-decoration: line-through;*/
 		line-height: 0.6rem;
-		float: left;
 
 	}
 
@@ -220,4 +227,19 @@ section {
 .cardFoot {
     position: relative;
     z-index: 30;
+}
+
+.dbox2 {
+	position: relative;
+	text-align: center;
+}
+.imgShareBtn {
+	/*position: relative;*/
+	width: 100%;
+}
+
+.sharebtn_text {
+	position: absolute;
+  /*top: 8px;*/
+  /*left: 16px;*/
 }

@@ -28,7 +28,8 @@
 							<div class="price1">
 								<h3>
 								<span class="lbl">券后价</span>
-								<span class="price2">￥{{number_format(empty($item->discount_price) ? env('shareproduct_pricebefore',20) : $item->discount_price,2)}} </span>
+								<span class="lbl_cur">￥</span>
+								<span class="price2">{{number_format(empty($item->discount_price) ? env('shareproduct_pricebefore',20) : $item->discount_price,2)}} </span>
 								<span class="price3">
 								淘宝价￥{{number_format( empty($item->product_price) ? env('shareproduct_priceafter', 55) : $item->product_price,2)}}
 								</span>
@@ -36,6 +37,25 @@
 								
 							</div>
 						</span>							
+					</div>
+				</li>
+				<li class="dbox">
+					<div class="dbox2">
+						<img class="imgShareBtn" src="{{ asset('/client/images/share_product_btn_bg.png') }}">
+						<div class="sharebtn_text">	
+							<span>￥</span>
+							<span> {{
+								number_format(empty($item->voucher_price) ? 10 : $item->voucher_price,0)
+							}}
+							</span>
+							<span>
+								优惠卷代码 ￥K8454DFGH45H￥
+							</span>
+							<span>
+								 立刻领卷
+							</span>
+						</div>
+
 					</div>
 				</li>
 			</ul>
