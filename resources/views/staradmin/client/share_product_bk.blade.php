@@ -1,11 +1,11 @@
-@extends('layouts.default')
+@extends('layouts.default_without_footer')
 
 @section('title', '个人中心')
 
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/client/css/share_product.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/share_product_bk.css') }}" />
 @endsection
 
 @section('top-navbar')
