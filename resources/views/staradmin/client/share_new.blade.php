@@ -503,7 +503,7 @@ h1:after {
 
 	<div class="ribbon-holder" align="center">
     <div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div>
-		<div class="clickribbon"> @lang('dingsu.change_picture') </div>
+		<div class="clickribbon" onClick="location.reload();"> @lang('dingsu.change_picture') </div>
 		
 		<div class="btn_ribbon ">查看分享方法</div>
 
