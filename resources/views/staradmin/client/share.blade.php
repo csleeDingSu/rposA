@@ -404,6 +404,7 @@ h1:after {
     background-size:contain;
     background-repeat:no-repeat;
     background-color: #FF6d7d;
+    height: 12.4rem;
 	}
 	
 	.small-img
@@ -411,7 +412,7 @@ h1:after {
 		border:0.4rem solid #EFEFEF;
    		background-color:#EFEFEF;
 		/*width: auto;*/
-    width: 10rem;
+    width: 5rem;
 		height: auto;
 		max-width: 100%;
         max-height: 100%;
@@ -436,7 +437,7 @@ h1:after {
   overflow: hidden;
   width: 35%; height: 15%;
   /*text-align: right;*/
-	/*top: 21.6%;*/
+	margin-left:0.79rem;
 }
 .ribbon span {
   margin:0.2rem;
@@ -465,7 +466,7 @@ h1:after {
   background: #fff;
   background-color: #fff;
   top: 2.6rem;
-  right: 0.7rem;
+  right: 1.5rem;
 		opacity: 1.2;
 		  background:rgba(0,0,0,0.3);
 		color: #fff;
@@ -474,27 +475,27 @@ h1:after {
 		border-radius: 0.3rem;
 		padding: 0.1rem;
 		cursor: pointer;
-    width: 20%;
-    font-size:0.25rem;
+    width: 15%;
+    font-size:0.2rem;
 }
 	
 .btn_ribbon {
   position: absolute;
   background-color: #e43;
-  top: 10.2rem;
-  right: 0.89rem;
+  top: 8.1rem;
+  right: 1.6rem;
 		opacity: 1.2;
 		  background:rgba(0,0,0,0.0);
 		color: #FFF;z-index: 1;
 		text-align: center;vertical-align:middle;
 		border-radius: 0.25rem;
-		padding: 0.2rem;
+		padding: 0.1rem;
 		cursor: pointer;
 	 background-image: url("{{ asset('cshare/images/btn.png') }}");
         background-repeat: no-repeat;
         background-size: cover;background-size: 100% 100%;
-	font-size: 0.4rem;
-  width: 75%;
+	font-size: 0.35rem;
+  width: 55%;
 }	
 	
 	
@@ -504,8 +505,7 @@ h1:after {
 	<div class="ribbon-holder" align="center">
     <div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div>
 		<div class="clickribbon" onClick="location.reload();"> @lang('dingsu.change_picture') </div>
-		
-		<div class="btn_ribbon ">查看分享方法</div>
+    <div class="btn_ribbon ">查看分享方法</div>
 
     <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
 		
