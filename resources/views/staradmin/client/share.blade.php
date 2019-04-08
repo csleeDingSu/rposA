@@ -29,8 +29,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <div id="loading">
     
-</div>
-<?php
+</div><?php
 
 $affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
 
@@ -72,6 +71,12 @@ imagedestroy( $image );
 
 ?>
 
+
+    <style>
+    
+    </style>
+
+
     <style>
     
         .offscreen {
@@ -110,71 +115,6 @@ imagedestroy( $image );
         max-height: 100%;
         height: auto;
       }
-        
-      .ribbon {
-        position: absolute;
-        left: -5px; top: -5px;
-        z-index: 1;
-        overflow: hidden;
-        width: 75px; height: 75px;
-        text-align: right;
-      }
-      .ribbon span {
-        font-size: 10px;
-        font-weight: bold;
-        color: #FFF;
-        text-transform: uppercase;
-        text-align: center;
-        line-height: 20px;
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        width: 100px;
-        display: block;
-        background: #FFBA00;
-        background: linear-gradient(#FFBA00 0%, #FFBA00 100%);
-        box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 19px; left: -21px;
-      }
-      .ribbon span::before {
-        content: "";
-        position: absolute; left: 0px; top: 100%;
-        z-index: -1;
-        border-left: 3px solid #FFBA00;
-        border-right: 3px solid transparent;
-        border-bottom: 3px solid transparent;
-        border-top: 3px solid #FFBA00;
-      }
-      .ribbon span::after {
-        content: "";
-        position: absolute; right: 0px; top: 100%;
-        z-index: -1;
-        border-left: 3px solid transparent;
-        border-right: 3px solid #FFBA00;
-        border-bottom: 3px solid transparent;
-        border-top: 3px solid #FFBA00;
-      }
-        
-      .c_button {
-        display: block;
-        width: 100%;
-       
-        border: none;
-        font-size: 0.4rem;
-        color: #fff;
-        line-height: 0.84rem;
-        outline: none;
-        border-radius: 0.42rem;
-        -webkit-border-radius: 0.42rem;
-        -moz-border-radius: 0.42rem;
-        -ms-border-radius: 0.42rem;
-        -o-border-radius: 0.42rem;
-              
-        background-image: url("{{ asset('cshare/images/btn.png') }}");
-        background-repeat: no-repeat;
-        background-size: cover;background-size: 100% 100%;
-      }
-      
       .closebtn {
         display: block;
         width: 80%; 
@@ -342,8 +282,10 @@ border-radius: 20px;
 
 
 
+            
                 
 <script type="text/javascript">
+ 
  function set_body_height() { // set body height = window height
         $('body').height($(window).height());
     }
@@ -393,7 +335,7 @@ border-radius: 20px;
                         
                       });
     
-                            $(".c_button").click(() => { 
+                            $(".btn_ribbon").click(() => {  
                                 being.wrapShow();
                                 $(".openFrom").slideDown(150);
                                 $(".wrapBox ").click(function (e) {
@@ -401,7 +343,6 @@ border-radius: 20px;
                                   $(".openFrom").slideUp(150);
                                 });
                               });
-
 </script>
 
 @endsection 
@@ -419,50 +360,166 @@ border-radius: 20px;
 @endsection 
 @section('content')
 
- <div class="container">
-  <div class="detail">
-      
-      <h2>分享广告图到微信</h2>
-       <h3>每邀请<span style="color: red;"> 1 </span>个好友获得<span style="color: red;"> {{ env('sharetofriend_youwillget', '3') }} </span>次机会</h3>
-     
+
+<style>
+	
+	body {overflow: hidden;}
+	
+	.bottom {
+  text-align: center;color: #FFF;font-style: normal;
+			   margin-bottom: 0.4rem;
+}
+h1 {
+  text-align: center;color: #FFF;font-size: 0.35rem;
+  padding:0.2rem;
+}
+
+h1:before, h1:after {
+  display: inline-block;
+  width: 81px;
+  height: 1px;
+  content: '';
+}
+
+h1:before {
+  background: url("{{ asset('cshare/images/bottomline.png') }}") ;
+	vertical-align: middle;
+	background-position: 6%,10%;
+  margin-right:20px;
+}
+
+h1:after {
+  background: url("{{ asset('cshare/images/bottomline.png') }}") right no-repeat ;
+	vertical-align: middle;
+	background-position: 96%;
+  margin-left:20px;
+}
+	.bottomdiv
+	{
+		font-size: 0.23rem;
+	}
+	.container
+	{
+    background-image: url("{{ asset('cshare/images/bgnew.png') }}");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-color: #FF6d7d;
+	}
+	
+	.small-img
+	{
+		border:0.4rem solid #EFEFEF;
+   		background-color:#EFEFEF;
+		/*width: auto;*/
+    width: 10rem;
+		height: auto;
+		max-width: 100%;
+        max-height: 100%;
+		margin-bottom: 0.2rem;
+
+    background: linear-gradient(#FFDE03 0%, #FFDE03 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+
+	}
+	.ribbon-holder {
+  
+  position: relative;
+  padding: 0.2rem !important;
+  padding-top: 2.1rem !important;
+}
+
+.ribbon {
+  position: absolute;
+  object-fit: contain;
+  /*left: -5px; top: 141px;*/
+  z-index: 1;
+  overflow: hidden;
+  width: 35%; height: 15%;
+  /*text-align: right;*/
+	/*top: 21.6%;*/
+}
+.ribbon span {
+  margin:0.2rem;
+  font-size: 0.3rem;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 0.6rem;
+  /*transform: rotate(-45deg);*/
+  -webkit-transform: rotate(-45deg);
+  width: 100%;
+  display: block;
+  /*background: #FFDE03;*/
+  background: linear-gradient(#FFDE03 0%, #FFDE03 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+ 	left: -1rem;
+}	
+	
+	.clickribbon {
+    position: absolute;
+  object-fit: contain;
+  overflow: hidden;
+  
+  background: #fff;
+  background-color: #fff;
+  top: 2.6rem;
+  right: 0.7rem;
+		opacity: 1.2;
+		  background:rgba(0,0,0,0.3);
+		color: #fff;
+    z-index: 1;
+		text-align: center;vertical-align:middle;
+		border-radius: 0.3rem;
+		padding: 0.1rem;
+		cursor: pointer;
+    width: 20%;
+    font-size:0.25rem;
+}
+	
+.btn_ribbon {
+  position: absolute;
+  background-color: #e43;
+  top: 10.2rem;
+  right: 0.89rem;
+		opacity: 1.2;
+		  background:rgba(0,0,0,0.0);
+		color: #FFF;z-index: 1;
+		text-align: center;vertical-align:middle;
+		border-radius: 0.25rem;
+		padding: 0.2rem;
+		cursor: pointer;
+	 background-image: url("{{ asset('cshare/images/btn.png') }}");
+        background-repeat: no-repeat;
+        background-size: cover;background-size: 100% 100%;
+	font-size: 0.4rem;
+  width: 75%;
+}	
+	
+	
+	 </style>
+<div class="container">
+
+	<div class="ribbon-holder" align="center">
+    <div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div>
+		<div class="clickribbon" onClick="location.reload();"> @lang('dingsu.change_picture') </div>
+		
+		<div class="btn_ribbon ">查看分享方法</div>
+
+    <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
+		
+      <div class="bottom">
+  			<h1>友情提示</h1>
+  			<div class="bottomdiv">
+  			好友需通过网站的微信认证，你才能得到玩赚免单次数。
+        <br>
+        严厉打击小号注册，大号会被封号处理。
+  			</div>
+  		</div>
+  </div>
+	
 </div>
-
-
-
-    <div class="container9 center" style="background-color: #ffff; padding-bottom: 25px !important;">
-
-        <div class="box box-horizontal">
-            <div class="parent">
-                
-                <div class="child copyurl" data-clipboard-target="#copy">
-                    
-                    
-                    <div class="ribbon ribbon-top-left">
-                      <span>@lang('dingsu.ads_picture')</span>
-                    </div>
-                    <div class="overlay" onClick="location.reload();">
-                      <a href="javascript:void(0)" class="icon"><img  src="{{ asset('client/bar/refresh.png') }}" style="height: 10px; margin-bottom: 3px;"> </a>
-						  @lang('dingsu.change_picture')  
-                    </div>
-                    
-                    <?php echo '<img  class="small-img" id="copyurl"  src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="box box-horizontal" >
-            <div class="btndiv" align="center" style="display: inline-block; width: 80%;">
-                <button class="c_button" name="c_button" id="c_button" type="button">查看分享方法</button>
-            </div>
-            
-        </div>
-    
-
-    </div>
-</div>
-
-
 
 <script>
   $(window).load(function() {
