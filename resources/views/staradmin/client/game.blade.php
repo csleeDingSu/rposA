@@ -96,7 +96,7 @@
 						<div class="timer-wrapper">
 		        			<div class="icon-timer"></div>
 		        		</div>
-						开奖倒计时：<span class="span-timer"></span>秒
+						幸运倒计时：<span class="span-timer"></span>秒
 					</div>
 					<div class="results-row">
 						<div class="chain-wrapper results-left"></div>
@@ -232,7 +232,7 @@
 						        		<div class="timer-wrapper">
 						        			<div class="icon-timer"></div>
 						        		</div>
-						        		开奖倒计时：<span class="span-timer"></span>秒
+						        		幸运倒计时：<span class="span-timer"></span>秒
 						        	</td>
 						        </tr>
 						        <tr id="row-1">
