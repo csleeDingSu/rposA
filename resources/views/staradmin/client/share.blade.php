@@ -435,9 +435,9 @@ h1:after {
   /*left: -5px; top: 141px;*/
   z-index: 1;
   overflow: hidden;
-  width: 35%; height: 15%;
+  width: 2.5rem; height: 1.5rem;
   /*text-align: right;*/
-	margin-left:0.79rem;
+	margin-left:0.88rem;
 }
 .ribbon span {
   margin:0.2rem;
@@ -498,7 +498,26 @@ h1:after {
   width: 55%;
 }	
 	
-	
+  @media only screen and (min-width: 300px) { .ribbon { margin-left: 0.71rem !important; } }
+
+@media only screen and (min-width: 350px) { .ribbon { margin-left: 0.74rem !important; } }
+
+@media only screen and (min-width: 370px) { .ribbon { margin-left: 0.75rem !important; } }
+
+@media only screen and (min-width: 400px) { .ribbon { margin-left: 0.88rem !important; } }
+
+@media only screen and (min-width: 410px) { .ribbon { margin-left: 0.78rem !important; } }
+
+@media only screen and (min-width: 500px) { .ribbon { margin-left: 0.88rem !important; } }
+
+@media only screen and (min-width: 700px) { .ribbon { margin-left: 0.91rem !important; } }
+
+@media only screen and (min-width: 900px) { .ribbon { margin-left: 2.5rem !important; } }
+
+@media only screen and (min-width: 950px) { .ribbon { margin-left: 2rem !important; } }
+
+@media only screen and (min-width: 1100px) { .ribbon { margin-left: 3rem !important; } }
+
 	 </style>
 <div class="container">
 
