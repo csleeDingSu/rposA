@@ -407,7 +407,8 @@ class VoucherController extends BaseController
 				// die();
 			break;
 			case 'delete_all':
-				Voucher::delete();
+				Voucher::query()->delete();
+				Voucher::empty_category('vo');
 			break;
 			// case 'tag':
 			// 	Voucher::tag_voucher($id, $data);
@@ -511,7 +512,7 @@ class VoucherController extends BaseController
 					}
 				}
 				
-				Unreleasedvouchers::delete();
+				Unreleasedvouchers::query()->delete();
 			break;
 				
 			case 'delete_all':
@@ -525,7 +526,7 @@ class VoucherController extends BaseController
 					
 				}
 				
-				Unreleasedvouchers::delete();
+				Unreleasedvouchers::query()->delete();
 			break;		
 		}
 		

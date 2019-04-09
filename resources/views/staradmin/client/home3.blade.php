@@ -248,7 +248,7 @@
 										</span>
 										<ul style="color: #a8adaa;">
 											<li> • 30元、50元、100元任你领！</li>
-											<li> • 新人注册就送3次玩赚免单（最多赚45元）</li> 
+											<li> • 新人注册就送3次玩赚免单 (最多赚45元)</li> 
 											<li> • 分享给好友赚更多</li>
 										</ul>
 										<span style="font-weight: bold;">

@@ -105,7 +105,7 @@ class Voucher extends Model
 	{
         $ledger  = DB::table('voucher_category')
 				   ->where('unr_voucher_id', $id)
-				   ->update(['voucher_id' => $voucher_id]);
+				   ->update(['voucher_id' => $voucher_id,'unr_voucher_id' => null]);
 	}
 	
 	public static function get__unr_categorytag($id)
@@ -230,6 +230,22 @@ class Voucher extends Model
 			DB::table('voucher_category')
 			->where('unr_voucher_id',$id)
 			->delete();
+	}
+	
+	public static function empty_category($type = 'uv')
+	{
+		$mo = DB::table('voucher_category');
+		switch($type)
+		{
+			case 'uv':
+				$mo = $mo->whereNotNull('unr_voucher_id');
+			break;
+			case 'vo':
+				$mo = $mo->whereNotNull('voucher_id');
+			break;	
+		}
+		
+		$mo = $mo->delete();
 	}
 	
 }
