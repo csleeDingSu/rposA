@@ -422,7 +422,6 @@ class VoucherController extends BaseController
 	public function bulkdata_unrv_update (Request $request)
 	{
 		
-		ini_set('max_execution_time', 300); 
 		$dbi = array(); // unrelease voucher id 
 		$insdata = array();
 		$tagdata = array();
