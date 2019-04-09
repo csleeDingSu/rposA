@@ -760,7 +760,21 @@ body{
 
 /* reset-life-play modal */
 #reset-life-play .modal-content {
-	background: #ff2737;
+  background: url('/client/images/packet-redeem-background.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  width: 300px !important;
+  height: 390px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
 }
 
 #reset-life-play .modal-body {
@@ -773,36 +787,74 @@ body{
 }
 
 #reset-life-play .modal-warning-title {
-	padding-bottom: 8px;
+	padding-top: 10px;
 	color: white;
+	font-size: 26px;
+}
+
+#reset-life-play .modal-warning-info {
+	background: #e32230;
+	color: white;
+	font-size: 11px;
+	border-radius: 12px;
+	width: 120px;
+	padding: 2px;
+	margin: 5px auto 15px auto;
+}
+
+#reset-life-play .divider{
+    color:#666;
+    margin:0 auto;
+    overflow:hidden;
+    text-align:center;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#reset-life-play .divider:before, #reset-life-play .divider:after{
+    content:"";
+    vertical-align:middle;
+    display:inline-block;
+    width:10%;
+    border-bottom:1px solid #ccc;
+    margin:0 2% 0 -55%;
+}
+
+#reset-life-play .divider:after{
+    margin:0 -55% 0 2%;
+}
+
+#reset-life-play .wallet-point {
+	color: #ff2737;
 }
 
 #reset-life-play .modal-content-wrapper {
-	width: 290px;
-	height: 79px;
+	width: 250px;
+	height: 56px;
 	float: left;
+	margin-left: 18px;
+	margin-bottom: 10px;
+	text-align: center;
 }
 
 #reset-life-play .modal-warning-content {
 	background: url('/client/images/voucher-background.png') no-repeat;
-	width: 553px;
-	height: 158px;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
+	width: 541px;
+	height: 121px;
+	transform: scale(0.48); 
+	-webkit-transform: scale(0.48);
 	-webkit-transform-origin:left top;
-	margin-left: 10px;
-	margin-right: 10px;
-	padding-top: 30px;
 }
 
 #reset-life-play .voucher-wrapper {
-	margin-left: -10px;
+	margin-left: 0px;
+	padding: 25px;
 }
 
 #reset-life-play .voucher-value, #reset-life-play .voucher-yuan {
 	color: #ff2737;
-	font-size: 48px;
-	font-weight: 700;
+	font-size: 50px;
 }
 
 #reset-life-play .voucher-yuan {
@@ -816,25 +868,27 @@ body{
 
 #reset-life-play .voucher-description {
 	color: #333;
-	font-size: 28px;
+	font-size: 30px;
 	text-align: left;
-	padding-top: 10px;
+	padding-top: 22px;
+	padding-left: 30px;
 }
 
 #reset-life-play .voucher-instruction {
 	color: #999;
-	font-size: 22px;
+	font-size: 20px;
 	text-align: left;
+	padding-left: 30px;
 }
 
 #reset-life-play .modal-warning-button {
-	background: #ffae46;
+	background: #fcac12;
 	color: white;
 	border-radius: 25px;
-	font-size: 20px;
-	margin-top: 20px;
-	margin-left: 30px;
-	margin-right: 30px;
+	font-size: 18px;
+	margin-top: 3px;
+	margin-left: 60px;
+	margin-right: 60px;
 	padding-bottom: 8px;
 	padding-top: 6px;
 }

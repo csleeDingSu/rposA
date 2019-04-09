@@ -506,21 +506,21 @@ class VoucherController extends BaseController
 			break;	
 				
 			case 'move_all':
-				$i=1;
+				//$i=1;
 				foreach (array_chunk($insdata,800) as $t) {	
 					foreach ($t as $key=>$row)
 					{
 						$rid = $row['id'];
 						unset($row['id']);
-						//$id = DB::table('vouchers')->insertGetId($row);
-						//Voucher::update_voucher_id($rid, $id);
-						$i=$i+1;
+						$id = DB::table('vouchers')->insertGetId($row);
+						Voucher::update_voucher_id($rid, $id);
+						//$i=$i+1;
 						//print_r($row);die();
-						echo $rid.' -- '. $i.'<br>';
+						//echo $rid.' -- '. $i.'<br>';
 					}
 				}
 				
-				//Unreleasedvouchers::query()->delete();
+				Unreleasedvouchers::query()->delete();
 			break;
 				
 			case 'delete_all':
