@@ -65,7 +65,7 @@
 					</div>
 					@endforeach 
 					
-					
+					<!--
 					<div class="row">
 						<div class="col-md-6">
 						<div class="form-group row">
@@ -80,7 +80,7 @@
 					</div>
 						
 						</div>
-					
+					-->
 					 
 
 				</div>
@@ -207,11 +207,13 @@ $(document).ready(function() {
 						console.log(data_tagcategory);
 						var vcategory = null;
 						$("#shareid").html(data.id);
+						/*
 						if (data.share_product == 1)
 						{
 							document.getElementById('share_product').checked = true;							
 							$(".shareurl").show();
 						}
+						*/
 						$("input[name='system_category[]']").each( function () {
 							cposition = $(this).val();
 							$.each( data_tagcategory, function( key, value ) {

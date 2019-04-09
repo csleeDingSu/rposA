@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 
 use App;
+use App\Shareproduct;
 use App\Voucher;
 use App\member_game_bet_temp_log;
 use App\vouchers_yhq;
@@ -35,7 +36,7 @@ class ShareProductController extends BaseController
 
 		} else {
 
-			$data['item'] = Voucher::where('id',$id)->select('*')->first();
+			$data['item'] = Shareproduct::where('id',$id)->select('*')->first();
 
 		}		
 

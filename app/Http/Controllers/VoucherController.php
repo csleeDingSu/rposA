@@ -410,6 +410,24 @@ class VoucherController extends BaseController
 				Voucher::query()->delete();
 				Voucher::empty_category('vo');
 			break;
+			case 'share':
+				
+				$models = Voucher::select('*');
+				
+				$models = $models->whereIn('id', $dbi);
+				
+				$models = $models->get();
+				
+				$models = $models->toArray();
+				
+				foreach ($models as $row)
+				{
+					unset($row['id']);
+					unset($row['created_at']);
+					unset($row['updated_at']);
+					\App\Shareproduct::create($row);
+				}
+			break;
 			// case 'tag':
 			// 	Voucher::tag_voucher($id, $data);
 			// break;	
@@ -1249,7 +1267,7 @@ public function update_category($id, Request $request)
 				}
 			}
 
-		$result =  $result->orderBy('vouchers'."."."{$sortby}","{$orderby}")->paginate(200);		
+		$result =  $result->orderBy("{$sortby}","{$orderby}")->paginate(200);		
 				
 		$data['result'] = $result; 
 				

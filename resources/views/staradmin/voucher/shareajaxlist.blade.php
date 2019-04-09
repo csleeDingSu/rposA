@@ -44,24 +44,21 @@
 						<img class="card-img-top img-fluid" src="{{$item->product_picurl}}" alt="{{$item->product_name}}">
 						<h5 class="card-title mt-0">{{$item->product_name}}</h5> {{$item->product_category}}
 						<br> @lang('dingsu.month_sales'): {{$item->month_sales}}<br> @lang('dingsu.voucher_price'): {{$item->voucher_price}}<br> @lang('dingsu.upload_date'): {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}<br>
+						<br> @lang('dingsu.url'): {{ Config::get('app.shareurl') }}{{$item->id}} <br>						
 					</div>
 
 					<div class="card-body border-top pt-1 mt-auto d-flex align-items-end ">
-						<div class="btn-toolbar">
-							
-							<button type="button" onClick="return Deletevoucher({{$item->id}});return false;" class="btn btn-inverse-danger  ">@lang('dingsu.delete')</button>
+						<div class="btn-toolbar">							
+							<button type="button" onClick="return CopyUrl('{{ Config::get('app.shareurl') }}{{$item->id}}');return false;" class="btn btn-inverse-info  ">@lang('dingsu.copy') @lang('dingsu.url')</button>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</li>
 		@endforeach
 	</ul>
-</form> {
-	!!$result->render() !!
-}
+</form> {!! $result->render() !!}
 
-@unless( count( $result ) )
-@include( 'common.norecord' )
+@unless (count($result))    
+	@include ('common.norecord')
 @endunless

@@ -5,10 +5,18 @@
 	@include('voucher.shareajaxlist')
 </section>
 
+<input type="hidden" value="" id="copydiv">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
 
 <script language="javascript">
+	function CopyUrl(url)
+	{
+		$('#copydiv').val(url);
+		var copyText = document.getElementById("copydiv");
+		copyText.select();
+		document.execCommand("copy");
+	}
 function ProductAction( ) {
 
 				var datav =  $("#productdisplayform").serializeArray();
