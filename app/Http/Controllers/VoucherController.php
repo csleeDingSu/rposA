@@ -376,8 +376,19 @@ class VoucherController extends BaseController
 				$dbi[] = $val['name'];
 			}
 		}
+		/*
+		$models = Voucher::select('*');
+		
+		if (!in_array($type, array("delete_all")))
+		{
+			$models = $models->whereIn('id', $dbi);
+		}
+		$models = $models->get();
+		//$models = $models->toArray();
+		*/
+		
 		//DB::enableQueryLog();
-		$models = Voucher::whereIn('id', $dbi)->get();
+		//$models = Voucher::whereIn('id', $dbi)->get();
 		//print_r(DB::getQueryLog());
 		
 		$now = Carbon::now()->toDateTimeString();
@@ -394,7 +405,10 @@ class VoucherController extends BaseController
 					Voucher::delete_voucher_category($val);
 				}
 				// die();
-			break;	
+			break;
+			case 'delete_all':
+				Voucher::delete();
+			break;
 			// case 'tag':
 			// 	Voucher::tag_voucher($id, $data);
 			// break;	
