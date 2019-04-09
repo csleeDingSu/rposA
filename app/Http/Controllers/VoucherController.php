@@ -508,6 +508,7 @@ class VoucherController extends BaseController
 					{
 						//$id = DB::table('vouchers')->insertGetId($row);
 						//Voucher::update_voucher_id($array_id[$key], $id);
+						$id='e';
 						echo $array_id[$key].' -- '. $id.'<br>';
 					}
 				}
