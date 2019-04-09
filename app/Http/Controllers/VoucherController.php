@@ -1249,7 +1249,7 @@ public function update_category($id, Request $request)
 				}
 			}
 
-		$result =  $result->orderBy('vouchers'."."."{$sortby}","{$orderby}")->paginate(200);		
+		$result =  $result->orderBy("{$sortby}","{$orderby}")->paginate(200);		
 				
 		$data['result'] = $result; 
 				
