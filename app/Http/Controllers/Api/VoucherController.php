@@ -54,7 +54,7 @@ class VoucherController extends Controller
 			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
 			->where('voucher_category.category' ,'=' , $cid)
 			->groupBy('vouchers.id')
-			->orderby('vouchers.created_at','DESC')
+			->orderby('vouchers.id','DESC')
 			->paginate(5);
 
 			//$vouchers = Voucher::get_vouchers($cid)->paginate(5);
