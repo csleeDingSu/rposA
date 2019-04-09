@@ -7,7 +7,7 @@ use DB;
 class Shareproduct extends Model
 {
    
-    protected $guard = 'share_product';
+    protected $table = 'share_product';
 
     /**
      * The attributes that are mass assignable.
