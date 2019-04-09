@@ -376,8 +376,19 @@ class VoucherController extends BaseController
 				$dbi[] = $val['name'];
 			}
 		}
+		/*
+		$models = Voucher::select('*');
+		
+		if (!in_array($type, array("delete_all")))
+		{
+			$models = $models->whereIn('id', $dbi);
+		}
+		$models = $models->get();
+		//$models = $models->toArray();
+		*/
+		
 		//DB::enableQueryLog();
-		$models = Voucher::whereIn('id', $dbi)->get();
+		//$models = Voucher::whereIn('id', $dbi)->get();
 		//print_r(DB::getQueryLog());
 		
 		$now = Carbon::now()->toDateTimeString();
@@ -394,7 +405,11 @@ class VoucherController extends BaseController
 					Voucher::delete_voucher_category($val);
 				}
 				// die();
-			break;	
+			break;
+			case 'delete_all':
+				Voucher::query()->delete();
+				Voucher::empty_category('vo');
+			break;
 			// case 'tag':
 			// 	Voucher::tag_voucher($id, $data);
 			// break;	
@@ -407,7 +422,6 @@ class VoucherController extends BaseController
 	public function bulkdata_unrv_update (Request $request)
 	{
 		
-		ini_set('max_execution_time', 300); 
 		$dbi = array(); // unrelease voucher id 
 		$insdata = array();
 		$tagdata = array();
@@ -431,6 +445,7 @@ class VoucherController extends BaseController
 		if (!in_array($type, array("move_all", "delete_all")))
 		{
 			$models = $models->whereIn('id', $dbi);
+			echo 'imin';
 		}
 		$models = $models->get();
 		$models = $models->toArray();
@@ -449,8 +464,8 @@ class VoucherController extends BaseController
 			
 			$row['created_at']  = $now; 
 			$row['updated_at']  = $now; 
-			$array_id[]=$row['id'];
-			unset($row['id']);
+			//$array_id[]=$row['id'];
+			//unset($row['id']);
 			
 			$insdata[] = $row;
 		}
@@ -462,8 +477,10 @@ class VoucherController extends BaseController
 				{
 					// print_r($array_id);
 					// die('--ll');
+					$rid = $row['id'];
+					unset($row['id']);
 					$id = DB::table('vouchers')->insertGetId($row);
-					Voucher::update_voucher_id($array_id[$key], $id);
+					Voucher::update_voucher_id($rid, $id);
 					// echo $id;
 					// Voucher::update_voucher_id($dbi, $id);
 				}
@@ -471,7 +488,7 @@ class VoucherController extends BaseController
 				Unreleasedvouchers::destroy($dbi);
 			break;
 			case 'delete':
-				Voucher::archived_unr_vouchers_insert($insdata);
+				//Voucher::archived_unr_vouchers_insert($insdata);
 				
 				foreach($models as $key=>$val)
 				{
@@ -489,29 +506,35 @@ class VoucherController extends BaseController
 			break;	
 				
 			case 'move_all':
+				$i=1;
 				foreach (array_chunk($insdata,800) as $t) {	
 					foreach ($t as $key=>$row)
 					{
-						$id = DB::table('vouchers')->insertGetId($row);
-						Voucher::update_voucher_id($array_id[$key], $id);
+						$rid = $row['id'];
+						unset($row['id']);
+						//$id = DB::table('vouchers')->insertGetId($row);
+						//Voucher::update_voucher_id($array_id[$key], $id);
+						$i=$i+1;
+						//print_r($row);die();
+						echo $array_id[$rid].' -- '. $i.'<br>';
 					}
 				}
 				
-				Unreleasedvouchers::truncate();
+				//Unreleasedvouchers::query()->delete();
 			break;
 				
 			case 'delete_all':
-				Voucher::archived_unr_vouchers_insert($insdata);
+				//Voucher::archived_unr_vouchers_insert($insdata);
 				
 				foreach($models as $key=>$val)
 				{
 					$id = $val['id'];
-					Voucher::destroy($id);
+					//Voucher::destroy($id);
 					Voucher::delete_unr_voucher_category($id);
 					
 				}
 				
-				Unreleasedvouchers::truncate();
+				Unreleasedvouchers::query()->delete();
 			break;		
 		}
 		

@@ -35,6 +35,7 @@
 			<select class="form-control" name="product_action" id="product_action">
 				<option value="0">@lang('dingsu.default_select')</option>
 				<option value="delete">@lang('dingsu.delete')</option>
+				<option value="delete_all">@lang('dingsu.delete_all')</option>
 			</select>
 			<div>
 			</div>

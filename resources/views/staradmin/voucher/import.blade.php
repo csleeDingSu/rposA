@@ -48,7 +48,7 @@
 				</div>
 				
 
-				<button type="submit" class="btn btn-success mr-2">@lang('dingsu.upload')</button>
+				<button type="submit" onClick="showprogress()" class="btn btn-success mr-2">@lang('dingsu.upload')</button>
 				<a href="" type="submit" class="btn btn-light mr-2">@lang('dingsu.reset')</a>
 
 
@@ -56,3 +56,24 @@
 		</div>
 	</div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
+
+<script language="javascript">
+function showprogress()
+{
+	swal( {
+					title: '@lang("dingsu.please_wait")',
+					text: '@lang("dingsu.updating_data")..',
+					allowOutsideClick: false,
+					closeOnEsc: false,
+					allowEnterKey: false,
+					buttons: false,
+					onOpen: () => {
+						swal.showLoading()
+					}
+				} );
+	
+	
+}
+</script>

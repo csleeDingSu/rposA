@@ -383,10 +383,9 @@ $(document).ready(function() {
 											$target.hide( 'slow', function () {
 												$target.remove();
 											} );
-											window.location.href = "list";
-
+											
 										});
-										
+										window.location.href = "list";
 									}
 								},
 								error: function ( xhr, ajaxOptions, thrownError ) {
