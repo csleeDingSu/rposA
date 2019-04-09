@@ -445,6 +445,7 @@ class VoucherController extends BaseController
 		if (!in_array($type, array("move_all", "delete_all")))
 		{
 			$models = $models->whereIn('id', $dbi);
+			echo 'imin';
 		}
 		$models = $models->get();
 		$models = $models->toArray();
@@ -503,7 +504,7 @@ class VoucherController extends BaseController
 			break;	
 				
 			case 'move_all':
-				$id=1;
+				$i=1;
 				foreach (array_chunk($insdata,800) as $t) {	
 					foreach ($t as $key=>$row)
 					{
