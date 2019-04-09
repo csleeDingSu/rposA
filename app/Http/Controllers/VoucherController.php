@@ -416,10 +416,15 @@ class VoucherController extends BaseController
 				
 				$models = $models->whereIn('id', $dbi);
 				
-				$models = $models->get();				
+				$models = $models->get();
+				
+				$models = $models->toArray();
 				
 				foreach ($models as $row)
 				{
+					unset($row['id']);
+					unset($row['created_at']);
+					unset($row['updated_at']);
 					\App\Shareproduct::create($row);
 				}
 			break;
