@@ -497,7 +497,7 @@ class VoucherController extends BaseController
 					}
 				}
 				
-				Unreleasedvouchers::truncate();
+				Unreleasedvouchers::delete();
 			break;
 				
 			case 'delete_all':
@@ -511,7 +511,7 @@ class VoucherController extends BaseController
 					
 				}
 				
-				Unreleasedvouchers::truncate();
+				Unreleasedvouchers::delete();
 			break;		
 		}
 		
