@@ -170,7 +170,7 @@ class GenerateVouchertoDb
 			   if(!empty($kk[$key])){
 				$id = DB::table('unreleased_vouchers')->insertGetId($t);
 				   
-			   if($t['is_featured'] == 1)
+			   if(isset($t['is_featured']) && $t['is_featured'] == 1)
 			   {
 				   $catedata['unr_voucher_id'] = $id; 
 				   $catedata['category']       = 220; 
