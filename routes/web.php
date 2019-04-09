@@ -464,7 +464,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	//Share product
 	Route::get('/share-product', 'VoucherController@shareproductlist')->name('shareproductlist');	
-	Route::post('/share-product/update', 'VoucherController@update_shareproduct')->name('shareproduct_update');	
+	Route::delete('/share-product/update', 'VoucherController@update_shareproduct')->name('shareproduct_update');	
 	Route::delete( '/share-product/delete/{id}', 'VoucherController@delete_shareproduct' )->name( 'delete_shareproduct' );
 	
 	
