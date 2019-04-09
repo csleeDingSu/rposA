@@ -410,6 +410,19 @@ class VoucherController extends BaseController
 				Voucher::query()->delete();
 				Voucher::empty_category('vo');
 			break;
+			case 'share':
+				
+				$models = Voucher::select('*');
+				
+				$models = $models->whereIn('id', $dbi);
+				
+				$models = $models->get();				
+				
+				foreach ($models as $row)
+				{
+					\App\Shareproduct::create($row);
+				}
+			break;
 			// case 'tag':
 			// 	Voucher::tag_voucher($id, $data);
 			// break;	
