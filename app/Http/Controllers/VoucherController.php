@@ -485,7 +485,7 @@ class VoucherController extends BaseController
 				Unreleasedvouchers::destroy($dbi);
 			break;
 			case 'delete':
-				Voucher::archived_unr_vouchers_insert($insdata);
+				//Voucher::archived_unr_vouchers_insert($insdata);
 				
 				foreach($models as $key=>$val)
 				{
@@ -515,7 +515,7 @@ class VoucherController extends BaseController
 			break;
 				
 			case 'delete_all':
-				Voucher::archived_unr_vouchers_insert($insdata);
+				//Voucher::archived_unr_vouchers_insert($insdata);
 				
 				foreach($models as $key=>$val)
 				{
