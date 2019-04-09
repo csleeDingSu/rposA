@@ -464,8 +464,8 @@ class VoucherController extends BaseController
 			
 			$row['created_at']  = $now; 
 			$row['updated_at']  = $now; 
-			$array_id[]=$row['id'];
-			unset($row['id']);
+			//$array_id[]=$row['id'];
+			//unset($row['id']);
 			
 			$insdata[] = $row;
 		}
@@ -477,8 +477,10 @@ class VoucherController extends BaseController
 				{
 					// print_r($array_id);
 					// die('--ll');
+					$rid = $row['id'];
+					unset($row['id']);
 					$id = DB::table('vouchers')->insertGetId($row);
-					Voucher::update_voucher_id($array_id[$key], $id);
+					Voucher::update_voucher_id($rid, $id);
 					// echo $id;
 					// Voucher::update_voucher_id($dbi, $id);
 				}
@@ -508,11 +510,13 @@ class VoucherController extends BaseController
 				foreach (array_chunk($insdata,800) as $t) {	
 					foreach ($t as $key=>$row)
 					{
+						$rid = $row['id'];
+						unset($row['id']);
 						//$id = DB::table('vouchers')->insertGetId($row);
 						//Voucher::update_voucher_id($array_id[$key], $id);
 						$i=$i+1;
-						print_r($row);die();
-						echo $array_id[$key].' -- '. $i.'<br>';
+						//print_r($row);die();
+						echo $array_id[$rid].' -- '. $i.'<br>';
 					}
 				}
 				
