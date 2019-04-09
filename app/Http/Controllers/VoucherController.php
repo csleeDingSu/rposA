@@ -506,8 +506,9 @@ class VoucherController extends BaseController
 				foreach (array_chunk($insdata,800) as $t) {	
 					foreach ($t as $key=>$row)
 					{
-						$id = DB::table('vouchers')->insertGetId($row);
-						Voucher::update_voucher_id($array_id[$key], $id);
+						//$id = DB::table('vouchers')->insertGetId($row);
+						//Voucher::update_voucher_id($array_id[$key], $id);
+						echo $array_id[$key].' -- '. $id.'<br>';
 					}
 				}
 				
