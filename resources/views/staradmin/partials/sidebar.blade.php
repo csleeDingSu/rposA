@@ -110,6 +110,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/voucher/setting"> @lang('dingsu.voucher')@lang('dingsu.setting')  </a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/share-product"> @lang('dingsu.share_product') </a>
+					</li>
 				</ul>
 			</div>
 		</li>
