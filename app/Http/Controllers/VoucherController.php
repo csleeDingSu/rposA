@@ -511,7 +511,7 @@ class VoucherController extends BaseController
 					}
 				}
 				
-				Unreleasedvouchers::query()->delete();
+				//Unreleasedvouchers::query()->delete();
 			break;
 				
 			case 'delete_all':
