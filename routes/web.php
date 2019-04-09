@@ -462,6 +462,11 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get('/admin/get-cron', 'AdminController@get_cron')->name('get.cron');
 	Route::post('/admin/edit-cron', 'AdminController@edit_cron')->name('update.cron');
 	
+	//Share product
+	Route::get('/share-product', 'VoucherController@shareproductlist')->name('shareproductlist');	
+	Route::post('/share-product/update', 'VoucherController@update_shareproduct')->name('shareproduct_update');	
+	Route::delete( '/share-product/delete/{id}', 'VoucherController@delete_shareproduct' )->name( 'delete_shareproduct' );
+	
 	
 } );
 //END
