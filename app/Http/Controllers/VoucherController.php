@@ -1206,6 +1206,97 @@ public function update_category($id, Request $request)
 	return redirect()->back()->with('message', trans('dingsu.game_update_success_message'));
 	//return redirect()->route('gamelist')->with('status', ('dingsu.game_add_success_message'));
 }
+	
+	
+	public function shareproductlist (Request $request)
+	{
+		
+		//$data['record']  = Admin::get_faq();
+		
+		
+		//$result =  \DB::table('tips');
+		
+
+		$data['page'] = 'voucher.sharelist'; 
+		
+	
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		$sortby= 'created_at';
+		$orderby= 'DESC';
+		
+		$result =  \App\Shareproduct::select('*');
+		
+    	if ($input) 
+			{
+				//filter
+				if (!empty($input['s_title'])) { 
+					$result = $result->where('product_name','LIKE', "%{$input['s_title']}%");
+				}				
+			}
+
+			if (isset($input['s_order'])) {
+				if ($input['s_order'] != '' ){
+					if($input['s_order'] =='ASC')
+					{
+						$orderby = "{$input['s_order']}";
+					}
+					else if($input['s_order'] == 'DESC')
+					{
+						$orderby = "{$input['s_order']}";
+					}
+				}
+			}
+
+		$result =  $result->orderBy('vouchers'."."."{$sortby}","{$orderby}")->paginate(200);		
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+			return view('voucher.shareajaxlist', ['result' => $result])->render();  
+
+        }					
+		return view('main', $data);
+	}
+	
+	public function update_shareproduct (Request $request)
+	{
+		
+		$dbi = array();
+		$insdata = array();
+		$data = $request->_data;
+		$type = $request->_type;
+		
+		
+		foreach($data as $val)
+		{
+			if ($val['value'] == 1)
+			{
+				$dbi[] = $val['name'];
+			}
+		}
+		
+		
+		$now = Carbon::now()->toDateTimeString();
+		
+		switch ($type)
+		{
+			
+			case 'delete':
+				\App\Shareproduct::destroy($dbi);
+				
+			break;
+			case 'delete_all':
+				\App\Shareproduct::query()->delete();
+			break;	
+		}		
+		echo json_encode($dbi);
+	}
+	
+	
+
+	
 }
 
 
