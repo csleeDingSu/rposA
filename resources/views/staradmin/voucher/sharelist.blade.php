@@ -12,7 +12,7 @@
 <script language="javascript">
 	function CopyUrl(url)
 	{
-		$('#copydiv').val(url)';
+		$('#copydiv').val(url);
 		var copyText = document.getElementById("copydiv");
 		copyText.select();
 		document.execCommand("copy");
