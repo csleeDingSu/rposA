@@ -49,7 +49,7 @@
 
 					<div class="card-body border-top pt-1 mt-auto d-flex align-items-end ">
 						<div class="btn-toolbar">							
-							<button type="button" onClick="return CopyUrl({{ Config::get('app.shareurl') }}{{$item->id}});return false;" class="btn btn-inverse-info  ">@lang('dingsu.copy') @lang('dingsu.url')</button>
+							<button type="button" onClick="return CopyUrl('{{ Config::get('app.shareurl') }}{{$item->id}}');return false;" class="btn btn-inverse-info  ">@lang('dingsu.copy') @lang('dingsu.url')</button>
 						</div>
 					</div>
 				</div>
