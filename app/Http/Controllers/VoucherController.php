@@ -520,7 +520,7 @@ class VoucherController extends BaseController
 				foreach($models as $key=>$val)
 				{
 					$id = $val['id'];
-					Voucher::destroy($id);
+					//Voucher::destroy($id);
 					Voucher::delete_unr_voucher_category($id);
 					
 				}
