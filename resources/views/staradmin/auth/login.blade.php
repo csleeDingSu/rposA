@@ -8,8 +8,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/module.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/style.css') }}"/>
 
-    <link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
-
     <style>
         .isa_info,
         .isa_success,

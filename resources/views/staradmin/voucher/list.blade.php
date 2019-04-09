@@ -333,12 +333,12 @@ $(document).ready(function() {
 				
 				swal( {
 					title: '@lang("dingsu.delete_confirmation")',
-					text: '@lang("dingsu.delete_conf_text")',
+					// text: '@lang("dingsu.delete_conf_text")',
 					icon: "warning",
 					closeModal: false,
 					buttons: [
 						'@lang("dingsu.cancel")',
-						'@lang("dingsu.delete")'
+						'@lang("dingsu.submit")'
 					],
 
 					allowOutsideClick: false,
@@ -350,7 +350,7 @@ $(document).ready(function() {
 						if ( preConfirm ) {
 							swal( {
 								title: '@lang("dingsu.please_wait")',
-								text: '@lang("dingsu.deleting_data")..',
+								// text: '@lang("dingsu.deleting_data")..',
 								allowOutsideClick: false,
 								closeOnEsc: false,
 								allowEnterKey: false,
@@ -470,12 +470,12 @@ function save_tag()
 
 				swal( {
 					title: '@lang("dingsu.delete_confirmation")',
-					text: '@lang("dingsu.delete_conf_text")',
+					// text: '@lang("dingsu.delete_conf_text")',
 					icon: "warning",
 					closeModal: false,
 					buttons: [
 						'@lang("dingsu.cancel")',
-						'@lang("dingsu.delete")'
+						'@lang("dingsu.submit")'
 					],
 
 					allowOutsideClick: false,
@@ -487,7 +487,7 @@ function save_tag()
 						if ( preConfirm ) {
 							swal( {
 								title: '@lang("dingsu.please_wait")',
-								text: '@lang("dingsu.deleting_data")..',
+								// text: '@lang("dingsu.deleting_data")..',
 								allowOutsideClick: false,
 								closeOnEsc: false,
 								allowEnterKey: false,
@@ -533,12 +533,12 @@ function save_tag()
 			function RemoveDuplicatevoucher() {
 				swal( {
 					title: '@lang("dingsu.delete_confirmation")',
-					text: '@lang("dingsu.delete_conf_text")',
+					// text: '@lang("dingsu.delete_conf_text")',
 					icon: "warning",
 					closeModal: false,
 					buttons: [
 						'@lang("dingsu.cancel")',
-						'@lang("dingsu.move")'
+						'@lang("dingsu.submit")'
 					],
 
 					allowOutsideClick: false,
@@ -550,7 +550,7 @@ function save_tag()
 						if ( preConfirm ) {
 							swal( {
 								title: '@lang("dingsu.please_wait")',
-								text: '@lang("dingsu.deleting_data")..',
+								// text: '@lang("dingsu.deleting_data")..',
 								allowOutsideClick: false,
 								closeOnEsc: false,
 								allowEnterKey: false,

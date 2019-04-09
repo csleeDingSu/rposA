@@ -363,12 +363,12 @@ $(document).ready(function() {
 			
 				swal( {
 					title: '@lang("dingsu.delete_confirmation")',
-					text: '@lang("dingsu.move_to_voucher_list_text")',
+					// text: '@lang("dingsu.move_to_voucher_list_text")',
 					icon: "warning",
 					closeModal: false,
 					buttons: [
 						'@lang("dingsu.cancel")',
-						'@lang("dingsu.move")'
+						'@lang("dingsu.submit")'
 					],
 
 					allowOutsideClick: false,
@@ -436,7 +436,7 @@ $(document).ready(function() {
 
 				swal( {
 					title: '@lang("dingsu.delete_confirmation")',
-					text: '@lang("dingsu.delete_conf_text")',
+					// text: '@lang("dingsu.delete_conf_text")',
 					icon: "warning",
 					closeModal: false,
 					buttons: [
@@ -453,7 +453,7 @@ $(document).ready(function() {
 						if ( preConfirm ) {
 							swal( {
 								title: '@lang("dingsu.please_wait")',
-								text: '@lang("dingsu.deleting_data")..',
+								// text: '@lang("dingsu.deleting_data")..',
 								allowOutsideClick: false,
 								closeOnEsc: false,
 								allowEnterKey: false,
@@ -516,7 +516,7 @@ $(document).ready(function() {
 
 				swal( {
 					title: '@lang("dingsu.move_confirmation")',
-					text: '@lang("dingsu.move_conf_text")',
+					// text: '@lang("dingsu.move_conf_text")',
 					icon: "warning",
 					closeModal: false,
 					buttons: [
@@ -574,12 +574,12 @@ $(document).ready(function() {
 			function RemoveDuplicatevoucher() {
 				swal( {
 					title: '@lang("dingsu.delete_confirmation")',
-					text: '@lang("dingsu.delete_conf_text")',
+					// text: '@lang("dingsu.delete_conf_text")',
 					icon: "warning",
 					closeModal: false,
 					buttons: [
 						'@lang("dingsu.cancel")',
-						'@lang("dingsu.move")'
+						'@lang("dingsu.submit")'
 					],
 
 					allowOutsideClick: false,
@@ -591,7 +591,7 @@ $(document).ready(function() {
 						if ( preConfirm ) {
 							swal( {
 								title: '@lang("dingsu.please_wait")',
-								text: '@lang("dingsu.deleting_data")..',
+								// text: '@lang("dingsu.deleting_data")..',
 								allowOutsideClick: false,
 								closeOnEsc: false,
 								allowEnterKey: false,

@@ -28,7 +28,7 @@ body {
 }
 
 .modal-title {
-    background: #4c89e2;
+    background: #7dca33;
     color: white;
     text-align: center;
     margin-top: 10%;
@@ -39,11 +39,10 @@ body {
 }
 
 .modal-title h1 {
-    font-size: 20px;
     margin-bottom: 10px;
     margin-top: 5px;
-    color: #666666;
-    /*font-weight: 700;*/
+    color: #fff;
+    font-size: 24px;
 }
 
 .modal-card {
@@ -53,24 +52,25 @@ body {
 }
 
 .copyvoucher {
-    border: 1px solid #e3e3e3;
     background: #f0f0f0;
-    color: #4380d9;
+    color: #7dca33;
     margin-left: 10%;
     margin-right: 10%;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     border-radius: 5px;
-    font-size: 30px;
+    font-size: 23px;
+    padding: 5px;
 }
 
 .cutBtn, .cutBtn-success, .cutBtn-fail {
     margin-left: 10%;
     margin-right: 10%;
-    border-radius: 30px;
-    font-size: 20px;
+    border-radius: 6px;
+    font-size: 23px;
     color: white;
     padding: 6px;
-    background-image: linear-gradient(#ffaf08, #ff830b);
+    background: #7dca33;
 }
 
 .cutBtn {
@@ -78,23 +78,26 @@ body {
 }
 
 .cutBtn-success {
-    background: #1ba908;
+    background: #61b114;
 }
 
 .cutBtn-fail {
-    background: #838383;
+    background: #999999;
 }
 
 .instructions, .instructions-dark {
     margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
-    color: #cdcdcd;
+    color: #aaa;
 }
 
 .instructions-dark {
-    color: #bababa;
+    font-size: 12px;
+}
+
+.highlight {
+    color: #fca871;
 }
 
 @media only screen and (max-width: 360px) {
