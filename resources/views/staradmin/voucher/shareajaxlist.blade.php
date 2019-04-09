@@ -58,10 +58,8 @@
 		</li>
 		@endforeach
 	</ul>
-</form> {
-	!!$result->render() !!
-}
+</form> {!! $result->render() !!}
 
-@unless( count( $result ) )
-@include( 'common.norecord' )
+@unless (count($result))    
+	@include ('common.norecord')
 @endunless
