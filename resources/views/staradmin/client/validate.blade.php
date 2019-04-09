@@ -24,7 +24,7 @@
 
 			<div class="sub-title">认证流程</div>
 
-			<div><span class="step">第一步：</span>将朋友圈设置为<span class="highlight">全部可见</span>（认证完毕后可关闭）</div>
+			<div><span class="step">第一步：</span>将朋友圈设置为<span class="highlight">全部可见</span>(认证完毕后可关闭)</div>
 
 			<img class="img-settings" src="{{ asset('/client/images/settings.png') }}" width="290" height="172" />
 
