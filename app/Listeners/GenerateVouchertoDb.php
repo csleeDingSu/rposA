@@ -125,15 +125,7 @@ class GenerateVouchertoDb
 							$insdata['updated_at']  = $now; 
 							$insdata['created_at']  = $now;
 							
-							if ($re_field == 'is_featured')
-							{
-								if ($val[$mva] != 1)
-								{
-									$insdata[$re_field] = 0;
-								}
-							}
-
-
+							
 							if ($re_field == 'product_category')
 							{
 								
@@ -177,6 +169,17 @@ class GenerateVouchertoDb
 			   //die();
 			   if(!empty($kk[$key])){
 				$id = DB::table('unreleased_vouchers')->insertGetId($t);
+				   
+			   if($t['is_featured'] == 1)
+			   {
+				   $catedata['unr_voucher_id'] = $id; 
+				   $catedata['category']       = 220; 
+				   $catedata['updated_at']     = $now; 
+				   $catedata['created_at']     = $now; 
+				   DB::table('voucher_category')->insert($catedata);
+				   unset($catedata);
+			   }
+				   
 				foreach($kk[$key] as $vkey=>$val)
 					{
 						$catedata['unr_voucher_id']  = $id; 
