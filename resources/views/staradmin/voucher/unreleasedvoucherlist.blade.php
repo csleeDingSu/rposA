@@ -415,10 +415,10 @@ $(document).ready(function() {
 											$target.hide( 'slow', function () {
 												$target.remove();
 											} );
-											window.location.href = "unreleased";
+											
 
 										});
-										
+										window.location.href = "unreleased";
 									}
 								},
 								error: function ( xhr, ajaxOptions, thrownError ) {
