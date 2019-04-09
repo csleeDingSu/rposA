@@ -103,6 +103,7 @@ function initUser(records){
 
     if (jQuery.isEmptyObject(records)) {
         $('#spanPoint').html(0);
+        $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
         var balance = parseInt(records.balance);
@@ -119,6 +120,7 @@ function initUser(records){
         $('#spanPoint').html(total_balance);
         
         $('#hidTotalBalance').val(total_balance);
+        $('.wallet-point').html(point);
         $('.packet-point').html(point);
         if(show_win){
             
@@ -265,10 +267,10 @@ function getSocket(){
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown);
-            if(errorThrown == 'Unauthorized'){
+            /*if(errorThrown == 'Unauthorized'){
                 $(".loading").fadeOut("slow");
                 $('#red-packet-modal').modal({backdrop: 'static', keyboard: false});
-            }
+            }*/
         })
         .done(function (result, textStatus, jqXHR) {
             console.log('connecting URL: '+c_url);
