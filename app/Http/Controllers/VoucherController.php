@@ -503,13 +503,14 @@ class VoucherController extends BaseController
 			break;	
 				
 			case 'move_all':
+				$id=1;
 				foreach (array_chunk($insdata,800) as $t) {	
 					foreach ($t as $key=>$row)
 					{
 						//$id = DB::table('vouchers')->insertGetId($row);
 						//Voucher::update_voucher_id($array_id[$key], $id);
-						$id='e';
-						echo $array_id[$key].' -- '. $id.'<br>';
+						$id=$id+1;
+						echo $array_id[$key].' -- '. $i.'<br>';
 					}
 				}
 				
