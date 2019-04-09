@@ -20,7 +20,7 @@ body {
 
 .full-height {
 	padding-top: 60px;
-	font-size:12px;
+	font-size:14px;
     font-family: 'Lato',verdana, sans-serif;
     color: #a9a9a9;
     text-align:left;
@@ -33,19 +33,19 @@ body {
 
 .title {
 	color: #313131;
-	font-size: 20px;
+	font-size: 22px;
 	padding: 0 0 10px 0;
 }
 
 .sub-title {
 	color: #828282;
-	font-size: 14px;
+	font-size: 16px;
 	padding: 10px 0;
 }
 
 .instructions {
 	color: #616161;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .step {
