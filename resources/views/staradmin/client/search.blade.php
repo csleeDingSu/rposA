@@ -10,6 +10,7 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
 	<title>@lang('dingsu.home')</title>
+	<link rel="stylesheet" href="{{ asset('/client/fontawesome-free-5.5.0-web/css/all.css') }}" >
 	<link rel="stylesheet" href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
@@ -173,16 +174,13 @@
 		<!-- 领取优惠券  -->
 		<div class="showQuan dflex scaleHide">
 			<div class="inBox">
-				<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
-				<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
+				<img id="showIcon" src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
+				<h2>点击下面复制按钮，打开淘宝APP领券</h2>
 
-				{{-- @if (isset(Auth::Guard('member')->user()->username)) --}}
-					<h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3>
-					<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
-					<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
-				{{-- @else --}}
-					<!-- <h3 id="cut">请先注册，才能领取优惠券</h3> -->
-				{{-- @endif --}}
+				
+					<!-- <h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3> -->
+					<a class="cutBtn">一键复制</a>
+					<h4>优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
 				
 				
 			</div>
@@ -319,7 +317,7 @@
 			});
 
 			$('.showQuan').click((e) => {
-				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-1.png') }} ");
+				$('.cutBtn').removeClass('cutBtn-success').html('一键复制');
 				var target = $(e.target).closest('.inBox').length;
 				console.log(target);
 				if (target > 0) {
@@ -332,7 +330,9 @@
 
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
-				$( ".copyvoucher" ).html($(this).data('voucher'));
+				$( ".copyvoucher" ).html($(this).data('voucher'));			
+				var dd = $(this).data('imgurl');
+				$("#showIcon").attr("src",dd);
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 			});
@@ -364,6 +364,7 @@
 
 				// being.wrapShow();
 				// being.scaleShow('.showTips');
+				$("#showIcon").attr("src",$(this).data('imgurl'));
 
 				$( ".copyvoucher" ).html($(this).data('voucher'));
 				being.wrapShow();
@@ -401,12 +402,12 @@
 			});
 			clipboard.on('success', function (e) {
 				console.log(e);
-				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
+				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功 请打开淘宝App');
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				$('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
+				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功 请打开淘宝App');
 			});
 
 			being.scrollBottom('.cardBody', '.box', () => {
