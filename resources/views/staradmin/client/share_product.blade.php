@@ -174,7 +174,7 @@
 	<script>
 		
 		$(document).ready(function(){
-			document.getElementById('product').onclick = function ()
+			document.getElementById('cvoucher').onclick = function ()
 		    {
 		        document.getElementById('cvoucher').style.display = 'none';
 		    }
