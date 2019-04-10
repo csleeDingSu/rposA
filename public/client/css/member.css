@@ -472,7 +472,7 @@ html, body {
     padding: 5px;
 }
 
-.cutBtn, .cutBtn-success, .cutBtn-fail {
+.cutBtnCS, .cutBtnCS-success, .cutBtnCS-fail {
     margin-left: 10%;
     margin-right: 10%;
     border-radius: 6px;
@@ -482,15 +482,15 @@ html, body {
     background: #7dca33;
 }
 
-.cutBtn {
+.cutBtnCS {
 	cursor: pointer;
 }
 
-.cutBtn-success {
+.cutBtnCS-success {
     background: #61b114;
 }
 
-.cutBtn-fail {
+.cutBtnCS-fail {
     background: #999999;
 }
 
@@ -518,6 +518,10 @@ html, body {
         width: 230px;
         margin: 0 auto;
         font-size: 16px;
+    }
+
+    .instructions {
+    	font-size: 13px;
     }
 }
 /* End Modal box */
