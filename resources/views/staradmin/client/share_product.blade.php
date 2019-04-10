@@ -53,11 +53,12 @@
 							<span id="cut">{{empty($item->voucher_pass) ? "￥K8454DFGH45H￥" : $item->voucher_pass}}
 							</span>
 						</span>
-						<a class="cutBtn">
+						<a class="copyBtn">
 							<span class="vlink">
-								立刻领卷
+									立刻领卷
 							</span>
 						</a>
+						
 					</h3>
 					</div>
 
@@ -74,6 +75,7 @@
 	</div>
 
 	<a href="/">
+
 	
 	<img class="titleimg" src="{{ asset('/client/images/share_product_title.png') }}">
 
@@ -175,7 +177,7 @@
 		
 		$(document).ready(function(){
 			
-			var clipboard = new ClipboardJS('.cutBtn', {
+			var clipboard = new ClipboardJS('.copyBtn', {
 				target: function () {
 					$(cvoucher).fadeIn();
 					
