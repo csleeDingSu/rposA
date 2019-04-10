@@ -294,7 +294,7 @@ section {
   float: left;
   width: 44%;
   position:relative; /* and this has to be relative */
-  margin:0.1rem;
+  margin:1%;
 
 }
  
@@ -310,7 +310,7 @@ section {
 }
 
 .marginright {	
-  margin-right: 0.35rem;
+  /*margin-right: 0.35rem;*/
 }
 
 .marginbottom {
@@ -377,7 +377,7 @@ section {
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 6%;
+    padding: 5.5%;
     font-size:0.3rem;
     font-weight: 500;
     top:85%;
