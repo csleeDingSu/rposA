@@ -296,8 +296,8 @@
 							</div>
 						</div>
 						<div class="row">
-							<div id="cut" class="copyvoucher">wabao666</div>
-							<div class="cutBtn">点击复制</div>
+							<div id="cutCS" class="copyvoucher">wabao666</div>
+							<div class="cutBtnCS">点击复制</div>
 						</div>
 						<div class="modal-card">
 							<div class="instructions-dark">
@@ -339,19 +339,19 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
-			var clipboardCS = new ClipboardJS('#cutBtnCS', {
+			var clipboardCS = new ClipboardJS('.cutBtnCS', {
 				target: function () {
 					return document.querySelector('#cutCS');
 				}
 			});
 
 			clipboardCS.on('success', function (e) {
-				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+				$('.cutBtnCS').addClass('cutBtnCS-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
 			clipboardCS.on('error', function (e) {
 				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
-				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+				$('.cutBtnCS').addClass('cutBtnCS-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
 			$('#csBtn').click(function () {
