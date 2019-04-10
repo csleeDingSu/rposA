@@ -66,6 +66,12 @@
 				</li>
 			</ul>
 
+			<!-- 领取优惠券  -->
+			<div class="cvoucher" id="cvoucher">
+				领取成功, 打开淘宝APP领优惠卷
+			</div>
+
+
 		</div>
 		
 		<img class="titleimg" src="{{ asset('/client/images/share_product_title.png') }}">
@@ -160,18 +166,11 @@
 
 			 </a>
 
-<!-- 领取优惠券  -->
-	<div class="cvoucher" id="cvoucher">
-		领取成功, 打开淘宝APP领优惠卷
-	</div>
-
 	</section>
 @endsection
 
-
-
 @section('footer-javascript')
-		
+
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script>
