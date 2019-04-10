@@ -39,6 +39,7 @@
 				</div>
 			</li>
 			<li class="dbox">
+				<a class="copyBtn">
 				<div class="dbox2">
 					<img class="imgShareBtn" src="{{ asset('/client/images/share_product_btn_bg.png') }}">
 					<div class="sharebtn_text">
@@ -53,16 +54,16 @@
 							<span id="cut">{{empty($item->voucher_pass) ? "￥K8454DFGH45H￥" : $item->voucher_pass}}
 							</span>
 						</span>
-						<a class="copyBtn">
+						
 							<span class="vlink">
 									立刻领卷
 							</span>
-						</a>
 						
 					</h3>
 					</div>
 
 				</div>
+			</a>
 			</li>
 		</ul>
 
