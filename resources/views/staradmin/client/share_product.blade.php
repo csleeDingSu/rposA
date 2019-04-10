@@ -1,6 +1,6 @@
 @extends('layouts.default_allowopeninwechat')
 
-@section('title', '分享产品')
+@section('title', '记得往下拉，免单等你拿！')
 
 @section('top-css')
     @parent
@@ -39,6 +39,7 @@
 				</div>
 			</li>
 			<li class="dbox">
+				<a class="copyBtn">
 				<div class="dbox2">
 					<img class="imgShareBtn" src="{{ asset('/client/images/share_product_btn_bg.png') }}">
 					<div class="sharebtn_text">
@@ -53,15 +54,16 @@
 							<span id="cut">{{empty($item->voucher_pass) ? "￥K8454DFGH45H￥" : $item->voucher_pass}}
 							</span>
 						</span>
-						<a class="cutBtn">
+						
 							<span class="vlink">
-								立刻领卷
+									立刻领卷
 							</span>
-						</a>
+						
 					</h3>
 					</div>
 
 				</div>
+			</a>
 			</li>
 		</ul>
 
@@ -72,25 +74,59 @@
 
 
 	</div>
-	
-	<img class="titleimg" src="{{ asset('/client/images/share_product_title.png') }}">
 
 	<a href="/">
 
-		<div class="rowval">
+	
+	<img class="titleimg" src="{{ asset('/client/images/share_product_title.png') }}">
+
+	@if (!empty($item_featured))
+
+		@php ($t = 0)
+
+		@foreach($item_featured as $f)
+			@php ($t += 1)
+
+			@if ($t % 2 == 0)
+
+			<div class="columnval featuredbg marginright">
+			  	<div class="free"></div>
+			    <img src="<?=str_replace('_160x160.jpg', '', empty($f->product_picurl) ? env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg') : $f->product_picurl)?>" style="width:100%">
+			    <div class="dbox1">
+						<span class="featureddetail">
+							<h2>{{empty($f->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $f->product_name}}</h2>
+							<div class="price1">
+								<h3>
+								<span class="lbl">券后</span>
+								<span class="lbl_cur">￥</span>
+								<span class="price2">{{number_format(empty($f->discount_price) ? env('shareproduct_pricebefore',20) : $f->discount_price,2)}} </span>
+								<span class="price3">
+								￥{{number_format( empty($f->product_price) ? env('shareproduct_priceafter', 55) : $f->product_price,2)}}
+								</span>
+								</h3>
+								
+							</div>
+						</span>							
+				</div>
+			  </div>
+
+
+			@else
+
+				<div class="rowval">
 		  <div class="columnval featuredbg marginleft">
 		  	<div class="free"></div>
-		    <img src="<?=str_replace('_160x160.jpg', '', empty($item_featured[0]->product_picurl) ? env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg') : $item_featured[0]->product_picurl)?>" style="width:100%">
+		    <img src="<?=str_replace('_160x160.jpg', '', empty($f->product_picurl) ? env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg') : $f->product_picurl)?>" style="width:100%">
 			    <div class="dbox1">
 						<span class="featureddetail">
-							<h2>{{empty($item_featured[0]->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $item_featured[0]->product_name}}</h2>
+							<h2>{{empty($f->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $f->product_name}}</h2>
 							<div class="price1">
 								<h3>
 								<span class="lbl">券后</span>
 								<span class="lbl_cur">￥</span>
-								<span class="price2">{{number_format(empty($item_featured[0]->discount_price) ? env('shareproduct_pricebefore',20) : $item_featured[0]->discount_price,2)}} </span>
+								<span class="price2">{{number_format(empty($f->discount_price) ? env('shareproduct_pricebefore',20) : $f->discount_price,2)}} </span>
 								<span class="price3">
-								￥{{number_format( empty($item_featured[0]->product_price) ? env('shareproduct_priceafter', 55) : $item_featured[0]->product_price,2)}}
+								￥{{number_format( empty($f->product_price) ? env('shareproduct_priceafter', 55) : $f->product_price,2)}}
 								</span>
 								</h3>
 								
@@ -98,71 +134,16 @@
 						</span>							
 					</div>
 			</div>
-		  <div class="columnval featuredbg marginright">
-		  	<div class="free"></div>
-		    <img src="<?=str_replace('_160x160.jpg', '', empty($item_featured[1]->product_picurl) ? env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg') : $item_featured[1]->product_picurl)?>" style="width:100%">
-		    <div class="dbox1">
-					<span class="featureddetail">
-						<h2>{{empty($item_featured[1]->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $item_featured[1]->product_name}}</h2>
-						<div class="price1">
-							<h3>
-							<span class="lbl">券后</span>
-							<span class="lbl_cur">￥</span>
-							<span class="price2">{{number_format(empty($item_featured[1]->discount_price) ? env('shareproduct_pricebefore',20) : $item_featured[1]->discount_price,2)}} </span>
-							<span class="price3">
-							￥{{number_format( empty($item_featured[1]->product_price) ? env('shareproduct_priceafter', 55) : $item_featured[1]->product_price,2)}}
-							</span>
-							</h3>
-							
-						</div>
-					</span>							
-			</div>
-		  </div>
+		  
 		  </div>
 
-		  <div class="rowval">
-		  <div class="columnval featuredbg marginleft marginbottom">
-		  	<div class="free"></div>
-		    <img src="<?=str_replace('_160x160.jpg', '', empty($item_featured[2]->product_picurl) ? env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg') : $item_featured[2]->product_picurl)?>" style="width:100%">
-			    <div class="dbox1">
-						<span class="featureddetail">
-							<h2>{{empty($item_featured[2]->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $item_featured[2]->product_name}}</h2>
-							<div class="price1">
-								<h3>
-								<span class="lbl">券后</span>
-								<span class="lbl_cur">￥</span>
-								<span class="price2">{{number_format(empty($item_featured[2]->discount_price) ? env('shareproduct_pricebefore',20) : $item_featured[2]->discount_price,2)}} </span>
-								<span class="price3">
-								￥{{number_format( empty($item_featured[2]->product_price) ? env('shareproduct_priceafter', 55) : $item_featured[2]->product_price,2)}}
-								</span>
-								</h3>
-								
-							</div>
-						</span>							
-					</div>
-			</div>
-		  <div class="columnval featuredbg marginright marginbottom">
-		  	<div class="free"></div>
-		    <img src="<?=str_replace('_160x160.jpg', '', empty($item_featured[3]->product_picurl) ? env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg') : $item_featured[3]->product_picurl)?>" style="width:100%">
-		    <div class="dbox1">
-					<span class="featureddetail">
-						<h2>{{empty($item_featured[3]->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $item_featured[3]->product_name}}</h2>
-						<div class="price1">
-							<h3>
-							<span class="lbl">券后</span>
-							<span class="lbl_cur">￥</span>
-							<span class="price2">{{number_format(empty($item_featured[3]->discount_price) ? env('shareproduct_pricebefore',20) : $item_featured[3]->discount_price,2)}} </span>
-							<span class="price3">
-							￥{{number_format( empty($item_featured[3]->product_price) ? env('shareproduct_priceafter', 55) : $item_featured[3]->product_price,2)}}
-							</span>
-							</h3>
-							
-						</div>
-					</span>							
-			</div>
-		  </div>
-		  </div>
+			@endif
 
+
+		@endforeach
+
+
+	@endif
 		 </a>
 
 @endsection
@@ -175,13 +156,13 @@
 		
 		$(document).ready(function(){
 			
-			var clipboard = new ClipboardJS('.cutBtn', {
+			var clipboard = new ClipboardJS('.copyBtn', {
 				target: function () {
 					$(cvoucher).fadeIn();
 					
 					setTimeout(function() {
 					 $(cvoucher).fadeOut('slow');
-					}, 1500);
+					}, 3000);
 
 					return document.querySelector('#cut');
 				}
