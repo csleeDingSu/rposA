@@ -5,7 +5,7 @@
 	@include('voucher.shareajaxlist')
 </section>
 
-<input type="hidden" value="" id="copydiv" style="position: absolute;margin-left: 9145px;">
+<input type="text" value="" id="copydiv" style="position: absolute;margin-left: 9145px;">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
 
