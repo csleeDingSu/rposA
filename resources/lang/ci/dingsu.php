@@ -540,4 +540,5 @@ return [
 	'voucher_pass' => '淘宝二维码',	
 	'move_all' => '将所有记录移至优惠卷列表',
 	'delete_all' => '将所有记录删除',
+	'copy_url_success' => '复制网址成功',
 ];
