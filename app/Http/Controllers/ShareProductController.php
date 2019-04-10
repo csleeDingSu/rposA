@@ -40,7 +40,7 @@ class ShareProductController extends BaseController
 
 		}		
 
-		$data['item_featured'] = Voucher::where('is_featured', 1)->select('*')->orderBy('created_at', 'desc')->take(4)->get();
+		$data['item_featured'] = Voucher::where('is_featured', 1)->select('*')->orderBy('created_at', 'desc')->take(10)->get();
 		
 		return view('client/share_product', $data);
 	}
@@ -92,6 +92,57 @@ class ShareProductController extends BaseController
 
 		return "done";
 		
+	}
+
+	public function yhq_search()
+	{
+
+		// $url = "http://192.168.1.154:8888/nobet";
+		$url = "http://yhq.cn/index.php?r=index/search&kw=三只松鼠";
+
+		// $url = "http://yhq.cn/index.php?r=index/search&s_type=1&kw=";
+		var_dump($url);
+	    $client = new \GuzzleHttp\Client();
+	    // Send an asynchronous request.
+	    $request = new \GuzzleHttp\Psr7\Request('GET', $url);
+
+	 //    $promise = $client->sendAsync($request)->then(function ($response) {
+	 //    // echo 'I completed! ' . $response->getBody();
+	 //     echo 'Completed!';
+		// });
+
+	 //    $promise->wait();
+
+	    $promise = $client->requestAsync('GET', $url);
+		$promise->then(function ($response) {
+			echo 'Got a response! ' . $response->getStatusCode(); }
+		);
+
+		var_dump('done');
+
+		// $url = "http://www.google.com";
+  //       $payload = [];
+  //       $headers = ['Content-Type: application/x-www-form-urlencoded'];
+  //       $option = ['connect_timeout' => 60, 'timeout' => 180];
+  //       $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+  //       $request = $client->get($url, ['headers' => $headers, 'form params' => $payload]);
+  //       $response = $request->getBody()->getContents();
+  //       var_dump($response);
+
+  //       // Get cURL resource
+		// $curl = curl_init();
+		// // Set some options - we are passing in a useragent too here
+		// curl_setopt_array($curl, [
+		//     CURLOPT_RETURNTRANSFER => 1,
+		//     CURLOPT_URL => 'www.wabao666.com',
+		//     CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+		// ]);
+		// // Send the request & save response to $resp
+		// $resp = curl_exec($curl);
+
+		// var_dump($resp);
+		// // Close request to clear up some resources
+		// curl_close($curl);
 	}
 
 }
