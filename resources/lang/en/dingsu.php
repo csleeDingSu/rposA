@@ -557,5 +557,5 @@ return [
 	'voucher_pass' => 'tabao code',
 	'move_all' => 'move all to voucher',
 	'delete_all' => 'remove all records',
-	
+	'copy_url_success' => 'successfully copy url',
 ];

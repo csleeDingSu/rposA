@@ -14,6 +14,7 @@ section {
 	    color: black;
 	    /*text-align: center;*/
 	    margin: 0.4rem;
+	    margin-bottom: 0rem;
 	    border-top-left-radius: 6px;
 	    border-top-right-radius: 6px;
 	    border-bottom-left-radius: 6px;
@@ -50,7 +51,7 @@ section {
 
 	  font-weight: 510;
 	  color: #666666;
-	  margin-bottom: 0.4rem;
+	  margin-bottom: 0.2rem;
 	}
 
 	.lbl{
@@ -86,7 +87,7 @@ section {
 	  
 		/*font-size: 0.4rem;*/
 		/*font-size: 100%;*/
-		font-size: 0.5rem;
+		font-size: 0.45rem;
 	  	font-weight: 700;
 	  	color: #f75656;
 	  	padding-right: 0.1rem;
@@ -279,20 +280,21 @@ section {
 	position: absolute;
 	text-align: center;
 	bottom: 0.35rem;
-	left:4.4rem;
+	left:66%;
+	width: 34%;
 
 }
 
 .titleimg {
 	width: 100%;
-	padding: 0.3rem;
+	padding: 0.35rem;
 }
 
 .columnval {
   float: left;
   width: 44%;
   position:relative; /* and this has to be relative */
-  margin:0.1rem;
+  margin:1%;
 
 }
  
@@ -304,11 +306,11 @@ section {
 }
 
 .marginleft {	
-  margin-left: 0.3rem;
+  margin-left: 0.35rem;
 }
 
 .marginright {	
-  margin-right: 0.3rem;
+  /*margin-right: 0.35rem;*/
 }
 
 .marginbottom {
@@ -375,12 +377,11 @@ section {
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 0.3rem;
+    padding: 5.5%;
     font-size:0.3rem;
     font-weight: 500;
-    top:7rem;
-    left:0.9rem;
+    top:85%;
     display: none;
-    /*z-index: 99;*/
-
+    width: 91.5%;
+    height: 12.5%;
 }

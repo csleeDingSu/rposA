@@ -53,8 +53,10 @@
 							<span id="cut">{{empty($item->voucher_pass) ? "￥K8454DFGH45H￥" : $item->voucher_pass}}
 							</span>
 						</span>
-						<a class="cutBtn vlink">
-							立刻领卷
+						<a class="cutBtn">
+							<span class="vlink">
+								立刻领卷
+							</span>
 						</a>
 					</h3>
 					</div>
@@ -172,14 +174,15 @@
 	<script>
 		
 		$(document).ready(function(){
-			document.getElementById('product').onclick = function ()
-		    {
-		        document.getElementById('cvoucher').style.display = 'none';
-		    }
-
+			
 			var clipboard = new ClipboardJS('.cutBtn', {
 				target: function () {
-					document.getElementById('cvoucher').style.display = 'block';
+					$(cvoucher).fadeIn();
+					
+					setTimeout(function() {
+					 $(cvoucher).fadeOut('slow');
+					}, 1500);
+
 					return document.querySelector('#cut');
 				}
 		        
