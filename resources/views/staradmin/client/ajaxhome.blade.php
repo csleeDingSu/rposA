@@ -11,7 +11,7 @@
 												<div class="divPrice">淘宝价<span>￥{{$item->product_price}} </span></div>
 												<div class="quan">
 													<p>
-														已售{{$item->month_sales}}件
+														已售{{$item->month_sales}}件+
 													</p>
 												</div>
 											</div>

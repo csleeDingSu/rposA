@@ -437,12 +437,12 @@
 			});
 			clipboard.on('success', function (e) {
 				console.log(e);
-				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功 请打开淘宝App');
+				$('.cutBtn').addClass('cutBtn-success').html('复制成功 请打开淘宝App');
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功 请打开淘宝App');
+				$('.cutBtn').addClass('cutBtn-success').html('复制成功 请打开淘宝App');
 			});
 
 			being.scrollBottom('.cardBody', '.box', () => {			
