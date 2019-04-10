@@ -1,6 +1,6 @@
 @extends('layouts.default_allowopeninwechat')
 
-@section('title', '分享产品')
+@section('title', '记得往下拉，免单等你拿！')
 
 @section('top-css')
     @parent
