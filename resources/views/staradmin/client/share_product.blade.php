@@ -1,4 +1,4 @@
-@extends('layouts.default_allowopeninwechat')
+@extends('layouts.default_useforshareproduct')
 
 @section('title', '记得往下拉，免单等你拿！')
 
@@ -107,7 +107,12 @@
 								
 							</div>
 						</span>							
-				</div>
+					</div>
+
+					<div class="dbox1 vlink2">
+						到首页领取 >
+					</div>
+
 			  </div>
 
 
@@ -132,6 +137,10 @@
 								
 							</div>
 						</span>							
+					</div>
+
+					<div class="dbox1 vlink2">
+						到首页领取 >
 					</div>
 			</div>
 		  
