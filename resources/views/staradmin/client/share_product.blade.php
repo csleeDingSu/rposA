@@ -72,10 +72,10 @@
 
 
 	</div>
-	
-	<img class="titleimg" src="{{ asset('/client/images/share_product_title.png') }}">
 
 	<a href="/">
+	
+	<img class="titleimg" src="{{ asset('/client/images/share_product_title.png') }}">
 
 		<div class="rowval">
 		  <div class="columnval featuredbg marginleft">
@@ -181,7 +181,7 @@
 					
 					setTimeout(function() {
 					 $(cvoucher).fadeOut('slow');
-					}, 1500);
+					}, 2000);
 
 					return document.querySelector('#cut');
 				}

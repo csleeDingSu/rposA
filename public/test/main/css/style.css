@@ -134,18 +134,20 @@
   padding: 0.25rem 0.18rem 0.3rem 0.18rem;
 }
 .title h2 {
-  height: 0.28rem;
-  line-height: 0.28rem;
-  font-size: 0.28rem;
-  color: #8e8e8e;
+  height: 0.32rem;
+  line-height: 0.32rem;
+  font-size: 0.32rem;
+  color: #202020;
   padding-left: 0.12rem;
   border-left: 0.1rem solid #ff4e4e;
 }
 .title span {
   float: right;
   line-height: 0.28rem;
-  font-size: 0.2rem;
+  font-size: 0.24rem;
   color: #8e8e8e;
+  padding-top: 0.04rem;
+  padding-right: 0.2rem;
 }
 .product .list-1 {
   margin: 0 0.14rem;
@@ -207,51 +209,59 @@
   margin-top: 0;
 }
 .product .list-2 .imgBox {
-  width: 2.1rem;
-  height: 2.1rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: block;
-  margin-right: 0.38rem;
+  margin-right: 0.2rem;
 }
 .product .list-2 .imgBox img {
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 }
 .product .list-2 h2 {
   font-size: 0.25rem;
-  color: #8e8e8e;
+  color: #666;
   word-break: break-all;
   line-height: 0.38rem;
+  height: 1rem;
+  margin-top: 0.1rem;
 }
 .product .list-2 .price {
   padding: 0.2rem 0 0.24rem 0;
-  font-size: 0;
+  font-size: 0.24rem;
+  line-height: 0.28rem;
+  color: #999;
 }
 
 .product .list-2 .price span {
   display: inline-block;
   font-size: 0.32rem;
-  color: #656565;
+  color: #666;
   height: 0.32rem;
   line-height: 0.32rem;
-  margin-right: 0.15rem;
 }
+
+.product .list-2 .divPrice {
+  display: inline-block;
+  width: 2.18rem;
+}
+
 .product .list-2 .quan {
   vertical-align: top;
   height: 0.32rem;
   width: 2rem;
-  background: url(../images/quanIcon.png) left -0.06rem no-repeat;
-  background-size: auto 0.44rem;
   display: inline-block;
 }
 .product .list-2 .quan p {
-  width: 1.2rem;
-  text-align: center;
+  text-align: left;
   display: inline-block;
   font-size: 0.24rem;
-  color: #fff;
-  line-height: 0.32rem;
-  height: 0.32rem;
+  color: #999;
+  line-height: 0.28rem;
+  height: 0.28rem;
   vertical-align: top;
+  padding-top: 0.04rem;
 }
 .product .list-2 .quan p font {
   font-size: 0.16rem;
@@ -269,7 +279,7 @@
   font-size: 0;
 }
 .product .list-2 .mset a {
-  width: 1.9rem;
+  width: 2rem;
   margin-left: 0.18rem;
   text-align: center;
   border-radius: 0.1rem;
@@ -550,6 +560,7 @@ p.vip-life {
 .showQuan .inBox a {
   display: block;
   width: 5.01rem;
+  height: 0.81rem;
   margin: 0 auto;
   margin-bottom: 0.2rem;
 }
@@ -960,3 +971,22 @@ p.vip-life {
   }
 }
 /* End Speech Bubble */
+
+a.cutBtn, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-success:hover, a.cutBtn-success:active {
+    width: 5.01rem;
+    height: 0.81rem;
+    border-radius: 1rem;
+    font-size: 0.35rem;
+    color: white;
+    background-image: linear-gradient(to right, #ffc420 , #ff2151);
+    text-decoration: none;
+    padding: 0.15rem;
+}
+
+a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-success:hover, a.cutBtn-success:active {
+    background-image: linear-gradient(to right, #61b114 , #61b114);
+}
+
+.cutBtn-fail {
+    background: #999999;
+}
