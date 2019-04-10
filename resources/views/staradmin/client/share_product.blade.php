@@ -1,6 +1,6 @@
-@extends('layouts.default')
+@extends('layouts.default_allowopeninwechat')
 
-@section('title', '个人中心')
+@section('title', '分享产品')
 
 @section('top-css')
     @parent
