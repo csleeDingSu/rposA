@@ -244,7 +244,8 @@
 
 .product .list-2 .divPrice {
   display: inline-block;
-  width: 2.18rem;
+  width: 2rem;
+  font-size: 0.20rem;
 }
 
 .product .list-2 .quan {
@@ -260,11 +261,25 @@
   color: #999;
   line-height: 0.28rem;
   height: 0.28rem;
-  vertical-align: top;
   padding-top: 0.04rem;
+  padding-left: 0.1rem;
 }
+
+@media only screen and (max-width: 1000px) {
+
+  .product .list-2 .divPrice {
+    width: 2.15rem;
+    font-size: 0.24rem;
+  }
+
+  .product .list-2 .quan p {
+    padding-left: 0;
+  }
+
+}
+
 .product .list-2 .quan p font {
-  font-size: 0.16rem;
+  font-size: 0rem;
 }
 
 .product .list-2 .quan h3 {
@@ -280,7 +295,7 @@
 }
 .product .list-2 .mset a {
   width: 2rem;
-  margin-left: 0.18rem;
+  margin-left: 0.15rem;
   text-align: center;
   border-radius: 0.1rem;
   display: inline-block;
@@ -981,6 +996,7 @@ a.cutBtn, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-success:hove
     background-image: linear-gradient(to right, #ffc420 , #ff2151);
     text-decoration: none;
     padding: 0.15rem;
+    cursor: pointer;
 }
 
 a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-success:hover, a.cutBtn-success:active {
