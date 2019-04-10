@@ -8,16 +8,15 @@
 										<div class="dbox1">
 											<h2>{{$item->product_name}}</h2>
 											<div class="price">
-												<span>￥{{$item->product_price}} </span>
+												<div class="divPrice">淘宝价<span>￥{{$item->product_price}} </span></div>
 												<div class="quan">
 													<p>
-														<font>￥</font>{{number_format($item->voucher_price, 2)}}
+														已售{{$item->month_sales}}件
 													</p>
-													<h3>优惠券</h3>
 												</div>
 											</div>
 											<div class="mset">
-												<a data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}">领取优惠券</a>
+												<a data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}">领{{number_format($item->voucher_price, 0)}}元券</a>
 												<a class="type" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}">我要免单</a>
 											</div>
 										</div>
