@@ -184,7 +184,7 @@
 					
 					setTimeout(function() {
 					 $(cvoucher).fadeOut('slow');
-					}, 2000);
+					}, 3000);
 
 					return document.querySelector('#cut');
 				}
