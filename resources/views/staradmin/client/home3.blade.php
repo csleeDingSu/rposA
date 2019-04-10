@@ -185,7 +185,7 @@
 			</div>
 		</div>
 
-		<div class="speech-balloon-home hide">你有{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次玩赚免单机会，可赚{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life * 15 : 0}}元</div>
+		<div class="speech-balloon-home hide">你有{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次机会，可赚{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life * 15 : 0}}元免单红包</div>
 		@include('layouts/footer')
 
 		<!-- 领取优惠券  -->

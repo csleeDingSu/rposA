@@ -300,13 +300,6 @@ section {
 
 }
  
-.rowval::after {
-  clear: both;
-  display: table;
-  align-content: center;
-  text-align: center;
-}
-
 .marginleft {	
   margin-left: 0.35rem;
 }
