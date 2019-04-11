@@ -104,8 +104,7 @@ class VoucherController extends Controller
 	
 	public function search($strSearch = '', Request $request)
     {
-    	return false;
-		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
+    	$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 
         $vouchers = new Paginator([], 5);
 
