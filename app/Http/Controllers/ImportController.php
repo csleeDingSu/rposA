@@ -218,11 +218,11 @@ class ImportController extends BaseController
 		ini_set('memory_limit', '9024M'); // or you could use 1G
 		ini_set('upload_max_filesize', '24M'); 
 		ini_set('post_max_size', '24M'); 
+
 		
 		ini_set('max_execution_time', 0); 
 		
-		
-		
+				
 		$max_size = (int)ini_get('upload_max_filesize') * 10000;
 		
 		
