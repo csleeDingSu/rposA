@@ -209,6 +209,10 @@ class VoucherController extends Controller
     {
         $str  = 'var dtk_data=[';
 		$arr  = explode($str, $content);
+		if (empty($arr[1])) 
+		{
+			return [];
+		}
 		$arr  = explode('];', $arr[1]);		
 		$res  = '['.$arr[0].']';		
 		$res  = json_decode($res,true);
