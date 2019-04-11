@@ -36,13 +36,18 @@
 	<div class="information-table">
 		<div class="grid-container">
 			<div class="box">
-				<div class="coin"></div>
+				<div class="btn-calculate">
+					<div class="balance-banner">
+						<span class="spanAcuPoint">0</span>
+					</div>
+				</div>
+				<!--div class="coin"></div>
 				<div class="number">
 					<span class="balance spanAcuPoint">0</span>
 					<div class="btn-calculate-wrapper">
 						<div class="btn-calculate">兑换红包</div>
 					</div>
-				</div>
+				</div-->
 			</div>
 
 			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
@@ -57,9 +62,9 @@
 			</div>
 			@else
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper btn-vip-modal">
+				<div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper">
 						<!--div class="btn-vip"></div-->
-						<div class="btn-rules-normal">VIP专场收益增10倍</div>
+						<div class="btn-rules-normal"></div>
 					<div style="clear:both"></div>
 				</div>
 			</div>
