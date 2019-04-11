@@ -214,12 +214,12 @@ class ImportController extends BaseController
 	
 	public function ProcessparseImport(Request $request)
 	{
-		ini_set('memory_limit', '3024M'); // or you could use 1G
+		ini_set('memory_limit', '9024M'); // or you could use 1G
 		
 		$max_size = (int)ini_get('upload_max_filesize') * 10000;
 		
 		
-		$max_size = 900000 ;
+		$max_size = 9000000 ;
 		
 		$all_ext = implode(',', $this->document_ext);
 		
