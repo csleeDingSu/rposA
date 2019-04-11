@@ -296,7 +296,7 @@
 		//$(function () {
 			$("#btn_search").on("click", function() {
 				var strSearch = $('#strSearch').val();
-				window.location.href = "/search/" + strSearch;
+				window.location.href = "/newsearch/" + strSearch;
 			});
 
 			$('#historyForm').searchHistory({
