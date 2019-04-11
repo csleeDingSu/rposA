@@ -282,6 +282,7 @@ section {
 	bottom: 0.35rem;
 	left:66%;
 	width: 34%;
+	cursor:pointer;
 
 }
 
@@ -299,19 +300,13 @@ section {
 
 }
  
-.rowval::after {
-  clear: both;
-  display: table;
-  align-content: center;
-  text-align: center;
-}
-
 .marginleft {	
   margin-left: 0.35rem;
 }
 
 .marginright {	
   /*margin-right: 0.35rem;*/
+  margin-left: 0.1rem;
 }
 
 .marginbottom {
@@ -338,13 +333,14 @@ section {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     padding: 0.2rem;
-    height: 4.4rem;
+    height: 5rem;
 }
 
 .featureddetail h2 {
 	color: #9c9c9c;
 	font-size: 0.24rem;
 	padding-top: 0.2rem;
+	height:0.65rem;
 }
 
 .featureddetail h3 .lbl{
@@ -385,4 +381,17 @@ section {
     display: none;
     width: 91.5%;
     height: 12.5%;
+}
+
+.vlink2 {
+	background-image: linear-gradient(to right, grey 50%, rgba(255,255,255,0) 0%);
+	background-position: top;
+	background-size: 0.2rem 1px;
+	background-repeat: repeat-x;
+
+	text-align: center;
+	padding-top: 5%;
+	font-size: 0.24rem;
+	color: #c6c6c6;
+
 }
