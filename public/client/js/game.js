@@ -958,37 +958,37 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            instruction = '游戏原始积分1200，你前0次都猜错了，亏损<span class="modal-minus">0积分</span>，第1次猜对，赚了<span class="modal-add">+10积分</span>。<br />所以最终赚到10积分（10-0=10）';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第1局下注10积分，猜中了<span class="modal-add">+10积分</span>。<br />每次玩幸运转盘最多可赚150金币，请继续。';
             image = '/client/images/progress-bar/10.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+10金币</div>大约可兑换现金￥1元';
         break;
 
         case 2:
-            instruction = '游戏原始积分1200，你前1次都猜错了，亏损<span class="modal-minus">-10积分</span>，第2次猜对，赚了<span class="modal-add">+30积分</span>。<br />所以最终赚到20积分（30-10=20）';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第2局下注30积分，猜中<span class="modal-add">+30积分</span>，而前1局猜错<span class="modal-minus">-10</span>积分，所以本轮赚20金币。';
             image = '/client/images/progress-bar/30.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+20金币</div>大约可兑换现金￥2元';
         break;
 
         case 3:
-            instruction = '游戏原始积分1200，你前2次都猜错了，亏损<span class="modal-minus">-40积分</span>，第3次猜对，赚了<span class="modal-add">+70积分</span>。<br />所以最终赚到30积分（70-40=30）';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第3局下注70积分，猜中<span class="modal-add">+70积分</span>，而前1局猜错<span class="modal-minus">-40</span>积分，所以本轮赚30金币。';
             image = '/client/images/progress-bar/70.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+30金币</div>大约可兑换现金￥3元';
         break;
 
         case 4:
-            instruction = '游戏原始积分1200，你前3次都猜错了，亏损<span class="modal-minus">-110积分</span>，第4次猜对，赚了<span class="modal-add">+150积分</span>。<br />所以最终赚到40积分（150-110=40）';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第4局下注150积分，猜中<span class="modal-add">+150积分</span>，而前1局猜错<span class="modal-minus">-110</span>积分，所以本轮赚40金币。';
             image = '/client/images/progress-bar/150.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+40金币</div>大约可兑换现金￥4元';
         break;
 
         case 5:
-            instruction = '游戏原始积分1200，你前4次都猜错了，亏损<span class="modal-minus">-260积分</span>，第5次猜对，赚了<span class="modal-add">+310积分</span>。<br />所以最终赚到50积分（310-260=50）';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第5局下注310积分，猜中<span class="modal-add">+310积分</span>，而前1局猜错<span class="modal-minus">-260</span>积分，所以本轮赚50金币。';
             image = '/client/images/progress-bar/310.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+50金币</div>大约可兑换现金￥5元';
         break;
 
         case 6:
-            instruction = '游戏原始积分1200，你前5次都猜错了，亏损<span class="modal-minus">-570积分</span>，第6次猜对，赚了<span class="modal-add">+630积分</span>。<br />所以最终赚到60积分（630-570=60）';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第6局下注630积分，猜中<span class="modal-add">+630积分</span>，而前1局猜错<span class="modal-minus">-570</span>积分，所以本轮赚60金币。';
             image = '/client/images/progress-bar/630.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+60金币</div>大约可兑换现金￥6元';
         break;
@@ -1009,31 +1009,31 @@ function showLoseModal(){
     switch (level) {
 
         case 1:
-            instruction = '游戏原始积分1200，你猜错1次，亏损了10积分，下次下注30积分，如果猜中就能得到30积分。减去亏损的10积分，还赚20积分，6次里猜中一次，就能赚积分！';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错1次-10积分，下1局下注30积分，猜中后+30积分，最终还能赚20金币！';
             image = '/client/images/progress-bar/lose_10.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有5次机会</div>6次内猜中 就能获得奖励';
         break;
 
         case 2:
-            instruction = '游戏原始积分1200，你猜错2次，亏损了40积分，下次下注70积分，如果猜中就能得到70积分。减去亏损的40积分，还赚30积分，6次里猜中一次，就能赚积分！';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错2次-40积分，下1局下注70积分，猜中后+70积分，最终还能赚30金币！';
             image = '/client/images/progress-bar/lose_30.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有4次机会</div>6次内猜中 就能获得奖励';
         break;
 
         case 3:
-            instruction = '游戏原始积分1200，你猜错3次，亏损了110积分，下次下注150积分，如果猜中就能得到150积分。减去亏损的110积分，还赚40积分，6次里猜中一次，就能赚积分！';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错3次-110积分，下1局下注150积分，猜中后+150积分，最终还能赚40金币！';
             image = '/client/images/progress-bar/lose_70.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有3次机会</div>6次内猜中 就能获得奖励';
         break;
 
         case 4:
-            instruction = '游戏原始积分1200，你猜错4次，亏损了260积分，下次下注310积分，如果猜中就能得到310积分。减去亏损的260积分，还赚50积分，6次里猜中一次，就能赚积分！';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错4次-260积分，下1局下注310积分，猜中后+310积分，最终还能赚50金币！';
             image = '/client/images/progress-bar/lose_150.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有2次机会</div>6次内猜中 就能获得奖励';
         break;
 
         case 5:
-            instruction = '游戏原始积分1200，你猜错5次，亏损了570积分，下次下注630积分，如果猜中就能得到630积分。减去亏损的570积分，还赚60积分，6次里猜中一次，就能赚积分！';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错5次-570积分，下1局下注630积分，猜中后+630积分，最终还能赚60金币！';
             image = '/client/images/progress-bar/lose_310.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有1次机会</div>6次内猜中 就能获得奖励';
         break;
