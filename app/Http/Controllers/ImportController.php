@@ -214,6 +214,7 @@ class ImportController extends BaseController
 	
 	public function ProcessparseImport(Request $request)
 	{
+		/*
 		ini_set('memory_limit', '9024M'); // or you could use 1G
 		ini_set('upload_max_filesize', '24M'); 
 		ini_set('post_max_size', '24M'); 
@@ -226,7 +227,7 @@ class ImportController extends BaseController
 		
 		
 		$max_size = 9000000 ;
-		
+		*/
 		$all_ext = implode(',', $this->document_ext);
 		
 		
