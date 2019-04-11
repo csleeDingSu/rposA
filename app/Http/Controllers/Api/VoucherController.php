@@ -102,11 +102,9 @@ class VoucherController extends Controller
 		
     }
 	
-	//no use
-    public function oldsearch($strSearch = '', Request $request)
+	public function search($strSearch = '', Request $request)
     {
-    	return false;
-		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
+    	$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 
         $vouchers = new Paginator([], 5);
 
@@ -143,7 +141,7 @@ class VoucherController extends Controller
 	}
 	
 	
-	public function search($strSearch = '',Request $request)
+	public function newsearch($strSearch = '',Request $request)
     {
         $keyword = '';
 		
@@ -180,7 +178,7 @@ class VoucherController extends Controller
 		
 		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 		
-        return view('client.search', compact('vouchers','member_mainledger', "setting",'firstwin','strSearch'));
+        return view('client.newsearch', compact('vouchers','member_mainledger', "setting",'firstwin','strSearch'));
     }
 	
 	private function getcurl($keyword)
@@ -209,6 +207,10 @@ class VoucherController extends Controller
     {
         $str  = 'var dtk_data=[';
 		$arr  = explode($str, $content);
+		if (empty($arr[1])) 
+		{
+			return [];
+		}
 		$arr  = explode('];', $arr[1]);		
 		$res  = '['.$arr[0].']';		
 		$res  = json_decode($res,true);
