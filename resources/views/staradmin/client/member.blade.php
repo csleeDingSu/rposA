@@ -112,7 +112,7 @@
 								<div class="icon-redeem"></div>
 							</div>
 							<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-							兑换奖品					
+							兑换红包					
 					</li>
 				</a>
 
@@ -123,7 +123,7 @@
 							<div class="icon-play"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						我的奖品
+						我的红包
 					</li>
 				</a>
 
@@ -145,7 +145,7 @@
 							<div class="icon-play-history"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						玩赚记录
+						转盘记录
 					</li>
 				</a>
 

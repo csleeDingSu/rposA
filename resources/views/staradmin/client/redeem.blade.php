@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '兑换奖品')
+@section('title', '兑换红包')
 
 @section('left-menu')
     <a href="/profile" class="back">
@@ -47,8 +47,8 @@
 		<div class="full-width-tabs">
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
-			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">奖品兑换</a></li>
-			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的奖品</a></li>
+			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换红包</a></li>
+			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的红包</a></li>
 			</ul>
 			<!-- end redeem tabs -->
 

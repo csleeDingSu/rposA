@@ -787,7 +787,7 @@
 
 <!-- VIP Modal -->
 
-	<div class="modal fade col-md-12 col-sm-10" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
+	<div class="modal fade col-md-12" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content vip-background">
                 <div class="vip-logo-wrapper">
@@ -801,12 +801,12 @@
 								<div class="vip-card">
 									<img class="img-vip" src="{{ asset('/client/images/vip/v1.png') }}" width="20" height="17" /><div class="vip-card-title">VIP场的结算方式：</div>
 									<div style="clear: both;"></div>
-									<div class="vip-card-desc">原始积分1200可结算，挖宝无上限，想挖多少就挖多少。</div>
+									<div class="vip-card-desc">1200游戏积分可结算，免邀请人直接玩，无150封顶，想赚多少就多少。</div>
 								</div>
 								<div class="vip-card">
 									<img class="img-vip" src="{{ asset('/client/images/vip/v2.png') }}" width="20" height="17" /><div class="normal-card-title">普通场的结算方式：</div>
 									<div style="clear: both;"></div>
-									<div class="normal-card-desc">原始积分1200不可结算，最多可挖宝150，只能结算150金币。</div>
+									<div class="normal-card-desc">1200游戏积分不可结算，需要邀请人才可继续玩，每局150封顶，一次机会最多赚150金币。</div>
 								</div>
 								<!--div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费卷</div-->
 								<a href="/redeem"><div class="btn-vip-submit">兑换VIP入场卷</div></a>
