@@ -101,10 +101,12 @@ class VoucherController extends Controller
         return view('client.home3', compact('vouchers','category','cid','banner','member_mainledger', "setting",'firstwin'));
 		
     }
-
-    public function search($strSearch = '', Request $request)
+	
+	//no use
+    public function oldsearch($strSearch = '', Request $request)
     {
-    	$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
+    	return false;
+		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 
         $vouchers = new Paginator([], 5);
 
@@ -139,4 +141,78 @@ class VoucherController extends Controller
     public function put_first_win(Request $request){
 		$request->session()->put('firstwin', 'no');
 	}
+	
+	
+	public function search($strSearch = '',Request $request)
+    {
+        $keyword = '';
+		
+		if ($strSearch)
+		{
+			$vouchers =  $this->getcurl($strSearch);
+		}
+		else
+		{
+			$vouchers =  [];
+		}
+		
+		
+		//print_r($vouchers);die();
+		//$count    = count($vouchers);
+		//$vouchers =  (object)$vouchers ;
+		//return $pass;
+		if (\Auth::Guard('member')->check()) {
+
+			$member_id = \Auth::guard('member')->user()->id;
+
+        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();
+			
+			if($request->session()->get('firstwin') == 'no'){
+				$firstwin = null;
+			} else {
+				$firstwin = \App\Product::IsFirstWin($member_id);
+			}
+		}
+        else{
+        	$member_mainledger = null;
+			$firstwin 		   = null;
+        }
+		
+		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
+		
+        return view('client.search', compact('vouchers','member_mainledger', "setting",'firstwin','strSearch'));
+    }
+	
+	private function getcurl($keyword)
+    {        
+        $curl = curl_init();
+        $userAgent = 'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0';
+
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'http://yhq.cn/index.php?r=index/search&s_type=1&kw='.$keyword,
+            CURLOPT_USERAGENT => $userAgent,
+           // CURLOPT_POST => 1,
+            //CURLOPT_POSTFIELDS => array(
+           //     'keyword'=> $keyword,
+           // )
+        ));
+        
+        $resp = curl_exec($curl);
+        
+        if($resp) {            
+           return $this->filter_content( $resp );
+        } 
+    }
+    
+    private function filter_content($content) 
+    {
+        $str  = 'var dtk_data=[';
+		$arr  = explode($str, $content);
+		$arr  = explode('];', $arr[1]);		
+		$res  = '['.$arr[0].']';		
+		$res  = json_decode($res,true);
+		
+		return $res;
+    }
 }
