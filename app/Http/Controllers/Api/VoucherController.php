@@ -146,7 +146,16 @@ class VoucherController extends Controller
 	public function search($strSearch = '',Request $request)
     {
         $keyword = '';
-		$vouchers =  $this->getcurl($strSearch);
+		
+		if ($strSearch)
+		{
+			$vouchers =  $this->getcurl($strSearch);
+		}
+		else
+		{
+			$vouchers =  [];
+		}
+		
 		
 		//print_r($vouchers);die();
 		//$count    = count($vouchers);
@@ -181,7 +190,7 @@ class VoucherController extends Controller
 
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => 'http://yhq.cn/index.php?r=index/search&s_type=1&kw=背包',
+            CURLOPT_URL => 'http://yhq.cn/index.php?r=index/search&s_type=1&kw='.$keyword,
             CURLOPT_USERAGENT => $userAgent,
            // CURLOPT_POST => 1,
             //CURLOPT_POSTFIELDS => array(
