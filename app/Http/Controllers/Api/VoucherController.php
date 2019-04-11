@@ -102,8 +102,7 @@ class VoucherController extends Controller
 		
     }
 	
-	//no use
-    public function oldsearch($strSearch = '', Request $request)
+	public function search($strSearch = '', Request $request)
     {
     	return false;
 		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
@@ -143,7 +142,7 @@ class VoucherController extends Controller
 	}
 	
 	
-	public function search($strSearch = '',Request $request)
+	public function newsearch($strSearch = '',Request $request)
     {
         $keyword = '';
 		
@@ -180,7 +179,7 @@ class VoucherController extends Controller
 		
 		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 		
-        return view('client.search', compact('vouchers','member_mainledger', "setting",'firstwin','strSearch'));
+        return view('client.newsearch', compact('vouchers','member_mainledger', "setting",'firstwin','strSearch'));
     }
 	
 	private function getcurl($keyword)
