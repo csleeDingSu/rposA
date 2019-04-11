@@ -32,7 +32,7 @@
 
 			<div class="wechat_card">
 				<img class="img-wechat" src="{{ asset('/client/images/wechat.png') }}" width="70" height="66" />
-				<div>微信号：<span id="cut" class="wechat_id">WABAO666</span></div>
+				<div>微信号：<span id="cut" class="wechat_id">{{env('wechat_id', 'BCKACOM')}}</span></div>
 				<div class="cutBtn">点击复制</div>
 			</div>
 
