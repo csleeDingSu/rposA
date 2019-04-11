@@ -127,7 +127,7 @@
 <body style="background:#ffffff">
 <input type="hidden" id="page" value="1" />
 @if(count($vouchers))
-<input type="hidden" id="max_page" value="{{ $vouchers->lastPage() }}" />
+<input type="hidden" id="max_page" value="1" />
 @else
 <input type="hidden" id="max_page" value="0" />
 @endif
@@ -158,9 +158,9 @@
 				<div class="product">					
 					<div class="infinite-scroll">
 						<ul class="list-2">								
-								@include('client.ajaxhome')
+								@include('client.searchajaxhome')
 						</ul>
-						{{ $vouchers->links() }}
+						
 						
 						<p class="isnext">下拉显示更多...</p>
 					</div>

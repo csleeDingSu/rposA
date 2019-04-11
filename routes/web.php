@@ -96,6 +96,8 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	$this->get( '/', 'Api\VoucherController@index' )->name( 'api.vlist' );
 
 	$this->get( '/search/{strSearch?}', 'Api\VoucherController@search' )->name( 'api.slist' );
+	
+	$this->get( '/newsearch/{strSearch?}', 'Api\VoucherController@newsearch' )->name( 'api.newsearch' );
 
 	$this->get( '/firstwin', 'Api\VoucherController@put_first_win' )->name( 'api.firstwin' );
 
