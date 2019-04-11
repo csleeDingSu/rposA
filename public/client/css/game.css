@@ -326,6 +326,27 @@ body{
 	margin-left: 5px;
 }
 
+.btn-calculate {
+	width: 134px;
+	height: 39px;
+}
+
+.balance-banner {
+	background: url('/client/images/banner_coin.png') no-repeat;
+	width: 248px;
+	height: 78px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	float: left;
+	z-index: 100;
+	position: relative;
+	margin-left: 10px;
+	color: #fef4c6;
+	font-size: 48px;
+	cursor: pointer;
+}
+
 .btn-vip {
 	background: url('/client/images/game.png') no-repeat -1513px -718px;
 	width: 88px;
@@ -396,27 +417,43 @@ body{
 
 .btn-rules-wrapper {
 	width: 165px;
-	height: 22px;
-	margin-top: 1px;
+	height: 22px;	
+	margin-top: 5px;
 	float: right;
 }
 
+.btn-normal-wrapper {
+	width: 121px;
+	height: 30.5px;
+	margin-top: 1px;
+}
+
+.btn-vip-wrapper {
+	width: 149.5px;
+	height: 43px;
+	margin-top: 1px;
+}
+
 .btn-rules-normal {
-	background: url('/client/images/vip/vip-bg.png') no-repeat;
-	width: 350px;
-	height: 69px;
+	background: url('/client/images/banner_vip.png') no-repeat;
+	width: 299px;
+	height: 86px;
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
 	padding: 0px 0px 0px 0px;
-	font-size: 30px;
 	cursor: pointer;
-	color: #ffffff;
-	margin-top: -3px;
-	text-align: left;
-	padding-left: 40px;
-	padding-top: 6px;
-	font-weight: 700;
+	margin-top: -5px;
+}
+
+.game_rules {
+	background: url('/client/images/banner_rules.png') no-repeat;
+	width: 242px;
+	height: 61px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	margin-top: 3px;
 }
 
 .btn-rules-vip {
@@ -472,7 +509,7 @@ body{
     width:35px;
 }
 
-.btn-calculate, .btn-calculate-vip {
+.btn-calculate-vip {
 	background: #1ea20c;
 	width: 70px;
 	height: 19px;	
