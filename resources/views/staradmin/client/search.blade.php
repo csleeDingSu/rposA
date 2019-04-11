@@ -229,7 +229,7 @@
 									</div> -->
 									<div class="instructions" style="padding:5px 11px 10px 11px !important;">	
 										<span style="font-weight: bold;">
-											去<img src="{{ asset('/client/images/small-wheel.png') }}" width="15" height="15" /><span class="highlight">玩赚免单</span>赚金币换购物红包(可提现)
+											去<img src="{{ asset('/client/images/small-wheel.png') }}" width="15" height="15" /><span class="highlight">{{env('game_name', '幸运转盘')}}</span>赚金币换购物红包(可提现)
 										</span>
 										<ul style="color: #a8adaa;">
 											<li> • 30元、50元、100元任你领！</li>

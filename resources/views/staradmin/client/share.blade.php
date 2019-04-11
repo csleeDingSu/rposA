@@ -531,7 +531,7 @@ h1:after {
       <div class="bottom">
   			<h1>友情提示</h1>
   			<div class="bottomdiv">
-  			好友需通过网站的微信认证，你才能得到玩赚免单次数。
+  			好友需通过网站的微信认证，你才能得到{{env('game_name', '幸运转盘')}}次数。
         <br>
         严厉打击小号注册，大号会被封号处理。
   			</div>
