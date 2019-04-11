@@ -337,7 +337,8 @@ function getSocket(){
                 var isFirstLifeWin = data.data.IsFirstLifeWin;
                 
                 if(isFirstLifeWin == 'yes'){
-                    $('.btn-rules-normal').html('游戏规则说明').addClass('padding-left');
+                    $('.btn-rules-wrapper').removeClass('btn-vip-wrapper').addClass('btn-normal-wrapper');
+                    $('.btn-rules-normal').addClass('game_rules');
                     $('.btn-vip-modal').on('click', showGameRules);
                 } else {
                     $('.btn-vip-modal').click(function(){
