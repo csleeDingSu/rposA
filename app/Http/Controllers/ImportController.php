@@ -229,7 +229,8 @@ class ImportController extends BaseController
 		 $validator = $this->validate(
              $request,
              [
-                 'file' => 'required|max:5120|file|mimes:' . $all_ext 
+                // 'file' => 'required|max:5120|file|mimes:' . $all_ext 
+				 'file' => 'required|max:5120'
              ]
          );
 		
