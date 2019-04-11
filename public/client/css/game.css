@@ -1506,10 +1506,10 @@ body{
 }
 
 .vip-card {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	border-radius: 5px;
 	background: #fff;
-	height: 90px;
+	height: 110px;
 	text-align: left;
 	padding: 10px 15px;
 }
@@ -1553,7 +1553,7 @@ body{
 	color: white;
 	padding: 6px;
 	background-image: linear-gradient(#ffcc4e, #ff8624);
-	margin-top: 20px;
+	margin-top: 25px;
 }
 
 @media only screen and (max-width: 360px) {
@@ -1580,7 +1580,7 @@ body{
 		margin-bottom: 10px;
 		border-radius: 5px;
 		background: #fff;
-		height: 70px;
+		height: 90px;
 		text-align: left;
 		padding: 5px 10px;
 	}
@@ -1601,6 +1601,7 @@ body{
 
 	.btn-vip-submit {
 		font-size: 16px;
+		margin-top: 18px;
 	}
 }
 
