@@ -970,25 +970,25 @@ function showWinModal(){
         break;
 
         case 3:
-            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第3局下注70积分，猜中<span class="modal-add">+70积分</span>，而前1局猜错<span class="modal-minus">-40</span>积分，所以本轮赚30金币。';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第3局下注70积分，猜中<span class="modal-add">+70积分</span>，而前2局猜错<span class="modal-minus">-40</span>积分，所以本轮赚30金币。';
             image = '/client/images/progress-bar/70.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+30金币</div>大约可兑换现金￥3元';
         break;
 
         case 4:
-            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第4局下注150积分，猜中<span class="modal-add">+150积分</span>，而前1局猜错<span class="modal-minus">-110</span>积分，所以本轮赚40金币。';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第4局下注150积分，猜中<span class="modal-add">+150积分</span>，而前3局猜错<span class="modal-minus">-110</span>积分，所以本轮赚40金币。';
             image = '/client/images/progress-bar/150.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+40金币</div>大约可兑换现金￥4元';
         break;
 
         case 5:
-            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第5局下注310积分，猜中<span class="modal-add">+310积分</span>，而前1局猜错<span class="modal-minus">-260</span>积分，所以本轮赚50金币。';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第5局下注310积分，猜中<span class="modal-add">+310积分</span>，而前4局猜错<span class="modal-minus">-260</span>积分，所以本轮赚50金币。';
             image = '/client/images/progress-bar/310.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+50金币</div>大约可兑换现金￥5元';
         break;
 
         case 6:
-            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第6局下注630积分，猜中<span class="modal-add">+630积分</span>，而前1局猜错<span class="modal-minus">-570</span>积分，所以本轮赚60金币。';
+            instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第6局下注630积分，猜中<span class="modal-add">+630积分</span>，而前5局猜错<span class="modal-minus">-570</span>积分，所以本轮赚60金币。';
             image = '/client/images/progress-bar/630.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+60金币</div>大约可兑换现金￥6元';
         break;
