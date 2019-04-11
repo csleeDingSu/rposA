@@ -1201,7 +1201,8 @@ function showGameRules( event ){
     $( ".txtTimer" ).removeClass('hide');
     $('#game-rules').modal({backdrop: 'static', keyboard: false});
 
-    $( ".span-read" ).html('返回玩赚免单');
+    var game_name = $('#game-name').val();
+    $( ".span-read" ).html('返回'+game_name);
 
     $('.btn-rules-close').click(function(){
         $('#game-rules').modal('hide');
