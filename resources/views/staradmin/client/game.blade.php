@@ -82,6 +82,7 @@
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
+			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
 	  	</div>
 	</div>
 	<!-- end information table -->
@@ -544,7 +545,7 @@
 								<div style="clear: both"></div>
 
 								<div class="close-modal modal-warning-button">
-									返回玩赚免单
+									返回{{env('game_name', '幸运转盘')}}
 								</div>												
 							</div>
 						</div>
@@ -611,7 +612,7 @@
 								<div style="clear: both"></div>
 
 								<div class="close-modal modal-warning-button">
-									返回玩赚免单
+									返回{{env('game_name', '幸运转盘')}}
 								</div>												
 							</div>
 						</div>
@@ -638,7 +639,7 @@
 								</div>
 								<div class="modal-invite-content">
 									<span class="modal-invite-title">邀请1位好友</span><br />
-									奖励{{env('sharetofriend_youwillget', '1')}}次玩赚免单机会，赚{{env('sharetofriend_youwillget_bonus', '15')}}元
+									奖励{{env('sharetofriend_youwillget', '1')}}次{{env('game_name', '幸运转盘')}}机会，赚{{env('sharetofriend_youwillget_bonus', '15')}}元
 								</div>
 								<a href="/share" class="link-button">
 									<div class="modal-warning-button">
@@ -770,7 +771,7 @@
 								</div>
 
 								@if($betting_count > 0)
-									<div class="btn-game-rules btn-rules-close">返回玩赚免单</div>
+									<div class="btn-game-rules btn-rules-close">返回{{env('game_name', '幸运转盘')}}</div>
 								@else
 									<div class="btn-game-rules btn-rules-timer"><span class="span-read">请阅读游戏规则</span> <span class="txtTimer"></span></div>	
 								@endif
@@ -865,7 +866,7 @@
 								<div class="packet-info">可提现支付宝</div>
 								<div class="instructions">
 									<h1 class="divider">领取方式</h1>
-									注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">玩赚免单</span> 赚金币换领取<br />
+									注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">{{env('game_name', '幸运转盘')}}</span> 赚金币换领取<br />
 									新人免费玩3次 可赚45元
 								</div>
 								<a href="/member/login/register">
