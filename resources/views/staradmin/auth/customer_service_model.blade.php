@@ -23,7 +23,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div id="cut" class="copyvoucher">wabao666</div>
+							<div id="cut" class="copyvoucher">{{env('wechat_id', 'BCKACOM')}}</div>
 							<div class="cutBtn">点击复制</div>
 						</div>
 						<div class="modal-card">
