@@ -480,7 +480,7 @@ function resetGame() {
 
 function closeModal() {
     $('.close-modal').click(function(){
-        $('.redeem-error').html('本局挖宝尚未完成');
+        $('.redeem-error').html('本局游戏尚未完成');
         $('#reset-life-bet').modal('hide');
         $('#reset-life-lose').modal('hide');
     });

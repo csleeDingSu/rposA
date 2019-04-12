@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '挖宝大冒险')
+@section('title', '幸运转盘')
 
 @section('top-css')
     @parent
@@ -410,8 +410,8 @@
 					¥ <span class="reward-amount">{{env('newbie_willget_bonus','45.00')}}</span>
 				</div>
 				<div class="reward-instructions">
-					认证后能获得{{env('newbie_willget','3')}}次挖宝机会<br />
-					每次挖宝机会会能获得{{env('every_time_play_you_will_get','15')}}元
+					认证后能获得{{env('newbie_willget','3')}}次游戏机会<br />
+					每次游戏机会会能获得{{env('every_time_play_you_will_get','15')}}元
 				</div>
 			</div>
 			<div class="modal-content modal-wechat">
@@ -473,7 +473,7 @@
 									您当前总金币：<div class="packet-point">&nbsp;</div>
 								</div>
 								<div class="modal-message-button btn-reset-life">
-									确认结算 结束本次挖宝
+									确认结算 结束本次游戏
 								</div>
 								<div class="modal-message-footer">
 									结算后的金币可兑换奖品
@@ -483,7 +483,7 @@
 					</div>							
 				</div>
 			</div>
-			<div id="btn-close-max" class="btn-close-wabao">暂不结算 返回本次挖宝</div>
+			<div id="btn-close-max" class="btn-close-wabao">暂不结算 返回本次游戏</div>
 		</div>
 	</div>
 <!--  end -->
@@ -499,7 +499,7 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/vip/icon-lose.png') }}" class="img-wabao" />
 								<div class="modal-lose-title">
-									本次挖宝失败
+									本次游戏失败
 								</div>
 								<div class="modal-message-title">
 									恭喜获得<span class="spanVipPoint"></span>金币
@@ -543,11 +543,11 @@
 									当前不能结算
 								</div>
 								<div class="modal-warning-content redeem-error">
-									本局挖宝尚未完成
+									本局游戏尚未完成
 								</div>
 
 								<div class="close-modal modal-warning-button">
-									继续挖宝
+									继续游戏
 								</div>												
 							</div>
 						</div>
@@ -572,7 +572,7 @@
 									手续费说明
 								</div>
 								<div class="modal-manual-content">
-									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000金币兑换1200原始积分，当玩家挖宝赢得金币结算时，需返还<span class="spanFee"></span>作为挖宝手续费。
+									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000金币兑换1200原始积分，当玩家赢得金币结算时，需返还<span class="spanFee"></span>作为游戏手续费。
 								</div>
 								<div class="modal-manual-button">
 									我知道了

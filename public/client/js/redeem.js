@@ -548,9 +548,9 @@ function populateHistoryData(records, token) {
                             '</div>' + 
                         '</div>' +
                     '<div id="content-p-' + item.id + '" class="collapse">' +
-                        '<div class="card-wrapper">挖宝密码：<span class="codes-vip">' + item.passcode + '</span>' +
+                        '<div class="card-wrapper">游戏密码：<span class="codes-vip">' + item.passcode + '</span>' +
                         '&nbsp;&nbsp;<button class="btn-vip" data-id="'+item.passcode+'" onClick="confirmredeemvip(\''+ token +'\', \''+ item.id +'\', \''+ item.passcode +'\')"  >进入VIP专场</button></div>' +
-                        '<div class="instruction">进入VIP专场 > 打开挖宝页面VIP专场 > 粘帖密码 > 进入VIP专场</div>' +    
+                        '<div class="instruction">进入VIP专场 > 打开游戏页面VIP专场 > 粘帖密码 > 进入VIP专场</div>' +    
                     '</div>';
 
                     htmlmodel += '<!-- Modal starts -->' +
@@ -560,7 +560,7 @@ function populateHistoryData(records, token) {
                                                 '<div class="modal-body">' +
                                                     '<div class="modal-row">' +
                                                         '<div class="vip-label">' +
-                                                            'VIP专场挖宝密码' +
+                                                            'VIP专场游戏密码' +
                                                         '</div>' +
                                                         '<div class="vip-code">' +
                                                             item.passcode +
