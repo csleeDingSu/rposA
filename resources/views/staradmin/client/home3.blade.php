@@ -12,6 +12,7 @@
 	<title>@lang('dingsu.home')</title>
 	<link rel="stylesheet" href="{{ asset('/client/fontawesome-free-5.5.0-web/css/all.css') }}" >
 	<link rel="stylesheet" href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
+
 	<link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
@@ -80,6 +81,7 @@
 <input type="hidden" id="page" value="1" />
 <input type="hidden" id="max_page" value="{{$vouchers->lastPage()}}" />
 <input type="hidden" id="firstwin" value="{{ $firstwin }}" />
+<input type="hidden" id="initialIndex" value="{{ $cid }}" />
 
 	<section class="cardFull card-flex">
 		<div class="cardHeader">
@@ -104,28 +106,35 @@
 				<div class="main rel">
 					<div class="dbox">
 						<div class="dbox1 txt">
+							<div class="carousel">
 							{{$current_cat_name = null}}
 							@if(isset($category))
 								@foreach($category as $cat)
-
-									@if ($cat->id == $cid)
-										{{$current_cat_name = $cat->display_name}}
-										<a class="on" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
-										<!-- <a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a> -->
+									
+									@if($cat->display_name == '文娱车品' || $cat->display_name == '数码电器')								
+										@if ($cat->id == $cid)
+											<a class="carousel-cell on is-selected carousel-cell-long" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
+										@else
+											<a class="carousel-cell carousel-cell-long" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
+										@endif
 									@else
-										<a href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
+										@if ($cat->id == $cid)
+											<a class="carousel-cell on is-selected" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
+										@else
+											<a class="carousel-cell" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
+										@endif
 									@endif
 
-								    @break($cat->number == 6)
 								@endforeach
 							@else
 								<a class="on">精选</a>
-								<a>女装</a>
-								<a>男装</a>
-								<a>鞋帽</a>
-								<a>食饮</a>
-								<a>没装</a>
-							@endif							
+								<a class="carousel-cell">男装</a>
+								<a class="carousel-cell">鞋帽</a>
+								<a class="carousel-cell">女装</a>
+								<a class="carousel-cell">食饮</a>
+								<a class="carousel-cell">没装</a>
+							@endif
+							</div>							
 						</div>
 						<a class="downIcon dbox0"><img src="{{ asset('/test/main/images/downIcon.png') }}"></a>
 					</div>
@@ -302,6 +311,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
+	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
 	<script>
 		
 		$(document).on('ready', function() {
@@ -322,6 +332,19 @@
 
 		$(document).ready(function(){
 		//$(function () {
+			var initialIndex = $('#initialIndex').val();
+			var $carousel = $('.carousel').flickity({
+					prevNextButtons: false,
+					pageDots: false,
+					contain: true,
+					initialIndex: initialIndex
+				});
+
+			$carousel.on( 'staticClick.flickity', function( event, pointer, cellElement, cellIndex ) {
+			  if ( typeof cellIndex == 'number' ) {
+			    $carousel.flickity( 'selectCell', cellIndex );
+			  }
+			});
 
 			var firstwin = $('#firstwin').val();
 			console.log(firstwin);
