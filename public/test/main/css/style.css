@@ -1006,3 +1006,15 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 .cutBtn-fail {
     background: #999999;
 }
+
+.dbox1 .flickity-viewport {
+  margin: 0.15rem 0.265rem;
+}
+
+.dbox1 .carousel-cell {
+  width: 10%;
+}
+
+.dbox1 .carousel-cell-long {
+  width: 20%;
+}
