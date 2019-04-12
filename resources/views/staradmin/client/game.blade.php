@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '挖宝大冒险')
+@section('title', '幸运转盘')
 
 @section('top-css')
     @parent
@@ -702,13 +702,13 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/vip/icon-lose.png') }}" class="img-wabao" />
 								<div class="modal-lose-title">
-									本次挖宝失败
+									本次游戏失败
 								</div>
 								<div class="modal-lose-content">
 									本局盈利的金币清零
 								</div>
 								<div class="modal-confirm-button btn-reset-life">
-									继续挖宝
+									继续游戏
 								</div>
 								<!--a href="/share">
 								<div class="modal-invite-button">
@@ -736,10 +736,10 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
 								<div class="modal-warning-title">
-									当前不能挖宝
+									当前不能玩游戏
 								</div>
 								<div class="modal-warning-content">
-									您必须把挖宝机会兑换成金币
+									您必须把游戏机会兑换成金币
 								</div>
 
 								<div class="btn-reset-life-continue modal-warning-button">
