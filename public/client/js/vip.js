@@ -236,9 +236,12 @@ function getSocket(){
             //console.log('connecting URL: '+c_url);
             var socket = new io.connect(c_url, {
                 'reconnection': true,
-                'reconnectionDelay': 1000,
+                'reconnectionDelay': 1000, //1 sec
                 'reconnectionDelayMax' : 5000,
                 'reconnectionAttempts': 2,
+                'transports': ['websocket'],
+                'timeout' : 10000, //1 min
+                'force new connection' : true,
                  query: 'token='+result.token+'&vip=yes'
             });
 
@@ -477,7 +480,7 @@ function resetGame() {
 
 function closeModal() {
     $('.close-modal').click(function(){
-        $('.redeem-error').html('本局挖宝尚未完成');
+        $('.redeem-error').html('本局游戏尚未完成');
         $('#reset-life-bet').modal('hide');
         $('#reset-life-lose').modal('hide');
     });
