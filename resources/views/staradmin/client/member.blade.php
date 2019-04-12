@@ -55,8 +55,9 @@
 				  <div class="col-xs-6">
 				  	已兑换
 				  	<div class="life numbers">				  		
-				  		{{ number_format($usedpoint, 0, '.', '') }}
+				  		{{ number_format($usedpoint/10, 0, '.', '') }} 元
 				  	</div>
+
 				  </div>
 			</div>
 			<!-- end member details -->
