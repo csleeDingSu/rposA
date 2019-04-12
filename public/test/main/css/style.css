@@ -1007,14 +1007,14 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
     background: #999999;
 }
 
-.flickity-viewport {
+.dbox1 .flickity-viewport {
   margin: 0.15rem 0.265rem;
 }
 
-.carousel-cell {
+.dbox1 .carousel-cell {
   width: 10%;
 }
 
-.carousel-cell-long {
+.dbox1 .carousel-cell-long {
   width: 20%;
 }
