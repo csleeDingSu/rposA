@@ -261,6 +261,8 @@ class ImportController extends BaseController
 			}
 		}
 		
+		print_r($dbc);
+		
 		DB::table('excel_upload')->insert($dbc);
  
         return response()->json(['success'=>'You have successfully upload file.']);
