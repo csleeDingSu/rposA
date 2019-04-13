@@ -303,7 +303,7 @@ class ImportController extends BaseController
 		DB::table('excel_upload')->insert($dbc);
 		
 		//die();
-		event(new GenerateVoucher($request,$filename));
+		//event(new GenerateVoucher($request,$filename));
 		
 		$data['page'] = 'common.success'; 
 		
