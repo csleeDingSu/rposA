@@ -220,8 +220,9 @@ class ImportController extends BaseController
 		$all_ext = implode(',', $this->document_ext);
 		
 		$request->validate([
-           'file' => 'required|max:51200|mimes:application/excel,
-        application/vnd.ms-excel, application/vnd.msexcel,' . $all_ext ,			
+         //  'file' => 'required|max:51200|mimes:application/excel,
+        //application/vnd.ms-excel, application/vnd.msexcel,' . $all_ext ,	
+			'file' => 'required',
 		]);
         
 		$filename = 'upv'.time(); 
