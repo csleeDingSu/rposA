@@ -218,28 +218,26 @@ class ImportController extends BaseController
 		ini_set('memory_limit', '9024M'); // or you could use 1G
 		ini_set('upload_max_filesize', '24M'); 
 		ini_set('post_max_size', '24M'); 
-
 		
-		ini_set('max_execution_time', 0); 
+		ini_set('max_execution_time', 0);
+		//ini_set('memory_limit', '-1');
 		
 				
 		$max_size = (int)ini_get('upload_max_filesize') * 10000;
 		
 		$max_size = 9000000 ;
 		
-		$all_ext = implode(',', $this->document_ext);
-		
+		$all_ext = implode(',', $this->document_ext);		
 		
 		 $validator = $this->validate(
              $request,
              [
-                // 'file' => 'required|max:5120|file|mimes:' . $all_ext 
-				 'file' => 'required|max:5120'
+                 'file' => 'required|max:5120|file|mimes:' . $all_ext 
+				// 'file' => 'required|max:5120'
              ]
          );
 		
 		$extension = $request->file->getClientOriginalExtension(); //$request->file->extension();
-		
 		
 		
 		$filename = 'upv'.time(); 
@@ -282,12 +280,8 @@ class ImportController extends BaseController
 		{
 			if (!empty($file_title[$key] ) )
 			{
-				//echo $file_title[$key];echo $val->title;
-				
 				$fkey = array_search($val->title,$file_title);
-				//print_r($d);echo '<br<br>';
-				//$fkey =
-				echo $fkey.'--'. $file_title[$fkey].'--'.$val->id.'--'.$val->title;echo '<br>';
+				
 				if ($file_title[$fkey] == $val->title)
 				{				
 					$arr['sys_field_id'] = $val->id;
@@ -296,20 +290,19 @@ class ImportController extends BaseController
 					$dbc[] = $arr;
 				}
 			}
-		}
-		
+		}		
 		
 		//print_r($dbc);die();
 		DB::table('excel_upload')->insert($dbc);
 		
 		//die();
-		event(new GenerateVoucher($request,$filename));
+		//event(new GenerateVoucher($request,$filename));
 		
 		$data['page'] = 'common.success'; 
 		
 		$data['msg']  = 'message_import_success';
 		
-		// return view('main', $data);
+		return response()->json(['success'=>'You have successfully upload file.Please wait 5 - 15 to complete the Import Process']);
 		return redirect('voucher/unreleased')->with('message', 'Successfully imported! 导入完成!');
 	}
 	
