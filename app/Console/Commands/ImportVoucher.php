@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Game;
+
 use App\Http\Controllers\TestController;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
