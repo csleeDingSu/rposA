@@ -220,7 +220,7 @@ class ImportController extends BaseController
 		$all_ext = implode(',', $this->document_ext);
 		
 		$request->validate([
-           'file' => 'required|max:5120|file|mimes:' . $all_ext ,			
+           'file' => 'required|max:51200|mimes:' . $all_ext ,			
 		]);
         
 		$filename = 'upv'.time(); 
