@@ -551,7 +551,7 @@ class VoucherController extends BaseController
 					return FALSE;
 				}
 				$max  = Unreleasedvouchers::max('id');
-				$cron->status      = 1;
+				$cron->status      = 2;
 				$cron->total_limit = $max ;
 				$cron->save();
 				
