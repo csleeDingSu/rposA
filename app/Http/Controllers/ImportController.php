@@ -44,6 +44,8 @@ class ImportController extends BaseController
 		
 		$data['page'] = 'voucher.import'; 
 		
+		$data['activejob'] = Voucher::get_pipeline_import();
+		
 		return view('main', $data);
     }
 	
