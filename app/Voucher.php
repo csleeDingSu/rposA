@@ -248,4 +248,13 @@ class Voucher extends Model
 		$mo = $mo->delete();
 	}
 	
+	public static function get_pipeline_import()
+	{
+		$result = DB::table('excel_upload')->groupBy('filename')
+                 ->get();
+				
+		return $result;
+	}
+	
+	
 }
