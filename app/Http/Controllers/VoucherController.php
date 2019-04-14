@@ -544,6 +544,19 @@ class VoucherController extends BaseController
 			case 'delete_all':
 				//Voucher::archived_unr_vouchers_insert($insdata);
 				
+				$cron  = \App\CronManager::where('cron_name','voucher_bulk_delete')->first();
+				if ($cron->status != 3)
+				{
+					return response()->json(['success' => false, 'error_message' => 'cron running already']);
+					return FALSE;
+				}
+				$max  = Unreleasedvouchers::max('id');
+				$cron->status      = 1;
+				$cron->total_limit = $max ;
+				$cron->save();
+				
+				
+				/*
 				foreach($models as $key=>$val)
 				{
 					$id = $val['id'];
@@ -553,6 +566,7 @@ class VoucherController extends BaseController
 				}
 				
 				Unreleasedvouchers::query()->delete();
+				*/
 			break;		
 		}
 		
