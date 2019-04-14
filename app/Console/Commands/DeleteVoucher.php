@@ -66,7 +66,7 @@ class DeleteVoucher extends Command
 				$cat_id[] = $val['id'] ;
 			}
 			
-			DB::table('voucher_category')
+			\DB::table('voucher_category')
 			->whereIn('unr_voucher_id',$cat_id)
 			->delete();
 			
