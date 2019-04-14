@@ -56,7 +56,7 @@ class DeleteVoucher extends Command
 		$cron->status = 1;
 		$cron->save();
 		
-		$models = \App\Unreleasedvouchers::where('id', '<=', $cron->total_limit)->get();
+		$models = \App\Unreleasedvouchers::where('id', '<=', $cron->total_limit)->get()->toArray();
 		
 		foreach (array_chunk($models,500) as $keyc=>$data) 
 		{
