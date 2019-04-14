@@ -450,11 +450,14 @@ class VoucherController extends BaseController
 		//print_r($type);
 		//print_r($dbi);
 		//die();
-		foreach($data as $val)
+		if (!empty($data))
 		{
-			if ($val['value'] == 1)
+			foreach($data as $val)
 			{
-				$dbi[] = $val['name'];
+				if ($val['value'] == 1)
+				{
+					$dbi[] = $val['name'];
+				}
 			}
 		}
 		//DB::enableQueryLog();
