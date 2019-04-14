@@ -19,6 +19,19 @@
                     
                     <input type="submit" id="btnupload" value="@lang('dingsu.upload')" class="btn btn-success">
                 </div>
+				
+				<div class="form-group">
+                   					
+					@if($activejob->count() >= 1)
+						<p>cron processing importing file</p>
+					@else
+						<p>No Pending Job</p>
+					@endif
+					
+					
+                </div>
+				
+				
             </form>  
 		</div>
 	</div>
