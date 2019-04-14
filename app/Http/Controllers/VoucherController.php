@@ -528,6 +528,19 @@ class VoucherController extends BaseController
 				
 			case 'move_all':
 				//$i=1;
+				$cron  = \App\CronManager::where('cron_name','voucher_bulk_move')->first();
+				if ($cron->status != 3)
+				{
+					return response()->json(['success' => false, 'error_message' => 'cron running already']);
+					return FALSE;
+				}
+				$max  = Unreleasedvouchers::max('id');
+				$cron->status      = 2;
+				$cron->total_limit = $max ;
+				$cron->save();
+				
+				
+				/*
 				foreach (array_chunk($insdata,800) as $t) {	
 					foreach ($t as $key=>$row)
 					{
@@ -542,6 +555,7 @@ class VoucherController extends BaseController
 				}
 				
 				Unreleasedvouchers::query()->delete();
+				*/
 			break;
 				
 			case 'delete_all':
