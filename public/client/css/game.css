@@ -784,15 +784,77 @@ body{
 	padding-bottom: 30px;
 }
 
-.modal-invite-title {
-	font-size: 20px;
+.modal-invite-content {
+	color: #a58053;
+	font-size: 14px;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	text-align: left;
 }
 
-.modal-invite-content {
-	color: #bd9e4a;
-	font-size: 16px;
-	padding-bottom: 40px;
-	padding-top: 10px;
+.vegan-list {
+    list-style: none outside none;
+    counter-reset: vegan-list-number;
+}
+
+.vegan-list li { 
+	position: relative;
+	line-height: 26px;
+	text-indent: -20px;
+    padding-left: 20px;
+}
+
+.vegan-list li::before, .vegan-list li::after {
+  content: '';
+  display:inline-block;
+  vertical-align: middle;
+  height: 14px;
+  line-height: 14px;
+  width: 14px;
+  background: #a58053;
+  border-radius: 10px;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  text-indent: 0;
+  padding-left: 0;
+}
+
+.vegan-list li::before {
+  content: counter(vegan-list-number, decimal);
+  counter-increment: vegan-list-number;
+  margin-right: 5px;
+}
+
+.vegan-list li::after {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.modal-invite-title{
+    color:#c8ac8a;
+    width:100%;
+    margin:10px auto;
+    overflow:hidden;
+    text-align:center;   
+    line-height: 20px;
+    font-size: 16px;
+}
+
+.modal-invite-title:before, .modal-invite-title:after{
+    content:"";
+    vertical-align:middle;
+    display:inline-block;
+    width:50%;
+    border-bottom:1px dashed #c8ac8a;
+    margin:0 2% 0 -55%;
+}
+
+.modal-invite-title:after{
+    margin:0 -55% 0 2%;
 }
 
 /* reset-life-play modal */
@@ -1516,21 +1578,11 @@ body{
     -o-background-size: contain;
     background-size: contain;
     width: 320px;
-    height: 426px;
-}
-
-.vip-logo-wrapper {
-	width: 320px;
-	height: 20px;
-	position: relative;
-	text-align: center;
-	margin-top: -18px;
-}
-
-.vip-logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 380px;
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border: none;
 }
 
 .vip-title {
@@ -1538,16 +1590,15 @@ body{
 }
 
 .vip-modal-card {
-	width: 280px;
-	margin-top: 30px;
+	width: 265px;
+	margin-top: 110px;
 }
 
 .vip-card {
-	margin-bottom: 15px;
 	border-radius: 5px;
 	background: #fff;
 	height: 110px;
-	text-align: left;
+	text-align: center;
 	padding: 10px 15px;
 }
 
@@ -1557,54 +1608,52 @@ body{
 	margin-right: 5px;
 }
 
-.vip-card-title, .normal-card-title {
-	font-size: 16px;
-	padding-bottom: 5px;
-	float: left;
-	color: #ff682c;
+.vip-card-title {
+	font-size: 19px;
+	padding-bottom: 10px;
+	color: #807562;
+	border-bottom: 1px dashed #e3ddd3;
 }
 
-.vip-card-desc, .normal-card-desc {
+.vip-card-desc {
+	padding-top: 15px;
 	font-size: 14px;
-	color: #f48122;
+	color: #8c7c7c;
 }
 
-.normal-card-title {
-	color: #666666;
+.vip-card-desc li {
+	list-style: disc inside none;
+	line-height: 26px;
 }
 
-.normal-card-desc {
-	color: #999999;
-}
-
-.vip-info {
-	font-size: 16px;
-	color: #feef00;
-	margin-top: 30px;
-	margin-bottom: 30px;
+.vip-highlight {
+	font-size: 14px;
+	color: #ee833b;
 }
 
 .btn-vip-submit {
-	border-radius: 5px;
-	font-size: 20px;
+	border-radius: 20px;
+	font-size: 18px;
 	color: white;
 	padding: 6px;
-	background-image: linear-gradient(#ffcc4e, #ff8624);
-	margin-top: 25px;
+	background-image: linear-gradient(to right, #f1ca84, #ed671f);
+	margin-top: 20px;
+	text-align: center;
 }
 
 @media only screen and (max-width: 360px) {
 	.vip-background {
-		width: 260px;
-		height: 347px;
+		width: 280px;
+    	height: 332px;
 	}
 
 	.vip-logo-wrapper {
-		width: 260px;
+		width: 280px;
 	}
 
 	.vip-modal-card {
 		width: 230px;
+		margin-top: 90px;
 	}
 
 	.vip-title {
@@ -1618,28 +1667,63 @@ body{
 		border-radius: 5px;
 		background: #fff;
 		height: 90px;
-		text-align: left;
-		padding: 5px 10px;
+		padding: 10px;
 	}
 
-	.vip-card-title, .normal-card-title {
-		font-size: 14px;
+	.vip-card-title {
+		font-size: 17px;
 	}
 
-	.vip-card-desc, .normal-card-desc {
+	.vip-card-desc, .vip-highlight {
 		font-size: 12px;
-	}
-
-	.vip-info {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		font-size: 14px;
+		line-height: 22px;
 	}
 
 	.btn-vip-submit {
 		font-size: 16px;
-		margin-top: 18px;
+		margin-top: 8px;
 	}
+}
+
+.share-logo-wrapper {
+	width: 300px;
+	height: 38px;
+	position: relative;
+	text-align: center;
+	margin-top: -38px;
+}
+
+.share-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.share-card {
+	margin-top: 30px;
+}
+
+.modal-share-title {
+	color: #505050;
+	font-size: 26px;
+}
+
+.modal-share-button {
+	background: #d4b189;
+	border-radius: 20px;
+	font-size: 19px;
+	color: white;
+	padding: 5px;
+}
+
+.modal-vip-button {
+	border-radius: 20px;
+	font-size: 19px;
+	padding: 5px;
+	background: #fffbf7;
+	border: 1px solid #d4b189;
+	color: #c19867;
+	margin-top: 10px;
 }
 
 /* Paste this css to your style sheet file or under head tag */
