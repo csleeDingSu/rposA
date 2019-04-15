@@ -634,21 +634,31 @@
 	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
+				<div class="share-logo-wrapper">
+                	<img class="share-logo" src="{{ asset('/client/images/no-life.png') }}" width="77" height="77" />
+                </div>
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
-								<div class="modal-warning-title">
-									您当前没有次数
+							<div class="modal-card share-card">
+								<div class="modal-share-title">
+									您的次数已用完
 								</div>
 								<div class="modal-invite-content">
-									<span class="modal-invite-title">邀请1位好友</span><br />
-									奖励{{env('sharetofriend_youwillget', '1')}}次{{env('game_name', '幸运转盘')}}机会，赚{{env('sharetofriend_youwillget_bonus', '15')}}元
+									<h1 class="modal-invite-title">您有以下选择</h1>
+									<ol class="vegan-list">
+										<li>邀请好友加入，邀请1个获得{{env('sharetofriend_youwillget', '1')}}次机会</li>
+										<li>购买VIP，无需邀人，可无限玩，收益比普通场高更多。</li>
+									</ol>
 								</div>
 								<a href="/share" class="link-button">
-									<div class="modal-warning-button">
-										邀请好友加入
+									<div class="modal-share-button">
+										邀请好友
+									</div>
+								</a>
+								<a href="/redeem" class="link-button">
+									<div class="modal-vip-button">
+										购买VIP
 									</div>
 								</a>													
 							</div>
@@ -795,26 +805,23 @@
 	<div class="modal fade col-md-12" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content vip-background">
-                <div class="vip-logo-wrapper">
-                	<img class="vip-logo" src="{{ asset('/client/images/vip/vip-big.png') }}" width="53" height="48" />
-                </div>
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card vip-modal-card">
-								<img class="vip-title" src="{{ asset('/client/images/vip/vip-title.png') }}" width="250" height="28" />
 								<div class="vip-card">
-									<img class="img-vip" src="{{ asset('/client/images/vip/v1.png') }}" width="20" height="17" /><div class="vip-card-title">VIP场的结算方式：</div>
-									<div style="clear: both;"></div>
-									<div class="vip-card-desc">1200游戏积分可结算，免邀请人直接玩，无150封顶，想赚多少就多少。</div>
-								</div>
-								<div class="vip-card">
-									<img class="img-vip" src="{{ asset('/client/images/vip/v2.png') }}" width="20" height="17" /><div class="normal-card-title">普通场的结算方式：</div>
-									<div style="clear: both;"></div>
-									<div class="normal-card-desc">1200游戏积分不可结算，需要邀请人才可继续玩，每局150封顶，一次机会最多赚150金币。</div>
-								</div>
-								<!--div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费卷</div-->
-								<a href="/redeem"><div class="btn-vip-submit">兑换VIP入场卷</div></a>
+									<div class="vip-card-title">
+										<img src="{{ asset('/client/images/vip/left_deco.png') }}" width="18px" height="13px" /> 会员特权 <img src="{{ asset('/client/images/vip/right_deco.png') }}" width="18px" height="13px" />
+									</div>
+									<div class="vip-card-desc">
+										<ul>
+											<li><span class="vip-highlight">赠送1200金币，</span>可结算红包。</li>
+											<li><span class="vip-highlight">无上限封顶，</span>想赚多少都行。</li>
+											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
+										</ul>
+									</div>
+									<a href="/redeem"><div class="btn-vip-submit">99元开通会员</div></a>
+								</div>								
 							</div>
 						</div>
 					</div>							
