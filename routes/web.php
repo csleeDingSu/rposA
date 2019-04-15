@@ -44,6 +44,7 @@ Route::get('r-auth', function () {
     return view('redis.auth');
 });
 Route::get('token', 'TokenController@token');
+Route::get('admintoken', 'TokenController@admintoken');
 //end
 
 

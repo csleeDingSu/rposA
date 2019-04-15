@@ -70,6 +70,16 @@ class ImportVoucher extends Command
 			{
 				//print_r($row);
 				$this->info('-- Vouchers importing from file: '.$row->filename);
+				
+				$importfile   = \App\FileVoucher::where('file_name',$row->filename)->first();
+				$importfile->status = 2;
+				$importfile->updated_at = now();
+				$importfile->save();				
+				
+				$imresult = Voucher::get_pipeline_import();		
+		 		event(new \App\Events\EventDynamicChannel('importnoti','',$imresult));
+				$this->info('-- Update Event');
+				
 				$filename = $row->filename;
 				$fname    = $row->filename;
 				$queuet   = Voucher::QueuedList($filename)->toArray();
@@ -198,7 +208,15 @@ class ImportVoucher extends Command
 				//Delete File
 				//$filename = 'upv1555031330';
 				$this->info('-- deleting file from server.');
-				\DB::table('excel_upload')->where('filename',$fname)->delete();				
+				\DB::table('excel_upload')->where('filename',$fname)->delete();	
+				
+				$importfile->delete();
+				
+				$result = Voucher::get_pipeline_import();
+		
+		 		event(new \App\Events\EventDynamicChannel('importnoti','',$result));
+				
+				$this->info('-- file deleted.event fired');
 			}
 			
 		}

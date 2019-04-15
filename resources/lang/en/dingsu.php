@@ -559,4 +559,10 @@ return [
 	'delete_all' => 'remove all records',
 	'copy_url_success' => 'successfully copy url',
 	'flexi' => 'flexi',
+	'cron_importprocess_file' => 'Import Process List',
+	'real_time_update' => 'Real Time Update',
+	'waiting' => 'waiting',
+	'processing' => 'processing',
+	'completed' => 'completed',
+	'lastrun' => 'Last run',
 ];
