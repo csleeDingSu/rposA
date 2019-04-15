@@ -46,5 +46,5 @@
 });
 	
 	</script>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script> 
 </head>
