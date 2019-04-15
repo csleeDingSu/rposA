@@ -7,7 +7,7 @@ use App\Http\Controllers\TestController;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Voucher;
-class DeleteVoucher extends Command
+class MoveVoucher extends Command
 {
     /**
      * The name and signature of the console command.
