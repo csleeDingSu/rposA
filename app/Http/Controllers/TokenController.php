@@ -20,4 +20,15 @@ class TokenController extends Controller
         $token = $auth->fromUser($user, $claims);
         return response()->json(['token' => $token,'userid' => $user->id, 'username' => $user->username]);
     }
+	
+	public function admintoken(Request $request, \Tymon\JWTAuth\JWTAuth $auth)
+    {
+    	$user = Auth::guard('admin')->user();
+		if (!$user) {
+            return response()->json(['error' => 'not logged in'], 401);
+        }		
+        $claims = ['userid' => $user->id, 'username' => $user->username];
+        $token = $auth->fromUser($user, $claims);
+        return response()->json(['token' => $token,'userid' => $user->id, 'username' => $user->username]);
+    }
 }

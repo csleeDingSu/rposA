@@ -250,8 +250,7 @@ class Voucher extends Model
 	
 	public static function get_pipeline_import()
 	{
-		$result = DB::table('excel_upload')->groupBy('filename')
-                 ->get();
+		$result = DB::table('voucher_files')->orderby('created_at','DESC')->get();
 				
 		return $result;
 	}
