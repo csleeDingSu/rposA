@@ -60,18 +60,18 @@ class DeleteVoucher extends Command
 		
 		foreach (array_chunk($models,500) as $keyc=>$data) 
 		{
-			$this->info('-- deleting records.');
+			
 			foreach($data as $key=>$val)
 			{
 				$cat_id[] = $val['id'] ;
 				
 				$this->info('-- getting data '.$val['id']);
 			}
-			
+			$this->info('-- deleting records.');
 			\DB::table('voucher_category')
 			->whereIn('unr_voucher_id',$cat_id)
 			->delete();
-			
+			$this->info('-- deleting vouchers.');
 			\App\Unreleasedvouchers::destroy($cat_id);
 			
 			$cat_id = [];
