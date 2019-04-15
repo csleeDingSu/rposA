@@ -450,11 +450,14 @@ class VoucherController extends BaseController
 		//print_r($type);
 		//print_r($dbi);
 		//die();
-		foreach($data as $val)
+		if (!empty($data))
 		{
-			if ($val['value'] == 1)
+			foreach($data as $val)
 			{
-				$dbi[] = $val['name'];
+				if ($val['value'] == 1)
+				{
+					$dbi[] = $val['name'];
+				}
 			}
 		}
 		//DB::enableQueryLog();
@@ -525,6 +528,19 @@ class VoucherController extends BaseController
 				
 			case 'move_all':
 				//$i=1;
+				$cron  = \App\CronManager::where('cron_name','voucher_bulk_move')->first();
+				if ($cron->status != 3)
+				{
+					return response()->json(['success' => false, 'error_message' => 'cron running already']);
+					return FALSE;
+				}
+				$max  = Unreleasedvouchers::max('id');
+				$cron->status      = 2;
+				$cron->total_limit = $max ;
+				$cron->save();
+				
+				
+				/*
 				foreach (array_chunk($insdata,800) as $t) {	
 					foreach ($t as $key=>$row)
 					{
@@ -539,11 +555,25 @@ class VoucherController extends BaseController
 				}
 				
 				Unreleasedvouchers::query()->delete();
+				*/
 			break;
 				
 			case 'delete_all':
 				//Voucher::archived_unr_vouchers_insert($insdata);
 				
+				$cron  = \App\CronManager::where('cron_name','voucher_bulk_delete')->first();
+				if ($cron->status != 3)
+				{
+					return response()->json(['success' => false, 'error_message' => 'cron running already']);
+					return FALSE;
+				}
+				$max  = Unreleasedvouchers::max('id');
+				$cron->status      = 2;
+				$cron->total_limit = $max ;
+				$cron->save();
+				
+				
+				/*
 				foreach($models as $key=>$val)
 				{
 					$id = $val['id'];
@@ -553,6 +583,7 @@ class VoucherController extends BaseController
 				}
 				
 				Unreleasedvouchers::query()->delete();
+				*/
 			break;		
 		}
 		

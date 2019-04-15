@@ -1,79 +1,93 @@
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
+        .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
+        .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
+    </style>
+
+
 <div class="col-12 grid-margin">
 	<div class="card">
 		<div class="card-body">
 			<h4 class="card-title">@lang('dingsu.import_voucher')</h4>
-			 <form class="form-horizontal" method="POST" action="{{ route('importpost') }}" enctype="multipart/form-data">
-                           
-				{{ csrf_field() }} 
-				 
-				 @foreach ($errors->all() as $error)
-				<div class="alert alert-danger" role="alert">@lang($error)</div>
-				@endforeach @if(session()->has('message'))
-				<div class="alert alert-success" role="alert">
-					{{ session()->get('message') }}
-				</div>
-				@endif
+			
+			<form method="POST" name="importform" id="importform"  class="form-horizontal" action="" enctype="multipart/form-data">
+                @csrf
+				<div class="" id="validation-errors"></div>
+                <div class="form-group">
+                    <input name="voucher_file" id="voucher_file" type="file" value="123456" class="form-control"><br/>
+                    
+                    <input type="submit" id="btnupload" value="@lang('dingsu.upload')" class="btn btn-success">
+                </div>
 				
-
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group row">
-							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.file') <span class="text-danger">*</span></label>
-							<div class="col-sm-9">
-								<input id="file" type="file" class="form-control" name="file" required>
-							</div>
-						</div>
-					</div>					
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group row">
-							<label for="publish" class="col-sm-3 col-form-label">@lang('dingsu.publish')</label>
-							<div class="col-sm-9">
-								<div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" id="publish" name="publish" checked="" type="checkbox">
-                              @lang('dingsu.auto_publish')
-                            <i class="input-helper"></i></label>
-                          </div>
-							</div>
-							
-							
-							 
-							
-							
-						</div>
-					</div>
+				<div class="form-group">
+                   					
+					@if($activejob->count() >= 1)
+						<p>cron processing importing file</p>
+					@else
+						<p>No Pending Job</p>
+					@endif
 					
-				</div>
+					
+                </div>
 				
-
-				<button type="submit" onClick="showprogress()" class="btn btn-success mr-2">@lang('dingsu.upload')</button>
-				<a href="" type="submit" class="btn btn-light mr-2">@lang('dingsu.reset')</a>
-
-
-			</form>
+				
+            </form>  
 		</div>
 	</div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ 
+    
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
 
-<script language="javascript">
-function showprogress()
-{
-	swal( {
-					title: '@lang("dingsu.please_wait")',
-					text: '@lang("dingsu.updating_data")..',
-					allowOutsideClick: false,
-					closeOnEsc: false,
-					allowEnterKey: false,
-					buttons: false,
-					onOpen: () => {
-						swal.showLoading()
-					}
-				} );
-	
-	
-}
+
+ <script>
+	function validate(formData, jqForm, options) {
+        var form = jqForm[0];
+        if (!form.file.value) {
+            alert('File not found');
+            return false;
+        }
+    }
+	 $("#importform").on('submit',(function(e) {
+		 e.preventDefault();
+		var formData = new FormData();
+		formData.append('file', $('input[type=file]')[0].files[0]);
+		 
+		$( '#validation-errors' ).html( '' );
+			
+		 	swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.uploading_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+			$.ajax( {
+				url: "{{ route('importpost') }}",
+				data: formData,
+				type: 'post', 
+				contentType: false, 
+    			processData: false, 
+				dataType: "json",
+				
+				success: function ( result ) {
+					swal( '@lang("dingsu.success")', '@lang("dingsu.upload_success")', "success" );$('#importform').trigger("reset");
+					$( '#validation-errors' ).append( '<div class="alert alert-success">' + result.success + '</div' );
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					$.each(xhr.responseJSON.errors, function(key,value) {
+						$( '#validation-errors' ).append( '<div class="alert alert-danger">' + value + '</div' );
+					} );
+					swal.close();$('#importform').trigger("reset");
+				}
+			} );
+		
+	 }));
+	 
 </script>

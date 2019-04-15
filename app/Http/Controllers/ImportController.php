@@ -44,6 +44,8 @@ class ImportController extends BaseController
 		
 		$data['page'] = 'voucher.import'; 
 		
+		$data['activejob'] = Voucher::get_pipeline_import();
+		
 		return view('main', $data);
     }
 	
@@ -214,32 +216,85 @@ class ImportController extends BaseController
 	
 	public function ProcessparseImport(Request $request)
 	{
+		ini_set('max_execution_time', 0);
+		ini_set('memory_limit', '-1');
+		
+		$all_ext = implode(',', $this->document_ext);
+		
+		$request->validate([
+         //  'file' => 'required|max:51200|mimes:application/excel,
+        //application/vnd.ms-excel, application/vnd.msexcel,' . $all_ext ,	
+			'file' => 'required',
+		]);
+        
+		$filename = 'upv'.time(); 
+		
+		$extension = request()->file->getClientOriginalExtension();
+		
+		$path = $request->file->storeAs('excel', $filename.'.'.$extension, 'public_uploads');
+		
+		$url = Storage::url('uploads/'.$path);
+		
+		$excelChecker = Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
+				
+		$arrayhead = $excelChecker[0];
+				
+		$data['page'] = 'voucher.importparse'; 
+		$data['file_title'] = $file_title = array_keys($arrayhead);
+		$data['sys_title'] = $sys_title = Voucher::get_csvtitle(15); 
+		$data['filename']   = $filename;
+		$dbc = [];		
+		
+		$vouchercombination = new Voucher();
+		
+		foreach ($sys_title as $key=>$val)
+		{
+			if (!empty($file_title[$key] ) )
+			{
+				$fkey = array_search($val->title,$file_title);
+				
+				if ($file_title[$fkey] == $val->title)
+				{				
+					$arr['sys_field_id'] = $val->id;
+					$arr['file_title_loc_id'] = $fkey;
+					$arr['filename'] = $filename;
+					$dbc[] = $arr;
+				}
+			}
+		}
+		
+		//print_r($dbc);
+		
+		DB::table('excel_upload')->insert($dbc);
+ 
+        return response()->json(['success'=>'You have successfully upload file.']);
+		/*
+		
+		
 		
 		ini_set('memory_limit', '9024M'); // or you could use 1G
 		ini_set('upload_max_filesize', '24M'); 
 		ini_set('post_max_size', '24M'); 
-
 		
-		ini_set('max_execution_time', 0); 
+		ini_set('max_execution_time', 0);
+		//ini_set('memory_limit', '-1');
 		
 				
 		$max_size = (int)ini_get('upload_max_filesize') * 10000;
 		
 		$max_size = 9000000 ;
 		
-		$all_ext = implode(',', $this->document_ext);
-		
+		$all_ext = implode(',', $this->document_ext);		
 		
 		 $validator = $this->validate(
              $request,
              [
-                // 'file' => 'required|max:5120|file|mimes:' . $all_ext 
-				 'file' => 'required|max:5120'
+                 'file' => 'required|max:5120|file|mimes:' . $all_ext 
+				// 'file' => 'required|max:5120'
              ]
          );
 		
 		$extension = $request->file->getClientOriginalExtension(); //$request->file->extension();
-		
 		
 		
 		$filename = 'upv'.time(); 
@@ -282,12 +337,8 @@ class ImportController extends BaseController
 		{
 			if (!empty($file_title[$key] ) )
 			{
-				//echo $file_title[$key];echo $val->title;
-				
 				$fkey = array_search($val->title,$file_title);
-				//print_r($d);echo '<br<br>';
-				//$fkey =
-				echo $fkey.'--'. $file_title[$fkey].'--'.$val->id.'--'.$val->title;echo '<br>';
+				
 				if ($file_title[$fkey] == $val->title)
 				{				
 					$arr['sys_field_id'] = $val->id;
@@ -296,21 +347,22 @@ class ImportController extends BaseController
 					$dbc[] = $arr;
 				}
 			}
-		}
-		
+		}		
 		
 		//print_r($dbc);die();
 		DB::table('excel_upload')->insert($dbc);
 		
 		//die();
-		event(new GenerateVoucher($request,$filename));
+		//event(new GenerateVoucher($request,$filename));
 		
 		$data['page'] = 'common.success'; 
 		
 		$data['msg']  = 'message_import_success';
 		
-		// return view('main', $data);
+		return response()->json(['success'=>'You have successfully upload file.Please wait 5 - 15 to complete the Import Process']);
 		return redirect('voucher/unreleased')->with('message', 'Successfully imported! 导入完成!');
+		
+		*/
 	}
 	
 		
