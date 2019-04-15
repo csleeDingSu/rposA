@@ -267,6 +267,10 @@ class ImportController extends BaseController
 		
 		DB::table('excel_upload')->insert($dbc);
 		
+		$ins = ['created_at'=>now(),'file_name'=>$filename,'status'=>1];
+		\DB::table('voucher_files')->insert( $ins );
+		
+		
 		$result = Voucher::get_pipeline_import();
 		
 		event(new \App\Events\EventDynamicChannel('importnoti','',$result));
