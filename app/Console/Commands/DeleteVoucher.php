@@ -64,6 +64,8 @@ class DeleteVoucher extends Command
 			foreach($data as $key=>$val)
 			{
 				$cat_id[] = $val['id'] ;
+				
+				$this->info('-- getting data '.$val['id']);
 			}
 			
 			\DB::table('voucher_category')
