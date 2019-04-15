@@ -65,7 +65,7 @@ class DeleteVoucher extends Command
 			{
 				$rid = $row['id'];
 				unset($row['id']);
-				$id = DB::table('vouchers')->insertGetId($row);
+				$id = \DB::table('vouchers')->insertGetId($row);
 				\App\Voucher::update_voucher_id($rid, $id);
 				$cat_id[] = $row['id'] ;
 			}
