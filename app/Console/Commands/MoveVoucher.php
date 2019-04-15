@@ -68,6 +68,7 @@ class MoveVoucher extends Command
 				$id = \DB::table('vouchers')->insertGetId($row);
 				\App\Voucher::update_voucher_id($rid, $id);
 				$cat_id[] = $rid ;
+				$this->line('-- New record Inserted. '.$id);
 			}
 						
 			\App\Unreleasedvouchers::destroy($cat_id);
