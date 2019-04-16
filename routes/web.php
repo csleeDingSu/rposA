@@ -75,19 +75,15 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::get( '/vip-node', 'ClientController@member_access_vip_node' )->name( 'client.vip-node' );
 	
-	Route::get( '/wheel', function () {
-		return view( 'client/wheel' );
-	} );
-
-	Route::get( '/wheel-vip', function () {
-		return view( 'client/wheel-vip' );
-	} );
-
 	Route::get( '/faq', function () {
 
 		$faqs = DB::table( 'faq' )->select( 'id', 'title', 'content' )->orderBy( 'id', 'desc' )->get();
 
 		return view( 'client/faq', compact( 'faqs' ) );
+	} );
+
+	Route::get( '/membership', function () {
+		return view( 'client/membership');
 	} );
 
 	Route::any( '/tips', 'ClientController@tips' )->name( 'client.tips' );
