@@ -274,6 +274,17 @@ function getSocket(){
             */
             socket.on('disconnect', function () {
                 console.log('Disconnected');
+                //$(".reload").show();
+
+                //temp log            
+                bet_log = "/api/update-game-result-temp?gameid=101&gametype=2&memberid=" + user_id + "&drawid=&bet=&betamt=&error=Disconnected";
+                var data = new FormData();
+                data.append("data" , bet_log);
+                var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                xhr.open( 'post', '/api/temp_log', true );
+                xhr.send(data);
+
+                window.top.location.href = "/vip";
             });
 
             //On user logout
@@ -554,14 +565,14 @@ function bindBetButton(){
                 error: function (error) { 
                     console.log(error.responseText);
                     //temp log            
-                    bet_log = "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
-                                + "&drawid=" + draw_id 
-                                + "&bet=&betamt=&error=" + error.responseText;
-                    var data = new FormData();
-                    data.append("data" , bet_log);
-                    var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-                    xhr.open( 'post', '/api/temp_log', true );
-                    xhr.send(data);
+                    // bet_log = "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
+                    //             + "&drawid=" + draw_id 
+                    //             + "&bet=&betamt=&error=" + error.responseText;
+                    // var data = new FormData();
+                    // data.append("data" , bet_log);
+                    // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                    // xhr.open( 'post', '/api/temp_log', true );
+                    // xhr.send(data);
 
                     window.top.location.href = "/vip";
 
@@ -579,17 +590,17 @@ function bindBetButton(){
             var newbalance = balance - bet_amount;
             var newtotalbalance = total_balance - bet_amount;
 
-            //temp log            
-            bet_log = "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
-                    + "&drawid=" + draw_id 
-                    + "&bet="+ selected 
-                    + "&betamt=" + bet_amount
-                    + "&level=" + level;
-            var data = new FormData();
-            data.append("data" , bet_log);
-            var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-            xhr.open( 'post', '/api/temp_log', true );
-            xhr.send(data);
+            // //temp log            
+            // bet_log = "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
+            //         + "&drawid=" + draw_id 
+            //         + "&bet="+ selected 
+            //         + "&betamt=" + bet_amount
+            //         + "&level=" + level;
+            // var data = new FormData();
+            // data.append("data" , bet_log);
+            // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+            // xhr.open( 'post', '/api/temp_log', true );
+            // xhr.send(data);
 
             if(newbalance < 0){
                  $('div.clicked').find('.bet').hide();
@@ -611,7 +622,8 @@ function bindBetButton(){
                         xhr.setRequestHeader ("Authorization", "Bearer " + token);
                     },
                     error: function (error) { 
-                        console.log(error.responseText);
+                        console.log('memberid: ' + user_id + ', 下注失败'); 
+                        console.log(error.responseText);                        
                         //temp log            
                         bet_log = "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
                                     + "&drawid=" + draw_id 
@@ -625,7 +637,8 @@ function bindBetButton(){
                         xhr.open( 'post', '/api/temp_log', true );
                         xhr.send(data);
 
-                        window.top.location.href = "/vip";
+                        // window.top.location.href = "/vip";
+                        alert('下注失败');
                     },
                     success: function(data) {
                     }
