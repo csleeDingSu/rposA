@@ -315,6 +315,16 @@ function getSocket(){
             socket.on('disconnect', function () {
                 console.log('Disconnected');
                 //$(".reload").show();
+
+                //temp log            
+                bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid=" + user_id + "&drawid=&bet=&betamt=&error=Disconnected";
+                var data = new FormData();
+                data.append("data" , bet_log);
+                var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                xhr.open( 'post', '/api/temp_log', true );
+                xhr.send(data);
+
+                window.top.location.href = "/arcade";
             });
 
             //On user logout
@@ -674,15 +684,16 @@ function bindBetButton(){
                 },
                 error: function (error) { 
                     console.log(error.responseText);
-                    // //temp log            
-                    // bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
-                    //             + "&drawid=" + draw_id 
-                    //             + "&bet=&betamt=&error=" + error.responseText;
-                    // var data = new FormData();
-                    // data.append("data" , bet_log);
-                    // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-                    // xhr.open( 'post', '/api/temp_log', true );
-                    // xhr.send(data);
+                    alert('下注失败');
+                    //temp log            
+                    bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                                + "&drawid=" + draw_id 
+                                + "&bet=&betamt=&error=" + error.responseText;
+                    var data = new FormData();
+                    data.append("data" , bet_log);
+                    var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                    xhr.open( 'post', '/api/temp_log', true );
+                    xhr.send(data);
 
                     // window.top.location.href = "/arcade";
                 },
@@ -730,23 +741,24 @@ function bindBetButton(){
                     beforeSend: function( xhr ) {
                         xhr.setRequestHeader ("Authorization", "Bearer " + token);
                     },
-                    error: function (error) { 
+                    error: function (error) {
+                        console.log('memberid: ' + user_id + ', 下注失败'); 
                         console.log(error.responseText);
                         // alert('下注失败');
-                        // // //temp log            
-                        // // bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
-                        // //             + "&drawid=" + draw_id 
-                        // //             + "&bet="+ selected 
-                        // //             + "&betamt=" + bet_amount
-                        // //             + "&level=" + level
-                        // //             + "&error=" + error.responseText;
-                        // // var data = new FormData();
-                        // // data.append("data" , bet_log);
-                        // // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-                        // // xhr.open( 'post', '/api/temp_log', true );
-                        // // xhr.send(data);
+                        //temp log            
+                        bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid="+ user_id 
+                                    + "&drawid=" + draw_id 
+                                    + "&bet="+ selected 
+                                    + "&betamt=" + bet_amount
+                                    + "&level=" + level
+                                    + "&error=" + error.responseText;
+                        var data = new FormData();
+                        data.append("data" , bet_log);
+                        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                        xhr.open( 'post', '/api/temp_log', true );
+                        xhr.send(data);
 
-                        // window.top.location.href = "/arcade";
+                        alert('下注失败');
                     },
                     success: function(data) {
                         // alert('下注成功');

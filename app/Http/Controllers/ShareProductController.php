@@ -40,7 +40,7 @@ class ShareProductController extends BaseController
 
 		}		
 
-		$data['item_featured'] = Voucher::join('voucher_category','voucher_category.voucher_id', '=', 'vouchers.id')->where('voucher_category.category',env('voucher_featured_id',220))->select('vouchers.*')->orderBy('vouchers.created_at', 'desc')->take(10)->get();
+		$data['item_featured'] = Voucher::join('voucher_category','voucher_category.voucher_id', '=', 'vouchers.id')->where('voucher_category.category',env('voucher_featured_id',220))->select('vouchers.*')->orderBy('vouchers.id', 'desc')->take(10)->get();
 		
 		return view('client/share_product', $data);
 	}
