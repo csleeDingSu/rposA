@@ -214,7 +214,10 @@ function initGame(data, level, latest_result, consecutive_lose){
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
             },
-            error: function (error) { console.log(error) },
+            error: function (error) { 
+                console.log(error);
+                window.top.location.href = "/arcade";
+            },
             success: function(data) {
 
                 if(data.success && data.record.bet != null){
@@ -247,10 +250,7 @@ function initGame(data, level, latest_result, consecutive_lose){
                         beforeSend: function( xhr ) {
                             xhr.setRequestHeader ("Authorization", "Bearer " + token);
                         },
-                        error: function (error) { 
-                            console.log(error.responseText);
-                            window.top.location.href = "/arcade";
-                        },
+                        error: function (error) { console.log(error.responseText) },
                         success: function(data) {
                         }
                     });
