@@ -56,6 +56,8 @@ class DeleteVoucher extends Command
 		$cron->status = 1;
 		$cron->save();
 		
+		$last_process_id = $cron->total_limit;
+		
 		$models = \App\Unreleasedvouchers::where('id', '<=', $cron->total_limit)->get()->toArray();
 		
 		foreach (array_chunk($models,500) as $keyc=>$data) 
@@ -80,7 +82,9 @@ class DeleteVoucher extends Command
 		$this->info('-- All Deleted.');		
 		
 		//Update Cron Status
-		$cron->status = 3;
+		$cron->status          = 3;
+		$cron->total_limit     = 0;
+		$cron->last_process_id = $last_process_id;
 		$cron->save();
 		$this->info('-- cron status updated.');
 		$this->info('-- Done');		
