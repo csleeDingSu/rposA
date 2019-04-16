@@ -307,6 +307,15 @@ function getSocket(){
             */
             socket.on('unauthorized', function (data) {
                 console.log('Unauthorized, error msg: ' + data.message);
+                //temp log            
+                bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid=" + user_id + "&drawid=&bet=&betamt=&error=userlogout";
+                var data = new FormData();
+                data.append("data" , bet_log);
+                var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                xhr.open( 'post', '/api/temp_log', true );
+                xhr.send(data);
+
+                window.top.location.href = "/arcade";
             });
 
             /* 
@@ -330,6 +339,15 @@ function getSocket(){
             //On user logout
             socket.on('userlogout-' + user_id, function (data) {
                 console.log('user-logout');
+                //temp log            
+                bet_log = "/api/update-game-result-temp?gameid=101&gametype=1&memberid=" + user_id + "&drawid=&bet=&betamt=&error=userlogout";
+                var data = new FormData();
+                data.append("data" , bet_log);
+                var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+                xhr.open( 'post', '/api/temp_log', true );
+                xhr.send(data);
+
+                window.top.location.href = "/";
             });
 
             //on page load game setting Script
