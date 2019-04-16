@@ -542,4 +542,10 @@ return [
 	'delete_all' => '将所有记录删除',
 	'copy_url_success' => '复制网址成功',
 	'flexi' => '彈性',
+	'cron_importprocess_file' => '导入流程',
+	'real_time_update' => '实时更新',
+	'waiting' => '等候',
+	'processing' => '处理当中',
+	'completed' => '完成',
+	'lastrun' => '上次运行',
 ];
