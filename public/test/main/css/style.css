@@ -302,7 +302,7 @@
   font-size: 0.25rem;
   color: #ff5949;
   line-height: 0.48rem;
-  border: 0.01rem solid #ff5949;
+  border: 1px solid #ff5949;
   -webkit-border-radius: 0.1rem;
   -moz-border-radius: 0.1rem;
   -ms-border-radius: 0.1rem;
