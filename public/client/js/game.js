@@ -247,7 +247,10 @@ function initGame(data, level, latest_result, consecutive_lose){
                         beforeSend: function( xhr ) {
                             xhr.setRequestHeader ("Authorization", "Bearer " + token);
                         },
-                        error: function (error) { console.log(error.responseText) },
+                        error: function (error) { 
+                            console.log(error.responseText);
+                            window.top.location.href = "/arcade";
+                        },
                         success: function(data) {
                         }
                     });
