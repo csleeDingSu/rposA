@@ -274,6 +274,8 @@ class ImportController extends BaseController
 		$result = Voucher::get_pipeline_import();
 		
 		event(new \App\Events\EventDynamicChannel('importnoti','',$result));
+		
+		event(new \App\Events\EventDynamicChannel('unr-import','','yes'));
  
         return response()->json(['success'=>'You have successfully upload file.']);
 		/*
