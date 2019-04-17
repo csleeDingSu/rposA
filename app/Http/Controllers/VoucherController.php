@@ -323,6 +323,15 @@ class VoucherController extends BaseController
 			event(new \App\Events\EventDynamicChannel('unr-bulkdelete','',''));
 		}
 		
+		$scron  = \App\CronManager::where('cron_name','import_voucher')->first();
+		if ($scron->status != 3)
+		{
+			event(new \App\Events\EventDynamicChannel('unr-import','','yes'));
+		}
+		else{
+			event(new \App\Events\EventDynamicChannel('unr-import','',''));
+		}
+		
 		//check_dulicate
 		$result = Unreleasedvouchers::check_duplicate();
 		
