@@ -722,6 +722,13 @@ class GameController extends Controller
 			];
 
 		$res = 0;
+		
+		$channel = 'dashboard-vipplayer';
+		if ($request->gametype ==1)
+		{
+			$channel = 'dashboard-basicplayer';
+		}
+		
 		//insert | Update
 		if(!empty($request->bet) && !empty($request->betamt))
 		{
@@ -729,11 +736,15 @@ class GameController extends Controller
 			member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->delete();
 			
 			$res = member_game_bet_temp::insertGetId($params);
+			
+			event(new \App\Events\EventDashboardChannel($channel,1));	
 		}
 		else 
 		{
 			//delete
 			member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->delete();
+			
+			event(new \App\Events\EventDashboardChannel($channel,-1));	
 		}
 
 
@@ -744,9 +755,7 @@ class GameController extends Controller
 	//	member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->update(['deleted_at' => Carbon::now()]);
 		
 
-		//insert new bet
-		
-		
+				
 
         if ($res > 0) {
 
