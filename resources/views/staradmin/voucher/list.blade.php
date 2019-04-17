@@ -1,4 +1,5 @@
-<div class="clearfix">&nbsp;</div>
+<div id="so_notification">
+</div>
 <section class="filter">
 	@include('voucher.filter')
 </section>

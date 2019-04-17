@@ -277,6 +277,15 @@ class VoucherController extends BaseController
 
 	public function check_voucher_duplicate()
 	{
+		$scron  = \App\CronManager::where('cron_name','pro_voucher_bulk_delete')->first();
+		if ($scron->status != 3)
+		{
+			event(new \App\Events\EventDynamicChannel('bulkdelete','','yes'));
+		}
+		else{
+			event(new \App\Events\EventDynamicChannel('bulkdelete','',''));
+		}
+		
 		//check_dulicate
 		$result = Voucher::check_duplicate();
 		
@@ -296,6 +305,24 @@ class VoucherController extends BaseController
 	
 	public function check_unrvoucher_duplicate()
 	{
+		$scron  = \App\CronManager::where('cron_name','voucher_bulk_move')->first();
+		if ($scron->status != 3)
+		{
+			event(new \App\Events\EventDynamicChannel('unr-bulkmove','','yes'));
+		}
+		else{
+			event(new \App\Events\EventDynamicChannel('unr-bulkmove','',''));
+		}
+		
+		$scron  = \App\CronManager::where('cron_name','voucher_bulk_delete')->first();
+		if ($scron->status != 3)
+		{
+			event(new \App\Events\EventDynamicChannel('unr-bulkdelete','','yes'));
+		}
+		else{
+			event(new \App\Events\EventDynamicChannel('unr-bulkdelete','',''));
+		}
+		
 		//check_dulicate
 		$result = Unreleasedvouchers::check_duplicate();
 		
