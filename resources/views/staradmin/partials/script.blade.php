@@ -27,9 +27,9 @@
                 'reconnection': true,
                 'reconnectionDelay': 1000, //1 sec
                 'reconnectionDelayMax' : 5000,
-                'reconnectionAttempts': 2,
+                'reconnectionAttempts': 10,
 				'transports': ['websocket'],
-				'timeout' : 10000, //1 min
+				'timeout' : 900000, //90 min
 				'force new connection' : true,
 				 query: 'token='+result.token
             });
