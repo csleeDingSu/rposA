@@ -84,7 +84,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_game_player')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->current_game_player}}</small>
+						<small class="display-4 mb-4 font-weight-light basicbettingcount">{{$result->current_game_player}}</small>
 					</div>
 				</div>
 
@@ -93,7 +93,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_vip_game_player')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->current_vip_game_player}} </small>
+						<small class="display-4 mb-4 font-weight-light vipbettingcount">{{$result->current_vip_game_player}} </small>
 					</div>
 				</div>
 
@@ -280,7 +280,7 @@
 						<p class="card-text mb-0">@lang('dingsu.win_from_basic')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_bet - $result->total_game_lose }} </small>
+						<small class="display-4 mb-4 font-weight-light basic_win">{{$result->total_game_bet - $result->total_game_lose }} </small>
 					</div>
 				</div>
 
@@ -289,7 +289,7 @@
 						<p class="card-text mb-0">@lang('dingsu.win_from_vip')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_vip_game_bet - $result->total_vip_game_lose }}</small>
+						<small class="display-4 mb-4 font-weight-light vip_win">{{$result->total_vip_game_bet - $result->total_vip_game_lose }}</small>
 					</div>
 				</div>
 
@@ -308,7 +308,7 @@
 						<p class="card-text mb-0">@lang('dingsu.total_game_bet')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_bet}} </small>
+						<small class="display-4 mb-4 font-weight-light total_point_bet">{{$result->total_game_bet}} </small>
 					</div>
 				</div>
 
@@ -317,7 +317,7 @@
 						<p class="card-text mb-0">@lang('dingsu.total_game_lose')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_lose}}</small>
+						<small class="display-4 mb-4 font-weight-light total_point_lose">{{$result->total_game_lose}}</small>
 					</div>
 				</div>
 
@@ -360,7 +360,16 @@
 					}
 			 });
 			
-			
+	socket.on("dashboard-basicplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
+		var count = result.data;
+		$('.basicbettingcount').html(function(i, val) { return +val+count });
+	 });
+	
+	socket.on("dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
+		var count = result.data;
+		$('.vipbettingcount').html(function(i, val) { return +val+count });
+	 });
+	
 	@endsection
 	
 	function ajax_call() {
