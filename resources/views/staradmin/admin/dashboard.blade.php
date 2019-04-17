@@ -376,6 +376,16 @@
 		}
 	 });
 	
+	socket.on("master-reset" + ":App\\Events\\EventDashboardChannel", function(result) {
+		var r = result.data;
+		if (r.type == 'reset')
+		{
+			$('.basicbettingcount').html("0");
+			$('.vipbettingcount').html("0");
+		}
+	});
+		
+	
 	socket.on("dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var count = result.data;
 		$('.vipbettingcount').html(function(i, val) { return +val+count });
