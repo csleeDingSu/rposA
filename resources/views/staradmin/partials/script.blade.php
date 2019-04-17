@@ -47,7 +47,7 @@
             If token authenticated successfully then here will get message 
             */
             socket.on('authenticated', function () {
-				htm = '<span class="text-success">Yes.</span>';
+				htm = '<span class="text-success">@lang("dingsu.yes")</span>';
                 socketIOConnectionUpdate(htm);
             });
 
