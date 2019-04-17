@@ -98,6 +98,43 @@
 
 <script language='javascript' >
 
+	@section('socket')
+    @parent
+     socket.on("unr-bulkmove" + ":App\\Events\\EventDynamicChannel", function(data) {
+				var process = data.data;
+				console.log(data);
+				console.log(process);
+				if (process == 'yes')
+				{
+					$( "#so_notification" ).append( '<div id="bulkmove_no_div" class="alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.bulkmove_in_progress")</div>');
+					
+					$( "#so_notification" ).show();
+				}
+				else
+				{
+					$("#bulkmove_no_div").remove();
+				}
+				
+			 });
+			
+			
+			socket.on("unr-bulkdelete" + ":App\\Events\\EventDynamicChannel", function(data) {
+				var process = data.data;
+				console.log(data);
+				console.log(process);
+				if (process == 'yes')
+				{
+					$( "#so_notification" ).append( '<div id="bulkdelete_no_div" class="alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.buldelete_in_progress")</div>');
+					
+					$( "#so_notification" ).show();
+				}
+				else
+				{
+					$("#bulkdelete_no_div").remove();
+				}
+				
+			 });
+	@endsection
 
 
 //-------------Save tag category --------------------------------
