@@ -79,7 +79,9 @@ class DeleteVoucher extends Command
 			$cat_id = [];
 		}
 		
-		$this->info('-- All Deleted.');		
+		$this->info('-- All Deleted.');
+		
+		event(new \App\Events\EventDynamicChannel('unr-bulkdelete','',''));
 		
 		//Update Cron Status
 		$cron->status          = 3;

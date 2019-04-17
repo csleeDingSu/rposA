@@ -78,7 +78,9 @@ class MoveVoucher extends Command
 			$cat_id = [];
 		}
 		
-		$this->info('-- All Deleted.');
+		$this->info('-- All Moved.');
+		
+		event(new \App\Events\EventDynamicChannel('unr-bulkmove','',''));
 		//Update Cron Status
 		$cron->status          = 3;
 		$cron->total_limit     = 0;
