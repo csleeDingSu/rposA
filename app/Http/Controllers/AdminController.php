@@ -58,26 +58,31 @@ class AdminController extends BaseController
 		
 
 		
-		$data = ['allow_login'            	=> $request->allow_login,
-				 'allow_registration'     	=> $request->allow_registration,
-				 'site_maintenance'       	=> $request->site_maintenance,
-				 'maintenance_message'    	=> $request->maintenance_message,
-				 'auto_maintenance'       	=> $request->auto_maintenance,
-				 'maintenance_start_time' 	=> $request->maintenance_start_time,
-				 'maintenance_end_time'   	=> $request->maintenance_end_time,
-                 'introduce_life'         	=> $request->introduce_life,
-				 'game_default_life'      	=> $request->game_default_life,
-				 'mobile_default_image_url' => $request->mobile_default_image_url,
-				 'desktop_default_image_url'=> $request->desktop_default_image_url,
-				 'auto_product_redeem'      => $request->auto_product_redeem,
-				 'wabao_fee'     			=> $request->wabao_fee,
+		// $data = ['allow_login'            	=> $request->allow_login,
+		// 		 'allow_registration'     	=> $request->allow_registration,
+		// 		 'site_maintenance'       	=> $request->site_maintenance,
+		// 		 'maintenance_message'    	=> $request->maintenance_message,
+		// 		 'auto_maintenance'       	=> $request->auto_maintenance,
+		// 		 'maintenance_start_time' 	=> $request->maintenance_start_time,
+		// 		 'maintenance_end_time'   	=> $request->maintenance_end_time,
+  //                'introduce_life'         	=> $request->introduce_life,
+		// 		 'game_default_life'      	=> $request->game_default_life,
+		// 		 'mobile_default_image_url' => $request->mobile_default_image_url,
+		// 		 'desktop_default_image_url'=> $request->desktop_default_image_url,
+		// 		 'auto_product_redeem'      => $request->auto_product_redeem,
+		// 		 'wabao_fee'     			=> $request->wabao_fee,
+  //               ];
+
+		$data = [
+			'introduce_life'         	=> $request->introduce_life,
+			'game_default_life'      	=> $request->game_default_life,
+		 	'auto_product_redeem'      => $request->auto_product_redeem
                 ];
 		
+		$id = $request->id;
 		
-		$res = Admin::update_setting(1,$data);
-		
-		
-		
+		$res = Admin::update_setting($id,$data);
+				
 		return redirect()->back()->with('message', trans('dingsu.setting_success_save_message') );
 		return view('main', $data);
 	}
