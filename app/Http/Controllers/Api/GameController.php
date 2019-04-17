@@ -722,7 +722,7 @@ class GameController extends Controller
 			];
 
 		$res = 0;
-		
+		$deleted = 0;
 		$channel = 'dashboard-vipplayer';
 		if ($request->gametype ==1)
 		{
@@ -735,11 +735,10 @@ class GameController extends Controller
 			
 			$deleted = member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->delete();
 			
-			echo $deleted;
-			
+						
 			$res = member_game_bet_temp::insertGetId($params);
 			
-			event(new \App\Events\EventDashboardChannel($channel,1));	
+			if ($deleted<1) event(new \App\Events\EventDashboardChannel($channel,1));	
 		}
 		else 
 		{
@@ -761,7 +760,7 @@ class GameController extends Controller
 
         if ($res > 0) {
 
-        	return response()->json(['success' => true, 'message' => "temparory member $request->memberid bet $request->betamt"]);
+        	return response()->json(['success' => true, 'message' => "temparory member $request->memberid bet $request->betamt",'test'=>$deleted]);
 
         } else {
 
