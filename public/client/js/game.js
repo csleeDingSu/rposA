@@ -23,7 +23,7 @@ $(function () {
 	});
 
 	$('.swiper-container').on( 'change.flickity', function( event, index ) {
-		resetTimer();
+		//resetTimer();
 	});
 
 	var wechat_status = $('#hidWechatId').val();
