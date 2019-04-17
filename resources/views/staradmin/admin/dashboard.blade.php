@@ -84,7 +84,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_game_player')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light basicbettingcount">{{$result->current_game_player}}</small>
+						<small class="display-4 mb-4 font-weight-light basicbettingcount">0</small>
 					</div>
 				</div>
 
@@ -93,7 +93,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_vip_game_player')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light vipbettingcount">{{$result->current_vip_game_player}} </small>
+						<small class="display-4 mb-4 font-weight-light vipbettingcount">0 </small>
 					</div>
 				</div>
 
@@ -387,8 +387,19 @@
 		
 	
 	socket.on("dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
-		var count = result.data;
-		$('.vipbettingcount').html(function(i, val) { return +val+count });
+		var r = result.data;
+		if (r.type == 'reset')
+		{
+			$('.vipbettingcount').html("0");
+		}
+		else if (r.type == 'remove')
+		{
+			$('.vipbettingcount').html(function(i, val) { return +val-1 });
+		}
+		else
+		{
+			$('.vipbettingcount').html(r.count);
+		}
 	 });
 	
 	@endsection

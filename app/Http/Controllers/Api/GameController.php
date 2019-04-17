@@ -737,7 +737,7 @@ class GameController extends Controller
 						
 			$res = member_game_bet_temp::insertGetId($params);
 			
-			$wordCount = member_game_bet_temp::where('drawid',  $request->drawid)->count();
+			$wordCount = member_game_bet_temp::where('drawid',  $request->drawid)->where('gametype',  $request->gametype)->count();
 			
 			event(new \App\Events\EventDashboardChannel($channel,['type'=>'','count'=>$wordCount]));	
 		}
