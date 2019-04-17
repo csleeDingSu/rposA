@@ -10,6 +10,13 @@
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
+		  
+		  <ul class="navbar-nav">
+            <li class="nav-item font-weight-semibold d-none d-lg-block">
+				@lang('dingsu.real_time_update') :
+				<span id="socketconnection">Waiting..</span></li>
+           
+          </ul>
        <!-- <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
           <li class="nav-item">
             <a href="#" class="nav-link">Schedule
