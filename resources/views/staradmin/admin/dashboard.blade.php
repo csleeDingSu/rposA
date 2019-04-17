@@ -1,3 +1,11 @@
+
+<div class="page-header">
+                  
+	Updated at: <div class="updated">fff</div>&nbsp;&nbsp;&nbsp;&nbsp;		
+	Next update : <div class="nextupdate">555</div>
+	
+ </div>
+
 <h3>@lang('dingsu.pending_items')</h3>
 <div class="row">
 	<div class="col-12 grid-margin">
@@ -10,7 +18,7 @@
 								<p class="card-text mb-0">@lang('dingsu.pending_wechat_verification')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
-										<a href="/member/list?wechat=12" class="text-decoration">{{$result->pending_wechat}}</a>
+										<a href="/member/list?wechat=12" class="text-decoration pending_wechat">{{$result->pending_wechat}}</a>
 										</h3>
 								
 								</div>
@@ -26,7 +34,7 @@
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
 										
-										<a href="/product/pending-redeem" class="">
+										<a href="/product/pending-redeem" class="pending_redeem_verification">
 										{{$result->pending_redeem_verification}}</a></h3>
 								
 								</div>
@@ -41,7 +49,7 @@
 								<p class="card-text mb-0">@lang('dingsu.vip') @lang('dingsu.redeem')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
-										<a href="/package/redeem-list" class="">
+										<a href="/package/redeem-list" class="pending_vip_verification">
 										
 											{{$result->pending_vip_verification}} </a></h3>
 
@@ -59,7 +67,7 @@
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
 										
-										<a href="/voucher/unreleased" class="">
+										<a href="/voucher/unreleased" class="unreleased_voucher_count">
 										{{$result->unreleased_voucher_count}}</a></h3>
 								
 								</div>
@@ -112,7 +120,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_user_registration')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->today_user_registration}}</small>
+						<small class="display-4 mb-4 font-weight-light today_user_registration">{{$result->today_user_registration}}</small>
 					</div>
 				</div>
 
@@ -121,7 +129,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_game_player')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->today_game_player}}</small>
+						<small class="display-4 mb-4 font-weight-light today_game_player">{{$result->today_game_player}}</small>
 					</div>
 				</div>
 
@@ -130,7 +138,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_vip_game_player')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->today_vip_game_player}} </small>
+						<small class="display-4 mb-4 font-weight-light today_vip_game_player">{{$result->today_vip_game_player}} </small>
 					</div>
 				</div>
 
@@ -142,7 +150,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_product_redeem')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->today_product_redeem}} </small>
+						<small class="display-4 mb-4 font-weight-light today_product_redeem">{{$result->today_product_redeem}} </small>
 					</div>
 				</div>
 
@@ -151,7 +159,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_package_redeem')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->today_package_redeem}}</small>
+						<small class="display-4 mb-4 font-weight-light today_package_redeem">{{$result->today_package_redeem}}</small>
 					</div>
 				</div>
 
@@ -249,7 +257,7 @@
 						<p class="card-text mb-0">@lang('dingsu.total_of_users')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_active_user}}</small>
+						<small class="display-4 mb-4 font-weight-light total_active_user">{{$result->total_active_user}}</small>
 					</div>
 				</div>
 
@@ -258,7 +266,7 @@
 						<p class="card-text mb-0">@lang('dingsu.total_inactive_users')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_inactive_user}}</small>
+						<small class="display-4 mb-4 font-weight-light total_inactive_user">{{$result->total_inactive_user}}</small>
 					</div>
 				</div>
 
@@ -280,7 +288,7 @@
 						<p class="card-text mb-0">@lang('dingsu.win_from_basic')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light basic_win">{{$result->total_game_bet - $result->total_game_lose }} </small>
+						<small class="display-4 mb-4 font-weight-light win_from_basic">{{$result->total_game_bet - $result->total_game_lose }} </small>
 					</div>
 				</div>
 
@@ -289,7 +297,7 @@
 						<p class="card-text mb-0">@lang('dingsu.win_from_vip')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light vip_win">{{$result->total_vip_game_bet - $result->total_vip_game_lose }}</small>
+						<small class="display-4 mb-4 font-weight-light win_from_vip">{{$result->total_vip_game_bet - $result->total_vip_game_lose }}</small>
 					</div>
 				</div>
 
@@ -308,7 +316,7 @@
 						<p class="card-text mb-0">@lang('dingsu.total_game_bet')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light total_point_bet">{{$result->total_game_bet}} </small>
+						<small class="display-4 mb-4 font-weight-light total_game_bet">{{$result->total_game_bet}} </small>
 					</div>
 				</div>
 
@@ -317,7 +325,7 @@
 						<p class="card-text mb-0">@lang('dingsu.total_game_lose')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light total_point_lose">{{$result->total_game_lose}}</small>
+						<small class="display-4 mb-4 font-weight-light total_game_lose">{{$result->total_game_lose}}</small>
 					</div>
 				</div>
 
@@ -400,6 +408,36 @@
 		{
 			$('.vipbettingcount').html(r.count);
 		}
+	 });
+	
+	
+	socket.on("dashboard-info" + ":App\\Events\\EventDashboardChannel", function(result) {
+		var data = result.data;
+		console.log(data);
+		$('.pending_wechat').html(data.pending_wechat);
+		$('.pending_redeem_verification').html(data.pending_redeem_verification);
+		$('.pending_vip_verification').html(data.pending_vip_verification);
+		$('.unreleased_voucher_count').html(data.unreleased_voucher_count);
+		$('.today_user_registration').html(data.today_user_registration);
+		$('.today_product_redeem').html(data.today_product_redeem);
+		$('.today_package_redeem').html(data.today_package_redeem);
+		$('.total_active_user').html(data.total_active_user);
+		$('.total_inactive_user').html(data.total_inactive_user);	
+		$('.total_game_bet').html(data.total_game_bet);
+		$('.total_game_lose').html(data.total_game_lose);
+		
+		var win_from_basic = data.total_game_bet - data.total_game_lose;
+		var win_from_vip   = data.total_vip_game_bet - data.total_vip_game_lose;
+		$('.win_from_basic').html(win_from_basic);
+		$('.win_from_vip').html(win_from_vip);
+				
+		setInterval(function(){
+			  duration = moment(data.updated_at).fromNow();
+			  nextupda = moment(data.next_update).fromNow();
+				$('.updated').html(duration);
+			$('.nextupdate').html(nextupda);
+			}, 1000);
+		
 	 });
 	
 	@endsection
