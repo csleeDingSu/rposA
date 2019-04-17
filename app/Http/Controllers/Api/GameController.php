@@ -722,7 +722,7 @@ class GameController extends Controller
 			];
 
 		$res = 0;
-		
+		$deleted = 0;
 		$channel = 'dashboard-vipplayer';
 		if ($request->gametype ==1)
 		{
@@ -760,7 +760,7 @@ class GameController extends Controller
 
         if ($res > 0) {
 
-        	return response()->json(['success' => true, 'message' => "temparory member $request->memberid bet $request->betamt"]);
+        	return response()->json(['success' => true, 'message' => "temparory member $request->memberid bet $request->betamt",'test'=>$deleted]);
 
         } else {
 
