@@ -361,8 +361,19 @@
 			 });
 			
 	socket.on("dashboard-basicplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
-		var count = result.data;
-		$('.basicbettingcount').html(function(i, val) { return +val+count });
+		var r = result.data;
+		if (r.type == 'reset')
+		{
+			$('.basicbettingcount').html("0");
+		}
+		else if (r.type == 'remove')
+		{
+			$('.basicbettingcount').html(function(i, val) { return +val-1 });
+		}
+		else
+		{
+			$('.basicbettingcount').html(r.count);
+		}
 	 });
 	
 	socket.on("dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
