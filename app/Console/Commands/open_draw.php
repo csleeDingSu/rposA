@@ -127,6 +127,9 @@ class open_draw extends Command
 		$this->line('End:'.'-------------'.Carbon::now()->toDateTimeString().'----------');
 		
 		$this->info('-------------All done----------');
+		
+		$result =  \App\Report::game_win_lose();
+		event(new \App\Events\EventDynamicChannel('dashboard-gameinfo','',$result));
     }
 	
 }
