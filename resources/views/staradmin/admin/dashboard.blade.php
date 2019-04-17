@@ -1,8 +1,8 @@
 
 <div class="page-header">
                   
-	Updated at: <div class="updated">fff</div>&nbsp;&nbsp;&nbsp;&nbsp;		
-	Next update : <div class="nextupdate">555</div>
+	Updated at: <div class="updated">{{$result->updated_at}}</div>&nbsp;&nbsp;&nbsp;&nbsp;		
+	Next update : <div class="nextupdate">{{$result->next_update}}</div>
 	
  </div>
 
