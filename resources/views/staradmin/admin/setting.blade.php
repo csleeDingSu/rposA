@@ -13,7 +13,7 @@
 				</div>
 				@endif
 
-				<input id="id" name="id" type="hidden" value="{{$record->id">
+				<input id="id" name="id" type="hidden" value="{{$record->id}}">
 
 				<!-- <div class="row">
 					<div class="col-md-6">
