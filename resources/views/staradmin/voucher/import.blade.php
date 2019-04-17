@@ -79,7 +79,7 @@
 
 
 <script type="text/javascript">	
-	
+	var trr = '';
 	@section('socket')
     @parent
      socket.on("importnoti" + ":App\\Events\\EventDynamicChannel", function(data) {
