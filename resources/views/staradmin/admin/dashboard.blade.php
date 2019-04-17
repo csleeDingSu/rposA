@@ -84,7 +84,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_game_player')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->current_game_player}}</small>
+						<small class="display-4 mb-4 font-weight-light basicbettingcount">0</small>
 					</div>
 				</div>
 
@@ -93,7 +93,7 @@
 						<p class="card-text mb-0">@lang('dingsu.today_vip_game_player')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->current_vip_game_player}} </small>
+						<small class="display-4 mb-4 font-weight-light vipbettingcount">0 </small>
 					</div>
 				</div>
 
@@ -280,7 +280,7 @@
 						<p class="card-text mb-0">@lang('dingsu.win_from_basic')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_bet - $result->total_game_lose }} </small>
+						<small class="display-4 mb-4 font-weight-light basic_win">{{$result->total_game_bet - $result->total_game_lose }} </small>
 					</div>
 				</div>
 
@@ -289,7 +289,7 @@
 						<p class="card-text mb-0">@lang('dingsu.win_from_vip')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_vip_game_bet - $result->total_vip_game_lose }}</small>
+						<small class="display-4 mb-4 font-weight-light vip_win">{{$result->total_vip_game_bet - $result->total_vip_game_lose }}</small>
 					</div>
 				</div>
 
@@ -308,7 +308,7 @@
 						<p class="card-text mb-0">@lang('dingsu.total_game_bet')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_bet}} </small>
+						<small class="display-4 mb-4 font-weight-light total_point_bet">{{$result->total_game_bet}} </small>
 					</div>
 				</div>
 
@@ -317,7 +317,7 @@
 						<p class="card-text mb-0">@lang('dingsu.total_game_lose')</p>
 					</div>
 					<div class="side-right">
-						<small class="display-4 mb-4 font-weight-light">{{$result->total_game_lose}}</small>
+						<small class="display-4 mb-4 font-weight-light total_point_lose">{{$result->total_game_lose}}</small>
 					</div>
 				</div>
 
@@ -342,11 +342,67 @@
 	</style>
 	
 	
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	
 <script language="javascript">
+	@section('socket')
+    @parent
 	
+	
+     socket.on("dashboard-gameinfo" + ":App\\Events\\EventDynamicChannel", function(result) {
+				var record = result.data;
+				console.log('gameinfo:'+record.draw_id);
+				if (record != null)
+					{
+						$('.c_win').html(record.win);
+						$('.c_lose').html(record.lose);								
+						$('.c_game_result').html(record.game_result);
+						$('.c_draw_id').html(record.draw_id);
+						$('.c_played_users').html(record.played_users);
+					}
+			 });
+			
+	socket.on("dashboard-basicplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
+		var r = result.data;
+		if (r.type == 'reset')
+		{
+			$('.basicbettingcount').html("0");
+		}
+		else if (r.type == 'remove')
+		{
+			$('.basicbettingcount').html(function(i, val) { return +val-1 });
+		}
+		else
+		{
+			$('.basicbettingcount').html(r.count);
+		}
+	 });
+	
+	socket.on("master-reset" + ":App\\Events\\EventDashboardChannel", function(result) {
+		var r = result.data;
+		if (r.type == 'reset')
+		{
+			$('.basicbettingcount').html("0");
+			$('.vipbettingcount').html("0");
+		}
+	});
+		
+	
+	socket.on("dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
+		var r = result.data;
+		if (r.type == 'reset')
+		{
+			$('.vipbettingcount').html("0");
+		}
+		else if (r.type == 'remove')
+		{
+			$('.vipbettingcount').html(function(i, val) { return +val-1 });
+		}
+		else
+		{
+			$('.vipbettingcount').html(r.count);
+		}
+	 });
+	
+	@endsection
 	
 	function ajax_call() {
 		
@@ -395,16 +451,17 @@
 		{
 			ajax_call();
 		}
-		else{
+		/*else{
 			ajax_call();
 			var interval = 60 * 1000  ;
 			var myTimer = setInterval(ajax_call, interval);
 			clearInterval(myTimer);
 			myTimer = setInterval(ajax_call, interval);
 		}
+		*/
 		
 	}
 	
-	updategame('');
+	updategame(1);
 	
 	</script>	

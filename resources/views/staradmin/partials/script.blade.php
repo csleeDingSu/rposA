@@ -1,3 +1,92 @@
+	
+<script type="text/javascript">	
+	var url  = "{{ env('APP_URL')}}";		
+	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+	
+	$(document).ready(function () {
+        socketIOConnectionUpdate('<span class="text-info">Requesting Token</span>');
+
+        $.ajax({
+            url: '/admintoken'
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            htm = '<span class="text-warning">Unauthorized.</span>';
+			socketIOConnectionUpdate( htm);
+        })
+        .done(function (result, textStatus, jqXHR) {
+
+			socketIOConnectionUpdate('<span class="text-info">Response from Server</span>');
+
+			var c_url = url + ':' + port;
+			
+			console.log('connecting URL: '+c_url);
+			
+			//Output have userid , token and username 
+			
+			var socket = new io.connect(c_url, {
+                'reconnection': true,
+                'reconnectionDelay': 1000, //1 sec
+                'reconnectionDelayMax' : 5000,
+                'reconnectionAttempts': 10,
+				'transports': ['websocket'],
+				'timeout' : 900000, //90 min
+				'force new connection' : true,
+				 query: 'token='+result.token
+            });
+
+            /* 
+            connect with socket io
+            */
+            socket.on('connect', function () {
+                socketIOConnectionUpdate('<span class="text-info">Connected, Authenticating</span>')
+                console.log('Token: '+result.token);
+				socket.emit('authenticate', {token: result.token});
+            });
+
+            /* 
+            If token authenticated successfully then here will get message 
+            */
+            socket.on('authenticated', function () {
+				htm = '<span class="text-success">@lang("dingsu.yes")</span>';
+                socketIOConnectionUpdate(htm);
+            });
+
+            /* 
+            If token unauthorized then here will get message 
+            */
+            socket.on('unauthorized', function (data) {
+                socketIOConnectionUpdate('Unauthorized, error msg: ' + data.message);
+            });
+
+            /* 
+            If disconnect socketio then here will get message 
+            */
+            socket.on('disconnect', function () {
+				console.log('disconnect--');
+				htm = '<span class="text-danger">Disconnected.</span>';
+                socketIOConnectionUpdate(htm);
+            });
+			
+			@section('socket')
+			
+			
+			@show
+        });
+    });
+		
+		
+		
+/* 
+    Function for print connection message
+    */
+    function socketIOConnectionUpdate(str) {
+        $('#socketconnection').html(str);
+    }	
+		
+		
+		socketIOConnectionUpdate('<span class="text-info">Waiting</span>');
+</script>
+
 <script src="{{ asset('staradmin/vendors/js/vendor.bundle.base.js') }}"></script>
   
 <script src="{{ asset('staradmin/vendors/js/vendor.bundle.addons.js') }}"></script>

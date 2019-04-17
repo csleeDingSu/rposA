@@ -705,7 +705,8 @@ public function add_setting()
 	
 	private function processgametime($now,$result)
 	{
-		
+		$now = Carbon::now();
+
 		$start_time = $result->created_at;
 		
 		$end_time   = $result->expiry_time;

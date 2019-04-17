@@ -60,6 +60,8 @@ class ImportVoucher extends Command
 		//print_r($result);
 		if (!$result->isEmpty())
 		{
+			event(new \App\Events\EventDynamicChannel('unr-import','','yes'));
+			
 			$categories = Voucher::get_category();
 			$systitle   = Voucher::get_csvtitle()->toArray();
 			
@@ -228,6 +230,8 @@ class ImportVoucher extends Command
 		//Update Cron Status
 		$cron->status = 3;
 		$cron->save();
+		
+		event(new \App\Events\EventDynamicChannel('unr-import','',''));
     }
 	
 	

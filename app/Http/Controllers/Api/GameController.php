@@ -93,7 +93,7 @@ class GameController extends Controller
 		
 		$level  =  Game::get_member_current_level($gameid, $memberid, $vip);
 		
-		$now        = Carbon::now();
+		$now        = Carbon::now()->toDateTimeString();
 		$out = Game::get_single_gameresult_by_gameid($gameid,$now );
 		
 		$latest_result = Game::get_latest_result($gameid);
@@ -514,7 +514,6 @@ class GameController extends Controller
 	
 	private function processgametime($now,$result)
 	{
-		
 		$start_time = $result->created_at;
 		
 		$end_time   = $result->expiry_time;
@@ -722,18 +721,31 @@ class GameController extends Controller
 			];
 
 		$res = 0;
+		$deleted = 0;
+		$channel = 'dashboard-vipplayer';
+		if ($request->gametype ==1)
+		{
+			$channel = 'dashboard-basicplayer';
+		}
+		
 		//insert | Update
 		if(!empty($request->bet) && !empty($request->betamt))
 		{
 			
-			member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->delete();
-			
+			$deleted = member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->delete();			
+						
 			$res = member_game_bet_temp::insertGetId($params);
+			
+			$wordCount = member_game_bet_temp::where('drawid',  $request->drawid)->where('gametype',  $request->gametype)->count();
+			
+			event(new \App\Events\EventDashboardChannel($channel,['type'=>'','count'=>$wordCount]));	
 		}
 		else 
 		{
 			//delete
 			member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->delete();
+			
+			event(new \App\Events\EventDashboardChannel($channel,['type'=>'remove']));	
 		}
 
 
@@ -744,13 +756,11 @@ class GameController extends Controller
 	//	member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->update(['deleted_at' => Carbon::now()]);
 		
 
-		//insert new bet
-		
-		
+				
 
         if ($res > 0) {
 
-        	return response()->json(['success' => true, 'message' => "temparory member $request->memberid bet $request->betamt"]);
+        	return response()->json(['success' => true, 'message' => "temparory member $request->memberid bet $request->betamt",'test'=>$deleted]);
 
         } else {
 

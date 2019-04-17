@@ -60,6 +60,7 @@
 			<script src="{{ asset('/client/js/angular-sanitize.js') }}"></script>
 			<script src="{{ asset('/client/js/ui-bootstrap-tpls-2.5.0.js') }}"></script>
 			<script src="{{ asset('/client/js/menu.js') }}"></script>
+			<script type="text/javascript" src="//js.users.51.la/19985793.js"></script>
 
 		@show
     </head>

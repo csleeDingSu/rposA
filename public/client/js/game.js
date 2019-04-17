@@ -23,7 +23,7 @@ $(function () {
 	});
 
 	$('.swiper-container').on( 'change.flickity', function( event, index ) {
-		resetTimer();
+		//resetTimer();
 	});
 
 	var wechat_status = $('#hidWechatId').val();
@@ -214,7 +214,10 @@ function initGame(data, level, latest_result, consecutive_lose){
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
             },
-            error: function (error) { console.log(error) },
+            error: function (error) { 
+                console.log(error);
+                window.top.location.href = "/arcade";
+            },
             success: function(data) {
 
                 if(data.success && data.record.bet != null){
