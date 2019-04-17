@@ -106,6 +106,7 @@
 				console.log('importprocess:'+process);
 				if (process == 'yes')
 				{
+					$("#import_no_div").remove();
 					$( "#so_notification" ).append( '<div id="import_no_div" class="alert alert-fill-info" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.import_in_progress")</div>');
 					
 					$( "#so_notification" ).show();
