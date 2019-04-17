@@ -21,6 +21,7 @@
 	<!--<link rel="stylesheet" href=" {{ asset('staradmin/css/style.css') }}">-->
 	
 	<link rel="stylesheet" href=" {{ asset('staradmin/css/new/style.css') }}">
+	<link rel="stylesheet" href=" {{ asset('staradmin/css/new/style1.css') }}">
 	
 	
 	<link rel="stylesheet" href=" {{ asset('staradmin/css/custom.css') }}">
