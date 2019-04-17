@@ -342,11 +342,26 @@
 	</style>
 	
 	
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	
 <script language="javascript">
+	@section('socket')
+    @parent
 	
+	
+     socket.on("dashboard-gameinfo" + ":App\\Events\\EventDynamicChannel", function(result) {
+				var record = result.data;
+				console.log('gameinfo:'+record.draw_id);
+				if (record != null)
+					{
+						$('.c_win').html(record.win);
+						$('.c_lose').html(record.lose);								
+						$('.c_game_result').html(record.game_result);
+						$('.c_draw_id').html(record.draw_id);
+						$('.c_played_users').html(record.played_users);
+					}
+			 });
+			
+			
+	@endsection
 	
 	function ajax_call() {
 		
@@ -395,16 +410,17 @@
 		{
 			ajax_call();
 		}
-		else{
+		/*else{
 			ajax_call();
 			var interval = 60 * 1000  ;
 			var myTimer = setInterval(ajax_call, interval);
 			clearInterval(myTimer);
 			myTimer = setInterval(ajax_call, interval);
 		}
+		*/
 		
 	}
 	
-	updategame('');
+	updategame(1);
 	
 	</script>	
