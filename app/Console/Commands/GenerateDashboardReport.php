@@ -101,6 +101,8 @@ class GenerateDashboardReport extends Command
  		
 		$this->line('End:'.'-------------'.Carbon::now()->toDateTimeString().'----------');
 		
+		event(new \App\Events\EventDashboardChannel('dashboard-info',$report));
+		
 		$this->info('-------------All done----------');
     }
 	
