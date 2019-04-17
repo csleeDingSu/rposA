@@ -2,7 +2,7 @@
 
 .container {
 	width: 500px;
-	background-color: #f2f2f2;
+	background-color: #ffffff;
 	position: relative;
 }
 	
@@ -19,7 +19,23 @@ html, body {
 }
 
 .full-height {
-    background:#f2f2f2;
+    background:#ffffff;
+}
+
+.left-menu {
+	text-align: left;
+	padding-top: 6px;
+}
+
+.icon-back {
+	color: white;
+}
+
+.brand-title {
+	font-size: 16px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	font-weight: 700;
 }
 
 .card {
@@ -27,32 +43,22 @@ html, body {
 	color: white;
 }
 
-.member-wrapper {
-	padding: 0;
-}
-
-.name {
-	font-size: 32px;
-	float: left;
-	padding-top: 6px;
-	padding-bottom: 12px;
-}
-
-.unverify {
-	cursor: pointer;
-}
-
-.button-wrapper {
-	padding-top: 16px;
-	float: right;
+.img_flow {
+	background-size: contain;
+	width: 90%;
+	height: 80%;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
 }
 
 .information-table {
+	margin-top:20px;
 	padding-top:10px;
 	background: white;
-	height: 180px;
+	height: 170px;
 	border-radius: 10px;
-	box-shadow: 0 3px 10px 0px rgba(241, 233, 219, 1);
+	box-shadow: 0 3px 10px 0px rgba(205, 206, 215, 1);
 }
 
 .information-table .col-xs-12, .information-table .col-xs-6 {
@@ -63,24 +69,6 @@ html, body {
     padding-left: 20px;
 }
 
-.information-table .col-xs-12:after {
-  	content: ""; /* This is necessary for the pseudo element to work. */ 
-    display: block; /* This will put the pseudo element on its own line. */
-    margin: 0 auto; /* This will center the border. */
-    width: 99%; /* Change this to whatever width you want. */
-    border-bottom: 1px solid #eeeeee; /* This creates the border. Replace black with whatever color you want. */
-}
-
-.information-table .col-xs-6 {
-	font-size: 16px;
-	margin-top: 5px;
-	padding: 5px 0;
-}
-
-.information-table .border-right {
-	border-right: 1px solid #eeeeee;
-}
-
 .information-table a {
 	text-decoration: none;
 }
@@ -88,41 +76,34 @@ html, body {
 .label-title {
 	display: inline-block;
 	vertical-align: -2px;
+	color: #a1a1a1;
+	font-size: 16px;
 }
 
-.middle-border {
-	border-left: 1px solid #e8e8e8;
-	border-right: 1px solid #e8e8e8;
-}
-
-.numbers{
-    font-size:16px;
+.sign{
+    font-size:19px;
     display: inline-block;
+    vertical-align: 18px;
 }
 
 .point {
-	color: #505050;
+	color: #fc7f35;
 	font-size: 54px;
 	line-height: 42px;
 	padding-top: 5px;
+	display: inline-block;
 }
 
-.balance {
-	color: #ff6a52;
-}
-
-.life {
-	color: #505050;
-}
-
-.button-redeem {
+.button-copy {
 	color: white;
-	font-size: 14px;
-	padding: 3px 5px 5px 5px;
+	font-size: 18px;
+	padding: 7px 5px 10px 5px;
 	border-radius: 20px;
-	background-color: #ff6a52;
-	width: 90px;
-	margin: 5px auto 20px auto;
+	background-image: linear-gradient(to right, #f1ca84 , #ed671f);
+	width: 204px;
+	margin: 10px auto 10px auto;
+	font-weight: 700;
+	cursor: pointer;
 }
 
 .left {
@@ -151,6 +132,7 @@ html, body {
 
 .bottom-background {
 	background-color: white;
+	height: 100px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -163,17 +145,13 @@ html, body {
 	}
 
 	.bottom-background {
-		height: 16px;
+		height: 100px;
 	}
 }
 
 @media only screen and (max-width:400px) {
 	.top-background img {
 		margin-top: -5%;
-	}
-
-	.bottom-background {
-		height: 20px;
 	}
 }
 
@@ -184,109 +162,54 @@ html, body {
 
 .listing-table {
 	text-align: left;
-	color: #686868;
-	font-size: 14px;
+	color: #f75a5a;
+	font-size: 13px;
 	background-color: white;
 	/*height: 100%;*/
 }
 
-.long{
-	margin-top: 10px;
-	margin-bottom: 40px;
+.listing-table .col-xs-4 {
+	text-align: left;
+	padding-right: 0;
+	padding-left: 20px;
+	font-size: 15px;
+	color: #fd6a42;
 }
 
-.image-wrapper {
-	width: 90%;
-	height: 90%;
-	margin: 0 auto;
-	padding-top: 19px;
-	padding-bottom: 10px;
+.listing-table .col-xs-8 {
+	text-align: left;
+	padding-left: 0;
+	font-size: 15px;
+	color: #7babf2;
 }
 
-.listing-table img {
+.listing-table .input-wrapper {
+	margin: 20px 10px 0 10px;
+}
+
+.listing-table input {
+	text-align: center;
+	padding: 7px 5px 10px 5px;
+	border-radius: 6px;
+	font-size: 18px;
+	color: #cdced7;
+	background: #6e7082;
+	border: none;
+	outline: none;
+	box-sizing: border-box;
 	width: 100%;
-	height: 100%;
-
 }
 
-.list-group {
-	margin-bottom: 0;
-}
-
-.list-group a {
-	text-decoration: none;
-	color: #686868;
-}
-
-.list-group-item {
-	border-top: 1px solid #d9d9d9;
-	border-left: none;
-	border-right: none;
-	border-bottom: none;
-	font-size: 16px;
-	padding: 15px 15px;
-}
-
-.first-item {
-	border-top: none;
-}
-
-.list-group-item:first-child, .list-group-item:last-child {
-	border-radius: 0px;
-}
-
-.glyphicon {
-	float: right;
-	color: #ccc;
-	margin-top: 2px;
-}
-
-.vip-count {
-	float: right;
-	margin-top: -1px;
-	margin-right: 2px;
-	font-weight: 500;
-	color: red;
-}
-
-.vip-inprogress {
-	float: right;
-	margin-top: -3px;
-	margin-right: 2px;
-	color: #007cef;
+.button-submit {
+	color: white;
 	font-size: 18px;
+	padding: 7px 5px 10px 5px;
+	border-radius: 6px;
+	margin: 10px;
+	background: #639aeb;
+	text-align: center;
+	cursor: pointer;
 }
-
-.vip-redeemticket {
-	float: right;
-	margin-top: -3px;
-	margin-right: 2px;
-	color: #ccc;
-	font-size: 18px;
-}
-
-.vip-ticketnotinused {
-	float: right;
-	margin-top: -3px;
-	margin-right: 2px;
-	color: #ccc;
-	font-size: 18px;
-}
-
-.icon-wrapper {
-	height: 30px;
-	width: 30px;
-	float: left;
-}
-
-.note {
-	display: inline-block;
-	font-size: 10px;
-	color: #949494;
-	float: right;
-	padding-top: 2px;
-}
-
 
 /* Modal Box */
 .modal {

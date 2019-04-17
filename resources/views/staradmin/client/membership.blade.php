@@ -15,40 +15,30 @@
 
 <div class="full-height no-header">
 	<div class="container">
+		
 		<div class="member-box">
-			<!-- member id -->
-			<div class="card left">
-				<div class="col-xs-6 member-wrapper">
-					<div class="name"></div>
-					<div style="clear: both;"></div>
+			<div class="card">
+				<div class="col-xs-3 left-menu">
+					<a href="/profile" class="back">
+				        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
+				    </a>
 				</div>
-				<div class="col-xs-6 member-wrapper">
-					<div class="button-wrapper">
-					</div>
+
+				<div class="col-xs-6 brand-title">
+					开通会员
 				</div>
-				<div style="clear: both;"></div>
+			
+				<div class="col-xs-3"></div>
 			</div>
+			<img class="img_flow" src="{{ asset('/client/images/membership/flow.png') }}"  />
 			<!-- end member id -->
 
 			<!-- member details -->
 			<div class="information-table">
 				  <div class="col-xs-12">
-				  	<img src="{{ asset('/client/images/coin.png') }}" width="22" height="22" alt="button redeem" /> <span class="label-title">可用金币</span><br />
-				  	<div class="point numbers"></div>
-				  	<a href="/redeem">
-					  	<div class="button-redeem">兑换红包</div>
-					</a>
-				  </div>
-				  <div class="col-xs-6 border-right">
-				  	未结算
-				  	<div class="balance numbers"></div>
-				  </div>
-				  <div class="col-xs-6">
-				  	已兑换
-				  	<div class="life numbers">				  		
-				  		元
-				  	</div>
-
+				  	<span class="label-title">付款金额</span><br />
+				  	<div class="point numbers"><div class="sign">¥</div>99.00</div>
+				  	<div class="button-copy">复制支付口令</div>
 				  </div>
 			</div>
 			<!-- end member details -->
@@ -60,13 +50,20 @@
 		<div class="bottom-background"></div>
 
 		<!-- member listing -->
-		<div class="listing-table">
-			<div class="image-wrapper">
-				<a href="/share">
-					<img src="{{ asset('/client/images/share.png') }}" alt="share">
-				</a>
+		<div class="listing-table member-box">
+			<div class="col-xs-4">
+				重要提示：
 			</div>
-		 </div>
+			<div class="col-xs-8">
+				付款成功后，一定要在这里提交姓名，否则后台无法确认。
+			</div>
+			<div style="clear: both;"></div>
+			<div class="input-wrapper">
+				<input type="text" value="" name="txt_name" placeholder="输入姓名" />
+			</div>
+			<div class="button-submit">确认提交</div>
+
+		</div>
 		<!-- end member listing -->
 	</div>
 </div>
