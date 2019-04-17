@@ -733,19 +733,20 @@ class GameController extends Controller
 		if(!empty($request->bet) && !empty($request->betamt))
 		{
 			
-			$deleted = member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->delete();
-			
+			$deleted = member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->whereNull('deleted_at')->delete();			
 						
 			$res = member_game_bet_temp::insertGetId($params);
 			
-			if ($deleted<1) event(new \App\Events\EventDashboardChannel($channel,1));	
+			$wordCount = member_game_bet_temp::where('drawid',  $request->drawid)->count();
+			
+			event(new \App\Events\EventDashboardChannel($channel,['type'=>'','count'=>$wordCount]));	
 		}
 		else 
 		{
 			//delete
 			member_game_bet_temp::where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $request->gametype)->delete();
 			
-			event(new \App\Events\EventDashboardChannel($channel,-1));	
+			event(new \App\Events\EventDashboardChannel($channel,['type'=>'remove']));	
 		}
 
 
