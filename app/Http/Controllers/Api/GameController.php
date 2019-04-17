@@ -93,7 +93,7 @@ class GameController extends Controller
 		
 		$level  =  Game::get_member_current_level($gameid, $memberid, $vip);
 		
-		$now        = Carbon::now();
+		$now        = Carbon::now()->toDateTimeString();
 		$out = Game::get_single_gameresult_by_gameid($gameid,$now );
 		
 		$latest_result = Game::get_latest_result($gameid);
@@ -514,7 +514,6 @@ class GameController extends Controller
 	
 	private function processgametime($now,$result)
 	{
-		
 		$start_time = $result->created_at;
 		
 		$end_time   = $result->expiry_time;
