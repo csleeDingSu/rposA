@@ -100,10 +100,27 @@
 
 	@section('socket')
     @parent
+	socket.on("unr-import" + ":App\\Events\\EventDynamicChannel", function(data) {
+				var process = data.data;
+				console.log(data);
+				console.log('importprocess:'+process);
+				if (process == 'yes')
+				{
+					$( "#so_notification" ).append( '<div id="import_no_div" class="alert alert-fill-info" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.import_in_progress")</div>');
+					
+					$( "#so_notification" ).show();
+				}
+				else
+				{
+					$("#import_no_div").remove();
+				}
+				
+			 });
+	
      socket.on("unr-bulkmove" + ":App\\Events\\EventDynamicChannel", function(data) {
 				var process = data.data;
 				console.log(data);
-				console.log(process);
+				console.log('moveprocess:'+process);
 				if (process == 'yes')
 				{
 					$( "#so_notification" ).append( '<div id="bulkmove_no_div" class="alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.bulkmove_in_progress")</div>');
@@ -121,7 +138,7 @@
 			socket.on("unr-bulkdelete" + ":App\\Events\\EventDynamicChannel", function(data) {
 				var process = data.data;
 				console.log(data);
-				console.log(process);
+				console.log('deleteprocess:'+process);
 				if (process == 'yes')
 				{
 					$( "#so_notification" ).append( '<div id="bulkdelete_no_div" class="alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.buldelete_in_progress")</div>');
