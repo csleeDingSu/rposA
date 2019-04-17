@@ -78,6 +78,40 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
 
 
+<script type="text/javascript">	
+	
+	@section('socket')
+    @parent
+     socket.on("importnoti" + ":App\\Events\\EventDynamicChannel", function(data) {
+				$('#divimportnoti').html('');
+				$.each(data.data, function( index, row ) {
+				  console.log(row);					
+					trr = '<tr id=tr_'+row.id+'><td>'+row.id+'</td><td>'+row.created_at+'</td>	<td>'+row.updated_at+'</td>							<td>'+row.file_name+'</td>	<td id=st_'+row.id+'>'+ getstatus(row.status) +'</td></tr>';
+					
+					$('#divimportnoti').append(trr);
+				});
+			 });
+	@endsection
+	
+	
+	function getstatus(status)
+	{
+		if (status == 1)
+		{
+			return "<label class='badge badge-info'>"+'@lang("dingsu.waiting")'+"</label> ";
+		}
+		else if (status == 2)
+		{
+			return "<label class='badge badge-success'>"+'@lang("dingsu.processing")'+"</label> ";
+		}
+		else
+		{
+			return "<label class='badge badge-warning'>"+'@lang("dingsu.completed")'+"</label> ";
+		}
+	}
+	
+    
+</script>
  <script>
 	function validate(formData, jqForm, options) {
         var form = jqForm[0];
