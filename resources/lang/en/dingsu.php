@@ -569,7 +569,7 @@ return [
 	'bulkmove_in_progress' => 'cron processing bul kmove',
 	'buldelete_in_progress' => 'cron processing bulk delete',
 	'upload_success' => 'Upload success',
-	'' => '',
+	'import_in_progress' => 'Data importing.do not use bulk move/bulk delete',
 	
 	
 	
