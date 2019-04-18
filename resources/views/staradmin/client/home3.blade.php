@@ -403,6 +403,8 @@
 
 				var dd = $(this).data('imgurl');
 				$("#showIcon").attr("src",dd);
+				$( ".caption2" ).html($(this).data('tt_product_discount_price'));
+				
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 			});
@@ -436,7 +438,9 @@
 				// being.scaleShow('.showTips');
 				$("#showIcon").attr("src",$(this).data('imgurl'));
 				
-				$( ".copyvoucher" ).html($(this).data('voucher'));	
+				$( ".copyvoucher" ).html($(this).data('voucher'));
+
+				$( ".caption2" ).html($(this).data('tt_product_discount_price'));	
 
 				being.wrapShow();
 				being.scaleShow('.showQuan');
