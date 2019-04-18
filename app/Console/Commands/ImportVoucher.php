@@ -146,6 +146,21 @@ class ImportVoucher extends Command
 									$insdata['source_file'] = $filename;
 									$insdata['updated_at']  = $now; 
 									$insdata['created_at']  = $now;
+									
+									if ($re_field == 'expiry_datetime')
+									{
+										
+										if (!empty($insdata['expiry_datetime']))
+										{
+											$ud = $insdata['expiry_datetime'];
+											$ud = str_replace('.','/',$ud);		
+											$insdata['expiry_datetime'] = Carbon::parse($ud)->format('Y-m-d H:i:s');
+										}
+										else
+										{
+											$insdata['expiry_datetime'] = null;
+										}
+									}
 
 									if ($re_field == 'product_category')
 									{

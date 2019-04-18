@@ -4,18 +4,18 @@
 	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
 	
 	$(document).ready(function () {
-        socketIOConnectionUpdate('<span class="text-info">Requesting Token</span>');
+        socketIOConnectionUpdate('<span class="text-info">@lang("dingsu.requesting_token")</span>');
 
         $.ajax({
             url: '/admintoken'
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
-            htm = '<span class="text-warning">Unauthorized.</span>';
+            htm = '<span class="text-warning">@lang("dingsu.unauthorized").</span>';
 			socketIOConnectionUpdate( htm);
         })
         .done(function (result, textStatus, jqXHR) {
 
-			socketIOConnectionUpdate('<span class="text-info">Response from Server</span>');
+			socketIOConnectionUpdate('<span class="text-info">@lang("dingsu.response_from_server")</span>');
 
 			var c_url = url + ':' + port;
 			
@@ -38,7 +38,7 @@
             connect with socket io
             */
             socket.on('connect', function () {
-                socketIOConnectionUpdate('<span class="text-info">Connected, Authenticating</span>')
+                socketIOConnectionUpdate('<span class="text-info">@lang("dingsu.connected_authenticating")</span>')
                 console.log('Token: '+result.token);
 				socket.emit('authenticate', {token: result.token});
             });
@@ -63,7 +63,7 @@
             */
             socket.on('disconnect', function () {
 				console.log('disconnect--');
-				htm = '<span class="text-danger">Disconnected.</span>';
+				htm = '<span class="text-danger">@lang("dingsu.disconnected").</span>';
                 socketIOConnectionUpdate(htm);
             });
 			

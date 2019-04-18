@@ -1,8 +1,7 @@
 
 <div class="page-header">
-                  
-	Updated at: <div class="updated">{{$result->updated_at}}</div>&nbsp;&nbsp;&nbsp;&nbsp;		
-	Next update : <div class="nextupdate">{{$result->next_update}}</div>
+	@lang('dingsu.updated_at') : <div class="updated">{{$result->updated_at}}</div>&nbsp;&nbsp;&nbsp;&nbsp;		
+	@lang('dingsu.next_update') : <div class="nextupdate">{{$result->next_update}}</div>
 	
  </div>
 
@@ -410,6 +409,7 @@
 		}
 	 });
 	
+	var countdown;
 	
 	socket.on("dashboard-info" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var data = result.data;
@@ -431,12 +431,21 @@
 		$('.win_from_basic').html(win_from_basic);
 		$('.win_from_vip').html(win_from_vip);
 				
-		setInterval(function(){
-			  duration = moment(data.updated_at).fromNow();
-			  nextupda = moment(data.next_update).fromNow();
-				$('.updated').html(duration);
-			$('.nextupdate').html(nextupda);
+		if (countdown)
+			{
+				clearInterval(countdown);
+				
+			}
+		
+			countdown = setInterval(function() {
+				$('.updated').html(moment(data.updated_at).fromNow());
+				$('.nextupdate').html(moment(data.next_update).fromNow());
+
 			}, 1000);
+			
+		
+		
+		
 		
 	 });
 	
