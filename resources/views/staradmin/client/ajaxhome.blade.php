@@ -26,13 +26,19 @@
 													<span class="vPricebg">
 														<span class="vPrice">
 															{{number_format($item->voucher_price, 0)}}元券
-														</span>
-														
+														</span>														
 														@if (!empty($item->expiry_datetime))
+
+														@php @$date = \Carbon\Carbon::parse($item->expiry_datetime) @endphp
+														@php @$now = \Carbon\Carbon::now() @endphp
+														@php @$diff = $date->diffInDays($now) @endphp
+
+														@if (@$diff > 0)
 														<span class="vExpiry">
 															剩
-															{{-- number_format($item->expiry_datetime, 0) --}}天
+															{{ @$diff }}天
 														</span>
+														@endif
 														@endif
 													</span>
 												</div>
