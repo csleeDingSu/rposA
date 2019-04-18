@@ -97,6 +97,10 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	
 	Route::get('/redeem-hn', 'ProductController@get_redeem_history_new')->name('api.redeem.historynew');
 	
+	Route::get('/package-list', 'ProductController@list_package')->name('api.package.list');
+	
+	
+	
  });	
 
 //cron_test
