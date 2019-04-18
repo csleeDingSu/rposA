@@ -244,7 +244,7 @@
 
 .product .list-2 .divPrice {
   display: inline-block;
-  width: 2rem;
+  width: 4.2rem;
   font-size: 0.20rem;
 }
 
@@ -268,7 +268,7 @@
 @media only screen and (max-width: 1000px) {
 
   .product .list-2 .divPrice {
-    width: 2.15rem;
+    width: 4.35rem;
     font-size: 0.24rem;
   }
 
@@ -1063,4 +1063,67 @@ a.freeVoucherBtn, a.freeVoucherBtn:link, a.freeVoucherBtn:visited, a.freeVoucher
 
 .caption2 {
   font-size: 0.5rem;
+}
+
+.freefornewbie {
+  position:relative; 
+}
+
+.freefornewbie img{
+  position: absolute;
+  width: 1rem;
+  margin-top: 0.05rem;
+}
+
+.freefornewbie h1 {
+  position: absolute;
+  font-size: 0.2rem;
+  color: white;
+  padding-left:0.1rem;
+  padding-top:0.03rem;
+  margin-top: 0.05rem;
+}
+
+.spacepadding {
+  padding-left:1.1rem;
+}
+
+.showDiscountPrice {
+  color: #eb5c54;
+  font-size: 0.25rem;
+  padding-top: 0.25rem;
+}
+
+.discount_price {
+  color: #eb5c54 !important;
+  font-size: 0.5rem !important;
+  padding-right: 0.05rem !important;
+  font-weight: 600;
+}
+
+.month_sales {
+
+  color: #888888 !important;
+  font-size: 0.28rem !important;
+
+}
+
+.vPricebg {
+  background: rgb(247, 187, 128); /* Fallback for older browsers without RGBA-support */
+  background: rgba(247, 187, 128, 0.3);
+  /*background-color:rgba(0, 0, 0, 0.5) !important;*/
+  /*background: #f7bb80 !important;*/
+  padding-left: 0.05rem;
+  padding-right: 0.05rem;
+  /*opacity: .4;*/
+}
+
+.vPrice {
+  color: #ff8022 !important;  
+  font-size: 0.25rem !important;
+}
+
+.vExpiry {
+ color: #aaa !important;
+ font-size: 0.25rem !important;
 }
