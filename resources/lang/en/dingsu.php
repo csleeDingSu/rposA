@@ -575,7 +575,12 @@ return [
 	'is_featured' => 'featured',
 	'voucher_starttime' => 'voucher start',
 	'voucher_expiry' => 'voucher expired',
-	
-	
+	'updated_at' => 'Updated At',
+	'next_update' => 'Next Update',
+	'requesting_token' => 'Requesting Token',
+	'unauthorized' => 'Unauthorized',
+	'response_from_server' => 'Response from Server',
+	'connected_authenticating' => 'Connected, Authenticating',
+	'disconnected' => 'Disconnected',
 	
 ];

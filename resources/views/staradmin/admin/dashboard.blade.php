@@ -1,8 +1,7 @@
 
 <div class="page-header">
-                  
-	Updated at: <div class="updated">{{$result->updated_at}}</div>&nbsp;&nbsp;&nbsp;&nbsp;		
-	Next update : <div class="nextupdate">{{$result->next_update}}</div>
+	@lang('dingsu.updated_at') : <div class="updated">{{$result->updated_at}}</div>&nbsp;&nbsp;&nbsp;&nbsp;		
+	@lang('dingsu.next_update') : <div class="nextupdate">{{$result->next_update}}</div>
 	
  </div>
 
