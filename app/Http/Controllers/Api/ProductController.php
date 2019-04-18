@@ -22,6 +22,12 @@ class ProductController extends Controller
 		return $this->hasMany('App\Category', 'parent_id'); 
 	}
 	
+	public function list_package(Request $request)
+    {
+		$package =  Package::list_available_redeem_package();
+		return response()->json(['success' => true,  'records' => $package]);
+	}
+	
 	public function list_product_by_point(Request $request)
     {
 		$member_id = $request->memberid;
