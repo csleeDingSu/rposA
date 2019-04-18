@@ -59,9 +59,10 @@
 			</div>
 			<div style="clear: both;"></div>
 			<div class="input-wrapper">
-				<input type="text" value="" name="txt_name" placeholder="输入姓名" />
+				<input type="text" value="" id="txt_name" name="txt_name" placeholder="输入姓名" />
 			</div>
 			<div class="button-submit">确认提交</div>
+			<div class="error">未输入姓名无法提交，请填写真实姓名</div>
 
 		</div>
 		<!-- end member listing -->
@@ -95,9 +96,11 @@
 				<div class="col-xs-6 close-modal">
 					取消
 				</div>
-				<div class="col-xs-6 button-status">
-					查看状态
-				</div>
+				<a href="/vipmember">
+					<div class="col-xs-6 button-status">
+						查看状态
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -112,6 +115,16 @@
 
 			$('.close-modal').click(function(){
 		        $('#modal-successful').modal('hide');
+		    });
+
+		    $('.button-submit').click(function(){
+		    	var txt_name = $('#txt_name').val();
+		    	if(txt_name == ''){
+		    		$('.error').show();
+		    	} else {
+		    		$('.error').hide();
+		        	$('#modal-successful').modal();
+		        }
 		    });
 
 			var clipboard = new ClipboardJS('.cutBtn', {
