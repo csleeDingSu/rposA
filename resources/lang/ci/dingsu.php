@@ -558,4 +558,11 @@ return [
 	'is_featured' => '精选',
 	'voucher_starttime' => '优惠卷开始',
 	'voucher_expiry' => '优惠卷到期',
+	'updated_at' => '更新于',
+	'next_update' => '下次更新于',
+	'requesting_token' => '领符记',
+	'unauthorized' => '未经授权',
+	'response_from_server' => '来自服务器的响应',
+	'connected_authenticating' => '连接了，验证中',
+	'disconnected' => '中断',
 ];
