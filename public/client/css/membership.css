@@ -106,6 +106,11 @@ html, body {
 	cursor: pointer;
 }
 
+.button-status {
+	color: #52a2fc;
+	border-left: 1px solid #eeeeee;
+}
+
 .left {
 	text-align: left;
 }
@@ -232,11 +237,14 @@ html, body {
 }
 
 /* Modal Box */
-.modal-content, .modal-title {
+.modal-content, .modal-footer {
     background: white;
-    width: 300px;
+    width: 340px;
     margin-left: auto;
     margin-right: auto;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
 }
 
 .modal-full-height {
@@ -245,35 +253,34 @@ html, body {
     margin: 0 auto;
 }
 
-.modal-wechat {
-    margin-top: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+.modal-content {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-.modal-title {
-    background: #7dca33;
-    color: white;
+.modal-footer {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     text-align: center;
-    margin-top: 10%;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    padding: 10px;
-    font-weight: 700;
+    color: #8a8a8a;
+    font-size: 17px;
+    padding: 0;
 }
 
-.modal-title h1 {
-    /*font-size: 20px;*/
-    margin-bottom: 10px;
-    margin-top: 5px;
-    color: #fff;
-	font-size: 24px;
+.modal-body {
+	padding-bottom: 0;
 }
 
 .modal-card {
     width: 250px;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
     font-size: 16px;
+}
+
+#modal-successful .col-xs-6 {
+	border-top: 1px solid #eeeeee;
+	padding: 10px;
+	cursor: pointer;
 }
 
 .copyvoucher {
@@ -288,233 +295,22 @@ html, body {
     padding: 5px;
 }
 
-.cutBtnCS, .cutBtnCS-success, .cutBtnCS-fail {
-    margin-left: 10%;
-    margin-right: 10%;
-    border-radius: 6px;
-    font-size: 23px;
-    color: white;
-    padding: 6px;
-    background: #7dca33;
-}
-
-.cutBtnCS {
-	cursor: pointer;
-}
-
-.cutBtnCS-success {
-    background: #61b114;
-}
-
-.cutBtnCS-fail {
-    background: #999999;
-}
-
-.instructions, .instructions-dark {
-    margin-top: 10px;
-    font-size: 14px;
+.instructions {
     font-weight: 500;
-    color: #aaa;
-}
-
-.instructions-dark {
-    font-size: 12px;
-}
-
-.highlight {
-	color: #fca871;
+    color: #505050;
+    padding-top: 15px;
+	padding-bottom: 20px;
+	font-size: 17px;
 }
 
 @media only screen and (max-width: 360px) {
-    .modal-content, .modal-title {
-        width: 270px;
+    .modal-content, .modal-title, .modal-footer {
+        width: 300px;
     }
 
     .modal-card {
         width: 230px;
-        margin: 0 auto;
         font-size: 16px;
-    }
-
-    .instructions {
-    	font-size: 13px;
     }
 }
 /* End Modal box */
-
-/* Wechat Modal */
-#verify-steps .modal-content, #verify-steps .modal-title {
-	background: white;
-	width: 300px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#verify-steps .modal-full-height {
-	text-align:center;
-	margin: 0 auto;
-}
-
-#verify-steps .modal-wechat {
-	margin-top: 0;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-}
-
-#verify-steps .modal-title {
-	background: #4c89e2;
-	color: white;
-	text-align: center;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	padding: 10px;
-	font-weight: 700;
-}
-
-#verify-steps .modal-title h1 {
-	font-size: 20px;
-	margin-bottom: 10px;
-	margin-top: 5px;
-	font-weight: 700;
-}
-
-#verify-steps .modal-card {
-	width: 250px;
-	margin: 0 auto;
-	font-size: 16px;
-}
-
-#verify-steps .copyvoucher {
-	border: 1px solid #dfdfdf;
-	background: #f7f7f7;
-	color: #51abff;
-	margin-left: 10%;
-	margin-right: 10%;
-	margin-bottom: 5px;
-	border-radius: 5px;
-	padding: 6px;
-	font-size: 20px;
-}
-
-#verify-steps .cutBtn, #verify-steps .cutBtn-success, #verify-steps .cutBtn-fail {
-	margin-left: 10%;
-	margin-right: 10%;
-	border-radius: 5px;
-	font-size: 18px;
-	color: white;
-	padding: 6px;
-	background-color: #51acff;
-	background-image: none;
-}
-
-#verify-steps .cutBtn {
-	cursor: pointer;
-}
-
-#verify-steps .cutBtn-success {
-	background: #1ba908;
-}
-
-#verify-steps .cutBtn-fail {
-	background: #838383;
-}
-
-#verify-steps .instructions, #verify-steps .instructions-dark {
-	margin-top: 5px;
-	margin-bottom: 10px;
-	font-size: 12px;
-	font-weight: 500;
-	color: #999;
-}
-
-#verify-steps .instructions-dark {
-	margin-bottom: 0px;
-}
-
-#verify-steps .btn-close {
-	color: #ffd200;
-	font-size: 16px;
-	margin-top: 10px;
-	display: block;
-	text-align: center;
-	width: 250px;
-
-}
-
-#verify-steps .btn-close a {
-	text-decoration: underline;
-	color: #f7ff22;
-}
-
-#verify-steps .body-title {
-	color: #51abff;
-	font-size: 18px;
-}
-
-#verify-steps .glyphicon {
-	font-size: 20px;
-	display: block;
-	float: left;
-	padding-left: 10px;
-	margin-top: 0px;
-}
-
-#verify-steps .left {
-	display: block;
-	padding-bottom: 3px;
-	float: left;
-	padding-left: 10px;
-}
-
-#verify-steps .modal-title {
-	background: url('/client/images/wechat-header.png') no-repeat;
-	background-size: contain;
-	color: white;
-	text-align: center;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	padding: 10px;
-	font-weight: 700;
-	width: 300px !important;
-	height: 255px;
-}
-
-#verify-steps .modal-title h1 {
-	/*font-size: 20px;*/
-	margin-bottom: 0px;
-	margin-top: 100px;
-	font-weight: 200 !important;
-	font-size: 14px;
-}
-
-#verify-steps .reward {
-	/*font-size: 16px;*/
-	color: #fffc22;
-	font-weight: 200 !important;
-	padding: 0 !important;
-	margin-top: 0px;
-}
-
-#verify-steps .reward-amount {
-	font-size: 55px;
-	font-weight: 500;
-	/*font-size: 140px;*/
-	color: #fffc22;
-}
-
-#verify-steps .reward-instructions {
-	/*color: #f2ee10;*/
-	font-weight: 500;
-	/*font-size: 15px;*/
-	color: white;
-	/*font-size: 42px;*/
-	font-size: 16px;
-}
-/* End Wechat Modal*/
-
-.wechat-instructions {
-	padding-top: 15px;
-	padding-bottom: 20px;
-	font-size: 17px;
-	color: #b2b2b2;
-}
