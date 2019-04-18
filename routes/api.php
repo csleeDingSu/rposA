@@ -95,9 +95,17 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	
 	Route::any('/wabao-fee', 'ProductController@wabaofee')->name('api.wabaofee'); //new
 	
-	Route::get('/redeem-hn', 'ProductController@get_redeem_history_new')->name('api.redeem.historynew');
+	Route::get('/redeem-hn', 'ProductController@get_redeem_history_new')->name('api.redeem.historynew');	
 	
- });	
+	
+ });
+
+//without token
+Route::group(['namespace' => 'Api'],function()
+{
+	Route::get('/package-list', 'ProductController@list_package')->name('api.package.list');
+	Route::get('/get-passcode', 'ProductController@passcode')->name('get_passcode');
+});
 
 //cron_test
 Route::get('/cron_test', 'TestController@cron_test')->name('cron_test');

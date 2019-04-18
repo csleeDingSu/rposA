@@ -14,7 +14,7 @@
 		  <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block">
 				@lang('dingsu.real_time_update') :
-				<span id="socketconnection">Waiting..</span></li>
+				<span id="socketconnection">@lang('dingsu.waiting') ..</span></li>
            
           </ul>
        <!-- <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">

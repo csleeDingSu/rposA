@@ -577,7 +577,9 @@ p.vip-life {
   width: 5.01rem;
   height: 0.81rem;
   margin: 0 auto;
+  margin-top: 0.2rem;
   margin-bottom: 0.2rem;
+  
 }
 .showQuan .inBox a img {
   width: 100%;
@@ -993,14 +995,16 @@ a.cutBtn, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-success:hove
     border-radius: 1rem;
     font-size: 0.35rem;
     color: white;
-    background-image: linear-gradient(to right, #ffc420 , #ff2151);
+    /*background-image: linear-gradient(to right, #ffc420 , #ff2151);*/
+    background: #f09b48;
     text-decoration: none;
     padding: 0.15rem;
     cursor: pointer;
 }
 
 a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-success:hover, a.cutBtn-success:active {
-    background-image: linear-gradient(to right, #61b114 , #61b114);
+    /*background-image: linear-gradient(to right, #61b114 , #61b114);*/
+    background: #f7bb80;
 }
 
 .cutBtn-fail {
@@ -1017,4 +1021,46 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 
 .dbox1 .carousel-cell-long {
   width: 20%;
+}
+
+a.freeVoucherBtn, a.freeVoucherBtn:link, a.freeVoucherBtn:visited, a.freeVoucherBtn:hover, a.freeVoucherBtn:active {
+    width: 5.01rem;
+    height: 0.81rem;
+    border-radius: 1rem;
+    font-size: 0.33rem;
+    border: 0.05rem solid #f09b48;
+    /*color: white;*/
+    /*background-image: linear-gradient(to right, #ffc420 , #ff2151);*/
+    background: white;
+    text-decoration: none;
+    padding: 0.15rem;
+    cursor: pointer;
+    color: #f09b48;
+    padding-left:0.8rem;
+}
+
+.AfterDiscount {
+  position: absolute;
+  font-weight: 100;
+  text-align: left; 
+  /*background: #000;*/
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  padding-left:0.1rem;
+  padding-right: 0.1rem;
+  margin-top:-0.72rem;
+  margin-left: 0.3rem;
+  font-size: 0.25rem;
+}
+
+.freeicon {
+  width: 0.6rem;
+  position: absolute;
+  margin-left:-1rem;
+  margin-top:0.26rem;  
+
+}
+
+.caption2 {
+  font-size: 0.5rem;
 }

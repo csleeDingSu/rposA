@@ -39,7 +39,7 @@ class Package extends Model
 	}
 	
 	
-	public static function list_available_redeem_package($point)
+	public static function list_available_redeem_package($point = 0)
 	{		
 		$result = DB::table('view_package')->where('package_status', '=', 1);
 		
