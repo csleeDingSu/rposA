@@ -656,7 +656,7 @@
 										邀请好友
 									</div>
 								</a>
-								<a href="/redeem" class="link-button">
+								<a href="/membership" class="link-button">
 									<div class="modal-vip-button">
 										购买VIP
 									</div>
@@ -820,7 +820,7 @@
 											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
 										</ul>
 									</div>
-									<a href="/redeem"><div class="btn-vip-submit">99元开通会员</div></a>
+									<a href="/membership"><div class="btn-vip-submit">99元开通会员</div></a>
 								</div>								
 							</div>
 						</div>
