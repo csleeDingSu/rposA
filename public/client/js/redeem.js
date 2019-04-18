@@ -494,7 +494,7 @@ function populateHistoryData(records, token) {
     } else {
 
         $.each(data, function(i, item) {
-            counter += 1;
+            
 
             if(item.request_at){
                 var t = item.request_at.split(/[- :]/);
@@ -504,7 +504,7 @@ function populateHistoryData(records, token) {
             }
 
             if (item.type == 'vip') {
-                html += '<div class="history-row">' +
+                /*html += '<div class="history-row">' +
                     '<div class="col-xs-2 column-4">' +
                         counter +
                     '</div>' +
@@ -568,9 +568,11 @@ function populateHistoryData(records, token) {
                         '</div>';
                 } else {
                     html += '</div>';
-                }
+                }*/
 
             } else {
+                counter += 1;
+                
                 html += '<div class="history-row">' +
                     '<div class="col-xs-2 column-4">' +
                         counter +
