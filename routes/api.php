@@ -104,6 +104,7 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 Route::group(['namespace' => 'Api'],function()
 {
 	Route::get('/package-list', 'ProductController@list_package')->name('api.package.list');
+	Route::get('/get-passcode', 'ProductController@passcode')->name('get_passcode');
 });
 
 //cron_test

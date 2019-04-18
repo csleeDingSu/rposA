@@ -351,5 +351,66 @@ class ProductController extends Controller
 		return response()->json(['success' => 'true','wabaofee' => $setting->wabao_fee]); 
 	}
 	
+	public function passcode(Request $request)
+    {
+		$id = $request->id;
+		if (!$id) return response()->json(['success' => 'false']); 	
+		$record   = \App\Passcode::where('goodsid',$id)->first();
+		
+		if ($record)
+		{
+			return response()->json(['success' => 'true','record' => $record]); 
+		}
+		$url   = "http://item.taobao.com/item.htm?id=".$id;
+		$data  = $this->getcurl($url);
+		
+		if ($data)
+		{
+			$data = ['passcode'=>$data,'goodsid'=>$id ];
+			$record   = \App\Passcode::create($data);
+			return response()->json(['success' => 'true','record' => $data]); 
+		}
+		return response()->json(['success' => 'false']); 		
+	}
 	
+	private function getcurl($keyword)
+    {        
+        //'https://detail.tmall.com/item.htm?id=579853855835',
+        $curl = curl_init();
+        $userAgent = 'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0';
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'http://www.iwangshang.com/taokouling/index.php',
+            CURLOPT_USERAGENT => $userAgent,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => array(
+                'keyword'=> $keyword,
+            )
+        ));
+        
+        $resp = curl_exec($curl);
+        
+        if($resp) {            
+            return $this->filter_content( $resp );
+        } 
+    }
+    
+    private function filter_content($content) 
+    {
+        $str  = '<button class="itemCopy"';
+		$arr  = explode($str, $content);
+		$arr  = explode('</button', $arr[1]);	
+		$from = '￥';
+		$to   = '￥';
+		$sub  = substr($arr[0], strpos($arr[0],$from)+strlen($from),strlen($arr[0]));
+		$sub  = substr($sub,0,strpos($sub,$to));
+		$sub  = trim($sub);
+		
+		if ($sub)
+		{
+			$sub = '￥'.$sub.'￥';
+			return $sub;
+		}		
+        return FALSE;
+    }
 }
