@@ -558,6 +558,8 @@ return [
 	'is_featured' => '精选',
 	'voucher_starttime' => '优惠卷开始',
 	'voucher_expiry' => '优惠卷到期',
+	'expiry_datetime' => '优惠卷到期',
+	'sales_show' => '總销售额',
 	'updated_at' => '更新于',
 	'next_update' => '下次更新于',
 	'requesting_token' => '领符记',

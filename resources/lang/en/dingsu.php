@@ -575,6 +575,8 @@ return [
 	'is_featured' => 'featured',
 	'voucher_starttime' => 'voucher start',
 	'voucher_expiry' => 'voucher expired',
+	'expiry_datetime' => 'voucher exipry at',
+	'sales_show' => 'total sales',
 	'updated_at' => 'Updated At',
 	'next_update' => 'Next Update',
 	'requesting_token' => 'Requesting Token',

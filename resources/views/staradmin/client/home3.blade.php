@@ -200,15 +200,25 @@
 
 		<!-- 领取优惠券  -->
 		<div class="showQuan dflex scaleHide">
-			<div class="inBox">
+			<div class="inBox" style="padding-bottom: 0.2rem;">
 				<img id="showIcon" src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
-				<h2>点击下面复制按钮，打开淘宝APP领券</h2>
+				<div class="AfterDiscount">
+					<span class="caption1">卷后￥</span>
+					<span class="caption2">39</span>
+				</div>
+				<!-- <h2>点击下面复制按钮，打开淘宝APP领券</h2> -->
 
 				
 					<!-- <h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3> -->
-					<a class="cutBtn">一键复制</a>
-					<h4>优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
-				
+					
+					<h4 style="text-indent: 100%; white-space: nowrap; overflow: hidden;">优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
+
+					<a class="cutBtn">领取优惠卷</a>
+					
+				<div>
+					<img src="{{ asset('/client/images/free-icon.png') }}" class="freeicon">
+					<a class="freeVoucherBtn" href="/arcade">我要免单</a>
+				</div>
 			</div>
 		</div>
 
@@ -389,7 +399,8 @@
 
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
-				$( ".copyvoucher" ).html($(this).data('voucher'));			
+				$( ".copyvoucher" ).html($(this).data('voucher'));
+
 				var dd = $(this).data('imgurl');
 				$("#showIcon").attr("src",dd);
 				being.wrapShow();
@@ -426,6 +437,7 @@
 				$("#showIcon").attr("src",$(this).data('imgurl'));
 				
 				$( ".copyvoucher" ).html($(this).data('voucher'));	
+
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 			});
@@ -461,12 +473,12 @@
 			});
 			clipboard.on('success', function (e) {
 				console.log(e);
-				$('.cutBtn').addClass('cutBtn-success').html('复制成功 请打开淘宝App');
+				$('.cutBtn').addClass('cutBtn-success').html('领取成功 请打开淘宝App');
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				$('.cutBtn').addClass('cutBtn-success').html('复制成功 请打开淘宝App');
+				$('.cutBtn').addClass('cutBtn-success').html('领取成功 请打开淘宝App');
 			});
 
 			being.scrollBottom('.cardBody', '.box', () => {			
