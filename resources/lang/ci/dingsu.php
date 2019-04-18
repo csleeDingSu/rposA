@@ -548,4 +548,14 @@ return [
 	'processing' => '处理当中',
 	'completed' => '完成',
 	'lastrun' => '上次运行',
+
+	'bulkmove_in_progress' => 'cron处理批量移动',
+	'buldelete_in_progress' => 'cron处理批量删除',
+	'upload_success' => '上传成功',
+	'import_in_progress' => '数据导入中。不能使用批量移动/批量删除',	
+	'uploading_data' => '数据正在上传',
+
+	'is_featured' => '精选',
+	'voucher_starttime' => '优惠卷开始',
+	'voucher_expiry' => '优惠卷到期',
 ];

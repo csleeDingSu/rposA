@@ -566,11 +566,15 @@ return [
 	'completed' => 'completed',
 	'lastrun' => 'Last run',
 	
-	'bulkmove_in_progress' => 'cron processing bul kmove',
+	'bulkmove_in_progress' => 'cron processing bulk move',
 	'buldelete_in_progress' => 'cron processing bulk delete',
 	'upload_success' => 'Upload success',
 	'import_in_progress' => 'Data importing.do not use bulk move/bulk delete',
-	
+	'uploading_data' => 'Data is uploading',
+
+	'is_featured' => 'featured',
+	'voucher_starttime' => 'voucher start',
+	'voucher_expiry' => 'voucher expired',
 	
 	
 	
