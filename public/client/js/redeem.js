@@ -108,7 +108,7 @@ function getProductList(token) {
             } else {
                 var current_life = parseInt($(".nTxt").html());
 
-                $.each(packages, function(i, item) {
+                /*$.each(packages, function(i, item) {
                     var available_quantity = item.available_quantity;
                     var used_quantity = item.used_quantity;
                     var reserved_quantity = item.reserved_quantity;
@@ -146,14 +146,7 @@ function getProductList(token) {
                                     '<div class="col-xs-6 column-2">' +                               
                                         '<div class="description">' + item.package_name + '</div>';
                                         html += '<div class="note"></div>';
-                                        /*
-                                         if (item.min_point > 0) {
-                                            html += '<div class="note">VIP场，收益增10倍！</div>';
-                                         } else {
-                                            html += '<div class="note">积分不够，可用话费卡来兑换。</div>';
-                                         }
-                                         */                               
-                                        //'<div class="note">可兑换支付宝红包' + parseInt(data.current_point) + '元</div>' +                                        
+
                                 html +='<div class="icon-coin-wrapper">' +
                                             '<div class="icon-coin"></div>' +
                                         '</div>' +
@@ -164,14 +157,6 @@ function getProductList(token) {
                                     '<div class="col-xs-3 column-3">' +
                                         '<div class="btn-redeem openeditmodel_p'+ i + ' ' + cls_cannot_redeem + '">兑换</div>' +
                                     '</div>';
-
-                            // if (cannot_redeem || current_life == 0) {
-                            //     html +='<div class="horizontal"></div>' +
-                            //         '<div class="col-xs-9 insufficient">不够积分兑换，邀请一个好友赚450积分！</div>' + 
-                            //         '<div class="col-xs-3 btn-insufficient-wrapper">' +
-                            //             '<a href="/share"><div class="btn-insufficient">马上邀请</div></a>' +
-                            //         '</div>';
-                            // }
 
                                 html +='</div>';
 
@@ -286,7 +271,7 @@ function getProductList(token) {
                                         '</div>' +
                                         '<!-- Modal Ends -->';                
                     }
-                });
+                });*/
 
                 $.each(records, function(i, item) {
                     var available_quantity = item.available_quantity;
@@ -338,14 +323,6 @@ function getProductList(token) {
                                 '<div class="col-xs-3 column-3">' +
                                     '<div class="btn-redeem openeditmodel'+ i + ' ' + cls_cannot_redeem +'">兑换</div>' +
                                 '</div>';
-
-                        // if (cannot_redeem || current_life == 0) {
-                        //     html += '<div class="horizontal"></div>' +
-                        //             '<div class="col-xs-9 insufficient">不够积分兑换，邀请一个好友赚450积分！</div>' + 
-                        //             '<div class="col-xs-3 btn-insufficient-wrapper">' +
-                        //                 '<a href="/share"><div class="btn-insufficient">马上邀请</div></a>' +
-                        //             '</div>';
-                        // }
 
                             html += '</div>';
 
