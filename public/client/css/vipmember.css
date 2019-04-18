@@ -1,0 +1,993 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.fade {
+	cursor: pointer;
+}
+
+.container {
+	width: 500px;
+	background-color: #ffffff;
+	position: relative;
+}
+	
+@media only screen and (max-width: 500px) {
+    .container {
+		width: 100%;
+		padding: 0;
+
+	}
+}
+
+html, body {
+	height: 100%;
+	background-color: #ffffff;
+}
+
+.full-height {
+	background-color: #ffffff;
+}
+
+.left-menu {
+	text-align: left;
+	padding-top: 6px;
+}
+
+.icon-back {
+	color: white;
+}
+
+.brand-title {
+	font-size: 18px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	font-weight: 500;
+}
+
+.card {
+	font-size: 16px;
+	color: white;
+}
+
+.row {
+	margin-top: 1rem;
+	margin-left: 0.2rem;
+}
+
+.member-box {
+	width: 440px;
+	height: 50px;
+	position: absolute;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+	text-align: left;
+}
+
+.col-xs-12 {
+    line-height: 400px;
+}
+
+.col-xs-12 img {
+    vertical-align: middle;
+    width: 115px;
+    height: 156px;
+}
+
+.member-box .col-xs-7 {
+	color: #505050;
+	font-size: 18px;
+	padding-right: 0;
+}
+
+.member-box .col-xs-5 {
+	padding-left: 0;
+}
+
+.vip-title {
+	padding-bottom: 5px;
+}
+
+.vip-list li {
+	font-size: 12px;
+	color: #8c7c7c;
+	line-height: 18px;
+	list-style: disc inside none;
+}
+
+.sign{
+    font-size:17px;
+    display: inline-block;
+    vertical-align: 6px;
+}
+
+.point {
+	color: #fc7f35;
+	font-size: 31px;
+	line-height: 40px;
+	display: inline-block;
+}
+
+.highlight {
+	color: #ee833b;
+}
+
+.btn-submit {
+	color: white;
+	font-size: 16px;
+	padding: 5px 5px 8px 5px;
+	border-radius: 20px;
+	background-image: linear-gradient(to right, #f1ca84 , #ed671f);
+	width: 95px;
+	margin-top: 8px;
+	cursor: pointer;
+	font-weight: 700;
+	text-align: center;
+}
+
+.top-background {
+	background-color: white;
+}
+
+.top-background img {
+	margin-top: 0%;
+	width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+    .member-box {
+		width: 90%;
+	}
+
+	.row {
+		margin-top: 1.6rem;
+	}
+}
+
+
+/* Tabs */
+.full-width-tabs > .nav-pills > .active > a,
+.full-width-tabs > .nav-pills > .active > a:hover,
+.full-width-tabs > .nav-pills > li > a:hover {
+	text-decoration: none;
+	border-bottom: 2px solid #01a7f1;
+    color: #01a7f1 !important;
+    background-color: #ffffff !important;
+}
+.full-width-tabs > .nav-pills > li > a{
+    border-radius:0px;
+    color:#999999;
+    font-weight: 500;
+    background: #ffffff;
+    font-size: 14px;
+}
+
+.full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.full-width-tabs > ul.nav.nav-pills > li, .modal-row > ul.nav.nav-pills > li{
+	float: none;
+	display: table-cell;
+}
+.full-width-tabs > ul.nav.nav-pills > li > a, .modal-row > ul.nav.nav-pills > li > a{
+	text-align: center;
+}
+
+.take-all-space-you-can{
+	width:100%;
+}
+/* End Tabs */
+
+/* Redeem List Content */
+.tab-content {
+	padding-bottom: 20px;
+}
+
+.column-1, .column-4 {
+	padding-right: 5px;
+	padding-left: 10px;
+}
+
+.column-2, .column-5 {
+	padding-right: 5px;
+	padding-left: 20px;
+	text-align: left;
+}
+
+.column-3, .column-6 {
+	padding-right: 5px;
+	padding-left: 0px;
+}
+
+.description {
+	font-size: 17px;
+	color: #505050;
+	min-height: 30px;
+}
+
+.card-wrapper {
+	text-align: left;
+	padding-left: 20px;
+	color: #505050;
+	font-size: 15px;
+}
+
+.instruction {
+	font-size: 12px;
+	color: #afb1b1;
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+.balance {
+	font-size: 12px;
+	color: #ccc;
+}
+
+@media only screen and (max-width: 360px) {
+    .column-2 {
+    	margin-left: 10px;
+    	padding-right: 0px;
+    	width: 140px;
+    }
+
+	.column-4 {
+    	padding-right: 0px;
+		padding-left: 0px;
+    }
+}
+
+/* End Redeem List Content */
+
+/* Redeem History Content */
+.history-row {
+	height: 75px;
+	color: #cccccc;
+	font-size: 14px;
+	padding-top: 10px;
+	border-bottom: 1px solid #e3e3e3;
+	background: #ffffff;
+}
+
+.history-row:first-child {
+	margin-top: 10px;
+}
+
+.btn-card, .btn-card-vip {
+	background: #01a7f1;
+	color: white;
+	font-size: 14px;
+	border-radius: 20px;
+	width: 80px;
+	height: 30px;
+	padding-top: 3px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.btn-card-vip {
+	background: #f0a84d;
+}
+
+.btn-pending, .btn-pending-vip, .btn-vip {
+	color: #e78508;
+	font-size: 14px;
+	border-radius: 20px;
+	width: 80px;
+	height: 30px;
+	padding-top: 3px;
+	margin-top: 10px;
+	border: 1px solid #e78508;
+	cursor: pointer;
+}
+
+.btn-pending-vip {
+	color: #6298e0;
+	border: 1px solid #6298e0;
+}
+
+.btn-vip {
+	color: #f0a84d;
+	border: 1px solid #f0a84d;
+	font-size: 13px;
+}
+
+.btn-vip {
+	width: 100px;
+	padding-top: 0px;
+	margin-top: 0px;
+	background: #ffffff;
+}
+
+.btn-used-wrapper {
+	height: 60px;
+	width: 80px;
+}
+
+.btn-used {
+	float: right;
+}
+
+.collapse, .collapsing {
+	background: #f2f2f2;
+	color: #333333;
+	font-size: 14px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e3e3e3;
+	position:relative;
+	z-index: 100;
+}
+
+.collapse:after, .collapse:before {
+    content:"";
+    position:absolute;
+    left:85%; /* horizontal position */
+    border-width: 0em 1em 1em 0em; /* the angle of the pipe */
+    border-style: solid;
+    border-color: white transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+	height: 0;
+	
+}
+
+.collapse:after {
+	top:-1.4em; /* vertical position */
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #f4f7f9;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+.collapse:before {
+	top:-1.7em; /* vertical position */
+	border-color: rgba(227, 227, 227, 0);
+	border-bottom-color: #e3e3e3;
+	border-width: 12px;
+	margin-left: -12px;
+}
+
+.numbers {
+	color: #464646;
+}
+
+.codes-vip {
+	color: #fd8033;
+	font-size: 19px;
+}
+
+@media only screen and (max-width: 360px) {
+	.collapse, .collapsing {
+		font-size: 12px;
+	}
+
+	.collapse:after {
+		top:-1.3em; /* vertical position */
+		border-width: 8px;
+		margin-left: -8px;
+	}
+
+	.collapse:before {
+		top:-1.7em; /* vertical position */
+		border-width: 10px;
+		margin-left: -10px;
+	}
+
+}
+/* End Redeem History Content */
+
+/* Modal Box */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-content {
+	background: #f8f8f8;
+}
+
+.btn_submit, .btn_submit:active, .btn_submit:hover, .btn_submit:focus {
+	background: #f67a00;
+	width: 240px;
+	border-radius: 30px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 30px;
+	font-size: 18px;
+}
+
+.btn_cancel, .btn_cancel:active, .btn_cancel:hover, .btn_cancel:focus {
+	background: #adadad;
+	width: 240px;
+	border-radius: 30px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 10px;
+	font-size: 18px;
+}
+
+.error {
+	font-size: 14px;
+	color: red;
+}
+/* End Modal box */
+
+.empty {
+	font-size: 12px;
+	color: #ff8624;
+}
+
+/* Modal Row */
+.modal-sm-vip {
+	width: 320px;
+}
+
+.modal-row > .nav-pills > .active > a {
+	text-decoration: none;
+    color: #ff6f48 !important;
+    background-color: #ffffff !important;
+}
+.modal-row > .nav-pills > li > a{
+	border-radius:0px;
+    color:#333333;
+    font-weight: 500;
+    background: #f1f1f1;
+    font-size: 14px;
+    border-top: 1px solid #dadada;
+}
+
+.modal-row > .nav-pills > li:first-child > a {
+	border-top-left-radius: 5px;
+	border-left: 1px solid #dadada;
+	-webkit-background-clip: padding-box;
+}
+
+.modal-row > .nav-pills > li:last-child > a {
+	border-top-right-radius: 5px;
+	border-right: 1px solid #dadada;
+	-webkit-background-clip: padding-box;
+}
+
+.modal-row > .tab-content {
+	border: 1px solid #dadada;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding-bottom: 0px;
+	margin-bottom: 20px;
+}
+
+.vip-using-content {
+	background: #ffffff;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	width: 300px;
+}
+
+.enter-vip-content {
+	background: #252436;
+	text-align: center;
+	font-size: 16px;
+	width: 300px;
+}
+
+.vip-tab-pane {
+	padding: 8px;
+}
+
+.vip-tab-pane input {
+	background: transparent;
+    border: none;
+}
+
+hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.vip-label {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	color: #f5ca77;
+	font-size: 20px;
+}
+
+.vip-code {
+	border-radius: 6px;
+	background: #403e55;
+	color: #acabbf;
+	padding: 10px;
+	margin:20px;
+	-moz-box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+	-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+	box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+}
+
+.btn-enter-vip {
+	border-radius: 30px;
+	cursor: pointer;
+	background-image: linear-gradient(#f6c671, #fe9e29);
+	color: #333333;
+	padding: 10px;
+	margin: 30px 25px 10px 25px;
+}
+
+.modal-description {
+	color: #f48222;
+	font-size: 11px;
+}
+
+.card-no-description {
+	color: #f48930;
+	font-size: 12px;
+}
+
+.card-no-example {
+	font-size: 12px;
+}
+
+.vip-copy {
+	color: #666;
+	font-size: 12px;
+}
+
+.btn-submit-vip, .btn-submit-vip:active, .btn-submit-vip:hover, .btn-submit-vip:focus {
+	background-image: linear-gradient(#ffce4f, #ff8624);
+	width: 240px;
+	border-radius: 5px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 30px;
+	border: none;
+}
+
+.copyvoucher {
+	background: #868686;
+	color: #fbff6a;
+	margin: 10px;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+.cutBtn, .cutBtn-success, .cutBtn-fail {
+	margin: 10px;
+	border-radius: 30px;
+	font-size: 20px;
+	color: #ff6f48;
+	padding: 6px;
+	background: #ffffff;
+	border: 1px solid #ff6f48;
+}
+
+.cutBtn {
+	cursor: pointer;
+}
+
+.cutBtn-success {
+	border: 1px solid #1ba908;
+	color: #1ba908;
+}
+
+.cutBtn-fail {
+	border: 1px solid #838383;
+	color: #838383;
+
+}
+
+textarea {
+  background: transparent;
+  resize: none;
+  border: 1px solid #dadada;
+  outline: none;
+  width: 270px;
+  height: 80px;
+  padding: 5px;
+  text-align: justify;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.textarea-link-wrapper {
+	width: 270px;
+	position: absolute;
+	margin-top: -30px;
+	padding: 5px;
+}
+.textarea-link {
+	position: relative;
+	float: right;
+	color: #99adfe;
+}
+
+.img-wrapper {
+	right: 5px;
+	position: absolute;
+	margin-top: -10px;
+}
+
+.btn-close-wrapper {
+	right: 5px;
+	position: absolute;
+	margin-top: -30px;
+}
+
+.btn-close-modal {
+	background: #4d4b5e;
+	color: #ffffff;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	text-align: center;
+	font-size: 16px;
+	padding: 10px;
+	width: 300px;
+}
+
+.using-description {
+	color: #333333;
+	font-size: 20px;
+	padding: 20px;
+	text-align: center;
+}
+
+@media only screen and (max-width: 360px) {
+
+	.modal-sm-vip {
+		width: 300px;
+	}
+	.modal-body {
+		padding: 10px;
+	}
+
+	.modal-description {
+		font-size: 10px;
+	}
+
+	.vip-tab-pane {
+		padding: 6px;
+	}
+
+	.textarea-link-wrapper {
+		width: 260px;
+	}
+
+	textarea {
+	  width: 260px;
+	  height: 80px;
+	  padding: 5px;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+
+	.modal-sm-vip {
+		width: 280px;
+	}
+	.modal-body {
+		padding: 8px;
+	}
+
+	.modal-description {
+		font-size: 10px;
+	}
+
+	.vip-tab-pane {
+		padding: 6px;
+	}
+
+	.textarea-link-wrapper {
+		width: 245px;
+	}
+
+	textarea {
+	  width: 245px;
+	  height: 80px;
+	  padding: 5px;
+	}
+}
+
+.bg-vip-copy {
+	background: #f8f5f1;
+    border-radius:10px;
+
+}
+
+/* Wechat Modal */
+#verify-steps .modal-content, .modal-title {
+	background: white;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#verify-steps .modal-full-height {
+	text-align:center;
+	margin: 0 auto;
+}
+
+#verify-steps .modal-wechat {
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#verify-steps .modal-title {
+	background: #4c89e2;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+}
+
+#verify-steps .modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-weight: 700;
+}
+
+#verify-steps .modal-card {
+	width: 250px;
+	margin: 0 auto;
+	font-size: 16px;
+}
+
+#verify-steps .copyvoucher {
+	border: 1px solid #dfdfdf;
+	background: #f7f7f7;
+	color: #51abff;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	padding: 6px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#verify-steps .cutBtn, #verify-steps .cutBtn-success, #verify-steps .cutBtn-fail {
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 5px;
+	font-size: 18px;
+	color: white;
+	padding: 6px;
+	background-color: #51acff;
+	background-image: none;
+	border: none;
+	text-align: center;
+}
+
+#verify-steps .cutBtn-success {
+	background: #1ba908;
+}
+
+#verify-steps .cutBtn-fail {
+	background: #838383;
+}
+
+#verify-steps .instructions, #verify-steps .instructions-dark {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #999;
+}
+
+#verify-steps .instructions-dark {
+	margin-bottom: 0px;
+}
+
+#verify-steps .btn-close {
+	color: #ffd200;
+	font-size: 16px;
+	margin-top: 10px;
+	display: block;
+	text-align: center;
+	width: 250px;
+
+}
+
+#verify-steps .btn-close a {
+	text-decoration: underline;
+	color: #f7ff22;
+}
+
+#verify-steps .body-title {
+	color: #51abff;
+	font-size: 18px;
+}
+
+#verify-steps .glyphicon {
+	font-size: 20px;
+	display: block;
+	float: left;
+	padding-left: 10px;
+}
+
+#verify-steps .left {
+	display: block;
+	padding-bottom: 3px;
+	float: left;
+	padding-left: 10px;
+}
+
+#verify-steps .modal-title {
+	background: url('/client/images/wechat-header.png') no-repeat;
+	background-size: contain;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+	width: 300px !important;
+	height: 255px;
+}
+
+#verify-steps .modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 0px;
+	margin-top: 100px;
+	font-weight: 500;
+}
+
+#verify-steps .reward {
+	font-size: 16px;
+}
+
+#verify-steps .reward-amount {
+	font-size: 50px;
+	font-weight: 500;
+}
+
+#verify-steps .reward-instructions {
+	color: #f2ee10;
+	font-weight: 500;
+	font-size: 15px;
+}
+/* End Wechat Modal*/
+
+/* Wechat Verification Modal */
+#wechat-verification-modal .modal-content {
+	background: white;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#wechat-verification-modal .modal-full-height {
+	text-align:center;
+	margin: 0 auto;
+}
+
+#wechat-verification-modal .modal-card {
+	width: 280px;
+	margin: 0 auto;
+	font-size: 16px;
+}
+
+#wechat-verification-modal .copyvoucher {
+	border: 1px solid #dfdfdf;
+	background: #f7f7f7;
+	color: #51abff;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	padding: 6px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#wechat-verification-modal .cutBtn, #wechat-verification-modal .cutBtn-success, #wechat-verification-modal .cutBtn-fail {
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 5px;
+	font-size: 18px;
+	color: white;
+	padding: 6px;
+	background-color: #51acff;
+	background-image: none;
+	border: none;
+	text-align: center;
+}
+
+#wechat-verification-modal .cutBtn-success {
+	background: #1ba908;
+}
+
+#wechat-verification-modal .cutBtn-fail {
+	background: #838383;
+}
+
+#wechat-verification-modal .instructions {
+	margin-top: 5px;
+	padding: 10px 0;
+	font-size: 19px;
+	/*font-weight: 500;*/
+	color: #6f6f6f;
+}
+
+#wechat-verification-modal .btn-close {
+	color: #f39614;
+	font-size: 16px;
+	margin-top: 10px;
+	display: block;
+	text-align: center;
+	width: 250px;
+
+}
+
+#wechat-verification-modal .btn-close a {
+	text-decoration: underline;
+}
+
+#wechat-verification-modal .body-title {
+	color: #f99d1c;
+	font-size: 23px;
+	font-weight: 500;
+	padding-top: 15px;
+}
+
+/* End Wechat Verification Modal*/
+
+#redeem-pagination {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.isnext {
+	 text-align: center;
+	 font-size: .26rem;
+	 color: #999;
+	 line-height: 1.6em;
+	 padding: .15rem 0;
+}
+
+.copynumber, .copycode {
+	color: #2096f2;
+}
+
+.copy-success {
+	color: #47bc46;
+}
+
+.copy-fail {
+	color: #fe6262;
+}
+
+.wechat-instructions {
+	padding-top: 15px;
+	padding-bottom: 20px;
+	font-size: 17px;
+	color: #b2b2b2;
+}

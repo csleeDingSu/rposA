@@ -10,12 +10,13 @@
 						 $item['voucher_pass']   = $item['quan_jine'] ;
 						 $item['product_name']   = $item['d_title'] ;
 						 $item['month_sales']    = $item['xiaoliang'] ;
+						 $item['goodsid']        = $item['goodsid'] ;
 
 $item = (object )$item;
 @endphp
 
 									<li class="dbox">
-										<a class="dbox0 imgBox" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}" data-voucher="{{$item->voucher_pass}}" data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" >
+										<a class="dbox0 imgBox" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}" data-voucher="{{$item->voucher_pass}}" data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" data-goodsid="{{$item->goodsid}}">
 											<img src="{{$item->product_picurl . $setting->mobile_default_image_url}}" alt="{{$item->product_name}}">
 										</a>
 										<div class="dbox1">
@@ -29,7 +30,7 @@ $item = (object )$item;
 												</div>
 											</div>
 											<div class="mset">
-												<a data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}">领{{number_format($item->voucher_price, 0)}}元券</a>
+												<a data-goodsid="{{$item->goodsid}}" data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}">领{{number_format($item->voucher_price, 0)}}元券</a>
 												<a class="type" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}">我要免单</a>
 											</div>
 										</div>

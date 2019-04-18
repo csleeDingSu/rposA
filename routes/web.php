@@ -82,10 +82,6 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/faq', compact( 'faqs' ) );
 	} );
 
-	Route::get( '/membership', function () {
-		return view( 'client/membership');
-	} );
-
 	Route::any( '/tips', 'ClientController@tips' )->name( 'client.tips' );
 	
 	$this->get( 'cs/{id?}', 'Api\VoucherController@show' )->name( 'api.vclist' );
@@ -138,6 +134,14 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 
 	Route::get( '/validate', function () {
 		return view( 'client/validate' );
+	} );
+
+	Route::get( '/membership', function () {
+		return view( 'client/membership');
+	} );
+
+	Route::get( '/vipmember', function () {
+		return view( 'client/vipmember');
 	} );
 
 	$this->post( '/member_update_wechatname', 'ClientController@member_update_wechatname' );

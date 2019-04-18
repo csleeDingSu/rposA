@@ -216,6 +216,13 @@ html, body {
 	cursor: pointer;
 }
 
+.error {
+	font-size: 13px;
+	text-align: center;
+	color: #f75a5a;
+	display: none;
+}
+
 /* Modal Box */
 .modal {
   text-align: center;

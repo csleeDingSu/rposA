@@ -81,11 +81,11 @@
 				@if(count($vip_status->where('redeem_state', '3')) > 0)
 					<a href= "/vip">
 				@elseif(count($vip_status->where('redeem_state', '2')) > 0)
-					<a href= "/redeem/history">
+					<a href= "/vipmember">
 				@elseif(count($vip_status->where('redeem_state', '1')) > 0)
-					<a href= "/redeem/history">
+					<a href= "/vipmember">
 				@else
-					<a href= "/redeem">
+					<a href= "/vipmember">
 				@endif
 				
 					<li class="list-group-item first-item">
