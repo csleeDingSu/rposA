@@ -386,7 +386,7 @@
 			});
 			
 			$('.showQuan').click((e) => {
-				// $('.cutBtn').removeClass('cutBtn-success').html('一键复制');
+				$('.cutBtn').removeClass('cutBtn-success').html('领取优惠卷');
 				var target = $(e.target).closest('.inBox').length;
 				console.log(target);
 				if (target > 0) {
