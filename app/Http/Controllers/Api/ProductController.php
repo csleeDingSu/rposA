@@ -353,8 +353,8 @@ class ProductController extends Controller
 	
 	public function passcode(Request $request)
     {
-		$id = $request->id;
-		if (!$id) return response()->json(['success' => 'false']); 	
+		$id = $request->_keyword;
+		if (!$id) return response()->json(['success' => 'false']); 
 		$record   = \App\Passcode::where('goodsid',$id)->first();
 		
 		if ($record)
