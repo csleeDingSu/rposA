@@ -7,14 +7,14 @@ use App\Http\Controllers\TestController;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Voucher;
-class NouseImportVoucher extends Command
+class NouseImher extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'nuseimport:voucher';
+    protected $signature = '';
 
     /**
      * The console command description.
@@ -23,7 +23,7 @@ class NouseImportVoucher extends Command
      */
     protected $description = 'Import Voucher';
 	
-	public $cronname  = 'import_voucher';
+	public $cronname  = 'simport_voucher';
 
     /**
      * Create a new command instance.
