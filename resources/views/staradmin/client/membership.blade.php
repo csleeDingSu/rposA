@@ -15,10 +15,13 @@
 
 <div class="full-height no-header">
 	<div class="container">
-		
+		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
+		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 		<div class="member-box">
 			<div class="card">
 				<div class="col-xs-3 left-menu">
+
 					<a href="/profile" class="back">
 				        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
 				    </a>
@@ -123,8 +126,37 @@
 		    	if(txt_name == ''){
 		    		$('.error').show();
 		    	} else {
-		    		$('.error').hide();
-		        	$('#modal-successful').modal();
+    				var username = $('#hidUsername').val();
+				    var session = $('#hidSession').val();
+				    var id = $('#hidUserId').val();
+
+				    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
+				        //console.log(data);
+				        if(data.success) {
+				        	$.ajax({
+						        type: 'POST',
+						        url: "/api/request-vip-upgrade",
+						        data: { 'memberid': id, 'packageid': 29, 'ref_note': txt_name },
+						        dataType: "json",
+						        beforeSend: function( xhr ) {
+						            xhr.setRequestHeader ("Authorization", "Bearer " + data.access_token);
+						        },
+						        error: function (error) { console.log(error.responseText) },
+						        success: function(data) {
+						            if(data.success) {
+						                $('.error').hide();
+				        				$('#modal-successful').modal();
+						            } else {
+						                $('.error').html(data.message);
+						            }
+						        }
+						    });
+				        }      
+				    });
+
+				    
+
+		    		
 		        }
 		    });
 
