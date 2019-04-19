@@ -476,7 +476,7 @@
 									确认结算 结束本次游戏
 								</div>
 								<div class="modal-message-footer">
-									结算后的金币可兑换奖品
+									结算后的金币可兑换红包
 								</div>												
 							</div>
 						</div>
@@ -543,7 +543,7 @@
 									当前不能结算
 								</div>
 								<div class="modal-warning-content redeem-error">
-									本局游戏尚未完成
+									你猜的游戏正在进行中
 								</div>
 
 								<div class="close-modal modal-warning-button">
@@ -572,7 +572,7 @@
 									手续费说明
 								</div>
 								<div class="modal-manual-content">
-									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000金币兑换1200原始积分，当玩家赢得金币结算时，需返还<span class="spanFee"></span>作为游戏手续费。
+									VIP场每位玩家结算积分时都需要扣除<span class="spanFee"></span>金币作为游戏手续费，不管玩家赚了多少，扣除的手续费不变，鼓励玩家每局可多赚金币再结算。
 								</div>
 								<div class="modal-manual-button">
 									我知道了

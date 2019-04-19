@@ -45,7 +45,7 @@
 			</div>
 			<div class="row">
 					<div class="col-xs-7">
-						<div class="vip-title">VIP场会特权</div>
+						<div class="vip-title">VIP场会员特权</div>
 						<ul class="vip-list">
 							<li><span class="highlight">赠送1200金币，</span>可结算红包。</li>
 							<li><span class="highlight">无上限封顶，</span>想赚多少都行。</li>
