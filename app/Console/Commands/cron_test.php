@@ -152,7 +152,10 @@ class ImportVoucher extends Command
 										
 										if (!empty($insdata['expiry_datetime']))
 										{
-											$ud = $insdata['expiry_datetime'];echo $ud;
+											$ud = $insdata['expiry_datetime'];
+											
+											$this->info( $m.'--'.$ud );
+											
 											$ud = str_replace('.','/',$ud);		
 											$insdata['expiry_datetime'] = Carbon::parse($ud)->format('Y-m-d H:i:s');
 										}
