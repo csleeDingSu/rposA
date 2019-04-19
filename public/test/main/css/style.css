@@ -203,7 +203,7 @@
   padding: 0 0.24rem;
 }
 .product .list-2 li {
-  margin-top: 0.54rem;
+  margin-top: 0.12rem;
 }
 .product .list-2 li:first-of-type {
   margin-top: 0;
@@ -238,14 +238,24 @@
   display: inline-block;
   font-size: 0.32rem;
   color: #666;
-  height: 0.32rem;
-  line-height: 0.32rem;
+}
+
+.product .list-2 .divider {
+  height: 0.12rem;
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .product .list-2 .divPrice {
   display: inline-block;
-  width: 4.2rem;
   font-size: 0.20rem;
+  background: rgb(247, 187, 128); /* Fallback for older browsers without RGBA-support */
+  background: rgba(247, 187, 128, 0.3);
+  padding: 0.05rem;
+}
+
+.product .list-2 .col-xs-6 {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .product .list-2 .quan {
@@ -268,7 +278,6 @@
 @media only screen and (max-width: 1000px) {
 
   .product .list-2 .divPrice {
-    width: 4.35rem;
     font-size: 0.24rem;
   }
 
@@ -293,7 +302,7 @@
 .product .list-2 .mset {
   font-size: 0;
 }
-.product .list-2 .mset a {
+/*.product .list-2 .mset a {
   width: 2rem;
   margin-left: 0.15rem;
   text-align: center;
@@ -307,7 +316,7 @@
   -moz-border-radius: 0.1rem;
   -ms-border-radius: 0.1rem;
   -o-border-radius: 0.1rem;
-}
+}*/
 .product .list-2 .mset a:first-of-type {
   margin-left: 0;
 }
@@ -1110,28 +1119,39 @@ a.freeVoucherBtn, a.freeVoucherBtn:link, a.freeVoucherBtn:visited, a.freeVoucher
 }
 
 .month_sales {
-
+  padding-top: 0.05rem;
   color: #888888 !important;
   font-size: 0.28rem !important;
+  text-align: right;
+  margin-bottom: 10px;
 
-}
-
-.vPricebg {
-  background: rgb(247, 187, 128); /* Fallback for older browsers without RGBA-support */
-  background: rgba(247, 187, 128, 0.3);
-  /*background-color:rgba(0, 0, 0, 0.5) !important;*/
-  /*background: #f7bb80 !important;*/
-  padding-left: 0.05rem;
-  padding-right: 0.05rem;
-  /*opacity: .4;*/
 }
 
 .vPrice {
-  color: #ff8022 !important;  
+  color: #ee5f27 !important;  
   font-size: 0.25rem !important;
 }
 
 .vExpiry {
  color: #aaa !important;
  font-size: 0.25rem !important;
+}
+
+.btn-product {
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.btn-product-details {
+  background-size: contain;
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
 }

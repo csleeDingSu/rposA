@@ -78,16 +78,7 @@
 			<ul class="list-group">
 
 				<!-- VIP专场 -->
-				@if(count($vip_status->where('redeem_state', '3')) > 0)
-					<a href= "/vipmember">
-				@elseif(count($vip_status->where('redeem_state', '2')) > 0)
-					<a href= "/vipmember">
-				@elseif(count($vip_status->where('redeem_state', '1')) > 0)
-					<a href= "/vipmember">
-				@else
-					<a href= "/vipmember">
-				@endif
-				
+				<!--a href= "/vipmember">
 					<li class="list-group-item first-item">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
@@ -104,7 +95,15 @@
 						@endif
 						VIP专场
 					</li>
-				</a>
+				</a-->
+				<li class="list-group-item first-item">
+						<div class="icon-wrapper">
+							<div class="icon-vip"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+							<div class="vip-redeemticket">暂未上线</div>
+						VIP专场
+					</li>
 				
 				<!-- 兑换奖品 -->
 				<a href="/redeem">

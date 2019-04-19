@@ -115,12 +115,14 @@
 									@if($cat->display_name == '文娱车品' || $cat->display_name == '数码电器')								
 										@if ($cat->id == $cid)
 											<a class="carousel-cell on is-selected carousel-cell-long" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
+											@php @$current_cat_name = $cat->display_name @endphp
 										@else
 											<a class="carousel-cell carousel-cell-long" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 										@endif
 									@else
 										@if ($cat->id == $cid)
 											<a class="carousel-cell on is-selected" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
+											@php @$current_cat_name = $cat->display_name @endphp
 										@else
 											<a class="carousel-cell" href="/cs/{{$cat->id}}">{{$cat->display_name}}</a>
 										@endif
@@ -179,7 +181,7 @@
 				<div class="product" style="margin-top: 0px;">
 					<div class="title">
 						<span>共有<font color="#f63556">{{ $vouchers->total() }}</font>款产品</span>
-						<h2>{{ is_null($current_cat_name) ? "精选" : $current_cat_name }}大额优惠券</h2>
+						<h2>今日{{ is_null($current_cat_name) ? "精选" : $current_cat_name }}销量榜单</h2>
 					</div>
 					
 					<div class="infinite-scroll">

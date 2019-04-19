@@ -37,7 +37,8 @@
 			<div class="information-table">
 				  <div class="col-xs-12">
 				  	<span class="label-title">付款金额</span><br />
-				  	<div class="point numbers" id="cut"><div class="sign">¥</div>99.00</div>
+				  	<div class="point numbers"><div class="sign">¥</div>99.00</div>
+				  	<input type="hidden" id="cut" value="i8I2yX408f" />
 				  	<div class="button-copy cutBtn">复制支付口令</div>
 				  </div>
 			</div>
@@ -128,8 +129,8 @@
 		    });
 
 			var clipboard = new ClipboardJS('.cutBtn', {
-				target: function () {
-					return document.querySelector('#cut');
+				text: function (trigger) {
+					return $('#cut').val();
 				}
 			});
 
