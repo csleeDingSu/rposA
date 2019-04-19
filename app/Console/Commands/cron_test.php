@@ -7,7 +7,7 @@ use App\Http\Controllers\TestController;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Voucher;
-class ImportVoucher extends Command
+class crontest extends Command
 {
     /**
      * The name and signature of the console command.
