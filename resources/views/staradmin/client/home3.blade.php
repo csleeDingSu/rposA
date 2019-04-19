@@ -217,7 +217,7 @@
 					
 				<div>
 					<img src="{{ asset('/client/images/free-icon.png') }}" class="freeicon">
-					<a class="freeVoucherBtn" href="/arcade">我要免单</a>
+					<a class="freeVoucherBtn">我要免单</a>
 				</div>
 			</div>
 		</div>
@@ -386,7 +386,7 @@
 			});
 			
 			$('.showQuan').click((e) => {
-				$('.cutBtn').removeClass('cutBtn-success').html('一键复制');
+				$('.cutBtn').removeClass('cutBtn-success').html('领取优惠卷');
 				var target = $(e.target).closest('.inBox').length;
 				console.log(target);
 				if (target > 0) {
@@ -407,6 +407,12 @@
 				
 				being.wrapShow();
 				being.scaleShow('.showQuan');
+			});
+
+			$('.freeVoucherBtn').click((e) => {
+				being.wrapShow();
+				being.scaleHide('.showQuan');
+				being.scaleShow('.showTips');
 			});
 			
 			$("body").on("click",".mset a.type",function(e) {
