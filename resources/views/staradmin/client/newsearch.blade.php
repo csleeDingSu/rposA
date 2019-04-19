@@ -331,11 +331,12 @@
 
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
-				$( ".copyvoucher" ).html($(this).data('voucher'));			
+				$( ".copyvoucher" ).html('please wait');		
 				var dd = $(this).data('imgurl');
 				$("#showIcon").attr("src",dd);
 				being.wrapShow();
 				being.scaleShow('.showQuan');
+				$( ".copyvoucher" ).html( getpasscode( $(this).data('goodsid') ) );
 			});
 			
 			$("body").on("click",".mset a.type",function(e) {
@@ -367,10 +368,37 @@
 				// being.scaleShow('.showTips');
 				$("#showIcon").attr("src",$(this).data('imgurl'));
 
-				$( ".copyvoucher" ).html($(this).data('voucher'));
+				$( ".copyvoucher" ).html('please wait');
 				being.wrapShow();
 				being.scaleShow('.showQuan');
+				$( ".copyvoucher" ).html( getpasscode( $(this).data('goodsid') ) );
 			});
+			
+			function getpasscode( keyword ) {
+				var url = "{{route('get_passcode')}}";
+
+				$.ajax( {
+					url: url,
+					data: {
+						_method: 'get',
+						_token: "{{ csrf_token() }}",
+						_keyword: keyword
+					},
+				} ).done( function ( data ) {
+					if (data.success == 'true')
+						{
+							var result = data.record;
+							//alert(result.passcode);
+							$( ".copyvoucher" ).html( result.passcode );
+							return result.passcode;
+						}
+					
+					
+				} ).fail( function () {
+					alert( 'datalist could not be loaded.' );
+					
+				} );
+			}
 
 			function showBao(item_id,product_name,product_price,product_img,product_discount_price,voucher_price)
 			{
