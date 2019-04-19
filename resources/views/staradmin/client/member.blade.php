@@ -79,7 +79,7 @@
 
 				<!-- VIP专场 -->
 				@if(count($vip_status->where('redeem_state', '3')) > 0)
-					<a href= "/vip">
+					<a href= "/vipmember">
 				@elseif(count($vip_status->where('redeem_state', '2')) > 0)
 					<a href= "/vipmember">
 				@elseif(count($vip_status->where('redeem_state', '1')) > 0)
