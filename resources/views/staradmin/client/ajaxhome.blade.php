@@ -40,8 +40,7 @@
 
 																@if (@$diff > 0)
 																<span class="vExpiry">
-																	剩
-																	{{ @$diff }}天
+																	剩{{ @$diff }}天
 																</span>
 																@else
 																<span class="vExpiry">
@@ -65,20 +64,21 @@
 												</div>
 												<div class="col-xs-6">
 													<div class="month_sales">
-															已售
-															@if (empty($item->sales_show))
-																@if ($item->month_sales > 10000)
-																	{{$item->month_sales/10000}}万
-																@else
-																	{{$item->month_sales}}
-																@endif
+														@php @$sales = 0 @endphp
+														@if (empty($item->sales_show))
+															@if ($item->month_sales > 10000)
+																@php @$sales = $item->month_sales/10000 @endphp
+																@php @$sales = @$sales.'万' @endphp
 															@else
-																{{$item->sales_show}}
+																@php @$sales = $item->month_sales  @endphp
 															@endif
-															件
+														@else
+															@php @$sales = $item->sales_show  @endphp
+														@endif
+															已售{{$sales}}件
 														</div>
 														<div class="mset">
-															<a data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}" data-tt_product_discount_price="{{$item->discount_price}}">
+															<a data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_voucher_price="{{$item->voucher_price}}">
 														<img class="btn-product" src="{{ asset('/client/images/btn-product.png') }}"  /></a>
 													</div>
 												</div>
