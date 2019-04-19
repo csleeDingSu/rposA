@@ -543,7 +543,7 @@
 									当前不能结算
 								</div>
 								<div class="modal-warning-content redeem-error">
-									本局游戏尚未完成
+									你猜的游戏正在进行中
 								</div>
 
 								<div class="close-modal modal-warning-button">
