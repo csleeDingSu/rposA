@@ -263,50 +263,15 @@
 										（可提现到支付宝）</span>再去购买商品，<br />
 										<span class="highlight">补助金最少30元</span>起，任你领不停。<br />
 									</div> -->
-									<div class="instructions" style="padding:10px 11px 10px 11px !important;">	
-										<span style="font-weight: bold;">
-											到<img src="{{ asset('/client/images/small-wheel.png') }}" width="15" height="15" /><span class="highlight">{{env('game_name', '幸运转盘')}}</span>赚金币换免单红包
-										</span>
-										<ul style="color: #a8adaa;">
-											<li> • 新人100%中大额红包</li>
-											<li> • 30元、50元、100元任你领</li> 
-											<li> • 分享越多 转盘次数许多</li>
+									<div class="instructions">
+										<ul>
+											<li><span class="highlight">新人福利</span>送2次幸运转盘，99%概率可赚30元免单红包。</li>
+											<li><span class="highlight">分享福利</span>每邀请1位好友，就能获得2次幸运转盘，邀请越多红包拿越多。</li> 
+											<li><span class="highlight">可提现</span>免单红包可兑换至支付宝。供你购物使用。</li>
 										</ul>
-										<span style="font-weight: bold;">
-											免单红包拿到手软，<span class="highlight">从此购物不花自己钱！</span>
-										</span>
 									</div>
-									<div class="modal-label">
-										<div class="icon-coin-wrapper">
-											<div class="icon-coin"></div>
-										</div>
-										<div class="icon-label">您当前拥有
-											<span class="modal-point">
-											@if (isset($member_mainledger->current_point))
-												{{ number_format($member_mainledger->current_point, 0, '.', '') }}
-											@else
-												0
-											@endif
-											</span>
-											金币
-										</div>
-									</div>
-									<div style="clear: both;"></div>
-									<div class="modal-number">你还有
-										@if (isset($member_mainledger->current_life))
-											{{ number_format($member_mainledger->current_life, 0, '.', '') }}
-										@else
-											0
-										@endif
-									次游戏机会 可赚
-										@if (isset($member_mainledger->current_life))
-											{{ number_format($member_mainledger->current_life * 150, 0, '.', '') }}
-										@else
-											0
-										@endif
-									金币</div>
 									<a href="/arcade">
-										<div class="btn-wabao">去赚金币</div>
+										<div class="btn-wabao">进入幸运转盘</div>
 									</a>
 								</div>
 							</div>

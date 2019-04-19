@@ -877,23 +877,31 @@ p.vip-life {
 }
 
 #promotion .instructions {
-  margin-top: 152px;
-  margin-bottom: 25px;
+  margin-top: 165px;
+  margin-bottom: 20px;
   font-size: 12px;
   font-weight: 500;
-  color: #8c8882;
+  color: #9b9b9b;
   text-align: justify;
   line-height: 20px;
-  padding: 10px 20px;
+  padding: 15px 20px;
 }
 
 #promotion .instructions img{
   margin-top: -2px;
 }
 
+#promotion .instructions li{
+  padding-bottom: 10px;
+}
+
 #promotion .highlight {
-  color: #fdb029;
-  font-weight: 700;
+  color: white;
+  background: #ff7b5f;
+  border-radius: 2px;
+  font-size: 10px;
+  padding: 2px 5px;
+  margin-right: 5px;
 }
 
 #promotion .instructions h2{
@@ -923,12 +931,12 @@ p.vip-life {
 
 #promotion .btn-wabao {
   background: url('/client/images/btn-wabao.png') no-repeat top center;
-  font-size: 16px;
+  font-size: 18px;
   color: #db3c26;
   background-size: contain;
   width: 250px;
   height: 40px;
-  padding-top: 8px;
+  padding-top: 6px;
   margin-top: 20px;
   cursor: pointer;
   text-align: center;
