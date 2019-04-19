@@ -152,19 +152,20 @@ class ImportVoucher extends Command
 										
 										if (!empty($insdata['expiry_datetime']))
 										{
+											$count = 0;
 											$ud = $insdata['expiry_datetime'];
 											
 											$this->info( $m.'--'.$ud );
 											
-											$ud = str_replace('.','/',$ud);	
+											$ud = str_replace('.','/',$ud,$count);	
 											$this->info( $m.'--'.$ud );
+											$insdata['expiry_datetime'] = 'error';
+											 if ($count > 0) 
+											 {
+												 $insdata['expiry_datetime'] = Carbon::parse($ud)->format('Y-m-d H:i:s');
+											 }
+											 
 											
-											try {
-												$insdata['expiry_datetime'] = Carbon::parse($ud)->format('Y-m-d H:i:s');
-											}
-											catch (Exception $err) {
-												$insdata['expiry_datetime'] = 'error';
-											}
 											
 											
 											//$insdata['expiry_datetime'] = Carbon::parse($ud)->format('Y-m-d H:i:s');
