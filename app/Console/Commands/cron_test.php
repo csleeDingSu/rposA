@@ -162,7 +162,7 @@ class ImportVoucher extends Command
 												$insdata['expiry_datetime'] = Carbon::parse($ud)->format('Y-m-d H:i:s');
 											}
 											catch (Exception $err) {
-												$insdata['expiry_datetime'] = null;
+												$insdata['expiry_datetime'] = 'error';
 											}
 											
 											
