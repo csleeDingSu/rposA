@@ -78,6 +78,7 @@ class ImportVoucher extends Command
 				
 				$imresult = Voucher::get_pipeline_import();		
 		 		event(new \App\Events\EventDynamicChannel('importnoti','',$imresult));
+				
 				$this->info('-- Update Event');
 				
 				$filename = $row->filename;
