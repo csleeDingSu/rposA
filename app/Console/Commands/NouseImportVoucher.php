@@ -7,14 +7,14 @@ use App\Http\Controllers\TestController;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Voucher;
-class ImportVoucher extends Command
+class NouseImportVoucher extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'import:voucher';
+    protected $signature = 'nuseimport:voucher';
 
     /**
      * The console command description.
@@ -42,7 +42,8 @@ class ImportVoucher extends Command
      */
     public function handle()
     {
-        ini_set('max_execution_time', 0);
+        $this->error('-- moved to another file');exit();return FALSE;
+		ini_set('max_execution_time', 0);
 		ini_set('memory_limit', '-1');
 		$this->info('-- Cron start to work');
 		//Check Cron Status 
@@ -57,13 +58,15 @@ class ImportVoucher extends Command
 		//Check Files in pipeline
 		$result  = \DB::table('excel_upload')->groupBy('filename')
                  ->get();
-		
+		//print_r($result);
 		if (!$result->isEmpty())
 		{
 			event(new \App\Events\EventDynamicChannel('unr-import','','yes'));
 			
 			$categories = Voucher::get_category();
-			$systitle   = Voucher::get_csvtitle()->toArray();						
+			$systitle   = Voucher::get_csvtitle()->toArray();
+			
+			
 				
 			//Process File			
 			foreach($result as $row)
@@ -96,13 +99,11 @@ class ImportVoucher extends Command
 				{
 					if (isset($filecolumn->file_title_loc_id))
 					{
-						//$file[$filecolumn->file_title_loc_id] = $filecolumn->sys_field_id;
+						$file[$filecolumn->file_title_loc_id] = $filecolumn->sys_field_id;
 
 						$cfile[$filecolumn->file_title_loc_id] = $slist[$filecolumn->sys_field_id];
 					}			
 				}	
-				
-				$sysval = array_flip($cfile);
 
 				if (empty($cfile)) 
 				{
@@ -116,106 +117,119 @@ class ImportVoucher extends Command
 				$array_data = [];
 
 				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
-				$insdata = [];
+
 				$count = count($tdata);
 
 				if ($count > 0) {			
 					$arrayhead = $tdata[0];
 					$i = 1;
 					
-					foreach (array_chunk($tdata,500) as $keyc=>$data) 
-					{
-						$dbc = [];
-						foreach ($data as $key=> $val) 
-						{
-							$com = array_intersect_key($val, $sysval);
-							$z = 0;
-							$insdata = [];
-							foreach ($com as $ck=>$cv) 
-							{
-								$insdata['source_file'] = $filename;
-								$insdata['updated_at']  = $now; 
-								$insdata['created_at']  = $now;
-								$insdata[$ck]  			= $cv;
-								
-								$ci[] = $i;
-								if ($ck == 'expiry_datetime')
-								{
-									if (!empty($cv))
-									{
-										$ud = $cv;
-										$ud = str_replace('.','/',$ud);		
-										$insdata['expiry_datetime'] = Carbon::parse($ud)->format('Y-m-d H:i:s');
-									}
-									else
-									{
-										$insdata['expiry_datetime'] = null;
-									}
-								}
-								if ($ck == 'product_category')
-								{
-									$_data= explode("/", $insdata['product_category']);										
-									if(empty($kk[$i])){
-										foreach($_data as $key=> $item){
-											$get_data = self::sort_voucher($item, $categories);
-											$array_data[]=$get_data;
-										}
-									$kk[$i] = $array_data;
-									unset($array_data);
-									}								
-								}
-							
-								if (!empty($insdata))
-								{								
-									$dbc[$i] = $insdata;
-								}							
-							}
-							$i++;
-						}
+					foreach (array_chunk($tdata,500) as $keyc=>$data) {
 						
-						//Update Data
-						foreach ($dbc as $key=> $t) 
-						{
-						   if(!empty($kk[$key]))
-						   {
-							   $id = \DB::table('unreleased_vouchers')->insertGetId($t);
+					foreach ($data as $key=> $val) 
+					{
+						if (empty($val['product_name'])) {
+							break;
+						}
+						$ke = array_keys($val);
 
-							   $this->line('-- New record Inserted. '.$id);
+						foreach ($val as $akey=>$voar) 
+						{	
+							$m = 0;
+							$insdata = array();
+							foreach($ke as $mkey=>$mva)
+							{	
+								if (!empty($cfile[$m]))
+								{
+									$re_field = $cfile[$m];
 
-							   if(isset($t['is_featured']) && $t['is_featured'] == 1)
-							   {
-								   $catedata['unr_voucher_id'] = $id; 
-								   $catedata['category']       = 220; 
-								   $catedata['updated_at']     = $now; 
-								   $catedata['created_at']     = $now; 
-								   \DB::table('voucher_category')->insert($catedata);
-								   unset($catedata);
-							   }
-							   foreach($kk[$key] as $vkey=>$val)
-							   {
-								   $catedata['unr_voucher_id']  = $id; 
-								   $catedata['category']  = $val; 
-								   $catedata['updated_at']  = $now; 
-								   $catedata['created_at']  = $now; 
-								   \DB::table('voucher_category')->insert($catedata);
-							   }
+									$insdata[$re_field] = $val[$mva];
+									$insdata['source_file'] = $filename;
+									$insdata['updated_at']  = $now; 
+									$insdata['created_at']  = $now;
+									
+									if ($re_field == 'expiry_datetime')
+									{
+										
+										if (!empty($insdata['expiry_datetime']))
+										{
+											$ud = $insdata['expiry_datetime'];
+											$ud = str_replace('.','/',$ud);		
+											$insdata['expiry_datetime'] = Carbon::parse($ud)->format('Y-m-d H:i:s');
+										}
+										else
+										{
+											$insdata['expiry_datetime'] = null;
+										}
+									}
+
+									if ($re_field == 'product_category')
+									{
+										$_data= explode("/", $insdata['product_category']);								
+
+											if(empty($kk[$i])){
+												foreach($_data as $key=> $item){
+													$get_data = self::sort_voucher($item, $categories);
+													$array_data[]=$get_data;
+												}
+											$kk[$i] = $array_data;
+											unset($array_data);
+										}	
+									}
+								}						
+								$m++;
 							}
-						}						
-					}										
-					
+						}	
+
+						if (!empty($insdata))
+						{
+							$dbc[$i] = $insdata;
+						}
+						$i++;
+					}
+				}
+					//Update Data
+					foreach ($dbc as $key=> $t) 
+					{
+					   if(!empty($kk[$key]))
+					   {
+						   $id = \DB::table('unreleased_vouchers')->insertGetId($t);
+						   
+						   $this->line('-- New record Inserted. '.$id);
+
+						   if(isset($t['is_featured']) && $t['is_featured'] == 1)
+						   {
+							   $catedata['unr_voucher_id'] = $id; 
+							   $catedata['category']       = 220; 
+							   $catedata['updated_at']     = $now; 
+							   $catedata['created_at']     = $now; 
+							   \DB::table('voucher_category')->insert($catedata);
+							   unset($catedata);
+						   }
+						   foreach($kk[$key] as $vkey=>$val)
+						   {
+							   $catedata['unr_voucher_id']  = $id; 
+							   $catedata['category']  = $val; 
+							   $catedata['updated_at']  = $now; 
+							   $catedata['created_at']  = $now; 
+							   \DB::table('voucher_category')->insert($catedata);
+						   }
+						}
+					}
 				}
 				else 
 				{ 
 					$this->error('-- File Missing/No excel rows to process');
 					die(); 
 				}
-				
+				//Send Notification
 				//Delete File
+				//$filename = 'upv1555031330';
 				$this->info('-- deleting file from server.');
 				\DB::table('excel_upload')->where('filename',$fname)->delete();	
 				
 				$importfile->delete();
-				//Send Notification
+				
 				$result = Voucher::get_pipeline_import();
 		
 		 		event(new \App\Events\EventDynamicChannel('importnoti','',$result));
