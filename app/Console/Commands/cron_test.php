@@ -149,13 +149,13 @@ class ImportVoucher extends Command
 									
 									if ($re_field == 'expiry_datetime')
 									{
-										
+										$this->info( $m.'--'.$re_field );
 										if (!empty($insdata['expiry_datetime']))
 										{
 											$count = 0;
 											$ud = $insdata['expiry_datetime'];
 											
-											$this->info( $m.'--'.$ud );
+											//$this->info( $m.'--'.$ud );
 											
 											$ud = str_replace('.','/',$ud,$count);	
 											$this->info( $m.'--'.$ud );
