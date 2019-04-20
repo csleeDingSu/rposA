@@ -459,7 +459,7 @@
 			});
 			clipboard.on('success', function (e) {
 				console.log(e);
-				$('.btn-product-details').attr('src', '/client/images/btn-copy-success.png');
+				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
 			});
 
 			clipboard.on('error', function (e) {
