@@ -1155,6 +1155,7 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
+  z-index: 1;
 }
 
 #button-wrapper {
@@ -1174,6 +1175,7 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
    height: 90%;
    cursor: pointer;
    z-index: 10000;
+   border: 1px solid red;
 
 }
 
