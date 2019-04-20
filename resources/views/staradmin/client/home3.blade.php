@@ -214,14 +214,15 @@
 					<!-- <h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3> -->
 					<div class="div_product_name">Product name</div>
 					<div class="div_product_details">淘宝价 ￥<span class="span_price"></span> | <span class="span_highlight">优惠卷 ￥<span class="span_voucher_price"></span></span></div>
-					<h4 style="text-indent: 100%; white-space: nowrap; overflow: hidden;">优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
-					<input type="hidden" id="cut" value="i8I2yX408f" />
+					
+
 					
 					<div id="button-wrapper">
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
 						<div id="btn-copy"></div>
 						<div id="btn-voucher" class="freeVoucherBtn"></div>
 					</div>
+					<h4 style="padding:5px;">优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
 
 			</div>
 		</div>
@@ -369,7 +370,7 @@
 
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
-				$('#cut').val($(this).data('voucher'));
+				$( ".copyvoucher" ).html($(this).data('voucher'));
 
 				var dd = $(this).data('imgurl');
 				$("#showIcon").attr("src",dd);
@@ -417,7 +418,7 @@
 				// being.scaleShow('.showTips');
 				$("#showIcon").attr("src",$(this).data('imgurl'));
 				
-				$('#cut').val($(this).data('voucher'));
+				$( ".copyvoucher" ).html($(this).data('voucher'));
 
 				$( ".caption2" ).html($(this).data('tt_product_discount_price'));
 				$( ".div_product_name" ).html($(this).data('tt_product_name'));
@@ -454,19 +455,17 @@
 			});
 
 			var clipboard = new ClipboardJS('#btn-copy', {
-				text: function (trigger) {
-					return $('#cut').val();
+				target: function () {
+					return document.querySelector('#cut');
 				}
 			});
-
 			clipboard.on('success', function (e) {
+				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
 			});
 
 			clipboard.on('error', function (e) {
-				str = JSON.stringify(e);
-				str = JSON.stringify(e, null, 4); // (Optional) beautiful indented output.
-				alert(str);
+				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
 			});
 
