@@ -216,12 +216,11 @@
 					<div class="div_product_details">淘宝价 ￥<span class="span_price"></span> | <span class="span_highlight">优惠卷 ￥<span class="span_voucher_price"></span></span></div>
 					<h4 style="text-indent: 100%; white-space: nowrap; overflow: hidden;">优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
 					
-					<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" usemap="#m_usaMap" />
-
-					<map name="m_usaMap">
-						<area shape="poly" coords="8,3,257,5,254,78,12,78" class="cutBtn">
-						<area shape="poly" coords="266,6,533,4,530,77,269,81" class="freeVoucherBtn">
-					</map>
+					<div id="button-wrapper">
+						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
+						<div id="btn-copy"></div>
+						<div id="btn-voucher" class="freeVoucherBtn"></div>
+					</div>
 
 			</div>
 		</div>
@@ -292,7 +291,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
-	<script src="{{ asset('/client/js/imageMapResizer.min.js') }}"></script>
 	<script>
 		
 		$(document).on('ready', function() {
@@ -313,8 +311,6 @@
 
 		$(document).ready(function(){
 		//$(function () {
-
-			$('map').imageMapResize();
 
 			var initialIndex = $('#initialIndex').val();
 			var $carousel = $('.carousel').flickity({
@@ -447,6 +443,7 @@
 			$('.showBao').click((e) => {
 				var target = $(e.target).closest('.inBox').length;
 				console.log(target);
+
 				if (target > 0) {
 					return;
 				} else {
@@ -455,7 +452,7 @@
 				}
 			});
 
-			var clipboard = new ClipboardJS('.cutBtn', {
+			var clipboard = new ClipboardJS('#btn-copy', {
 				target: function () {
 					return document.querySelector('#cut');
 				}

@@ -1057,22 +1057,6 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   width: 20%;
 }
 
-a.freeVoucherBtn, a.freeVoucherBtn:link, a.freeVoucherBtn:visited, a.freeVoucherBtn:hover, a.freeVoucherBtn:active {
-    width: 5.01rem;
-    height: 0.81rem;
-    border-radius: 1rem;
-    font-size: 0.33rem;
-    border: 0.05rem solid #f09b48;
-    /*color: white;*/
-    /*background-image: linear-gradient(to right, #ffc420 , #ff2151);*/
-    background: white;
-    text-decoration: none;
-    padding: 0.15rem;
-    cursor: pointer;
-    color: #f09b48;
-    padding-left:0.8rem;
-}
-
 .AfterDiscount {
   position: absolute;
   font-weight: 100;
@@ -1166,13 +1150,39 @@ a.freeVoucherBtn, a.freeVoucherBtn:link, a.freeVoucherBtn:visited, a.freeVoucher
 
 .btn-product-details {
   background-size: contain;
-  width: 90%;
+  width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
 }
 
-map {
-  cursor: pointer;
+#button-wrapper {
+    position: relative;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#btn-copy {
+   position: absolute;
+   top: 0;
+   left: 0;
+   background-color: transparent;
+   width: 49%;
+   height: 90%;
+   cursor: pointer;
+
+}
+
+#btn-voucher {
+   position: absolute;
+   top: 0;
+   left: 49%;
+   background-color: transparent;
+   width: 50%;
+   height: 90%;
+   cursor: pointer;
+
 }
