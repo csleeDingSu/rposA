@@ -29,11 +29,11 @@
 							<p class="vip-life">VIP专场</p>
 						@elseif(Request::is('share_product'))
 							<i class="nTxt">0</i>
-							<p>幸运转盘</p>
+							<p>免单转盘</p>
 						@else
 							<!-- <i class="nTxt">{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? ((Auth::Guard('member')->user()->wechat_verification_status == 0) ? Auth::Guard('member')->user()->current_life : 0) : 0}}</i> -->
 							<i class="nTxt">{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</i>
-							<p>幸运转盘</p>
+							<p>免单转盘</p>
 						@endif
 					</div>
 				</a>
