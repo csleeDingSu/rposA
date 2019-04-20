@@ -869,7 +869,7 @@ p.vip-life {
 
 /* End Game Rules Modal */
 #promotion .modal-card {
-    width: 250px;
+    width: 260px;
     margin: 0 auto;
     font-size: 16px;
 }
@@ -918,16 +918,12 @@ p.vip-life {
 }
 
 #promotion .instructions li{
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 #promotion .highlight {
-  color: white;
-  background: #ff7b5f;
-  border-radius: 2px;
-  font-size: 10px;
-  padding: 2px 5px;
-  margin-right: 5px;
+  color: #f2583c;
+  font-size: 14px;
 }
 
 #promotion .instructions h2{
@@ -960,10 +956,10 @@ p.vip-life {
   font-size: 18px;
   color: #db3c26;
   background-size: contain;
-  width: 250px;
-  height: 40px;
-  padding-top: 6px;
-  margin-top: 20px;
+  width: 260px;
+  height: 45px;
+  padding-top: 8px;
+  margin-top: 25px;
   cursor: pointer;
   text-align: center;
   font-weight: 500;

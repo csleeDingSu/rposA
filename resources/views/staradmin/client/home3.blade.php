@@ -262,17 +262,18 @@
 						<div class="modal-row">
 							<div class="wrapper modal-full-height">
 								<div class="modal-card">
-									<!-- <div class="instructions">
-										 <h2>0元购物攻略</h2>
-										玩猜单双游戏，赢金币换<span class="highlight">购物补助金<br />
-										（可提现到支付宝）</span>再去购买商品，<br />
-										<span class="highlight">补助金最少30元</span>起，任你领不停。<br />
-									</div> -->
 									<div class="instructions">
 										<ul>
-											<li><span class="highlight">新人福利</span>送2次幸运转盘，99%概率可赚30元免单红包。</li>
-											<li><span class="highlight">分享福利</span>每邀请1位好友，就能获得2次幸运转盘，邀请越多红包拿越多。</li> 
-											<li><span class="highlight">可提现</span>免单红包可兑换至支付宝。供你购物使用。</li>
+											<li>
+												<img src="/client/images/list-image.png" width="14px" height="18px" />
+												<span class="highlight">新人红包</span>
+												<img src="/client/images/list-label.png" width="42px" height="14px" /></li>
+											<li style="padding-bottom: 10px">注册送2次幸运转盘，99%概率可赚30元免单红包。</li>
+											<li>
+												<img src="/client/images/list-image.png" width="14px" height="18px" />
+												<span class="highlight">分享红包</span>
+												<img src="/client/images/list-label.png" png" width="42px" height="14px" /></li>
+											<li>每邀请1位认证好友，送2次幸运转盘，99%概率赚30元，邀请越多赚越多。</li>
 										</ul>
 									</div>
 									<a href="/arcade">
