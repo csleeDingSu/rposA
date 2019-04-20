@@ -273,7 +273,7 @@
 												<img src="/client/images/list-image.png" width="14px" height="18px" />
 												<span class="highlight">分享红包</span>
 												<img src="/client/images/list-label.png" png" width="42px" height="14px" /></li>
-											<li>每邀请1位认证好友，送2次幸运转盘，99%概率赚30元，邀请越多赚越多。</li>
+											<li>每邀请1位认证好友，送2次幸运转盘，99%概率赚30元，邀请10个赚300元。</li>
 										</ul>
 									</div>
 									<a href="/arcade">
