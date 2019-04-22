@@ -1,0 +1,85 @@
+.isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
+
+.header {
+    height: 1.2rem;
+    position: absolute;
+    margin-top: 0.3rem;
+    width: 100%;
+}
+
+.header .top {
+	background: transparent;
+	float: left;
+}
+
+.header .top li {
+	line-height: 0.7rem;
+	font-size: 1em;
+	text-align: left;
+}
+
+.header .top li a, .header .top li a:hover, .header .top li a:focus {
+	margin-left: 0;
+	text-decoration: none;
+}
+
+.top-background {
+	background-color: white;
+}
+
+.top-background img {
+	margin-top: 0%;
+	width: 100%;
+    height: 100%;
+}
+
+.inBox {
+  padding-top: 0.2rem;
+  padding-left: 0.2rem;
+  float: left;
+}
+
+.flexSp {
+  background: #ffffff;
+  border-radius: 0.42rem;
+  -webkit-border-radius: 0.42rem;
+  -moz-border-radius: 0.42rem;
+  -ms-border-radius: 0.42rem;
+  -o-border-radius: 0.42rem;
+  height: 0.74rem;
+  width: 6.2rem;
+  align-items: center;
+  padding: 0 0.2rem;
+}
+
+.flexSp input {
+  display: flex;
+  width: 80%;
+  box-sizing: border-box;
+  padding-left: 0.25rem;
+  font-size: 0.32rem;
+  line-height: 2em;
+  background: none;
+  border: none;
+}
+
+.flexSp input::placeholder {
+  color: #bdbdbd;
+}
+.flexSp input::-webkit-placeholder {
+  color: #bdbdbd;
+}
+
+.btn-back {
+	padding-top: 0.3rem;
+	padding-left: 0.1rem;
+	float: left;
+	width: 8%;
+
+}
+
+.btn-back img {
+	margin-top: 0%;
+	width: 100%;
+    height: 100%;
+}
