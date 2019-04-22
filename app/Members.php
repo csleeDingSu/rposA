@@ -115,7 +115,7 @@ class Members extends Model
 	public static function get_introducer_life($id = 1)
 	{
 		//$result = DB::table('settings')->where('id', $id)->pluck('introduce_life');
-		$result = DB::table('settings')->select('introduce_life')->where('id', $id)->first();
+		$result = DB::table('settings')->select('introduce_life','second_level_introduce_life')->where('id', $id)->first();
 		return $result;
 	}
 	

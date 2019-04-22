@@ -12,6 +12,7 @@
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.username')</th>
+								<th>@lang('dingsu.ref_note')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.point')</th>
 								<th>@lang('dingsu.status')</th>
@@ -26,6 +27,7 @@
 								<td>
 									{{ $list->username }}
 								</td>
+								<td>{{ $list->ref_note }}</td>
 								<td>
 									{{ $list->package_price }}
 								</td>
