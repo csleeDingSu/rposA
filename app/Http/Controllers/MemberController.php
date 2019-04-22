@@ -312,11 +312,12 @@ class MemberController extends BaseController
 					$res = Member::update_member($record->id,$data);					
 					
 					//Second level introducer bonus life
-					$srecord  = Member::find($record->referred_by);
+					$srecord  = Member::find($record->referred_by); print_r($srecord );
 					if ($srecord->referred_by)
-					{	
+					{	echo 'imhere';
 						if (!empty($life->second_level_introducer_life))
 						{
+							echo 'imhere-2s';
 							Wallet::update_ledger_life($srecord->referred_by, $life->second_level_introducer_life,'LILE',' Introducer second level bonus life.');	
 						}
 					}					
