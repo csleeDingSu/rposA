@@ -100,7 +100,7 @@
 					  	<!-- <a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a> -->
 				  						
 					<li class="dbox1 logo"><img src="{{ asset('/test/main/images/logo.png') }}"></li>				
-					<li class="dbox0"><a href="/search" style="color: white; font-size: 0.3rem;"><img src="{{ asset('/client/images/search_btn.png') }}" style="height: 0.3rem;"> 搜索</a></li>
+					<li class="dbox0"><a href="/newsearch" style="color: white; font-size: 0.3rem;"><img src="{{ asset('/client/images/search_btn.png') }}" style="height: 0.3rem;"> 搜索</a></li>
 
 					
 				</ul>

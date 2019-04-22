@@ -584,5 +584,7 @@ return [
 	'response_from_server' => 'Response from Server',
 	'connected_authenticating' => 'Connected, Authenticating',
 	'disconnected' => 'Disconnected',
+
+	'ref_note' => 'submitted info',
 	
 ];
