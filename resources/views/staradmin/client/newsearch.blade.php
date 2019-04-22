@@ -19,6 +19,8 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
 	<link rel="stylesheet" href="{{ asset('/client/css/slick-theme.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ asset('/client/css/jquery.searchHistory.css') }}">
+	<link type="text/css" rel="stylesheet" href="{{ asset('/client/css/search.css') }}">
 
 	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
@@ -66,65 +68,7 @@
 </script>
 <script type="text/javascript" src="//js.users.51.la/19985793.js"></script>
 </head>
-<style>
-	
-	
-.isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
 
-		.header {
-		    height: 1.2rem;
-		}
-
-		.header .top li {
-			line-height: 0.7rem;
-			font-size: 1em;
-			text-align: left;
-		}
-
-		.header .top li a, .header .top li a:hover, .header .top li a:focus {
-			margin-left: 0;
-			text-decoration: none;
-		}
-
-        .inBox {
-		  padding-top: 0.2rem;
-		  padding-left: 0.2rem;
-		  float: left;
-		}
-
-		.flexSp {
-		  background: #ffffff;
-		  border-radius: 0.42rem;
-		  -webkit-border-radius: 0.42rem;
-		  -moz-border-radius: 0.42rem;
-		  -ms-border-radius: 0.42rem;
-		  -o-border-radius: 0.42rem;
-		  height: 0.74rem;
-		  width: 6.2rem;
-		  align-items: center;
-		  padding: 0 0.2rem;
-		}
-
-        .flexSp input {
-		  display: flex;
-		  width: 100%;
-		  box-sizing: border-box;
-		  padding-left: 0.25rem;
-		  font-size: 0.32rem;
-		  line-height: 2em;
-		  background: none;
-		  border: none;
-		}
-
-		.flexSp input::placeholder {
-		  color: #bdbdbd;
-		}
-		.flexSp input::-webkit-placeholder {
-		  color: #bdbdbd;
-		}
-
-	</style>
-	<link type="text/css" rel="stylesheet" href="{{ asset('/client/css/jquery.searchHistory.css') }}">
 <body style="background:#ffffff">
 <input type="hidden" id="page" value="1" />
 @if(count($vouchers))
@@ -137,19 +81,26 @@
 		<div class="cardHeader">
 			<div class="header">
 				<form id="historyForm" action="" method="GET">
+				<div class="btn-back">
+                	<img src="{{ asset('/client/images/search/left.png') }}" />
+                </div>
 				<ul class="dbox top">			
 					<li class="dbox0">
 		                <div class="inBox">
                             <div class="flexSp">
-                            
                                 <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" value="{{ $strSearch }}" autofocus>
+                                <a id="btn_search" href="#" style="color: #f65e7e; font-size: 0.3rem;">搜索</a>
                             
                             </div>
+
 		                </div>
-						<div class="inBox"><a id="btn_search" href="#" style="color: white; font-size: 0.3rem;">搜索</a></div>
+						
 					</li>					
 				</ul>
 				</form>
+			</div>
+			<div class="top-background">
+				<img src="{{ asset('/client/images/search/bg.png') }}" />
 			</div>
 		</div>
 		
