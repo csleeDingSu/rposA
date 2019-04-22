@@ -309,20 +309,17 @@ class MemberController extends BaseController
 				if ($wallet['success'])
 				{
 					$data = ['introducer_life'=> 1];
-					$res = Member::update_member($record->id,$data);
-					/*
+					$res = Member::update_member($record->id,$data);					
 					
-					$record  = Member::find($record->referred_by);
-										
-					
-					if (!empty($life->second_level_introducer_life))
-					{
-						$wallet = Wallet::update_ledger_life($record->referred_by, $life->introduce_life,'LILE',' Introducer second level bonus life.');
-						$data = ['introducer_life'=> $life->second_level_introducer_life];
-						$res = Member::update_member($record->id,$data);
-					}
-					*/
-					
+					//Second level introducer bonus life
+					$srecord  = Member::find($record->referred_by);
+					if ($srecord->referred_by)
+					{	
+						if (!empty($life->second_level_introducer_life))
+						{
+							Wallet::update_ledger_life($srecord->referred_by, $life->second_level_introducer_life,'LILE',' Introducer second level bonus life.');	
+						}
+					}					
 					return TRUE;
 				}
 				// @todo :- Log error message
