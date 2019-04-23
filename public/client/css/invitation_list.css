@@ -26,6 +26,10 @@ html, body {
 }
 
 /* Tabs */
+.full-width-tabs {
+    padding-top: 0.2rem;
+}
+
 .full-width-tabs > .nav-pills > .active > a {
     text-decoration: none;
     color: #ff6a42 !important;
@@ -35,7 +39,7 @@ html, body {
     border-radius:0px;
     color:#666666;
     font-weight: 500;
-    background: #ffffff;
+    /*background: #ffffff;*/
     font-size: 16px;
     padding: 0px 10px;
 }
@@ -219,4 +223,32 @@ html, body {
      line-height: 1.6em;
      padding: .15rem 0;
      margin-bottom: 20px;
+}
+
+.total-pending {
+    padding-left: 0.1rem;
+}
+.total-successful {
+    padding-left: 0.1rem;
+}
+.total-fail {
+    padding-left: 0.1rem;
+}
+
+.lvl-total-invitation {
+ padding-left: 0.1rem; 
+ font-size: 0.35rem;     
+}
+
+.lbl-total-successful {
+    color: #fc5e39;
+}
+
+.lbl-my-lvl-total-invitation {
+    color: #fc5e39;
+    font-size: 0.4rem;   
+}
+.lbl-next-lvl-total-invitation {
+    color: #555;
+    font-size: 0.4rem;      
 }

@@ -44,23 +44,44 @@
             <div class="full-width-tabs">
                 <ul class="nav nav-pills">
                     <li class="take-all-space-you-can">
+                        
+                            <div class="lbl-my-lvl-total-invitation">我的邀请 <span id="my-lvl-toyal-invitation" class="lvl-total-invitation">(0)</span>
+                        </div>
+                        
+                    </li>              
+                
+                    <li class="take-all-space-you-can">
+                            <div class="lbl-next-lvl-total-invitation">下级邀请 <span id="next-lvl-total-invitation" class="lvl-total-invitation">(0)</span></div>
+                        
+                    </li>          
+                </ul>
+            </div>
+        </div>
+
+            <div class="full-width-tabs">
+                <ul class="nav nav-pills">
+                    <li class="take-all-space-you-can">
                         <a class="tab" data-toggle="tab" href="#pending-tab" data-status="pending">
-                            <div id="total-pending" class="total-pending">&nbsp;</div>
-                            <div class="total-pending">等待验证</div>
+                            <div>等待验证
+                            <span id="total-pending" class="total-pending">&nbsp;</span>
+                            </div>
                         </a>
                     </li>              
                 
                     <li class="take-all-space-you-can">
                         <a class="tab" data-toggle="tab" href="#verified-tab" data-status="verified">
-                            <div id="total-successful">&nbsp;</div>
-                            <div>验证成功</div>
+                            
+                            <div class="lbl-total-successful">
+                                验证成功<span id="total-successful" class="total-successful">&nbsp;</span>
+                            </div>
                         </a>
                     </li>          
                 
                     <li class="take-all-space-you-can">
                         <a class="tab" data-toggle="tab" href="#failed-tab" data-status="failed">
-                            <div id="total-fail">&nbsp;</div>
-                            <div>验证失败</div>
+                            <div>验证失败
+                            <span id="total-fail" class="total-fail">&nbsp;</span>
+                            </div>
                         </a>
                     </li>          
                 </ul>
