@@ -33,6 +33,16 @@
 				'force new connection' : true,
 				 query: 'token='+result.token
             });
+			
+			socket.on('connect_failed', function(){
+				console.log('Connection Failed');
+				socketIOConnectionUpdate('<span class="text-danger">Connection Failed</span>');
+			});
+			
+			socket.on('connect_error', function(){
+				console.log('Connection Failed');
+				socketIOConnectionUpdate('<span class="text-danger">Connection Failed</span>');
+			});
 
             /* 
             connect with socket io
