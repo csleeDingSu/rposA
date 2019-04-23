@@ -67,6 +67,8 @@ function getSummary(token) {
             $('#total-fail').html(total_fail);
             $('#total-successful').html(total_successful);
             $('#total-pending').html(total_pending);
+            $('#my-lvl-toyal-invitation').html('(' + total + ')');
+            $('#next-lvl-total-invitation').html('(' + 0 + ')');
         }
     });
 }
@@ -161,7 +163,7 @@ function populateInvitationData(records, token) {
                 
                 html += '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
-                                '<div class="item">' + item.phone + '</div>' +
+                                '<div class="item">' + item.phone.substring(0,3) + '&#10033;&#10033;&#10033;&#10033;' + item.phone.substring((item.phone.length - 4),item.phone.length) + '</div>' +
                                 '<div class="date">' + str_date + '</div>' +
                             '</div>' +
                             '<div class="col-xs-4 column-2">' +
