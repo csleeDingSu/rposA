@@ -85,6 +85,14 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group row">
+							<label for="second_level_introduce_life" class="col-sm-3 col-form-label">@lang('dingsu.second_level_introduce_life')</label>
+							<div class="col-sm-9">
+								<input id="second_level_introduce_life" name="second_level_introduce_life" class="form-control" type="text" value="{{ old('second_level_introduce_life', $record->second_level_introduce_life) }}" maxlength="2">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group row">
 							<label for="auto_product_redeem" class="col-sm-3 col-form-label">@lang('dingsu.auto_product_redeem')</label>
 							<div class="col-sm-9">
 								<select id="auto_product_redeem" name="auto_product_redeem" class="form-control">

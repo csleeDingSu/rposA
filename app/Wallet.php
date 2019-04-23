@@ -315,7 +315,7 @@ class Wallet extends Model
 	{
 		//second_level_bonus_life
 		
-		$bonuslife = Bonuslife::updateOrCreate(['member_id' => $memberid], [ 
+		$bonuslife = \App\Bonuslife::updateOrCreate(['member_id' => $memberid], [ 
 						$column => DB::raw("$column" + $bonus)
 					]);
 		
