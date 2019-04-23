@@ -314,11 +314,11 @@ class Wallet extends Model
 	public static function update_bonus_life($memberid,$bonus = 0,$column = 'introduce_bonus_life')
 	{
 		//second_level_bonus_life
-		
+		/*
 		$bonuslife = \App\Bonuslife::updateOrCreate(['member_id' => $memberid], [ 
 						$column => DB::raw("$column" + $bonus)
 					]);
-		
+		*/
 		/*
 		DB::table('bonus_life_count')
 		   ->where('member_id', $memberid)
