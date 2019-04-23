@@ -177,8 +177,8 @@
                                 
                                 <li>
                                     <div class="flexSp">
-                                        <!-- <img src="{{ asset('auth/images/telIcon.png') }}"> -->
-                                        <span><i class="fa fa-user fa-2x" style="color: lightgrey; height: 0.5rem;"></i></span>
+                                        <img src="{{ asset('auth/images/ueserIcon.png') }}">
+                                        <!-- <span><i class="fa fa-user fa-2x" style="color: lightgrey; height: 0.5rem;"></i></span> -->
                                         <input name="username" id="username" type="text" placeholder="@lang('dingsu.username')" required maxlength="30" autofocus>
                                     </div>
                                 </li>
