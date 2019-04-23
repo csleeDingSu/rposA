@@ -567,4 +567,6 @@ return [
 	'response_from_server' => '来自服务器的响应',
 	'connected_authenticating' => '连接了，验证中',
 	'disconnected' => '中断',
+
+	'ref_note' => '提交的信息',
 ];

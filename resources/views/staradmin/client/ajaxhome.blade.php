@@ -57,7 +57,7 @@
 													<div class="showDiscountPrice">
 														￥
 														<span class="discount_price">
-															{{number_format($item->discount_price, 2)}}
+															{{$item->discount_price}}
 														</span>
 														
 													</div>
