@@ -309,6 +309,25 @@ class Wallet extends Model
 		return ['success'=>false,'message'=>'unknown record'];
 	}
 	
+	
+	
+	public static function update_bonus_life($memberid,$bonus = 0,$column = 'introduce_bonus_life')
+	{
+		//second_level_bonus_life
+		
+		$bonuslife = Bonuslife::updateOrCreate(['member_id' => $memberid], [ 
+						$column => DB::raw("$column" + $bonus)
+					]);
+		
+		/*
+		DB::table('bonus_life_count')
+		   ->where('member_id', $memberid)
+		   ->update([
+			   $column => DB::raw("$column" + $bonus)
+		   ]);
+		   */
+	}
+	
 	public static function update_ledger_life($memberid,$new_life,$category = 'LFE',$notes = FALSE)
 	{
 		$wallet    = self::get_wallet_details_all($memberid);
