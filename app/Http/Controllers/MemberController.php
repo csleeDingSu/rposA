@@ -317,7 +317,8 @@ class MemberController extends BaseController
 					{	
 						if (!empty($life->second_level_introduce_life))
 						{							
-							Wallet::update_ledger_life($srecord->referred_by, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');	
+							Wallet::update_ledger_life($srecord->referred_by, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');
+							Wallet::update_bonus_life($srecord->referred_by,$life->second_level_introduce_life,'second_level_bonus_life');
 						}
 					}					
 					return TRUE;
