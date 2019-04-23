@@ -36,12 +36,12 @@
 			
 			socket.on('connect_failed', function(){
 				console.log('Connection Failed');
-				socketIOConnectionUpdate('<span class="text-danger">Connection Failed</span>');
+				socketIOConnectionUpdate('<span class="text-danger">@lang("dingsu.connection_failed")</span>');
 			});
 			
 			socket.on('connect_error', function(){
 				console.log('Connection Failed');
-				socketIOConnectionUpdate('<span class="text-danger">Connection Failed</span>');
+				socketIOConnectionUpdate('<span class="text-danger">@lang("dingsu.connection_failed")</span>');
 			});
 
             /* 
