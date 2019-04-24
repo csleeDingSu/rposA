@@ -33,7 +33,7 @@ html, body {
 .full-width-tabs > .nav-pills > .active > a {
     text-decoration: none;
     color: #ff6a42 !important;
-    background-color: #ffffff !important;
+    background-color: #f3f3f3 !important;
 }
 .full-width-tabs > .nav-pills > li > a{
     border-radius:0px;
