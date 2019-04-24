@@ -147,9 +147,7 @@ class Members extends Model
 	public static function get_second_level_child_count($memberid)
 	{
 		$result = DB::select( DB::raw("SELECT
-					id,
-					referred_by,
-					username 
+					id,username,firstname,created_at,phone,introducer_life,wechat_verification_status,referred_by
 				FROM
 					( SELECT * FROM members ORDER BY referred_by, id ) child_sorted,
 					( SELECT @pv := :memberid ) initialisation 
@@ -168,6 +166,7 @@ class Members extends Model
 	{
 		$rv    = [];
 		$count = 0;
+		$child = [];
 		//find first level childs
 		foreach($array as $subKey => $subArray)
 		{
@@ -183,9 +182,10 @@ class Members extends Model
 		{
 			if (in_array($subArray->referred_by, $rv)) 
 			{
+				$child[] = $subArray;
 				$count++;
 			}
 		}
-		return $count;
+		return ['count'=>$count,'data'=>$child];
 	}
 }
