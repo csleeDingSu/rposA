@@ -1087,6 +1087,12 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 
 }
 
+.caption1 {
+
+  font-size: 0.35rem;
+
+}
+
 .caption2 {
   font-size: 0.5rem;
 }

@@ -84,7 +84,7 @@
 														<div class="mset">
 															<a data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_voucher_price="{{$item->voucher_price}}">
 																<img class="btn-product" src="{{ asset('/client/images/btn-product.png') }}"  />
-																<div class="caption_redeem_voucher">领卷</div>
+																<div class="caption_redeem_voucher">领券</div>
 																<div class="caption_redeem_angpao2">拿红包</div>
 																
 															</a>
