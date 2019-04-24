@@ -19,10 +19,10 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
 	<link rel="stylesheet" href="{{ asset('/client/css/slick-theme.css') }}" />
-	<link type="text/css" rel="stylesheet" href="{{ asset('/client/css/jquery.searchHistory.css') }}">
 	<link type="text/css" rel="stylesheet" href="{{ asset('/client/css/search.css') }}">
 
 	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 
 	<script type="text/javascript">
@@ -71,7 +71,7 @@
 
 <body style="background:#ffffff">
 <input type="hidden" id="page" value="1" />
-@if(count($vouchers))
+@if(is_array($vouchers) and count($vouchers))
 <input type="hidden" id="max_page" value="1" />
 @else
 <input type="hidden" id="max_page" value="0" />
@@ -82,14 +82,14 @@
 			<div class="header">
 				<form id="historyForm" action="" method="GET">
 				<div class="btn-back">
-                	<img src="{{ asset('/client/images/search/left.png') }}" />
+                	<a href="/"><img src="{{ asset('/client/images/search/left.png') }}" /></a>
                 </div>
 				<ul class="dbox top">			
 					<li class="dbox0">
 		                <div class="inBox">
                             <div class="flexSp">
                                 <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" value="{{ $strSearch }}" autofocus>
-                                <a id="btn_search" href="#" style="color: #f65e7e; font-size: 0.3rem;">搜索</a>
+                                <input type="submit" id="btn_search" value="搜索" style="color: #f65e7e; font-size: 0.35rem;" />
                             
                             </div>
 
@@ -98,6 +98,12 @@
 					</li>					
 				</ul>
 				</form>
+				<div class="full-width-tabs">
+					<ul id="search-tabs" class="nav nav-pills">
+					  <li class="take-all-space-you-can active"><a class="tab" data-toggle="tab" href="#search-external">搜全网</a></li>
+					  <li class="take-all-space-you-can"><a class="left tab" data-toggle="tab" href="#search-internal">搜平台卷</a></li>
+					</ul>
+				</div>
 			</div>
 			<div class="top-background">
 				<img src="{{ asset('/client/images/search/bg.png') }}" />
@@ -106,18 +112,101 @@
 		
 
 		<div class="cardBody">
-			<div class="box">
-				<div class="product">					
-					<div class="infinite-scroll">
-						<ul class="list-2">								
-								@include('client.searchajaxhome')
-						</ul>
+		<div class="tab-content">
+				<!-- redeem list content -->
+				<div id="search-external" class="tab-pane fade in active">
+					
+						<div class="box">
+							<div class="div-instruction" {{ empty($strSearch) ? '' : 'style=display:none' }} >
+								<div class="external-title">
+									搜索方法
+								</div>
+								<ul class="instruction-list">
+									<li><span class="list-style">1</span>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
+									<li>
+										<div class="instruction-background left-border">
+											<img src="{{ asset('/client/images/search/copy.png') }}" />
+										</div>
+									</li>
+									<li><span class="list-style">2</span>进入平台点击搜索框，粘贴商品标题搜索</li>
+									<li>
+										<div class="instruction-background">
+											<img src="{{ asset('/client/images/search/paste.png') }}" />
+										</div>
+									</li>
+								</ul>
+								<div class="external-description">
+									“搜全网”功能中的商品信息均来自于互联网<br />
+									商品准确信息请与商品所属店铺经营者沟通确认
+								</div>
+							</div>
+
+							<div class="product">					
+								<div class="infinite-scroll">
+									<ul class="list-2">
+											@include('client.searchajaxhome')
+									</ul>
+									
+									
+									<p class="isnext">下拉显示更多...</p>
+								</div>
+								
+							</div>
+						</div>
 						
-						
-						<p class="isnext">下拉显示更多...</p>
-					</div>
 					
 				</div>
+
+
+				<!-- end redeem list content -->
+
+				<!-- redeem history content -->
+				<div id="search-internal" class="tab-pane fade">
+						<div class="box">
+							<div class="div-instruction" {{ empty($strSearch) ? '' : 'style=display:none' }}>
+								<div id="div-history"></div>
+								<ul class="search-list">热门搜索
+									<li>
+										<a href="/newsearch/洗发水"><div class="search-title">洗发水</div></a>
+										<a href="/newsearch/情趣用品"><div class="search-title">情趣用品</div></a>
+										<a href="/newsearch/方塞喷雾"><div class="search-title">方塞喷雾</div></a>
+									</li>
+									<li>
+										<a href="/newsearch/情趣用品"><div class="search-title">情趣用品</div></a>
+										<a href="/newsearch/情趣用品"><div class="search-title">情趣用品</div></a>
+										<a href="/newsearch/内衣"><div class="search-title">内衣</div></a>
+									</li>
+								</ul>
+								<ul class="search-list">商品分类
+									@if(isset($category))
+										@php @$counter = 0 @endphp
+										@foreach($category as $cat)
+											@php @$counter++ @endphp
+											@if($counter % 4 == 1)
+												<li>
+											@endif
+												<a href="/cs/{{$cat->id}}"><div class="search-title">{{$cat->display_name}}</div></a>
+											@if($counter % 4 == 0)
+												</li>
+											@endif
+										@endforeach
+									@endif
+								</ul>
+							</div>
+
+							<div class="product">					
+								<div class="infinite-scroll">
+									<ul class="list-2">						
+											@include('client.searchajaxhome')
+									</ul>
+									
+									
+									<p class="isnext">下拉显示更多...</p>
+								</div>								
+							</div>
+						</div>
+				</div>
+				<!-- end redeem list content -->
 			</div>
 		</div>
 		
@@ -238,33 +327,67 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-	<script src="{{ asset('/client/js/jquery.searchHistory.js') }}" ></script>
+	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
 	
 	<script>
 
 		$(document).ready(function(){
-		//$(function () {
-			$("#btn_search").on("click", function() {
-				var strSearch = $('#strSearch').val();
-				window.location.href = "/newsearch/" + strSearch;
+			var arrHistory = Cookies.get('searchhistory');
+			if(arrHistory !== undefined){
+				var arrHistory = JSON.parse(arrHistory);
+				var html = '<ul class="search-history">';
+				html += '<li>搜索记录<img class="btn-delete" src="/client/images/search/delete.png" /></li>';
+
+				var arrayLength = arrHistory.length;
+			    for (var i = 0; i < arrayLength; i++) {
+			        html += '<li><a href="/newsearch/'+ arrHistory[i] +'">'+ arrHistory[i] + '</a></li>';
+			    }
+
+			    html += '</ul>';
+
+			    $('#div-history').html(html);
+			}
+
+			$('.btn-delete').click(function(){
+				Cookies.remove('searchhistory');		
+
+				$('#div-history').fadeOut(500, function() {
+				   $(this).empty().show();
+				});
 			});
 
-			$('#historyForm').searchHistory({
-	      		'sendWhenSelect':false
-	      	});
+			
+
+			$('.tab').click(function(){
+		        $('.product').hide();
+		        var object = $(this).attr('href');
+		        $(object).find('.div-instruction').show();
+		        
+		    });
 
 			$( "#historyForm" ).submit(function( event ) {
 			  	var strSearch = $('#strSearch').val();
-				$.ajax({
-			        type: 'GET',
-			        url: $(this).attr('action'),
-			        dataType: 'json',
-			        success: function(json) {
-			           window.location.href = "/search/" + strSearch;
-			        }
-			    })
+
+				if(strSearch != ''){
+				  	var array = Cookies.get('searchhistory');
+				  	//console.log(array);
+
+				  	 if(array == undefined){
+				  	 	var array = [];
+				  	 } else {
+				  	 	var array = JSON.parse(array);
+				  	 }
+
+				  	 if(!array.includes(strSearch)){
+				  		array.push(strSearch);
+				  	}
+
+					array = JSON.stringify(array);
+
+				  	Cookies.set('searchhistory', array);
+				}
+				window.location.href = "/newsearch/" + strSearch;
 			    return false;
 			});
 
