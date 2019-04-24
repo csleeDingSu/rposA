@@ -176,9 +176,15 @@ class VoucherController extends Controller
 			$firstwin 		   = null;
         }
 		
+		$category = Category::where('parent_id', 0)->orderby('position','ASC')->get();
 		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 		
-        return view('client.newsearch', compact('vouchers','member_mainledger', "setting",'firstwin','strSearch'));
+		if ($request->ajax()) {
+    		$view = view('client.newsearch', compact('vouchers','member_mainledger', "setting",'firstwin','strSearch', 'category'));
+            return response()->json(['html'=>$view]);
+        }
+        
+        return view('client.newsearch', compact('vouchers','member_mainledger', "setting",'firstwin','strSearch', 'category'));
     }
 	
 	private function getcurl($keyword)
