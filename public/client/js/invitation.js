@@ -45,6 +45,10 @@ function getSummary(token) {
             var total_fail = 0;
             var total_pending = 0;
             var total_successful = 0;
+            var total_next_lvl = data.slc_count;
+            var total_next_lvl_fail = 0;
+            var total_next_lvl_pending = 0;
+            var total_next_lvl_successful = 0;
 
             $.each(result, function(i, item) {
 
@@ -68,7 +72,7 @@ function getSummary(token) {
             $('#total-successful').html(total_successful);
             $('#total-pending').html(total_pending);
             $('#my-lvl-toyal-invitation').html('(' + total + ')');
-            $('#next-lvl-total-invitation').html('(' + 0 + ')');
+            $('#next-lvl-total-invitation').html('(' + total_next_lvl + ')');
         }
     });
 }
