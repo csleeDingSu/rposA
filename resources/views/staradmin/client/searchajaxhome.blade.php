@@ -1,4 +1,4 @@
-@if(count($vouchers))
+@if(is_array($vouchers) and count($vouchers))
 								
 								@foreach($vouchers as $item)
 

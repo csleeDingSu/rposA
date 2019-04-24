@@ -333,8 +333,8 @@ body{
 
 .balance-banner {
 	background: url('/client/images/banner_coin.png') no-repeat;
-	width: 350px;
-	height: 78px;
+	width: 210px;
+	height: 64px;
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
@@ -2001,18 +2001,22 @@ if it's not present, don't show loader */
 /* Red Packet Modal */
 
 .btn-redeemcash {
-	float: right;
-	padding-right: 0.25rem;
+	position: absolute;
+	margin-left: 85px;
 }
 
 .icon-newcoin {
-	width: 15%;
-	margin-top: -5%;
-	margin-left: -30%;
+	position: absolute;
+	width: 45px;
+	margin-top: 6px;
+	margin-left: -95px
 }
 
 .spanAcuPoint {
 	position: absolute;
-	margin-top: -1.3%;
-	margin-left: 5%;
+	margin-top: -6px;
+	text-align: center;
+	width: 125px;
+	margin-left: -45px;
+	font-weight: 600;
 }
