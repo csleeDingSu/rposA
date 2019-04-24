@@ -15,15 +15,15 @@
 
 
 			<dt class="dbox0">
-				@if(Request::is('vip'))
-					<a href="/vip">
-				@elseif(Request::is('share_product'))
-					<a href="/member/login/register">
-				@else
-					<a href="/arcade">
-				@endif
+				@if(!Request::is('cs/*') && !Request::is('newsearch') && !Request::is('newsearch/*') && !Request::is('search') && !Request::is('search/*'))
 
-					@if(!Request::is('cs/*') && !Request::is('newsearch') && !Request::is('newsearch/*') && !Request::is('search') && !Request::is('search/*'))
+					@if(Request::is('vip'))
+						<a href="/vip">
+					@elseif(Request::is('share_product'))
+						<a href="/member/login/register">
+					@else
+						<a href="/arcade">
+					@endif
 						<div id="footer-life">
 							@if(Request::is('vip'))
 								<i class="nVip">&nbsp;</i>
@@ -35,13 +35,15 @@
 								<p>剩余次数</p>
 							@endif
 						</div>
-					@else
+					</a>
+				@else
+					<a href="#" class="main-footer">
 						<div id="footer-life">
 							<i class="nTxt_default"></i>
-							<p style="margin-top:-0.07rem">我要拿红包</p>							
+							<p style="margin-top:-0.07rem">我要拿红包</p>
 						</div>
-					@endif
-				</a>
+					</a>
+				@endif
 			</dt>
 			<dd class="dbox1">
 				<a href="/member" class="footer-icon">
