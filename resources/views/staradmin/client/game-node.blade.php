@@ -706,8 +706,8 @@
 									<div style="clear: both;"></div>
 									<div class="normal-card-desc">原始积分1200不可结算，最多可挖宝150，只能结算150金币。</div>
 								</div>
-								<!--div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费卷</div-->
-								<a href="/redeem"><div class="btn-vip-submit">兑换VIP入场卷</div></a>
+								<!--div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费券</div-->
+								<a href="/redeem"><div class="btn-vip-submit">兑换VIP入场券</div></a>
 							</div>
 						</div>
 					</div>							

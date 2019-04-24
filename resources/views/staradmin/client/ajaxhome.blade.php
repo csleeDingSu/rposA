@@ -28,17 +28,21 @@
 																{{number_format($item->voucher_price, 0)}}元券
 															</span>										
 															@if (!empty($item->expiry_datetime))
-
+															
 																@php @$date = \Carbon\Carbon::parse($item->expiry_datetime) @endphp
 																@php @$now = \Carbon\Carbon::now() @endphp
 																@php @$diff = $date->diffInDays($now) @endphp
 																@php @$extra = $date->diffInSeconds($now) @endphp
 
-																@if (@$extra % 86400 > 0)
+																<!-- @if (@$extra % 86400 > 0)
 																	@php @$diff++ @endphp
+																@endif -->
+
+																@if (@$diff == 0)
+																	@php @$diff = 1 @endphp
 																@endif
 
-																@if (@$diff > 0)
+																@if (@$diff >= 0)
 																<span class="vExpiry">
 																	剩{{ @$diff }}天
 																</span>
@@ -79,8 +83,12 @@
 														</div>
 														<div class="mset">
 															<a data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_voucher_price="{{$item->voucher_price}}">
-														<img class="btn-product" src="{{ asset('/client/images/btn-product.png') }}"  /></a>
-													</div>
+																<img class="btn-product" src="{{ asset('/client/images/btn-product.png') }}"  />
+																<div class="caption_redeem_voucher">领券</div>
+																<div class="caption_redeem_angpao2">拿红包</div>
+																
+															</a>
+														</div>
 												</div>
 											</div>
 											<div style="clear: both;"></div>

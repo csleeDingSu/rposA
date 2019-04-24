@@ -205,7 +205,7 @@
 			<div class="inBox" style="padding-bottom: 0.2rem;">
 				<img id="showIcon" src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
 				<div class="AfterDiscount">
-					<span class="caption1">卷后￥</span>
+					<span class="caption1">券后￥</span>
 					<span class="caption2">39</span>
 				</div>
 				<!-- <h2>点击下面复制按钮，打开淘宝APP领券</h2> -->
@@ -213,7 +213,9 @@
 				
 					<!-- <h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3> -->
 					<div class="div_product_name">Product name</div>
-					<div class="div_product_details">淘宝价 ￥<span class="span_price"></span> | <span class="span_highlight">优惠卷 ￥<span class="span_voucher_price"></span></span></div>
+					<div class="div_product_details">
+						<span class="span_highlight">优惠券 ￥<span class="span_voucher_price"></span></span> | 淘宝价 ￥<span class="span_price"></span>
+					</div>
 					
 
 					<img class="caption_redeem_angpao" src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
@@ -222,7 +224,7 @@
 						<div id="btn-copy"></div>
 						<div id="btn-voucher" class="freeVoucherBtn"></div>
 					</div>
-					<h4 style="font-size: 0;">优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
+					<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
 
 			</div>
 		</div>
@@ -344,6 +346,8 @@
 			// 	$('.speech-balloon-home').removeClass('hide').animate({'margin-top': '-1.4rem'}, 500);
 			// }
 
+			$('.caption_redeem_angpao').animate({'margin-top': '-0.62rem'}, 500);
+
 			$('.downIcon').click(function () {
 				$('.cardHeader').css({ 'z-index': '11' });
 				being.wrapShow('.cardBody');
@@ -386,6 +390,13 @@
 			});
 
 			$('.freeVoucherBtn').click((e) => {
+				being.wrapShow();
+				being.scaleHide('.showQuan');
+				being.scaleShow('.showTips');
+			});
+
+			//call from footer
+			$('.main-footer').click((e) => {
 				being.wrapShow();
 				being.scaleHide('.showQuan');
 				being.scaleShow('.showTips');

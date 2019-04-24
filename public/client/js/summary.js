@@ -73,7 +73,7 @@ function getSummary(token) {
                 break;
 
                 case 'DPBVP':
-                    str_type = '兑换VIP入场卷';
+                    str_type = '兑换VIP入场券';
                     str_points = '-' + parseInt(value.debit);
                     cls_negative = 'negative';
                 break;
