@@ -216,13 +216,13 @@
 					<div class="div_product_details">淘宝价 ￥<span class="span_price"></span> | <span class="span_highlight">优惠卷 ￥<span class="span_voucher_price"></span></span></div>
 					
 
-					
+					<img class="caption_redeem_angpao" src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
 					<div id="button-wrapper">
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
 						<div id="btn-copy"></div>
 						<div id="btn-voucher" class="freeVoucherBtn"></div>
 					</div>
-					<h4 style="padding:5px;">优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
+					<h4 style="font-size: 0;">优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
 
 			</div>
 		</div>
@@ -268,12 +268,12 @@
 												<img src="/client/images/list-image.png" width="14px" height="18px" />
 												<span class="highlight">新人红包</span>
 												<img src="/client/images/list-label.png" width="42px" height="14px" /></li>
-											<li style="padding-bottom: 10px">注册送2次幸运转盘，99%概率可赚30元免单红包。</li>
+											<li style="padding-bottom: 10px">注册送2次免单转盘，每次可赚15元，2次可以赚30元。</li>
 											<li>
 												<img src="/client/images/list-image.png" width="14px" height="18px" />
-												<span class="highlight">分享红包</span>
+												<span class="highlight">分享越多 赚越多</span>
 												<img src="/client/images/list-label.png" png" width="42px" height="14px" /></li>
-											<li>每邀请1位认证好友，送1次幸运转盘，99%概率赚15元，邀请10个赚150元。</li>
+											<li>邀请好友注册送1次转盘，你邀请的好友每邀请1个人，你还能获得1次转盘。<br>如果你邀请10个好友，每个好友也邀请10个。你就有110次转盘机会，赚1650元。</li>
 										</ul>
 									</div>
 									<a href="/arcade">
@@ -458,6 +458,7 @@
 
 			var clipboard = new ClipboardJS('#btn-copy', {
 				target: function () {
+					$('.caption_redeem_angpao').hide();
 					return document.querySelector('#cut');
 				}
 			});
