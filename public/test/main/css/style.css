@@ -922,7 +922,7 @@ p.vip-life {
   color: #9b9b9b;
   text-align: justify;
   line-height: 20px;
-  padding: 15px 20px;
+  padding: 0px 20px;
 }
 
 #promotion .instructions img{
@@ -1195,4 +1195,11 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
    height: 90%;
    cursor: pointer;
 
+}
+
+.caption_redeem_angpao {
+  position: absolute;
+  margin-top: -0.62rem;
+  width: 2.5rem;
+  margin-left: 0.1rem;
 }
