@@ -213,7 +213,9 @@
 				
 					<!-- <h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3> -->
 					<div class="div_product_name">Product name</div>
-					<div class="div_product_details">淘宝价 ￥<span class="span_price"></span> | <span class="span_highlight">优惠卷 ￥<span class="span_voucher_price"></span></span></div>
+					<div class="div_product_details">
+						<span class="span_highlight">优惠卷 ￥<span class="span_voucher_price"></span></span> | 淘宝价 ￥<span class="span_price"></span>
+					</div>
 					
 
 					<img class="caption_redeem_angpao" src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
@@ -386,6 +388,13 @@
 			});
 
 			$('.freeVoucherBtn').click((e) => {
+				being.wrapShow();
+				being.scaleHide('.showQuan');
+				being.scaleShow('.showTips');
+			});
+
+			//call from footer
+			$('.main-footer').click((e) => {
 				being.wrapShow();
 				being.scaleHide('.showQuan');
 				being.scaleShow('.showTips');
