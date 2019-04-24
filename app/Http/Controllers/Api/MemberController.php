@@ -63,7 +63,8 @@ class MemberController extends Controller
 	public function get_introducer_count(Request $request)
 	{
 		$result = Member::get_introducer_count($request->memberid);  
-		return response()->json(['success' => true,'result' => $result]);
+		$count  = Member::get_second_level_child_count($request->memberid);  
+		return response()->json(['success' => true,'result' => $result,'slc_count'=>$count]);
 	}
 	
 	public function get_introducer_history(Request $request)
