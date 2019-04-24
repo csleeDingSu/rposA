@@ -2014,9 +2014,9 @@ if it's not present, don't show loader */
 
 .spanAcuPoint {
 	position: absolute;
-	margin-top: -6px;
+	margin-top: -11.5px;
 	text-align: center;
 	width: 125px;
 	margin-left: -45px;
-	font-weight: 600;
+	font-size: larger;
 }
