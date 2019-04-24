@@ -49,11 +49,11 @@
 								}}
 								</span>
 								<span class="vpass">
-									优惠卷代码 <br>
+									优惠券代码 <br>
 									<span id="cut">{{empty($item->voucher_pass) ? "￥K8454DFGH45H￥" : $item->voucher_pass}}
 									</span>
 								</span>						
-								<span class="vlink">立刻领卷</span>						
+								<span class="vlink">立刻领券</span>						
 							</h3>
 						</div>
 					</div>
@@ -62,7 +62,7 @@
 		</ul>
 		<!-- 领取优惠券  -->
 		<div class="cvoucher" id="cvoucher">
-			领取成功, 打开淘宝APP领优惠卷
+			领取成功, 打开淘宝APP领优惠券
 		</div>
 	</div>
 	<a href="/">	

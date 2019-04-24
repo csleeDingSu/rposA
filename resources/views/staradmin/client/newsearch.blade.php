@@ -132,7 +132,7 @@
 				
 					<!-- <h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3> -->
 					<a class="cutBtn">一键复制</a>
-					<h4>优惠卷代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
+					<h4>优惠券代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
 				
 				
 			</div>
