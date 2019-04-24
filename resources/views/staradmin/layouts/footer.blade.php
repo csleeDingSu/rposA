@@ -23,7 +23,7 @@
 					<a href="/arcade">
 				@endif
 
-					@if((Request::is('arcade')) || (Request::is('vip')))
+					@if(!Request::is('cs/*') && !Request::is('newsearch') && !Request::is('newsearch/*') && !Request::is('search') && !Request::is('search/*'))
 						<div id="footer-life">
 							@if(Request::is('vip'))
 								<i class="nVip">&nbsp;</i>
@@ -38,7 +38,7 @@
 					@else
 						<div id="footer-life">
 							<i class="nTxt_default"></i>
-							<p style="margin-top:-0.07rem">幸运转盘</p>							
+							<p style="margin-top:-0.07rem">我要拿红包</p>							
 						</div>
 					@endif
 				</a>

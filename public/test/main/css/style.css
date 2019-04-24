@@ -1203,3 +1203,22 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   width: 2.5rem;
   margin-left: 0.1rem;
 }
+
+.caption_redeem_voucher {
+    position: absolute;
+    color: white;
+    font-size: 0.3rem;
+    font-weight: 500;
+    margin-top: -0.4rem;
+    margin-left: 0.25rem;
+
+}
+
+.caption_redeem_angpao2 {
+    position: absolute;
+    color: white;
+    font-size: 0.25rem;
+    font-weight: 100;
+    margin-top: -0.4rem;
+    margin-left: 1.15rem;
+}
