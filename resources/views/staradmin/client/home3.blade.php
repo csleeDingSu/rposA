@@ -346,6 +346,8 @@
 			// 	$('.speech-balloon-home').removeClass('hide').animate({'margin-top': '-1.4rem'}, 500);
 			// }
 
+			$('.caption_redeem_angpao').animate({'margin-top': '-0.62rem'}, 500);
+
 			$('.downIcon').click(function () {
 				$('.cardHeader').css({ 'z-index': '11' });
 				being.wrapShow('.cardBody');

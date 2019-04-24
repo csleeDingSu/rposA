@@ -1089,7 +1089,7 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 
 .caption1 {
 
-  font-size: 0.35rem;
+  font-size: 0.40rem;
 
 }
 
@@ -1208,8 +1208,16 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   margin-top: -0.62rem;
   width: 2.5rem;
   margin-left: -0.1rem;
+  animation: MoveUpDown_angpao 1s linear infinite;
 }
-
+@keyframes MoveUpDown_angpao {
+  0%, 100% {
+    bottom: 1.35rem;
+  }
+  50% {
+    bottom: 1.25rem;
+  }
+}
 .caption_redeem_voucher {
     position: absolute;
     color: white;
@@ -1224,7 +1232,6 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
     position: absolute;
     color: white;
     font-size: 0.25rem;
-    font-weight: 100;
     margin-top: -0.4rem;
     margin-left: 1.15rem;
 }
