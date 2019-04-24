@@ -2012,11 +2012,11 @@ if it's not present, don't show loader */
 	margin-left: -95px
 }
 
-.spanAcuPoint {
+.spanAcuPoint2 {
 	position: absolute;
 	margin-top: -11.5px;
 	text-align: center;
 	width: 125px;
-	margin-left: -45px;
+	margin-left: 50px;
 	font-size: larger;
 }
