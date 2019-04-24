@@ -329,19 +329,20 @@
 			  }
 			});
 
-			var firstwin = $('#firstwin').val();
-			console.log(firstwin);
+			//removed not require to show
+			// var firstwin = $('#firstwin').val();
+			// console.log(firstwin);
 
-			if(firstwin == 'yes'){
-				$(document).click(function() {
-					$('.speech-balloon-home').hide();
-					$.ajax({
-				         url: "/firstwin"
-				    });
-				});
+			// if(firstwin == 'yes'){
+			// 	$(document).click(function() {
+			// 		$('.speech-balloon-home').hide();
+			// 		$.ajax({
+			// 	         url: "/firstwin"
+			// 	    });
+			// 	});
 				
-				$('.speech-balloon-home').removeClass('hide').animate({'margin-top': '-1.4rem'}, 500);
-			}
+			// 	$('.speech-balloon-home').removeClass('hide').animate({'margin-top': '-1.4rem'}, 500);
+			// }
 
 			$('.downIcon').click(function () {
 				$('.cardHeader').css({ 'z-index': '11' });

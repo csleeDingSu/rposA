@@ -22,20 +22,25 @@
 				@else
 					<a href="/arcade">
 				@endif
-					<div id="footer-life">
-						@if(Request::is('vip'))
-							<i class="nVip">&nbsp;</i>
-							<!-- <p class="vip-life">VIP专场 剩余<span class="spanVipLife">&nbsp;</span>次</p> -->
-							<p class="vip-life">VIP专场</p>
-						@elseif(Request::is('share_product'))
-							<i class="nTxt">0</i>
-							<p>免单转盘</p>
-						@else
-							<!-- <i class="nTxt">{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? ((Auth::Guard('member')->user()->wechat_verification_status == 0) ? Auth::Guard('member')->user()->current_life : 0) : 0}}</i> -->
-							<i class="nTxt">{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</i>
-							<p>免单转盘</p>
-						@endif
-					</div>
+
+					@if((Request::is('arcade')) || (Request::is('vip')))
+						<div id="footer-life">
+							@if(Request::is('vip'))
+								<i class="nVip">&nbsp;</i>
+								<!-- <p class="vip-life">VIP专场 剩余<span class="spanVipLife">&nbsp;</span>次</p> -->
+								<p class="vip-life">VIP专场</p>
+							@else
+								<!-- <i class="nTxt">{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? ((Auth::Guard('member')->user()->wechat_verification_status == 0) ? Auth::Guard('member')->user()->current_life : 0) : 0}}</i> -->
+								<i class="nTxt">{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</i>
+								<p>剩余次数</p>
+							@endif
+						</div>
+					@else
+						<div id="footer-life">
+							<i class="nTxt_default"></i>
+							<p style="margin-top:-0.07rem">幸运转盘</p>							
+						</div>
+					@endif
 				</a>
 			</dt>
 			<dd class="dbox1">
