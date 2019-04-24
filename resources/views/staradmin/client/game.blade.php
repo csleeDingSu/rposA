@@ -38,9 +38,16 @@
 			<div class="box">
 				<div class="btn-calculate">
 					<div class="balance-banner">
+						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<span class="spanAcuPoint">0</span>
+						<img class="btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
 					</div>
 				</div>
+				<!-- <div class="btn-calculate">
+					<div class="balance-banner">
+						<span class="spanAcuPoint">0</span>
+					</div>
+				</div> -->
 				<!--div class="coin"></div>
 				<div class="number">
 					<span class="balance spanAcuPoint">0</span>
