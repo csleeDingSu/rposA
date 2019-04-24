@@ -28,7 +28,47 @@ class AdminController extends BaseController
 	
 	protected $hidden = ['password', 'password_hash', 'age', 'created_at'];
 	
-	
+	public function mytest ()
+	{
+		\DB::connection()->enableQueryLog();
+		
+		
+		$someVariable = '3';
+		$results = DB::select( DB::raw("SELECT * FROM members WHERE id = :somevariable"), array(
+					   'somevariable' => $someVariable,
+					 ));
+		
+		$result = DB::select( DB::raw("SELECT
+	id,
+	referred_by,
+	username 
+FROM
+	( SELECT * FROM members ORDER BY referred_by, id ) child_sorted,
+	( SELECT @pv := 3 ) initialisation 
+WHERE
+	find_in_set( referred_by, @pv ) 
+	AND length( @pv := concat( @pv, ',', id ) )"));
+		
+		$result = DB::select("SELECT
+	id,
+	referred_by,
+	username 
+FROM
+	( SELECT * FROM members ORDER BY referred_by, id ) child_sorted,
+	( SELECT @pv := 3 ) initialisation 
+WHERE
+	find_in_set( referred_by, @pv ) 
+	AND length( @pv := concat( @pv, ',', id ) )");
+		
+		
+		
+		$queries = DB::getQueryLog();
+		$last_query = end($queries);
+		print_r($last_query);echo '<br><br>';
+		print_r($results);echo '<br><br>';
+		print_r($result);
+		die();
+	}
 	
 	public function setting ()
 	{
