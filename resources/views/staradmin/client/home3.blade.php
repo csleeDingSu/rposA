@@ -458,7 +458,6 @@
 
 			var clipboard = new ClipboardJS('#btn-copy', {
 				target: function () {
-					$('.caption_redeem_angpao').hide();
 					return document.querySelector('#cut');
 				}
 			});
