@@ -726,9 +726,9 @@
                                             </div>
                                         </a>
                                         <a class="list" target="_blank" href="/index.php?r=l/d&id=18902751&u=767538">
-                                            <img class="img" src="https://img.alicdn.com/imgextra/i4/1050066524/O1CN01YPi8BL1y42QVxZ9JF_!!1050066524.jpg_310x310.jpg" alt="好吉利本色卷纸4层42卷">
+                                            <img class="img" src="https://img.alicdn.com/imgextra/i4/1050066524/O1CN01YPi8BL1y42QVxZ9JF_!!1050066524.jpg_310x310.jpg" alt="好吉利本色券纸4层42券">
                                             <div class="content fr">
-                                                <p class="co_tit">好吉利本色卷纸4层42卷</p>
+                                                <p class="co_tit">好吉利本色券纸4层42券</p>
                                                 <div class="icon">
                                                     <span>热销11W+</span>
                                                 </div>
@@ -963,9 +963,9 @@
                                             </div>
                                         </a>
                                         <a class="list" target="_blank" href="/index.php?r=l/d&id=18907106&u=767538">
-                                            <img class="img" src="https://img.alicdn.com/imgextra/i4/1115375914/O1CN01u533sl1tYeq3ZIYzL_!!0-item_pic.jpg_310x310.jpg" alt="【三件卷后44】纯棉印花情侣T恤">
+                                            <img class="img" src="https://img.alicdn.com/imgextra/i4/1115375914/O1CN01u533sl1tYeq3ZIYzL_!!0-item_pic.jpg_310x310.jpg" alt="【三件券后44】纯棉印花情侣T恤">
                                             <div class="content fr">
-                                                <p class="co_tit">【三件卷后44】纯棉印花情侣T恤</p>
+                                                <p class="co_tit">【三件券后44】纯棉印花情侣T恤</p>
                                                 <div class="icon">
                                                     <span>弹力大、超柔软、不起球</span>
                                                 </div>
@@ -2660,13 +2660,13 @@
 </a>
 <a target="_blank" class="goods_list" href="/index.php?r=l/d&id=18902751&u=767538">
     <div class="img">
-        <img src="https://img.alicdn.com/imgextra/i4/1050066524/O1CN01YPi8BL1y42QVxZ9JF_!!1050066524.jpg_310x310.jpg" alt="好吉利本色卷纸4层42卷">
+        <img src="https://img.alicdn.com/imgextra/i4/1050066524/O1CN01YPi8BL1y42QVxZ9JF_!!1050066524.jpg_310x310.jpg" alt="好吉利本色券纸4层42券">
                                             
     </div>
     <div class="content">
         <p class="co_tit">
             <span data-gid="18902751">
-                <i class="tag tag-tmall fl" title="天猫"></i>                                好吉利本色卷纸4层42卷
+                <i class="tag tag-tmall fl" title="天猫"></i>                                好吉利本色券纸4层42券
             </span>
         </p>
         <div class="sale_num">
@@ -2747,13 +2747,13 @@
 </a>
 <a target="_blank" class="goods_list" href="/index.php?r=l/d&id=18910285&u=767538">
     <div class="img">
-        <img src="https://img.alicdn.com/imgextra/i1/2528123760/O1CN01PglTrR1de7iZnmqsD_!!2528123760.jpg_310x310.jpg" alt="【销量冠军】加厚卷装垃圾袋5卷100只">
+        <img src="https://img.alicdn.com/imgextra/i1/2528123760/O1CN01PglTrR1de7iZnmqsD_!!2528123760.jpg_310x310.jpg" alt="【销量冠军】加厚券装垃圾袋5券100只">
                                             
     </div>
     <div class="content">
         <p class="co_tit">
             <span data-gid="18910285">
-                <i class="tag tag-tmall fl" title="天猫"></i>                                【销量冠军】加厚卷装垃圾袋5卷100只
+                <i class="tag tag-tmall fl" title="天猫"></i>                                【销量冠军】加厚券装垃圾袋5券100只
             </span>
         </p>
         <div class="sale_num">

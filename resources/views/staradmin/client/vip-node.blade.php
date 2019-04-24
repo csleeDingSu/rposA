@@ -580,7 +580,7 @@
 									手续费说明
 								</div>
 								<div class="modal-manual-content">
-									为了方便玩家兑换VIP入场卷，以及能够优惠获得原始积分，每局游戏平台采用1000金币兑换1200原始积分，当玩家挖宝赢得金币结算时，需返还<span class="spanFee"></span>作为挖宝手续费。
+									为了方便玩家兑换VIP入场券，以及能够优惠获得原始积分，每局游戏平台采用1000金币兑换1200原始积分，当玩家挖宝赢得金币结算时，需返还<span class="spanFee"></span>作为挖宝手续费。
 								</div>
 								<div class="modal-manual-button">
 									我知道了

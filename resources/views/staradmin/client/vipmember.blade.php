@@ -91,7 +91,7 @@
             <div class="modal-body">
                 <div class="modal-row">
                         <div class="using-description">
-                        	您上次的VIP入场卷<br />
+                        	您上次的VIP入场券<br />
                         	还未结算
                         </div>
                 </div>

@@ -51,7 +51,7 @@
 		<div class="card">
 			<!-- We can get rid of the strikethrough look by adding a span tag and applying a background color to the span. Applying a background to the h2:after won't work because it won't adjust and hug the text. -->
 			<div class="voucher-header">
-				<span>复制优惠卷代码 打开手机淘宝即可优惠</span>
+				<span>复制优惠券代码 打开手机淘宝即可优惠</span>
 				<div class="voucher">
 					<div class="code"> {{$record->voucher_id}}
 					</div>

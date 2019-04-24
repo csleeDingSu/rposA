@@ -60,12 +60,12 @@
 	<div class="showQuan dflex scaleHide">
 		<div class="inBox">
 			<img src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
-			<h2>复制成功后, 打开淘宝APP即可领优惠卷</h2>
+			<h2>复制成功后, 打开淘宝APP即可领优惠券</h2>
 
 			
 				<h3 id="cut" class="copyvoucher"> {{empty($item->voucher_pass) ? "￥K8454DFGH45H" : $item->voucher_pass}}</h3>
 				<a class="cutBtn"><img src="{{ asset('/test/main/images/btn-1.png') }}"></a>
-				<h4>如复制不成功，请手指按住优惠卷代码复制。</h4>
+				<h4>如复制不成功，请手指按住优惠券代码复制。</h4>
 			
 			
 		</div>

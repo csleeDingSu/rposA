@@ -224,7 +224,7 @@ function getProductList(token) {
 
                                                     '<div class="wrapper modal-full-height bg-vip-copy modal-body">' +
                                                         '<span class="vip-copy">复制淘口令，打开淘宝APP购买<br />' +
-                                                        '每' + item.package_price + '元可兑换一次VIP入场卷</span>' +
+                                                        '每' + item.package_price + '元可兑换一次VIP入场券</span>' +
                                                         '<div class="modal-card">' +
                                                             '<div id="cut" class="copyvoucher">¥ K8454DFGH45H</div>' +
                                                             '<div class="cutBtn">一键复制</div>' +
@@ -241,7 +241,7 @@ function getProductList(token) {
                                                               '<div id="single-tab" class="tab-pane fade in active vip-tab-pane">' +
                                                                 '卡号： <input id="txt_cardno" type="text" name="card_no" placeholder="请输入卡号" /><br /><hr>' +
                                                                 '密码： <input id="txt_password" type="text" name="password" placeholder="请输入密码" /><br /><hr>' +
-                                                                '<span class="modal-description">注意事项：请提交面值为100元的话费卷，如果提交多次错误花费卷，您的账号会被封号</span>' +
+                                                                '<span class="modal-description">注意事项：请提交面值为100元的话费券，如果提交多次错误花费券，您的账号会被封号</span>' +
                                                                 '<div class="modal-card">' +
                                                                     '<div id="request-'+ item.id +'" onClick="requestVip(\'' + token + '\', \''+ item.id +'\', \'single\', '+ i +');">' +
                                                                         '<a class="btn btn-submit-vip">提交</a>' +
@@ -254,7 +254,7 @@ function getProductList(token) {
                                                                 '<div class="textarea-link-wrapper">' +
                                                                 '<div class="textarea-link open-card-no-modal">卡密示例</div>' +
                                                                 '</div>' +
-                                                                '<span class="modal-description">注意事项：请提交面值为100元的话费卷，如果提交多次错误花费卷，您的账号会被封号</span>' +
+                                                                '<span class="modal-description">注意事项：请提交面值为100元的话费券，如果提交多次错误花费券，您的账号会被封号</span>' +
                                                                 '<div class="modal-card">' +
                                                                     '<div id="request-'+ item.id +'" onClick="requestVip(\'' + token + '\', \''+ item.id +'\', \'multiple\', '+ i +');">' +
                                                                         '<a class="btn btn-submit-vip" >提交</a>' +
