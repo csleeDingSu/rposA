@@ -143,4 +143,49 @@ class Members extends Model
 		
 		return $result;
 	}
+	
+	public static function get_second_level_child_count($memberid)
+	{
+		$result = DB::select( DB::raw("SELECT
+					id,
+					referred_by,
+					username 
+				FROM
+					( SELECT * FROM members ORDER BY referred_by, id ) child_sorted,
+					( SELECT @pv := :memberid ) initialisation 
+				WHERE
+					find_in_set( referred_by, @pv ) 
+					AND length( @pv := concat( @pv, ',', id ) )"), array(
+									   'memberid' => $memberid,
+									 ));
+				
+		$result = self::removeElementWithValue($result, "referred_by", $memberid);
+		
+		return $result;
+	}
+	
+	public static function removeElementWithValue($array, $key, $value)
+	{
+		$rv    = [];
+		$count = 0;
+		//find first level childs
+		foreach($array as $subKey => $subArray)
+		{
+			if($subArray->{$key} == $value)
+			{
+				$rv[] = $subArray->id;
+				unset($array[$subKey]);
+			}
+		 }
+				
+		//find second level childs		
+		foreach($array as $subKey => $subArray)
+		{
+			if (in_array($subArray->referred_by, $rv)) 
+			{
+				$count++;
+			}
+		}
+		return $count;
+	}
 }
