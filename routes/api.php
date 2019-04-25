@@ -105,6 +105,11 @@ Route::group(['namespace' => 'Api'],function()
 {
 	Route::get('/package-list', 'ProductController@list_package')->name('api.package.list');
 	Route::get('/get-passcode', 'ProductController@passcode')->name('get_passcode');
+	
+	Route::get('/basic-package-list', 'BasicPackageController@list_package')->name('api.basicpackage.list');
+	
+	Route::post('/request-basic-package', 'BasicPackageController@request_package_upgrade')->name('api.basicpackage.request');
+	
 });
 
 //cron_test

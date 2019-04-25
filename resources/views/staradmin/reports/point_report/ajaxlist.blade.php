@@ -109,6 +109,13 @@
 										@case('DPBVP')
 											@lang('dingsu.buy_vip_using_point') 
 											@break	
+										@case('APBPR')
+											@lang('dingsu.addedbasicpoint') 
+											@break	
+										@case('ALBPR')
+											@lang('dingsu.addedbasiclife') 
+											@break	
+									
 										@default
 											@lang('dingsu.credit_type_UNK')
 									@endswitch									
