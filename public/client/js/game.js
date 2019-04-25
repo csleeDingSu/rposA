@@ -946,7 +946,7 @@ function showProgressBar(bol_show){
                 bet_amount = 70;
                 span_balance = 1160;
 
-                payout_info = selected + '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
+                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 break;
