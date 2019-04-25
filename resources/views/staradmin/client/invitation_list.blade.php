@@ -43,58 +43,102 @@
 
             <div class="full-width-tabs">
                 <ul class="nav nav-pills">
-                    <li class="take-all-space-you-can">
-                        
-                            <div class="lbl-my-lvl-total-invitation">我的邀请 <span id="my-lvl-toyal-invitation" class="lvl-total-invitation">(0)</span>
-                        </div>
-                        
+                    <li class="take-all-space-you-can active">
+                        <a class="tab" data-toggle="tab" href="#my-lvl-invitation" data-status="my-lvl-invitation" id="my-lvl">
+                            <div class="lbl-my-lvl-total-invitation">我的邀请 <span id="my-lvl-total-invitation" class="lvl-total-invitation">(0)</span>
+                            </div>
+                        </a>                        
                     </li>              
                 
                     <li class="take-all-space-you-can">
+                        <a class="tab" data-toggle="tab" href="#next-lvl-invitation" data-status="next-lvl-invitation" id ="next-lvl">
                             <div class="lbl-next-lvl-total-invitation">下级邀请 <span id="next-lvl-total-invitation" class="lvl-total-invitation">(0)</span></div>
-                        
+                        </a>                        
                     </li>          
                 </ul>
             </div>
         </div>
 
-            <div class="full-width-tabs">
-                <ul class="nav nav-pills">
-                    <li class="take-all-space-you-can">
-                        <a class="tab" data-toggle="tab" href="#pending-tab" data-status="pending">
-                            <div>等待验证
-                            <span id="total-pending" class="total-pending">&nbsp;</span>
-                            </div>
-                        </a>
-                    </li>              
-                
-                    <li class="take-all-space-you-can">
-                        <a class="tab" data-toggle="tab" href="#verified-tab" data-status="verified">
-                            
-                            <div class="lbl-total-successful">
-                                验证成功<span id="total-successful" class="total-successful">&nbsp;</span>
-                            </div>
-                        </a>
-                    </li>          
-                
-                    <li class="take-all-space-you-can">
-                        <a class="tab" data-toggle="tab" href="#failed-tab" data-status="failed">
-                            <div>验证失败
-                            <span id="total-fail" class="total-fail">&nbsp;</span>
-                            </div>
-                        </a>
-                    </li>          
-                </ul>
-            </div>
         </div>
 
-        <div id="invitation" class="tab-content">
-            <div id="default-tab" class="tab-pane fade in active"></div>
-            <div id="pending-tab" class="tab-pane fade"></div>
-            <div id="verified-tab" class="tab-pane fade"></div>
-            <div id="failed-tab" class="tab-pane fade"></div>
-            <p class="isnext">下拉显示更多...</p>
-        </div><!-- invitation -->
+        <div class="tab-content">
+            <div id="my-lvl-invitation" class="tab-pane fade in active">
+                <div class="full-width-tabs">
+                    <ul class="nav nav-pills">
+                        <li class="take-all-space-you-can">
+                            <a class="tab" data-toggle="tab" href="#pending-tab" data-status="pending">
+                                <div>未微信认证
+                                <span id="total-pending" class="total-pending">&nbsp;</span>
+                                </div>
+                            </a>
+                        </li>              
+                    
+                        <li class="take-all-space-you-can active">
+                            <a class="tab" data-toggle="tab" href="#verified-tab" data-status="verified">
+                                
+                                <div>
+                                    认证成功<span id="total-successful" class="total-successful">&nbsp;</span>
+                                </div>
+                            </a>
+                        </li>          
+                    
+                        <li class="take-all-space-you-can">
+                            <a class="tab" data-toggle="tab" href="#failed-tab" data-status="failed">
+                                <div>认证失败
+                                <span id="total-fail" class="total-fail">&nbsp;</span>
+                                </div>
+                            </a>
+                        </li>          
+                    </ul>
+
+                    <div id="invitation" class="tab-content">
+                        <div id="default-tab" class="tab-pane fade in active"></div>
+                        <div id="pending-tab" class="tab-pane fade"></div>
+                        <div id="verified-tab" class="tab-pane fade"></div>
+                        <div id="failed-tab" class="tab-pane fade"></div>
+                        <p class="isnext">下拉显示更多...</p>
+                    </div><!-- invitation -->
+                </div>
+            </div>
+
+            <div id="next-lvl-invitation" class="tab-pane fade">
+                <div class="full-width-tabs">
+                    <ul class="nav nav-pills">
+                        <li class="take-all-space-you-can">
+                            <a class="tab" data-toggle="tab" href="#next-lvl-pending-tab" data-status="pending">
+                                <div>未微信认证
+                                <span id="next-lvl-total-pending" class="total-pending">&nbsp;</span>
+                                </div>
+                            </a>
+                        </li>              
+                    
+                        <li class="take-all-space-you-can active">
+                            <a class="tab" data-toggle="tab" href="#next-lvl-verified-tab" data-status="verified">
+                                
+                                <div>
+                                    认证成功<span id="next-lvl-total-successful" class="total-successful">&nbsp;</span>
+                                </div>
+                            </a>
+                        </li>          
+                    
+                        <li class="take-all-space-you-can">
+                            <a class="tab" data-toggle="tab" href="#next-lvl-failed-tab" data-status="failed">
+                                <div>认证失败
+                                <span id="next-lvl-total-fail" class="total-fail">&nbsp;</span>
+                                </div>
+                            </a>
+                        </li>          
+                    </ul>                    
+                </div>
+
+                <div id="invitation_next_lvl" class="tab-content">
+                    <div id="next-lvl-pending-tab" class="tab-pane fade"></div>
+                    <div id="next-lvl-verified-tab" class="tab-pane active"></div>
+                    <div id="next-lvl-failed-tab" class="tab-pane fade"></div>
+                    <!-- <p class="isnext">下拉显示更多...</p> -->
+                </div><!-- next-lvl-invitation -->
+            </div>
+        </div>
     </div>
 </div>
 
@@ -105,6 +149,17 @@
     <script src="{{ asset('/client/js/invitation.js') }}"></script>
     <script type="text/javascript">
         var end_of_result = "@lang('dingsu.end_of_result')";
+    </script>
+
+    <!-- add next lvl invitation -->
+    <script>        
+        $(document).ready(function(){            
+            // document.getElementById('my-lvl-invitation').style.display = "none";
+            // document.getElementById('next-lvl-invitation').style.display = "none";
+            // document.getElementById('invitation').style.display = "none";
+            // document.getElementById('invitation_next_lvl').style.display = "none";
+        })
+        
     </script>
 
 @endsection
