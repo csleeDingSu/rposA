@@ -70,5 +70,12 @@ class BasicPackageController extends Controller
 		return response()->json(['success' => false, 'message' => 'insufficient point']);
 	}
 	
+	public function get_redeem_history(Request $request)
+    {
+		$member_id = $request->memberid;
+		$result    = BasicPackage::get_redeem_history($member_id,30);		
+		return response()->json(['success' => true, 'records' => $result]);
+	}
+	
 	
 }
