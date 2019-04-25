@@ -1,0 +1,223 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.container {
+    width: 500px;
+    background-color: #f3f3f3;
+}
+    
+html, body {
+    height: 100%;
+    background-color: #f3f3f3;
+}
+
+/* Tabs */
+.full-width-tabs {
+    background: white;
+    padding-top: 0.2rem;    
+    padding-bottom: 0.2rem;
+}
+
+.full-width-tabs > .nav-pills > .active > a {
+    text-decoration: none;
+    color: #ff6a42 !important;
+    background-color: white !important;
+}
+.full-width-tabs > .nav-pills > li > a{
+    border-radius:0px;
+    color:#666666;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0px 10px;
+    background-color: white;
+}
+
+.full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.full-width-tabs > ul.nav.nav-pills > li, .modal-row > ul.nav.nav-pills > li{
+    float: none;
+    display: table-cell;
+}
+.full-width-tabs > ul.nav.nav-pills > li > a, .modal-row > ul.nav.nav-pills > li > a{
+    text-align: center;
+}
+
+.take-all-space-you-can{
+    width:100%;
+}
+/* End Tabs */
+
+@media only screen and (max-width: 500px) {
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+
+    .information-table {
+        height: 190px;
+    }
+}
+
+.image-wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.image-wrapper  img {
+    width: 100%;
+    height: 100%;
+}
+
+.summary-table {
+    color: white;
+    position: absolute;
+    z-index: 10;
+    top: 5%;
+    left: 10%;
+    width: 80%;
+}
+
+.summary-table a {
+    text-decoration: none;
+    color: white;
+}
+
+.number {
+    font-size: 50px;
+    text-align: left;
+    width: 50%;
+}
+
+.btn-invite {
+    background-color: white;
+    color: #ff6f44;
+    border-radius: 30px;
+    font-size: 18px;
+    float: right;
+    width: 100px;
+    padding: 5px;
+    margin-top: -10px;
+}
+
+.description {
+    font-size: 18px;
+    float: left;
+}
+
+#invitation {
+    margin-top: 10px;
+}
+
+.row {
+    height: 70px;
+    color: #494949;
+    font-size: 14px;
+    padding-top: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    border-top: 1px solid #e3e3e3;
+    background: #ffffff;
+}
+
+.row:first-child {
+    border-top: none;
+}
+
+.column-1 {
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+.column-2 {
+    padding-right: 5px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.right-wrapper {
+    float: right;
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 400px) {
+    .column-2 {
+        padding-left: 0px;
+    }
+
+    .information-table {
+        height: 180px;
+    }
+
+    .description {
+        font-size: 16px;
+        margin-top: -5px;
+    }
+
+    .number {
+        font-size: 45px;
+    }
+
+    .btn-invite {
+        margin-top: -18px;
+    }
+}
+
+.item {
+    text-align: left;
+    color: #333333;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.date {
+    text-align: left;
+    color: #999999;
+    font-size: 14px;
+    padding-top: 3px;
+}
+
+.status {
+    color: #ff4e4e;
+    font-size: 16px;
+    float: right;
+}
+
+.additional {
+    float: right;
+    color: #fd7422;
+    font-size: 20px;
+}
+
+.pending {
+    color: #01a7f1;
+}
+
+.fail {
+    color: #ff5a21;
+}
+
+.successful {
+    color: #333333;
+}
+
+.isnext {
+     text-align: center;
+     font-size: .26rem;
+     color: #999;
+     line-height: 1.6em;
+     padding: .15rem 0;
+     margin-bottom: 20px;
+}
+
+.total-pending {
+    padding-left: 0.1rem;
+}
+.total-successful {
+    padding-left: 0.1rem;
+}
+.total-fail {
+    padding-left: 0.1rem;
+}
