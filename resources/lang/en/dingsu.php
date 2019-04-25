@@ -586,5 +586,9 @@ return [
 	'disconnected' => 'Disconnected',
 
 	'ref_note' => 'submitted info',
+	'basic' => 'Basic',
+	'basicpackage' => 'Basic Package',
+	'addedbasicpoint' => 'Added basic point' ,
+	'addedbasiclife' => 'Added basic life',
 	
 ];
