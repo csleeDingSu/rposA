@@ -47,7 +47,7 @@
             }
 
         var html =
-                '<img src="' + wheelImg + '" style="transform: rotate('+ degree +'deg);position:absolute;width:' + wSide + 'px;height:' + wSide + 'px;top:0;left:0;" w/>' +
+                '<img src="' + wheelImg + '" style="transform: rotate('+ degree +'deg);position:absolute;width:' + wSide + 'px;height:' + wSide + 'px;top:-1px;left:1px;" w/>' +
                 '<img src="' + pointerImg + '" style="position:absolute;width:' + pSide + 'px;height:' + pSide + 'px;top:' + pOffset + 'px;left:' + pOffset + 'px;" p/>' +
                 '<img id="btnWheel" src="' + buttonImg + '" style="position:absolute;width:' + bSide + 'px;height:' + bSide + 'px;top:' + bOffset + 'px;left:' + bOffset + 'px;" b/>' +
                 '<div id="txtCounter" style="position:absolute;width:' + bSide + 'px;height:' + bSide + 'px;top:' + bOffset + 'px;left:' + bOffset + 'px;"></div>';
