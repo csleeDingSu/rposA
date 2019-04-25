@@ -54,6 +54,9 @@ function getSummary(token) {
             var next_lvl_total_pending = 0;
             var next_lvl_total_successful = 0;
             var html = '';
+            var html_success = '';
+            var html_pending = '';
+            var html_fail = '';
 
             $.each(result, function(i, item) {
 
@@ -109,7 +112,7 @@ function getSummary(token) {
                     var str_class = "fail";
                 }
 
-                html += '<div class="row">' +
+                html = '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
                                 '<div class="item">' + item.phone.substring(0,3) + '&#10033;&#10033;&#10033;&#10033;' + item.phone.substring((item.phone.length - 4),item.phone.length) + '</div>' +
                                 '<div class="date">' + str_date + '</div>' +
@@ -125,11 +128,21 @@ function getSummary(token) {
                             '</div>' +
                         '</div>';
 
-                        // console.log(next_lvl_total_successful);
-
+                if (str_class == "verified") {
+                    html_success += html;
                     status="next-lvl-" + str_class;
-                    // console.log(status);
-                    $('#'+ status +'-tab').append(html);
+                    $('#'+ status +'-tab').append(html_success);
+
+                }else if(str_class == "pending") {
+                    html_pending += html;
+                    status="next-lvl-" + str_class;
+                    $('#'+ status +'-tab').append(html_pending);
+                }else {
+                    html_fail += html;
+                    status="next-lvl-" + str_class;
+                    $('#'+ status +'-tab').append(html_fail);
+                }
+                    
             });
 
             $('#next-lvl-total-fail').html(next_lvl_total_fail);
