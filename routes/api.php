@@ -95,7 +95,9 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	
 	Route::any('/wabao-fee', 'ProductController@wabaofee')->name('api.wabaofee'); //new
 	
-	Route::get('/redeem-hn', 'ProductController@get_redeem_history_new')->name('api.redeem.historynew');	
+	Route::get('/redeem-hn', 'ProductController@get_redeem_history_new')->name('api.redeem.historynew');
+	
+	Route::post('/buy-basic-package', 'BasicPackageController@request_package_upgrade')->name('api.basicpackage.request');
 	
 	
  });
@@ -108,7 +110,7 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::get('/basic-package-list', 'BasicPackageController@list_package')->name('api.basicpackage.list');
 	
-	Route::post('/buy-basic-package', 'BasicPackageController@request_package_upgrade')->name('api.basicpackage.request');
+	
 	
 });
 
