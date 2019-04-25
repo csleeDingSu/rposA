@@ -1769,17 +1769,19 @@ if it's not present, don't show loader */
 	font-size: 16px;
 	visibility: hidden;
 	width: 260px;
+	height: 30px
 	position: absolute;
 	left: 0;
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
 	top: 260px;
-	border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    background-color: #cdcdcd;
+	border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #D3D3D3;
+    padding:5px;
 }
 
 .speech-bubble {
