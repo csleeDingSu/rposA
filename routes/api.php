@@ -108,7 +108,7 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::get('/basic-package-list', 'BasicPackageController@list_package')->name('api.basicpackage.list');
 	
-	Route::post('/request-basic-package', 'BasicPackageController@request_package_upgrade')->name('api.basicpackage.request');
+	Route::post('/buy-basic-package', 'BasicPackageController@request_package_upgrade')->name('api.basicpackage.request');
 	
 });
 
