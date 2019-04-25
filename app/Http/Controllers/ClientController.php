@@ -250,6 +250,16 @@ class ClientController extends BaseController
 		return view( 'client/invitation_list', compact( 'invitation_list' ) );
 
 	}
+
+	public function round () {
+
+		$member_id = Auth::guard('member')->user()->id;
+
+		$round = DB::table( 'view_members' )->where('referred_by', $member_id)->select( '*' )->orderBy( 'id', 'desc' )->get();
+
+		return view( 'client/round', compact( 'round' ) );
+
+	}
 	
 	public function share(Request $request)
 	{		
