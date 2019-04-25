@@ -151,6 +151,7 @@ html, body {
 
 .listing-table {
 	margin-top: 10px;
+	margin-bottom: 25px;
 	text-align: left;
 	color: #f75a5a;
 	font-size: 13px;
@@ -348,5 +349,11 @@ html, body {
 @media only screen and (max-width: 500px) {
 	.radio{
 		height: 55px;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+	.radio{
+		font-size: 10px;
 	}
 }
