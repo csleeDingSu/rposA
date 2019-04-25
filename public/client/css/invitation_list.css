@@ -33,7 +33,7 @@ html, body {
 .full-width-tabs > .nav-pills > .active > a {
     text-decoration: none;
     color: #ff6a42 !important;
-    background-color: #f3f3f3 !important;
+    background-color: transparent !important;
 }
 .full-width-tabs > .nav-pills > li > a{
     border-radius:0px;
@@ -245,10 +245,24 @@ html, body {
 }
 
 .lbl-my-lvl-total-invitation {
-    color: #fc5e39;
+    /*color: #fc5e39;*/
     font-size: 0.4rem;   
+    background-color: white !important;
 }
 .lbl-next-lvl-total-invitation {
-    color: #555;
-    font-size: 0.4rem;      
+    /*color: #555;*/
+    font-size: 0.4rem;
+    background-color: white !important;      
+}
+
+.my-lvl {
+    background-color: white !important;
+}
+
+.next-lvl {
+    background-color: white !important;
+}
+
+#invitation_next_lvl {
+    margin-top: 10px;
 }
