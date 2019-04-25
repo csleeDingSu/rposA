@@ -75,7 +75,7 @@ function getSummary(token) {
 
             });
 
-            $('#total-invite').html(total);
+            $('#total-invite').html(total + next_lvl_total);
             $('#total-fail').html(total_fail);
             $('#total-successful').html(total_successful);
             $('#total-pending').html(total_pending);

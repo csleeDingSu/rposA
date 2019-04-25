@@ -1189,7 +1189,16 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
    height: 90%;
    cursor: pointer;
    z-index: 10000;
+   padding-top: 0.2rem;
+  padding-left: 0.2rem;
 
+}
+
+.btn-copy {
+  color: white;
+    font-size: 0.29rem;
+    letter-spacing: 0.02rem;
+    text-align: center;
 }
 
 #btn-voucher {
@@ -1199,15 +1208,22 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
    background-color: transparent;
    width: 50%;
    height: 90%;
-   cursor: pointer;
+   cursor: pointer;   
+    padding-top: 0.2rem;
+  padding-left: 0.4rem;
 
+}
+
+#btn-voucher span {
+  color: white;
+    font-size: 0.29rem;
+    letter-spacing: 0.02rem;
+    text-align: center;
 }
 
 .caption_redeem_angpao {
   position: absolute;
-  margin-top: -0.62rem;
-  width: 2.5rem;
-  margin-left: -0.1rem;
+  padding-left: 2.9rem;
   animation: MoveUpDown_angpao 1s linear infinite;
 }
 @keyframes MoveUpDown_angpao {
@@ -1217,6 +1233,20 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   50% {
     bottom: 1.25rem;
   }
+}
+
+.caption_redeem_angpao img{
+  width: 2.5rem;
+}
+
+.caption_redeem_angpao span{
+    color: white; 
+    letter-spacing: 0.02rem;
+    text-align: center;
+    width: 2.5rem;
+    position: absolute;
+    padding-top: 0.1rem;
+    font-size: 0.24rem;
 }
 .caption_redeem_voucher {
     position: absolute;
@@ -1234,4 +1264,26 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
     font-size: 0.25rem;
     margin-top: -0.4rem;
     margin-left: 1.15rem;
+}
+
+.inner_span_copy1 {
+    font-size: 0.25rem !important;
+}
+
+.inner_span_copy2 {
+    font-size: 0.2rem !important;
+}
+
+.btn-copy2 {
+   position: absolute;
+   top: 0;
+   left: 0;
+   background-color: transparent;
+   width: 49%;
+   height: 90%;
+   cursor: pointer;
+   z-index: 10000;
+   padding-top: 0.2rem;
+  padding-left: 0.2rem;
+
 }
