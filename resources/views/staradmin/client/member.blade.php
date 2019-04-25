@@ -127,6 +127,17 @@
 					</li>
 				</a>
 
+				<!-- 我的场次 -->
+				<a href="#">
+					<li class="list-group-item">
+						<div class="icon-wrapper">
+							<div class="icon-round"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						我的场次
+					</li>
+				</a>
+
 				<!-- 邀请记录 -->
 				<a href="/invitation_list">
 					<li class="list-group-item">
