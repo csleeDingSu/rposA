@@ -656,18 +656,18 @@
 								<div class="modal-invite-content">
 									<h1 class="modal-invite-title">您有以下选择</h1>
 									<ol class="vegan-list">
+										<li>购买次数，首次购买仅需5.8元/次，之后购买9.9元/次，每天限购5次。</li>
 										<li>邀请好友加入，邀请1个获得{{env('sharetofriend_youwillget', '1')}}次机会</li>
-										<li>购买VIP，无需邀人，可无限玩，收益比普通场高更多。</li>
 									</ol>
 								</div>
-								<a href="/share" class="link-button">
+								<a href="/purchase" class="link-button">
 									<div class="modal-share-button">
-										邀请好友
+										我要购买
 									</div>
 								</a>
-								<a href="/membership" class="link-button">
+								<a href="/share" class="link-button">
 									<div class="modal-vip-button">
-										购买VIP
+										邀请好友
 									</div>
 								</a>													
 							</div>
