@@ -96,6 +96,8 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::any( '/invitation_list', 'ClientController@invitation_list' )->name( 'client.invitation_list' );
 
+	Route::any( '/round', 'ClientController@round' )->name( 'client.round' );
+
 	Route::get( '/customer_service', function () {
 		return view( 'client/customer_service' );
 	} );
