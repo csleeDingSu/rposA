@@ -60,6 +60,25 @@ class MemberController extends Controller
 		return response()->json(['success' => true,'result' => $result]);
 	}
 	
+	public function get_second_level_child_data(Request $request)
+	{
+		$status = '';
+		switch ($request->status)
+		{
+			case 'verified':
+				$status = ['0'];
+			break;
+			case 'pending':
+				$status = ['1'];
+			break;
+			case 'failed':
+				$status = ['2','3'];
+			break;	
+		}
+		$result = Member::get_second_level_child_data($request->memberid, $status); 
+		return response()->json(['success' => true,'result' => $result]);
+	}
+	
 	public function get_introducer_count(Request $request)
 	{
 		$result = Member::get_introducer_count($request->memberid);  
@@ -67,7 +86,9 @@ class MemberController extends Controller
 		$count  = $data['count'];
 		$slcda  = $data['data'];
 		
-		return response()->json(['success' => true,'result' => $result,'slc_count'=>$count,'slc_data'=>$slcda]);
+		$newcount = Member::get_second_level_child_count_new($request->memberid);
+		
+		return response()->json(['success' => true,'result' => $result,'slc_count'=>$count,'slc_data'=>$slcda,'slc_count_new'=>$newcount]);
 	}
 	
 	public function get_introducer_history(Request $request)

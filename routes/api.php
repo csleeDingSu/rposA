@@ -88,6 +88,7 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	Route::any('/master-call-nobet', 'GameController@master_withoutbet')->name('api.master.withoutbet');
 	
 	Route::any('/member-referral-count', 'MemberController@get_introducer_count')->name('api.referral.count');
+	Route::any('/member-scl-referral-list', 'MemberController@get_second_level_child_data')->name('api.slc_referral.list');
 	
 	Route::any('/member-referral-list', 'MemberController@get_introducer_history')->name('api.referral.list');
 	
