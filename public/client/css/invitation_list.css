@@ -262,3 +262,7 @@ html, body {
 .next-lvl {
     background-color: white !important;
 }
+
+#invitation_next_lvl {
+    margin-top: 10px;
+}

@@ -125,10 +125,10 @@ function getSummary(token) {
                             '</div>' +
                         '</div>';
 
-                        console.log(next_lvl_total_successful);
+                        // console.log(next_lvl_total_successful);
 
                     status="next-lvl-" + str_class;
-                    console.log(status);
+                    // console.log(status);
                     $('#'+ status +'-tab').append(html);
             });
 
