@@ -479,8 +479,8 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get('/basicpackage/get-package', 'BasicPackageController@getbasicpackage')->name('basicpackage.get');	
 	Route::delete('/basicpackage/delete', 'BasicPackageController@delete_basicpackage')->name('basicpackage.remove');
 	
-	//Route::get('/basicpackage/get-quantity', 'ProductController@get_basicpackage_quantity')->name('get.basicpackage.quantity');	
-	//Route::post('/basicpackage/adjust-quantity', 'ProductController@adjust_basicpackage_quantity')->name('post.basicpackage.adjustquantity');
+	Route::get('/basicpackage/get-quantity', 'ProductController@get_basicpackage_quantity')->name('get.basicpackage.quantity');	
+	Route::post('/basicpackage/adjust-quantity', 'ProductController@adjust_basicpackage_quantity')->name('post.basicpackage.adjustquantity');
 	
 	Route::get('/basicpackage/redeem-list', 'BasicPackageController@list_redeem_basicpackage')->name('basicpackage.redeem.list');
 	Route::get('/basicpackage/redeem-history', 'BasicPackageController@list_basicredeem_history')->name('basicpackage.redeem.history');	
