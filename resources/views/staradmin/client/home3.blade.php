@@ -218,11 +218,14 @@
 					</div>
 					
 
-					<img class="caption_redeem_angpao" src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
+					<div class="caption_redeem_angpao">
+						<span>99%拿30元红包</span>
+						<img src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
+					</div>
 					<div id="button-wrapper">
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
-						<div id="btn-copy"></div>
-						<div id="btn-voucher" class="freeVoucherBtn"></div>
+						<div id="btn-copy" class="btn-copy">领取优惠券</div>
+						<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>
 					</div>
 					<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
 
@@ -345,9 +348,7 @@
 				
 			// 	$('.speech-balloon-home').removeClass('hide').animate({'margin-top': '-1.4rem'}, 500);
 			// }
-
-			$('.caption_redeem_angpao').animate({'margin-top': '-0.62rem'}, 500);
-
+			
 			$('.downIcon').click(function () {
 				$('.cardHeader').css({ 'z-index': '11' });
 				being.wrapShow('.cardBody');
@@ -364,6 +365,9 @@
 			
 			$('.showQuan').click((e) => {
 				$('.btn-product-details').attr('src', '/client/images/btn-redeem.png');
+				$('#btn-copy').css('padding-top', '0.2rem');
+				$('.btn-copy').html("领取优惠券");
+
 				var target = $(e.target).closest('.inBox').length;
 				console.log(target);
 				if (target > 0) {
@@ -475,11 +479,16 @@
 			clipboard.on('success', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				$('#btn-copy').css('padding-top', '0.1rem');
+				$('.btn-copy').html("<p class='inner_span_copy1'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
+
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				$('#btn-copy').css('padding-top', '0.1rem');
+				$('.btn-copy').html("<p class='inner_span_copy1'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			being.scrollBottom('.cardBody', '.box', () => {			
