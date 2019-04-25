@@ -1765,7 +1765,7 @@ if it's not present, don't show loader */
 }
 
 .spinning {
-	color: #e07f5f;
+	color: #ff6400;
 	font-size: 16px;
 	visibility: hidden;
 	width: 260px;
@@ -1775,6 +1775,11 @@ if it's not present, don't show loader */
 	margin-left: auto;
 	margin-right: auto;
 	top: 260px;
+	border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #cdcdcd;
 }
 
 .speech-bubble {
