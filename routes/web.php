@@ -471,6 +471,25 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::delete( '/share-product/delete/{id}', 'VoucherController@delete_shareproduct' )->name( 'delete_shareproduct' );
 	
 	
+	
+	//Basic Package	 basicpackage
+	Route::get('/basicpackage/', 'BasicPackageController@list_basicpackage')->name('basicpackage.list.all');
+	Route::get('/basicpackage/list', 'BasicPackageController@list_basicpackage')->name('basicpackage.list');	
+	Route::post('/basicpackage/add', 'BasicPackageController@save_basicpackage')->name('basicpackage.save');
+	Route::get('/basicpackage/get-package', 'BasicPackageController@getbasicpackage')->name('basicpackage.get');	
+	Route::delete('/basicpackage/delete', 'BasicPackageController@delete_basicpackage')->name('basicpackage.remove');
+	
+	//Route::get('/basicpackage/get-quantity', 'ProductController@get_basicpackage_quantity')->name('get.basicpackage.quantity');	
+	//Route::post('/basicpackage/adjust-quantity', 'ProductController@adjust_basicpackage_quantity')->name('post.basicpackage.adjustquantity');
+	
+	Route::get('/basicpackage/redeem-list', 'BasicPackageController@list_redeem_basicpackage')->name('basicpackage.redeem.list');
+	Route::get('/basicpackage/redeem-history', 'BasicPackageController@list_basicredeem_history')->name('basicpackage.redeem.history');	
+	
+	Route::post('/basicpackage/confirm-vip', 'BasicPackageController@confirm_basicpackage')->name('basicpackage.redeem.confirm');	
+	Route::post('/basicpackage/reject-vip', 'BasicPackageController@reject_basicpackage')->name('basicpackage.redeem.reject');
+	
+	
+	
 } );
 //END
 

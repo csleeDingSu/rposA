@@ -55,6 +55,10 @@
 									<option value="ALAVL">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')</option>
 									<option value="DPRPO">@lang('dingsu.redeem_product_using_point')</option>
 									<option value="DPBVP">@lang('dingsu.buy_vip_using_point')</option>
+									
+									
+									<option value="APBPR">@lang('dingsu.addedbasicpoint')</option>
+									<option value="ALBPR">@lang('dingsu.addedbasiclife')</option>
 								</select>
 							</div>
 						</div>
