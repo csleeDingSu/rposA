@@ -128,15 +128,16 @@
                                 </div>
                             </a>
                         </li>          
-                    </ul>                    
-                </div>
+                    </ul>
 
-                <div id="invitation_next_lvl" class="tab-content">
-                    <div id="next-lvl-pending-tab" class="tab-pane fade"></div>
-                    <div id="next-lvl-verified-tab" class="tab-pane active"></div>
-                    <div id="next-lvl-failed-tab" class="tab-pane fade"></div>
-                    <!-- <p class="isnext">下拉显示更多...</p> -->
-                </div><!-- next-lvl-invitation -->
+                    <div id="invitation_next_lvl" class="tab-content">
+                        <div id="next-lvl-pending-tab" class="tab-pane fade"></div>
+                        <div id="next-lvl-verified-tab" class="tab-pane active"></div>
+                        <div id="next-lvl-failed-tab" class="tab-pane fade"></div>
+                        <!-- <p class="isnext">下拉显示更多...</p> -->
+                    </div>                    
+                </div>
+                <!-- next-lvl-invitation -->
             </div>
         </div>
     </div>
