@@ -100,7 +100,7 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	Route::post('/buy-basic-package', 'BasicPackageController@request_package_upgrade')->name('api.basicpackage.request');
 	
 	
-	
+	Route::get('/basic-package-redeem-history', 'BasicPackageController@get_redeem_history')->name('api.basicredeem.history');
 	
  });
 
@@ -112,7 +112,7 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::get('/basic-package-list', 'BasicPackageController@list_package')->name('api.basicpackage.list');
 	
-	Route::get('/basic-package-redeem-history', 'BasicPackageController@get_redeem_history')->name('api.basicredeem.history');
+	
 	
 });
 
