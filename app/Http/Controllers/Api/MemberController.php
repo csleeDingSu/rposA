@@ -60,10 +60,22 @@ class MemberController extends Controller
 		return response()->json(['success' => true,'result' => $result]);
 	}
 	
-	public function child_list(Request $request)
+	public function get_second_level_child_data(Request $request)
 	{
-		
-		$result = Member::get_second_level_child_data($request->memberid,$request->status);  
+		$status = '';
+		switch ($request->status)
+		{
+			case 'verified':
+				$status = ['0'];
+			break;
+			case 'pending':
+				$status = ['1'];
+			break;
+			case 'failed':
+				$status = ['2','3'];
+			break;	
+		}
+		$result = Member::get_second_level_child_data($request->memberid, $status); 
 		return response()->json(['success' => true,'result' => $result]);
 	}
 	
