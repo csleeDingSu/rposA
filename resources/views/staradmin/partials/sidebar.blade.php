@@ -169,6 +169,30 @@
 				</ul>
 			</div>
 		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#uibasicpackage" aria-expanded="false" aria-controls="uibasicpackage">
+              <i class="menu-icon  icon-layers   text-info"></i>
+              <span class="menu-title"> @lang('dingsu.basicpackage')  @lang('dingsu.list')</span>
+              <i class="menu-arrow"></i>
+            </a>
+		
+			<div class="collapse" id="uibasicpackage">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/basicpackage/list">@lang('dingsu.package')  @lang('dingsu.list')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/basicpackage/redeem-list">@lang('dingsu.pending')  @lang('dingsu.list')</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/basicpackage/redeem-history">@lang('dingsu.history')</a>
+					</li>
+					
+				</ul>
+			</div>
+		</li>
 
 		<!-- <li class="nav-item">
 			<a class="nav-link" href="/product/product-new">
