@@ -221,7 +221,7 @@ class RedisGameController extends Controller
 				//@todo :- get from config
 				if ($setting->freeze_time>=30 or $setting->freeze_time<5) $setting->freeze_time = 5;	
 				
-				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time];
+				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time,'expiry_time'=>$out->expiry_time];
 				return $result;
 			}
 			return 'result expired';			 
