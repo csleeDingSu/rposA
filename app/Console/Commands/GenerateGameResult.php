@@ -102,7 +102,7 @@ class GenerateGameResult extends Command
 		
 		$now = Carbon::now()->toDateTimeString();
 		
-		$sec = 0;
+		//$sec = 0;
 		$tomorrow = Carbon::tomorrow();
 		$i = 1;
 		$unix = 0;
