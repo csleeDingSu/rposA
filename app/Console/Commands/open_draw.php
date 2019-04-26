@@ -60,6 +60,7 @@ class open_draw extends Command
 		
 		if (!$draw) dd('unknown draw');		
 		$this->info('Draw ID :'.'--------'.$drawid.'----------');
+		$ReportController = new RedisGameController(); 
 		
 		$gamesetting   = $ReportController->get_game_setting($draw , $now); 
 		event(new \App\Events\EventDynamicChannel('activedraw','',$gamesetting));
@@ -67,7 +68,7 @@ class open_draw extends Command
 		$gameid = $draw->game_id;
 		$event_data = [];
 		$mers = \DB::table('redis')->select('member_id')->get();
-		$ReportController = new RedisGameController(); 
+		
         				
 		if ($mers)
 		{			
