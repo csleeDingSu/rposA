@@ -78,6 +78,11 @@ class RedisGameController extends Controller
 
 		}
 		$gamesetting      = $this->get_game_setting($latest_result, $now);
+		
+		event(new \App\Events\EventDynamicChannel('activedraw-'.$memberid,'',$gamesetting));
+		
+		
+		
 		$gamenotific      = $this->get_game_notification($memberid,$gameid);			
 		$gamehistory      = $this->get_game_history($gameid);		
 		//$futureresult     = Game::get_future_result($gameid, $now );
@@ -221,7 +226,7 @@ class RedisGameController extends Controller
 				//@todo :- get from config
 				if ($setting->freeze_time>=30 or $setting->freeze_time<5) $setting->freeze_time = 5;	
 				
-				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time];
+				$result = ['drawid'=>$out->result_id,'requested_time'=>$now , 'remaining_time'=>$result_time, 'duration'=>$duration, 'freeze_time' => $setting->freeze_time,'created_time'=>$out->created_at,'expiry_time'=>$out->expiry_time];
 				return $result;
 			}
 			return 'result expired';			 

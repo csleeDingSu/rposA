@@ -59,7 +59,10 @@ class open_draw extends Command
 		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('id', '=', $drawid)->first();		
 		
 		if (!$draw) dd('unknown draw');		
-		$this->info('Draw ID :'.'--------'.$drawid.'----------');	
+		$this->info('Draw ID :'.'--------'.$drawid.'----------');
+		
+		$gamesetting   = $ReportController->get_game_setting($draw , $now); 
+		event(new \App\Events\EventDynamicChannel('activedraw','',$gamesetting));
 		
 		$gameid = $draw->game_id;
 		$event_data = [];
@@ -72,7 +75,7 @@ class open_draw extends Command
 			$now           = Carbon::now();
 			$latest_result = Game::get_latest_result($draw->game_id);
 			//$futureresult  = Game::get_future_result($draw->game_id, $now );
-			$gamesetting   = $ReportController->get_game_setting($draw , $now); 
+			
 			$gamehistory   = $ReportController->get_game_history($draw->game_id);			
 			$this->comment('Get Data:'.'--------'.Carbon::now()->toDateTimeString().'----------');	
 			foreach ($mers as $key => $val)
