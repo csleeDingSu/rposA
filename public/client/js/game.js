@@ -162,6 +162,15 @@ function initGame(data, level, latest_result, consecutive_lose){
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
 
+        var expiry_time = new Date(data.expiry_time);
+        var requested_time = new Date(data.requested_time.date);
+        var current_time = new Date();            
+        timer = ((expiry_time - requested_time) / 1000).toString();
+        if (timer > duration) {
+            timer = duration;
+        }
+        console.log('new timer ' + timer);
+
         $('#hidLevel').val(level);
         $('#hidLevelId').val(level_id);
         $('#hidLatestResult').val(previous_result);
@@ -491,17 +500,17 @@ function getSocket(){
 
             }); 
 
-            //on page load activedraw Script
-            socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
-                console.log('load activedraw member page load');
-                console.log(data);
-             });
+            // //on page load activedraw Script
+            // socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
+            //     console.log('load activedraw member page load');
+            //     console.log(data);
+            //  });
 
-            //on page load activedraw Script
-            socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
-                console.log('load activedraw page load');
-                console.log(data);
-             });
+            // //on page load activedraw Script
+            // socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
+            //     console.log('load activedraw page load');
+            //     console.log(data);
+            //  });
          
         });
 }
@@ -1123,6 +1132,9 @@ function startTimer(duration, timer, freeze_time) {
 
         --timer;
 
+        // console.log('timer' + timer);
+        // console.log('trigger_time ' + trigger_time);
+            
         if (timer < 0) {
             timer = duration;
 
