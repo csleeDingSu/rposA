@@ -207,7 +207,7 @@
 			<div class="frame-wrapper">
 				<div id="wheel_banner">
 					<img src="{{ asset('/client/images/wheel-banner.png') }}" />
-					<div class="spinning">转盘转动中不能选号</div>
+					<div class="spinning">转盘转动中，请等待结果。</div>
 				</div>
 		        <div id="wheel_container"></div>
 		    </div>

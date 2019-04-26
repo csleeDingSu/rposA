@@ -162,6 +162,15 @@ function initGame(data, level, latest_result, consecutive_lose){
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
 
+        var expiry_time = new Date(data.expiry_time);
+        var requested_time = new Date(data.requested_time.date);
+        var current_time = new Date();            
+        timer = ((expiry_time - requested_time) / 1000).toString();
+        if (timer > duration) {
+            timer = duration;
+        }
+        console.log('new timer ' + timer);
+
         $('#hidLevel').val(level);
         $('#hidLevelId').val(level_id);
         $('#hidLatestResult').val(previous_result);
@@ -489,7 +498,20 @@ function getSocket(){
                 betting_data = groupHistory(data.data.data);
                 update_betting_history = true;
 
-            });          
+            }); 
+
+            // //on page load activedraw Script
+            // socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
+            //     console.log('load activedraw member page load');
+            //     console.log(data);
+            //  });
+
+            // //on page load activedraw Script
+            // socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
+            //     console.log('load activedraw page load');
+            //     console.log(data);
+            //  });
+         
         });
 }
 
@@ -787,7 +809,19 @@ function bindBetButton(){
                 });
             }
 
+            var temp = "";
+
             $('.payout-info').removeClass("hide");
+            if (selected == "odd") {
+                temp = "[单数]";
+            } else {
+                temp = "[双数]";
+            }
+            $('.caption_bet').text(temp);
+
+            // $(".payout-info").text(function () {
+            //     return $(this).text().replace("[单数]", temp); 
+            // });
             //$('.span-balance').html(newbalance);
         }
 
@@ -892,7 +926,7 @@ function showProgressBar(bol_show){
     var bet_amount = 0;
     var payout_info = '';
     var span_balance = 1200;
-
+    
     if(consecutive_lose == 'yes') {
         $('.span-1').html("-10");
         $('.span-2').html("-30");
@@ -907,13 +941,14 @@ function showProgressBar(bol_show){
         checked(7, false);
         changbar(7);
     } else {
+
         switch (level) {
 
             default:
             case 1:
                 bet_amount = 10;
 
-                payout_info = '猜中得10，赚10金币。';
+                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中赚10金币，可兑换1元。';//'猜中得10，赚10金币。';
                 $('.span-1').html("10");
                 $('.span-2').html("30");
                 $('.span-3').html("70");
@@ -926,14 +961,14 @@ function showProgressBar(bol_show){
                 bet_amount = 30;
                 span_balance = 1190;
 
-                payout_info = '猜中得30，扣除之前亏损10，赚20金币。';
+                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
                 $('.span-1').html("-10");                        
                 break;
             case 3:                    
                 bet_amount = 70;
                 span_balance = 1160;
 
-                payout_info = '猜中得70，扣除前2次亏损40，赚30金币。';
+                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 break;
@@ -941,7 +976,7 @@ function showProgressBar(bol_show){
                 bet_amount = 150;
                 span_balance = 1090;
 
-                payout_info = '猜中得150，扣除前3次亏损110，赚40金币。';
+                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得150，赚40金币。';//'猜中得150，扣除前3次亏损110，赚40金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -950,7 +985,7 @@ function showProgressBar(bol_show){
                 bet_amount = 310;
                 span_balance = 940;
 
-                payout_info = '猜中得310，扣除前4次亏损260，赚50金币。';
+                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得310，赚50金币。';//'猜中得310，扣除前4次亏损260，赚50金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -960,7 +995,7 @@ function showProgressBar(bol_show){
                 bet_amount = 630;
                 span_balance = 630;
 
-                payout_info = '猜中得630，扣除前5次亏损570，赚60金币。';
+                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得630，赚60金币。';//'猜中得630，扣除前5次亏损570，赚60金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -1097,6 +1132,9 @@ function startTimer(duration, timer, freeze_time) {
 
         --timer;
 
+        // console.log('timer' + timer);
+        // console.log('trigger_time ' + trigger_time);
+            
         if (timer < 0) {
             timer = duration;
 

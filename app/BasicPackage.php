@@ -207,11 +207,16 @@ class BasicPackage extends Model
 		
 	}
 	
-	public static function get_redeem_history($memberid, $limit = 100)
-	{
-		$result =  DB::table('view_basic_package_user_list')->where('member_id', $memberid)->orderBy('request_at', 'DESC')->paginate($limit);
+	public static function get_redeem_history($memberid, $status ,$limit = 100)
+	{		
+		$result = DB::table('view_basic_package_user_list')->where('member_id', $memberid);
+				
+		if ($status != '') $result->whereIn('redeem_state', $status);
+		
+		$result = $result->orderby('created_at','DESC')->paginate($limit);
 		
 		return $result;
+		
 	}
 	
 }

@@ -1765,16 +1765,27 @@ if it's not present, don't show loader */
 }
 
 .spinning {
-	color: #e07f5f;
+	color: #fff;
 	font-size: 16px;
 	visibility: hidden;
-	width: 260px;
+	width: 220px;
+	height: 40px;
 	position: absolute;
 	left: 0;
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
-	top: 260px;
+	top: 230px;
+	border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #000;
+    padding:7px;
+    padding-left: 15px;
+    z-index:9999 !important;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .speech-bubble {
@@ -2019,4 +2030,8 @@ if it's not present, don't show loader */
 	width: 125px;
 	margin-left: 55px;
 	font-size: larger;
+}
+
+.caption_bet {
+	color: #fef100 !important;
 }
