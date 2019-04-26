@@ -40,7 +40,8 @@
 			<div class="information-table">
 				  <div class="col-xs-12">
 				  	<span class="label-title">付款金额</span><br />
-				  	<div class="point numbers"><div class="sign">¥</div>99.00</div>
+				  	<div class="point numbers"><div class="sign">¥</div><span class="spanPrice">0.00</span></div>
+				  	<input type="hidden" id="package_id" name="package_id" />
 				  	<input type="hidden" id="cut" value="i8I2yX408f" />
 				  	<div class="button-copy cutBtn">复制支付口令</div>
 				  </div>
@@ -113,68 +114,5 @@
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
-	
-	<script type="text/javascript">
-		$(document).ready(function () {
-
-			$('.close-modal').click(function(){
-		        $('#modal-successful').modal('hide');
-		    });
-
-		    $('.button-submit').click(function(){
-		    	var txt_name = $('#txt_name').val();
-		    	if(txt_name == ''){
-		    		$('.error').show();
-		    	} else {
-    				var username = $('#hidUsername').val();
-				    var session = $('#hidSession').val();
-				    var id = $('#hidUserId').val();
-
-				    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
-				        //console.log(data);
-				        if(data.success) {
-				        	$.ajax({
-						        type: 'POST',
-						        url: "/api/request-vip-upgrade",
-						        data: { 'memberid': id, 'packageid': 29, 'ref_note': txt_name },
-						        dataType: "json",
-						        beforeSend: function( xhr ) {
-						            xhr.setRequestHeader ("Authorization", "Bearer " + data.access_token);
-						        },
-						        error: function (error) { console.log(error.responseText) },
-						        success: function(data) {
-						            if(data.success) {
-						                $('.error').hide();
-				        				$('#modal-successful').modal();
-						            } else {
-						                $('.error').html(data.message);
-						            }
-						        }
-						    });
-				        }      
-				    });
-
-				    
-
-		    		
-		        }
-		    });
-
-			var clipboard = new ClipboardJS('.cutBtn', {
-				text: function (trigger) {
-					return $('#cut').val();
-				}
-			});
-
-			clipboard.on('success', function (e) {
-				$('.cutBtn').html('复制成功打开支付宝');
-			});
-
-			clipboard.on('error', function (e) {
-				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
-				$('.cutBtn').html('复制成功打开支付宝');
-			});
-
-		});	
-	</script>
+	<script src="{{ asset('/client/js/membership.js') }}" ></script>
 @endsection

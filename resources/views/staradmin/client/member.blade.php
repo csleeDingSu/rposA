@@ -128,7 +128,7 @@
 				</a>
 
 				<!-- 我的场次 -->
-				<a href="#">
+				<a href="/round">
 					<li class="list-group-item">
 						<div class="icon-wrapper">
 							<div class="icon-round"></div>
