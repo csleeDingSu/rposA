@@ -489,7 +489,20 @@ function getSocket(){
                 betting_data = groupHistory(data.data.data);
                 update_betting_history = true;
 
-            });          
+            }); 
+
+            //on page load activedraw Script
+            socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
+                console.log('load activedraw member page load');
+                console.log(data);
+             });
+
+            //on page load activedraw Script
+            socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
+                console.log('load activedraw page load');
+                console.log(data);
+             });
+         
         });
 }
 
