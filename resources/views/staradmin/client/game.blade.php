@@ -229,9 +229,7 @@
 		<div class="carousel-cell">
 			<div class="frame-wrapper">
 				<div id="wheel_banner">
-					<div class="spinning">转盘转动中，请等待结果。</div>
-					<img src="{{ asset('/client/images/wheel-banner.png') }}" style="z-index:-1;" />
-					
+					<img src="{{ asset('/client/images/wheel-banner.png') }}" />
 				</div>
 		        <div id="wheel_container"></div>
 		    </div>
@@ -298,7 +296,7 @@
 		</div>
 	</div>
 	<!-- end swiper iframe -->
-
+	<div class="spinning">转盘转动中，请等待结果。</div>
 	<div class="instruction">请猜下一局幸运号是单数或双数</div>
 
 	<!-- progress bar -->
