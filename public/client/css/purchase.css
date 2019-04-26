@@ -41,10 +41,11 @@ html, body {
 	margin-top:20px;
 	padding-top:20px;
 	background: white;
-	height: 3rem;
 	border-radius: 10px;
 	display: block;
 	text-align: left;
+	position: relative;
+	padding-bottom: 20px;
 }
 
 .information-table .col-xs-12, .information-table .col-xs-6 {
@@ -62,6 +63,11 @@ html, body {
 
 .information-table a {
 	text-decoration: none;
+}
+
+.row {
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .label-title {
@@ -125,10 +131,6 @@ html, body {
 }
 
 @media only screen and (max-width: 500px) {
-	.information-table {
-		height: 280px;
-	}
-
     .member-box {
 		width: 90%;
 	}
@@ -235,7 +237,7 @@ html, body {
 
 /* Modal Box */
 .modal-content, .modal-footer {
-    background: white;
+    background: rgba(0, 0, 0, 0.7);
     width: 340px;
     margin-left: auto;
     margin-right: auto;
@@ -246,32 +248,24 @@ html, body {
 
 .modal-full-height {
     text-align:center;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     margin: 0 auto;
 }
 
-.modal-content {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.modal-footer {
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    text-align: center;
-    color: #8a8a8a;
-    font-size: 17px;
-    padding: 0;
-}
-
 .modal-body {
+	padding-top: 0;
 	padding-bottom: 0;
 }
 
 .modal-card {
     width: 250px;
-    margin: 20px auto 0 auto;
+    margin: 0 auto;
     font-size: 16px;
+}
+
+.modal-backdrop.in {
+    filter: alpha(opacity=0);
+    opacity: 0;
 }
 
 #modal-successful .col-xs-6 {
@@ -294,9 +288,9 @@ html, body {
 
 .instructions {
     font-weight: 500;
-    color: #505050;
-    padding-top: 15px;
-	padding-bottom: 20px;
+    color: #fff;
+    padding-top: 10px;
+	padding-bottom: 15px;
 	font-size: 17px;
 }
 
@@ -312,10 +306,24 @@ html, body {
 }
 /* End Modal box */
 
+.promotion {
+	width: 60%;
+	position: absolute;
+	top: -25%;
+	right: 6%;
+	z-index: 10;
+}
+
+.promotion img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .radio-group{
     position: relative;
     padding-right: 15px;
 	padding-left: 15px;
+	height: 100px;
 }
 
 .radio{
