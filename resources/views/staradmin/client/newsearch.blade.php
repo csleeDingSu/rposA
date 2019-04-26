@@ -89,7 +89,7 @@
 		                <div class="inBox">
                             <div class="flexSp">
                                 <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" value="{{ $strSearch }}" autofocus>
-                                <input type="submit" id="btn_search" value="搜索" style="color: #f65e7e; font-size: 0.35rem;" />
+                                <input type="submit" id="btn_search" value="搜索" style="color: #f65e7e; font-size: 0.3rem;" />
                             
                             </div>
 
@@ -98,115 +98,47 @@
 					</li>					
 				</ul>
 				</form>
-				<div class="full-width-tabs">
-					<ul id="search-tabs" class="nav nav-pills">
-					  <li class="take-all-space-you-can active"><a class="tab" data-toggle="tab" href="#search-external">搜全网</a></li>
-					  <li class="take-all-space-you-can"><a class="left tab" data-toggle="tab" href="#search-internal">搜平台卷</a></li>
-					</ul>
-				</div>
 			</div>
-			<div class="top-background">
-				<img src="{{ asset('/client/images/search/bg.png') }}" />
-			</div>
+			<div class="top-background"></div>
 		</div>
 		
 
-		<div class="cardBody">
-		<div class="tab-content">
-				<!-- redeem list content -->
-				<div id="search-external" class="tab-pane fade in active">
-					
-						<div class="box">
-							<div class="div-instruction" {{ empty($strSearch) ? '' : 'style=display:none' }} >
-								<div class="external-title">
-									搜索方法
-								</div>
-								<ul class="instruction-list">
-									<li><span class="list-style">1</span>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
-									<li>
-										<div class="instruction-background left-border">
-											<img src="{{ asset('/client/images/search/copy.png') }}" />
-										</div>
-									</li>
-									<li><span class="list-style">2</span>进入平台点击搜索框，粘贴商品标题搜索</li>
-									<li>
-										<div class="instruction-background">
-											<img src="{{ asset('/client/images/search/paste.png') }}" />
-										</div>
-									</li>
-								</ul>
-								<div class="external-description">
-									“搜全网”功能中的商品信息均来自于互联网<br />
-									商品准确信息请与商品所属店铺经营者沟通确认
-								</div>
+		<div class="cardBody">					
+			<div class="box">
+				<div class="div-instruction" {{ empty($strSearch) ? '' : 'style=display:none' }} >
+					<ul class="instruction-list">
+						<li><span class="list-style">1</span>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
+						<li>
+							<div class="instruction-background">
+								<img src="{{ asset('/client/images/search/copy.png') }}" />
 							</div>
+						</li>
+						<li><span class="list-style">2</span>进入平台点击搜索框，粘贴商品标题搜索</li>
+						<li>
+							<div class="instruction-background">
+								<img src="{{ asset('/client/images/search/paste.png') }}" />
+							</div>
+						</li>
+					</ul>
+					<div class="external-description">
+						“搜全网”功能中的商品信息均来自于互联网<br />
+						商品准确信息请与商品所属店铺经营者沟通确认
+					</div>
+				</div>
 
-							<div class="product">					
-								<div class="infinite-scroll">
-									<ul class="list-2">
-											@include('client.searchajaxhome')
-									</ul>
-									
-									
-									<p class="isnext">下拉显示更多...</p>
-								</div>
-								
-							</div>
-						</div>
+				<div class="product">					
+					<div class="infinite-scroll">
+						<ul class="list-2">
+								@include('client.searchajaxhome')
+						</ul>
 						
+						
+						<p class="isnext">
+							{{ empty($strSearch) ? '' : '下拉显示更多...' }}
+						</p>
+					</div>
 					
 				</div>
-
-
-				<!-- end redeem list content -->
-
-				<!-- redeem history content -->
-				<div id="search-internal" class="tab-pane fade">
-						<div class="box">
-							<div class="div-instruction" {{ empty($strSearch) ? '' : 'style=display:none' }}>
-								<div id="div-history"></div>
-								<ul class="search-list">热门搜索
-									<li>
-										<a href="/newsearch/洗发水"><div class="search-title">洗发水</div></a>
-										<a href="/newsearch/情趣用品"><div class="search-title">情趣用品</div></a>
-										<a href="/newsearch/方塞喷雾"><div class="search-title">方塞喷雾</div></a>
-									</li>
-									<li>
-										<a href="/newsearch/情趣用品"><div class="search-title">情趣用品</div></a>
-										<a href="/newsearch/情趣用品"><div class="search-title">情趣用品</div></a>
-										<a href="/newsearch/内衣"><div class="search-title">内衣</div></a>
-									</li>
-								</ul>
-								<ul class="search-list">商品分类
-									@if(isset($category))
-										@php @$counter = 0 @endphp
-										@foreach($category as $cat)
-											@php @$counter++ @endphp
-											@if($counter % 4 == 1)
-												<li>
-											@endif
-												<a href="/cs/{{$cat->id}}"><div class="search-title">{{$cat->display_name}}</div></a>
-											@if($counter % 4 == 0)
-												</li>
-											@endif
-										@endforeach
-									@endif
-								</ul>
-							</div>
-
-							<div class="product">					
-								<div class="infinite-scroll">
-									<ul class="list-2">						
-											@include('client.searchajaxhome')
-									</ul>
-									
-									
-									<p class="isnext">下拉显示更多...</p>
-								</div>								
-							</div>
-						</div>
-				</div>
-				<!-- end redeem list content -->
 			</div>
 		</div>
 		
@@ -518,11 +450,12 @@
 				page++;
 				console.log(page);
 				var max_page = parseInt($('#max_page').val());
-				if(page > max_page) {
+				var strSearch = $('#strSearch').val();
+
+				if(page > max_page && strSearch != '') {
 					$('#page').val(page);
 					$(".isnext").html("@lang('dingsu.end_of_result')");
 					$('.isnext').css('padding-bottom', '50px');
-
 				}else{
 					getPosts(page);
 				}	
@@ -533,8 +466,9 @@
 		
 		var page=1;
 		var max_page = parseInt($('#max_page').val());
+		var strSearch = $('#strSearch').val();
 
-		if(max_page == 0){
+		if(max_page == 0 && strSearch != ''){
 			$(".isnext").html("@lang('dingsu.end_of_result')");
 		}
 				

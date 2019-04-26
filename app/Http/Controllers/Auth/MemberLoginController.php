@@ -193,7 +193,18 @@ class MemberLoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
-            return response()->json(['success' => true, 'message' => $this->sendLoginResponse($request)]);
+			
+			$url = "/cs/220";
+			$rou = Session::get('re_route');
+			
+			if ($rou == 'yes')
+			{
+				$url = "/arcade";
+				Session::forget('re_route');
+				//Session::flush();
+			}
+			
+            return response()->json(['success' => true, 'url' => $url, 'message' => $this->sendLoginResponse($request)]);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
