@@ -78,6 +78,11 @@ class RedisGameController extends Controller
 
 		}
 		$gamesetting      = $this->get_game_setting($latest_result, $now);
+		
+		event(new \App\Events\EventDynamicChannel('activedraw-'.$memberid,'',$gamesetting));
+		
+		
+		
 		$gamenotific      = $this->get_game_notification($memberid,$gameid);			
 		$gamehistory      = $this->get_game_history($gameid);		
 		//$futureresult     = Game::get_future_result($gameid, $now );
