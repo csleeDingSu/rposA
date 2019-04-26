@@ -11,6 +11,13 @@
 |
 */
 
+//re route
+Route::group( [ 'middleware' => 'reroute' ], function () {
+	Route::get( '/member/re-route')->name( 'do_re-route' );
+} );
+
+
+
 //redis example 
 Route::any('/master-call', 'RedisGameController@master_out')->name('api.redis.master.call'); //deprecated 
 	

@@ -289,7 +289,8 @@
                             var sdf = '@lang("dingsu.member_login_success_message")';
                             $('#loginvalidation-errors').append('<div class="alert alert-success isa_success">'+sdf+'</div');
                             
-                            url = "/cs/{{env('voucher_featured_id','220')}}";
+                            //url = "/cs/{{env('voucher_featured_id','220')}}";
+							url = data.url;
                             $(location).attr("href", url);
                         }
                     else 
