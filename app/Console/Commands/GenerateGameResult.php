@@ -102,7 +102,7 @@ class GenerateGameResult extends Command
 		
 		$now = Carbon::now()->toDateTimeString();
 		
-		$sec = 0;
+		//$sec = 0;
 		$tomorrow = Carbon::tomorrow();
 		$i = 1;
 		$unix = 0;
@@ -127,7 +127,7 @@ class GenerateGameResult extends Command
 			
 			$da    = $this->ResultGenerate($game->id,$d);
 			
-			$sec = $sec +  $game_time;			
+			$sec = $sec +  $game_time + 1;	//to fix expiry and created time conflict		
 						
 			$insdata[] = $da;			
 			$this->info('----------- '.$i.' - Generating result----------');			
