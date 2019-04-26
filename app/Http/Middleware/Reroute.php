@@ -16,12 +16,15 @@ class Reroute
      */
     public function handle($request, Closure $next)
     {
-		if(Auth::guest())
+		if (!Auth::Guard('member')->check())
 		{
-			die('guest');Session::put('re_route','yes');
+		//if(Auth::guest())
+		//{
+			//die('guest');
+			Session::put('re_route','yes');
 			return redirect('/login');
 		}
-		die('imhere');
+		//die('imhere');
 		return redirect('/arcade');
 	}  
 }
