@@ -23,6 +23,7 @@
 
 	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
+	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
 
 
 <script type="text/javascript">
@@ -88,21 +89,28 @@
 		<div class="cardHeader">
 			<div class="header">
 				<ul class="dbox top">
-					
+					<li class="logo"><img src="{{ asset('/client/images/logo.png') }}"></li>
+					<form id="historyForm" action="" method="GET">		
+					<li class="dbox0">
+		                <div class="inBox">
+                            <div class="flexSp">
+                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" autofocus>
+                                <input type="image" src="{{ asset('/client/images/search/search.png') }}" id="btn_search" />         
+                            </div>
+		                </div>
+						
+					</li>
+					</form>
+
 						@if (isset(Auth::Guard('member')->user()->username))
-							<a class="login-title" href="/member" style="color: white; font-size: 0.3rem;">{{ Auth::Guard('member')->user()->username }}</a>
+							<a class="login-title" href="/member" style="color: white; font-size: 0.24rem;">{{ Auth::Guard('member')->user()->username }}</a>
 							
 						@else
 						<li class="dbox0">
-					  		<a href="/nlogin" style="color: white; font-size: 0.3rem;">@lang('dingsu.login') / @lang('dingsu.register')</a>
+					  		<a href="/nlogin" style="color: white; font-size: 0.24rem;">@lang('dingsu.login') / @lang('dingsu.register')</a>
 					  	</li>
 					  	@endif
 					  	<!-- <a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a> -->
-				  						
-					<li class="dbox1 logo"><img src="{{ asset('/test/main/images/logo.png') }}"></li>				
-					<li class="dbox0"><a href="/newsearch" style="color: white; font-size: 0.3rem;"><img src="{{ asset('/client/images/search_btn.png') }}" style="height: 0.3rem;"> 搜索</a></li>
-
-					
 				</ul>
 				<div class="main rel">
 					<div class="dbox">
@@ -319,6 +327,31 @@
 
 		$(document).ready(function(){
 		//$(function () {
+
+			$( "#historyForm" ).submit(function( event ) {
+			  	var strSearch = $('#strSearch').val();
+
+				if(strSearch != ''){
+				  	var array = Cookies.get('searchhistory');
+				  	//console.log(array);
+
+				  	 if(array == undefined){
+				  	 	var array = [];
+				  	 } else {
+				  	 	var array = JSON.parse(array);
+				  	 }
+
+				  	 if(!array.includes(strSearch)){
+				  		array.push(strSearch);
+				  	}
+
+					array = JSON.stringify(array);
+
+				  	Cookies.set('searchhistory', array);
+				}
+				window.location.href = "/newsearch/" + strSearch;
+			    return false;
+			});
 
 			var initialIndex = $('#initialIndex').val();
 			var $carousel = $('.carousel').flickity({

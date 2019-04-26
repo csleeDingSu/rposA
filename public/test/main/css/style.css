@@ -17,10 +17,11 @@
 .header .top li img {
   vertical-align: middle;
   height: 0.56rem;
+  margin-top: 0.1rem;
 }
 .header .top li a {
   display: inline-block;
-  margin: 0 0.25rem;
+  margin: 0 0.15rem;
 }
 .header .top li.logo img {
   height: 0.82rem;
@@ -1286,4 +1287,50 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
    padding-top: 0.2rem;
   padding-left: 0.2rem;
 
+}
+
+.inBox {
+  padding-top: 0.2rem;
+  padding-left: 0.2rem;
+  float: left;
+}
+
+.flexSp {
+  background: #ffffff;
+  border-radius: 0.42rem;
+  -webkit-border-radius: 0.42rem;
+  -moz-border-radius: 0.42rem;
+  -ms-border-radius: 0.42rem;
+  -o-border-radius: 0.42rem;
+  height: 0.7rem;
+  width: 4.2rem;
+  align-items: center;
+  padding: 0 0.2rem;
+}
+
+.flexSp input {
+  display: flex;
+  width: 83%;
+  box-sizing: border-box;
+  padding-top: 0.1rem;
+  padding-left: 0.1rem;
+  font-size: 0.28rem;
+  line-height: 2em;
+  background: none;
+  border: none;
+  color: #333;
+  float: left;
+}
+
+.flexSp input::placeholder {
+  color: #bfbfbf;
+}
+.flexSp input::-webkit-placeholder {
+  color: #bfbfbf;
+}
+
+#btn_search {
+  margin-top: 0.02rem;
+  width: 0.6rem;
+  float: right;
 }
