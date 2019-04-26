@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
 		//custom
 		'sso' => \App\Http\Middleware\SingleSession::class,
 		'forcessl' => \App\Http\Middleware\ForceHttpsProtocol::class,
+		'reroute' => \App\Http\Middleware\Reroute::class,
     ];
 }
