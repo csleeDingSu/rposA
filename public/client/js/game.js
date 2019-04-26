@@ -162,14 +162,14 @@ function initGame(data, level, latest_result, consecutive_lose){
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
 
-        var expiry_time = new Date(data.expiry_time);
-        var requested_time = new Date(data.requested_time.date);
+        var expiry_time = new Date(data.expiry_time.replace(' ', 'T'));
+        var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
         var current_time = new Date();            
         timer = ((expiry_time - requested_time) / 1000).toString();
         if (timer > duration) {
             timer = duration;
         }
-        console.log('new timer ' + timer);
+        // console.log('new timer ' + timer);
 
         $('#hidLevel').val(level);
         $('#hidLevelId').val(level_id);

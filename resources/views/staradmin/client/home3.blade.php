@@ -289,7 +289,7 @@
 											<li>邀请好友注册送1次转盘，你邀请的好友每邀请1个人，你还能获得1次转盘。<br>如果你邀请10个好友，每个好友也邀请10个。你就有110次转盘机会，赚1650元。</li>
 										</ul>
 									</div>
-									<a href="/arcade">
+									<a href="/member/re-route">
 										<div class="btn-wabao">进入幸运转盘</div>
 									</a>
 								</div>
