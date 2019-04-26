@@ -11,7 +11,7 @@ section {
 		background-image: url("/client/images/share_product_bg.png");
 		background-repeat: no-repeat;
     	background-size: cover;background-size: 100% 100%;
-    height:13.2rem;
+    height:14rem;
     /*width:2rem;*/
     /*top:-0.03rem;*/
     /*left:-0.03rem;*/
@@ -19,13 +19,13 @@ section {
 	    /*background: white;*/
 	    color: black;
 	    /*text-align: center;*/
-	    margin: 0.1rem;
+	    margin: 0.2rem;
 	    margin-bottom: 0rem;
 	    border-top-left-radius: 6px;
 	    border-top-right-radius: 6px;
 	    border-bottom-left-radius: 6px;
 	    border-bottom-right-radius: 6px;
-	    padding: 0.3rem;
+	    padding: 0.5rem;
 	    /*padding-bottom: 30px;*/
 	    font-weight: 700;
 	    /*height: 7rem !important;*/
@@ -41,7 +41,7 @@ section {
 	  /*padding-right: 0.3rem;*/
 	  font-size: 0;
 	  display: inline-block;
-	  margin-bottom: 0.2rem;
+	  margin-bottom: 0.1rem;
 	}
 
 	.infinite-scroll .imgBox img {
@@ -54,25 +54,15 @@ section {
 	.infinite-scroll h2 {
 		font-size: 26px;
 		font-size: 4vw;
-
-	  font-weight: 600;
+	  font-weight: 500;
 	  color: #666666;
-	  margin-bottom: 0.2rem;
+	  margin-bottom: 0.1rem;
 	}
 
 	.lbl{
-		/*width: 20%;*/
 	  text-align: center;
-	  /*border-radius: 0.1rem;*/
-	  /*display: block;*/
-	  /*line-height: 0.48rem;	  */
-	  /*-webkit-border-radius: 0.1rem;*/
-	  /*-moz-border-radius: 0.1rem;*/
-	  /*-ms-border-radius: 0.1rem;*/
-	  /*-o-border-radius: 0.1rem;*/
-	  /*background-color: #f75656;*/
 	  font-size: 100%;
-	  font-size: 0.3rem;
+	  font-size: 0.25rem;
 	  color: #bebebe;
 	  font-weight: 0 !important;
 	  line-height: 0.6rem;
@@ -82,7 +72,7 @@ section {
 		/*width: 5%;*/
 	  text-align: center;
 	  font-size: 100%;
-	  font-size: 0.3rem;
+	  font-size: 0.25rem;
 	  color: #e5615c;
 	  font-weight: 0 !important;
 	  line-height: 0.6rem;
@@ -93,7 +83,7 @@ section {
 	  
 		/*font-size: 0.4rem;*/
 		/*font-size: 100%;*/
-		font-size: 0.45rem;
+		font-size: 0.40rem;
 	  	font-weight: 700;
 	  	color: #f75656;
 	  	padding-right: 0.1rem;
@@ -105,7 +95,7 @@ section {
 
 		/*width: 40%;*/
 	  
-		font-size: 0.3rem;
+		font-size: 0.25rem;
 		color: #bebebe;
 		/*text-decoration: line-through;*/
 		line-height: 0.6rem;
@@ -400,4 +390,53 @@ section {
 	font-size: 0.24rem;
 	color: #c6c6c6;
 
+}
+
+.intruction {
+
+	font-size: 0.25rem;
+	color: #a9a9a9;
+	line-height: 0.45rem;
+	font-weight: normal;
+	padding-top: 0.4rem;
+}
+
+.instruction_highlight {
+	color: #f59972 !important;
+}
+
+.caption_redeem_angpao {
+ /*position: relative !important;*/
+ animation: MoveUpDown_angpao_p 1s linear infinite;
+ padding-left: 3rem;
+}
+
+@keyframes MoveUpDown_angpao_p {
+  0%, 100% {
+    bottom: 5.8rem;
+  }
+  50% {
+    bottom: 5.8rem;
+  }
+}
+
+.caption_redeem_angpao span {
+ padding-top: 0.06rem !important;
+}
+
+.btn-product-details {
+  width: 100%;  
+}
+
+#button-wrapper {
+	margin-top:0.45rem !important;
+	width: 100% !important;
+}
+
+#btn-copy {
+padding-top:0.25rem !important;
+}
+#btn-voucher {
+	padding-top: 0.25rem !important;
+	padding-left: 0.7rem !important; 
 }

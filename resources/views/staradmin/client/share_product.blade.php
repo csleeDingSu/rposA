@@ -38,35 +38,35 @@
 				</div>
 			</li>
 			<li class="dbox">
-				<a class="copyBtn">
-					<div class="dbox2">
-						<img class="imgShareBtn" src="{{ asset('/client/images/share_product_btn_bg.png') }}">
-						<div class="sharebtn_text">
-							<h3>	
-								<span class="cur">￥</span>
-								<span class="vprice"> {{
-									number_format(empty($item->voucher_price) ? 10 : $item->voucher_price,2)
-								}}
-								</span>
-								<span class="vpass">
-									优惠券代码 <br>
-									<span id="cut">{{empty($item->voucher_pass) ? "￥K8454DFGH45H￥" : $item->voucher_pass}}
-									</span>
-								</span>						
-								<span class="vlink">立刻领券</span>						
-							</h3>
-						</div>
+				
+					<div class="caption_redeem_angpao">
+						<span>30元现金等你拿</span>
+						<img src="{{ asset('/client/images/share_product_caption_redeem_angpao.png') }}" />
 					</div>
-				</a>
+					<div id="button-wrapper">
+						<a class="copyBtn"> 
+							<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
+							<div id="btn-copy" class="btn-copy">领取优惠券</div>
+						</a>
+						<a href="/arcade">
+							<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>
+						</a>
+					</div>
+				
+				<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">{{empty($item->voucher_pass) ? "￥K8454DFGH45H￥" : $item->voucher_pass}}</span></h4>
 			</li>
 			<li class="dbox">
-				detail
+				<p class="intruction">
+					活动说明：<br>
+					每一次幸运转盘有99%概率赚到15元红包（可提现）<br>
+					1.新人注册<span class="instruction_highlight">送2次幸运转盘（可得30元）</span><br>
+					2.每介绍1名好友注册挖宝网（只需注册并微信认证，非常容易介绍），你能获得1次幸运转盘。<br>
+					你邀请的好友每邀请1个人，你能获得1次幸运转盘。<br>
+					<span class="instruction_highlight">假如你介绍了10个好友，而每个好友也介绍10个人，你就能获得110次机会，可赚1650元。
+					</span>
+				</p>
 			</li>
 		</ul>
-		<!-- 领取优惠券  -->
-		<div class="cvoucher" id="cvoucher">
-			领取成功, 打开淘宝APP领优惠券
-		</div>
 	</div>
 	
 
@@ -82,12 +82,6 @@
 			
 			var clipboard = new ClipboardJS('.copyBtn', {
 				target: function () {
-					$(cvoucher).fadeIn();
-					
-					setTimeout(function() {
-					 $(cvoucher).fadeOut('slow');
-					}, 3000);
-
 					return document.querySelector('#cut');
 				}
 		        
@@ -95,12 +89,16 @@
 
 			clipboard.on('success', function (e) {
 				console.log(e);
-				// $('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
+				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				$('#btn-copy').css('padding-top', '0.1rem');
+				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				// $('.cutBtn img').attr('src', " {{ asset('/test/main/images/btn-2.png') }} ");
+				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				$('#btn-copy').css('padding-top', '0.1rem');
+				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			
