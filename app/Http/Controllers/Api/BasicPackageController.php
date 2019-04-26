@@ -72,8 +72,21 @@ class BasicPackageController extends Controller
 	
 	public function get_redeem_history(Request $request)
     {
+		$status = '';
+		switch ($request->status)
+		{
+			case 'failed':
+				$status = ['0'];
+			break;
+			case 'pending':
+				$status = ['1'];
+			break;
+			case 'verified':
+				$status = ['2','3'];
+			break;	
+		}
 		$member_id = $request->memberid;
-		$result    = Package::get_redeem_history($member_id,30);		
+		$result    = Package::get_redeem_history($member_id,$status,30);		
 		return response()->json(['success' => true, 'records' => $result]);
 	}
 	
