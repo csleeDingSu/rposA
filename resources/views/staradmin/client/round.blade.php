@@ -37,7 +37,7 @@
                         </a>
                     </li>              
                 
-                    <li class="take-all-space-you-can active">
+                    <li class="take-all-space-you-can">
                         <a class="tab" data-toggle="tab" href="#verified-tab" data-status="verified">                            
                             <div>
                                 开通成功
@@ -56,8 +56,9 @@
         </div>
 
         <div id="invitation" class="tab-content">
+            <div id="default-tab" class="tab-pane fade in active"></div>
             <div id="pending-tab" class="tab-pane fade"></div>
-            <div id="verified-tab" class="tab-pane fade in active"></div>
+            <div id="verified-tab" class="tab-pane fade"></div>
             <div id="failed-tab" class="tab-pane fade"></div>
             <p class="isnext">下拉显示更多...</p>
         </div><!-- invitation -->

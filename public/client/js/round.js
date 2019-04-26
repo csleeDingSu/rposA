@@ -1,4 +1,4 @@
-var status = 'verified';
+var status = 'default';
 var page = 1;
 var page_count = 1;
 
@@ -14,7 +14,6 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getSummary(data.access_token);
             getPosts(page, data.access_token, status);
             scrollBottom(data.access_token);
 
@@ -25,49 +24,6 @@ function getToken(){
                 getPosts(page, data.access_token, status);
             });
         }     
-    });
-}
-
-function getSummary(token) {
-    var user_id = $('#hidUserId').val();
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/member-referral-count?memberid=" + user_id,
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            var result = data.result;
-            var total = 0;
-            var total_fail = 0;
-            var total_pending = 0;
-            var total_successful = 0;
-
-            $.each(result, function(i, item) {
-
-                if(item.wechat_verification_status == 0){
-                    total_successful += parseInt(item.count);                    
-                    total += parseInt(item.count);
-
-                } else if (item.wechat_verification_status == 1) {
-                    total_pending += parseInt(item.count);
-                    total += parseInt(item.count);
-
-                } else if (item.wechat_verification_status == 2 || item.wechat_verification_status == 3) {
-                    total_fail += parseInt(item.count);
-                    total += parseInt(item.count);
-                }
-
-            });
-
-            $('#total-invite').html(total);
-            $('#total-fail').html(total_fail);
-            $('#total-successful').html(total_successful);
-            $('#total-pending').html(total_pending);
-        }
     });
 }
 
@@ -89,7 +45,7 @@ function getPosts(page, token, status){
 
     $.ajax({
         type: "GET",
-        url: "/api/member-referral-list?memberid=" + user_id + "&page=" + page + "&status=" + status,
+        url: "/api/basic-package-redeem-history?memberid=" + user_id + "&page=" + page + "&status=" + status,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -97,11 +53,11 @@ function getPosts(page, token, status){
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
-            var current_page = parseInt(data.result.current_page);
-            var last_page = parseInt(data.result.last_page);
+            var current_page = parseInt(data.records.current_page);
+            var last_page = parseInt(data.records.last_page);
             $('#max_page').val(last_page);
-            var records = data.result;
-            var html = populateInvitationData(records, token);
+            var records = data.records;
+            var html = populateData(records, token);
 
             if(current_page == 1){
                 $('#'+ status +'-tab').html(html);
@@ -119,7 +75,7 @@ function getPosts(page, token, status){
     });
 }
 
-function populateInvitationData(records, token) {
+function populateData(records, token) {
 
             var current_page = parseInt(records.current_page);
             var last_page = parseInt(records.last_page);
@@ -143,26 +99,23 @@ function populateInvitationData(records, token) {
                 var str_date = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + 
                                 ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
                 
-                if(item.wechat_verification_status == 0){
-                    var str_status = "验证成功";
-                    var str_additional = "+1";
+                if(item.redeem_state == 3){
+                    var str_status = "开通成功";
                     var str_class = "successful";
 
-                } else if (item.wechat_verification_status == 1) {
-                    var str_status = "等待验证";
-                    var str_additional = "";
+                } else if (item.redeem_state == 1) {
+                    var str_status = "等待开通";
                     var str_class = "pending";
 
                 } else {
-                    var str_status = "验证失败";
-                    var str_additional = "";
+                    var str_status = "开通失败";
                     var str_class = "fail";
                 }
                 
                 html += '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
-                                '<div class="item">' + item.phone.substring(0,3) + '&#10033;&#10033;&#10033;&#10033;' + item.phone.substring((item.phone.length - 4),item.phone.length) + '</div>' +
-                                '<div class="date">' + str_date + '</div>' +
+                                '<div class="item">购买' + item.package_name + '幸运转盘</div>' +
+                                '<div class="date">购买时间：' + str_date + '</div>' +
                             '</div>' +
                             '<div class="col-xs-4 column-2">' +
                                 '<div class="right-wrapper">' +
@@ -170,7 +123,7 @@ function populateInvitationData(records, token) {
                                         '<span class="' + str_class + '">'+ str_status +'</span>' +
                                     '</div>' +                                                
                                     '<div style="clear: both"></div>' +
-                                    '<div class="additional">'+ str_additional +'</div>' +
+                                    '<div class="additional">'+ item.package_price +'元</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
