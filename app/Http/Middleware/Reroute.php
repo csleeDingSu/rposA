@@ -18,9 +18,10 @@ class Reroute
     {
 		if(Auth::guest())
 		{
-			Session::put('re_route','yes');
+			die('guest');Session::put('re_route','yes');
 			return redirect('/login');
 		}
+		die('imhere');
 		return redirect('/arcade');
 	}  
 }
