@@ -2035,3 +2035,8 @@ if it's not present, don't show loader */
 .caption_bet {
 	color: #fef100 !important;
 }
+
+._1st_basic_topup {
+	color: #e65e5e;
+	font-weight: 600;
+}

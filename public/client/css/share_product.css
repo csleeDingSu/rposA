@@ -407,7 +407,7 @@ section {
 
 .caption_redeem_angpao {
  /*position: relative !important;*/
- animation: MoveUpDown_angpao_p 1s linear infinite;
+ animation: MoveUpDown_angpao_p 1s linear infinite !important;
  padding-left: 3rem;
 }
 
