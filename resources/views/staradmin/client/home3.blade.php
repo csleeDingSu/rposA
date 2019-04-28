@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/test/main/css/main_pg_search.css') }}" />
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
 	<link rel="stylesheet" href="{{ asset('/client/css/slick-theme.css') }}" />
@@ -92,7 +93,7 @@
 					<li class="logo"><img src="{{ asset('/client/images/logo.png') }}"></li>
 					<form id="historyForm" action="" method="GET">		
 					<li class="dbox0">
-		                <div class="inBox">
+		                <div class="inBox search_inBox">
                             <div class="flexSp">
                                 <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" autofocus>
                                 <input type="image" src="{{ asset('/client/images/search/search.png') }}" id="btn_search" />         
