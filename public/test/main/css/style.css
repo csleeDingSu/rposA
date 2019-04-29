@@ -1238,6 +1238,7 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 
 .caption_redeem_angpao img{
   width: 2.5rem;
+  z-index: -1;
 }
 
 .caption_redeem_angpao span{
