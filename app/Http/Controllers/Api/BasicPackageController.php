@@ -59,13 +59,23 @@ class BasicPackageController extends Controller
 		
 		if ($buy_count >= $setting->daily_basicpackage_redeem_limit) return response()->json(['success' => false, 'message' => 'you’ve reached the maximum units allowed for the today order ']);
 		
+		$usedprice = $package->package_price;
+		
+		if ($buy_count >= 1 ) 
+		{
+			if ($package->package_discount_price >= 1)
+			{
+				$usedprice = $package->package_discount_price;
+			}
+		}		
+		
 		$now = Carbon::now();
 		switch ($package->package_type)
 		{
 			//flexi type
 			case '1':
 				
-				$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>$request->ref_note];
+				$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>$request->ref_note,'buy_price'=>$usedprice];
 
 				$dd = Package::save_basic_package($data);
 
