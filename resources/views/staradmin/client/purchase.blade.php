@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 					  	<div class="label-title">选择场次</div>
-					  	<input type="hidden" id="cut" value="i8I2yX408f" />
+					  	<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">i8I2yX408f</span></h4>
 					</div>
 
 					<form method="post" action="">
@@ -43,7 +43,7 @@
 						<div class="label-title">支付金额</div>
 					</div>
 					<div class="col-xs-6 text-right">
-						<div class="point"></div>
+						<div class="point">¥0.00元</div>
 					</div>
 
 					<div class="col-xs-12">

@@ -40,7 +40,8 @@
 					<div class="balance-banner">
 						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPoint">0</span>
+							<span class="spanAcuPointAndBalance">0</span>
+							<span class="spanAcuPoint" style="font-size: 0;">0</span>
 						</div>
 						<img class="btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
 					</div>

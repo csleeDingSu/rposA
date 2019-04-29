@@ -110,7 +110,8 @@ function initUser(records){
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
-        g_current_point = parseInt(records.acupoint);
+        // g_current_point = parseInt(records.acupoint);
+        g_current_point = parseInt(records.balance) + parseInt(records.acupoint);
 
         if(life == 0){
             balance = 0;
@@ -126,6 +127,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(acupoint);
+            $('.spanAcuPointAndBalance').html(total_balance);
         }
         $('.packet-acupoint').html(acupoint);
         $('#hidBalance').val(balance);
@@ -484,7 +486,8 @@ function getSocket(){
                 console.log('member wallet details');
                 console.log(data);
 
-                g_previous_point = parseInt($('.spanAcuPoint').html());
+                //g_previous_point = parseInt($('.spanAcuPoint').html());
+                g_previous_point = parseInt($('.spanAcuPointAndBalance').html());
                 wallet_data = data.data;
                 update_wallet = true;
                 
@@ -619,12 +622,16 @@ function closeWinModal() {
         event.stopImmediatePropagation();
         $('#win-modal').modal('hide');
 
-        if(g_current_point > 150){
-            g_current_point = 150;
+        // if(g_current_point > 150){
+        //     g_current_point = 150;
+        // }
+        if(g_current_point > 1350){
+            g_current_point = 1350;
         }
 
         console.log("closeWinModal");
-        $('.spanAcuPoint')
+        //$('.spanAcuPoint')
+        $('.spanAcuPointAndBalance')
           .prop('number', g_previous_point)
           .animateNumber(
             {
@@ -938,6 +945,7 @@ function showProgressBar(bol_show){
 
         $('.payout-info').html(payout_info).addClass('hide');
         $('.spanAcuPoint').html(0);
+        $('.spanAcuPointAndBalance').html(0);
         checked(7, false);
         changbar(7);
     } else {
