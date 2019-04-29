@@ -20,7 +20,9 @@ class BasicPackageController extends Controller
 		
 		$result =  Package::list_available_redeem_package(0);
 		
-		return response()->json(['success' => true,  'records' => $result]);
+		$data = Package::today_redeemded($member_id,'get');
+		
+		return response()->json(['success' => true,  'records' => $result,'purchase_data'=>$data]);
 	}
 	
 	public function request_package_upgrade(Request $request)
@@ -51,6 +53,11 @@ class BasicPackageController extends Controller
 		$package   = Package::get_package($packageid);
 		
 		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);
+		
+		$setting   = \App\Admin::get_setting();
+		$buy_count = Package::today_redeemded($memberid);
+		
+		if ($buy_count >= $setting->daily_basicpackage_redeem_limit) return response()->json(['success' => false, 'message' => 'you’ve reached the maximum units allowed for the today order ']);
 		
 		$now = Carbon::now();
 		switch ($package->package_type)
