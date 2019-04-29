@@ -44,8 +44,8 @@
 						<img src="{{ asset('/client/images/share_product_caption_redeem_angpao.png') }}" />
 					</div>
 					<div id="button-wrapper">
+						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
 						<a class="copyBtn"> 
-							<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						<a href="/arcade">
