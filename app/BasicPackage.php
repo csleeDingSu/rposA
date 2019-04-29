@@ -215,8 +215,23 @@ class BasicPackage extends Model
 		
 		$result = $result->orderby('created_at','DESC')->paginate($limit);
 		
-		return $result;
+		return $result;		
+	}
+	
+	public static function today_redeemded($memberid,$type = 'count')
+	{
+		$count = DB::table('view_basicpackage_status')->where('member_id',$memberid)->wherein('redeem_state',[1,2,3,4]);
 		
+		if ($type == 'count')
+		{
+			$count = $count->count();
+		}
+		else
+		{
+			$count = $count->get();
+		}			
+		if (!$count) return 0;
+		else return $count;
 	}
 	
 }

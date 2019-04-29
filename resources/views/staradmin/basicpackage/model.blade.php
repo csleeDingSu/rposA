@@ -20,24 +20,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="form-group row">
-								<label for="price" class="col-sm-3 col-form-label">@lang('dingsu.package') @lang('dingsu.vip_price') <span class="text-danger">*</span></label>
-								<div class="col-sm-9">
-									<input id="price" name="price" class="form-control" type="text" value="{{ old('price')}}" required maxlength="5"> 
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group row">
-								<label for="min_point" class="col-sm-3 col-form-label">@lang('dingsu.vip_consumed_point')  <span class="text-danger">*</span></label>
-								<div class="col-sm-9">
-									<input id="min_point" name="min_point" class="form-control" type="text" value="{{ old('min_point')}}" required maxlength="10">
-								</div>
-							</div>
-						</div>
 						
 						<div class="col-md-6">
 							<div class="form-group row">
@@ -48,6 +30,28 @@
 								</div>
 							</div>
 						</div>
+						
+						
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="price" class="col-sm-3 col-form-label">@lang('dingsu.package') @lang('dingsu.vip_price') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<input id="price" name="price" class="form-control" type="text" value="{{ old('price')}}" required maxlength="5"> 
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="package_discount_price" class="col-sm-3 col-form-label">@lang('dingsu.package_discount_price') </label>
+								<div class="col-sm-9">
+									<input id="package_discount_price" name="package_discount_price" class="form-control" type="text" value="{{ old('package_discount_price')}}" required maxlength="10">
+								</div>
+							</div>
+						</div>
+						
 						
 					</div>
 					

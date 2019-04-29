@@ -67,7 +67,7 @@ class BasicPackageController extends BaseController
 		
 		$validator = Validator::make($input, [
 			'package_name'   => 'required|string|min:2',
-			'min_point' => 'required|numeric',
+			'package_discount_price' => 'nullable|between:0,99999.99',
 			'price' => 'numeric|between:0,99999.99',
 			'package_pic_url' => 'required',
 			'package_life' => 'sometimes|numeric|min:0',
@@ -79,7 +79,7 @@ class BasicPackageController extends BaseController
 		}
 		
 		$now = Carbon::now();
-		$data = ['package_name' => $input['package_name'],'min_point' => $input['min_point'],'package_status' => $input['status'],'package_price' => $input['price'],'updated_at' => $now,'package_picurl' => $input['package_pic_url'],'package_description' => $input['package_description'], 'package_life' => $input['package_life'],
+		$data = ['package_name' => $input['package_name'],'package_discount_price' => $input['package_discount_price'],'package_status' => $input['status'],'package_price' => $input['price'],'updated_at' => $now,'package_picurl' => $input['package_pic_url'],'package_description' => $input['package_description'], 'package_life' => $input['package_life'],
 				 'package_freepoint' => $input['package_freepoint'] ];
 		 
 		BasicPackage::update_package($id,$data);
@@ -101,7 +101,7 @@ class BasicPackageController extends BaseController
 		
 		$validator = Validator::make($input, [
 			'package_name'   => 'required|string|min:2',
-			'min_point' => 'required|numeric',
+			'package_discount_price' => 'nullable|between:0,99999.99',
 			'price' => 'numeric|between:0,99999.99',
 			'package_pic_url' => 'required',
 			'package_life' => 'sometimes|numeric|min:0',
@@ -114,7 +114,7 @@ class BasicPackageController extends BaseController
 		
 		$now = Carbon::now();
 		$data = ['package_name' => $input['package_name'],
-				 'min_point' => $input['min_point'],
+				 'package_discount_price' => $input['package_discount_price'],
 				 'package_status' => $input['status'],
 				 'package_price' => $input['price'],
 				 'created_at' => $now,
