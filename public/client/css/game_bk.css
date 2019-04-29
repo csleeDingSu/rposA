@@ -2044,22 +2044,3 @@ if it's not present, don't show loader */
 	color: #e65e5e;
 	font-weight: 600;
 }
-
-.modal-content_winless150 {
-  background: url('/client/images/packet-background.png') no-repeat;
-  background-size: contain;
-  color: white;
-  text-align: center;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  padding: 10px;
-  font-weight: 700;
-  width: 301px !important;
-  height: 382px;
-  padding: 0;
-  position:relative;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  border: none;
-}
