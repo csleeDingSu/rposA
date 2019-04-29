@@ -491,6 +491,10 @@ body{
 	padding-right: 5px;
 }
 
+#spanAcuPointAndBalance{
+	padding-right: 5px;
+}
+
 .btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {
 	color: white;
 }
@@ -2025,11 +2029,11 @@ if it's not present, don't show loader */
 
 .spanAcuPoint2 {
 	position: absolute;
-	margin-top: -11.5px;
+	margin-top: -7.5px;
 	text-align: center;
 	width: 125px;
-	margin-left: 55px;
-	font-size: larger;
+	margin-left: 58px;
+	font-size: -webkit-xxx-large;
 }
 
 .caption_bet {
