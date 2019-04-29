@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/test/main/css/main_pg_search.css') }}" />
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
 	<link rel="stylesheet" href="{{ asset('/client/css/slick-theme.css') }}" />
@@ -92,7 +93,7 @@
 					<li class="logo"><img src="{{ asset('/client/images/logo.png') }}"></li>
 					<form id="historyForm" action="" method="GET">		
 					<li class="dbox0">
-		                <div class="inBox">
+		                <div class="inBox search_inBox">
                             <div class="flexSp">
                                 <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" autofocus>
                                 <input type="image" src="{{ asset('/client/images/search/search.png') }}" id="btn_search" />         
@@ -225,12 +226,11 @@
 						<span class="span_highlight">优惠券 ￥<span class="span_voucher_price"></span></span> | 淘宝价 ￥<span class="span_price"></span>
 					</div>
 					
-
-					<div class="caption_redeem_angpao">
-						<span>99%拿30元红包</span>
-						<img src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
-					</div>
 					<div id="button-wrapper">
+						<div class="caption_redeem_angpao">
+							<span>99%拿30元红包</span>
+							<img src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
+						</div>
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
 						<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>

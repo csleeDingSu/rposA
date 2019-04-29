@@ -149,7 +149,7 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uipackage" aria-expanded="false" aria-controls="uipackage">
               <i class="menu-icon  icon-layers   text-info"></i>
-              <span class="menu-title"> @lang('dingsu.package')  @lang('dingsu.list')</span>
+              <span class="menu-title"> VIP @lang('dingsu.package')  @lang('dingsu.list')</span>
               <i class="menu-arrow"></i>
             </a>
 		

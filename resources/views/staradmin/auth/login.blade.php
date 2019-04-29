@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.login')
 
 @section('title', '登录 / 注册')
 

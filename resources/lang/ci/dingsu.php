@@ -569,4 +569,8 @@ return [
 	'disconnected' => '中断',
 
 	'ref_note' => '提交的信息',
+	'basic' => 'Basic',
+	'basicpackage' => 'Basic Package',
+	'addedbasicpoint' => '增加了Basic金币' ,
+	'addedbasiclife' => '增加了Basic命',
 ];
