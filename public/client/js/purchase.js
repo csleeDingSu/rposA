@@ -16,17 +16,17 @@ $(document).ready(function () {
     });
 
     var clipboard = new ClipboardJS('.cutBtn', {
-        text: function (trigger) {
-            return $('#cut').val();
+        target: function () {
+            return document.querySelector('#cut');
         }
     });
 
     clipboard.on('success', function (e) {
-        $('.cutBtn').html('复制成功 打开支付宝');
+        $('.cutBtn').addClass('copy-success').html('复制成功 打开支付宝');
     });
 
     clipboard.on('error', function (e) {
-        $('.cutBtn').html('复制成功 打开支付宝');
+        $('.cutBtn').addClass('copy-success').html('复制成功 打开支付宝');
     });
 
 }); 
