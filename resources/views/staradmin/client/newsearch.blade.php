@@ -145,16 +145,32 @@
 
 		<!-- 领取优惠券  -->
 		<div class="showQuan dflex scaleHide">
-			<div class="inBox">
+			<div class="inBox" style="padding-bottom: 0.2rem;">
 				<img id="showIcon" src="{{ asset('/test/main/images/showIcon.png') }}" class="icon">
-				<h2>点击下面复制按钮，打开淘宝APP领券</h2>
+				<div class="AfterDiscount">
+					<span class="caption1">券后￥</span>
+					<span class="caption2">39</span>
+				</div>
+				<!-- <h2>点击下面复制按钮，打开淘宝APP领券</h2> -->
 
 				
 					<!-- <h3 id="cut" class="copyvoucher">￥K8454DFGH45H</h3> -->
-					<a class="cutBtn">一键复制</a>
-					<h4>优惠券代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
-				
-				
+					<div class="div_product_name">Product name</div>
+					<div class="div_product_details">
+						<span class="span_highlight">优惠券 ￥<span class="span_voucher_price"></span></span> | 淘宝价 ￥<span class="span_price"></span>
+					</div>
+					
+					<div id="button-wrapper">
+						<div class="caption_redeem_angpao">
+							<span>99%拿30元红包</span>
+							<img src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
+						</div>
+						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
+						<div id="btn-copy" class="btn-copy">领取优惠券</div>
+						<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>
+					</div>
+					<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
+
 			</div>
 		</div>
 
@@ -189,60 +205,26 @@
 			<div class="inBox">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
-					<div class="modal-body">				
+					<div class="modal-body" style="padding:10px !important;">				
 						<div class="modal-row">
 							<div class="wrapper modal-full-height">
 								<div class="modal-card">
-									<!-- <div class="instructions">
-										<h2>0元购物攻略</h2>
-										玩猜单双游戏，赢金币换<span class="highlight">购物补助金<br />
-										（可提现到支付宝）</span>再去购买商品，<br />
-										<span class="highlight">补助金最少30元</span>起，任你领不停。<br />
-									</div> -->
-									<div class="instructions" style="padding:10px 11px 10px 11px !important;">	
-										<span style="font-weight: bold;">
-											到<img src="{{ asset('/client/images/small-wheel.png') }}" width="15" height="15" /><span class="highlight">{{env('game_name', '幸运转盘')}}</span>赚金币换免单红包
-										</span>
-										<ul style="color: #a8adaa;">
-											<li> • 新人100%中大额红包</li>
-											<li> • 30元、50元、100元任你领</li> 
-											<li> • 分享越多 转盘次数许多</li>
+									<div class="instructions">
+										<ul>
+											<li>
+												<img src="/client/images/list-image.png" width="14px" height="18px" />
+												<span class="highlight">新人红包</span>
+												<img src="/client/images/list-label.png" width="42px" height="14px" /></li>
+											<li style="padding-bottom: 10px">注册送2次免单转盘，每次可赚15元，2次可以赚30元。</li>
+											<li>
+												<img src="/client/images/list-image.png" width="14px" height="18px" />
+												<span class="highlight">分享越多 赚越多</span>
+												<img src="/client/images/list-label.png" png" width="42px" height="14px" /></li>
+											<li>邀请好友注册送1次转盘，你邀请的好友每邀请1个人，你还能获得1次转盘。<br>如果你邀请10个好友，每个好友也邀请10个。你就有110次转盘机会，赚1650元。</li>
 										</ul>
-										<span style="font-weight: bold;">
-											免单红包拿到手软，<span class="highlight">从此购物不花自己钱！</span>
-										</span>
 									</div>
-									<div class="modal-label">
-										<div class="icon-coin-wrapper">
-											<div class="icon-coin"></div>
-										</div>
-										<div class="icon-label">您当前拥有
-											<span class="modal-point">
-											@if (isset($member_mainledger->current_point))
-												{{ number_format($member_mainledger->current_point, 0, '.', '') }}
-											@else
-												0
-											@endif
-											</span>
-											金币
-										</div>
-									</div>
-									<div style="clear: both;"></div>
-									<div class="modal-number">你还有
-										@if (isset($member_mainledger->current_life))
-											{{ number_format($member_mainledger->current_life, 0, '.', '') }}
-										@else
-											0
-										@endif
-									次游戏机会 可赚
-										@if (isset($member_mainledger->current_life))
-											{{ number_format($member_mainledger->current_life * 150, 0, '.', '') }}
-										@else
-											0
-										@endif
-									金币</div>
-									<a href="/arcade">
-										<div class="btn-wabao">去赚金币</div>
+									<a href="/member/re-route">
+										<div class="btn-wabao">进入幸运转盘</div>
 									</a>
 								</div>
 							</div>
@@ -323,7 +305,10 @@
 			});
 
 			$('.showQuan').click((e) => {
-				$('.cutBtn').removeClass('cutBtn-success').html('一键复制');
+				$('.btn-product-details').attr('src', '/client/images/btn-redeem.png');
+				$('#btn-copy').css('padding-top', '0.2rem');
+				$('.btn-copy').html("领取优惠券");
+
 				var target = $(e.target).closest('.inBox').length;
 				console.log(target);
 				if (target > 0) {
@@ -336,14 +321,25 @@
 
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
-				$( ".copyvoucher" ).html('please wait');		
+				$( ".copyvoucher" ).html($(this).data('voucher'));
+
 				var dd = $(this).data('imgurl');
 				$("#showIcon").attr("src",dd);
+				$( ".caption2" ).html($(this).data('tt_product_discount_price'));
+				$( ".div_product_name" ).html($(this).data('tt_product_name'));
+				$( ".span_price" ).html($(this).data('tt_product_price'));
+				$( ".span_voucher_price" ).html($(this).data('tt_voucher_price'));
+				
 				being.wrapShow();
 				being.scaleShow('.showQuan');
-				$( ".copyvoucher" ).html( getpasscode( $(this).data('goodsid') ) );
 			});
 			
+			$('.freeVoucherBtn').click((e) => {
+				being.wrapShow();
+				being.scaleHide('.showQuan');
+				being.scaleShow('.showTips');
+			});
+
 			$("body").on("click",".mset a.type",function(e) {
 				being.wrapShow();
 				being.scaleShow('.showTips');
@@ -393,6 +389,7 @@
 					if (data.success == 'true')
 						{
 							var result = data.record;
+							
 							//alert(result.passcode);
 							$( ".copyvoucher" ).html( result.passcode );
 							return result.passcode;
@@ -429,19 +426,24 @@
 				}
 			});
 
-			var clipboard = new ClipboardJS('.cutBtn', {
+			var clipboard = new ClipboardJS('#btn-copy', {
 				target: function () {
 					return document.querySelector('#cut');
 				}
 			});
 			clipboard.on('success', function (e) {
 				console.log(e);
-				$('.cutBtn').addClass('cutBtn-success').html('复制成功 请打开淘宝App');
+				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				$('#btn-copy').css('padding-top', '0.1rem');
+				$('.btn-copy').html("<p class='inner_span_copy1'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
+
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				$('.cutBtn').addClass('cutBtn-success').html('复制成功 请打开淘宝App');
+				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				$('#btn-copy').css('padding-top', '0.1rem');
+				$('.btn-copy').html("<p class='inner_span_copy1'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			being.scrollBottom('.cardBody', '.box', () => {
