@@ -234,7 +234,7 @@
 						<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>
 					</div>
-					<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">￥K8454DFGH45H</span></h4>
+					<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher" style="font-size: 0;">￥K8454DFGH45H</span></h4>
 
 			</div>
 		</div>
