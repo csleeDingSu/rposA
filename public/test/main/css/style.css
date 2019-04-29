@@ -1225,10 +1225,20 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 .caption_redeem_angpao {
   position: absolute;
   padding-left: 2.6rem;
-  animation: MoveUpDown_angpao 1s linear infinite;
+  animation: MoveUpDown_angpao 1s linear infinite 0s;
+  -webkit-animation: MoveUpDown_angpao 1s linear infinite 0s; 
   margin-top: -0.6rem;
 }
 @keyframes MoveUpDown_angpao {
+  0%, 100% {
+    bottom: 0.97rem;
+  }
+  50% {
+    bottom: 0.92rem;
+  }
+}
+
+@-webkit-keyframes MoveUpDown_angpao {
   0%, 100% {
     bottom: 0.97rem;
   }
