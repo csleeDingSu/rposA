@@ -171,7 +171,7 @@ function initGame(data, level, latest_result, consecutive_lose){
         if (timer > duration) {
             timer = duration;
         }
-        // console.log('new timer ' + timer);
+         console.log('new timer ' + timer);
 
         $('#hidLevel').val(level);
         $('#hidLevelId').val(level_id);
