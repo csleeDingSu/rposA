@@ -596,7 +596,7 @@ function populateHistoryData(records, token) {
                     '<div id="content-' + item.id + '" class="collapse">' +
                         '<div class="card-wrapper">卡号： <span id="number' + item.id + '" class="numbers">'+ item.code +'</span> <span id="copynumber' + item.id + '" class="copynumber">复制</span>' + 
                         '<br />密码：<span id="code' + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.id + '" class="copycode">复制</span></div>' +
-                        '<div class="instruction">打开支付宝APP>搜索“话费卡转让”>进入官方平台>选择面值输入卡号和卡密即可兑换成红包。' +
+                        '<div class="instruction">打开支付宝APP>搜索“闲鱼信用回收”>进入官方平台>选择“卡券”>“中国移动”话费卡回收>选择面值 输入卡号密码>确认兑换现金。' +
                         '</div>' +
                     '</div>';
 
