@@ -38,12 +38,11 @@
 				</div>
 			</li>
 			<li class="dbox">
-				
-					<div class="caption_redeem_angpao">
-						<span>30元现金等你拿</span>
-						<img src="{{ asset('/client/images/share_product_caption_redeem_angpao.png') }}" />
-					</div>
 					<div id="button-wrapper">
+						<div class="caption_redeem_angpao">
+							<span>30元现金等你拿</span>
+							<img src="{{ asset('/client/images/share_product_caption_redeem_angpao.png') }}" />
+						</div>
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
 						<a class="copyBtn"> 
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>

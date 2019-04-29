@@ -1224,15 +1224,15 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 
 .caption_redeem_angpao {
   position: absolute;
-  padding-left: 2.9rem;
+  padding-left: 2.6rem;
   animation: MoveUpDown_angpao 1s linear infinite;
 }
 @keyframes MoveUpDown_angpao {
   0%, 100% {
-    bottom: 1.35rem;
+    bottom: 0.97rem;
   }
   50% {
-    bottom: 1.25rem;
+    bottom: 0.92rem;
   }
 }
 

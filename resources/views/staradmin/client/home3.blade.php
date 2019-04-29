@@ -226,12 +226,11 @@
 						<span class="span_highlight">优惠券 ￥<span class="span_voucher_price"></span></span> | 淘宝价 ￥<span class="span_price"></span>
 					</div>
 					
-
-					<div class="caption_redeem_angpao">
-						<span>99%拿30元红包</span>
-						<img src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
-					</div>
 					<div id="button-wrapper">
+						<div class="caption_redeem_angpao">
+							<span>99%拿30元红包</span>
+							<img src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
+						</div>
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
 						<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>
