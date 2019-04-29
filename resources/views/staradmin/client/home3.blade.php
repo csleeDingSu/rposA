@@ -21,6 +21,7 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
 	<link rel="stylesheet" href="{{ asset('/client/css/slick-theme.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/customer_service.css') }}"/>
 
 	<script type="text/javascript" src="{{ asset('/test/main/js/jquery-1.9.1.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
@@ -95,23 +96,21 @@
 					<li class="dbox0">
 		                <div class="inBox search_inBox">
                             <div class="flexSp">
-                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" autofocus>
+                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="粘贴淘宝商品标题 查找优惠卷" required maxlength="100">
                                 <input type="image" src="{{ asset('/client/images/search/search.png') }}" id="btn_search" />         
                             </div>
 		                </div>
 						
 					</li>
 					</form>
-
-						@if (isset(Auth::Guard('member')->user()->username))
-							<a class="login-title" href="/member" style="color: white; font-size: 0.24rem;">{{ Auth::Guard('member')->user()->username }}</a>
-							
-						@else
-						<li class="dbox0">
-					  		<a href="/nlogin" style="color: white; font-size: 0.24rem;">@lang('dingsu.login') / @lang('dingsu.register')</a>
-					  	</li>
-					  	@endif
-					  	<!-- <a href="/register"><img src="{{ asset('/test/main/images/register.png') }}"></a> -->
+					
+					<li class="customer">
+						<a href="javascript:void(0)" id="customerservice" class="customerservice">
+						<img src="{{ asset('/client/images/search/customer.png') }}">
+						<div class="caption">在线客服</div>
+						</a>
+					</li>
+					
 				</ul>
 				<div class="main rel">
 					<div class="dbox">
@@ -302,9 +301,42 @@
 		</div>
 	</section>
 	
-	
+	<!-- customer service modal -->
+<div class="modal fade col-md-12" id="csModal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-title">
+			<h1><img src="{{ asset('/client/images/weixin.png') }}" width="30" height="29" /> 请加客服微信</h1>
+		</div>
+		<div class="modal-content modal-wechat">
+			<div class="modal-body">
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<div class="instructions">
+								客服微信在线时间：<span class="highlight">早上9点~晚上9点</span>
+							</div>
+						</div>
+						<div class="row">
+							<div id="cutCS" class="copyvoucher">{{env('wechat_id', 'BCKACOM')}}</div>
+							<div class="cutBtn">点击复制</div>
+						</div>
+						<div class="modal-card">
+							<div class="instructions-dark">
+								请按复制按钮，复制成功后到微信添加。<br/> 如复制不成功，请到微信手动输入添加。
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- customer service modal Ends -->
+
+	@include('auth.customer_service_model')
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
+	<script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
 	<script>
@@ -327,6 +359,47 @@
 
 		$(document).ready(function(){
 		//$(function () {
+			$('#strSearch').focus(function(){
+				$('.logo').html('');
+				$(this).parent().addClass('enlarge');
+				$('.customer').html('<a href="javascript:void(0)"><div class="cancel">取消</div></a>');
+			});
+
+			$('#strSearch').blur(function(){
+				$('.logo').html('<img src="/client/images/logo.png">');
+				$(this).parent().removeClass('enlarge');
+				$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
+				$('#customerservice').click(function () { 
+					$('#csModal').modal('show');
+				});
+			});
+
+			$('.cancel').click(function(){
+				$('.logo').html('<img src="/client/images/logo.png">');
+				$(this).parent().removeClass('enlarge');
+				$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
+				$('#customerservice').click(function () { 
+					$('#csModal').modal('show');
+				});
+			});
+
+			$('#customerservice').click(function () { 
+				$('#csModal').modal('show');
+			});
+
+			var clipboardCS = new ClipboardJS('.cutBtn', {
+                target: function () {
+                    return document.querySelector('#cutCS');
+                }
+            });
+            clipboardCS.on('success', function (e) {
+                $('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+            });
+
+            clipboardCS.on('error', function (e) {
+                 $('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+                ///$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+            });
 
 			$( "#historyForm" ).submit(function( event ) {
 			  	var strSearch = $('#strSearch').val();

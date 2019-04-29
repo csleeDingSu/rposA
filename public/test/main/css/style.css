@@ -17,7 +17,6 @@
 .header .top li img {
   vertical-align: middle;
   height: 0.56rem;
-  margin-top: 0.1rem;
 }
 .header .top li a {
   display: inline-block;
@@ -25,7 +24,35 @@
 }
 .header .top li.logo img {
   height: 0.82rem;
+  margin-top: 0.1rem;
 }
+
+.header .top li.customer img {
+  height: 0.6rem;
+  margin-top: 0.15rem;
+  margin-left: 0.12rem;
+  display: block;
+}
+
+.header .top li .caption {
+  height: 0.5rem;
+  display: block;
+  color: white;
+  font-size: 0.2rem;
+  height: 0.4rem;
+  width: 0.8rem;
+  margin-top: -0.5rem;
+}
+
+.header .top li .cancel {
+  height: 0.5rem;
+  display: block;
+  color: white;
+  font-size: 0.3rem;
+  height: 0.4rem;
+  width: 0.8rem;
+}
+
 .main {
   background: #fff;
 }
@@ -698,9 +725,7 @@ p.vip-life {
 .showBao a img{ width: 100%;}
 
 .copyvoucher {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis ;
+
 }
 
 .showBao .group span em{ display: inline-block; vertical-align: middle; color: #ffb221; font-size: .44rem;}
@@ -1308,18 +1333,22 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   -ms-border-radius: 0.42rem;
   -o-border-radius: 0.42rem;
   height: 0.7rem;
-  width: 4.2rem;
+  width: 4.5rem;
   align-items: center;
   padding: 0 0.2rem;
 }
 
+.enlarge {
+  width: 6.2rem;
+}
+
 .flexSp input {
   display: flex;
-  width: 83%;
+  width: 85%;
   box-sizing: border-box;
   padding-top: 0.1rem;
   padding-left: 0.1rem;
-  font-size: 0.28rem;
+  font-size: 0.25rem;
   line-height: 2em;
   background: none;
   border: none;

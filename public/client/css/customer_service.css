@@ -8,26 +8,26 @@ body {
 }
 
 /* Modal Box */
-.modal-content, .modal-title {
+#csModal .modal-content, .modal-title {
     background: white;
     width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.modal-full-height {
+#csModal .modal-full-height {
     text-align:center;
     padding-bottom: 10px;
     margin: 0 auto;
 }
 
-.modal-wechat {
+#csModal .modal-wechat {
     margin-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
-.modal-title {
+#csModal .modal-title {
     background: #7dca33;
     color: white;
     text-align: center;
@@ -38,20 +38,20 @@ body {
     font-weight: 700;
 }
 
-.modal-title h1 {
+#csModal .modal-title h1 {
     margin-bottom: 10px;
     margin-top: 5px;
     color: #fff;
     font-size: 24px;
 }
 
-.modal-card {
+#csModal .modal-card {
     width: 250px;
     margin: 0 auto;
     font-size: 16px;
 }
 
-.copyvoucher {
+#csModal .copyvoucher {
     background: #f0f0f0;
     color: #7dca33;
     margin-left: 10%;
@@ -63,7 +63,7 @@ body {
     padding: 5px;
 }
 
-.cutBtn, .cutBtn-success, .cutBtn-fail {
+#csModal .cutBtn, #csModal .cutBtn-success, #csModal .cutBtn-fail {
     margin-left: 10%;
     margin-right: 10%;
     border-radius: 6px;
@@ -73,52 +73,56 @@ body {
     background: #7dca33;
 }
 
-.cutBtn {
+#csModal .cutBtn {
     cursor: pointer;
 }
 
-.cutBtn-success {
+#csModal .cutBtn-success {
     background: #61b114;
 }
 
-.cutBtn-fail {
+#csModal .cutBtn-fail {
     background: #999999;
 }
 
-.instructions, .instructions-dark {
+#csModal .instructions, #csModal .instructions-dark {
     margin-top: 10px;
     font-size: 14px;
     font-weight: 500;
     color: #aaa;
 }
 
-.instructions-dark {
+#csModal .instructions-dark {
     font-size: 12px;
 }
 
-.highlight {
+#csModal .highlight {
     color: #fca871;
 }
 
 @media only screen and (max-width: 360px) {
-    .modal-content, .modal-title {
+    #csModal .modal-content, #csModal .modal-title {
         width: 270px;
     }
 
-    .modal-card {
+    #csModal .modal-card {
         width: 230px;
         margin: 0 auto;
         font-size: 16px;
     }
+
+    #csModal .instructions, #csModal .instructions-dark {
+        font-size: 12px;
+    }
 }
 /* End Modal box */
 
-.modal {
+#csModal .modal {
   text-align: center;
   padding: 0!important;
 }
 
-.modal:before {
+#csModal .modal:before {
   content: '';
   display: inline-block;
   height: 100%;
@@ -126,7 +130,7 @@ body {
   margin-right: -4px;
 }
 
-.modal-dialog {
+#csModal .modal-dialog {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
