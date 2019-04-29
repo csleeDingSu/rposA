@@ -509,7 +509,7 @@
 
 <!-- Start Reset Life Play -->
 	<!-- old -->
-	<div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<!-- <div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
@@ -567,32 +567,33 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- new -->
-	<!-- <div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="content_winless150">
+	<div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="modal-warning-title">
-								  满150金币才可以提现，去赚金币吧~
+								<div class="modal-title">
+								  提现说明
 								</div>
-								
-								<div style="clear: both"></div>
-
+								<div class="instructions">
+									需要滿1350金幣才可以提現，其中系統提供的1200原始金幣不可提現。<br>
+									只能提現游戲中盈利的150金幣，150金幣大約可兌換15元現金，再接再厲！
+								</div>
 								<div class="close-modal modal-warning-button">
-									我知道了
-								</div>												
+									知道了
+								</div>
 							</div>
 						</div>
 					</div>							
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 
 <!--  end -->
 
