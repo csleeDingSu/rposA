@@ -68,9 +68,10 @@
   display: flex;
   width: 80%;
   box-sizing: border-box;
+  padding-top: 0;
   padding-left: 0.25rem;
   font-size: 0.28rem;
-  line-height: 2em;
+  line-height: 2.5em;
   background: none;
   border: none;
   color: #333;

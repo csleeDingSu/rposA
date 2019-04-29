@@ -88,7 +88,7 @@
 					<li class="dbox0">
 		                <div class="inBox">
                             <div class="flexSp">
-                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" value="{{ $strSearch }}" autofocus>
+                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="粘贴淘宝商品标题 查找优惠卷" required maxlength="100" value="{{ $strSearch }}" autofocus>
                                 <input type="submit" id="btn_search" value="搜索" style="color: #f65e7e; font-size: 0.3rem;" />
                             
                             </div>

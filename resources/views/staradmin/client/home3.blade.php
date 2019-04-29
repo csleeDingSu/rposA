@@ -96,19 +96,21 @@
 					<li class="dbox0">
 		                <div class="inBox search_inBox">
                             <div class="flexSp">
-                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="搜索商品名称：如剃须刀、T恤" required maxlength="100" autofocus>
+                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="粘贴淘宝商品标题 查找优惠卷" required maxlength="100">
                                 <input type="image" src="{{ asset('/client/images/search/search.png') }}" id="btn_search" />         
                             </div>
 		                </div>
 						
 					</li>
 					</form>
-					<a href="javascript:void(0)" id="customerservice" class="customerservice">
-						<li class="customer">
-							<img src="{{ asset('/client/images/search/customer.png') }}">
-							<div class="caption">在线客服</div>
-						</li>
-					</a>
+					
+					<li class="customer">
+						<a href="javascript:void(0)" id="customerservice" class="customerservice">
+						<img src="{{ asset('/client/images/search/customer.png') }}">
+						<div class="caption">在线客服</div>
+						</a>
+					</li>
+					
 				</ul>
 				<div class="main rel">
 					<div class="dbox">
@@ -357,6 +359,29 @@
 
 		$(document).ready(function(){
 		//$(function () {
+			$('#strSearch').focus(function(){
+				$('.logo').html('');
+				$(this).parent().addClass('enlarge');
+				$('.customer').html('<a href="javascript:void(0)"><div class="cancel">取消</div></a>');
+			});
+
+			$('#strSearch').blur(function(){
+				$('.logo').html('<img src="/client/images/logo.png">');
+				$(this).parent().removeClass('enlarge');
+				$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
+				$('#customerservice').click(function () { 
+					$('#csModal').modal('show');
+				});
+			});
+
+			$('.cancel').click(function(){
+				$('.logo').html('<img src="/client/images/logo.png">');
+				$(this).parent().removeClass('enlarge');
+				$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
+				$('#customerservice').click(function () { 
+					$('#csModal').modal('show');
+				});
+			});
 
 			$('#customerservice').click(function () { 
 				$('#csModal').modal('show');
