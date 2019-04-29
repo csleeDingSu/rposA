@@ -231,7 +231,7 @@ function openmodel() {
 							{
 								$('#mode').val('edit');
 								$('#package_name').val(data.package_name);
-								$('#min_point').val(data.min_point);
+								$('#package_discount_price').val(data.package_discount_price);
 								
 								$('#price').val(data.package_price);
 								$('#status').val(data.package_status);
