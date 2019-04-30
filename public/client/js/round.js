@@ -123,7 +123,7 @@ function populateData(records, token) {
                                         '<span class="' + str_class + '">'+ str_status +'</span>' +
                                     '</div>' +                                                
                                     '<div style="clear: both"></div>' +
-                                    '<div class="additional">'+ item.package_price +'元</div>' +
+                                    '<div class="additional">'+ item.buy_price +'元</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
