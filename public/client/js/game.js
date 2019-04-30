@@ -964,7 +964,7 @@ function showProgressBar(bol_show){
             case 1:
                 bet_amount = 10;
 
-                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中赚10金币，可兑换1元。';//'猜中得10，赚10金币。';
+                payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+10金币，猜错-10金币。';//'您选择<span class=\'caption_bet\'>[单数]</span>，猜中赚10金币，可兑换1元。';//'猜中得10，赚10金币。';
                 $('.span-1').html("10");
                 $('.span-2').html("30");
                 $('.span-3').html("70");
@@ -977,14 +977,14 @@ function showProgressBar(bol_show){
                 bet_amount = 30;
                 span_balance = 1190;
 
-                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
+                payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+30金币，猜错-30金币。';//'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
                 $('.span-1').html("-10");                        
                 break;
             case 3:                    
                 bet_amount = 70;
                 span_balance = 1160;
 
-                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
+                payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+70金币，猜错-70金币。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 break;
@@ -992,7 +992,7 @@ function showProgressBar(bol_show){
                 bet_amount = 150;
                 span_balance = 1090;
 
-                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得150，赚40金币。';//'猜中得150，扣除前3次亏损110，赚40金币。';
+                payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+150金币，猜错-150金币。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得150，赚40金币。';//'猜中得150，扣除前3次亏损110，赚40金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -1001,7 +1001,7 @@ function showProgressBar(bol_show){
                 bet_amount = 310;
                 span_balance = 940;
 
-                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得310，赚50金币。';//'猜中得310，扣除前4次亏损260，赚50金币。';
+                payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+310金币，猜错-310金币。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得310，赚50金币。';//'猜中得310，扣除前4次亏损260，赚50金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -1011,7 +1011,7 @@ function showProgressBar(bol_show){
                 bet_amount = 630;
                 span_balance = 630;
 
-                payout_info = '您选择<span class=\'caption_bet\'>[单数]</span>，猜中得630，赚60金币。';//'猜中得630，扣除前5次亏损570，赚60金币。';
+                payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+630金币，猜错-630金币。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得630，赚60金币。';//'猜中得630，扣除前5次亏损570，赚60金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
