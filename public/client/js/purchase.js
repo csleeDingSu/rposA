@@ -58,18 +58,25 @@ function getPackage() {
             if(data.success) {
                 console.log(data);
                 var records = data.records;
+                var purchase_data = data.purchase_data;
                 var html = '';
+                var price = 0;
 
                 $.each(records, function(i, item) {
                     html += '<div class="col-xs-4">';
 
-                    if(i == 0){
+                    if(purchase_data.length == 0 && item.package_discount_price > 0){
                         html += '<div class="promotion"><img src="/client/images/membership/promotion.png" /></div>';
+                        price = item.package_discount_price;
+                    } else {
+                        price = item.package_price;
                     }
-                        html += '<div class="radio" data-value="'+ item.id +'" data-price="'+ item.package_price +'">' +
-                                    '<div class="radio-title">'+ item.package_name +'</div><div>售价'+ item.package_price +'元</div>' +
+
+                        html += '<div class="radio" data-value="'+ item.id +'" data-price="'+price +'">' +
+                                    '<div class="radio-title">'+ item.package_name +'</div><div>售价'+ price +'元</div>' +
                                 '</div>' +
                             '</div>';
+                    
                 });
 
                 $('.radio-group').html(html);
