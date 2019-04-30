@@ -242,6 +242,26 @@ class BasicPackage extends Model
 		else return $count;
 	}
 	
+	
+	public static function today_redeemded_new($memberid,$type = 'count')
+	{		
+		
+		$count = DB::table('view_basic_package_user_list')->wherein('redeem_state',[1,2,3,4])->where('member_id',$memberid)->whereDate('created_at', '=', Carbon::today()->toDateString());
+
+		if ($type == 'count')
+		{
+			$count = $count->count();
+		}
+		else
+		{
+			$count = $count->get();
+		}	
+				
+				
+		if (!$count) return 0;
+		else return $count;
+	}
+	
 }
 
 
