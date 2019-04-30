@@ -61,7 +61,7 @@ class BasicPackageController extends Controller
 		
 		$usedprice = $package->package_price;
 		
-		if ($buy_count >= 1 ) 
+		if ($buy_count < 1 ) 
 		{
 			if ($package->package_discount_price >= 1)
 			{
