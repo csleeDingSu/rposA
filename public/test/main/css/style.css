@@ -1265,10 +1265,10 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 
 @-webkit-keyframes MoveUpDown_angpao {
   0%, 100% {
-    bottom: 0.97rem;
+    -webkit-bottom: 0.97rem;
   }
   50% {
-    bottom: 0.92rem;
+    -webkit-bottom: 0.92rem;
   }
 }
 
