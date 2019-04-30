@@ -333,7 +333,27 @@
 </div>
 <!-- customer service modal Ends -->
 
-	@include('auth.customer_service_model')
+<section class="openFrom">
+   
+      <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 33%">    
+       <span class="head2">分享到微信的方法</span>
+     </div>     
+     <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 16%">    
+       <span class="head3">按住宣传图3秒 > 选择分享图片 > 选择微信</span>
+     </div>
+    
+    
+    
+    
+    <div class="modelfimgs">
+        <img class="center fit" src="{{ asset('cshare/images/model.png') }}"><br>
+    </div>
+    
+    <div class="menu" align="center" style="padding-bottom: 60px;">
+             
+            </div>
+    
+</section>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
@@ -360,18 +380,35 @@
 		$(document).ready(function(){
 		//$(function () {
 			$('#strSearch').focus(function(){
-				$('.logo').html('');
+				$('.logo').hide();
 				$(this).parent().addClass('enlarge');
 				$('.customer').html('<a href="javascript:void(0)"><div class="cancel">取消</div></a>');
+
+				being.wrapShow();
+	            $(".openFrom").slideDown(150);
+	            $(".wrapBox ").click(function (e) {
+	              being.wrapHide();
+	              $(".openFrom").slideUp(150);
+	            });
+
+	            $('.main').hide();
+	            $('.box').hide();
 			});
 
 			$('#strSearch').blur(function(){
-				$('.logo').html('<img src="/client/images/logo.png">');
+				$('.logo').show();
 				$(this).parent().removeClass('enlarge');
 				$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
 				$('#customerservice').click(function () { 
 					$('#csModal').modal('show');
 				});
+
+                being.wrapHide();
+                $(".openFrom").slideDown(150);
+                $(".openFrom").hide();
+
+                $('.main').show();
+                $('.box').show();
 			});
 
 			$('.cancel').click(function(){
@@ -381,6 +418,13 @@
 				$('#customerservice').click(function () { 
 					$('#csModal').modal('show');
 				});
+
+				being.wrapHide();
+                $(".openFrom").slideDown(150);
+                $(".openFrom").hide();
+
+                $('.main').show();
+                $('.box').show();
 			});
 
 			$('#customerservice').click(function () { 
