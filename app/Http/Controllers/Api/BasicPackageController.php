@@ -20,7 +20,7 @@ class BasicPackageController extends Controller
 		
 		$result =  Package::list_available_redeem_package(0);
 		
-		$data = Package::today_redeemded($member_id,'get');
+		$data = Package::today_redeemded_new($member_id,'get');
 		
 		return response()->json(['success' => true,  'records' => $result,'purchase_data'=>$data]);
 	}
@@ -55,7 +55,7 @@ class BasicPackageController extends Controller
 		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);
 		
 		$setting   = \App\Admin::get_setting();
-		$buy_count = Package::today_redeemded($memberid);
+		$buy_count = Package::today_redeemded_new($memberid);
 		
 		if ($buy_count >= $setting->daily_basicpackage_redeem_limit) return response()->json(['success' => false, 'message' => 'you’ve reached the maximum units allowed for the today order ']);
 		
