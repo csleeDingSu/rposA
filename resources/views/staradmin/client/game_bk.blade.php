@@ -392,11 +392,8 @@
 	          </li>
 	        </ul>
 	      </div>
-
-	      <p style="font-size:0px;"><span class="span-balance">1200</span> / 1200</p>
-	        
 	      <div class="barIn">
-	        <p><span class="result-info"></span></p>
+	        <p><span class="span-balance">1200</span> / 1200</p>
 	        <div class="barImg"></div>
 	      </div>
 
