@@ -23,9 +23,16 @@ function getToken(){
                 page_count = 1;
                 status = $(e.target).attr('data-status');
                 // console.log(status);
-                if (status != 'next-lvl-invitation') {
+                if(status.indexOf('next-lvl-') != -1){
+                    status = status.replace('next-lvl-','');
+                    // console.log(status);
+                    if(status.indexOf('invitation') != -1){
+                        status = 'default';
+                    }
+                    getPosts_NextLvl(page, data.access_token, status);
+                } else {
                     getPosts(page, data.access_token, status);    
-                }                
+                }              
             });
         }     
     });
@@ -48,16 +55,12 @@ function getSummary(token) {
             var total_fail = 0;
             var total_pending = 0;
             var total_successful = 0;
-            var next_lvl_total = data.slc_count;
-            var next_lvl_result = data.slc_data;
+            var next_lvl_total = 0;
+            var next_lvl_result = data.slc_count_new;
             var next_lvl_total_fail = 0;
             var next_lvl_total_pending = 0;
             var next_lvl_total_successful = 0;
-            var html = '';
-            var html_success = '';
-            var html_pending = '';
-            var html_fail = '';
-
+            
             $.each(result, function(i, item) {
 
                 if(item.wechat_verification_status == 0){
@@ -75,105 +78,32 @@ function getSummary(token) {
 
             });
 
+            $.each(next_lvl_result, function(i, item) {
+
+                if(item.wechat_verification_status == 0){
+                    next_lvl_total_successful += parseInt(item.count);                    
+                    next_lvl_total += parseInt(item.count);
+
+                } else if (item.wechat_verification_status == 1) {
+                    next_lvl_total_pending += parseInt(item.count);
+                    next_lvl_total += parseInt(item.count);
+
+                } else if (item.wechat_verification_status == 2 || item.wechat_verification_status == 3) {
+                    next_lvl_total_fail += parseInt(item.count);
+                    next_lvl_total += parseInt(item.count);
+                }
+
+            });
+
             $('#total-invite').html(total + next_lvl_total);
             $('#total-fail').html(total_fail);
             $('#total-successful').html(total_successful);
             $('#total-pending').html(total_pending);
             $('#my-lvl-total-invitation').html('(' + total + ')');
             $('#next-lvl-total-invitation').html('(' + next_lvl_total + ')');
-
-            $.each(next_lvl_result, function(i, item) {
-
-                var t = item.created_at.split(/[- :]/);
-                var date = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-                var str_date = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + 
-                                ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
-                
-                if(item.wechat_verification_status == 0){
-                    next_lvl_total_successful += 1;
-                    var str_status = "认证成功";
-                    var str_additional = "+1";
-                    var str_class = "verified";
-                    
-                } else if (item.wechat_verification_status == 1) {
-                    next_lvl_total_pending += 1;
-                    var str_status = "未微信认证";
-                    var str_additional = "";
-                    var str_class = "pending";
-                    
-                } else if (item.wechat_verification_status == 2 || item.wechat_verification_status == 3) {
-                    next_lvl_total_fail += 1;
-                    var str_status = "认证失败";
-                    var str_additional = "";
-                    var str_class = "fail";
-                } else {
-                    var str_status = "认证失败";
-                    var str_additional = "";
-                    var str_class = "fail";
-                }
-
-                html = '<div class="row">' +
-                            '<div class="col-xs-8 column-1">' +
-                                '<div class="item">' + item.phone.substring(0,3) + '&#10033;&#10033;&#10033;&#10033;' + item.phone.substring((item.phone.length - 4),item.phone.length) + '</div>' +
-                                '<div class="date">' + str_date + '</div>' +
-                            '</div>' +
-                            '<div class="col-xs-4 column-2">' +
-                                '<div class="right-wrapper">' +
-                                    '<div class="status">' +
-                                        '<span class="' + str_class + '">'+ str_status +'</span>' +
-                                    '</div>' +                                                
-                                    '<div style="clear: both"></div>' +
-                                    '<div class="additional">'+ str_additional +'</div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>';
-
-                if (str_class == "verified") {
-                    html_success += html;
-                    status="next-lvl-" + str_class;
-                    $('#'+ status +'-tab').append(html_success);
-
-                }else if(str_class == "pending") {
-                    html_pending += html;
-                    status="next-lvl-" + str_class;
-                    $('#'+ status +'-tab').append(html_pending);
-                }else {
-                    html_fail += html;
-                    status="next-lvl-" + str_class;
-                    $('#'+ status +'-tab').append(html_fail);
-                }
-                    
-            });
-
             $('#next-lvl-total-fail').html(next_lvl_total_fail);
             $('#next-lvl-total-successful').html(next_lvl_total_successful);
             $('#next-lvl-total-pending').html(next_lvl_total_pending);
-
-            if(next_lvl_total_successful <= 0) {
-                html = '<div class="row">' + 
-                            '<div class="col-xs-12">' + 
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
-                            '</div>' + 
-                        '</div>';
-                $('#next-lvl-verified-tab').append(html);
-            }
-            if(next_lvl_total_pending <= 0) {
-                html = '<div class="row">' + 
-                            '<div class="col-xs-12">' + 
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
-                            '</div>' + 
-                        '</div>';
-                $('#next-lvl-pending-tab').append(html);
-            }
-            if(next_lvl_total_fail <= 0) {
-                html = '<div class="row">' + 
-                            '<div class="col-xs-12">' + 
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
-                            '</div>' + 
-                        '</div>';
-                $('#next-lvl-failed-tab').append(html);
-            }
-            
         }
     });
 }
@@ -184,8 +114,12 @@ function scrollBottom(token){
         var max_page = parseInt($('#max_page').val());
         if(page > max_page) {
             
-        }else{
-            getPosts(page, token, status);
+        }else{            
+            if (status != 'next-lvl-invitation') {
+                getPosts(page, token, status);
+            } else {
+                getPosts_NextLvl(page, token, status);
+            } 
         }   
     });
 }
@@ -208,7 +142,7 @@ function getPosts(page, token, status){
             var last_page = parseInt(data.result.last_page);
             $('#max_page').val(last_page);
             var records = data.result;
-            var html = populateInvitationData(records, token);
+            var html = populateInvitationData(records, token, status);
 
             if(current_page == 1){
                 $('#'+ status +'-tab').html(html);
@@ -224,9 +158,46 @@ function getPosts(page, token, status){
             $('#page').val(page);
         }
     });
+
 }
 
-function populateInvitationData(records, token) {
+function getPosts_NextLvl(page, token, status){
+ 
+   var user_id = $('#hidUserId').val();
+
+    $.ajax({
+        type: "GET",
+        url: "/api/member-scl-referral-list?memberid=" + user_id + "&page=" + page + "&status=" + status,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        success: function(data) {
+            //console.log(data);
+            var current_page = parseInt(data.result.current_page);
+            var last_page = parseInt(data.result.last_page);
+            $('#max_page').val(last_page);
+            var records = data.result;
+            var html = populateInvitationData(records, token, status);
+
+            if(current_page == 1){
+                $('#next-lvl-'+ status +'-tab').html(html);
+            } else {
+                $('#next-lvl-'+ status +'-tab').append(html);
+            }
+
+            if(current_page == last_page){
+                $(".isnext").html(end_of_result);
+            }
+
+            page++;
+            $('#page').val(page);
+        }
+    });
+}
+
+function populateInvitationData(records, token, _status = null) {
 
             var current_page = parseInt(records.current_page);
             var last_page = parseInt(records.last_page);
@@ -253,7 +224,7 @@ function populateInvitationData(records, token) {
                 if(item.wechat_verification_status == 0){
                     var str_status = "认证成功";
                     var str_additional = "+1";
-                    var str_class = "successful";
+                    var str_class = "verified";                    
 
                 } else if (item.wechat_verification_status == 1) {
                     var str_status = "未微信认证";
@@ -264,6 +235,14 @@ function populateInvitationData(records, token) {
                     var str_status = "认证失败";
                     var str_additional = "";
                     var str_class = "fail";
+                }
+
+                //set default
+                if (_status == 'default') {
+                    var str_class = "";
+                    var str_class_additional = "default_additional";
+                } else {
+                    var str_class_additional = "additional";
                 }
                 
                 html += '<div class="row">' +
@@ -277,7 +256,7 @@ function populateInvitationData(records, token) {
                                         '<span class="' + str_class + '">'+ str_status +'</span>' +
                                     '</div>' +                                                
                                     '<div style="clear: both"></div>' +
-                                    '<div class="additional">'+ str_additional +'</div>' +
+                                    '<div class="' + str_class_additional + '">'+ str_additional +'</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';

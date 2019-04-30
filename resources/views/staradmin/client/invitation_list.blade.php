@@ -73,7 +73,7 @@
                             </a>
                         </li>              
                     
-                        <li class="take-all-space-you-can active">
+                        <li class="take-all-space-you-can">
                             <a class="tab" data-toggle="tab" href="#verified-tab" data-status="verified">
                                 
                                 <div>
@@ -105,15 +105,15 @@
                 <div class="full-width-tabs">
                     <ul class="nav nav-pills">
                         <li class="take-all-space-you-can">
-                            <a class="tab" data-toggle="tab" href="#next-lvl-pending-tab" data-status="pending">
+                            <a class="tab" data-toggle="tab" href="#next-lvl-pending-tab" data-status="next-lvl-pending">
                                 <div>未微信认证
                                 <span id="next-lvl-total-pending" class="total-pending">&nbsp;</span>
                                 </div>
                             </a>
                         </li>              
                     
-                        <li class="take-all-space-you-can active">
-                            <a class="tab" data-toggle="tab" href="#next-lvl-verified-tab" data-status="verified">
+                        <li class="take-all-space-you-can">
+                            <a class="tab" data-toggle="tab" href="#next-lvl-verified-tab" data-status="next-lvl-verified">
                                 
                                 <div>
                                     认证成功<span id="next-lvl-total-successful" class="total-successful">&nbsp;</span>
@@ -122,7 +122,7 @@
                         </li>          
                     
                         <li class="take-all-space-you-can">
-                            <a class="tab" data-toggle="tab" href="#next-lvl-failed-tab" data-status="failed">
+                            <a class="tab" data-toggle="tab" href="#next-lvl-failed-tab" data-status="next-lvl-failed">
                                 <div>认证失败
                                 <span id="next-lvl-total-fail" class="total-fail">&nbsp;</span>
                                 </div>
@@ -131,10 +131,11 @@
                     </ul>
 
                     <div id="invitation_next_lvl" class="tab-content">
+                        <div id="next-lvl-default-tab" class="tab-pane fade in active"></div>
                         <div id="next-lvl-pending-tab" class="tab-pane fade"></div>
-                        <div id="next-lvl-verified-tab" class="tab-pane active"></div>
+                        <div id="next-lvl-verified-tab" class="tab-pane fade"></div>
                         <div id="next-lvl-failed-tab" class="tab-pane fade"></div>
-                        <!-- <p class="isnext">下拉显示更多...</p> -->
+                        <p class="isnext">下拉显示更多...</p>
                     </div>                    
                 </div>
                 <!-- next-lvl-invitation -->
