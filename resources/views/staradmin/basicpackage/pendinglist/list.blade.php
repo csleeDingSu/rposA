@@ -18,13 +18,22 @@
 	
 function confirm_redeem(id)	{
 	Swal({
-	title: '@lang("dingsu.redeem_confirmation")',
-	text: '@lang("dingsu.redeem_conf_text")',
-	type: 'warning',
-	showCancelButton: true,
-	confirmButtonText: '@lang("dingsu.confirm")',
-	cancelButtonText: '@lang("dingsu.cancel")',
-	closeOnConfirm: false
+	  title: '@lang("dingsu.reject_confirmation")',
+	  text: '@lang("dingsu.reject_redeem_conf_text")',
+	  type: 'warning',
+	  showCancelButton: true,
+	  confirmButtonText: '@lang("dingsu.reject")',
+	  cancelButtonText: '@lang("dingsu.cancel")',
+	  closeOnConfirm: false,
+	  input: 'textarea',		
+  	  animation: "slide-from-top",
+      inputPlaceholder: '@lang("dingsu.reject_notes")',
+		showLoaderOnConfirm: true,
+		inputValidator: (value) => {
+			if (!value) {
+			  return '@lang("dingsu.error_empty_note")'
+			}
+		  }
 	}).then((result) => {
 		if (result.value) 
 		 {

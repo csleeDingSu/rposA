@@ -299,7 +299,7 @@ class BasicPackageController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['redeem_state'=>0,'confirmed_at'=>$now];				
+			$data = ['redeem_state'=>0,'confirmed_at'=>$now,'reject_notes'=>$request->reason];		
 			//no need to refund anything
 			//Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RBP','credit', 'basic package rejected,point refund to customer');
 			

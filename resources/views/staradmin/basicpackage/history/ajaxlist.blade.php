@@ -14,6 +14,9 @@
 								<th>@lang('dingsu.username')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.point')</th>
+								<th>@lang('dingsu.buy_price')</th>
+								<th>@lang('dingsu.ref_note')</th>
+								<th>@lang('dingsu.reject_reason')</th>
 								<th>@lang('dingsu.status')</th>
 							</tr>
 						</thead>
@@ -32,6 +35,11 @@
 								<td>
 									{{ $list->used_point }}
 								</td>
+								<td>{{ $list->buy_price }}</td>
+								<td>
+									{{ $list->ref_note }}
+								</td>
+								<td>{{ $list->reject_notes }}</td>
 								<td id="statustd_{{ $list->id }}">
 									@if($list->redeem_state == 0)
 									<label class="badge badge-warning">@lang('dingsu.rejected')</label> 
