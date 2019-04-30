@@ -97,7 +97,9 @@
 		                <div class="inBox search_inBox">
                             <div class="flexSp">
                                 <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="粘贴淘宝商品标题 查找优惠卷" required maxlength="100">
-                                <input type="image" src="{{ asset('/client/images/search/search.png') }}" id="btn_search" />         
+
+                                <input type="image" src="{{ asset('/client/images/search/search.png') }}" id="btn_search" value="&nbsp;" />
+                                <img src="{{ asset('/client/images/search/clear.png') }}" id="btn_clear" value="&nbsp;" />       
                             </div>
 		                </div>
 						
@@ -201,6 +203,19 @@
 						<p class="isnext">下拉显示更多...</p>
 					</div>
 					
+				</div>
+			</div>
+			<div class="openFrom">
+				<div class="div-instruction">
+					<ul class="instruction-list">
+						<li>
+							<div class="instruction-background">
+								<img src="{{ asset('/client/images/search/copy.png') }}" />
+							</div>
+						</li>
+						<li>打开手机淘宝/天猫，长按商品标题“拷贝”<br />
+						粘贴搜索框，查找优惠卷</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -333,28 +348,6 @@
 </div>
 <!-- customer service modal Ends -->
 
-<section class="openFrom">
-   
-      <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 33%">    
-       <span class="head2">分享到微信的方法</span>
-     </div>     
-     <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 16%">    
-       <span class="head3">按住宣传图3秒 > 选择分享图片 > 选择微信</span>
-     </div>
-    
-    
-    
-    
-    <div class="modelfimgs">
-        <img class="center fit" src="{{ asset('cshare/images/model.png') }}"><br>
-    </div>
-    
-    <div class="menu" align="center" style="padding-bottom: 60px;">
-             
-            </div>
-    
-</section>
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
 	<script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
@@ -384,47 +377,65 @@
 				$(this).parent().addClass('enlarge');
 				$('.customer').html('<a href="javascript:void(0)"><div class="cancel">取消</div></a>');
 
-				being.wrapShow();
 	            $(".openFrom").slideDown(150);
-	            $(".wrapBox ").click(function (e) {
-	              being.wrapHide();
-	              $(".openFrom").slideUp(150);
-	            });
 
 	            $('.main').hide();
 	            $('.box').hide();
-			});
 
-			$('#strSearch').blur(function(){
-				$('.logo').show();
-				$(this).parent().removeClass('enlarge');
-				$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
-				$('#customerservice').click(function () { 
-					$('#csModal').modal('show');
+	            $('.cancel').click(function(){
+					$('.logo').show();
+					$('.flexSp').removeClass('enlarge');
+					$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
+					$('#customerservice').click(function () { 
+						$('#csModal').modal('show');
+					});
+
+	                $(".openFrom").slideUp(150);
+
+	                $('.main').show();
+	                $('.box').show();
+	                $('#btn_clear').hide();
+
+	                if($('#strSearch').val() != ''){
+	                	$('#strSearch').addClass('clear');
+			            $('#btn_clear').show();
+						$('#btn_clear').click(function () { 
+							$('#strSearch').val('');
+							$(this).hide();
+						});
+					} else {
+						$('#strSearch').removeClass('clear');
+						$('#btn_clear').hide();
+					}
 				});
 
-                being.wrapHide();
-                $(".openFrom").slideDown(150);
-                $(".openFrom").hide();
-
-                $('.main').show();
-                $('.box').show();
+				if($(this).val() != ''){
+					$('#strSearch').addClass('clear');
+		            $('#btn_clear').show();
+					$('#btn_clear').click(function () { 
+						$('#strSearch').val('');
+						$(this).hide();
+						$('#strSearch').removeClass('clear');
+					});
+				} else {
+					$('#strSearch').removeClass('clear');
+					$('#btn_clear').hide();
+				}
 			});
 
-			$('.cancel').click(function(){
-				$('.logo').html('<img src="/client/images/logo.png">');
-				$(this).parent().removeClass('enlarge');
-				$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
-				$('#customerservice').click(function () { 
-					$('#csModal').modal('show');
-				});
-
-				being.wrapHide();
-                $(".openFrom").slideDown(150);
-                $(".openFrom").hide();
-
-                $('.main').show();
-                $('.box').show();
+			$( "#strSearch" ).keyup(function() {
+				if($(this).val() != ''){
+					$('#strSearch').addClass('clear');
+		            $('#btn_clear').show();
+					$('#btn_clear').click(function () { 
+						$('#strSearch').val('');
+						$(this).hide();
+						$('#strSearch').removeClass('clear');
+					});
+				} else {
+					$('#strSearch').removeClass('clear');
+					$('#btn_clear').hide();
+				}
 			});
 
 			$('#customerservice').click(function () { 
