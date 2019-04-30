@@ -89,8 +89,8 @@
 		                <div class="inBox">
                             <div class="flexSp">
                                 <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="粘贴淘宝商品标题 查找优惠卷" required maxlength="100" value="{{ $strSearch }}" autofocus>
-                                <input type="submit" id="btn_search" value="搜索" style="color: #f65e7e; font-size: 0.3rem;" />
-                            
+                                <img src="{{ asset('/client/images/search/clear.png') }}" id="btn_clear" value="&nbsp;" />
+                                <input type="submit" id="btn_search" value="搜索" style="color: #f65e7e; font-size: 0.3rem;" />        	
                             </div>
 		                </div>
 						
@@ -246,6 +246,41 @@
 	<script>
 
 		$(document).ready(function(){
+
+			$('#strSearch').focus(function(){
+				if($(this).val() != ''){
+		            $('#btn_clear').show();
+					$('#btn_clear').click(function () { 
+						$('#strSearch').val('');
+						$(this).hide();
+					});
+				} else {
+					$('#btn_clear').hide();
+				}
+			});
+
+			$( "#strSearch" ).keyup(function() {
+				if($(this).val() != ''){
+		            $('#btn_clear').show();
+					$('#btn_clear').click(function () { 
+						$('#strSearch').val('');
+						$(this).hide();
+					});
+				} else {
+					$('#btn_clear').hide();
+				}
+			});
+
+			if($( "#strSearch" ).val() != ''){
+	            $('#btn_clear').show();
+				$('#btn_clear').click(function () { 
+					$('#strSearch').val('');
+					$(this).hide();
+				});
+			} else {
+				$('#btn_clear').hide();
+			}
+
 			var arrHistory = Cookies.get('searchhistory');
 			if(arrHistory !== undefined){
 				var arrHistory = JSON.parse(arrHistory);
