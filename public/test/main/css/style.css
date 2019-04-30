@@ -1403,11 +1403,6 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   padding-left: 0;
 }
 
-.box {
-  background: #fff;
-  height: 90%;
-}
-
 .openFrom{
    background: #fff;
    border-radius:.1rem .1rem 0 0 ;
