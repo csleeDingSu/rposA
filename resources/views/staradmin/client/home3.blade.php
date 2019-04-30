@@ -213,8 +213,8 @@
 								<img src="{{ asset('/client/images/search/copy.png') }}" />
 							</div>
 						</li>
-						<li>打开手机淘宝/天猫，长按商品标题“拷贝”<br />
-						粘贴搜索框，查找优惠卷</li>
+						<li>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
+						<li>粘贴搜索框，查找优惠卷</li>
 					</ul>
 				</div>
 			</div>
