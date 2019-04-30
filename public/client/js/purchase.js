@@ -58,7 +58,7 @@ function getPackage() {
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
             if(data.success) {
-                console.log(data);
+                //console.log(data);
                 var records = data.records;
                 var purchase_data = data.purchase_data;
                 var html = '';
@@ -116,8 +116,8 @@ function purchase(){
             },
             error: function (error) { console.log(error.responseText) },
             success: function(data) {
+                
                 if(data.success) {
-                    console.log(data);
                     $('.error').hide();
                     $('#modal-successful').modal();
                     setTimeout(function(){ 
@@ -126,6 +126,7 @@ function purchase(){
                     }, 2000);
                 } else {
                     $('.error').html(data.message);
+                    $('.error').show();
                 }
             }
         });
