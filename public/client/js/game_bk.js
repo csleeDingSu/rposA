@@ -950,7 +950,7 @@ function showProgressBar(bol_show){
         $('.span-5').html("-310");
         $('.span-6').html("-630");
         $('.span-balance').html(0);
-    
+
         $('.payout-info').html(payout_info).addClass('hide');
         $('.spanAcuPoint').html(0);
         $('.spanAcuPointAndBalance').html(0);
@@ -976,14 +976,14 @@ function showProgressBar(bol_show){
             case 2:
                 bet_amount = 30;
                 span_balance = 1190;
-                
+
                 payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+30金币，猜错-30金币。';//'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
                 $('.span-1').html("-10");                        
                 break;
             case 3:                    
                 bet_amount = 70;
                 span_balance = 1160;
-                
+
                 payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+70金币，猜错-70金币。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
@@ -1009,7 +1009,7 @@ function showProgressBar(bol_show){
                 break;
             case 6:
                 bet_amount = 630;
-                span_balance = 630;                
+                span_balance = 630;
 
                 payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+630金币，猜错-630金币。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得630，赚60金币。';//'猜中得630，扣除前5次亏损570，赚60金币。';
                 $('.span-1').html("-10");
@@ -1022,8 +1022,6 @@ function showProgressBar(bol_show){
 
         $('.span-balance').html(span_balance);
         $('.bet-container').html(bet_amount);
-        var result_info = '6次之内猜中有奖励。';
-        $('.result-info').html(result_info);
 
         if(bol_show) {
             $('.payout-info').html(payout_info).removeClass('hide');
@@ -1041,7 +1039,6 @@ function showWinModal(){
     var level = parseInt($('#hidLevel').val());
     var html = '';
     var image = '';
-    var result_info = '6次之内猜中有奖励。';
 
     switch (level) {
 
@@ -1054,7 +1051,7 @@ function showWinModal(){
         case 2:
             instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第2局下注30积分，猜中<span class="modal-add">+30积分</span>，而前1局猜错<span class="modal-minus">-10</span>积分，所以本轮赚20金币。';
             image = '/client/images/progress-bar/30.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+20金币</div>大约可兑换现金￥2元';            
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+20金币</div>大约可兑换现金￥2元';
         break;
 
         case 3:
@@ -1078,7 +1075,7 @@ function showWinModal(){
         case 6:
             instruction = '游戏积分1200，被划分成6次下注（如上图），<br />第6局下注630积分，猜中<span class="modal-add">+630积分</span>，而前5局猜错<span class="modal-minus">-570</span>积分，所以本轮赚60金币。';
             image = '/client/images/progress-bar/630.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+60金币</div>大约可兑换现金￥6元';            
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+60金币</div>大约可兑换现金￥6元';
         break;
 
     }
@@ -1087,14 +1084,12 @@ function showWinModal(){
     $('.modal-win-header').html(html);
     $('.modal-instruction').html(instruction);
     $('.modal-redeem-button').html('领取奖励');
-    $('.result-info').html(result_info);
 }
 
 function showLoseModal(){
     var level = parseInt($('#hidLevel').val());
     var html = '';
     var image = '';
-    var result_info = '6次之内猜中有奖励。';
 
     switch (level) {
 
@@ -1102,35 +1097,30 @@ function showLoseModal(){
             instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错1次-10积分，下1局下注30积分，猜中后+30积分，最终还能赚20金币！';
             image = '/client/images/progress-bar/lose_10.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有5次机会</div>6次内猜中 就能获得奖励';
-            result_info = '本轮错了1次，还剩5次。';
         break;
 
         case 2:
             instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错2次-40积分，下1局下注70积分，猜中后+70积分，最终还能赚30金币！';
             image = '/client/images/progress-bar/lose_30.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有4次机会</div>6次内猜中 就能获得奖励';
-            result_info = '本轮错了2次，还剩4次。';
         break;
 
         case 3:
             instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错3次-110积分，下1局下注150积分，猜中后+150积分，最终还能赚40金币！';
             image = '/client/images/progress-bar/lose_70.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有3次机会</div>6次内猜中 就能获得奖励';
-            result_info = '本轮错了3次，还剩3次。';
         break;
 
         case 4:
             instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错4次-260积分，下1局下注310积分，猜中后+310积分，最终还能赚50金币！';
             image = '/client/images/progress-bar/lose_150.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有2次机会</div>6次内猜中 就能获得奖励';
-            result_info = '本轮错了4次，还剩2次。';
         break;
 
         case 5:
             instruction = '游戏积分1200，被划分成6次下注（如上图），<br />已猜错5次-570积分，下1局下注630积分，猜中后+630积分，最终还能赚60金币！';
             image = '/client/images/progress-bar/lose_310.png';
             html += '<div class="modal-win-title">很遗憾你猜错了</div><div class="modal-result">你还有1次机会</div>6次内猜中 就能获得奖励';
-            result_info = '本轮剩1次机会，猜错清零。';
         break;
 
     }
@@ -1139,7 +1129,6 @@ function showLoseModal(){
     $('.modal-win-header').html(html);
     $('.modal-instruction').html(instruction);
     $('.modal-redeem-button').html('知道了');
-    $('.result-info').html(result_info);
 
 }
 
