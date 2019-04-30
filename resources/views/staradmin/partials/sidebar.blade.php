@@ -51,7 +51,7 @@
 			</div>
 		</li> -->
 
-		<li class="nav-item">
+		<!-- <li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uimember" aria-expanded="false" aria-controls="uimember">
               <i class="menu-icon icon-people  text-warning"></i>
               <span class="menu-title text-capitalize">@lang('dingsu.member')  @lang('dingsu.list')</span>
@@ -63,16 +63,23 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/member/list">@lang('dingsu.member')  @lang('dingsu.list')</a>
 					</li>
-					<!--
+					
 					<li class="nav-item">
 						<a class="nav-link" href="/member/pending-verification">@lang('dingsu.pending_wechat_verification')</a>
 					</li>
-					-->
+					
 				</ul>
 			</div>
-		</li>
+		</li> -->
 
 		<li class="nav-item">
+			<a class="nav-link" href="/member/list">
+			<i class="menu-icon icon-game-controller  text-info"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.member') @lang('dingsu.list')</span>
+            </a>
+		</li>
+
+		<!-- <li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uiuser" aria-expanded="false" aria-controls="uiuser">
               <i class="menu-icon icon-user"></i>
               <span class="menu-title text-capitalize">@lang('dingsu.users')  @lang('dingsu.list')</span>
@@ -86,6 +93,13 @@
 					</li>
 				</ul>
 			</div>
+		</li> -->
+
+		<li class="nav-item">
+			<a class="nav-link" href="/user/list">
+			<i class="menu-icon icon-game-controller  text-info"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.users')  @lang('dingsu.list')</span>
+            </a>
 		</li>
 
 
