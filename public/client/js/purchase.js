@@ -46,9 +46,11 @@ function getToken(){
 }
 
 function getPackage() {
+    var id = $('#hidUserId').val();
+
     $.ajax({
         type: 'GET',
-        url: "/api/basic-package-list",
+        url: "/api/basic-package-list?memberid="+id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
