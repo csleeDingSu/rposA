@@ -163,15 +163,23 @@ function initGame(data, level, latest_result, consecutive_lose){
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
-
-        var expiry_time = new Date(data.expiry_time.replace(' ', 'T'));
+        var expiry_time = data.expiry_time.replace(' ', 'T');
+// console.log('_expiry_time ' + expiry_time);
+        expiry_time = new Date(expiry_time);
         var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
-        var current_time = new Date();            
-        timer = ((expiry_time - current_time) / 1000).toString();
+        var current_time = (new Date().format('Y-m-d H:i:s')).toString().replace(' ', 'T');            
+// console.log('_current_time ' + current_time);
+        current_time = new Date(current_time);
+        var diff = (expiry_time - current_time); 
+        timer = (diff / 1000).toString();
         if (timer > duration) {
             timer = duration;
         }
-         console.log('new timer ' + timer);
+        // console.log('diff' + diff);
+        // console.log('requested_time ' + requested_time);
+        // console.log('current_time ' + current_time);
+        // console.log('expiry_time ' + expiry_time);
+         // console.log('new timer ' + timer);
 
         $('#hidLevel').val(level);
         $('#hidLevelId').val(level_id);

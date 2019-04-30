@@ -863,36 +863,29 @@ body{
 
 /* reset-life-play modal */
 #reset-life-play .modal-content {
-  background-color: white;
-  color: #959595;
+  background: url('/client/images/packet-redeem-background.png') no-repeat;
+  background-size: contain;
+  color: white;
   text-align: center;
-  
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-
   padding: 10px;
+  width: 300px !important;
+  height: 390px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   border: none;
 }
 
 #reset-life-play .modal-body {
-	padding: 0 !important;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 #reset-life-play .modal-card {
-	width: 100%;
-}
-
-#reset-life-play .modal-title {
-	background: white;
-	color: #959595;
-	text-align: center;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	padding:0;
-	font-weight: 500;
-	font-size: 24px;
 	width: 100%;
 }
 
@@ -995,6 +988,12 @@ body{
 	background: #fcac12;
 	color: white;
 	border-radius: 25px;
+	font-size: 18px;
+	margin-top: 3px;
+	margin-left: 60px;
+	margin-right: 60px;
+	padding-bottom: 8px;
+	padding-top: 6px;
 }
 
 #reset-life-play .speech-balloon {
@@ -1033,17 +1032,6 @@ body{
     content: "";
     position: absolute;
     left: -7px;
-}
-
-#reset-life-play .instructions {
-	margin-top: 5px;
-	margin-bottom: 10px;
-	font-size: 14px;
-	font-weight: 500;
-	color: #b0b0b0;
-	padding:10px;
-	text-align: justify;
-	letter-spacing: 0.5px;
 }
 
 /* reset-life-play modal end */
