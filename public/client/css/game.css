@@ -311,6 +311,7 @@ body{
 .box {
   font-size: 1em;
   color: #fff;
+  background-color: transparent;
 }
 
 .coin {
