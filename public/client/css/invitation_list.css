@@ -193,7 +193,7 @@ html, body {
 }
 
 .status {
-    color: #ff4e4e;
+    /*color: #ff4e4e;*/
     font-size: 16px;
     float: right;
 }
@@ -265,4 +265,14 @@ html, body {
 
 #invitation_next_lvl {
     margin-top: 10px;
+}
+
+.verified {
+    color: #ff4e4e;
+}
+
+.default_additional {
+    float: right;
+    /*color: #fd7422;*/
+    font-size: 20px;
 }
