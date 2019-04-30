@@ -37,7 +37,7 @@
 								</td>
 								<td>{{ $list->buy_price }}  
 									@if($list->package_price != $list->buy_price)
-										<label class=" text-success font-weight-semibold ml-2 ">@lang('dingsu.promo')</label>
+										<label class=" text-danger font-weight-semibold ml-2 ">@lang('dingsu.promo')</label>
 									  @endif
 								</td>
 								<td>
