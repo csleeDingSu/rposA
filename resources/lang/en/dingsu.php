@@ -591,4 +591,16 @@ return [
 	'addedbasicpoint' => 'Added basic point' ,
 	'addedbasiclife' => 'Added basic life',
 	
+	'reject_notes' => 'Reason for reject',
+	'error_empty_note' => 'please enter reason for rejection',
+	'buy_price' => 'Buy price',
+	'reject_reason' => 'Reejct Reason',
+	'' => '',
+	
+	
+
+
+
+
+	
 ];
