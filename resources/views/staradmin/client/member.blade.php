@@ -78,7 +78,7 @@
 			<ul class="list-group">
 
 				<!-- VIP专场 -->
-				<!--a href= "/vipmember">
+				<a href= "/vipmember">
 					<li class="list-group-item first-item">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
@@ -95,15 +95,15 @@
 						@endif
 						VIP专场
 					</li>
-				</a-->
-				<li class="list-group-item first-item">
+				</a>
+				<!--li class="list-group-item first-item">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 							<div class="vip-redeemticket">暂未上线</div>
 						VIP专场
-					</li>
+					</li-->
 				
 				<!-- 兑换奖品 -->
 				<a href="/redeem">

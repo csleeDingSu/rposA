@@ -1352,9 +1352,13 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   font-size: 0.25rem;
   line-height: 2em;
   background: none;
-  border: none;
+  border: 0;
   color: #333;
   float: left;
+}
+
+.flexSp input.clear {
+   width: 75%;
 }
 
 .flexSp input::placeholder {
@@ -1364,10 +1368,24 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
   color: #bfbfbf;
 }
 
-#btn_search {
-  margin-top: 0.02rem;
-  width: 0.6rem;
+#btn_clear {
+  margin-top: 0.12rem;
+  padding-bottom: 0.1rem;
+  width: 0.5rem;
   float: right;
+  cursor: pointer;
+  display: none;
+}
+
+#btn_search {
+  width: 0.5rem;
+  float: right;
+  padding-left: 0;
+}
+
+.box {
+  background: #fff;
+  height: 90%;
 }
 
 .openFrom{
@@ -1378,19 +1396,33 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
    -ms-border-radius:.1rem .1rem 0 0 ;
    -o-border-radius:.1rem .1rem 0 0 ;
    position: absolute;
-   display: none;
    top: 1.15rem;
-   max-height: 90%;
+   height: 90%;
+   line-height: 90%;
    overflow-y: auto;
    width: 100%;
    left: 0;
+   display: none;
 }
 
-.openFrom .title{
-    font-size: .36rem; 
-    padding: 0 !important;
-    text-align: center;
-    color: #333;
-    border-bottom:.012rem solid #e0e0e0;
-    margin-left: 0px !important;
+.instruction-list {
+  padding: 0.24rem;
+}
+
+.instruction-list li {
+  color: #505050;
+  font-size: 0.3rem;
+  padding-bottom: 0.1rem;
+  text-align: center;
+}
+
+.instruction-background {
+  text-align: center;
+  margin: 0 0.45rem;
+}
+
+.instruction-background img {
+  margin: 2% auto;
+  width: 50%;
+  height: 50%;
 }
