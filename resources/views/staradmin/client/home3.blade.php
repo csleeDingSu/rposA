@@ -379,9 +379,6 @@
 
 	            $(".openFrom").slideDown(150);
 
-	            $('.main').hide();
-	            $('.box').hide();
-
 	            $('.cancel').click(function(){
 					$('.logo').show();
 					$('.flexSp').removeClass('enlarge');
@@ -392,8 +389,6 @@
 
 	                $(".openFrom").slideUp(150);
 
-	                $('.main').show();
-	                $('.box').show();
 	                $('#btn_clear').hide();
 
 	                if($('#strSearch').val() != ''){

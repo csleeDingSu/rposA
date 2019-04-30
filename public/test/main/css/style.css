@@ -1398,6 +1398,11 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
    width: 100%;
    left: 0;
    display: none;
+   z-index: 2;
+}
+
+.cardFoot {
+  z-index: 3;
 }
 
 .instruction-list {
