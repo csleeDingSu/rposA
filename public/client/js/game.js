@@ -454,7 +454,13 @@ function getSocket(){
                 console.log(data);
 
                 $('#result').val(data.data.game_result);
-                triggerResult();
+                // console.log('timer ' + $('#txtCounter').html());
+                // console.log('freeze_time ' + $('#freeze_time').val());
+                if ($('#txtCounter').html() <= $('#freeze_time').val()) {
+                    // console.log($('#txtCounter').html() <= $('#freeze_time').val());
+                    triggerResult();    
+                }
+                
             });
 
             //betting
@@ -486,7 +492,12 @@ function getSocket(){
                 }
 
                 $('#result').val(data.data.game_result);
-                triggerResult();
+                // console.log('timer ' + $('#txtCounter').html());
+                // console.log('freeze_time ' + $('#freeze_time').val());
+                if ($('#txtCounter').val() <= $('#freeze_time').val()) {
+                    // console.log($('#txtCounter').html() <= $('#freeze_time').val());
+                    triggerResult();    
+                }
             });
 
             //wallet changes -- new --
@@ -511,17 +522,19 @@ function getSocket(){
 
             }); 
 
-            // //on page load activedraw Script
-            // socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
-            //     console.log('load activedraw member page load');
-            //     console.log(data);
-            //  });
+            //on page load activedraw Script
+            socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
+                console.log('load activedraw member page load');
+                console.log(data);
+                // initWheel(data.data);
+             });
 
-            // //on page load activedraw Script
-            // socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
-            //     console.log('load activedraw page load');
-            //     console.log(data);
-            //  });
+            //on page load activedraw Script
+            socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
+                console.log('load activedraw page load');
+                console.log(data);
+                // initWheel(data.data);
+             });
          
         });
 }
@@ -1196,6 +1209,7 @@ function triggerResult(){
     //console.log(data);
     var freeze_time = $('#freeze_time').val();
     var result = $('#result').val();
+    // console.log(freeze_time);
 
     //Trigger the wheel
     DomeWebController.getEle("$wheelContainer").wheelOfFortune({
@@ -1364,3 +1378,31 @@ function showGameRules( event ){
         }, 11000);
     }*/
 }
+
+// function initWheel(data) {
+
+//     var duration = data.duration;
+//     var timer = data.remaining_time;
+//     var freeze_time = data.freeze_time;
+//     var draw_id = data.drawid;
+//     var expiry_time = data.expiry_time.replace(' ', 'T');
+//     expiry_time = new Date(expiry_time);
+//     var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
+//     var current_time = (new Date().format('Y-m-d H:i:s')).toString().replace(' ', 'T');            
+//     current_time = new Date(current_time);
+//     var diff = (expiry_time - current_time); 
+//     timer = (diff / 1000).toString();
+//     if (timer > duration) {
+//         timer = duration;
+//     }
+
+//     $('#freeze_time').val(freeze_time);
+//     $('#draw_id').val(draw_id);
+
+// // console.log('trigger ' + trigger);
+// // trigger = true;
+//     DomeWebController.init();
+//     clearInterval(parent.timerInterval);
+//     startTimer(duration, timer, freeze_time);
+//     // triggerResult();
+// }
