@@ -1150,7 +1150,7 @@ function showLoseModal(){
     $('.modal-win-header').html(html);
     $('.modal-instruction').html(instruction);
     $('.modal-redeem-button').html('知道了');
-    $('.result-info').html(result_info);
+    //$('.result-info').html(result_info);
 
 }
 
