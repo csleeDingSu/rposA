@@ -460,7 +460,7 @@ return [
 	'today_game_player' => 'Number of players playing (Basic)',
 	'today_vip_game_player' => 'Number of players playing (VIP)',
 	'today_product_redeem' => 'Today Product Redeemed',
-	'today_package_redeem' => 'VIP Package Redeemed',
+	'today_package_redeem' => 'Package Redeemed',
 	'today' => 'Today',
 	'redeemtion' => 'Redeemtion',
 	'info' => 'info',
@@ -594,13 +594,10 @@ return [
 	'reject_notes' => 'Reason for reject',
 	'error_empty_note' => 'please enter reason for rejection',
 	'buy_price' => 'Buy price',
-	'reject_reason' => 'Reejct Reason',
+	'reject_reason' => 'Reject Reason',
 	'promo' => 'Promo',
-	
-	
+	'today_basicpackage_redeem' => 'Basic Package Redeemed',
+	'package_discount_price' => 'discount price',
+	'today_vippackage_redeem' => 'VIP Package Redeemed',
 
-
-
-
-	
 ];
