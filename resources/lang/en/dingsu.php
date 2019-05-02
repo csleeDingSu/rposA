@@ -598,5 +598,6 @@ return [
 	'promo' => 'Promo',
 	'today_basicpackage_redeem' => 'Basic Package Redeemed',
 	'package_discount_price' => 'discount price',
-	
+	'today_vippackage_redeem' => 'VIP Package Redeemed',
+
 ];
