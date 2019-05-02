@@ -67,6 +67,9 @@ class GenerateDashboardReport extends Command
 		$report['unreleased_voucher_count']     = Report::voucher_count(true);
 		$report['pending_basic_package_verification']     = Report::pending_basic_verification();
 		
+		$report['total_basic_redeem']  		    = Report::total_basicpackage_redeem();
+		$report['today_basic_redeem']  		    = Report::total_basicpackage_redeem($today);
+		
 		//right now data
 		$report['current_game_player']  			= Report::current_game_player( $today );
 		$report['current_vip_game_player']  			= Report::current_game_player($today, 'vip');

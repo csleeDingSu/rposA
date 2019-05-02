@@ -210,4 +210,14 @@ class Report extends Model
 		return $count = DB::table('view_basic_package_pending')->count();		
 	}
 	
+	public static function total_basicpackage_redeem($date = FALSE)
+	{		
+		$count = DB::table('view_basic_package_user_list');	
+		if ($date)
+		{
+			$count->whereDate('redeemed_at',$date->today());	
+		}
+		return $count->wherein('redeem_state' ,['2','3'])->count();
+	}
+	
 }
