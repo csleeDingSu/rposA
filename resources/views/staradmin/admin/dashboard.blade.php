@@ -178,6 +178,15 @@
 						<small class="display-4 mb-4 font-weight-light today_package_redeem">{{$result->today_package_redeem}}</small>
 					</div>
 				</div>
+				
+				<div class="wrapper d-flex justify-content-between">
+					<div class="side-left">
+						<p class="card-text mb-0">@lang('dingsu.today_basicpackage_redeem')</p>
+					</div>
+					<div class="side-right">
+						<small class="display-4 mb-4 font-weight-light today_package_redeem">{{$result->today_basic_redeem}}</small>
+					</div>
+				</div>
 
 			</div>
 		</div>
