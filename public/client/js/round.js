@@ -115,16 +115,21 @@ function populateData(records, token) {
                 html += '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
                                 '<div class="item">购买' + item.package_name + '幸运转盘</div>' +
-                                '<div class="date">购买时间：' + str_date + '</div>' +
-                            '</div>' +
+                                '<div class="date">购买时间：' + str_date + '</div>';
+                                if(str_class == 'fail' && item.reject_notes != ''){
+                                    html += '<div class="reason">原因：' + item.reject_notes + '</div>';
+                                }
+                            html += '</div>' +
                             '<div class="col-xs-4 column-2">' +
                                 '<div class="right-wrapper">' +
                                     '<div class="status">' +
                                         '<span class="' + str_class + '">'+ str_status +'</span>' +
-                                    '</div>' +                                                
-                                    '<div style="clear: both"></div>' +
-                                    '<div class="additional">'+ item.buy_price +'元</div>' +
-                                '</div>' +
+                                    '</div>' +
+                                    '<div class="additional">'+ item.buy_price +'元</div>';
+                                    if(str_class == 'fail'){
+                                        html += '<a href="/purchase"><div class="btn-purchase">再次购买</div></a>';
+                                    }
+                                html += '</div>' +
                             '</div>' +
                         '</div>';
             });

@@ -112,7 +112,7 @@ html, body {
 }
 
 .row {
-    height: 70px;
+    height: 80px;
     color: #494949;
     font-size: 14px;
     padding-top: 10px;
@@ -179,13 +179,33 @@ html, body {
     padding-top: 3px;
 }
 
+.reason {
+    text-align: left;
+    color: #6a8ffe;
+    font-size: 12px;
+    padding-top: 3px;
+}
+
 .status {
     color: #ff4e4e;
     font-size: 14px;
     float: right;
 }
 
+.btn-purchase {
+    margin-top: 2px;
+    clear: both;
+    border: 1px solid #6a8ffe;
+    font-size: 11px;
+    border-radius: 10px;
+    color: #6a8ffe;
+    padding: 1px 8px 3px 8px;
+    float: right;
+    margin-bottom: 5px;
+}
+
 .additional {
+    clear: both;
     float: right;
     color: #333;
     font-size: 13px;
