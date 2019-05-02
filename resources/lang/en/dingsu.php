@@ -596,6 +596,7 @@ return [
 	'buy_price' => 'Buy price',
 	'reject_reason' => 'Reejct Reason',
 	'promo' => 'Promo',
+	'today_basicpackage_redeem' => 'Basic  Package Redeemed',
 	
 	
 
