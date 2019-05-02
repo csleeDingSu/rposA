@@ -573,4 +573,13 @@ return [
 	'basicpackage' => 'Basic Package',
 	'addedbasicpoint' => '增加了Basic金币' ,
 	'addedbasiclife' => '增加了Basic命',
+	
+	'reject_notes' => '拒绝的理由',
+	'error_empty_note' => '请输入拒绝原因',
+	'buy_price' => '买价',
+	'reject_reason' => '拒绝原因',
+	'promo' => '折扣',
+	'today_basicpackage_redeem' => 'Basic Package Redeemed',
+	'package_discount_price' => '折扣价',
+
 ];

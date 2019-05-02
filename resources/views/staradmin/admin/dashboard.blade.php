@@ -45,7 +45,7 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
 							<div class="wrapper text-center text-sm-left">
-								<p class="card-text mb-0">@lang('dingsu.basic') @lang('dingsu.package') @lang('dingsu.redeem')</p>
+								<p class="card-text mb-0">@lang('dingsu.basic') @lang('dingsu.package')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
 										<a href="/basicpackage/redeem-list" class="pending_vip_verification">
@@ -62,7 +62,7 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
 							<div class="wrapper text-center text-sm-left">
-								<p class="card-text mb-0">@lang('dingsu.vip') @lang('dingsu.redeem')</p>
+								<p class="card-text mb-0">@lang('dingsu.vip') @lang('dingsu.package')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
 										<a href="/package/redeem-list" class="pending_vip_verification">
@@ -172,7 +172,7 @@
 
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="card-text mb-0">@lang('dingsu.today_package_redeem')</p>
+						<p class="card-text mb-0">@lang('dingsu.vip') @lang('dingsu.today_package_redeem')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light today_package_redeem">{{$result->today_package_redeem}}</small>
@@ -181,7 +181,7 @@
 				
 				<div class="wrapper d-flex justify-content-between">
 					<div class="side-left">
-						<p class="card-text mb-0">@lang('dingsu.today_basicpackage_redeem')</p>
+						<p class="card-text mb-0">@lang('dingsu.basic') @lang('dingsu.today_package_redeem')</p>
 					</div>
 					<div class="side-right">
 						<small class="display-4 mb-4 font-weight-light today_package_redeem">{{$result->today_basic_redeem}}</small>
