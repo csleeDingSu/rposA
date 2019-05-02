@@ -37,7 +37,7 @@
 						</div>
 					</a>
 				@else
-					<a href="#" class="main-footer">
+					<a href="/intro" class="main-footer">
 						<div id="footer-life">
 							<i class="nTxt_default"></i>
 							<p style="margin-top:-0.075rem">我要拿红包</p>

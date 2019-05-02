@@ -550,16 +550,7 @@
 			});
 
 			$('.freeVoucherBtn').click((e) => {
-				being.wrapShow();
-				being.scaleHide('.showQuan');
-				being.scaleShow('.showTips');
-			});
-
-			//call from footer
-			$('.main-footer').click((e) => {
-				being.wrapShow();
-				being.scaleHide('.showQuan');
-				being.scaleShow('.showTips');
+				window.location.href = '/intro';
 			});
 			
 			$("body").on("click",".mset a.type",function(e) {
