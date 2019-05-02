@@ -1412,18 +1412,13 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
    -o-border-radius:.1rem .1rem 0 0 ;
    position: absolute;
    top: 1.15rem;
-   height: 90%;
+   height: 100%;
    line-height: 90%;
    overflow-y: auto;
    width: 100%;
    left: 0;
    display: none;
-   z-index: 2;
-}
-
-.cardFoot {
-  z-index: 3;
-  position: relative;
+   z-index: 10;
 }
 
 .instruction-list {
@@ -1431,9 +1426,9 @@ a.cutBtn-success, a.cutBtn-success:link, a.cutBtn-success:visited, a.cutBtn-succ
 }
 
 .instruction-list li {
-  color: #505050;
-  font-size: 0.3rem;
-  padding-bottom: 0.1rem;
+  color: #666;
+  font-size: 0.26rem;
+  padding-bottom: 0.2rem;
   text-align: center;
 }
 

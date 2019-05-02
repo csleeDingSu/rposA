@@ -205,6 +205,9 @@ class Report extends Model
             ->update($data);
 	}
 	
-	
+	public static function pending_basic_verification()
+	{		
+		return $count = DB::table('view_basic_package_pending')->count();		
+	}
 	
 }

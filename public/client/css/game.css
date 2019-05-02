@@ -1857,10 +1857,11 @@ if it's not present, don't show loader */
 }
 
 #win-modal .modal-instruction {
-	color: #707070;
-	font-size: 11px;
+	color: #878787;
+	font-size: 12px;
+	line-height: 24px;
 	text-align: left;
-	padding: 5px 10px 20px 6px;
+	padding: 15px 10px 40px 6px;
 }
 
 .separator {
@@ -1883,7 +1884,13 @@ if it's not present, don't show loader */
 }
 
 .modal-result{
-	color: #44c024;
+	color: #ff8b3e;
+	font-weight: 500;
+	font-size: 24px;
+}
+
+.modal-lose-result{
+	color: #26ae26;
 	font-weight: 500;
 	font-size: 24px;
 }
