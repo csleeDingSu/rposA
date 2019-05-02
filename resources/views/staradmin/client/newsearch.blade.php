@@ -81,20 +81,21 @@
 		<div class="cardHeader">
 			<div class="header">
 				<form id="historyForm" action="" method="GET">
-				<div class="btn-back">
-                	<a href="/"><img src="{{ asset('/client/images/search/left.png') }}" /></a>
-                </div>
 				<ul class="dbox top">			
 					<li class="dbox0">
 		                <div class="inBox">
                             <div class="flexSp">
-                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="粘贴淘宝商品标题 查找优惠卷" required maxlength="100" value="{{ $strSearch }}" autofocus>
+                                <input type="text" class="history-input" id="strSearch" name="strSearch" placeholder="粘贴淘宝商品标题 查找优惠卷" required maxlength="100" value="{{ $strSearch }}">
                                 <img src="{{ asset('/client/images/search/clear.png') }}" id="btn_clear" value="&nbsp;" />
-                                <input type="submit" id="btn_search" value="搜索" style="color: #f65e7e; font-size: 0.3rem;" />        	
+                                <input type="image" src="{{ asset('/client/images/search/search.png') }}" id="btn_search" value="&nbsp;" />
+                                         	
                             </div>
 		                </div>
 						
-					</li>					
+					</li>	
+					<li class="customer" style="display: none">
+						<a href="javascript:void(0)"><div class="cancel">取消</div></a>
+					</li>				
 				</ul>
 				</form>
 			</div>
@@ -106,23 +107,14 @@
 			<div class="box">
 				<div class="div-instruction" {{ empty($strSearch) ? '' : 'style=display:none' }} >
 					<ul class="instruction-list">
-						<li><span class="list-style">1</span>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
 						<li>
 							<div class="instruction-background">
 								<img src="{{ asset('/client/images/search/copy.png') }}" />
 							</div>
 						</li>
-						<li><span class="list-style">2</span>进入平台点击搜索框，粘贴商品标题搜索</li>
-						<li>
-							<div class="instruction-background">
-								<img src="{{ asset('/client/images/search/paste.png') }}" />
-							</div>
-						</li>
+						<li>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
+						<li>粘贴搜索框，查找优惠卷</li>
 					</ul>
-					<div class="external-description">
-						“搜全网”功能中的商品信息均来自于互联网<br />
-						商品准确信息请与商品所属店铺经营者沟通确认
-					</div>
 				</div>
 
 				<div class="product">					
@@ -137,6 +129,19 @@
 						</p>
 					</div>
 					
+				</div>
+			</div>
+			<div class="openFrom">
+				<div class="div-instruction">
+					<ul class="instruction-list">
+						<li>
+							<div class="instruction-background">
+								<img src="{{ asset('/client/images/search/copy.png') }}" />
+							</div>
+						</li>
+						<li>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
+						<li>粘贴搜索框，查找优惠卷</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -248,15 +253,21 @@
 		$(document).ready(function(){
 
 			$('#strSearch').focus(function(){
-				if($(this).val() != ''){
-		            $('#btn_clear').show();
-					$('#btn_clear').click(function () { 
-						$('#strSearch').val('');
-						$(this).hide();
-					});
-				} else {
-					$('#btn_clear').hide();
-				}
+				$(".openFrom").slideDown(150);
+				$('.customer').show();
+				$('.cancel').click(function(){
+					$('.customer').hide();
+					$(".openFrom").slideUp(150);
+					if($('#strSearch').val() != ''){
+			            $('#btn_clear').show();
+						$('#btn_clear').click(function () { 
+							$('#strSearch').val('');
+							$(this).hide();
+						});
+					} else {
+						$('#btn_clear').hide();
+					}
+				});
 			});
 
 			$( "#strSearch" ).keyup(function() {
