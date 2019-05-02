@@ -35,11 +35,13 @@
 								<td>
 									{{ $list->package_price }}
 								</td>
+
 								<td>{{ $list->buy_price }}  
 									@if($list->package_price != $list->buy_price)
 										<label class=" text-danger font-weight-semibold ml-2 ">@lang('dingsu.promo')</label>
 									  @endif
 								</td>
+
 								<td>
 									{{ $list->ref_note }}
 								</td>
