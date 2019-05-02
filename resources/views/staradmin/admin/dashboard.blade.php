@@ -25,7 +25,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+				<div class="card-col col-xl-2 col-lg-2 col-md-2 col-6">
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
 							<div class="wrapper text-center text-sm-left">
@@ -41,7 +41,24 @@
 						</div>
 					</div>
 				</div>
-				<div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+				<div class="card-col col-xl-2 col-lg-2 col-md-2 col-6">
+					<div class="card-body">
+						<div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+							<div class="wrapper text-center text-sm-left">
+								<p class="card-text mb-0">@lang('dingsu.basic') @lang('dingsu.package') @lang('dingsu.redeem')</p>
+								<div class="fluid-container">
+									<h3 class="mb-0 font-weight-medium">
+										<a href="/basicpackage/redeem-list" class="pending_vip_verification">
+										
+											{{$result->pending_basic_package_verification}} </a></h3>
+
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-col col-xl-2 col-lg-2 col-md-2 col-6">
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
 							<div class="wrapper text-center text-sm-left">
