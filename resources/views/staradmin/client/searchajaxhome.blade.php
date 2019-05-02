@@ -16,7 +16,7 @@ $item = (object )$item;
 @endphp
 
 									<li class="dbox">
-										<a class="dbox0 imgBox" href="javascript:void(0)" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}" data-voucher="{{$item->voucher_pass}}" data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" >
+										<a class="dbox0 imgBox" href="javascript:void(0)" data-goodsid="{{$item->goodsid}}" data-tt_id="{{$item->id}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_product_img="{{$item->product_picurl}}_460x460Q90.jpg" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_voucher_price="{{$item->voucher_price}}" data-voucher="{{$item->voucher_pass}}" data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" >
 											<img src="{{$item->product_picurl . $setting->mobile_default_image_url}}" alt="{{$item->product_name}}">
 										</a>
 										<div class="dbox1">
@@ -96,7 +96,7 @@ $item = (object )$item;
 															已售{{$sales}}件
 														</div>
 														<div class="mset">
-															<a data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_voucher_price="{{$item->voucher_price}}">
+															<a  data-goodsid="{{$item->goodsid}}" data-imgurl="{{$item->product_picurl . $setting->product_home_popup_size}}" class="showvoucher" href="javascript:void(0)" data-voucher="{{$item->voucher_pass}}" data-tt_product_discount_price="{{$item->discount_price}}" data-tt_product_name="{{$item->product_name}}" data-tt_product_price="{{$item->product_price}}" data-tt_voucher_price="{{$item->voucher_price}}">
 																<img class="btn-product" src="{{ asset('/client/images/btn-product.png') }}"  />
 																<div class="caption_redeem_voucher">领券</div>
 																<div class="caption_redeem_angpao2">拿红包</div>
