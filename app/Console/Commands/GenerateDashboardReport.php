@@ -65,6 +65,7 @@ class GenerateDashboardReport extends Command
 		$report['ledger_points']    			= Report::ledger_points();
 		$report['ledger_vip_points']  			= Report::ledger_points('vip');
 		$report['unreleased_voucher_count']     = Report::voucher_count(true);
+		$report['pending_basic_package_verification']     = Report::pending_basic_verification();
 		
 		//right now data
 		$report['current_game_player']  			= Report::current_game_player( $today );
