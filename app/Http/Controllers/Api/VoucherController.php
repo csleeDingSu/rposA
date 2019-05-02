@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Category;
+use App\Http\Controllers\Controller;
+use App\Unreleasedvouchers;
 use App\Voucher;
 use App\Voucher_category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Pagination\Paginator;
-
-
-use App\Unreleasedvouchers;
-use App\Category;
 use App\redeemed;
 use Auth;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class VoucherController extends Controller
 {
@@ -53,6 +52,7 @@ class VoucherController extends Controller
 			$vouchers = \DB::table('voucher_category')
 			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
 			->where('voucher_category.category' ,'=' , $cid)
+			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
 			->groupBy('vouchers.id')
 			->orderby('vouchers.id','DESC')
 			->paginate(5);
@@ -63,7 +63,7 @@ class VoucherController extends Controller
 			
 		}
 		else{
-			$vouchers = Voucher::latest()->paginate(5);
+			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->paginate(5);
 			
 		}
 
