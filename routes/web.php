@@ -72,16 +72,16 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	$this->get( '/ads', 'Api\ProductController@index' )->name( 'api.client.ad' );
 
+	Route::any( '/intro', function () {
+		return view( 'client/intro' );
+	});
+
 	Route::get( '/details/{id?}', 'VoucherController@get_voucher_detail' )->name( 'get.voucher.detail' );
 
 	Route::get( '/arcade', 'ClientController@member_access_game' )->name( 'client.arcade' );
 
-	Route::get( '/arcade-node', 'ClientController@member_access_game_node' )->name( 'client.arcade-node' );
-
 	Route::get( '/vip', 'ClientController@member_access_vip' )->name( 'client.vip' );
 
-	Route::get( '/vip-node', 'ClientController@member_access_vip_node' )->name( 'client.vip-node' );
-	
 	Route::get( '/faq', function () {
 
 		$faqs = DB::table( 'faq' )->select( 'id', 'title', 'content' )->orderBy( 'id', 'desc' )->get();
