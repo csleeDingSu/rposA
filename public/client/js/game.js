@@ -996,8 +996,6 @@ function showProgressBar(bol_show){
             case 2:
                 bet_amount = 30;
                 span_balance = 1190;
-                result_info = '本轮错了1次，还剩5次。';
-                
                 payout_info = '已选<span class=\'caption_bet\'>[单数]</span>，猜中+30金币，猜错-30金币。';//'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
                 $('.span-1').html("-10");                        
                 break;

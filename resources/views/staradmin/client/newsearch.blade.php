@@ -377,6 +377,13 @@
 				being.scaleShow('.showTips');
 			});
 
+			//call from footer
+			$('.main-footer').click((e) => {
+				being.wrapShow();
+				being.scaleHide('.showQuan');
+				being.scaleShow('.showTips');
+			});
+
 			$("body").on("click",".mset a.type",function(e) {
 				being.wrapShow();
 				being.scaleShow('.showTips');
