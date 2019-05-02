@@ -1,0 +1,132 @@
+.cardBody {
+    background-color: #8f5edb;
+}
+
+.intro-container {
+
+    background-size: 100% auto;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    background-image: url("/client/images/intro/bg.png");
+    background-color: #8f5edb;
+    background-repeat: no-repeat;
+}
+
+.intro-title img {
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.playBox .menuBtn {
+    display: inline-block;
+    font-size: 0;
+    margin-left: 0.3rem;
+}
+
+.playBox .menuBtn img {
+    width: 0.5rem;
+}
+
+.playBox .playIn {
+    height: 5.2rem;
+    text-align: center;
+    padding-top: 0.1rem;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.playBox .playIn img {
+    width: 4.97rem;
+}
+
+.playBox .finger {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-top: -1.2rem;
+    margin-left: -1.2rem;
+}
+
+.playBox .finger img {
+    width: 1.43rem;
+    height: 1.9rem;
+}
+
+.playBox .finger .inTime {
+    position: absolute;
+    text-align: center;
+    display: block;
+    left: 50%;
+    top: 50%;
+    margin-top: -.6rem;
+    font-size: .36rem;
+    height: 1rem;
+    line-height: 1em;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: textgrowth 0.3s infinite alternate;
+    cursor: pointer;
+}
+
+.playBox .finger .inTime a {
+    text-decoration: none;
+    color: #fff;
+}
+
+@keyframes textgrowth {
+    0% {
+        font-size: .3rem;
+        width: 0.7rem;
+        margin-left: -0.35rem;
+    }
+    100% {
+        font-size: .36rem;
+        width: 1rem;
+        margin-left: -.5rem;
+    }
+}
+
+.ig {
+    -webkit-animation: circle 5s infinite linear;
+}
+
+@-webkit-keyframes circle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.panel {
+    background: #784cbd;
+    margin: 0.1rem 0.5rem 0.5rem 0.5rem;
+    padding: 0.3rem;
+    font-size: 0.24rem; 
+    line-height: 0.4rem;
+    color: #ebdeff;
+    text-align: justify;
+}
+
+.panel-title {
+    position: relative;
+    margin: -0.6rem auto 0.1rem auto;
+    width: 50%;
+    text-align: center;
+    border-radius: 0.3rem;
+    font-size: 0.3rem;
+    padding: 0.05rem 0.1rem 0.1rem 0.1rem;
+    background: #64409c;
+}
+
+.highlight {
+    color: #ffdeaf;
+}

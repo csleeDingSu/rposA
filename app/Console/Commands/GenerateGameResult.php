@@ -125,6 +125,13 @@ class GenerateGameResult extends Command
 			
 			$d['block_time'] = $someTime2;
 			
+			$sds = Carbon::parse($someTime1);
+			
+			$someTime3  = $sds->subSeconds(2);
+			
+			$d['gen_time'] = $someTime3;
+			
+			
 			$da    = $this->ResultGenerate($game->id,$d);
 			
 			$sec = $sec +  $game_time + 1;	//to fix expiry and created time conflict		
@@ -156,12 +163,14 @@ class GenerateGameResult extends Command
 		$expiry  = $date['expiry'];
 		$unixnow = $date['unix'];
 		$b_time  = $date['block_time'];
+		$n_time  = $date['gen_time'];
 		
 		$row['game_id']           = $id; 
 		$row['game_level_id']     = null;			
 		$row['created_at']        = $now; 
 		$row['updated_at']        = $now; 
 		$row['result_generation_time']        = $b_time;
+		$row['result_notification_time']      = $n_time;
 		$row['expiry_time']       = $expiry; 
 		$row['unix_expiry_time']  = $unixnow; 
 		$row['game_result']       = generate_random_number(1,6); //generate random number		
