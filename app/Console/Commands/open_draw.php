@@ -61,9 +61,9 @@ class open_draw extends Command
 		if (!$draw) dd('unknown draw');		
 		$this->info('Draw ID :'.'--------'.$drawid.'----------');
 		$ReportController = new RedisGameController(); 
-		
+		$latest_result = Game::get_latest_result($draw->game_id);
 		$gamesetting   = $ReportController->get_game_setting($draw , $now); 
-		event(new \App\Events\EventDynamicChannel('activedraw','',$gamesetting));
+		event(new \App\Events\EventDynamicChannel('activedraw','',['gamesetting'=>$gamesetting,'latest_result'=>$latest_result]));
 		
 		$gameid = $draw->game_id;
 		$event_data = [];
@@ -74,7 +74,7 @@ class open_draw extends Command
 		{			
 			$setting       = \App\Admin::get_setting();
 			$now           = Carbon::now();
-			$latest_result = Game::get_latest_result($draw->game_id);
+			
 			//$futureresult  = Game::get_future_result($draw->game_id, $now );
 			
 			$gamehistory   = $ReportController->get_game_history($draw->game_id);			
