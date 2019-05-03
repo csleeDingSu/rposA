@@ -17,6 +17,103 @@ use Carbon\ Carbon;
 use Laravel\Passport\Passport;
 class AuthController extends Controller {
 	public $successStatus = 200;
+	
+	public function register(Request $request) {
+		
+		$username = $request->username; 
+
+		$input = [
+            $username = $request->username,
+            $password = $request->password,
+              ];
+
+
+        $input = [
+             'username'   => $request->username,
+		     'password'   => $request->password,
+			 'password_confirmation'   => $request->confirmpassword,
+			 //'refcode'   => $request->refcode,
+ 			 'phone'   => $request->phone,
+              ];
+		
+		
+		 $validator = $this->validate($request,  [
+                'username' => 'required|string|min:1|max:30|unique:members,username',
+				'phone' => 'required|string|min:4|max:50|unique:members,phone',
+				//'email' => 'required|email|min:4|max:50|unique:members,email',
+                'password' => 'required|alphaNum|min:5|max:50|confirmed',                
+            ],
+			[
+				'username.required' =>trans('auth.reg_username_empty'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.required' =>trans('auth.reg_phone_empty'),
+				'username.min' =>trans('auth.reg_username_not_min'),
+				'password.required' =>trans('auth.reg_password_empty'),
+				'password.min' =>trans('auth.reg_password_not_min'),
+				'phone.min' =>trans('auth.phone_not_min'),
+				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.unique' =>trans('auth.username_notavailable'),
+				'phone.unique' =>trans('auth.phone_notavailable'),
+				'password.alpha_num' => trans('auth.alpha_num'),
+				
+			]
+        );
+		
+		if ($validator->fails()) {
+			 return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$affiliate_id =  unique_random('members', 'affiliate_id', 10);
+
+		$member = Members::create([
+			'username' => $data['username'],
+			'email' => $data['phone'] . '@email.com',
+			'password' => Hash::make($data['password']),
+			'affiliate_id' => $affiliate_id,
+			'referred_by'   => $referred_by,
+			'phone' => $data['phone'],
+			'wechat_verification_status' => 1,
+		]);
+
+		$id = $member->id;
+		//Get Setting Life 
+		$setting = \App\Admin::get_setting();
+
+
+		$wallet = \App\Wallet::create([
+				'current_life'    => $setting->game_default_life,
+				'member_id'       => $id,
+				'current_balance' => env('initial_balance',1200),
+				'balance_before'  => env('initial_balance',1200)
+			]);
+
+		//update members table
+		Members::where('id', $id)
+			->update(['current_life' => $setting->game_default_life]);
+				
+		
+		if ( Auth::guard('member')->attempt( [ 'username' => request( 'username' ), 'password' => request( 'password' ) ] ) ) {
+			$user = Auth::guard('member')->user();
+			
+			$tokenResult = $user->createToken('APITOKEN');
+			$token = $tokenResult->token;
+			$token->expires_at = Carbon::now()->addMinutes(1);
+			$token->save();
+			return response()->json([
+				'success' => true,
+				'access_token' => $tokenResult->accessToken,
+				'token_type' => 'Bearer',
+				'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
+			]);
+			
+			return response()->json(['success' => true, 'token' => $token],$this->successStatus); 
+			
+		} else {
+			return response()->json( [ 'success' => 'false', 'error' => 'invalid username or password' ], 401 );
+		}
+	}
+	
+	
 	/** 
 	 * login api 
 	 * 
