@@ -6,7 +6,8 @@
     background-size: 100% auto;
     width: 100%;
     margin: 0 auto;
-    background-image: url("/client/images/intro/bg.png");
+    /*background-image: url("/client/images/intro/bg.png");*/
+    background-image: url("/client/images/intro/bg.jpg");
     background-color: #8f5edb;
     background-repeat: no-repeat;
 }
