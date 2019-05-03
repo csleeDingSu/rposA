@@ -15,7 +15,7 @@
 
 
 			<dt class="dbox0">
-				@if(!Request::is('cs/*') && !Request::is('newsearch') && !Request::is('newsearch/*') && !Request::is('search') && !Request::is('search/*'))
+				@if(Request::is('vip') || Request::is('arcade'))
 
 					@if(Request::is('vip'))
 						<a href="/vip">
