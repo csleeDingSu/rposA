@@ -63,8 +63,8 @@
     display: block;
     left: 50%;
     top: 50%;
-    margin-top: -.6rem;
-    margin-left: -.7rem;
+    margin-top: -.65rem;
+    margin-left: -.42rem;
     font-size: .36rem;
     height: 1rem;
     line-height: 1em;
@@ -76,7 +76,9 @@
     cursor: pointer;
 }
 
-.clickme {
+.playBox .finger img.clickme {
+    width: 0.9rem;
+    height: 0.89rem;
     animation: textgrowth 0.5s infinite alternate;
 }
 
@@ -87,10 +89,10 @@
 
 @keyframes textgrowth {
     0% {
-        transform: scale(0.25);
+        transform: scale(0.7);
     }
     100% {
-        transform: scale(0.45);
+        transform: scale(1);
     }
 }
 
