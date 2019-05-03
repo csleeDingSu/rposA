@@ -13,9 +13,10 @@
         
         <link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
 			<link rel="stylesheet" href="{{ asset('/test/main/css/module.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" />
+			<!-- <link rel="stylesheet" href="{{ asset('/test/main/css/style.css') }}" /> -->
 			<!-- <link rel="stylesheet" href="{{ asset('/client/css/default.css') }}" /> -->
 			<!-- <link rel="stylesheet" href="{{ asset('/client/css/footer.css') }}" /> -->
+			<link rel="stylesheet" href="{{ asset('/test/main/css/share.css') }}" />
 			
 		@show
 		
