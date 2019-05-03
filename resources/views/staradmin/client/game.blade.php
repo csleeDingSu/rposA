@@ -803,38 +803,6 @@
 
 <!--  end -->
 
-<!-- Game Rules starts -->
-	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-title">
-				<h1>倍增式玩法说明</h1>
-			</div>
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="instructions">
-									系统默认拥有1200的游戏金币，第一次投10金币，那么只有2种情况，猜对或猜错：<br />
-									<span class="highlight-red">如果猜错：</span>下一局投30金币，猜对能获得30金币奖励，扣掉10金币亏损，还赚20金币，如果还猜错，就投70金币，不停倍增。。。<br />
-									1200金币可投6次；这是猜单双的游戏，6次之内猜对的概率有99.9%。<br />
-									<span class="highlight-green">如果猜对：</span>每次猜对就返回从10金币按以上原则重新开始，无限循环。
-								</div>
-
-								@if($betting_count > 0)
-									<div class="btn-game-rules btn-rules-close">返回{{env('game_name', '幸运转盘')}}</div>
-								@else
-									<div class="btn-game-rules btn-rules-timer"><span class="span-read">请阅读游戏规则</span> <span class="txtTimer"></span></div>	
-								@endif
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-<!-- Steps Modal Ends -->
-
 
 <!-- VIP Modal -->
 
@@ -925,6 +893,38 @@
 		</div>
 	</div>
 <!--  end -->
+
+<!-- Game Rules starts -->
+	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-title">
+				<h1>倍增式玩法说明</h1>
+			</div>
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="instructions">
+									系统默认拥有1200的游戏金币，第一次投10金币，那么只有2种情况，猜对或猜错：<br />
+									<span class="highlight-red">如果猜错：</span>下一局投30金币，猜对能获得30金币奖励，扣掉10金币亏损，还赚20金币，如果还猜错，就投70金币，不停倍增。。。<br />
+									1200金币可投6次；这是猜单双的游戏，6次之内猜对的概率有99.9%。<br />
+									<span class="highlight-green">如果猜对：</span>每次猜对就返回从10金币按以上原则重新开始，无限循环。
+								</div>
+
+								@if($betting_count > 0)
+									<div class="btn-game-rules btn-rules-close">返回{{env('game_name', '幸运转盘')}}</div>
+								@else
+									<div class="btn-game-rules btn-rules-timer"><span class="span-read">请阅读游戏规则</span> <span class="txtTimer"></span></div>	
+								@endif
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Steps Modal Ends -->
 
 	@parent
 	
