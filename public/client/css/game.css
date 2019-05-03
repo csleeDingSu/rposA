@@ -1177,6 +1177,14 @@ body{
 	color: #e48f00;
 }
 
+.highlight-red {
+	color: #b62727;
+}
+
+.highlight-green {
+	color: #49b415;
+}
+
 .img-step {
 	width: 100%;
 	height: 100%;
@@ -1432,7 +1440,7 @@ body{
 	margin-bottom: 10px;
 	font-size: 12px;
 	font-weight: 500;
-	color: #888888;
+	color: #9b9b9b;
 	text-align: justify;
 	line-height: 2;
 	padding: 0 5px;
