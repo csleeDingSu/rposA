@@ -1290,7 +1290,7 @@ DomeWebController = {
         that.getEle("$wheelContainer").wheelOfFortune({
             'wheelImg': "/client/images/wheel.png",//转轮图片
             'pointerImg': "/client/images/pointer.png",//指针图片
-            'buttonImg': "/client/images/button.png",//开始按钮图片
+            'buttonImg': "/client/images/pointer.png",//开始按钮图片
             'wSide': 200,//转轮边长(默认使用图片宽度)
             'pSide': 100,//指针边长(默认使用图片宽度)
             'bSide': 50,//按钮边长(默认使用图片宽度)
@@ -1348,7 +1348,7 @@ function showGameRules( event ){
     $('#game-rules').modal({backdrop: 'static', keyboard: false});
 
     var game_name = $('#game-name').val();
-    $( ".span-read" ).html('返回'+game_name);
+    $( ".span-read" ).html('返回幸运转盘');
 
     $('.btn-rules-close').click(function(){
         $('#game-rules').modal('hide');
