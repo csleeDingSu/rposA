@@ -71,7 +71,7 @@
 						</div>
 						<div class="row">
 							<input class="namer" name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.ph_confirm_password')" required maxlength="30">
-							<span class="mmcl error-confirmpassword hidespan" ></span>						
+							<span class="mmcl error-confirmpassword hidespan" ></span>					
 						</div>
 						
 						 
@@ -188,6 +188,10 @@
                 data:{
                     _token: "{{ csrf_token() }}",
                     datav: $( "#registerform" ).serialize(),
+					username:$('#username').val(),
+					phone:$('#phone').val(),
+                    password:$('#password').val(),	
+					confirmpassword:$('#confirmpassword').val(),
                 },
                 dataType:'json',
                 beforeSend:function(){
