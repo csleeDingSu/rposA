@@ -725,8 +725,16 @@ p.vip-life {
 .showBao a{ display: block; margin: 0 auto; width: 5.02rem; }
 .showBao a img{ width: 100%;}
 
-.copyvoucher {
-
+#csModal .copyid {
+    background: #f0f0f0;
+    color: #7dca33;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 23px;
+    padding: 5px;
 }
 
 .showBao .group span em{ display: inline-block; vertical-align: middle; color: #ffb221; font-size: .44rem;}

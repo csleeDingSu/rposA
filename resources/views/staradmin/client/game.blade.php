@@ -807,7 +807,7 @@
 	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title">
-				<h1>游戏规则说明</h1>
+				<h1>倍增式玩法说明</h1>
 			</div>
 			<div class="modal-content">
 				<div class="modal-body">				
@@ -815,12 +815,10 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="instructions">
-									这是个猜单双的游戏，原始积分为1200，依次被分成6次供玩家下注[10,30,70,150,310, 640]<br />
-									<span class="highlight">玩法解释：</span><br />
-									第一局下注10积分，如果猜错，第二局下注30积分，这样能保证第二局猜中后，不仅把第一局亏的填补上，而且还能赚积分。<br />
-									一共被分成6次下注，只要6次内猜中一次，就能不停循环的赚取更多积分。<br />
-									<span class="highlight">如何兑换红包：</span><br />
-									赚到的积分可兑换免单红包（可提现），大约兑换比率：10金币兑换1元。
+									系统默认拥有1200的游戏金币，第一次投10金币，那么只有2种情况，猜对或猜错：<br />
+									<span class="highlight-red">如果猜错：</span>下一局投30金币，猜对能获得30金币奖励，扣掉10金币亏损，还赚20金币，如果还猜错，就投70金币，不停倍增。。。<br />
+									1200金币可投6次；这是猜单双的游戏，6次之内猜对的概率有99.9%。<br />
+									<span class="highlight-green">如果猜对：</span>每次猜对就返回从10金币按以上原则重新开始，无限循环。
 								</div>
 
 								@if($betting_count > 0)
