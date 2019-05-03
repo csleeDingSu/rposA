@@ -332,7 +332,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div id="cutCS" class="copyvoucher">{{env('wechat_id', 'BCKACOM')}}</div>
+							<div id="cutCS" class="copyid">{{env('wechat_id', 'BCKACOM')}}</div>
 							<div class="cutBtn">点击复制</div>
 						</div>
 						<div class="modal-card">
