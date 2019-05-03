@@ -47,7 +47,7 @@
 						<a class="copyBtn"> 
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
-						<a href="/arcade">
+						<a href="/intro">
 							<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>
 						</a>
 					</div>
