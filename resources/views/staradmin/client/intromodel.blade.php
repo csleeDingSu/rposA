@@ -16,7 +16,7 @@
 						
 												
 						<div class="row">
-							<input class="namer" type="text" id="namer authusername" name="authusername" placeholder="@lang('dingsu.ph_username_mobile_no')" required maxlength="30"><span class="mmcl lerror-username hidespan" ></span>
+							<input class="namer" type="text" id="authusername" name="authusername" placeholder="@lang('dingsu.ph_username_mobile_no')" required maxlength="30"><span class="mmcl lerror-username hidespan" ></span>
 							
 						</div>
 						<div class="row">
@@ -131,10 +131,11 @@
 				 } );
 
 
-            $( '#dologin' ).click( function (e) {
+            $( '#loginform #dologin' ).click( function (e) {
 				
 				$( ".lerror-username" ).addClass( "hidespan" ).removeClass("showspan").html('');
 				$( ".lerror-password" ).addClass( "hidespan" ).removeClass("showspan").html('');
+				
 				
                 jQuery.ajax({
                 type:"POST",
@@ -159,8 +160,6 @@
 							$(location).attr("href", url);
                         }
                     
-                    $("#dologin").text('@lang("dingsu.login")');
-                    $('#dologin').removeAttr('disabled');
                 },
                 error: function (data, ajaxOptions, thrownError) {
                     $("#dologin").text('@lang("dingsu.login")');
@@ -169,7 +168,11 @@
                     var errors = merrors.errors;
                     $.each(errors, function (key, value) {   
 						console.log(key);
-						$( ".lerror-"+key ).addClass( "showspan" ).removeClass("hidespan").html(value);
+						$( ".lerror-"+key ).addClass( "showspan" ).removeClass("hidespan").html(value);						
+						if (key == 'error')
+							{
+								$( ".lerror-username" ).addClass( "showspan" ).removeClass("hidespan").html(value);
+							}
                     });                    
                 }
               });   
@@ -181,7 +184,7 @@
             e.preventDefault();     
             jQuery.ajax({
                 type:"POST",
-                url: "{{route('submit.member.newregister')}}",
+                url: "{{route('api.member.newregister')}}",
                 data:{
                     _token: "{{ csrf_token() }}",
                     datav: $( "#registerform" ).serialize(),
