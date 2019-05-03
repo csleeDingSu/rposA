@@ -2064,3 +2064,8 @@ if it's not present, don't show loader */
 	color: #e65e5e;
 	font-weight: 600;
 }
+
+.viewgamerules {
+	color: white; /*#64aee2;*/
+	text-decoration: underline;
+}
