@@ -1070,39 +1070,39 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            instruction = '每一轮有6次机会，第1次猜对奖励10金币，最终赚了10金币。<br />猜对后满血复活，进入下一轮从新开始。';
+            instruction = '每轮有6次机会，第1局猜对<span class="highlight-orange">奖励10金币</span>，最终本轮赚了10金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/10.png';
             html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+10金币</div>';
         break;
 
         case 2:
-            instruction = '每一轮有6次机会，前1次猜错亏损10金币，第2次猜对奖励30金币，最终赚了20金币。<br />猜对后满血复活，进入下一轮从新开始。';
+            instruction = '每轮有6次机会，前1次猜错<span class="highlight-green">亏损10金币</span>，第2局猜对<span class="highlight-orange">奖励30金币</span>，最终本轮赚了20金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/30.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+20金币</div>';            
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+30金币</div>';            
         break;
 
         case 3:
-            instruction = '每一轮有6次机会，前2次猜错亏损40金币，第3次猜对奖励70金币，最终赚了30金币。<br />猜对后满血复活，进入下一轮从新开始。';
+            instruction = '每轮有6次机会，前2次猜错<span class="highlight-green">亏损40金币</span>，第3局猜对<span class="highlight-orange">奖励70金币</span>，最终本轮赚了30金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/70.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+30金币</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+70金币</div>';
         break;
 
         case 4:
-            instruction = '每一轮有6次机会，前3次猜错亏损110金币，第4次猜对奖励150金币，最终赚了40金币。<br />猜对后满血复活，进入下一轮从新开始。';
+            instruction = '每轮有6次机会，前3次猜错<span class="highlight-green">亏损110金币</span>，第4局猜对<span class="highlight-orange">奖励150金币</span>，最终本轮赚了40金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/150.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+40金币</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+150金币</div>';
         break;
 
         case 5:
-            instruction = '每一轮有6次机会，前4次猜错亏损260金币，第5次猜对奖励310金币，最终赚了50金币。<br />猜对后满血复活，进入下一轮从新开始。';
+            instruction = '每轮有6次机会，前4次猜错<span class="highlight-green">亏损260金币</span>，第5局猜对<span class="highlight-orange">奖励310金币</span>，最终本轮赚了50金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/310.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+50金币</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+310金币</div>';
         break;
 
         case 6:
-            instruction = '每一轮有6次机会，前5次猜错亏损570金币，第6次猜对奖励630金币，最终赚了60金币。<br />猜对后满血复活，进入下一轮从新开始。';
+            instruction = '每轮有6次机会，前5次猜错<span class="highlight-green">亏损570金币</span>，第6局猜对<span class="highlight-orange">奖励630金币</span>，最终本轮赚了60金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/630.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+60金币</div>';            
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+630金币</div>';            
         break;
 
     }
@@ -1111,7 +1111,18 @@ function showWinModal(){
     $('.modal-win-header').html(html);
     $('.modal-instruction').html(instruction);
     $('.modal-redeem-button').html('领取奖励');
-    // $('.result-info').html(result_info);
+    
+    $('.highlight-link').click(function(){
+        $('#game-rules').modal();
+    });
+
+    $('.btn-rules-close').click(function(){
+        $('#game-rules').modal('hide');
+    });
+
+    $('.btn-rules-timer').click(function(){
+        $('#game-rules').modal('hide');
+    });
 }
 
 function showLoseModal(){
@@ -1123,35 +1134,35 @@ function showLoseModal(){
     switch (level) {
 
         case 1:
-            instruction = '每一轮有6次机会，前1次猜错亏损10金币，第2局下注30金币，猜对奖励30金币，扣掉亏损的10金币，最终还能赚到20金币。';
+            instruction = '每轮有6次机会，前1局猜错<span class="highlight-green">亏损10金币</span>，根据倍增式玩法，第2局<span class="highlight-orange">将投30金币</span>，如猜对将奖励30金币，扣掉亏损的10金币，最终还赚取20金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/lose_10.png';
             html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有5次机会</div>';
             result_info = '本轮错了1次，还剩5次。';
         break;
 
         case 2:
-            instruction = '每一轮有6次机会，前2次猜错亏损40金币，第3局下注70金币，猜对奖励70金币，扣掉亏损的40金币，最终还能赚到30金币。';
+            instruction = '每轮有6次机会，前2局猜错<span class="highlight-green">亏损40金币</span>，根据倍增式玩法，第3局<span class="highlight-orange">将投70金币</span>，如猜对将奖励70金币，扣掉亏损的40金币，最终还赚取30金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/lose_30.png';
             html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有4次机会</div>';
             result_info = '本轮错了2次，还剩4次。';
         break;
 
         case 3:
-            instruction = '每一轮有6次机会，前3次猜错亏损110金币，第3局下注150金币，猜对奖励150金币，扣掉亏损的110金币，最终还能赚到40金币。';
+            instruction = '每轮有6次机会，前3局猜错<span class="highlight-green">亏损110金币</span>，根据倍增式玩法，第4局<span class="highlight-orange">将投150金币</span>，如猜对将奖励150金币，扣掉亏损的110金币，最终还赚取40金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/lose_70.png';
             html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有3次机会</div>';
             result_info = '本轮错了3次，还剩3次。';
         break;
 
         case 4:
-            instruction = '每一轮有6次机会，前4次猜错亏损260金币，第3局下注310金币，猜对奖励310金币，扣掉亏损的260金币，最终还能赚到50金币。';
+            instruction = '每轮有6次机会，前4局猜错<span class="highlight-green">亏损260金币</span>，根据倍增式玩法，第5局<span class="highlight-orange">将投310金币</span>，如猜对将奖励310金币，扣掉亏损的260金币，最终还赚取50金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/lose_150.png';
             html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有2次机会</div>';
             result_info = '本轮错了4次，还剩2次。';
         break;
 
         case 5:
-            instruction = '每一轮有6次机会，前5次猜错亏损570金币，第3局下注630金币，猜对奖励630金币，扣掉亏损的570金币，最终还能赚到60金币。';
+            instruction = '每轮有6次机会，前5局猜错<span class="highlight-green">亏损570金币</span>，根据倍增式玩法，第6局<span class="highlight-orange">将投630金币</span>，如猜对将奖励630金币，扣掉亏损的570金币，最终还赚取60金币。<span class="highlight-link">>查看倍增式玩法</span>';
             image = '/client/images/progress-bar/lose_310.png';
             html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有1次机会</div>';
             result_info = '本轮剩1次机会，猜错清零。';
@@ -1163,7 +1174,18 @@ function showLoseModal(){
     $('.modal-win-header').html(html);
     $('.modal-instruction').html(instruction);
     $('.modal-redeem-button').html('知道了');
-    // $('.result-info').html(result_info);
+    
+    $('.highlight-link').click(function(){
+        $('#game-rules').modal();
+    });
+
+    $('.btn-rules-close').click(function(){
+        $('#game-rules').modal('hide');
+    });
+
+    $('.btn-rules-timer').click(function(){
+        $('#game-rules').modal('hide');
+    });
 
 }
 
