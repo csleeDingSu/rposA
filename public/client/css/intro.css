@@ -15,7 +15,7 @@
 .intro-title img {
     width: 100%;
     height: 100%;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0 0.5rem;
 }
 
 .playBox .menuBtn {
@@ -29,15 +29,17 @@
 }
 
 .playBox .playIn {
-    height: 5.2rem;
+    height: 5.8rem;
     text-align: center;
-    padding-top: 0.1rem;
     position: relative;
     box-sizing: border-box;
+    display:inline-block
+    vertical-align: top;
 }
 
 .playBox .playIn img {
-    width: 4.97rem;
+    margin-top: -0.2rem;
+    width: 5.8rem;
 }
 
 .playBox .finger {
@@ -62,6 +64,7 @@
     left: 50%;
     top: 50%;
     margin-top: -.6rem;
+    margin-left: -.7rem;
     font-size: .36rem;
     height: 1rem;
     line-height: 1em;
@@ -70,8 +73,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: textgrowth 0.3s infinite alternate;
     cursor: pointer;
+}
+
+.clickme {
+    animation: textgrowth 0.5s infinite alternate;
 }
 
 .playBox .finger .inTime a {
@@ -81,14 +87,10 @@
 
 @keyframes textgrowth {
     0% {
-        font-size: .3rem;
-        width: 0.7rem;
-        margin-left: -0.35rem;
+        transform: scale(0.25);
     }
     100% {
-        font-size: .36rem;
-        width: 1rem;
-        margin-left: -.5rem;
+        transform: scale(0.45);
     }
 }
 
@@ -129,4 +131,8 @@
 
 .highlight {
     color: #ffdeaf;
+}
+
+.bottom-space {
+    margin-bottom: 1rem;
 }
