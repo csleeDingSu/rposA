@@ -990,7 +990,7 @@ function showProgressBar(bol_show){
                 $('.span-5').html("310");
                 $('.span-6').html("630");
 
-                result_info = '6次之内猜中有奖励。';
+                result_info = '本轮还有6次机会。';
 
                 break;
             case 2:
@@ -1065,7 +1065,7 @@ function showWinModal(){
     var level = parseInt($('#hidLevel').val());
     var html = '';
     var image = '';
-    var result_info = '6次之内猜中有奖励。';
+    var result_info = '本轮还有6次机会。';
 
     switch (level) {
 
@@ -1118,7 +1118,7 @@ function showLoseModal(){
     var level = parseInt($('#hidLevel').val());
     var html = '';
     var image = '';
-    var result_info = '6次之内猜中有奖励。';
+    var result_info = '本轮还有6次机会。';
 
     switch (level) {
 
