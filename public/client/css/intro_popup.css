@@ -1,0 +1,257 @@
+/*******************************
+* Does not work properly if "in" is added after "collapse".
+* Get free snippets on bootpen.com
+*******************************/
+
+body {
+    background-color: #f2f2f2;
+}
+
+/* Modal Box */
+.intropopup  .modal-content, .modal-title {
+/*.intropopup .modal-content, .modal-title {*/
+    background: white;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.intropopup .modal-full-height {
+    text-align:center;
+    padding-bottom: 10px;
+    margin: 0 auto;
+}
+
+.intropopup .modal-wechat {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.intropopup .modal-title {
+    background: #F7F7F7;
+    color: #909090;
+    text-align: center;
+    margin-top: 10%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.intropopup .modal-title h1 {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color: black;
+    font-size: 24px;
+}
+
+.intropopup .modal-card {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.intropopup .cutBtn, .intropopup .cutBtn-success, .intropopup .cutBtn-fail {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 6px;
+    font-size: 23px;
+    color: white;
+    padding: 6px;
+    background: #7dca33;
+}
+
+.intropopup .cutBtn {
+    cursor: pointer;
+}
+
+.intropopup .cutBtn-success {
+    background: #61b114;
+}
+
+.intropopup .cutBtn-fail {
+    background: #999999;
+}
+
+.intropopup .instructions, .intropopup .instructions-dark {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #aaa;
+}
+
+.intropopup .instructions-dark {
+    font-size: 12px;
+}
+
+.intropopup .highlight {
+    color: #fca871;
+}
+
+@media only screen and (max-width: 360px) {
+    .intropopup .modal-content, .intropopup .modal-title {
+        width: 270px;
+    }
+
+    .intropopup .modal-card {
+        width: 230px;
+        margin: 0 auto;
+        font-size: 16px;
+    }
+
+    .intropopup .instructions, .intropopup .instructions-dark {
+        font-size: 12px;
+    }
+}
+/* End Modal box */
+
+.intropopup .modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.intropopup .modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.intropopup .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+
+
+
+
+.hidespan
+{
+	display: none;
+}
+
+.showspan
+{
+	display: block;
+}
+
+.successmsg
+{
+	background: #747BD7;
+	color: white;
+	border: none;	
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	font-size: 23px;
+	padding: 5px;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.mmcl
+{
+	margin-left: -50px;
+	font-size: 14px;	
+	text-align: right;
+	background: transparent;
+	color: #ef5350;
+	font-weight: normal;
+}
+
+.btnsubmit
+{
+	background: #747BD7;
+	color: white;
+	border: none;	
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	font-size: 23px;
+	padding: 5px;
+	width: 83%;
+}
+
+.sec_reg_btn
+{
+	color: #747BD7;
+	border: solid 1px #747BD7	;
+	background-color: #FFF;
+	border-radius: 5px;
+	font-size: 23px;
+	padding: 5px;
+	width: 83%;
+}
+
+.sec_login_btn
+{
+	color: #747BD7;
+	border: none !important;
+	background-color: #FFF;
+	border-radius: 5px;
+	font-size: 23px;
+	padding: 5px;
+	width: 83%;
+}
+
+/*#FFB8BA*/
+
+
+
+.intropopup .namer {
+	border: 0;
+ border-bottom: 1px solid #F3F3F3;
+ width: 80%;
+ font-size: 20px;
+ line-height: 15px;
+ height: 50px;
+ text-align: left;
+ padding: 1px;
+ background: transparent;
+	color: #BEBEBE;
+}
+
+
+
+
+
+#namer {
+ position: relative;
+ max-width: 400px;
+ margin: 150px auto 0;
+}
+
+#namer  {
+ border: 0;
+ border-bottom: 2px solid #1976D2;
+ width: 100%;
+ font-size: 30px;
+ line-height: 35px;
+ height: 70px;
+ text-align: center;
+ padding: 10px;
+ background: transparent;
+	color: #BBDEFB;
+}
+
+#namer input.shake {
+ animation-name: shaker;
+ animation-duration: 200ms;
+ animation-timing-function: ease-in-out;
+ animation-delay: 0s;
+}
+
+#namer input:focus {
+ outline: 0;
+	color: #BBDEFB;
+}
+
+#namer input::placeholder {
+ color: #1976D2;
+}
