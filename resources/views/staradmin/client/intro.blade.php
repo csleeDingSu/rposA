@@ -12,6 +12,12 @@
 
 @section('content')
 
+<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
+<section class="datalist">
+	@include('client.intromodel')
+</section>
+
+
 <div class="full-height no-header">
 
 	<div class="intro-container">
@@ -26,7 +32,7 @@
 
                 <img src="{{ asset('/client/images/intro/pointer.png') }}">
                 <div class="inTime">
-                  <a href="/arcade"><img src="{{ asset('/client/images/intro/enter.png') }}" class="clickme"></a>
+                  <a onClick="openmodel();" href="javascript:void(0)"><img src="{{ asset('/client/images/intro/enter.png') }}" class="clickme"></a>
                 </div>
               </div>
             </div>
