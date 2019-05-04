@@ -24,13 +24,12 @@ class AuthController extends Controller {
         $input = [
              'username'   => $request->username,
 		     'password'   => $request->password,
-			 'password_confirmation'   => $request->confirmpassword,
-			 //'refcode'   => $request->refcode,
+			 'password_confirmation'   => $request->password_confirmation,
  			 'phone'   => $request->phone,
               ];
 		
 		
-		 $validator = $this->validate($request,  [
+		 $validator = $this->validate($input,  [
                 'username' => 'required|string|min:1|max:30|unique:members,username',
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
 				'password' => 'required|alphaNum|min:5|max:50|confirmed',                
