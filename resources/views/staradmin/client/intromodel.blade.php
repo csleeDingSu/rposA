@@ -164,7 +164,10 @@
                             url = "/arcade";
                             // url = "/cs/1";
 							//url = data.url;
-							$(location).attr("href", url);
+
+							setTimeout(function(){
+								$(location).attr("href", url);
+							}, 3000);
                         }
                     
                 },
@@ -189,6 +192,12 @@
            
             $( '#doregi' ).click( function (e) { 
             e.preventDefault();     
+
+            $( ".error-username" ).addClass( "hidespan" ).removeClass("showspan").html('');
+			$( ".error-phone" ).addClass( "hidespan" ).removeClass("showspan").html('');
+			$( ".error-password" ).addClass( "hidespan" ).removeClass("showspan").html('');
+			$( ".error-password_confirmation" ).addClass( "hidespan" ).removeClass("showspan").html('');				
+
             jQuery.ajax({
                 type:"POST",
                 url: "{{route('api.member.newregister')}}",
@@ -208,18 +217,61 @@
                 },
                 success:function(data) {
                     if (data.success == true) 
-                        {                       
-                            $( ".successmsg" ).addClass( "showspan" ).removeClass("hidespan").html('success redirect msg');
-							
+                        {
+                        
+							$( ".successmsg" ).addClass( "showspan" ).removeClass("hidespan").html('@lang("dingsu.member_registration_success_message")');
+
 							$("#doregi").text('@lang("dingsu.member_registration_success_message")');
-                            url = "/arcade";
-                            $(location).attr("href", url);
-                        }
-					
-					
+                            // url = "/arcade";
+                            // $(location).attr("href", url);
+
+                            setTimeout(function(){
+	                            //temp
+	                            jQuery.ajax({
+				                type:"POST",
+				                url: "{{route('submit.member.login')}}",
+				                data:{
+				                    _token: "{{ csrf_token() }}",
+				                    username:$('#username').val(),
+				                    password:$('#password').val(),
+				                },
+				                dataType:'json',
+				                beforeSend:function(){
+				                    $("#dologin").text('@lang("dingsu.please_wait")');
+				                    $('#dologin').attr('disabled', 'disabled');
+				                    $('#loginvalidation-errors').html('');
+				                },
+				                success:function(data) {
+				                    if (data.success == true) 
+				                        {                       
+				                            $("#dologin").text('@lang("dingsu.member_login_success_message")');
+				                            url = "/arcade";
+				                            // url = "/cs/1";
+											//url = data.url;
+											$(location).attr("href", url);
+				                        }
+				                    
+				                },
+				                error: function (data, ajaxOptions, thrownError) {
+				                    $("#dologin").text('@lang("dingsu.login")');
+				                    $('#dologin').removeAttr('disabled');                   
+				                    var merrors = $.parseJSON(data.responseText);
+				                    var errors = merrors.errors;
+				                    $.each(errors, function (key, value) {   
+										console.log(key);
+										$( ".lerror-"+key ).addClass( "showspan" ).removeClass("hidespan").html(value);						
+										if (key == 'error')
+											{
+												$( ".lerror-username" ).addClass( "showspan" ).removeClass("hidespan").html(value);
+											}
+				                    });                    
+				                }
+				              }); 
+	                        }, 3000);
+                        }			
                    
                     $("#doregi").text('@lang("dingsu.register")');
-                    $('#doregi').removeAttr('disabled');
+                    // $('#doregi').removeAttr('disabled');
                 },
                 error: function (data, ajaxOptions, thrownError) {
                     $("#doregi").text('@lang("dingsu.register")');
