@@ -29,7 +29,12 @@
 
                 <img src="{{ asset('/client/images/intro/pointer.png') }}">
                 <div class="inTime">
-                  <a onClick="openmodel();" href="javascript:void(0)"><img src="{{ asset('/client/images/intro/enter.png') }}" class="clickme"></a>
+                    @if (isset(Auth::Guard('member')->user()->username))
+                        <a href="/arcade">
+                    @else
+                        <a onClick="openmodel();" href="javascript:void(0)">
+                    @endif
+                        <img src="{{ asset('/client/images/intro/enter.png') }}" class="clickme"></a>
                 </div>
               </div>
             </div>
