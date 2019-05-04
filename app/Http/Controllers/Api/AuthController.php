@@ -50,11 +50,11 @@ class AuthController extends Controller {
 				
 			]
         );
-		
+		/*
 		if ($validator->fails()) {
 			 return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
-		
+		*/
 		$affiliate_id =  unique_random('members', 'affiliate_id', 10);
 
 		$member = \App\Members::create([
