@@ -85,6 +85,8 @@ class AuthController extends Controller {
 		
 		if ( Auth::guard('member')->attempt( [ 'username' => request( 'username' ), 'password' => request( 'password' ) ] ) ) {
 			$user = Auth::guard('member')->user();
+			$user->active_session = Session::getId();
+			$user->save();
 			
 			$tokenResult = $user->createToken('APITOKEN');
 			$token = $tokenResult->token;
