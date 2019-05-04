@@ -13,7 +13,7 @@ use Laravel\Passport\HasApiTokens;
 use Validator;
 use App\ Member;
 use Carbon\ Carbon;
-
+use Session;
 use Laravel\Passport\Passport;
 class AuthController extends Controller {
 	public $successStatus = 200;
