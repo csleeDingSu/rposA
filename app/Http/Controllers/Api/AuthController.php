@@ -57,12 +57,12 @@ class AuthController extends Controller {
 		$affiliate_id =  unique_random('members', 'affiliate_id', 10);
 
 		$member = \App\Members::create([
-			'username' => $data['username'],
-			'email' => $data['phone'] . '@email.com',
-			'password' => Hash::make($data['password']),
+			'username' => $input['username'],
+			'email' => $input['phone'] . '@email.com',
+			'password' => Hash::make(input['password']),
 			'affiliate_id' => $affiliate_id,
 			'referred_by'   => $referred_by,
-			'phone' => $data['phone'],
+			'phone' => $input['phone'],
 			'wechat_verification_status' => 1,
 		]);
 
