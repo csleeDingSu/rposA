@@ -93,7 +93,7 @@
 		                </div>
 						
 					</li>	
-					<li class="customer" style="display: none">
+					<li class="customer">
 						<a href="javascript:void(0)"><div class="cancel">取消</div></a>
 					</li>				
 				</ul>
@@ -254,9 +254,9 @@
 
 			$('#strSearch').focus(function(){
 				$(".openFrom").slideDown(150);
-				$('.customer').show();
+				// $('.customer').show();
 				$('.cancel').click(function(){
-					$('.customer').hide();
+					// $('.customer').hide();
 					$(".openFrom").slideUp(150);
 					if($('#strSearch').val() != ''){
 			            $('#btn_clear').show();
