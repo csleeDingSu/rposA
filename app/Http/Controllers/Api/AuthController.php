@@ -61,7 +61,7 @@ class AuthController extends Controller {
 			'email' => $input['phone'] . '@email.com',
 			'password' => Hash::make($input['password']),
 			'affiliate_id' => $affiliate_id,
-			'referred_by'   => $referred_by,
+			//'referred_by'   => $referred_by,
 			'phone' => $input['phone'],
 			'wechat_verification_status' => 1,
 		]);
