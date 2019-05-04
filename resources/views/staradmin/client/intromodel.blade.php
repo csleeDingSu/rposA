@@ -70,8 +70,8 @@
 							<span class="mmcl error-password hidespan" ></span>						
 						</div>
 						<div class="row">
-							<input class="namer" name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.ph_confirm_password')" required maxlength="30">
-							<span class="mmcl error-confirmpassword hidespan" ></span>					
+							<input class="namer" name="password_confirmation" id="password_confirmation" type="password" placeholder="@lang('dingsu.ph_confirm_password')" required maxlength="30">
+							<span class="mmcl error-password_confirmation hidespan" ></span>					
 						</div>
 						
 						 
@@ -198,7 +198,7 @@
 					username:$('#username').val(),
 					phone:$('#phone').val(),
                     password:$('#password').val(),	
-					confirmpassword:$('#confirmpassword').val(),
+					password_confirmation:$('#password_confirmation').val(),
                 },
                 dataType:'json',
                 beforeSend:function(){
