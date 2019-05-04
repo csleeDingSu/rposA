@@ -52,6 +52,5 @@
 
 
 <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
-<section class="datalist">
+
 	@include('client.intromodel')
-</section>
