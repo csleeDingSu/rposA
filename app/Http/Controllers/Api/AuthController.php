@@ -56,7 +56,7 @@ class AuthController extends Controller {
 		
 		$affiliate_id =  unique_random('members', 'affiliate_id', 10);
 
-		$member = Members::create([
+		$member = \App\Members::create([
 			'username' => $data['username'],
 			'email' => $data['phone'] . '@email.com',
 			'password' => Hash::make($data['password']),
@@ -79,7 +79,7 @@ class AuthController extends Controller {
 			]);
 
 		//update members table
-		Members::where('id', $id)
+		\App\Members::where('id', $id)
 			->update(['current_life' => $setting->game_default_life]);
 				
 		
