@@ -20,14 +20,7 @@ class AuthController extends Controller {
 	
 	public function register(Request $request) {
 		
-		$username = $request->username; 
-
-		$input = [
-            $username = $request->username,
-            $password = $request->password,
-              ];
-
-
+		
         $input = [
              'username'   => $request->username,
 		     'password'   => $request->password,
@@ -37,11 +30,10 @@ class AuthController extends Controller {
               ];
 		
 		
-		 $validator = $this->validate($request,  [
+		 $validator = $this->validate($input,  [
                 'username' => 'required|string|min:1|max:30|unique:members,username',
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
-				//'email' => 'required|email|min:4|max:50|unique:members,email',
-                'password' => 'required|alphaNum|min:5|max:50|confirmed',                
+				'password' => 'required|alphaNum|min:5|max:50|confirmed',                
             ],
 			[
 				'username.required' =>trans('auth.reg_username_empty'),
