@@ -6,7 +6,7 @@ use App\ User;
 use Illuminate\ Support\ Facades\ Auth;
 
 
-
+use Illuminate\Support\Facades\Hash;
 
 use Laravel\Passport\HasApiTokens;
 
