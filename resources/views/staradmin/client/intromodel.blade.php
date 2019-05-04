@@ -6,7 +6,7 @@
 <div class="modal fade col-md-12 intropopup" id="login-intropopup" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-title">
-			<h1>请加客服微信</h1>
+			<h1>账号登录</h1>
 		</div>
 		<div class="modal-content modal-wechat">
 			<div class="modal-body">
@@ -26,7 +26,7 @@
 							<button class="btnsubmit" name="dologin" id="dologin" type="button">登录</button>							
 						</div>
 						<div class="row">
-							<button class="sec_reg_btn" name="sec_reg_btn" id="sec_reg_btn" type="button">注册</button>							
+							<button class="sec_reg_btn" name="sec_reg_btn" id="sec_reg_btn" type="button">没有帐号，去注册</button>							
 						</div>
 						
 					</div>
@@ -78,7 +78,7 @@
 						
 						
 						<div class="row">
-							<button class="btnsubmit" name="doregi" id="doregi" type="button">登录</button>							
+							<button class="btnsubmit" name="doregi" id="doregi" type="button">登入</button>							
 						</div>
 						<div class="row">
 							<button class="sec_login_btn" name="sec_login_btn" id="sec_login_btn" type="button">注册</button>							
@@ -93,9 +93,8 @@
 		</div>
 	</div>
 </div>
-	
-	
 </form>
+
 <!-- registration modal Ends -->
 
 
@@ -123,11 +122,18 @@
 				 $( '.sec_reg_btn' ).click( function (e) {
 					 $( '#login-intropopup' ).modal( 'hide' );
 					 $( '#regis-intropopup' ).modal( 'show' );
+					 $( '.sec_login_btn' ).html( '已有账号，去登入' );					 
+					 $( '.modal-title' ).html( '<h1>快速注册</h1>' );
+					 $( '.btnsubmit' ).html( '注册' );
+					 
 				 } );
 				
 				 $( '.sec_login_btn' ).click( function (e) {
 					 $( '#regis-intropopup' ).modal( 'hide' );
-					 $( '#login-intropopup' ).modal( 'show' );					 
+					 $( '#login-intropopup' ).modal( 'show' );
+					 $( '.sec_login_btn' ).html( '没有帐号，去注册' );					 
+					 $( '.modal-title' ).html( '<h1>账号登入</h1>' );
+					 $( '.btnsubmit' ).html( '登入' );
 				 } );
 
 
@@ -155,7 +161,8 @@
                     if (data.success == true) 
                         {                       
                             $("#dologin").text('@lang("dingsu.member_login_success_message")');
-                            url = "/cs/1";
+                            url = "/arcade";
+                            // url = "/cs/1";
 							//url = data.url;
 							$(location).attr("href", url);
                         }
@@ -205,7 +212,7 @@
                             $( ".successmsg" ).addClass( "showspan" ).removeClass("hidespan").html('success redirect msg');
 							
 							$("#doregi").text('@lang("dingsu.member_registration_success_message")');
-                            url = "/profile";
+                            url = "/arcade";
                             $(location).attr("href", url);
                         }
 					
