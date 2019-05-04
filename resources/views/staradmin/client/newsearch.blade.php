@@ -252,6 +252,10 @@
 
 		$(document).ready(function(){
 
+			$('.cancel').click(function(){
+				window.location.href = "<?php Print(env('APP_URL', 'www.wabao666.com'));?>"
+			});
+
 			$('#strSearch').focus(function(){
 				$(".openFrom").slideDown(150);
 				// $('.customer').show();
