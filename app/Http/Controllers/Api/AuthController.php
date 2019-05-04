@@ -29,7 +29,7 @@ class AuthController extends Controller {
               ];
 		
 		
-		 $validator = $this->validate($input,  [
+		 $validator = Validator::make($input,  [
                 'username' => 'required|string|min:1|max:30|unique:members,username',
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
 				'password' => 'required|alphaNum|min:5|max:50|confirmed',                
