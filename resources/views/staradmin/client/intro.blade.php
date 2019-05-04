@@ -12,10 +12,7 @@
 
 @section('content')
 
-<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
-<section class="datalist">
-	@include('client.intromodel')
-</section>
+
 
 
 <div class="full-height no-header">
@@ -47,7 +44,10 @@
             <span class="highlight">假如你邀请了10个好友，而每个好友也邀请10个人，你就能获得110次幸运转盘，最多赚1650元红包。</span>
         </div>
     </div><!-- panel-group -->
-    
+    <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
+<section class="datalist">
+	@include('client.intromodel')
+</section>
     
 </div><!-- container -->
 
