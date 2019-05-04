@@ -59,7 +59,7 @@ class AuthController extends Controller {
 		$member = \App\Members::create([
 			'username' => $input['username'],
 			'email' => $input['phone'] . '@email.com',
-			'password' => Hash::make(input['password']),
+			'password' => Hash::make($input['password']),
 			'affiliate_id' => $affiliate_id,
 			'referred_by'   => $referred_by,
 			'phone' => $input['phone'],
