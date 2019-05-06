@@ -1149,7 +1149,7 @@ function showLoseModal(){
         case 2:
             instruction = '前2局猜错，<span class="highlight-green">总亏损40积分</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注70积分</span>，如猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/lose_30.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-40积分</div>';
+            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-30积分</div>';
             result_info = '本轮错了2次，还剩4次。';
         break;
 
