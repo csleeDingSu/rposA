@@ -199,6 +199,10 @@ input[type=tel]{
 .h20{ height: .2rem; font-size: 0; margin:0; padding: 0; border:none}
 .h100{ height: 1rem; font-size: 0; margin:0; padding: 0; border:none}
 
-.rel{position: relative; z-index: 1;}
+.rel{
+	position: relative; 
+	z-index: 1;
+	-webkit-transform: translate3d(0,0,0);
+}
 
 
