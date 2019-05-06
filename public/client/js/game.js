@@ -146,7 +146,8 @@ function initUser(records){
 }
 
 function initGame(data, level, latest_result, consecutive_lose){
-
+try {
+ 
     var user_id = $('#hidUserId').val();
     trigger = false;
 
@@ -276,6 +277,11 @@ function initGame(data, level, latest_result, consecutive_lose){
                 }
             }
         }); // ajax get-game-result-temp
+    }
+    catch(err) {
+      console.log(err.message);
+      window.top.location.href = "/arcade";
+    }
 }
 
 function getSocket(){
