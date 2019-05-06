@@ -450,8 +450,7 @@
 							
 							//alert(result.passcode);
 							$( ".copyvoucher" ).html( result.passcode );
-							$('.btn-copy').html("<p class='inner_span_copy1'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
-							return result.passcode;
+							$('.btn-copy').html("领取优惠券");
 							return result.passcode;
 						}
 					
