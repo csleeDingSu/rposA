@@ -108,7 +108,7 @@ function populateHistoryData(records, token) {
             if (item.type == 'vip') {
                 html += '<div class="history-row">' +
                     '<div class="col-xs-9 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + (item.used_point || '') + '金币</div>' +
+                        '<div class="description">'+ item.product_name + ' ' + (item.used_point + '金币' || '') + '</div>' +
                         '<div class="balance">购买时间:'+ str_date +'</div>' +
                     '</div>';
 
