@@ -222,9 +222,9 @@
 							$( ".successmsg" ).addClass( "showspan" ).removeClass("hidespan").html('@lang("dingsu.member_registration_success_message")');
 
 							$("#doregi").text('@lang("dingsu.member_registration_success_message")');
-                            // url = "/arcade";
-                            // $(location).attr("href", url);
-
+                             url = "/arcade";
+                             $(location).attr("href", url);
+							/*
                             setTimeout(function(){
 	                            //temp
 	                            jQuery.ajax({
@@ -268,6 +268,7 @@
 				                }
 				              }); 
 	                        }, 3000);
+							*/
                         }			
                    
                     $("#doregi").text('@lang("dingsu.register")');
