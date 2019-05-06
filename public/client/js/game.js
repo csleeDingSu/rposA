@@ -280,7 +280,7 @@ try {
     }
     catch(err) {
       console.log(err.message);
-      window.top.location.href = "/arcade";
+      $(".reload").show();
     }
 }
 
