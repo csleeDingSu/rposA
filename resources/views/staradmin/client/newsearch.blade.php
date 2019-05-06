@@ -372,6 +372,7 @@
 			$("body").on("click",".mset a.showvoucher",function(e) {
 			//$("body").on("click",".showvoucher",function(){
 				$( ".copyvoucher" ).html('please wait');
+				$('.btn-copy').html("请稍等");
 
 				var dd = $(this).data('imgurl');
 				$("#showIcon").attr("src",dd);
@@ -420,6 +421,7 @@
 				$("#showIcon").attr("src",$(this).data('imgurl'));
 
 				$( ".copyvoucher" ).html('please wait');
+				$('.btn-copy').html("请稍等");
 								 
 				$( ".caption2" ).html($(this).data('tt_product_discount_price'));
 				$( ".div_product_name" ).html($(this).data('tt_product_name'));
@@ -448,6 +450,7 @@
 							
 							//alert(result.passcode);
 							$( ".copyvoucher" ).html( result.passcode );
+							$('.btn-copy').html("领取优惠券");
 							return result.passcode;
 						}
 					

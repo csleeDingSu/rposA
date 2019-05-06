@@ -223,7 +223,10 @@
 
 							$("#doregi").text('@lang("dingsu.member_registration_success_message")');
                              url = "/arcade";
-                             $(location).attr("href", url);
+                             
+							setTimeout(function(){
+								$(location).attr("href", url);
+							}, 3000);
 							/*
                             setTimeout(function(){
 	                            //temp

@@ -38,38 +38,9 @@ $item = (object )$item;
 												<div class="col-xs-6">
 													<div class="divPrice">													
 														<span class="vPricebg">
-															<span class="vPrice">
+															<span class="vPrice" style="font-size: 0.30rem !important">
 																{{number_format($item->voucher_price, 0)}}元券
-															</span>										
-															@if (!empty($item->expiry_datetime))
-															
-																@php @$date = \Carbon\Carbon::parse($item->expiry_datetime) @endphp
-																@php @$now = \Carbon\Carbon::now() @endphp
-																@php @$diff = $date->diffInDays($now) @endphp
-																@php @$extra = $date->diffInSeconds($now) @endphp
-
-																<!-- @if (@$extra % 86400 > 0)
-																	@php @$diff++ @endphp
-																@endif -->
-
-																@if (@$diff == 0)
-																	@php @$diff = 1 @endphp
-																@endif
-
-																@if (@$diff >= 0)
-																<span class="vExpiry">
-																	剩{{ @$diff }}天
-																</span>
-																@else
-																<span class="vExpiry">
-																	已失效
-																</span>
-																@endif
-															@else
-																<span class="vExpiry">
-																	已失效
-																</span>
-															@endif
+															</span>							
 														</span>
 													</div>
 													<div class="showDiscountPrice">
