@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 //Route::post('login', 'API\AuthController@login');
-//Route::post('register', 'API\AuthController@register');
+Route::post('register', 'Api\AuthController@register')->name('api.member.newregister');
 
 Route::post('temp_log', 'ShareProductController@temp_log');
 
