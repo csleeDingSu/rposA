@@ -329,6 +329,81 @@ class MemberRegisterController extends Controller
 		}		
 	}
 	
+	
+	public function api_register(Request $request) {
+		
+		
+        $input = [
+             'username'   => $request->username,
+		     'password'   => $request->password,
+			 'password_confirmation'   => $request->password_confirmation,
+ 			 'phone'   => $request->phone,
+              ];
+		
+		 $validator = $this->validate($request, 
+			[
+                'username' => 'required|string|min:1|max:30|unique:members,username',
+				'phone' => 'required|string|min:4|max:50|unique:members,phone',
+				'password' => 'required|alphaNum|min:5|max:50|confirmed',                
+            ],
+			[
+				'username.required' =>trans('auth.reg_username_empty'),
+				'username.exists' =>trans('auth.username_notavailable'),
+				'phone.required' =>trans('auth.reg_phone_empty'),
+				'username.min' =>trans('auth.reg_username_not_min'),
+				'password.required' =>trans('auth.reg_password_empty'),
+				'password.min' =>trans('auth.reg_password_not_min'),
+				'phone.min' =>trans('auth.phone_not_min'),
+				'password.confirmed' =>trans('auth.password_not_same'),
+				'username.unique' =>trans('auth.username_notavailable'),
+				'phone.unique' =>trans('auth.phone_notavailable'),
+				'password.alpha_num' => trans('auth.alpha_num'),
+				
+			]
+        );
+		
+		$affiliate_id =  unique_random('members', 'affiliate_id', 10);
+
+		$member = \App\Members::create([
+			'username' => $input['username'],
+			'email' => $input['phone'] . '@email.com',
+			'password' => Hash::make($input['password']),
+			'affiliate_id' => $affiliate_id,
+			//'referred_by'   => $referred_by,
+			'phone' => $input['phone'],
+			'wechat_verification_status' => 1,
+		]);
+
+		$id = $member->id;
+		//Get Setting Life 
+		$setting = \App\Admin::get_setting();
+
+
+		$wallet = \App\Wallet::create([
+				'current_life'    => $setting->game_default_life,
+				'member_id'       => $id,
+				'current_balance' => env('initial_balance',1200),
+				'balance_before'  => env('initial_balance',1200)
+			]);
+
+		//update members table
+		\App\Members::where('id', $id)
+			->update(['current_life' => $setting->game_default_life]);
+				
+		
+		if ( Auth::guard('member')->attempt( [ 'username' => request( 'username' ), 'password' => request( 'password' ) ] ) ) {
+			$user = Auth::guard('member')->user();
+			$user->active_session = Session::getId();
+			$user->save();
+			
+			return response()->json(['success' => true ]); 
+			
+			
+		} else {
+			return response()->json( [ 'success' => 'false', 'error' => 'invalid username or password' ], 401 );
+		}
+	}
+	
 }
 
 
