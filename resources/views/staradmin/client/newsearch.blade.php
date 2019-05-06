@@ -420,6 +420,12 @@
 				$("#showIcon").attr("src",$(this).data('imgurl'));
 
 				$( ".copyvoucher" ).html('please wait');
+								 
+				$( ".caption2" ).html($(this).data('tt_product_discount_price'));
+				$( ".div_product_name" ).html($(this).data('tt_product_name'));
+				$( ".span_price" ).html($(this).data('tt_product_price'));
+				$( ".span_voucher_price" ).html($(this).data('tt_voucher_price'));
+										
 				being.wrapShow();
 				being.scaleShow('.showQuan');
 				$( ".copyvoucher" ).html( getpasscode( $(this).data('goodsid') ) );
