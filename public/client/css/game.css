@@ -1182,7 +1182,7 @@ body{
 }
 
 .highlight-green {
-	color: #51c254;
+	color: #3fbb45;
 }
 
 .highlight-orange {
@@ -1193,6 +1193,7 @@ body{
 	color: #64aee2;
 	cursor: pointer;
 	text-decoration: underline;
+	text-align: center;
 }
 
 .img-step {

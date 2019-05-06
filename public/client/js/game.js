@@ -146,7 +146,8 @@ function initUser(records){
 }
 
 function initGame(data, level, latest_result, consecutive_lose){
-
+try {
+ 
     var user_id = $('#hidUserId').val();
     trigger = false;
 
@@ -276,6 +277,11 @@ function initGame(data, level, latest_result, consecutive_lose){
                 }
             }
         }); // ajax get-game-result-temp
+    }
+    catch(err) {
+      console.log(err.message);
+      $(".reload").show();
+    }
 }
 
 function getSocket(){
@@ -1070,39 +1076,39 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            instruction = '每轮有6次机会，第1局猜对<span class="highlight-orange">奖励10金币</span>，最终本轮赚了10金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '第1局<span class="highlight-orange">猜对奖励10积分</span>，最终本轮赚了10积分。<br />赚到的10积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';           
             image = '/client/images/progress-bar/10.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+10金币</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+10积分</div>';
         break;
 
         case 2:
-            instruction = '每轮有6次机会，前1次猜错<span class="highlight-green">亏损10金币</span>，第2局猜对<span class="highlight-orange">奖励30金币</span>，最终本轮赚了20金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前1局猜错<span class="highlight-green">亏损了10积分</span>，而第2局<span class="highlight-orange">猜对奖励30积分</span>，最终<span class="highlight-orange">还赚了20积分</span>。<br />赚到的20积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/30.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+30金币</div>';            
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+30积分</div>';            
         break;
 
         case 3:
-            instruction = '每轮有6次机会，前2次猜错<span class="highlight-green">亏损40金币</span>，第3局猜对<span class="highlight-orange">奖励70金币</span>，最终本轮赚了30金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前2局猜错<span class="highlight-green">亏损了40积分</span>，而第3局<span class="highlight-orange">猜对奖励70积分</span>，最终<span class="highlight-orange">还赚了30积分</span>。<br />赚到的30积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/70.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+70金币</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+70积分</div>';
         break;
 
         case 4:
-            instruction = '每轮有6次机会，前3次猜错<span class="highlight-green">亏损110金币</span>，第4局猜对<span class="highlight-orange">奖励150金币</span>，最终本轮赚了40金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前3局猜错<span class="highlight-green">亏损了110积分</span>，而第4局<span class="highlight-orange">猜对奖励150积分</span>，最终<span class="highlight-orange">还赚了40积分</span>。<br />赚到的40积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/150.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+150金币</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+150积分</div>';
         break;
 
         case 5:
-            instruction = '每轮有6次机会，前4次猜错<span class="highlight-green">亏损260金币</span>，第5局猜对<span class="highlight-orange">奖励310金币</span>，最终本轮赚了50金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前4局猜错<span class="highlight-green">亏损了260积分</span>，而第5局<span class="highlight-orange">猜对奖励310积分</span>，最终<span class="highlight-orange">还赚了50积分</span>。<br />赚到的50积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/310.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+310金币</div>';
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+310积分</div>';
         break;
 
         case 6:
-            instruction = '每轮有6次机会，前5次猜错<span class="highlight-green">亏损570金币</span>，第6局猜对<span class="highlight-orange">奖励630金币</span>，最终本轮赚了60金币。<br />猜中后返回从10金币开始，只要6次之内猜中就可以无限循环赚取金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前5局猜错<span class="highlight-green">亏损了570积分</span>，而第6局<span class="highlight-orange">猜对奖励630积分</span>，最终<span class="highlight-orange">还赚了60积分</span>。<br />赚到的60积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/630.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+630金币</div>';            
+            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+630积分</div>';            
         break;
 
     }
@@ -1134,37 +1140,37 @@ function showLoseModal(){
     switch (level) {
 
         case 1:
-            instruction = '每轮有6次机会，前1局猜错<span class="highlight-green">亏损10金币</span>，根据倍增式玩法，第2局<span class="highlight-orange">将投30金币</span>，如猜对将奖励30金币，扣掉亏损的10金币，最终还赚取20金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前1局猜错，<span class="highlight-green">总亏损10积分</span>，根据倍增式玩法，第2局<span class="highlight-orange">将押注30积分</span>，如猜对能获得30积分奖励，减去亏损的10还能赚20积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/lose_10.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有5次机会</div>';
+            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-10积分</div>';
             result_info = '本轮错了1次，还剩5次。';
         break;
 
         case 2:
-            instruction = '每轮有6次机会，前2局猜错<span class="highlight-green">亏损40金币</span>，根据倍增式玩法，第3局<span class="highlight-orange">将投70金币</span>，如猜对将奖励70金币，扣掉亏损的40金币，最终还赚取30金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前2局猜错，<span class="highlight-green">总亏损40积分</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注70积分</span>，如猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/lose_30.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有4次机会</div>';
+            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-30积分</div>';
             result_info = '本轮错了2次，还剩4次。';
         break;
 
         case 3:
-            instruction = '每轮有6次机会，前3局猜错<span class="highlight-green">亏损110金币</span>，根据倍增式玩法，第4局<span class="highlight-orange">将投150金币</span>，如猜对将奖励150金币，扣掉亏损的110金币，最终还赚取40金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前3局猜错，<span class="highlight-green">总亏损110积分</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注150积分</span>，如猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';            
             image = '/client/images/progress-bar/lose_70.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有3次机会</div>';
+            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-70积分</div>';
             result_info = '本轮错了3次，还剩3次。';
         break;
 
         case 4:
-            instruction = '每轮有6次机会，前4局猜错<span class="highlight-green">亏损260金币</span>，根据倍增式玩法，第5局<span class="highlight-orange">将投310金币</span>，如猜对将奖励310金币，扣掉亏损的260金币，最终还赚取50金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前4局猜错，<span class="highlight-green">总亏损260积分</span>，根据倍增式玩法，第5局<span class="highlight-orange">将押注310积分</span>，如猜对能获得310积分奖励，减去亏损的260还能赚50积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/lose_150.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有2次机会</div>';
+            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-150积分</div>';
             result_info = '本轮错了4次，还剩2次。';
         break;
 
         case 5:
-            instruction = '每轮有6次机会，前5局猜错<span class="highlight-green">亏损570金币</span>，根据倍增式玩法，第6局<span class="highlight-orange">将投630金币</span>，如猜对将奖励630金币，扣掉亏损的570金币，最终还赚取60金币。<span class="highlight-link">>查看倍增式玩法</span>';
+            instruction = '前5局猜错，<span class="highlight-green">总亏损570积分</span>，根据倍增式玩法，第6局<span class="highlight-orange">将押注630积分</span>，如猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             image = '/client/images/progress-bar/lose_310.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">还有1次机会</div>';
+            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-310积分</div>';
             result_info = '本轮剩1次机会，猜错清零。';
         break;
 
