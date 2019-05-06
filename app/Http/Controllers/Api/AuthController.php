@@ -6,42 +6,34 @@ use App\ User;
 use Illuminate\ Support\ Facades\ Auth;
 
 
-
+use Illuminate\Support\Facades\Hash;
 
 use Laravel\Passport\HasApiTokens;
 
 use Validator;
 use App\ Member;
 use Carbon\ Carbon;
-
+use Session;
 use Laravel\Passport\Passport;
 class AuthController extends Controller {
 	public $successStatus = 200;
 	
 	public function register(Request $request) {
 		
-		$username = $request->username; 
-
-		$input = [
-            $username = $request->username,
-            $password = $request->password,
-              ];
-
-
+		
         $input = [
              'username'   => $request->username,
 		     'password'   => $request->password,
-			 'password_confirmation'   => $request->confirmpassword,
-			 //'refcode'   => $request->refcode,
+			 'password_confirmation'   => $request->password_confirmation,
  			 'phone'   => $request->phone,
               ];
 		
-		
-		 $validator = $this->validate($request,  [
+		 $validator = $this->validate($request,
+		// $validator = Validator::make($input,  
+			[
                 'username' => 'required|string|min:1|max:30|unique:members,username',
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
-				//'email' => 'required|email|min:4|max:50|unique:members,email',
-                'password' => 'required|alphaNum|min:5|max:50|confirmed',                
+				'password' => 'required|alphaNum|min:5|max:50|confirmed',                
             ],
 			[
 				'username.required' =>trans('auth.reg_username_empty'),
@@ -58,20 +50,20 @@ class AuthController extends Controller {
 				
 			]
         );
-		
+		/*
 		if ($validator->fails()) {
 			 return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
-		
+		*/
 		$affiliate_id =  unique_random('members', 'affiliate_id', 10);
 
-		$member = Members::create([
-			'username' => $data['username'],
-			'email' => $data['phone'] . '@email.com',
-			'password' => Hash::make($data['password']),
+		$member = \App\Members::create([
+			'username' => $input['username'],
+			'email' => $input['phone'] . '@email.com',
+			'password' => Hash::make($input['password']),
 			'affiliate_id' => $affiliate_id,
-			'referred_by'   => $referred_by,
-			'phone' => $data['phone'],
+			//'referred_by'   => $referred_by,
+			'phone' => $input['phone'],
 			'wechat_verification_status' => 1,
 		]);
 
@@ -88,12 +80,14 @@ class AuthController extends Controller {
 			]);
 
 		//update members table
-		Members::where('id', $id)
+		\App\Members::where('id', $id)
 			->update(['current_life' => $setting->game_default_life]);
 				
 		
 		if ( Auth::guard('member')->attempt( [ 'username' => request( 'username' ), 'password' => request( 'password' ) ] ) ) {
 			$user = Auth::guard('member')->user();
+			$user->active_session = Session::getId();
+			$user->save();
 			
 			$tokenResult = $user->createToken('APITOKEN');
 			$token = $tokenResult->token;

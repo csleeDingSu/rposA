@@ -12,10 +12,7 @@
 
 @section('content')
 
-<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
-<section class="datalist">
-	@include('client.intromodel')
-</section>
+
 
 
 <div class="full-height no-header">
@@ -32,7 +29,12 @@
 
                 <img src="{{ asset('/client/images/intro/pointer.png') }}">
                 <div class="inTime">
-                  <a onClick="openmodel();" href="javascript:void(0)"><img src="{{ asset('/client/images/intro/enter.png') }}" class="clickme"></a>
+                    @if (isset(Auth::Guard('member')->user()->username))
+                        <a href="/arcade">
+                    @else
+                        <a onClick="openmodel();" href="javascript:void(0)">
+                    @endif
+                        <img src="{{ asset('/client/images/intro/enter.png') }}" class="clickme"></a>
                 </div>
               </div>
             </div>
@@ -52,3 +54,8 @@
 </div><!-- container -->
 
 @endsection
+
+
+<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
+
+	@include('client.intromodel')

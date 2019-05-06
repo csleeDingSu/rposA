@@ -6,7 +6,7 @@
 <div class="modal fade col-md-12 intropopup" id="login-intropopup" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-title">
-			<h1>请加客服微信</h1>
+			<h1>账号登录</h1>
 		</div>
 		<div class="modal-content modal-wechat">
 			<div class="modal-body">
@@ -26,7 +26,7 @@
 							<button class="btnsubmit" name="dologin" id="dologin" type="button">登录</button>							
 						</div>
 						<div class="row">
-							<button class="sec_reg_btn" name="sec_reg_btn" id="sec_reg_btn" type="button">注册</button>							
+							<button class="sec_reg_btn" name="sec_reg_btn" id="sec_reg_btn" type="button">没有帐号，去注册</button>							
 						</div>
 						
 					</div>
@@ -70,15 +70,15 @@
 							<span class="mmcl error-password hidespan" ></span>						
 						</div>
 						<div class="row">
-							<input class="namer" name="confirmpassword" id="confirmpassword" type="password" placeholder="@lang('dingsu.ph_confirm_password')" required maxlength="30">
-							<span class="mmcl error-confirmpassword hidespan" ></span>					
+							<input class="namer" name="password_confirmation" id="password_confirmation" type="password" placeholder="@lang('dingsu.ph_confirm_password')" required maxlength="30">
+							<span class="mmcl error-password_confirmation hidespan" ></span>					
 						</div>
 						
 						 
 						
 						
 						<div class="row">
-							<button class="btnsubmit" name="doregi" id="doregi" type="button">登录</button>							
+							<button class="btnsubmit" name="doregi" id="doregi" type="button">登入</button>							
 						</div>
 						<div class="row">
 							<button class="sec_login_btn" name="sec_login_btn" id="sec_login_btn" type="button">注册</button>							
@@ -93,9 +93,8 @@
 		</div>
 	</div>
 </div>
-	
-	
 </form>
+
 <!-- registration modal Ends -->
 
 
@@ -123,11 +122,18 @@
 				 $( '.sec_reg_btn' ).click( function (e) {
 					 $( '#login-intropopup' ).modal( 'hide' );
 					 $( '#regis-intropopup' ).modal( 'show' );
+					 $( '.sec_login_btn' ).html( '已有账号，去登入' );					 
+					 $( '.modal-title' ).html( '<h1>快速注册</h1>' );
+					 $( '.btnsubmit' ).html( '注册' );
+					 
 				 } );
 				
 				 $( '.sec_login_btn' ).click( function (e) {
 					 $( '#regis-intropopup' ).modal( 'hide' );
-					 $( '#login-intropopup' ).modal( 'show' );					 
+					 $( '#login-intropopup' ).modal( 'show' );
+					 $( '.sec_login_btn' ).html( '没有帐号，去注册' );					 
+					 $( '.modal-title' ).html( '<h1>账号登入</h1>' );
+					 $( '.btnsubmit' ).html( '登入' );
 				 } );
 
 
@@ -155,9 +161,13 @@
                     if (data.success == true) 
                         {                       
                             $("#dologin").text('@lang("dingsu.member_login_success_message")');
-                            url = "/cs/1";
+                            url = "/arcade";
+                            // url = "/cs/1";
 							//url = data.url;
-							$(location).attr("href", url);
+
+							setTimeout(function(){
+								$(location).attr("href", url);
+							}, 3000);
                         }
                     
                 },
@@ -182,6 +192,12 @@
            
             $( '#doregi' ).click( function (e) { 
             e.preventDefault();     
+
+            $( ".error-username" ).addClass( "hidespan" ).removeClass("showspan").html('');
+			$( ".error-phone" ).addClass( "hidespan" ).removeClass("showspan").html('');
+			$( ".error-password" ).addClass( "hidespan" ).removeClass("showspan").html('');
+			$( ".error-password_confirmation" ).addClass( "hidespan" ).removeClass("showspan").html('');				
+
             jQuery.ajax({
                 type:"POST",
                 url: "{{route('api.member.newregister')}}",
@@ -191,7 +207,7 @@
 					username:$('#username').val(),
 					phone:$('#phone').val(),
                     password:$('#password').val(),	
-					confirmpassword:$('#confirmpassword').val(),
+					password_confirmation:$('#password_confirmation').val(),
                 },
                 dataType:'json',
                 beforeSend:function(){
@@ -201,18 +217,61 @@
                 },
                 success:function(data) {
                     if (data.success == true) 
-                        {                       
-                            $( ".successmsg" ).addClass( "showspan" ).removeClass("hidespan").html('success redirect msg');
-							
+                        {
+                        
+							$( ".successmsg" ).addClass( "showspan" ).removeClass("hidespan").html('@lang("dingsu.member_registration_success_message")');
+
 							$("#doregi").text('@lang("dingsu.member_registration_success_message")');
-                            url = "/profile";
-                            $(location).attr("href", url);
-                        }
-					
-					
+                            // url = "/arcade";
+                            // $(location).attr("href", url);
+
+                            setTimeout(function(){
+	                            //temp
+	                            jQuery.ajax({
+				                type:"POST",
+				                url: "{{route('submit.member.login')}}",
+				                data:{
+				                    _token: "{{ csrf_token() }}",
+				                    username:$('#username').val(),
+				                    password:$('#password').val(),
+				                },
+				                dataType:'json',
+				                beforeSend:function(){
+				                    $("#dologin").text('@lang("dingsu.please_wait")');
+				                    $('#dologin').attr('disabled', 'disabled');
+				                    $('#loginvalidation-errors').html('');
+				                },
+				                success:function(data) {
+				                    if (data.success == true) 
+				                        {                       
+				                            $("#dologin").text('@lang("dingsu.member_login_success_message")');
+				                            url = "/arcade";
+				                            // url = "/cs/1";
+											//url = data.url;
+											$(location).attr("href", url);
+				                        }
+				                    
+				                },
+				                error: function (data, ajaxOptions, thrownError) {
+				                    $("#dologin").text('@lang("dingsu.login")');
+				                    $('#dologin').removeAttr('disabled');                   
+				                    var merrors = $.parseJSON(data.responseText);
+				                    var errors = merrors.errors;
+				                    $.each(errors, function (key, value) {   
+										console.log(key);
+										$( ".lerror-"+key ).addClass( "showspan" ).removeClass("hidespan").html(value);						
+										if (key == 'error')
+											{
+												$( ".lerror-username" ).addClass( "showspan" ).removeClass("hidespan").html(value);
+											}
+				                    });                    
+				                }
+				              }); 
+	                        }, 3000);
+                        }			
                    
                     $("#doregi").text('@lang("dingsu.register")');
-                    $('#doregi').removeAttr('disabled');
+                    // $('#doregi').removeAttr('disabled');
                 },
                 error: function (data, ajaxOptions, thrownError) {
                     $("#doregi").text('@lang("dingsu.register")');
