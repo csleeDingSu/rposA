@@ -373,6 +373,7 @@
 		$(document).ready(function(){
 		//$(function () {
 			$('#strSearch').focus(function(){
+				$('.main').hide(); 
 				$('.logo').hide();
 				$(this).parent().addClass('enlarge');
 				$('.customer').html('<a href="javascript:void(0)"><div class="cancel">取消</div></a>');
@@ -380,6 +381,7 @@
 	            $(".openFrom").slideDown(150);
 
 	            $('.cancel').click(function(){
+	            	$('.main').show(); 
 					$('.logo').show();
 					$('.flexSp').removeClass('enlarge');
 					$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
