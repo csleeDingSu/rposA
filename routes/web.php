@@ -512,7 +512,7 @@ Route::get('nlogin/{token?}', 'Auth\MemberRegisterController@showAuthForm')->nam
 Route::any('nlogin', 'Auth\MemberLoginController@dologin')->name('submit.member.login');
 Route::post('nreg', 'Auth\MemberRegisterController@doreg')->name('submit.member.newregister');
 
-
+Route::post('api-register', 'Auth\MemberRegisterController@api_register')->name('api.member.newregister');
 
 Route::get( '/clearcache', function () {
 	$exitCode = Artisan::call( 'cache:clear' );
