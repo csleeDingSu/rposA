@@ -67,7 +67,11 @@ class open_draw extends Command
 		
 		$gameid = $draw->game_id;
 		$event_data = [];
-		$mers = \DB::table('redis')->select('member_id')->get();
+		$mers = \DB::table('redis')
+			->join('members', 'members.id', '=', 'redis.member_id')
+			->whereDate('members.updated_at', Carbon::today())
+			->select('redis.member_id')
+			->get();
 		
         				
 		if ($mers)
@@ -83,6 +87,7 @@ class open_draw extends Command
 			{
 				$memberid = $val->member_id;
 				$vip = '';
+				
 				$level            = Game::get_member_current_level($gameid, $memberid, $vip);
 				$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 				
@@ -91,6 +96,13 @@ class open_draw extends Command
 				$vip_con_lose     = Game::get_consecutive_lose($memberid,$gameid, $vip);
 				
 				$gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
+				/*
+				$gamenotific = '';
+				$consecutive_lose = [];
+				$level = [];
+				$vip_level = [];
+				$vip_con_lose = [];
+				*/
 				
 				$data         = [ 'member'               => $memberid, 
 								  'drawid'               => $draw->result_id, 
@@ -109,6 +121,8 @@ class open_draw extends Command
 				$channel[] = 'initsetting-'.$val->member_id;
 				$message[] = $data ;	
 			}
+			
+			$this->comment('End fetch Data:'.'--------'.Carbon::now()->toDateTimeString().'----------');	
 		}
 			
 			
@@ -118,7 +132,7 @@ class open_draw extends Command
 		//}
 
 				
-		foreach (array_chunk($event_data,500) as $keyc=>$event) {
+		foreach (array_chunk($event_data,100) as $keyc=>$event) {
 			foreach ($event as $val)
 			{
 			   //print_r($val);die();

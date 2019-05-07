@@ -82,7 +82,12 @@ class Bresult extends Command
 		$game_result = !empty($current_result->game_result) ? $current_result->game_result  : '' ;
 		$gresult = ['game_result' => $game_result];
 				
-		$mers = \DB::table('redis')->select('member_id')->whereNotIn('member_id', $memid)->get();
+		$mers = \DB::table('redis')
+			->join('members', 'members.id', '=', 'redis.member_id')
+			->whereDate('members.updated_at', Carbon::today())
+			->whereNotIn('member_id', $memid)
+			->select('member_id')
+			->get();
 				
 		if ($mers)
 		{
