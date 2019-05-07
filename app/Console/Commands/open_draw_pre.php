@@ -52,14 +52,14 @@ class open_draw_pre extends Command
         
 		$this->comment('Stared:'.'----------'.Carbon::now()->toDateTimeString().'----------');	
 		
-		$drawid = $this->argument('drawid');
+		//$drawid = $this->argument('drawid');
         $now           = Carbon::now();
-        if ($drawid == '0') $drawid   = 6666;		
+        //if ($drawid == '0') $drawid   = 6666;		
 		
-		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('id', '=', $drawid)->first();		
-		
+		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->skip(1)->first();
+
 		if (!$draw) dd('unknown draw');		
-		$this->info('Draw ID :'.'--------'.$drawid.'----------');
+		$this->info('Draw ID :'.'--------'.$draw->result_id.'----------');
 		$ReportController = new RedisGameController(); 
 		$latest_result = Game::get_latest_result($draw->game_id);
 		$gamesetting   = $ReportController->get_game_setting($draw , $now); 
@@ -129,7 +129,7 @@ class open_draw_pre extends Command
 		}
 
 		//store		
-		$result = OpenDrawPre::create(['draw_id' => $drawid, 'event_data' => json_encode($event_data,true)])->id;
+		$result = OpenDrawPre::create(['draw_id' => $draw->result_id, 'event_data' => json_encode($event_data,true)])->id;
 
 		var_dump($result); 
 			
