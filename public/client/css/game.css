@@ -335,9 +335,9 @@ body{
 }
 
 .balance-banner {
-	background: #643480;
-	width: 350px;
-	height: 64px;
+	background: rgb(100,52,128);
+	width: 360px;
+	height: 72px;
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
@@ -348,7 +348,7 @@ body{
 	color: #fff;
 	font-size: 40px;
 	cursor: pointer;
-	border-radius: 30px;
+	border-radius: 40px;
 	margin-left: 12px;
 }
 
@@ -423,20 +423,20 @@ body{
 .btn-rules-wrapper {
 	width: 150px;
 	height: 22px;	
-	margin-top: 5px;
+	margin-top: 3px;
 	float: right;
 }
 
 .btn-normal-wrapper {
 	width: 121px;
 	height: 30.5px;
-	margin-top: 1px;
+	margin-top: 3px;
 }
 
 .btn-vip-wrapper {
 	width: 149.5px;
-	height: 43px;
-	margin-top: 1px;
+	height: 50px;
+	margin-top: 3px;
 }
 
 .btn-rules-normal {
@@ -464,7 +464,7 @@ body{
 .btn-rules-vip {
 	background: #66157c;
 	width: 300px;
-	height: 64px;
+	height: 72px;
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
@@ -475,7 +475,7 @@ body{
 	margin-top: -3px;
 	text-align: left;
 	padding-left: 55px;
-	padding-top: 6px;
+	padding-top: 10px;
 	font-weight: 700;
 	border-top-left-radius: 40px;
 	border-bottom-left-radius: 40px;
@@ -519,7 +519,7 @@ body{
 .btn-calculate-vip-wrapper {
     width:35px;
 }
-
+/*
 .btn-calculate-vip {
 	background: #1ea20c;
 	width: 70px;
@@ -538,7 +538,7 @@ body{
 	background: #e95d00;
 	width: 35px;
 }
-
+*/
 .right {
 	float: right;
 }
@@ -2066,25 +2066,24 @@ if it's not present, don't show loader */
 
 .btn-redeemcash {
 	position: absolute;
-	margin-left: 45px;
-	width: 120px;
-	margin-top: 7px;
+	margin-left: 40px;
+	width: 130px;
+	margin-top: 10px;
 }
 
 .icon-newcoin {
 	position: absolute;
-	width: 45px;
-	margin-top: 8px;
-	margin-left: -165px
+	width: 50px;
+	margin-top: 10px;
+	margin-left: -170px
 }
 
 .spanAcuPoint2 {
 	position: absolute;
-	margin-top: 2px;
+	margin-top: 5px;
 	text-align: center;
 	width: 175px;
 	margin-left: 58px;
-	font-size: -webkit-xxx-large;
 }
 
 .caption_bet {

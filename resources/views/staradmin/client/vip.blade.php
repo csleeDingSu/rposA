@@ -36,13 +36,14 @@
 	<div class="information-table">
 		<div class="grid-container">
 			<div class="box">
-				<div class="coin"></div>
-				<div id="balance-wrapper">
-					<div class="number number-vip">
-						<span class="balance-vip" id="spanPoint">0</span>
-						<div class="btn-calculate-vip-wrapper">
-							<div class="btn-calculate-vip">结算</div>
+				<div class="btn-calculate">
+					<div class="balance-banner">
+						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
+						<div class="spanAcuPoint2">
+							<span class="balance-vip" id="spanPoint">0</span>
+							<span class="spanAcuPoint" style="font-size: 0;">0</span>
 						</div>
+						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
 					</div>
 				</div>
 			</div>
@@ -378,14 +379,16 @@
 			<div class="button-wrapper">
 		        <div class="button-card radio-primary">
 		        	<div class="radio btn-rectangle">
-						<input name="rdbBet" class="invisible" type="radio" value="odd">单数
-						<span class="bet">押</span><span class="bet-container">0</span>
+						<input name="rdbBet" class="invisible" type="radio" value="odd">
+						<div class="bet">押注<span class="bet-container">0</span>积分</div>
+						<div class="guess">我猜单数</div>
 					</div>
 				  </div>
 				  <div class="button-card radio-primary right">
 					<div class="radio btn-rectangle">
-						<input name="rdbBet" class="invisible" type="radio" value="even">双数
-						<span class="bet">押</span><span class="bet-container">0</span>
+						<input name="rdbBet" class="invisible" type="radio" value="even">
+						<div class="bet">押注<span class="bet-container">0</span>积分</div>
+						<div class="guess">我猜双数</div>
 					</div>
 				  </div>
 			</div>

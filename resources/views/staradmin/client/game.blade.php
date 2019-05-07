@@ -62,7 +62,7 @@
 
 			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper">
+				<div class="btn-rules-wrapper btn-vip-wrapper">
 					<a href="/vip">
 						<!--div class="btn-vip"></div-->
 						<div class="btn-rules-vip">进入VIP专场</div>
@@ -74,7 +74,7 @@
 			<div class="box" id="btn-vip-wrapper">
 				<div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper">
 						<!--div class="btn-vip"></div-->
-						<div class="btn-rules-normal"></div>
+						<div class="btn-rules-vip">VIP收益翻倍</div>
 					<div style="clear:both"></div>
 				</div>
 			</div>
