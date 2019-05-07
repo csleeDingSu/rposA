@@ -43,6 +43,12 @@ Route::get('open-draw/{drawid?}', function ($drawid) {
 	dd( 'draw open to all connected members' );
 } );
 
+Route::get('open-draw-pre/{drawid?}', function ($drawid) {
+	//if (empty($drawid) $drawid = 0;
+	Artisan::call('game:open_draw_pre', ['drawid' => $drawid]);
+	dd( 'open_draw_pre to all connected members' );
+} );
+
 Route::get('many', function () {
     return view('redis.many');
 });
