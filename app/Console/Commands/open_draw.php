@@ -132,7 +132,7 @@ class open_draw extends Command
 		   //die();
 		//}
 
-		$result =  OpenDrawPre::select('*')->whereNull('deleted_at')->where('draw_id',$drawid)->first();
+		$result =  OpenDrawPre::select('*')->whereNull('deleted_at')->first();
 
 		if (!empty($result)) {
 
