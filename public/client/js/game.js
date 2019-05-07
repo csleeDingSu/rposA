@@ -127,7 +127,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(acupoint);
-            $('.spanAcuPointAndBalance').html(total_balance);
+            $('.spanAcuPointAndBalance').html(acupoint);
         }
         $('.packet-acupoint').html(acupoint);
         $('#hidBalance').val(balance);
@@ -957,6 +957,7 @@ function bindResetLifeButton(){
 function showProgressBar(bol_show){
     var level = parseInt($('#hidLevel').val());
     var consecutive_lose = $('#hidConsecutiveLose').val();
+    var balance = parseInt($('#hidBalance').val());
     var bet_amount = 0;
     var payout_info = '';
     var span_balance = 1200;
@@ -975,8 +976,11 @@ function showProgressBar(bol_show){
         $('.spanAcuPoint').html(0);
         $('.spanAcuPointAndBalance').html(0);
         
-        result_info = '本轮已沒有剩餘次數了。';
+        result_info = '剩余<span style="text-decoration:underline">'+ balance +'</span>游戏积分&nbsp;';
         $('.result-info').html(result_info);
+
+
+        
         
         checked(7, false);
         changbar(7);
@@ -1050,6 +1054,8 @@ function showProgressBar(bol_show){
                 $('.span-5').html("-310");
                 break;
         }
+
+        result_info = '剩余<span style="text-decoration:underline">'+ balance +'</span>游戏积分&nbsp;';
 
         $('.span-balance').html(span_balance);
         $('.bet-container').html(bet_amount);

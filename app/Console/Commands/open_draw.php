@@ -109,6 +109,8 @@ class open_draw extends Command
 				$channel[] = 'initsetting-'.$val->member_id;
 				$message[] = $data ;	
 			}
+			
+			$this->comment('End fetch Data:'.'--------'.Carbon::now()->toDateTimeString().'----------');	
 		}
 			
 			
@@ -118,7 +120,7 @@ class open_draw extends Command
 		//}
 
 				
-		foreach (array_chunk($event_data,500) as $keyc=>$event) {
+		foreach (array_chunk($event_data,100) as $keyc=>$event) {
 			foreach ($event as $val)
 			{
 			   //print_r($val);die();

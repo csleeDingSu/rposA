@@ -73,11 +73,22 @@ body{
 	transform: scale(0.33); 
 	-webkit-transform: scale(0.33);
 	-webkit-transform-origin:left top;
-    font-size: 60px;
-    color: #6a2d1b;
-    padding-top: 30px;
+    font-size: 35px;
+    color: #555555;
+    padding-top: 0px;
     cursor: pointer;
   /* other styles */
+}
+
+.bet-container, .bet {
+	padding-top: 20px;
+	font-size: 55px;
+	color: #9d5f3e;
+	display: none;
+}
+
+.btn-rectangle.clicked .guess{
+	margin-top: -5px;
 }
 
 .button-wrapper {
@@ -100,8 +111,6 @@ body{
 		transform: scale(0.27); 
 		-webkit-transform: scale(0.27);
 		-webkit-transform-origin:left top;
-	    font-size: 60px;
-	    padding-top: 30px;
 	  /* other styles */
 	}
 
@@ -109,8 +118,7 @@ body{
 		transform: scale(0.27); 
 		-webkit-transform: scale(0.27);
 		-webkit-transform-origin:left top;
-	    font-size: 60px;
-	    padding-top: 30px;
+	    padding-top: 10px;
 	  /* other styles */
 	}
 
@@ -296,16 +304,10 @@ body{
   }
 }
 
-.bet-container, .bet {
-	font-size: 60px;
-	color: #15a71e;
-	display: none;
-}
-
 .grid-container {
   display: grid;
-  grid-template-columns: auto  200px;
-  height: 40px;
+  grid-template-columns: auto  150px;
+  height: 56.5px;
 }
 
 .box {
@@ -328,13 +330,13 @@ body{
 }
 
 .btn-calculate {
-	width: 134px;
+	width: 150px;
 	height: 39px;
 }
 
 .balance-banner {
-	background: url('/client/images/banner_coin.png') no-repeat;
-	width: 210px;
+	background: #643480;
+	width: 350px;
 	height: 64px;
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
@@ -343,9 +345,11 @@ body{
 	z-index: 100;
 	position: relative;
 	/*margin-left: 10px;*/
-	color: #fff188;
-	font-size: 46px;
+	color: #fff;
+	font-size: 40px;
 	cursor: pointer;
+	border-radius: 30px;
+	margin-left: 12px;
 }
 
 .btn-vip {
@@ -417,7 +421,7 @@ body{
 }
 
 .btn-rules-wrapper {
-	width: 165px;
+	width: 150px;
 	height: 22px;	
 	margin-top: 5px;
 	float: right;
@@ -458,9 +462,9 @@ body{
 }
 
 .btn-rules-vip {
-	background: url('/client/images/vip/vip-bg.png') no-repeat;
-	width: 350px;
-	height: 69px;
+	background: #66157c;
+	width: 300px;
+	height: 64px;
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
@@ -470,9 +474,11 @@ body{
 	color: #ffffff;
 	margin-top: -3px;
 	text-align: left;
-	padding-left: 90px;
+	padding-left: 55px;
 	padding-top: 6px;
 	font-weight: 700;
+	border-top-left-radius: 40px;
+	border-bottom-left-radius: 40px;
 }
 
 .balance {
@@ -1559,6 +1565,8 @@ body{
   transform: scale(0.3); 
   -webkit-transform: scale(0.3);
   -webkit-transform-origin:left top;
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 .flickity-prev-next-button.next {
@@ -1570,6 +1578,8 @@ body{
   -webkit-transform: scale(0.3);
   -webkit-transform-origin:left top;
   right: -56px;
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 .rules-content {
@@ -2056,21 +2066,23 @@ if it's not present, don't show loader */
 
 .btn-redeemcash {
 	position: absolute;
-	margin-left: 85px;
+	margin-left: 45px;
+	width: 120px;
+	margin-top: 7px;
 }
 
 .icon-newcoin {
 	position: absolute;
 	width: 45px;
-	margin-top: 6px;
-	margin-left: -95px
+	margin-top: 8px;
+	margin-left: -165px
 }
 
 .spanAcuPoint2 {
 	position: absolute;
-	margin-top: -7.5px;
+	margin-top: 2px;
 	text-align: center;
-	width: 125px;
+	width: 175px;
 	margin-left: 58px;
 	font-size: -webkit-xxx-large;
 }
