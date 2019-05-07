@@ -107,9 +107,13 @@ function populateHistoryData(records, token) {
 
             if (item.type == 'vip') {
                 html += '<div class="history-row">' +
-                    '<div class="col-xs-9 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + (item.used_point || '') + '金币</div>' +
-                        '<div class="balance">购买时间:'+ str_date +'</div>' +
+                    '<div class="col-xs-9 column-5">';
+                    if (item.used_point > 0) {
+                        html += '<div class="description">'+ item.product_name + ' ' + item.used_point + '金币</div>';
+                    }else {
+                        html += '<div class="description">'+ item.product_name + '</div>';
+                    }
+                html += '<div class="balance">购买时间:'+ str_date +'</div>' +
                     '</div>';
 
                 if(item.redeem_state == 1) { // Pending

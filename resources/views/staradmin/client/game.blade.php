@@ -907,11 +907,18 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="instructions">
+								<!-- <div class="instructions">
 									系统默认拥有1200的游戏金币，第一次投10金币，那么只有2种情况，猜对或猜错：<br />
 									<span class="highlight-red">如果猜错：</span>下一局投30金币，猜对能获得30金币奖励，扣掉10金币亏损，还赚20金币，如果还猜错，就投70金币，不停倍增。。。<br />
 									1200金币可投6次；这是猜单双的游戏，6次之内猜对的概率有99.9%。<br />
 									<span class="highlight-green">如果猜对：</span>每次猜对就返回从10金币按以上原则重新开始，无限循环。
+								</div> -->
+								<div class="instructions">
+									第1局10积分，如果猜错了怎么办？<br/>
+									第2局就投30积分，如果第2局猜对，就能得到30积分，扣掉第1局亏的10积分，最终还赚20积分。<br />
+									如果第2局还猜错，第3局就投70积分。 。 。<br />
+									1200游戏积分能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
+									如果猜对就返回从10积分开始。
 								</div>
 
 								@if($betting_count > 0)
