@@ -25,6 +25,11 @@ Route::any('/master-call-nobet', 'RedisGameController@master_withoutbet')->name(
 
 Route::any('/userbetting', 'RedisGameController@userbetting')->name('api.redis.userbetting');
 
+Route::get('new-open-draw/{drawid?}', function ($drawid) {
+	Artisan::call('draw:initiate', ['drawid' => $drawid]);
+	dd( 'draw open to all connected members' );
+} );
+
 Route::get('generateresult/{drawid}', function ($drawid) {
 	Artisan::call('generate:br', ['drawid' => $drawid]);
 	dd( 'result generated' );
