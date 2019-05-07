@@ -205,24 +205,25 @@
 					
 				</div>
 			</div>
-			<div class="openFrom">
-				<div class="div-instruction">
-					<ul class="instruction-list">
-						<li>
-							<div class="instruction-background">
-								<img src="{{ asset('/client/images/search/copy.png') }}" />
-							</div>
-						</li>
-						<li>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
-						<li>粘贴搜索框，查找优惠卷</li>
-					</ul>
-				</div>
-			</div>
 		</div>
 
 		<div class="speech-balloon-home hide">你有{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次机会，可赚{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life * 15 : 0}}元免单红包</div>
 		@include('layouts/footer')
 
+		<div class="openFrom">
+			<div class="div-instruction">
+				<ul class="instruction-list">
+					<li>
+						<div class="instruction-background">
+							<img src="{{ asset('/client/images/search/copy.png') }}" />
+						</div>
+					</li>
+					<li>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
+					<li>粘贴搜索框，查找优惠卷</li>
+				</ul>
+			</div>
+		</div>
+			
 		<!-- 领取优惠券  -->
 		<div class="showQuan dflex scaleHide">
 			<div class="inBox" style="padding-bottom: 0.2rem;">
@@ -373,7 +374,6 @@
 		$(document).ready(function(){
 		//$(function () {
 			$('#strSearch').focus(function(){
-				$('.main').hide(); 
 				$('.logo').hide();
 				$(this).parent().addClass('enlarge');
 				$('.customer').html('<a href="javascript:void(0)"><div class="cancel">取消</div></a>');
@@ -381,7 +381,6 @@
 	            $(".openFrom").slideDown(150);
 
 	            $('.cancel').click(function(){
-	            	$('.main').show(); 
 					$('.logo').show();
 					$('.flexSp').removeClass('enlarge');
 					$('.customer').html('<a href="javascript:void(0)" id="customerservice" class="customerservice"><img src="/client/images/search/customer.png"><div class="caption">在线客服</div></a>');
