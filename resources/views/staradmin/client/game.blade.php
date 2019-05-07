@@ -46,6 +46,7 @@
 						<img class="btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
 					</div>
 				</div>
+				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
 
 				<!-- <div class="btn-calculate">
 					<div class="balance-banner">
@@ -60,6 +61,7 @@
 					</div>
 				</div-->
 			</div>
+
 
 			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 			<div class="box" id="btn-vip-wrapper">
@@ -100,8 +102,9 @@
 			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
 	  	</div>
+
 	</div>
-	<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
+
 	<!-- end information table -->
 
 	<!-- swiper iframe -->
