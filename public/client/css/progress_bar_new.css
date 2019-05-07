@@ -68,7 +68,18 @@
 	border-bottom:.1rem solid transparent;
 }
 
-.barBox .rule ul li span{ display: block; text-align: center;font-size: .25rem;color: #373737; height: .25rem; line-height: .25rem; color: #fff;}
+.barBox .rule ul li span{ 
+	display: block; 
+	text-align: center;
+	font-size: .25rem;
+	color: #373737; 
+	height: .25rem; 
+	line-height: .25rem; 
+	color: #fff;
+	opacity: 0.4;
+  	filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
 .barBox .rule ul li dl{
 	display: flex;
 	justify-content: space-between;
@@ -188,7 +199,13 @@
 
 
 
-.barBox.barBox li.on span{color: #b7f99f; font-size: .30rem; font-weight: bold;}
+.barBox.barBox li.on span{
+	color: #b7f99f; 
+	font-size: .30rem; 
+	font-weight: bold;
+	opacity: 100;
+  	filter: alpha(opacity=100); /* For IE8 and earlier */
+}
 
 
 .barBox.barBox-2 li:nth-child(-n+1) span{ color:#000;}
