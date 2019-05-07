@@ -67,7 +67,11 @@ class open_draw extends Command
 		
 		$gameid = $draw->game_id;
 		$event_data = [];
-		$mers = \DB::table('redis')->select('member_id')->get();
+		$mers = \DB::table('redis')
+			->join('members', 'members.id', '=', 'redis.member_id')
+			->whereDate('members.updated_at', Carbon::today())
+			->select('redis.member_id')
+			->get();
 		
         				
 		if ($mers)
