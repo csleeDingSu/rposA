@@ -391,10 +391,10 @@ function getSocket(){
                 var wallet_records = data.data.wallet;
                 var betting_records = groupHistory(data.data.bettinghistory.data);
                 var isFirstLifeWin = data.data.IsFirstLifeWin;
-                
+
                 if(isFirstLifeWin == 'yes'){
-                    $('.btn-rules-wrapper').removeClass('btn-vip-wrapper').addClass('btn-normal-wrapper');
-                    $('.btn-rules-normal').addClass('game_rules');
+                    $('.btn-vip-modal').removeClass('btn-vip-wrapper').addClass('btn-normal-wrapper');
+                    $('.btn-vip-modal .btn-rules-vip').html('规则说明');
                     $('.btn-vip-modal').on('click', showGameRules);
                 } else {
                     $('.btn-vip-modal').click(function(){
