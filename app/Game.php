@@ -468,10 +468,11 @@ class Game extends Model
 	 **/
 	public static function get_member_current_level($gameid, $memberid, $vip = FALSE)
 	{
-		$table = 'member_game_result';
-		if ($vip) $table = 'vip_member_game_result';
+		$table = 'v_last_member_game_result';
+		if ($vip) $table = 'v_last_vip_member_game_result';
 		
-		$result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
+		// $result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
+		$result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->first();
 		
 		if ($result)
 		{
