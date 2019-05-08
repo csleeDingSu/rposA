@@ -204,7 +204,7 @@ class Game extends Model
 	{
 		//$result = DB::table('game_result')->where('game_id', $id)->get();		
 		
-		$result =  DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('id', $id)->first();
+		$result =  DB::table('v_game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->where('id', $id)->first();
 		
 		return $result;
 	}
@@ -433,8 +433,8 @@ class Game extends Model
 	public static function get_member_next_level($gameid, $memberid, $vip = FALSE)
 	{
 		// $result =  DB::table('member_game_result')->where('game_id', '=', $gameid)->where('member_id', '=', $memberid)->latest()->first();
-		$table = 'member_game_result';
-		if ($vip) $table = 'vip_member_game_result';
+		$table = 'v_member_game_result';
+		if ($vip) $table = 'v_vip_member_game_result';
 		$result = DB::table($table)->where('game_id', $gameid)->where('member_id', $memberid)->latest()->first();
 		
 		//print_r($result);
