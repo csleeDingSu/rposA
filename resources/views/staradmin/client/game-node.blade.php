@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '挖宝大冒险')
+@section('title', '幸运转盘')
 
 @section('top-css')
     @parent
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/game.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
     
 
     <style>
@@ -36,19 +37,37 @@
 	<div class="information-table">
 		<div class="grid-container">
 			<div class="box">
-				<div class="coin"></div>
+				<div class="btn-calculate">
+					<div class="balance-banner">
+						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
+						<div class="spanAcuPoint2">
+							<span class="spanAcuPointAndBalance">0</span>金币
+							<span class="spanAcuPoint" style="font-size: 0;">0</span>
+						</div>
+						<img class="btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
+					</div>
+				</div>
+				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
+
+				<!-- <div class="btn-calculate">
+					<div class="balance-banner">
+						<span class="spanAcuPoint">0</span>
+					</div>
+				</div> -->
+				<!--div class="coin"></div>
 				<div class="number">
 					<span class="balance spanAcuPoint">0</span>
 					<div class="btn-calculate-wrapper">
 						<div class="btn-calculate">兑换红包</div>
 					</div>
-				</div>
+				</div-->
 			</div>
+
 
 			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper">
-					<a href="/vip-node">
+				<div class="btn-rules-wrapper btn-vip-wrapper">
+					<a href="/vip">
 						<!--div class="btn-vip"></div-->
 						<div class="btn-rules-vip">进入VIP专场</div>
 					</a>
@@ -57,9 +76,9 @@
 			</div>
 			@else
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper btn-vip-modal">
+				<div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper">
 						<!--div class="btn-vip"></div-->
-						<div class="btn-rules-normal">VIP专场收益增10倍</div>
+						<div class="btn-rules-vip">VIP收益翻倍</div>
 					<div style="clear:both"></div>
 				</div>
 			</div>
@@ -76,13 +95,17 @@
 			<input id="hidConsecutiveLose" type="hidden" value="" />
 			<input id="hidHall" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
-			<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
+			<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
+			<input id="hidWechatId" type="hidden" value="0" />
 			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
+			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
 	  	</div>
+
 	</div>
+
 	<!-- end information table -->
 
 	<!-- swiper iframe -->
@@ -91,6 +114,12 @@
 			<div class="frame-wrapper">
 				<div class="results-body">
 					<div class=".results-wrapper">
+					<div class="timer-row">
+						<div class="timer-wrapper">
+		        			<div class="icon-timer"></div>
+		        		</div>
+						幸运倒计时：<span class="span-timer"></span>秒
+					</div>
 					<div class="results-row">
 						<div class="chain-wrapper results-left"></div>
 						<div class="box-wrapper">
@@ -197,28 +226,6 @@
 						<div class="box-wrapper">
 							<div id="result-25" class="results-box">5</div>
 						</div>
-						<div class="chain-wrapper results-right">
-							<div class="right-chain"></div>
-						</div>
-				  	</div>
-
-				  	<div class="results-row">
-				  		<div class="chain-wrapper results-left"></div>
-				  		<div class="box-wrapper">
-							<div id="result-30" class="results-box">1</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-29" class="results-box">2</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-28" class="results-box">3</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-27" class="results-box">4</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-26" class="results-box">5</div>
-						</div>
 						<div class="chain-wrapper results-right"></div>
 				  	</div>
 				  </div>
@@ -228,8 +235,41 @@
 
 		<div class="carousel-cell">
 			<div class="frame-wrapper">
-		        <div id="wheel_container"></div>
-		        <div class="spinning">转盘转动中不能选号</div>
+				<div class="big-border">
+					<div class="small-border g6">
+
+						<div class="shan">
+							<span>1元现金</span>
+							<img src="/client/images/wheel/monery.png" width="30%">
+						</div>
+
+						<div class="shan">
+							<span>2元现金</span>
+							<img src="/client/images/wheel/monery.png" width="30%">
+						</div>
+
+						<div class="shan">
+							<span>3元现金</span>
+							<img src="/client/images/wheel/monery.png" width="30%">
+						</div>
+
+						<div class="shan">
+							<span>4元现金</span>
+							<img src="/client/images/wheel/monery.png" width="30%">
+						</div>
+						
+						<div class="shan">
+							<span>5元现金</span>
+							<img src="/client/images/wheel/monery.png" width="30%">
+						</div>
+
+						<div class="shan">
+							<span>6元现金</span>
+							<img src="/client/images/wheel/monery.png" width="30%">
+						</div>
+						<img src="/client/images/wheel/middle.png" width="50%" class="middle">
+					</div>
+				</div>
 		    </div>
 		</div>
 
@@ -239,6 +279,14 @@
 					<div class="history-wrapper">
 						<table class="history-table">
 						    <tbody>
+						    	<tr>
+						        	<td class="timer" colspan="2">
+						        		<div class="timer-wrapper">
+						        			<div class="icon-timer"></div>
+						        		</div>
+						        		幸运倒计时：<span class="span-timer"></span>秒
+						        	</td>
+						        </tr>
 						        <tr id="row-1">
 						            <td class="history-number"></td>
 						            <td class="history">
@@ -271,10 +319,6 @@
 						            <td class="history-number"></td>
 						            <td class="history"></td>
 						        </tr>
-						        <tr id="row-8">
-						            <td class="history-number"></td>
-						            <td class="history"></td>
-						        </tr>
 						        <tr>
 						        	<td class="legend" colspan="2">
 						        		<div class="even"><span class="history-label"></span></div><div class="legend-item">代表双数</div>
@@ -290,7 +334,7 @@
 		</div>
 	</div>
 	<!-- end swiper iframe -->
-
+	<div class="spinning">转盘转动中，请等待结果。</div>
 	<div class="instruction">请猜下一局幸运号是单数或双数</div>
 
 	<!-- progress bar -->
@@ -385,8 +429,11 @@
 	          </li>
 	        </ul>
 	      </div>
+
+	      <p style="font-size:0px;"><span class="span-balance">1200</span> / 1200</p>
+	        
 	      <div class="barIn">
-	        <p><span class="span-balance">1200</span> / 1200</p>
+	        <a id="viewgamerules"><p><span class="result-info"></span><span class="viewgamerules">玩法说明</span></p></a>
 	        <div class="barImg"></div>
 	      </div>
 
@@ -394,14 +441,16 @@
 		<div class="button-wrapper">
 	        <div class="button-card radio-primary">
 	        	<div class="radio btn-rectangle">
-					<input name="rdbBet" class="invisible" type="radio" value="odd">单数
-					<span class="bet">押</span><span class="bet-container">0</span>
+					<input name="rdbBet" class="invisible" type="radio" value="odd">
+					<div class="bet">押注<span class="bet-container">0</span>积分</div>
+					<div class="guess">我猜单数</div>
 				</div>
 			  </div>
 			  <div class="button-card radio-primary right">
 				<div class="radio btn-rectangle">
-					<input name="rdbBet" class="invisible" type="radio" value="even">双数
-					<span class="bet">押</span><span class="bet-container">0</span>
+					<input name="rdbBet" class="invisible" type="radio" value="even">
+					<div class="bet">押注<span class="bet-container">0</span>积分</div>
+					<div class="guess">我猜双数</div>
 				</div>
 			  </div>
 		</div>
@@ -422,11 +471,10 @@
 			<div class="modal-title">
 				<h1>您有红包等待领取</h1>
 				<div class="reward">
-					¥ <span class="reward-amount">{{env('newbie_willget_bonus', '45.00')}}</span>
+					<span class="reward-amount">{{env('newbie_willget_bonus', '60.00')}}</span>元
 				</div>
 				<div class="reward-instructions">
-					认证后能获得{{env('newbie_willget', '3')}}次挖宝机会<br />
-					每次挖宝机会会能获得{{env('every_time_play_you_will_get', '15')}}元
+					需要微信认证才能领取
 				</div>
 			</div>
 			<div class="modal-content modal-wechat">
@@ -440,7 +488,7 @@
 								</div>								
 							</div>
 							<div class="row">
-								<div id="cut" class="copyvoucher">WABAO666</div>
+								<div id="cut" class="copyvoucher">{{env('wechat_id', 'BCKACOM')}}</div>
 								<div class="cutBtn">一键复制</div>
 							</div>
 							<div class="modal-card">
@@ -484,9 +532,14 @@
 								<div class="modal-message-balance">
 									您当前总金币：<div class="packet-point">&nbsp;</div>
 								</div>
-								<div class="modal-message-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life">
 									确认结算
-								</div>												
+								</div>
+								<!--a href="/share">
+								<div class="modal-invite-button">
+									分享好友获挖宝机会
+								</div>
+								</a-->										
 							</div>
 						</div>
 					</div>							
@@ -496,9 +549,37 @@
 	</div>
 <!--  end -->
 
+	<!-- new -->
+	<div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-title">
+								  提现说明
+								</div>
+								<div class="instructions">
+									需要滿1350金幣才可以提現，其中系統提供的1200原始金幣不可提現。<br>
+									只能提現游戲中盈利的150金幣，150金幣大約可兌換15元現金，再接再厲！
+								</div>
+								<div class="close-modal modal-warning-button">
+									知道了
+								</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
 <!-- Start Reset Life Play -->
 
-	<div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12" id="reset-life-play_bk" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
@@ -506,15 +587,52 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="modal-warning-title">
-									兑换说明
+									您拥有<span class="spanAcuPoint">0</span>金币
 								</div>
-								<div class="modal-warning-content">
-									需满150金币，系统会自动结算。<br />
-									150金币约等于15元红包，请再接再厉。
+								<div class="speech-balloon">
+								  <div class="arrow top right"></div>
+								  您有<span class="spanAcuPoint">0</span>金币未结算 需满150才能结算
 								</div>
+								<div class="modal-content-wrapper">
+									<div class="modal-warning-content">
+										<div class="col-xs-4 voucher-wrapper">
+											<div class="voucher-value"><span class="voucher-yuan">￥</span>30</div>
+											<div class="voucher-label">购物补助金</div>
+										</div>
+										<div class="col-xs-8">
+											<div class="voucher-description">30元购物补助金</div>
+											<div class="voucher-instruction">需要300金币兑换</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-content-wrapper">
+									<div class="modal-warning-content">
+										<div class="col-xs-4 voucher-wrapper">
+											<div class="voucher-value"><span class="voucher-yuan">￥</span>50</div>
+											<div class="voucher-label">购物补助金</div>
+										</div>
+										<div class="col-xs-8">
+											<div class="voucher-description">50元购物补助金</div>
+											<div class="voucher-instruction">需要500金币兑换</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-content-wrapper">
+									<div class="modal-warning-content">
+										<div class="col-xs-4 voucher-wrapper">
+											<div class="voucher-value"><span class="voucher-yuan">￥</span>100</div>
+											<div class="voucher-label">购物补助金</div>
+										</div>
+										<div class="col-xs-8">
+											<div class="voucher-description">100元购物补助金</div>
+											<div class="voucher-instruction">需要1000金币兑换</div>
+										</div>
+									</div>
+								</div>
+								<div style="clear: both"></div>
 
 								<div class="close-modal modal-warning-button">
-									我知道了
+									返回{{env('game_name', '幸运转盘')}}
 								</div>												
 							</div>
 						</div>
@@ -531,20 +649,31 @@
 	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
+				<div class="share-logo-wrapper">
+                	<img class="share-logo" src="{{ asset('/client/images/no-life.png') }}" width="77" height="77" />
+                </div>
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
-								<div class="modal-warning-title">
-									您当前没有挖宝次数
+							<div class="modal-card share-card">
+								<div class="modal-share-title">
+									您的次数已用完
 								</div>
-								<div class="modal-warning-content">
-									邀请好友注册将获得挖宝次数
+								<div class="modal-invite-content">
+									<h1 class="modal-invite-title">您有以下选择</h1>
+									<ol class="vegan-list">
+										<li>购买次数，首次购买仅需<span class="_1st_basic_topup">5.8元/次</span>，之后购买9.9元/次，每天限购5次。</li>
+										<li>邀请好友加入，邀请1个获得{{env('sharetofriend_youwillget', '1')}}次机会</li>
+									</ol>
 								</div>
+								<a href="/purchase" class="link-button">
+									<div class="modal-share-button">
+										我要购买
+									</div>
+								</a>
 								<a href="/share" class="link-button">
-									<div class="modal-warning-button">
-										邀请好友加入
+									<div class="modal-vip-button">
+										邀请好友
 									</div>
 								</a>													
 							</div>
@@ -571,11 +700,11 @@
 									当前不能结算
 								</div>
 								<div class="modal-warning-content">
-									本局挖宝尚未完成
+									你猜的游戏正在进行中
 								</div>
 
 								<div class="close-modal modal-warning-button">
-									继续挖宝
+									继续游戏
 								</div>												
 							</div>
 						</div>
@@ -598,14 +727,19 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/vip/icon-lose.png') }}" class="img-wabao" />
 								<div class="modal-lose-title">
-									本次挖宝失败
+									本次游戏失败
 								</div>
 								<div class="modal-lose-content">
 									本局盈利的金币清零
 								</div>
-								<div class="modal-message-button btn-reset-life">
-									继续挖宝
+								<div class="modal-confirm-button btn-reset-life">
+									继续游戏
 								</div>
+								<!--a href="/share">
+								<div class="modal-invite-button">
+									分享好友获挖宝机会
+								</div>
+								</a-->
 							</div>
 						</div>
 					</div>							
@@ -627,10 +761,10 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
 								<div class="modal-warning-title">
-									当前不能挖宝
+									当前不能玩游戏
 								</div>
 								<div class="modal-warning-content">
-									您必须把挖宝机会兑换成金币
+									您必须把游戏机会兑换成金币
 								</div>
 
 								<div class="btn-reset-life-continue modal-warning-button">
@@ -646,68 +780,29 @@
 
 <!--  end -->
 
-<!-- Game Rules starts -->
-	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-title">
-				<h1>游戏规则说明</h1>
-			</div>
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="instructions">
-									每局拥有1200的游戏积分，分6次来玩。
-								</div>
-								<img src="{{ asset('/client/images/rules_timeline.png') }}" class="rules-content-img-timeline"/>
-								<div class="instructions">
-									第一次押10积分，如果不中下次押30，如果还不中下次押70，不停的增加投入。<br />
-									如果猜中，就返回10积分重新押起。<br />
-									所以只要6次内猜中一次，就能无限循环不停赚积分，赚的积分可提现。<br />
-									6次全错的话，扣除赚到的积分。
-								</div>
-
-								@if($betting_count > 0)
-									<div class="btn-game-rules btn-rules-close">开始游戏</div>
-								@else
-									<div class="btn-game-rules btn-rules-timer">请阅读游戏规则 <span class="txtTimer"></span></div>	
-								@endif
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-<!-- Steps Modal Ends -->
-
 
 <!-- VIP Modal -->
 
-	<div class="modal fade col-md-12 col-sm-10" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
+	<div class="modal fade col-md-12" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content vip-background">
-                <div class="vip-logo-wrapper">
-                	<img class="vip-logo" src="{{ asset('/client/images/vip/vip-big.png') }}" width="53" height="48" />
-                </div>
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card vip-modal-card">
-								<img class="vip-title" src="{{ asset('/client/images/vip/vip-title.png') }}" width="250" height="28" />
 								<div class="vip-card">
-									<img class="img-vip" src="{{ asset('/client/images/vip/v1.png') }}" width="20" height="17" /><div class="vip-card-title">VIP场的结算方式：</div>
-									<div style="clear: both;"></div>
-									<div class="vip-card-desc">原始积分1200可结算，挖宝无上限，想挖多少就挖多少。</div>
-								</div>
-								<div class="vip-card">
-									<img class="img-vip" src="{{ asset('/client/images/vip/v2.png') }}" width="20" height="17" /><div class="normal-card-title">普通场的结算方式：</div>
-									<div style="clear: both;"></div>
-									<div class="normal-card-desc">原始积分1200不可结算，最多可挖宝150，只能结算150金币。</div>
-								</div>
-								<!--div class="vip-info">入场要求：兑换500挖宝币或消耗100元话费券</div-->
-								<a href="/redeem"><div class="btn-vip-submit">兑换VIP入场券</div></a>
+									<div class="vip-card-title">
+										<img src="{{ asset('/client/images/vip/left_deco.png') }}" width="18px" height="13px" /> 会员特权 <img src="{{ asset('/client/images/vip/right_deco.png') }}" width="18px" height="13px" />
+									</div>
+									<div class="vip-card-desc">
+										<ul>
+											<li><span class="vip-highlight">赠送1200金币，</span>可结算红包。</li>
+											<li><span class="vip-highlight">无上限封顶，</span>想赚多少都行。</li>
+											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
+										</ul>
+									</div>
+									<a href="/membership"><div class="btn-vip-submit">99元开通会员</div></a>
+								</div>								
 							</div>
 						</div>
 					</div>							
@@ -718,21 +813,122 @@
 
 <!--  end -->
 
+<!-- Start Win -->
+
+	<div class="modal fade col-md-12" id="win-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-title modal-win-header">
+				<div class="modal-win-title">恭喜你猜对了</div>
+				<div class="modal-result">+10</div>			
+			</div>
+
+			<div class="modal-content">
+				<img class="separator" src="{{ asset('/client/images/progress-bar/separator.png') }}" width="300" height="13" />
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-instruction">每一轮有6次机会，前2次猜错亏损40金币，第3次猜对奖励70金币，最终赚了30金币。<br />
+								猜对后满血复活，进入下一轮从新开始。</div>
+								<div class="close-win-modal modal-redeem-button">
+									领取奖励
+								</div>												
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
+<!-- Start Win -->
+	<div class="modal fade col-md-12" id="red-packet-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="packet-title">恭喜你获得免单红包</div>
+				<div class="modal-body" style="padding:10px !important;">
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">							
+							<div class="modal-card">
+								<div class="packet-value"><span class="packet-sign">￥</span>45</div>
+								<div class="packet-info">可提现支付宝</div>
+								<div class="instructions">
+									<h1 class="divider">领取方式</h1>
+									注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">{{env('game_name', '幸运转盘')}}</span> 赚金币换领取<br />
+									新人免费玩3次 可赚45元
+								</div>
+								<a href="/member/login/register">
+									<div class="btn-red-packet">注册</div>
+								</a>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+<!--  end -->
+
+<!-- Game Rules starts -->
+	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-title">
+				<h1>倍增式玩法说明</h1>
+			</div>
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<!-- <div class="instructions">
+									系统默认拥有1200的游戏金币，第一次投10金币，那么只有2种情况，猜对或猜错：<br />
+									<span class="highlight-red">如果猜错：</span>下一局投30金币，猜对能获得30金币奖励，扣掉10金币亏损，还赚20金币，如果还猜错，就投70金币，不停倍增。。。<br />
+									1200金币可投6次；这是猜单双的游戏，6次之内猜对的概率有99.9%。<br />
+									<span class="highlight-green">如果猜对：</span>每次猜对就返回从10金币按以上原则重新开始，无限循环。
+								</div> -->
+								<div class="instructions">
+									第1局10积分，如果猜错了怎么办？<br/>
+									第2局就投30积分，如果第2局猜对，就能得到30积分，扣掉第1局亏的10积分，最终还赚20积分。<br />
+									如果第2局还猜错，第3局就投70积分。 。 。<br />
+									1200游戏积分能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
+									如果猜对就返回从10积分开始。
+								</div>
+
+								@if($betting_count > 0)
+									<div class="btn-game-rules btn-rules-close">返回{{env('game_name', '幸运转盘')}}</div>
+								@else
+									<div class="btn-game-rules btn-rules-timer"><span class="span-read">请阅读游戏规则</span> <span class="txtTimer"></span></div>	
+								@endif
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Steps Modal Ends -->
+
 	@parent
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="{{ asset('/client/cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/jquery.rotate.min.js') }}"></script>
-    <script src="{{ asset('/client/js/jquery.wheelOfFortune.js') }}"></script>
+    <script src="{{ asset('/client/js/jquery.wheel.js') }}"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
     <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
-	<script src="{{ asset('/client/js/game-node.js') }}"></script>
+    <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
+    <script src="{{ asset('/client/js/public.js') }}" ></script>
 	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
 
 	<script type="text/javascript">
+		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
+    	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+
 		$(document).ready(function () {
 
 			var wechat_status = $('#hidWechatId').val();
@@ -740,10 +936,6 @@
 
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
-			});
-
-			$('.btn-vip-modal').click(function(){
-				$('#vip-modal').modal('show');
 			});
 			
 			if(wechat_status > 0) {
@@ -764,26 +956,30 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
+			$('#viewgamerules').on('click', showGameRules);
+
+			var valueJson = {
+		        'wheelBody' : $('.big-border'), //转盘主体
+		        'wheelSmall' : $('.small-border'), //转盘内部
+		        'starsNum' : 16, //转盘边缘小黄点个数
+
+		        'starsPostion' : [[50, 0.5], [70, 6], [84.5, 18], [92.5, 32], [95.5, 50], [91, 68], [81.5, 81.5], [68, 91], [50, 95.5], [32, 92.5], [16, 83], [6, 70], [0.5, 50], [3.5, 32], [14, 15], [27, 5.5]], //小圆点坐标
+		        'actionRan' : 7200, //转盘转动弧度
+		        'theOnce' : 0, //初始化转盘第一个
+		        'startBtn' : $('.middle'), //开始按钮
+
+		        //需要后台传值的参数
+		        'clickAjaxUrl' : 'www.baidu.com', //点击抽奖获取信息的交互的ajax
+		        'is_gz' : 1, //是否开启关注 1开 2 关
+		        'is_follow' : 1 //是否关注
+
+		    };
+		    indexApp.init(valueJson).wheelStart(); //应用开始
+
 		});	
 
-		// var noSleep = new NoSleep();
-
-		// function enableNoSleep() {
-		//   noSleep.enable();
-		//   // document.removeEventListener('click', enableNoSleep, false);
-		//   document.removeEventListener('touchstart', enableNoSleep, false);
-		// }
-
-		// Enable wake lock.
-		// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-		// document.addEventListener('click', enableNoSleep, false);
-		// document.addEventListener('touchstart', enableNoSleep, false);
-
-		// ...
-
-		// Disable wake lock at some point in the future.
-		// (does not need to be wrapped in any user input event handler)
-		//noSleep.disable();
-
 	</script>
+
+	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
+	<script src="{{ asset('/client/js/game-node.js') }}"></script>
 @endsection
