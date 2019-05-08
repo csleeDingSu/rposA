@@ -56,20 +56,22 @@ class open_draw_pre extends Command
         $now           = Carbon::now();
         //if ($drawid == '0') $drawid   = 6666;		
 		
-		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->skip(1)->first();
+		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->get()->limit(2);
+		$current_draw = $draw[0];
+		$coming_draw = $draw[1];
 
 		if (!$draw) dd('unknown draw');		
-		$this->info('Draw ID :'.'--------'.$draw->result_id.'----------');
+		$this->info('Draw ID :'.'--------'.$coming_draw->result_id.'----------');
 		$ReportController = new RedisGameController(); 
-		$latest_result = Game::get_latest_result($draw->game_id);
-		$gamesetting   = $ReportController->get_game_setting($draw , $now); 
-		event(new \App\Events\EventDynamicChannel('activedraw','',['gamesetting'=>$gamesetting,'latest_result'=>$latest_result]));
+		$latest_result = $current_draw; //Game::get_latest_result($draw->game_id);
+		$gamesetting   = $ReportController->get_game_setting($coming_draw , $now); 
+		// event(new \App\Events\EventDynamicChannel('activedraw','',['gamesetting'=>$gamesetting,'latest_result'=>$latest_result]));
 		
-		$gameid = $draw->game_id;
+		$gameid = $coming_draw->game_id;
 		$event_data = [];
 		$mers = \DB::table('redis')
 			->join('v_oauth_access_tokens', 'v_oauth_access_tokens.user_id', '=', 'redis.member_id')
-			->where('v_oauth_access_tokens.expires_at', '>=', Carbon::now()->subHour())
+			->where('v_oauth_access_tokens.expires_at', '>=', Carbon::now())
 			->select('redis.member_id')
 			->get();
 		
@@ -81,12 +83,12 @@ class open_draw_pre extends Command
 			
 			//$futureresult  = Game::get_future_result($draw->game_id, $now );
 			
-			$gamehistory   = $ReportController->get_game_history($draw->game_id);			
+			// $gamehistory   = $ReportController->get_game_history($draw->game_id);			
 			$this->comment('Get Data:'.'--------'.Carbon::now()->toDateTimeString().'----------');	
 			foreach ($mers as $key => $val)
 			{
 
-				var_dump($val->member_id);
+				// var_dump($val->member_id);
 
 				$memberid = $val->member_id;
 				$vip = '';
@@ -98,7 +100,7 @@ class open_draw_pre extends Command
 				$vip_level        = Game::get_member_current_level($gameid, $memberid, $vip);
 				$vip_con_lose     = Game::get_consecutive_lose($memberid,$gameid, $vip);
 				
-				$gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
+				// $gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
 				/*
 				$gamenotific = '';
 				$consecutive_lose = [];
@@ -113,7 +115,7 @@ class open_draw_pre extends Command
 								  'wabaofee' 			 => $setting->wabao_fee,
 								  'latest_result' 		 => $latest_result,
 								  'gamesetting' 		 => $gamesetting,
-								  'gamehistory' 		 => $gamehistory,
+								  // 'gamehistory' 		 => $gamehistory,
 								  'level'				 => $level,
 								  'viplevel' 			 => $vip_level,
 								  'consecutive_lose'     => $consecutive_lose,
