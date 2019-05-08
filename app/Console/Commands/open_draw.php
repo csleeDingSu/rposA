@@ -68,7 +68,7 @@ class open_draw extends Command
 		$event_data = [];
 		$mers = \DB::table('redis')
 			->join('v_oauth_access_tokens', 'v_oauth_access_tokens.user_id', '=', 'redis.member_id')
-			->where('v_oauth_access_tokens.expires_at', '>=', Carbon::now())
+			->where('v_oauth_access_tokens.expires_at', '>=', Carbon::now()->subHours(1))
 			->select('redis.member_id')
 			->get();		
         				
