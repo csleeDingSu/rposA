@@ -96,6 +96,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/details/{id?}', 'VoucherController@get_voucher_detail' )->name( 'get.voucher.detail' );
 
 	Route::get( '/arcade', 'ClientController@member_access_game' )->name( 'client.arcade' );
+	Route::get( '/arcade_node', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
 
 	Route::get( '/vip', 'ClientController@member_access_vip' )->name( 'client.vip' );
 
