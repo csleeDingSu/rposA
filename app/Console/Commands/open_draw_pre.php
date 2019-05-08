@@ -110,7 +110,7 @@ class open_draw_pre extends Command
 				*/
 				
 				$data         = [ 'member'               => $memberid, 
-								  'drawid'               => $draw->result_id, 
+								  'drawid'               => $coming_draw->result_id, 
 								 // 'futureresults'		 => $futureresult,
 								  'wabaofee' 			 => $setting->wabao_fee,
 								  'latest_result' 		 => $latest_result,
@@ -131,7 +131,7 @@ class open_draw_pre extends Command
 		}
 
 		//store		
-		$result = OpenDrawPre::create(['draw_id' => $draw->result_id, 'event_data' => json_encode($event_data,true)])->id;
+		$result = OpenDrawPre::create(['draw_id' => $coming_draw->result_id, 'event_data' => json_encode($event_data,true)])->id;
 
 		var_dump($result); 
 			
