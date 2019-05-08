@@ -56,7 +56,7 @@ class Bresult extends Command
 		
 		sleep(1); //fix for last sec betting
 		
-		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 1)->get() ;
+		$bettinglist =  v_member_game_bet_temp::where('drawid', $drawid)->where('gametype', 1)->get() ;
 
 		
 		$current_result = Game::get_single_gameresult($drawid);
