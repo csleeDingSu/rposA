@@ -131,7 +131,7 @@ class open_draw_pre extends Command
 		}
 
 		//store		
-		$result = OpenDrawPre::create(['draw_id' => $coming_draw->result_id, 'event_data' => json_encode($event_data,true)])->id;
+		$result = OpenDrawPre::updateOrCreate(['draw_id' => $coming_draw->result_id, 'event_data' => json_encode($event_data,true)])->id;
 
 		var_dump($result); 
 			
