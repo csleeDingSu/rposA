@@ -68,7 +68,7 @@ class open_draw extends Command
 		$event_data = [];
 		$mers = \DB::table('redis')
 			->join('v_oauth_access_tokens', 'v_oauth_access_tokens.user_id', '=', 'redis.member_id')
-			->where('v_oauth_access_tokens.expires_at', '>=', Carbon::now())
+			->where('v_oauth_access_tokens.expires_at', '>=', Carbon::now()->subHours(1))
 			->select('redis.member_id')
 			->get();		
         				
@@ -79,12 +79,12 @@ class open_draw extends Command
 			
 			//$futureresult  = Game::get_future_result($draw->game_id, $now );
 			
-			$gamehistory   = $ReportController->get_game_history($draw->game_id);			
+			// $gamehistory   = $ReportController->get_game_history($draw->game_id);			
 			$this->comment('Get Data:'.'--------'.Carbon::now()->toDateTimeString().'----------');	
 			foreach ($mers as $key => $val)
 			{
 
-				var_dump($val->member_id);
+				// var_dump($val->member_id);
 
 				$memberid = $val->member_id;
 				$vip = '';
@@ -96,7 +96,7 @@ class open_draw extends Command
 				$vip_level        = Game::get_member_current_level($gameid, $memberid, $vip);
 				$vip_con_lose     = Game::get_consecutive_lose($memberid,$gameid, $vip);
 				
-				$gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
+				// $gamenotific      = $ReportController->get_game_notification($key,$draw->game_id);
 				/*
 				$gamenotific = '';
 				$consecutive_lose = [];
@@ -111,7 +111,7 @@ class open_draw extends Command
 								  'wabaofee' 			 => $setting->wabao_fee,
 								  'latest_result' 		 => $latest_result,
 								  'gamesetting' 		 => $gamesetting,
-								  'gamehistory' 		 => $gamehistory,
+								  // 'gamehistory' 		 => $gamehistory,
 								  'level'				 => $level,
 								  'viplevel' 			 => $vip_level,
 								  'consecutive_lose'     => $consecutive_lose,
