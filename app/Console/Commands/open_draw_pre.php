@@ -56,7 +56,7 @@ class open_draw_pre extends Command
         $now           = Carbon::now();
         //if ($drawid == '0') $drawid   = 6666;		
 		
-		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->get()->limit(2);
+		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->take(2)->get();
 		$current_draw = $draw[0];
 		$coming_draw = $draw[1];
 
