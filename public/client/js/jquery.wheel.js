@@ -11,8 +11,6 @@ var indexApp = {
     //转盘初始化
     wheelInit : function () {
         var t = this;
-        t.valueJson['wheelBody'].css('height', t.valueJson['wheelBody'].css('width'));
-        t.valueJson['wheelSmall'].css('height', t.valueJson['wheelSmall'].css('width'));
         t.showStars(); //某几个小圆点高亮
     },
     //窗口改变时的重新设置样式

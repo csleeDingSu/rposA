@@ -30,20 +30,34 @@
 
 /*转盘*/
 .big-border {
-	width: 90%;
 	background: #e44025;
 	border-radius: 50%;
 	box-shadow: 0 -2px 2px #f2502f;
-	padding:5%;
+	padding:15px;
 	position: relative;
 	-webkit-transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
 	transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
 	margin: auto;
-	height: 250px;
+	width:260px;
+	height:260px;
+	top: 10px;
 }
 .main-wheel {background: url(/client/images/wheel/shadow.png) no-repeat center bottom;background-size:100%;padding-bottom: 15px;}
-.small-border {width: 100%;border-radius: 50%;background-size: 100%;position: relative;}
-.middle {position: absolute; left: 25%; top:25%; z-index: 100;-webkit-transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);}
+.small-border {
+	border-radius: 50%;
+	background-size: 100%;
+	position: relative;
+	width:230px;
+	height:230px;
+}
+.middle {
+	position: absolute; 
+	left: 30%; 
+	top: 25%; 
+	z-index: 100;
+	-webkit-transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
+	transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
+}
 .stars {width: 4%;height:4%;border-radius: 50%;background: #ffb820;position: absolute;}
 
 footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-top: 10px;}
