@@ -95,11 +95,12 @@ class InitiateDrawOpen extends Command
 		do 
 		{
 			$lmt = $i*$offset_limit;
-			if ($lmt>=$mers) break;
-			
-			$limit  = $lmt.'-'.$offset_limit  ;
-			$this->info( $limit);  
-			$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here		
+			if ($lmt<$mers) 
+			{			
+				$limit  = $lmt.'-'.$offset_limit  ;
+				$this->info( $limit);  
+				$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here
+			}
 			$i++;
 		} 
 		while ($i <= $round);	
