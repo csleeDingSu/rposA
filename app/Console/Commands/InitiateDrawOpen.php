@@ -95,7 +95,7 @@ class InitiateDrawOpen extends Command
 		do 
 		{
 			$lmt = $i*$offset_limit;
-			if ($lmt>=$mers) exit();
+			if ($lmt>=$mers) return true;
 			
 			$limit  = $lmt.'-'.$offset_limit  ;
 			$this->info( $limit);  
@@ -104,23 +104,6 @@ class InitiateDrawOpen extends Command
 		} 
 		while ($i <= $round);	
 		
-		/*
-		do 
-		{						
-			$lmt    = $i*$mround;
-			$limit  = $lmt.'-'.$offset_limit ;
-			//$this->info( $limit );   
-			$mround = $round+1;			
-			
-			if ($lmt>$mers) exit();
-						
-			$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here			
-			
-			$i++;			
-			
-		} 
-		while ($i <= $round);
-		*/
 		for ($m=0; $m<$i; ++$m) {
 			pclose($pipe[$m]);
 		}		
