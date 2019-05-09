@@ -101,7 +101,7 @@ class InitiateDrawOpen extends Command
 			
 			$arval = $limit.'-'.$drawid;
 						
-			$pipe[$i] = popen(\Artisan::call('draw:open', ['limit' => $arval]) , 'r'); 
+			$pipe[$i] = popen(\Artisan::call('draw:open', ['limit' => $arval]) , 'w'); 
 		}	
 					
 		
