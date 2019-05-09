@@ -92,18 +92,13 @@ class InitiateDrawOpen extends Command
 		$mround = $round;
 		//$drawid = 163596;
 		
-		do 
+		for($i=0;$i<=$round;$i++)
 		{
 			$lmt = $i*$offset_limit;
-			if ($lmt>=$mers) dd('done');
-			
 			$limit  = $lmt.'-'.$offset_limit  ;
 			$this->info( $limit);  
-			$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here		
-			$i++;
-			
-		} 
-		while ($i <= $round);	
+			$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here
+		}	
 		
 		for ($m=0; $m<$i; ++$m) {
 			pclose($pipe[$m]);
