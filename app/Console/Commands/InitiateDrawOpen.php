@@ -77,7 +77,7 @@ class InitiateDrawOpen extends Command
 		$gamesetting      = $ReportController->get_game_setting($draw , $now); 
 		$gamehistory      = $ReportController->get_game_history($draw->game_id);
 		
-		event(new \App\Events\EventDynamicChannel('activedraw','',['gamesetting'=>$gamesetting,'latest_result'=>$latest_result,'gamehistory'=>$gamehistory]));
+		event(new \App\Events\EventDynamicChannel('activedraw','',['gamesetting'=>$gamesetting,'latest_result'=>$latest_result,'gamehistory'=>$gamehistory,'draw'=>$draw]));
 		
 		$gameid     = $draw->game_id;
 		$event_data = [];
