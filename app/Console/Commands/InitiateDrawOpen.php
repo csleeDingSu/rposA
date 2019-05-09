@@ -128,6 +128,7 @@ class InitiateDrawOpen extends Command
 		$result =  \App\Report::game_win_lose();
 		event(new \App\Events\EventDynamicChannel('dashboard-gameinfo','',$result));
 		event(new \App\Events\EventDashboardChannel('master-reset',['type'=>'reset']));
+		return true;
     }
 	
 }
