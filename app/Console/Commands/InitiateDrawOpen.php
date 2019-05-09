@@ -83,14 +83,28 @@ class InitiateDrawOpen extends Command
 		$event_data = [];
 		$mers       = \DB::table('redis')->select('member_id')->count();
 		
+		$offset_limit = 10;
+		
 		$this->comment( $mers );
-		$round = ceil ( $mers  / 10);
+		$round = ceil ( $mers  / $offset_limit);
 		$this->comment( $round );
 		$i = 0;
 		$mround = $round;
 		//$drawid = 163596;
 		
-		$offset_limit = 10;
+		do 
+		{
+			$lmt = $i*$offset_limit;
+			if ($lmt>=$mers) exit();
+			
+			$limit  = $lmt.'-'.$offset_limit  ;
+			$this->info( $limit);  
+			$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here		
+			$i++;
+		} 
+		while ($i <= $round);	
+		
+		/*
 		do 
 		{						
 			$lmt    = $i*$mround;
@@ -106,7 +120,7 @@ class InitiateDrawOpen extends Command
 			
 		} 
 		while ($i <= $round);
-		
+		*/
 		for ($m=0; $m<$i; ++$m) {
 			pclose($pipe[$m]);
 		}		
