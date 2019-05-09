@@ -474,6 +474,12 @@
 		
 		
 	 });
+
+	
+	
+	$('.updated').html(moment("{{$result->updated_at}}").fromNow());
+	$('.nextupdate').html(moment("{{$result->next_update}}").fromNow());
+	
 	
 	@endsection
 	
