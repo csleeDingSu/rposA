@@ -1243,7 +1243,7 @@ function startTimer(duration, timer, freeze_time) {
           // console.log('timer' + timer);
          // console.log('trigger_time ' + trigger_time);
             
-        if (timer == 0) {
+        if (timer <= 0) {
             clearInterval(parent.timerInterval);
             $( "#txtCounter" ).html('<span style="font-size: 18px; padding: 5px;">等候</span>');
             // timer = duration;
