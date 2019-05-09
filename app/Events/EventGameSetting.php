@@ -27,8 +27,6 @@ class EventGameSetting implements ShouldBroadcast
     }
     public function broadcastOn()
     {
-		echo 'yes-';
-		
 		if ($this->type) return ['loadsetting-'. $this->id ];
 		
 		return ['initsetting-'. $this->id ];
