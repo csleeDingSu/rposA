@@ -89,10 +89,12 @@ class InitiateDrawOpen extends Command
 		$i = 0;
 		$mround = $round;
 		//$drawid = 163596;
+		
+		$offset_limit = 10;
 		do 
 		{						
 			$lmt    = $i*$mround;
-			$limit  = $lmt.'-'.$round ;
+			$limit  = $lmt.'-'.$offset_limit ;
 			//$this->info( $limit );   
 			$mround = $round+1;			
 			
