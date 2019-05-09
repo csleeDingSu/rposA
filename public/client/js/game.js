@@ -1240,13 +1240,14 @@ function startTimer(duration, timer, freeze_time) {
 
         --timer;
 
-        // console.log('timer' + timer);
-        // console.log('trigger_time ' + trigger_time);
+          // console.log('timer' + timer);
+         // console.log('trigger_time ' + trigger_time);
             
-        if (timer < 0) {
-            timer = duration;
-
-            resetGame();
+        if (timer == 0) {
+            clearInterval(parent.timerInterval);
+            $( "#txtCounter" ).html('<span style="font-size: 18px; padding: 5px;">等候</span>');
+            // timer = duration;
+            // resetGame();
 
         } else if (timer <= trigger_time) {
             //Lock the selection
