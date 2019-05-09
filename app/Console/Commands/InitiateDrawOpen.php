@@ -97,16 +97,21 @@ class InitiateDrawOpen extends Command
 			$lmt = $i*$offset_limit;
 			$limit  = $lmt.'-'.$offset_limit  ;
 			$this->info( $limit);  
-			$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here
+			//$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here
+			
+			$arval = $limit.'-'.$drawid;
+						
+			$pipe[$i] = popen(\Artisan::call('draw:open', ['limit' => $arval]) , 'r'); 
 		}	
-		
-		for ($m=0; $m<$i; ++$m) {
-			pclose($pipe[$m]);
-		}		
+					
 		
 		$result =  \App\Report::game_win_lose();
 		event(new \App\Events\EventDynamicChannel('dashboard-gameinfo','',$result));
 		event(new \App\Events\EventDashboardChannel('master-reset',['type'=>'reset']));
+		
+		for ($m=0; $m<$i; ++$m) {
+			pclose($pipe[$m]);
+		}
 		return true;
     }
 	
