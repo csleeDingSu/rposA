@@ -436,23 +436,23 @@ function getSocket(){
                 var level = data.data.level;
                 var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
-                // var result_records = data.data.gamehistory.data;
+                var result_records = data.data.gamehistory.data;
                 
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
 
                 initGame(game_records, level, latest_result, consecutive_lose);
-                // updateResult(result_records);
+                updateResult(result_records);
 
-                // if(update_wallet){
-                //     initUser(wallet_data);
-                //     update_wallet = false;
-                // }
+                if(update_wallet){
+                    initUser(wallet_data);
+                    update_wallet = false;
+                }
 
-                // if(update_betting_history){
-                //     updateHistory(betting_data);
-                //     update_betting_history = false;
-                // }
+                if(update_betting_history){
+                    updateHistory(betting_data);
+                    update_betting_history = false;
+                }
 
                 show_win = false;
                 show_lose = false;
@@ -532,41 +532,41 @@ function getSocket(){
 
             }); 
 
-            //on page load activedraw Script
-            socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
-                console.log('load activedraw member page load');
-                console.log(data);
-                // initWheel(data.data);
-             });
+            // //on page load activedraw Script
+            // socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
+            //     console.log('load activedraw member page load');
+            //     console.log(data);
+            //     // initWheel(data.data);
+            //  });
 
-            //on page load activedraw Script
-            socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
-                console.log('load activedraw page load');
-                console.log(data);
+            // //on page load activedraw Script
+            // socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
+            //     console.log('load activedraw page load');
+            //     console.log(data);
                 
-                // resetGame();
-                // initShowModal();
-                var result_records = data.data.gamehistory.data;
+            //     // resetGame();
+            //     // initShowModal();
+            //     var result_records = data.data.gamehistory.data;
                 
-                var id = $('#hidUserId').val();
-                var session = $('#hidSession').val();
+            //     var id = $('#hidUserId').val();
+            //     var session = $('#hidSession').val();
 
-                updateResult(result_records);
+            //     updateResult(result_records);
 
-                if(update_wallet){
-                    initUser(wallet_data);
-                    update_wallet = false;
-                }
+            //     if(update_wallet){
+            //         initUser(wallet_data);
+            //         update_wallet = false;
+            //     }
 
-                if(update_betting_history){
-                    updateHistory(betting_data);
-                    update_betting_history = false;
-                }
+            //     if(update_betting_history){
+            //         updateHistory(betting_data);
+            //         update_betting_history = false;
+            //     }
 
-                // show_win = false;
-                // show_lose = false;
+            //     // show_win = false;
+            //     // show_lose = false;
 
-             });
+            //  });
          
         });
 }
