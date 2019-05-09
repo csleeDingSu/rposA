@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/game.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game_node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
@@ -267,7 +267,7 @@
 							<span>6元现金</span>
 							<img src="/client/images/wheel/monery.png" width="30%">
 						</div>
-						<img src="/client/images/wheel/middle.png" width="50%" class="middle">
+						<img src="/client/images/wheel/pointer.png" width="40%" class="middle">
 					</div>
 				</div>
 		    </div>
