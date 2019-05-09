@@ -121,7 +121,7 @@ class OpenDraw extends Command
 			foreach ($event as $val)
 			{
 			   event(new \App\Events\EventGameSetting($val['member'],$val));
-			   $this->line('yes--'.$val['member']);
+			   $this->info('notification--'.$val['member']);
 			}		   
 		}		
 
