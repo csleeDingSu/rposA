@@ -456,6 +456,9 @@
 		var win_from_vip   = data.total_vip_game_bet - data.total_vip_game_lose;
 		$('.win_from_basic').html(win_from_basic);
 		$('.win_from_vip').html(win_from_vip);
+		
+		$('.nextupdate').removeClass('text-info').addClass('font-weight-bold');
+		$('.updated').addClass('text-success font-weight-bold'); 
 				
 		if (countdown)
 			{
@@ -466,6 +469,18 @@
 			countdown = setInterval(function() {
 				$('.updated').html(moment(data.updated_at).fromNow());
 				$('.nextupdate').html(moment(data.next_update).fromNow());
+				
+				tim = moment(data.next_update).fromNow();
+				
+				if (tim == 'in a minute')
+				{
+					$('.nextupdate').addClass('text-info');
+				}
+				
+				if (moment(data.updated_at).fromNow() != 'a few seconds ago')
+				{
+					$('.updated').removeClass('text-success');
+				}
 
 			}, 1000);
 			
