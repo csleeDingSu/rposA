@@ -25,6 +25,9 @@
         <div class="playBox">
             <div class="playIn">
               <img src="{{ asset('/client/images/intro/wheel.png') }}" class="ig">
+              <div class="ring">
+                <img src="{{ asset('/client/images/intro/ring.png') }}">
+              </div>
               <div class="finger ">
                 @if (isset(Auth::Guard('member')->user()->username))
                     <a href="/arcade">
@@ -37,9 +40,6 @@
                             <img src="{{ asset('/client/images/intro/enter.png') }}" class="clickme">
                     </div>
                 </a>
-              </div>
-              <div class="ring">
-                <img src="{{ asset('/client/images/intro/ring.png') }}">
               </div>
             </div>
 
