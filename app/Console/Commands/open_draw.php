@@ -69,6 +69,8 @@ class open_draw extends Command
 		$mers = \DB::table('redis')
 			->join('v_oauth_access_tokens', 'v_oauth_access_tokens.user_id', '=', 'redis.member_id')
 			->where('v_oauth_access_tokens.expires_at', '>=', Carbon::now()->subHours(1))
+			// ->whereDate('v_oauth_access_tokens.expires_at', Carbon::Today())
+			// ->where('v_oauth_access_tokens.expires_at', '>=', Carbon::now())
 			->select('redis.member_id')
 			->get();		
         				
@@ -79,7 +81,7 @@ class open_draw extends Command
 			
 			//$futureresult  = Game::get_future_result($draw->game_id, $now );
 			
-			// $gamehistory   = $ReportController->get_game_history($draw->game_id);			
+			$gamehistory   = $ReportController->get_game_history($draw->game_id);			
 			$this->comment('Get Data:'.'--------'.Carbon::now()->toDateTimeString().'----------');	
 			foreach ($mers as $key => $val)
 			{
@@ -111,7 +113,7 @@ class open_draw extends Command
 								  'wabaofee' 			 => $setting->wabao_fee,
 								  'latest_result' 		 => $latest_result,
 								  'gamesetting' 		 => $gamesetting,
-								  // 'gamehistory' 		 => $gamehistory,
+								  'gamehistory' 		 => $gamehistory,
 								  'level'				 => $level,
 								  'viplevel' 			 => $vip_level,
 								  'consecutive_lose'     => $consecutive_lose,
@@ -132,12 +134,6 @@ class open_draw extends Command
 		   //die();
 		//}
 
-		// $result =  OpenDrawPre::select('*')->whereNull('deleted_at')->first();
-
-		// if (!empty($result)) {
-
-			// $event_data = json_decode($result->event_data,true);
-
 			foreach (array_chunk($event_data,100) as $keyc=>$event) {
 				foreach ($event as $val)
 				{
@@ -146,9 +142,6 @@ class open_draw extends Command
 				   $this->line('yes--'.$val['member']);
 				}		   
 			}
-
-			// $result = OpenDrawPre::where('id', $result->id)->update(['deleted_at' => Carbon::now()->toDateTimeString()]);		
-		// }
 		
 		$this->line('End:'.'-------------'.Carbon::now()->toDateTimeString().'----------');
 		

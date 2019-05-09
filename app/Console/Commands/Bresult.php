@@ -2,16 +2,16 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Carbon\Carbon;
 use App\Game;
-use Validator;
-use App\Wallet;
-use App\member_game_result;
-use App\member_game_bet_temp;
-
-use App\member_game_notification;
 use App\Package;
+use App\Wallet;
+use App\member_game_bet_temp;
+use App\member_game_notification;
+use App\member_game_result;
+use App\v_member_game_bet_temp;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
+use Validator;
 class Bresult extends Command
 {
     /**
@@ -56,7 +56,7 @@ class Bresult extends Command
 		
 		sleep(1); //fix for last sec betting
 		
-		$bettinglist =  member_game_bet_temp::where('drawid', $drawid)->where('gametype', 1)->get() ;
+		$bettinglist =  v_member_game_bet_temp::where('drawid', $drawid)->where('gametype', 1)->get() ;
 
 		
 		$current_result = Game::get_single_gameresult($drawid);

@@ -56,7 +56,7 @@ class open_draw_pre extends Command
         $now           = Carbon::now();
         //if ($drawid == '0') $drawid   = 6666;		
 		
-		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->get()->limit(2);
+		$draw =  \DB::table('game_result')->select('id as result_id','game_id','game_level_id','created_at','expiry_time','game_result')->take(2)->get();
 		$current_draw = $draw[0];
 		$coming_draw = $draw[1];
 
@@ -110,7 +110,7 @@ class open_draw_pre extends Command
 				*/
 				
 				$data         = [ 'member'               => $memberid, 
-								  'drawid'               => $draw->result_id, 
+								  'drawid'               => $coming_draw->result_id, 
 								 // 'futureresults'		 => $futureresult,
 								  'wabaofee' 			 => $setting->wabao_fee,
 								  'latest_result' 		 => $latest_result,
@@ -131,7 +131,9 @@ class open_draw_pre extends Command
 		}
 
 		//store		
-		$result = OpenDrawPre::create(['draw_id' => $draw->result_id, 'event_data' => json_encode($event_data,true)])->id;
+        $filter = ['draw_id' => $coming_draw->result_id];
+        $array = array_merge($filter, ['event_data' => json_encode($event_data,true)]); 
+		$result = OpenDrawPre::updateOrCreate($filter, $array)->id;
 
 		var_dump($result); 
 			

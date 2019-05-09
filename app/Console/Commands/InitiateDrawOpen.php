@@ -77,41 +77,44 @@ class InitiateDrawOpen extends Command
 		$gamesetting      = $ReportController->get_game_setting($draw , $now); 
 		$gamehistory      = $ReportController->get_game_history($draw->game_id);
 		
-		event(new \App\Events\EventDynamicChannel('activedraw','',['gamesetting'=>$gamesetting,'latest_result'=>$latest_result,'gamehistory'=>$gamehistory]));
+		event(new \App\Events\EventDynamicChannel('activedraw','',['gamesetting'=>$gamesetting,'latest_result'=>$latest_result,'gamehistory'=>$gamehistory,'draw'=>$draw]));
 		
 		$gameid     = $draw->game_id;
 		$event_data = [];
 		$mers       = \DB::table('redis')->select('member_id')->count();
 		
+		$offset_limit = 10;
+		
 		$this->comment( $mers );
-		$round = ceil ( $mers  / 10);
+		$round = ceil ( $mers  / $offset_limit);
 		$this->comment( $round );
 		$i = 0;
 		$mround = $round;
 		//$drawid = 163596;
-		do 
-		{						
-			$lmt    = $i*$mround;
-			$limit  = $lmt.'-'.$round ;
-			//$this->info( $limit );   
-			$mround = $round+1;			
-			
-			if ($lmt>$mers) exit();
-						
-			$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here			
-			
-			$i++;			
-			
-		} 
-		while ($i <= $round);
 		
-		for ($m=0; $m<$i; ++$m) {
-			pclose($pipe[$m]);
-		}		
+		for($i=0;$i<=$round;$i++)
+		{
+			$lmt = $i*$offset_limit;
+			$limit  = $lmt.'-'.$offset_limit  ;
+			$this->info( $limit);  
+			//$pipe[$i] = popen('php artisan draw:open '.$limit.'-'.$drawid , 'w'); //dont change anything here
+			
+			$arval = $limit.'-'.$drawid;
+						
+			$pipe[$i] = popen(\Artisan::call('draw:open', ['limit' => $arval]) , 'w'); 
+			
+			//\Artisan::call('draw:open', ['limit' => $arval]);
+		}	
+					
 		
 		$result =  \App\Report::game_win_lose();
 		event(new \App\Events\EventDynamicChannel('dashboard-gameinfo','',$result));
 		event(new \App\Events\EventDashboardChannel('master-reset',['type'=>'reset']));
+		
+		for ($m=0; $m<$i; ++$m) {
+			pclose($pipe[$m]);
+		}
+		return true;
     }
 	
 }
