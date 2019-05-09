@@ -95,7 +95,7 @@ class InitiateDrawOpen extends Command
 		do 
 		{
 			$lmt = $i*$offset_limit;
-			if ($lmt>=$mers) return true;
+			if ($lmt>=$mers) break;
 			
 			$limit  = $lmt.'-'.$offset_limit  ;
 			$this->info( $limit);  
