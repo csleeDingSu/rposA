@@ -9,14 +9,6 @@ body{
 }
 
 .card-flex .cardBody {
-	background-image: url("/client/images/background_game.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center top;
-    background-attachment: fixed;
-}
-
-.card-flex .cardBody .newWheel {
 	background-image: url("/client/images/wheel/background_game.jpg");
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -1565,29 +1557,25 @@ body{
 
 .flickity-prev-next-button.previous {
   left: 0px;
-  top: 75px;
+  top: 120px;
   right: auto;
-  background: url('/client/images/game.png') no-repeat -65px -640px;
-  width: 80px;
-  height: 400px;
-  transform: scale(0.3); 
-  -webkit-transform: scale(0.3);
+  background: url('/client/images/wheel/previous.png') no-repeat;
+  width: 59px;
+  height: 90px;
+  transform: scale(0.5); 
+  -webkit-transform: scale(0.5);
   -webkit-transform-origin:left top;
-  opacity: 0.4;
-  filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 .flickity-prev-next-button.next {
-  top: 75px;
-  background: url('/client/images/game.png') no-repeat -65px -240px;
-  width: 80px;
-  height: 400px;
-  transform: scale(0.3); 
-  -webkit-transform: scale(0.3);
+  top: 120px;
+  background: url('/client/images/wheel/next.png') no-repeat;
+  width: 59px;
+  height: 90px;
+  right: -30px;
+  transform: scale(0.5); 
+  -webkit-transform: scale(0.5);
   -webkit-transform-origin:left top;
-  right: -56px;
-  opacity: 0.4;
-  filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
 .rules-content {
