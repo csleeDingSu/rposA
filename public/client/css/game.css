@@ -343,7 +343,7 @@ body{
 }
 
 .balance-banner {
-	background: rgb(100,52,128);
+	background: rgba(0,0,0,0.3);
 	width: 360px;
 	height: 72px;
 	transform: scale(0.5); 
@@ -354,7 +354,7 @@ body{
 	position: relative;
 	/*margin-left: 10px;*/
 	color: #fff;
-	font-size: 40px;
+	font-size: 26px;
 	cursor: pointer;
 	border-radius: 40px;
 	margin-left: 12px;
@@ -419,7 +419,7 @@ body{
 
 .btn-rules {
 	float: right;
-	background-color: #63147f;
+	background-color: rgba(0,0,0,.3);
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
 	padding: 2px 5px 0px 15px;
@@ -470,7 +470,7 @@ body{
 }
 
 .btn-rules-vip {
-	background: #66157c;
+	background-color: rgba(0,0,0,.3);
 	width: 300px;
 	height: 72px;
 	transform: scale(0.5); 
@@ -506,8 +506,9 @@ body{
 	padding-right: 5px;
 }
 
-#spanAcuPointAndBalance{
-	padding-right: 5px;
+.spanAcuPointAndBalance{
+	padding-top: 2px;
+	font-size: 40px;
 }
 
 .btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {

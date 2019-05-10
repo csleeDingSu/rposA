@@ -50,15 +50,15 @@ body{
 
 .btn-rectangle, .btn-rectangle:active {
 	margin: 0 auto;
-	background: url('/client/images/game.png') no-repeat -280px -240px;
-	width: 510px;
-	height: 200px;
-	transform: scale(0.33); 
-	-webkit-transform: scale(0.33);
+	background: url('/client/images/wheel/btn-default.png') no-repeat;
+	width: 325px;
+	height: 100px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
-    font-size: 60px;
-    color: #555555;
-    padding-top: 30px;
+    font-size: 40px;
+    color: #fff;
+    padding-top: 16px;
     outline: none !important;
 	box-shadow: none;
 	cursor: pointer;
@@ -67,16 +67,16 @@ body{
 
 .btn-rectangle.clicked {
 	margin: 0 auto;
-	background: url('/client/images/game.png') no-repeat -835px -240px;
-	width: 510px;
-	height: 200px;
-	transform: scale(0.33); 
-	-webkit-transform: scale(0.33);
+	background: url('/client/images/wheel/btn-selected.png') no-repeat;
+	width: 325px;
+	height: 100px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
     font-size: 35px;
-    color: #555555;
-    padding-top: 0px;
+    color: #8c6d28;
     cursor: pointer;
+    padding-top: 16px;
   /* other styles */
 }
 
@@ -108,17 +108,16 @@ body{
 
 @media only screen and (max-width: 360px) {
     .btn-rectangle, .btn-rectangle:active {
-		transform: scale(0.27); 
-		-webkit-transform: scale(0.27);
+		transform: scale(0.4); 
+		-webkit-transform: scale(0.4);
 		-webkit-transform-origin:left top;
 	  /* other styles */
 	}
 
 	.btn-rectangle.clicked {
-		transform: scale(0.27); 
-		-webkit-transform: scale(0.27);
+		transform: scale(0.4); 
+		-webkit-transform: scale(0.4);
 		-webkit-transform-origin:left top;
-	    padding-top: 10px;
 	  /* other styles */
 	}
 
@@ -335,7 +334,7 @@ body{
 }
 
 .balance-banner {
-	background: rgb(100,52,128);
+	background: rgba(0,0,0,0.3);
 	width: 360px;
 	height: 72px;
 	transform: scale(0.5); 
@@ -346,7 +345,7 @@ body{
 	position: relative;
 	/*margin-left: 10px;*/
 	color: #fff;
-	font-size: 40px;
+	font-size: 26px;
 	cursor: pointer;
 	border-radius: 40px;
 	margin-left: 12px;
@@ -462,7 +461,7 @@ body{
 }
 
 .btn-rules-vip {
-	background: #66157c;
+	background-color: rgba(0,0,0,.3);
 	width: 300px;
 	height: 72px;
 	transform: scale(0.5); 
@@ -498,8 +497,9 @@ body{
 	padding-right: 5px;
 }
 
-#spanAcuPointAndBalance{
-	padding-right: 5px;
+.spanAcuPointAndBalance{
+	padding-top: 2px;
+	font-size: 40px;
 }
 
 .btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {
@@ -1498,7 +1498,7 @@ body{
 
 #wheel_banner {
 	margin: 0 auto;
-	width: 260px;
+	width: 280px;
 }
 
 #wheel_banner img {
@@ -1508,8 +1508,8 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 	z-index: 100; 
-	width:260px;
-	height:260px;
+	width:280px;
+	height:280px;
 }
 
 #txtCounter {
