@@ -235,41 +235,46 @@
 
 		<div class="carousel-cell">
 			<div class="frame-wrapper">
+				<div id="wheel_banner">
+					<img src="{{ asset('/client/images/wheel/banner.png') }}" />
+				</div>
 				<div class="big-border">
 					<div class="small-border g6">
 
 						<div class="shan">
-							<span>1元现金</span>
-							<img src="/client/images/wheel/monery.png" width="30%">
+							<span class="span-odd">+70金币</span>
+							<div class="div-odd">单数 <span class="odd-number">1</span></div>
 						</div>
 
 						<div class="shan">
-							<span>2元现金</span>
-							<img src="/client/images/wheel/monery.png" width="30%">
+							<span class="span-even">-70金币</span>
+							<div class="div-even">双数 <span class="even-number">2</span></div>
 						</div>
 
 						<div class="shan">
-							<span>3元现金</span>
-							<img src="/client/images/wheel/monery.png" width="30%">
+							<span class="span-odd">+70金币</span>
+							<div class="div-odd">单数 <span class="odd-number">3</span></div>
 						</div>
 
 						<div class="shan">
-							<span>4元现金</span>
-							<img src="/client/images/wheel/monery.png" width="30%">
+							<span class="span-even">-70金币</span>
+							<div class="div-even">双数 <span class="even-number">4</span></div>
 						</div>
 						
 						<div class="shan">
-							<span>5元现金</span>
-							<img src="/client/images/wheel/monery.png" width="30%">
+							<span class="span-odd">+70金币</span>
+							<div class="div-odd">单数 <span class="odd-number">5</span></div>
 						</div>
 
 						<div class="shan">
-							<span>6元现金</span>
-							<img src="/client/images/wheel/monery.png" width="30%">
-						</div>
-						<img src="/client/images/wheel/pointer.png" width="40%" class="middle">
+							<span class="span-even">-70金币</span>
+							<div class="div-even">双数 <span class="even-number">6</span></div>
+						</div>						
 					</div>
 				</div>
+				<div class="trigger">&nbsp;</div>
+				<img src="/client/images/wheel/pointer.png" width="36%" class="middle">
+				<div class="middle-label">开始竞猜</div>
 		    </div>
 		</div>
 
@@ -335,7 +340,7 @@
 	</div>
 	<!-- end swiper iframe -->
 	<div class="spinning">转盘转动中，请等待结果。</div>
-	<div class="instruction">请猜下一局幸运号是单数或双数</div>
+	<!--div class="instruction">请猜下一局幸运号是单数或双数</div-->
 
 	<!-- progress bar -->
 	<section class="barWrapper">
@@ -442,15 +447,13 @@
 	        <div class="button-card radio-primary">
 	        	<div class="radio btn-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="odd">
-					<div class="bet">押注<span class="bet-container">0</span>积分</div>
-					<div class="guess">我猜单数</div>
+					选择单数
 				</div>
 			  </div>
 			  <div class="button-card radio-primary right">
 				<div class="radio btn-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="even">
-					<div class="bet">押注<span class="bet-container">0</span>积分</div>
-					<div class="guess">我猜双数</div>
+					选择双数
 				</div>
 			  </div>
 		</div>
@@ -961,12 +964,9 @@
 			var valueJson = {
 		        'wheelBody' : $('.big-border'), //转盘主体
 		        'wheelSmall' : $('.small-border'), //转盘内部
-		        'starsNum' : 16, //转盘边缘小黄点个数
-
-		        'starsPostion' : [[50, 0.5], [70, 6], [84.5, 18], [92.5, 32], [95.5, 50], [91, 68], [81.5, 81.5], [68, 91], [50, 95.5], [32, 92.5], [16, 83], [6, 70], [0.5, 50], [3.5, 32], [14, 15], [27, 5.5]], //小圆点坐标
 		        'actionRan' : 7200, //转盘转动弧度
 		        'theOnce' : 0, //初始化转盘第一个
-		        'startBtn' : $('.middle'), //开始按钮
+		        'startBtn' : $('.trigger'), //开始按钮
 
 		        //需要后台传值的参数
 		        'clickAjaxUrl' : 'www.baidu.com', //点击抽奖获取信息的交互的ajax
