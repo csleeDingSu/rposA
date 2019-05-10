@@ -35,6 +35,8 @@
 	margin: auto;
 	width:280px;
 	height:280px;
+	-webkit-transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
+	transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
 }
 
 .main-wheel {background: url(/client/images/wheel/shadow.png) no-repeat center bottom;background-size:100%;padding-bottom: 15px;}
@@ -48,11 +50,11 @@
 }
 
 .trigger {
-	left: 36%; 
+	left: 40%; 
 	top: 30%; 
 	position: absolute;
 	height: 85px;
-	width: 70px;
+	width: 80px;
 	z-index: 200;
 	cursor: pointer;
 }
