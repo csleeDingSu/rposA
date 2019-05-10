@@ -184,13 +184,12 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 	font: 8px Arial, sans-serif;
 }
 
-.g6 .shan:nth-of-type(1) {-webkit-transform: rotate(120deg);left:48%;top:37%;}
-.g6 .shan:nth-of-type(2) {-webkit-transform: rotate(180deg); left:30%;;top:45%;}
-.g6 .shan:nth-of-type(3) {-webkit-transform: rotate(-120deg);left:11%;top:35%;}
-.g6 .shan:nth-of-type(4) {-webkit-transform: rotate(-60deg);left:12%;top:15%;}
-.g6 .shan:nth-of-type(5) {-webkit-transform: rotate(0deg);left:30%;top:3%;}
-.g6 .shan:nth-of-type(6) {-webkit-transform: rotate(60deg);left:48%;top:15%;}
-
+.g6 .shan:nth-of-type(1) {-webkit-transform: rotate(0deg);left:30%;top:3%;}
+.g6 .shan:nth-of-type(2) {-webkit-transform: rotate(60deg);left:48%;top:15%;}
+.g6 .shan:nth-of-type(3) {-webkit-transform: rotate(120deg);left:48%;top:37%;}
+.g6 .shan:nth-of-type(4) {-webkit-transform: rotate(180deg); left:30%;;top:45%;}
+.g6 .shan:nth-of-type(5) {-webkit-transform: rotate(-120deg);left:11%;top:35%;}
+.g6 .shan:nth-of-type(6) {-webkit-transform: rotate(-60deg);left:12%;top:15%;}
 
 /*g7*/
 .g7 {background: url(/client/images/wheel/g7.png) no-repeat center;}
