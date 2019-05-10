@@ -214,7 +214,7 @@ body {
  text-align: left;
  padding: 1px;
  background: transparent;
-    color: #BEBEBE;
+    color: #333333;
 }
 
 
@@ -253,13 +253,20 @@ body {
 }
 
 #namer input::placeholder {
- color: #1976D2;
+ color: #BEBEBE;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #BEBEBE;
+  opacity: 1; /* Firefox */
+  font-size: 16px;
 }
 
-/*.modal-backdrop {
-  z-index: -1 !important;
-}*/
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #BEBEBE;
+  font-size: 16px;
+}
 
-/*.modal-open {
-    overflow: visible;
-}*/
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #BEBEBE;
+  font-size: 16px;
+}

@@ -12,21 +12,21 @@ var g_current_point = 0;
 
 $(function () {
 
-    $('.swiper-container').flickity({
-        // options
-        draggable: true,
-        wrapAround: true,
-        pageDots: false,
-        initialIndex: 1,
-        freeScroll: false,
-        contain: true,
-    });
+	$('.swiper-container').flickity({
+		// options
+		draggable: true,
+		wrapAround: true,
+		pageDots: false,
+		initialIndex: 1,
+		freeScroll: false,
+		contain: true,
+	});
 
-    $('.swiper-container').on( 'change.flickity', function( event, index ) {
-        //resetTimer();
-    });
+	$('.swiper-container').on( 'change.flickity', function( event, index ) {
+		//resetTimer();
+	});
 
-    var wechat_status = $('#hidWechatId').val();
+	var wechat_status = $('#hidWechatId').val();
     var wechat_name = $('#hidWechatName').val();
 
     if(wechat_status == 0 && wechat_name != null) {

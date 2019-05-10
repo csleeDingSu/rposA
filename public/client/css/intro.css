@@ -1,5 +1,5 @@
 .cardBody, .full-height {
-    background-color: #8f5edb;
+    background-color: #AE5CF1;
 }
 
 .intro-container {
@@ -33,8 +33,9 @@
     text-align: center;
     position: relative;
     box-sizing: border-box;
-    display:inline-block
+    display:inline-block;
     vertical-align: top;
+    padding: 0.3rem;
 }
 
 .playBox .playIn img {
@@ -44,7 +45,7 @@
 
 .playBox .finger {
     position: absolute;
-    top: 50%;
+    top: 57%;
     left: 50%;
     width: 2.4rem;
     height: 2.4rem;
@@ -53,8 +54,8 @@
 }
 
 .playBox .finger img {
-    width: 1.43rem;
-    height: 1.9rem;
+    width: 1.68rem;
+    height: 1.96rem;
 }
 
 .playBox .finger .inTime {
@@ -62,8 +63,8 @@
     text-align: center;
     display: block;
     left: 50%;
-    top: 50%;
-    margin-top: -.65rem;
+    top: 52%;
+    margin-top: -.73rem;
     margin-left: -.42rem;
     font-size: .36rem;
     height: 1rem;
@@ -110,8 +111,9 @@
 }
 
 .panel {
-    background: #784cbd;
-    margin: 0.1rem 0.5rem 0.5rem 0.5rem;
+    /*background: #784cbd;*/
+    background: rgba(120, 76, 189, 0.5);
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
     padding: 0.3rem;
     font-size: 0.24rem; 
     line-height: 0.4rem;
@@ -129,6 +131,7 @@
     font-size: 0.3rem;
     padding: 0.05rem 0.1rem 0.1rem 0.1rem;
     background: #64409c;
+    color: #ebdeff;
 }
 
 .highlight {
@@ -137,4 +140,10 @@
 
 .bottom-space {
     margin-bottom: 1rem;
+}
+
+.ring {
+    position: absolute;
+    height: 5.8rem;
+    margin-top: -5.6rem;
 }
