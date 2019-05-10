@@ -54,8 +54,8 @@
 }
 
 .playBox .finger img {
-    width: 1.9rem;
-    height: 1.9rem;
+    width: 1.68rem;
+    height: 1.96rem;
 }
 
 .playBox .finger .inTime {
@@ -63,7 +63,7 @@
     text-align: center;
     display: block;
     left: 50%;
-    top: 50%;
+    top: 52%;
     margin-top: -.73rem;
     margin-left: -.42rem;
     font-size: .36rem;
