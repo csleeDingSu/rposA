@@ -9,27 +9,24 @@ var show_win = false;
 var show_lose = false;
 var g_previous_point = 0;
 var g_current_point = 0;
-var game_records = null; //game setting
-var result_records = null; //game history
-var latest_result = null; //latest result
 
 $(function () {
 
-    $('.swiper-container').flickity({
-        // options
-        draggable: true,
-        wrapAround: true,
-        pageDots: false,
-        initialIndex: 1,
-        freeScroll: false,
-        contain: true,
-    });
+	$('.swiper-container').flickity({
+		// options
+		draggable: true,
+		wrapAround: true,
+		pageDots: false,
+		initialIndex: 1,
+		freeScroll: false,
+		contain: true,
+	});
 
-    $('.swiper-container').on( 'change.flickity', function( event, index ) {
-        //resetTimer();
-    });
+	$('.swiper-container').on( 'change.flickity', function( event, index ) {
+		//resetTimer();
+	});
 
-    var wechat_status = $('#hidWechatId').val();
+	var wechat_status = $('#hidWechatId').val();
     var wechat_name = $('#hidWechatName').val();
 
     if(wechat_status == 0 && wechat_name != null) {
@@ -390,11 +387,11 @@ function getSocket(){
                 console.log('load user game setting-on page load');
                 console.log(data);
 
-                game_records = data.data.gamesetting;
+                var game_records = data.data.gamesetting;
                 var level = data.data.level;
-                latest_result = data.data.latest_result;
+                var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
-                result_records = data.data.gamehistory.data;
+                var result_records = data.data.gamehistory.data;
                 var wallet_records = data.data.wallet;
                 var betting_records = groupHistory(data.data.bettinghistory.data);
                 var isFirstLifeWin = data.data.IsFirstLifeWin;
@@ -435,27 +432,27 @@ function getSocket(){
 
                 resetGame();
                 initShowModal();
-                // var game_records = data.data.gamesetting;
+                var game_records = data.data.gamesetting;
                 var level = data.data.level;
-                // var latest_result = data.data.latest_result;
+                var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
-                // var result_records = data.data.gamehistory.data;
+                var result_records = data.data.gamehistory.data;
                 
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
 
                 initGame(game_records, level, latest_result, consecutive_lose);
-                // updateResult(result_records);
+                updateResult(result_records);
 
-                // if(update_wallet){
-                //     initUser(wallet_data);
-                //     update_wallet = false;
-                // }
+                if(update_wallet){
+                    initUser(wallet_data);
+                    update_wallet = false;
+                }
 
-                // if(update_betting_history){
-                //     updateHistory(betting_data);
-                //     update_betting_history = false;
-                // }
+                if(update_betting_history){
+                    updateHistory(betting_data);
+                    update_betting_history = false;
+                }
 
                 show_win = false;
                 show_lose = false;
@@ -535,35 +532,41 @@ function getSocket(){
 
             }); 
 
-            //on page load activedraw Script
-            socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
-                console.log('load activedraw page load');
-                console.log(data);
-                game_records = data.data.gamesetting;
-                // resetGame();
-                // initShowModal();
-                result_records = data.data.gamehistory.data;
-                latest_result = data.data.latest_result;
+            // //on page load activedraw Script
+            // socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
+            //     console.log('load activedraw member page load');
+            //     console.log(data);
+            //     // initWheel(data.data);
+            //  });
+
+            // //on page load activedraw Script
+            // socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
+            //     console.log('load activedraw page load');
+            //     console.log(data);
                 
-                var id = $('#hidUserId').val();
-                var session = $('#hidSession').val();
+            //     // resetGame();
+            //     // initShowModal();
+            //     var result_records = data.data.gamehistory.data;
+                
+            //     var id = $('#hidUserId').val();
+            //     var session = $('#hidSession').val();
 
-                updateResult(result_records);
+            //     updateResult(result_records);
 
-                if(update_wallet){
-                    initUser(wallet_data);
-                    update_wallet = false;
-                }
+            //     if(update_wallet){
+            //         initUser(wallet_data);
+            //         update_wallet = false;
+            //     }
 
-                if(update_betting_history){
-                    updateHistory(betting_data);
-                    update_betting_history = false;
-                }
+            //     if(update_betting_history){
+            //         updateHistory(betting_data);
+            //         update_betting_history = false;
+            //     }
 
-                // show_win = false;
-                // show_lose = false;
+            //     // show_win = false;
+            //     // show_lose = false;
 
-             });
+            //  });
          
         });
 }
