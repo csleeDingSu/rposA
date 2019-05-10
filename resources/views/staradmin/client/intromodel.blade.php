@@ -78,7 +78,7 @@
 						
 						
 						<div class="row">
-							<button class="btnsubmit" name="doregi" id="doregi" type="button">登入</button>							
+							<button class="btnsubmit" name="doregi" id="doregi" type="button">登录</button>							
 						</div>
 						<div class="row">
 							<button class="sec_login_btn" name="sec_login_btn" id="sec_login_btn" type="button">注册</button>							
@@ -122,7 +122,7 @@
 				 $( '.sec_reg_btn' ).click( function (e) {
 					 $( '#login-intropopup' ).modal( 'hide' );
 					 $( '#regis-intropopup' ).modal( 'show' );
-					 $( '.sec_login_btn' ).html( '已有账号，去登入' );					 
+					 $( '.sec_login_btn' ).html( '已有账号，去登录' );					 
 					 $( '.modal-title' ).html( '<h1>快速注册</h1>' );
 					 $( '.btnsubmit' ).html( '注册' );
 					 
@@ -132,8 +132,8 @@
 					 $( '#regis-intropopup' ).modal( 'hide' );
 					 $( '#login-intropopup' ).modal( 'show' );
 					 $( '.sec_login_btn' ).html( '没有帐号，去注册' );					 
-					 $( '.modal-title' ).html( '<h1>账号登入</h1>' );
-					 $( '.btnsubmit' ).html( '登入' );
+					 $( '.modal-title' ).html( '<h1>账号登录</h1>' );
+					 $( '.btnsubmit' ).html( '登录' );
 				 } );
 
 
