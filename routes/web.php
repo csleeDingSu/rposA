@@ -545,6 +545,7 @@ Route::post( 'logout', 'Auth\LoginController@logout' )->name( 'logout' );
 Route::get( '/share_product/{id?}', 'ShareProductController@index' )->name( 'share.product' );
 
 Route::get( '/new_share_product/{id?}', 'ShareProductController@new_share_product' )->name( 'new.share.product' );
+Route::get( '/new_share_product2/{id?}', 'ShareProductController@new_share_product2' )->name( 'new.share.product2' );
 
 Route::any('asyncmysqlevent/{api}/{drawid}', function ($api, $drawid) {
 	$url = env('APP_URL', 'wabao666.com') . "/$api/$drawid";
