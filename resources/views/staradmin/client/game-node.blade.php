@@ -269,11 +269,10 @@
 						<div class="shan">
 							<span class="span-even">-70金币</span>
 							<div class="div-even">双数 <span class="even-number">6</span></div>
-						</div>
-						<div class="trigger">&nbsp;</div>
-						
+						</div>						
 					</div>
 				</div>
+				<div class="trigger">&nbsp;</div>
 				<img src="/client/images/wheel/pointer.png" width="36%" class="middle">
 				<div class="middle-label">开始竞猜</div>
 		    </div>

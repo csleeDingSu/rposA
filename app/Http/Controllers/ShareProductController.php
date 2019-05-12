@@ -145,4 +145,22 @@ class ShareProductController extends BaseController
 		// curl_close($curl);
 	}
 
+	public function new_share_product($id = FALSE) {		
+
+		if (is_null($id)) {
+
+			// $data['item'] = Voucher::where('share_product',1)->orderBy('updated_at', 'desc')->select('*')->first();
+			$data['item'] = Voucher::select('*')->first();
+
+		} else {
+
+			$data['item'] = Shareproduct::where('id',$id)->select('*')->first();
+
+		}		
+
+		$data['item_featured'] = Voucher::join('voucher_category','voucher_category.voucher_id', '=', 'vouchers.id')->where('voucher_category.category',env('voucher_featured_id',220))->select('vouchers.*')->orderBy('vouchers.id', 'desc')->take(10)->get();
+		
+		return view('client/new_share_product', $data);
+	}
+
 }

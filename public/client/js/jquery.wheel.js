@@ -66,7 +66,7 @@ var indexApp = {
                         'type' : 'POST',
                         'url' : t.valueJson['clickAjaxUrl'],
                         success : function (data) {*/
-                            var data = {'status' : 1, 'actionStatus' : 1, 'ran' : 300, 'onceran' : 40, 'num' : 1}
+                            var data = {'status' : 1, 'actionStatus' : 1, 'ran' : 60, 'onceran' : 0, 'num' : 1}
                             if(data['status'] == 1) { //表示成功 
                                 t.showWheel(data); //执行转动效果
                             }else if(data['status'] == 2){ //金额不足 或者次数不足
