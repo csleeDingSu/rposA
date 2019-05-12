@@ -20,7 +20,7 @@
 					<img id="img" src="">
 				</a>
 			</li>
-			<!-- <li class="dbox">
+			<li class="dbox">
 				<div class="dbox1">
 					<span>
 						<h2 id="product_name">{{empty($item->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $item->product_name}}</h2>
@@ -36,7 +36,7 @@
 						</div>
 					</span>							
 				</div>
-			</li> -->
+			</li>
 			<li class="dbox">
 					<div id="button-wrapper">
 						<div class="caption_redeem_angpao">
