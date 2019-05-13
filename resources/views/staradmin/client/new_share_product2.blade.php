@@ -28,8 +28,8 @@
 							<h3>
 								<span class="lbl">券后价</span>
 								<span class="lbl_cur">￥</span>
-								<span class="price2">{{number_format(empty($item->discount_price) ? env('shareproduct_pricebefore',20) : $item->discount_price,2)}} </span>
-								<span class="price3">
+								<span id="Pay" class="price2">{{number_format(empty($item->discount_price) ? env('shareproduct_pricebefore',20) : $item->discount_price,2)}} </span>
+								<span id="bonus" class="price3">
 								淘宝价￥{{number_format( empty($item->product_price) ? env('shareproduct_priceafter', 55) : $item->product_price,2)}}
 								</span>
 							</h3>							
@@ -202,12 +202,25 @@ $(function(){
 		var taowords =getParams_('taowords');
 		var url = decodeURIComponent(getParams_('url'));
 		var image = decodeURIComponent(getParams_('image'));
+		var Title =getParams_('Title');
+		var Pay =getParams_('Pay');
+		var bonus =getParams_('bonus');
+		
+		console.log('taowords ' + taowords);
+		console.log('url ' + url);
+		console.log('image ' + image);
+		console.log('Title ' + Title);
+		console.log('Pay ' + Pay);
+		console.log('bonus ' + bonus);
 		
 		if (taowords.length > 0) {
 			$('#img').attr('src', image);
 			$('#coupons').attr('href',url);
 			$('#btn-copy').attr('data-clipboard-text', '￥'+taowords+'￥');
 			$('#cut').text('￥'+taowords+'￥');
+			$('#product_name').text(Title);
+			$('#Pay').text(Pay);
+			$('#bonus').text(bonus);
 		}
 	}	
 	
