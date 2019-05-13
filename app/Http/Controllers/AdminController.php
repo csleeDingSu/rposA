@@ -772,8 +772,9 @@ WHERE
 			  	 ];
 		
 		$validator = Validator::make($input, [			
-			'banner_image' => 'required|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+			'banner_image' => 'required_without:banner_url|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
 			'status' => 'required',
+			'banner_url' => 'required_without:banner_image',
 		]);
 		
 		if ($validator->fails()) {
@@ -823,8 +824,9 @@ WHERE
 					'banner_image' =>$data->banner_image,
 			  	 ];
 		$validator = Validator::make($input, [
-			 'banner_image' => 'nullable|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
-			 'status' => 'required',
+			 'banner_image' => 'required_without:banner_url|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+			 'status'       => 'required',
+			 'banner_url'   => 'required_without:banner_image',
 		]);
 		if ($validator->fails()) {
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
