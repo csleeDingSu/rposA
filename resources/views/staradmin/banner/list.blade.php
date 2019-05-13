@@ -90,6 +90,8 @@
 				</div>
 				<input type="hidden" name="hidden_void" id="hidden_void" value="">
 				<input type="hidden" name="mode" id="mode" value="create">
+				<input type="hidden" name="banner_new_picture" id="banner_new_picture" value="no">
+			
 			</div>
 		</div>
 	</div>
@@ -113,6 +115,8 @@
 	
 	$("#formbanner").on("click",".imga", function() {
 		var id=$(this).data('id');
+		
+		$('#banner_new_picture').val('');
 		$.ajax( {
 				url: "{{route('banner.remove.image')}}",
 				type: 'delete',
