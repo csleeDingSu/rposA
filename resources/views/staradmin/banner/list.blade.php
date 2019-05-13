@@ -277,7 +277,7 @@
 						$('#ss_'+id).html(data.seq);
 						
 						
-						var appUrl ="{{url('/')}}"+'/ad/banner/'+data.banner_image;
+						var appUrl ="{{url('/')}}"+'/banner/'+data.banner_image;
 								
 						$('.bannerimg_'+id).attr('src', appUrl);
 						
