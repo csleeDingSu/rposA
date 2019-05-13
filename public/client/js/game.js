@@ -171,18 +171,18 @@ try {
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
-        var expiry_time = data.expiry_time.replace(' ', 'T');
+        // var expiry_time = data.expiry_time.replace(' ', 'T');
 // console.log('_expiry_time ' + expiry_time);
-        expiry_time = new Date(expiry_time);
-        var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
-        var current_time = (new Date().format('Y-m-d H:i:s')).toString().replace(' ', 'T');            
+        // expiry_time = new Date(expiry_time);
+        // var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
+        // var current_time = (new Date().format('Y-m-d H:i:s')).toString().replace(' ', 'T');            
 // console.log('_current_time ' + current_time);
-        current_time = new Date(current_time);
-        var diff = (expiry_time - current_time); 
-        timer = (diff / 1000).toString();
-        if (timer > duration) {
-            timer = duration;
-        }
+        // current_time = new Date(current_time);
+        // var diff = (expiry_time - current_time); 
+        // timer = (diff / 1000).toString();
+        // if (timer > duration) {
+        //     timer = duration;
+        // }
         // console.log('diff' + diff);
         // console.log('requested_time ' + requested_time);
         // console.log('current_time ' + current_time);
