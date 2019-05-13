@@ -7,8 +7,8 @@
 
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/game_node.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/results.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
     
@@ -121,7 +121,9 @@
 						幸运倒计时：<span class="span-timer"></span>秒
 					</div>
 					<div class="results-row">
-						<div class="chain-wrapper results-left"></div>
+						<div class="chain-wrapper results-left">
+							<div class="chain"></div>
+						</div>
 						<div class="box-wrapper">
 							<div id="result-1" class="results-box">1</div>
 						</div>
@@ -145,6 +147,7 @@
 
 				  	<div class="results-row">
 				  		<div class="chain-wrapper results-left">
+				  			<div class="chain"></div>
 				  			<div class="left-chain"></div>
 				  		</div>
 				  		<div class="box-wrapper">
@@ -166,7 +169,9 @@
 				  	</div>
 
 				  	<div class="results-row">
-				  		<div class="chain-wrapper results-left"></div>
+				  		<div class="chain-wrapper results-left">
+				  			<div class="chain"></div>
+				  		</div>
 				  		<div class="box-wrapper">
 							<div id="result-11" class="results-box">1</div>
 						</div>
@@ -189,7 +194,7 @@
 
 				  	<div class="results-row">
 				  		<div class="chain-wrapper results-left">
-				  			<div class="left-chain"></div>
+				  			<div class="chain"></div>
 				  		</div>
 				  		<div class="box-wrapper">
 							<div id="result-20" class="results-box">1</div>
@@ -207,26 +212,6 @@
 							<div id="result-16" class="results-box">5</div>
 						</div>
 						<div class="chain-wrapper results-right"></div>		
-				  	</div>
-
-				  	<div class="results-row">
-				  		<div class="chain-wrapper results-left"></div>
-				  		<div class="box-wrapper">
-							<div id="result-21" class="results-box">1</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-22" class="results-box">2</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-23" class="results-box">3</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-24" class="results-box">4</div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-25" class="results-box">5</div>
-						</div>
-						<div class="chain-wrapper results-right"></div>
 				  	</div>
 				  </div>
 				</div>

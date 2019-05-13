@@ -50,9 +50,18 @@ $(function () {
 
 function updateResult(records){
     var counter = 0;
+    var str_result = '单数';
+
     $.each(records, function(i, item) {
         var list = i + 1;
-        $('.results-body').find('#result-' + list).html(item.result);
+        if(item.result % 2 === 0){
+            $('.results-body').find('#result-' + list).addClass('even-box');
+            str_result = '双数';
+        } else {
+            $('.results-body').find('#result-' + list).removeClass('even-box');
+            str_result = '单数';
+        }
+        $('.results-body').find('#result-' + list).html(item.result + '<div>'+ str_result +'</div>');
         counter++;
         return counter < 25;
     });
