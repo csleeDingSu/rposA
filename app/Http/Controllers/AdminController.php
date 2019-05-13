@@ -826,7 +826,7 @@ WHERE
 		$validator = Validator::make($input, [
 			 'banner_image' => 'required_without:banner_url|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
 			 'status'       => 'required',
-			 'banner_url'   => 'required_without:banner_image',
+			 'banner_url'   => 'required_without:banner_image,banner_new_picture',
 		]);
 		if ($validator->fails()) {
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
