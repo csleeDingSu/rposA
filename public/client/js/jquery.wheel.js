@@ -1,141 +1,286 @@
-var indexApp = {
-    //入口方法
-    init : function (valueJson) {
-        this.valueJson = valueJson; //获取前台页面传入的参数
-        this.wheelInit(); //一些样式的初始化 如圆形的高度设置等
-        this.resize(); //onresize 事件 重置样式
-        this.cancel($('.false')); //注册取消按钮的点击事件
-        this.cancel($('.close'));//注册再来一次按钮的点击事件
-        return this; //返回对象本身,使其可以链式调用
-    },
-    //转盘初始化
-    wheelInit : function () {
-        var t = this;
-        t.showStars(); //某几个小圆点高亮
-    },
-    //窗口改变时的重新设置样式
-    resize : function () {
-        var t = this;
-        $(window).resize(function () {
-            t.wheelInit();//窗口发生变化的时候重置样式
-        });
-    },
-    //计算并且排列小圆点
-    showStars : function () {
-        var t = this;
-        for(var i=0; i < t.valueJson['starsNum']; i++) {
-            var oStar = document.createElement('div');
+(function (jQuery) {
+    var version = "1.0",
+        pluginName = "jQuery.wheelOfFortune",
+        elePool = {}, elePoolSB = 0, pluginTagName = "wof-tag",
+        configPool = {},
+        defaultParam = {
+            fluctuate: 0.8,
+            rotateNum: 12,
+            duration: 5000,
+            type: 'p',
+            pAngle: 0,
+            rotateCallback: function () {
+            },
+            click: function () {
+            },
+            inRotation: false
+        };
 
-            if(i%2 == 0) { //奇数的圆点增加高亮的效果(外阴影)
-                oStar.style.boxShadow = '0 0 5px #fff';
-            }   
-            oStar.className = 'stars';
-            oStar.style.left = t.valueJson['starsPostion'][i][0] + '%';
-            oStar.style.top = t.valueJson['starsPostion'][i][1] + '%';
-            t.valueJson['wheelBody'].append(oStar);
+    /* private methods ------------------------------------------------------ */
 
-        }
-    },
-    //取消按钮事件绑定
-    cancel : function (obj) {
-        obj.click(function () {
-            $(this).parents('.dialog').css('display','none');
-        });
-    },
-    //转盘开始的初始化函数 以及点击事件 通过链式调用加载 而非init()初始化加载,这样做,当未开始或者已结束页面不需要转动的时候,不链式调用此方法就行
-    wheelStart : function () {
-        var t = this;
-        t.nowRan = 0; //当前弧度
-        t.once = true; //是否第一次
-        t.onStart = true; //是否开始了转动
-
-        //点击事件
-        t.valueJson['startBtn'].click(function () {
-            if(t.onStart == true) { //只有 为 true 的 时候 才允许转动
-                t.onStart = false;
-
-                //如果开启了关注 并且 当前 用户 没有关注
-                if(t.valueJson['is_gz'] == 1 && t.valueJson['is_follow'] == 2) {
-                    t.dialog($('.gz')); //弹出关注提示框
-                }else {
-
-                    //ajax 事件 获取
-                    //得到的参数详细见交互文档
-                    
-                    /*$.ajax({
-                        'type' : 'POST',
-                        'url' : t.valueJson['clickAjaxUrl'],
-                        success : function (data) {*/
-                            var data = {'status' : 1, 'actionStatus' : 1, 'ran' : 60, 'onceran' : 0, 'num' : 1}
-                            if(data['status'] == 1) { //表示成功 
-                                t.showWheel(data); //执行转动效果
-                            }else if(data['status'] == 2){ //金额不足 或者次数不足
-                                t.dialog($('.info'),data); //没有按钮的提示信息
-                            }else {         //出现了异常错误
-                                t.dialog($('.again'),data);  //执行带按钮的提示框
-                            }
-                        /*}
-                    });*/
-                }
+    /**
+     * 生成转盘html
+     * @param pointer
+     */
+    function build(pointer) {
+        var param = configPool[pointer],
+            wheelImg = param['wheelImg'],
+            pointerImg = param['pointerImg'],
+            buttonImg = param['buttonImg'],
+            pSide = param['pSide'],
+            wSide = param['wSide'],
+            bSide = param['bSide'],
+            pOffset = wSide / 2 - pSide / 2,
+            bOffset = wSide / 2 - bSide / 2,
+            degree = 0;
+            
+            // get Degree
+            if(typeof param['startKey'] == 'undefined'){
+            } else {
+                startKey = param['startKey'];
+                item = param['items'][startKey],
+                start = item[0], end = item[1],
+                distance = end - start,
+                fluctuate = (1 - param['fluctuate']) * distance / 2,
+                target = start + ran(distance - fluctuate * 2) + fluctuate;
+                degree = 360 - target + param['pAngle'];
             }
-        });
-    },
 
-    //转盘转动具体算法
-    showWheel : function (data) {
-        var t = this;
-        //需要转动的值 等与当前值 + 默认转动7200度 + 后台计算传过来的度数
-        var ra = t.nowRan + t.valueJson['actionRan'] + data['ran'];
+        var html =
+                    '<div class="small-border g6" style="transform: rotate('+ degree +'deg);" w>' +
 
-        //第一次的话 弧度要加上每一块弧度的一半
-        if(t.once) {
-            t.once = false;
-            ra = ra + (data['onceran'] / 2)
-        }
+                        '<div class="shan">' +
+                            '<span class="span-odd">+70金币</span>' +
+                            '<div class="div-odd">单数 <span class="odd-number">1</span></div>' +
+                        '</div>' +
 
-        //注意指针 和 转盘 反方向转动 来达到 指针 不动的效果
-        t.valueJson['wheelBody'].css('webkitTransform','rotate('+ ra +'deg)');
-        t.valueJson['startBtn'].css('webkitTransform','rotate('+ (-ra) +'deg)');
+                        '<div class="shan">' +
+                            '<span class="span-even">-70金币</span>' +
+                            '<div class="div-even">双数 <span class="even-number">2</span></div>' +
+                        '</div>' +
 
-        //重新获取当前的度数
-        t.nowRan = ra;
+                        '<div class="shan">' +
+                            '<span class="span-odd">+70金币</span>' +
+                            '<div class="div-odd">单数 <span class="odd-number">3</span></div>' +
+                        '</div>' +
 
-        //转盘转动需要4S  这里 4.5S 后 执行 各种弹出提示信息框的事件
-        setTimeout(function () {
-            t.showDialog(data);
-            t.onStart = true;
-        },4500);
-    },
+                        '<div class="shan">' +
+                            '<span class="span-even">-70金币</span>' +
+                            '<div class="div-even">双数 <span class="even-number">4</span></div>' +
+                        '</div>' +
+                        
+                        '<div class="shan">' +
+                            '<span class="span-odd">+70金币</span>' +
+                            '<div class="div-odd">单数 <span class="odd-number">5</span></div>' +
+                        '</div>' +
 
-    //根据各种不同的参数 显示弹出层的提示框
-    showDialog : function (data) {
-        var t = this;
-
-        if(data['actionStatus'] == 1) {  //值为1 表示 抽取到了现金红包
-            t.deduct(data); //扣除次数;
-            t.dialog($('.theForm'), data); //获得奖品的 提示信息框
-        }else if(data['actionStatus'] == 2) {   //值为2 表示 再来一次  再来一次不扣除次数
-            t.dialog($('.again'), data);//再来一次
-        }else if(data['actionStatus'] == 3) {  //值为3 表示 谢谢参与
-            t.deduct(data); //扣除次数;  
-            t.dialog($('.again'), data);//谢谢参与
-        }
-    },
-
-    //扣除次数的相关操作  次数的 参数 也是ajax 后台传递过来
-    deduct : function (data) {
-        $('.g-num').find('em').html(data['num']);
-    },
-
-    //弹出层
-    dialog : function (obj, data, bl) {
-        if(data && !bl) { //关注 再来一次  谢谢参与  系统异常 都是执行此处
-            obj.find('d-main').children('p').html(data['mess']);
-        }
-
-        //打开弹出层
-        obj.css('display','block');
-
+                        '<div class="shan">' +
+                            '<span class="span-even">-70金币</span>' +
+                            '<div class="div-even">双数 <span class="even-number">6</span></div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div id="btnWheel" class="trigger" b>&nbsp;</div>';
+                
+        this.html(html);
+        this.find("[b]").on('click', click);
     }
 
-}
+    /**
+     * 获取转盘索引
+     * @param ele
+     * @returns {*|jQuery}
+     */
+    function getPointer(ele) {
+        return $(ele).parent('[' + pluginTagName + ']').attr(pluginTagName);
+    }
+
+    /**
+     * 点击按钮
+     * @param e
+     */
+    function click(e) {
+        e.preventDefault();
+        var pointer = getPointer(this),
+            callback = configPool[pointer]['click'];
+        if (configPool[pointer]['inRotation']) {
+            return;
+        }
+        callback();
+    }
+
+    /**
+     * 旋转转盘
+     * @param key
+     * @param t
+     */
+    function rotate(key, t) {
+        var pointer = this.attr(pluginTagName),
+            config = configPool[pointer],
+            item = config['items'][key],
+            start = item[0], end = item[1],
+            distance = end - start,
+            fluctuate = (1 - config['fluctuate']) * distance / 2,
+            target = start + ran(distance - fluctuate * 2) + fluctuate,
+            type = t || config['type'],
+            callback = function () {
+                configPool[pointer]['inRotation'] = false;
+                config['rotateCallback'](key);
+            };
+
+        if (configPool[pointer]['inRotation']) {
+            return;
+        }
+        configPool[pointer]['inRotation'] = true;
+
+        switch (type) {
+            case 'w':
+                if (this.find("[w]").size() == 0) {
+                    build.apply(this, [pointer])
+                }
+                this.find("[w]").rotate({
+                    duration: config['duration'],
+                    angle: 0 + config['pAngle'],
+                    animateTo: 360 - target + config['rotateNum'] * 360 + config['pAngle'],
+                    callback: callback
+                });
+                break;
+            case 'p':
+                if (this.find("[p]").size() == 0) {
+                    build.apply(this, [pointer])
+                }
+                this.find("[p]").rotate({
+                    duration: config['duration'],
+                    angle: 0 - config['pAngle'],
+                    animateTo: target + config['rotateNum'] * 360 - config['pAngle'],
+                    callback: callback
+                });
+                break;
+        }
+    }
+
+    function ran(n) {
+        return parseInt(Math.random() * n);
+    }
+
+    /* public methods ------------------------------------------------------- */
+    var methods = {
+        init: function (parameter) {
+            var that = this;
+            var param = $.extend({}, defaultParam, parameter);
+            var pointer = elePoolSB++;
+            elePool[pointer] = this;
+            configPool[pointer] = param;
+            this.attr(pluginTagName, pointer);
+
+
+            var wImg = new Image(), bImg = new Image(), pImg = new Image();
+
+            wImg.onload = function () {
+                wImgLoading = false;
+                if (typeof configPool[pointer]['wSide'] === "undefined") {
+                    configPool[pointer]['wSide'] = wImg.width;
+                }
+                if (!wImgLoading && !bImgLoading && !pImgLoading) {
+                    build.apply(that, [pointer]);
+                }
+            };
+            bImg.onload = function () {
+                bImgLoading = false;
+                if (typeof configPool[pointer]['bSide'] === "undefined") {
+                    configPool[pointer]['bSide'] = bImg.width;
+                }
+                if (!wImgLoading && !bImgLoading && !pImgLoading) {
+                    build.apply(that, [pointer]);
+                }
+            };
+            pImg.onload = function () {
+                pImgLoading = false;
+                if (typeof configPool[pointer]['pSide'] === "undefined") {
+                    configPool[pointer]['pSide'] = pImg.width;
+                }
+                if (!wImgLoading && !bImgLoading && !pImgLoading) {
+                    build.apply(that, [pointer]);
+                }
+            };
+
+
+            var wImgLoading, bImgLoading, pImgLoading;
+
+            if (typeof param.wheelImg !== "undefined") {
+                wImgLoading = true;
+                wImg.src = param.wheelImg;
+            } else {
+                wImgLoading = false;
+            }
+
+            if (typeof param.buttonImg !== "undefined") {
+                bImgLoading = true;
+                bImg.src = param.buttonImg;
+            } else {
+                bImgLoading = false;
+            }
+
+            if (typeof param.pointerImg !== "undefined") {
+                pImgLoading = true;
+                pImg.src = param.pointerImg;
+            } else {
+                pImgLoading = false;
+            }
+
+
+        },
+        rotate: function () {
+            rotate.apply(this, arguments);
+        },
+        version: function () {
+            return version;
+        },
+        ver: function () {
+            return version;
+        }
+
+    };
+
+
+    /**
+     * <b>初始化</b>
+     * $(xxx).wheelOfFortune({
+     * 'wheelImg':,//转轮图片
+     * 'pointerImg':,//指针图片
+     * 'buttonImg':,//开始按钮图片
+     * 'wSide':,//转轮边长(默认使用图片宽度)
+     * 'pSide':,//指针边长(默认使用图片宽度)
+     * 'bSide':,//按钮边长(默认使用图片宽度)
+     * 'items':,//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+     * 'pAngle':,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
+     * 'type':,//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
+     * 'fluctuate':,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
+     * 'rotateNum':,//转多少圈(默认12)
+     * 'duration':,//转一次的持续时间(默认5000)
+     * 'click':,//点击按钮的回调
+     * 'rotateCallback'//转完的回调
+     * });
+     *
+     * <b>转到目标奖项</b>
+     * $(xxx).wheelOfFortune('rotate',key,type);
+     * 'rotate':调用转方法
+     * key:初始化中items的键
+     * type:旋转指针还是转盘('p'指针 'w'转盘) 优先于初始化的type
+     */
+    jQuery.fn.wheelOfFortune = function (method) {
+        if (this.size() !== 1) {
+            var err_msg = "这个插件(" + pluginName + ")一次只能对一个元素使用;size:" + this.size();
+            this.html('<span style="color: red;">' + 'ERROR: ' + err_msg + '</span>');
+            $.error(err_msg);
+        }
+        // Method calling logic
+        if (methods[method]) {
+            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === "object" || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error("方法 " + method + "不存在于" + pluginName);
+        }
+
+    };
+})(jQuery);
