@@ -182,7 +182,7 @@ $(function(){
 
 		//加密
 		var key =getParams();
-		console.log(key);
+		console.log('key ' + key);
 
 		var json =	base64decode(key);
 		var	jsObject = JSON.parse(json);	

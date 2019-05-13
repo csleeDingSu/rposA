@@ -250,8 +250,10 @@ $(function(){
 
 		//加密
 		var key =getParams();
+		console.log('key ' + key);
 		var json =	base64decode(key);
 		var	jsObject = JSON.parse(json);	
+		console.log(jsObject);
 
 		jsObject.Title =  decodeURI(jsObject.Title);
 		$('#taokey').text('￥'+jsObject.tkl+'￥');
