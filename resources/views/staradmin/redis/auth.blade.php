@@ -188,6 +188,11 @@
 				console.log('call betting status update');
 				console.log(data);
 			  });
+			
+			socket.on("activedraw" + ":App\\Events\\EventDynamicChannel" , function(data){
+				console.log('members activedraw');
+				console.log(data);
+			  });
 
 
             /* 
