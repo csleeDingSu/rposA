@@ -822,6 +822,7 @@ WHERE
 		$input = [
 					'status'   => $data->status, 			 
 					'banner_image' =>$data->banner_image,
+					'banner_new_picture' =>$data->banner_new_picture,
 			  	 ];
 		$validator = Validator::make($input, [
 			 'banner_image' => 'required_without:banner_url|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
