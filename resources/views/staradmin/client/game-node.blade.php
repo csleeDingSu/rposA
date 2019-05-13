@@ -238,7 +238,7 @@
 				<div id="wheel_banner">
 					<img src="{{ asset('/client/images/wheel/banner.png') }}" />
 				</div>
-				<div class="big-border">
+				<div id="wheel_container" class="big-border">
 					<div class="small-border g6">
 
 						<div class="shan">
@@ -272,9 +272,8 @@
 						</div>						
 					</div>
 				</div>
-				<div class="trigger">&nbsp;</div>
 				<img src="/client/images/wheel/pointer.png" width="36%" class="middle">
-				<div class="middle-label">开始竞猜</div>
+				<div id="txtCounter" class="middle-label">开始竞猜</div>
 		    </div>
 		</div>
 
@@ -960,21 +959,6 @@
 			});
 
 			$('#viewgamerules').on('click', showGameRules);
-
-			var valueJson = {
-		        'wheelBody' : $('.big-border'), //转盘主体
-		        'wheelSmall' : $('.small-border'), //转盘内部
-		        'actionRan' : 7200, //转盘转动弧度
-		        'theOnce' : 0, //初始化转盘第一个
-		        'startBtn' : $('.trigger'), //开始按钮
-
-		        //需要后台传值的参数
-		        'clickAjaxUrl' : 'www.baidu.com', //点击抽奖获取信息的交互的ajax
-		        'is_gz' : 1, //是否开启关注 1开 2 关
-		        'is_follow' : 1 //是否关注
-
-		    };
-		    indexApp.init(valueJson).wheelStart(); //应用开始
 
 		});	
 

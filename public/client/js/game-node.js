@@ -9,6 +9,9 @@ var show_win = false;
 var show_lose = false;
 var g_previous_point = 0;
 var g_current_point = 0;
+var game_records = null; //game setting
+var result_records = null; //game history
+var latest_result = null; //latest result
 
 $(function () {
 
@@ -168,18 +171,18 @@ try {
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
-        var expiry_time = data.expiry_time.replace(' ', 'T');
+        // var expiry_time = data.expiry_time.replace(' ', 'T');
 // console.log('_expiry_time ' + expiry_time);
-        expiry_time = new Date(expiry_time);
-        var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
-        var current_time = (new Date().format('Y-m-d H:i:s')).toString().replace(' ', 'T');            
+        // expiry_time = new Date(expiry_time);
+        // var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
+        // var current_time = (new Date().format('Y-m-d H:i:s')).toString().replace(' ', 'T');            
 // console.log('_current_time ' + current_time);
-        current_time = new Date(current_time);
-        var diff = (expiry_time - current_time); 
-        timer = (diff / 1000).toString();
-        if (timer > duration) {
-            timer = duration;
-        }
+        // current_time = new Date(current_time);
+        // var diff = (expiry_time - current_time); 
+        // timer = (diff / 1000).toString();
+        // if (timer > duration) {
+        //     timer = duration;
+        // }
         // console.log('diff' + diff);
         // console.log('requested_time ' + requested_time);
         // console.log('current_time ' + current_time);
@@ -211,6 +214,7 @@ try {
         $('#freeze_time').val(freeze_time);
         $('#draw_id').val(draw_id);
 
+        DomeWebController.init();
         trigger = false;
         clearInterval(parent.timerInterval);
         startTimer(duration, timer, freeze_time);
@@ -386,11 +390,11 @@ function getSocket(){
                 console.log('load user game setting-on page load');
                 console.log(data);
 
-                var game_records = data.data.gamesetting;
+                game_records = data.data.gamesetting;
                 var level = data.data.level;
-                var latest_result = data.data.latest_result;
+                latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
-                var result_records = data.data.gamehistory.data;
+                result_records = data.data.gamehistory.data;
                 var wallet_records = data.data.wallet;
                 var betting_records = groupHistory(data.data.bettinghistory.data);
                 var isFirstLifeWin = data.data.IsFirstLifeWin;
@@ -431,27 +435,27 @@ function getSocket(){
 
                 resetGame();
                 initShowModal();
-                var game_records = data.data.gamesetting;
+                // var game_records = data.data.gamesetting;
                 var level = data.data.level;
-                var latest_result = data.data.latest_result;
+                // var latest_result = data.data.latest_result;
                 var consecutive_lose = data.data.consecutive_lose;
-                var result_records = data.data.gamehistory.data;
+                // var result_records = data.data.gamehistory.data;
                 
                 var id = $('#hidUserId').val();
                 var session = $('#hidSession').val();
 
                 initGame(game_records, level, latest_result, consecutive_lose);
-                updateResult(result_records);
+                // updateResult(result_records);
 
-                if(update_wallet){
-                    initUser(wallet_data);
-                    update_wallet = false;
-                }
+                // if(update_wallet){
+                //     initUser(wallet_data);
+                //     update_wallet = false;
+                // }
 
-                if(update_betting_history){
-                    updateHistory(betting_data);
-                    update_betting_history = false;
-                }
+                // if(update_betting_history){
+                //     updateHistory(betting_data);
+                //     update_betting_history = false;
+                // }
 
                 show_win = false;
                 show_lose = false;
@@ -532,17 +536,33 @@ function getSocket(){
             }); 
 
             //on page load activedraw Script
-            socket.on("activedraw-" + user_id + ":App\\Events\\EventDynamicChannel", function(data){
-                console.log('load activedraw member page load');
-                console.log(data);
-                // initWheel(data.data);
-             });
-
-            //on page load activedraw Script
             socket.on("activedraw:App\\Events\\EventDynamicChannel", function(data){
                 console.log('load activedraw page load');
                 console.log(data);
-                // initWheel(data.data);
+                game_records = data.data.gamesetting;
+                // resetGame();
+                // initShowModal();
+                result_records = data.data.gamehistory.data;
+                latest_result = data.data.latest_result;
+                
+                var id = $('#hidUserId').val();
+                var session = $('#hidSession').val();
+
+                updateResult(result_records);
+
+                if(update_wallet){
+                    initUser(wallet_data);
+                    update_wallet = false;
+                }
+
+                if(update_betting_history){
+                    updateHistory(betting_data);
+                    update_betting_history = false;
+                }
+
+                // show_win = false;
+                // show_lose = false;
+
              });
          
         });
@@ -846,12 +866,12 @@ function bindBetButton(){
             var temp = "";
 
             $('.payout-info').removeClass("hide");
-            if (selected == "odd") {
-                temp = "[单数]";
-            } else {
-                temp = "[双数]";
-            }
-            $('.caption_bet').text(temp);
+            // if (selected == "odd") {
+            //     temp = "[单数]";
+            // } else {
+            //     temp = "[双数]";
+            // }
+            // $('.caption_bet').text(temp);
 
             // $(".payout-info").text(function () {
             //     return $(this).text().replace("[单数]", temp); 
@@ -992,7 +1012,9 @@ function showProgressBar(bol_show){
             case 1:
                 bet_amount = 10;
 
-                payout_info = '<span class=\'caption_bet\'>[单数]</span>押注10积分，猜对+10，猜错-10。';//'您选择<span class=\'caption_bet\'>[单数]</span>，猜中赚10金币，可兑换1元。';//'猜中得10，赚10金币。';
+                payout_info = '押注10积分，猜对+10，猜错-10。';
+                //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注10积分，猜对+10，猜错-10。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中赚10金币，可兑换1元。';//'猜中得10，赚10金币。';
                 $('.span-1').html("10");
                 $('.span-2').html("30");
                 $('.span-3').html("70");
@@ -1008,7 +1030,9 @@ function showProgressBar(bol_show){
                 span_balance = 1190;
                 result_info = '本轮错了1次，还剩5次。';
 
-                payout_info = '<span class=\'caption_bet\'>[单数]</span>押注30积分，猜对+30，猜错-30。';//'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
+                payout_info = '押注30积分，猜对+30，猜错-30。';
+                //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注30积分，猜对+30，猜错-30。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
                 $('.span-1').html("-10");                        
                 break;
             case 3:                    
@@ -1016,7 +1040,9 @@ function showProgressBar(bol_show){
                 span_balance = 1160;
                 result_info = '本轮错了2次，还剩4次。';
 
-                payout_info = '<span class=\'caption_bet\'>[单数]</span>押注70积分，猜对+70，猜错-70。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
+                payout_info = '押注70积分，猜对+70，猜错-70。';
+                // payout_info = '<span class=\'caption_bet\'>[单数]</span>押注70积分，猜对+70，猜错-70。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 break;
@@ -1025,7 +1051,9 @@ function showProgressBar(bol_show){
                 span_balance = 1090;
                 result_info = '本轮错了3次，还剩3次。';
 
-                payout_info = '<span class=\'caption_bet\'>[单数]</span>押注150积分，猜对+150，猜错-150。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得150，赚40金币。';//'猜中得150，扣除前3次亏损110，赚40金币。';
+                payout_info = '押注150积分，猜对+150，猜错-150。';
+                //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注150积分，猜对+150，猜错-150。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得150，赚40金币。';//'猜中得150，扣除前3次亏损110，赚40金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -1035,7 +1063,9 @@ function showProgressBar(bol_show){
                 span_balance = 940;
                 result_info = '本轮错了4次，还剩2次。';
 
-                payout_info = '<span class=\'caption_bet\'>[单数]</span>押注310积分，猜对+310，猜错-310。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得310，赚50金币。';//'猜中得310，扣除前4次亏损260，赚50金币。';
+                payout_info = '押注310积分，猜对+310，猜错-310。';
+                //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注310积分，猜对+310，猜错-310。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得310，赚50金币。';//'猜中得310，扣除前4次亏损260，赚50金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -1046,7 +1076,9 @@ function showProgressBar(bol_show){
                 span_balance = 630;
                 result_info = '本轮剩1次机会，猜错清零。';                
 
-                payout_info = '<span class=\'caption_bet\'>[单数]</span>押注630积分，猜对+630，猜错-630。'; //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得630，赚60金币。';//'猜中得630，扣除前5次亏损570，赚60金币。';
+                payout_info = '押注630积分，猜对+630，猜错-630。';
+                // payout_info = '<span class=\'caption_bet\'>[单数]</span>押注630积分，猜对+630，猜错-630。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得630，赚60金币。';//'猜中得630，扣除前5次亏损570，赚60金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -1217,13 +1249,14 @@ function startTimer(duration, timer, freeze_time) {
 
         --timer;
 
-        // console.log('timer' + timer);
-        // console.log('trigger_time ' + trigger_time);
+          // console.log('timer' + timer);
+         // console.log('trigger_time ' + trigger_time);
             
-        if (timer < 0) {
-            timer = duration;
-
-            resetGame();
+        if (seconds == 0) {
+            clearInterval(parent.timerInterval);
+            $( "#txtCounter" ).html('<span style="font-size: 18px; padding: 5px;">等候</span>');
+            // timer = duration;
+            // resetGame();
 
         } else if (timer <= trigger_time) {
             //Lock the selection
@@ -1246,8 +1279,85 @@ function triggerResult(){
     // console.log(freeze_time);
 
     //Trigger the wheel
+    DomeWebController.getEle("$wheelContainer").wheelOfFortune({
+        'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+        'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
+        'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
+        'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
+        'rotateNum': 12,//转多少圈(默认12)
+        'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
+        'click': function () {
+            if(1==1){}
+            var key = result;
+            DomeWebController.getEle("$wheelContainer").wheelOfFortune('rotate', key);
+        },//点击按钮的回调
+        'rotateCallback': function (key) {
+            //alert("左:" + key);
+        }//转完的回调
+    });
 
+    $( "#btnWheel" ).trigger( "click" );
 }
+
+DomeWebController = {
+    pool: {
+        element: {}
+    },
+    getEle: function (k) {
+        return DomeWebController.pool.element[k];
+    },
+    setEle: function (k, v) {
+        DomeWebController.pool.element[k] = v;
+    },
+    init: function () {
+        var that = DomeWebController;
+        that.inits.element();
+        that.inits.event();
+        that.build();
+    },
+    inits: {
+        element: function () {
+            var that = DomeWebController;
+            that.setEle("$wheelContainer", $('#wheel_container'));
+
+        },
+        event: function () {
+            var that = DomeWebController;
+
+        }
+    },
+    build: function () {
+        var that = DomeWebController;
+        var result = $('#result').val();
+        var freeze_time = $('#freeze_time').val();
+        var startKey = $('#hidLatestResult').val();
+
+        that.getEle("$wheelContainer").wheelOfFortune({
+            'wheelImg': "/client/images/wheel.png",//转轮图片
+            'pointerImg': "/client/images/pointer.png",//指针图片
+            'buttonImg': "/client/images/pointer.png",//开始按钮图片
+            'wSide': 200,//转轮边长(默认使用图片宽度)
+            'pSide': 100,//指针边长(默认使用图片宽度)
+            'bSide': 50,//按钮边长(默认使用图片宽度)
+            'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
+                    
+            'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
+            'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
+            'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
+            'rotateNum': 12,//转多少圈(默认12)
+            'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
+            'startKey' : startKey,
+            'click': function () {
+                if(1==1){}
+                var key = result;
+                that.getEle("$wheelContainer").wheelOfFortune('rotate', key);
+            },//点击按钮的回调
+            'rotateCallback': function (key) {
+                //alert("左:" + key);
+            }//转完的回调
+        });
+    }
+};
 
 function checked(number, selected){
     let bar = $('.barBox');
@@ -1293,4 +1403,73 @@ function showGameRules( event ){
     $('.btn-rules-timer').click(function(){
         $('#game-rules').modal('hide');
     });
+
+    /*if(bet_count > 0) {
+        $('.btn-rules-close').click(function(){
+            $('#game-rules').modal('hide');
+            Cookies.set('show_game_rules', false);
+            bindBetButton();
+        });
+    } else {
+        var counter = 11;
+        var interval = setInterval(function() {
+            --counter;
+            seconds = counter;
+            
+            if(counter <= 0){
+                seconds = '';
+            } else if(counter < 10) {
+                seconds = "0" + counter;
+            }
+
+            // Display 'counter' wherever you want to display it.
+            $( ".txtTimer" ).html("(" + seconds + ")");
+
+            if (counter <= 0) {
+                // Display a login box
+                $( ".txtTimer" ).addClass('hide');
+                $( ".span-read" ).html('进入挖宝');
+                clearInterval(interval);
+            }
+
+        }, 1000);
+
+        setTimeout(function(){ 
+
+            $('.btn-rules-timer').click(function(){
+                $('#game-rules').modal('hide');
+                Cookies.set('show_game_rules', false);
+            });
+
+            bindBetButton();
+        }, 11000);
+    }*/
 }
+
+// function initWheel(data) {
+
+//     var duration = data.duration;
+//     var timer = data.remaining_time;
+//     var freeze_time = data.freeze_time;
+//     var draw_id = data.drawid;
+//     var expiry_time = data.expiry_time.replace(' ', 'T');
+//     expiry_time = new Date(expiry_time);
+//     var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
+//     var current_time = (new Date().format('Y-m-d H:i:s')).toString().replace(' ', 'T');            
+//     current_time = new Date(current_time);
+//     var diff = (expiry_time - current_time); 
+//     timer = (diff / 1000).toString();
+//     if (timer > duration) {
+//         timer = duration;
+//     }
+
+//     $('#freeze_time').val(freeze_time);
+//     $('#draw_id').val(draw_id);
+
+// // console.log('trigger ' + trigger);
+// // trigger = true;
+//     DomeWebController.init();
+//     clearInterval(parent.timerInterval);
+//     startTimer(duration, timer, freeze_time);
+//     // triggerResult();
+// }

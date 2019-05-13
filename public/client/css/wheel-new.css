@@ -35,8 +35,8 @@
 	margin: auto;
 	width:280px;
 	height:280px;
-	-webkit-transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
-	transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
+	-webkit-transition: all 10s cubic-bezier(1, 0.00001, 0.00001, 1);
+	transition: all 10s cubic-bezier(1, 0.00001, 0.00001, 1);
 }
 
 .main-wheel {background: url(/client/images/wheel/shadow.png) no-repeat center bottom;background-size:100%;padding-bottom: 15px;}
@@ -50,8 +50,8 @@
 }
 
 .trigger {
-	left: 40%; 
-	top: 30%; 
+	left: 36%; 
+	top: 34%; 
 	position: absolute;
 	height: 85px;
 	width: 80px;
@@ -80,12 +80,21 @@
 	line-height: 20px;
 	font-size: 18px;
 	font-weight: 700;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.counter{
+	left: 44%; 
+	top: 38%; 
+	line-height: 35px;
+	font-size: 28px;
+	font-weight: 500;
 }
 
 @media only screen and (max-width: 360px) {
 	.trigger {
 		left: 37%; 
-		top: 30%;
+		top: 34%;
 	}
 
 	.middle {
@@ -96,6 +105,11 @@
 	.middle-label{
 		left: 43%; 
 		top: 37%;
+	}
+
+	.counter{
+		left: 43%; 
+		top: 38%;
 	}
 }
 
