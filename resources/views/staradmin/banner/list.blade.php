@@ -185,7 +185,7 @@
 								
 								$('#mode').val('edit');
 								$('#status').val(data.is_status);
-								
+								$('#banner_url').val(data.banner_url);
 								$('#hidden_void').val(id);
 																
 								var appUrl ="{{url('/')}}"+'/banner/'+data.banner_image;
