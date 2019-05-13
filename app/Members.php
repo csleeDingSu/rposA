@@ -209,7 +209,7 @@ class Members extends Model
 				{
 					$query->select('id')
 						  ->from('members')
-						  ->whereRaw('referred_by = 3');
+						  ->whereRaw('referred_by = '.$memberid);
 				})
 				->groupBy('wechat_verification_status')->get();
 		
