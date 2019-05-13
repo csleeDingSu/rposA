@@ -196,7 +196,7 @@ class Members extends Model
 				{
 					$query->select('id')
 						  ->from('members')
-						  ->whereRaw('referred_by = 3');
+						  ->whereRaw('referred_by = '.$memberid);
 				})
 				->where('wechat_verification_status',$status)
 				->paginate(15);
