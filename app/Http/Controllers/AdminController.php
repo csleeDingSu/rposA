@@ -760,21 +760,22 @@ WHERE
 	
 	public function savebanner(Request $request)
     {
+		$imagename = '';
 		if ($request->mode == 'edit')
 		{
 			return $this->updatebanner($request);
 		}
 		
 		$input = [
-					'status'   => $request->status, 			 
-					'banner_image' =>$request->banner_image,
-					'banner_url' =>$request->banner_url,
+					'status'       => $request->status, 			 
+					'banner_image' => $request->banner_image,
+					'banner_url'   => $request->banner_url,
 			  	 ];
 		
 		$validator = Validator::make($input, [			
-			'banner_image' => 'required_without:banner_url|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
-			'status' => 'required',
-			'banner_url' => 'required_without:banner_image',
+			'banner_image' => 'required_without:banner_url|image|nullable|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+			'status'       => 'required',
+			'banner_url'   => 'required_without:banner_image',
 		]);
 		
 		if ($validator->fails()) {
@@ -783,11 +784,17 @@ WHERE
 		
 		$now = Carbon::now();
 		$image = $request->file('banner_image');
-        $imagename = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('banner');
-        $image->move($destinationPath, $imagename);		
+        
+		if ($image)
+		{
+			$imagename = time().'.'.$image->getClientOriginalExtension();
+        	$destinationPath = public_path('banner');
+        	$image->move($destinationPath, $imagename);
+		}
+        		
 		
-		$data = ['banner_image' => $imagename,'is_status' => $input['status'],'created_at' => $now,'banner_url' => $banner_url];
+		$data = ['banner_image' => $imagename,'is_status' => $input['status'],'created_at' => $now,'banner_url' => $input['banner_url']];
+		
 		$badge = '';
 		$id = Admin::create_banner($data);
 		
@@ -823,11 +830,12 @@ WHERE
 					'status'   => $data->status, 			 
 					'banner_image' =>$data->banner_image,
 					'banner_new_picture' =>$data->banner_new_picture,
+					'banner_url' =>$data->banner_url,
 			  	 ];
 		$validator = Validator::make($input, [
-			 'banner_image' => 'required_without:banner_url|image|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
+			 'banner_image' => 'required_without:banner_url|image|nullable|mimes:jpeg,jpg,png,jpg,gif,svg|max:2048',
 			 'status'       => 'required',
-			 'banner_url'   => 'required_without:banner_image,banner_new_picture',
+			 'banner_url'   => 'required_without:banner_image',
 		]);
 		if ($validator->fails()) {
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
