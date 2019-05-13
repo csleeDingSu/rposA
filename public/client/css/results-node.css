@@ -1,0 +1,114 @@
+.results-body {
+    display: table;
+    margin: auto;
+    font-family: "Microsoft YaHei", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.results-wrapper {
+    display: table-cell;
+}
+
+div.timer-row {
+  font-size: 16px;
+  color: white;
+  padding-bottom: 10px;
+}
+
+.results-row > div.box-wrapper {
+  float: left;
+  width: 55px;
+  height: 50px;
+}
+
+.results-row > div.chain-wrapper {
+  width: 20px;
+  float: left;
+  height: 50px;
+}
+
+.results-row > div.results-right {
+  margin-left: 0px;
+}
+
+.results-row > div.results-left {
+  margin-left: 0px;
+}
+
+.results-box {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  color: #3ed966;
+  border-radius: 40px;
+  border: 1px solid #9fe9ac;
+  background: #fff;
+  z-index: 100;
+  position: relative;
+  padding-top: 4px;
+}
+
+.results-box div {
+  font-size: 8px;
+  margin-top: -4px;
+}
+
+.even-box {
+  color: #fb973f;
+  border: 1px solid #f6b378;
+}
+
+.chain {
+  width: 230px;
+  height: 4px;
+  background: #f0f0f0;
+  position: relative;
+  margin-left: 40px;
+  margin-top: 20px;
+  z-index: 0;
+}
+
+.right-chain {
+  margin-top: 40px;
+  margin-left: -36px;
+  width: 4px;
+  height: 20px;
+  background: #f0f0f0;
+}
+
+.left-chain {
+  margin-top: 10px;
+  margin-left: 38px;
+  width: 4px;
+  height: 20px;
+  background: #f0f0f0;
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (max-width: 400px) {
+    .results-row > div.box-wrapper {
+      width: 45px;
+    }
+
+    .results-row > div.results-right {
+      margin-left: 0px;
+    }
+
+    .results-row > div.results-left {
+      margin-left: 0px;
+    }
+
+    .right-chain {
+      margin-top: 40px;
+      margin-left: -27px;
+    }
+
+    .left-chain {
+      margin-top: 10px;
+      margin-left: 38px;
+    }
+
+    .chain {
+      width: 180px;
+      height: 4px;
+    }
+}
