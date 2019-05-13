@@ -48,7 +48,7 @@ class vip_result extends Command
         
 		$this->comment('Stared:'.'----------'.Carbon::now()->toDateTimeString().'----------');
 		
-		
+		$broadcast_channel = [];
 		
 		$drawid = $this->argument('drawid');
         
