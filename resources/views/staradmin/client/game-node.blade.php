@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/history.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
     
 
@@ -115,10 +115,7 @@
 				<div class="results-body">
 					<div class=".results-wrapper">
 					<div class="timer-row">
-						<div class="timer-wrapper">
-		        			<div class="icon-timer"></div>
-		        		</div>
-						幸运倒计时：<span class="span-timer"></span>秒
+		        		历史开奖记录
 					</div>
 					<div class="results-row">
 						<div class="chain-wrapper results-left">
@@ -213,6 +210,10 @@
 						</div>
 						<div class="chain-wrapper results-right"></div>		
 				  	</div>
+
+				  	<div class="legend-row">
+				  		开奖结果从下往上，最新结果在最上面
+				  	</div>
 				  </div>
 				</div>
 			</div>
@@ -259,6 +260,7 @@
 				</div>
 				<img src="/client/images/wheel/pointer.png" width="36%" class="middle">
 				<div id="txtCounter" class="middle-label">开始竞猜</div>
+				<div class="DB_G_hand"></div>
 		    </div>
 		</div>
 
@@ -269,12 +271,7 @@
 						<table class="history-table">
 						    <tbody>
 						    	<tr>
-						        	<td class="timer" colspan="2">
-						        		<div class="timer-wrapper">
-						        			<div class="icon-timer"></div>
-						        		</div>
-						        		幸运倒计时：<span class="span-timer"></span>秒
-						        	</td>
+						        	<td class="timer" colspan="2">猜数记录</td>
 						        </tr>
 						        <tr id="row-1">
 						            <td class="history-number"></td>
@@ -309,11 +306,7 @@
 						            <td class="history"></td>
 						        </tr>
 						        <tr>
-						        	<td class="legend" colspan="2">
-						        		<div class="even"><span class="history-label"></span></div><div class="legend-item">代表双数</div>
-						        		<div class="odd"><span class="history-label"></span></div><div class="legend-item">代表单数</div>
-						        		<div class="odd-fail"><span class="history-label"></span></div><div class="even-fail overlap"><span class="history-label"></span></div><div class="legend-item">代表失败</div>
-						        	</td>
+						        	<td class="legend" colspan="2"></td>
 						        </tr>
 						    </tbody>
 						</table>

@@ -91,6 +91,41 @@
 	font-weight: 500;
 }
 
+
+.DB_G_hand {
+  position: absolute;
+  background-repeat: no-repeat;
+  width: 71px;
+  height: 75px;
+  left: 50%; 
+  top: 42%; 
+  background-image: url(/client/images/wheel/hand1.png);
+  -webkit-animation: guideHand2 .5s step-start infinite;
+  animation: guideHand2 .5s step-start infinite;
+  background-size: cover;
+  z-index: 200;
+}
+
+@keyframes guideHand2 {
+  0% {
+    background-image: url(/client/images/wheel/hand1.png);
+  }
+
+  50% {
+    background-image: url(/client/images/wheel/hand2.png);
+  }
+}
+
+@-webkit-keyframes guideHand2 {
+  0% {
+    background-image: url(/client/images/wheel/hand1.png);
+  }
+
+  50% {
+    background-image: url(/client/images/wheel/hand2.png);
+  }
+}
+
 @media only screen and (max-width: 360px) {
 	.trigger {
 		left: 37%; 
@@ -111,6 +146,12 @@
 		left: 43%; 
 		top: 38%;
 	}
+
+	.DB_G_hand {
+	  left: 52%; 
+	  top: 42%; 
+	}
+
 }
 
 .stars {width: 4%;height:4%;border-radius: 50%;background: #ffb820;position: absolute;}
