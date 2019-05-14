@@ -98,7 +98,7 @@
 }
 
 .ig {
-    -webkit-animation: circle 5s infinite linear;
+    -webkit-animation: circle 10s infinite linear;
 }
 
 @-webkit-keyframes circle {
