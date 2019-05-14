@@ -71,37 +71,41 @@ function updateHistory(records){
 
     var length = Object.keys(records).length;
     var maxCount = 7;
+    var counter = 0;
 
     if(length < maxCount){
         maxCount = parseInt(length);
     }
-    //console.log(records);
+    console.log(records);
     for(var r = 1; r <= maxCount; r++){
         var last = Object.keys(records)[Object.keys(records).length-1];
         var last_record = records[last];
         var history = '';
-
-        $('.history-body').find('#row-' + r).find('.history-number').html(last);
-        $('.history-body').find('#row-' + r).find('.history').html('');
-
         var betCount = Object.keys(last_record).length;
 
         for(var i = 0; i < betCount; i++){
-
+            counter++;
             var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
             var last_bet = last_record[last_key];
             //console.log(last_bet);
+            var strbet = "单数";
+            var strwinloss = "猜对";
+            var strsign = '+';
             var className = last_bet.bet;
 
             if(last_bet.is_win == null){
-                className = last_bet.bet + '-fail'; 
+                strwinloss = "猜错";
+                strsign = '-';
             }
 
-            history =  '<div class="' + className + '">' +
-                            '<span class="history-label">' + last_bet.result +'</span>'
-                        '</div>';
+            if(last_bet.bet == 'even'){
+                strbet = "双数";
+            }
 
-            $('.history-body').find('#row-' + r).find('.history').append(history);
+            history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(last_bet.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(last_bet.bet_amount) +'金币';
+
+            $('.history-body').find('#row-' + counter).find('.history-number').html(last+'局');
+            $('.history-body').find('#row-' + counter).find('.history').html(history);
             delete last_record[last_key];
         }
 
@@ -226,7 +230,7 @@ try {
         DomeWebController.init();
         trigger = false;
         clearInterval(parent.timerInterval);
-        startTimer(duration, timer, freeze_time);
+        //startTimer(duration, timer, freeze_time);
 
         var show_game_rules = Cookies.get('show_game_rules');
 
@@ -621,7 +625,7 @@ function resetTimer(){
 
             trigger = false;
             clearInterval(parent.timerInterval);
-            startTimer(duration, timer, freeze_time);
+            //startTimer(duration, timer, freeze_time);
         }
     });
 }
@@ -1412,73 +1416,4 @@ function showGameRules( event ){
     $('.btn-rules-timer').click(function(){
         $('#game-rules').modal('hide');
     });
-
-    /*if(bet_count > 0) {
-        $('.btn-rules-close').click(function(){
-            $('#game-rules').modal('hide');
-            Cookies.set('show_game_rules', false);
-            bindBetButton();
-        });
-    } else {
-        var counter = 11;
-        var interval = setInterval(function() {
-            --counter;
-            seconds = counter;
-            
-            if(counter <= 0){
-                seconds = '';
-            } else if(counter < 10) {
-                seconds = "0" + counter;
-            }
-
-            // Display 'counter' wherever you want to display it.
-            $( ".txtTimer" ).html("(" + seconds + ")");
-
-            if (counter <= 0) {
-                // Display a login box
-                $( ".txtTimer" ).addClass('hide');
-                $( ".span-read" ).html('进入挖宝');
-                clearInterval(interval);
-            }
-
-        }, 1000);
-
-        setTimeout(function(){ 
-
-            $('.btn-rules-timer').click(function(){
-                $('#game-rules').modal('hide');
-                Cookies.set('show_game_rules', false);
-            });
-
-            bindBetButton();
-        }, 11000);
-    }*/
 }
-
-// function initWheel(data) {
-
-//     var duration = data.duration;
-//     var timer = data.remaining_time;
-//     var freeze_time = data.freeze_time;
-//     var draw_id = data.drawid;
-//     var expiry_time = data.expiry_time.replace(' ', 'T');
-//     expiry_time = new Date(expiry_time);
-//     var requested_time = new Date(data.requested_time.date.replace(' ', 'T'));
-//     var current_time = (new Date().format('Y-m-d H:i:s')).toString().replace(' ', 'T');            
-//     current_time = new Date(current_time);
-//     var diff = (expiry_time - current_time); 
-//     timer = (diff / 1000).toString();
-//     if (timer > duration) {
-//         timer = duration;
-//     }
-
-//     $('#freeze_time').val(freeze_time);
-//     $('#draw_id').val(draw_id);
-
-// // console.log('trigger ' + trigger);
-// // trigger = true;
-//     DomeWebController.init();
-//     clearInterval(parent.timerInterval);
-//     startTimer(duration, timer, freeze_time);
-//     // triggerResult();
-// }

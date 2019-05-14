@@ -2,6 +2,8 @@
     display: table;
     margin: auto;
     font-family: "Microsoft YaHei", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+    background: white;
+    border-radius: 6px;
 }
 
 .results-wrapper {
@@ -9,9 +11,15 @@
 }
 
 div.timer-row {
-  font-size: 16px;
-  color: white;
-  padding-bottom: 10px;
+  font-size: 17px;
+  color: #333;
+  padding: 12px 0;
+}
+
+div.legend-row {
+  font-size: 13px;
+  color: #666;
+  padding: 12px 0;
 }
 
 .results-row > div.box-wrapper {
