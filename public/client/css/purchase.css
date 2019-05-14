@@ -358,6 +358,11 @@ html, body {
     color: #f8a647;
 }
 
+.radio.selected .radio-price {
+	font-size: 13px;
+	color: #f8a647;
+}
+
 /*@media only screen and (max-width: 500px) {
 	.radio{
 		height: 55px;

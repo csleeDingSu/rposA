@@ -68,7 +68,7 @@ function getPackage() {
                     }
 
                         html += '<div class="radio" data-value="'+ item.id +'" data-price="'+price +'">' +
-                                    '<div class="radio-title">'+ item.package_name +'</div><div>'+ price +' Q币 兑换</div>' +
+                                    '<div class="radio-title">'+ item.package_name +'</div><div class="radio-price">'+ price +'Q币兑换</div>' +
                                 '</div>' +
                             '</div>';
                     
@@ -83,7 +83,8 @@ function getPackage() {
                     var price = Math.trunc($(this).attr('data-price'));
                     //alert(val);
                     $('#radio-value').val(val);
-                    $('.point').html(price +' Q币');
+                    $('.point').html(price +'Q币');
+                    $('._point').html(price);
                 });
             }
         }
