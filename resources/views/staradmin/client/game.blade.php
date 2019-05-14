@@ -692,7 +692,7 @@
 								<div class="modal-invite-content">
 									<h1 class="modal-invite-title">您有以下选择</h1>
 									<ol class="vegan-list">
-										<li>购买次数，首次购买仅需<span class="_1st_basic_topup">5.8元/次</span>，之后购买9.9元/次，每天限购5次。</li>
+										<li>Q币购买次数，首次购买仅需<span class="_1st_basic_topup">6Q币/次</span>，之后购买10Q币/次，每天限购5次。</li>
 										<li>邀请好友加入，邀请1个获得{{env('sharetofriend_youwillget', '1')}}次机会</li>
 									</ol>
 								</div>

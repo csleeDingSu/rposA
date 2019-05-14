@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Q币购买')
+@section('title', '付款页面')
 
 @section('left-menu')
     <a href="/profile" class="back">
@@ -30,6 +30,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 					  	<div class="label-title">选择场次</div>
+					  	<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">i8I2yX408f</span></h4>
 					</div>
 
 					<form method="post" action="">
@@ -38,41 +39,46 @@
 					  
 					</form>
 
-					<div class="col-xs-12">
-						<div class="label-title">需支付<span class="point">0 Q币</span>
-						</div>
+					<div class="col-xs-6">
+						<div class="label-title">支付金额</div>
+					</div>
+					<div class="col-xs-6 text-right">
+						<div class="point">¥0.00元</div>
 					</div>
 
 					<div class="col-xs-12">
-						<div class="how-to-pay">
-							支付方式：<br>
-							到淘宝搜索“1个Q币”给下方Q号充值26个Q币。<br>
-							充值完成后点击“充值完成”。<br>
-						</div>
+					  	<div class="button-copy cutBtn">复制支付口令</div>
 					</div>
-
-					<div class="col-xs-12 qq">
-						<img class="qq-icon" src="{{ asset('/client/images/membership/qq.png') }}"  />
-						<div class="qq-info">
-							QQ号码: <span id="cut">{{env('qqnumber', '235883623')}}</span>
-						</div>
-						<div class="button-copy cutBtn">复制号码</div>
-					</div>
-
-					<div class="col-xs-12">				
-						<div class="button-submit">充值完成</div>
-						<div class="error"></div>
-					</div>
-
 				</div>
-
 			</div>
 			<!-- end member details -->
 
 
-		  	
+		  	<div class="listing-table">
+				<div class="col-xs-4">
+					重要提示：
+				</div>
+				<div class="col-xs-8">
+					付款成功后，请提交付款信息，填写姓名，否则后台无法确认。
+				</div>
+				<div style="clear: both;"></div>
+				<div class="input-wrapper">
+					<input type="text" value="" id="txt_name" name="txt_name" placeholder="输入姓名" />
+				</div>
+				<div class="button-submit">确认提交</div>
+				<div class="error">未输入姓名无法提交，请填写真实姓名</div>
+
+			</div>
 		</div>
 		
+		<div class="top-background">
+			<img src="{{ asset('/client/images/membership/bg-purchase.png') }}" />
+		</div>
+		<div class="bottom-background"></div>
+
+		<!-- member listing -->
+		
+		<!-- end member listing -->
 	</div>
 </div>
 
