@@ -111,10 +111,12 @@ function populateData(records, token) {
                     var str_status = "开通失败";
                     var str_class = "fail";
                 }
+
+                var bprice = Math.trunc((item.buy_price != null) ? item.buy_price : 0);
                 
                 html += '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
-                                '<div class="item">购买' + item.package_name + '幸运转盘</div>' +
+                                '<div class="item">Q币购买' + item.package_name + '幸运转盘</div>' +
                                 '<div class="date">购买时间：' + str_date + '</div>';
                                 if(str_class == 'fail' && item.reject_notes != ''){
                                     html += '<div class="reason">原因：' + item.reject_notes + '</div>';
@@ -125,7 +127,7 @@ function populateData(records, token) {
                                     '<div class="status">' +
                                         '<span class="' + str_class + '">'+ str_status +'</span>' +
                                     '</div>' +
-                                    '<div class="additional">'+ item.buy_price +'元</div>';
+                                    '<div class="additional">'+ bprice +' Q币</div>';
                                     if(str_class == 'fail'){
                                         html += '<a href="/purchase"><div class="btn-purchase">再次购买</div></a>';
                                     }

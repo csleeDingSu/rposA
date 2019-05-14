@@ -5,14 +5,7 @@ $(document).ready(function () {
     getToken();
 
     $('.button-submit').click(function(){
-
-        var txt_name = $('#txt_name').val();
-        if(txt_name == ''){
-            $('.error').html('未输入姓名无法提交，请填写真实姓名');
-            $('.error').show();
-        } else {
-            purchase();
-        }
+        purchase();
     });
 
     var clipboard = new ClipboardJS('.cutBtn', {
@@ -22,11 +15,11 @@ $(document).ready(function () {
     });
 
     clipboard.on('success', function (e) {
-        $('.cutBtn').addClass('copy-success').html('复制成功 打开支付宝');
+        $('.cutBtn').addClass('copy-success').html('复制成功');
     });
 
     clipboard.on('error', function (e) {
-        $('.cutBtn').addClass('copy-success').html('复制成功 打开支付宝');
+        $('.cutBtn').addClass('copy-success').html('复制成功');
     });
 
 }); 
@@ -69,13 +62,13 @@ function getPackage() {
 
                     if(purchase_data.length == 0 && item.package_discount_price > 0){
                         html += '<div class="promotion"><img src="/client/images/membership/promotion.png" /></div>';
-                        price = item.package_discount_price;
+                        price = Math.trunc(item.package_discount_price);
                     } else {
-                        price = item.package_price;
+                        price = Math.trunc(item.package_price);
                     }
 
                         html += '<div class="radio" data-value="'+ item.id +'" data-price="'+price +'">' +
-                                    '<div class="radio-title">'+ item.package_name +'</div><div>售价'+ price +'元</div>' +
+                                    '<div class="radio-title">'+ item.package_name +'</div><div>'+ price +' Q币 兑换</div>' +
                                 '</div>' +
                             '</div>';
                     
@@ -87,10 +80,10 @@ function getPackage() {
                     $(this).parent().parent().find('.radio').removeClass('selected');
                     $(this).addClass('selected');
                     var val = $(this).attr('data-value');
-                    var price = $(this).attr('data-price');
+                    var price = Math.trunc($(this).attr('data-price'));
                     //alert(val);
                     $('#radio-value').val(val);
-                    $('.point').html('¥'+ price +'元');
+                    $('.point').html(price +' Q币');
                 });
             }
         }
@@ -99,7 +92,7 @@ function getPackage() {
 
 function purchase(){
     var id = $('#hidUserId').val();
-    var txt_name = $('#txt_name').val();
+    var txt_name = null; //$('#txt_name').val();
     var packageid = $('#radio-value').val();
 
     if(packageid <= 0){
