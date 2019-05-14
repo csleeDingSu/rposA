@@ -56,7 +56,9 @@
 						<div class="qq-info">
 							QQ号码: <span id="cut">{{env('qqnumber', '235883623')}}</span>
 						</div>
-						<div class="button-copy cutBtn">复制号码</div>
+						<div class="copy">
+							<div class="button-copy cutBtn">复制号码</div>
+						</div>
 					</div>
 
 					<div class="col-xs-12">				
