@@ -192,7 +192,7 @@ class Members extends Model
 	public static function get_second_level_child_data($memberid, $status = 0)
 	{
 		$result = DB::table('members')->select('id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','referred_by')
-				->whereIn('referred_by', function($query)
+				->whereIn('referred_by', function($query) use ($memberid)
 				{
 					$query->select('id')
 						  ->from('members')
@@ -203,15 +203,16 @@ class Members extends Model
 		return $result;
 	}
 	public static function get_second_level_child_count_new($memberid)
-	{
+	{	
 		$result_count = DB::table('members')->select('wechat_verification_status',DB::raw('count(1) as count'))
-				->whereIn('referred_by', function($query)
+				->whereIn('referred_by', function($query) use ($memberid)
 				{
 					$query->select('id')
 						  ->from('members')
 						  ->whereRaw('referred_by = '.$memberid);
 				})
 				->groupBy('wechat_verification_status')->get();
+		
 		
 		return $result_count;
 	}

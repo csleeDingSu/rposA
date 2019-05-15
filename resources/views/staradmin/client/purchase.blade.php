@@ -39,14 +39,14 @@
 					</form>
 
 					<div class="col-xs-12">
-						<div class="label-title">需支付<span class="point">0 Q币</span>
+						<div class="label-title">需支付<span class="point">0Q币</span>
 						</div>
 					</div>
 
 					<div class="col-xs-12">
 						<div class="how-to-pay">
 							支付方式：<br>
-							到淘宝搜索“1个Q币”给下方Q号充值26个Q币。<br>
+							到淘宝搜索“1个Q币”给下方Q号充值<span class="_point">0</span>个Q币。<br>
 							充值完成后点击“充值完成”。<br>
 						</div>
 					</div>
@@ -56,7 +56,9 @@
 						<div class="qq-info">
 							QQ号码: <span id="cut">{{env('qqnumber', '235883623')}}</span>
 						</div>
-						<div class="button-copy cutBtn">复制号码</div>
+						<div class="copy">
+							<div class="button-copy cutBtn">复制号码</div>
+						</div>
 					</div>
 
 					<div class="col-xs-12">				

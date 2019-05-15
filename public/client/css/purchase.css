@@ -94,13 +94,13 @@ html, body {
 }
 
 .button-copy {
-	display: inline-block;
+	position: absolute;
 	width:70px;
     height: 20px;
     border-radius: 20px;
     border: 1px solid #639aeb;
     cursor:pointer;
-    margin: 0 0 10px 0; 
+    margin: -5.5px 0 10px -10px; 
     color: #639aeb;
     text-align: center;
     font-size: 11px;
@@ -358,6 +358,11 @@ html, body {
     color: #f8a647;
 }
 
+.radio.selected .radio-price {
+	font-size: 13px;
+	color: #f8a647;
+}
+
 /*@media only screen and (max-width: 500px) {
 	.radio{
 		height: 55px;
@@ -387,7 +392,7 @@ html, body {
 }
 
 .qq-info {
-	padding:5px;
+	/*padding:5px;*/
 	display: inline-block;
 	text-align: center;
 	padding-top: 20px;
@@ -411,4 +416,9 @@ html, body {
   padding: 10px;
     overflow: auto;
 
+}
+
+.copy {
+	display: inline-block;
+	width: 70px;padding: 10px;
 }

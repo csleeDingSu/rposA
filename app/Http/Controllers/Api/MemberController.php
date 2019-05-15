@@ -63,6 +63,13 @@ class MemberController extends Controller
 	public function get_second_level_child_data(Request $request)
 	{
 		$status = '';
+		$validator = $this->validate($request, 
+            [
+                'memberid' => 'required|exists:members,id',
+            ]
+        );
+		
+		
 		switch ($request->status)
 		{
 			case 'verified':
@@ -81,6 +88,12 @@ class MemberController extends Controller
 	
 	public function get_introducer_count(Request $request)
 	{
+		$validator = $this->validate($request, 
+            [
+                'memberid' => 'required|exists:members,id',
+            ]
+        );
+		
 		$result = Member::get_introducer_count($request->memberid);  
 		$data   = Member::get_second_level_child_count($request->memberid);  
 		$count  = $data['count'];
@@ -93,6 +106,12 @@ class MemberController extends Controller
 	
 	public function get_introducer_history(Request $request)
 	{
+		$validator = $this->validate($request, 
+            [
+                'memberid' => 'required|exists:members,id',
+            ]
+        );
+		
 		$status = '';
 		switch ($request->status)
 		{
@@ -113,7 +132,11 @@ class MemberController extends Controller
 	
 	public function get_wabao_coin_history(Request $request)
 	{
-		
+		$validator = $this->validate($request, 
+            [
+                'memberid' => 'required|exists:members,id',
+            ]
+        );
 		$result = Member::get_wabao_coin_history($request->memberid); 
 		return response()->json(['success' => true,'result' => $result]);
 	}
