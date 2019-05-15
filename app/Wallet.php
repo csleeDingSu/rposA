@@ -627,9 +627,14 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 				$redeempointstatus = false;
 			}
 		}
+		$point = $mainledger->current_point;
+		if ($mainledger->current_point < $game_levels->bet_amount)
+		{
+			$point = 0;
+		}
 		
 
-		return ['playablestatus' => $playablestatus, 'redeempointstatus' => $redeempointstatus, 'life' => $mainledger->current_life];
+		return ['playablestatus' => $playablestatus, 'redeempointstatus' => $redeempointstatus, 'life' => $mainledger->current_life, 'point' => $point];
 	}
 	
 	public static function get_current_level($gameid,$memberid)
@@ -758,6 +763,92 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 	
 	return true;
 }
+	
+	public static function new_game_wallet_update ($memberid, $status, $level)
+	{
+		$mainledger = self::current_wallet($memberid);
+		$now = Carbon::now()->toDateTimeString();
+		if($status=="win")
+		{
+			$balance_before                 = $mainledger->current_balance;
+			$credit                         = $level->point_reward;
+			$debit                          = '0';
+			$credit_bal  					= 1200- $balance_before;
+			$debit_bal                      = 0;
+			$current_balance                = '1200';
+			$balance_after                  = '1200';
+			$current_point					= $mainledger->current_point;// + $level->point_reward;
+			$current_bet                    = $level->bet_amount;//how much they bet
+			$current_life                   = $mainledger->current_life;
+			$current_balance				= $balance_after;
+			$current_level					= $level->game_level;
+			$current_life_acupoint			= $mainledger->current_life_acupoint+$level->point_reward;
+
+			$award_bal_before				= $mainledger->current_life_acupoint;;//- $level->point_reward;
+			$award_bal_after				= $award_bal_before+$credit;
+			$award_current_bal				= $award_bal_before+$credit;
+			$category                       = 'A';
+			
+			
+			
+			$updatemainledger = [				
+				'updated_at' 				=>	$now,
+				'balance_before'            =>  $balance_before,
+				'current_balance'           =>  $current_balance,
+				'current_life_acupoint'		=>	$current_life_acupoint,	
+				];
+
+			DB::table('mainledger')->
+				where('member_id', $memberid)
+				->update($updatemainledger);	
+			
+			
+			Self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point,$category);
+			
+			
+		}
+		else if($status=="lose")
+		{
+			$balance_before                 = $mainledger->current_balance;
+			$current_balance                = $mainledger->current_balance - (is_null($level->bet_amount) ? 0 : $level->bet_amount);
+			$balance_after                  = $mainledger->current_balance - (is_null($level->bet_amount) ? 0 : $level->bet_amount);
+			$current_point					= $mainledger->current_point;
+			$current_bet                    = $level->bet_amount;
+			$current_life                   = $mainledger->current_life;
+			$current_level					= $level->game_level;
+			$credit                   		= 0;
+			$debit                    		= 0; //"{{ $level->bet_amount}}"
+			$credit_bal  					= 0;
+			$debit_bal                      = $balance_before-$balance_after;
+			$current_life_acupoint			= $mainledger->current_life_acupoint+$credit;
+			$award_bal_before				= $mainledger->current_life_acupoint;
+			$award_bal_after				= $award_bal_before+$credit_bal;
+			$award_current_bal				= $award_bal_before+$credit_bal;
+			$category                       = 'D';
+			
+						
+			
+			$updatemainledger = [				
+				'updated_at' 				=>	$now,
+				'balance_before'            =>  $balance_before,
+				'current_balance'           =>  $current_balance,
+				'current_life_acupoint'		=>	$current_life_acupoint,	
+				];
+
+			DB::table('mainledger')->
+				where('member_id', $memberid)
+				->update($updatemainledger);
+			
+			
+			self::postledger_history($memberid,$credit,$debit,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance,$award_bal_before,$award_bal_after,$award_current_bal,$current_point,$category);
+			
+			
+		}
+		
+		event(new \App\Events\EventWalletUpdate($memberid));
+		return ['status'=>$status,'point'=>$current_point,'balance'=>$current_balance,'acupoint'=>$current_life_acupoint];
+	}
+
 
 
 }
