@@ -19,17 +19,13 @@ html, body {
 }
 
 .full-height {
-    background-color: #639aeb;
+    background-color: #f3f3f3;
     margin-top: 18px;
 }
 
 .card {
 	font-size: 16px;
 	color: white;
-}
-
-.cardBody {
-	background-color: #639aeb;
 }
 
 .img_flow {
@@ -43,8 +39,7 @@ html, body {
 
 .information-table {
 	margin-top:20px;
-	margin-bottom:30px;
-	padding-top:10px;
+	padding-top:20px;
 	background: white;
 	border-radius: 10px;
 	display: block;
@@ -76,17 +71,15 @@ html, body {
 }
 
 .label-title {
-	color: #333;
-	font-size: 17px;
+	color: #323232;
+	font-size: 16px;
 	padding-left: 0;
-	padding-bottom: 15px;
-	font-weight: 600;
+	padding-bottom: 10px;
 }
 
 .point {
-	color: #f45f22;
-	font-size: 17px;
-	padding-left: 10px;
+	color: #ff3944;
+	font-size: 16px;
 }
 
 .text-right {
@@ -94,16 +87,15 @@ html, body {
 }
 
 .button-copy {
-	display: inline-block;
-	width:70px;
-    height: 20px;
-    border-radius: 20px;
-    border: 1px solid #639aeb;
-    cursor:pointer;
-    margin: 0 0 10px 0; 
-    color: #639aeb;
-    text-align: center;
-    font-size: 11px;
+	color: white;
+	font-size: 18px;
+	padding: 7px 5px 10px 5px;
+	border-radius: 20px;
+	background-image: linear-gradient(to right, #ecc993, #dca464);
+	margin: 0 auto 0 auto;
+	font-weight: 700;
+	cursor: pointer;
+	text-align: center;
 }
 
 .button-status {
@@ -206,12 +198,12 @@ html, body {
 }
 
 .button-submit {
-	color: #fff;
+	color: white;
 	font-size: 18px;
 	padding: 7px 5px 10px 5px;
-	border-radius: 20px;
-	/*margin: 20px 10px;*/
-	background: #f8a647;
+	border-radius: 6px;
+	margin: 20px 10px;
+	background: #639aeb;
 	text-align: center;
 	cursor: pointer;
 }
@@ -325,44 +317,42 @@ html, body {
     position: relative;
     padding-right: 15px;
 	padding-left: 15px;
-	height: 210px;
-	margin-left: 5px;
+	height: 100px;
 }
 
 .radio{
     display:inline-block;
     width:100%;
-    height: 70px;
+    height: 0.7rem;
     border-radius: 6px;
-    border: 1px solid #d5d5d5;
+    border: 1px solid #d6d6d6;
     cursor:pointer;
     margin: 0 0 10px 0; 
-    color: #b8b8b8;
+    color: #d6d6d6;
     text-align: center;
-    font-size: 13px;
-    padding-top:8px;
+    font-size: 12px;
+    padding:5px;
 }
 
 .radio-title {
 	color: #7b7b7b;
 	font-size: 16px;
-	padding-top:5px;
 }
 
 .radio.selected{
-    border-color: #f8a647;
+    border-color: #fb8900;
     color: #fb8900;
 }
 
 .radio.selected .radio-title{
-    color: #f8a647;
+    color: #fb8900;
 }
 
-/*@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) {
 	.radio{
 		height: 55px;
 	}
-}*/
+}
 
 @media only screen and (max-width: 360px) {
 	.radio{
@@ -372,43 +362,8 @@ html, body {
 
 .copy-success {
 	background: #3dcc32;
-	color: #fff;
 }
 
 .copy-fail {
 	background: #999999;
-	color: #fff;
-}
-
-.how-to-pay {
-	font-size: 13px;
-	color: #999;
-	width: 355px;
-}
-
-.qq-info {
-	padding:5px;
-	display: inline-block;
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	font-size: 17px;
-	color: #333;
-	font-weight: 500;
-}
-
-.qq-icon {
-
-	display: inline-block;
-	height: 20px;
-}
-
-.qq {
-	text-align: center;
-	margin: auto;
-  /*width: 50%;*/
-  /*border: 3px solid green;*/
-  padding: 10px;
-    overflow: auto;
-
 }
