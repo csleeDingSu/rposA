@@ -87,6 +87,13 @@ class GameController extends Controller
 	
 	public function get_game_setting(Request $request)
     {
+		switch($gameid)
+		{
+			case '102':
+				return $this->game_setting($request);
+			break;
+		}
+		
 		$gameid   = $request->gameid;
 		$memberid = $request->memberid;
 		$vip       = $request->vip;	
