@@ -203,7 +203,7 @@ class Members extends Model
 		return $result;
 	}
 	public static function get_second_level_child_count_new($memberid)
-	{
+	{	
 		$result_count = DB::table('members')->select('wechat_verification_status',DB::raw('count(1) as count'))
 				->whereIn('referred_by', function($query) use ($memberid)
 				{
@@ -212,6 +212,7 @@ class Members extends Model
 						  ->whereRaw('referred_by = '.$memberid);
 				})
 				->groupBy('wechat_verification_status')->get();
+		
 		
 		return $result_count;
 	}
