@@ -113,6 +113,9 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::get('/basic-package-list', 'BasicPackageController@list_package')->name('api.basicpackage.list');
 	
+	Route::any('add-betting', 'GameController@add_betting')->name('api.game.bet');
+	Route::any('get-betting-result', 'GameController@get_betting_result')->name('api_get_betting_result');
+	
 	
 	
 });
