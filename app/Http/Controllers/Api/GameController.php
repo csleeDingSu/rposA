@@ -911,11 +911,17 @@ class GameController extends Controller
 		
 		$setting =  Game::gamesetting($gameid);
 		
-		$out = Game::get_single_gameresult_by_gameid($gameid,$now );		
+		$out = Game::get_single_gameresult_by_gameid($gameid,$now );
+		
+		$level            = Game::get_member_current_level($gameid, $memberid, $vip);
 		
 		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 		
-		$result = ['setting'=>$setting,'consecutive_lose'=>$consecutive_lose];
+		$bettinghistory   = Game::get_betting_history_grouped($gameid, $memberid, $vip);
+		
+		//$gamehistory      = Game::get_game_member_history($memberid,$gameid);	
+		
+		$result = ['setting'=>$setting,'consecutive_lose'=>$consecutive_lose,'level' => $level,'bettinghistory' => $bettinghistory];
 			
 		return response()->json(['success' => true,'requested_time'=>$now,'response_time'=>now(),  'record' => $result]);
 	}
