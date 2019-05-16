@@ -917,7 +917,7 @@ class GameController extends Controller
 		
 		$consecutive_lose = Game::get_consecutive_lose($memberid,$gameid, $vip);
 		
-		$bettinghistory   = Game::get_betting_history_grouped($gameid, $memberid, 'yes');
+		$bettinghistory   = Game::get_betting_history_grouped($gameid, $memberid, $vip);
 		
 		//$gamehistory      = Game::get_game_member_history($memberid,$gameid);	
 		
