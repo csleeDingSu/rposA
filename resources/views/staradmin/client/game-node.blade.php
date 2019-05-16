@@ -94,6 +94,7 @@
 			<input id="hidLatestResult" type="hidden" value="" />
 			<input id="hidConsecutiveLose" type="hidden" value="" />
 			<input id="hidHall" type="hidden" value="" />
+			<input id="hidBet" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
 			<input id="hidWechatId" type="hidden" value="0" />
@@ -122,19 +123,19 @@
 							<div class="chain"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-1" class="results-box">1</div>
+							<div id="result-1" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-2" class="results-box">2</div>
+							<div id="result-2" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-3" class="results-box">3</div>
+							<div id="result-3" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-4" class="results-box">4</div>
+							<div id="result-4" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-5" class="results-box">5</div>
+							<div id="result-5" class="results-box"></div>
 						</div>
 						<div class="chain-wrapper results-right">
 							<div class="right-chain"></div>
@@ -148,19 +149,19 @@
 				  			<div class="left-chain"></div>
 				  		</div>
 				  		<div class="box-wrapper">
-							<div id="result-10" class="results-box">1</div>
+							<div id="result-10" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-9" class="results-box">2</div>
+							<div id="result-9" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-8" class="results-box">3</div>
+							<div id="result-8" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-7" class="results-box">4</div>
+							<div id="result-7" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-6" class="results-box">5</div>
+							<div id="result-6" class="results-box"></div>
 						</div>
 						<div class="chain-wrapper results-right"></div>
 				  	</div>
@@ -170,19 +171,19 @@
 				  			<div class="chain"></div>
 				  		</div>
 				  		<div class="box-wrapper">
-							<div id="result-11" class="results-box">1</div>
+							<div id="result-11" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-12" class="results-box">2</div>
+							<div id="result-12" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-13" class="results-box">3</div>
+							<div id="result-13" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-14" class="results-box">4</div>
+							<div id="result-14" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-15" class="results-box">5</div>
+							<div id="result-15" class="results-box"></div>
 						</div>
 						<div class="chain-wrapper results-right">
 							<div class="right-chain results-right"></div>
@@ -194,19 +195,19 @@
 				  			<div class="chain"></div>
 				  		</div>
 				  		<div class="box-wrapper">
-							<div id="result-20" class="results-box">1</div>
+							<div id="result-20" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-19" class="results-box">2</div>
+							<div id="result-19" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-18" class="results-box">3</div>
+							<div id="result-18" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-17" class="results-box">4</div>
+							<div id="result-17" class="results-box"></div>
 						</div>
 						<div class="box-wrapper">
-							<div id="result-16" class="results-box">5</div>
+							<div id="result-16" class="results-box"></div>
 						</div>
 						<div class="chain-wrapper results-right"></div>		
 				  	</div>
@@ -228,37 +229,36 @@
 					<div class="small-border g6">
 
 						<div class="shan">
-							<span class="span-odd">+70金币</span>
+							<span class="span-odd"><span class="odd-payout">0</span>金币</span>
 							<div class="div-odd">单数 <span class="odd-number">1</span></div>
 						</div>
 
 						<div class="shan">
-							<span class="span-even">-70金币</span>
+							<span class="span-even">0金币</span>
 							<div class="div-even">双数 <span class="even-number">2</span></div>
 						</div>
 
 						<div class="shan">
-							<span class="span-odd">+70金币</span>
+							<span class="span-odd">0金币</span>
 							<div class="div-odd">单数 <span class="odd-number">3</span></div>
 						</div>
 
 						<div class="shan">
-							<span class="span-even">-70金币</span>
+							<span class="span-even">0金币</span>
 							<div class="div-even">双数 <span class="even-number">4</span></div>
 						</div>
 						
 						<div class="shan">
-							<span class="span-odd">+70金币</span>
+							<span class="span-odd">0金币</span>
 							<div class="div-odd">单数 <span class="odd-number">5</span></div>
 						</div>
 
 						<div class="shan">
-							<span class="span-even">-70金币</span>
+							<span class="span-even">0金币</span>
 							<div class="div-even">双数 <span class="even-number">6</span></div>
 						</div>						
 					</div>
 				</div>
-				<img src="/client/images/wheel/pointer.png" width="36%" class="middle">
 				<div id="txtCounter" class="middle-label">开始竞猜</div>
 				<div class="DB_G_hand"></div>
 		    </div>
