@@ -38,7 +38,7 @@ $(function () {
         closeModal();
 
         ifvisible.on("wakeup", function(){
-            resetTimer();
+            //resetTimer();
         });
 
     } else {
@@ -49,21 +49,27 @@ $(function () {
 });
 
 function updateResult(records){
-    var counter = 0;
+
     var str_result = '单数';
 
+    var length = Object.keys(records).length;
+    var maxCount = 20;
+
+    if(length < maxCount){
+        maxCount = parseInt(length);
+    }
+
     $.each(records, function(i, item) {
-        var list = i + 1;
+        var counter = i + 1;
         if(item.result % 2 === 0){
-            $('.results-body').find('#result-' + list).addClass('even-box');
+            $('.results-body').find('#result-' + counter).addClass('even-box');
             str_result = '双数';
         } else {
-            $('.results-body').find('#result-' + list).removeClass('even-box');
+            $('.results-body').find('#result-' + counter).removeClass('even-box');
             str_result = '单数';
         }
-        $('.results-body').find('#result-' + list).html(item.result + '<div>'+ str_result +'</div>');
-        counter++;
-        return counter < 25;
+        $('.results-body').find('#result-' + counter).html(item.result + '<div>'+ str_result +'</div>');
+
     });
 }
 
@@ -71,46 +77,36 @@ function updateHistory(records){
 
     var length = Object.keys(records).length;
     var maxCount = 7;
-    var counter = 0;
 
     if(length < maxCount){
         maxCount = parseInt(length);
     }
-    console.log(records);
-    for(var r = 1; r <= maxCount; r++){
-        var last = Object.keys(records)[Object.keys(records).length-1];
-        var last_record = records[last];
+
+    $.each(records, function(i, item) {
         var history = '';
-        var betCount = Object.keys(last_record).length;
+        var counter = i + 1;
 
-        for(var i = 0; i < betCount; i++){
-            counter++;
-            var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
-            var last_bet = last_record[last_key];
-            //console.log(last_bet);
-            var strbet = "单数";
-            var strwinloss = "猜对";
-            var strsign = '+';
-            var className = last_bet.bet;
+        var strbet = "单数";
+        var strwinloss = "猜对";
+        var strsign = '+';
+        var className = item.bet;
 
-            if(last_bet.is_win == null){
-                strwinloss = "猜错";
-                strsign = '-';
-            }
-
-            if(last_bet.bet == 'even'){
-                strbet = "双数";
-            }
-
-            history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(last_bet.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(last_bet.bet_amount) +'金币';
-
-            $('.history-body').find('#row-' + counter).find('.history-number').html(last+'局');
-            $('.history-body').find('#row-' + counter).find('.history').html(history);
-            delete last_record[last_key];
+        if(item.is_win == null){
+            strwinloss = "猜错";
+            strsign = '-';
         }
 
-        delete records[last];
-    }
+        if(item.bet == 'even'){
+            strbet = "双数";
+        }
+
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
+
+        $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
+        $('.history-body').find('#row-' + counter).find('.history').html(history);
+
+        length--;
+    });
 }
 
 function initUser(records){
@@ -184,6 +180,10 @@ try {
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
 
+        if(latest_result.length > 0){
+            previous_result = latest_result[0].result;
+        }
+
         $('#hidLevel').val(level);
         $('#hidLatestResult').val(previous_result);
         $('#hidConsecutiveLose').val(consecutive_lose);
@@ -199,7 +199,6 @@ try {
         }
 
         if(show_lose !== true && show_win !== true){
-            console.log("Show Lose: " + show_lose + " Show Win: "+ show_win);
             showProgressBar(false);
         }
 
@@ -223,6 +222,7 @@ try {
         }
 
         bindCalculateButton();
+        bindTriggerButton();
 
         $(".loading").fadeOut("slow");
 
@@ -283,11 +283,18 @@ function startGame() {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
+            //console.log(data);
             game_records = data.record.setting;
-            latest_result = null;
+            betting_records = data.record.bettinghistory.data;
+            latest_result = data.record.bettinghistory.data;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
             initGame(game_records, level, latest_result, consecutive_lose);
+
+            
+            //console.log(data);
+            updateHistory(betting_records);
+            updateResult(betting_records);
         }
     });
 
@@ -305,36 +312,6 @@ function startGame() {
             initUser(wallet_records);
         }
     });
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/result-history?gameid=102", 
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error) },
-        success: function(data) {
-            result_records = data.records.data;
-            //console.log(data);
-            updateResult(result_records);
-        }
-    });
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/betting-history?gameid=102&memberid=" + id, 
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error) },
-        success: function(data) {
-            betting_records = data.records.data;
-            //console.log(data);
-            updateHistory(betting_records);
-        }
-    });
 }
 
 function resetGame() {
@@ -343,6 +320,8 @@ function resetGame() {
     $('.payout-info').addClass('hide');
     $('.spinning').css('visibility', 'hidden');
     $('.middle-label').html('开始竞猜');
+    $('.radio-primary').unbind('click');
+
     startGame();
 }
 
@@ -391,6 +370,8 @@ function checkSelection() {
         $('.middle-label').html('正在抽奖');
         $('.DB_G_hand').hide();
         $('.radio-primary').unbind('click');
+        $('#btnWheel').unbind('click');
+        bindSpinningButton();
         startTimer(10, 10, 1);
     }
 }
@@ -505,9 +486,32 @@ function bindBetButton(){
             $('#spanPoint').html(total_balance);
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
+
+            var previous_bet = parseInt($('.even-payout').html());
+
+            $('.odd-payout')
+                  .prop('number', previous_bet)
+                  .animateNumber(
+                    {
+                      number: 0
+                    },
+                    1000
+                  );
+
+            $('.even-payout')
+              .prop('number', previous_bet)
+              .animateNumber(
+                {
+                  number: 0
+                },
+                1000
+              );
+
+            setTimeout(function(){ 
+                $('.odd-sign').html('');
+                $('.even-sign').html('');
+            }, 1000);
             
-            $('.odd-payout').html('0');
-            $('.even-payout').html('0');
 
         } else {
 
@@ -526,13 +530,33 @@ function bindBetButton(){
                 //$('#spanPoint').html(newtotalbalance);
                 $('.instruction').css('visibility', 'hidden');
 
+                var previous_bet = 0;
+
                 if(selected == 'odd'){
-                    $('.odd-payout').html('+' + bet_amount);
-                    $('.even-payout').html('-' + bet_amount);
+                    $('.odd-sign').html('+');
+                    $('.even-sign').html('-');
                 } else {
-                    $('.odd-payout').html('-' + bet_amount);
-                    $('.even-payout').html('+' + bet_amount);
+                    $('.odd-sign').html('-');
+                    $('.even-sign').html('+');
                 }
+
+                $('.odd-payout')
+                      .prop('number', previous_bet)
+                      .animateNumber(
+                        {
+                          number: bet_amount
+                        },
+                        1000
+                      );
+
+                $('.even-payout')
+                  .prop('number', previous_bet)
+                  .animateNumber(
+                    {
+                      number: bet_amount
+                    },
+                    1000
+                  );
 
             }
 
@@ -546,6 +570,12 @@ function bindBetButton(){
 function bindCalculateButton(){
     $('.btn-calculate').click( function() {
         $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+    });
+}
+
+function bindTriggerButton(){
+    $('#btnWheel').click( function() {
+        checkSelection();
     });
 }
 
@@ -891,7 +921,6 @@ function startTimer(duration, timer, freeze_time) {
                 },
                 error: function (error) { console.log(error) },
                 success: function(data) {
-                    console.log(data);
                     $('#result').val(data.game_result);
                 }
             });
@@ -921,9 +950,6 @@ function startTimer(duration, timer, freeze_time) {
 
         } else if (timer <= trigger_time) {
             //Lock the selection
-            $('.radio-primary').unbind('click');
-            bindSpinningButton();
-
             if (trigger == false) {
                 triggerResult();
             }

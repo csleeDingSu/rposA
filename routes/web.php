@@ -98,7 +98,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/arcade', 'ClientController@member_access_game' )->name( 'client.arcade' );
 	Route::get( '/arcade_node', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
 
-	Route::get( '/vip', 'ClientController@member_access_vip' )->name( 'client.vip' );
+	Route::get( '/vip', 'ClientController@member_access_game_node' )->name( 'client.vip' );
 
 	Route::get( '/faq', function () {
 
