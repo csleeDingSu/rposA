@@ -61,8 +61,8 @@
 
 .middle {
 	position: absolute; 
-	left: 40%; 
-	top: 27%; 
+	left: 36%; 
+	top: 31%; 
 	z-index: 100;
 	width: 80px;
 	height: 93px;
@@ -103,7 +103,7 @@
   -webkit-animation: guideHand2 .5s step-start infinite;
   animation: guideHand2 .5s step-start infinite;
   background-size: cover;
-  z-index: 200;
+  z-index: 100;
 }
 
 @keyframes guideHand2 {
@@ -133,8 +133,8 @@
 	}
 
 	.middle {
-		left: 38%; 
-		top: 27%;
+		left: 36%; 
+		top: 31%; 
 	}
 
 	.middle-label{
@@ -207,6 +207,10 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 	height:20px;
 	line-height: 20px;
 	display: block;
+}
+
+.g6 .shan span span {
+	display: inline;
 }
 
 .g6 .shan .span-even, .g6 .shan div .even-number {
