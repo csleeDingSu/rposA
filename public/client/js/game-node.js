@@ -226,6 +226,48 @@ try {
 
         $(".loading").fadeOut("slow");
 
+        $.ajax({
+            type: 'GET',
+            url: "/api/get-game-result-temp?gameid=102&gametype=1&memberid=" + user_id + "&drawid=0",
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            error: function (error) { 
+                console.log(error);
+            },
+            success: function(data) {
+
+                if(data.success && data.record.bet != null){
+
+                    if(show_lose !== true && show_win !== true){
+                        showProgressBar(false);
+                    }
+
+                    var selected = data.record.bet;
+
+                    var btn_rectangle = $("input[value='"+ selected +"']").parent();
+                    btn_rectangle.addClass('clicked');
+                    showPayout();
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id
+                        + "&drawid=0" 
+                        + "&bet="+ selected 
+                        +"&betamt=" + bet_amount,
+                        dataType: "json",
+                        beforeSend: function( xhr ) {
+                            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                        },
+                        error: function (error) { console.log(error.responseText) },
+                        success: function(data) {
+                        }
+                    });
+                }
+            }
+        }); // ajax get-game-result-temp
+
     }
     catch(err) {
       console.log(err.message);
@@ -404,7 +446,6 @@ function closeWinModal() {
             1000
           );
 
-        console.log("Show Lose: " + show_lose + " Show Win: "+ show_win);
         setTimeout(function () {
             showProgressBar(false);
         }, 500);
@@ -428,8 +469,6 @@ function bindBetButton(){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
-        var total_balance = parseInt($('#hidTotalBalance').val());
-        var level = parseInt($('#hidLevel').val());
         var life = $(".nTxt").html();
         var acupoint = parseInt($('.spanAcuPoint').html());
         var draw_id = $('#draw_id').val();
@@ -476,7 +515,16 @@ function bindBetButton(){
         $(this).find('.bet').toggle();
         $(this).find('.radio').toggleClass('clicked');
 
-        var selected = $('div.clicked').find('input:radio').val();
+        showPayout();
+    });
+}
+
+function showPayout(){
+    var selected = $('div.clicked').find('input:radio').val();
+    var balance = parseInt($('#hidBalance').val());
+    var total_balance = parseInt($('#hidTotalBalance').val());
+    var level = parseInt($('#hidLevel').val());
+    var user_id = $('#hidUserId').val();
 
         if (typeof selected == 'undefined'){
 
@@ -512,6 +560,21 @@ function bindBetButton(){
                 $('.even-sign').html('');
             }, 1000);
             
+            $.ajax({
+                type: 'GET',
+                url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id 
+                + "&bet=&betamt=&drawid=0",
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                },
+                error: function (error) { 
+                    console.log(error.responseText);
+                    // window.top.location.href = "/arcade";
+                },
+                success: function(data) {
+                }
+            });
 
         } else {
 
@@ -558,13 +621,32 @@ function bindBetButton(){
                     1000
                   );
 
+                $.ajax({
+                    type: 'GET',
+                    url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id
+                    + "&drawid=0" 
+                    + "&bet="+ selected 
+                    + "&betamt=" + bet_amount
+                    + "&level=" + level,
+                    dataType: "json",
+                    beforeSend: function( xhr ) {
+                        xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                    },
+                    error: function (error) {
+                        console.log('memberid: ' + user_id + ', 下注失败'); 
+                        console.log(error.responseText);
+                    },
+                    success: function(data) {
+                    }
+                });
+
             }
 
             //$('.payout-info').removeClass("hide");
 
         }
 
-    });
+    
 }
 
 function bindCalculateButton(){
@@ -759,7 +841,6 @@ function showProgressBar(bol_show){
         $('.result-info').html(result_info);
 
         if(bol_show) {
-            $('.payout-info').html(payout_info).removeClass('hide');
             checked(level, true);
             changbar(level);
         } else {
