@@ -209,6 +209,10 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 	display: block;
 }
 
+.g6 .shan span span {
+	display: inline;
+}
+
 .g6 .shan .span-even, .g6 .shan div .even-number {
 	color:#6a3991;
 }

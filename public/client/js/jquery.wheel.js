@@ -50,32 +50,32 @@
                     '<div class="small-border g6" style="transform: rotate('+ degree +'deg);" w>' +
 
                         '<div class="shan">' +
-                            '<span class="span-odd"><span class="odd-payout">0</span>金币</span>' +
+                            '<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>金币</span>' +
                             '<div class="div-odd">单数 <span class="odd-number">1</span></div>' +
                         '</div>' +
 
                         '<div class="shan">' +
-                            '<span class="span-even"><span class="even-payout">0</span>金币</span>' +
+                            '<span class="span-even"><span class="even-sign"></span><span class="even-payout">0</span>金币</span>' +
                             '<div class="div-even">双数 <span class="even-number">2</span></div>' +
                         '</div>' +
 
                         '<div class="shan">' +
-                            '<span class="span-odd"><span class="odd-payout">0</span>金币</span>' +
+                            '<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>金币</span>' +
                             '<div class="div-odd">单数 <span class="odd-number">3</span></div>' +
                         '</div>' +
 
                         '<div class="shan">' +
-                            '<span class="span-even"><span class="even-payout">0</span>金币</span>' +
+                            '<span class="span-even"><span class="even-sign"></span><span class="even-payout">0</span>金币</span>' +
                             '<div class="div-even">双数 <span class="even-number">4</span></div>' +
                         '</div>' +
                         
                         '<div class="shan">' +
-                            '<span class="span-odd"><span class="odd-payout">0</span>金币</span>' +
+                            '<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>金币</span>' +
                             '<div class="div-odd">单数 <span class="odd-number">5</span></div>' +
                         '</div>' +
 
                         '<div class="shan">' +
-                            '<span class="span-even"><span class="even-payout">0</span>金币</span>' +
+                            '<span class="span-even"><span class="even-sign"></span><span class="even-payout">0</span>金币</span>' +
                             '<div class="div-even">双数 <span class="even-number">6</span></div>' +
                         '</div>' +
                     '</div>' +
@@ -83,9 +83,7 @@
                     '<img id="btnPointer" src="/client/images/wheel/pointer.png" width="36%" class="middle" b>';
 
             html += '<script>' +
-                    '$("#btnWheel").click(function(){' +
-                        'checkSelection();' +
-                    '});' +
+                    'bindTriggerButton();' +
                     '</script>';
                 
         this.html(html);

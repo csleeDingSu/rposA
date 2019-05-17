@@ -64,25 +64,14 @@
 			</div>
 
 
-			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper btn-vip-wrapper">
-					<a href="/vip">
-						<!--div class="btn-vip"></div-->
-						<div class="btn-rules-vip">进入VIP专场</div>
+				<div class="btn-rules-wrapper">
+					<a href="/arcade">
+						<div class="btn-rules-vip">返回普通场</div>
 					</a>
 					<div style="clear:both"></div>
 				</div>
 			</div>
-			@else
-			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper">
-						<!--div class="btn-vip"></div-->
-						<div class="btn-rules-vip">VIP收益翻倍</div>
-					<div style="clear:both"></div>
-				</div>
-			</div>
-			@endif
 
 			<input id="result" type="hidden" value="6">
 		    <input id="freeze_time" type="hidden" value="">
@@ -229,7 +218,7 @@
 					<div class="small-border g6">
 
 						<div class="shan">
-							<span class="span-odd"><span class="odd-payout">0</span>金币</span>
+							<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>金币</span>
 							<div class="div-odd">单数 <span class="odd-number">1</span></div>
 						</div>
 
