@@ -134,12 +134,12 @@ class ReportController extends BaseController
 		}		
 		$result =  $result->orderby('draw_id','ASC')->paginate(30);
 				
-		$data['page']    = 'report.draw.list'; 	
+		$data['page']    = 'reports.draw.list'; 	
 				
 		$data['result'] = $result; 
 				
 		if ($request->ajax()) {
-            return view('report.draw.ajaxlist', ['result' => $result])->render();  
+            return view('reports.draw.ajaxlist', ['result' => $result])->render();  
         }
 					
 		return view('main', $data);	
