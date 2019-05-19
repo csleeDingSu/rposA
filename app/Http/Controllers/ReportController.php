@@ -114,4 +114,35 @@ class ReportController extends BaseController
 		return view('main', $data);	
 	}
 	
+	public function list_gameplayed (Request $request)
+	{
+				
+		$result =  \DB::table('report_played_count');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_drawid'])) {
+				$result = $result->where('title', "{$input['draw_id']}") ;				
+			}
+			if (!empty($input['s_content'])) {
+				//$result = $result->where('content','LIKE', "%{$input['s_content']}%") ;				
+			}
+		}		
+		$result =  $result->orderby('draw_id','ASC')->paginate(30);
+				
+		$data['page']    = 'report.draw.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('report.draw.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+	}
+	
 }
