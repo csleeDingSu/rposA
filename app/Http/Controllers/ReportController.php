@@ -114,4 +114,66 @@ class ReportController extends BaseController
 		return view('main', $data);	
 	}
 	
+	public function list_gameplayed (Request $request)
+	{
+				
+		$result =  \DB::table('report_played_count');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_drawid'])) {
+				$result = $result->where('title', "{$input['draw_id']}") ;				
+			}
+			if (!empty($input['s_content'])) {
+				//$result = $result->where('content','LIKE', "%{$input['s_content']}%") ;				
+			}
+		}		
+		$result =  $result->orderby('draw_id','ASC')->paginate(30);
+				
+		$data['page']    = 'reports.draw.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.draw.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+	}
+	
+	public function list_redeemed (Request $request)
+	{
+				
+		$result =  \DB::table('report_redeem_count');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_drawid'])) {
+				//$result = $result->where('title', "{$input['draw_id']}") ;				
+			}
+			if (!empty($input['s_content'])) {
+				//$result = $result->where('content','LIKE', "%{$input['s_content']}%") ;				
+			}
+		}		
+		$result =  $result->paginate(30);
+				
+		$data['page']    = 'reports.redeem_count.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.redeem_count.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+	}
+	
 }
