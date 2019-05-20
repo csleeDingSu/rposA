@@ -84,6 +84,7 @@
 
             html += '<script>' +
                     'bindTriggerButton();' +
+                    'showProgressBar(false);' +
                     '</script>';
                 
         this.html(html);
