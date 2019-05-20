@@ -15,7 +15,7 @@
 
 
 			<dt class="dbox0">
-				@if(Request::is('vip') || Request::is('arcade'))
+				@if(Request::is('vip') || Request::is('arcade') || Request::is('arcade_node'))
 
 					@if(Request::is('vip'))
 						<a href="/vip">

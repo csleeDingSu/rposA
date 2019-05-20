@@ -64,14 +64,25 @@
 			</div>
 
 
+			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper">
-					<a href="/arcade">
-						<div class="btn-rules-vip">返回普通场</div>
+				<div class="btn-rules-wrapper btn-vip-wrapper">
+					<a href="/vip">
+						<!--div class="btn-vip"></div-->
+						<div class="btn-rules-vip">进入VIP专场</div>
 					</a>
 					<div style="clear:both"></div>
 				</div>
 			</div>
+			@else
+			<div class="box" id="btn-vip-wrapper">
+				<div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper">
+						<!--div class="btn-vip"></div-->
+						<div class="btn-rules-vip">VIP收益翻倍</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+			@endif
 
 			<input id="result" type="hidden" value="6">
 		    <input id="freeze_time" type="hidden" value="">
@@ -631,7 +642,7 @@
 								<div class="modal-invite-content">
 									<h1 class="modal-invite-title">您有以下选择</h1>
 									<ol class="vegan-list">
-										<li>购买次数，首次购买仅需<span class="_1st_basic_topup">5.8元/次</span>，之后购买9.9元/次，每天限购5次。</li>
+										<li>Q币购买次数，首次购买仅需<span class="_1st_basic_topup">6Q币/次</span>，之后购买10Q币/次，每天限购5次。</li>
 										<li>邀请好友加入，邀请1个获得{{env('sharetofriend_youwillget', '1')}}次机会</li>
 									</ol>
 								</div>
@@ -926,6 +937,9 @@
 			});
 
 			$('#viewgamerules').on('click', showGameRules);
+
+			$('.btn-vip-modal .btn-rules-vip').html('规则说明');
+			$('.btn-vip-modal').on('click', showGameRules);
 
 		});	
 
