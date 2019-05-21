@@ -41,7 +41,7 @@
 					<div class="balance-banner">
 						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0</span>金币
+							<span class="spanAcuPointAndBalance">0</span>元
 							<span class="spanAcuPoint" style="font-size: 0;">0</span>
 						</div>
 						<img class="btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
@@ -114,7 +114,7 @@
 		<div class="carousel-cell">
 			<div class="frame-wrapper">
 				<div class="results-body">
-					<div class=".results-wrapper">
+					<div class="results-wrapper">
 					<div class="timer-row">
 		        		历史开奖记录
 					</div>
