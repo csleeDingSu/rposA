@@ -139,7 +139,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(acupoint);
-            $('.spanAcuPointAndBalance').html(acupoint);
+            $('.spanAcuPointAndBalance').html(acupoint/10);
         }
         $('.packet-acupoint').html(acupoint);
         $('#hidBalance').val(balance);
@@ -438,13 +438,13 @@ function closeWinModal() {
              g_current_point = 150;
          }
 
-        console.log("closeWinModal");
-        //$('.spanAcuPoint')
+        console.log("closeWinModal:" + g_previous_point + " :: " + g_current_point);
+        
         $('.spanAcuPointAndBalance')
-          .prop('number', g_previous_point)
+          .prop('number', g_previous_point/10)
           .animateNumber(
             {
-              number: g_current_point
+              number: g_current_point/10
             },
             1000
           );
@@ -1032,6 +1032,7 @@ function startTimer(duration, timer, freeze_time) {
     var id = $('#hidUserId').val();
     var level = parseInt($('#hidLevel').val());
     $('.small-border').addClass('start-rotate');
+    g_previous_point = parseInt($('.spanAcuPoint').html());
 
     $.ajax({
         type: 'POST',
