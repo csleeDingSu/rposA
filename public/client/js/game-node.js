@@ -139,7 +139,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(acupoint);
-            $('.spanAcuPointAndBalance').html(acupoint);
+            $('.spanAcuPointAndBalance').html(acupoint/10);
         }
         $('.packet-acupoint').html(acupoint);
         $('#hidBalance').val(balance);
@@ -294,7 +294,7 @@ function resetTimer(){
 
     $.ajax({
         type: 'GET',
-        url: "/api/game-setting?gameid=101&memberid=" + user_id,
+        url: "/api/game-setting?gameid=102&memberid=" + user_id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -314,6 +314,7 @@ function resetTimer(){
 
 function startGame() {
 
+    initShowModal();
     var id = $('#hidUserId').val();
 
     $.ajax({
@@ -337,6 +338,8 @@ function startGame() {
             //console.log(data);
             updateHistory(betting_records);
             updateResult(betting_records);
+            show_win = false;
+            show_lose = false;
         }
     });
 
@@ -414,7 +417,7 @@ function checkSelection() {
         $('.radio-primary').unbind('click');
         $('#btnWheel').unbind('click');
         bindSpinningButton();
-        startTimer(10, 10, 1);
+        startTimer(5, 5, 1);
     }
 }
 
@@ -435,16 +438,16 @@ function closeWinModal() {
              g_current_point = 150;
          }
 
-        console.log("closeWinModal");
-        //$('.spanAcuPoint')
         $('.spanAcuPointAndBalance')
-          .prop('number', g_previous_point)
+          .prop('number', g_previous_point/10)
           .animateNumber(
             {
-              number: g_current_point
+              number: g_current_point/10
             },
-            1000
+            500
           );
+            
+        $('.spanAcuPoint').html(g_current_point);
 
         setTimeout(function () {
             showProgressBar(false);
@@ -526,6 +529,38 @@ function showPayout(){
     var level = parseInt($('#hidLevel').val());
     var user_id = $('#hidUserId').val();
 
+    var previous_bet = 0;
+    var bet_amount = parseInt($('#hidBet').val());
+    var newbalance = balance - bet_amount;
+    var newtotalbalance = total_balance - bet_amount;
+
+    switch (level) {
+        case 1:
+            previous_bet = 0;
+        break;
+
+        case 2:
+            previous_bet = 10;
+        break;
+
+        case 3:
+            previous_bet = 30;
+        break;
+
+        case 4:
+            previous_bet = 70;
+        break;
+
+        case 5:
+            previous_bet = 150;
+        break;
+
+        case 6:
+            previous_bet = 310;
+        break;
+
+    }
+
         if (typeof selected == 'undefined'){
 
             checked(level, false);
@@ -535,29 +570,32 @@ function showPayout(){
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
 
-            var previous_bet = parseInt($('.even-payout').html());
-
             $('.odd-payout')
-                  .prop('number', previous_bet)
+                  .prop('number', bet_amount)
                   .animateNumber(
                     {
-                      number: 0
+                      number: previous_bet
                     },
                     1000
                   );
 
             $('.even-payout')
-              .prop('number', previous_bet)
+              .prop('number', bet_amount)
               .animateNumber(
                 {
-                  number: 0
+                  number: previous_bet
                 },
                 1000
               );
 
-            setTimeout(function(){ 
-                $('.odd-sign').html('');
-                $('.even-sign').html('');
+            setTimeout(function(){
+                if(level == 1) {
+                    $('.odd-sign').html('');
+                    $('.even-sign').html('');
+                } else {
+                    $('.odd-sign').html('-');
+                    $('.even-sign').html('-');
+                }
             }, 1000);
             
             $.ajax({
@@ -581,9 +619,6 @@ function showPayout(){
             checked(level, true);
             changbar(level);
 
-            var bet_amount = parseInt($('#hidBet').val());
-            var newbalance = balance - bet_amount;
-            var newtotalbalance = total_balance - bet_amount;
 
             if(newbalance < 0){
                  $('div.clicked').find('.bet').hide();
@@ -592,8 +627,6 @@ function showPayout(){
             } else {
                 //$('#spanPoint').html(newtotalbalance);
                 $('.instruction').css('visibility', 'hidden');
-
-                var previous_bet = 0;
 
                 if(selected == 'odd'){
                     $('.odd-sign').html('+');
@@ -674,7 +707,7 @@ function bindResetLifeButton(){
             $.ajax({
                 type: 'POST',
                 url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 101, 'life': 'yes' },
+                data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
                 dataType: "json",
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -701,7 +734,7 @@ function bindResetLifeButton(){
             $.ajax({
                 type: 'POST',
                 url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 101, 'life': 'yes' },
+                data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
                 dataType: "json",
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -726,6 +759,7 @@ function showProgressBar(bol_show){
     var consecutive_lose = $('#hidConsecutiveLose').val();
     var balance = parseInt($('#hidBalance').val());
     var bet_amount = 0;
+    var previous_bet = 0;
     var payout_info = '';
     var span_balance = 1200;
     var result_info ='';
@@ -758,6 +792,7 @@ function showProgressBar(bol_show){
             default:
             case 1:
                 bet_amount = 10;
+                previous_bet = 0;
 
                 payout_info = '押注10积分，猜对+10，猜错-10。';
                 //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注10积分，猜对+10，猜错-10。';
@@ -774,6 +809,7 @@ function showProgressBar(bol_show){
                 break;
             case 2:
                 bet_amount = 30;
+                previous_bet = 10;
                 span_balance = 1190;
                 result_info = '本轮错了1次，还剩5次。';
 
@@ -784,6 +820,7 @@ function showProgressBar(bol_show){
                 break;
             case 3:                    
                 bet_amount = 70;
+                previous_bet = 30;
                 span_balance = 1160;
                 result_info = '本轮错了2次，还剩4次。';
 
@@ -795,6 +832,7 @@ function showProgressBar(bol_show){
                 break;
             case 4:
                 bet_amount = 150;
+                previous_bet = 70;
                 span_balance = 1090;
                 result_info = '本轮错了3次，还剩3次。';
 
@@ -807,6 +845,7 @@ function showProgressBar(bol_show){
                 break;
             case 5:
                 bet_amount = 310;
+                previous_bet = 150;
                 span_balance = 940;
                 result_info = '本轮错了4次，还剩2次。';
 
@@ -820,6 +859,7 @@ function showProgressBar(bol_show){
                 break;
             case 6:
                 bet_amount = 630;
+                previous_bet = 310;
                 span_balance = 630;
                 result_info = '本轮剩1次机会，猜错清零。';                
 
@@ -839,6 +879,13 @@ function showProgressBar(bol_show){
         $('.span-balance').html(span_balance);
         $('#hidBet').val(bet_amount);
         $('.result-info').html(result_info);
+        $('.odd-payout').html(previous_bet);
+        $('.even-payout').html(previous_bet);
+        if(level > 1){
+            $('.odd-sign').html('-');
+            $('.even-sign').html('-');
+        }
+
 
         if(bol_show) {
             checked(level, true);
@@ -983,6 +1030,15 @@ function startTimer(duration, timer, freeze_time) {
     var selected = $('div.clicked').find('input:radio').val();
     var trigger_time = freeze_time - 1;
     var id = $('#hidUserId').val();
+    var level = parseInt($('#hidLevel').val());
+    $('.small-border').addClass('slow-rotate');
+    setTimeout(function(){ 
+        $('.small-border').addClass('medium-rotate');
+    }, 500);
+    setTimeout(function(){ 
+        $('.small-border').addClass('fast-rotate');
+    }, 2000);
+    g_previous_point = parseInt($('.spanAcuPoint').html());
 
     $.ajax({
         type: 'POST',
@@ -1002,7 +1058,16 @@ function startTimer(duration, timer, freeze_time) {
                 },
                 error: function (error) { console.log(error) },
                 success: function(data) {
+
                     $('#result').val(data.game_result);
+                    if(data.status == 'win'){
+                        show_win = true;
+                        showWinModal();
+                    } else if(data.status == 'lose' && level < 6) {
+                        show_lose = true;
+                        showLoseModal();
+                    }
+                    triggerResult();
                 }
             });
         }
@@ -1029,17 +1094,13 @@ function startTimer(duration, timer, freeze_time) {
             timer = duration;
             resetGame();
 
-        } else if (timer <= trigger_time) {
-            //Lock the selection
-            if (trigger == false) {
-                triggerResult();
-            }
         }
         
     }, 1000);
 }
 
 function triggerResult(){
+    $('.small-border').removeClass('slow-rotate medium-rotate fast-rotate');
     trigger = true;
     //console.log(data);
     var freeze_time = 5;
@@ -1052,7 +1113,7 @@ function triggerResult(){
         'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
         'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
         'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-        'rotateNum': 12,//转多少圈(默认12)
+        'rotateNum': 3,//转多少圈(默认12)
         'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
         'click': function () {
             if(1==1){}
@@ -1112,7 +1173,7 @@ DomeWebController = {
             'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
             'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
             'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-            'rotateNum': 12,//转多少圈(默认12)
+            'rotateNum': 1,//转多少圈(默认12)
             'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
             'startKey' : startKey,
             'click': function () {

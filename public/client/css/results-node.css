@@ -25,13 +25,13 @@ div.legend-row {
 .results-row > div.box-wrapper {
   float: left;
   width: 55px;
-  height: 50px;
+  height: 60px;
 }
 
 .results-row > div.chain-wrapper {
   width: 20px;
   float: left;
-  height: 50px;
+  height: 60px;
 }
 
 .results-row > div.results-right {
@@ -43,8 +43,8 @@ div.legend-row {
 }
 
 .results-box {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   font-size: 14px;
   color: #3ed966;
   border-radius: 40px;
@@ -56,8 +56,8 @@ div.legend-row {
 }
 
 .results-box div {
-  font-size: 8px;
-  margin-top: -4px;
+  font-size: 10px;
+  margin-top: -2px;
 }
 
 .even-box {
@@ -71,30 +71,31 @@ div.legend-row {
   background: #f0f0f0;
   position: relative;
   margin-left: 40px;
-  margin-top: 20px;
+  margin-top: 23px;
   z-index: 0;
 }
 
 .right-chain {
   margin-top: 40px;
-  margin-left: -36px;
+  margin-left: -32px;
   width: 4px;
   height: 20px;
   background: #f0f0f0;
 }
 
 .left-chain {
-  margin-top: 10px;
-  margin-left: 38px;
+  margin-top: 16px;
+  margin-left: 43px;
   width: 4px;
   height: 20px;
   background: #f0f0f0;
 }
 
 /* iPhone 5 ----------- */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 360px) {
     .results-row > div.box-wrapper {
       width: 45px;
+      height: 50px;
     }
 
     .results-row > div.results-right {
@@ -103,6 +104,21 @@ div.legend-row {
 
     .results-row > div.results-left {
       margin-left: 0px;
+    }
+
+    .results-box {
+      font-size: 14px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .results-box div {
+      font-size: 8px;
+      margin-top: -4px;
+    }
+
+    .results-row > div.chain-wrapper {
+      height: 50px;
     }
 
     .right-chain {
@@ -116,6 +132,7 @@ div.legend-row {
     }
 
     .chain {
+      margin-top: 20px;
       width: 180px;
       height: 4px;
     }
