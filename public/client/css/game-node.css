@@ -2034,16 +2034,3 @@ if it's not present, don't show loader */
 	margin-left: -5px;
 	margin-top: -5px;
 }
-
-.start-rotate {
-    -webkit-animation: circle 0.5s infinite linear;
-}
-
-@-webkit-keyframes circle {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}

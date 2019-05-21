@@ -413,3 +413,24 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 
 .info .d-main {top:35%;padding:24px 8%;}
 .info .d-main p {color:#ffda0a;}
+
+.slow-rotate {
+    -webkit-animation: circle 3s infinite linear;
+}
+
+.medium-rotate {
+    -webkit-animation: circle 1s infinite linear;
+}
+
+.fast-rotate {
+    -webkit-animation: circle 0.5s infinite linear;
+}
+
+@-webkit-keyframes circle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
