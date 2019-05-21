@@ -438,16 +438,16 @@ function closeWinModal() {
              g_current_point = 150;
          }
 
-        console.log("closeWinModal:" + g_previous_point + " :: " + g_current_point);
-        
         $('.spanAcuPointAndBalance')
           .prop('number', g_previous_point/10)
           .animateNumber(
             {
               number: g_current_point/10
             },
-            1000
+            500
           );
+            
+        $('.spanAcuPoint').html(g_current_point);
 
         setTimeout(function () {
             showProgressBar(false);
@@ -1031,7 +1031,13 @@ function startTimer(duration, timer, freeze_time) {
     var trigger_time = freeze_time - 1;
     var id = $('#hidUserId').val();
     var level = parseInt($('#hidLevel').val());
-    $('.small-border').addClass('start-rotate');
+    $('.small-border').addClass('slow-rotate');
+    setTimeout(function(){ 
+        $('.small-border').addClass('medium-rotate');
+    }, 500);
+    setTimeout(function(){ 
+        $('.small-border').addClass('fast-rotate');
+    }, 2000);
     g_previous_point = parseInt($('.spanAcuPoint').html());
 
     $.ajax({
@@ -1052,7 +1058,7 @@ function startTimer(duration, timer, freeze_time) {
                 },
                 error: function (error) { console.log(error) },
                 success: function(data) {
-                    console.log(data);
+
                     $('#result').val(data.game_result);
                     if(data.status == 'win'){
                         show_win = true;
@@ -1094,7 +1100,7 @@ function startTimer(duration, timer, freeze_time) {
 }
 
 function triggerResult(){
-    $('.small-border').removeClass('start-rotate');
+    $('.small-border').removeClass('slow-rotate medium-rotate fast-rotate');
     trigger = true;
     //console.log(data);
     var freeze_time = 5;
@@ -1107,7 +1113,7 @@ function triggerResult(){
         'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
         'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
         'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-        'rotateNum': 5,//转多少圈(默认12)
+        'rotateNum': 3,//转多少圈(默认12)
         'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
         'click': function () {
             if(1==1){}
@@ -1167,7 +1173,7 @@ DomeWebController = {
             'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
             'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
             'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-            'rotateNum': 12,//转多少圈(默认12)
+            'rotateNum': 1,//转多少圈(默认12)
             'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
             'startKey' : startKey,
             'click': function () {
