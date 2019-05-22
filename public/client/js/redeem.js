@@ -75,19 +75,19 @@ function getProductList(token) {
             var current_point = parseInt(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
-                previous_point = parseInt(previous_point);
+                previous_point = (parseInt(previous_point)/10);
 
                 $('.wabao-coin')
                   .prop('number', previous_point)
                   .animateNumber(
                     {
-                      number: current_point
+                      number: (current_point/10)
                     },
                     1000
                   );
                 Cookies.remove('previous_point');
             } else {
-                $('.wabao-coin').html((current_point/10) + ' <span style="font-size:16px;">元</span>');
+                $('.wabao-coin').html((current_point/10));
             }            
 
             var records = data.records.data;
