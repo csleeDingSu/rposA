@@ -1029,12 +1029,12 @@ function startTimer(duration, timer, freeze_time) {
     setTimeout(function(){
         $('.small-border').removeClass('slow-rotate');
         $('.small-border').addClass('medium-rotate');
-    }, 500);
+    }, 100);
     setTimeout(function(){
         $('.small-border').removeClass('medium-rotate');
         $('.small-border').addClass('fast-rotate');
         console.log("add fast-rotate");
-    }, 1000);
+    }, 200);
     g_previous_point = parseInt($('.spanAcuPoint').html());
 
     $.ajax({
