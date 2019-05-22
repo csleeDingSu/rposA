@@ -40,7 +40,7 @@
 
 			<div style="clear: both;"></div>
 			
-			<div><span class="wabao-coin">0</span> <span style="font-size:16px;">元</span></div>
+			<div><span class="wabao-coin"></span> <span style="font-size:16px;">元</span></div>
 		</div>
 		<!-- end wabao coin info -->
 
