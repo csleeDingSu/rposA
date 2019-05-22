@@ -92,7 +92,7 @@ function getSummary(token) {
                                     // '</div>' +
                                     
                                     '<div style="clear: both"></div>' +
-                                    '<div class="balance">'+ value.balance_before +'</div>' +
+                                    '<div class="balance">'+ parseInt(value.balance_before)/10 +'</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';

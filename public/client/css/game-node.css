@@ -343,7 +343,7 @@ body{
 	position: relative;
 	/*margin-left: 10px;*/
 	color: #fff;
-	font-size: 26px;
+	font-size: 40px;
 	cursor: pointer;
 	border-radius: 40px;
 	margin-left: 12px;
@@ -436,18 +436,6 @@ body{
 	margin-top: 3px;
 }
 
-.btn-rules-normal {
-	background: url('/client/images/banner_vip.png') no-repeat;
-	width: 299px;
-	height: 86px;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
-	-webkit-transform-origin:left top;
-	padding: 0px 0px 0px 0px;
-	cursor: pointer;
-	margin-top: -5px;
-}
-
 .game_rules {
 	background: url('/client/images/banner_rules.png') no-repeat;
 	width: 242px;
@@ -458,7 +446,7 @@ body{
 	margin-top: 3px;
 }
 
-.btn-rules-vip {
+.btn-rules-vip, .btn-rules-normal {
 	background-color: rgba(0,0,0,.3);
 	width: 300px;
 	height: 72px;
@@ -476,6 +464,11 @@ body{
 	font-weight: 700;
 	border-top-left-radius: 40px;
 	border-bottom-left-radius: 40px;
+}
+
+.btn-rules-normal {
+	width: 200px;
+	margin-left: 50px;
 }
 
 .balance {
@@ -734,7 +727,13 @@ body{
 }
 
 .packet-acupoint {
-	color: #c81b1b;
+	color: #ff414b;
+	font-weight: 700;
+}
+
+.packet-acupoint-to-win {
+	color: #333;
+	font-weight: 700;
 }
 
 .modal-message-title, .modal-warning-title, .modal-manual-title {
@@ -743,8 +742,10 @@ body{
 }
 
 .modal-lose-title {
-	color: #373737;
-	font-size: 22px;
+	color: #7a7a7a;
+	font-size: 29px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .modal-warning-title {
@@ -756,8 +757,8 @@ body{
 }
 
 .modal-message-content, .modal-lose-content {
-	color: #4f7172;
-	font-size: 14px;
+	color: #979797;
+	font-size: 13px;
 	padding-bottom: 0px;
 }
 
@@ -891,13 +892,13 @@ body{
 
 #reset-life-play .modal-title {
 	background: white;
-	color: #959595;
+	color: #5b5b5b;
 	text-align: center;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 	padding:0;
 	font-weight: 500;
-	font-size: 24px;
+	font-size: 26px;
 	width: 100%;
 }
 
@@ -996,10 +997,12 @@ body{
 	padding-left: 30px;
 }
 
-#reset-life-play .modal-warning-button {
+#reset-life-play .modal-warning-button, #reset-life-lose .modal-warning-button {
 	background: #fcac12;
 	color: white;
 	border-radius: 25px;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 #reset-life-play .speech-balloon {
@@ -1043,11 +1046,11 @@ body{
 #reset-life-play .instructions {
 	margin-top: 5px;
 	margin-bottom: 10px;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 500;
-	color: #b0b0b0;
+	color: #999;
 	padding:10px;
-	text-align: justify;
+	text-align: center;
 	letter-spacing: 0.5px;
 }
 
