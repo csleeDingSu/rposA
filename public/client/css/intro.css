@@ -144,6 +144,18 @@
 
 .ring {
     position: absolute;
-    height: 5.8rem;
-    margin-top: -5.6rem;
+    height: 8rem;
+    width: 8rem !important;
+    margin-top: -6rem;
+    margin-left: -1.1rem;
+}
+
+.ring img {
+    width: 6.7rem !important;
+    height: 6.7rem;
+}
+
+.playBox {
+    padding-top: 0.25rem;
+    padding-bottom: 0.45rem;
 }

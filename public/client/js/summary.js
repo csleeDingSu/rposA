@@ -63,18 +63,18 @@ function getSummary(token) {
                 case 'CRPNT':
                 case 'APMNT':
                     str_type = '游戏收益结算';
-                    str_points = '+' + parseInt(value.credit);
+                    str_points = '+' + parseInt(value.credit)/10 + '元';
                 break;
 
                 case 'DPRPO':
                     str_type = '兑换话费卡';
-                    str_points = '-' + parseInt(value.debit);
+                    str_points = '-' + parseInt(value.debit)/10 + '元';
                     cls_negative = 'negative';
                 break;
 
                 case 'DPBVP':
                     str_type = '兑换VIP入场券';
-                    str_points = '-' + parseInt(value.debit);
+                    str_points = '-' + parseInt(value.debit)/10 + '元';
                     cls_negative = 'negative';
                 break;
             }
@@ -87,9 +87,9 @@ function getSummary(token) {
                             '<div class="col-xs-4 column-2">' +
                                 '<div class="right-wrapper">' +
                                     '<div class="points ' + cls_negative +'">'+ str_points +'</div>' +
-                                    '<div class="icon-coin-wrapper">' +
-                                        '<div class="icon-coin"></div>' +
-                                    '</div>' +
+                                    // '<div class="icon-coin-wrapper">' +
+                                    //     '<div class="icon-coin"></div>' +
+                                    // '</div>' +
                                     
                                     '<div style="clear: both"></div>' +
                                     '<div class="balance">'+ value.balance_before +'</div>' +

@@ -127,11 +127,16 @@ html, body {
 	padding-right: 5px;
 	padding-left: 10px;
 	text-align: left;
+	padding-top: 5px;
 }
 
 .column-3, .column-6 {
 	padding-right: 5px;
 	padding-left: 0px;
+}
+
+.column-4 {
+	padding-top: 10px;
 }
 
 .horizontal {
@@ -194,7 +199,7 @@ html, body {
 }
 
 .description {
-	font-size: 14px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #626262;
 	min-height: 30px;
@@ -272,7 +277,7 @@ html, body {
 	}
 
 	.description {
-		font-size: 13px;
+		/*font-size: 13px;*/
 		min-height: 25px;
 	}
 
