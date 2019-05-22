@@ -823,6 +823,34 @@
 <!--  end -->
 
 <!-- Start Win -->
+
+	<div class="modal fade col-md-12" id="lose-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-title modal-win-header">
+				<div class="modal-win-title">很遗憾猜错了</div>
+				<div class="modal-result">您还有1次机会</div>			
+			</div>
+
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-instruction">前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span></div>
+								<div class="close-win-modal modal-redeem-button">
+									知道了
+								</div>												
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
+<!-- Start Win -->
 	<div class="modal fade col-md-12" id="red-packet-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
