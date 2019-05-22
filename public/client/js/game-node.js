@@ -1026,10 +1026,12 @@ function startTimer(duration, timer, freeze_time) {
     var id = $('#hidUserId').val();
     var level = parseInt($('#hidLevel').val());
     $('.small-border').addClass('slow-rotate');
-    setTimeout(function(){ 
+    setTimeout(function(){
+        $('.small-border').removeClass('slow-rotate');
         $('.small-border').addClass('medium-rotate');
     }, 500);
-    setTimeout(function(){ 
+    setTimeout(function(){
+        $('.small-border').removeClass('medium-rotate');
         $('.small-border').addClass('fast-rotate');
     }, 2000);
     g_previous_point = parseInt($('.spanAcuPoint').html());
@@ -1052,7 +1054,7 @@ function startTimer(duration, timer, freeze_time) {
                 },
                 error: function (error) { console.log(error) },
                 success: function(data) {
-                    $('.small-border').removeClass('slow-rotate medium-rotate fast-rotate');
+                    $('.small-border').removeClass('fast-rotate');
                     $('#result').val(data.game_result);
                     if(data.status == 'win'){
                         show_win = true;
