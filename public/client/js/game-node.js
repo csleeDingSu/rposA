@@ -370,7 +370,7 @@ function initShowModal(){
     }
 
     if(show_lose){
-        $('#win-modal').modal({backdrop: 'static', keyboard: false});
+        $('#lose-modal').modal({backdrop: 'static', keyboard: false});
         closeWinModal();
     }
 }
@@ -428,6 +428,7 @@ function closeWinModal() {
         $(this).off('click');
         event.stopImmediatePropagation();
         $('#win-modal').modal('hide');
+        $('#lose-modal').modal('hide');
 
          if(g_current_point > 150){
              g_current_point = 150;
@@ -955,36 +956,41 @@ function showLoseModal(){
 
         case 1:
             instruction = '前1局猜错，<span class="highlight-green">总亏损10积分</span>，根据倍增式玩法，第2局<span class="highlight-orange">将押注30积分</span>，如猜对能获得30积分奖励，减去亏损的10还能赚20积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前1局猜错，<span class="highlight-grey">总亏损10积分</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注30积分</span>，猜对能获得30积分奖励，减去亏损的10还能赚20积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
             image = '/client/images/progress-bar/lose_10.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-10积分</div>';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有5次机会</div>'; 
             result_info = '本轮错了1次，还剩5次。';
         break;
 
         case 2:
             instruction = '前2局猜错，<span class="highlight-green">总亏损40积分</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注70积分</span>，如猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前2局猜错，<span class="highlight-grey">总亏损40积分</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注70积分</span>，猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
             image = '/client/images/progress-bar/lose_30.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-30积分</div>';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有4次机会</div>'; 
             result_info = '本轮错了2次，还剩4次。';
         break;
 
         case 3:
-            instruction = '前3局猜错，<span class="highlight-green">总亏损110积分</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注150积分</span>，如猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';            
+            instruction = '前3局猜错，<span class="highlight-green">总亏损110积分</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注150积分</span>，如猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前3局猜错，<span class="highlight-grey">总亏损110积分</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注150积分</span>，猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
             image = '/client/images/progress-bar/lose_70.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-70积分</div>';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有3次机会</div>'; 
             result_info = '本轮错了3次，还剩3次。';
         break;
 
         case 4:
             instruction = '前4局猜错，<span class="highlight-green">总亏损260积分</span>，根据倍增式玩法，第5局<span class="highlight-orange">将押注310积分</span>，如猜对能获得310积分奖励，减去亏损的260还能赚50积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前4局猜错，<span class="highlight-grey">总亏损260积分</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注310积分</span>，猜对能获得310积分奖励，减去亏损的260还能赚50积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
             image = '/client/images/progress-bar/lose_150.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-150积分</div>';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有2次机会</div>'; 
             result_info = '本轮错了4次，还剩2次。';
         break;
 
         case 5:
             instruction = '前5局猜错，<span class="highlight-green">总亏损570积分</span>，根据倍增式玩法，第6局<span class="highlight-orange">将押注630积分</span>，如猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
             image = '/client/images/progress-bar/lose_310.png';
-            html += '<div class="modal-win-title">本局猜错了</div><div class="modal-lose-result">-310积分</div>';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有1次机会</div>'; 
             result_info = '本轮剩1次机会，猜错清零。';
         break;
 

@@ -1127,7 +1127,7 @@ body{
 }
 
 .modal-redeem-button {
-	background: #ff8b3e;
+	background: #fab235;
 	margin-left: 0;
 	margin-right: 0;
 	font-size: 20px;
@@ -1184,12 +1184,16 @@ body{
 	color: #e48f00;
 }
 
+.highlight-grey {
+	color: #333;
+}
+
 .highlight-red {
-	color: #b62727;
+	color: #ff414b;
 }
 
 .highlight-green {
-	color: #3fbb45;
+	color: #2ec400;
 }
 
 .highlight-orange {
@@ -1766,19 +1770,19 @@ if it's not present, don't show loader */
 }
 
 /* Wechat Modal */
-#win-modal .modal-title {
-	font-size: 11px;
-	color: #bbbbbb;
+#lose-modal .modal-title {
+	font-size: 20px;
+	color: #999;
 	font-weight: 500;
 }
 
 .modal-win-title {
 	font-weight: 500;
-	font-size: 15px;
+	font-size: 20px;
 }
 
-#win-modal .modal-content{
-	background: #f9f9f9;
+#lose-modal .modal-content{
+	background: white;
 	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
@@ -1789,16 +1793,19 @@ if it's not present, don't show loader */
 	-webkit-box-shadow: none;
 }
 
-#win-modal .modal-body {
+#lose-modal .modal-body {
 	padding-top: 0;
 }
 
-#win-modal .modal-instruction {
-	color: #878787;
-	font-size: 12px;
-	line-height: 24px;
+#lose-modal .modal-instruction {
+	color: #999;
+	font-size: 11px;
+	line-height: 22px;
 	text-align: left;
-	padding: 10px 0 40px 0;
+	margin-bottom: 20px;
+	background: #f6f6f6;
+	padding: 10px 12px 10px 15px;
+	border-radius: 6px;
 }
 
 .separator {
@@ -1821,9 +1828,9 @@ if it's not present, don't show loader */
 }
 
 .modal-result{
-	color: #ff8b3e;
+	color: #62c807;
 	font-weight: 500;
-	font-size: 24px;
+	font-size: 28px;
 }
 
 .modal-lose-result{
