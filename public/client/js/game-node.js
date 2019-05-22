@@ -9,6 +9,8 @@ var show_win = false;
 var show_lose = false;
 var g_previous_point = 0;
 var g_current_point = 0;
+var previous_bet = 0;
+var current_bet = 0;
 var game_records = null; //game setting
 var result_records = null; //game history
 var latest_result = null; //latest result
@@ -529,14 +531,13 @@ function showPayout(){
     var level = parseInt($('#hidLevel').val());
     var user_id = $('#hidUserId').val();
 
-    var previous_bet = 0;
     var bet_amount = parseInt($('#hidBet').val());
     var newbalance = balance - bet_amount;
     var newtotalbalance = total_balance - bet_amount;
 
     switch (level) {
         case 1:
-            previous_bet = 0;
+            //previous_bet = 0;
         break;
 
         case 2:
@@ -758,8 +759,6 @@ function showProgressBar(bol_show){
     var level = parseInt($('#hidLevel').val());
     var consecutive_lose = $('#hidConsecutiveLose').val();
     var balance = parseInt($('#hidBalance').val());
-    var bet_amount = 0;
-    var previous_bet = 0;
     var payout_info = '';
     var span_balance = 1200;
     var result_info ='';
@@ -791,8 +790,8 @@ function showProgressBar(bol_show){
 
             default:
             case 1:
-                bet_amount = 10;
-                previous_bet = 0;
+                previous_bet = current_bet;
+                current_bet = 10;                
 
                 payout_info = '押注10积分，猜对+10，猜错-10。';
                 //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注10积分，猜对+10，猜错-10。';
@@ -808,7 +807,7 @@ function showProgressBar(bol_show){
 
                 break;
             case 2:
-                bet_amount = 30;
+                current_bet = 30;
                 previous_bet = 10;
                 span_balance = 1190;
                 result_info = '本轮错了1次，还剩5次。';
@@ -819,7 +818,7 @@ function showProgressBar(bol_show){
                 $('.span-1').html("-10");                        
                 break;
             case 3:                    
-                bet_amount = 70;
+                current_bet = 70;
                 previous_bet = 30;
                 span_balance = 1160;
                 result_info = '本轮错了2次，还剩4次。';
@@ -831,7 +830,7 @@ function showProgressBar(bol_show){
                 $('.span-2').html("-30");
                 break;
             case 4:
-                bet_amount = 150;
+                current_bet = 150;
                 previous_bet = 70;
                 span_balance = 1090;
                 result_info = '本轮错了3次，还剩3次。';
@@ -844,7 +843,7 @@ function showProgressBar(bol_show){
                 $('.span-3').html("-70");
                 break;
             case 5:
-                bet_amount = 310;
+                current_bet = 310;
                 previous_bet = 150;
                 span_balance = 940;
                 result_info = '本轮错了4次，还剩2次。';
@@ -858,7 +857,7 @@ function showProgressBar(bol_show){
                 $('.span-4').html("-150");
                 break;
             case 6:
-                bet_amount = 630;
+                current_bet = 630;
                 previous_bet = 310;
                 span_balance = 630;
                 result_info = '本轮剩1次机会，猜错清零。';                
@@ -877,15 +876,10 @@ function showProgressBar(bol_show){
         result_info = '剩余<span style="text-decoration:underline">'+ span_balance +'</span>游戏积分&nbsp;';
 
         $('.span-balance').html(span_balance);
-        $('#hidBet').val(bet_amount);
+        $('#hidBet').val(current_bet);
         $('.result-info').html(result_info);
         $('.odd-payout').html(previous_bet);
         $('.even-payout').html(previous_bet);
-        if(level > 1){
-            $('.odd-sign').html('-');
-            $('.even-sign').html('-');
-        }
-
 
         if(bol_show) {
             checked(level, true);
@@ -1072,31 +1066,6 @@ function startTimer(duration, timer, freeze_time) {
             });
         }
     });
-
-     
-
-    parent.timerInterval = setInterval(function () {
-
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 61, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        //$( "#txtCounter" ).html(seconds);
-        //$( ".span-timer" ).html(seconds);
-
-        --timer;
-
-            
-        if (seconds == '0-3') {
-            clearInterval(parent.timerInterval);
-            timer = duration;
-            resetGame();
-
-        }
-        
-    }, 1000);
 }
 
 function triggerResult(){
@@ -1126,6 +1095,11 @@ function triggerResult(){
     });
 
     $( "#btnPointer" ).trigger( "click" );
+
+    setTimeout(function(){ 
+        resetGame();
+    }, freeze_time * 1000);
+    
 }
 
 DomeWebController = {
