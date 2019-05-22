@@ -538,11 +538,11 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="modal-title">
-								  提现说明
+								  兑换说明
 								</div>
 								<div class="instructions">
-									需要滿1350金幣才可以提現，其中系統提供的1200原始金幣不可提現。<br>
-									只能提現游戲中盈利的150金幣，150金幣大約可兌換15元現金，再接再厲！
+									每局满15元结算兑换红包<br>
+									您已赢到<span class="packet-acupoint">10</span>元，还差<span class="packet-acupoint-to-win">5</span>元兑换
 								</div>
 								<div class="close-modal modal-warning-button">
 									知道了
@@ -705,15 +705,14 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<img src="{{ asset('/client/images/vip/icon-lose.png') }}" class="img-wabao" />
 								<div class="modal-lose-title">
-									本次游戏失败
+									本轮游戏失败
 								</div>
 								<div class="modal-lose-content">
-									本局盈利的金币清零
+									很遗憾，您未能赢得红包
 								</div>
-								<div class="modal-confirm-button btn-reset-life">
-									继续游戏
+								<div class="modal-warning-button btn-reset-life">
+									知道了
 								</div>
 								<!--a href="/share">
 								<div class="modal-invite-button">
@@ -938,7 +937,7 @@
 
 			$('#viewgamerules').on('click', showGameRules);
 
-			$('.btn-vip-modal .btn-rules-vip').html('规则说明');
+			$('.btn-vip-modal .btn-rules-vip').html('规则说明').addClass('btn-rules-normal');
 			$('.btn-vip-modal').on('click', showGameRules);
 
 		});	
