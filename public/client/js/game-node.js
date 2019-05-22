@@ -1026,15 +1026,6 @@ function startTimer(duration, timer, freeze_time) {
     var id = $('#hidUserId').val();
     var level = parseInt($('#hidLevel').val());
     $('.small-border').addClass('slow-rotate');
-    setTimeout(function(){
-        $('.small-border').removeClass('slow-rotate');
-        $('.small-border').addClass('medium-rotate');
-    }, 100);
-    setTimeout(function(){
-        $('.small-border').removeClass('medium-rotate');
-        $('.small-border').addClass('fast-rotate');
-        console.log("add fast-rotate");
-    }, 200);
     g_previous_point = parseInt($('.spanAcuPoint').html());
 
     $.ajax({
@@ -1055,8 +1046,7 @@ function startTimer(duration, timer, freeze_time) {
                 },
                 error: function (error) { console.log(error) },
                 success: function(data) {
-                    console.log("reomve fast-rotate");
-                    $('.small-border').removeClass('fast-rotate');
+                    $('.small-border').removeClass('slow-rotate');
                     $('#result').val(data.game_result);
                     if(data.status == 'win'){
                         show_win = true;
@@ -1075,7 +1065,7 @@ function startTimer(duration, timer, freeze_time) {
 function triggerResult(){
     trigger = true;
     //console.log(data);
-    var freeze_time = 5;
+    var freeze_time = 10;
     var result = $('#result').val();
     // console.log(freeze_time);
 
@@ -1085,7 +1075,7 @@ function triggerResult(){
         'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
         'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
         'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-        'rotateNum': 3,//转多少圈(默认12)
+        'rotateNum': 12,//转多少圈(默认12)
         'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
         'click': function () {
             if(1==1){}
