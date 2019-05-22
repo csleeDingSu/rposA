@@ -32,15 +32,15 @@
 		<input type="hidden" id="max_page" value="1" />
 
 		<div class="card left">
-			<div class="icon-coin-wrapper">
+			<!-- <div class="icon-coin-wrapper">
 				<div class="icon-coin"></div>
-			</div>
-			<div class="label-coin">当前可用金币</div>
-			<div class="label-coin right"><a href="/summary">金币明细</a></div>
+			</div> -->
+			<div class="label-coin">可兑换红包</div>
+			<div class="label-coin right"><a href="/summary">明细</a></div>
 
 			<div style="clear: both;"></div>
 			
-			<div class="wabao-coin">&nbsp;</div>
+			<div class="wabao-coin"></div>
 		</div>
 		<!-- end wabao coin info -->
 
