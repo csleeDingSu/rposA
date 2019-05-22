@@ -1033,7 +1033,8 @@ function startTimer(duration, timer, freeze_time) {
     setTimeout(function(){
         $('.small-border').removeClass('medium-rotate');
         $('.small-border').addClass('fast-rotate');
-    }, 2000);
+        console.log("add fast-rotate");
+    }, 1000);
     g_previous_point = parseInt($('.spanAcuPoint').html());
 
     $.ajax({
@@ -1054,6 +1055,7 @@ function startTimer(duration, timer, freeze_time) {
                 },
                 error: function (error) { console.log(error) },
                 success: function(data) {
+                    console.log("reomve fast-rotate");
                     $('.small-border').removeClass('fast-rotate');
                     $('#result').val(data.game_result);
                     if(data.status == 'win'){
