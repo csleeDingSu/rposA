@@ -46,7 +46,7 @@
         </div>
         <div class="panel">
             <div class="panel-title">转盘玩法说明</div>
-            进入转盘默认有1200金币(不可提现)，使用倍增式猜单数或者双数（游戏里有介绍）。<br /><span class="highlight">在转盘里赚到的金币可兑换红包(可提现)。</span><br />每次幸运转盘最多可赚150金币，能兑换15元红包。如果你有10次机会，就可以赚150元。            
+            进入转盘默认有1200积分(不可提现)，使用倍增式猜单数或者双数（游戏里有介绍）。<br /><span class="highlight">在转盘里赚到的积分可兑换红包(可提现)。</span><br />每次幸运转盘最多能兑换15元红包。如果你有10次机会，就可以赚150元。            
         </div>
         <div class="panel bottom-space">
             <div class="panel-title">超多红包拿不完</div>

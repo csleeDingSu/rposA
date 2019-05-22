@@ -87,7 +87,7 @@ function getProductList(token) {
                   );
                 Cookies.remove('previous_point');
             } else {
-                $('.wabao-coin').html(current_point);
+                $('.wabao-coin').html((current_point/10) + ' <span style="font-size:16px;">元</span>');
             }            
 
             var records = data.records.data;
@@ -309,14 +309,14 @@ function getProductList(token) {
                                 '</div>' +
                                 '<div class="col-xs-6 column-2">' +
                                     '<div class="description">' + item.product_name + '</div>' +
-                                    '<div class="note"></div>' +
+                                    // '<div class="note"></div>' +
                                     /*
                                     '<div class="note">兑换支付宝红包' + item.product_price + '元</div>' +
                                     */
                                     '<div class="icon-coin-wrapper">' +
-                                        '<div class="icon-coin"></div>' +
+                                        // '<div class="icon-coin"></div>' +
                                     '</div>' +
-                                    '<div class="w-coin">'+ item.min_point +'</div>' +
+                                    // '<div class="w-coin">'+ item.min_point +'</div>' +
                                     '<div style="clear: both;"></div>' +
                                     '<div class="remaining">已兑换 '+ total_used +' 张</div>' +
                                 '</div>' +
@@ -344,14 +344,14 @@ function getProductList(token) {
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                            '<div class="icon-coin-wrapper modal-icon">' +
-                                                                '<div class="icon-coin"></div>' +
-                                                            '</div>' +
-                                                            '<div class="wabao-price">'+ item.min_point +'金币</div>' +
+                                                            // '<div class="icon-coin-wrapper modal-icon">' +
+                                                            //     '<div class="icon-coin"></div>' +
+                                                            // '</div>' +
+                                                            '<div class="wabao-price">'+ item.min_point/10 +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 金币</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point/10) +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
@@ -578,7 +578,7 @@ function populateHistoryData(records, token) {
                         counter +
                     '</div>' +
                     '<div class="col-xs-7 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + (item.pin_name || '') + '</div>' +
+                        '<div class="description">'+ item.product_name + '</div>' +
                         '<div class="balance">兑换时间:'+ str_date +'</div>' +
                     '</div>';
 

@@ -42,15 +42,16 @@
 			<!-- member details -->
 			<div class="information-table">
 				  <div class="col-xs-12">
-				  	<img src="{{ asset('/client/images/coin.png') }}" width="22" height="22" alt="button redeem" /> <span class="label-title">可用金币</span><br />
-				  	<div class="point numbers">{{ number_format($wallet->current_point, 0, '.', '') }}</div>
+				  	<span class="label-title">可兑换红包</span><br />
+				  	<div class="point numbers">{{ number_format($wallet->current_point/10, 0, '.', '') }}</div> 元
 				  	<a href="/redeem">
-					  	<div class="button-redeem">兑换红包</div>
+					  	<div class="button-redeem">马上兑换</div>
 					</a>
 				  </div>
 				  <div class="col-xs-6 border-right">
 				  	未结算
-				  	<div class="balance numbers">{{ number_format($wallet->current_life_acupoint, 0, '.', '') }}</div>
+				  	<div class="balance numbers">{{ number_format($wallet->current_life_acupoint/10, 0, '.', '') }}</div>
+				  	 元
 				  </div>
 				  <div class="col-xs-6">
 				  	已兑换
