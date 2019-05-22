@@ -1052,7 +1052,7 @@ function startTimer(duration, timer, freeze_time) {
                 },
                 error: function (error) { console.log(error) },
                 success: function(data) {
-
+                    $('.small-border').removeClass('slow-rotate medium-rotate fast-rotate');
                     $('#result').val(data.game_result);
                     if(data.status == 'win'){
                         show_win = true;
@@ -1069,7 +1069,6 @@ function startTimer(duration, timer, freeze_time) {
 }
 
 function triggerResult(){
-    $('.small-border').removeClass('slow-rotate medium-rotate fast-rotate');
     trigger = true;
     //console.log(data);
     var freeze_time = 5;
