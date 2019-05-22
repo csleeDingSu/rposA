@@ -790,7 +790,7 @@ function showProgressBar(bol_show){
 
             default:
             case 1:
-                previous_bet = current_bet;
+                previous_bet = parseInt($('#hidBet').val());
                 current_bet = 10;                
 
                 payout_info = '押注10积分，猜对+10，猜错-10。';
