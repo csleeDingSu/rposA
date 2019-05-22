@@ -143,7 +143,8 @@ function initUser(records){
             $('.spanAcuPoint').html(acupoint);
             $('.spanAcuPointAndBalance').html(acupoint/10);
         }
-        $('.packet-acupoint').html(acupoint);
+        $('.packet-acupoint').html(acupoint/10);
+        $('.packet-acupoint-to-win').html(15 - acupoint/10);
         $('#hidBalance').val(balance);
         $(".nTxt").html(life);
         $(".spanLife").html(life);
@@ -193,15 +194,8 @@ try {
         $('.barBox').find('li').removeClass('on');
 
         if (consecutive_lose == 'yes' && life > 0) {
-            if(show_lose !== true && show_win !== true){
-                showProgressBar(false);
-            }
             bindResetLifeButton();
             $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
-        }
-
-        if(show_lose !== true && show_win !== true){
-            showProgressBar(false);
         }
 
         setBalance();
@@ -241,10 +235,6 @@ try {
             success: function(data) {
 
                 if(data.success && data.record.bet != null){
-
-                    if(show_lose !== true && show_win !== true){
-                        showProgressBar(false);
-                    }
 
                     var selected = data.record.bet;
 
@@ -373,6 +363,7 @@ function resetGame() {
 }
 
 function initShowModal(){
+
     if(show_win){
         $('#win-modal').modal({backdrop: 'static', keyboard: false});
         closeWinModal();
@@ -431,7 +422,9 @@ function closeModal() {
 }
 
 function closeWinModal() {
+
     $('.close-win-modal').click(function(event){
+        
         $(this).off('click');
         event.stopImmediatePropagation();
         $('#win-modal').modal('hide');
@@ -450,10 +443,6 @@ function closeWinModal() {
           );
             
         $('.spanAcuPoint').html(g_current_point);
-
-        setTimeout(function () {
-            showProgressBar(false);
-        }, 500);
         
     });
 }
@@ -790,7 +779,7 @@ function showProgressBar(bol_show){
 
             default:
             case 1:
-                previous_bet = parseInt($('#hidBet').val());
+                previous_bet = current_bet;
                 current_bet = 10;                
 
                 payout_info = '押注10积分，猜对+10，猜错-10。';
@@ -1025,7 +1014,7 @@ function startTimer(duration, timer, freeze_time) {
     var trigger_time = freeze_time - 1;
     var id = $('#hidUserId').val();
     var level = parseInt($('#hidLevel').val());
-    $('.small-border').addClass('slow-rotate');
+    $('.small-border').addClass('fast-rotate');
     g_previous_point = parseInt($('.spanAcuPoint').html());
 
     $.ajax({
@@ -1046,7 +1035,7 @@ function startTimer(duration, timer, freeze_time) {
                 },
                 error: function (error) { console.log(error) },
                 success: function(data) {
-                    $('.small-border').removeClass('slow-rotate');
+                    $('.small-border').removeClass('fast-rotate');
                     $('#result').val(data.game_result);
                     if(data.status == 'win'){
                         show_win = true;
