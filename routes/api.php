@@ -120,5 +120,7 @@ Route::group(['namespace' => 'Api'],function()
 	
 });
 
+Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');
+
 //cron_test
 Route::get('/cron_test', 'TestController@cron_test')->name('cron_test');
