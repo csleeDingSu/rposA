@@ -259,7 +259,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">开始竞猜</div>
+				<div id="txtCounter" class="middle-label">开始抽奖</div>
 				<div class="DB_G_hand"></div>
 		    </div>
 		</div>
