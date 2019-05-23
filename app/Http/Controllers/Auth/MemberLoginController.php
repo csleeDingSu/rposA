@@ -255,4 +255,59 @@ class MemberLoginController extends Controller
         $this->notify(new ResetPasswordNotification($token));
     }
 	
+	public function apilogin(Request $request) 
+	{	
+                
+        $username = $request->username; 
+		$password = $request->password; 
+		$apikey   = $request->apikey; 
+
+		$input = [
+            'username' => $request->username,
+            'password' => $request->password, 
+			'apikey'   => $request->apikey, 
+              ];
+
+        $rules = [ 
+            'username' =>                                                                   
+                'required|string|min:1|max:50', 
+                Rule::exists('members', 'username')                     
+                ->where(function ($query) use ($username,$apikey) {                      
+                    $query->where('phone', $username)->where('apikey', $apikey);   
+                    }),                                                           
+            'password' => 'required|alphaNum|min:5|max:50',
+			'apikey'   => 'required|string|min:1|max:50', 
+
+        ];
+		$validator = Validator::make($input, $rules
+            ,
+			[
+                'username.required' =>trans('auth.username_empty'),
+                'password.required' =>trans('auth.password_empty'),
+                'password.min' =>trans('auth.password_not_min'),
+                'password.alpha_num' => trans('auth.alpha_num'),
+			]
+        );
+		
+		if ($validator->fails()) {
+			 return response()->json(['success' => false, 'message' => $validator->errors()]);
+		}
+		
+		
+		$array = ['username' => $username, 'password' => $password, 'apikey' => $apikey];
+		
+		$bRes = Auth::guard('member')->attempt($array);
+		
+		if (!$bRes)
+		{	
+			return response()->json(['success' => false,'message'=>[trans('auth.failed')] ]);
+		}
+		
+		$user = Auth::guard('member')->user(); 
+		
+		$user =  $user->makeVisible('password')->toArray();
+		
+		return response()->json(['success' => true, 'data' => $user]);
+		
+    }
 }
