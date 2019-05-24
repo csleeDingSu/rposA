@@ -135,8 +135,8 @@ function initUser(records){
         $('#spanPoint').html(total_balance);
         
         $('#hidTotalBalance').val(total_balance);
-        $('.wallet-point').html(point);
-        $('.packet-point').html(point);
+        $('.wallet-point').html(point/10);
+        $('.packet-point').html(point/10);
         if(show_win){
             
         } else {
@@ -945,9 +945,9 @@ function showWinModal(){
     }
 
     $('.modal-progress-bar').attr("src", image);
-    $('.packet-value').html(html);
-    $('.packet-info').html(info);
-    $('.instructions').html(instructions+'还差'+remain+'元可兑换');
+    $('#win-modal .packet-value').html(html);
+    $('#win-modal .packet-info').html(info);
+    $('#win-modal .instructions').html(instructions+'还差'+remain+'元可兑换');
     
     $('.highlight-link').click(function(){
         $('#game-rules').modal();
@@ -1013,8 +1013,8 @@ function showLoseModal(){
     }
 
     $('.modal-progress-bar').attr("src", image);
-    $('.modal-win-header').html(html);
-    $('.modal-instruction').html(instruction);
+    $('#lose-modal .modal-win-header').html(html);
+    $('#lose-modal .modal-instruction').html(instruction);
     
     $('.highlight-link').click(function(){
         $('#game-rules').modal();

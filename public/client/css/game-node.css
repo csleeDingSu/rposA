@@ -2072,6 +2072,86 @@ if it's not present, don't show loader */
 }
 /* Win Modal */
 
+/* Reset Life Max Modal */
+#reset-life-max .packet-title {
+	padding-top: 20px;
+	color: #fde203;
+	font-size: 30px;
+	font-weight: 500;
+}
+
+#reset-life-max .modal-card {
+    width: 260px;
+    margin: 0 auto;
+    font-size: 16px;
+    margin-top: 80px;
+}
+
+#reset-life-max .packet-value {
+	font-size: 36px;
+	color: #fff;
+	font-weight: 500;
+}
+
+#reset-life-max .modal-content {
+  background: url('/client/images/packet.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  width: 303px !important;
+  height: 368px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+#reset-life-max .modal-content {
+  margin-top: -12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 296px;
+  z-index: 9999;
+  position:relative;
+}
+
+#reset-life-max .instructions {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fac03c;
+  text-align: center;
+  line-height: 28px;
+  margin: 0 auto 40px auto;
+}
+
+#reset-life-max .highlight {
+  color: #333;
+}
+
+#reset-life-max .highlight-red {
+	font-weight: 700;
+}
+
+#reset-life-max .btn-red-packet {
+  background: url('/client/images/btn-red-packet.png') no-repeat top center;
+  font-size: 18px;
+  color: #c33234;
+  background-size: contain;
+  width: 250px;
+  height: 76px;
+  padding-top: 16px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+/* Reset Life Max Modal */
+
 .btn-redeemcash {
 	position: absolute;
 	margin-left: 40px;

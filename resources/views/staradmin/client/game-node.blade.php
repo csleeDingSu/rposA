@@ -494,7 +494,7 @@
 <!-- Steps Modal Ends -->
 
 <!-- Start Reset Life Max -->
-	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12" id="reset-life-max_bk" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
@@ -512,7 +512,7 @@
 								<div class="modal-message-balance">
 									您当前总金币：<div class="packet-point">&nbsp;</div>
 								</div>
-								<div class="modal-confirm-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life btn-red-packet">
 									确认结算
 								</div>
 								<!--a href="/share">
@@ -520,6 +520,27 @@
 									分享好友获挖宝机会
 								</div>
 								</a-->										
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="packet-title">恭喜您!</div>
+				<div class="modal-body">
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">							
+							<div class="modal-card">
+								<div class="packet-value">赢得15元红包</div>	
+								<div class="instructions">
+									您已结算红包：<div class="packet-point">&nbsp;</div>元
+								</div>
+								<div class="modal-confirm-button btn-reset-life btn-red-packet">确认结算</div>
 							</div>
 						</div>
 					</div>							
