@@ -218,6 +218,7 @@ class MemberRegisterController extends Controller
 				'phone' => $data['phone'],
 				//'wechat_name' => $data['username'],//(isset($data['wechat_name']) ? $data['wechat_name'] : null),
 				'wechat_verification_status' => 1,
+				'apikey' => unique_numeric_random('members', 'apikey', 8),
 			]);
 			
 			$id = $member->id;
@@ -314,6 +315,7 @@ class MemberRegisterController extends Controller
 				'phone' => $data['phone'],
 				//'wechat_name' => $data['username'],//(isset($data['wechat_name']) ? $data['wechat_name'] : null),
 				'wechat_verification_status' => 1,
+				'apikey' => unique_numeric_random('members', 'apikey', 8),
 			]);
 			
 			
@@ -376,6 +378,7 @@ class MemberRegisterController extends Controller
 			//'referred_by'   => $referred_by,
 			'phone' => $input['phone'],
 			'wechat_verification_status' => 1,
+			'apikey' => unique_numeric_random('members', 'apikey', 8),
 		]);
 
 		$id = $member->id;
