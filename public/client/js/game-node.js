@@ -891,47 +891,63 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            instruction = '第1局<span class="highlight-orange">猜对奖励10积分</span>，最终本轮赚了10积分。<br />赚到的10积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';           
+            info = '前0局猜错<span class="highlight">亏损0积分</span><br />第1局猜对<span class="highlight-green">奖励10积分</span><br />最终奖励10积分，<span class="highlight-red">赢到了1元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/10.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+10积分</div>';
+            html += '<span class="packet-sign">+</span>1<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 1;
+            instructions = '您已赢到1元，';
         break;
 
         case 2:
-            instruction = '前1局猜错<span class="highlight-green">亏损了10积分</span>，而第2局<span class="highlight-orange">猜对奖励30积分</span>，最终<span class="highlight-orange">还赚了20积分</span>。<br />赚到的20积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            info = '前1局猜错<span class="highlight">亏损10积分</span><br />第2局猜对<span class="highlight-green">奖励30积分</span><br />最终奖励20积分，<span class="highlight-red">赢到了2元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/30.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+30积分</div>';            
+            html += '<span class="packet-sign">+</span>2<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 2;
+            instructions = '您已赢到2元，';        
         break;
 
         case 3:
-            instruction = '前2局猜错<span class="highlight-green">亏损了40积分</span>，而第3局<span class="highlight-orange">猜对奖励70积分</span>，最终<span class="highlight-orange">还赚了30积分</span>。<br />赚到的30积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            info = '前2局猜错<span class="highlight">亏损40积分</span><br />第3局猜对<span class="highlight-green">奖励70积分</span><br />最终奖励30积分，<span class="highlight-red">赢到了3元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/70.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+70积分</div>';
+            html += '<span class="packet-sign">+</span>3<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 3;
+            instructions = '您已赢到3元，';
         break;
 
         case 4:
-            instruction = '前3局猜错<span class="highlight-green">亏损了110积分</span>，而第4局<span class="highlight-orange">猜对奖励150积分</span>，最终<span class="highlight-orange">还赚了40积分</span>。<br />赚到的40积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            info = '前3局猜错<span class="highlight">亏损110积分</span><br />第4局猜对<span class="highlight-green">奖励150积分</span><br />最终奖励40积分，<span class="highlight-red">赢到了4元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/150.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+150积分</div>';
+            html += '<span class="packet-sign">+</span>4<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 4;
+            instructions = '您已赢到4元，';
         break;
 
         case 5:
-            instruction = '前4局猜错<span class="highlight-green">亏损了260积分</span>，而第5局<span class="highlight-orange">猜对奖励310积分</span>，最终<span class="highlight-orange">还赚了50积分</span>。<br />赚到的50积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            info = '前4局猜错<span class="highlight">亏损26积分</span><br />第5局猜对<span class="highlight-green">奖励310积分</span><br />最终奖励50积分，<span class="highlight-red">赢到了5元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/310.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+310积分</div>';
+            html += '<span class="packet-sign">+</span>5<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 5;
+            instructions = '您已赢到5元，';
         break;
 
         case 6:
-            instruction = '前5局猜错<span class="highlight-green">亏损了570积分</span>，而第6局<span class="highlight-orange">猜对奖励630积分</span>，最终<span class="highlight-orange">还赚了60积分</span>。<br />赚到的60积分自动换成金币，可兑换红包。根据配赠式玩法，猜中后返回10积分开始押注。<br><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            info = '前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/630.png';
-            html += '<div class="modal-win-title">恭喜你猜对了</div><div class="modal-result">+630积分</div>';            
+            html += '<span class="packet-sign">+</span>6<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 6;
+            instructions = '您已赢到6元，';
         break;
 
     }
 
+    if(remain < 0){
+        remain = 0;
+    }
+
     $('.modal-progress-bar').attr("src", image);
-    $('.modal-win-header').html(html);
-    $('.modal-instruction').html(instruction);
-    $('.modal-redeem-button').html('领取奖励');
+    $('.packet-value').html(html);
+    $('.packet-info').html(info);
+    $('.instructions').html(instructions+'还差'+remain+'元可兑换');
     
     $('.highlight-link').click(function(){
         $('#game-rules').modal();
@@ -999,7 +1015,6 @@ function showLoseModal(){
     $('.modal-progress-bar').attr("src", image);
     $('.modal-win-header').html(html);
     $('.modal-instruction').html(instruction);
-    $('.modal-redeem-button').html('知道了');
     
     $('.highlight-link').click(function(){
         $('#game-rules').modal();
