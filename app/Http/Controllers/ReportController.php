@@ -126,17 +126,14 @@ class ReportController extends BaseController
 		{
 			//filter					
 			if (!empty($input['s_drawid'])) {
-				$result = $result->where('title', "{$input['draw_id']}") ;				
-			}
-			if (!empty($input['s_content'])) {
-				//$result = $result->where('content','LIKE', "%{$input['s_content']}%") ;				
+				$result = $result->where('draw_id', "{$input['s_drawid']}") ;				
 			}
 		}		
 		$result =  $result->orderby('draw_id','ASC')->paginate(30);
 				
 		$data['page']    = 'reports.draw.list'; 	
 				
-		$data['result'] = $result; 
+		$data['result']  = $result; 
 				
 		if ($request->ajax()) {
             return view('reports.draw.ajaxlist', ['result' => $result])->render();  
@@ -176,4 +173,31 @@ class ReportController extends BaseController
 		return view('main', $data);	
 	}
 	
+	
+	public function get_played_members (Request $request)
+	{
+		$drawid = $request->id;
+		$type   = $request->type;
+		if (empty($drawid))
+		{
+			$drawid = '0';
+		}		
+		$result =  \DB::table('report_played_member')->where('draw_id',$drawid);
+		
+		switch ($type)
+		{
+			case 'all':
+				//$result = $result->where('draw_id',$drawid);
+			break;
+			case 'odd':
+				$result = $result->where('bet','odd');
+			break;
+			case 'even':
+				$result = $result->where('bet','even');
+			break;
+		}
+		$result = $result->get();			
+		
+		return view('reports.draw.playedmembers', ['result' => $result])->render();  		
+	}
 }
