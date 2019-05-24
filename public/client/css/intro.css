@@ -29,7 +29,7 @@
 }
 
 .playBox .playIn {
-    height: 5.8rem;
+    height: 5rem;
     text-align: center;
     position: relative;
     box-sizing: border-box;
@@ -40,17 +40,17 @@
 
 .playBox .playIn img {
     margin-top: -0.2rem;
-    width: 5.8rem;
+    width: 4.8rem;
 }
 
 .playBox .finger {
     position: absolute;
-    top: 57%;
-    left: 50%;
+    /*top: 48%;*/
+    /*left: 50%;*/
     width: 2.4rem;
     height: 2.4rem;
-    margin-top: -1.2rem;
-    margin-left: -1.2rem;
+    margin-top: -3.3rem;
+    margin-left: 1.15rem;
 }
 
 .playBox .finger img {
@@ -144,18 +144,18 @@
 
 .ring {
     position: absolute;
-    height: 8rem;
-    width: 8rem !important;
-    margin-top: -6rem;
-    margin-left: -1.1rem;
+    /*height: 8rem;*/
+    /*width: 8rem !important;*/
+    margin-top: -4.88rem;
+    margin-left: -0.31rem;
 }
 
 .ring img {
-    width: 6.7rem !important;
-    height: 6.7rem;
+    width: 5.4rem !important;
+    height: 5.4rem;
 }
 
 .playBox {
-    padding-top: 0.25rem;
-    padding-bottom: 0.45rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.25rem;
 }
