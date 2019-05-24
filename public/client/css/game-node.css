@@ -645,7 +645,7 @@ body{
 }
 
 .packet-title {
-	color: #3f9e06;
+	color: #ffcccc;
 	font-size: 50px;
 	font-weight: 700;
 	margin-top: 50px;
@@ -1866,21 +1866,27 @@ if it's not present, don't show loader */
 }
 
 #red-packet-modal .packet-value {
-	font-size: 90px;
-	color: #ff3e3e;
+	font-size: 60px;
+	color: #ff414b;
 	font-weight: 500;
-	margin-left: -20px;
-	height: 100px;
+	height: 95px;
 }
 
 #red-packet-modal .packet-info {
-	font-size: 14px;
+	font-size: 11px;
 	font-weight: 500;
-	color: #ff3e3e;
+	color: #999;
+	text-align: left;
+	line-height: 18px;
+	padding-left: 50px;
 }
 
 #red-packet-modal .packet-sign {
-	font-size: 33px;
+	font-size: 35px;
+}
+
+#red-packet-modal .packet-currency {
+	font-size: 20px;
 }
 
 #red-packet-modal .modal-content {
@@ -1914,38 +1920,28 @@ if it's not present, don't show loader */
 #red-packet-modal .instructions {
   font-size: 12px;
   font-weight: 500;
-  color: #ffffff;
+  color: #ffe0d2;
   text-align: center;
   line-height: 28px;
-  padding: 25px 0px 5px 0px;
-}
-
-#red-packet-modal .instructions img{
-  margin-top: -2px;
+  padding-top: 40px;
 }
 
 #red-packet-modal .highlight {
-  color: #ffe613;
-  font-weight: 700;
+  color: #333;
 }
 
-#red-packet-modal .instructions h2{
-  color: #ffffff;
-  font-size: 16px;
-  text-align: center;
-  padding-bottom: 10px;
-  font-weight: 700;
+#red-packet-modal .highlight-red {
+	font-weight: 700;
 }
 
 #red-packet-modal .btn-red-packet {
   background: url('/client/images/btn-red-packet.png') no-repeat top center;
   font-size: 18px;
-  color: #ff3e3e;
+  color: #b95d0c;
   background-size: contain;
   width: 250px;
-  height: 40px;
-  padding-top: 6px;
-  margin-top: 10px;
+  height: 76px;
+  padding-top: 16px;
   cursor: pointer;
   text-align: center;
   font-weight: 500;
@@ -1978,6 +1974,183 @@ if it's not present, don't show loader */
     font-size:3em;
 }
 /* Red Packet Modal */
+
+/* Win Modal */
+#win-modal .packet-title {
+	padding-top: 20px;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+#win-modal .modal-card {
+    width: 260px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+#win-modal .packet-value {
+	font-size: 60px;
+	color: #ff414b;
+	font-weight: 500;
+	height: 95px;
+}
+
+#win-modal .packet-info {
+	font-size: 11px;
+	font-weight: 500;
+	color: #999;
+	text-align: left;
+	line-height: 18px;
+	padding-left: 50px;
+}
+
+#win-modal .packet-sign {
+	font-size: 35px;
+}
+
+#win-modal .packet-currency {
+	font-size: 20px;
+}
+
+#win-modal .modal-content {
+  background: url('/client/images/packet-background.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  width: 301px !important;
+  height: 382px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+#win-modal .modal-content {
+  margin-top: -12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 296px;
+  z-index: 9999;
+  position:relative;
+}
+
+#win-modal .instructions {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffe0d2;
+  text-align: center;
+  line-height: 28px;
+  padding-top: 40px;
+}
+
+#win-modal .highlight {
+  color: #333;
+}
+
+#win-modal .highlight-red {
+	font-weight: 700;
+}
+
+#win-modal .btn-red-packet {
+  background: url('/client/images/btn-red-packet.png') no-repeat top center;
+  font-size: 18px;
+  color: #b95d0c;
+  background-size: contain;
+  width: 250px;
+  height: 76px;
+  padding-top: 16px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+/* Win Modal */
+
+/* Reset Life Max Modal */
+#reset-life-max .packet-title {
+	padding-top: 20px;
+	color: #fde203;
+	font-size: 30px;
+	font-weight: 500;
+}
+
+#reset-life-max .modal-card {
+    width: 260px;
+    margin: 0 auto;
+    font-size: 16px;
+    margin-top: 80px;
+}
+
+#reset-life-max .packet-value {
+	font-size: 36px;
+	color: #fff;
+	font-weight: 500;
+}
+
+#reset-life-max .modal-content {
+  background: url('/client/images/packet.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  width: 303px !important;
+  height: 368px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+#reset-life-max .modal-content {
+  margin-top: -12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 296px;
+  z-index: 9999;
+  position:relative;
+}
+
+#reset-life-max .instructions {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fac03c;
+  text-align: center;
+  line-height: 28px;
+  margin: 0 auto 40px auto;
+}
+
+#reset-life-max .highlight {
+  color: #333;
+}
+
+#reset-life-max .highlight-red {
+	font-weight: 700;
+}
+
+#reset-life-max .btn-red-packet {
+  background: url('/client/images/btn-red-packet.png') no-repeat top center;
+  font-size: 18px;
+  color: #c33234;
+  background-size: contain;
+  width: 250px;
+  height: 76px;
+  padding-top: 16px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+/* Reset Life Max Modal */
 
 .btn-redeemcash {
 	position: absolute;
