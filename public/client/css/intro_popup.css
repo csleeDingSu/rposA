@@ -287,8 +287,6 @@ body {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     padding: 10px;
-    border-width: 15px;
-    border-color: red;
 }
 
 .modal-title-non-login-icon img{
