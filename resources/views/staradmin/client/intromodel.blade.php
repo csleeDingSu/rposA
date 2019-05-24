@@ -1,4 +1,5 @@
-
+<div id="load"></div>
+<div id="contents">
 <!-- show not yet login modal -->
 <div class="modal fade col-md-12 intropopup" name="nonloginmodal" id="nonloginmodal" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -122,9 +123,23 @@
 </form>
 
 <!-- registration modal Ends -->
-
+</div>
 
 <script language="javascript">
+
+	document.onreadystatechange = function () {
+	  var state = document.readyState
+	  if (state == 'interactive') {
+	       document.getElementById('contents').style.visibility="hidden";
+	  } else if (state == 'complete') {
+	      setTimeout(function(){
+	         document.getElementById('interactive');
+	         document.getElementById('load').style.visibility="hidden";
+	         document.getElementById('contents').style.visibility="visible";
+	      },1000);
+	  }
+	}
+
 	function openmodel() {
 		
 		$('#loginform')[0].reset();
@@ -136,7 +151,9 @@
 
 @section('footer-javascript')
     @parent
-            <script>
+   		<script>
+
+   			$(document).on('ready', function() {
 
             	var temp = "<?php Print(Session::put('re_route','yes'));?>";
             					
@@ -327,6 +344,7 @@
                 }
         });
     });
+});
         </script>
 
 
