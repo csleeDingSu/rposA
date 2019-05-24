@@ -152,7 +152,7 @@ function initUser(records){
         setBalance();
 
         if(acupoint == 50 || acupoint == 100){
-            $('.speech-bubble-point').html('已赚了'+ acupoint +'金币大约可换'+ acupoint/10 +'元').fadeIn(1000).delay(2000).fadeOut(400);
+            $('.speech-bubble-point').html('已赚了'+ acupoint +'积分大约可换'+ acupoint/10 +'元').fadeIn(1000).delay(2000).fadeOut(400);
         }
 
         if(life == 0){
