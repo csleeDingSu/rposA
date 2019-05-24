@@ -494,7 +494,7 @@
 <!-- Steps Modal Ends -->
 
 <!-- Start Reset Life Max -->
-	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12" id="reset-life-max_bk" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
@@ -512,7 +512,7 @@
 								<div class="modal-message-balance">
 									您当前总金币：<div class="packet-point">&nbsp;</div>
 								</div>
-								<div class="modal-confirm-button btn-reset-life">
+								<div class="modal-confirm-button btn-reset-life btn-red-packet">
 									确认结算
 								</div>
 								<!--a href="/share">
@@ -520,6 +520,27 @@
 									分享好友获挖宝机会
 								</div>
 								</a-->										
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="packet-title">恭喜您!</div>
+				<div class="modal-body">
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">							
+							<div class="modal-card">
+								<div class="packet-value">赢得15元红包</div>	
+								<div class="instructions">
+									您已结算红包：<div class="packet-point">&nbsp;</div>元
+								</div>
+								<div class="modal-confirm-button btn-reset-life btn-red-packet">确认结算</div>
 							</div>
 						</div>
 					</div>							
@@ -796,22 +817,20 @@
 
 	<div class="modal fade col-md-12" id="win-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-title modal-win-header">
-				<div class="modal-win-title">恭喜你猜对了</div>
-				<div class="modal-result">+10</div>			
-			</div>
-
 			<div class="modal-content">
-				<img class="separator" src="{{ asset('/client/images/progress-bar/separator.png') }}" width="300" height="13" />
-				<div class="modal-body">				
+				<div class="packet-title">恭喜您猜对了</div>
+				<div class="modal-body" style="padding:10px !important;">
 					<div class="modal-row">
-						<div class="wrapper modal-full-height">
+						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="modal-instruction">每一轮有6次机会，前2次猜错亏损40金币，第3次猜对奖励70金币，最终赚了30金币。<br />
-								猜对后满血复活，进入下一轮从新开始。</div>
-								<div class="close-win-modal modal-redeem-button">
-									领取奖励
-								</div>												
+								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
+								<div class="packet-info">前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
+								<div class="instructions">
+									您已赢到6元，还差9元可兑换
+								</div>
+								<div class="close-win-modal modal-redeem-button btn-red-packet">
+									确认领取
+								</div>
 							</div>
 						</div>
 					</div>							
@@ -854,20 +873,18 @@
 	<div class="modal fade col-md-12" id="red-packet-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-				<div class="packet-title">恭喜你获得免单红包</div>
+				<div class="packet-title">恭喜您猜对了</div>
 				<div class="modal-body" style="padding:10px !important;">
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-value"><span class="packet-sign">￥</span>45</div>
-								<div class="packet-info">可提现支付宝</div>
+								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
+								<div class="packet-info">前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
 								<div class="instructions">
-									<h1 class="divider">领取方式</h1>
-									注册后，进入 <img src="{{ asset('/client/images/small-life.png') }}" width="20" height="20" /> <span class="highlight">{{env('game_name', '幸运转盘')}}</span> 赚金币换领取<br />
-									新人免费玩3次 可赚45元
+									您已赢到6元，还差9元可兑换
 								</div>
 								<a href="/member/login/register">
-									<div class="btn-red-packet">注册</div>
+									<div class="btn-red-packet">确认领取</div>
 								</a>
 							</div>
 						</div>

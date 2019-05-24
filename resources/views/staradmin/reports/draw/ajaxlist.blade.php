@@ -18,22 +18,35 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($result as $list)
+							@foreach($result as $list)							
 							
 							 @if ($list->game_result % 2 == 0)
-								$list->odd  = $list->win ;
-								$list->even = $list->lose ;
+								@php
+									$list->odd  = $list->win ;
+									$list->even = $list->lose ;
+									$list->win  = 'odd' ;
+								@endphp
 							 @else
-						     	$list->odd  = $list->lose ;
-								$list->even = $list->win ;
+						     	@php
+									$list->odd  = $list->lose ;
+									$list->even = $list->win ;
+									$list->win  = 'even' ;
+								@endphp
 							 @endif 
-							<tr id="tr_{{ $list->drawid }}">
-								<td>{{ $list->drawid }}</td>
+							<tr id="tr_{{ $list->draw_id }}">
+								<td>{{ $list->draw_id }}</td>
 								<td>{{ $list->game_id }}</td>
-								<td>{{ $list->played_users }}</td>
+								<td id="playedusers_total">
+								<button type="button" data-type="all" data-id="{{$list->draw_id}}" data-count="{{$list->played_users}}" id="{{$list->draw_id}}" class="btn   Showplayedmembers  "> {{ $list->played_users }} </button>
+								
+								</td>
 								<td>{{ $list->game_result }}</td>
-								<td>{{ $list->odd }}</td>
-								<td>{{ $list->even }}</td>
+								<td id="playedusers_odd">
+									<button type="button" data-type="all" data-id="{{$list->draw_id}}" data-count="{{$list->odd}}" id="{{$list->draw_id}}" class="btn   Showplayedmembers  "> {{ $list->odd }} </button>	
+								</td>
+								<td id="playedusers_even">
+									<button type="button" data-type="all" data-id="{{$list->draw_id}}" data-count="{{$list->even}}" id="{{$list->draw_id}}" class="btn   Showplayedmembers  "> {{ $list->even }} </button>	
+								</td>
 								<td>
 									
 								</td>
