@@ -104,6 +104,7 @@ body {
     .intropopup .instructions, .intropopup .instructions-dark {
         font-size: 12px;
     }
+
 }
 /* End Modal box */
 
@@ -191,8 +192,9 @@ body {
 
 .sec_login_btn
 {
-    color: #747BD7;
-    border: none !important;
+    color: #fe8071;
+    /*border: none !important;*/
+    border: solid 1px #fe8071;
     background-color: #FFF;
     border-radius: 5px;
     font-size: 20px;
@@ -291,4 +293,24 @@ body {
 
 .modal-title-non-login-icon img{
     width: 60%;
+}
+
+@media only screen and (max-width: 360px) {
+ 
+    .modal-title-non-login-icon {
+        background: white;
+        width: 270px !important;
+        margin-left: auto;
+        margin-right: auto;
+        /*border: none !important;*/
+        box-shadow: none !important;
+        text-align: center;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        padding: 10px;
+    }
+
+    .modal-title-non-login-icon img{
+        width: 50% !important;
+    }
 }
