@@ -115,7 +115,7 @@
 			</div>
 		</div>
 		<div class="row">
-						<button class="successmsg hidespan" name="doregi" id="doregi" type="button">登录</button>							
+						<button class="successmsg hidespan" name="doregi" id="doregi2" type="button">登录</button>							
 		</div>
 	</div>
 </div>
