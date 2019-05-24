@@ -1,5 +1,31 @@
 
-
+<!-- show not yet login modal -->
+<div class="modal fade col-md-12 intropopup" name="nonloginmodal" id="nonloginmodal" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-title-non-login-icon">
+			<img src="{{ asset('/client/images/non-logged/non-logged-icon.png') }}" />
+		</div>
+		<div class="modal-content modal-wechat">
+			<div class="modal-body">
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="row">
+							<div class="non-login-desc">你还未登录，登录后才能赢红包</div>
+						</div>
+						<div class="row">
+							<button class="btnsubmit" id="sec_login_btn_new" type="button">登录</button>							
+						</div>
+						<div class="row">
+							<button class="sec_reg_btn" type="button">没有帐号，去注册</button>							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- show not yet login modal Ends -->
 
 <!-- login modal -->
 <form class="form-sample" name="loginform" id="loginform" action="" method="post" autocomplete="on">
@@ -100,35 +126,47 @@
 
 <script language="javascript">
 	function openmodel() {
+		
 		$('#loginform')[0].reset();
-		$( '#login-intropopup' ).modal( 'show' );
+		// $( '#login-intropopup' ).modal( 'show' );
+		$( '#nonloginmodal' ).modal( 'show' );
 	}
 	
 </script>
 
-
-
-
-
-
-
-
-
-
 @section('footer-javascript')
     @parent
             <script>
-				
+
+            	var temp = "<?php Print(Session::put('re_route','yes'));?>";
+            					
 				 $( '.sec_reg_btn' ).click( function (e) {
-					 $( '#login-intropopup' ).modal( 'hide' );
-					 $( '#regis-intropopup' ).modal( 'show' );
-					 $( '.sec_login_btn' ).html( '已有账号，去登录' );					 
-					 $( '.modal-title' ).html( '<h1>快速注册</h1>' );
-					 $( '.btnsubmit' ).html( '注册' );
-					 
+					//switch to register 
+					 // $( '#nonloginmodal' ).modal( 'hide' );
+					 // $( '#login-intropopup' ).modal( 'hide' );
+					 // $( '#regis-intropopup' ).modal( 'show' );
+					 // $( '.sec_login_btn' ).html( '已有账号，去登录' );					 
+					 // $( '.modal-title' ).html( '<h1>快速注册</h1>' );
+					 // $( '.btnsubmit' ).html( '注册' );
+				
+					//link to register
+					window.location.href = "<?php Print(URL::to('/member/login/register'));?>";
+
 				 } );
 				
+				//switch to login form
 				 $( '.sec_login_btn' ).click( function (e) {
+				 	 $( '#nonloginmodal' ).modal( 'hide' );
+					 $( '#regis-intropopup' ).modal( 'hide' );
+					 $( '#login-intropopup' ).modal( 'show' );
+					 $( '.sec_login_btn' ).html( '没有帐号，去注册' );					 
+					 $( '.modal-title' ).html( '<h1>账号登录</h1>' );
+					 $( '.btnsubmit' ).html( '登录' );
+				 } );
+
+				 //switch to login form
+				 $( '#sec_login_btn_new' ).click( function (e) {
+				 	 $( '#nonloginmodal' ).modal( 'hide' );
 					 $( '#regis-intropopup' ).modal( 'hide' );
 					 $( '#login-intropopup' ).modal( 'show' );
 					 $( '.sec_login_btn' ).html( '没有帐号，去注册' );					 
@@ -167,7 +205,7 @@
 
 							setTimeout(function(){
 								$(location).attr("href", url);
-							}, 3000);
+							}, 2000);
                         }
                     
                 },
@@ -226,7 +264,7 @@
                              
 							setTimeout(function(){
 								$(location).attr("href", url);
-							}, 3000);
+							}, 2000);
 							/*
                             setTimeout(function(){
 	                            //temp

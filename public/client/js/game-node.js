@@ -272,13 +272,22 @@ function getToken(){
     var session = $('#hidSession').val();
     var id = $('#hidUserId').val();
 
-    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
-        //console.log(data);
-        if(data.success) {
-            token = data.access_token;
-            startGame();            
-        }      
-    });
+    //login user
+    if (id > 0) {
+        $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
+            //console.log(data);
+            if(data.success) {
+                token = data.access_token;
+                startGame();            
+            }      
+        });
+    } else {
+        //non-logged in user
+        $('#hidLatestResult').val(1);
+        DomeWebController.init();
+        $(".loading").fadeOut("slow");
+    }
+    
 }
 
 function resetTimer(){

@@ -249,7 +249,9 @@ class MemberRegisterController extends Controller
 			$user->active_session = Session::getId();
 			$user->save();
 			
-			return response()->json(['success' => true]);		
+			// return response()->json(['success' => true]);
+			return $this->getGameOrDefaultRoute();
+					
         }
     }
 	
@@ -325,7 +327,9 @@ class MemberRegisterController extends Controller
 			$user->active_session = Session::getId();
 			$user->save();
 			
-			return response()->json(['success' => true]);			
+            //return response()->json(['success' => true]);	
+            return $this->getGameOrDefaultRoute();
+			
 		}		
 	}
 	
@@ -396,12 +400,29 @@ class MemberRegisterController extends Controller
 			$user->active_session = Session::getId();
 			$user->save();
 			
-			return response()->json(['success' => true ]); 
-			
-			
+			// return response()->json(['success' => true ]); 
+			return $this->getGameOrDefaultRoute();
+						
 		} else {
 			return response()->json( [ 'success' => 'false', 'error' => 'invalid username or password' ], 401 );
 		}
+	}
+
+	public function getGameOrDefaultRoute()
+	{
+		//route to main screen
+		$url = "/cs/" . env('voucher_featured_id','220');
+		$rou = Session::get('re_route');
+			
+		if ($rou == 'yes')
+		{
+			//route to game
+			$url = "/arcade";
+			Session::forget('re_route');
+			//Session::flush();
+		}
+		
+		return response()->json(['success' => true, 'url' => $url]);
 	}
 	
 }

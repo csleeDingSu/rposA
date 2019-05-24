@@ -940,6 +940,7 @@
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
+			var user_id = $('#hidUserId').val();
 
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
@@ -968,10 +969,20 @@
 			$('.btn-vip-modal .btn-rules-vip').html('规则说明').addClass('btn-rules-normal');
 			$('.btn-vip-modal').on('click', showGameRules);
 
+			if (user_id <= 0) {
+				openmodel();
+			}
+
 		});	
+
+		
 
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game-node.js') }}"></script>
 @endsection
+
+<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
+
+	@include('client.intromodel')
