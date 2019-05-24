@@ -65,6 +65,7 @@ class AuthController extends Controller {
 			//'referred_by'   => $referred_by,
 			'phone' => $input['phone'],
 			'wechat_verification_status' => 1,
+			'apikey' => unique_numeric_random('members', 'apikey', 8),
 		]);
 
 		$id = $member->id;
