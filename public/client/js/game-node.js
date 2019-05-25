@@ -414,7 +414,6 @@ function checkSelection() {
             $('.spinning').css('visibility', 'hidden');
         }, 3000);
     } else {
-        audioElement.play();
         $('.middle-label').html('正在抽奖');
         $('.DB_G_hand').hide();
         $('.radio-primary').unbind('click');
@@ -958,7 +957,7 @@ function showWinModal(){
     $('#win-modal .packet-value').html(html);
     $('#win-modal .packet-info').html(info);
     $('#win-modal .instructions').html(instructions+'还差'+remain+'元可兑换');
-    
+
     $('.highlight-link').click(function(){
         $('#game-rules').modal();
     });
@@ -1109,7 +1108,10 @@ function triggerResult(){
 
     $( "#btnPointer" ).trigger( "click" );
 
-    setTimeout(function(){ 
+    setTimeout(function(){
+        if (show_win) {
+            audioElement.play();     
+        }        
         resetGame();
     }, freeze_time * 1000);
     
