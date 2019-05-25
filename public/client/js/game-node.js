@@ -434,6 +434,10 @@ function closeWinModal() {
 
     $('.close-win-modal').click(function(event){
         
+        if (show_win) {
+            audioElement.play();     
+        } 
+
         $(this).off('click');
         event.stopImmediatePropagation();
         $('#win-modal').modal('hide');
@@ -1108,10 +1112,7 @@ function triggerResult(){
 
     $( "#btnPointer" ).trigger( "click" );
 
-    setTimeout(function(){
-        if (show_win) {
-            audioElement.play();     
-        }        
+    setTimeout(function(){               
         resetGame();
     }, freeze_time * 1000);
     
