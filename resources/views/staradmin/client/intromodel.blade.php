@@ -128,24 +128,6 @@
 
 <script language="javascript">
 
-	document.onreadystatechange = function () {
-	  var state = document.readyState
-	  if (state == 'interactive') {
-	       document.getElementById('contents').style.visibility="hidden";
-	       document.getElementById('load').style.visibility="hidden";
-	  } else if (state == 'complete') {
-	      setTimeout(function(){
-	         document.getElementById('interactive');
-	         document.getElementById('preload').style.visibility="hidden";
-	         document.getElementById('load').style.visibility="visible";
-	         setTimeout(function(){
-		         document.getElementById('load').style.visibility="hidden";
-		         document.getElementById('contents').style.visibility="visible";
-		      },900);
-	      },100);
-	  }
-	}
-
 	function openmodel() {
 		
 		$('#loginform')[0].reset();
@@ -158,6 +140,25 @@
 @section('footer-javascript')
     @parent
    		<script>
+	   		document.onreadystatechange = function () {
+			  var state = document.readyState
+			  if (state == 'interactive') {
+			  	$( ".intro-container" ).addClass( "hidespan" );
+			  	document.getElementById('contents').style.visibility="hidden";
+			  	document.getElementById('load').style.visibility="hidden";
+			  } else if (state == 'complete') {
+			  	setTimeout(function(){
+			  		document.getElementById('interactive');
+			        document.getElementById('preload').style.visibility="hidden";
+			        document.getElementById('load').style.visibility="visible";
+			        setTimeout(function(){
+			        	document.getElementById('load').style.visibility="hidden";
+				        document.getElementById('contents').style.visibility="visible";
+				        $( ".intro-container" ).addClass( "showspan" );
+				    },900);
+			    },100);
+			  }
+			}
 
    			$(document).on('ready', function() {
 
