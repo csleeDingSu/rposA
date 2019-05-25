@@ -432,10 +432,6 @@ function closeModal() {
 
 function closeWinModal() {
 
-    if (g_current_point > g_previous_point) {
-        audioElement_win.play();     
-    }
-
     $('.close-win-modal').click(function(event){
         
         if (g_current_point > g_previous_point) {
@@ -1117,6 +1113,9 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
+        if (show_win) {
+            audioElement_win.play();     
+        }               
         resetGame();
     }, freeze_time * 1000);
     
