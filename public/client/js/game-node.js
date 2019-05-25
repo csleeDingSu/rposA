@@ -434,7 +434,7 @@ function closeWinModal() {
 
     $('.close-win-modal').click(function(event){
         
-        if (show_win) {
+        if (g_current_point > g_previous_point) {
             audioElement.play();     
         } 
 
