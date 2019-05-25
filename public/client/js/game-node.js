@@ -414,6 +414,7 @@ function checkSelection() {
             $('.spinning').css('visibility', 'hidden');
         }, 3000);
     } else {
+        audioElement.play();
         $('.middle-label').html('正在抽奖');
         $('.DB_G_hand').hide();
         $('.radio-primary').unbind('click');
@@ -1219,3 +1220,20 @@ function showGameRules( event ){
         $('#game-rules').modal('hide');
     });
 }
+
+//load audio and listener - start
+var audioElement = document.createElement('audio');
+audioElement.setAttribute('src', '/client/audio/coin.mp3');
+
+audioElement.addEventListener('ended', function() {
+    //this.play();
+}, false);
+audioElement.addEventListener("canplay",function(){
+    //$("#length").text("Duration:" + audioElement.duration + " seconds");
+    //$("#source").text("Source:" + audioElement.src);
+    //$("#status").text("Status: Ready to play").css("color","green");
+});
+audioElement.addEventListener("timeupdate",function(){
+    //$("#currentTime").text("Current second:" + audioElement.currentTime);
+});
+//load audio - end
