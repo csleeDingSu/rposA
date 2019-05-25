@@ -435,7 +435,7 @@ function closeWinModal() {
     $('.close-win-modal').click(function(event){
         
         if (g_current_point > g_previous_point) {
-            audioElement.play();     
+            audioElement_coin.play();     
         } 
 
         $(this).off('click');
@@ -1112,7 +1112,10 @@ function triggerResult(){
 
     $( "#btnPointer" ).trigger( "click" );
 
-    setTimeout(function(){               
+    setTimeout(function(){
+        if (show_win) {
+            audioElement_win.play();     
+        }               
         resetGame();
     }, freeze_time * 1000);
     
@@ -1226,7 +1229,12 @@ function showGameRules( event ){
 
 //load audio and listener - start
 var audioElement = document.createElement('audio');
+var audioElement_coin = document.createElement('audio');
+var audioElement_win = document.createElement('audio');
+//test
 audioElement.setAttribute('src', '/client/audio/coin.mp3');
+audioElement_coin.setAttribute('src', '/client/audio/coin.mp3');
+audioElement_win.setAttribute('src', '/client/audio/win.mp3');
 
 audioElement.addEventListener('ended', function() {
     //this.play();
