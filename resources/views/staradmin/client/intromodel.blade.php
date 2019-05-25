@@ -1,3 +1,4 @@
+<div id="preload"></div>
 <div id="load"></div>
 <div id="contents">
 <!-- show not yet login modal -->
@@ -131,12 +132,17 @@
 	  var state = document.readyState
 	  if (state == 'interactive') {
 	       document.getElementById('contents').style.visibility="hidden";
+	       document.getElementById('load').style.visibility="hidden";
 	  } else if (state == 'complete') {
 	      setTimeout(function(){
 	         document.getElementById('interactive');
-	         document.getElementById('load').style.visibility="hidden";
-	         document.getElementById('contents').style.visibility="visible";
-	      },1000);
+	         document.getElementById('preload').style.visibility="hidden";
+	         document.getElementById('load').style.visibility="visible";
+	         setTimeout(function(){
+		         document.getElementById('load').style.visibility="hidden";
+		         document.getElementById('contents').style.visibility="visible";
+		      },900);
+	      },100);
 	  }
 	}
 
