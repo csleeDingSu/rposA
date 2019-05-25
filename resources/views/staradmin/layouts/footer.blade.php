@@ -15,7 +15,8 @@
 
 
 			<dt class="dbox0">
-				@if(Request::is('vip') || Request::is('arcade') || Request::is('arcade_node') || Request::is('arcade_old'))
+
+				@if(Request::is('vip') || Request::is('arcade') || Request::is('arcade_node') || Request::is('arcade_old') || isset(Auth::Guard('member')->user()->id))
 
 					@if(Request::is('vip'))
 						<a href="/vip">
