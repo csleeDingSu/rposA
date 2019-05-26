@@ -1232,9 +1232,11 @@ function showGameRules( event ){
 function musicPlay(music) {
     var audioElement = document.createElement('audio');
 
-    //ios autoload issue
-    function musicInBrowserHandler() {
-        if (music == 1) {        
+    //solve ios autoload issue
+    document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
+
+    function musicInBrowserHandler(music) {
+        if (music == 1) {  
             audioElement.setAttribute('src', '/client/audio/coin.mp3');              
         } else if (music == 2) {
             audioElement.setAttribute('src', '/client/audio/win.mp3');
@@ -1245,6 +1247,5 @@ function musicPlay(music) {
         audioElement.play();
         document.body.removeEventListener('touchstart', musicInBrowserHandler);
     }
-    document.body.addEventListener('touchstart', musicInBrowserHandler); 
 }
 //load audio - end
