@@ -1228,28 +1228,23 @@ function showGameRules( event ){
 }
 
 //load audio - start
+
 function musicPlay(music) {
     var audioElement = document.createElement('audio');
-    
-    console.log(music);
-    if (music == 1) {        
-        audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-    } else if (music == 2) {
-        audioElement.setAttribute('src', '/client/audio/win.mp3');
-    } else {        
-        //do nothing
-        audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+
+    //ios autoload issue
+    function musicInBrowserHandler() {
+        if (music == 1) {        
+            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+        } else if (music == 2) {
+            audioElement.setAttribute('src', '/client/audio/win.mp3');
+        } else {        
+            //do nothing
+            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+        }
+        audioElement.play();
+        document.body.removeEventListener('touchstart', musicInBrowserHandler);
     }
-
-    audioElement.play();
-
+    document.body.addEventListener('touchstart', musicInBrowserHandler); 
 }
-
-//ios autoload issue
-function musicInBrowserHandler() {
-    musicPlay();
-    document.body.removeEventListener('touchstart', musicInBrowserHandler);
-}
-
-document.body.addEventListener('touchstart', musicInBrowserHandler); 
 //load audio - end
