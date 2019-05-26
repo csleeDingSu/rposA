@@ -435,7 +435,7 @@ function closeWinModal() {
     $('.close-win-modal').click(function(event){
         
         if (g_current_point > g_previous_point) {
-            audioElement_coin.play();     
+            musicPlay(1);    
         } 
 
         $(this).off('click');
@@ -1114,7 +1114,7 @@ function triggerResult(){
 
     setTimeout(function(){
         if (show_win) {
-            audioElement_win.play();     
+            musicPlay(2);   
         }               
         resetGame();
     }, freeze_time * 1000);
@@ -1227,24 +1227,29 @@ function showGameRules( event ){
     });
 }
 
-//load audio and listener - start
-var audioElement = document.createElement('audio');
-var audioElement_coin = document.createElement('audio');
-var audioElement_win = document.createElement('audio');
-//test
-audioElement.setAttribute('src', '/client/audio/coin.mp3');
-audioElement_coin.setAttribute('src', '/client/audio/coin.mp3');
-audioElement_win.setAttribute('src', '/client/audio/win.mp3');
+//load audio - start
+function musicPlay(music) {
+    var audioElement = document.createElement('audio');
+    
+    console.log(music);
+    if (music == 1) {        
+        audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+    } else if (music == 2) {
+        audioElement.setAttribute('src', '/client/audio/win.mp3');
+    } else {        
+        //do nothing
+        audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+    }
 
-audioElement.addEventListener('ended', function() {
-    //this.play();
-}, false);
-audioElement.addEventListener("canplay",function(){
-    //$("#length").text("Duration:" + audioElement.duration + " seconds");
-    //$("#source").text("Source:" + audioElement.src);
-    //$("#status").text("Status: Ready to play").css("color","green");
-});
-audioElement.addEventListener("timeupdate",function(){
-    //$("#currentTime").text("Current second:" + audioElement.currentTime);
-});
+    audioElement.play();
+
+}
+
+//ios autoload issue
+function musicInBrowserHandler() {
+    musicPlay();
+    document.body.removeEventListener('touchstart', musicInBrowserHandler);
+}
+
+document.body.addEventListener('touchstart', musicInBrowserHandler); 
 //load audio - end
