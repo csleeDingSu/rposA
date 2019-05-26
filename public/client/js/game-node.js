@@ -1231,21 +1231,24 @@ function showGameRules( event ){
 
 function musicPlay(music) {
     var audioElement = document.createElement('audio');
-
-    //solve ios autoload issue
-    document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
-
-    function musicInBrowserHandler(music) {
-        if (music == 1) {  
-            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-        } else if (music == 2) {
-            audioElement.setAttribute('src', '/client/audio/win.mp3');
-        } else {        
-            //do nothing
-            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-        }
-        audioElement.play();
-        document.body.removeEventListener('touchstart', musicInBrowserHandler);
+    if (music == 1) {        
+        audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+    } else if (music == 2) {
+        audioElement.setAttribute('src', '/client/audio/win.mp3');
+    } else {        
+        //do nothing
+        audioElement.setAttribute('src', '/client/audio/coin.mp3');
+        return;              
     }
+    audioElement.play();
+    
 }
+
+//ios autoload issue
+function musicInBrowserHandler() {
+    musicPlay();
+    //document.body.removeEventListener('touchstart', musicInBrowserHandler);
+}
+
+document.body.addEventListener('touchstart', musicInBrowserHandler); 
 //load audio - end
