@@ -1228,10 +1228,19 @@ function showGameRules( event ){
 }
 
 //load audio - start
+//ios autoload issue
 function musicPlay(music) {
+    document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
+}
+
+function musicInBrowserHandler(music) {
+    Play(music);
+    document.body.removeEventListener('touchstart', musicInBrowserHandler(music));
+}
+
+function Play(music) {
     var audioElement = document.createElement('audio');
     
-    console.log(music);
     if (music == 1) {        
         audioElement.setAttribute('src', '/client/audio/coin.mp3');              
     } else if (music == 2) {
@@ -1244,12 +1253,4 @@ function musicPlay(music) {
     audioElement.play();
 
 }
-
-//ios autoload issue
-function musicInBrowserHandler() {
-    musicPlay();
-    document.body.removeEventListener('touchstart', musicInBrowserHandler);
-}
-
-document.body.addEventListener('touchstart', musicInBrowserHandler); 
 //load audio - end
