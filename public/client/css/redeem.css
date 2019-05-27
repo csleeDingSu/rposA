@@ -44,7 +44,7 @@ html, body {
 }
 
 .icon-coin-wrapper {
-	height: 22px;
+	height: 5px;
 	width: 22px;
 	float: left;
 	padding-top: 0;
@@ -199,7 +199,7 @@ html, body {
 }
 
 .description {
-	font-size: 0.26rem;
+	font-size: 0.35rem;
 	font-weight: bold;
 	color: #626262;
 	min-height: 30px;
