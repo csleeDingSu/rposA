@@ -44,38 +44,48 @@
                 fluctuate = (1 - param['fluctuate']) * distance / 2,
                 target = start + ran(distance - fluctuate * 2) + fluctuate;
                 degree = 360 - target + param['pAngle'];
+
+                lastBet = param['lastBet'];
+
+                if(lastBet === 'odd') {
+                    cls_odd = '+';
+                    cls_even = '-';
+                } else {
+                    cls_odd = '-';
+                    cls_even = '+';
+                }
             }
 
         var html =
                     '<div class="small-border g6" style="transform: rotate('+ degree +'deg);" w>' +
 
                         '<div class="shan">' +
-                            '<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>积分</span>' +
+                            '<span class="span-odd"><span class="odd-sign">'+ cls_odd +'</span><span class="odd-payout">0</span>积分</span>' +
                             '<div class="div-odd">单数 <span class="odd-number">1</span></div>' +
                         '</div>' +
 
                         '<div class="shan">' +
-                            '<span class="span-even"><span class="even-sign"></span><span class="even-payout">0</span>积分</span>' +
+                            '<span class="span-even"><span class="even-sign">'+ cls_even +'</span><span class="even-payout">0</span>积分</span>' +
                             '<div class="div-even">双数 <span class="even-number">2</span></div>' +
                         '</div>' +
 
                         '<div class="shan">' +
-                            '<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>积分</span>' +
+                            '<span class="span-odd"><span class="odd-sign">'+ cls_odd +'</span><span class="odd-payout">0</span>积分</span>' +
                             '<div class="div-odd">单数 <span class="odd-number">3</span></div>' +
                         '</div>' +
 
                         '<div class="shan">' +
-                            '<span class="span-even"><span class="even-sign"></span><span class="even-payout">0</span>积分</span>' +
+                            '<span class="span-even"><span class="even-sign">'+ cls_even +'</span><span class="even-payout">0</span>积分</span>' +
                             '<div class="div-even">双数 <span class="even-number">4</span></div>' +
                         '</div>' +
                         
                         '<div class="shan">' +
-                            '<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>积分</span>' +
+                            '<span class="span-odd"><span class="odd-sign">'+ cls_odd +'</span><span class="odd-payout">0</span>积分</span>' +
                             '<div class="div-odd">单数 <span class="odd-number">5</span></div>' +
                         '</div>' +
 
                         '<div class="shan">' +
-                            '<span class="span-even"><span class="even-sign"></span><span class="even-payout">0</span>积分</span>' +
+                            '<span class="span-even"><span class="even-sign">'+ cls_even +'</span><span class="even-payout">0</span>积分</span>' +
                             '<div class="div-even">双数 <span class="even-number">6</span></div>' +
                         '</div>' +
                     '</div>' +
