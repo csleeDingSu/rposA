@@ -441,7 +441,8 @@ function closeWinModal() {
     $('.close-win-modal').click(function(event){
         
         if (g_current_point > g_previous_point) {
-            musicPlay(1);    
+            musicPlay(1);  
+            console.log('play coin mp3');  
         } 
 
         $(this).off('click');
@@ -453,6 +454,7 @@ function closeWinModal() {
              g_current_point = 150;
          }
 
+         console.log('animateNumber ' + g_previous_point + ' - ' + g_current_point);  
         $('.spanAcuPointAndBalance')
           .prop('number', g_previous_point/10)
           .animateNumber(
@@ -701,7 +703,6 @@ function bindCalculateButton(){
 
 function bindTriggerButton(){
     $('#btnWheel').click( function() {
-        musicPlay(22);
         checkSelection();
     });
 }
@@ -981,6 +982,13 @@ function showWinModal(){
     $('.btn-rules-timer').click(function(){
         $('#game-rules').modal('hide');
     });
+
+    console.log('standby play win mp3');
+    setTimeout(function(){
+        console.log('play win mp3');
+        musicPlay(2);
+    }, 9000);
+
 }
 
 function showLoseModal(){
@@ -1121,9 +1129,9 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
-        if (show_win) {
-            musicPlay(2);   
-        }               
+        // if (show_win) {
+        //     musicPlay(2);   
+        // }               
         resetGame();
     }, freeze_time * 1000);
     
