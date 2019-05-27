@@ -2150,6 +2150,7 @@ if it's not present, don't show loader */
   cursor: pointer;
   text-align: center;
   font-weight: 500;
+  border: none;
 }
 /* Reset Life Max Modal */
 
