@@ -441,8 +441,6 @@
 
 	
 </div>
-<audio id="music_coin" src="{{asset('/client/audio/coin.mp3')}}" preload="auto"></audio>
-<audio id="music_win" src="{{asset('/client/audio/win.mp3')}}" preload="auto"></audio>
 
 @endsection
 

@@ -694,6 +694,7 @@ function bindCalculateButton(){
 
 function bindTriggerButton(){
     $('#btnWheel').click( function() {
+        musicPlay(22);
         checkSelection();
     });
 }
@@ -1230,25 +1231,37 @@ function showGameRules( event ){
 //load audio - start
 
 function musicPlay(music) {
-    // var audioElement = document.createElement('audio');
+    var audioElement = document.createElement('audio');
 
-    // //solve ios autoload issue
-    // document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
+    //solve ios autoload issue
+    document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
 
-    // function musicInBrowserHandler(music) {
-    //     if (music == 1) {  
-    //         audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-    //     } else if (music == 2) {
-    //         audioElement.setAttribute('src', '/client/audio/win.mp3');
-    //     } else {        
-    //         //do nothing
-    //         audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-    //     }
-    //     audioElement.play();
-    //     document.body.removeEventListener('touchstart', musicInBrowserHandler);
-    // }
-    
-    document.getElementById('music_win').play();
-    alert("test!");
+    function musicInBrowserHandler(music) {
+        if (music == 1) {  
+            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+        } else if (music == 2 || music == 22) {
+            audioElement.setAttribute('src', '/client/audio/win.mp3');
+        } else {        
+            //do nothing
+            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+        }
+
+        console.log(music);
+        if (music == 22) {
+            console.log('p');
+            audioElement.pause();
+        } else {
+            console.log('pp');
+            audioElement.play();    
+        }
+        
+        document.body.removeEventListener('touchstart', musicInBrowserHandler(music));
+    }    
+
+    // document.getElementById('music_win').play();
+    // alert("test!");
+
 }
+
+
 //load audio - end
