@@ -206,6 +206,9 @@
 								} )
 								.text( value.product_name ) );
 					} );
+	
+					$('#pin_name').val($( '#product_list' ).find("option:first-child").text());
+				
 				}
 			},
 			error: function () {}
@@ -270,4 +273,9 @@
 			} );
 		}
 	} );
+	
+	
+	$('#product_list').on('change', function() {
+		$('#pin_name').val($(this).find(":selected").text());
+	}).trigger('change');
 </script>
