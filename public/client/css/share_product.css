@@ -448,5 +448,6 @@ padding-top:0.25rem !important;
 }
 #btn-voucher {
 	padding-top: 0.25rem !important;
-	padding-left: 0.7rem !important; 
+	/*padding-left: 0.7rem !important; */
+	text-align: center;
 }
