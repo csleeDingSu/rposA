@@ -243,12 +243,12 @@
 					
 					<div id="button-wrapper">
 						<div class="caption_redeem_angpao">
-							<span>99%拿30元红包</span>
+							<span>99%中奖 最少15元</span>
 							<img src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
 						</div>
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
 						<div id="btn-copy" class="btn-copy">领取优惠券</div>
-						<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>
+						<div id="btn-voucher" class="freeVoucherBtn"><span>转盘抽奖</span></div>
 					</div>
 					<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher" style="font-size: 0;">￥K8454DFGH45H</span></h4>
 
