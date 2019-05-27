@@ -442,7 +442,8 @@ function closeWinModal() {
     $('.close-win-modal').click(function(event){
         
         if (g_current_point > g_previous_point) {
-            musicPlay(1);    
+            musicPlay(1);  
+            console.log('play coin mp3');  
         } 
 
         $(this).off('click');
@@ -454,6 +455,7 @@ function closeWinModal() {
              g_current_point = 150;
          }
 
+         console.log('animateNumber ' + g_previous_point + ' - ' + g_current_point);  
         $('.spanAcuPointAndBalance')
           .prop('number', g_previous_point/10)
           .animateNumber(
@@ -702,7 +704,6 @@ function bindCalculateButton(){
 
 function bindTriggerButton(){
     $('#btnWheel').click( function() {
-        musicPlay(22);
         checkSelection();
     });
 }
@@ -982,6 +983,13 @@ function showWinModal(){
     $('.btn-rules-timer').click(function(){
         $('#game-rules').modal('hide');
     });
+
+    console.log('standby play win mp3');
+    setTimeout(function(){
+        console.log('play win mp3');
+        musicPlay(2);
+    }, 9000);
+
 }
 
 function showLoseModal(){
@@ -1123,7 +1131,7 @@ function triggerResult(){
 
     setTimeout(function(){
         // if (show_win) {
-            musicPlay(2);   
+        //     musicPlay(2);   
         // }               
         resetGame();
     }, freeze_time * 1000);
@@ -1239,39 +1247,44 @@ function showGameRules( event ){
 }
 
 //load audio - start
+var audioElement = document.createElement('audio');
+audioElement.setAttribute('src', '/client/audio/coin.mp3');
+var audioElement_win = document.createElement('audio');
+audioElement_win.setAttribute('src', '/client/audio/win.mp3');
 
-function musicPlay(music) {
-    var audioElement = document.createElement('audio');
+function musicPlay(music) {    
 
     //solve ios autoload issue
-    document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
+    // document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
 
-    function musicInBrowserHandler(music) {
+    // function musicInBrowserHandler(music) {
         if (music == 1) {  
-            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-        } else if (music == 2 || music == 22) {
-            audioElement.setAttribute('src', '/client/audio/win.mp3');
+            // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+            audioElement.play();
+        } else if (music == 2) {
+            // audioElement.setAttribute('src', '/client/audio/win.mp3');
+            audioElement_win.play();
+        } else if (music == 22) {
+            audioElement_win.pause();
         } else {        
             //do nothing
-            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+            // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
         }
 
         console.log(music);
-        if (music == 22) {
-            console.log('p');
-            audioElement.pause();
-        } else {
-            console.log('pp');
-            audioElement.play();    
-        }
+        // if (music == 22) {
+        //     console.log('pause');
+        //     audioElement.pause();
+        // } else {
+        //     console.log('play');
+        //     audioElement.play();    
+        // }
         
-        document.body.removeEventListener('touchstart', musicInBrowserHandler(music));
-    }    
+        // document.body.removeEventListener('touchstart', musicInBrowserHandler(music));
+    // }    
 
     // document.getElementById('music_win').play();
     // alert("test!");
 
 }
-
-
 //load audio - end
