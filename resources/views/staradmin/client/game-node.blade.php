@@ -260,7 +260,7 @@
 					</div>
 				</div>
 				<div id="txtCounter" class="middle-label">开始抽奖</div>
-				<div class="DB_G_hand"></div>
+				<div class="DB_G_hand start-game"></div>
 		    </div>
 		</div>
 
@@ -426,6 +426,7 @@
 					<input name="rdbBet" class="invisible" type="radio" value="odd">
 					选择单数
 				</div>
+				<div class="DB_G_hand selection"></div>
 			  </div>
 			  <div class="button-card radio-primary right">
 				<div class="radio btn-rectangle">
@@ -960,6 +961,12 @@
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
+			var bet_count = $('#hidbetting_count').val();
+			
+			if(bet_count == 0){
+				$('.selection').show();
+			}
+
 			var user_id = $('#hidUserId').val();
 
 			$('.reload').click(function(){

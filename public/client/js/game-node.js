@@ -14,6 +14,7 @@ var current_bet = 0;
 var game_records = null; //game setting
 var result_records = null; //game history
 var latest_result = null; //latest result
+var last_bet = null;
 
 $(function () {
 
@@ -51,7 +52,12 @@ $(function () {
 });
 
 function updateResult(records){
-
+    var bet_count = $('#hidbetting_count').val();
+            
+    if(bet_count > 0){
+        last_bet = records[0].bet;
+    }
+    
     var str_result = '单数';
 
     var length = Object.keys(records).length;
@@ -537,6 +543,7 @@ function showPayout(){
     var bet_amount = parseInt($('#hidBet').val());
     var newbalance = balance - bet_amount;
     var newtotalbalance = total_balance - bet_amount;
+    var bet_count = $('#hidbetting_count').val();
 
     switch (level) {
         case 1:
@@ -567,6 +574,11 @@ function showPayout(){
 
         if (typeof selected == 'undefined'){
 
+            if(bet_count == 0){
+                $('.selection').show();
+                $('.start-game').hide();
+            }
+
             checked(level, false);
             changbar(level);
 
@@ -592,15 +604,6 @@ function showPayout(){
                 1000
               );
 
-            setTimeout(function(){
-                if(level == 1) {
-                    $('.odd-sign').html('');
-                    $('.even-sign').html('');
-                } else {
-                    $('.odd-sign').html('-');
-                    $('.even-sign').html('-');
-                }
-            }, 1000);
             
             $.ajax({
                 type: 'GET',
@@ -623,6 +626,10 @@ function showPayout(){
             checked(level, true);
             changbar(level);
 
+            if(bet_count == 0){
+                $('.selection').hide();
+                $('.start-game').show();
+            }
 
             if(newbalance < 0){
                  $('div.clicked').find('.bet').hide();
