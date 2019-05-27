@@ -1072,34 +1072,23 @@ function startTimer(duration, timer, freeze_time) {
 
     $.ajax({
         type: 'POST',
-        url: "/api/add-betting?gameid=102&memberid=" + id + "&betto=" + selected, 
+        url: "/api/get-betting-result?gameid=102&memberid=" + id, 
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            $.ajax({
-                type: 'POST',
-                url: "/api/get-betting-result?gameid=102&memberid=" + id, 
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { console.log(error) },
-                success: function(data) {
-                    $('.small-border').removeClass('fast-rotate');
-                    $('#result').val(data.game_result);
-                    if(data.status == 'win'){
-                        show_win = true;
-                        showWinModal();
-                    } else if(data.status == 'lose' && level < 6) {
-                        show_lose = true;
-                        showLoseModal();
-                    }
-                    triggerResult();
-                }
-            });
+            $('.small-border').removeClass('fast-rotate');
+            $('#result').val(data.game_result);
+            if(data.status == 'win'){
+                show_win = true;
+                showWinModal();
+            } else if(data.status == 'lose' && level < 6) {
+                show_lose = true;
+                showLoseModal();
+            }
+            triggerResult();
         }
     });
 }
