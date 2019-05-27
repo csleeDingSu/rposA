@@ -46,9 +46,9 @@ div.legend-row {
   width: 50px;
   height: 50px;
   font-size: 14px;
-  color: #3ed966;
+  color: #fb973f;
   border-radius: 40px;
-  border: 1px solid #9fe9ac;
+  border: 1px solid #fb973f;
   background: #fff;
   z-index: 100;
   position: relative;
@@ -61,8 +61,8 @@ div.legend-row {
 }
 
 .even-box {
-  color: #fb973f;
-  border: 1px solid #f6b378;
+  color: #b77eff;
+  border: 1px solid #b77eff;
 }
 
 .chain {
