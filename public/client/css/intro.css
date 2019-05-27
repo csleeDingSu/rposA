@@ -64,8 +64,8 @@
     display: block;
     left: 50%;
     top: 52%;
-    margin-top: -.73rem;
-    margin-left: -.42rem;
+    margin-top: -.72rem;
+    margin-left: -.38rem;
     font-size: .36rem;
     height: 1rem;
     line-height: 1em;
@@ -74,13 +74,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 }
 
 .playBox .finger img.clickme {
-    width: 0.9rem;
-    height: 0.89rem;
-    animation: textgrowth 0.5s infinite alternate;
+    width: 0.8rem;
+    height: 0.8rem;
 }
 
 .playBox .finger .inTime a {
@@ -95,6 +93,40 @@
     100% {
         transform: scale(1);
     }
+}
+
+.DB_G_hand {
+  position: absolute;
+  background-repeat: no-repeat;
+  width: 1.4rem;
+  height: 1.4rem;
+  left: 70%; 
+  top: 30%; 
+  background-image: url(/client/images/wheel/hand1.png);
+  -webkit-animation: guideHand2 .5s step-start infinite;
+  animation: guideHand2 .5s step-start infinite;
+  background-size: cover;
+  z-index: 100;
+}
+
+@keyframes guideHand2 {
+  0% {
+    background-image: url(/client/images/wheel/hand1.png);
+  }
+
+  50% {
+    background-image: url(/client/images/wheel/hand2.png);
+  }
+}
+
+@-webkit-keyframes guideHand2 {
+  0% {
+    background-image: url(/client/images/wheel/hand1.png);
+  }
+
+  50% {
+    background-image: url(/client/images/wheel/hand2.png);
+  }
 }
 
 .ig {
