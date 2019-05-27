@@ -467,8 +467,8 @@ body{
 }
 
 .btn-rules-normal {
-	width: 200px;
-	margin-left: 50px;
+	/*width: 200px;*/
+	margin-left: 0.5rem;
 }
 
 .balance {
@@ -1427,19 +1427,16 @@ body{
 
 /* Game Rules Modal */
 #game-rules .modal-title {
-	background: url('/client/images/modal_header.png') no-repeat;
-	background-size: contain;
-	color: white;
+	background: white;
+	color: #5b5b5b;
 	text-align: center;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
-	padding: 10px;
-	font-weight: 700;
-	width: 310px !important;
-	height: 74px;
-	padding: 0;
-	z-index: 10000;
-	position:relative;
+	padding:0;
+	font-weight: 500;
+	font-size: 26px;
+	width: 100% !important;
+	height: 5% !important;
 }
 
 #game-rules .modal-title h1 {
@@ -1449,12 +1446,17 @@ body{
 }
 
 #game-rules .modal-content {
-	margin-top: -12px;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	width: 296px;
-	z-index: 9999;
-	position:relative;
+  background-color: white;
+  color: #959595;
+  text-align: center;
+  
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  padding: 10px;
+  border: none;
 }
 
 #game-rules .instructions {
@@ -1462,10 +1464,10 @@ body{
 	margin-bottom: 10px;
 	font-size: 12px;
 	font-weight: 500;
-	color: #9b9b9b;
-	text-align: justify;
-	line-height: 2;
-	padding: 0 5px;
+	color: #999;
+	padding:10px;
+	/*text-align: center;*/
+	letter-spacing: 0.5px;
 }
 
 #game-rules .game-title {
@@ -1476,6 +1478,88 @@ body{
 #game-rules .game-max-rules {
 	color: #b9b9b9;
 	font-size: 12px;
+}
+
+#game-rules .modal-body {
+	padding: 0 !important;
+}
+
+#game-rules .modal-card {
+	width: 100%;
+}
+
+#game-rules .modal-warning-title {
+	padding-top: 10px;
+	color: white;
+	font-size: 26px;
+}
+
+#game-rules .modal-warning-info {
+	background: #e32230;
+	color: white;
+	font-size: 11px;
+	border-radius: 12px;
+	width: 120px;
+	padding: 2px;
+	margin: 5px auto 15px auto;
+}
+
+#game-rules .divider{
+    color:#666;
+    margin:0 auto;
+    overflow:hidden;
+    text-align:center;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#game-rules .divider:before, #game-rules .divider:after{
+    content:"";
+    vertical-align:middle;
+    display:inline-block;
+    width:10%;
+    border-bottom:1px solid #ccc;
+    margin:0 2% 0 -55%;
+}
+
+#game-rules .divider:after{
+    margin:0 -55% 0 2%;
+}
+
+#game-rules .wallet-point {
+	color: #ff2737;
+}
+
+#game-rules .modal-content-wrapper {
+	width: 250px;
+	height: 56px;
+	float: left;
+	margin-left: 18px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#game-rules .modal-warning-content {
+	background: url('/client/images/voucher-background.png') no-repeat;
+	width: 541px;
+	height: 121px;
+	transform: scale(0.48); 
+	-webkit-transform: scale(0.48);
+	-webkit-transform-origin:left top;
+}
+
+#game-rules .voucher-wrapper {
+	margin-left: 0px;
+	padding: 25px;
+}
+
+#game-rules .modal-warning-button, #game-rules .modal-warning-button {
+	background: #fcac12;
+	color: white;
+	border-radius: 25px;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 /* End Game Rules Modal */
@@ -2220,3 +2304,143 @@ if it's not present, don't show loader */
 	margin-left: -5px;
 	margin-top: -5px;
 }
+
+/* top-corner-game-rules Modal */
+#top-corner-game-rules .modal-title {
+	background: white;
+	color: #5b5b5b;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding:0;
+	font-weight: 500;
+	font-size: 26px;
+	width: 100% !important;
+	height: 5% !important;
+}
+
+#top-corner-game-rules .modal-title h1 {
+	font-size: 20px;
+	padding-top: 30px;
+	font-weight: 500;
+}
+
+#top-corner-game-rules .modal-content {
+  background-color: white;
+  color: #959595;
+  text-align: center;
+  
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  padding: 10px;
+  border: none;
+}
+
+#top-corner-game-rules .instructions {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #999;
+	padding:10px;
+	text-align: justify;
+	letter-spacing: 0.5px;
+	line-height: 25px;
+}
+
+#top-corner-game-rules .game-title {
+	color: #f39f1c;
+	font-size: 18px;
+}
+
+#top-corner-game-rules .game-max-rules {
+	color: #b9b9b9;
+	font-size: 12px;
+}
+
+#top-corner-game-rules .modal-body {
+	padding: 0 !important;
+}
+
+#top-corner-game-rules .modal-card {
+	width: 100%;
+}
+
+#top-corner-game-rules .modal-warning-title {
+	padding-top: 10px;
+	color: white;
+	font-size: 26px;
+}
+
+#top-corner-game-rules .modal-warning-info {
+	background: #e32230;
+	color: white;
+	font-size: 11px;
+	border-radius: 12px;
+	width: 120px;
+	padding: 2px;
+	margin: 5px auto 15px auto;
+}
+
+#top-corner-game-rules .divider{
+    color:#666;
+    margin:0 auto;
+    overflow:hidden;
+    text-align:center;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#top-corner-game-rules .divider:before, #game-rules .divider:after{
+    content:"";
+    vertical-align:middle;
+    display:inline-block;
+    width:10%;
+    border-bottom:1px solid #ccc;
+    margin:0 2% 0 -55%;
+}
+
+#top-corner-game-rules .divider:after{
+    margin:0 -55% 0 2%;
+}
+
+#top-corner-game-rules .wallet-point {
+	color: #ff2737;
+}
+
+#top-corner-game-rules .modal-content-wrapper {
+	width: 250px;
+	height: 56px;
+	float: left;
+	margin-left: 18px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#top-corner-game-rules .modal-warning-content {
+	background: url('/client/images/voucher-background.png') no-repeat;
+	width: 541px;
+	height: 121px;
+	transform: scale(0.48); 
+	-webkit-transform: scale(0.48);
+	-webkit-transform-origin:left top;
+}
+
+#top-corner-game-rules .voucher-wrapper {
+	margin-left: 0px;
+	padding: 25px;
+}
+
+#top-corner-game-rules .modal-warning-button, #top-corner-game-rules .modal-warning-button {
+	background: #fcac12;
+	color: white;
+	border-radius: 25px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+/* top-corner-game-rules Modal End*/
