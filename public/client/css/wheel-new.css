@@ -153,6 +153,7 @@
 }
 
 .DB_G_hand {
+  display: none;
   position: absolute;
   background-repeat: no-repeat;
   width: 71px;
@@ -186,6 +187,11 @@
   }
 }
 
+.selection {
+	left: 16%;
+	top: 12px; 
+}
+
 .swiper-container {
   width: 400px;
   height: 320px;
@@ -195,6 +201,11 @@
 @media only screen and (max-width: 500px) {
 	.swiper-container {
 	  width: 100%;
+	}
+
+	.selection {
+		left: 33%;
+		top: 12px; 
 	}
 }
 
@@ -249,6 +260,11 @@
 	.DB_G_hand {
 	  left: 52%; 
 	  top: 42%; 
+	}
+
+	.selection {
+		left: 28%;
+		top: 8px; 
 	}
 
 	.swiper-container {
