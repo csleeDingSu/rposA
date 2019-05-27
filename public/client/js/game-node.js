@@ -56,6 +56,7 @@ function updateResult(records){
             
     if(bet_count > 0){
         last_bet = records[0].bet;
+        $('#hidLastBet').val(last_bet);
     }
     
     var str_result = '单数';
@@ -1161,6 +1162,7 @@ DomeWebController = {
         var result = $('#result').val();
         var freeze_time = 5;
         var startKey = $('#hidLatestResult').val();
+        var lastBet = $('#hidLastBet').val();
 
         that.getEle("$wheelContainer").wheelOfFortune({
             'wheelImg': "/client/images/wheel.png",//转轮图片
@@ -1177,6 +1179,7 @@ DomeWebController = {
             'rotateNum': 1,//转多少圈(默认12)
             'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
             'startKey' : startKey,
+            'lastBet' : lastBet,
             'click': function () {
                 if(1==1){}
                 var key = result;
