@@ -595,10 +595,16 @@ function populateHistoryData(records, token) {
                         '</div>' +
                     '<div id="content-' + item.id + '" class="collapse">' +
                         '<div class="card-wrapper">卡号： <span id="number' + item.id + '" class="numbers">'+ item.code +'</span> <span id="copynumber' + item.id + '" class="copynumber">复制</span>' + 
-                        '<br />密码：<span id="code' + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.id + '" class="copycode">复制</span></div>' +
-                        '<div class="instruction">打开支付宝APP>搜索“闲鱼信用回收”>进入官方平台>选择“卡券”>骏网一卡通86回收>选择面值 输入卡号密码>确认兑换现金。' +
-                        '</div>' +
-                    '</div>';
+                        '<br />密码：<span id="code' + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.id + '" class="copycode">复制</span></div>';
+
+                    //temporary hardcode
+                    if (item.product_name.indexOf('骏网') >= 0) {
+                       html += '<div class="instruction">打开支付宝APP>搜索“闲鱼信用回收”>进入官方平台>选择“卡券”>骏网一卡通86回收>选择面值 输入卡号密码>确认兑换现金。'; 
+                    } else {
+                        html += '<div class="instruction">打开支付宝APP>搜索“闲鱼信用回收”>进入官方平台>选择“卡券”>“中国移动”话费卡回收>选择面值 输入卡号密码>确认兑换现金。';       
+                    }                        
+                       html += '</div>' +
+                            '</div>';
 
                     // Copy card number
                     var clipboard_cardno = new ClipboardJS('#copynumber' + item.id, {

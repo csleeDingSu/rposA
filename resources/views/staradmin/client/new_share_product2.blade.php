@@ -40,7 +40,7 @@
 			<li class="dbox">
 					<div id="button-wrapper">
 						<div class="caption_redeem_angpao">
-							<span>15元红包等你抽</span>
+							<span>99%中奖 最少15元</span>
 							<img src="{{ asset('/client/images/share_product_caption_redeem_angpao.png') }}" />
 						</div>
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
@@ -57,7 +57,7 @@
 			<li class="dbox">
 				<p class="intruction">
 					活动说明：<br>
-					每一局幸运转盘可抽奖15次，99%概率获得15元红包（可提现）<br>
+					每一局幸运转盘可抽奖15次，99%概率获得15元红包<br>
 					1.新人注册<span class="instruction_highlight">就送1局幸运转盘（免费抽奖15次）</span><br>
 					2.每介绍1名好友注册挖宝网（只需注册并微信认证，非常容易介绍），你能获得1次幸运转盘。<br>
 					你邀请的好友每邀请1个人，你能获得1次幸运转盘。<br>
