@@ -1113,9 +1113,9 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
-        if (show_win) {
+        // if (show_win) {
             musicPlay(2);   
-        }               
+        // }               
         resetGame();
     }, freeze_time * 1000);
     
@@ -1230,22 +1230,25 @@ function showGameRules( event ){
 //load audio - start
 
 function musicPlay(music) {
-    var audioElement = document.createElement('audio');
+    // var audioElement = document.createElement('audio');
 
-    //solve ios autoload issue
-    document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
+    // //solve ios autoload issue
+    // document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
 
-    function musicInBrowserHandler(music) {
-        if (music == 1) {  
-            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-        } else if (music == 2) {
-            audioElement.setAttribute('src', '/client/audio/win.mp3');
-        } else {        
-            //do nothing
-            audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-        }
-        audioElement.play();
-        document.body.removeEventListener('touchstart', musicInBrowserHandler);
-    }
+    // function musicInBrowserHandler(music) {
+    //     if (music == 1) {  
+    //         audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+    //     } else if (music == 2) {
+    //         audioElement.setAttribute('src', '/client/audio/win.mp3');
+    //     } else {        
+    //         //do nothing
+    //         audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+    //     }
+    //     audioElement.play();
+    //     document.body.removeEventListener('touchstart', musicInBrowserHandler);
+    // }
+    
+    document.getElementById('music_win').play();
+    alert("test!");
 }
 //load audio - end
