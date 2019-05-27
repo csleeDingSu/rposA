@@ -38,6 +38,7 @@
                     <div class="inTime">
                         
                             <img src="{{ asset('/client/images/intro/enter.png') }}" class="clickme">
+                            <div class="DB_G_hand"></div>
                     </div>
                 </a>
               </div>
