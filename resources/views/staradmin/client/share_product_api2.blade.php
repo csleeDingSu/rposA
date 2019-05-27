@@ -41,7 +41,7 @@
 			<li class="dbox">
 					<div id="button-wrapper">
 						<div class="caption_redeem_angpao">
-							<span>30元现金等你拿</span>
+							<span>15元红包等你抽</span>
 							<img src="{{ asset('/client/images/share_product_caption_redeem_angpao.png') }}" />
 						</div>
 						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
@@ -49,7 +49,7 @@
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						<a href="/intro">
-							<div id="btn-voucher" class="freeVoucherBtn"><span>玩转盘拿红包</span></div>
+							<div id="btn-voucher" class="freeVoucherBtn"><span>转盘抽奖</span></div>
 						</a>
 					</div>
 				
@@ -58,8 +58,8 @@
 			<li class="dbox">
 				<p class="intruction">
 					活动说明：<br>
-					每一次幸运转盘有99%概率赚到15元红包（可提现）<br>
-					1.新人注册<span class="instruction_highlight">送2次幸运转盘（可得30元）</span><br>
+					每一局幸运转盘可抽奖15次，99%概率获得15元红包（可提现）<br>
+					1.新人注册<span class="instruction_highlight">就送1局幸运转盘（免费抽奖15次）</span><br>
 					2.每介绍1名好友注册挖宝网（只需注册并微信认证，非常容易介绍），你能获得1次幸运转盘。<br>
 					你邀请的好友每邀请1个人，你能获得1次幸运转盘。<br>
 					<span class="instruction_highlight">假如你介绍了10个好友，而每个好友也介绍10个人，你就能获得110次机会，可赚1650元。
