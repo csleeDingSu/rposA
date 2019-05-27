@@ -15,7 +15,8 @@
 
 
 			<dt class="dbox0">
-				@if(Request::is('vip') || Request::is('arcade') || Request::is('arcade_node') || Request::is('arcade_old'))
+
+				@if(Request::is('vip') || Request::is('arcade') || Request::is('arcade_node') || Request::is('arcade_old') || isset(Auth::Guard('member')->user()->id))
 
 					@if(Request::is('vip'))
 						<a href="/vip">
@@ -37,7 +38,8 @@
 						</div>
 					</a>
 				@else
-					<a href="/intro" class="main-footer">
+					<!-- <a href="/intro" class="main-footer"> -->
+					<a href="/arcade" class="main-footer">
 						<div id="footer-life">
 							<i class="nTxt_default"></i>
 							<p style="margin-top:-0.075rem">我要拿红包</p>

@@ -131,10 +131,12 @@ class ClientController extends BaseController
 
 		if (!Auth::Guard('member')->check())
 		{
-			$msg = trans('dingsu.please_login');
-			\Session::flash('success',$msg);
+			// $msg = trans('dingsu.please_login');
+			// \Session::flash('success',$msg);
 
-			return redirect('/nlogin');
+			// return redirect('/nlogin');
+			$data['betting_count'] = 0;
+			return view('client/game-node', $data);
 
 		} else {
 

@@ -194,11 +194,13 @@ class MemberLoginController extends Controller
 
         if ($this->attemptLogin($request)) {
 			
-			$url = "/cs/220";
+            //route to main screen
+			$url = "/cs/" . env('voucher_featured_id','220');
 			$rou = Session::get('re_route');
 			
 			if ($rou == 'yes')
 			{
+                //route to game
 				$url = "/arcade";
 				Session::forget('re_route');
 				//Session::flush();

@@ -158,7 +158,7 @@ function initUser(records){
         setBalance();
 
         if(acupoint == 50 || acupoint == 100){
-            $('.speech-bubble-point').html('已赚了'+ acupoint +'金币大约可换'+ acupoint/10 +'元').fadeIn(1000).delay(2000).fadeOut(400);
+            $('.speech-bubble-point').html('已赚了'+ acupoint +'积分大约可换'+ acupoint/10 +'元').fadeIn(1000).delay(2000).fadeOut(400);
         }
 
         if(life == 0){
@@ -278,13 +278,22 @@ function getToken(){
     var session = $('#hidSession').val();
     var id = $('#hidUserId').val();
 
-    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
-        //console.log(data);
-        if(data.success) {
-            token = data.access_token;
-            startGame();            
-        }      
-    });
+    //login user
+    if (id > 0) {
+        $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
+            //console.log(data);
+            if(data.success) {
+                token = data.access_token;
+                startGame();            
+            }      
+        });
+    } else {
+        //non-logged in user
+        $('#hidLatestResult').val(1);
+        DomeWebController.init();
+        $(".loading").fadeOut("slow");
+    }
+    
 }
 
 function resetTimer(){
@@ -431,6 +440,10 @@ function closeWinModal() {
 
     $('.close-win-modal').click(function(event){
         
+        if (g_current_point > g_previous_point) {
+            musicPlay(1);    
+        } 
+
         $(this).off('click');
         event.stopImmediatePropagation();
         $('#win-modal').modal('hide');
@@ -955,7 +968,7 @@ function showWinModal(){
     $('#win-modal .packet-value').html(html);
     $('#win-modal .packet-info').html(info);
     $('#win-modal .instructions').html(instructions+'还差'+remain+'元可兑换');
-    
+
     $('.highlight-link').click(function(){
         $('#game-rules').modal();
     });
@@ -1106,7 +1119,10 @@ function triggerResult(){
 
     $( "#btnPointer" ).trigger( "click" );
 
-    setTimeout(function(){ 
+    setTimeout(function(){
+        // if (show_win) {
+            musicPlay(2);   
+        // }               
         resetGame();
     }, freeze_time * 1000);
     
@@ -1217,3 +1233,29 @@ function showGameRules( event ){
         $('#game-rules').modal('hide');
     });
 }
+
+//load audio - start
+
+function musicPlay(music) {
+    // var audioElement = document.createElement('audio');
+
+    // //solve ios autoload issue
+    // document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
+
+    // function musicInBrowserHandler(music) {
+    //     if (music == 1) {  
+    //         audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+    //     } else if (music == 2) {
+    //         audioElement.setAttribute('src', '/client/audio/win.mp3');
+    //     } else {        
+    //         //do nothing
+    //         audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+    //     }
+    //     audioElement.play();
+    //     document.body.removeEventListener('touchstart', musicInBrowserHandler);
+    // }
+    
+    document.getElementById('music_win').play();
+    alert("test!");
+}
+//load audio - end

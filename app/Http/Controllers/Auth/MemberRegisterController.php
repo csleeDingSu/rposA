@@ -218,6 +218,7 @@ class MemberRegisterController extends Controller
 				'phone' => $data['phone'],
 				//'wechat_name' => $data['username'],//(isset($data['wechat_name']) ? $data['wechat_name'] : null),
 				'wechat_verification_status' => 1,
+				'apikey' => unique_numeric_random('members', 'apikey', 8),
 			]);
 			
 			$id = $member->id;
@@ -249,7 +250,9 @@ class MemberRegisterController extends Controller
 			$user->active_session = Session::getId();
 			$user->save();
 			
-			return response()->json(['success' => true]);		
+			// return response()->json(['success' => true]);
+			return $this->getGameOrDefaultRoute();
+					
         }
     }
 	
@@ -312,6 +315,7 @@ class MemberRegisterController extends Controller
 				'phone' => $data['phone'],
 				//'wechat_name' => $data['username'],//(isset($data['wechat_name']) ? $data['wechat_name'] : null),
 				'wechat_verification_status' => 1,
+				'apikey' => unique_numeric_random('members', 'apikey', 8),
 			]);
 			
 			
@@ -325,7 +329,9 @@ class MemberRegisterController extends Controller
 			$user->active_session = Session::getId();
 			$user->save();
 			
-			return response()->json(['success' => true]);			
+            //return response()->json(['success' => true]);	
+            return $this->getGameOrDefaultRoute();
+			
 		}		
 	}
 	
@@ -372,6 +378,7 @@ class MemberRegisterController extends Controller
 			//'referred_by'   => $referred_by,
 			'phone' => $input['phone'],
 			'wechat_verification_status' => 1,
+			'apikey' => unique_numeric_random('members', 'apikey', 8),
 		]);
 
 		$id = $member->id;
@@ -396,12 +403,29 @@ class MemberRegisterController extends Controller
 			$user->active_session = Session::getId();
 			$user->save();
 			
-			return response()->json(['success' => true ]); 
-			
-			
+			// return response()->json(['success' => true ]); 
+			return $this->getGameOrDefaultRoute();
+						
 		} else {
 			return response()->json( [ 'success' => 'false', 'error' => 'invalid username or password' ], 401 );
 		}
+	}
+
+	public function getGameOrDefaultRoute()
+	{
+		//route to main screen
+		$url = "/cs/" . env('voucher_featured_id','220');
+		$rou = Session::get('re_route');
+			
+		if ($rou == 'yes')
+		{
+			//route to game
+			$url = "/arcade";
+			Session::forget('re_route');
+			//Session::flush();
+		}
+		
+		return response()->json(['success' => true, 'url' => $url]);
 	}
 	
 }

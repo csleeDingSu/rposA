@@ -1699,6 +1699,7 @@ if it's not present, don't show loader */
 	z-index: 9999;
 	background: url('/client/images/preloader.gif') center no-repeat;
 	background-color: rgba(255, 255, 255, 1);
+	background-size: 62px 62px;
 }
 
 .reload {
@@ -2149,6 +2150,7 @@ if it's not present, don't show loader */
   cursor: pointer;
   text-align: center;
   font-weight: 500;
+  border: none;
 }
 /* Reset Life Max Modal */
 
