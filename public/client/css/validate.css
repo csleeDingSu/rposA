@@ -44,7 +44,7 @@ body {
 }
 
 .instructions {
-	color: #616161;
+	color: #5b5b5b;
 	font-size: 14px;
 }
 
@@ -53,7 +53,8 @@ body {
 }
 
 .highlight {
-	color: #639cf3;
+	color: #69b102;
+	padding: 5px 0;
 }
 
 .img-settings {
