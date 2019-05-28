@@ -205,12 +205,16 @@ class Bresult extends Command
 			/**
 			 * if player & histoy win the increse to 1
 			 * if player fail keep the value 
-			 **/		
+			 **/
+			
+			$data = ['player_level'=>$player_level, 'gamelevel'=>$gamelevel];
 			
 			$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $gamelevel);
 			
 			$gamelevel    = $game_p_level['gamelevel'];
 			$player_level = $game_p_level['player_level'];
+			
+			
 			
 			$gameresult   = $this->decide_result_condition($memberid, $data);
 			

@@ -119,7 +119,7 @@
                         <div class="form-group row">
                           <label for="status" class="col-sm-3 col-form-label">@lang('dingsu.wechat_verification_status')</label>
                           <div class="col-sm-9">
-                            <select id="wechat_verification_status" name="wechat_verification_status" class="form-control">
+                            <select id="wechat_verification_status" name="wechat_verification_status" class="form-control" disabled>
                               <option {{old('wechat_verification_status',$member->wechat_verification_status)=="0"? 'selected':''}}  value="0" >@lang('dingsu.verified')</option>
                               <option {{old('wechat_verification_status',$member->wechat_verification_status)=="1"? 'selected':''}} value="1">@lang('dingsu.unverified')</option>    
 							  <option {{old('wechat_verification_status',$member->wechat_verification_status)=="2"? 'selected':''}} value="2">@lang('dingsu.rejected') / @lang('dingsu.account_closed')</option>    
