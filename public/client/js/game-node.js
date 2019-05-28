@@ -250,23 +250,23 @@ try {
                     btn_rectangle.addClass('clicked');
                     showPayout();
 
-                    $.ajax({
-                        type: 'GET',
-                        url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id
-                        + "&drawid=0" 
-                        + "&bet="+ selected 
-                        +"&betamt=" + bet_amount,
-                        dataType: "json",
-                        beforeSend: function( xhr ) {
-                            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                        },
-                        error: function (error) { 
-                            console.log(error.responseText); 
-                            $(".reload").show();
-                        },
-                        success: function(data) {
-                        }
-                    });
+                    // $.ajax({
+                    //     type: 'GET',
+                    //     url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id
+                    //     + "&drawid=0" 
+                    //     + "&bet="+ selected 
+                    //     +"&betamt=" + bet_amount,
+                    //     dataType: "json",
+                    //     beforeSend: function( xhr ) {
+                    //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                    //     },
+                    //     error: function (error) { 
+                    //         console.log(error.responseText); 
+                    //         $(".reload").show();
+                    //     },
+                    //     success: function(data) {
+                    //     }
+                    // });
                 }
             }
         }); // ajax get-game-result-temp
@@ -617,21 +617,21 @@ function showPayout(){
               );
 
             
-            $.ajax({
-                type: 'GET',
-                url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id 
-                + "&bet=&betamt=&drawid=0",
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { 
-                    console.log(error.responseText);
-                    // window.top.location.href = "/arcade";
-                },
-                success: function(data) {
-                }
-            });
+            // $.ajax({
+            //     type: 'GET',
+            //     url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id 
+            //     + "&bet=&betamt=&drawid=0",
+            //     dataType: "json",
+            //     beforeSend: function( xhr ) {
+            //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            //     },
+            //     error: function (error) { 
+            //         console.log(error.responseText);
+            //         // window.top.location.href = "/arcade";
+            //     },
+            //     success: function(data) {
+            //     }
+            // });
 
         } else {
 
