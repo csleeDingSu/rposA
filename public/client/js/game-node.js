@@ -916,7 +916,7 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            info = '前0局猜错<span class="highlight">亏损0积分</span><br />第1局猜对<span class="highlight-green">奖励10积分</span><br />最终奖励10积分，<span class="highlight-red">赢到了1元</span><br />满15元可兑换红包';
+            info = '前0局猜错<span class="highlight">亏损0积分</span><br />第1局猜对<span class="highlight-green">奖励10积分</span><br />最终赚了10积分，<span class="highlight-red">换到了1元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/10.png';
             html += '<span class="packet-sign">+</span>1<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 1;
@@ -924,7 +924,7 @@ function showWinModal(){
         break;
 
         case 2:
-            info = '前1局猜错<span class="highlight">亏损10积分</span><br />第2局猜对<span class="highlight-green">奖励30积分</span><br />最终奖励20积分，<span class="highlight-red">赢到了2元</span><br />满15元可兑换红包';
+            info = '前1局猜错<span class="highlight">亏损10积分</span><br />第2局猜对<span class="highlight-green">奖励30积分</span><br />最终赚了20积分，<span class="highlight-red">换到了2元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/30.png';
             html += '<span class="packet-sign">+</span>2<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 2;
@@ -932,7 +932,7 @@ function showWinModal(){
         break;
 
         case 3:
-            info = '前2局猜错<span class="highlight">亏损40积分</span><br />第3局猜对<span class="highlight-green">奖励70积分</span><br />最终奖励30积分，<span class="highlight-red">赢到了3元</span><br />满15元可兑换红包';
+            info = '前2局猜错<span class="highlight">亏损40积分</span><br />第3局猜对<span class="highlight-green">奖励70积分</span><br />最终赚了30积分，<span class="highlight-red">换到了3元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/70.png';
             html += '<span class="packet-sign">+</span>3<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 3;
@@ -940,7 +940,7 @@ function showWinModal(){
         break;
 
         case 4:
-            info = '前3局猜错<span class="highlight">亏损110积分</span><br />第4局猜对<span class="highlight-green">奖励150积分</span><br />最终奖励40积分，<span class="highlight-red">赢到了4元</span><br />满15元可兑换红包';
+            info = '前3局猜错<span class="highlight">亏损110积分</span><br />第4局猜对<span class="highlight-green">奖励150积分</span><br />最终赚了40积分，<span class="highlight-red">换到了4元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/150.png';
             html += '<span class="packet-sign">+</span>4<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 4;
@@ -948,7 +948,7 @@ function showWinModal(){
         break;
 
         case 5:
-            info = '前4局猜错<span class="highlight">亏损26积分</span><br />第5局猜对<span class="highlight-green">奖励310积分</span><br />最终奖励50积分，<span class="highlight-red">赢到了5元</span><br />满15元可兑换红包';
+            info = '前4局猜错<span class="highlight">亏损260积分</span><br />第5局猜对<span class="highlight-green">奖励310积分</span><br />最终赚了50积分，<span class="highlight-red">换到了5元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/310.png';
             html += '<span class="packet-sign">+</span>5<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 5;
@@ -956,7 +956,7 @@ function showWinModal(){
         break;
 
         case 6:
-            info = '前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包';
+            info = '前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终赚了60积分，<span class="highlight-red">换到了6元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/630.png';
             html += '<span class="packet-sign">+</span>6<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 6;
@@ -998,48 +998,48 @@ function showLoseModal(){
     var level = parseInt($('#hidLevel').val());
     var html = '';
     var image = '';
-    var result_info = '本轮还有6次机会。';
+    var result_info = '6次内猜对奖励加倍';
 
     switch (level) {
 
         case 1:
             instruction = '前1局猜错，<span class="highlight-green">总亏损10积分</span>，根据倍增式玩法，第2局<span class="highlight-orange">将押注30积分</span>，如猜对能获得30积分奖励，减去亏损的10还能赚20积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前1局猜错，<span class="highlight-grey">总亏损10积分</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注30积分</span>，猜对能获得30积分奖励，减去亏损的10还能赚20积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
+            instruction = '前1局猜错，<span class="highlight-grey">总亏损10积分</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注30积分</span>，猜对能获得30积分奖励，减去亏损的10还能赚20积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
             image = '/client/images/progress-bar/lose_10.png';
-            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有5次机会</div>'; 
-            result_info = '本轮错了1次，还剩5次。';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">5次内猜对奖励加倍</div>'; 
+            result_info = '5次内猜对奖励加倍';
         break;
 
         case 2:
             instruction = '前2局猜错，<span class="highlight-green">总亏损40积分</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注70积分</span>，如猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前2局猜错，<span class="highlight-grey">总亏损40积分</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注70积分</span>，猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
+            instruction = '前2局猜错，<span class="highlight-grey">总亏损40积分</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注70积分</span>，猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
             image = '/client/images/progress-bar/lose_30.png';
-            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有4次机会</div>'; 
-            result_info = '本轮错了2次，还剩4次。';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">4次内猜对奖励加倍</div>'; 
+            result_info = '4次内猜对奖励加倍';
         break;
 
         case 3:
             instruction = '前3局猜错，<span class="highlight-green">总亏损110积分</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注150积分</span>，如猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前3局猜错，<span class="highlight-grey">总亏损110积分</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注150积分</span>，猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
+            instruction = '前3局猜错，<span class="highlight-grey">总亏损110积分</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注150积分</span>，猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
             image = '/client/images/progress-bar/lose_70.png';
-            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有3次机会</div>'; 
-            result_info = '本轮错了3次，还剩3次。';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">3次内猜对奖励加倍</div>'; 
+            result_info = '3次内猜对奖励加倍';
         break;
 
         case 4:
             instruction = '前4局猜错，<span class="highlight-green">总亏损260积分</span>，根据倍增式玩法，第5局<span class="highlight-orange">将押注310积分</span>，如猜对能获得310积分奖励，减去亏损的260还能赚50积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前4局猜错，<span class="highlight-grey">总亏损260积分</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注310积分</span>，猜对能获得310积分奖励，减去亏损的260还能赚50积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
+            instruction = '前4局猜错，<span class="highlight-grey">总亏损260积分</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注310积分</span>，猜对能获得310积分奖励，减去亏损的260还能赚50积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
             image = '/client/images/progress-bar/lose_150.png';
-            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有2次机会</div>'; 
-            result_info = '本轮错了4次，还剩2次。';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">2次内猜对奖励加倍</div>'; 
+            result_info = '2次内猜对奖励加倍';
         break;
 
         case 5:
             instruction = '前5局猜错，<span class="highlight-green">总亏损570积分</span>，根据倍增式玩法，第6局<span class="highlight-orange">将押注630积分</span>，如猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span>';
+            instruction = '前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
             image = '/client/images/progress-bar/lose_310.png';
-            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">您还有1次机会</div>'; 
-            result_info = '本轮剩1次机会，猜错清零。';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">1次内猜对奖励加倍</div>'; 
+            result_info = '1次内猜对奖励加倍';
         break;
 
     }
