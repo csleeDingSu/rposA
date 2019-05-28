@@ -214,10 +214,8 @@ class Bresult extends Command
 			$gamelevel    = $game_p_level['gamelevel'];
 			$player_level = $game_p_level['player_level'];
 			
-			
-			
 			$gameresult   = $this->decide_result_condition($memberid, $data);
-			
+
 			if ($gameresult)
 			{
 				$status = $gameresult->status;
