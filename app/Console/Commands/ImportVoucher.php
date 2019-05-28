@@ -55,7 +55,7 @@ class ImportVoucher extends Command
 		$cron->save();
 		
 		//Check Files in pipeline
-		$result  = \DB::table('excel_upload')->groupBy('filename')
+		$result  = \DB::table('excel_upload')-where('filename', 'like', 'upv%')->groupBy('filename')
                  ->get();
 		
 		if (!$result->isEmpty())
