@@ -1089,7 +1089,7 @@ class GameController extends Controller
 		{
 			return response()->json(['success' => false, 'message' => "no betting"]);
 		}		
-		$game_result = generate_random_number(1,6);				
+					
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
 		$gametype = $res->gametype ;
@@ -1123,10 +1123,38 @@ class GameController extends Controller
 		if ($gameresult)
 		{
 			$status = $gameresult->status;
-			$is_win = $gameresult->is_win;	 					
+			$is_win = $gameresult->is_win;
+			
+			$arr_even = ['2','4','6'];
+			$arr_odd  = ['1','3','5'];
+			
+			if ($bet == 'even')
+			{
+				if($status === 'win')
+				{
+					$game_result = $arr_even [ array_rand($arr_even,1) ];
+				}
+				else
+				{
+					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
+				}
+			}
+			else
+			{
+				if($status === 'win')
+				{
+					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
+				}
+				else
+				{
+					$game_result = $arr_even [ array_rand($arr_even,1) ];
+				}				
+			}
 		}
 		else 
 		{				
+			$game_result = generate_random_number(1,6);	
+			
 			$gen_result  = check_odd_even($game_result);
 			//$gen_result  = 'evsn';
 			if ($gen_result === $bet)
