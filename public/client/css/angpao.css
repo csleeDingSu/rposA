@@ -78,7 +78,7 @@ body {
     width: 100%;
     /*font-size: 16px;*/
     margin: 0 auto;
-    background-image: url("/vwechat/images/share.png");
+    background-image: url("/vwechat/images/share.jpg");
     background-color: transparent;
     background-repeat: no-repeat;
 
@@ -98,13 +98,36 @@ body {
     /*background-repeat: no-repeat;*/
 
     margin-top: 325px;
-    margin-left: 50px;
+    margin-left: 40px;
     display: inline-block;
     font-size: 14px;
     word-wrap: break-word;
     overflow-x: auto; 
 
 
+}
+
+.btn_draw {
+    position: absolute; 
+    padding:5%;
+    width: 100%;
+    padding-top:113%;
+    animation-name: cf3FadeInOut;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-duration: 2s;
+/*animation-direction: alternate;*/
+}
+
+@keyframes cf3FadeInOut {
+  0% {
+  /*opacity:1;*/
+  transform: scale(1);
+}
+50% {
+/*opacity:0.8;*/
+transform: scale(0.95);
+}
 }
 
 @media only screen and (min-width: 300px) {
@@ -133,7 +156,7 @@ body {
     .panel-dummy-message {
         height: 100px;
         margin-top: 455px;
-        margin-left: 40px;
+        margin-left: 35px;
         font-size: 12px;
     }
 
@@ -150,7 +173,7 @@ body {
     .panel-dummy-message {
         height: 120px;
         margin-top: 510px;
-        margin-left: 45px;
+        margin-left: 35px;
         font-size: 14px;
     }
 
@@ -182,7 +205,7 @@ body {
     .panel-dummy-message {        
         height: 135px;
         margin-top: 525px;
-        margin-left: 40px;
+        margin-left: 23px;
         font-size: 16px;
     }
 
@@ -200,7 +223,7 @@ body {
     .panel-dummy-message {
         height: 135px;
         margin-top: 565px;
-        margin-left: 50px;
+        margin-left: 40px;
         font-size: 16px;
     }
 
@@ -217,7 +240,7 @@ body {
     .panel-dummy-message {
         height: 135px;
         margin-top: 580px;
-        margin-left: 55px;
+        margin-left: 40px;
         font-size: 16px;
     }
 
@@ -234,7 +257,7 @@ body {
     .panel-dummy-message {
         height: 135px;
         margin-top: 585px;
-        margin-left: 55px;
+        margin-left: 45px;
         font-size: 16px;
     }
 
@@ -251,7 +274,7 @@ body {
     .panel-dummy-message {
         height: 170px;
         margin-top: 700px;
-        margin-left: 60px;
+        margin-left: 50px;
         font-size: 20px;
     }
 
@@ -267,7 +290,7 @@ body {
     .panel-dummy-message {
         height: 250px;
         margin-top: 1015px;
-        margin-left: 80px;
+        margin-left: 70px;
         font-size: 30px;
     }
 }
@@ -281,9 +304,10 @@ body {
     .panel-dummy-message {
         height: 250px;
         margin-top: 1015px;
-        margin-left: 80px;
+        margin-left: 50px;
         font-size: 30px;
     }
+
 }
 
 @media only screen and (min-width: 768px) {
@@ -297,7 +321,7 @@ body {
     .panel-dummy-message {
         height: 250px;
         margin-top: 1055px;
-        margin-left: 90px;
+        margin-left: 80px;
         font-size: 30px;
     }
 }
@@ -307,7 +331,7 @@ body {
     .panel-dummy-message {
         height: 250px;
         margin-top: 1045px;
-        margin-left: 90px;
+        margin-left: 80px;
         font-size: 30px;
     }
 }
@@ -317,7 +341,7 @@ body {
     .panel-dummy-message {
         height: 250px;
         margin-top: 1020px;
-        margin-left: 80px;
+        margin-left: 70px;
         font-size: 30px;
     }
 }
@@ -327,7 +351,7 @@ body {
     .panel-dummy-message {
         height: 250px;
         margin-top: 1055px;
-        margin-left: 90px;
+        margin-left: 70px;
         font-size: 30px;
     }
 }
