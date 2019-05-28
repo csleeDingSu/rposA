@@ -1089,7 +1089,7 @@ class GameController extends Controller
 		{
 			return response()->json(['success' => false, 'message' => "no betting"]);
 		}		
-		$game_result = generate_random_number(1,6);				
+					
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
 		$gametype = $res->gametype ;
@@ -1105,8 +1105,8 @@ class GameController extends Controller
 		$player_level = 1;
 		
 		$gamelevel = Game::get_member_current_level($gameid, $memberid, $vip); 
-	
 		
+		$data = ['player_level'=>$player_level, 'gamelevel'=>$gamelevel];
 		//$wallet = Wallet::get_wallet_details_all($memberid);
 		
 		$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $gamelevel);
@@ -1116,13 +1116,56 @@ class GameController extends Controller
 		
 		//print_r($game_p_level );die();
 
-		$gen_result  = check_odd_even($game_result);
-		if ($gen_result === $bet)
+		
+		
+		$gameresult   = $this->decide_result_condition($memberid, $data);
+			
+		if ($gameresult)
 		{
-			//win change balance
-			$status = 'win';
-			$is_win = TRUE;				
-		}			
+			$status = $gameresult->status;
+			$is_win = $gameresult->is_win;
+			
+			$arr_even = ['2','4','6'];
+			$arr_odd  = ['1','3','5'];
+			
+			if ($bet == 'even')
+			{
+				if($status === 'win')
+				{
+					$game_result = $arr_even [ array_rand($arr_even,1) ];
+				}
+				else
+				{
+					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
+				}
+			}
+			else
+			{
+				if($status === 'win')
+				{
+					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
+				}
+				else
+				{
+					$game_result = $arr_even [ array_rand($arr_even,1) ];
+				}				
+			}
+		}
+		else 
+		{				
+			$game_result = generate_random_number(1,6);	
+			
+			$gen_result  = check_odd_even($game_result);
+			//$gen_result  = 'evsn';
+			if ($gen_result === $bet)
+			{
+				//win change balance
+				$status = 'win';
+				$is_win = TRUE;				
+			}
+		}	
+		
+		
 
 		$level = \DB::table('game_levels')->where('id', $gamelevel)->get()->first();
 		//Update Memeber game play history		
@@ -1152,6 +1195,58 @@ class GameController extends Controller
 		$firstwin = \App\Product::IsFirstWin($memberid,$status);
 
 		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
+	}
+	
+	
+	
+	private function decide_result_condition($memberid, $data)
+    {
+		$data['IsFirstLife'] = $IsFirstLife = Game::IsFirstLife($memberid,1);
+		
+		$gamelevel = $data['gamelevel'];
+		
+		//if using first life consecutive_lose then make user win on the 6'th level
+				
+		if (empty($IsFirstLife) && $gamelevel->position === 6)
+		{
+			//if need to add any functions can add into result_condition
+			return $this->result_condition('conditionally_win', $memberid, $data);
+		}
+	}
+	
+	
+	private function result_condition($makeUserWin = 'auto', $memberid, $data)
+    {		
+		switch ($makeUserWin)
+		{
+			case 'forcetowin':
+				return (object)['status'=>'win','is_win'=>TRUE];
+			break;
+			case 'conditionally_win':
+				return (object) $this->conditionally_win($memberid, $data);
+			break;
+			case 'forcetolose':
+				return (object) ['status'=>'lose','is_win'=>null];
+			break;	
+			case 'conditionally_lose':
+				return (object) $this->conditionally_lose($memberid, $data);
+			break;	
+			case 'auto':
+				return null;
+			break;	
+		}
+	}
+	
+	private function conditionally_win($memberid, $data)
+    {
+		//condition 1
+		return ['status'=>'win','is_win'=>TRUE];
+	}
+	
+	private function conditionally_lose($memberid, $data)
+    {
+		//condition 1
+		return ['status'=>'lose','is_win'=>null];
 	}
 
 }
