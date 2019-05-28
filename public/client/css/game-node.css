@@ -2444,3 +2444,38 @@ if it's not present, don't show loader */
 }
 
 /* top-corner-game-rules Modal End*/
+
+/* strikethrough title */
+.strikethrough {
+  line-height: 0.5;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+.strikethrough span {
+  display: inline-block;
+  position: relative;
+  color: #b45df4;
+  font-size: 14px;
+}
+.strikethrough span:before,
+.strikethrough span:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #d59ae6;
+  top: 0;
+  width: 10px;
+}
+.strikethrough span:before {
+  right: 100%;
+  margin-right: 5px;
+}
+.strikethrough span:after {
+  left: 100%;
+  margin-left: 5px;
+}
+
+.bold {
+	font-weight: 700;
+}
