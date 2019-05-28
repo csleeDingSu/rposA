@@ -1105,8 +1105,8 @@ class GameController extends Controller
 		$player_level = 1;
 		
 		$gamelevel = Game::get_member_current_level($gameid, $memberid, $vip); 
-	
 		
+		$data = ['player_level'=>$player_level, 'gamelevel'=>$gamelevel];
 		//$wallet = Wallet::get_wallet_details_all($memberid);
 		
 		$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $gamelevel);
@@ -1120,22 +1120,22 @@ class GameController extends Controller
 		
 		$gameresult   = $this->decide_result_condition($memberid, $data);
 			
-			if ($gameresult)
+		if ($gameresult)
+		{
+			$status = $gameresult->status;
+			$is_win = $gameresult->is_win;	 					
+		}
+		else 
+		{				
+			$gen_result  = check_odd_even($game_result);
+			//$gen_result  = 'evsn';
+			if ($gen_result === $bet)
 			{
-				$status = $gameresult->status;
-				$is_win = $gameresult->is_win;								
+				//win change balance
+				$status = 'win';
+				$is_win = TRUE;				
 			}
-			else 
-			{				
-				$gen_result  = check_odd_even($game_result);
-				//$gen_result  = 'evsn';
-				if ($gen_result === $bet)
-				{
-					//win change balance
-					$status = 'win';
-					$is_win = TRUE;				
-				}
-			}
+		}	
 		
 		
 
