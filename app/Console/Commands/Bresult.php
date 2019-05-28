@@ -212,16 +212,26 @@ class Bresult extends Command
 			$gamelevel    = $game_p_level['gamelevel'];
 			$player_level = $game_p_level['player_level'];
 			
-			$gen_result  = check_odd_even($game_result);
+			$gameresult   = $this->decide_result_condition($memberid, $data);
 			
-			
-			//$gen_result  = 'even';
-			if ($gen_result === $bet)
+			if ($gameresult)
 			{
-				//win change balance
-				$status = 'win';
-				$is_win = TRUE;				
-			}			
+				$status = $gameresult->status;
+				$is_win = $gameresult->is_win;								
+			}
+			else 
+			{				
+				$gen_result  = check_odd_even($game_result);
+				//$gen_result  = 'evsn';
+				if ($gen_result === $bet)
+				{
+					//win change balance
+					$status = 'win';
+					$is_win = TRUE;				
+				}
+			}
+			
+			
 			
 			//Add wallet update functions 				
 			//$wallet = '100';
@@ -310,6 +320,56 @@ class Bresult extends Command
         $record->save();
         return true;
     }
+	
+	private function decide_result_condition($memberid, $data)
+    {
+		$data['IsFirstLife'] = $IsFirstLife = Game::IsFirstLife($memberid,1);
+		
+		$gamelevel = $data['gamelevel'];
+		
+		//if using first life consecutive_lose then make user win on the 6'th level
+				
+		if (empty($IsFirstLife) && $gamelevel->position === 6)
+		{
+			//if need to add any functions can add into result_condition
+			return $this->result_condition('conditionally_win', $memberid, $data);
+		}
+	}
+	
+	
+	private function result_condition($makeUserWin = 'auto', $memberid, $data)
+    {		
+		switch ($makeUserWin)
+		{
+			case 'forcetowin':
+				return (object)['status'=>'win','is_win'=>TRUE];
+			break;
+			case 'conditionally_win':
+				return (object) $this->conditionally_win($memberid, $data);
+			break;
+			case 'forcetolose':
+				return (object) ['status'=>'lose','is_win'=>null];
+			break;	
+			case 'conditionally_lose':
+				return (object) $this->conditionally_lose($memberid, $data);
+			break;	
+			case 'auto':
+				return null;
+			break;	
+		}
+	}
+	
+	private function conditionally_win($memberid, $data)
+    {
+		//condition 1
+		return ['status'=>'win','is_win'=>TRUE];
+	}
+	
+	private function conditionally_lose($memberid, $data)
+    {
+		//condition 1
+		return ['status'=>'lose','is_win'=>null];
+	}
 }
 
 

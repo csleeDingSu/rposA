@@ -238,6 +238,7 @@ try {
             },
             error: function (error) { 
                 console.log(error);
+                $(".reload").show();
             },
             success: function(data) {
 
@@ -249,20 +250,23 @@ try {
                     btn_rectangle.addClass('clicked');
                     showPayout();
 
-                    $.ajax({
-                        type: 'GET',
-                        url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id
-                        + "&drawid=0" 
-                        + "&bet="+ selected 
-                        +"&betamt=" + bet_amount,
-                        dataType: "json",
-                        beforeSend: function( xhr ) {
-                            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                        },
-                        error: function (error) { console.log(error.responseText) },
-                        success: function(data) {
-                        }
-                    });
+                    // $.ajax({
+                    //     type: 'GET',
+                    //     url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id
+                    //     + "&drawid=0" 
+                    //     + "&bet="+ selected 
+                    //     +"&betamt=" + bet_amount,
+                    //     dataType: "json",
+                    //     beforeSend: function( xhr ) {
+                    //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                    //     },
+                    //     error: function (error) { 
+                    //         console.log(error.responseText); 
+                    //         $(".reload").show();
+                    //     },
+                    //     success: function(data) {
+                    //     }
+                    // });
                 }
             }
         }); // ajax get-game-result-temp
@@ -270,6 +274,7 @@ try {
     }
     catch(err) {
       console.log(err.message);
+      alert('下注失败');
       $(".reload").show();
     }
 }
@@ -286,6 +291,8 @@ function getToken(){
             if(data.success) {
                 token = data.access_token;
                 startGame();            
+            } else {
+                $(".reload").show();
             }      
         });
     } else {
@@ -610,21 +617,21 @@ function showPayout(){
               );
 
             
-            $.ajax({
-                type: 'GET',
-                url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id 
-                + "&bet=&betamt=&drawid=0",
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { 
-                    console.log(error.responseText);
-                    // window.top.location.href = "/arcade";
-                },
-                success: function(data) {
-                }
-            });
+            // $.ajax({
+            //     type: 'GET',
+            //     url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id 
+            //     + "&bet=&betamt=&drawid=0",
+            //     dataType: "json",
+            //     beforeSend: function( xhr ) {
+            //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            //     },
+            //     error: function (error) { 
+            //         console.log(error.responseText);
+            //         // window.top.location.href = "/arcade";
+            //     },
+            //     success: function(data) {
+            //     }
+            // });
 
         } else {
 
@@ -1063,34 +1070,48 @@ function showLoseModal(){
 }
 
 function startTimer(duration, timer, freeze_time) {
-    var selected = $('div.clicked').find('input:radio').val();
-    var trigger_time = freeze_time - 1;
-    var id = $('#hidUserId').val();
-    var level = parseInt($('#hidLevel').val());
-    $('.small-border').addClass('fast-rotate');
-    g_previous_point = parseInt($('.spanAcuPoint').html());
 
-    $.ajax({
-        type: 'POST',
-        url: "/api/get-betting-result?gameid=102&memberid=" + id, 
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error) },
-        success: function(data) {
-            $('.small-border').removeClass('fast-rotate');
-            $('#result').val(data.game_result);
-            if(data.status == 'win'){
-                show_win = true;
-                showWinModal();
-            } else if(data.status == 'lose' && level < 6) {
-                show_lose = true;
-                showLoseModal();
+    try {
+
+        var selected = $('div.clicked').find('input:radio').val();
+        var trigger_time = freeze_time - 1;
+        var id = $('#hidUserId').val();
+        var level = parseInt($('#hidLevel').val());
+        $('.small-border').addClass('fast-rotate');
+        g_previous_point = parseInt($('.spanAcuPoint').html());
+
+        $.ajax({
+            type: 'POST',
+            url: "/api/get-betting-result?gameid=102&memberid=" + id, 
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            error: function (error) { 
+                console.log(error); 
+                alert('下注失败');
+                $(".reload").show();
+            },
+            success: function(data) {
+                $('.small-border').removeClass('fast-rotate');
+                $('#result').val(data.game_result);
+                if(data.status == 'win'){
+                    show_win = true;
+                    showWinModal();
+                } else if(data.status == 'lose' && level < 6) {
+                    show_lose = true;
+                    showLoseModal();
+                }
+                triggerResult();
             }
-            triggerResult();
-        }
-    });
+        });
+
+    }
+    catch(err) {
+      console.log(err.message);
+      alert('下注失败');
+      $(".reload").show();
+    }
 }
 
 function triggerResult(){
@@ -1262,7 +1283,7 @@ function musicPlay(music) {
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
         }
 
-        console.log(music);
+        // console.log(music);
         // if (music == 22) {
         //     console.log('pause');
         //     audioElement.pause();
