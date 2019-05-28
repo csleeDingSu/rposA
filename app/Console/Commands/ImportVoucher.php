@@ -72,6 +72,11 @@ class ImportVoucher extends Command
 				$this->info('-- Vouchers importing from file: '.$row->filename);
 				
 				$importfile   = \App\FileVoucher::where('file_name',$row->filename)->first();
+				
+				if (is_null($importfile)) {
+					continue;
+				}
+
 				$importfile->status = 2;
 				$importfile->updated_at = now();
 				$importfile->save();				
