@@ -55,7 +55,7 @@ class ImportVoucher extends Command
 		$cron->save();
 		
 		//Check Files in pipeline
-		$result  = \DB::table('excel_upload')->groupBy('filename')
+		$result  = \DB::table('excel_upload')->where('filename', 'like', 'upv%')->groupBy('filename')
                  ->get();
 		
 		if (!$result->isEmpty())
@@ -72,6 +72,13 @@ class ImportVoucher extends Command
 				$this->info('-- Vouchers importing from file: '.$row->filename);
 				
 				$importfile   = \App\FileVoucher::where('file_name',$row->filename)->first();
+				
+				if (is_null($importfile)) {
+					
+					\DB::table('excel_upload')->where('filename',$row->filename)->delete();	
+					continue;
+				}
+
 				$importfile->status = 2;
 				$importfile->updated_at = now();
 				$importfile->save();				
@@ -108,6 +115,8 @@ class ImportVoucher extends Command
 				if (empty($cfile)) 
 				{
 					$this->error('-- No rows to process');
+					$cron->status = 3;
+					$cron->save();
 					die();
 				}				
 
@@ -208,6 +217,8 @@ class ImportVoucher extends Command
 				else 
 				{ 
 					$this->error('-- File Missing/No excel rows to process');
+					$cron->status = 3;
+					$cron->save();
 					die(); 
 				}
 				

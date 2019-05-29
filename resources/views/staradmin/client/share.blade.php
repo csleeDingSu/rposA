@@ -45,7 +45,6 @@ QRcode::png($url, $filename, 'L', '3.6', 5);
 $showIcon = $filename;
 
 $showimage = public_path( 'client/bar/'.$data->filename );
-
 //$showIcon = "https://chart.googleapis.com/chart?chs=190x190&cht=qr&chl=$url&choe=UTF-8";
 //$mainimg = imagecreatetruecolor( 500, 500 );
 
@@ -63,7 +62,7 @@ imagefill( $mainimg, 0, 0, $white );
 
 // imagecopymerge( $image, $mainimg, 13, 641, 0, 0, 132, 132, 100 );
 //imagecopymerge( $image, $mainimg, 21, 663, 0, 0, 100, 100, 100 ); //old
-imagecopymerge( $image, $mainimg, 177, 355, 0, 0, 140, 125, 100 );
+imagecopymerge( $image, $mainimg, 189, 399, 10, 10, 120, 120, 100 );
 
 ob_start();
 imagepng( $image );
@@ -367,8 +366,11 @@ border-radius: 20px;
 	body {overflow: hidden;}
 	
 	.bottom {
-  text-align: center;color: #FFF;font-style: normal;
+  text-align: -webkit-auto;
+  ;color: #FFF;font-style: normal;
 			   margin-bottom: 0.4rem;
+         margin-top: 1rem;
+         line-height: 2;
 }
 h1 {
   text-align: center;color: #FFF;font-size: 0.35rem;
@@ -397,7 +399,7 @@ h1:after {
 }
 	.bottomdiv
 	{
-		font-size: 0.23rem;
+		font-size: 0.25rem;
 	}
 	.container
 	{
@@ -405,12 +407,12 @@ h1:after {
     background-size:contain;
     background-repeat:no-repeat;
     background-color: #FF6d7d;
-    height: 12.4rem;
+    /*height: 12.4rem;*/
 	}
 	
 	.small-img
 	{
-		border:0.4rem solid #EFEFEF;
+		border:0.25rem solid #fff9dc;
    		background-color:#EFEFEF;
 		/*width: auto;*/
     width: 5rem;
@@ -483,8 +485,8 @@ h1:after {
 .btn_ribbon {
   position: absolute;
   background-color: #e43;
-  top: 8.1rem;
-  right: 1.6rem;
+  top: 9.9rem;
+  right: 1.05rem;
 		opacity: 1.2;
 		  background:rgba(0,0,0,0.0);
 		color: #FFF;z-index: 1;
@@ -496,8 +498,48 @@ h1:after {
         background-repeat: no-repeat;
         background-size: cover;background-size: 100% 100%;
 	font-size: 0.35rem;
-  width: 55%;
+  width: 70%;
 }	
+
+.ribbon_img {
+  position: absolute;
+    width: 15%;
+}
+
+ol {
+    counter-reset:item; 
+    margin:0; 
+    padding-left:0; 
+}
+ol>li {
+    counter-increment:item; 
+    /*list-style:none inside; 
+    margin: 40px 0;*/
+    overflow: hidden;
+    /*font-size: 16px !important;
+    line-height: 1.3;*/
+
+}
+
+ol>li:before {
+    content:counter(item) ;
+    margin-right: 10px;
+    padding-bottom: 25px;
+    display: block;
+    /*-webkit-border-radius: 50%;*/
+    /*-moz-border-radius: 50%;*/
+    border-radius: 50%;
+    width: 0.25rem;
+    height: 0.1rem;
+    background: #f7d344;
+    color: #fff;
+    text-align: center; 
+    /*font: 56px 'Lato', Helvetica, Arial, sans-serif;*/
+    font-weight: 100;
+    float: left;
+    color: #8873e1;
+    margin-top:0.15rem;
+}
 	
   @media only screen and (min-width: 300px) { .ribbon { margin-left: 0.71rem !important; } }
 
@@ -523,18 +565,25 @@ h1:after {
 <div class="container">
 
 	<div class="ribbon-holder" align="center">
-    <div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div>
-		<div class="clickribbon" onClick="location.reload();"> @lang('dingsu.change_picture') </div>
-    <div class="btn_ribbon ">查看分享方法</div>
+    <!-- <div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div> -->
+		<!-- <div class="clickribbon" onClick="location.reload();"> @lang('dingsu.change_picture') </div> -->
+    <img class="ribbon_img" src="{{asset('/cshare/images/ribbon.png')}}" >
+    <div class="btn_ribbon ">&nbsp;</div>
+
 
     <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
 		
       <div class="bottom">
-  			<h1>友情提示</h1>
+  			<h1>奖励说明</h1>
   			<div class="bottomdiv">
-  			好友需通过网站的微信认证，你才能得到{{env('game_name', '幸运转盘')}}次数。
-        <br>
-        严厉打击小号注册，大号会被封号处理。
+          <ol>
+            <li><p>每邀请1个好友送1埸大{{env('game_name', '幸运转盘')}}，好友邀请别人，你也能获得1场{{env('game_name', '幸运转盘')}}（可抽奖15次）。</p>
+          </li>
+          <li>如你進请了10个好友，而每个好友也邀请10个人，你就能获得110场大{{env('game_name', '幸运转盘')}}，最多赚1650元红包。
+          </li>
+          <li>好友需通过网站的微信认证，你才能得到{{env('game_name', '幸运转盘')}}次数。 严厉打击小号注册，大号会被封号处理。
+          </li>
+        </ol>
   			</div>
   		</div>
   </div>

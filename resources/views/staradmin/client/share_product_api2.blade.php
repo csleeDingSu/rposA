@@ -1,6 +1,6 @@
 @extends('layouts.default_useforshareproduct')
 
-@section('title', '记得往下拉，免单等你拿！')
+@section('title', '挖宝优惠购')
 
 @section('top-css')
     @parent
