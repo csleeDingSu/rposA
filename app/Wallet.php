@@ -27,7 +27,7 @@ class Wallet extends Model
 		$result = [];
 		if (!empty($memberid))
 		{			
-			return $result = DB::table('mainledger')->select('current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
+			return $result = DB::table('mainledger')->select('play_count','current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
 			//,'current_life_acupoint as acupoint'
 			, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint end) as acupoint')
 			)->where('member_id', $memberid)->latest()->first();
@@ -796,6 +796,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 				'balance_before'            =>  $balance_before,
 				'current_balance'           =>  $current_balance,
 				'current_life_acupoint'		=>	$current_life_acupoint,	
+				'play_count'		        =>	$mainledger->play_count+1,	
 				];
 
 			DB::table('mainledger')->
@@ -833,6 +834,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 				'balance_before'            =>  $balance_before,
 				'current_balance'           =>  $current_balance,
 				'current_life_acupoint'		=>	$current_life_acupoint,	
+				'play_count'		        =>	$mainledger->play_count+1,	
 				];
 
 			DB::table('mainledger')->
