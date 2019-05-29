@@ -132,6 +132,7 @@ function initUser(records){
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
+        var play_count = parseInt(records.play_count);
         //g_current_point = parseInt(records.balance) + parseInt(records.acupoint);
 
         if(life == 0){
@@ -155,6 +156,7 @@ function initUser(records){
         $('#hidBalance').val(balance);
         $(".nTxt").html(life);
         $(".spanLife").html(life);
+        $(".span-play-count").html(play_count);
 
         setBalance();
 
@@ -1082,6 +1084,19 @@ function startTimer(duration, timer, freeze_time) {
         g_previous_point = parseInt($('.spanAcuPoint').html());
 
         $.ajax({
+        type: 'POST',
+        url: "/api/add-betting?gameid=102&memberid=" + id + "&betto=" + selected, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { 
+            console.log(error); 
+                alert('下注失败');
+                $(".reload").show(); 
+            },
+        success: function(data) {
+            $.ajax({
             type: 'POST',
             url: "/api/get-betting-result?gameid=102&memberid=" + id, 
             dataType: "json",
@@ -1107,6 +1122,10 @@ function startTimer(duration, timer, freeze_time) {
             }
         });
 
+        }
+    });
+
+        
     }
     catch(err) {
       console.log(err.message);

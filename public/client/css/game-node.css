@@ -2476,6 +2476,6 @@ if it's not present, don't show loader */
   margin-left: 5px;
 }
 
-.bold {
+.span-play-count {
 	font-weight: 700;
 }
