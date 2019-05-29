@@ -1173,11 +1173,15 @@ class GameController extends Controller
 		
 		///$status = 'lose';
 		
-		$wallet = Wallet::new_game_wallet_update ($memberid,  $status, $level);
+		$wallet   = Wallet::new_game_wallet_update ($memberid,  $status, $level);
+		
+		$r_status = 2;
 		
 		if ($status == 'win') 			
 		{
 			$reward = $level->point_reward;
+			
+			$r_status = 1;
 			
 			if ($wallet['acupoint'] >= 150 ) $this->update_notification($memberid, $gameid,'0');
 		}		
@@ -1190,7 +1194,13 @@ class GameController extends Controller
 		
 		$res->status     = 1;
 		$res->deleted_at = $now;
-		$res->save();		
+		$res->save();
+		
+		//Play count update - 29/05/2019
+		$playcount = \App\PlayCount::firstOrNew(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
+		$playcount->increment('play_count', 1);
+		$playcount->save();
+		//End
 		
 		$firstwin = \App\Product::IsFirstWin($memberid,$status);
 
