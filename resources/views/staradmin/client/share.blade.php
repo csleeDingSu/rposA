@@ -62,7 +62,7 @@ imagefill( $mainimg, 0, 0, $white );
 
 // imagecopymerge( $image, $mainimg, 13, 641, 0, 0, 132, 132, 100 );
 //imagecopymerge( $image, $mainimg, 21, 663, 0, 0, 100, 100, 100 ); //old
-imagecopymerge( $image, $mainimg, 189, 399, 10, 10, 120, 120, 100 );
+imagecopymerge( $image, $mainimg, 190, 400, 9, 9, 120, 120, 100 );
 
 ob_start();
 imagepng( $image );
