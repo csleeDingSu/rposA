@@ -74,6 +74,8 @@ class ImportVoucher extends Command
 				$importfile   = \App\FileVoucher::where('file_name',$row->filename)->first();
 				
 				if (is_null($importfile)) {
+					
+					\DB::table('excel_upload')->where('filename',$row->filename)->delete();	
 					continue;
 				}
 
@@ -113,6 +115,8 @@ class ImportVoucher extends Command
 				if (empty($cfile)) 
 				{
 					$this->error('-- No rows to process');
+					$cron->status = 3;
+					$cron->save();
 					die();
 				}				
 
@@ -213,6 +217,8 @@ class ImportVoucher extends Command
 				else 
 				{ 
 					$this->error('-- File Missing/No excel rows to process');
+					$cron->status = 3;
+					$cron->save();
 					die(); 
 				}
 				
