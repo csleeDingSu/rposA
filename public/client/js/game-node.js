@@ -158,9 +158,9 @@ function initUser(records){
 
         setBalance();
 
-        if(acupoint == 50 || acupoint == 100){
+        /*if(acupoint == 50 || acupoint == 100){
             $('.speech-bubble-point').html('已赚了'+ acupoint +'积分大约可换'+ acupoint/10 +'元').fadeIn(1000).delay(2000).fadeOut(400);
-        }
+        }*/
 
         if(life == 0){
             $('#reset-life-share').modal();
@@ -381,6 +381,7 @@ function resetGame() {
     $('.spinning').css('visibility', 'hidden');
     $('.middle-label').html('开始竞猜');
     $('.radio-primary').unbind('click');
+    $('.small-border').removeClass('fast-rotate');
 
     startGame();
 }
