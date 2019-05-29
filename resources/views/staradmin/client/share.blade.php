@@ -523,22 +523,26 @@ ol>li {
 
 ol>li:before {
     content:counter(item) ;
-    margin-right: 10px;
-    padding-bottom: 25px;
+    /*margin-right: 0.1rem;*/
+    /*padding-bottom: 0.25rem;*/
     display: block;
     /*-webkit-border-radius: 50%;*/
     /*-moz-border-radius: 50%;*/
     border-radius: 50%;
     width: 0.25rem;
-    height: 0.1rem;
+    height: 0.25rem;
     background: #f7d344;
     color: #fff;
     text-align: center; 
-    /*font: 56px 'Lato', Helvetica, Arial, sans-serif;*/
+    font: 0.2rem 'Lato', Helvetica, Arial, sans-serif;
     font-weight: 100;
     float: left;
     color: #8873e1;
-    margin-top:0.15rem;
+    margin-top:0.14rem;
+}
+
+.padding-left {
+  padding-left: 0.4rem;
 }
 	
   @media only screen and (min-width: 300px) { .ribbon { margin-left: 0.71rem !important; } }
@@ -577,11 +581,14 @@ ol>li:before {
   			<h1>奖励说明</h1>
   			<div class="bottomdiv">
           <ol>
-            <li><p>每邀请1个好友送1埸大{{env('game_name', '幸运转盘')}}，好友邀请别人，你也能获得1场{{env('game_name', '幸运转盘')}}（可抽奖15次）。</p>
+            <li><div class="padding-left">每邀请1个好友送1埸大{{env('game_name', '幸运转盘')}}，好友邀请别人，你也能获得1场{{env('game_name', '幸运转盘')}}（可抽奖15次）。
+            </div>
           </li>
-          <li>如你進请了10个好友，而每个好友也邀请10个人，你就能获得110场大{{env('game_name', '幸运转盘')}}，最多赚1650元红包。
+          <li><div class="padding-left">如你進请了10个好友，而每个好友也邀请10个人，你就能获得110场大{{env('game_name', '幸运转盘')}}，最多赚1650元红包。
+          </div>
           </li>
-          <li>好友需通过网站的微信认证，你才能得到{{env('game_name', '幸运转盘')}}次数。 严厉打击小号注册，大号会被封号处理。
+          <li><div class="padding-left">好友需通过网站的微信认证，你才能得到{{env('game_name', '幸运转盘')}}次数。 严厉打击小号注册，大号会被封号处理。
+          </div>
           </li>
         </ol>
   			</div>
