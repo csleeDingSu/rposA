@@ -223,9 +223,10 @@
 
 <a href='{{str_replace('vregister','vvregister', \Request::url())}}'>
 	<div class="angpao_container">
-            <img class="btn_draw" src="{{ asset('vwechat/images/btn_draw.png') }}">	   
+        <img class="btn_draw" src="{{ asset('vwechat/images/btn_draw.png') }}">    
         
 		<div class="panel-dummy-message">
+
 			<ul id="msg">
 				               
 			</ul>
