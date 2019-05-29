@@ -1024,12 +1024,22 @@ class GameController extends Controller
 			case '101':
 				return response()->json(['success' => false, 'message' => 'inactive game']);			
 				break;
-			case '102':
-				
+			case '102':				
 				$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $type)->first();					
 				if($res)
 				{
-					return response()->json(['success' => false, 'message' => "relese the existing betting before add new bet"]);
+					//update
+					if ($request->betto)
+					{
+						member_game_bet_temp::where('id', $res->id)->update(['bet' => $request->betto]);
+						$message = "temparory member $request->memberid bet $request->betamt";
+					}
+					else
+					{
+						member_game_bet_temp::where('id', $res->id)->delete();						
+						$message = "bet removed";
+					}					
+					return response()->json(['success' => true, 'message' => $message]);
 				}
 				
 				return $this->reserve_betting($request);
