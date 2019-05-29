@@ -109,7 +109,7 @@
 	</div>
 	<!-- end information table -->
 
-	<!--h2 class="strikethrough"><span>已抽奖<span class="bold">10</span>次</span></h2-->
+	<h2 class="strikethrough"><span>已抽奖<span class="span-play-count">10</span>次</span></h2>
 
 	<!-- swiper iframe -->
 	<div class="swiper-container">
