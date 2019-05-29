@@ -74,6 +74,8 @@ class ImportVoucher extends Command
 				$importfile   = \App\FileVoucher::where('file_name',$row->filename)->first();
 				
 				if (is_null($importfile)) {
+					
+					\DB::table('excel_upload')->where('filename',$fname)->delete();	
 					continue;
 				}
 
