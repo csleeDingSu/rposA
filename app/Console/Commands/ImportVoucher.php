@@ -75,7 +75,7 @@ class ImportVoucher extends Command
 				
 				if (is_null($importfile)) {
 					
-					\DB::table('excel_upload')->where('filename',$fname)->delete();	
+					\DB::table('excel_upload')->where('filename',$row->filename)->delete();	
 					continue;
 				}
 
