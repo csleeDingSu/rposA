@@ -486,7 +486,7 @@ h1:after {
   position: absolute;
   background-color: #e43;
   top: 9.9rem;
-  right: 1.05rem;
+  right: 1.3rem;
 		opacity: 1.2;
 		  background:rgba(0,0,0,0.0);
 		color: #FFF;z-index: 1;
@@ -498,7 +498,7 @@ h1:after {
         background-repeat: no-repeat;
         background-size: cover;background-size: 100% 100%;
 	font-size: 0.35rem;
-  width: 70%;
+  width: 4.5rem;
 }	
 
 .ribbon_img {
