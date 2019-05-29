@@ -76,6 +76,8 @@ class LisImportSoftpins
 			$i = 1;
 			foreach ($data as $key=> $val) 
 			{
+				if (empty($val)) continue;
+				
 				$ke = array_keys($val);
 				
 				foreach ($val as $akey=>$voar) 
