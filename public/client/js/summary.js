@@ -63,7 +63,7 @@ function getSummary(token) {
                 case 'CRPNT':
                 case 'APMNT':
                     str_type = '游戏收益结算';
-                    str_points = '+' + parseInt(value.credit)/10 + '元';
+                    str_points = '+' + parseInt(value.credit)/10 + '元';                
                 break;
 
                 case 'DPRPO':

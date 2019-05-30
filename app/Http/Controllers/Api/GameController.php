@@ -1113,7 +1113,7 @@ class GameController extends Controller
 		
 		if ($play_status['point']<1)
 		{
-			return ['success' => false, 'message' => 'not enough point'];			
+			//return ['success' => false, 'message' => 'not enough point'];			
 		}
 		
 		if ($play_status['life']<1)
@@ -1205,6 +1205,12 @@ class GameController extends Controller
 		}	
 		
 		
+		/*if ($memberid == 30)
+		{
+			$status = 'lose';
+			$is_win = null;
+		}
+		*/
 
 		$level = \DB::table('game_levels')->where('id', $gamelevel)->get()->first();
 		//Update Memeber game play history		
