@@ -91,7 +91,7 @@ body {
 .panel-dummy-message {
 
     /*background-size: 65%;*/
-    height: 2.9rem;
+    height: 2.85rem;
     /*width: 100%;*/
     /*background-image: url("/client/images/tips_step1.png");*/
     /*background-color: transparent;*/
@@ -100,7 +100,7 @@ body {
     margin-top: 0.05rem;
     margin-left: 0.6rem;
     display: inline-block;
-    font-size: 0.3rem;
+    font-size: 0.29rem;
     word-wrap: break-word;
     overflow-x: auto; 
 
