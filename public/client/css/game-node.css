@@ -1048,7 +1048,7 @@ body{
 	margin-bottom: 10px;
 	font-size: 16px;
 	font-weight: 500;
-	color: #999;
+	color: #afafaf;
 	padding:10px;
 	text-align: center;
 	letter-spacing: 0.5px;
@@ -1864,7 +1864,8 @@ if it's not present, don't show loader */
 
 .modal-win-title {
 	font-weight: 500;
-	font-size: 20px;
+	font-size: 18px;
+	color: #999;
 }
 
 #lose-modal .modal-content{
@@ -1915,8 +1916,8 @@ if it's not present, don't show loader */
 
 .modal-result{
 	color: #62c807;
-	font-weight: 500;
-	font-size: 28px;
+	font-weight: 700;
+	font-size: 24px;
 }
 
 .modal-lose-result{
@@ -2128,7 +2129,7 @@ if it's not present, don't show loader */
 }
 
 #win-modal .instructions {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   color: #ffe0d2;
   text-align: center;
@@ -2149,7 +2150,7 @@ if it's not present, don't show loader */
   font-size: 18px;
   color: #b95d0c;
   background-size: contain;
-  width: 250px;
+  width: 260px;
   height: 76px;
   padding-top: 16px;
   cursor: pointer;
@@ -2229,7 +2230,6 @@ if it's not present, don't show loader */
   font-size: 18px;
   color: #c33234;
   background-size: contain;
-  width: 250px;
   height: 76px;
   padding-top: 16px;
   cursor: pointer;
@@ -2478,4 +2478,5 @@ if it's not present, don't show loader */
 
 .span-play-count {
 	font-weight: 700;
+	display: inline-block;
 }

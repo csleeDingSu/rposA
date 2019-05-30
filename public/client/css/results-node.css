@@ -48,7 +48,7 @@ div.legend-row {
   font-size: 14px;
   color: #fb973f;
   border-radius: 40px;
-  border: 1px solid #fb973f;
+  border: 1px solid #e1e1e1;
   background: #fff;
   z-index: 100;
   position: relative;
@@ -58,6 +58,11 @@ div.legend-row {
 .results-box div {
   font-size: 10px;
   margin-top: -2px;
+}
+
+.odd-box {
+  color: #fb973f;
+  border: 1px solid #fb973f;
 }
 
 .even-box {
