@@ -33,7 +33,7 @@
 							
 							
 							<td>{{ $list->id }}</td>
-							<td>{{ $list->username }}</td>
+							<td @if($list->referred_by != 0) class="text-primary font-weight-bold" @endif >{{ $list->username }}</td>
 							<td>
 								{{ $list->created_at }}
 							</td>

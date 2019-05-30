@@ -996,11 +996,11 @@ function showWinModal(){
         $('#game-rules').modal('hide');
     });
 
-    console.log('standby play win mp3');
-    setTimeout(function(){
-        console.log('play win mp3');
-        musicPlay(2);
-    }, 9000);
+    // console.log('standby play win mp3');
+    // setTimeout(function(){
+    //     console.log('play win mp3');
+    //     musicPlay(2);
+    // }, 9000);
 
 }
 
