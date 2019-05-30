@@ -1113,7 +1113,7 @@ class GameController extends Controller
 		
 		if ($play_status['point']<1)
 		{
-			return ['success' => false, 'message' => 'not enough point'];			
+			//return ['success' => false, 'message' => 'not enough point'];			
 		}
 		
 		if ($play_status['life']<1)
