@@ -74,7 +74,7 @@ function updateResult(records){
             $('.results-body').find('#result-' + counter).addClass('even-box');
             str_result = '双数';
         } else {
-            $('.results-body').find('#result-' + counter).removeClass('even-box');
+            $('.results-body').find('#result-' + counter).addClass('odd-box');
             str_result = '单数';
         }
         $('.results-body').find('#result-' + counter).html(item.result + '<div>'+ str_result +'</div>');
@@ -996,11 +996,11 @@ function showWinModal(){
         $('#game-rules').modal('hide');
     });
 
-    console.log('standby play win mp3');
-    setTimeout(function(){
-        console.log('play win mp3');
-        musicPlay(2);
-    }, 9000);
+    // console.log('standby play win mp3');
+    // setTimeout(function(){
+    //     console.log('play win mp3');
+    //     musicPlay(2);
+    // }, 9000);
 
 }
 
