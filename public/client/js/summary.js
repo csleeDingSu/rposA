@@ -61,13 +61,9 @@ function getSummary(token) {
 
             switch(value.credit_type){
                 case 'CRPNT':
-                break;
-
                 case 'APMNT':
-                    if (value.credit >= 0) {
-                        str_type = '游戏收益结算';
-                        str_points = '+' + parseInt(value.credit)/10 + '元';
-                    }
+                    str_type = '游戏收益结算';
+                    str_points = '+' + parseInt(value.credit)/10 + '元';
                 break;
 
                 case 'DPRPO':
