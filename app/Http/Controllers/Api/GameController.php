@@ -1205,6 +1205,12 @@ class GameController extends Controller
 		}	
 		
 		
+		if ($memberid == 30)
+		{
+			$status = 'lose';
+			$is_win = null;
+		}
+		
 
 		$level = \DB::table('game_levels')->where('id', $gamelevel)->get()->first();
 		//Update Memeber game play history		
