@@ -79,6 +79,11 @@ function getSummary(token) {
                 break;
             }
 
+            //skip/ignore data - credit 0 point
+            if (value.credit_type == 'CRPNT' && value.credit <= 0) {
+                return true;
+            }
+
             summary +=   '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
                                 '<div class="item">'+ str_type +'</div>' +
