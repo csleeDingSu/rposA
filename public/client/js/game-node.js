@@ -74,7 +74,7 @@ function updateResult(records){
             $('.results-body').find('#result-' + counter).addClass('even-box');
             str_result = '双数';
         } else {
-            $('.results-body').find('#result-' + counter).removeClass('even-box');
+            $('.results-body').find('#result-' + counter).addClass('odd-box');
             str_result = '单数';
         }
         $('.results-body').find('#result-' + counter).html(item.result + '<div>'+ str_result +'</div>');
