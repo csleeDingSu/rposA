@@ -482,7 +482,7 @@ h1:after {
     font-size:0.2rem;
 }
 	
-.btn_ribbon {
+.btn_ribbon_old {
   position: absolute;
   background-color: #e43;
   top: 9.9rem;
@@ -500,6 +500,13 @@ h1:after {
 	font-size: 0.35rem;
   width: 4.5rem;
 }	
+
+.btn_ribbon {
+    position: absolute;
+    width: 4.5rem;
+    margin-left: -4.75rem;
+    margin-top: 7.9rem;
+}
 
 .ribbon_img {
   position: absolute;
@@ -572,11 +579,13 @@ ol>li:before {
     <!-- <div class="ribbon"><span>@lang('dingsu.ads_picture')</span></div> -->
 		<!-- <div class="clickribbon" onClick="location.reload();"> @lang('dingsu.change_picture') </div> -->
     <img class="ribbon_img" src="{{asset('/cshare/images/ribbon.png')}}" >
-    <div class="btn_ribbon ">&nbsp;</div>
+    <!-- <div class="btn_ribbon ">&nbsp;</div> -->
 
 
     <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
 		
+    <img class="btn_ribbon" src="{{asset('/cshare/images/btn.png')}}" >
+
       <div class="bottom">
   			<h1>奖励说明</h1>
   			<div class="bottomdiv">
