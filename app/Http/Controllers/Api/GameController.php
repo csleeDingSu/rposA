@@ -986,7 +986,7 @@ class GameController extends Controller
 		}
 		
 		//reserverd point 		
-		Wallet::update_basic_wallet($memberid,0,$gamelevel->bet_amount,'RSV','debit', 'Reserved for betting');			
+		//Wallet::update_basic_wallet($memberid,0,$gamelevel->bet_amount,'RSV','debit', 'Reserved for betting');			
 		
 		//update betting 		
 		$params = ['gameid' => $gameid, 'memberid' => $memberid,'bet' =>$bet,'betamt'=>$gamelevel->bet_amount , 'gametype' => $type];
