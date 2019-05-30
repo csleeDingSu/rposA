@@ -655,6 +655,43 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="share-logo-wrapper">
+                	<img class="share-logo" src="{{ asset('/client/images/no-life.png') }}" width="60" height="60" />
+                </div>
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card share-card">
+								<div class="modal-share-title">
+									您的场次已用完
+								</div>
+								<div class="modal-invite-content">
+									<h1 class="modal-invite-title">邀请好友送场次</h1>
+									邀请<span class="highlight-peach">1个</span>好友送<span class="highlight-peach">{{env('sharetofriend_youwillget', '1')}}场次</span>转盘机会<br />
+									好友邀请1个，你在获得1场次
+									<a href="/share" class="link-button">
+										<div class="modal-vip-button">
+											邀请好友
+										</div>
+									</a>
+								</div>
+								<div class="span-purchase">嫌邀请好友麻烦？直接购买！</div>
+								<a href="/purchase" class="link-button">
+									<div class="modal-share-button">
+										点击购买
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade col-md-12" id="reset-life-share-bk" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="share-logo-wrapper">
                 	<img class="share-logo" src="{{ asset('/client/images/no-life.png') }}" width="77" height="77" />
                 </div>
 				<div class="modal-body">				
