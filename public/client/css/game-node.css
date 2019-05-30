@@ -795,11 +795,13 @@ body{
 }
 
 .modal-invite-content {
-	color: #a58053;
+	color: #999;
 	font-size: 14px;
-	padding-bottom: 20px;
-	padding-top: 10px;
-	text-align: left;
+	padding: 10px;
+	text-align: center;
+	background: #f6f6f6;
+	border-radius: 6px;
+	margin-top: 20px;
 }
 
 .vegan-list {
@@ -845,15 +847,16 @@ body{
 }
 
 .modal-invite-title{
-    color:#c8ac8a;
+    color:#555;
     width:100%;
     margin:10px auto;
     overflow:hidden;
     text-align:center;   
-    line-height: 20px;
-    font-size: 16px;
+    line-height: 25px;
+    font-size: 21px;
 }
 
+/*
 .modal-invite-title:before, .modal-invite-title:after{
     content:"";
     vertical-align:middle;
@@ -866,6 +869,7 @@ body{
 .modal-invite-title:after{
     margin:0 -55% 0 2%;
 }
+*/
 
 /* reset-life-play modal */
 #reset-life-play .modal-content {
@@ -1198,6 +1202,11 @@ body{
 
 .highlight-orange {
 	color: #fe8c3e;
+}
+
+.highlight-peach {
+	color: #ff7282;
+	font-weight: 700;
 }
 
 .highlight-link {
@@ -1733,7 +1742,7 @@ body{
 	height: 38px;
 	position: relative;
 	text-align: center;
-	margin-top: -38px;
+	margin-top: -30px;
 }
 
 .share-logo {
@@ -1743,20 +1752,23 @@ body{
 }
 
 .share-card {
-	margin-top: 30px;
+	margin-top: 10px;
 }
 
 .modal-share-title {
-	color: #505050;
-	font-size: 26px;
+	color: #999;
+	font-size: 20px;
 }
 
 .modal-share-button {
-	background: #d4b189;
+	background: #f6f9ff;
 	border-radius: 20px;
-	font-size: 19px;
-	color: white;
+	font-size: 16px;
+	color: #3774ff;
 	padding: 5px;
+	border: 1px solid #a2b9ff;
+	width: 100px;
+	margin: 0 auto;
 }
 
 .modal-vip-button {
@@ -1767,6 +1779,29 @@ body{
 	border: 1px solid #d4b189;
 	color: #c19867;
 	margin-top: 10px;
+}
+
+#reset-life-share .modal-vip-button {
+  background: url('/client/images/btn-invite.png') no-repeat top center;
+  font-size: 18px;
+  color: #fff;
+  background-size: contain;
+  height: 58px;
+  padding-top: 12px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+  border: none;
+}
+
+#reset-life-share .modal-full-height {
+	padding: 0;
+}
+
+#reset-life-share .span-purchase {
+	color: #666;
+	font-size: 16px;
+	padding: 10px;
 }
 
 /* Paste this css to your style sheet file or under head tag */
