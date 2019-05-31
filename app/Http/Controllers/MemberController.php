@@ -312,13 +312,31 @@ class MemberController extends BaseController
 					$res = Member::update_member($record->id,$data);					
 					
 					//Second level introducer bonus life
-					$srecord  = Member::find($record->referred_by); 
-					if ($srecord->referred_by)
+					$frecord  = Member::find($record->referred_by); 
+					if ($frecord->referred_by)
 					{	
 						if (!empty($life->second_level_introduce_life))
-						{							
-							Wallet::update_ledger_life($srecord->referred_by, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');
-							Wallet::update_bonus_life($srecord->referred_by,$life->second_level_introduce_life,'second_level_bonus_life');
+						{	
+							$second_level_record  = Member::find($frecord->referred_by); 
+							$bonuslife            = $second_level_record->bonus_life;							
+							$new_bonus_life       = $bonuslife + 0.5;
+							if ($new_bonus_life == $life->second_level_introduce_life)
+							{
+								Wallet::update_ledger_life($second_level_record->id, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');
+								$second_level_record->bonus_life = 0;
+							}
+							else
+							{
+								$second_level_record->bonus_life = $new_bonus_life;
+							}
+							
+							$second_level_record->save();
+							
+							
+							//old
+							
+							//Wallet::update_ledger_life($frecord->referred_by, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');
+							//Wallet::update_bonus_life($frecord->referred_by,$life->second_level_introduce_life,'second_level_bonus_life');
 						}
 					}					
 					return TRUE;
