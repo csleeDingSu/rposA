@@ -344,13 +344,13 @@
                   .prop('number', previous_point)
                   .animateNumber(
                     {
-                      number: (current_point/10)
+                      number: (current_point)
                     },
                     1000
                   );
                 Cookies.remove('previous_point');
             } else {
-                $('.wabao-coin').html((current_point/10));
+                $('.wabao-coin').html((current_point));
             }
 			
 			if (wechat_status == 0) {
