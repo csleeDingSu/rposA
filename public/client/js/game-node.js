@@ -1266,8 +1266,8 @@ function showGameRules( event ){
 }
 
 //load audio - start
-// var audioElement = document.createElement('audio');
-// audioElement.setAttribute('src', '/client/audio/coin.mp3');
+var audioElement = document.createElement('audio');
+audioElement.setAttribute('src', '/client/audio/coin.mp3');
 // var audioElement_win = document.createElement('audio');
 // audioElement_win.setAttribute('src', '/client/audio/win.mp3');
 
@@ -1279,9 +1279,8 @@ function musicPlay(music) {
     // function musicInBrowserHandler(music) {
         if (music == 1) {  
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-            // audioElement.play();
-            document.getElementById('#audio_coin').play();
-
+            audioElement.play();
+            
         } else if (music == 2) {
             // audioElement.setAttribute('src', '/client/audio/win.mp3');
             // audioElement_win.play();
