@@ -109,7 +109,7 @@
 				
 				<!-- 兑换奖品 -->
 				<a href="/redeem">
-					<li class="list-group-item">					
+					<li class="list-group-item first-item">					
 							<div class="icon-wrapper">
 								<div class="icon-redeem"></div>
 							</div>
