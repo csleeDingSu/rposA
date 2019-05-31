@@ -467,16 +467,16 @@ function closeWinModal() {
              g_current_point = 150;
          }
 
-         console.log('animateNumber ' + g_previous_point + ' - ' + g_current_point);  
-        $('.spanAcuPointAndBalance')
+        /*$('.spanAcuPointAndBalance')
           .prop('number', g_previous_point/10)
           .animateNumber(
             {
               number: g_current_point/10
             },
             500
-          );
-            
+          );*/
+        
+        $('.spanAcuPointAndBalance').html(g_current_point/10);
         $('.spanAcuPoint').html(g_current_point);
         
     });
