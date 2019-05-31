@@ -227,7 +227,7 @@ function populateInvitationData(records, token, _status = null) {
                     var str_class = "verified";                    
                     
                     if (item.introducer_bonus_life > 0) {
-                        str_additional = "+2:1"
+                        str_additional = "+" + parseFloat(item.introducer_bonus_life).toFixed(1);
                     } 
 
                 } else if (item.wechat_verification_status == 1) {
