@@ -710,7 +710,39 @@ html, body {
 
 .wechat-instructions {
 	padding-top: 15px;
-	padding-bottom: 20px;
-	font-size: 17px;
-	color: #b2b2b2;
+	padding-bottom: 15px;
+	font-size: 12px;
+	color: #5b5b5b;
+	text-align: left;
+	line-height: 0.5rem;
+}
+
+.wechat-instructions-highlight {
+	/*padding-top: 15px;*/
+	/*padding-bottom: 20px;*/
+	font-size: 12px;
+	color: #69b102;
+	text-align: left;
+}
+
+.cutBtnCS2, .cutBtnCS2-success, .cutBtnCS2-fail {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 25px;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    background: #7dca33;
+}
+
+.cutBtnCS2 {
+	cursor: pointer;
+}
+
+.cutBtnCS2-success {
+    background: #C0C0C0;
+}
+
+.cutBtnCS2-fail {
+    background: #999999;
 }

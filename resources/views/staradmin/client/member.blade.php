@@ -281,14 +281,23 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
 								<div class="wechat-instructions">
-									你的账号还未通过微信认证，<br />
-									不能兑换红包，请先认证。
+									为了防止小号多次E取红包，我们需要对您的微信进行审核，审核通过即时兑换紅包。
+									
+									<div class="wechat-instructions-highlight">
+										<p>审核要求：</p>
+										<p>1. 朋友圈有真实内容。</p>
+										<p>2. 微倍是多年的老号。</p>
+									</div>
+
+									满足以上条件可通过审核，谢谢理解！<br/>
+									请添加微信客服 【<span id="cut2" class="wechat_id">{{env('wechat_id', 'LUNLY028')}}</span>】 要求审核。
 								</div>								
 							</div>
 							<div class="row">
-								<a href="/validate">
+								<!-- <a href="/validate">
 									<img src="{{ asset('/client/images/btn-verify.png') }}" width="154" height="44" alt="Verify" />
-								</a>
+								</a> -->
+								<div class="cutBtnCS2">复制微信号</div>
 							</div>
 						</div>
 					</div>							
@@ -367,15 +376,18 @@
 			} else {
 
 				$('.redeembtn').click(function(){
+					$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
 					$('#verify-wechat').modal();
 				});
 				$('.redeemhistorybtn').click(function(){
+					$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
 					$('#verify-wechat').modal();
 				});
 
 			}
 
 			$('.unverify').click(function(){
+				$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
 				$('#verify-wechat').modal();
 			});
 
@@ -411,6 +423,20 @@
 
 			$('#csBtn').click(function () {
 				$('#csModal').modal();
+			});
+
+			var clipboard = new ClipboardJS('.cutBtnCS2', {
+				target: function () {
+					return document.querySelector('#cut2');
+				}
+			});
+
+			clipboard.on('success', function (e) {
+				$('.cutBtnCS2').addClass('cutBtnCS2-success').html('<i class="far fa-check-circle"></i>复制成功');
+			});
+
+			clipboard.on('error', function (e) {
+				$('.cutBtnCS2').addClass('cutBtnCS2-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 	
 		});	
