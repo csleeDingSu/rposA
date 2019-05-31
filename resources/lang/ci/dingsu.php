@@ -582,5 +582,6 @@ return [
 	'today_basicpackage_redeem' => '已换 Basic Package',
 	'package_discount_price' => '折扣价',
 	'today_vippackage_redeem' => '已换 VIP Package',
+	'admin' => '管理',
 
 ];
