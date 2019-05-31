@@ -1094,7 +1094,7 @@ function startTimer(duration, timer, freeze_time) {
             },
             error: function (error) { 
                 console.log(error); 
-                // alert('下注失败');
+                alert('等待网络');
                 // $(".reload").show();
                 window.top.location.href = "/arcade";
             },
@@ -1110,7 +1110,7 @@ function startTimer(duration, timer, freeze_time) {
                 }
                 triggerResult();
             },
-            timeout: 5000 // sets timeout to 5 seconds
+            timeout: 10000 // sets timeout to 10 seconds
         });
 
     }
@@ -1266,10 +1266,10 @@ function showGameRules( event ){
 }
 
 //load audio - start
-var audioElement = document.createElement('audio');
-audioElement.setAttribute('src', '/client/audio/coin.mp3');
-var audioElement_win = document.createElement('audio');
-audioElement_win.setAttribute('src', '/client/audio/win.mp3');
+// var audioElement = document.createElement('audio');
+// audioElement.setAttribute('src', '/client/audio/coin.mp3');
+// var audioElement_win = document.createElement('audio');
+// audioElement_win.setAttribute('src', '/client/audio/win.mp3');
 
 function musicPlay(music) {    
 
@@ -1279,12 +1279,14 @@ function musicPlay(music) {
     // function musicInBrowserHandler(music) {
         if (music == 1) {  
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
-            audioElement.play();
+            // audioElement.play();
+            document.getElementById('#audio_coin').play();
+
         } else if (music == 2) {
             // audioElement.setAttribute('src', '/client/audio/win.mp3');
-            audioElement_win.play();
+            // audioElement_win.play();
         } else if (music == 22) {
-            audioElement_win.pause();
+            // audioElement_win.pause();
         } else {        
             //do nothing
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
