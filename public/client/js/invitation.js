@@ -226,9 +226,6 @@ function populateInvitationData(records, token, _status = null) {
                     var str_additional = "+1";
                     var str_class = "verified";                    
                     
-                    console.log(item.introducer_bonus_life);
-                    console.log(item.introducer_bonus_life > 0);
-                    
                     if (item.introducer_bonus_life > 0) {
                         str_additional = "+2:1"
                     } 
