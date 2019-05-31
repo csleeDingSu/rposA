@@ -1039,6 +1039,12 @@
 	</div>
 <!-- New - Top right corner Game Rules starts -->
 
+	<!-- audio file-->
+	<audio id="audio_coin"> 
+	   <source src="{{ asset('/client/audio/coin.mp3') }}" type="audio/mpeg">
+	   	Your browser does not support the audio element.
+	</audio>
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
