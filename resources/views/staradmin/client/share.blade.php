@@ -590,10 +590,11 @@ ol>li:before {
   			<h1>奖励说明</h1>
   			<div class="bottomdiv">
           <ol>
-            <li><div class="padding-left">每邀请1个好友送1埸大{{env('game_name', '幸运转盘')}}，好友邀请别人，你也能获得1场{{env('game_name', '幸运转盘')}}（可抽奖15次）。
+            <li><div class="padding-left">邀请1个好友送1埸幸运转盘，好友邀请别人，你也能获得场次。他邀请2人，你获得1场幸运转盘（可抽奖15次）。              
             </div>
           </li>
-          <li><div class="padding-left">如你進请了10个好友，而每个好友也邀请10个人，你就能获得110场大{{env('game_name', '幸运转盘')}}，最多赚1650元红包。
+          <li><div class="padding-left">
+            假如你進请了10个好友，而每个好友也邀请10个人，你就能获得60场大幸运转盘，最多赚900元红包。
           </div>
           </li>
           <li><div class="padding-left">好友需通过网站的微信认证，你才能得到{{env('game_name', '幸运转盘')}}次数。 严厉打击小号注册，大号会被封号处理。
