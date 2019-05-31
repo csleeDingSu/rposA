@@ -42,9 +42,11 @@
 				  	<div class="point numbers">
 						<span class="wabao-coin"></span>
 				  	</div> 元
-				  	<a href="/redeem">
+				  	<div class="redeembtn">
+				  	<!-- <a href="/redeem"> -->
 					  	<div class="button-redeem">马上兑换</div>
-					</a>
+					<!-- </a> -->
+					</div>
 				  </div>
 				  <div class="col-xs-6 border-right">
 				  	未结算
