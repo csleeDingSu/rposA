@@ -459,11 +459,6 @@ function closeWinModal() {
             console.log('play coin mp3');  
         } 
 
-        $(this).off('click');
-        event.stopImmediatePropagation();
-        $('#win-modal').modal('hide');
-        $('#lose-modal').modal('hide');
-
          if(g_current_point > 150){
              g_current_point = 150;
          }
@@ -479,6 +474,11 @@ function closeWinModal() {
         
         $('.spanAcuPointAndBalance').html(g_current_point/10);
         $('.spanAcuPoint').html(g_current_point);
+
+        $(this).off('click');
+        event.stopImmediatePropagation();
+        $('#win-modal').modal('hide');
+        $('#lose-modal').modal('hide');
         
     });
 }
@@ -1094,8 +1094,9 @@ function startTimer(duration, timer, freeze_time) {
             },
             error: function (error) { 
                 console.log(error); 
-                alert('下注失败');
-                $(".reload").show();
+                // alert('下注失败');
+                // $(".reload").show();
+                window.top.location.href = "/arcade";
             },
             success: function(data) {
                 $('.small-border').removeClass('fast-rotate');
@@ -1108,7 +1109,8 @@ function startTimer(duration, timer, freeze_time) {
                     showLoseModal();
                 }
                 triggerResult();
-            }
+            },
+            timeout: 5000 // sets timeout to 5 seconds
         });
 
     }
