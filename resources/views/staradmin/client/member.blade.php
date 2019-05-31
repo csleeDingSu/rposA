@@ -161,7 +161,7 @@
 					</li>
 				</a>
 
-				<!-- 挖宝攻略 -->
+				<!-- 挖宝攻略
 				<a href="/tips">
 					<li class="list-group-item">
 						<div class="icon-wrapper">
@@ -171,6 +171,7 @@
 						免单攻略
 					</li>
 				</a>
+				-->
 			</ul>
 		</div>
 
