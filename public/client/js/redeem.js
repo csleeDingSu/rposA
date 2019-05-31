@@ -313,9 +313,10 @@ function getProductList(token) {
                                     /*
                                     '<div class="note">兑换支付宝红包' + item.product_price + '元</div>' +
                                     */
-                                    '<div class="icon-coin-wrapper">' +
+                                    // '<div class="icon-coin-wrapper">' +
                                         // '<div class="icon-coin"></div>' +
-                                    '</div>' +
+                                    // '</div>' +
+                                    '<div class="red_note">可兑换支付宝现金</div>' +
                                     // '<div class="w-coin">'+ item.min_point +'</div>' +
                                     '<div style="clear: both;"></div>' +
                                     '<div class="remaining">已兑换 '+ total_used +' 张</div>' +

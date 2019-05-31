@@ -13,10 +13,6 @@
 
 @section('content')
 
-<!-- <input id="hidWechatStatus" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
-
-<input id="hidWechatStatus" type="hidden" value="0" />
-
 <div class="full-height no-header">
 	<div class="container">
 		<div class="member-box">
@@ -43,7 +39,9 @@
 			<div class="information-table">
 				  <div class="col-xs-12">
 				  	<span class="label-title">可兑换红包</span><br />
-				  	<div class="point numbers">{{ number_format($wallet->current_point/10, 0, '.', '') }}</div> 元
+				  	<div class="point numbers">
+						<span class="wabao-coin"></span>
+				  	</div> 元
 				  	<a href="/redeem">
 					  	<div class="button-redeem">马上兑换</div>
 					</a>
@@ -108,7 +106,8 @@
 					</li-->
 				
 				<!-- 兑换奖品 -->
-				<a href="/redeem">
+				<div class="redeembtn">
+				<!-- <a href="/redeem"> -->
 					<li class="list-group-item first-item">					
 							<div class="icon-wrapper">
 								<div class="icon-redeem"></div>
@@ -116,10 +115,12 @@
 							<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 							兑换红包					
 					</li>
-				</a>
+				<!-- </a> -->
+				</div>
 
 				<!-- 我的奖品 -->
-				<a href="/redeem/history">
+				<div class="redeemhistorybtn">
+				<!-- <a href="/redeem/history"> -->
 					<li class="list-group-item">
 						<div class="icon-wrapper">
 							<div class="icon-play"></div>
@@ -127,7 +128,8 @@
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						我的红包
 					</li>
-				</a>
+				<!-- </a> -->
+				</div>
 
 				<!-- 我的场次 -->
 				<a href="/round">
@@ -329,11 +331,47 @@
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
-	
+	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-			var wechat_status = $('#hidWechatStatus').val();
+			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
+			var current_point = parseInt("<?php Print(number_format($wallet->current_point/10, 0, '.', ''));?>");
+            var previous_point = Cookies.get('previous_point');
+            if(previous_point !== undefined){
+                previous_point = (parseInt(previous_point)/10);
+
+                $('.wabao-coin')
+                  .prop('number', previous_point)
+                  .animateNumber(
+                    {
+                      number: (current_point/10)
+                    },
+                    1000
+                  );
+                Cookies.remove('previous_point');
+            } else {
+                $('.wabao-coin').html((current_point/10));
+            }
 			
+			if (wechat_status == 0) {
+				$('.redeembtn').click(function(){
+					window.location.href = "/redeem";
+				});
+
+				$('.redeemhistorybtn').click(function(){
+					window.location.href = "/redeem/history";
+				});
+			} else {
+
+				$('.redeembtn').click(function(){
+					$('#verify-wechat').modal();
+				});
+				$('.redeemhistorybtn').click(function(){
+					$('#verify-wechat').modal();
+				});
+
+			}
+
 			$('.unverify').click(function(){
 				$('#verify-wechat').modal();
 			});

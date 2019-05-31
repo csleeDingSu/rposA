@@ -744,7 +744,8 @@ function bindResetLifeButton(){
                 success: function(data) {
                     if(data.success){
                         Cookies.set('previous_point', previous_point);
-                        window.parent.location.href = "/redeem";
+                        // window.parent.location.href = "/redeem";
+                        window.parent.location.href = "/profile";
                     }
                 }
             });
