@@ -308,8 +308,10 @@ class MemberController extends BaseController
 				
 				if ($wallet['success'])
 				{
-					$data = ['introducer_life'=> 1];
-					$res = Member::update_member($record->id,$data);					
+					$intro_bonus_life = 0.5;
+					$data = ['introducer_life'=> 1];					
+					
+					$res  = Member::update_member($record->id,$data);					
 					
 					//Second level introducer bonus life
 					$frecord  = Member::find($record->referred_by); 
@@ -317,9 +319,10 @@ class MemberController extends BaseController
 					{	
 						if (!empty($life->second_level_introduce_life))
 						{	
+							$data['introducer_bonus_life'] = $intro_bonus_life;
 							$second_level_record  = Member::find($frecord->referred_by); 
 							$bonuslife            = $second_level_record->bonus_life;							
-							$new_bonus_life       = $bonuslife + 0.5;
+							$new_bonus_life       = $bonuslife + $intro_bonus_life;
 							if ($new_bonus_life == $life->second_level_introduce_life)
 							{
 								Wallet::update_ledger_life($second_level_record->id, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');
@@ -332,7 +335,7 @@ class MemberController extends BaseController
 							
 							$second_level_record->save();
 							
-							
+							Member::update_member($record->id,$data);	
 							//old
 							
 							//Wallet::update_ledger_life($frecord->referred_by, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');
