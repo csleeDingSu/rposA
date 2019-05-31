@@ -98,7 +98,7 @@
 		<li class="nav-item">
 			<a class="nav-link" href="/user/list">
 			<i class="menu-icon icon-game-controller  text-info"></i>
-              <span class="menu-title text-capitalize"> @lang('dingsu.users')  @lang('dingsu.list')</span>
+              <span class="menu-title text-capitalize"> @lang('dingsu.admin') @lang('dingsu.users')  @lang('dingsu.list')</span>
             </a>
 		</li>
 

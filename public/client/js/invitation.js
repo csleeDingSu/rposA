@@ -225,6 +225,10 @@ function populateInvitationData(records, token, _status = null) {
                     var str_status = "认证成功";
                     var str_additional = "+1";
                     var str_class = "verified";                    
+                    
+                    if (item.introducer_bonus_life > 0) {
+                        str_additional = "+" + parseFloat(item.introducer_bonus_life).toFixed(1);
+                    } 
 
                 } else if (item.wechat_verification_status == 1) {
                     var str_status = "未微信认证";

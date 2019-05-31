@@ -301,6 +301,7 @@ function getToken(){
         //non-logged in user
         $('#hidLatestResult').val(1);
         DomeWebController.init();
+        bindBetButton();
         $(".loading").fadeOut("slow");
     }
     
@@ -505,7 +506,8 @@ function bindBetButton(){
 
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
-            window.top.location.href = "/member";
+            // window.top.location.href = "/member";
+            $( '#login-intropopup' ).modal( 'show' );
         }
 
         if(isNaN(balance)){
