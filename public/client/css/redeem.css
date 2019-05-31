@@ -199,10 +199,10 @@ html, body {
 }
 
 .description {
-	font-size: 0.33rem;
+	font-size: 17px;
 	font-weight: bold;
 	color: #626262;
-	min-height: 30px;
+	/*min-height: 30px;*/
 }
 
 .note {
@@ -277,8 +277,8 @@ html, body {
 	}
 
 	.description {
-		font-size: 0.29rem;
-		min-height: 25px;
+		font-size: 17px;
+		/*min-height: 25px;*/
 	}
 
 	.note {
@@ -1099,4 +1099,10 @@ textarea {
 	padding-bottom: 20px;
 	font-size: 17px;
 	color: #b2b2b2;
+}
+
+.red_note {
+	color: red;
+    font-size: 10px;
+    padding-bottom: 15px;
 }
