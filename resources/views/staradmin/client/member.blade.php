@@ -331,6 +331,7 @@
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
+	<script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
 	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
