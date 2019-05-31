@@ -191,7 +191,7 @@ class Members extends Model
 	
 	public static function get_second_level_child_data($memberid, $status = 0)
 	{
-		$result = DB::table('members')->select('id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','referred_by')
+		$result = DB::table('members')->select('id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','referred_by','introducer_bonus_life')
 				->whereIn('referred_by', function($query) use ($memberid)
 				{
 					$query->select('id')
