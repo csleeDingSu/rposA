@@ -281,7 +281,7 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
 								<div class="wechat-instructions">
-									为了防止小号多次E取红包，我们需要对您的微信进行审核，审核通过即时兑换紅包。
+									为了防止小号多次领取红包，我们需要对您的微信进行审核，审核通过即时兑换紅包。
 									
 									<div class="wechat-instructions-highlight">
 										<p>审核要求：</p>
