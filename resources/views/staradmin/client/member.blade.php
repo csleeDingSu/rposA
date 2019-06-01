@@ -281,16 +281,15 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
 								<div class="wechat-instructions">
-									为了防止小号多次领取红包，我们需要对您的微信进行审核，审核通过即时兑换紅包。
+									由于有个别用户用多个小号来套取红包福利。我们需要对您的微信进行审核，审核通过即可兑换紅包。
 									
 									<div class="wechat-instructions-highlight">
 										<p>审核要求：</p>
 										<p>1. 朋友圈有真实内容。</p>
 										<p>2. 微信是多年的老号。</p>
 									</div>
-
-									满足以上条件可通过审核，谢谢理解！<br/>
-									请添加微信客服 【<span id="cut2" class="wechat_id">{{env('wechat_id', 'LUNLY028')}}</span>】 要求审核。
+									如果您满足以上条件，<br/>
+									请添加微信客服【<span id="cut2" class="wechat_id">{{env('wechat_id', 'LUNLY028')}}</span>】审核。
 								</div>								
 							</div>
 							<div class="row">
