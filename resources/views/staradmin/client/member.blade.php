@@ -286,7 +286,7 @@
 									<div class="wechat-instructions-highlight">
 										<p>审核要求：</p>
 										<p>1. 朋友圈有真实内容。</p>
-										<p>2. 微倍是多年的老号。</p>
+										<p>2. 微信是多年的老号。</p>
 									</div>
 
 									满足以上条件可通过审核，谢谢理解！<br/>
