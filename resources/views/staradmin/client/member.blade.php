@@ -78,7 +78,7 @@
 			</div>
 			<ul class="list-group">
 
-				<!-- VIP专场 -->
+				<!-- VIP专场 
 				<a href= "/vipmember">
 					<li class="list-group-item first-item">
 						<div class="icon-wrapper">
@@ -97,6 +97,7 @@
 						VIP专场
 					</li>
 				</a>
+				-->
 				<!--li class="list-group-item first-item">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
@@ -108,7 +109,7 @@
 				
 				<!-- 兑换奖品 -->
 				<a href="/redeem">
-					<li class="list-group-item">					
+					<li class="list-group-item first-item">					
 							<div class="icon-wrapper">
 								<div class="icon-redeem"></div>
 							</div>
