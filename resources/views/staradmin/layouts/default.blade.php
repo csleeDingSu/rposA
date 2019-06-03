@@ -125,7 +125,7 @@
 						</div>
 					</div>
 				
-					<div class="col-xs-3">
+					<div class="col-xs-3 right-menu">
 					  	<div class="menu-wrapper">
 					  		@yield('menu')
 					  	</div>
