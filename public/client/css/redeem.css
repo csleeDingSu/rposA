@@ -296,6 +296,12 @@ html, body {
 	    width: 100%;
 	    margin-top: -150px;
 	}
+
+	.column-2 {
+    	margin-left: 10px;
+    	padding-right: 0px;
+    	width: 160px;
+    }
 }
 
 @media only screen and (max-width: 360px) {
