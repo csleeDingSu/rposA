@@ -53,8 +53,8 @@ $(function () {
 
 function updateResult(records){
     var bet_count = $('#hidbetting_count').val();
-            
-    if(bet_count > 0){
+
+    if(bet_count > 0 && (!jQuery.isEmptyObject(records[0]))){
         last_bet = records[0].bet;
         $('#hidLastBet').val(last_bet);
     }
