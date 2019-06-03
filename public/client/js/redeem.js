@@ -578,7 +578,7 @@ function populateHistoryData(records, token) {
                         counter +
                     '</div>' +
                     '<div class="col-xs-7 column-5">' +
-                        '<div class="description">'+ item.product_name + '</div>' +
+                        '<div class="description-history">'+ item.product_name + '</div>' +
                         '<div class="balance">兑换时间:'+ str_date +'</div>' +
                     '</div>';
 
@@ -590,7 +590,7 @@ function populateHistoryData(records, token) {
 
                 } else if (item.pin_status == 2) { // Confirmed
                     html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">查看卡号</div>' +
+                                '<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">提现现金</div>' +
                             '</div>' + 
                         '</div>' +
                     '<div id="content-' + item.id + '" class="collapse">' +
@@ -599,9 +599,9 @@ function populateHistoryData(records, token) {
 
                     //temporary hardcode
                     if (item.product_name.indexOf('骏网') >= 0) {
-                       html += '<div class="instruction">打开支付宝APP>搜索“闲鱼信用回收”>进入官方平台>选择“卡券”>骏网一卡通86回收>选择面值 输入卡号密码>确认兑换现金。'; 
+                        html += '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”>并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。'; 
                     } else {
-                        html += '<div class="instruction">打开支付宝APP>搜索“闲鱼信用回收”>进入官方平台>选择“卡券”>“中国移动”话费卡回收>选择面值 输入卡号密码>确认兑换现金。';       
+                        html += '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”>并进入>选“卡券”>选中国移动话费卡>选面额并输入卡密>兑换现金成功。';       
                     }                        
                        html += '</div>' +
                             '</div>';

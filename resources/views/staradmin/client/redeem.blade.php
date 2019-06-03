@@ -8,6 +8,12 @@
     </a>
 @endsection
 
+@section('menu')
+    <a href="/summary">
+        红包明细
+    </a>
+@endsection
+
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/redeem.css') }}" />
@@ -31,16 +37,15 @@
 		<input type="hidden" id="page" value="1" />
 		<input type="hidden" id="max_page" value="1" />
 
-		<div class="card left">
-			<!-- <div class="icon-coin-wrapper">
-				<div class="icon-coin"></div>
-			</div> -->
-			<div class="label-coin">可兑换红包</div>
-			<div class="label-coin right"><a href="/summary">明细</a></div>
-
-			<div style="clear: both;"></div>
-			
-			<div><span class="wabao-coin"></span> <span style="font-size:16px;">元</span></div>
+		<div class="card">
+			<img src="{{ asset('/client/images/redeem-background.png') }}" alt="redeem background">
+			<div class="summary-table">
+				<div class="label-coin">可兑换红包 <span class="wabao-coin"></span>元</div>
+				<div class="label-desc">邀请好友送更多场次，抽更多红包！</div>
+				<a href="/share" class="link-button">
+					<div class="btn-invite">邀请好友</div>
+				</a>
+			</div>
 		</div>
 		<!-- end wabao coin info -->
 
@@ -48,7 +53,7 @@
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
 			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换红包</a></li>
-			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的红包</a></li>
+			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的充值卡</a></li>
 			</ul>
 			<!-- end redeem tabs -->
 
