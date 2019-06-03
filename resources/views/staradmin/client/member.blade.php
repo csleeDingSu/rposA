@@ -13,10 +13,6 @@
 
 @section('content')
 
-<!-- <input id="hidWechatStatus" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
-
-<input id="hidWechatStatus" type="hidden" value="0" />
-
 <div class="full-height no-header">
 	<div class="container">
 		<div class="member-box">
@@ -43,10 +39,14 @@
 			<div class="information-table">
 				  <div class="col-xs-12">
 				  	<span class="label-title">可兑换红包</span><br />
-				  	<div class="point numbers">{{ number_format($wallet->current_point/10, 0, '.', '') }}</div> 元
-				  	<a href="/redeem">
+				  	<div class="point numbers">
+						<span class="wabao-coin"></span>
+				  	</div> 元
+				  	<div class="redeembtn">
+				  	<!-- <a href="/redeem"> -->
 					  	<div class="button-redeem">马上兑换</div>
-					</a>
+					<!-- </a> -->
+					</div>
 				  </div>
 				  <div class="col-xs-6 border-right">
 				  	未结算
@@ -108,7 +108,8 @@
 					</li-->
 				
 				<!-- 兑换奖品 -->
-				<a href="/redeem">
+				<div class="redeembtn">
+				<!-- <a href="/redeem"> -->
 					<li class="list-group-item first-item">					
 							<div class="icon-wrapper">
 								<div class="icon-redeem"></div>
@@ -116,10 +117,12 @@
 							<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 							兑换红包					
 					</li>
-				</a>
+				<!-- </a> -->
+				</div>
 
 				<!-- 我的奖品 -->
-				<a href="/redeem/history">
+				<div class="redeemhistorybtn">
+				<!-- <a href="/redeem/history"> -->
 					<li class="list-group-item">
 						<div class="icon-wrapper">
 							<div class="icon-play"></div>
@@ -127,7 +130,8 @@
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						我的红包
 					</li>
-				</a>
+				<!-- </a> -->
+				</div>
 
 				<!-- 我的场次 -->
 				<a href="/round">
@@ -277,14 +281,22 @@
 							<div class="modal-card">
 								<img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
 								<div class="wechat-instructions">
-									你的账号还未通过微信认证，<br />
-									不能兑换红包，请先认证。
+									由于有个别用户用多个小号来套取红包福利。我们需要对您的微信进行审核，审核通过即可兑换紅包。
+									
+									<div class="wechat-instructions-highlight">
+										<p>审核要求：</p>
+										<p>1. 朋友圈有真实内容。</p>
+										<p>2. 微信是多年的老号。</p>
+									</div>
+									如果您满足以上条件，<br/>
+									请添加微信客服【<span id="cut2" class="wechat_id">{{env('wechat_id', 'LUNLY028')}}</span>】审核。
 								</div>								
 							</div>
 							<div class="row">
-								<a href="/validate">
+								<!-- <a href="/validate">
 									<img src="{{ asset('/client/images/btn-verify.png') }}" width="154" height="44" alt="Verify" />
-								</a>
+								</a> -->
+								<div class="cutBtnCS2">复制微信号</div>
 							</div>
 						</div>
 					</div>							
@@ -329,12 +341,52 @@
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
-	
+	<script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
+	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-			var wechat_status = $('#hidWechatStatus').val();
+			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
+			var current_point = parseInt("<?php Print(number_format($wallet->current_point/10, 0, '.', ''));?>");
+            var previous_point = Cookies.get('previous_point');
+            if(previous_point !== undefined){
+                previous_point = (parseInt(previous_point)/10);
+
+                $('.wabao-coin')
+                  .prop('number', previous_point)
+                  .animateNumber(
+                    {
+                      number: (current_point)
+                    },
+                    1000
+                  );
+                Cookies.remove('previous_point');
+            } else {
+                $('.wabao-coin').html((current_point));
+            }
 			
+			if (wechat_status == 0) {
+				$('.redeembtn').click(function(){
+					window.location.href = "/redeem";
+				});
+
+				$('.redeemhistorybtn').click(function(){
+					window.location.href = "/redeem/history";
+				});
+			} else {
+
+				$('.redeembtn').click(function(){
+					$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
+					$('#verify-wechat').modal();
+				});
+				$('.redeemhistorybtn').click(function(){
+					$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
+					$('#verify-wechat').modal();
+				});
+
+			}
+
 			$('.unverify').click(function(){
+				$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
 				$('#verify-wechat').modal();
 			});
 
@@ -370,6 +422,20 @@
 
 			$('#csBtn').click(function () {
 				$('#csModal').modal();
+			});
+
+			var clipboard = new ClipboardJS('.cutBtnCS2', {
+				target: function () {
+					return document.querySelector('#cut2');
+				}
+			});
+
+			clipboard.on('success', function (e) {
+				$('.cutBtnCS2').addClass('cutBtnCS2-success').html('<i class="far fa-check-circle"></i>复制成功');
+			});
+
+			clipboard.on('error', function (e) {
+				$('.cutBtnCS2').addClass('cutBtnCS2-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 	
 		});	

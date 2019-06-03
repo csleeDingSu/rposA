@@ -144,7 +144,7 @@ html, body {
 	padding-right: 5px;
 	padding-left: 10px;
 	text-align: left;
-	padding-top: 5px;
+	/*padding-top: 5px;*/
 }
 
 .column-3, .column-6 {
@@ -193,8 +193,8 @@ html, body {
 }
 
 .img-voucher {
-	width: 80px;
-	height: 80px;
+	width: 90px;
+	/*height: 80px;*/
 }
 
 .btn-redeem {
@@ -1188,4 +1188,9 @@ textarea {
 
 .link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
 	text-decoration: none;
+
+.red_note {
+	color: red;
+    font-size: 10px;
+    padding-bottom: 15px;
 }

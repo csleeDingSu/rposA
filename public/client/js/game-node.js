@@ -53,8 +53,8 @@ $(function () {
 
 function updateResult(records){
     var bet_count = $('#hidbetting_count').val();
-            
-    if(bet_count > 0){
+
+    if(bet_count > 0 && (!jQuery.isEmptyObject(records[0]))){
         last_bet = records[0].bet;
         $('#hidLastBet').val(last_bet);
     }
@@ -744,7 +744,8 @@ function bindResetLifeButton(){
                 success: function(data) {
                     if(data.success){
                         Cookies.set('previous_point', previous_point);
-                        window.parent.location.href = "/redeem";
+                        // window.parent.location.href = "/redeem";
+                        window.parent.location.href = "/profile";
                     }
                 }
             });
@@ -1094,7 +1095,7 @@ function startTimer(duration, timer, freeze_time) {
             },
             error: function (error) { 
                 console.log(error); 
-                // alert('下注失败');
+                alert('等待网络');
                 // $(".reload").show();
                 window.top.location.href = "/arcade";
             },
@@ -1110,7 +1111,7 @@ function startTimer(duration, timer, freeze_time) {
                 }
                 triggerResult();
             },
-            timeout: 5000 // sets timeout to 5 seconds
+            timeout: 10000 // sets timeout to 10 seconds
         });
 
     }
@@ -1268,8 +1269,8 @@ function showGameRules( event ){
 //load audio - start
 var audioElement = document.createElement('audio');
 audioElement.setAttribute('src', '/client/audio/coin.mp3');
-var audioElement_win = document.createElement('audio');
-audioElement_win.setAttribute('src', '/client/audio/win.mp3');
+// var audioElement_win = document.createElement('audio');
+// audioElement_win.setAttribute('src', '/client/audio/win.mp3');
 
 function musicPlay(music) {    
 
@@ -1280,11 +1281,12 @@ function musicPlay(music) {
         if (music == 1) {  
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
             audioElement.play();
+            
         } else if (music == 2) {
             // audioElement.setAttribute('src', '/client/audio/win.mp3');
-            audioElement_win.play();
+            // audioElement_win.play();
         } else if (music == 22) {
-            audioElement_win.pause();
+            // audioElement_win.pause();
         } else {        
             //do nothing
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              

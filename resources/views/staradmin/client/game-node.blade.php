@@ -666,8 +666,8 @@
 								</div>
 								<div class="modal-invite-content">
 									<h1 class="modal-invite-title">邀请好友送场次</h1>
-									邀请<span class="highlight-peach">1个</span>好友送<span class="highlight-peach">{{env('sharetofriend_youwillget', '1')}}场次</span>转盘机会<br />
-									好友邀请2个，你在获得1场次
+									邀请<span class="highlight-peach">1个</span>人送<span class="highlight-peach">1场</span>转盘(15次抽奖)<br/>
+									好友邀请<span class="highlight-peach">2个</span>，你再获得<span class="highlight-peach">1场次</span>。
 									<a href="/share" class="link-button">
 										<div class="modal-vip-button">
 											邀请好友
