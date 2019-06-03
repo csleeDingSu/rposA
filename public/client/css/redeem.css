@@ -23,9 +23,27 @@ html, body {
 }
 
 .card {
-	background-color: #01a7f1;
-	padding: 10px 20px;
+	width: 100%;
+    height: 2rem;
+    margin: 0 auto;
 	font-size: 16px;
+	background: #fff;
+}
+
+.card  img {
+    width: 100%;
+    height: 100%;
+}
+
+.summary-table {
+    color: white;
+    z-index: 10;
+    position: relative;
+    text-align: center;
+    width: 470px;
+    margin: 0 auto;
+    margin-top: -190px;
+    text-align: center;
 }
 
 .left {
@@ -33,14 +51,14 @@ html, body {
 }
 
 .label-coin {
-	margin-left: 2px;
-	float: left;
+	font-size: 0.29rem;
+	padding: 10px;
 }
 
-.label-coin a {
-	text-decoration: none;
-	color: white;
-	float: right;
+.label-desc {
+	color: #fee04d;
+	font-size: 0.2rem;
+	padding: 15px 0 5px 0;
 }
 
 .icon-coin-wrapper {
@@ -66,25 +84,21 @@ html, body {
 	position: relative;
 }
 
-.wabao-coin {
-	font-size: 40px;
-}
-
 /* Tabs */
 .full-width-tabs > .nav-pills > .active > a,
 .full-width-tabs > .nav-pills > .active > a:hover,
 .full-width-tabs > .nav-pills > li > a:hover {
 	text-decoration: none;
-	border-bottom: 2px solid #01a7f1;
-    color: #01a7f1 !important;
+	border-bottom: 2px solid #fc5959;
+    color: #fc5959 !important;
     background-color: #ffffff !important;
 }
 .full-width-tabs > .nav-pills > li > a{
     border-radius:0px;
-    color:#999999;
+    color:#8d8d8d;
     font-weight: 500;
     background: #ffffff;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
@@ -95,13 +109,16 @@ html, body {
 .full-width-tabs > ul.nav.nav-pills > li, .modal-row > ul.nav.nav-pills > li{
 	float: none;
 	display: table-cell;
+
 }
 .full-width-tabs > ul.nav.nav-pills > li > a, .modal-row > ul.nav.nav-pills > li > a{
 	text-align: center;
+	padding-top: 0;
 }
 
 .take-all-space-you-can{
 	width:100%;
+	height: 20px;
 }
 /* End Tabs */
 
@@ -198,11 +215,20 @@ html, body {
 	background: #dadada;
 }
 
-.description {
-	font-size: 17px;
+.description, .description-history {
+	font-size: 18px;
 	font-weight: bold;
-	color: #626262;
-	/*min-height: 30px;*/
+	color: #555;
+	min-height: 50px;
+}
+
+.description-history {
+	min-height: 30px;
+}
+
+.description-info {
+	color: #fc5959;
+	font-size: 11px;
 }
 
 .note {
@@ -219,8 +245,8 @@ html, body {
 }
 
 .remaining {
-	font-size: 12px;
-	color: #808080;
+	font-size: 11px;
+	color: #aaa;
 }
 
 .balance {
@@ -243,7 +269,42 @@ html, body {
 	padding-right: 10px;
 }
 
+@media only screen and (max-width: 500px) {
+	.summary-table {
+	    width: 100%;
+	    margin-top: -165px;
+	}
+
+	.label-coin {
+		font-size: 0.36rem;
+		padding: 10px;
+	}
+
+	.label-desc {
+		font-size: 0.28rem;
+		padding: 15px 0 5px 0;
+	}
+
+	.card {
+	    height: 3rem;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+
+	.summary-table {
+	    width: 100%;
+	    margin-top: -150px;
+	}
+}
+
 @media only screen and (max-width: 360px) {
+
+	.summary-table {
+	    width: 100%;
+	    margin-top: -145px;
+	}
+
     .column-2 {
     	margin-left: 10px;
     	padding-right: 0px;
@@ -277,8 +338,13 @@ html, body {
 	}
 
 	.description {
-		font-size: 17px;
-		/*min-height: 25px;*/
+		font-size: 0.29rem;
+		min-height: 45px;
+	}
+
+	.description-history {
+		font-size: 0.29rem;
+		min-height: 25px;
 	}
 
 	.note {
@@ -1100,6 +1166,28 @@ textarea {
 	font-size: 17px;
 	color: #b2b2b2;
 }
+
+.menu-wrapper a {
+	text-align: right;
+	margin: 0;
+	color: #8d8d8d;
+	text-decoration: none;
+}
+
+.btn-invite {
+  background: url('/client/images/btn-invite-redeem.png') no-repeat top center;
+  font-size: 15px;
+  color: #cb7700;
+  background-size: contain;
+  height: 48px;
+  padding-top: 7px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+
+.link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
+	text-decoration: none;
 
 .red_note {
 	color: red;
