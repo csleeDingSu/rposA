@@ -191,13 +191,14 @@ class ProductController extends BaseController
             $request,
             [
                 'product_name' => 'required|string|min:4',
-				'product_display_id' => 'required|integer|not_in:0|min:1|unique:product,product_display_id',
+				//'product_display_id' => 'required|integer|not_in:0|min:1|unique:product,product_display_id',
 				'min_point' => 'required|numeric',
 				'product_price' => 'numeric|between:0,99999.99',
 				'product_pic_url' => 'required',
             ]
         );	
 		$now = Carbon::now();
+		$request->product_display_name = unique_numeric_random('product', 'product_display_id', 4);
 		$data = ['product_name' => $request->product_name,'product_display_id' => $request->product_display_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description];
 		
 		Product::save_product($data);

@@ -44,7 +44,7 @@ function scrollBottom(token){
 function getPosts(page, token, type){
 
    var user_id = $('#hidUserId').val();
-   var url ="/api/betting-history?gameid=101&memberid=" + user_id + "&page=" + page;
+   var url ="/api/betting-history?gameid=102&memberid=" + user_id + "&page=" + page;
 
    if(type == 'vip'){
         url += '&vip=yes';

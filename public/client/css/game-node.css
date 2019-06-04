@@ -1471,7 +1471,7 @@ body{
 #game-rules .instructions {
 	margin-top: 5px;
 	margin-bottom: 10px;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 500;
 	color: #999;
 	padding:10px;
@@ -2377,7 +2377,7 @@ if it's not present, don't show loader */
 #top-corner-game-rules .instructions {
 	margin-top: 5px;
 	margin-bottom: 10px;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 500;
 	color: #999;
 	padding:10px;
