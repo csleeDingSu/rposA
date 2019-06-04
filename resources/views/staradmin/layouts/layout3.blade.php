@@ -19,7 +19,18 @@
 			<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
 			<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
 			<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
-			<!-- <script type="text/javascript" src="//js.users.51.la/19985793.js"></script> -->
+			
+			<script>
+			//这个统计代码。
+			var hmt = hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?5e39d74009d8416a3c77c62c47158471";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+			</script>
+
 		@show
     </head>
     <body>
