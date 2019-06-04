@@ -43,7 +43,17 @@
 		<script src="{{ asset('/client/js/sweetalert2.all.min.js') }}"></script>
 		<!-- <script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>			 -->
 		<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-		<!-- <script type="text/javascript" src="//js.users.51.la/19985793.js"></script> -->
+		<script>
+		//这个统计代码。
+		var hmt = hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?5e39d74009d8416a3c77c62c47158471";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+		</script>
+
 
 		@show
         
