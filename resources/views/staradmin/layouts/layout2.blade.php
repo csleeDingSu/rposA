@@ -15,7 +15,7 @@
     
     @section('top-javascript')
       <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
-      <script type="text/javascript" src="//js.users.51.la/19985793.js"></script>
+      <!-- <script type="text/javascript" src="//js.users.51.la/19985793.js"></script> -->
     @show
 <body>
 
