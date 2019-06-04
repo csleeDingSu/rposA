@@ -57,7 +57,7 @@
 			<script src="{{ asset('/client/js/jquery-1.11.1.min.js') }}"></script>
 			<script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-			<script type="text/javascript" src="//js.users.51.la/19985793.js"></script>
+			<!-- <script type="text/javascript" src="//js.users.51.la/19985793.js"></script> -->
 		@show
     </body>
 </html>
