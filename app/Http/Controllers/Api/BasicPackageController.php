@@ -45,8 +45,8 @@ class BasicPackageController extends Controller
 			[
 				'memberid'    => 'required',
 				'packageid'   => 'required',
-				'cardpass'    => 'required',
-				'cardnum'     => 'required'
+				//'cardpass'    => 'required',
+				//'cardnum'     => 'required',
 			]
 		);
 		if ($validator->fails()) {
