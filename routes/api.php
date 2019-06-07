@@ -124,3 +124,9 @@ Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilo
 
 //cron_test
 Route::get('/cron_test', 'TestController@cron_test')->name('cron_test');
+
+//test 点卡API技术文档
+Route::any('/reload-card-validation', 'TestController@reload_card_validation')->name('reload_card_validation');
+
+Route::any('/reload-card-callback', 'TestController@reload_card_callback')->name('reload_card_callback');
+
