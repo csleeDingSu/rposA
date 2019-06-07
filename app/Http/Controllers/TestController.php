@@ -115,17 +115,23 @@ class TestController extends BaseController
               'url' => urlencode($url),
               'sign' => $signature
             );
-            //log
-            \Log::info($payload);
 
-            $API_URL = env('RELOAD_CARD_API_URL');           
+            $API_URL = env('RELOAD_CARD_API_URL');
+            
+            //log parameter
+            \Log::info(['reload card api url' => $API_URL, 'payload' => $payload]);
+                       
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $response = $client->post($API_URL, ['headers' => $headers, 'form params'=>$payload]);
+
+            //log response
+            \Log::info(['reload card api response' => $response]);
             return $response;
 
         } catch (\Exception $e) {
+            //log error
             \Log::error($e);
             return $e->getMessage();
         }
