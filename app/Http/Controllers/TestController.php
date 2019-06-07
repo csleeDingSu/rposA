@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Sha256Generator;
+use App\helpers\Sha256Generator;
 use App\cron_test;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
