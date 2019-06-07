@@ -31,9 +31,7 @@ class BasicPackageController extends Controller
 		
 		$packageid = $request->packageid;	
 		
-		$insdata  = [];
-		$cardnum  = $request->cardnum;	
-		$cardpass = $request->cardpass;	
+		$insdata   = [];
 		
 		$input = [
 			 'memberid'    => $request->memberid,
