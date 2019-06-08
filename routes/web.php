@@ -521,6 +521,14 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::post('/basicpackage/confirm-vip', 'BasicPackageController@confirm_basicpackage')->name('basicpackage.redeem.confirm');	
 	Route::post('/basicpackage/reject-vip', 'BasicPackageController@reject_basicpackage')->name('basicpackage.redeem.reject');
 	
+	Route::get( '/report/get-redeem-childs', 'ReportController@get_redeem_members' )->name( 'ajax_redeem_members' );
+	
+	Route::get( '/report/get-played-childs', 'ReportController@get_played_members' )->name( 'ajax_played_members' );
+	
+	Route::get( '/report/played-member', 'ReportController@played_details' )->name( 'played_details' );
+	
+	Route::get( '/report/ledger', 'ReportController@played_details' )->name( 'played_details' );
+	
 	
 	
 } );

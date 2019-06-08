@@ -200,4 +200,46 @@ class ReportController extends BaseController
 		
 		return view('reports.draw.playedmembers', ['result' => $result])->render();  		
 	}
+	
+	public function get_redeem_members (Request $request)
+	{
+		$id     = $request->id;
+		$type   = $request->type;
+		$pack   = $request->ptype;
+		$page   = 'members';
+		
+		switch ($pack)
+		{
+			case 'product':
+				$result =  \DB::table('view_redeem_history_all')->where('id',$id); 				
+				$page = 'product_member';			
+				
+			break;
+			case 'basic_package':
+				$result =  \DB::table('view_basic_package_user_list')->where('package_id',$id); 
+				if ($type)
+				{
+					switch ($type)
+					{
+						case 'all':
+						break;
+						case 'rejected':
+							$result = $result->where('redeem_state',0);
+						break;	
+						case 'reserved':
+							$result = $result->where('redeem_state',1);
+						break;
+						case 'used':
+							$result = $result->wherein('redeem_state',[2,3,4]);
+						break;	
+					}					
+				}
+			break;
+			case 'vip':
+				$result = $result->where('bet','even');
+			break;
+		}
+		$result = $result->get();
+		return view('reports.redeem_count_new.'.$page, ['result' => $result])->render(); 
+	}
 }
