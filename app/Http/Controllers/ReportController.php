@@ -277,10 +277,6 @@ class ReportController extends BaseController
 		}		
 		$result         =  $result->orderby('created_at',$order_by)->paginate(30);
 			
-		
-		
-		//$result = $result->paginate(30);	
-		
 		$data['page']   = 'reports.play.list'; 	
 				
 		$data['result'] = $result; 
@@ -288,9 +284,6 @@ class ReportController extends BaseController
 		if ($request->ajax()) {
             return view('reports.play.ajaxlist', ['result' => $result])->render();  
         }
-			//print_r($result);die();
-			//die($data['page']);
-		return view('main', $data);	
-		
+		return view('main', $data);			
 	}
 }
