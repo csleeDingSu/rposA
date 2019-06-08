@@ -242,4 +242,55 @@ class ReportController extends BaseController
 		$result = $result->get();
 		return view('reports.redeem_count_new.'.$page, ['result' => $result])->render(); 
 	}
+	
+	public function played_details (Request $request)
+	{
+		$drawid = $request->id;
+		
+		if (empty($drawid))
+		{
+			$drawid = '0';
+		}		
+		$result =  \DB::table('report_played_member')->where('game_id','101');
+		
+		//filters
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+		$order_by = 'DESC';
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_username'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_drawid'])) {
+				$result = $result->where('draw_id','LIKE', "%{$input['s_drawid']}%") ;				
+			}
+						
+			
+		}		
+		$result         =  $result->orderby('created_at',$order_by)->paginate(30);
+			
+		
+		
+		//$result = $result->paginate(30);	
+		
+		$data['page']   = 'reports.play.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.play.ajaxlist', ['result' => $result])->render();  
+        }
+			//print_r($result);die();
+			//die($data['page']);
+		return view('main', $data);	
+		
+	}
 }
