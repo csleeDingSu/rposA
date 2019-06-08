@@ -280,7 +280,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/report/redeem-count">@lang('dingsu.redeem_product')</a>
 					</li>
-					
+					<li class="nav-item">
+						<a class="nav-link" href="/report/played-member">@lang('dingsu.played_member')</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/report/ledger">@lang('dingsu.buy_product')</a>
 					</li>
