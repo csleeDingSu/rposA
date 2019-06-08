@@ -273,6 +273,19 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/report/redeem_product">@lang('dingsu.redeem_product')</a>
 					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/report/draw-details">@lang('dingsu.draw_details')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/report/redeem-count">@lang('dingsu.redeem_product')</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/report/ledger">@lang('dingsu.buy_product')</a>
+					</li>
+					
+					
 				</ul>
 			</div>
 		</li>
