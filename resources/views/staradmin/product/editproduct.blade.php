@@ -34,7 +34,7 @@
 						<div class="form-group row">
 							<label for="quantity" class="col-sm-3 col-form-label">@lang('dingsu.product_display_id')</label>
 							<div class="col-sm-9">
-								<input id="product_display_id" readonly name="product_display_id" class="form-control" type="text" value="{{ $record->available_quantity }}" maxlength="5">
+								<input id="product_display_id" readonly name="product_display_id" class="form-control" type="text" value="{{ $record->id }}" maxlength="5">
 							</div>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 						<div class="form-group row">
 							<label for="min_point" class="col-sm-3 col-form-label">@lang('dingsu.reserved') @lang('dingsu.product')</label>
 							<div class="col-sm-9">
-								<input id="min_point" name="min_point" class="form-control" type="text" required value="{{ $record->reserved_quantity }}" readonly maxlength="5">
+								<input id="min_point" name="min_point" class="form-control" type="text"  value="{{ $record->reserved_quantity ?: '0' }}" readonly maxlength="5">
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 						<div class="form-group row">
 							<label for="description" class="col-sm-3 col-form-label">@lang('dingsu.description')</label>
 							<div class="col-sm-9">
-								<input id="description" name="description" class="form-control" type="text" required value="{{ old('description', $record->product_description) }}">
+								<input id="description" name="description" class="form-control" type="text" value="{{ old('description', $record->product_description) }}">
 							</div>
 						</div>
 					</div>
