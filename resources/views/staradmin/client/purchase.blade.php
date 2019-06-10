@@ -1,12 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Q币购买')
-
-@section('left-menu')
-    <a href="/profile" class="back">
-        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
-    </a>
-@endsection
+@section('title', '开通场次')
 
 @section('top-css')
     @parent
@@ -14,16 +8,36 @@
 	<link rel="stylesheet" href="{{ asset('/client/css/purchase.css') }}" />
 @endsection
 
-@section('content')
+@section('top-navbar')
+@endsection
 
-<div class="full-height">
+@section('content')
+<div class="full-height no-header">
 	<div class="container">
 		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
 		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	
+
 		<div class="member-box">
-			<img class="img_flow" src="{{ asset('/client/images/membership/flow-purchase.png') }}"  />
-			<!-- end member id -->
+			<div class="card left">
+				<div class="col-xs-3 left-menu">
+					<a href="/profile" class="back">
+				        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>返回
+				    </a>
+				</div>
+				<div class="col-xs-6">
+					<div class="navbar-title">
+					  <div class="navbar-brand">开通场次</div>
+					</div>
+				</div>
+
+				<div class="col-xs-3 right-menu">
+				  	<div class="menu-wrapper">购买记录</div>
+				</div>
+			</div>
 
 			<!-- member details -->
 			<div class="information-table">
@@ -39,31 +53,13 @@
 					</form>
 
 					<div class="col-xs-12">
-						<div class="label-title">需支付<span class="point">0Q币</span>
-						</div>
-					</div>
-
-					<div class="col-xs-12">
 						<div class="how-to-pay">
-							支付方式：<br>
-							到淘宝搜索“1个Q币”给下方Q号充值<span class="_point">0</span>个Q币。<br>
-							充值完成后点击“充值完成”。<br>
-							平台核实充值，开通转盘场次。<br>
-						</div>
-					</div>
-
-					<div class="col-xs-12 qq">
-						<img class="qq-icon" src="{{ asset('/client/images/membership/qq.png') }}"  />
-						<div class="qq-info">
-							QQ号码: <span id="cut">{{env('qqnumber', '235883623')}}</span>
-						</div>
-						<div class="copy">
-							<div class="button-copy cutBtn">复制号码</div>
+							请提交30元骏网一卡通卡号和密码，可兑换2场次幸运转盘，预计2-5分钟开通完成。
 						</div>
 					</div>
 
 					<div class="col-xs-12">				
-						<div class="button-submit">充值完成</div>
+						<div class="button-submit">提交购买</div>
 						<div class="error"></div>
 					</div>
 
@@ -71,10 +67,12 @@
 
 			</div>
 			<!-- end member details -->
-
-
-		  	
 		</div>
+
+		<div class="top-background">
+			<img src="{{ asset('/client/images/purchase-bg.png') }}" />
+		</div>
+		<div class="bottom-background"></div>
 		
 	</div>
 </div>

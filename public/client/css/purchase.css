@@ -19,17 +19,12 @@ html, body {
 }
 
 .full-height {
-    background-color: #639aeb;
-    margin-top: 18px;
+    margin-top: 6px;
 }
 
 .card {
 	font-size: 16px;
 	color: white;
-}
-
-.cardBody {
-	background-color: #639aeb;
 }
 
 .img_flow {
@@ -42,7 +37,7 @@ html, body {
 }
 
 .information-table {
-	margin-top:20px;
+	margin-top:120px;
 	margin-bottom:30px;
 	padding-top:10px;
 	background: white;
@@ -387,8 +382,7 @@ html, body {
 
 .how-to-pay {
 	font-size: 13px;
-	color: #999;
-	width: 355px;
+	color: #ff5050;
 }
 
 .qq-info {
@@ -421,4 +415,25 @@ html, body {
 .copy {
 	display: inline-block;
 	width: 70px;padding: 10px;
+}
+
+.left-menu {
+    padding-top: 0;
+    text-align: left;
+    font-size: 16px;
+}
+
+.left-menu a, .icon-back {
+	color: white;
+}
+
+.col-xs-6 {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.right-menu {
+    padding: 4px 0;
+    font-size: 14px;
+    color: #fff845;
 }
