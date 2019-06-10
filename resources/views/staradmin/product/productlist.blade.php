@@ -22,15 +22,15 @@
 					<tbody>
 						@foreach($result as $list)
 						<tr id="tr_{{ $list->id }}">
-							<td>{{ $list->product_display_id }}</td>
+							<td>{{ $list->id }}</td>
 							<td>{{ $list->created_at }}</td>
 							<td>{{ $list->product_name }}</td>
 							
 							<td>
-								{{ $list->available_quantity }}
+								{{ $list->available_quantity ?: '0' }}
 							</td>
 							<td>
-								{{ $list->reserved_quantity }}
+								{{ $list->reserved_quantity ?: '0' }}
 							</td>
 							<td>
 								{{ $list->min_point }}
