@@ -244,7 +244,7 @@ class MemberRegisterController extends Controller
 			//Mail::to($data['email'])->queue(new SendMail('welcomemail', $input)); //correct one
 					
 			//Generate Login Session
-			Auth::guard('member')->attempt(['phone' => $data['username'], 'password' => $data['password']]);
+			Auth::guard('member')->attempt(['username' => $data['phone'], 'password' => $data['password']]);
 			
 			$user = Auth::guard('member')->user();
 			$user->active_session = Session::getId();
