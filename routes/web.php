@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Http\Request; 
 //re route
 Route::group( [ 'middleware' => 'reroute' ], function () {
 	Route::get( '/member/re-route')->name( 'do_re-route' );
