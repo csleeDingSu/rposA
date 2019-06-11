@@ -599,5 +599,39 @@ return [
 	'today_basicpackage_redeem' => 'Basic Package Redeemed',
 	'package_discount_price' => 'discount price',
 	'today_vippackage_redeem' => 'VIP Package Redeemed',
+	'created_at' => 'Created',
+	'buy_product'=>'Product ledger',
+	'played_member'=>'Play report',
+	'played_time'=>'game play time',
+	'drawid'=>'Draw ID',
+	'game_result'=>'Result',
+	'play_result'=>'user selection',
+	'play_status'=>'Status',
+	'total_quantity'=>'Total',
+	'rejected_quantity'=>'Rejected',
+	'package_name'=>'Package name',
+	'package_price'=>'Package price',
+	'package_status'=>'Package status',
+	'played'=>'played',
+	'played_users'=>'# of players',
+	'odd'=>'odd',
+	'even'=>'even',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	
+	
+	
+	
+	
+	
+	
+	
 
 ];
