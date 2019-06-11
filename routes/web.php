@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Http\Request; 
 //re route
 Route::group( [ 'middleware' => 'reroute' ], function () {
 	Route::get( '/member/re-route')->name( 'do_re-route' );
@@ -521,13 +521,36 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::post('/basicpackage/confirm-vip', 'BasicPackageController@confirm_basicpackage')->name('basicpackage.redeem.confirm');	
 	Route::post('/basicpackage/reject-vip', 'BasicPackageController@reject_basicpackage')->name('basicpackage.redeem.reject');
 	
+	Route::get('/report/draw-details', 'ReportController@list_gameplayed')->name('draw-details');
+	Route::get('/report/redeem-count', 'ReportController@list_redeemed')->name('redeem-count');
+	
 	Route::get( '/report/get-redeem-childs', 'ReportController@get_redeem_members' )->name( 'ajax_redeem_members' );
 	
 	Route::get( '/report/get-played-childs', 'ReportController@get_played_members' )->name( 'ajax_played_members' );
 	
 	Route::get( '/report/played-member', 'ReportController@played_details' )->name( 'played_details' );
 	
-	Route::get( '/report/ledger', 'ReportController@played_details' )->name( 'played_details' );
+	Route::get( '/report/ledger', 'ReportController@ledger_details' )->name( 'ledger_details' );
+	
+	
+	Route::get('/get-wallet/{id?}', function ( $id = 0) {
+		$data = \DB::table('view_members')->where('id',$id)->get();
+		return view('reports.ledger.members', ['result' => $data])->render();
+	})->name( 'ajax_wallet_members' );
+	
+	Route::get('/view-ledger-trx/{id?}', function ( Request $request) {
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+		$order_by = 'DESC';
+		//\DB::enableQueryLog();
+		$result   =  \DB::table('view_ledger_details')->where('created_at', 'like', $request->cdate . '%' )->where('member_id',$request->id);
+		//->where('created_at',$request->cdate)
+				
+		$result   =  $result->orderby('created_at',$order_by)->get();
+		return view('reports.ledger.ledger', ['result' => $result])->render(); 
+	})->name( 'ajax_ledger_trx' );
 	
 	
 	
