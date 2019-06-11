@@ -616,7 +616,7 @@ return [
 	'played_users'=>'# of players',
 	'odd'=>'odd',
 	'even'=>'even',
-	''=>'',
+	'spent'=>'spent',
 	''=>'',
 	''=>'',
 	''=>'',
