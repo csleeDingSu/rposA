@@ -36,9 +36,9 @@ html, body {
   	margin-right: auto;
 }
 
-.information-table {
+.select-table {
 	margin-top:120px;
-	margin-bottom:30px;
+	margin-bottom:10px;
 	padding-top:10px;
 	background: white;
 	border-radius: 10px;
@@ -48,7 +48,8 @@ html, body {
 	padding-bottom: 20px;
 }
 
-.information-table .col-xs-12, .information-table .col-xs-6 {
+.select-table .col-xs-12, .select-table .col-xs-6,
+.input-table .col-xs-12, .input-table .col-xs-6  {
 	background: white;
 	color: #888888;
 	font-size: 16px;
@@ -56,13 +57,37 @@ html, body {
     padding-left: 20px;
 }
 
-.information-table .col-xs-4 {
+.select-table .col-xs-4 {
 	padding-left: 0px;
 	padding-right: 10px;
 }
 
-.information-table a {
+.select-table a {
 	text-decoration: none;
+}
+
+.input-table {
+	margin-top:0px;
+	margin-bottom:10px;
+	padding-top:10px;
+	background: white;
+	border-radius: 10px;
+	display: block;
+	text-align: left;
+	position: relative;
+	padding-bottom: 5px;
+}
+
+.info-table {
+	margin-top:0px;
+	margin-bottom:30px;
+	padding-top:10px;
+	background: white;
+	border-radius: 10px;
+	display: block;
+	text-align: left;
+	position: relative;
+	padding-bottom: 5px;
 }
 
 .row {
@@ -75,7 +100,13 @@ html, body {
 	font-size: 17px;
 	padding-left: 0;
 	padding-bottom: 15px;
-	font-weight: 600;
+	font-weight: 500;
+}
+
+.info-title {
+	color: #999;
+	font-size: 16px;
+	text-align: center;
 }
 
 .point {
@@ -198,17 +229,6 @@ html, body {
 	outline: none;
 	box-sizing: border-box;
 	width: 100%;
-}
-
-.button-submit {
-	color: #fff;
-	font-size: 18px;
-	padding: 7px 5px 10px 5px;
-	border-radius: 20px;
-	/*margin: 20px 10px;*/
-	background: #f8a647;
-	text-align: center;
-	cursor: pointer;
 }
 
 .error {
@@ -383,6 +403,7 @@ html, body {
 .how-to-pay {
 	font-size: 13px;
 	color: #ff5050;
+	padding: 15px 0;
 }
 
 .qq-info {
@@ -432,8 +453,104 @@ html, body {
 	padding-right: 0;
 }
 
-.right-menu {
-    padding: 4px 0;
+.menu-wrapper a {
+	padding: 4px 0;
     font-size: 14px;
     color: #fff845;
+    text-decoration: none;
+}
+
+.button-submit {
+  background: url('/client/images/btn-submit.png') no-repeat top center;
+  font-size: 0.38rem;
+  color: white;
+  background-size: contain;
+  height: 1.2rem;
+  padding: 10px 0 0 0;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+
+.input-table .no-padding {
+	padding: 0;
+}
+
+.instruction-list li {
+	text-align: left;
+	color: #999;
+	font-size: 13px;
+	padding-bottom: 0.2rem;
+}
+
+.instruction-list li .list-style {
+	background: #f8a647;
+	width: 0.22rem;
+	height: 0.22rem;
+	font-size: 0.2rem;
+	color: white;
+	border-radius: 50%;
+	text-align: center;
+	padding: 0.08rem 0.13rem;
+	margin-right: 0.2rem;
+}
+
+.instruction-list li.list-title {
+	color: #f8a647;
+	font-size: 14px;
+	padding-bottom: 0.1rem;
+}
+
+.highlight {
+	color: #1983fd;
+}
+
+.cutBtn {
+	background: #5daaff;
+	color: white;
+	border-radius: 3px;
+	padding: 3px 5px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.copy-success {
+	background: #63c31c;
+}
+
+.namer, .input-title {
+    border: 0;
+ 	border-bottom: 1px solid #e5e5e5;
+ 	font-size: 17px;
+ 	line-height: 15px;
+ 	height: 50px;
+ 	text-align: left;
+ 	background: transparent;
+    color: #333333;
+    float: left;
+    padding: 0 10px !important;
+}
+
+.input-title {
+ 	padding: 15px 0 !important;
+}
+
+.namer {
+	width: 80%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b2b2b2;
+  opacity: 1; /* Firefox */
+  font-size: 17px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #b2b2b2;
+  font-size: 17px;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #b2b2b2;
+  font-size: 17px;
 }

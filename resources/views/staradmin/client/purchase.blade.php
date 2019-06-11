@@ -35,15 +35,15 @@
 				</div>
 
 				<div class="col-xs-3 right-menu">
-				  	<div class="menu-wrapper">购买记录</div>
+				  	<div class="menu-wrapper"><a href="/round">购买记录</a></div>
 				</div>
 			</div>
 
 			<!-- member details -->
-			<div class="information-table">
+			<div class="select-table">
 				<div class="row">
 					<div class="col-xs-12">
-					  	<div class="label-title">选择场次</div>
+					  	<div class="label-title">场次</div>
 					</div>
 
 					<form method="post" action="">
@@ -51,18 +51,50 @@
 					  	<div class="radio-group"></div>
 					  
 					</form>
+				</div>
+
+			</div>
+
+			<div class="input-table">
+				<div class="row">
+					<div class="col-xs-12">
+					  	<div class="input-title">卡号</div>
+					  	<input class="namer" type="text" id="authusername" name="authusername" placeholder="请输入卡号(16位数)" required maxlength="16"><span class="mmcl lerror-username hidespan" ></span>
+					</div>
+					<div class="col-xs-12">
+					  	<div class="input-title">卡密</div>
+						<input class="namer" type="password" id="authpassword" name="authpassword" placeholder="请输入卡密(18位数)" required maxlength="18"><span class="mmcl lerror-password hidespan" ></span>
+					</div>
 
 					<div class="col-xs-12">
 						<div class="how-to-pay">
-							请提交30元骏网一卡通卡号和密码，可兑换2场次幸运转盘，预计2-5分钟开通完成。
+							请提交<strong>30元骏网一卡通</strong>卡号和密码，可兑换<strong>3场次</strong>幸运转盘，预计2-5分钟开通完成。
 						</div>
 					</div>
 
-					<div class="col-xs-12">				
+					<div class="col-xs-12 no-padding">				
 						<div class="button-submit">提交购买</div>
 						<div class="error"></div>
 					</div>
 
+				</div>
+
+			</div>
+
+			<div class="info-table">
+				<div class="row">
+					<div class="col-xs-12">
+					  	<div class="info-title">如何获取充值卡</div>
+					</div>
+
+					<div class="col-xs-12">
+						<ol class="instruction-list">
+							<li class="list-title"><span class="list-style">1</span>玩转盘抽充值卡</li>
+							<li>通过平台幸运转盘抽奖获得充值卡，每场赚15元充值卡</li>
+							<li class="list-title"><span class="list-style">2</span>淘宝购买充值卡</li>
+							<li>淘宝搜索<span class="highlight">“<span id="cut">骏网一卡通</span>”</span> <span class="cutBtn">点击复制</span> 找到店铺购买充值卡</li>
+						</ol>
+					</div>
 				</div>
 
 			</div>
