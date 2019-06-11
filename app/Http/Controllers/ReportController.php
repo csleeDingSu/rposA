@@ -286,4 +286,41 @@ class ReportController extends BaseController
         }
 		return view('main', $data);			
 	}
+	
+	
+	
+	public function ledger_details (Request $request)
+	{			
+		$result =  \DB::table('test_view');		
+		//filters
+		$input = array();		
+		parse_str($request->_data, $input);
+		
+		$input = array_map('trim', $input);
+		
+		$order_by = 'DESC';
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_createdat'])) {
+				$result = $result->where('created_at','LIKE', "%{$input['s_createdat']}%") ;				
+			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_phone']}%") ;				
+			}
+		}		
+		$result         =  $result->orderby('created_at',$order_by)->paginate(30);
+			
+		$data['page']   = 'reports.ledger.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.ledger.ajaxlist', ['result' => $result])->render();  
+        }
+		return view('main', $data);			
+	}
+	
+	
 }
