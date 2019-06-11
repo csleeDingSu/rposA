@@ -291,7 +291,7 @@ class ReportController extends BaseController
 	
 	public function ledger_details (Request $request)
 	{			
-		$result =  \DB::table('test_view');		
+		$result =  \DB::table('report_ledger_product');		
 		//filters
 		$input = array();		
 		parse_str($request->_data, $input);
