@@ -145,7 +145,7 @@ class ReportController extends BaseController
 	public function list_redeemed (Request $request)
 	{
 				
-		$result =  \DB::table('report_redeem_count');
+		$result =  \DB::table('report_all_count');
 		$input = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
@@ -162,12 +162,12 @@ class ReportController extends BaseController
 		}		
 		$result =  $result->paginate(30);
 				
-		$data['page']    = 'reports.redeem_count.list'; 	
+		$data['page']    = 'reports.redeem_count_new.list'; 	
 				
 		$data['result'] = $result; 
 				
 		if ($request->ajax()) {
-            return view('reports.redeem_count.ajaxlist', ['result' => $result])->render();  
+            return view('reports.redeem_count_new.ajaxlist', ['result' => $result])->render();  
         }
 					
 		return view('main', $data);	
