@@ -617,7 +617,7 @@ return [
 	'odd'=>'odd',
 	'even'=>'even',
 	'spent'=>'spent',
-	''=>'',
+	'draw'=>'Draw',
 	''=>'',
 	''=>'',
 	''=>'',
