@@ -154,9 +154,9 @@ class TestController extends BaseController
             //'E'.date("YmdHis").rand(100000,999999);    //订单号
             $pay_amount = $request->input('pay_amount');    //交易金额
             $pay_applydate = urlencode(Carbon::now()->toDateTimeString()); //date("Y-m-d H:i:s");  //订单时间
-            $pay_notifyurl = urlencode(url('/api/pay_notify'));
+            $pay_notifyurl = url('/api/pay_notify');
             //"http://www.yourdomain.com/demo/server.php";   //服务端返回地址
-            $pay_callbackurl = urlencode(url('/api/pay_callback'));
+            $pay_callbackurl = url('/api/pay_callback');
             //"http://www.yourdomain.com/demo/page.php";  //页面跳转返回地址
             $Md5key = empty($request->input('apikey')) ? env('PAY_APIKEY', 'sdq9jiji9i6n181di8faidoln1eqza6g') : $request->input('apikey');
             //"t4ig5acnpx4fet4zapshjacjd9o4bhbi";   //密钥
