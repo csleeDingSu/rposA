@@ -5,10 +5,10 @@ $pay_memberid = "10002";   //商户ID
 $pay_orderid = 'E'.date("YmdHis").rand(100000,999999);    //订单号
 $pay_amount = "0.01";    //交易金额
 $pay_applydate = date("Y-m-d H:i:s");  //订单时间
-$pay_notifyurl = "http://www.yourdomain.com/demo/server.php";   //服务端返回地址
-$pay_callbackurl = "http://www.yourdomain.com/demo/page.php";  //页面跳转返回地址
+$pay_notifyurl = "http://dev.boge56.com/payment_demo/server.php";   //服务端返回地址
+$pay_callbackurl = "http://dev.boge56.com/payment_demo/page.php";  //页面跳转返回地址
 $Md5key = "t4ig5acnpx4fet4zapshjacjd9o4bhbi";   //密钥
-$tjurl = "http://www.yourdomain.com/Pay_Index.html";   //提交地址
+$tjurl = "http://d.yvcdv.cn/Pay_Index.html"; //"http://www.yourdomain.com/Pay_Index.html";   //提交地址
 $pay_bankcode = "903";   //银行编码
 //扫码
 $native = array(
