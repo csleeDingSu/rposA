@@ -148,20 +148,20 @@ class TestController extends BaseController
     {
         try {
 
-            $pay_memberid = env('PAY_ID', '10003');//"10002";   //商户ID
+            $pay_memberid = empty($request->input('pay_memberid')) ? env('PAY_ID', '10003') : $request->input('pay_memberid');//"10002";   //商户ID
             $pay_orderid = 'E'.Carbon::now()->timestamp.rand(100000,999999);
             //'E'.date("YmdHis").rand(100000,999999);    //订单号
-            $pay_amount = $request->input('amount');    //交易金额
+            $pay_amount = $request->input('pay_amount');    //交易金额
             $pay_applydate = Carbon::now()->toDateTimeString(); //date("Y-m-d H:i:s");  //订单时间
             $pay_notifyurl = url('/api/pay_notify');
             //"http://www.yourdomain.com/demo/server.php";   //服务端返回地址
             $pay_callbackurl = url('/api/pay_callback');
             //"http://www.yourdomain.com/demo/page.php";  //页面跳转返回地址
-            $Md5key = env('PAY_APIKEY', 'sdq9jiji9i6n181di8faidoln1eqza6g');
+            $Md5key = empty($request->input('apikey')) ? env('PAY_APIKEY', 'sdq9jiji9i6n181di8faidoln1eqza6g') : $request->input('apikey');
             //"t4ig5acnpx4fet4zapshjacjd9o4bhbi";   //密钥
             $tjurl = env('PAY_URL', 'http://d.yvcdv.cn/Pay_Index.html');
             //"http://www.yourdomain.com/Pay_Index.html";   //提交地址
-            $pay_bankcode = env('PAY_BANKCODE','915'); //"903";   //银行编码
+            $pay_bankcode = empty($request->input('pay_bankcode')) ? env('PAY_BANKCODE','915') : $request->input('pay_bankcode'); //"903";   //银行编码
 
             //扫码
             $native = array(
@@ -205,7 +205,7 @@ class TestController extends BaseController
     {
         try {
             
-            $pay_memberid = env('PAY_ID', '10003');  
+            $pay_memberid = empty($request->input('pay_memberid')) ? env('PAY_ID', '10003') : $request->input('pay_memberid');;  
             $pay_orderid = $request->input('pay_orderid');            
             $Md5key = env('PAY_APIKEY', 'sdq9jiji9i6n181di8faidoln1eqza6g');
             
