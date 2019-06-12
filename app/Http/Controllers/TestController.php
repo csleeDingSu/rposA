@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\helpers\Sha256Generator;
 use App\cron_test;
+use App\helpers\Sha256Generator;
+use App\payment_transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -180,19 +181,22 @@ class TestController extends BaseController
             }
             $sign = strtoupper(md5($md5str . "key=" . $Md5key));
             $native["pay_md5sign"] = $sign;
-            $native["pay_productname"] = "test";
+            $native["pay_productname"] = "挖宝充值";
             
             //log parameter
             \Log::info(['Pay_Index URL' => $tjurl, 'native' => $native]);
             \Log::info(['md5str' => $md5str]);
+            //insert send payment
+            $res_id = payment_transaction::create(["pay_orderid" => $pay_orderid, 'pay_amount' => $pay_amount, 'params' => json_encode($native, true)])->id;
 
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
 
-            //log response
-            // \Log::info(['Pay_Index response' => $response]);
+            //update response
+            payment_transaction::where('id', $res_id)->update(['response' => $response]);
+            
             return $response;
 
         } catch (\Exception $e) {
