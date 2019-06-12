@@ -152,7 +152,7 @@ class TestController extends BaseController
             $pay_orderid = 'E'.Carbon::now()->timestamp.rand(100000,999999);
             //'E'.date("YmdHis").rand(100000,999999);    //订单号
             $pay_amount = $request->input('pay_amount');    //交易金额
-            $pay_applydate = Carbon::now()->toDateTimeString(); //date("Y-m-d H:i:s");  //订单时间
+            $pay_applydate = urlencode(Carbon::now()->toDateTimeString()); //date("Y-m-d H:i:s");  //订单时间
             $pay_notifyurl = url('/api/pay_notify');
             //"http://www.yourdomain.com/demo/server.php";   //服务端返回地址
             $pay_callbackurl = url('/api/pay_callback');
