@@ -180,7 +180,8 @@ class TestController extends BaseController
             }
             $sign = strtoupper(md5($md5str . "key=" . $Md5key));
             $native["pay_md5sign"] = $sign;
-
+            $native["pay_productname"] = "test";
+            
             //log parameter
             \Log::info(['Pay_Index URL' => $tjurl, 'native' => $native]);
             \Log::info(['md5str' => $md5str]);
