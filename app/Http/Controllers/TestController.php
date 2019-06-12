@@ -193,10 +193,11 @@ class TestController extends BaseController
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
-            $response = $req->getBody();
+            $res = $req->getBody();
 
             //update response
-            payment_transaction::where('id', $res_id)->update(['pay_response' => (is_array($response) ? json_encode($response) : $response)]);            
+            $response = (is_array($res) ? json_encode($res) : $res);
+            payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);            
             \Log::info(['pay_response' => $response]);
             
             return $response;
@@ -242,10 +243,14 @@ class TestController extends BaseController
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$param]);
-            $response = $req->getBody();
+            $res = $req->getBody();
+
+            $response = (is_array($res) ? json_encode($res) : $res);
 
              //update response
-            payment_transaction::where('pay_orderid', $pay_orderid)->update(['query_response' => (is_array($response) ? json_encode($response) : $response)]);
+            payment_transaction::where('pay_orderid', $pay_orderid)->update(['query_response' => $response]);
+
+            \Log::info(['query_response' => $response]);
 
             return $response;
 
@@ -292,6 +297,8 @@ class TestController extends BaseController
                 $str = $returnArray;
 
             }
+
+            \Log::info(['callback_response' => (is_array($str) ? json_encode($str) : $str)]);
 
             //update response
             payment_transaction::where('pay_orderid', $orderid)->update(['callback_response' => (is_array($str) ? json_encode($str) : $str)]);
@@ -341,6 +348,8 @@ class TestController extends BaseController
             } else {
                 $str = $returnArray;
             }
+
+            \Log::info(['notify_response' => (is_array($str) ? json_encode($str) : $str)]);
 
             //update response
             payment_transaction::where('pay_orderid', $orderid)->update(['notify_response' => (is_array($str) ? json_encode($str) : $str)]);
