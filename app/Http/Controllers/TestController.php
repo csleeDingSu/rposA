@@ -184,7 +184,7 @@ class TestController extends BaseController
             //log parameter
             \Log::info(['Pay_Index URL' => $tjurl, 'native' => $native]);
                        
-            $headers = [ 'Content-Type' => "text/html; charset=utf-8"];
+            $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
