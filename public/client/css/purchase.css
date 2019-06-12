@@ -37,7 +37,7 @@ html, body {
 }
 
 .select-table {
-	margin-top:120px;
+	margin-top:160px;
 	margin-bottom:10px;
 	padding-top:10px;
 	background: white;
@@ -45,21 +45,35 @@ html, body {
 	display: block;
 	text-align: left;
 	position: relative;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
+	font-size: 17px;
+	color: #333;
 }
 
-.select-table .col-xs-12, .select-table .col-xs-6,
+.select-table .col-xs-1, .select-table .col-xs-2, .select-table .col-xs-8 {
+	padding: 0;
+}
+
+.div-select {
+	padding-left: 5px;
+	color: #b2b2b2;
+	font-size: 17px;
+}
+
+.div-selected {
+	color: #5d5d5d;
+}
+
+.span-selected {
+	color: #1983fd;
+}
+
 .input-table .col-xs-12, .input-table .col-xs-6  {
 	background: white;
 	color: #888888;
 	font-size: 16px;
 	padding-right: 20px;
     padding-left: 20px;
-}
-
-.select-table .col-xs-4 {
-	padding-left: 0px;
-	padding-right: 10px;
 }
 
 .select-table a {
@@ -98,8 +112,7 @@ html, body {
 .label-title {
 	color: #333;
 	font-size: 17px;
-	padding-left: 0;
-	padding-bottom: 15px;
+	padding-left: 20px;
 	font-weight: 500;
 }
 
@@ -155,7 +168,7 @@ html, body {
 }
 
 .top-background img {
-	margin-top: -15%;
+	margin-top: -5%;
 	width: 100%;
     height: 100%;
 }
@@ -170,13 +183,21 @@ html, body {
 	}
 
 	.top-background img {
-		margin-top: -10%;
+		margin-top: -5%;
+	}
+
+	.select-table {
+		margin-top:140px;
 	}
 }
 
 @media only screen and (max-width:400px) {
 	.top-background img {
 		margin-top: -5%;
+	}
+
+	.select-table {
+		margin-top:130px;
 	}
 }
 
@@ -239,12 +260,12 @@ html, body {
 }
 
 /* Modal Box */
-.modal {
+#modal-successful .modal {
   text-align: center;
   padding: 0!important;
 }
 
-.modal:before {
+#modal-successful .modal:before {
   content: '';
   display: inline-block;
   height: 100%;
@@ -252,14 +273,14 @@ html, body {
   margin-right: -4px;
 }
 
-.modal-dialog {
+#modal-successful .modal-dialog {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
 }
 
 /* Modal Box */
-.modal-content, .modal-footer {
+#modal-successful .modal-content, #modal-successful .modal-footer {
     background: rgba(0, 0, 0, 0.7);
     width: 340px;
     margin-left: auto;
@@ -269,24 +290,24 @@ html, body {
     border: none;
 }
 
-.modal-full-height {
+#modal-successful .modal-full-height {
     text-align:center;
     padding-bottom: 0;
     margin: 0 auto;
 }
 
-.modal-body {
+#modal-successful .modal-body {
 	padding-top: 0;
 	padding-bottom: 0;
 }
 
-.modal-card {
+#modal-successful .modal-card {
     width: 250px;
     margin: 0 auto;
     font-size: 16px;
 }
 
-.modal-backdrop.in {
+#modal-successful .modal-backdrop.in {
     filter: alpha(opacity=0);
     opacity: 0;
 }
@@ -297,13 +318,13 @@ html, body {
 	cursor: pointer;
 }
 
-.copyvoucher {
+#modal-successful .copyvoucher {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis ;
 }
 
-.instructions {
+#modal-successful .instructions {
     font-weight: 500;
     color: #fff;
     padding-top: 10px;
@@ -312,21 +333,48 @@ html, body {
 }
 
 @media only screen and (max-width: 360px) {
-    .modal-content, .modal-title, .modal-footer {
+    #modal-successful .modal-content, #modal-successful .modal-title, #modal-successful .modal-footer {
         width: 300px;
     }
 
-    .modal-card {
+    #modal-successful .modal-card {
         width: 230px;
         font-size: 16px;
     }
 }
 /* End Modal box */
 
+#select-modal .modal-content {
+	background: #fefefe;
+}
+
+#select-modal .modal-title {
+	float: left;
+	color: #333;
+	font-size: 20px;
+	width: 70%;
+	padding-left: 5px;
+	background: #fefefe;
+}
+
+#select-modal .img-wrapper {
+	float: right;
+}
+
+.btn-open-select, .btn-close-select {
+	cursor: pointer;
+}
+
+.btn-select {
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
 .promotion {
 	width: 60%;
 	position: absolute;
-	top: -25%;
+	top: -12%;
 	right: 6%;
 	z-index: 10;
 }
@@ -338,10 +386,15 @@ html, body {
 
 .radio-group{
     position: relative;
-    padding-right: 15px;
-	padding-left: 15px;
-	height: 210px;
+	overflow:hidden;
 	margin-left: 5px;
+	min-height: 170px;
+	padding-top: 15px;
+}
+
+.radio-group .col-xs-4 {
+	padding-left: 0px;
+	padding-right: 10px;
 }
 
 .radio{
@@ -349,33 +402,35 @@ html, body {
     width:100%;
     height: 70px;
     border-radius: 6px;
-    border: 1px solid #d5d5d5;
+    border: none;
     cursor:pointer;
     margin: 0 0 10px 0; 
     color: #b8b8b8;
     text-align: center;
     font-size: 13px;
     padding-top:8px;
+    background: #f4f4f4;
 }
 
 .radio-title {
-	color: #7b7b7b;
+	color: #666;
 	font-size: 16px;
 	padding-top:5px;
 }
 
 .radio.selected{
-    border-color: #f8a647;
-    color: #fb8900;
+    border: 1px solid #639aeb;
+    color: #639aeb;
+    background: #f3f8ff;
 }
 
 .radio.selected .radio-title{
-    color: #f8a647;
+    color: #639aeb;
 }
 
 .radio.selected .radio-price {
 	font-size: 13px;
-	color: #f8a647;
+	color: #639aeb;
 }
 
 /*@media only screen and (max-width: 500px) {
@@ -403,7 +458,7 @@ html, body {
 .how-to-pay {
 	font-size: 13px;
 	color: #ff5050;
-	padding: 15px 0;
+	padding-top: 15px;
 }
 
 .qq-info {
@@ -470,6 +525,7 @@ html, body {
   cursor: pointer;
   text-align: center;
   font-weight: 500;
+  margin-top: 15px;
 }
 
 .input-table .no-padding {

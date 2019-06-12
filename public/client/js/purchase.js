@@ -2,6 +2,12 @@ var token = '';
 
 $(document).ready(function () {
 
+    $('#radio-value').val('');
+    $('#card-no').val('');
+    $('#card-password').val('');
+    $('.div-select').html('请选择购买场次');
+    $('.how-to-pay').hide();
+
     getToken();
 
     $('.button-submit').click(function(){
@@ -20,6 +26,14 @@ $(document).ready(function () {
 
     clipboard.on('error', function (e) {
         $('.cutBtn').addClass('copy-success').html('复制成功');
+    });
+
+    $('.btn-open-select').click(function(){
+        $('#select-modal').modal();
+    });
+
+    $('.btn-close-select').click(function(){
+        $('#select-modal').modal('hide');
     });
 
 }); 
@@ -68,7 +82,7 @@ function getPackage() {
                     }
 
                         html += '<div class="radio" data-value="'+ item.id +'" data-price="'+price +'">' +
-                                    '<div class="radio-title">'+ item.package_name +'</div><div class="radio-price">'+ price +'Q币兑换</div>' +
+                                    '<div class="radio-title">'+ item.package_name +'</div><div class="radio-price">'+ price +'元充值卡</div>' +
                                 '</div>' +
                             '</div>';
                     
@@ -81,10 +95,17 @@ function getPackage() {
                     $(this).addClass('selected');
                     var val = $(this).attr('data-value');
                     var price = Math.trunc($(this).attr('data-price'));
+                    var package_name = $(this).find('.radio-title').html();
+                    var div_select_html = '<div class="div-selected">开通'+ package_name +' <span class="span-selected">'+ price +'元骏网一卡通</span></div>';
+
                     //alert(val);
                     $('#radio-value').val(val);
-                    $('.point').html(price +'Q币');
-                    $('._point').html(price);
+                    $('.div-select').html(div_select_html);
+                    $('.span-package-name').html(package_name);
+                    $('.span-price').html(price);
+                    $('.how-to-pay').show();
+                    $('.error').hide();
+                    $('#select-modal').modal('hide');
                 });
             }
         }
@@ -93,17 +114,24 @@ function getPackage() {
 
 function purchase(){
     var id = $('#hidUserId').val();
-    var txt_name = null; //$('#txt_name').val();
+    var card_no = $('#card-no').val();
+    var card_password = $('#card-password').val();
     var packageid = $('#radio-value').val();
 
     if(packageid <= 0){
         $('.error').html('未选择场次无法提交，请选择场次');
         $('.error').show();
+    } else if(card_no <= 0){
+        $('.error').html('未输入卡号无法提交，请输入卡号');
+        $('.error').show();
+    } else if(card_password <= 0){
+        $('.error').html('未输入卡密无法提交，请输入卡密');
+        $('.error').show();
     } else {
         $.ajax({
             type: 'POST',
             url: "/api/buy-basic-package",
-            data: { 'memberid': id, 'packageid': packageid, 'ref_note': txt_name },
+            data: { 'memberid': id, 'packageid': packageid, 'cardnum': card_no, 'cardpass': card_password },
             dataType: "json",
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
