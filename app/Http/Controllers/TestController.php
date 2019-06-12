@@ -187,7 +187,7 @@ class TestController extends BaseController
             $headers = [ 'Content-Type' => "text/html; charset=utf-8"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-            $response = $client->post($tjurl, ['headers' => $headers, 'form params'=>$native]);
+            $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
 
             //log response
             \Log::info(['Pay_Index response' => $response]);
@@ -232,7 +232,7 @@ class TestController extends BaseController
             $headers = [ 'Content-Type' => "text/html; charset=utf-8"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-            $response = $client->post($tjurl, ['headers' => $headers, 'form params'=>$param]);
+            $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$param]);
 
             return $response;
 
