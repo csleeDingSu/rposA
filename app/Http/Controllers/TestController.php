@@ -195,7 +195,7 @@ class TestController extends BaseController
             $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
 
             //update response
-            payment_transaction::where('id', $res_id)->update(['response' => $response]);
+            payment_transaction::where('id', $res_id)->update(['response' => json_encode($response->getBody())]);
             
             return $response;
 
