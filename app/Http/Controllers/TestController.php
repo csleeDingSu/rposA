@@ -184,13 +184,13 @@ class TestController extends BaseController
             //log parameter
             \Log::info(['Pay_Index URL' => $tjurl, 'native' => $native]);
                        
-            $headers = [ 'Content-Type' => "text/html; charset=utf-8"];
+            $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
 
             //log response
-            \Log::info(['Pay_Index response' => $response]);
+            // \Log::info(['Pay_Index response' => $response]);
             return $response;
 
         } catch (\Exception $e) {
@@ -229,7 +229,8 @@ class TestController extends BaseController
             //log 
             \Log::info(['Pay_Trade_query URL' => $tjurl, 'param' => $param]);
                        
-            $headers = [ 'Content-Type' => "text/html; charset=utf-8"];
+            // $headers = [ 'Content-Type' => "text/html; charset=utf-8"];
+            $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$param]);
