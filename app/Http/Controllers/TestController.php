@@ -187,16 +187,17 @@ class TestController extends BaseController
             \Log::info(['Pay_Index URL' => $tjurl, 'native' => $native]);
             \Log::info(['md5str' => $md5str]);
             //insert send payment
-            $res_id = payment_transaction::create(["pay_orderid" => $pay_orderid, 'pay_amount' => $pay_amount, 'params' => json_encode($native, true)])->id;
+            $res_id = payment_transaction::create(["pay_orderid" => $pay_orderid, 'pay_amount' => $pay_amount, 'pay_params' => json_encode($native, true)])->id;
 
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-            $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
+            $req = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
+            $response = $req->getBody();
 
             //update response
-            payment_transaction::where('id', $res_id)->update(['response' => json_encode($response, true)]);            
-            \Log::info(['response' => $response]);
+            payment_transaction::where('id', $res_id)->update(['pay_response' => (is_array($response) ? json_encode($response) : $response)]);            
+            \Log::info(['pay_response' => $response]);
             
             return $response;
 
@@ -240,7 +241,11 @@ class TestController extends BaseController
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-            $response = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$param]);
+            $req = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$param]);
+            $response = $req->getBody();
+
+             //update response
+            payment_transaction::where('pay_orderid', $pay_orderid)->update(['query_response' => (is_array($response) ? json_encode($response) : $response)]);
 
             return $response;
 
@@ -256,11 +261,13 @@ class TestController extends BaseController
     {
         try {
 
+            $str = null;
+
             $returnArray = array( // 返回字段
                 "memberid" => $request->input("memberid"), // 商户ID
                 "orderid" =>  $request->input("orderid"), // 订单号
                 "amount" =>  $request->input("amount"), // 交易金额
-                "datetime" =>  $request->input("datetime"), // 交易时间
+                "datetime" =>  urlencode($request->input("datetime")), // 交易时间
                 "transaction_id" =>  $request->input("transaction_id"), // 流水号
                 "returncode" => $request->input("returncode")
             );
@@ -274,12 +281,22 @@ class TestController extends BaseController
             }
             $sign = strtoupper(md5($md5str . "key=" . $md5key)); 
             if ($sign == $request->input("sign")) {
-                if ($_REQUEST["returncode"] == "00") {
+                if ($request->input("returncode") == "00") {
                        $str = "交易成功！订单号：".$request->input("orderid");
                        // exit($str);
-                       return $str;
+                } else {
+                    $str = $returnArray;
                 }
+            } else {
+
+                $str = $returnArray;
+
             }
+
+            //update response
+            payment_transaction::where('pay_orderid', $orderid)->update(['callback_response' => (is_array($str) ? json_encode($str) : $str)]);
+
+            return $str;
 
         } catch (\Exception $e) {
             //log error
@@ -297,7 +314,7 @@ class TestController extends BaseController
                 "memberid" => $request->input("memberid"), // 商户ID
                 "orderid" =>  $request->input("orderid"), // 订单号
                 "amount" =>  $request->input("amount"), // 交易金额
-                "datetime" =>  $request->input("datetime"), // 交易时间
+                "datetime" =>  urlencode($request->input("datetime")), // 交易时间
                 "transaction_id" =>  $request->input("transaction_id"), // 支付流水号
                 "returncode" => $request->input("returncode"),
             );
@@ -313,11 +330,22 @@ class TestController extends BaseController
             if ($sign == $request->input("sign")) {
                 if ($request->input("returncode") == "00") {
                        $str = "交易成功！订单号：".$request->input("orderid");
-                       file_put_contents("success.txt",$str."\n", FILE_APPEND);
+                       // file_put_contents("success.txt",$str."\n", FILE_APPEND);
                        // exit("ok");
-                       return "ok - $str";
+                       // return $str";
+                } else {
+
+                    $str = $returnArray;
+
                 }
+            } else {
+                $str = $returnArray;
             }
+
+            //update response
+            payment_transaction::where('pay_orderid', $orderid)->update(['notify_response' => (is_array($str) ? json_encode($str) : $str)]);
+
+            return $str;
 
         } catch (\Exception $e) {
             //log error
