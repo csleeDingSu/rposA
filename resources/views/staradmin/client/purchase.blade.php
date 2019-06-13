@@ -39,64 +39,17 @@
 				</div>
 			</div>
 
-			<!-- member details -->
-			<form method="post" action="">
-			<div class="select-table">
-				<div class="row">
-					<div class="col-xs-2">
-					  	<div class="label-title">场次</div>
-					</div>
-					<div class="btn-open-select">
-						<div class="col-xs-8">
-							<input type="hidden" id="radio-value" name="radio-value" value="" />
-						  	<div class="div-select"></div>
-						</div>
-						<div class="col-xs-2">
-						  	<img class="btn-select" src="{{ asset('/client/images/btn-select.png') }}" width="22" height="22" />
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="input-table">
-				<div class="row">
-					<div class="col-xs-12">
-					  	<div class="input-title">卡号</div>
-					  	<input class="namer" type="text" id="card-no" name="card-no" placeholder="请输入卡号(16位数)" maxlength="16"><span class="mmcl lerror-username hidespan" ></span>
-					</div>
-					<div class="col-xs-12">
-					  	<div class="input-title">卡密</div>
-						<input class="namer" type="password" id="card-password" name="card-password" placeholder="请输入卡密(18位数)" maxlength="18"><span class="mmcl lerror-password hidespan" ></span>
-					</div>
-
-					<div class="col-xs-12">
-						<div class="how-to-pay">
-							请提交<strong><span class="span-price">30</span>元骏网一卡通</strong>卡号和密码，可兑换<strong><span class="span-package-name">3场次</span></strong>幸运转盘，预计2-5分钟开通完成。
-						</div>
-					</div>
-
-					<div class="col-xs-12 no-padding">				
-						<div class="button-submit">提交购买</div>
-						<div class="error"></div>
-					</div>
-				</div>
-			</div>
-			</form>
-
 			<div class="info-table">
 				<div class="row">
 					<div class="col-xs-12">
-					  	<div class="info-title">如何获取充值卡</div>
+					  	<div class="info-title">联系微信客服购买场次</div>
+					  	<div id="cutCS" class="copyvoucher">{{env('wechat_id', 'LUNLY028')}}</div>
+						<div class="cutBtnCS">点击复制</div>
 					</div>
-
-					<div class="col-xs-12">
-						<ol class="instruction-list">
-							<li class="list-title"><span class="list-style">1</span>玩转盘抽充值卡</li>
-							<li>通过平台幸运转盘抽奖获得充值卡，每场赚15元充值卡</li>
-							<li class="list-title"><span class="list-style">2</span>淘宝购买充值卡</li>
-							<li>淘宝搜索<span class="highlight">“<span id="cut">骏网一卡通</span>”</span> <span class="cutBtn">点击复制</span> 找到店铺购买充值卡</li>
-						</ol>
+					<div class="col-xs-12 instructions">
+						充值时间：<span class="highlight">早上9：00～晚上9：00</span><br />
+						为了不影响参与抽奖，请提前购买幸运转盘场次<br />
+						若已添加微信，在微信搜索微信号联系
 					</div>
 				</div>
 
@@ -137,26 +90,6 @@
 		</div>
 	</div>
 <!-- Steps Modal Ends -->
-
-<!-- Modal starts -->
-<div class="modal fade col-lg-12" id="select-modal" tabindex="-1" style="z-index: 9999">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content vip-card-content">
-            <div class="modal-body">
-            	<div class="modal-title">选择购买场次</div>
-            	<div class="img-wrapper">
-	        		<img class="btn-close-select" src="{{ asset('/client/images/btn-close-purchase.png') }}" width="22" height="22" />
-	        	</div>
-	        	<div style="clear: both;"></div>
-                <div class="modal-row">
-                      <div class="radio-group"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Ends -->
-
 
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
