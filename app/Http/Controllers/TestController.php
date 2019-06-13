@@ -205,7 +205,7 @@ class TestController extends BaseController
                 $_response = $this->Pay_Index_2ndScreen($response);
 
                 //3nd lv screen (qrcode)
-                if (strpos($_response,"<title>微信付款</title>") >= 0) {
+                if (strpos($_response,"new QRCode") >= 0) { //<title>微信付款</title>
                     $__response = $this->Pay_Index_3ndScreen($_response);
                     return $__response;
 
