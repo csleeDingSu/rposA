@@ -514,7 +514,7 @@ class TestController extends BaseController
                             var txt_arr = ["确认过眼神你是我的菜", "这个二维码很特别特别", "充值未到账请联系客服", "充值未成功请重新生成"];
                             var num = 0;
                             var timer_txt = setInterval(function () {
-                                text.innerText = txt_arr[num];
+                                //text.innerText = txt_arr[num];
                                 num++;
                                 if (num === 4) {
                                     num = 0;
