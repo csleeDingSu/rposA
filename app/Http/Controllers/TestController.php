@@ -306,18 +306,24 @@ class TestController extends BaseController
                 $md5str = $md5str . $key . "=" . $val . "&";
             }
             $sign = strtoupper(md5($md5str . "key=" . $md5key)); 
-            if ($sign == $request->input("sign")) {
+            // if ($sign == $request->input("sign")) {
                 if ($request->input("returncode") == "00") {
-                       $str = "交易成功！订单号：".$request->input("orderid");
+                       // $str = "交易成功！订单号：".$request->input("orderid");
                        // exit($str);
+                        $str = '<html><body>';
+                        $str .= '<div>交易成功！订单号：' .$request->input("orderid") . '</div>';
+                        $str .= '<br/>';
+                        $str .= '<a href="wabao666.com">OK</a>';
+                        $str .= '</body></html>';
+
                 } else {
                     $str = $returnArray;
                 }
-            } else {
+            // } else {
 
-                $str = $returnArray;
+                // $str = $returnArray;
 
-            }
+            // }
 
             \Log::info(['callback_response' => (is_array($str) ? json_encode($str) : $str)]);
 
@@ -355,7 +361,7 @@ class TestController extends BaseController
                 $md5str = $md5str . $key . "=" . $val . "&";
             }
             $sign = strtoupper(md5($md5str . "key=" . $md5key));
-            if ($sign == $request->input("sign")) {
+            // if ($sign == $request->input("sign")) {
                 if ($request->input("returncode") == "00") {
                        $str = "交易成功！订单号：".$request->input("orderid");
                        // file_put_contents("success.txt",$str."\n", FILE_APPEND);
@@ -366,9 +372,9 @@ class TestController extends BaseController
                     $str = $returnArray;
 
                 }
-            } else {
-                $str = $returnArray;
-            }
+            // } else {
+            //     $str = $returnArray;
+            // }
 
             \Log::info(['notify_response' => (is_array($str) ? json_encode($str) : $str)]);
 
@@ -419,13 +425,13 @@ class TestController extends BaseController
         $_pay_bankcode = $this->pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_callbackurl" ';
-        $_pay_callbackurl = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_callbackurl = url('/api/pay_callback'); //$this->pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_memberid" ';
         $_pay_memberid = $this->pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_notifyurl" ';
-        $_pay_notifyurl = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_notifyurl = url('/api/pay_notify'); //$this->pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_orderid" ';
         $_pay_orderid = $this->pay_filter_value($content, $str, $from, $to);
