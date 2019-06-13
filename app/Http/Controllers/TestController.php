@@ -460,8 +460,22 @@ class TestController extends BaseController
         $qrcode = $this->pay_filter_value($content, $str, $from, $to);
         
         $html = '<html><head>
+        <script src="https://api.nx908.com/statics/js/jquery.js"></script>
         <script src="https://api.nx908.com/statics/js/qrcode.min.js"></script>
+        <script src="https://api.nx908.com/statics/js/clipboard.min.js"></script>
+        <script type="text/javascript" src="https://api.nx908.com/statics/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="https://api.nx908.com/statics/css/toastr.min.css">
         <style>
+            .money {
+                margin: 30px auto;
+                height: 21px;
+                line-height: 21px;
+                color: #ff0000;
+                font-size: 38px;
+                font-family: HelveticaNeue;
+                text-align: center;
+            }
+
             #showqr {
                 width: 200px;
                 height: 200px;
