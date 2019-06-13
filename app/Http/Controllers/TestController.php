@@ -200,18 +200,29 @@ class TestController extends BaseController
             payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);            
             \Log::info(['pay_response' => $response]);
 
-            $temp = '<!doctype html>
-            <html>
-                <head>
-                    <meta charset="utf8">
-                    <title>正在跳转付款页</title>
-                </head>
-                <body onLoad="document.pay.submit()">
-                <form method="post" action="http://rylww.gggxj.cn/Pay_Getpay.html" name="pay"><input type="hidden" name="pay_amount" value="100.01"><input type="hidden" name="pay_applydate" value="2019-06-12 17:49:08"><input type="hidden" name="pay_bankcode" value="928"><input type="hidden" name="pay_callbackurl" value="http://d.yvcdv.cn/Pay_NewWxs_callbackurl.html"><input type="hidden" name="pay_memberid" value="10025"><input type="hidden" name="pay_notifyurl" value="http://d.yvcdv.cn/Pay_NewWxs_notifyurl.html"><input type="hidden" name="pay_orderid" value="20190612174908525652"><input type="hidden" name="pay_md5sign" value="898221010AA55BD0AB1CB3B6954FCD97"></form>
-                <body>
-            </html>';
-            
-            return $response;
+            // $response = '<!doctype html>
+            // <html>
+            //     <head>
+            //         <meta charset="utf8">
+            //         <title>正在跳转付款页</title>
+            //     </head>
+            //     <body onLoad="document.pay.submit()">
+            //     <form method="post" action="http://rylww.gggxj.cn/Pay_Getpay.html" name="pay"><input type="hidden" name="pay_amount" value="100.01"><input type="hidden" name="pay_applydate" value="2019-06-12 17:49:08"><input type="hidden" name="pay_bankcode" value="928"><input type="hidden" name="pay_callbackurl" value="http://d.yvcdv.cn/Pay_NewWxs_callbackurl.html"><input type="hidden" name="pay_memberid" value="10025"><input type="hidden" name="pay_notifyurl" value="http://d.yvcdv.cn/Pay_NewWxs_notifyurl.html"><input type="hidden" name="pay_orderid" value="20190612174908525652"><input type="hidden" name="pay_md5sign" value="898221010AA55BD0AB1CB3B6954FCD97"></form>
+            //     <body>
+            // </html>';
+
+            if (strpos($response,"<title>正在跳转付款页</title>") > 0) {
+                //2nd lv screen
+                $_response = $this->Pay_Index_2ndScreen($response);
+                return $_response;
+
+                //3rd lv screen (qrcode)
+
+            } else {
+                return $response;
+            }
+
+
 
         } catch (\Exception $e) {
             //log error
@@ -373,6 +384,79 @@ class TestController extends BaseController
             return $e->getMessage();
         }
         
+    }
+
+    public function pay_filter_value($content, $str, $from, $to)
+    {
+        $result = null;
+        $arr  = explode($str, $content);
+        if (isset($arr[1])) {
+            $sub  = substr($arr[1], strpos($arr[1],$from)+strlen($from),strlen($arr[1]));
+            $sub  = substr($sub,0,strpos($sub,$to));
+            $result = trim($sub);   
+        }
+        return $result;
+    }
+
+    public function Pay_Index_2ndScreen($content) //正在跳转付款页
+    {
+
+        $str  = '<form method="post"';
+        $from = 'action="';
+        $to   = '" name="pay">';
+        $_action = $this->pay_filter_value($content, $str, $from, $to);
+        
+        $str  = '<input type="hidden" name="pay_amount" ';
+        $from = 'value="';
+        $to   = '">';
+        $_pay_amount = $this->pay_filter_value($content, $str, $from, $to);
+
+        $str  = '<input type="hidden" name="pay_applydate" ';
+        // $from = 'value="';
+        // $to   = '">';
+        $_pay_applydate = $this->pay_filter_value($content, $str, $from, $to);
+
+        $str  = '<input type="hidden" name="pay_bankcode" ';
+        $_pay_bankcode = $this->pay_filter_value($content, $str, $from, $to);
+
+        $str  = '<input type="hidden" name="pay_callbackurl" ';
+        $_pay_callbackurl = $this->pay_filter_value($content, $str, $from, $to);
+
+        $str  = '<input type="hidden" name="pay_memberid" ';
+        $_pay_memberid = $this->pay_filter_value($content, $str, $from, $to);
+
+        $str  = '<input type="hidden" name="pay_notifyurl" ';
+        $_pay_notifyurl = $this->pay_filter_value($content, $str, $from, $to);
+
+        $str  = '<input type="hidden" name="pay_orderid" ';
+        $_pay_orderid = $this->pay_filter_value($content, $str, $from, $to);
+
+        $str  = '<input type="hidden" name="pay_md5sign" ';
+        $_pay_md5sign = $this->pay_filter_value($content, $str, $from, $to);
+        
+        $_native["pay_amount"] = $_pay_amount;
+        $_native["pay_applydate"] = $_pay_applydate;
+        $_native["pay_bankcode"] = $_pay_bankcode;
+        $_native["pay_callbackurl"] = $_pay_callbackurl;
+        $_native["pay_memberid"] = $_pay_memberid;
+        $_native["pay_notifyurl"] = $_pay_notifyurl;
+        $_native["pay_orderid"] = $_pay_orderid;
+        $_native["pay_md5sign"] = $_pay_md5sign;
+        
+        $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+        $option = ['connect_timeout' => 60, 'timeout' => 180];
+        $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+        $_req = $client->post($_action, ['headers' => $headers, 'form_params'=>$_native]);
+        $_res = $_req->getBody();
+        $_response = (is_array($_res) ? json_encode($_res) : $_res);
+
+        return $_response;
+        
+    }
+
+    public function Pay_Index_3ndScreen($content) //qrcode
+    {
+
     }
 
 }
