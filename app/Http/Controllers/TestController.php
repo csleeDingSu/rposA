@@ -197,32 +197,25 @@ class TestController extends BaseController
 
             //update response
             $response = (is_array($res) ? json_encode($res) : $res);
-            payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);            
+            payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);
             \Log::info(['pay_response' => $response]);
 
-            // $response = '<!doctype html>
-            // <html>
-            //     <head>
-            //         <meta charset="utf8">
-            //         <title>正在跳转付款页</title>
-            //     </head>
-            //     <body onLoad="document.pay.submit()">
-            //     <form method="post" action="http://rylww.gggxj.cn/Pay_Getpay.html" name="pay"><input type="hidden" name="pay_amount" value="100.01"><input type="hidden" name="pay_applydate" value="2019-06-12 17:49:08"><input type="hidden" name="pay_bankcode" value="928"><input type="hidden" name="pay_callbackurl" value="http://d.yvcdv.cn/Pay_NewWxs_callbackurl.html"><input type="hidden" name="pay_memberid" value="10025"><input type="hidden" name="pay_notifyurl" value="http://d.yvcdv.cn/Pay_NewWxs_notifyurl.html"><input type="hidden" name="pay_orderid" value="20190612174908525652"><input type="hidden" name="pay_md5sign" value="898221010AA55BD0AB1CB3B6954FCD97"></form>
-            //     <body>
-            // </html>';
-
-            if (strpos($response,"<title>正在跳转付款页</title>") > 0) {
-                //2nd lv screen
+            if (strpos($response,"<title>正在跳转付款页</title>") >= 0) {
+                //2nd lv screen (redirect page)
                 $_response = $this->Pay_Index_2ndScreen($response);
-                return $_response;
 
-                //3rd lv screen (qrcode)
+                //3nd lv screen (qrcode)
+                if (strpos($_response,"<title>微信付款</title>") >= 0) {
+                    $__response = $this->Pay_Index_3ndScreen($_response);
+                    return $__response;
+
+                } else {
+                    return $_response;
+                }
 
             } else {
                 return $response;
             }
-
-
 
         } catch (\Exception $e) {
             //log error
@@ -456,6 +449,46 @@ class TestController extends BaseController
 
     public function Pay_Index_3ndScreen($content) //qrcode
     {
+        $str  = '<div class="money">';
+        $from = '<span id="money">';
+        $to   = '</span>';
+        $money = $this->pay_filter_value($content, $str, $from, $to);
+
+        $str  = 'var qrcode = new QRCode(document.getElementById("showqr"), {';
+        $from = 'text: "';
+        $to   = '",';
+        $qrcode = $this->pay_filter_value($content, $str, $from, $to);
+        
+        $html = '<html><head>
+        <script src="https://api.nx908.com/statics/js/qrcode.min.js"></script>
+        <style>
+            #showqr {
+                width: 200px;
+                height: 200px;
+                margin: 26px auto;
+                /*background: url("images/qr.png") no-repeat;*/
+                background-size: 100% 100%;
+            }
+        </style>
+        </head><body>';
+
+        $html .= '<div id="money">' . $money . '</div>';
+        $html .= '<br/>';
+        $html .= '<div id="showqr"></div>';
+        $html .= '</body>
+                    <script>
+                        var qrcode = new QRCode(document.getElementById("showqr"), {
+                            text: "' . $qrcode . '",
+                            width: 200,
+                            height: 200,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    </script>
+        </html>';
+
+        return $html;
 
     }
 
