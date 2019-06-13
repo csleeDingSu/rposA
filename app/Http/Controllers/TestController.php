@@ -202,11 +202,11 @@ class TestController extends BaseController
 
             if (strpos($response,"<title>正在跳转付款页</title>") >= 0) {
                 //2nd lv screen (redirect page)
-                $_response = $this->Pay_Index_2ndScreen($response);
+                $_response = $this->Pay_Index_2ndScreen($response, $res_id);
 
                 //3nd lv screen (qrcode)
                 if (strpos($_response,"<title>微信付款</title>") >= 0) {
-                    $__response = $this->Pay_Index_3ndScreen($_response);
+                    $__response = $this->Pay_Index_3ndScreen($_response, $res_id);
                     return $__response;
 
                 } else {
@@ -258,12 +258,18 @@ class TestController extends BaseController
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$param]);
-            $res = $req->getBody();
+            $res = json_decode($req->getBody());
+            // $req->rewind();
+            // $res = $req->getContents();
+            
+            $transaction_id = $res->data[0]->transaction_id;
+            $trade_state = $res->data[0]->trade_state;
+            $pay_amount_final = $res->data[0]->amount;
 
-            $response = (is_array($res) ? json_encode($res) : $res);
+            $response = json_encode($res, true);
 
              //update response
-            payment_transaction::where('pay_orderid', $pay_orderid)->update(['query_response' => $response]);
+            payment_transaction::where('pay_orderid', $pay_orderid)->update(['transaction_id' => $transaction_id, 'trade_state' => $trade_state, 'pay_amount_final' => $pay_amount_final, 'query_response' => $response]);
 
             \Log::info(['query_response' => $response]);
 
@@ -391,7 +397,7 @@ class TestController extends BaseController
         return $result;
     }
 
-    public function Pay_Index_2ndScreen($content) //正在跳转付款页
+    public function Pay_Index_2ndScreen($content, $res_id) //正在跳转付款页
     {
 
         $str  = '<form method="post"';
@@ -435,6 +441,8 @@ class TestController extends BaseController
         $_native["pay_notifyurl"] = $_pay_notifyurl;
         $_native["pay_orderid"] = $_pay_orderid;
         $_native["pay_md5sign"] = $_pay_md5sign;
+
+        payment_transaction::where('id', $res_id)->update(['redirect_response' => json_encode($_native)]);
         
         $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
         $option = ['connect_timeout' => 60, 'timeout' => 180];
@@ -447,7 +455,7 @@ class TestController extends BaseController
         
     }
 
-    public function Pay_Index_3ndScreen($content) //qrcode
+    public function Pay_Index_3ndScreen($content, $res_id) //qrcode
     {
         $str  = '<div class="money">';
         $from = '<span id="money">';
@@ -463,6 +471,8 @@ class TestController extends BaseController
             $html = $content;
 
         } else {
+
+            payment_transaction::where('id', $res_id)->update(['qrcode_response' => json_encode(['money' => $money, 'qrcode' => $qrcode])]);
         
             $html = '<html><head>
             <script src="https://api.nx908.com/statics/js/jquery.js"></script>
