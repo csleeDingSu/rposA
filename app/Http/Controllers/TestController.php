@@ -199,6 +199,17 @@ class TestController extends BaseController
             $response = (is_array($res) ? json_encode($res) : $res);
             payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);            
             \Log::info(['pay_response' => $response]);
+
+            $temp = '<!doctype html>
+            <html>
+                <head>
+                    <meta charset="utf8">
+                    <title>正在跳转付款页</title>
+                </head>
+                <body onLoad="document.pay.submit()">
+                <form method="post" action="http://rylww.gggxj.cn/Pay_Getpay.html" name="pay"><input type="hidden" name="pay_amount" value="100.01"><input type="hidden" name="pay_applydate" value="2019-06-12 17:49:08"><input type="hidden" name="pay_bankcode" value="928"><input type="hidden" name="pay_callbackurl" value="http://d.yvcdv.cn/Pay_NewWxs_callbackurl.html"><input type="hidden" name="pay_memberid" value="10025"><input type="hidden" name="pay_notifyurl" value="http://d.yvcdv.cn/Pay_NewWxs_notifyurl.html"><input type="hidden" name="pay_orderid" value="20190612174908525652"><input type="hidden" name="pay_md5sign" value="898221010AA55BD0AB1CB3B6954FCD97"></form>
+                <body>
+            </html>';
             
             return $response;
 
