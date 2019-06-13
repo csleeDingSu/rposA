@@ -482,6 +482,7 @@ html, body {
     border-radius: 5px;
     font-size: 23px;
     padding: 5px;
+    text-align: center;
 }
 
 .cutBtnCS, .cutBtnCS-success, .cutBtnCS-fail {

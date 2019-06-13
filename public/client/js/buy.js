@@ -2,18 +2,38 @@ var token = '';
 
 $(document).ready(function () {
 
-    var clipboard = new ClipboardJS('.cutBtnCS', {
+    $('#radio-value').val('');
+    $('#card-no').val('');
+    $('#card-password').val('');
+    $('.div-select').html('请选择购买场次');
+    $('.how-to-pay').hide();
+
+    getToken();
+
+    $('.button-submit').click(function(){
+        purchase();
+    });
+
+    var clipboard = new ClipboardJS('.cutBtn', {
         target: function () {
-            return document.querySelector('#cutCS');
+            return document.querySelector('#cut');
         }
     });
 
     clipboard.on('success', function (e) {
-        $('.cutBtnCS').addClass('cutBtnCS-success').html('复制成功 打开微信');
+        $('.cutBtn').addClass('copy-success').html('复制成功');
     });
 
     clipboard.on('error', function (e) {
-        $('.cutBtnCS').addClass('cutBtnCS-success').html('复制成功 打开微信');
+        $('.cutBtn').addClass('copy-success').html('复制成功');
+    });
+
+    $('.btn-open-select').click(function(){
+        $('#select-modal').modal();
+    });
+
+    $('.btn-close-select').click(function(){
+        $('#select-modal').modal('hide');
     });
 
 }); 
