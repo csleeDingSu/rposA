@@ -437,7 +437,7 @@ class TestController extends BaseController
         $_pay_orderid = $this->pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_md5sign" ';
-        $_pay_md5sign = $this->pay_filter_value($content, $str, $from, $to);
+        //$_pay_md5sign = $this->pay_filter_value($content, $str, $from, $to);
         
         $_native["pay_amount"] = $_pay_amount;
         $_native["pay_applydate"] = $_pay_applydate;
@@ -446,7 +446,15 @@ class TestController extends BaseController
         $_native["pay_memberid"] = $_pay_memberid;
         $_native["pay_notifyurl"] = $_pay_notifyurl;
         $_native["pay_orderid"] = $_pay_orderid;
-        $_native["pay_md5sign"] = $_pay_md5sign;
+
+        ksort($_native);
+        $md5str = "";
+        foreach ($_native as $key => $val) {
+            $md5str = $md5str . $key . "=" . $val . "&";
+        }
+        $Md5key = env('PAY_APIKEY', 'sdq9jiji9i6n181di8faidoln1eqza6g');
+        $sign = strtoupper(md5($md5str . "key=" . $Md5key));
+        $_native["pay_md5sign"] = $sign; //$_pay_md5sign;
 
         payment_transaction::where('id', $res_id)->update(['redirect_response' => json_encode($_native)]);
         
