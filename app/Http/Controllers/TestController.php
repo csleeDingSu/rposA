@@ -425,13 +425,15 @@ class TestController extends BaseController
         $_pay_bankcode = $this->pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_callbackurl" ';
-        $_pay_callbackurl = url('/api/pay_callback'); //$this->pay_filter_value($content, $str, $from, $to);
+        $_pay_callbackurl = $this->pay_filter_value($content, $str, $from, $to);
+        //$_pay_callbackurl = url('/api/pay_callback');
 
         $str  = '<input type="hidden" name="pay_memberid" ';
         $_pay_memberid = $this->pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_notifyurl" ';
-        $_pay_notifyurl = url('/api/pay_notify'); //$this->pay_filter_value($content, $str, $from, $to);
+        $_pay_notifyurl = $this->pay_filter_value($content, $str, $from, $to);
+        //$_pay_notifyurl = url('/api/pay_notify');
 
         $str  = '<input type="hidden" name="pay_orderid" ';
         $_pay_orderid = $this->pay_filter_value($content, $str, $from, $to);
