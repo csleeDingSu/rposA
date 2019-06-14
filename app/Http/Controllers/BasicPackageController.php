@@ -276,7 +276,7 @@ class BasicPackageController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$passcode = unique_random('vip_redeemed','passcode',8);
+			$passcode = unique_random('basic_redeemed','passcode',8);
 			$data = ['redeem_state'=>3,'confirmed_at'=>$now,'passcode'=>$passcode,'redeemed_at'=>$now];
 			BasicPackage::update_basicpackage($record->id, $data);
 			
