@@ -364,7 +364,7 @@ class BasicPackageController extends BaseController
 		$member = \App\Members::where('phone',$request->phone)->first('id');
 		
 		$package = BasicPackage::where('id',$request->package)->first();
-		
+		die();
 		if ($package)
 		{
 			$usedprice = $package->package_price; 		
