@@ -264,12 +264,12 @@ class TestController extends BaseController
             
             $transaction_id = $res->data[0]->transaction_id;
             $trade_state = $res->data[0]->trade_state;
-            $pay_amount_final = $res->data[0]->amount;
+            $pay_final_amount = $res->data[0]->amount;
 
             $response = json_encode($res, true);
 
              //update response
-            payment_transaction::where('pay_orderid', $pay_orderid)->update(['transaction_id' => $transaction_id, 'trade_state' => $trade_state, 'pay_amount_final' => $pay_amount_final, 'query_response' => $response]);
+            payment_transaction::where('pay_orderid', $pay_orderid)->update(['transaction_id' => $transaction_id, 'trade_state' => $trade_state, 'pay_final_amount' => $pay_final_amount, 'query_response' => $response]);
 
             \Log::info(['query_response' => $response]);
 
@@ -459,7 +459,7 @@ class TestController extends BaseController
         // $sign = strtoupper(md5($md5str . "key=" . $Md5key));
         // $_native["pay_md5sign"] = $sign;
 
-        payment_transaction::where('id', $res_id)->update(['redirect_response' => json_encode($_native), 'transaction_id' => $_pay_orderid, 'pay_amount_final' => $_pay_amount]);
+        payment_transaction::where('id', $res_id)->update(['redirect_response' => json_encode($_native), 'transaction_id' => $_pay_orderid, 'pay_response_amount' => $_pay_amount]);
         
         $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
         $option = ['connect_timeout' => 60, 'timeout' => 180];
@@ -489,7 +489,7 @@ class TestController extends BaseController
 
         } else {
 
-            payment_transaction::where('id', $res_id)->update(['qrcode_response' => json_encode(['money' => $money, 'qrcode' => $qrcode])]);
+            payment_transaction::where('id', $res_id)->update(['qrcode_response' => json_encode(['money' => $money, 'qrcode' => $qrcode], 'pay_final_amount' => $money, 'qrcode' => $qrcode)]);
         
             $html = '<html><head>
             <script src="https://api.nx908.com/statics/js/jquery.js"></script>

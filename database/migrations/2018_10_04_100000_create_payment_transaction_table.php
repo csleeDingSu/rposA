@@ -19,8 +19,10 @@ class CreatePaymentTransactionTable extends Migration
             $table->string('pay_orderid')->nullable();
             $table->string('pay_amount')->nullable();
             $table->string('transaction_id')->nullable();
+            $table->string('pay_response_amount')->nullable();
+            $table->string('pay_final_amount')->nullable();
+            $table->string('qrcode')->nullable();
             $table->string('trade_state')->nullable();
-            $table->string('pay_amount_final')->nullable();
             $table->longtext('pay_params')->nullable();
             $table->longtext('pay_response')->nullable();
             $table->longtext('query_response')->nullable();
