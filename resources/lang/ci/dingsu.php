@@ -583,5 +583,8 @@ return [
 	'package_discount_price' => '折扣价',
 	'today_vippackage_redeem' => '已换 VIP Package',
 	'admin' => '管理',
-
+	
+	'backorder'=>'后端购买',
+	'update_success_msg'=>'成功更新',
+	'default_option'=>'-- 请选择 --',
 ];
