@@ -193,7 +193,7 @@ class TestController extends BaseController
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
-            $res = json_decode($req->getBody());
+            $res = $req->getBody(); //json_decode($req->getBody());
             $res_pay_orderid = empty($res->data[0]->pay_orderid) ? null : $res->data[0]->pay_orderid;
 
             //update response
