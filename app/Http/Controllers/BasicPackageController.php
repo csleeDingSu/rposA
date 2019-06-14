@@ -203,8 +203,8 @@ class BasicPackageController extends BaseController
 			if (!empty($input['s_package_name'])) {
 				$result = $result->where('package_name','LIKE', "%{$input['s_package_name']}%") ;				
 			}
-			if (!empty($input['s_username'])) {
-				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
 			}
 		}
 		
@@ -245,8 +245,8 @@ class BasicPackageController extends BaseController
 			if (!empty($input['s_package_name'])) {
 				$result = $result->where('package_name','LIKE', "%{$input['s_package_name']}%") ;				
 			}
-			if (!empty($input['s_username'])) {
-				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
 			}
 		}
 		
