@@ -193,14 +193,13 @@ class TestController extends BaseController
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
-            $res = $req->getBody(); //json_decode($req->getBody());
-            $res_pay_orderid = empty($res->data[0]->pay_orderid) ? null : $res->data[0]->pay_orderid;
+            $res = $req->getBody(); 
 
             //update response
-            \Log::info(['pay_response' => $res]);
-            $response = json_encode($res);
+            $response = (is_array($res) ? json_encode($res) : $res);
             payment_transaction::where('id', $res_id)->update(['pay_response' => $response, 'transaction_id' => $res_pay_orderid]);
-            
+            \Log::info(['pay_response' => $response]);
+
             if (strpos($response,"<title>正在跳转付款页</title>") >= 0) {
                 //2nd lv screen (redirect page)
                 $_response = $this->Pay_Index_2ndScreen($response, $res_id);
@@ -460,7 +459,7 @@ class TestController extends BaseController
         // $sign = strtoupper(md5($md5str . "key=" . $Md5key));
         // $_native["pay_md5sign"] = $sign;
 
-        payment_transaction::where('id', $res_id)->update(['redirect_response' => json_encode($_native)]);
+        payment_transaction::where('id', $res_id)->update(['redirect_response' => json_encode($_native), 'transaction_id' => $_pay_orderid, 'pay_amount_final' => $_pay_amount]);
         
         $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
         $option = ['connect_timeout' => 60, 'timeout' => 180];
