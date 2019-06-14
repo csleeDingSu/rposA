@@ -489,7 +489,7 @@ class TestController extends BaseController
 
         } else {
 
-            payment_transaction::where('id', $res_id)->update(['qrcode_response' => json_encode(['money' => $money, 'qrcode' => $qrcode], 'pay_final_amount' => $money, 'qrcode' => $qrcode)]);
+            payment_transaction::where('id', $res_id)->update(['qrcode_response' => $content, 'pay_final_amount' => $money, 'qrcode' => $qrcode]);
         
             $html = '<html><head>
             <script src="https://api.nx908.com/statics/js/jquery.js"></script>
