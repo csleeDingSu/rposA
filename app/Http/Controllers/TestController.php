@@ -193,13 +193,14 @@ class TestController extends BaseController
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($tjurl, ['headers' => $headers, 'form_params'=>$native]);
-            $res = $req->getBody();
+            $res = json_decode($req->getBody());
+            $res_pay_orderid = empty($res->data[0]->pay_orderid) ? null : $res->data[0]->pay_orderid;
 
             //update response
-            $response = (is_array($res) ? json_encode($res) : $res);
-            payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);
-            \Log::info(['pay_response' => $response]);
-
+            \Log::info(['pay_response' => $res]);
+            $response = json_encode($res);
+            payment_transaction::where('id', $res_id)->update(['pay_response' => $response, 'transaction_id' => $res_pay_orderid]);
+            
             if (strpos($response,"<title>正在跳转付款页</title>") >= 0) {
                 //2nd lv screen (redirect page)
                 $_response = $this->Pay_Index_2ndScreen($response, $res_id);
