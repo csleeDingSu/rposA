@@ -557,7 +557,10 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	})->name( 'ajax_ledger_trx' );
 	
 	
+	Route::get( '/basicpackage/backorder', 'BasicPackageController@backorder' )->name( 'basicpackage_backorder' );	
 	
+	Route::post('/basicpackage/confirm-backorder', 'BasicPackageController@confirm_backorder')->name('store_basicpackage_backorder');	
+
 } );
 //END
 
