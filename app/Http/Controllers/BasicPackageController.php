@@ -354,12 +354,6 @@ class BasicPackageController extends BaseController
 	{
 		$insdata   = [];
 		
-		$input = [
-			 'phone'       => $request->phone,
-			 'package'     => $request->package,			
-			 'cardpass'    => $request->cardpass,		
-			 'cardnum'     => $request->cardnum,	
-			  ];
 		$validator = $this->validate($request, 
 			[
 				'package' => 'required',
