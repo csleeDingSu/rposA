@@ -361,7 +361,7 @@ class BasicPackageController extends BaseController
 			]
 		);
 		
-		$member = \App\Members::where('phone',$request->phone)->first();die();
+		$member = \App\Members::where('phone',$request->phone)->first();
 		
 		$package = BasicPackage::where('id',$request->package)->first();
 		
