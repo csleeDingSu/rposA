@@ -199,7 +199,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/basicpackage/redeem-list">@lang('dingsu.pending')  @lang('dingsu.list')</a>
 					</li>
-					
+					<li class="nav-item">
+						<a class="nav-link" href="/basicpackage/backorder">@lang('dingsu.backorder')</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/basicpackage/redeem-history">@lang('dingsu.history')</a>
 					</li>
