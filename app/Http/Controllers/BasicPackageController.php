@@ -360,8 +360,8 @@ class BasicPackageController extends BaseController
 				'phone'   => 'required|exists:members,phone',
 			]
 		);
-		die();
-		$member = \App\Members::where('phone',$request->phone)->first('id');
+		
+		$member = \App\Members::where('phone',$request->phone)->first('id');die();
 		
 		$package = BasicPackage::where('id',$request->package)->first();
 		
