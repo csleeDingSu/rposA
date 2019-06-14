@@ -32,10 +32,10 @@ html, body {
 }
 
 .name {
-	font-size: 32px;
+	font-size: 20px;
 	float: left;
-	padding-top: 6px;
-	padding-bottom: 12px;
+	padding-top: 16px;
+	padding-bottom: 10px;
 }
 
 .unverify {
@@ -482,6 +482,7 @@ html, body {
     border-radius: 5px;
     font-size: 23px;
     padding: 5px;
+    text-align: center;
 }
 
 .cutBtnCS, .cutBtnCS-success, .cutBtnCS-fail {

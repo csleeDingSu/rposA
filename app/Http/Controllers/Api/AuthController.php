@@ -22,7 +22,7 @@ class AuthController extends Controller {
 		
 		
         $input = [
-             'username'   => $request->username,
+            // 'username'   => $request->username,
 		     'password'   => $request->password,
 			 'password_confirmation'   => $request->password_confirmation,
  			 'phone'   => $request->phone,
@@ -31,7 +31,7 @@ class AuthController extends Controller {
 		 $validator = $this->validate($request,
 		// $validator = Validator::make($input,  
 			[
-                'username' => 'required|string|min:1|max:30|unique:members,username',
+                //'username' => 'required|string|min:1|max:30|unique:members,username',
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
 				'password' => 'required|alphaNum|min:5|max:50|confirmed',                
             ],
@@ -58,7 +58,7 @@ class AuthController extends Controller {
 		$affiliate_id =  unique_random('members', 'affiliate_id', 10);
 
 		$member = \App\Members::create([
-			'username' => $input['username'],
+			'username' => $input['phone'],
 			'email' => $input['phone'] . '@email.com',
 			'password' => Hash::make($input['password']),
 			'affiliate_id' => $affiliate_id,
@@ -85,7 +85,7 @@ class AuthController extends Controller {
 			->update(['current_life' => $setting->game_default_life]);
 				
 		
-		if ( Auth::guard('member')->attempt( [ 'username' => request( 'username' ), 'password' => request( 'password' ) ] ) ) {
+		if ( Auth::guard('member')->attempt( [ 'username' => request( 'phone' ), 'password' => request( 'password' ) ] ) ) {
 			$user = Auth::guard('member')->user();
 			$user->active_session = Session::getId();
 			$user->save();

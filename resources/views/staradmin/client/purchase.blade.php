@@ -1,12 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Q币购买')
-
-@section('left-menu')
-    <a href="/profile" class="back">
-        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
-    </a>
-@endsection
+@section('title', '开通场次')
 
 @section('top-css')
     @parent
@@ -14,67 +8,59 @@
 	<link rel="stylesheet" href="{{ asset('/client/css/purchase.css') }}" />
 @endsection
 
-@section('content')
+@section('top-navbar')
+@endsection
 
-<div class="full-height">
+@section('content')
+<div class="full-height no-header">
 	<div class="container">
 		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
 		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
-		<div class="member-box">
-			<img class="img_flow" src="{{ asset('/client/images/membership/flow-purchase.png') }}"  />
-			<!-- end member id -->
 
-			<!-- member details -->
-			<div class="information-table">
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	
+
+		<div class="member-box">
+			<div class="card left">
+				<div class="col-xs-3 left-menu">
+					<a href="/profile" class="back">
+				        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>返回
+				    </a>
+				</div>
+				<div class="col-xs-6">
+					<div class="navbar-title">
+					  <div class="navbar-brand">开通场次</div>
+					</div>
+				</div>
+
+				<div class="col-xs-3 right-menu">
+				  	<div class="menu-wrapper"><a href="/round">购买记录</a></div>
+				</div>
+			</div>
+
+			<div class="info-table">
 				<div class="row">
 					<div class="col-xs-12">
-					  	<div class="label-title">选择场次</div>
+					  	<div class="info-title">联系微信客服购买场次</div>
+					  	<div id="cutCS" class="copyvoucher">{{env('wechat_id', 'LUNLY028')}}</div>
+						<div class="cutBtnCS">点击复制</div>
 					</div>
-
-					<form method="post" action="">
-						<input type="hidden" id="radio-value" name="radio-value" />
-					  	<div class="radio-group"></div>
-					  
-					</form>
-
-					<div class="col-xs-12">
-						<div class="label-title">需支付<span class="point">0Q币</span>
-						</div>
+					<div class="col-xs-12 instructions">
+						充值时间：<span class="highlight">早上9：00～晚上9：00</span><br />
+						为了不影响参与抽奖，请提前购买幸运转盘场次<br />
+						若已添加微信，在微信搜索微信号联系
 					</div>
-
-					<div class="col-xs-12">
-						<div class="how-to-pay">
-							支付方式：<br>
-							到淘宝搜索“1个Q币”给下方Q号充值<span class="_point">0</span>个Q币。<br>
-							充值完成后点击“充值完成”。<br>
-							平台核实充值，开通转盘场次。<br>
-						</div>
-					</div>
-
-					<div class="col-xs-12 qq">
-						<img class="qq-icon" src="{{ asset('/client/images/membership/qq.png') }}"  />
-						<div class="qq-info">
-							QQ号码: <span id="cut">{{env('qqnumber', '235883623')}}</span>
-						</div>
-						<div class="copy">
-							<div class="button-copy cutBtn">复制号码</div>
-						</div>
-					</div>
-
-					<div class="col-xs-12">				
-						<div class="button-submit">充值完成</div>
-						<div class="error"></div>
-					</div>
-
 				</div>
 
 			</div>
 			<!-- end member details -->
-
-
-		  	
 		</div>
+
+		<div class="top-background">
+			<img src="{{ asset('/client/images/purchase-bg.png') }}" />
+		</div>
+		<div class="bottom-background"></div>
 		
 	</div>
 </div>

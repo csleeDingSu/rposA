@@ -276,7 +276,7 @@ class BasicPackageController extends BaseController
 		if ($record)
 		{
 			$now = Carbon::now();
-			$passcode = unique_random('vip_redeemed','passcode',8);
+			$passcode = unique_random('basic_redeemed','passcode',8);
 			$data = ['redeem_state'=>3,'confirmed_at'=>$now,'passcode'=>$passcode,'redeemed_at'=>$now];
 			BasicPackage::update_basicpackage($record->id, $data);
 			
@@ -339,5 +339,58 @@ class BasicPackageController extends BaseController
 		}
 		
 		return response()->json(['success' => false, 'message' => 'unknown record']);		
+	}
+	
+	
+	public function backorder()
+    {
+		$data['page']    = 'basicpackage.backorder';
+		$data['package'] = BasicPackage::where('package_status',1)->get(); 
+		
+		return view('main', $data);		
+	}
+	
+	public function confirm_backorder(Request $request)
+	{
+		$insdata   = [];
+		
+		$validator = $this->validate($request, 
+			[
+				'package' => 'required',
+				'phone'   => 'required|exists:members,phone',
+			]
+		);
+		
+		$member = \App\Members::where('phone',$request->phone)->first();
+		
+		$package = BasicPackage::where('id',$request->package)->first();
+		
+		if ($package)
+		{
+			$usedprice = $package->package_price; 		
+			
+			if ($request->discount_price)
+			{
+				$usedprice = $request->discount_price;
+			}
+			
+			$passcode = unique_random('basic_redeemed','passcode',8);
+			
+			$now = Carbon::now();
+			
+			$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$member->id,'redeem_state'=>3,'confirmed_at'=>$now,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>'admin backorder','buy_price'=>$usedprice,'cardpass'=>$request->cardpass,'cardnum'=>$request->cardnum,'passcode'=>$passcode,'redeemed_at'=>$now];
+			
+			
+			Wallet::update_basic_wallet($member->id,$package->package_life,$package->package_freepoint,'BPR','credit','BackOrder');
+			
+			BasicPackage::save_basic_package($data);
+
+			return response()->json(['success' => true, 'message' => 'success']);
+			
+						
+		}
+		else{
+			return response()->json(['success' => false, 'message' => 'unknown product']);
+		}	
 	}
 }

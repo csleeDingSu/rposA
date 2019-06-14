@@ -199,7 +199,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/basicpackage/redeem-list">@lang('dingsu.pending')  @lang('dingsu.list')</a>
 					</li>
-					
+					<li class="nav-item">
+						<a class="nav-link" href="/basicpackage/backorder">@lang('dingsu.backorder')</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/basicpackage/redeem-history">@lang('dingsu.history')</a>
 					</li>
@@ -273,6 +275,21 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/report/redeem_product">@lang('dingsu.redeem_product')</a>
 					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/report/draw-details">@lang('dingsu.draw_details')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/report/redeem-count">@lang('dingsu.redeem_product')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/report/played-member">@lang('dingsu.played_member')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/report/ledger">@lang('dingsu.buy_product')</a>
+					</li>
+					
+					
 				</ul>
 			</div>
 		</li>

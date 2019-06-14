@@ -13,7 +13,9 @@
 								<th>@lang('dingsu.package') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.life')</th>
 								<th>@lang('dingsu.point')</th>
-								<th>@lang('dingsu.username')</th>
+								<th>@lang('dingsu.card')</th>
+								<th>@lang('dingsu.passcode')</th>
+								<th>@lang('dingsu.phone')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.buy_price')</th>
 								<th>@lang('dingsu.ref_note')</th>
@@ -29,8 +31,10 @@
 								<td>{{ $list->package_name }}</td>
 								<td>{{ $list->package_life }}</td>
 								<td>{{ $list->package_point }}</td>
+								<td>{{ $list->cardnum }}</td>
+								<td>{{ $list->cardpass }}</td>
 								<td>
-									{{ $list->username }}
+									{{ $list->phone }}
 								</td>								
 								<td>
 									{{ $list->package_price }}

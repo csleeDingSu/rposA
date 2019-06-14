@@ -267,7 +267,7 @@ return [
 	'mines_history' => '挖宝历史',
 
 	//placeholder
-	'ph_mobile_no' => '请输入手机号',
+	'ph_mobile_no' => '请填写正确手机号否则无法抽奖',
 	'ph_username_mobile_no' => '请输入用户名或者手机号',
 	'ph_username' => '您的真实姓名',
 	'ph_password' => '设置登录密码',
@@ -583,5 +583,8 @@ return [
 	'package_discount_price' => '折扣价',
 	'today_vippackage_redeem' => '已换 VIP Package',
 	'admin' => '管理',
-
+	
+	'backorder'=>'后端购买',
+	'update_success_msg'=>'成功更新',
+	'default_option'=>'-- 请选择 --',
 ];

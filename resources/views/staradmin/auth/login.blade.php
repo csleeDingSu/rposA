@@ -177,13 +177,6 @@
                                 
                                 <li>
                                     <div class="flexSp">
-                                        <img src="{{ asset('auth/images/ueserIcon.png') }}">
-                                        <!-- <span><i class="fa fa-user fa-2x" style="color: lightgrey; height: 0.5rem;"></i></span> -->
-                                        <input name="username" id="username" type="text" placeholder="@lang('dingsu.username')" required maxlength="30" autofocus>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flexSp">
                                         <img src="{{ asset('auth/images/telIcon.png') }}">
                                         <input name="phone" id="phone" type="text" placeholder="@lang('dingsu.ph_mobile_no')" required maxlength="30" >
                                     </div>

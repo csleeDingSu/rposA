@@ -31,22 +31,25 @@ class BasicPackageController extends Controller
 		
 		$packageid = $request->packageid;	
 		
-		$insdata = [];
-		$card = $request->card;	
+		$insdata   = [];
 		
 		$input = [
-			 'memberid'  => $request->memberid,
-			 'packageid' => $request->packageid,			
+			 'memberid'    => $request->memberid,
+			 'packageid'   => $request->packageid,			
+			 'cardpass'    => $request->cardpass,		
+			 'cardnum'     => $request->cardnum,	
 			  ];
 		$validator = Validator::make($input, 
 			[
-				'memberid' => 'required',
-				'packageid' => 'required'
+				'memberid'    => 'required',
+				'packageid'   => 'required',
+				//'cardpass'    => 'required',
+				//'cardnum'     => 'required',
 			]
 		);
 		if ($validator->fails()) {
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
-		}
+		} 
 		
 		$wallet    = Wallet::get_wallet_details($memberid);
 		
@@ -75,7 +78,7 @@ class BasicPackageController extends Controller
 			//flexi type
 			case '1':
 				
-				$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>$request->ref_note,'buy_price'=>$usedprice];
+				$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>$request->ref_note,'buy_price'=>$usedprice,'cardpass'=>$request->cardpass,'cardnum'=>$request->cardnum];
 
 				$dd = Package::save_basic_package($data);
 

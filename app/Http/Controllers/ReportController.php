@@ -145,7 +145,7 @@ class ReportController extends BaseController
 	public function list_redeemed (Request $request)
 	{
 				
-		$result =  \DB::table('report_redeem_count');
+		$result =  \DB::table('report_all_count');
 		$input = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
@@ -162,12 +162,12 @@ class ReportController extends BaseController
 		}		
 		$result =  $result->paginate(30);
 				
-		$data['page']    = 'reports.redeem_count.list'; 	
+		$data['page']    = 'reports.redeem_count_new.list'; 	
 				
 		$data['result'] = $result; 
 				
 		if ($request->ajax()) {
-            return view('reports.redeem_count.ajaxlist', ['result' => $result])->render();  
+            return view('reports.redeem_count_new.ajaxlist', ['result' => $result])->render();  
         }
 					
 		return view('main', $data);	
@@ -200,4 +200,127 @@ class ReportController extends BaseController
 		
 		return view('reports.draw.playedmembers', ['result' => $result])->render();  		
 	}
+	
+	public function get_redeem_members (Request $request)
+	{
+		$id     = $request->id;
+		$type   = $request->type;
+		$pack   = $request->ptype;
+		$page   = 'members';
+		
+		switch ($pack)
+		{
+			case 'product':
+				$result =  \DB::table('view_redeem_history_all')->where('id',$id); 				
+				$page = 'product_member';			
+				
+			break;
+			case 'basic_package':
+				$result =  \DB::table('view_basic_package_user_list')->where('package_id',$id); 
+				if ($type)
+				{
+					switch ($type)
+					{
+						case 'all':
+						break;
+						case 'rejected':
+							$result = $result->where('redeem_state',0);
+						break;	
+						case 'reserved':
+							$result = $result->where('redeem_state',1);
+						break;
+						case 'used':
+							$result = $result->wherein('redeem_state',[2,3,4]);
+						break;	
+					}					
+				}
+			break;
+			case 'vip':
+				$result = $result->where('bet','even');
+			break;
+		}
+		$result = $result->get();
+		return view('reports.redeem_count_new.'.$page, ['result' => $result])->render(); 
+	}
+	
+	public function played_details (Request $request)
+	{
+		$drawid = $request->id;
+		
+		if (empty($drawid))
+		{
+			$drawid = '0';
+		}		
+		$result =  \DB::table('report_played_member')->where('game_id','101');
+		
+		//filters
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+		$order_by = 'DESC';
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_username'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_drawid'])) {
+				$result = $result->where('draw_id','LIKE', "%{$input['s_drawid']}%") ;				
+			}
+						
+			
+		}		
+		$result         =  $result->orderby('created_at',$order_by)->paginate(30);
+			
+		$data['page']   = 'reports.play.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.play.ajaxlist', ['result' => $result])->render();  
+        }
+		return view('main', $data);			
+	}
+	
+	
+	
+	public function ledger_details (Request $request)
+	{			
+		$result =  \DB::table('report_ledger_product');		
+		//filters
+		$input = array();		
+		parse_str($request->_data, $input);
+		
+		$input = array_map('trim', $input);
+		
+		$order_by = 'DESC';
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_createdat'])) {
+				$result = $result->where('created_at','LIKE', "%{$input['s_createdat']}%") ;				
+			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_phone']}%") ;				
+			}
+		}		
+		$result         =  $result->orderby('created_at',$order_by)->paginate(30);
+			
+		$data['page']   = 'reports.ledger.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.ledger.ajaxlist', ['result' => $result])->render();  
+        }
+		return view('main', $data);			
+	}
+	
+	
 }

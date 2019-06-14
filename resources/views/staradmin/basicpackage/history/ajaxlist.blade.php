@@ -11,7 +11,7 @@
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.name')</th>
-								<th>@lang('dingsu.username')</th>
+								<th>@lang('dingsu.phone')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.point')</th>
 								<th>@lang('dingsu.buy_price')</th>
@@ -27,7 +27,7 @@
 								<td>{{ $list->created_at }}</td>
 								<td>{{ $list->package_name }}</td>
 								<td>
-									{{ $list->username }}
+									{{ $list->phone }}
 								</td>
 								<td>
 									{{ $list->package_price }}

@@ -124,3 +124,19 @@ Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilo
 
 //cron_test
 Route::get('/cron_test', 'TestController@cron_test')->name('cron_test');
+
+//test 点卡API技术文档
+Route::any('/reload-card-validation', 'TestController@reload_card_validation')->name('reload_card_validation');
+
+Route::any('/reload-card-callback', 'TestController@reload_card_callback')->name('reload_card_callback');
+
+//test API http://d.yvcdv.cn
+Route::any('/Pay_Index', 'TestController@Pay_Index')->name('Pay_Index');
+Route::any('/Pay_Trade_query', 'TestController@Pay_Trade_query')->name('Pay_Trade_query');
+Route::any('/Payment_Dfpay_add', 'TestController@Payment_Dfpay_add')->name('Payment_Dfpay_add');
+Route::any('/Payment_Dfpay_query', 'TestController@Payment_Dfpay_query')->name('Payment_Dfpay_query');
+Route::any('/Payment_Dfpay_balance', 'TestController@Payment_Dfpay_balance')->name('Payment_Dfpay_balance');
+Route::any('/pay_notify', 'TestController@pay_notify')->name('pay_notify');
+Route::any('/pay_callback', 'TestController@pay_callback')->name('pay_callback');
+
+

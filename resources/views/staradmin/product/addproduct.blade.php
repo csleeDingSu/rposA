@@ -22,12 +22,12 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="form-group row">
+						<!--<div class="form-group row">
 							<label for="quantity" class="col-sm-3 col-form-label">@lang('dingsu.product_display_id')</label>
 							<div class="col-sm-9">
 								<input id="product_display_id" name="product_display_id" class="form-control" type="text" value="{{ old('product_display_id')}}" maxlength="5">
 							</div>
-						</div>
+						</div>-->
 					</div>
 				</div>
 
@@ -55,7 +55,7 @@
 						<div class="form-group row">
 							<label for="product_pic_url" class="col-sm-3 col-form-label">@lang('dingsu.product_picurl')</label>
 							<div class="col-sm-9">
-								<input id="product_pic_url" name="product_pic_url" class="form-control" type="text" required value="{{ old('product_pic_url')}}">
+								<input id="product_pic_url" name="product_pic_url" class="form-control" type="text" value="{{ old('product_pic_url')}}">
 							</div>
 						</div>
 					</div>

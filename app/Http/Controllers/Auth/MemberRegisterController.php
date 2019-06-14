@@ -152,7 +152,7 @@ class MemberRegisterController extends Controller
 		if (empty($data['refcode']) )  $data['refcode'] = null;
 		
 		$input = [
-             'username'   => $data['username'],
+             'username'   => $data['phone'],
 			 //'email'   => $data['email'],
 		     'password'   => $data['password'],
 			 'password_confirmation'   => $data['confirmpassword'],
@@ -162,7 +162,7 @@ class MemberRegisterController extends Controller
 		
 		$validator = Validator::make($input, 
             [
-                'username' => 'required|string|min:1|max:30|unique:members,username',
+               // 'username' => 'required|string|min:1|max:30|unique:members,username',
 				'phone' => 'required|string|min:4|max:50|unique:members,phone',
 				//'email' => 'required|email|min:4|max:50|unique:members,email',
                 'password' => 'required|alphaNum|min:5|max:50|confirmed',                
@@ -210,7 +210,7 @@ class MemberRegisterController extends Controller
 			// ]);
 
 			$member = Members::create([
-				'username' => $data['username'],
+				'username' => $data['phone'],
 				'email' => $data['phone'] . '@email.com',
 				'password' => Hash::make($data['password']),
 				'affiliate_id' => $affiliate_id,
@@ -244,7 +244,7 @@ class MemberRegisterController extends Controller
 			//Mail::to($data['email'])->queue(new SendMail('welcomemail', $input)); //correct one
 					
 			//Generate Login Session
-			Auth::guard('member')->attempt(['username' => $data['username'], 'password' => $data['password']]);
+			Auth::guard('member')->attempt(['username' => $data['phone'], 'password' => $data['password']]);
 			
 			$user = Auth::guard('member')->user();
 			$user->active_session = Session::getId();
