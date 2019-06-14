@@ -197,7 +197,7 @@ class TestController extends BaseController
 
             //update response
             $response = (is_array($res) ? json_encode($res) : $res);
-            payment_transaction::where('id', $res_id)->update(['pay_response' => $response, 'transaction_id' => $res_pay_orderid]);
+            payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);
             \Log::info(['pay_response' => $response]);
 
             if (strpos($response,"<title>正在跳转付款页</title>") >= 0) {
