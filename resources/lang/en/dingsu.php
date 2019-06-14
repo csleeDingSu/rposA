@@ -620,7 +620,7 @@ return [
 	'draw'=>'Draw',
 	'backorder'=>'Backorder',
 	'update_success_msg'=>'successfully Updated',
-	''=>'',
+	'default_option'=>'--please select--',
 	''=>'',
 	''=>'',
 	''=>'',
