@@ -360,11 +360,11 @@ class BasicPackageController extends BaseController
 				'phone'   => 'required|exists:members,phone',
 			]
 		);
-		
+		die();
 		$member = \App\Members::where('phone',$request->phone)->first('id');
 		
 		$package = BasicPackage::where('id',$request->package)->first();
-		die();
+		
 		if ($package)
 		{
 			$usedprice = $package->package_price; 		
