@@ -145,11 +145,12 @@ class MemberController extends Controller
 	
 	public function generate_apikey(Request $request)
 	{
-		if (!Auth::Guard('member')->check())
+		/*if (!Auth::Guard('member')->check())
 		{
 			return response()->json(['success' => false]);
 		}
 		$member = Auth::guard('member')->user()->id	;
+		*/
 		$member = $request->memberid;
 		$result = Member::generate_apikey($member); 
 		return response()->json(['success' => true,'result' => $result]);
