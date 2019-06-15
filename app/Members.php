@@ -221,7 +221,7 @@ class Members extends Model
 	public static function generate_apikey($memberid)
 	{
 		$now = now();
-		$now = Carbon::parse(now());
+		$now = \App\Carbon::parse(now());
 		$expire  = $now->addHour(1);
 		$apikey  = unique_numeric_random('members', 'apikey', 8);
 		$member = [
