@@ -218,13 +218,11 @@ class Members extends Model
 		
 		return $result_count;
 	}
-	public static function generate_apikey($memberid)
+	public static function generate_apikey($memberid,$expire)
 	{
-		$now = now();
-		$now = \App\Carbon::parse(now());
-		$expire  = $now->addHour(1);
+		
 		$apikey  = unique_numeric_random('members', 'apikey', 8);
-		$member = [
+		$data = [
 				'key_expired_at' => $expire,
 				'apikey' => $apikey,
 			];

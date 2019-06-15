@@ -152,7 +152,11 @@ class MemberController extends Controller
 		$member = Auth::guard('member')->user()->id	;
 		*/
 		$member = $request->memberid;
-		$result = Member::generate_apikey($member); 
+		$now = now();
+		$now = Carbon::parse(now());
+		$expire  = $now->addHour(1);
+		
+		$result = Member::generate_apikey($member,$expire ); 
 		return response()->json(['success' => true,'result' => $result]);
 	}
 	
