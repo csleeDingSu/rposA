@@ -116,7 +116,7 @@ Route::group(['namespace' => 'Api'],function()
 	Route::any('add-betting', 'GameController@add_betting')->name('api.game.bet');
 	Route::any('get-betting-result', 'GameController@get_betting_result')->name('api_get_betting_result');
 	
-	
+	Route::post('/generate-apikey', 'MemberController@generate_apikey')->name('generate_apikey');
 	
 });
 
