@@ -278,7 +278,7 @@ class MemberLoginController extends Controller
                     $query->where('phone', $username)->where('apikey', $apikey);   
                     }),                                                           
             'password' => 'required|alphaNum|min:5|max:50',
-			'apikey'   => 'required|string|min:1|max:50', 
+			'apikey'   => 'required|string|min:1|max:50', 			
 
         ];
 		$validator = Validator::make($input, $rules
@@ -304,8 +304,13 @@ class MemberLoginController extends Controller
 		{	
 			return response()->json(['success' => false,'message'=>[trans('auth.failed')] ]);
 		}
-		
+						
 		$user = Auth::guard('member')->user(); 
+		
+		if ( $user->key_expired_at <= now() )
+		{
+			return response()->json(['success' => false,'message'=>[trans('auth.key_expired')] ]);
+		}
 		
 		$user =  $user->makeVisible('password')->toArray();
 		
