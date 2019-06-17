@@ -1624,13 +1624,13 @@ class GameController extends Controller
 	}
 	
 	
-	
 	private function decide_result_condition($memberid, $data)
     {
-		$data['IsFirstLife'] = $IsFirstLife = Game::IsFirstLife($memberid,1);
+		$IsFirstLife = Game::IsFirstLife($memberid,1);
 		
 		if ($data) 
 		{
+			$data['IsFirstLife'] = $IsFirstLife ;
 			$gamelevel = $data['gamelevel'];
 			$position  = $gamelevel->position;
 			//if using first life consecutive_lose then make user win on the 6'th level				
@@ -1642,6 +1642,7 @@ class GameController extends Controller
 		}
 		
 		return $this->result_condition('auto', $memberid, $data);		
+	}return $this->result_condition('auto', $memberid, $data);		
 	}
 	
 	
