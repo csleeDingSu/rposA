@@ -277,6 +277,7 @@ return [
 	'ph_username' => 'Please key in your name',
 	'ph_password' => 'Please key in your password',
 	'ph_confirm_password' => 'Please re-enter your password',
+	'ph_enter_password' => 'Please key in your password',
 
 	//message
 	'info_forgot_password' => 'If you forget your password, please contact Our customer service.',

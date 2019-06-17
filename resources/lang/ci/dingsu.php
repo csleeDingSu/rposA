@@ -268,10 +268,11 @@ return [
 
 	//placeholder
 	'ph_mobile_no' => '请填写正确手机号否则无法抽奖',
-	'ph_username_mobile_no' => '请输入用户名或者手机号',
+	'ph_username_mobile_no' => '请输入手机号',
 	'ph_username' => '您的真实姓名',
 	'ph_password' => '设置登录密码',
 	'ph_confirm_password' => '重复登录密码',
+	'ph_enter_password' => '输入登录密码',
 
 	//message
 	'info_forgot_password' => '如忘记密码请找我们的客服.',
