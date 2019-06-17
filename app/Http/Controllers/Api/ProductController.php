@@ -210,9 +210,9 @@ class ProductController extends Controller
 					
 					Wallet::update_basic_wallet($memberid,0,$package->min_point, 'BVP','debit', $package->min_point.' Point reserved for VIP package');
 
-					$dd = Package::save_vip_package($data);
+					$id = Package::save_vip_package($data);
 
-					return response()->json(['success' => true, 'message' => 'success']);
+					return response()->json(['success' => true, 'message' => 'success','refid'=>$id]);
 				}
 			break;
 			
