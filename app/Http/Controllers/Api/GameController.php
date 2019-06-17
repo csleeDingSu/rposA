@@ -1629,15 +1629,19 @@ class GameController extends Controller
     {
 		$data['IsFirstLife'] = $IsFirstLife = Game::IsFirstLife($memberid,1);
 		
-		$gamelevel = $data['gamelevel'];
-		
-		//if using first life consecutive_lose then make user win on the 6'th level
-				
-		if (empty($IsFirstLife) && $gamelevel->position === 6)
+		if ($data) 
 		{
-			//if need to add any functions can add into result_condition
-			return $this->result_condition('conditionally_win', $memberid, $data);
+			$gamelevel = $data['gamelevel'];
+			$position  = $gamelevel->position;
+			//if using first life consecutive_lose then make user win on the 6'th level				
+			if (empty($IsFirstLife) && $position === 6)
+			{
+				//if need to add any functions can add into result_condition
+				return $this->result_condition('conditionally_win', $memberid, $data);
+			}
 		}
+		
+		return $this->result_condition('auto', $memberid, $data);		
 	}
 	
 	
