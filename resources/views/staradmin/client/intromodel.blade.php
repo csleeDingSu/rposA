@@ -48,7 +48,7 @@
 							
 						</div>
 						<div class="row">
-							<input class="namer" type="password" id="authpassword" name="authpassword" placeholder="@lang('dingsu.ph_password')" required maxlength="30"><span class="mmcl lerror-password hidespan" ></span>						
+							<input class="namer" type="password" id="authpassword" name="authpassword" placeholder="@lang('dingsu.ph_enter_password')" required maxlength="30"><span class="mmcl lerror-password hidespan" ></span>						
 						</div>
 						<div class="row">
 							<button class="btnsubmit" name="dologin" id="dologin" type="button">登录</button>							
