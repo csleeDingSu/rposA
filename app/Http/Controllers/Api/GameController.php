@@ -1067,18 +1067,22 @@ class GameController extends Controller
 					//update
 					if ($request->betto)
 					{
-						//member_game_bet_temp::where('id', $res->id)->update(['bet' => $request->betto,'betamt' => $request->betamt]);
-						//$message = "temparory member $request->memberid bet $request->betamt";
+						member_game_bet_temp::where('id', $res->id)->update(['bet' => $request->betto,'betamt' => $request->betamt]);
+						$message = "temparory member $request->memberid bet $request->betamt";
 					}
 					else
 					{
 						member_game_bet_temp::where('id', $res->id)->delete();						
 						$message = "bet removed";
 					}					
-					return response()->json(['success' => true, 'message' => $message]);
 				}
-				
-				return $this->reserve_betting_103($request);
+				else
+				{
+					$params  = ['gameid' => $request->gameid, 'memberid' => $request->memberid,'bet' =>$request->betto,'betamt'=>$request->betamt , 'gametype' => $type];
+					member_game_bet_temp::Create($params)->id;
+					$message = "temparory member $request->memberid bet $request->betamt";					
+				}
+				return response()->json(['success' => true, 'message' => $message]);
 				break;	
 				
 		}
