@@ -1533,7 +1533,10 @@ class GameController extends Controller
 		if(!$res)
 		{
 			return response()->json(['success' => false, 'message' => "no betting"]);
-		}	
+		}
+		$res->status     = 1;
+		$res->deleted_at = $now;
+		
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
 		$gametype = $res->gametype ;	
@@ -1543,14 +1546,17 @@ class GameController extends Controller
 		
 		if ($play_status->point<1)
 		{
+			$res->save();
 			return ['success' => false, 'message' => 'not enough point'];			
 		}		
 		if ($play_status->point< $betamt )
 		{
+			$res->save();
 			return ['success' => false, 'message' => 'not enough point'];			
 		}				
 		if ($play_status->life<1)
 		{
+			$res->save();
 			return response()->json(['success' => false,'message' => 'not enough life to play']);			
 		}
 					
@@ -1629,8 +1635,7 @@ class GameController extends Controller
 
 		$records =  Game::add_play_history($insdata);
 		
-		$res->status     = 1;
-		$res->deleted_at = $now;
+		
 		$res->save();
 		
 		//Play count update - 29/05/2019
