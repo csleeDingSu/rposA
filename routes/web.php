@@ -194,6 +194,8 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	
 	Route::get( '/client/profile', 'ClientController@member_profile' )->name( 'client.profile.page' );
 
+	Route::any( '/membership/buy/vip', 'PaymentController@membership_buy_vip' )->name( 'client.membership.buy.vip' );
+
 } );
 
 //Member routes end

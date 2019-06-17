@@ -837,12 +837,13 @@
 									</div>
 									<div class="vip-card-desc">
 										<ul>
-											<li><span class="vip-highlight">赠送1200金币，</span>可结算红包。</li>
-											<li><span class="vip-highlight">无上限封顶，</span>想赚多少都行。</li>
+											<li><span class="vip-highlight">无上限封顶，</span>想赢多少都行。</li>
+											<li><span class="vip-highlight">自由试玩法，</span>自选金额不受限。</li>
+											<li><span class="vip-highlight">每场送120元，</span>作为抽奖本金。</li>
 											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
 										</ul>
 									</div>
-									<a href="/membership"><div class="btn-vip-submit">99元开通会员</div></a>
+									<a href="/membership/buy/vip"><div class="btn-vip-submit">120元开通会员</div></a>
 								</div>								
 							</div>
 						</div>
@@ -1094,12 +1095,16 @@
 
 			$('#viewgamerules').on('click', showGameRules);
 
-			$('.btn-vip-modal .btn-rules-vip').html('如何赚红包').addClass('btn-rules-normal');
+			// $('.btn-vip-modal .btn-rules-vip').html('如何赚红包').addClass('btn-rules-normal');
 
 			// $('.btn-vip-modal').on('click', showGameRules);
 
-			$('.btn-vip-modal').click( function() {
-		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
+			// $('.btn-vip-modal').click( function() {
+		 //        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
+		 //    });
+
+		 	$('.btn-vip-modal').click( function() {
+		        $('#vip-modal').modal({backdrop: 'static', keyboard: false});
 		    });
 
 			if (user_id <= 0) {

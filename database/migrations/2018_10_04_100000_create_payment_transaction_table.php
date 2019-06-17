@@ -16,6 +16,7 @@ class CreatePaymentTransactionTable extends Migration
         Schema::create('payment_transaction', function (Blueprint $table) {
             //
             $table->bigIncrements('id');
+            $table->string('member_id')->nullable();
             $table->string('pay_orderid')->nullable();
             $table->string('pay_amount')->nullable();
             $table->string('transaction_id')->nullable();
