@@ -1213,11 +1213,31 @@ class GameController extends Controller
 		if(!$res)
 		{
 			return response()->json(['success' => false, 'message' => "no betting"]);
-		}		
-					
+		}	
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
-		$gametype = $res->gametype ;
+		$gametype = $res->gametype ;	
+		
+		//check point 
+				
+		$play_status   = Wallet::get_wallet_details($memberid);
+		
+		if ($play_status->point<1)
+		{
+			return ['success' => false, 'message' => 'not enough point'];			
+		}
+		
+		if ($play_status->point< $betamt )
+		{
+			return ['success' => false, 'message' => 'not enough point'];			
+		}
+				
+		if ($play_status->life<1)
+		{
+			return response()->json(['success' => false,'message' => 'not enough life to play']);			
+		}
+		
+		
 	
 		$input = [
              'gameid'    => $gameid,
@@ -1227,7 +1247,7 @@ class GameController extends Controller
               ];
 		
 			
-		$gameresult   = $this->decide_result_condition($memberid, $data);
+		$gameresult   = $this->decide_result_condition($memberid, '');
 			
 		if ($gameresult)
 		{
@@ -1275,18 +1295,24 @@ class GameController extends Controller
 		}	
 		
 		//Update Memeber game play history		
-		$now     = Carbon::now()->toDateTimeString();	
+		$now     = Carbon::now()->toDateTimeString();
 		
 		
 		$r_status = 2;
 		
 		if ($status == 'win') 			
 		{
-			$reward = '';
+			$reward = $betamt;
 			
 			$r_status = 1;
 			
-		}		
+			Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP			
+		}	
+		else
+		{
+			Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','debit', '.deducted for betting');	//GBV - Game Betting VIP
+		}
+				
 
 		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'is_win'=>$is_win,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'reward' => $reward];
 
@@ -1301,8 +1327,8 @@ class GameController extends Controller
 		$playcount->increment('play_count', 1);
 		$playcount->save();
 		//End
-		
-		$firstwin = \App\Product::IsFirstWin($memberid,$status);
+		$firstwin = '';
+		//$firstwin = \App\Product::IsFirstWin($memberid,$status);
 
 		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
 	}	
