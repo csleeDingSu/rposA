@@ -9,6 +9,7 @@ use App\Members as Member;
 use Validator;
 use Carbon\Carbon;
 use App\Wallet;
+use Auth;
 class MemberController extends Controller
 {
     
@@ -140,4 +141,26 @@ class MemberController extends Controller
 		$result = Member::get_wabao_coin_history($request->memberid); 
 		return response()->json(['success' => true,'result' => $result]);
 	}
+	
+	
+	public function generate_apikey(Request $request)
+	{
+		/*if (!Auth::Guard('member')->check())
+		{
+			return response()->json(['success' => false]);
+		}
+		$member = Auth::guard('member')->user()->id	;
+		*/
+		$member = $request->memberid;
+		$now = now();
+		$now = Carbon::parse(now());
+		$expire  = $now->addHour(1);
+		
+		$result = Member::generate_apikey($member,$expire ); 
+		return response()->json(['success' => true,'result' => $result]);
+	}
+	
+	
+	
+	
 }

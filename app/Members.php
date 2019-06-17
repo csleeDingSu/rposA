@@ -10,6 +10,8 @@ class Members extends Model
 {   
     use Notifiable;
 	
+	protected $dates = ['key_expired_at'];
+	
 	protected $fillable = [
         'username',
         'email',
@@ -216,4 +218,22 @@ class Members extends Model
 		
 		return $result_count;
 	}
+	public static function generate_apikey($memberid,$expire)
+	{
+		
+		$apikey  = unique_numeric_random('members', 'apikey', 8);
+		$data = [
+				'key_expired_at' => $expire,
+				'apikey' => $apikey,
+			];
+		
+		$result = Members::where('id', $memberid)
+            ->update($data);
+		
+		return ['apikey'=>$apikey, 'expired_at'=>$expire];
+		
+	}
+	
+		
+		
 }
