@@ -425,7 +425,7 @@ class PaymentController extends BaseController
         $_response = (is_array($_res) ? json_encode($_res) : $_res);
 
         //update 2nd screen response
-        payment_transaction::where('id', $res_id)->update(['pay_response_2nd' => $_response])
+        payment_transaction::where('id', $res_id)->update(['pay_response_2nd' => $_response]);
         \Log::info(['pay_response_2nd' => $_response]);
 
         return $_response;
