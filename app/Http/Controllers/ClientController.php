@@ -168,7 +168,7 @@ class ClientController extends BaseController
 
 			} else {
 
-				return redirect('/arcade-node');
+				return redirect('/arcade');
 			}
 
 		}
