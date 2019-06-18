@@ -1,13 +1,3 @@
-var _qrcode = "<?php Print(empty($qrcode) ? '' : $qrcode);?>";
-var qrcode = new QRCode(document.getElementById("showqr"), {
-    text: _qrcode,
-    width: 200,
-    height: 200,
-    colorDark: "#000000",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-});
-
 //字体变换
 var text = document.querySelector(".txt");
 var txt_arr = ["确认过眼神你是我的菜", "这个二维码很特别特别", "充值未到账请联系客服", "充值未成功请重新生成"];
@@ -61,11 +51,4 @@ function closeWebPage() {
         window.open("about:blank", "_self");
         window.close();
     }
-}
-
-var _status = "<?php Print(empty($status) ? '' : $status);?>";
-
-if (_status == 'error') {
-    alert("订单出现异常,请勿支付,请重新发起订单！");
-    window.history.go(-1);
 }
