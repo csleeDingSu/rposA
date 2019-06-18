@@ -95,7 +95,7 @@ class PaymentController extends BaseController
                 }                
             }
         } else {
-            return json_decode($data, true);
+            $data = json_decode($data, true);
         }
 
         return view('client/membership_buy_vip', $data);
