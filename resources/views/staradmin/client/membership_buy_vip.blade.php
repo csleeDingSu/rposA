@@ -69,7 +69,6 @@
 		});
 
 		var _status = "<?php Print(empty($status) ? '' : $status);?>";
-		alert(_status);
 		if (_status == 'error') {
 		    alert("订单出现异常,请勿支付,请重新发起订单！");
 		    window.history.go(-1);
