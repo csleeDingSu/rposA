@@ -657,6 +657,8 @@ class PaymentController extends BaseController
             $vip_package_result = null;
             $product = new ProductController;
             $request->merge(['id' => $r->upgrade_vip_id]);
+            $request->merge(['note' => "订单已过期"]);
+            
             $vip_package = json_decode(json_encode($product->reject_vip($request),true));
             $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
             var_dump(['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]);
