@@ -1,34 +1,47 @@
 var trigger = false;
 var timerInterval = 0;
+var update_wallet = false;
+var wallet_data = null;
+var update_betting_history = false;
+var betting_data = null;
+var token = '';
+var show_win = false;
+var show_lose = false;
+var g_previous_point = 0;
+var g_current_point = 0;
+var previous_bet = 0;
+var current_bet = 0;
+var game_records = null; //game setting
+var result_records = null; //game history
+var latest_result = null; //latest result
+var last_bet = null;
 
 $(function () {
 
-	$('.swiper-container').flickity({
-		// options
-		draggable: true,
-		wrapAround: true,
-		pageDots: false,
-		initialIndex: 1,
-		freeScroll: false,
-		contain: true,
-	});
+    $('.swiper-container').flickity({
+        // options
+        draggable: true,
+        wrapAround: true,
+        pageDots: false,
+        initialIndex: 1,
+        freeScroll: false,
+        contain: true,
+    });
 
-	$('.swiper-container').on( 'change.flickity', function( event, index ) {
-		if(index == 1) {
-			resetTimer();
-		}
-	});
+    $('.swiper-container').on( 'change.flickity', function( event, index ) {
+        //resetTimer();
+    });
 
-	var wechat_status = $('#hidWechatId').val();
+    var wechat_status = $('#hidWechatId').val();
     var wechat_name = $('#hidWechatName').val();
 
     if(wechat_status == 0 && wechat_name != null) {
 
-        getSocket();
+        getToken();
         closeModal();
 
         ifvisible.on("wakeup", function(){
-            resetTimer();
+            //resetTimer();
         });
 
     } else {
@@ -39,119 +52,162 @@ $(function () {
 });
 
 function updateResult(records){
+    var bet_count = $('#hidbetting_count').val();
+
+    if(bet_count > 0 && (!jQuery.isEmptyObject(records[0]))){
+        last_bet = records[0].bet;
+        $('#hidLastBet').val(last_bet);
+    }
+    
+    var str_result = '单数';
+
+    var length = Object.keys(records).length;
+    var maxCount = 20;
+
+    if(length < maxCount){
+        maxCount = parseInt(length);
+    }
 
     $.each(records, function(i, item) {
         var counter = i + 1;
-        $('.results-body').find('#result-' + counter).html(item.result);
+        if(item.result % 2 === 0){
+            $('.results-body').find('#result-' + counter).removeClass('odd-box').addClass('even-box');
+            str_result = '双数';
+        } else {
+            $('.results-body').find('#result-' + counter).removeClass('even-box').addClass('odd-box');
+            str_result = '单数';
+        }
+        $('.results-body').find('#result-' + counter).html(item.result + '<div>'+ str_result +'</div>');
+
     });
 }
 
 function updateHistory(records){
 
     var length = Object.keys(records).length;
-    var maxCount = 8;
+    var maxCount = 7;
 
     if(length < maxCount){
         maxCount = parseInt(length);
     }
-    //console.log(records);
-    for(var r = 1; r <= maxCount; r++){
-        var last = Object.keys(records)[Object.keys(records).length-1];
-        var last_record = records[last];
+
+    $.each(records, function(i, item) {
         var history = '';
+        var counter = i + 1;
 
-        $('.history-body').find('#row-' + r).find('.history-number').html(last);
-        $('.history-body').find('#row-' + r).find('.history').html('');
+        var strbet = "单数";
+        var strwinloss = "猜对";
+        var strsign = '+';
+        var className = item.bet;
 
-        var betCount = Object.keys(last_record).length;
-
-        for(var i = 0; i < betCount; i++){
-
-            var last_key = Object.keys(last_record)[Object.keys(last_record).length-1];
-            var last_bet = last_record[last_key];
-            //console.log(last_bet);
-            var className = last_bet.bet;
-
-            if(last_bet.is_win == null){
-                className = last_bet.bet + '-fail'; 
-            }
-
-            history =  '<div class="' + className + '">' +
-                            '<span class="history-label">' + last_bet.result +'</span>'
-                        '</div>';
-
-            $('.history-body').find('#row-' + r).find('.history').append(history);
-            delete last_record[last_key];
+        if(item.is_win == null){
+            strwinloss = "猜错";
+            strsign = '-';
         }
 
-        delete records[last];
-    }
+        if(item.bet == 'even'){
+            strbet = "双数";
+        }
+
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
+
+        $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
+        $('.history-body').find('#row-' + counter).find('.history').html(history);
+
+        length--;
+    });
 }
 
 function initUser(records){
 
     var user_id = $('#hidUserId').val();
 
-    if (records.length === 0) {
+    if (jQuery.isEmptyObject(records)) {
         $('#spanPoint').html(0);
+        $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
         var balance = parseInt(records.balance);
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
+        g_current_point = parseInt(records.acupoint);
+        var play_count = parseInt(records.play_count);
+        //g_current_point = parseInt(records.balance) + parseInt(records.acupoint);
 
-        var vip_point =  parseInt(records.vip_point);
-        var vip_life =  parseInt(records.vip_life);
-
-        if(vip_life == 0){
-            vip_point = 0;
+        if(life == 0){
+            balance = 0;
         }
 
-        var total_balance = vip_point;
-
-        $('#spanPoint').html(vip_point);                    
+        var total_balance = balance + acupoint;
+        $('#spanPoint').html(total_balance);
+        
         $('#hidTotalBalance').val(total_balance);
-        $('.packet-point').html(point);
-        $('.spanAcuPoint').html(acupoint);
-        $('.packet-acupoint').html(acupoint);
+        $('.wallet-point').html(point/10);
+        $('.packet-point').html(point/10);
+        if(show_win){
+            
+        } else {
+            $('.spanAcuPoint').html(acupoint);
+            $('.spanAcuPointAndBalance').html(acupoint/10);
+        }
+        $('.packet-acupoint').html(acupoint/10);
+        $('.packet-acupoint-to-win').html(15 - acupoint/10);
         $('#hidBalance').val(balance);
         $(".nTxt").html(life);
-        $(".spanVipLife").html(vip_life);
         $(".spanLife").html(life);
+        $(".span-play-count").html(play_count);
+
+        setBalance();
+
+        /*if(acupoint == 50 || acupoint == 100){
+            $('.speech-bubble-point').html('已赚了'+ acupoint +'积分大约可换'+ acupoint/10 +'元').fadeIn(1000).delay(2000).fadeOut(400);
+        }*/
+
+        if(life == 0){
+            $('#reset-life-share').modal();
+        } else if (user_id > 0 && acupoint >= 150) {
+            bindResetLifeButton();
+            $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
+        }
     }
 }
 
-function initGame(token, data, level, latest_result, consecutive_lose){
-    $( '.btn-reset-life' ).unbind( "click" );
-    $( '.btn-reset-life-continue' ).unbind( "click" );
-    $( '.btn-calculate-vip' ).unbind( "click" );
-    
+function initGame(data, level, latest_result, consecutive_lose){
+try {
+ 
     var user_id = $('#hidUserId').val();
     trigger = false;
-    
 
         var bet_amount = 0;
-        var span_balance = 1200;
-        var duration = data.duration;
-        var timer = data.remaining_time;
-        var freeze_time = data.freeze_time;
+        var duration = 10;
+        var timer = 10;
+        var freeze_time = 1;
         var draw_id = data.drawid;
         var level = level.position;
-        var level_id = level.levelid;
-        var previous_result = latest_result.game_result;
+        var previous_result = 1;
         var consecutive_lose = consecutive_lose;
         var life = $(".nTxt").html();
         var balance = $('#hidBalance').val();
         var payout_info = '';
+        var acupoint = parseInt($('.spanAcuPoint').html());
+
+        if(latest_result.length > 0){
+            previous_result = latest_result[0].result;
+        }
 
         $('#hidLevel').val(level);
-        $('#hidLevelId').val(level_id);
         $('#hidLatestResult').val(previous_result);
+        $('#hidConsecutiveLose').val(consecutive_lose);
 
         $('.barBox').find('li').removeClass('on');
-        
-        showProgressBar(false);
+
+        if (consecutive_lose == 'yes' && life > 0) {
+            bindResetLifeButton();
+            $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
+        }
+
+        setBalance();
 
         $('#freeze_time').val(freeze_time);
         $('#draw_id').val(draw_id);
@@ -159,285 +215,86 @@ function initGame(token, data, level, latest_result, consecutive_lose){
         DomeWebController.init();
         trigger = false;
         clearInterval(parent.timerInterval);
-        startTimer(duration, timer, freeze_time, token);
+        //startTimer(duration, timer, freeze_time);
 
-        if (timer <= freeze_time) {
-            $('.radio-primary').unbind('click');
+        var show_game_rules = Cookies.get('show_game_rules');
+
+        if (balance == 1200 && acupoint == 0) {
+            bindBetButton();
         } else {
-            bindBetButton(token);
+            Cookies.remove('show_game_rules');
+            bindBetButton();
         }
 
-        bindCalculateButton(token);
+        bindCalculateButton();
+        bindTriggerButton();
 
         $(".loading").fadeOut("slow");
 
         $.ajax({
             type: 'GET',
-            url: "/api/get-game-result-temp?gameid=101&gametype=2&memberid=" + user_id + "&drawid=" + draw_id,
+            url: "/api/get-game-result-temp?gameid=102&gametype=1&vip=yes&memberid=" + user_id + "&drawid=0",
             dataType: "json",
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
             },
-            error: function (error) { console.log(error.responseText) },
+            error: function (error) { 
+                console.log(error);
+                $(".reload").show();
+            },
             success: function(data) {
 
                 if(data.success && data.record.bet != null){
 
-                    showProgressBar(true);
-
                     var selected = data.record.bet;
-                    var total_balance = parseInt($('#hidTotalBalance').val());
-                    var bet_amount = parseInt(data.record.betamt);
-                    var newtotalbalance = total_balance - bet_amount;
 
                     var btn_rectangle = $("input[value='"+ selected +"']").parent();
                     btn_rectangle.addClass('clicked');
-                    btn_rectangle.find('.bet-container').show();
-                    btn_rectangle.find('.bet').show();
-
-                    //$('#spanPoint').html(newtotalbalance);
-                    $('.instruction').css('visibility', 'hidden');
-
-                    $.ajax({
-                        type: 'GET',
-                        url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
-                        + "&drawid=" + draw_id 
-                        + "&bet="+ selected 
-                        +"&betamt=" + bet_amount,
-                        dataType: "json",
-                        beforeSend: function( xhr ) {
-                            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                        },
-                        error: function (error) { console.log(error.responseText) },
-                        success: function(data) {
-                        }
-                    });
+                    showPayout();
                 }
             }
         }); // ajax get-game-result-temp
 
-}
-
-function getSocket(){
-console.log("getSocket");
-    var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
-    //var port = {{ env('REDIS_CLI_PORT'), '6001' }};
-    var url = 'http://boge56.com';
-    
-    //var url = 'http://wabao666.local';
-    var port = '6001';
-            
-    var c_url = url + ':' + port;
-
-    var user_id = $('#hidUserId').val();
-
-        $.ajax({
-            url: '/token'
-        })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-        })
-        .done(function (result, textStatus, jqXHR) {
-            //console.log('connecting URL: '+c_url);
-            var socket = new io.connect(c_url, {
-                'reconnection': true,
-                'reconnectionDelay': 1000,
-                'reconnectionDelayMax' : 5000,
-                'reconnectionAttempts': 2,
-                 query: 'token='+result.token+'&vip=yes'
-            });
-
-            /* 
-            connect with socket io
-            */
-            socket.on('connect', function () {
-                console.log('Connected to SocketIO, Authenticating');
-                console.log('Token: '+result.token);
-                socket.emit('authenticate', {token: result.token});
-            });
-
-            /* 
-            If token authenticated successfully then here will get message 
-            */
-            socket.on('authenticated', function () {
-                console.log('Authenticated');
-                $(".loading").fadeOut("slow");
-            });
-
-            /* 
-            If token unauthorized then here will get message 
-            */
-            socket.on('unauthorized', function (data) {
-                console.log('Unauthorized, error msg: ' + data.message);
-            });
-
-            /* 
-            If disconnect socketio then here will get message 
-            */
-            socket.on('disconnect', function () {
-                console.log('Disconnected');
-            });
-
-            //On user logout
-            socket.on('userlogout-' + user_id, function (data) {
-                console.log('user-logout');
-            });
-
-            //init setting Script
-            socket.on("initsetting-" + user_id + ":App\\Events\\EventGameSetting", function(data){
-                console.log('user-initsetting');
-
-                console.log(data);
-
-                resetGame();
-                var game_records = data.data.gamesetting;
-                var level = data.data.level;
-                var latest_result = data.data.latest_result;
-                var consecutive_lose = data.data.consecutive_lose;
-                var result_records = data.data.gamehistory.data;
-                
-                var wallet = false;
-                 if(typeof(data.data.wallet) !== 'undefined'){
-                    var wallet_records = data.data.wallet;
-                    wallet = true;
-                }
-
-                var betting_history = false;
-                if(typeof(data.data.bettinghistory) !== 'undefined'){
-                    var betting_records = groupHistory(data.data.bettinghistory.data);
-                    betting_history = true;
-                }
-
-                var id = $('#hidUserId').val();
-                var session = $('#hidSession').val();
-
-                $.ajax({
-                    type: 'GET',
-                    url: "/api/gettoken?id=" + id + "&token=" + session,
-                    dataType: "json",
-                    error: function (error) { $(".reload").show(); },
-                    success: function(data) {
-                        $('#hidToken').val(data.access_token);
-                        initGame(data.access_token, game_records, level, latest_result, consecutive_lose);
-                        updateResult(result_records);
-
-                        if(wallet){
-                            initUser(wallet_records);
-                        }
-
-                        if(betting_history){
-                            updateHistory(betting_records);
-                        }
-                    }
-                });
-
-                $('#hidFee').val(data.data.wabaofee);
-                $('.spanFee').html(data.data.wabaofee);
-
-             });
-
-            //No betting vip
-            socket.on("no-vipbetting-user-" + user_id + ":App\\Events\\EventNoBetting" , function(data){
-                console.log('call no-vip-betting');
-                console.log(data);
-
-                $('#result').val(data.data.game_result);
-                triggerResult();
-            });
-
-            //betting vip
-            socket.on("uservipbetting-" + user_id + ":App\\Events\\EventVIPBetting" , function(data){
-                console.log('call uservipbetting');
-                console.log(data);
-
-                $('#hidConsecutiveLose').val(data.consecutive_loss);
-                $('#hidMergePoint').val(data.mergepoint);
-
-                if(data.status == 'win'){
-                    var level = parseInt($('#hidLevel').val());
-                    var win_amount = level * 10;
-
-                    $('.instruction').html('恭喜你猜对了，赚了'+ win_amount +'金币！');
-                } else if (data.status == 'lose') {
-                    var level = parseInt($('#hidLevel').val());
-                    var chance = 6 - level;
-
-                    $('.instruction').html('很遗憾猜错了，你还有'+ chance +'次机会！');
-                }
-
-                $('#result').val(data.data.game_result);
-                triggerResult();
-            });
-
-            //wallet changes -- new --
-            socket.on("wallet-" + user_id + ":App\\Events\\EventWalletUpdate", function(data){
-                console.log('member wallet details');
-                console.log(data);
-
-                initUser(data.data);
-
-              });
-
-            //betting VIP history -- new --
-            socket.on("vipbettinghistory-" + user_id + ":App\\Events\\EventVipBettingHistory", function(data){
-                console.log('members recent Vip bettinghistory');
-                console.log(data);
-
-                var betting_records = groupHistory(data.data.data);
-                updateHistory(betting_records);
-            });          
-        });
-}
-
-function groupHistory(records) {
-
-    var newOptions = [];
-    var prev_level = 0;
-    var counter = 0;
-
-    if (records.length > 0)
-    {
-        $.each(records, function(i, item) {
-            var level = item.player_level;
-
-            if(prev_level == level) {
-                counter++;
-            } else {
-                counter = 0;
-                newOptions[level] = [];
-                prev_level = item.player_level;
-            }
-
-            newOptions[level][counter] = item;
-        });       
     }
+    catch(err) {
+      console.log(err.message);
+      alert('下注失败');
+      $(".reload").show();
+    }
+}
 
-    return newOptions;
+function getToken(){
+    var username = $('#hidUsername').val();
+    var session = $('#hidSession').val();
+    var id = $('#hidUserId').val();
+
+    //login user
+    if (id > 0) {
+        $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
+            //console.log(data);
+            if(data.success) {
+                token = data.access_token;
+                startGame();            
+            } else {
+                $(".reload").show();
+            }      
+        });
+    } else {
+        //non-logged in user
+        $('#hidLatestResult').val(1);
+        DomeWebController.init();
+        bindBetButton();
+        $(".loading").fadeOut("slow");
+    }
+    
 }
 
 function resetTimer(){
-    var id = $('#hidUserId').val();
-    var session = $('#hidSession').val();
-
-    $.ajax({
-        type: 'GET',
-        url: "/api/gettoken?id=" + id + "&token=" + session,
-        dataType: "json",
-        error: function (error) { console.log(error.responseText); },
-        success: function(data) {
-            var token = data.access_token;
-            $('#hidToken').val(token);
-            restartTimer(token);
-        }
-    });
-}
-
-function restartTimer(token){
     var user_id = $('#hidUserId').val();
 
     $.ajax({
         type: 'GET',
-        url: "/api/game-setting?gameid=101&memberid=" + user_id,
+        url: "/api/game-setting?gameid=102&vip=yes&memberid=" + user_id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -450,38 +307,168 @@ function restartTimer(token){
 
             trigger = false;
             clearInterval(parent.timerInterval);
-            startTimer(duration, timer, freeze_time, token);
+            //startTimer(duration, timer, freeze_time);
+        }
+    });
+}
+
+function startGame() {
+
+    initShowModal();
+    var id = $('#hidUserId').val();
+
+    $.ajax({
+        type: 'GET',
+        url: "/api/game-setting?gameid=102&vip=yes&memberid=" + id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        success: function(data) {
+            //console.log(data);
+            game_records = data.record.setting;
+            betting_records = data.record.bettinghistory.data;
+            latest_result = data.record.bettinghistory.data;
+            var level = data.record.level;
+            var consecutive_lose = data.record.consecutive_lose;
+            initGame(game_records, level, latest_result, consecutive_lose);
+
+            
+            //console.log(data);
+            updateHistory(betting_records);
+            updateResult(betting_records);
+            show_win = false;
+            show_lose = false;
+        }
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: "/api/wallet-detail?gameid=102&vip=yes&memberid=" + id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        success: function(data) {
+            var wallet_records = data.record;
+            console.log(wallet_records);
+
+            initUser(wallet_records);
         }
     });
 }
 
 function resetGame() {
-    $('.radio-primary').unbind('click');
     $('div.clicked').find('.bet').hide();
     $('div.clicked').removeClass('clicked').find('.bet-container').hide();
     $('.payout-info').addClass('hide');
-    $('.instruction').css('visibility', 'visible');
     $('.spinning').css('visibility', 'hidden');
+    $('.middle-label').html('开始竞猜');
+    $('.radio-primary').unbind('click');
+    $('.small-border').removeClass('fast-rotate');
+
+    startGame();
+}
+
+function initShowModal(){
+
+    if(show_win){
+        $('#win-modal').modal({backdrop: 'static', keyboard: false});
+        closeWinModal();
+    }
+
+    if(show_lose){
+        $('#lose-modal').modal({backdrop: 'static', keyboard: false});
+        closeWinModal();
+    }
+}
+
+function setBalance() {
+    var selected = $('div.clicked').find('input:radio').val();
+    if (typeof selected == 'undefined'){
+        //do nothing
+    } else {
+        var bet_amount = parseInt($('#hidBet').val());
+        var total_balance = parseInt($('#hidTotalBalance').val());
+        var balance = parseInt($('#hidBalance').val());
+        var acupoint = parseInt($('.spanAcuPoint').html());
+
+        var newbalance = balance - bet_amount;
+        var newtotalbalance = total_balance - bet_amount;
+        //console.log(balance + " - " + bet_amount + " = " + newbalance);
+        if(newbalance < 0){
+
+        } else {
+            //$('#spanPoint').html(newtotalbalance);
+        }
+    }
+}
+
+function checkSelection() {
+    var selected = $('div.clicked').find('input:radio').val();
+    if (typeof selected == 'undefined'){
+        $('.spinning').html('请先选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
+         $('.spinning').css('visibility', 'visible');
+        setTimeout(function(){ 
+            $('.spinning').css('visibility', 'hidden');
+        }, 3000);
+    } else {
+        $('.middle-label').html('正在抽奖');
+        $('.DB_G_hand').hide();
+        $('.radio-primary').unbind('click');
+        $('#btnWheel').unbind('click');
+        bindSpinningButton();
+        startTimer(5, 5, 1);
+    }
 }
 
 function closeModal() {
     $('.close-modal').click(function(){
-        $('.redeem-error').html('本局游戏尚未完成');
-        $('#reset-life-bet').modal('hide');
+        $('#reset-life-play').modal('hide');
         $('#reset-life-lose').modal('hide');
+         $('#top-corner-game-rules').modal('hide');
+        $('#game-rules').modal('hide'); 
     });
+}
 
-    $('.modal-message-manual').click(function(){
-        $('#reset-life-manual').modal();
-    });
+function closeWinModal() {
 
-    $('.modal-manual-button').click(function(){
-        $('#reset-life-manual').modal('hide');
+    $('.close-win-modal').click(function(event){
+        
+        if (g_current_point > g_previous_point) {
+            musicPlay(1);  
+            console.log('play coin mp3');  
+        } 
+
+         if(g_current_point > 150){
+             g_current_point = 150;
+         }
+
+        /*$('.spanAcuPointAndBalance')
+          .prop('number', g_previous_point/10)
+          .animateNumber(
+            {
+              number: g_current_point/10
+            },
+            500
+          );*/
+        
+        $('.spanAcuPointAndBalance').html(g_current_point/10);
+        $('.spanAcuPoint').html(g_current_point);
+
+        $(this).off('click');
+        event.stopImmediatePropagation();
+        $('#win-modal').modal('hide');
+        $('#lose-modal').modal('hide');
+        
     });
 }
 
 function bindSpinningButton() {
     $('.radio-primary').click(function( event ){
+        $('.spinning').html('转盘转动中，请等待结果。');
         $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
             $('.spinning').css('visibility', 'hidden');
@@ -489,25 +476,50 @@ function bindSpinningButton() {
     });
 }
 
-function bindBetButton(token){
-    $('.radio-primary').click(function(event){
+function bindBetButton(){
+
+    $('.radio-primary').click(function( event ){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
-        var total_balance = parseInt($('#hidTotalBalance').val());
-        var level = parseInt($('#hidLevel').val());
         var life = $(".nTxt").html();
         var acupoint = parseInt($('.spanAcuPoint').html());
         var draw_id = $('#draw_id').val();
+        var consecutive_lose = $('#hidConsecutiveLose').val();
 
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
-            window.top.location.href = "/member";
+            // window.top.location.href = "/member";
+            $( '#login-intropopup' ).modal( 'show' );
         }
 
         if(isNaN(balance)){
             return false;
         }
+
+        //console.log(user_id +":" + balance + ":" + life );
+        if(user_id > 0 && life > 0){
+
+            if(balance < 630) {
+                if(consecutive_lose == 'yes'){
+                    bindResetLifeButton();
+                    $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
+                } else {
+                    bindResetLifeButton();
+                    $('#reset-life-start').modal();
+                }
+
+            }
+
+        } else if(user_id > 0 && life == 0){
+                $('#reset-life-share').modal();
+        }
+
+        if (user_id > 0 && acupoint >= 150) {
+            bindResetLifeButton();
+            $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
+        }
+
 
         $('.radio-primary').not(this).find('.radio').removeClass('clicked');
         $('.radio-primary').not(this).find('.bet-container').hide();
@@ -517,39 +529,90 @@ function bindBetButton(token){
         $(this).find('.bet').toggle();
         $(this).find('.radio').toggleClass('clicked');
 
-        var selected = $('div.clicked').find('input:radio').val();
+        showPayout();
+    });
+}
+
+function showPayout(){
+    var selected = $('div.clicked').find('input:radio').val();
+    var balance = parseInt($('#hidBalance').val());
+    var total_balance = parseInt($('#hidTotalBalance').val());
+    var level = parseInt($('#hidLevel').val());
+    var user_id = $('#hidUserId').val();
+
+    var bet_amount = parseInt($('#hidBet').val());
+    var newbalance = balance - bet_amount;
+    var newtotalbalance = total_balance - bet_amount;
+    var bet_count = $('#hidbetting_count').val();
+
+    switch (level) {
+        case 1:
+            //previous_bet = 0;
+        break;
+
+        case 2:
+            previous_bet = 10;
+        break;
+
+        case 3:
+            previous_bet = 30;
+        break;
+
+        case 4:
+            previous_bet = 70;
+        break;
+
+        case 5:
+            previous_bet = 150;
+        break;
+
+        case 6:
+            previous_bet = 310;
+        break;
+
+    }
+
         if (typeof selected == 'undefined'){
+
+            if(bet_count == 0){
+                $('.selection').show();
+                $('.start-game').hide();
+            }
 
             checked(level, false);
             changbar(level);
 
-            //$('#spanPoint').html(total_balance);
+            $('#spanPoint').html(total_balance);
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
-            //$('.span-balance').html(balance);
 
-            $.ajax({
-                type: 'GET',
-                url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
-                + "&drawid=" + draw_id 
-                + "&bet=&betamt=",
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            $('.odd-payout')
+                  .prop('number', bet_amount)
+                  .animateNumber(
+                    {
+                      number: previous_bet
+                    },
+                    1000
+                  );
+
+            $('.even-payout')
+              .prop('number', bet_amount)
+              .animateNumber(
+                {
+                  number: previous_bet
                 },
-                error: function (error) { console.log(error.responseText) },
-                success: function(data) {
-                }
-            });
+                1000
+              );
 
         } else {
 
             checked(level, true);
             changbar(level);
 
-            var bet_amount = parseInt($('.bet-container').html());
-            var newbalance = balance - bet_amount;
-            var newtotalbalance = total_balance - bet_amount;
+            if(bet_count == 0){
+                $('.selection').hide();
+                $('.start-game').show();
+            }
 
             if(newbalance < 0){
                  $('div.clicked').find('.bet').hide();
@@ -559,10 +622,36 @@ function bindBetButton(token){
                 //$('#spanPoint').html(newtotalbalance);
                 $('.instruction').css('visibility', 'hidden');
 
+                if(selected == 'odd'){
+                    $('.odd-sign').html('+');
+                    $('.even-sign').html('-');
+                } else {
+                    $('.odd-sign').html('-');
+                    $('.even-sign').html('+');
+                }
+
+                $('.odd-payout')
+                      .prop('number', previous_bet)
+                      .animateNumber(
+                        {
+                          number: bet_amount
+                        },
+                        1000
+                      );
+
+                $('.even-payout')
+                  .prop('number', previous_bet)
+                  .animateNumber(
+                    {
+                      number: bet_amount
+                    },
+                    1000
+                  );
+
                 $.ajax({
                     type: 'GET',
-                    url: "/api/update-game-result-temp?gameid=101&gametype=2&memberid="+ user_id 
-                    + "&drawid=" + draw_id 
+                    url: "/api/update-game-result-temp?gameid=102&gametype=1&vip=yes&memberid="+ user_id
+                    + "&drawid=0" 
                     + "&bet="+ selected 
                     + "&betamt=" + bet_amount
                     + "&level=" + level,
@@ -570,98 +659,69 @@ function bindBetButton(token){
                     beforeSend: function( xhr ) {
                         xhr.setRequestHeader ("Authorization", "Bearer " + token);
                     },
-                    error: function (error) { console.log(error.responseText) },
+                    error: function (error) {
+                        console.log('memberid: ' + user_id + ', 下注失败'); 
+                        console.log(error.responseText);
+                    },
                     success: function(data) {
                     }
                 });
+
             }
 
-            $('.payout-info').removeClass("hide");
-            //$('.span-balance').html(newbalance);
+            //$('.payout-info').removeClass("hide");
+
         }
 
+    
+}
+
+function bindCalculateButton(){
+    $('.btn-calculate').click( function() {
+        $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
     });
 }
 
-function bindCalculateButton(token){
-    $('.btn-calculate-vip').click(function( event ){
-        event.stopImmediatePropagation();
-
-        var user_id = $('#hidUserId').val();
-        var selected = $('div.clicked').find('input:radio').val();
-        var level = parseInt($('#hidLevel').val());
-
-        if (typeof selected == 'undefined' && level == 1) {
-            $.ajax({
-                type: 'POST',
-                url: "/api/check-redeem",
-                data: { 'memberid': user_id },
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { console.log(error.responseText) },
-                success: function(data) {
-                    console.log(data);
-                    if(data.success){
-                        var point = data.wabao_point;
-                        var vip_point = data.vip_point;
-                        var fee = $('#hidFee').val();
-                        var net_vip_point = parseInt(vip_point) - parseInt(fee);
-
-                        $('.spanVipPoint').html(vip_point);
-                        $('.spanNetVip').html(net_vip_point);
-                        $('.packet-point').html(point);
-
-                        $('#reset-life-max').modal();
-                            
-                        bindResetLifeButton(token);
-                        $('#btn-close-max').click(function(){
-                            $('#reset-life-max').modal('hide');
-                        });
-
-                    } else {
-                        $('.redeem-error').html(data.message);
-                        $('#reset-life-bet').modal();
-                    }
-                }
-            });
-        } else {
-            $('#reset-life-bet').modal();
-        }
+function bindTriggerButton(){
+    $('#btnWheel').click( function() {
+        checkSelection();
     });
 }
 
-function bindResetLifeButton(token){
-    $( '.btn-reset-life' ).click( function(event){
+function bindResetLifeButton(){
+    $( '.btn-reset-life' ).click( function( event ){
+        $(this).off('click');
         event.stopImmediatePropagation();
+
         var user_id = $('#hidUserId').val();
         var previous_point = $('.packet-point').html();
-        
+
         // add points from additional life.
         if(user_id > 0){
             $.ajax({
                 type: 'POST',
-                url: "/api/reset-vip",
-                data: { 'memberid': user_id, 'gameid': 101 },
+                url: "/api/resetlife",
+                data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
                 dataType: "json",
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
                 },
                 error: function (error) { console.log(error.responseText) },
                 success: function(data) {
-                    console.log(data);
                     if(data.success){
                         Cookies.set('previous_point', previous_point);
-                        window.parent.location.href = "/redeem";
+                        // window.parent.location.href = "/redeem";
+                        window.parent.location.href = "/profile";
                     }
                 }
             });
         }
     });
 
-    $( '.btn-reset-life-continue' ).click( function(event){
+    $( '.btn-reset-life-continue' ).click( function( event ){
+        $(this).off('click');
         event.stopImmediatePropagation();
+
         var user_id = $('#hidUserId').val();
 
         // add points from additional life.
@@ -669,7 +729,7 @@ function bindResetLifeButton(token){
             $.ajax({
                 type: 'POST',
                 url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 101, 'life': 'yes' },
+                data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
                 dataType: "json",
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -678,7 +738,9 @@ function bindResetLifeButton(token){
                 success: function(data) {
                     if(data.success){
                         $('#reset-life-max').modal('hide');
+                        $('#reset-life-play').modal('hide');
                         $('#reset-life-lose').modal('hide');
+                        $('#reset-life-start').modal('hide');
                         resetGame();
                     }
                 }
@@ -690,10 +752,10 @@ function bindResetLifeButton(token){
 function showProgressBar(bol_show){
     var level = parseInt($('#hidLevel').val());
     var consecutive_lose = $('#hidConsecutiveLose').val();
-    var mergepoint = $('#hidMergePoint').val();
-    var bet_amount = 0;
+    var balance = parseInt($('#hidBalance').val());
     var payout_info = '';
     var span_balance = 1200;
+    var result_info ='';
 
     if(consecutive_lose == 'yes') {
         $('.span-1').html("-10");
@@ -703,65 +765,100 @@ function showProgressBar(bol_show){
         $('.span-5').html("-310");
         $('.span-6').html("-630");
         $('.span-balance').html(0);
-
+    
         $('.payout-info').html(payout_info).addClass('hide');
-        $('#spanPoint').html(mergepoint);
+        $('.spanAcuPoint').html(0);
+        $('.spanAcuPointAndBalance').html(0);
+        
+        result_info = '剩余<span style="text-decoration:underline">'+ balance +'</span>游戏积分&nbsp;';
+        $('.result-info').html(result_info);
+
+
+        
+        
         checked(7, false);
         changbar(7);
     } else {
+
         switch (level) {
 
             default:
             case 1:
-                bet_amount = 10;
+                previous_bet = current_bet;
+                current_bet = 10;                
 
-                payout_info = '猜中得10，赚10金币。';
+                payout_info = '押注10积分，猜对+10，猜错-10。';
+                //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注10积分，猜对+10，猜错-10。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中赚10金币，可兑换1元。';//'猜中得10，赚10金币。';
                 $('.span-1').html("10");
                 $('.span-2').html("30");
                 $('.span-3').html("70");
                 $('.span-4').html("150");
                 $('.span-5').html("310");
+                $('.span-6').html("630");
+
+                result_info = '本轮还有6次机会。';
 
                 break;
             case 2:
-                bet_amount = 30;
+                current_bet = 30;
+                previous_bet = 10;
                 span_balance = 1190;
+                result_info = '本轮错了1次，还剩5次。';
 
-                payout_info = '猜中得30，扣除之前亏损10，赚20金币。';
+                payout_info = '押注30积分，猜对+30，猜错-30。';
+                //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注30积分，猜对+30，猜错-30。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
                 $('.span-1').html("-10");                        
                 break;
             case 3:                    
-                bet_amount = 70;
+                current_bet = 70;
+                previous_bet = 30;
                 span_balance = 1160;
+                result_info = '本轮错了2次，还剩4次。';
 
-                payout_info = '猜中得70，扣除前2次亏损40，赚30金币。';
+                payout_info = '押注70积分，猜对+70，猜错-70。';
+                // payout_info = '<span class=\'caption_bet\'>[单数]</span>押注70积分，猜对+70，猜错-70。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 break;
             case 4:
-                bet_amount = 150;
+                current_bet = 150;
+                previous_bet = 70;
                 span_balance = 1090;
+                result_info = '本轮错了3次，还剩3次。';
 
-                payout_info = '猜中得150，扣除前3次亏损110，赚40金币。';
+                payout_info = '押注150积分，猜对+150，猜错-150。';
+                //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注150积分，猜对+150，猜错-150。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得150，赚40金币。';//'猜中得150，扣除前3次亏损110，赚40金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
                 break;
             case 5:
-                bet_amount = 310;
+                current_bet = 310;
+                previous_bet = 150;
                 span_balance = 940;
+                result_info = '本轮错了4次，还剩2次。';
 
-                payout_info = '猜中得310，扣除前4次亏损260，赚50金币。';
+                payout_info = '押注310积分，猜对+310，猜错-310。';
+                //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注310积分，猜对+310，猜错-310。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得310，赚50金币。';//'猜中得310，扣除前4次亏损260，赚50金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
                 $('.span-4').html("-150");
                 break;
             case 6:
-                bet_amount = 630;
+                current_bet = 630;
+                previous_bet = 310;
                 span_balance = 630;
+                result_info = '本轮剩1次机会，猜错清零。';                
 
-                payout_info = '猜中得630，扣除前5次亏损570，赚60金币。';
+                payout_info = '押注630积分，猜对+630，猜错-630。';
+                // payout_info = '<span class=\'caption_bet\'>[单数]</span>押注630积分，猜对+630，猜错-630。';
+                //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得630，赚60金币。';//'猜中得630，扣除前5次亏损570，赚60金币。';
                 $('.span-1').html("-10");
                 $('.span-2').html("-30");
                 $('.span-3').html("-70");
@@ -770,11 +867,15 @@ function showProgressBar(bol_show){
                 break;
         }
 
+        result_info = '剩余<span style="text-decoration:underline">'+ span_balance +'</span>游戏积分&nbsp;';
+
         $('.span-balance').html(span_balance);
-        $('.bet-container').html(bet_amount);
+        $('#hidBet').val(current_bet);
+        $('.result-info').html(result_info);
+        $('.odd-payout').html(previous_bet);
+        $('.even-payout').html(previous_bet);
 
         if(bol_show) {
-            $('.payout-info').html(payout_info).removeClass('hide');
             checked(level, true);
             changbar(level);
         } else {
@@ -785,68 +886,215 @@ function showProgressBar(bol_show){
     }
 }
 
-function startTimer(duration, timer, freeze_time, token) {
+function showWinModal(){
+    var level = parseInt($('#hidLevel').val());
+    var html = '';
+    var image = '';
+    var result_info = '本轮还有6次机会。';
 
-    var trigger_time = freeze_time - 1;
-    parent.timerInterval = setInterval(function () {
+    switch (level) {
 
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 61, 10);
+        case 1:
+            info = '前0局猜错<span class="highlight">亏损0积分</span><br />第1局猜对<span class="highlight-green">奖励10积分</span><br />最终赚了10积分，<span class="highlight-red">换到了1元</span><br />满15元可兑换红包';
+            image = '/client/images/progress-bar/10.png';
+            html += '<span class="packet-sign">+</span>1<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 1;
+            instructions = '您已赢到1元，';
+        break;
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+        case 2:
+            info = '前1局猜错<span class="highlight">亏损10积分</span><br />第2局猜对<span class="highlight-green">奖励30积分</span><br />最终赚了20积分，<span class="highlight-red">换到了2元</span><br />满15元可兑换红包';
+            image = '/client/images/progress-bar/30.png';
+            html += '<span class="packet-sign">+</span>2<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 2;
+            instructions = '您已赢到2元，';        
+        break;
 
-        $( "#txtCounter" ).html(seconds);
+        case 3:
+            info = '前2局猜错<span class="highlight">亏损40积分</span><br />第3局猜对<span class="highlight-green">奖励70积分</span><br />最终赚了30积分，<span class="highlight-red">换到了3元</span><br />满15元可兑换红包';
+            image = '/client/images/progress-bar/70.png';
+            html += '<span class="packet-sign">+</span>3<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 3;
+            instructions = '您已赢到3元，';
+        break;
 
-        --timer;
+        case 4:
+            info = '前3局猜错<span class="highlight">亏损110积分</span><br />第4局猜对<span class="highlight-green">奖励150积分</span><br />最终赚了40积分，<span class="highlight-red">换到了4元</span><br />满15元可兑换红包';
+            image = '/client/images/progress-bar/150.png';
+            html += '<span class="packet-sign">+</span>4<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 4;
+            instructions = '您已赢到4元，';
+        break;
 
-        if (timer < 0) {            
-            timer = duration;
+        case 5:
+            info = '前4局猜错<span class="highlight">亏损260积分</span><br />第5局猜对<span class="highlight-green">奖励310积分</span><br />最终赚了50积分，<span class="highlight-red">换到了5元</span><br />满15元可兑换红包';
+            image = '/client/images/progress-bar/310.png';
+            html += '<span class="packet-sign">+</span>5<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 5;
+            instructions = '您已赢到5元，';
+        break;
 
-            var consecutive_loss = $('#hidConsecutiveLose').val();
-            var mergepoint = parseInt($('#hidMergePoint').val()) || 0;
-            var previous_point = $('.packet-point').html();
-            var fee = $('#hidFee').val();
-            var net_vip_point = parseInt(mergepoint) - parseInt(fee);
+        case 6:
+            info = '前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终赚了60积分，<span class="highlight-red">换到了6元</span><br />满15元可兑换红包';
+            image = '/client/images/progress-bar/630.png';
+            html += '<span class="packet-sign">+</span>6<span class="packet-currency">元</span>';
+            remain = 15 - (g_previous_point/10) - 6;
+            instructions = '您已赢到6元，';
+        break;
 
-            if(net_vip_point < 0) {
-                net_vip_point = 0;
-            }
+    }
 
-            if (consecutive_loss == 'yes') {
-                showProgressBar(false);
-                $('.spanVipPoint').html(mergepoint);
-                $('.spanNetVip').html(net_vip_point);
+    if(remain < 0){
+        remain = 0;
+    }
 
-                $('#spanPoint').html(mergepoint);
+    $('.modal-progress-bar').attr("src", image);
+    $('#win-modal .packet-value').html(html);
+    $('#win-modal .packet-info').html(info);
+    $('#win-modal .instructions').html(instructions+'还差'+remain+'元可兑换');
 
-                $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
-                $('.btn-reset-life').click(function(){
-                    Cookies.set('previous_point', previous_point);
-                    window.top.location.href = "/redeem";
-                });
-            } else {
-                resetGame();
-            }
+    $('.highlight-link').click(function(){
+        $('#game-rules').modal();
+    });
 
-        } else if (timer <= trigger_time) {
-            //Lock the selection
-            $('.radio-primary').unbind('click');
-            bindSpinningButton();
+    $('.btn-rules-close').click(function(){
+        $('#game-rules').modal('hide');
+    });
 
-            if (trigger == false) {
+    $('.btn-rules-timer').click(function(){
+        $('#game-rules').modal('hide');
+    });
+
+    // console.log('standby play win mp3');
+    // setTimeout(function(){
+    //     console.log('play win mp3');
+    //     musicPlay(2);
+    // }, 9000);
+
+}
+
+function showLoseModal(){
+    var level = parseInt($('#hidLevel').val());
+    var html = '';
+    var image = '';
+    var result_info = '6次内猜对奖励加倍';
+
+    switch (level) {
+
+        case 1:
+            instruction = '前1局猜错，<span class="highlight-green">总亏损10积分</span>，根据倍增式玩法，第2局<span class="highlight-orange">将押注30积分</span>，如猜对能获得30积分奖励，减去亏损的10还能赚20积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前1局猜错，<span class="highlight-grey">总亏损10积分</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注30积分</span>，猜对能获得30积分奖励，减去亏损的10还能赚20积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
+            image = '/client/images/progress-bar/lose_10.png';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">5次内猜对奖励加倍</div>'; 
+            result_info = '5次内猜对奖励加倍';
+        break;
+
+        case 2:
+            instruction = '前2局猜错，<span class="highlight-green">总亏损40积分</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注70积分</span>，如猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前2局猜错，<span class="highlight-grey">总亏损40积分</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注70积分</span>，猜对能获得70积分奖励，减去亏损的40还能赚30积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
+            image = '/client/images/progress-bar/lose_30.png';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">4次内猜对奖励加倍</div>'; 
+            result_info = '4次内猜对奖励加倍';
+        break;
+
+        case 3:
+            instruction = '前3局猜错，<span class="highlight-green">总亏损110积分</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注150积分</span>，如猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前3局猜错，<span class="highlight-grey">总亏损110积分</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注150积分</span>，猜对能获得150积分奖励，减去亏损的110还能赚40积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
+            image = '/client/images/progress-bar/lose_70.png';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">3次内猜对奖励加倍</div>'; 
+            result_info = '3次内猜对奖励加倍';
+        break;
+
+        case 4:
+            instruction = '前4局猜错，<span class="highlight-green">总亏损260积分</span>，根据倍增式玩法，第5局<span class="highlight-orange">将押注310积分</span>，如猜对能获得310积分奖励，减去亏损的260还能赚50积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前4局猜错，<span class="highlight-grey">总亏损260积分</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注310积分</span>，猜对能获得310积分奖励，减去亏损的260还能赚50积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
+            image = '/client/images/progress-bar/lose_150.png';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">2次内猜对奖励加倍</div>'; 
+            result_info = '2次内猜对奖励加倍';
+        break;
+
+        case 5:
+            instruction = '前5局猜错，<span class="highlight-green">总亏损570积分</span>，根据倍增式玩法，第6局<span class="highlight-orange">将押注630积分</span>，如猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br />赚到的积分自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包，10积分兑换1元。</span>';
+            image = '/client/images/progress-bar/lose_310.png';
+            html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">1次内猜对奖励加倍</div>'; 
+            result_info = '1次内猜对奖励加倍';
+        break;
+
+    }
+
+    $('.modal-progress-bar').attr("src", image);
+    $('#lose-modal .modal-win-header').html(html);
+    $('#lose-modal .modal-instruction').html(instruction);
+    
+    $('.highlight-link').click(function(){
+        $('#game-rules').modal();
+    });
+
+    $('.btn-rules-close').click(function(){
+        $('#game-rules').modal('hide');
+    });
+
+    $('.btn-rules-timer').click(function(){
+        $('#game-rules').modal('hide');
+    });
+
+}
+
+function startTimer(duration, timer, freeze_time) {
+
+    try {
+
+        var selected = $('div.clicked').find('input:radio').val();
+        var trigger_time = freeze_time - 1;
+        var id = $('#hidUserId').val();
+        var level = parseInt($('#hidLevel').val());
+        $('.small-border').addClass('fast-rotate');
+        g_previous_point = parseInt($('.spanAcuPoint').html());
+
+        $.ajax({
+            type: 'POST',
+            url: "/api/get-betting-result?gameid=102&vip=yes&memberid=" + id, 
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            error: function (error) { 
+                console.log(error); 
+                alert('等待网络');
+                // $(".reload").show();
+                window.top.location.href = "/arcade";
+            },
+            success: function(data) {
+                console.log(data);
+                $('.small-border').removeClass('fast-rotate');
+                $('#result').val(data.game_result);
+                if(data.status == 'win'){
+                    show_win = true;
+                    showWinModal();
+                } else if(data.status == 'lose' && level < 6) {
+                    show_lose = true;
+                    showLoseModal();
+                }
                 triggerResult();
-            }
-        }
-        
-    }, 1000);
+            },
+            timeout: 10000 // sets timeout to 10 seconds
+        });
+
+    }
+    catch(err) {
+      console.log(err.message);
+      alert('下注失败');
+      $(".reload").show();
+    }
 }
 
 function triggerResult(){
     trigger = true;
     //console.log(data);
-    var freeze_time = $('#freeze_time').val();
+    var freeze_time = 10;
     var result = $('#result').val();
+    // console.log(freeze_time);
 
     //Trigger the wheel
     DomeWebController.getEle("$wheelContainer").wheelOfFortune({
@@ -866,7 +1114,15 @@ function triggerResult(){
         }//转完的回调
     });
 
-    $( "#btnWheel" ).trigger( "click" );
+    $( "#btnPointer" ).trigger( "click" );
+
+    setTimeout(function(){
+        // if (show_win) {
+        //     musicPlay(2);   
+        // }               
+        resetGame();
+    }, freeze_time * 1000);
+    
 }
 
 DomeWebController = {
@@ -899,14 +1155,15 @@ DomeWebController = {
     build: function () {
         var that = DomeWebController;
         var result = $('#result').val();
-        var freeze_time = $('#freeze_time').val();
+        var freeze_time = 5;
         var startKey = $('#hidLatestResult').val();
+        var lastBet = $('#hidLastBet').val();
 
         that.getEle("$wheelContainer").wheelOfFortune({
             'wheelImg': "/client/images/wheel.png",//转轮图片
             'pointerImg': "/client/images/pointer.png",//指针图片
-            'buttonImg': "/client/images/button.png",//开始按钮图片
-            'wSide': 260,//转轮边长(默认使用图片宽度)
+            'buttonImg': "/client/images/pointer.png",//开始按钮图片
+            'wSide': 200,//转轮边长(默认使用图片宽度)
             'pSide': 100,//指针边长(默认使用图片宽度)
             'bSide': 50,//按钮边长(默认使用图片宽度)
             'items': {1: [360, 360], 2: [60, 60], 3: [120, 120], 4: [180, 180], 5: [240, 240], 6: [300, 300]},//奖品角度配置{键:[开始角度,结束角度],键:[开始角度,结束角度],......}
@@ -914,9 +1171,10 @@ DomeWebController = {
             'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
             'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
             'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-            'rotateNum': 12,//转多少圈(默认12)
+            'rotateNum': 1,//转多少圈(默认12)
             'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
             'startKey' : startKey,
+            'lastBet' : lastBet,
             'click': function () {
                 if(1==1){}
                 var key = result;
@@ -952,3 +1210,69 @@ function changbar(number){
     bar.removeClass();
     bar.addClass('barBox barBox-'+i);
 }
+
+function showGameRules( event ){
+    event.stopImmediatePropagation();
+    $('.button-card').off('click', showGameRules);
+
+    var bet_count = $('#hidbetting_count').val();
+
+    $( ".txtTimer" ).removeClass('hide');
+    $('#game-rules').modal({backdrop: 'static', keyboard: false});
+
+    var game_name = $('#game-name').val();
+    $( ".span-read" ).html('返回幸运转盘');
+
+    $('.btn-rules-close').click(function(){
+        $('#game-rules').modal('hide');
+        bindBetButton();
+    });
+
+    $('.btn-rules-timer').click(function(){
+        $('#game-rules').modal('hide');
+    });
+}
+
+//load audio - start
+var audioElement = document.createElement('audio');
+audioElement.setAttribute('src', '/client/audio/coin.mp3');
+// var audioElement_win = document.createElement('audio');
+// audioElement_win.setAttribute('src', '/client/audio/win.mp3');
+
+function musicPlay(music) {    
+
+    //solve ios autoload issue
+    // document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
+
+    // function musicInBrowserHandler(music) {
+        if (music == 1) {  
+            // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+            audioElement.play();
+            
+        } else if (music == 2) {
+            // audioElement.setAttribute('src', '/client/audio/win.mp3');
+            // audioElement_win.play();
+        } else if (music == 22) {
+            // audioElement_win.pause();
+        } else {        
+            //do nothing
+            // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
+        }
+
+        // console.log(music);
+        // if (music == 22) {
+        //     console.log('pause');
+        //     audioElement.pause();
+        // } else {
+        //     console.log('play');
+        //     audioElement.play();    
+        // }
+        
+        // document.body.removeEventListener('touchstart', musicInBrowserHandler(music));
+    // }    
+
+    // document.getElementById('music_win').play();
+    // alert("test!");
+
+}
+//load audio - end

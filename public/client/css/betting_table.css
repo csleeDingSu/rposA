@@ -1,0 +1,72 @@
+.barWrapper{
+	box-sizing: border-box;
+	padding: 0;
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -o-flex;
+	justify-content: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-o-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	-o-align-items: center;
+	flex-direction: column;
+	margin-top: -35px;
+}
+.barWrapper::before,
+.barWrapper::after{
+
+}
+
+.barBox{
+	height: 1.7rem;
+	width: 6.72rem;
+}
+.barBox .rule{
+	height: 1.2rem;
+	padding-top: .85rem;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.barIn{
+	background:url(/client/images/vip/table-bg.png) left top no-repeat;
+	background-size:100% 100%;  
+	content: '';
+	position: relative;
+	z-index: 200;
+	left:0;
+	top:0;
+	right: 0;
+	bottom:0;
+	display: table-cell;
+}
+
+.barIn .bet-box {
+	margin: 0.2rem auto;
+	width: 1.62rem;
+	height: 0.5rem;
+	float: left;
+}
+
+.barIn .bet-box:first-child {
+	margin-left: 10px;
+}
+
+.barIn .bet-box:last-child {
+	width: 1.58rem;
+}
+
+.button-bet {
+	background:url(/client/images/vip/bet-default.png) no-repeat;
+	width: 142px;
+	height: 54px;
+	z-index: 200;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+}
