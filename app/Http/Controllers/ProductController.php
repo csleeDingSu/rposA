@@ -762,15 +762,20 @@ class ProductController extends BaseController
 	public function reject_vip(Request $request)
     {
 		//return false;
-		
+		$message = 'vip package rejected,point refund to customer';
 		$id = $request->id;
 		$record = Package::get_vip_package($id);
 		if ($record)
 		{
 			$now = Carbon::now();
-			$data = ['redeem_state'=>0,'confirmed_at'=>$now];
+			$data = ['redeem_state'=>0,'confirmed_at'=>$now,'ref_note'=>$request->note];
+			
+			if (!empty($request->note))
+			{
+				$message = $request->note;
+			}
 						
-			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', 'vip package rejected,point refund to customer');
+			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', $message);
 			
 			Package::update_vip($record->id, $data);
 			
