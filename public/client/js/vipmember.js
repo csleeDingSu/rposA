@@ -116,7 +116,13 @@ function populateHistoryData(records, token) {
                 html += '<div class="balance">购买时间:'+ str_date +'</div>' +
                     '</div>';
 
-                if(item.redeem_state == 1) { // Pending
+                if(item.redeem_state == 0) { // rejected
+                    html += '<div class="col-xs-3 column-6">' +
+                                '<div class="btn-used">支付失败</div>' +
+                            '</div>' + 
+                        '</div>';
+
+                } else if(item.redeem_state == 1) { // Pending
                     html += '<div class="col-xs-3 column-6">' +
                                 '<div class="btn-pending-vip">等待开通</div>' +
                             '</div>' + 

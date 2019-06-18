@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\ProductController as ProductController;
+use App\Http\Controllers\Api\ProductController as ApiProductController;
 use App\helpers\Sha256Generator;
 use App\payment_transaction;
 use Carbon\Carbon;
@@ -570,7 +571,7 @@ class PaymentController extends BaseController
         
         //retrieve package vip id
         $packageid = null;
-        $product = new ProductController;
+        $product = new ApiProductController;
         $vip_package = json_decode(json_encode($product->list_package($request),true));
         // $packageid = $vip_package->original->records[0]->id;
         if (!empty($vip_package->original->records)) {
@@ -597,6 +598,72 @@ class PaymentController extends BaseController
         // }
 
         return empty($res->original) ? $res : $res->original;
+    }
+
+    public function MonTradeQuery()
+    {
+        $request = new Request;
+        $data = payment_transaction::whereNotNull('upgrade_vip_id')
+        ->where(function ($query) {
+            $query->whereNull('trade_state')
+                  ->orWhere(function ($query) {
+                    $query->where('trade_state', '<>', 'success')
+                    ->Where('trade_state', '<>', 'expired');
+                });
+              })
+        ->get();
+
+        foreach($data as $r) {
+            $request->merge(['pay_orderid' => $r->pay_orderid]);
+            $res = $this->Pay_Trade_query($request);
+            $trade_status = null;
+            $vip_package_result = null;
+            if (!empty($res)) {
+                $_res = json_decode($res);
+                $trade_status = empty($_res->data[0]->trade_state) ? null : $_res->data[0]->trade_state;
+                if ($trade_status == 'SUCCESS') {
+                    //update confirm-vip
+                    $product = new ProductController;
+                    $request->merge(['id' => $r->upgrade_vip_id]);
+                    $vip_package = json_decode(json_encode($product->confirm_vip($request),true));
+                    $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
+                }
+            }
+            var_dump(['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'vip_package_result' => $vip_package_result]);
+        }           
+
+        return "completed";
+        
+    }
+
+    public function MonTradeExpired()
+    {
+        $request = new Request;
+        $data = payment_transaction::whereNotNull('upgrade_vip_id')
+        ->where(function ($query) {
+            $query->whereNull('trade_state')
+                  ->orWhere(function ($query) {
+                    $query->where('trade_state', '<>', 'success')
+                    ->Where('trade_state', '<>', 'expired');
+                });
+              })
+        ->where('created_at', '<', Carbon::now()->subMinutes(5)->toDateTimeString())
+        ->get();
+
+        foreach($data as $r) {
+            //update to expired
+            payment_transaction::where('id',$r->id)->update(['trade_state' => 'expired']);
+            //update vip package - reject vip
+            $vip_package_result = null;
+            $product = new ProductController;
+            $request->merge(['id' => $r->upgrade_vip_id]);
+            $vip_package = json_decode(json_encode($product->reject_vip($request),true));
+            $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
+            var_dump(['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]);
+        } 
+
+        return "completed";
+        
     }
 
 }
