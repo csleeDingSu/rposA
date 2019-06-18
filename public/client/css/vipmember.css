@@ -79,6 +79,7 @@ html, body {
 	color: #505050;
 	font-size: 18px;
 	padding-right: 0;
+	width:200px;
 }
 
 .member-box .col-xs-5 {
@@ -139,10 +140,10 @@ html, body {
 }
 
 @media only screen and (max-width: 500px) {
-    .member-box {
+/*    .member-box {
 		width: 90%;
 	}
-
+*/
 	/*.row {
 		margin-top: 1.6rem;
 	}*/
