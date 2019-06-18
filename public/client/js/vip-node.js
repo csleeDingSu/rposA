@@ -233,7 +233,7 @@ try {
 
         $.ajax({
             type: 'GET',
-            url: "/api/get-game-result-temp?gameid=102&gametype=2&memberid=" + user_id + "&drawid=0",
+            url: "/api/get-game-result-temp?gameid=102&gametype=1&vip=yes&memberid=" + user_id + "&drawid=0",
             dataType: "json",
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -650,7 +650,7 @@ function showPayout(){
 
                 $.ajax({
                     type: 'GET',
-                    url: "/api/update-game-result-temp?gameid=102&gametype=2&memberid="+ user_id
+                    url: "/api/update-game-result-temp?gameid=102&gametype=1&vip=yes&memberid="+ user_id
                     + "&drawid=0" 
                     + "&bet="+ selected 
                     + "&betamt=" + bet_amount
@@ -1054,7 +1054,7 @@ function startTimer(duration, timer, freeze_time) {
 
         $.ajax({
             type: 'POST',
-            url: "/api/get-betting-result?gameid=102&memberid=" + id, 
+            url: "/api/get-betting-result?gameid=102&vip=yes&memberid=" + id, 
             dataType: "json",
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);

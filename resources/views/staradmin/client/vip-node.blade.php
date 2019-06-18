@@ -6,11 +6,12 @@
     @parent
 
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css') }}" />
     
 
     <style>
@@ -323,103 +324,23 @@
 	<!-- progress bar -->
 	<section class="barWrapper">
       	<article class="barBox">
-	      <div class="rule">
-	          <h2 class="payout-info hide"></h2>
-	        <ul>
-	          <li>
-	            <span class="span-1">10</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-2">30</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-3">70</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-4">150</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-5">310</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-6">630</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	        </ul>
-	      </div>
-
-	      <p style="font-size:0px;"><span class="span-balance">1200</span> / 1200</p>
+	      <div class="rule"></div>
 	        
 	      <div class="barIn">
-	        <a id="viewgamerules"><p><span class="result-info"></span><span class="viewgamerules">玩法说明</span></p></a>
-	        <div class="barImg"></div>
+		        <div class="bet-box">
+		        	<div class="button-bet">+1</div>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet">+10</div>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet">+100</div>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet">+1000</div>
+		        </div>
 	      </div>
-
+	      <div style="clear: both;"></div>
 	      <!-- button wrapper -->
 		<div class="button-wrapper">
 	        <div class="button-card radio-primary">

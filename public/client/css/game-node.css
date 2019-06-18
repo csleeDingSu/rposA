@@ -71,7 +71,7 @@ body{
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
-    font-size: 35px;
+    font-size: 40px;
     color: #8c6d28;
     cursor: pointer;
     padding-top: 16px;
