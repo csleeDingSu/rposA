@@ -32,7 +32,7 @@
 		</div>
         <div class="information-table">
 			<span class="label-title">支付金额</span><br />
-			<div class="label-amount"><span class="sign">¥</span><span class="spanPrice">{{$pay_final_amount}}</span></div><br />
+			<div class="label-amount"><span class="sign">¥</span><span class="spanPrice">{{empty($pay_final_amount) ? 0 : $pay_final_amount}}</span></div><br />
 			<span class="label-description">微信自助场次充值</span>
 			<div id="showqr"></div>
 			<span class="label-warn">请付必支付正确的金额，以免造成充值失败</span>

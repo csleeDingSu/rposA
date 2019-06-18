@@ -1,4 +1,4 @@
-var _qrcode = "<?php Print($qrcode);?>";
+var _qrcode = "<?php Print(empty($qrcode) ? '' : $qrcode);?>";
 var qrcode = new QRCode(document.getElementById("showqr"), {
     text: _qrcode,
     width: 200,
@@ -63,7 +63,7 @@ function closeWebPage() {
     }
 }
 
-var _status = "<?php Print($status);?>";
+var _status = "<?php Print(empty($status) ? '' : $status);?>";
 
 if (_status == 'error') {
     alert("订单出现异常,请勿支付,请重新发起订单！");
