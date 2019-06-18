@@ -1,0 +1,98 @@
+#showqr {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    background-size: 100% 100%;
+}
+#header {
+	background-color: #3cb371 !important;
+}
+.navbar-default .navbar-brand {
+	color: #fff;
+
+}
+.left-menu a {
+	color: #fff;
+}        
+.card-flex .cardBody {
+	background-color: #3cb371 !important;
+}
+.full-height {
+	background-color: #3cb371 !important;	
+}
+.modal-content {
+	margin-top: 0.2rem !important;
+	color: #000000 !important;
+	width: 6rem !important;
+	padding-bottom: 0.5rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+}
+.information-table {
+	margin-top:0.3rem;
+}
+
+.img_flow {
+	background-size: contain;
+	width: 80%;
+	height: 80%;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-top:0.2rem;
+}
+.label-title {
+	color: #999;
+	font-size: 0.3rem;
+}
+.sign {
+	color: #ff7474;
+	font-size: 0.6rem;
+}
+.spanPrice {
+	color: #ff7474;
+	font-size: 0.96rem;
+}
+.label-description{
+	color: #555;
+	font-size: 0.38rem;
+}
+.img_alipay {
+	padding:0.1rem;
+	text-align: left;
+}
+
+.img_alipay img{
+	width: 0.5rem;
+	vertical-align: text-bottom;
+}
+.label-amount {
+	display: inline-block;
+}
+.label-warn {
+	color: #ff7474;
+	font-size: 0.26rem;
+}
+.label-step {
+	display: flex;
+	color: #3cb371;
+	font-size: 0.26rem;
+	padding:0.1rem;
+}
+.label-step1 {
+
+}
+.label-step2{
+
+	padding-left:0.35rem;
+
+}
+.label-step3{
+	padding-left:0.55rem;
+}
+.time {
+	width: 100%;
+	font-size: 0;
+}

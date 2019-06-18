@@ -1630,7 +1630,7 @@ body{
     -o-background-size: contain;
     background-size: contain;
     width: 320px;
-    height: 380px;
+    height: 381px;
     -webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -1668,7 +1668,7 @@ body{
 }
 
 .vip-card-desc {
-	padding-top: 15px;
+	padding-top: 8px;
 	font-size: 14px;
 	color: #8c7c7c;
 }
@@ -1689,7 +1689,7 @@ body{
 	color: white;
 	padding: 6px;
 	background-image: linear-gradient(to right, #f1ca84, #ed671f);
-	margin-top: 20px;
+	margin-top: 8px;
 	text-align: center;
 }
 

@@ -50,7 +50,7 @@ html, body {
 }
 
 .row {
-	margin-top: 1rem;
+	margin-top: 1.4rem;
 	margin-left: 0.2rem;
 }
 
@@ -143,9 +143,9 @@ html, body {
 		width: 90%;
 	}
 
-	.row {
+	/*.row {
 		margin-top: 1.6rem;
-	}
+	}*/
 }
 
 
@@ -993,4 +993,8 @@ textarea {
 	padding-bottom: 20px;
 	font-size: 17px;
 	color: #b2b2b2;
+}
+
+.vip-highlight {
+	color: #ee833b;
 }

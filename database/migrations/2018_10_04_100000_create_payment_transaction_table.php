@@ -16,6 +16,7 @@ class CreatePaymentTransactionTable extends Migration
         Schema::create('payment_transaction', function (Blueprint $table) {
             //
             $table->bigIncrements('id');
+            $table->string('member_id')->nullable();
             $table->string('pay_orderid')->nullable();
             $table->string('pay_amount')->nullable();
             $table->string('transaction_id')->nullable();
@@ -25,11 +26,14 @@ class CreatePaymentTransactionTable extends Migration
             $table->string('trade_state')->nullable();
             $table->longtext('pay_params')->nullable();
             $table->longtext('pay_response')->nullable();
+            $table->longtext('pay_response_2nd')->nullable();
+            $table->longtext('pay_response_3nd')->nullable();
             $table->longtext('query_response')->nullable();
             $table->longtext('callback_response')->nullable();
             $table->longtext('notify_response')->nullable();
             $table->longtext('redirect_response')->nullable();
             $table->longtext('qrcode_response')->nullable();
+            $table->string('upgrade_vip_id')->nullable();
             $table->timestamps();
         });
 

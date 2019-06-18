@@ -47,14 +47,15 @@
 					<div class="col-xs-7">
 						<div class="vip-title">VIP场会员特权</div>
 						<ul class="vip-list">
-							<li><span class="highlight">赠送1200金币，</span>可结算红包。</li>
-							<li><span class="highlight">无上限封顶，</span>想赚多少都行。</li>
-							<li><span class="highlight">无需邀请人，</span>直接玩不麻烦。</li>
+							<li><span class="vip-highlight">无上限封顶，</span>想赢多少都行。</li>
+							<li><span class="vip-highlight">自由试玩法，</span>自选金额不受限。</li>
+							<li><span class="vip-highlight">每场送120元，</span>作为抽奖本金。</li>
+							<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
 						</ul>
 					</div>
 					<div class="col-xs-5">
-						<div class="point"><div class="sign">¥</div> 99.00</div>
-						<a href="/membership"><div class="btn-submit">开通会员</div></a>
+						<div class="point"><div class="sign">¥</div> 120.00</div>
+						<a href="/membership/buy/vip"><div class="btn-submit">开通会员</div></a>
 					</div>
 				</div>
 		</div>
