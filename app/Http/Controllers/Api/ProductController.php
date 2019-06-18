@@ -223,7 +223,7 @@ class ProductController extends Controller
 				
 				$dd = Package::save_vip_package($data);
 				
-				return response()->json(['success' => true, 'message' => 'success']);
+				return response()->json(['success' => true, 'message' => 'success','refid'=>$id]);
 				
 				/*
 				$a = 0 ;
@@ -254,7 +254,7 @@ class ProductController extends Controller
 		}		
 		
 		
-		return response()->json(['success' => false, 'message' => 'insufficient point']);
+		return response()->json(['success' => false, 'message' => 'unknown type/ package deleted']);
 	}
 	
 	public function redeem_vip(Request $request)
