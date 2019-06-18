@@ -1,5 +1,5 @@
 //字体变换
-var text = document.querySelector(".txt");
+// var text = document.querySelector(".txt");
 var txt_arr = ["确认过眼神你是我的菜", "这个二维码很特别特别", "充值未到账请联系客服", "充值未成功请重新生成"];
 var num = 0;
 var timer_txt = setInterval(function () {
