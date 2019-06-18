@@ -80,14 +80,19 @@ class PaymentController extends BaseController
         $member_id = Auth::guard('member')->user()->id ;
         $request->merge(['member_id' => $member_id]); 
         $request->merge(['pay_amount' => 120]); 
-        $data = ['payment_transaction_id' => '999', 'pay_final_amount' => '120', 'qrcode' => 'abc'];
-        // $data = $this->Pay_Index($request);
+        // $data = ['payment_transaction_id' => '999', 'pay_final_amount' => '120', 'qrcode' => 'abc'];
+        $data = $this->Pay_Index($request);
         
         if (!empty($data['payment_transaction_id'])) {
             //submit vip upgrade
-            $upgrade_vip_id = $this->submit_vip_upgrade($member_id);
-            //store vip_upgrade_id
-            //payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip_id]);
+            $upgrade_vip = $this->submit_vip_upgrade($member_id);
+            //store vip upgrade id
+            if (empty($upgrade_vip->refid)) {
+                $data = ['payment_transaction_id' => '-1', 'pay_final_amount' => '0', 'qrcode' => null];
+            } else {
+                payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip->refid]);    
+            }
+            
         }
 
         return view('client/membership_buy_vip', $data);
@@ -556,20 +561,34 @@ class PaymentController extends BaseController
         $request->merge(['memberid' => $memberid]); 
         
         //retrieve package vip id
+        $packageid = null;
         $product = new ProductController;
-        // $vip_package = json_decode(json_encode($product->list_package($request),true));
+        $vip_package = json_decode(json_encode($product->list_package($request),true));
         // $packageid = $vip_package->original->records[0]->id;
-        $packageid = 29;
+        if (!empty($vip_package->original->records)) {
+            foreach ($vip_package->original->records as $key => $value) {
+                // var_dump($key);
+                if (($value->min_point <= 0) && ($value->package_type == 2)) {
+                    $packageid = $value->id;
+                    // var_dump($packageid);
+                    break;    
+                }
+            }    
+        }
         
         //submit
         $request->merge(['packageid' => $packageid]); 
         $res = json_decode(json_encode($product->request_vip($request),true));
-        var_dump($res->original);
-        die('dsadsa');
+        // var_dump(empty($res->original->refid));
+        // var_dump($res->original);
+        // die('dasdsa');
+        // if (empty($res->original->refid)) {
+        //     return ['status' => 0, 'output' => $res];
+        // } else {
+        //     return ['status' => 1, 'refid' => $res->original->refid];
+        // }
 
-        $upgrade_vip_id = null;
-        return $upgrade_vip_id;
-        
+        return empty($res->original) ? $res : $res->original;
     }
 
 }
