@@ -95,7 +95,7 @@ class PaymentController extends BaseController
                 }                
             }
         } else {
-            return $data;
+            return json_decode($data, true);
         }
 
         return view('client/membership_buy_vip', $data);
@@ -170,6 +170,7 @@ class PaymentController extends BaseController
                 }
 
             } else {
+                \Log::info(['pay_response' => json_decode($response)]);
                 return $response;
             }
 
@@ -451,7 +452,7 @@ class PaymentController extends BaseController
 
             payment_transaction::where('id', $res_id)->update(['qrcode_response' => $content, 'pay_final_amount' => $money, 'qrcode' => $qrcode]);
 
-            return ['payment_transaction_id' => $res_id, 'pay_final_amount' => $money, 'qrcode' => $qrcode];
+            return ['status' => true,'payment_transaction_id' => $res_id, 'pay_final_amount' => $money, 'qrcode' => $qrcode];
             
             /*        
             $html = '<html><head>
