@@ -57,5 +57,23 @@
     @parent
     <script src="https://api.nx908.com/statics/js/qrcode.min.js"></script>
     <script src="{{ asset('/client/js/membership_buy_vip.js') }}" ></script>
+    <script type="text/javascript">
+    	var _qrcode = "<?php Print(empty($qrcode) ? '' : $qrcode);?>";
+		var qrcode = new QRCode(document.getElementById("showqr"), {
+		    text: _qrcode,
+		    width: 200,
+		    height: 200,
+		    colorDark: "#000000",
+		    colorLight: "#ffffff",
+		    correctLevel: QRCode.CorrectLevel.H
+		});
+
+		var _status = "<?php Print(empty($status) ? '' : $status);?>";
+		alert(_status);
+		if (_status == 'error') {
+		    alert("订单出现异常,请勿支付,请重新发起订单！");
+		    window.history.go(-1);
+		}
+    </script>
     
 @endsection
