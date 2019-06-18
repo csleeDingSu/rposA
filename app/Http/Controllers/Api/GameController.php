@@ -1089,9 +1089,11 @@ class GameController extends Controller
 	}
 	
 	
-	
+	/*
+	no use
 	public function reserve_betting_103(Request $request)
     {
+		return false;
 		$now      = Carbon::now()->toDateTimeString();
 		$type     = 1;
 		$gameid   = $request->gameid;
@@ -1167,7 +1169,7 @@ class GameController extends Controller
 		
 		return response()->json(['success' => false, 'message' => "invalid bet request"]);
 	}
-	
+	*/
 	public function get_betting_result(Request $request)
     {
 		//get Game category
@@ -1193,119 +1195,8 @@ class GameController extends Controller
 			break;					
 		}
 	}
-	public function betting_result_103(Request $request)
-    {
-		$now     = Carbon::now()->toDateTimeString();
-		$reward = 0;
-		$glevel = '';
-		$status = 'lose';
-		$is_win = null;
-		$player_level = 1;	
-		$type       = 1;
-		$vip        = '';
-		$gameid     = $request->gameid;
-		$memberid   = $request->memberid;
-		
-		
-		
-		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();	
-		
-		if(!$res)
-		{
-			return response()->json(['success' => false, 'message' => "no betting"]);
-		}		
-					
-		$bet      = $res->bet;	
-		$betamt   = $res->betamt ;
-		$gametype = $res->gametype ;
 	
-		$input = [
-             'gameid'    => $gameid,
-			 'memberid'  => $memberid,
-			 'bet'       => $bet,	
-			 'betamt'    => $betamt,
-              ];
-		
-			
-		$gameresult   = $this->decide_result_condition($memberid, $data);
-			
-		if ($gameresult)
-		{
-			$status = $gameresult->status;
-			$is_win = $gameresult->is_win;
-			
-			$arr_even = ['2','4','6'];
-			$arr_odd  = ['1','3','5'];
-			
-			if ($bet == 'even')
-			{
-				if($status === 'win')
-				{
-					$game_result = $arr_even [ array_rand($arr_even,1) ];
-				}
-				else
-				{
-					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
-				}
-			}
-			else
-			{
-				if($status === 'win')
-				{
-					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
-				}
-				else
-				{
-					$game_result = $arr_even [ array_rand($arr_even,1) ];
-				}				
-			}
-		}
-		else 
-		{				
-			$game_result = generate_random_number(1,6);	
-			
-			$gen_result  = check_odd_even($game_result);
-			//$gen_result  = 'evsn';
-			if ($gen_result === $bet)
-			{
-				//win change balance
-				$status = 'win';
-				$is_win = TRUE;				
-			}
-		}	
-		
-		//Update Memeber game play history		
-		$now     = Carbon::now()->toDateTimeString();	
-		
-		
-		$r_status = 2;
-		
-		if ($status == 'win') 			
-		{
-			$reward = '';
-			
-			$r_status = 1;
-			
-		}		
-
-		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'is_win'=>$is_win,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'reward' => $reward];
-
-		$records =  Game::add_play_history($insdata);
-		
-		$res->status     = 1;
-		$res->deleted_at = $now;
-		$res->save();
-		
-		//Play count update - 29/05/2019
-		$playcount = \App\PlayCount::firstOrNew(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
-		$playcount->increment('play_count', 1);
-		$playcount->save();
-		//End
-		
-		$firstwin = \App\Product::IsFirstWin($memberid,$status);
-
-		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
-	}	
+	
 	
 	public function betting_result(Request $request)
     {
@@ -1624,6 +1515,140 @@ class GameController extends Controller
 	}
 	
 	
+	public function betting_result_103(Request $request)
+    {
+		$now     = Carbon::now()->toDateTimeString();
+		$reward = 0;
+		$glevel = '';
+		$status = 'lose';
+		$is_win = null;
+		$player_level = 1;	
+		$type       = 1;
+		$vip        = '';
+		$gameid     = $request->gameid;
+		$memberid   = $request->memberid;			
+		
+		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();	
+		
+		if(!$res)
+		{
+			return response()->json(['success' => false, 'message' => "no betting"]);
+		}
+		$res->status     = 1;
+		$res->deleted_at = $now;
+		
+		$bet      = $res->bet;	
+		$betamt   = $res->betamt ;
+		$gametype = $res->gametype ;	
+		
+		//check point 				
+		$play_status   = Wallet::get_wallet_details($memberid);
+		
+		if ($play_status->point<1)
+		{
+			$res->save();
+			return ['success' => false, 'message' => 'not enough point'];			
+		}		
+		if ($play_status->point< $betamt )
+		{
+			$res->save();
+			return ['success' => false, 'message' => 'not enough point'];			
+		}				
+		if ($play_status->life<1)
+		{
+			$res->save();
+			return response()->json(['success' => false,'message' => 'not enough life to play']);			
+		}
+					
+		$input = [
+             'gameid'    => $gameid,
+			 'memberid'  => $memberid,
+			 'bet'       => $bet,	
+			 'betamt'    => $betamt,
+              ];		
+			
+		$gameresult   = $this->decide_result_condition($memberid, '');
+			
+		if ($gameresult)
+		{
+			$status = $gameresult->status;
+			$is_win = $gameresult->is_win;
+			
+			$arr_even = ['2','4','6'];
+			$arr_odd  = ['1','3','5'];
+			
+			if ($bet == 'even')
+			{
+				if($status === 'win')
+				{
+					$game_result = $arr_even [ array_rand($arr_even,1) ];
+				}
+				else
+				{
+					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
+				}
+			}
+			else
+			{
+				if($status === 'win')
+				{
+					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
+				}
+				else
+				{
+					$game_result = $arr_even [ array_rand($arr_even,1) ];
+				}				
+			}
+		}
+		else 
+		{				
+			$game_result = generate_random_number(1,6);	
+			
+			$gen_result  = check_odd_even($game_result);
+			//$gen_result  = 'evsn';
+			if ($gen_result === $bet)
+			{
+				//win change balance
+				$status = 'win';
+				$is_win = TRUE;				
+			}
+		}	
+				
+		$now     = Carbon::now()->toDateTimeString();		
+		
+		$r_status = 2;
+		
+		if ($status == 'win') 			
+		{
+			$reward = $betamt;
+			
+			$r_status = 1;
+			
+			Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP			
+		}	
+		else
+		{
+			Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','debit', '.deducted for betting');	//GBV - Game Betting VIP
+		}				
+
+		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'is_win'=>$is_win,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'reward' => $reward];
+
+		$records =  Game::add_play_history($insdata);
+		
+		
+		$res->save();
+		
+		//Play count update - 29/05/2019
+		$playcount = \App\PlayCount::firstOrNew(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
+		$playcount->increment('play_count', 1);
+		$playcount->save();
+		//End
+		$firstwin = '';
+		//$firstwin = \App\Product::IsFirstWin($memberid,$status);
+
+		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
+	}
+	
 	private function decide_result_condition($memberid, $data)
     {
 		$IsFirstLife = Game::IsFirstLife($memberid,1);
@@ -1639,12 +1664,9 @@ class GameController extends Controller
 				//if need to add any functions can add into result_condition
 				return $this->result_condition('conditionally_win', $memberid, $data);
 			}
-		}
-		
+		}		
 		return $this->result_condition('auto', $memberid, $data);		
-	}return $this->result_condition('auto', $memberid, $data);		
 	}
-	
 	
 	private function result_condition($makeUserWin = 'auto', $memberid, $data)
     {		
