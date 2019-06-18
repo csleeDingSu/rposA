@@ -82,17 +82,20 @@ class PaymentController extends BaseController
         $request->merge(['pay_amount' => 120]); 
         // $data = ['payment_transaction_id' => '999', 'pay_final_amount' => '120', 'qrcode' => 'abc'];
         $data = $this->Pay_Index($request);
-        
-        if (!empty($data['payment_transaction_id'])) {
-            //submit vip upgrade
-            $upgrade_vip = $this->submit_vip_upgrade($member_id);
-            //store vip upgrade id
-            if (empty($upgrade_vip->refid)) {
-                $data = ['payment_transaction_id' => '-1', 'pay_final_amount' => '0', 'qrcode' => null];
-            } else {
-                payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip->refid]);    
+
+        if (is_array($data)) {
+            if (!empty($data['payment_transaction_id'])) {
+                //submit vip upgrade
+                $upgrade_vip = $this->submit_vip_upgrade($member_id);
+                //store vip upgrade id
+                if (empty($upgrade_vip->refid)) {
+                    $data = ['payment_transaction_id' => '-1', 'pay_final_amount' => '0', 'qrcode' => null];
+                } else {
+                    payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip->refid]);    
+                }                
             }
-            
+        } else {
+            return $data;
         }
 
         return view('client/membership_buy_vip', $data);
@@ -420,6 +423,10 @@ class PaymentController extends BaseController
         $_req = $client->post($_action, ['headers' => $headers, 'form_params'=>$_native]);
         $_res = $_req->getBody();
         $_response = (is_array($_res) ? json_encode($_res) : $_res);
+
+        //update 2nd screen response
+        payment_transaction::where('id', $res_id)->update(['pay_response_2nd' => $_response])
+        \Log::info(['pay_response_2nd' => $_response]);
 
         return $_response;
         

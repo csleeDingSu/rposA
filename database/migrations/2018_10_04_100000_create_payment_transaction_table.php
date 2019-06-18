@@ -26,6 +26,8 @@ class CreatePaymentTransactionTable extends Migration
             $table->string('trade_state')->nullable();
             $table->longtext('pay_params')->nullable();
             $table->longtext('pay_response')->nullable();
+            $table->longtext('pay_response_2nd')->nullable();
+            $table->longtext('pay_response_3nd')->nullable();
             $table->longtext('query_response')->nullable();
             $table->longtext('callback_response')->nullable();
             $table->longtext('notify_response')->nullable();
