@@ -1,96 +1,64 @@
-var token = '';
+var _qrcode = "<?php Print($qrcode);?>";
+var qrcode = new QRCode(document.getElementById("showqr"), {
+    text: _qrcode,
+    width: 200,
+    height: 200,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+});
 
-$(document).ready(function () {
+//字体变换
+var text = document.querySelector(".txt");
+var txt_arr = ["确认过眼神你是我的菜", "这个二维码很特别特别", "充值未到账请联系客服", "充值未成功请重新生成"];
+var num = 0;
+var timer_txt = setInterval(function () {
+    //text.innerText = txt_arr[num];
+    num++;
+    if (num === 4) {
+        num = 0;
+    }
+}, 1500)
 
-    $('.close-modal').click(function(){
-        $('#modal-successful').modal('hide');
-    });
+//倒计时
+var minute = document.querySelector(".minute")
+var second = document.querySelector(".second")
+// 准备
+var countdownMinute = 5 //10分钟倒计时
+var startTimes = new Date() //开始时间
+var endTimes = new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) //结束时间
+var curTimes = new Date() //当前时间
+var surplusTimes = endTimes.getTime() / 1000 - curTimes.getTime() / 1000 //结束毫秒-开始毫秒=剩余倒计时间
 
-    getToken();
+// 进入倒计时
+countdowns = window.setInterval(function () {
+    surplusTimes--;
+    var minu = Math.floor(surplusTimes / 60)
+    var secd = Math.round(surplusTimes % 60)
+    // console.log(minu+":"+secd)
+    minu = minu <= 9 ? "0" + minu : minu
+    secd = secd <= 9 ? "0" + secd : secd
+    minute.innerHTML = minu
+    second.innerHTML = secd
+    // checkdata();
+    if (surplusTimes <= 0) {
+        alert("订单已过期,请勿支付,请重新发起订单！");
+        window.history.go(-1);
+        location.reload();
+        clearInterval(countdowns)
+    }
+}, 1000)
 
-    $('.button-submit').click(function(){
-
-        var txt_name = $('#txt_name').val();
-        if(txt_name == ''){
-            $('.error').show();
-        } else {
-            request_vip();
-        }
-    });
-
-    var clipboard = new ClipboardJS('.cutBtn', {
-        text: function (trigger) {
-            return $('#cut').val();
-        }
-    });
-
-    clipboard.on('success', function (e) {
-        $('.cutBtn').html('复制成功 打开支付宝');
-    });
-
-    clipboard.on('error', function (e) {
-        //$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
-        $('.cutBtn').html('复制成功 打开支付宝');
-    });
-}); 
-
-function getToken(){
-    var username = $('#hidUsername').val();
-    var session = $('#hidSession').val();
-    var id = $('#hidUserId').val();
-
-    $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
-        //console.log(data);
-        if(data.success) {
-            token = data.access_token;
-            getPackage();
-        }      
-    });
-}
-
-function getPackage() {
-    $.ajax({
-        type: 'GET',
-        url: "/api/package-list",
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            if(data.success) {
-                console.log(data);
-                var package_id = data.records[0].package_id;
-                var price = data.records[0].package_price;
-
-                $('#package_id').val(package_id);
-                $('.spanPrice').html(price);
-            }
-        }
-    });
-}
-
-function request_vip(){
-    var id = $('#hidUserId').val();
-    var txt_name = $('#txt_name').val();
-    var packageid = $('#package_id').val();
-
-    $.ajax({
-        type: 'POST',
-        url: "/api/request-vip-upgrade",
-        data: { 'memberid': id, 'packageid': packageid, 'ref_note': txt_name },
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            if(data.success) {
-                $('.error').hide();
-                $('#modal-successful').modal();
-            } else {
-                $('.error').html(data.message);
-            }
-        }
-    });
+function closeWebPage() {
+    var userAgent = navigator.userAgent;
+    if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") != -1) {
+        window.location.href = "about:blank";
+    } else if (userAgent.indexOf("Android") > -1 || userAgent.indexOf("Linux") > -1) {
+        window.opener = null;
+        window.open("about:blank", "_self", "").close();
+    } else {
+        window.pener = null;
+        window.open("about:blank", "_self");
+        window.close();
+    }
 }

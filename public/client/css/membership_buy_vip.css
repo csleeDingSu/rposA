@@ -1,322 +1,98 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
-
-.container {
-	width: 500px;
-	background-color: #ffffff;
-	position: relative;
+#showqr {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    background-size: 100% 100%;
 }
-	
-@media only screen and (max-width: 500px) {
-    .container {
-		width: 100%;
-		padding: 0;
-	}
+#header {
+	background-color: #3cb371 !important;
 }
+.navbar-default .navbar-brand {
+	color: #fff;
 
-html, body {
-	height: 100%;
-	background: #ffffff;
 }
-
+.left-menu a {
+	color: #fff;
+}        
+.card-flex .cardBody {
+	background-color: #3cb371 !important;
+}
 .full-height {
-    background:#ffffff;
+	background-color: #3cb371 !important;	
+}
+.modal-content {
+	margin-top: 0.2rem !important;
+	color: #000000 !important;
+	width: 6rem !important;
+	padding-bottom: 0.5rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 }
 
-.left-menu {
-	text-align: left;
-	padding-top: 6px;
 }
-
-.icon-back {
-	color: white;
-}
-
-.brand-title {
-	font-size: 16px;
-	padding-top: 10px;
-	padding-bottom: 20px;
-	font-weight: 700;
-}
-
-.card {
-	font-size: 16px;
-	color: white;
+.information-table {
+	margin-top:0.3rem;
 }
 
 .img_flow {
 	background-size: contain;
-	width: 90%;
+	width: 80%;
 	height: 80%;
 	display: block;
   	margin-left: auto;
   	margin-right: auto;
+  	margin-top:0.2rem;
 }
-
-.information-table {
-	margin-top:20px;
-	padding-top:20px;
-	background: white;
-	height: 200px;
-	border-radius: 10px;
-	box-shadow: 0 3px 10px 0px rgba(205, 206, 215, 1);
-}
-
-.information-table .col-xs-12, .information-table .col-xs-6 {
-	background: white;
-	color: #888888;
-	font-size: 16px;
-	padding-right: 20px;
-    padding-left: 20px;
-}
-
-.information-table a {
-	text-decoration: none;
-}
-
 .label-title {
+	color: #999;
+	font-size: 0.3rem;
+}
+.sign {
+	color: #ff7474;
+	font-size: 0.6rem;
+}
+.spanPrice {
+	color: #ff7474;
+	font-size: 0.96rem;
+}
+.label-description{
+	color: #555;
+	font-size: 0.38rem;
+}
+.img_alipay {
+	padding:0.1rem;
+	text-align: left;
+}
+
+.img_alipay img{
+	width: 0.5rem;
+	vertical-align: text-bottom;
+}
+.label-amount {
 	display: inline-block;
-	vertical-align: -2px;
-	color: #a1a1a1;
-	font-size: 16px;
 }
-
-.sign{
-    font-size:19px;
-    display: inline-block;
-    vertical-align: 18px;
+.label-warn {
+	color: #ff7474;
+	font-size: 0.26rem;
 }
-
-.point {
-	color: #fc7f35;
-	font-size: 54px;
-	line-height: 42px;
-	padding-top: 10px;
-	display: inline-block;
+.label-step {
+	display: flex;
+	color: #3cb371;
+	font-size: 0.26rem;
+	padding:0.1rem;
 }
+.label-step1 {
 
-.button-copy {
-	color: white;
-	font-size: 18px;
-	padding: 7px 5px 10px 5px;
-	border-radius: 20px;
-	background-image: linear-gradient(to right, #f1ca84 , #ed671f);
-	width: 204px;
-	margin: 20px auto 0 auto;
-	font-weight: 700;
-	cursor: pointer;
 }
+.label-step2{
 
-.button-status {
-	color: #52a2fc;
-	border-left: 1px solid #eeeeee;
+	padding-left:0.35rem;
+
 }
-
-.left {
-	text-align: left;
+.label-step3{
+	padding-left:0.55rem;
 }
-
-.member-box {
-	width: 440px;
-	height: 50px;
-	position: absolute;
-	left:0;
-	right:0;
-	margin-left:auto;
-	margin-right:auto;
-}
-
-.top-background {
-	background-color: white;
-}
-
-.top-background img {
-	margin-top: -15%;
+.time {
 	width: 100%;
-    height: 100%;
+	font-size: 0;
 }
-
-.bottom-background {
-	background-color: white;
-	height: 130px;
-}
-
-@media only screen and (max-width: 500px) {
-    .member-box {
-		width: 90%;
-	}
-
-	.top-background img {
-		margin-top: -10%;
-	}
-}
-
-@media only screen and (max-width:400px) {
-	.top-background img {
-		margin-top: -5%;
-	}
-}
-
-@media only screen and (max-width: 360px) {
-    .member-box {
-	}
-}
-
-.listing-table {
-	text-align: left;
-	color: #f75a5a;
-	font-size: 13px;
-	background-color: white;
-	/*height: 100%;*/
-}
-
-.listing-table .col-xs-4 {
-	text-align: left;
-	padding-right: 0;
-	padding-left: 20px;
-	font-size: 15px;
-	color: #fd6a42;
-	width: 100px;
-}
-
-.listing-table .col-xs-8 {
-	text-align: left;
-	padding-left: 0;
-	padding-right: 0;
-	font-size: 15px;
-	color: #7babf2;
-	width: default;
-}
-
-.listing-table .input-wrapper {
-	margin: 20px 10px 0 10px;
-}
-
-.listing-table input {
-	text-align: center;
-	padding: 7px 5px 10px 5px;
-	border-radius: 6px;
-	font-size: 18px;
-	color: #cdced7;
-	background: #6e7082;
-	border: none;
-	outline: none;
-	box-sizing: border-box;
-	width: 100%;
-}
-
-.button-submit {
-	color: white;
-	font-size: 18px;
-	padding: 7px 5px 10px 5px;
-	border-radius: 6px;
-	margin: 20px 10px;
-	background: #639aeb;
-	text-align: center;
-	cursor: pointer;
-}
-
-.error {
-	font-size: 13px;
-	text-align: center;
-	color: #f75a5a;
-	display: none;
-}
-
-/* Modal Box */
-.modal {
-  text-align: center;
-  padding: 0!important;
-}
-
-.modal:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-right: -4px;
-}
-
-.modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
-}
-
-/* Modal Box */
-.modal-content, .modal-footer {
-    background: white;
-    width: 340px;
-    margin-left: auto;
-    margin-right: auto;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border: none;
-}
-
-.modal-full-height {
-    text-align:center;
-    padding-bottom: 10px;
-    margin: 0 auto;
-}
-
-.modal-content {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.modal-footer {
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    text-align: center;
-    color: #8a8a8a;
-    font-size: 17px;
-    padding: 0;
-}
-
-.modal-body {
-	padding-bottom: 0;
-}
-
-.modal-card {
-    width: 250px;
-    margin: 20px auto 0 auto;
-    font-size: 16px;
-}
-
-#modal-successful .col-xs-6 {
-	border-top: 1px solid #eeeeee;
-	padding: 10px;
-	cursor: pointer;
-}
-
-.copyvoucher {
-    background: #f0f0f0;
-    color: #7dca33;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    font-size: 23px;
-    padding: 5px;
-}
-
-.instructions {
-    font-weight: 500;
-    color: #505050;
-    padding-top: 15px;
-	padding-bottom: 20px;
-	font-size: 17px;
-}
-
-@media only screen and (max-width: 360px) {
-    .modal-content, .modal-title, .modal-footer {
-        width: 300px;
-    }
-
-    .modal-card {
-        width: 230px;
-        font-size: 16px;
-    }
-}
-/* End Modal box */

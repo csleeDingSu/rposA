@@ -31,6 +31,7 @@ class CreatePaymentTransactionTable extends Migration
             $table->longtext('notify_response')->nullable();
             $table->longtext('redirect_response')->nullable();
             $table->longtext('qrcode_response')->nullable();
+            $table->string('upgrade_vip_id')->nullable();
             $table->timestamps();
         });
 

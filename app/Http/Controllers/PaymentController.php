@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\ProductController;
 use App\helpers\Sha256Generator;
 use App\payment_transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends BaseController
 {
@@ -78,9 +80,15 @@ class PaymentController extends BaseController
         $member_id = Auth::guard('member')->user()->id ;
         $request->merge(['member_id' => $member_id]); 
         $request->merge(['pay_amount' => 120]); 
-        $this->Pay_Index($request);
-
-        $data['qrcode'] = ''; 
+        $data = ['payment_transaction_id' => '999', 'pay_final_amount' => '120', 'qrcode' => 'abc'];
+        // $data = $this->Pay_Index($request);
+        
+        if (!empty($data['payment_transaction_id'])) {
+            //submit vip upgrade
+            $upgrade_vip_id = $this->submit_vip_upgrade($member_id);
+            //store vip_upgrade_id
+            //payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip_id]);
+        }
 
         return view('client/membership_buy_vip', $data);
     }
@@ -431,7 +439,7 @@ class PaymentController extends BaseController
 
             payment_transaction::where('id', $res_id)->update(['qrcode_response' => $content, 'pay_final_amount' => $money, 'qrcode' => $qrcode]);
 
-            return ['pay_final_amount' => $money, 'qrcode' => $qrcode];
+            return ['payment_transaction_id' => $res_id, 'pay_final_amount' => $money, 'qrcode' => $qrcode];
             
             /*        
             $html = '<html><head>
@@ -540,6 +548,28 @@ class PaymentController extends BaseController
 
         return $html;
 
+    }
+
+    public function submit_vip_upgrade($memberid)
+    {
+        $request = new Request;
+        $request->merge(['memberid' => $memberid]); 
+        
+        //retrieve package vip id
+        $product = new ProductController;
+        // $vip_package = json_decode(json_encode($product->list_package($request),true));
+        // $packageid = $vip_package->original->records[0]->id;
+        $packageid = 29;
+        
+        //submit
+        $request->merge(['packageid' => $packageid]); 
+        $res = json_decode(json_encode($product->request_vip($request),true));
+        var_dump($res->original);
+        die('dsadsa');
+
+        $upgrade_vip_id = null;
+        return $upgrade_vip_id;
+        
     }
 
 }
