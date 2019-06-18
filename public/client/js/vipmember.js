@@ -118,9 +118,12 @@ function populateHistoryData(records, token) {
 
                 if(item.redeem_state == 0) { // rejected
                     html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-used">支付失败</div>' +
+                                '<div class="btn-reject-vip" data-toggle="collapse" data-target="#reject-note-' + item.id + '">支付失败</div>' +
                             '</div>' + 
-                        '</div>';
+                        '</div>' +
+                    '<div id="reject-note-' + item.id + '" class="collapse">' +
+                        '<div class="card-wrapper">' + item.ref_note + '</span></div>' +
+                    '</div>';
 
                 } else if(item.redeem_state == 1) { // Pending
                     html += '<div class="col-xs-3 column-6">' +

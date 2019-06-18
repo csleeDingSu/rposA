@@ -276,7 +276,7 @@ html, body {
 	background: #f0a84d;
 }
 
-.btn-pending, .btn-pending-vip, .btn-vip {
+.btn-pending, .btn-pending-vip, .btn-vip, .btn-reject-vip {
 	color: #e78508;
 	font-size: 14px;
 	border-radius: 20px;
@@ -286,6 +286,11 @@ html, body {
 	margin-top: 10px;
 	border: 1px solid #e78508;
 	cursor: pointer;
+}
+
+.btn-reject-vip {
+	color: red;
+	border: 1px solid red;
 }
 
 .btn-pending-vip {
