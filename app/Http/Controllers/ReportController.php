@@ -211,7 +211,7 @@ class ReportController extends BaseController
 		switch ($pack)
 		{
 			case 'product':
-				$result =  \DB::table('view_redeem_history_all')->where('id',$id); 				
+				$result =  \DB::table('view_redeem_history_all')->where('pid',$id); 				
 				$page = 'product_member';			
 				
 			break;
