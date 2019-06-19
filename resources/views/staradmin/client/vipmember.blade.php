@@ -2,6 +2,17 @@
 
 @section('title', 'VIP场会员')
 
+@section('left-menu')
+    <a href="/profile" class="back">
+        <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
+    </a>
+@endsection
+
+@section('menu')
+    <a href="/profile">
+    </a>
+@endsection
+
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/vipmember.css') }}" />
@@ -30,17 +41,15 @@
 
 		<div class="member-box">
 			<div class="card">
-				<div class="col-xs-3 left-menu">
+				<div class="col-xs-8 left-menu">
 					<a href="/profile" class="back">
 				        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
 				    </a>
+					<span class="brand-title">
+						VIP场会员
+					</span>
+				
 				</div>
-
-				<div class="col-xs-6 brand-title">
-					VIP场会员
-				</div>
-			
-				<div class="col-xs-3"></div>
 				
 			</div>
 			<div class="row">
