@@ -47,18 +47,28 @@
 }
 
 .barIn .bet-box {
-	margin: 0.2rem auto;
+	margin: 0.2rem auto 0.1rem auto;
 	width: 1.62rem;
 	height: 0.5rem;
 	float: left;
 }
 
 .barIn .bet-box:first-child {
-	margin-left: 10px;
+	margin-left: 0.2rem;
 }
 
 .barIn .bet-box:last-child {
 	width: 1.58rem;
+}
+
+.barIn .long-box {
+	margin-left: 0.2rem;
+	margin-bottom: 0.4rem;
+	width: 3.24rem;
+	text-align: left;
+	font-size: 15px;
+	color: #e4caff;
+	padding-left: 0.1rem;
 }
 
 .button-bet {
@@ -69,4 +79,37 @@
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
+	color: #b297ce;
+	font-size: 30px;
+	padding-top: 5px;
+	cursor: pointer;
+}
+
+.button-bet:hover {
+	background:url(/client/images/vip/bet-selected.png) no-repeat;
+	color: #e4caff;
+}
+
+.button-bet-all, .button-bet-reset {
+	border-radius: 5px;
+	background: #b45df4;
+	color: white;
+	font-size: 14px;
+	padding: 0.1rem;
+	margin-right: 0.2rem;
+	cursor: pointer;
+}
+
+.button-bet-reset {
+	background: transparent;
+	border: 1px solid #d7b1ff;
+}
+
+.plus-sign {
+	font-size: 28px;
+}
+
+.span-bet {
+	color: #fff000;
+	font-size: 23px;
 }
