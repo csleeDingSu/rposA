@@ -498,6 +498,7 @@ class PaymentController extends BaseController
                     ->Where('trade_state', '<>', 'expired');
                 });
               })
+        ->skip(0)->take(20)
         ->get();
 
         foreach($data as $r) {
@@ -537,6 +538,7 @@ class PaymentController extends BaseController
                 });
               })
         ->where('created_at', '<', Carbon::now()->subMinutes(5)->toDateTimeString())
+        ->skip(0)->take(20)
         ->get();
 
         foreach($data as $r) {
