@@ -295,7 +295,19 @@ class MemberLoginController extends Controller
 			 return response()->json(['success' => false, 'message' => $validator->errors()]);
 		}
 		
+		$record = \App\Members::where('apikey', $apikey)->first();
 		
+		if ($record)
+		{
+			if ( $record->key_expired_at <= now() )
+			{
+				return response()->json(['success' => false,'message'=>[trans('auth.key_expired')] ]);
+			}			
+			return response()->json(['success' => true, 'data' => $record]);			
+		}		
+		return response()->json(['success' => false,'message'=>[trans('auth.unknown_apikey')] ]);
+		
+		/*
 		$array = ['username' => $username, 'password' => $password, 'apikey' => $apikey];
 		
 		$bRes = Auth::guard('member')->attempt($array);
@@ -315,6 +327,6 @@ class MemberLoginController extends Controller
 		$user =  $user->makeVisible('password')->toArray();
 		
 		return response()->json(['success' => true, 'data' => $user]);
-		
+		*/
     }
 }
