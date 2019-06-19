@@ -74,6 +74,10 @@
 					</a>
 					<div style="clear:both"></div>
 				</div>
+				<div class="btn-rules-wrapper btn-info-vip-wrapper">
+						<div class="btn-info-vip">99%稳赢玩法</div>
+					<div style="clear:both"></div>
+				</div>
 			</div>
 			@else
 			<div class="box" id="btn-vip-wrapper">
@@ -328,16 +332,25 @@
 	        
 	      <div class="barIn">
 		        <div class="bet-box">
-		        	<div class="button-bet">+1</div>
+		        	<div class="button-bet"><span class="plus-sign">+</span>1</div>
 		        </div>
 		        <div class="bet-box">
-		        	<div class="button-bet">+10</div>
+		        	<div class="button-bet"><span class="plus-sign">+</span>10</div>
 		        </div>
 		        <div class="bet-box">
-		        	<div class="button-bet">+100</div>
+		        	<div class="button-bet"><span class="plus-sign">+</span>100</div>
 		        </div>
 		        <div class="bet-box">
-		        	<div class="button-bet">+1000</div>
+		        	<div class="button-bet"><span class="plus-sign">+</span>1000</div>
+		        </div>
+		        <div class="bet-box long-box">
+		        	竞猜金币: <span class="span-bet">0</span>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet-all">全投</div>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet-reset">清零</div>
 		        </div>
 	      </div>
 	      <div style="clear: both;"></div>
