@@ -152,7 +152,7 @@ class MemberController extends Controller
 		$member = Auth::guard('member')->user()->id	;
 		*/
 		$member = $request->memberid;		
-		$record = $record = Member::find($member);
+		$record = Member::find($member);
 		
 		if ($record)
 		{
