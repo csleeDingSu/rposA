@@ -211,6 +211,7 @@ class ReportController extends BaseController
 		switch ($pack)
 		{
 			case 'product':
+				$page = 'product_member';	
 				$result =  \DB::table('view_redeem_history_all')->where('pid',$id); 
 				if ($type)
 				{
@@ -222,15 +223,20 @@ class ReportController extends BaseController
 							$result = $result->where('redeem_status','rejected');
 						break;	
 						case 'reserved':
-							$result = $result->where('redeem_status','rejected');
+							$result = $result->wherein('redeem_status',['confirmed','pending confirmation']);
 						break;
 						case 'used':
-							$result = $result->wherein('redeem_status',['confirmed']);
+							$result = $result->wherein('redeem_status',['used','redeemed']);
 						break;	
-							//Active
+							/*//Active
+						4 - used
+						3 - redeemed
+						2 - confirmed
+						1 - pending confirmation
+						0 - rejected*/
 					}					
 				}
-				$page = 'product_member';			
+						
 				
 			break;
 			case 'basic_package':
