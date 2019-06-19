@@ -155,7 +155,7 @@ class PaymentController extends BaseController
             //update response
             $response = (is_array($res) ? json_encode($res) : $res);
             payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);
-            \Log::info(json_encode(['pay_response' => $response],true));
+            // \Log::info(json_encode(['pay_response' => json_decode($response)],true));
 
             if (strpos($response,"<title>正在跳转付款页</title>") >= 0) {
                 //2nd lv screen (redirect page)
@@ -171,7 +171,7 @@ class PaymentController extends BaseController
                 }
 
             } else {
-                \Log::info(json_encode(['pay_response' => json_decode($response)],true));
+                // \Log::info(json_encode(['pay_response' => json_decode($response)],true));
                 return $response;
             }
 
@@ -428,7 +428,7 @@ class PaymentController extends BaseController
 
         //update 2nd screen response
         payment_transaction::where('id', $res_id)->update(['pay_response_2nd' => $_response]);
-        \Log::info(json_encode(['pay_response_2nd' => $_response],true));
+        // \Log::info(json_encode(['pay_response_2nd' => $_response],true));
 
         return $_response;
         
