@@ -141,8 +141,8 @@ class PaymentController extends BaseController
             $native["pay_productname"] = "挖宝充值";
             
             //log parameter
-            \Log::info(['Pay_Index URL' => $tjurl, 'native' => $native]);
-            \Log::info(['md5str' => $md5str]);
+            \Log::info(json_encode(['Pay_Index URL' => $tjurl, 'native' => $native], true));
+            \Log::info(json_encode(['md5str' => $md5str], true));
             //insert send payment
             $res_id = payment_transaction::create(['member_id' => $request->input('member_id'),'pay_orderid' => $pay_orderid, 'pay_amount' => $pay_amount, 'pay_params' => json_encode($native, true)])->id;
 
@@ -155,7 +155,7 @@ class PaymentController extends BaseController
             //update response
             $response = (is_array($res) ? json_encode($res) : $res);
             payment_transaction::where('id', $res_id)->update(['pay_response' => $response]);
-            \Log::info(['pay_response' => $response]);
+            \Log::info(json_encode(['pay_response' => $response],true));
 
             if (strpos($response,"<title>正在跳转付款页</title>") >= 0) {
                 //2nd lv screen (redirect page)
@@ -171,7 +171,7 @@ class PaymentController extends BaseController
                 }
 
             } else {
-                \Log::info(['pay_response' => json_decode($response)]);
+                \Log::info(json_encode(['pay_response' => json_decode($response)],true));
                 return $response;
             }
 
@@ -209,7 +209,7 @@ class PaymentController extends BaseController
             $param["pay_md5sign"] = $sign;
 
             //log 
-            \Log::info(['Pay_Trade_query URL' => $tjurl, 'param' => $param]);
+            \Log::info(json_encode(['Pay_Trade_query URL' => $tjurl, 'param' => $param],true));
                        
             // $headers = [ 'Content-Type' => "text/html; charset=utf-8"];
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
@@ -229,7 +229,7 @@ class PaymentController extends BaseController
              //update response
             payment_transaction::where('pay_orderid', $pay_orderid)->update(['transaction_id' => $transaction_id, 'trade_state' => $trade_state, 'pay_final_amount' => $pay_final_amount, 'query_response' => $response]);
 
-            \Log::info(['query_response' => $response]);
+            \Log::info(json_encode(['query_response' => $response],true));
 
             return $response;
 
@@ -283,7 +283,7 @@ class PaymentController extends BaseController
 
             // }
 
-            \Log::info(['callback_response' => (is_array($str) ? json_encode($str) : $str)]);
+            \Log::info(json_encode(['callback_response' => (is_array($str) ? json_encode($str) : $str)],true));
 
             //update response
             payment_transaction::where('pay_orderid', $orderid)->update(['callback_response' => (is_array($str) ? json_encode($str) : $str)]);
@@ -334,7 +334,7 @@ class PaymentController extends BaseController
             //     $str = $returnArray;
             // }
 
-            \Log::info(['notify_response' => (is_array($str) ? json_encode($str) : $str)]);
+            \Log::info(json_encode(['notify_response' => (is_array($str) ? json_encode($str) : $str)],true));
 
             //update response
             payment_transaction::where('pay_orderid', $orderid)->update(['notify_response' => (is_array($str) ? json_encode($str) : $str)]);
@@ -428,7 +428,7 @@ class PaymentController extends BaseController
 
         //update 2nd screen response
         payment_transaction::where('id', $res_id)->update(['pay_response_2nd' => $_response]);
-        \Log::info(['pay_response_2nd' => $_response]);
+        \Log::info(json_encode(['pay_response_2nd' => $_response],true));
 
         return $_response;
         
@@ -454,110 +454,6 @@ class PaymentController extends BaseController
             payment_transaction::where('id', $res_id)->update(['qrcode_response' => $content, 'pay_final_amount' => $money, 'qrcode' => $qrcode]);
 
             return ['status' => true,'payment_transaction_id' => $res_id, 'pay_final_amount' => $money, 'qrcode' => $qrcode];
-            
-            /*        
-            $html = '<html><head>
-            <script src="https://api.nx908.com/statics/js/jquery.js"></script>
-            <script src="https://api.nx908.com/statics/js/qrcode.min.js"></script>
-            <script src="https://api.nx908.com/statics/js/clipboard.min.js"></script>
-            <script type="text/javascript" src="https://api.nx908.com/statics/js/toastr.min.js"></script>
-            <link rel="stylesheet" href="https://api.nx908.com/statics/css/toastr.min.css">
-            <style>
-                .money {
-                    margin: 30px auto;
-                    height: 21px;
-                    line-height: 21px;
-                    color: #ff0000;
-                    font-size: 38px;
-                    font-family: HelveticaNeue;
-                    text-align: center;
-                }
-
-                #showqr {
-                    width: 200px;
-                    height: 200px;
-                    margin: 26px auto;
-                    //background: url("images/qr.png") no-repeat;
-                    background-size: 100% 100%;
-                }
-            </style>
-            </head><body>';
-
-            $html .= '<div id="money">' . $money . '</div>';
-            $html .= '<br/>';
-            $html .= '<div id="showqr"></div>';
-            $html .= '<div class="time">
-                        <div class="minute green">4</div>&nbsp;分&nbsp;<div class="second green">59</div>&nbsp;秒
-                    </div>';
-            $html .= '</body>
-                        <script>
-                            var qrcode = new QRCode(document.getElementById("showqr"), {
-                                text: "' . $qrcode . '",
-                                width: 200,
-                                height: 200,
-                                colorDark: "#000000",
-                                colorLight: "#ffffff",
-                                correctLevel: QRCode.CorrectLevel.H
-                            });
-                        </script>
-                        <script>
-                            //字体变换
-                            var text = document.querySelector(".txt");
-                            var txt_arr = ["确认过眼神你是我的菜", "这个二维码很特别特别", "充值未到账请联系客服", "充值未成功请重新生成"];
-                            var num = 0;
-                            var timer_txt = setInterval(function () {
-                                //text.innerText = txt_arr[num];
-                                num++;
-                                if (num === 4) {
-                                    num = 0;
-                                }
-                            }, 1500)
-
-                            //倒计时
-                            var minute = document.querySelector(".minute")
-                            var second = document.querySelector(".second")
-                            // 准备
-                            var countdownMinute = 5 //10分钟倒计时
-                            var startTimes = new Date() //开始时间
-                            var endTimes = new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) //结束时间
-                            var curTimes = new Date() //当前时间
-                            var surplusTimes = endTimes.getTime() / 1000 - curTimes.getTime() / 1000 //结束毫秒-开始毫秒=剩余倒计时间
-
-                            // 进入倒计时
-                            countdowns = window.setInterval(function () {
-                                surplusTimes--;
-                                var minu = Math.floor(surplusTimes / 60)
-                                var secd = Math.round(surplusTimes % 60)
-                                // console.log(minu+":"+secd)
-                                minu = minu <= 9 ? "0" + minu : minu
-                                secd = secd <= 9 ? "0" + secd : secd
-                                minute.innerHTML = minu
-                                second.innerHTML = secd
-                                // checkdata();
-                                if (surplusTimes <= 0) {
-                                    alert("订单已过期,请勿支付,请重新发起订单！");
-                                    window.history.go(-1);
-                                    location.reload();
-                                    clearInterval(countdowns)
-                                }
-                            }, 1000)
-
-                            function closeWebPage() {
-                                var userAgent = navigator.userAgent;
-                                if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") != -1) {
-                                    window.location.href = "about:blank";
-                                } else if (userAgent.indexOf("Android") > -1 || userAgent.indexOf("Linux") > -1) {
-                                    window.opener = null;
-                                    window.open("about:blank", "_self", "").close();
-                                } else {
-                                    window.pener = null;
-                                    window.open("about:blank", "_self");
-                                    window.close();
-                                }
-                            }
-                        </script>
-            </html>';
-            */
         }
 
         return $html;
@@ -588,15 +484,6 @@ class PaymentController extends BaseController
         //submit
         $request->merge(['packageid' => $packageid]); 
         $res = json_decode(json_encode($product->request_vip($request),true));
-        // var_dump(empty($res->original->refid));
-        // var_dump($res->original);
-        // die('dasdsa');
-        // if (empty($res->original->refid)) {
-        //     return ['status' => 0, 'output' => $res];
-        // } else {
-        //     return ['status' => 1, 'refid' => $res->original->refid];
-        // }
-
         return empty($res->original) ? $res : $res->original;
     }
 
@@ -629,7 +516,9 @@ class PaymentController extends BaseController
                     $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
                 }
             }
-            var_dump(['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'vip_package_result' => $vip_package_result]);
+            $result = ['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'vip_package_result' => $vip_package_result]; 
+            var_dump($result);
+            \Log::info(json_encode($result,true));
         }           
 
         return "completed";
@@ -661,7 +550,9 @@ class PaymentController extends BaseController
             
             $vip_package = json_decode(json_encode($product->reject_vip($request),true));
             $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
-            var_dump(['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]);
+            $result = ['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]; 
+            var_dump($result);
+            \Log::info(json_encode($result,true));
         } 
 
         return "completed";
