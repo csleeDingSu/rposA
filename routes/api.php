@@ -119,7 +119,7 @@ Route::group(['namespace' => 'Api'],function()
 	Route::post('/generate-apikey', 'MemberController@generate_apikey')->name('generate_apikey');
 	
 });
-
+//Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
 Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');
 
 //cron_test

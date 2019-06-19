@@ -151,13 +151,26 @@ class MemberController extends Controller
 		}
 		$member = Auth::guard('member')->user()->id	;
 		*/
-		$member = $request->memberid;
-		$now = now();
-		$now = Carbon::parse(now());
-		$expire  = $now->addHour(1);
+		$member = $request->memberid;		
+		$record = Member::find($member);
 		
-		$result = Member::generate_apikey($member,$expire ); 
-		return response()->json(['success' => true,'result' => $result]);
+		if ($record)
+		{
+			$now = now();
+			$now = Carbon::parse(now());
+			
+			if (Carbon::parse($record->key_expired_at)->gt(Carbon::now()))
+			{
+				$result =  ['apikey'=>$record->apikey, 'expired_at'=>$record->key_expired_at];
+				return response()->json(['success' => true,'result' => $result]);
+			}
+			
+			$expire  = $now->addHour(1);
+			$expire  = $expire->toDateTimeString();
+			$result  = Member::generate_apikey($member,$expire ); 
+			return response()->json(['success' => true,'result' => $result]);
+		}
+		return response()->json(['success' => false,'message' => 'unknown member']);
 	}
 	
 	
