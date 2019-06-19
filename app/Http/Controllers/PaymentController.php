@@ -498,6 +498,7 @@ class PaymentController extends BaseController
                     ->Where('trade_state', '<>', 'expired');
                 });
               })
+        ->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())
         ->skip(0)->take(20)
         ->get();
 
