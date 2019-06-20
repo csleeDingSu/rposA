@@ -2486,8 +2486,8 @@ if it's not present, don't show loader */
 .strikethrough {
   line-height: 0.5;
   text-align: center;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  margin-top: -15px;
+  margin-bottom: 15px;
 }
 .strikethrough span {
   display: inline-block;

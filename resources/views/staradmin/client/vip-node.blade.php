@@ -332,16 +332,16 @@
 	        
 	      <div class="barIn">
 		        <div class="bet-box">
-		        	<div class="button-bet"><span class="plus-sign">+</span>1</div>
+		        	<div class="button-bet" data-value="1"><span class="plus-sign">+</span>1</div>
 		        </div>
 		        <div class="bet-box">
-		        	<div class="button-bet"><span class="plus-sign">+</span>10</div>
+		        	<div class="button-bet" data-value="10"><span class="plus-sign">+</span>10</div>
 		        </div>
 		        <div class="bet-box">
-		        	<div class="button-bet"><span class="plus-sign">+</span>100</div>
+		        	<div class="button-bet" data-value="100"><span class="plus-sign">+</span>100</div>
 		        </div>
 		        <div class="bet-box">
-		        	<div class="button-bet"><span class="plus-sign">+</span>1000</div>
+		        	<div class="button-bet" data-value="1000"><span class="plus-sign">+</span>1000</div>
 		        </div>
 		        <div class="bet-box long-box">
 		        	竞猜金币: <span class="span-bet">0</span>
@@ -798,7 +798,7 @@
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
 								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info">前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
+								<div class="packet-info" style="visibility: hidden;">前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
 								<div class="instructions">
 									您已赢到6元，还差9元可兑换
 								</div>
@@ -829,7 +829,7 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="modal-instruction">前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span></div>
+								<div class="modal-instruction" style="visibility: hidden;">前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span></div>
 								<div class="close-win-modal modal-redeem-button">
 									知道了
 								</div>												

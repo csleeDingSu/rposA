@@ -1,13 +1,13 @@
 .btn-rules-wrapper {
 	width: 120px;
 	height: 40px;
-	margin-top: 3px;
 	float: right;
 }
 
 .btn-info-vip-wrapper {
 	width: 100px;
 	height: 40px;
+	margin-top: -3px;
 	float: right;
 }
 
