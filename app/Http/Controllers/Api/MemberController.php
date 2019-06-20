@@ -161,7 +161,8 @@ class MemberController extends Controller
 			
 			if (Carbon::parse($record->key_expired_at)->gt(Carbon::now()))
 			{
-				$result =  ['apikey'=>$record->apikey, 'expired_at'=>$record->key_expired_at];
+				$exp    = Carbon::parse($record->key_expired_at);
+				$result =  ['apikey'=>$record->apikey, 'expired_at'=>$exp->toDateTimeString()];
 				return response()->json(['success' => true,'result' => $result]);
 			}
 			
