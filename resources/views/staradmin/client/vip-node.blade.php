@@ -927,6 +927,32 @@
 	</div>
 <!-- New - Top right corner Game Rules starts -->
 
+<!-- customer service modal -->
+<div class="modal fade col-md-12" id="modal-sure-win" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-title">倍增式玩法说明</div>
+		<div class="modal-content modal-wechat">
+			<div class="modal-body">
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<div class="sure-win-title">6次猜中1次就能稳赚</div>
+							<img src="{{ asset('/client/images/vip/sure-win.png') }}" width="250px" />
+							<div class="instructions">
+								按照倍增式玩法提示的数字<span class="highlight">[1-3-7-15-31-63]</span>去选择投注。只要在6次中猜中任何一次，就能保证稳赚。
+							</div>
+						</div>
+						<div class="close-modal modal-redeem-button">
+							我知道了
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- customer service modal Ends -->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -985,12 +1011,15 @@
 		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
 		    });
 
+		    $('.btn-info-vip').click( function() {
+		        $('#modal-sure-win').modal();
+		    });
+
 			if (user_id <= 0) {
 				openmodel();
 			}
 
 		});
-		
 
 	</script>
 

@@ -423,6 +423,7 @@ function closeModal() {
         $('.redeem-error').html('你猜的游戏正在进行中');
         $('#reset-life-bet').modal('hide');
         $('#reset-life-lose').modal('hide');
+        $('#modal-sure-win').modal('hide');
     });
 
     $('.modal-message-manual').click(function(){

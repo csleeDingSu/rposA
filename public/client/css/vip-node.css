@@ -106,3 +106,47 @@
   font-size: 17px;
   padding-top: 30px;
 }
+
+#modal-sure-win .modal-title {
+    background: #e9bb3e;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-size: 21px;
+    font-weight: 500;
+    border: none;
+	box-shadow: none;
+}
+
+#modal-sure-win .modal-content {
+    border: none;
+	box-shadow: none;
+}
+
+#modal-sure-win .modal-redeem-button {
+	background: #e9bb3e;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#modal-sure-win .instructions {
+	font-size: 12px;
+	color: #666;
+	text-align: left;
+	padding-bottom: 30px;
+	padding-top: 10px;
+}
+
+#modal-sure-win .highlight {
+	color: #fc8c29;
+}
+
+.sure-win-title {
+	color: #666;
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+
