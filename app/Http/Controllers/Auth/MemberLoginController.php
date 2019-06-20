@@ -263,7 +263,7 @@ class MemberLoginController extends Controller
         $username = $request->username; 
 		$password = $request->password; 
 		$apikey   = $request->apikey; 
-
+/*
 		$input = [
             'username' => $request->username,
             'password' => $request->password, 
@@ -291,10 +291,11 @@ class MemberLoginController extends Controller
 			]
         );
 		
+		
 		if ($validator->fails()) {
 			 return response()->json(['success' => false, 'message' => $validator->errors()]);
 		}
-		
+		*/
 		$record = \App\Members::where('apikey', $apikey)->first();
 		
 		if ($record)
