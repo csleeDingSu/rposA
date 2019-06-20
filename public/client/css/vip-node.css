@@ -51,3 +51,58 @@
   border-bottom: none;
   width: 0;
 }
+
+#lose-modal .modal-instruction {
+	color: #ff6067;
+	font-size: 18px;
+	text-align: center;
+	margin-bottom: 20px;
+	background: white;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#win-modal .modal-content {
+  background: url('/client/images/vip/packet-background.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  width: 301px !important;
+  height: 338px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+#win-modal .packet-title {
+	padding-top: 20px;
+	font-size: 21px;
+}
+
+#win-modal .packet-sign {
+	font-size: 45px;
+}
+
+#win-modal .packet-value {
+	font-size: 70px;
+	color: #ff414b;
+	font-weight: 500;
+	height: 130px;
+	padding-top: 20px;
+}
+
+#win-modal .packet-currency {
+	font-size: 30px;
+}
+
+#win-modal .instructions {
+  font-size: 17px;
+  padding-top: 30px;
+}

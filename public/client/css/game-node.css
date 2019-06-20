@@ -1903,6 +1903,7 @@ if it's not present, don't show loader */
 	font-weight: 500;
 	font-size: 18px;
 	color: #999;
+	padding-top: 10px;
 }
 
 #lose-modal .modal-content{

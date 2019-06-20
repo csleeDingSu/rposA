@@ -41,33 +41,6 @@ $(function () {
         getToken();
         closeModal();
 
-        $('.button-bet').click(function(){
-            var add_bet = parseInt($(this).data('value'));
-            var initial_bet = parseInt($('.span-bet').html());
-            var final_bet = add_bet + initial_bet;
-
-            if(final_bet <= g_vip_point){
-                $('.span-bet').html(final_bet);
-                showPayout();
-                previous_bet = final_bet;
-            } else {
-
-            }
-
-        });
-
-        $('.button-bet-reset').click(function(){
-            $('.span-bet').html(0);
-            showPayout();
-            previous_bet = 0;
-        });
-
-        $('.button-bet-all').click(function(){
-            $('.span-bet').html(g_vip_point);
-            showPayout();
-            previous_bet = g_vip_point;
-        });
-
         ifvisible.on("wakeup", function(){
             //resetTimer();
         });
@@ -372,6 +345,9 @@ function resetGame() {
     $('.spinning').css('visibility', 'hidden');
     $('.middle-label').html('开始竞猜');
     $('.radio-primary').unbind('click');
+    $('.button-bet').unbind('click');
+    $('.button-bet-reset').unbind('click');
+    $('.button-bet-all').unbind('click');
     $('.small-border').removeClass('fast-rotate');
     $('.span-bet').html(0);
     previous_bet = 0;
@@ -432,6 +408,11 @@ function checkSelection() {
         $('.DB_G_hand').hide();
         $('.radio-primary').unbind('click');
         $('#btnWheel').unbind('click');
+
+        $('.button-bet').unbind('click');
+        $('.button-bet-reset').unbind('click');
+        $('.button-bet-all').unbind('click');
+
         bindSpinningButton();
         startTimer(5, 5, 1);
     }
@@ -439,10 +420,17 @@ function checkSelection() {
 
 function closeModal() {
     $('.close-modal').click(function(){
-        $('#reset-life-play').modal('hide');
+        $('.redeem-error').html('你猜的游戏正在进行中');
+        $('#reset-life-bet').modal('hide');
         $('#reset-life-lose').modal('hide');
-         $('#top-corner-game-rules').modal('hide');
-        $('#game-rules').modal('hide'); 
+    });
+
+    $('.modal-message-manual').click(function(){
+        $('#reset-life-manual').modal();
+    });
+
+    $('.modal-manual-button').click(function(){
+        $('#reset-life-manual').modal('hide');
     });
 }
 
@@ -477,6 +465,33 @@ function bindSpinningButton() {
 }
 
 function bindBetButton(){
+
+    $('.button-bet').click(function(){
+        var add_bet = parseInt($(this).data('value'));
+        var initial_bet = parseInt($('.span-bet').html());
+        var final_bet = add_bet + initial_bet;
+
+        if(final_bet <= g_vip_point){
+            $('.span-bet').html(final_bet);
+            showPayout();
+            previous_bet = final_bet;
+        } else {
+
+        }
+
+    });
+
+    $('.button-bet-reset').click(function(){
+        $('.span-bet').html(0);
+        showPayout();
+        previous_bet = 0;
+    });
+
+    $('.button-bet-all').click(function(){
+        $('.span-bet').html(g_vip_point);
+        showPayout();
+        previous_bet = g_vip_point;
+    });
 
     $('.radio-primary').click(function( event ){
         event.stopImmediatePropagation();
@@ -664,8 +679,48 @@ function showPayout(){
 }
 
 function bindCalculateButton(){
-    $('.btn-calculate').click( function() {
-        $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+    $('.btn-calculate-vip').click(function( event ){
+        event.stopImmediatePropagation();
+
+        var user_id = $('#hidUserId').val();
+        var selected = $('div.clicked').find('input:radio').val();
+        var level = parseInt($('#hidLevel').val());
+
+        if (typeof selected == 'undefined') {
+            $.ajax({
+                type: 'POST',
+                url: "/api/check-redeem",
+                data: { 'memberid': user_id },
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                },
+                error: function (error) { console.log(error.responseText) },
+                success: function(data) {
+                    console.log(data);
+                    if(data.success){
+                        var point = data.wabao_point;
+                        var vip_point = data.vip_point;
+
+                        $('.spanVipPoint').html(vip_point);
+                        $('.packet-point').html(point);
+
+                        $('#reset-life-max').modal();
+                            
+                        bindResetLifeButton();
+                        $('#btn-close-max').click(function(){
+                            $('#reset-life-max').modal('hide');
+                        });
+
+                    } else {
+                        $('.redeem-error').html(data.message);
+                        $('#reset-life-bet').modal();
+                    }
+                }
+            });
+        } else {
+            $('#reset-life-bet').modal();
+        }
     });
 }
 
@@ -725,9 +780,7 @@ function bindResetLifeButton(){
                 success: function(data) {
                     if(data.success){
                         $('#reset-life-max').modal('hide');
-                        $('#reset-life-play').modal('hide');
                         $('#reset-life-lose').modal('hide');
-                        $('#reset-life-start').modal('hide');
                         resetGame();
                     }
                 }
@@ -970,6 +1023,11 @@ function showLoseModal(){
     var image = '';
     var result_info = '6次内猜对奖励加倍';
 
+    var balance = parseInt($('#hidBalance').val());
+    var bet_amount = parseInt($('.span-bet').html());
+    var newbalance = balance - bet_amount;
+    var instruction = '您还剩余'+ newbalance +'元，继续加油哦';
+
     switch (level) {
 
         case 1:
@@ -1011,7 +1069,7 @@ function showLoseModal(){
 
     //$('.modal-progress-bar').attr("src", image);
     $('#lose-modal .modal-win-header').html(html);
-    //$('#lose-modal .modal-instruction').html(instruction);
+    $('#lose-modal .modal-instruction').html(instruction);
     
     $('.highlight-link').click(function(){
         $('#game-rules').modal();

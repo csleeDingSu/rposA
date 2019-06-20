@@ -45,7 +45,7 @@
 							<span class="spanAcuPointAndBalance">0</span>元
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
+						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -473,7 +473,7 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-value">赢得15元红包</div>	
+								<div class="packet-value">赢得<span class="spanVipPoint"></span>元红包</div>	
 								<div class="instructions">
 									您已结算红包：<div class="packet-point">&nbsp;</div>元
 								</div>
@@ -674,7 +674,7 @@
 								<div class="modal-warning-title">
 									当前不能结算
 								</div>
-								<div class="modal-warning-content">
+								<div class="modal-warning-content redeem-error">
 									你猜的游戏正在进行中
 								</div>
 
@@ -798,9 +798,8 @@
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
 								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info" style="visibility: hidden;">前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
 								<div class="instructions">
-									您已赢到6元，还差9元可兑换
+									您已赢到6元
 								</div>
 								<div class="close-win-modal modal-redeem-button btn-red-packet">
 									确认领取
@@ -820,8 +819,7 @@
 	<div class="modal fade col-md-12" id="lose-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title modal-win-header">
-				<div class="modal-win-title">很遗憾猜错了</div>
-				<div class="modal-result">您还有1次机会</div>			
+				<div class="modal-win-title">很遗憾猜错了</div>		
 			</div>
 
 			<div class="modal-content">
@@ -829,9 +827,9 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="modal-instruction" style="visibility: hidden;">前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span></div>
+								<div class="modal-instruction">您还剩余50元，继续加油哦</div>
 								<div class="close-win-modal modal-redeem-button">
-									知道了
+									继续抽奖
 								</div>												
 							</div>
 						</div>
