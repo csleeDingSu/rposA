@@ -154,7 +154,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(point);
-            $('.spanAcuPointAndBalance').html(point);
+            $('.spanAcuPointAndBalance').html(point/10);
         }
         $('.packet-acupoint').html(acupoint/10);
         $('.packet-acupoint-to-win').html(15 - acupoint/10);
@@ -444,7 +444,7 @@ function closeWinModal() {
             console.log('play coin mp3');  
         } 
         
-        $('.spanAcuPointAndBalance').html(g_vip_point);
+        $('.spanAcuPointAndBalance').html(g_vip_point/10);
         $('.spanAcuPoint').html(g_vip_point);
 
         $(this).off('click');
