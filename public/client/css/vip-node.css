@@ -1,0 +1,152 @@
+.btn-rules-wrapper {
+	width: 120px;
+	height: 40px;
+	float: right;
+}
+
+.btn-info-vip-wrapper {
+	width: 100px;
+	height: 40px;
+	margin-top: -3px;
+	float: right;
+}
+
+.btn-info-vip {
+	background: url('/client/images/vip/vip-info.png') no-repeat;
+	width: 200px;
+	height: 80px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	padding: 2px 5px 0px 15px;
+	font-size: 24px;
+	cursor: pointer;
+	color: #c24900;
+	margin-top: -3px;
+	text-align: left;
+	padding-left: 30px;
+	padding-top: 20px;
+	border-top-left-radius: 40px;
+	border-bottom-left-radius: 40px;
+}
+
+.btn-rectangle, .btn-rectangle:active {
+	background: url('/client/images/vip/btn-default.png') no-repeat;
+	width: 322px;
+	height: 112px;
+	padding-top: 20px;
+}
+
+.btn-rectangle.clicked {
+	background: url('/client/images/vip/btn-selected.png') no-repeat;
+	width: 322px;
+	height: 112px;
+    padding-top: 20px;
+    color: #8c6d28;
+  /* other styles */
+}
+
+.strikethrough span:before,
+.strikethrough span:after {
+  border-bottom: none;
+  width: 0;
+}
+
+#lose-modal .modal-instruction {
+	color: #ff6067;
+	font-size: 18px;
+	text-align: center;
+	margin-bottom: 20px;
+	background: white;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#win-modal .modal-content {
+  background: url('/client/images/vip/packet-background.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  width: 301px !important;
+  height: 338px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+#win-modal .packet-title {
+	padding-top: 20px;
+	font-size: 21px;
+}
+
+#win-modal .packet-sign {
+	font-size: 45px;
+}
+
+#win-modal .packet-value {
+	font-size: 70px;
+	color: #ff414b;
+	font-weight: 500;
+	height: 130px;
+	padding-top: 20px;
+}
+
+#win-modal .packet-currency {
+	font-size: 30px;
+}
+
+#win-modal .instructions {
+  font-size: 17px;
+  padding-top: 30px;
+}
+
+#modal-sure-win .modal-title {
+    background: #e9bb3e;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-size: 21px;
+    font-weight: 500;
+    border: none;
+	box-shadow: none;
+}
+
+#modal-sure-win .modal-content {
+    border: none;
+	box-shadow: none;
+}
+
+#modal-sure-win .modal-redeem-button {
+	background: #e9bb3e;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#modal-sure-win .instructions {
+	font-size: 12px;
+	color: #666;
+	text-align: left;
+	padding-bottom: 30px;
+	padding-top: 10px;
+}
+
+#modal-sure-win .highlight {
+	color: #fc8c29;
+}
+
+.sure-win-title {
+	color: #666;
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+

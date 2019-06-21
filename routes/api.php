@@ -119,7 +119,7 @@ Route::group(['namespace' => 'Api'],function()
 	Route::post('/generate-apikey', 'MemberController@generate_apikey')->name('generate_apikey');
 	
 });
-
+//Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
 Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');
 
 //cron_test
@@ -130,13 +130,13 @@ Route::any('/reload-card-validation', 'TestController@reload_card_validation')->
 
 Route::any('/reload-card-callback', 'TestController@reload_card_callback')->name('reload_card_callback');
 
-//test API http://d.yvcdv.cn
-Route::any('/Pay_Index', 'TestController@Pay_Index')->name('Pay_Index');
-Route::any('/Pay_Trade_query', 'TestController@Pay_Trade_query')->name('Pay_Trade_query');
-Route::any('/Payment_Dfpay_add', 'TestController@Payment_Dfpay_add')->name('Payment_Dfpay_add');
-Route::any('/Payment_Dfpay_query', 'TestController@Payment_Dfpay_query')->name('Payment_Dfpay_query');
-Route::any('/Payment_Dfpay_balance', 'TestController@Payment_Dfpay_balance')->name('Payment_Dfpay_balance');
-Route::any('/pay_notify', 'TestController@pay_notify')->name('pay_notify');
-Route::any('/pay_callback', 'TestController@pay_callback')->name('pay_callback');
+//Payment API http://d.yvcdv.cn
+Route::any('/Pay_Index', 'PaymentController@Pay_Index')->name('Pay_Index');
+Route::any('/Pay_Trade_query', 'PaymentController@Pay_Trade_query')->name('Pay_Trade_query');
+Route::any('/Payment_Dfpay_add', 'PaymentController@Payment_Dfpay_add')->name('Payment_Dfpay_add');
+Route::any('/Payment_Dfpay_query', 'PaymentController@Payment_Dfpay_query')->name('Payment_Dfpay_query');
+Route::any('/Payment_Dfpay_balance', 'PaymentController@Payment_Dfpay_balance')->name('Payment_Dfpay_balance');
+Route::any('/pay_notify', 'PaymentController@pay_notify')->name('pay_notify');
+Route::any('/pay_callback', 'PaymentController@pay_callback')->name('pay_callback');
 
 

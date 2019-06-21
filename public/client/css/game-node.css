@@ -71,7 +71,7 @@ body{
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
-    font-size: 35px;
+    font-size: 40px;
     color: #8c6d28;
     cursor: pointer;
     padding-top: 16px;
@@ -1630,7 +1630,7 @@ body{
     -o-background-size: contain;
     background-size: contain;
     width: 320px;
-    height: 380px;
+    height: 381px;
     -webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -1668,9 +1668,11 @@ body{
 }
 
 .vip-card-desc {
-	padding-top: 15px;
+	padding-top: 8px;
 	font-size: 14px;
 	color: #8c7c7c;
+	text-align: left;
+    padding-left: 15px;
 }
 
 .vip-card-desc li {
@@ -1689,7 +1691,7 @@ body{
 	color: white;
 	padding: 6px;
 	background-image: linear-gradient(to right, #f1ca84, #ed671f);
-	margin-top: 20px;
+	margin-top: 8px;
 	text-align: center;
 }
 
@@ -1733,7 +1735,7 @@ body{
 
 	.btn-vip-submit {
 		font-size: 16px;
-		margin-top: 8px;
+		margin-top: 1px;
 	}
 }
 
@@ -1901,6 +1903,7 @@ if it's not present, don't show loader */
 	font-weight: 500;
 	font-size: 18px;
 	color: #999;
+	padding-top: 10px;
 }
 
 #lose-modal .modal-content{
@@ -2484,8 +2487,8 @@ if it's not present, don't show loader */
 .strikethrough {
   line-height: 0.5;
   text-align: center;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  margin-top: -15px;
+  margin-bottom: 15px;
 }
 .strikethrough span {
   display: inline-block;

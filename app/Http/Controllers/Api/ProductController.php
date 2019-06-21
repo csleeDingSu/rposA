@@ -221,9 +221,9 @@ class ProductController extends Controller
 				
 				$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>1,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>$request->ref_note];
 				
-				$dd = Package::save_vip_package($data);
+				$id = Package::save_vip_package($data);
 				
-				return response()->json(['success' => true, 'message' => 'success']);
+				return response()->json(['success' => true, 'message' => 'success','refid'=>$id]);
 				
 				/*
 				$a = 0 ;
@@ -254,7 +254,7 @@ class ProductController extends Controller
 		}		
 		
 		
-		return response()->json(['success' => false, 'message' => 'insufficient point']);
+		return response()->json(['success' => false, 'message' => 'unknown type/ package deleted']);
 	}
 	
 	public function redeem_vip(Request $request)

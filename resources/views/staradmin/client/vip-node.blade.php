@@ -6,11 +6,12 @@
     @parent
 
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css') }}" />
     
 
     <style>
@@ -44,7 +45,7 @@
 							<span class="spanAcuPointAndBalance">0</span>元
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
+						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -71,6 +72,10 @@
 						<!--div class="btn-vip"></div-->
 						<div class="btn-rules-vip">返回普通场</div>
 					</a>
+					<div style="clear:both"></div>
+				</div>
+				<div class="btn-rules-wrapper btn-info-vip-wrapper">
+						<div class="btn-info-vip">99%稳赢玩法</div>
 					<div style="clear:both"></div>
 				</div>
 			</div>
@@ -323,103 +328,32 @@
 	<!-- progress bar -->
 	<section class="barWrapper">
       	<article class="barBox">
-	      <div class="rule">
-	          <h2 class="payout-info hide"></h2>
-	        <ul>
-	          <li>
-	            <span class="span-1">10</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-2">30</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-3">70</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-4">150</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-5">310</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-6">630</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	        </ul>
-	      </div>
-
-	      <p style="font-size:0px;"><span class="span-balance">1200</span> / 1200</p>
+	      <div class="rule"></div>
 	        
 	      <div class="barIn">
-	        <a id="viewgamerules"><p><span class="result-info"></span><span class="viewgamerules">玩法说明</span></p></a>
-	        <div class="barImg"></div>
+		        <div class="bet-box">
+		        	<div class="button-bet" data-value="1"><span class="plus-sign">+</span>1</div>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet" data-value="10"><span class="plus-sign">+</span>10</div>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet" data-value="100"><span class="plus-sign">+</span>100</div>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet" data-value="1000"><span class="plus-sign">+</span>1000</div>
+		        </div>
+		        <div class="bet-box long-box">
+		        	竞猜金币: <span class="span-bet">0</span>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet-all">全投</div>
+		        </div>
+		        <div class="bet-box">
+		        	<div class="button-bet-reset">清零</div>
+		        </div>
 	      </div>
-
+	      <div style="clear: both;"></div>
 	      <!-- button wrapper -->
 		<div class="button-wrapper">
 	        <div class="button-card radio-primary">
@@ -539,7 +473,7 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-value">赢得15元红包</div>	
+								<div class="packet-value">赢得<span class="spanVipPoint"></span>元红包</div>	
 								<div class="instructions">
 									您已结算红包：<div class="packet-point">&nbsp;</div>元
 								</div>
@@ -740,7 +674,7 @@
 								<div class="modal-warning-title">
 									当前不能结算
 								</div>
-								<div class="modal-warning-content">
+								<div class="modal-warning-content redeem-error">
 									你猜的游戏正在进行中
 								</div>
 
@@ -864,9 +798,8 @@
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
 								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info">前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
 								<div class="instructions">
-									您已赢到6元，还差9元可兑换
+									您已赢到6元
 								</div>
 								<div class="close-win-modal modal-redeem-button btn-red-packet">
 									确认领取
@@ -886,8 +819,7 @@
 	<div class="modal fade col-md-12" id="lose-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title modal-win-header">
-				<div class="modal-win-title">很遗憾猜错了</div>
-				<div class="modal-result">您还有1次机会</div>			
+				<div class="modal-win-title">很遗憾猜错了</div>		
 			</div>
 
 			<div class="modal-content">
@@ -895,9 +827,9 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="modal-instruction">前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span></div>
+								<div class="modal-instruction">您还剩余50元，继续加油哦</div>
 								<div class="close-win-modal modal-redeem-button">
-									知道了
+									继续抽奖
 								</div>												
 							</div>
 						</div>
@@ -995,6 +927,32 @@
 	</div>
 <!-- New - Top right corner Game Rules starts -->
 
+<!-- customer service modal -->
+<div class="modal fade col-md-12" id="modal-sure-win" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-title">倍增式玩法说明</div>
+		<div class="modal-content modal-wechat">
+			<div class="modal-body">
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<div class="sure-win-title">6次猜中1次就能稳赚</div>
+							<img src="{{ asset('/client/images/vip/sure-win.png') }}" width="250px" />
+							<div class="instructions">
+								按照倍增式玩法提示的数字<span class="highlight">[1-3-7-15-31-63]</span>去选择投注。只要在6次中猜中任何一次，就能保证稳赚。
+							</div>
+						</div>
+						<div class="close-modal modal-redeem-button">
+							我知道了
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- customer service modal Ends -->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -1053,12 +1011,15 @@
 		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
 		    });
 
+		    $('.btn-info-vip').click( function() {
+		        $('#modal-sure-win').modal();
+		    });
+
 			if (user_id <= 0) {
 				openmodel();
 			}
 
 		});
-		
 
 	</script>
 

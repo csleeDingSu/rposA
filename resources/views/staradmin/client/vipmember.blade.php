@@ -2,6 +2,17 @@
 
 @section('title', 'VIP场会员')
 
+@section('left-menu')
+    <a href="/profile" class="back">
+        <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
+    </a>
+@endsection
+
+@section('menu')
+    <a href="/profile">
+    </a>
+@endsection
+
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/vipmember.css') }}" />
@@ -30,31 +41,30 @@
 
 		<div class="member-box">
 			<div class="card">
-				<div class="col-xs-3 left-menu">
+				<div class="col-xs-8 left-menu">
 					<a href="/profile" class="back">
 				        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
 				    </a>
+					<span class="brand-title">
+						VIP场会员
+					</span>
+				
 				</div>
-
-				<div class="col-xs-6 brand-title">
-					VIP场会员
-				</div>
-			
-				<div class="col-xs-3"></div>
 				
 			</div>
 			<div class="row">
 					<div class="col-xs-7">
 						<div class="vip-title">VIP场会员特权</div>
 						<ul class="vip-list">
-							<li><span class="highlight">赠送1200金币，</span>可结算红包。</li>
-							<li><span class="highlight">无上限封顶，</span>想赚多少都行。</li>
-							<li><span class="highlight">无需邀请人，</span>直接玩不麻烦。</li>
+							<li><span class="vip-highlight">无上限封顶，</span>想赢多少都行。</li>
+							<li><span class="vip-highlight">自由试玩法，</span>自选金额不受限。</li>
+							<li><span class="vip-highlight">每场送120元，</span>作为抽奖本金。</li>
+							<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
 						</ul>
 					</div>
 					<div class="col-xs-5">
-						<div class="point"><div class="sign">¥</div> 99.00</div>
-						<a href="/membership"><div class="btn-submit">开通会员</div></a>
+						<div class="point"><div class="sign">¥</div> 120.00</div>
+						<a href="/membership/buy/vip"><div class="btn-submit">开通会员</div></a>
 					</div>
 				</div>
 		</div>

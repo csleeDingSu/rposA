@@ -1,0 +1,115 @@
+.barWrapper{
+	box-sizing: border-box;
+	padding: 0;
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -o-flex;
+	justify-content: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-o-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	-o-align-items: center;
+	flex-direction: column;
+	margin-top: -50px;
+}
+.barWrapper::before,
+.barWrapper::after{
+
+}
+
+.barBox{
+	height: 1.7rem;
+	width: 6.72rem;
+}
+.barBox .rule{
+	height: 1.2rem;
+	padding-top: .85rem;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.barIn{
+	background:url(/client/images/vip/table-bg.png) left top no-repeat;
+	background-size:100% 100%;  
+	content: '';
+	position: relative;
+	z-index: 200;
+	left:0;
+	top:0;
+	right: 0;
+	bottom:0;
+	display: table-cell;
+}
+
+.barIn .bet-box {
+	margin: 0.2rem auto 0.1rem auto;
+	width: 1.62rem;
+	height: 0.5rem;
+	float: left;
+}
+
+.barIn .bet-box:first-child {
+	margin-left: 0.2rem;
+}
+
+.barIn .bet-box:last-child {
+	width: 1.58rem;
+}
+
+.barIn .long-box {
+	margin-left: 0.2rem;
+	margin-bottom: 0.4rem;
+	width: 3.24rem;
+	text-align: left;
+	font-size: 15px;
+	color: #e4caff;
+	padding-left: 0.1rem;
+}
+
+.button-bet {
+	background:url(/client/images/vip/bet-default.png) no-repeat;
+	width: 142px;
+	height: 54px;
+	z-index: 200;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	color: #b297ce;
+	font-size: 30px;
+	padding-top: 5px;
+	cursor: pointer;
+}
+
+.button-bet:hover {
+	background:url(/client/images/vip/bet-selected.png) no-repeat;
+	color: #e4caff;
+}
+
+.button-bet-all, .button-bet-reset {
+	border-radius: 5px;
+	background: #b45df4;
+	color: white;
+	font-size: 14px;
+	padding: 0.1rem;
+	margin-right: 0.2rem;
+	cursor: pointer;
+}
+
+.button-bet-reset {
+	background: transparent;
+	border: 1px solid #d7b1ff;
+}
+
+.plus-sign {
+	font-size: 28px;
+}
+
+.span-bet {
+	color: #fff000;
+	font-size: 23px;
+}

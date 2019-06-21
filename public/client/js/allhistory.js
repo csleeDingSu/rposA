@@ -47,7 +47,7 @@ function getPosts(page, token, type){
    var url ="/api/betting-history?gameid=102&memberid=" + user_id + "&page=" + page;
 
    if(type == 'vip'){
-        url += '&vip=yes';
+        var url ="/api/betting-history?gameid=103&memberid=" + user_id + "&page=" + page;
    }
 
     $.ajax({

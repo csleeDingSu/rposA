@@ -378,7 +378,7 @@ class BasicPackageController extends BaseController
 			
 			$now = Carbon::now();
 			
-			$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$member->id,'redeem_state'=>3,'confirmed_at'=>$now,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>'admin backorder','buy_price'=>$usedprice,'cardpass'=>$request->cardpass,'cardnum'=>$request->cardnum,'passcode'=>$passcode,'redeemed_at'=>$now];
+			$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$member->id,'redeem_state'=>3,'confirmed_at'=>$now,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>'backorder','buy_price'=>$usedprice,'cardpass'=>$request->cardpass,'cardnum'=>$request->cardnum,'passcode'=>$passcode,'redeemed_at'=>$now,'created_by'=>\Auth::guard('admin')->user()->name];
 			
 			
 			Wallet::update_basic_wallet($member->id,$package->package_life,$package->package_freepoint,'BPR','credit','BackOrder');

@@ -211,8 +211,31 @@ class ReportController extends BaseController
 		switch ($pack)
 		{
 			case 'product':
-				$result =  \DB::table('view_redeem_history_all')->where('id',$id); 				
-				$page = 'product_member';			
+				$page = 'product_member';	
+				$result =  \DB::table('view_redeem_history_all')->where('pid',$id); 
+				if ($type)
+				{
+					switch ($type)
+					{
+						case 'rejected':
+							$result = $result->where('pin_status',3);
+						break;	
+						case 'reserved':
+							//$result = $result->wherein('redeem_status',['confirmed','pending confirmation']);
+							$result = $result->wherein('pin_status',[2,4]);
+						break;
+						case 'used':
+							$result = $result->where('pin_status',1);
+						break;	
+							/*//Active
+						4 - used
+						3 - redeemed
+						2 - confirmed
+						1 - pending confirmation
+						0 - rejected*/
+					}					
+				}
+						
 				
 			break;
 			case 'basic_package':
