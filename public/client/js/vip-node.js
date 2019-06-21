@@ -128,16 +128,16 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
-        var balance = parseInt(records.point);
+        var balance = parseInt(records.point/10);
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
         var play_count = parseInt(records.play_count);
         
-        var vip_point =  parseInt(records.point);
+        var vip_point =  parseInt(records.point/10);
         var vip_life =  parseInt(records.vip_life);
-        g_vip_point = parseInt(point);
+        g_vip_point = parseInt(point/10);
 
         if(vip_life == 0){
             vip_point = 0;
@@ -444,7 +444,7 @@ function closeWinModal() {
             console.log('play coin mp3');  
         } 
         
-        $('.spanAcuPointAndBalance').html(g_vip_point/10);
+        $('.spanAcuPointAndBalance').html(g_vip_point);
         $('.spanAcuPoint').html(g_vip_point);
 
         $(this).off('click');
@@ -658,7 +658,7 @@ function showPayout(){
                     url: "/api/update-game-result-temp?gameid=103&gametype=1&memberid="+ user_id
                     + "&drawid=0" 
                     + "&bet="+ selected 
-                    + "&betamt=" + bet_amount
+                    + "&betamt=" + (bet_amount * 10)
                     + "&level=" + level,
                     dataType: "json",
                     beforeSend: function( xhr ) {
@@ -703,7 +703,7 @@ function bindCalculateButton(){
                         var point = data.wabao_point;
                         var vip_point = data.vip_point;
 
-                        $('.spanVipPoint').html(vip_point);
+                        $('.spanVipPoint').html(vip_point/10);
                         $('.packet-point').html(point);
 
                         $('#reset-life-max').modal();
