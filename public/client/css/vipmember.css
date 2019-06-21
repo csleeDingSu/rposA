@@ -142,17 +142,6 @@ html, body {
     height: 100%;
 }
 
-@media only screen and (max-width: 500px) {
-/*    .member-box {
-		width: 90%;
-	}
-*/
-	/*.row {
-		margin-top: 1.6rem;
-	}*/
-}
-
-
 /* Tabs */
 .full-width-tabs > .nav-pills > .active > a,
 .full-width-tabs > .nav-pills > .active > a:hover,
@@ -1006,4 +995,35 @@ textarea {
 
 .vip-highlight {
 	color: #ee833b;
+}
+
+@media only screen and (min-width: 500px) {
+	.col-xs-8 {
+		width: 80%;
+	}
+	.brand-title {
+		padding-left:1.5rem;
+	}
+	.row {
+		margin-top: 0.8rem;
+	}
+	.member-box .col-xs-7 {
+		width: 2.4rem;
+		padding-left:0rem;
+		font-size: 0.25rem;
+	}
+    .member-box {
+		width: 90%;
+	}
+	.vip-list li {
+		font-size: 0.15rem;
+		line-height: 0.2rem;
+	}
+	.sign {
+	    font-size: 0.2rem;
+	}
+	.point {
+		font-size: 0.4rem;
+	}
+
 }

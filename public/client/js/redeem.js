@@ -308,7 +308,7 @@ function getProductList(token) {
                                     '<img class="img-voucher" src="'+ item.product_picurl +'" alt="'+item.product_name+'">' +
                                 '</div>' +
                                 '<div class="col-xs-6 column-2">' +
-                                    '<div class="description">' + item.product_name + '<div class="description-info">卡值兑换支付宝现金</div></div>' +
+                                    '<div class="description">' + item.product_name + '<div class="description-info">可兑换支付宝现金</div></div>' +
                                     '<div class="remaining">已兑换 '+ total_used +' 张</div>' +
                                 '</div>' +
                                 '<div class="col-xs-3 column-3">' +
