@@ -128,8 +128,7 @@ function reverse(data) {
 
 function showBettingHistory(response) {
     //window.console && console.log(response);
-    var results = groupHistory(response.data);
-    results = reverse(results);
+    var results = response.data;
     var length = results.length;
     var history = '';
     var current_page = parseInt(response.current_page);
@@ -141,7 +140,6 @@ function showBettingHistory(response) {
         return false;
     }
 
-    console.log(page_count + ":" + current_page);
     page_count++;
 
      if(length === 0){
@@ -154,8 +152,7 @@ function showBettingHistory(response) {
     } else {
         //console.log(results);
         $.each(results, function(bkey, bvalue){
-            counter += 1;
-            var betCount = bvalue.length;
+
             var winCount = 0;
             var loseCount = 0;
             var points = 0;
@@ -164,19 +161,12 @@ function showBettingHistory(response) {
                             '<div class="col-xs-9 column-1">';
 
 
-            var first_bet = null;
-            var last = null;
-            var loopCount = 0;
 
-            while( betCount-- ) {
-                if(loopCount == 0) {
-                    first_bet = bvalue[betCount];
-                }
 
                 var className = 'pass';
                 var faIcon = 'fa-check';
 
-                if(bvalue[betCount].is_win == null){
+                if(bvalue.is_win == null){
                     className = 'fail';
                     faIcon = 'fa-times';
                     loseCount++;
@@ -188,32 +178,21 @@ function showBettingHistory(response) {
                                 '<span class="label"><i class="fa '+ faIcon +'"></i></span>' +
                             '</div>';
 
-                loopCount++;
-
-                if(betCount == 0){
-                    last_bet = bvalue[betCount];
-                }
-            }
 
             if(winCount) {
-                points = (winCount + loseCount) * 10;
+                points = Math.round(bvalue.bet_amount);
             }
 
-            if(betCount == -1){
-                var wallet_point = parseInt(last_bet.wallet_point);
 
-                var f = first_bet.created_at.split(/[- :]/);
+                var wallet_point = parseInt(bvalue.wallet_point);
+
+                var f = bvalue.created_at.split(/[- :]/);
                 var first_date = new Date(f[0], f[1]-1, f[2], f[3], f[4], f[5]);
                 var str_first_date = first_date.getFullYear() + "-" + ("0"+(first_date.getMonth()+1)).slice(-2) + "-" + ("0" + first_date.getDate()).slice(-2) + " " + 
                                 ("0" + first_date.getHours()).slice(-2) + ":" + ("0" + first_date.getMinutes()).slice(-2);
 
-                var l = last_bet.created_at.split(/[- :]/);
-                var last_date = new Date(l[0], l[1]-1, l[2], l[3], l[4], l[5]);
-                var str_last_date = last_date.getFullYear() + "-" + ("0"+(last_date.getMonth()+1)).slice(-2) + "-" + ("0" + last_date.getDate()).slice(-2) + " " + 
-                                ("0" + last_date.getHours()).slice(-2) + ":" + ("0" + last_date.getMinutes()).slice(-2);
-
                 history += '<div style="clear: both"></div>' +
-                                '<div class="date">' + str_first_date + ' 至 ' + str_last_date + '</div>' +
+                                '<div class="date">' + str_first_date + '</div>' +
                             '</div>' +
                             '<div class="col-xs-3 column-2">' +
                                 '<div class="right-wrapper">' +
@@ -227,8 +206,6 @@ function showBettingHistory(response) {
                                 '</div>' +
                             '</div>' +
                         '</div>';
-
-            }
         });
     }
 

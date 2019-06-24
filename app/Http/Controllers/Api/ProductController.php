@@ -192,6 +192,19 @@ class ProductController extends Controller
 		
 		$wallet    = Wallet::get_wallet_details($memberid);
 		
+		
+		$basic_count = \DB::table('basic_redeem')->where('member_id',$request->memberid)->count();
+		
+		if ($basic_count < 1)
+		{
+			return response()->json(['success' => false, 'message' => 'buy basic package before upgrade']);
+			
+			if ($wallet->point < 120)
+			{
+				return response()->json(['success' => false, 'message' => 'insufficient points to upgrade.']);
+			}
+		}
+		
 		$package   = Package::get_package($packageid);
 		
 		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);

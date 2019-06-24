@@ -1701,5 +1701,163 @@ class GameController extends Controller
 		//condition 1
 		return ['status'=>'lose','is_win'=>null];
 	}
+	
+	
+	public function new_betting_result_103(Request $request)
+    {
+		$now     = Carbon::now()->toDateTimeString();
+		$reward = 0;
+		$glevel = '';
+		$status = 'lose';
+		$is_win = null;
+		$player_level = 1;	
+		$type       = 1;
+		$vip        = '';
+		$gameid     = $request->gameid;
+		$memberid   = $request->memberid;
+		
+		
+		
+		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();	
+		
+		if(!$res)
+		{
+			return response()->json(['success' => false, 'message' => "no betting"]);
+		}	
+		$bet      = $res->bet;	
+		$betamt   = $res->betamt ;
+		$gametype = $res->gametype ;
+		
+		$packageid = Package::get_current_package($memberid);		
+		
+		if (!$packageid) return response()->json(['success' => false,'message' => 'No active vip subscriptions']);
+		
+		
+		//check point 
+				
+		$play_status   = Wallet::get_wallet_details($memberid);
+		
+		if ($play_status->vip_point<1)
+		{
+			return ['success' => false, 'message' => 'not enough point'];			
+		}
+		
+		if ($play_status->vip_point< $betamt )
+		{
+			return ['success' => false, 'message' => 'not enough point'];			
+		}
+				
+		if ($play_status->vip_life<1)
+		{
+			return response()->json(['success' => false,'message' => 'not enough life to play']);			
+		}
+		
+		
+	
+		$input = [
+             'gameid'    => $gameid,
+			 'memberid'  => $memberid,
+			 'bet'       => $bet,	
+			 'betamt'    => $betamt,
+              ];
+		
+			
+		$gameresult   = $this->decide_result_condition($memberid, '');
+			
+		if ($gameresult)
+		{
+			$status = $gameresult->status;
+			$is_win = $gameresult->is_win;
+			
+			$arr_even = ['2','4','6'];
+			$arr_odd  = ['1','3','5'];
+			
+			if ($bet == 'even')
+			{
+				if($status === 'win')
+				{
+					$game_result = $arr_even [ array_rand($arr_even,1) ];
+				}
+				else
+				{
+					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
+				}
+			}
+			else
+			{
+				if($status === 'win')
+				{
+					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
+				}
+				else
+				{
+					$game_result = $arr_even [ array_rand($arr_even,1) ];
+				}				
+			}
+		}
+		else 
+		{				
+			$game_result = generate_random_number(1,6);	
+			
+			$gen_result  = check_odd_even($game_result);
+			//$gen_result  = 'evsn';
+			if ($gen_result === $bet)
+			{
+				//win change balance
+				$status = 'win';
+				$is_win = TRUE;				
+			}
+		}	
+		
+		//Update Memeber game play history		
+		$now     = Carbon::now()->toDateTimeString();
+		
+		
+		$r_status = 2;
+		
+		if ($status == 'win') 			
+		{
+			$reward = $betamt;
+			
+			$r_status = 1;
+			
+			//Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP	
+			
+			Wallet::update_vip_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');
+		}	
+		else
+		{
+			//Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','debit', '.deducted for betting');	//GBV - Game Betting VIP
+			
+			$wallet = Wallet::update_vip_wallet($memberid,0,$betamt,'GBV','debit', '.deducted for betting');
+			//reset life if point 0
+			if ($wallet['point'] < 1)
+			{
+				Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');		
+				
+				Package::reset_current_package($packageid->id);
+			}
+			
+		}
+				
+
+		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'is_win'=>$is_win,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'reward' => $reward];
+
+		$records =  Game::add_play_history($insdata);
+		
+		$res->status     = 1;
+		$res->deleted_at = $now;
+		$res->save();
+		
+		//Play count update - 29/05/2019
+		$playcount = \App\PlayCount::firstOrNew(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
+		$playcount->increment('play_count', 1);
+		$playcount->save();
+		//End
+		$firstwin = '';
+		//$firstwin = \App\Product::IsFirstWin($memberid,$status);
+
+		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
+	}	
 
 }
