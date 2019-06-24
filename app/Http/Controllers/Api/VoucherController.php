@@ -211,12 +211,19 @@ class VoucherController extends Controller
     
     private function filter_content($content) 
     {
-        $str  = 'var dtk_data=[';
+       // $str  = 'var dtk_data=[';
+		
+		  $str  = 'var goodsItem = [';
+		
+		
+		//}];
+		
 		$arr  = explode($str, $content);
 		if (empty($arr[1])) 
 		{
 			return [];
 		}
+		//$arr  = explode('];', $arr[1]);		
 		$arr  = explode('];', $arr[1]);		
 		$res  = '['.$arr[0].']';		
 		$res  = json_decode($res,true);
