@@ -1033,7 +1033,7 @@
 		}).blur(function() {
 		    // scroll back to position before textarea focus
 		    htmlOrBody.scrollTop(scrollTopLast);
-		});;
+		});
 
 	</script>
 
