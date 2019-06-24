@@ -35,6 +35,13 @@
 				</a>
 			</li>
 			<li class="dbox">
+				<div class="dbox1">
+					<span>
+						<h2 id="product_name"></h2>
+					</span>							
+				</div>
+			</li>
+			<li class="dbox">
 					<div id="button-wrapper">
 						<div class="caption_redeem_angpao">
 							<span>99%中奖 最少15元</span>
@@ -216,22 +223,25 @@ $(function(){
 		var url = decodeURIComponent(getParams_('url'));
 		var image = decodeURIComponent(getParams_('image'));
 		// var Title =getParams_('Title');
+		var Title =getParams_('title');
 		// var Pay =getParams_('Pay');
 		// var bonus =getParams_('bonus');
 		
 		console.log('taowords ' + taowords);
 		console.log('url ' + url);
 		console.log('image ' + image);
-		// console.log('Title ' + Title);
+		console.log('Title ' + Title);
 		// console.log('Pay ' + Pay);
 		// console.log('bonus ' + bonus);
 		
 		if (taowords.length > 0) {
 			$('#img').attr('src', image);
 			$('#coupons').attr('href',url);
-			$('#btn-copy').attr('data-clipboard-text', '￥'+taowords+'￥');
-			$('#cut').text('￥'+taowords+'￥');
-			// $('#product_name').text(Title);
+			// $('#btn-copy').attr('data-clipboard-text', '￥'+taowords+'￥');
+			$('#btn-copy').attr('data-clipboard-text', taowords);
+			// $('#cut').text('￥'+taowords+'￥');
+			$('#cut').text(taowords);
+			$('#product_name').text(Title);
 			// $('#Pay').text(Pay);
 			// $('#bonus').text(bonus);
 		}
