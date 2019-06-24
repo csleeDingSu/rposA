@@ -1021,6 +1021,20 @@
 
 		});
 
+		var htmlOrBody = $('html, body'), // scrollTop works on <body> for some browsers, <html> for others
+		    scrollTopPadding = 8,
+		    scrollTopLast = 0;
+
+		$('input').focus(function() {
+		    // get textarea's offset top position
+		    var textareaTop = $(this).offset().top;
+		    // scroll to the textarea
+		    htmlOrBody.scrollTop(textareaTop - scrollTopPadding);
+		}).blur(function() {
+		    // scroll back to position before textarea focus
+		    htmlOrBody.scrollTop(scrollTopLast);
+		});
+
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
