@@ -229,8 +229,10 @@ $(function(){
 		if (taowords.length > 0) {
 			$('#img').attr('src', image);
 			$('#coupons').attr('href',url);
-			$('#btn-copy').attr('data-clipboard-text', '￥'+taowords+'￥');
-			$('#cut').text('￥'+taowords+'￥');
+			// $('#btn-copy').attr('data-clipboard-text', '￥'+taowords+'￥');
+			$('#btn-copy').attr('data-clipboard-text', taowords);
+			// $('#cut').text('￥'+taowords+'￥');
+			$('#cut').text(taowords);
 			// $('#product_name').text(Title);
 			// $('#Pay').text(Pay);
 			// $('#bonus').text(bonus);
