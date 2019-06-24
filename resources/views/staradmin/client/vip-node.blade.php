@@ -332,7 +332,7 @@
 	        
 	      <div class="barIn">
 		        <div class="bet-box">
-		        	<div class="button-bet" data-value="1"><span class="plus-sign">+</span>1</div>
+		        	<input class="button-bet" type="text" />
 		        </div>
 		        <div class="bet-box">
 		        	<div class="button-bet" data-value="10"><span class="plus-sign">+</span>10</div>
