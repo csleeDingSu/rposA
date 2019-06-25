@@ -24,7 +24,7 @@
     margin: 0 0.2rem;
     margin-bottom: 0.1rem;
     height: 2.7rem;
-    padding: 0.15rem;
+    padding-top:0.20rem;
 }
 
 .benefitBox:last-child {
@@ -35,6 +35,8 @@
   width: 2.1rem;
   height: 2.1rem;
   display: block;
+  margin-right: 0.2rem; 
+  margin-left: 0.1rem;
 }
 
 .product .list-2 h2 {
