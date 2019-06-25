@@ -181,6 +181,10 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/vipmember');
 	} );
 
+	Route::get( '/purchasepoint', function () {
+		return view( 'client/purchasepoint');
+	} );
+
 	$this->post( '/member_update_wechatname', 'ClientController@member_update_wechatname' );
 
 	Route::get( '/verify', function () {
