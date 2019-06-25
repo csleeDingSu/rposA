@@ -447,6 +447,7 @@ function closeModal() {
         $('#reset-life-lose').modal('hide');
          $('#top-corner-game-rules').modal('hide');
         $('#game-rules').modal('hide'); 
+        $('#vip-modal').modal('hide'); 
     });
 }
 

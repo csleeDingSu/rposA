@@ -823,9 +823,8 @@
 
 
 <!-- VIP Modal -->
-
 	<div class="modal fade col-md-12" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
-		<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-dialog modal-sm close-modal" role="document">
 			<div class="modal-content vip-background">
 				<div class="modal-body">				
 					<div class="modal-row">
@@ -843,7 +842,10 @@
 											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
 										</ul>
 									</div>
-									<a href="/membership/buy/vip"><div class="btn-vip-submit">120元开通会员</div></a>
+									<!-- <a href="/membership/buy/vip"><div class="btn-vip-submit">120元开通会员</div></a> -->
+									<div class="close-modal modal-warning-button">
+										知道了
+									</div>
 								</div>								
 							</div>
 						</div>
