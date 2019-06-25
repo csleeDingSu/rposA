@@ -38,7 +38,7 @@
 			<!-- member details -->
 			<div class="information-table">
 				  <div class="col-xs-12">
-				  	<span class="label-title">可兑换红包</span><br />
+				  	<span class="label-title">可兑换金额</span><br />
 				  	<div class="point numbers">
 						<span class="wabao-coin"></span>
 				  	</div> 元
@@ -79,8 +79,8 @@
 			<ul class="list-group">
 
 				<!-- VIP专场 -->
-				<a href= "/vipmember">
-					<li class="list-group-item first-item">
+				<li class="list-group-item first-item">
+					<div class="vipmember">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
 						</div>
@@ -95,123 +95,95 @@
 							<div class="vip-redeemticket">@lang('dingsu.redeem_vip_ticket')</div>
 						@endif
 						VIP专场
-					</li>
-				</a>
-				
-				<!--li class="list-group-item first-item">
-						<div class="icon-wrapper">
-							<div class="icon-vip"></div>
-						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-							<div class="vip-redeemticket">暂未上线</div>
-						VIP专场
-					</li-->
+					</div>
+				</li>
 				
 				<!-- 兑换奖品 -->
-				<div class="redeembtn">
-				<!-- <a href="/redeem"> -->
-					<li class="list-group-item">					
-							<div class="icon-wrapper">
-								<div class="icon-redeem"></div>
-							</div>
-							<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-							兑换红包					
-					</li>
-				<!-- </a> -->
-				</div>
+				<li class="list-group-item">
+					<div class="redeembtn">
+						<div class="icon-wrapper">
+							<div class="icon-redeem"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>兑换奖品
+					</div>
+				</li>
+				
 
 				<!-- 我的奖品 -->
-				<div class="redeemhistorybtn">
-				<!-- <a href="/redeem/history"> -->
-					<li class="list-group-item">
+				<li class="list-group-item">
+					<div class="redeemhistorybtn">
 						<div class="icon-wrapper">
 							<div class="icon-play"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						我的红包
-					</li>
-				<!-- </a> -->
-				</div>
+						我的奖品
+					</div>
+				</li>
 
 				<!-- 我的场次 -->
-				<a href="/round">
-					<li class="list-group-item">
+				<li class="list-group-item">
+					<div class="round">
 						<div class="icon-wrapper">
 							<div class="icon-round"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						我的场次
-					</li>
-				</a>
+					</div>
+				</li>
 
 				<!-- 邀请记录 -->
-				<a href="/invitation_list">
-					<li class="list-group-item">
+				<li class="list-group-item">
+					<div class="invitation_list">
 						<div class="icon-wrapper">
 							<div class="icon-add-friend"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						邀请记录
-					</li>
-				</a>			
+					</div>
+				</li>
 
 				<!-- 挖宝记录 -->
-				<a href="/allhistory">
-					<li class="list-group-item">
+				<li class="list-group-item">
+					<div class="allhistory">
 						<div class="icon-wrapper">
 							<div class="icon-play-history"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						转盘记录
-					</li>
-				</a>
-
-				<!-- 挖宝攻略
-				<a href="/tips">
-					<li class="list-group-item">
-						<div class="icon-wrapper">
-							<div class="icon-tips"></div>
-						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						免单攻略
-					</li>
-				</a>
-				-->
+					</div>
+				</li>
 			</ul>
 		</div>
 
 		<div class="listing-table long">
 			<ul class="list-group">
-
-				<a href="/faq">
-					<li class="list-group-item first-item">
+				<li class="list-group-item first-item">
+					<div class="faq">
 						<div class="icon-wrapper">
 							<div class="icon-faq"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						常见问题
-					</li>
-				</a>
+					</div>
+				</li>
 
-				<a href="#">
-					<li class="list-group-item" id="csBtn">
-						<div class="icon-wrapper">
-							<div class="icon-customer"></div>
-						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						联系客服
-					</li>
-				</a>
+				<li class="list-group-item" id="csBtn">
+					<div class="icon-wrapper">
+						<div class="icon-customer"></div>
+					</div>
+					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+					联系客服
+				</li>
 
-				<a href = "/logout">
-					<li class="list-group-item">					
+				<li class="list-group-item">
+					<div class="logout">					
 						<div class="icon-wrapper">
 							<div class="icon-logout"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						{{ trans('dingsu.logout') }}					
-					</li>
-				</a>				
+						{{ trans('dingsu.logout') }}
+					</div>					
+				</li>
 			</ul>
 		 </div>
 		<!-- end member listing -->
@@ -363,7 +335,31 @@
             } else {
                 $('.wabao-coin').html((current_point));
             }
-			
+
+            $('.vipmember').click(function(){
+				window.location.href = "/vipmember";
+			});
+
+			$('.round').click(function(){
+				window.location.href = "/round";
+			});
+
+			$('.invitation_list').click(function(){
+				window.location.href = "/invitation_list";
+			});
+
+			$('.allhistory').click(function(){
+				window.location.href = "/allhistory";
+			});
+
+			$('.faq').click(function(){
+				window.location.href = "/faq";
+			});
+
+			$('.logout').click(function(){
+				window.location.href = "/logout";
+			});	
+
 			if (wechat_status == 0) {
 				$('.redeembtn').click(function(){
 					window.location.href = "/redeem";
