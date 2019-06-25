@@ -193,7 +193,9 @@ class ProductController extends Controller
 		$wallet    = Wallet::get_wallet_details($memberid);
 		
 		
-		$basic_count = \DB::table('basic_redeem')->where('member_id',$request->memberid)->count();
+		//$basic_count = \DB::table('basic_redeem')->where('member_id',$request->memberid)->count();
+		$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
+		$basic_count = $basic_count->used_quantity + $basic_count->reserved_quantity;
 		
 		if ($basic_count < 1)
 		{
