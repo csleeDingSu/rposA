@@ -74,8 +74,8 @@ html, body {
 }
 
 .point {
-	color: #f45f22;
-	font-size: 17px;
+	color: #ff6262;
+	font-size: 23px;
 	padding-left: 10px;
 }
 
@@ -204,6 +204,8 @@ html, body {
 	text-align: center;
 	cursor: pointer;
 	background:url("/client/images/purchasepoint/btn_confirm_bg.png") no-repeat center center;
+    margin-top: 20px;
+
 }
 
 .error {
@@ -334,7 +336,20 @@ html, body {
 }
 
 .radio-title {
-	color: #7b7b7b;
+	color: #666666;
+	font-size: 16px;
+	padding-top:15px;
+}
+
+.label-reload{
+	color: #666666;
+	font-size: 18px;
+    margin-top: 20px;
+
+}
+
+.other-title {
+	color: #bababa;
 	font-size: 16px;
 	padding-top:15px;
 }
@@ -346,6 +361,10 @@ html, body {
 }
 
 .radio.selected .radio-title{
+    color: #fff;
+}
+
+.radio.selected .other-title{
     color: #fff;
 }
 

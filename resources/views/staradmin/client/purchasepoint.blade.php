@@ -37,7 +37,7 @@
 					</form>
 
 					<div class="col-xs-12">
-						<div class="label-title">充值金额<span class="point">0元</span>
+						<div class="label-reload">充值金额<span class="point">0元</span>
 						</div>
 					</div>
 
