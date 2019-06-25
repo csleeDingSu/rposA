@@ -78,7 +78,7 @@
 			</div>
 			<ul class="list-group">
 
-				<!-- VIP专场 -->
+				<!-- VIP专场 temporary off
 				<li class="list-group-item first-item">
 					<div class="vipmember">
 						<div class="icon-wrapper">
@@ -97,9 +97,10 @@
 						VIP专场
 					</div>
 				</li>
-				
+				-->
+
 				<!-- 兑换奖品 -->
-				<li class="list-group-item">
+				<li class="list-group-item first-item">
 					<div class="redeembtn">
 						<div class="icon-wrapper">
 							<div class="icon-redeem"></div>
