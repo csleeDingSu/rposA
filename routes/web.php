@@ -181,6 +181,10 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/vipmember');
 	} );
 
+	Route::get( '/purchasepoint', function () {
+		return view( 'client/purchasepoint');
+	} );
+
 	$this->post( '/member_update_wechatname', 'ClientController@member_update_wechatname' );
 
 	Route::get( '/verify', function () {
@@ -195,6 +199,8 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get( '/client/profile', 'ClientController@member_profile' )->name( 'client.profile.page' );
 
 	Route::any( '/membership/buy/vip', 'PaymentController@membership_buy_vip' )->name( 'client.membership.buy.vip' );
+
+	Route::any( '/payment/{type}', 'PaymentController@payment' )->name( 'client.payment' );
 
 } );
 

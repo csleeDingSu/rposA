@@ -487,7 +487,7 @@ class PaymentController extends BaseController
         return empty($res->original) ? $res : $res->original;
     }
 
-    public function MonTradeQuery()
+    public function MonTradeQuery_vip()
     {
         $request = new Request;
         $data = payment_transaction::whereNotNull('upgrade_vip_id')
@@ -527,7 +527,7 @@ class PaymentController extends BaseController
         
     }
 
-    public function MonTradeExpired()
+    public function MonTradeExpired_vip()
     {
         $request = new Request;
         $data = payment_transaction::whereNotNull('upgrade_vip_id')
@@ -552,6 +552,136 @@ class PaymentController extends BaseController
             $request->merge(['note' => "订单已过期"]);
             
             $vip_package = json_decode(json_encode($product->reject_vip($request),true));
+            $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
+            $result = ['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]; 
+            var_dump($result);
+            \Log::info(json_encode($result,true));
+        } 
+
+        return "completed";
+        
+    }
+
+    public function payment($type, Request $request)
+    {
+        try {
+
+            $data['status'] = null;
+            $member_id = $request->input('member_id');
+            $pay_amount = $request->input('pay_amount');
+
+            if ($type != 'purchasepoint') {
+
+                $member_id = Auth::guard('member')->user()->id ;
+                $request->merge(['member_id' => $member_id]); 
+                $request->merge(['pay_amount' => 120]); 
+                // $data = ['payment_transaction_id' => '999', 'pay_final_amount' => '120', 'qrcode' => 'abc'];
+            }
+
+            $data = $this->Pay_Index($request);
+
+            if (is_array($data)) {
+                if (!empty($data['payment_transaction_id'])) {
+                    //submit /api/buy-point
+                    $upgrade_vip = $this->submit_buy_point($member_id, $pay_amount);
+                    //store vip upgrade id
+                    if (empty($upgrade_vip->refid)) {
+                        $data = ['payment_transaction_id' => '-1', 'pay_final_amount' => '0', 'qrcode' => null];
+                    } else {
+                        payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip->refid]);    
+                    }                
+                }
+            } else {
+                $data = json_decode($data, true);
+            }
+
+            return view('client/payment', $data);
+
+        } catch (\Exception $e) {
+            //log error
+            \Log::error($e);
+            //return $e->getMessage();
+            return redirect()->back()->with('msg', '订单出现异常,请勿支付,请重新发起订单！');
+        }
+    }
+
+    public function submit_buy_point($member_id, $pay_amount)
+    {
+        $request = new Request;
+        $request->merge(['memberid' => $memberid]); 
+        $request->merge(['points_to_add' => $pay_amount]);
+        $product = new ApiProductController;
+        $res = json_decode(json_encode($product->buy_point($request),true));
+        return empty($res->original) ? $res : $res->original;
+    }
+
+    public function MonTradeQuery()
+    {
+        $request = new Request;
+        $data = payment_transaction::whereNotNull('upgrade_vip_id')
+        ->where(function ($query) {
+            $query->whereNull('trade_state')
+                  ->orWhere(function ($query) {
+                    $query->where('trade_state', '<>', 'success')
+                    ->Where('trade_state', '<>', 'expired');
+                });
+              })
+        ->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())
+        ->skip(0)->take(20)
+        ->get();
+
+        foreach($data as $r) {
+            $request->merge(['pay_orderid' => $r->pay_orderid]);
+            $res = $this->Pay_Trade_query($request);
+            $trade_status = null;
+            $vip_package_result = null;
+            if (!empty($res)) {
+                $_res = json_decode($res);
+                $trade_status = empty($_res->data[0]->trade_state) ? null : $_res->data[0]->trade_state;
+                if ($trade_status == 'SUCCESS') {
+                    //update confirm-vip
+                    $product = new ProductController;
+                    $request->merge(['refid' => $r->upgrade_vip_id]);
+                    $request->merge(['memberid' => $r->member_id]);
+                    $vip_package = json_decode(json_encode($product->confirm_point_purchase($request),true));
+                    $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
+                }
+            }
+            $result = ['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'vip_package_result' => $vip_package_result]; 
+            var_dump($result);
+            \Log::info(json_encode($result,true));
+        }           
+
+        return "completed";
+        
+    }
+
+    public function MonTradeExpired()
+    {
+        $request = new Request;
+        $data = payment_transaction::whereNotNull('upgrade_vip_id')
+        ->where(function ($query) {
+            $query->whereNull('trade_state')
+                  ->orWhere(function ($query) {
+                    $query->where('trade_state', '<>', 'success')
+                    ->Where('trade_state', '<>', 'expired');
+                });
+              })
+        ->where('created_at', '<', Carbon::now()->subMinutes(5)->toDateTimeString())
+        ->skip(0)->take(20)
+        ->get();
+
+        foreach($data as $r) {
+            //update to expired
+            payment_transaction::where('id',$r->id)->update(['trade_state' => 'expired']);
+            //update vip package - reject vip
+            $vip_package_result = null;
+            $product = new ProductController;
+            $request->merge(['refid' => $r->upgrade_vip_id]);
+            $request->merge(['memberid' => $r->member_id]);
+            $request->merge(['note' => "订单已过期"]);
+            
+            $vip_package = json_decode(json_encode($product->reject_point_purchase($request),true));
             $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
             $result = ['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]; 
             var_dump($result);
