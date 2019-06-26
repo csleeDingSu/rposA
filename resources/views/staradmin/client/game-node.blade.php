@@ -1097,17 +1097,17 @@
 
 			$('#viewgamerules').on('click', showGameRules);
 
-			// $('.btn-vip-modal .btn-rules-vip').html('如何赚红包').addClass('btn-rules-normal');
+			$('.btn-vip-modal .btn-rules-vip').html('如何获得红包').addClass('btn-rules-normal');
 
-			// $('.btn-vip-modal').on('click', showGameRules);
+			$('.btn-vip-modal').on('click', showGameRules);
 
 			// $('.btn-vip-modal').click( function() {
 		 //        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
 		 //    });
 
-		 	$('.btn-vip-modal').click( function() {
-		        $('#vip-modal').modal({backdrop: 'static', keyboard: false});
-		    });
+		 	// $('.btn-vip-modal').click( function() {
+		  //       $('#vip-modal').modal({backdrop: 'static', keyboard: false});
+		  //   });
 
 			if (user_id <= 0) {
 				openmodel();
