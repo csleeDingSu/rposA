@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\ProductController as ProductController;
+use App\Http\Controllers\Api\LedgerController;
 use App\Http\Controllers\Api\ProductController as ApiProductController;
+use App\Http\Controllers\ProductController as ProductController;
 use App\helpers\Sha256Generator;
 use App\payment_transaction;
 use Carbon\Carbon;
@@ -583,12 +584,12 @@ class PaymentController extends BaseController
             if (is_array($data)) {
                 if (!empty($data['payment_transaction_id'])) {
                     //submit /api/buy-point
-                    $upgrade_vip = $this->submit_buy_point($member_id, $pay_amount);
-                    //store vip upgrade id
-                    if (empty($upgrade_vip->refid)) {
+                    $p = $this->submit_buy_point($member_id, $pay_amount);
+                    //store ref id
+                    if (empty($p->refid)) {
                         $data = ['payment_transaction_id' => '-1', 'pay_final_amount' => '0', 'qrcode' => null];
                     } else {
-                        payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip->refid]);    
+                        payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $p->refid]);    
                     }                
                 }
             } else {
@@ -610,8 +611,8 @@ class PaymentController extends BaseController
         $request = new Request;
         $request->merge(['memberid' => $memberid]); 
         $request->merge(['points_to_add' => $pay_amount]);
-        $product = new ApiProductController;
-        $res = json_decode(json_encode($product->buy_point($request),true));
+        $ledger = new LedgerController;
+        $res = json_decode(json_encode($ledger->buy_point($request),true));
         return empty($res->original) ? $res : $res->original;
     }
 
@@ -639,12 +640,12 @@ class PaymentController extends BaseController
                 $_res = json_decode($res);
                 $trade_status = empty($_res->data[0]->trade_state) ? null : $_res->data[0]->trade_state;
                 if ($trade_status == 'SUCCESS') {
-                    //update confirm-vip
-                    $product = new ProductController;
+                    //update confirm purchase point
+                    $ledger = new LedgerController;
                     $request->merge(['refid' => $r->upgrade_vip_id]);
                     $request->merge(['memberid' => $r->member_id]);
-                    $vip_package = json_decode(json_encode($product->confirm_point_purchase($request),true));
-                    $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
+                    $p = json_decode(json_encode($ledger->confirm_point_purchase($request),true));
+                    $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $p->original];
                 }
             }
             $result = ['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'vip_package_result' => $vip_package_result]; 
@@ -676,13 +677,13 @@ class PaymentController extends BaseController
             payment_transaction::where('id',$r->id)->update(['trade_state' => 'expired']);
             //update vip package - reject vip
             $vip_package_result = null;
-            $product = new ProductController;
+            $ledger = new LedgerController;
             $request->merge(['refid' => $r->upgrade_vip_id]);
             $request->merge(['memberid' => $r->member_id]);
             $request->merge(['note' => "订单已过期"]);
             
-            $vip_package = json_decode(json_encode($product->reject_point_purchase($request),true));
-            $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
+            $p = json_decode(json_encode($ledger->reject_point_purchase($request),true));
+            $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $p->original];
             $result = ['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]; 
             var_dump($result);
             \Log::info(json_encode($result,true));
