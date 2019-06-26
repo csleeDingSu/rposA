@@ -174,7 +174,12 @@ class MemberController extends Controller
 		return response()->json(['success' => false,'message' => 'unknown member']);
 	}
 	
-	
+	public function check_vip_status(Request $request)
+	{
+		$member = $request->memberid;
+		$record = \App\BasicPackage::check_vip_status($member);
+		return response()->json(['success' => true,'result' => $record]);
+	}
 	
 	
 }

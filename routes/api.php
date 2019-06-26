@@ -118,6 +118,8 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::post('/generate-apikey', 'MemberController@generate_apikey')->name('generate_apikey');
 	
+	Route::post('/check-vip-status', 'MemberController@check_vip_status')->name('check_vip_status');
+	
 	Route::any('/get-product-list', 'BuyProductController@list_package')->name('api_product_list');	
 	Route::post('/buy-product', 'BuyProductController@request_product_upgrade')->name('api_product_request');
 	

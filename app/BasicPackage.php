@@ -262,6 +262,15 @@ class BasicPackage extends Model
 		else return $count;
 	}
 	
+	public static function check_vip_status($memberid)
+	{
+		$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
+		$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
+		
+		
+		return ['basic_redeem_count'=>$basic_count,'vip_redeem_count'=>$vip_count];
+	}
+	
 }
 
 
