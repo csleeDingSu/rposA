@@ -61,6 +61,14 @@ class BuyProductController extends Controller
 		{
 			return response()->json(['success' => false, 'message' => 'no available quantity to buy']);
 		}
+		
+		$wallet      = Wallet::get_wallet_details($memberid);
+		
+		if ($package->point_to_redeem < $wallet->point)
+		{
+			return response()->json(['success' => false, 'message' => 'not enough point to redeem']);
+		}
+		
 				
 		$setting   = \App\Admin::get_setting();
 		
@@ -75,7 +83,7 @@ class BuyProductController extends Controller
 							,'updated_at'    => $now
 							,'member_id'     => $memberid
 							,'redeem_state'  => 1
-							,'used_point'    => 0
+							,'used_point'    => $package->point_to_redeem
 							,'ref_note'      => $request->ref_note
 						];
 				$id = BuyProduct::save_redeemed($data);
@@ -90,7 +98,7 @@ class BuyProductController extends Controller
 							,'updated_at'    => $now
 							,'member_id'     => $memberid
 							,'redeem_state'  => 1
-							,'used_point'    => $package->price
+							,'used_point'    => $package->point_to_redeem
 							,'ref_note'      => $request->ref_note
 						];
 				$id = BuyProduct::save_redeemed($data);
