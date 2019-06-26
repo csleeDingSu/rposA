@@ -252,12 +252,12 @@ class BuyProductController extends BaseController
 		
 		
 		//die();
-		$data['page'] = 'BuyProduct.pendinglist.list'; 	
+		$data['page'] = 'buyproduct.pendinglist.list'; 	
 				
 		$data['result'] = $result; 
 		
 		if ($request->ajax()) {
-            return view('BuyProduct.pendinglist.ajaxlist', ['result' => $result])->render();  
+            return view('buyproduct.pendinglist.ajaxlist', ['result' => $result])->render();  
         }
 					
 		return view('main', $data);
@@ -286,13 +286,13 @@ class BuyProductController extends BaseController
 		
 		$result =  $result->orderby('id','DESC')->paginate(30);
 		
-		$data['page'] = 'BuyProduct.history.list'; 	
+		$data['page'] = 'buyproduct.history.list'; 	
 				
 		$data['result'] = $result; 
 		
 		
 		 if ($request->ajax()) {
-            return view('BuyProduct.history.ajaxlist', ['result' => $result])->render();  
+            return view('buyproduct.history.ajaxlist', ['result' => $result])->render();  
         }
 					
 		return view('main', $data);
@@ -302,7 +302,7 @@ class BuyProductController extends BaseController
 	 * @todo:- get random length from config
 	 *
 	 **/
-	public function confirm_BuyProduct(Request $request)
+	public function confirm_buyproduct(Request $request)
     {
 		$id = $request->id;
 		$record = BuyProduct::get_basic_package($id);
@@ -324,7 +324,7 @@ class BuyProductController extends BaseController
 		}	
 	}
 	
-	public function reject_BuyProduct(Request $request)
+	public function reject_buyproduct(Request $request)
     {
 		//return false;
 		
@@ -378,7 +378,7 @@ class BuyProductController extends BaseController
 	
 	public function backorder()
     {
-		$data['page']    = 'BuyProduct.backorder';
+		$data['page']    = 'buyproduct.backorder';
 		$data['package'] = BuyProduct::where('status',1)->get(); 
 		
 		return view('main', $data);		
