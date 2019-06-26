@@ -62,7 +62,7 @@ class BuyProductController extends Controller
 			return response()->json(['success' => false, 'message' => 'no available quantity to buy']);
 		}
 		
-		$wallet      = Wallet::get_wallet_details($memberid);
+		$wallet  = Wallet::get_wallet_details($memberid);
 		
 		if ($package->point_to_redeem < $wallet->point)
 		{
