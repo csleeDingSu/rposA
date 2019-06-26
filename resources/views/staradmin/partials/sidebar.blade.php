@@ -130,6 +130,30 @@
 				</ul>
 			</div>
 		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#uibuyproduct" aria-expanded="false" aria-controls="uibuyproduct">
+              <i class="menu-icon  icon-layers   text-info"></i>
+              <span class="menu-title"> @lang('dingsu.buyproduct')  @lang('dingsu.list')</span>
+              <i class="menu-arrow"></i>
+            </a>
+		
+			<div class="collapse" id="uibuyproduct">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/buyproduct/list">@lang('dingsu.buyproduct')  @lang('dingsu.list')</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/buyproduct/redeem-list">@lang('dingsu.pending')  @lang('dingsu.list')</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="/buyproduct/redeem-history">@lang('dingsu.history')</a>
+					</li>
+					
+				</ul>
+			</div>
+		</li>
 
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#redeem" aria-expanded="false" aria-controls="redeem">
