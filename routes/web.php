@@ -561,7 +561,24 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	Route::get( '/basicpackage/backorder', 'BasicPackageController@backorder' )->name( 'basicpackage_backorder' );	
 	
-	Route::post('/basicpackage/confirm-backorder', 'BasicPackageController@confirm_backorder')->name('store_basicpackage_backorder');	
+	Route::post('/basicpackage/confirm-backorder', 'BasicPackageController@confirm_backorder')->name('store_basicpackage_backorder');
+	
+	
+	
+	//Buy product 
+	Route::get('/buyproduct/', 'BuyProductController@list_product')->name('buyproduct_listall');
+	Route::get('/buyproduct/list', 'BuyProductController@list_product')->name('buyproduct_list');	
+	Route::post('/buyproduct/save', 'BuyProductController@save_product')->name('buyproduct_save');
+	Route::get('/buyproduct/get-package', 'BuyProductController@getBuyProduct')->name('buyproduct_get');	
+	Route::delete('/buyproduct/delete', 'BuyProductController@delete_product')->name('buyproduct_remove');	
+	Route::get('/buyproduct/get-quantity', 'BuyProductController@get_product_quantity')->name('get_buyproduct_quantity');	
+	Route::post('/buyproduct/adjust-quantity', 'BuyProductController@adjust_product_quantity')->name('post_buyproduct_adjustquantity');	
+	//redeem list	
+	Route::get('/buyproduct/redeem-list', 'BuyProductController@list_redeem_product')->name('buyproduct_redeem_list');
+	Route::get('/buyproduct/redeem-history', 'BuyProductController@list_product_history')->name('buyproduct_redeem_history');
+	
+	Route::post('/buyproduct/redeem-confirm', 'BuyProductController@confirm_product')->name('buyproduct_redeem_confirm');	
+	Route::post('/buyproduct/redeem-reject', 'BuyProductController@reject_product')->name('buyproduct_redeem_reject');
 
 } );
 //END
