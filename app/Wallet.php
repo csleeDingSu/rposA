@@ -850,6 +850,22 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		event(new \App\Events\EventWalletUpdate($memberid));
 		return ['status'=>$status,'point'=>$current_point,'balance'=>$current_balance,'acupoint'=>$current_life_acupoint];
 	}
+	
+	public static function add_topup_request($chunk)
+	{
+		$id = \DB::table('request_topup')->insertGetId($chunk);
+		return $id;
+	}
+	
+	public static function update_topup_request($id, $data = [])
+	{
+		if ($id)
+		{
+			\DB::table('request_topup')
+            	->where('id', $id)
+            	->update($data);
+		}		
+	}
 
 
 

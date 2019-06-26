@@ -123,6 +123,10 @@ Route::group(['namespace' => 'Api'],function()
 	Route::any('/get-product-list', 'BuyProductController@list_package')->name('api_product_list');	
 	Route::post('/buy-product', 'BuyProductController@request_product_upgrade')->name('api_product_request');
 	
+	Route::post('/buy-point', 'LedgerController@buy_point')->name('api_buy_point');
+	Route::post('/confirm-point-purchase', 'LedgerController@confirm_point_purchase')->name('api_confirm_point_purchase');
+	Route::post('/reject-point-purchase', 'LedgerController@reject_point_purchase')->name('reject_point_purchase');
+	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
 Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');
