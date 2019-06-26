@@ -55,6 +55,7 @@ function getToken(){
             getProductList(data.access_token);
             getPosts(page, data.access_token);
             scrollBottom(data.access_token);
+            getNewProductList(data.access_token);
         }      
     });
 }
@@ -107,171 +108,6 @@ function getProductList(token) {
 
             } else {
                 var current_life = parseInt($(".nTxt").html());
-
-                /*$.each(packages, function(i, item) {
-                    var available_quantity = item.available_quantity;
-                    var used_quantity = item.used_quantity;
-                    var reserved_quantity = item.reserved_quantity;
-                    var cannot_redeem = false;
-                    var cls_cannot_redeem = '';
-
-                    if(available_quantity === null){
-                        available_quantity = 0;
-                    }
-
-                    if(used_quantity === null){
-                        used_quantity = 0;
-                    }
-
-                    if(reserved_quantity === null){
-                        reserved_quantity = 0;
-                    }
-
-                    if (item.min_point > parseInt(data.current_point)){
-                        cannot_redeem = true;
-                        cls_cannot_redeem = 'btn-cannot-redeem';
-                    }
-
-                    if(available_quantity == 0){
-                        cls_cannot_redeem = 'btn-cannot-redeem';
-                    }
-
-                    var total_used = parseInt(used_quantity) + parseInt(reserved_quantity) || 0;
-
-                    //console.log(item);
-                        html += '<div class="row">' +
-                                    '<div class="col-xs-3 column-1">' +
-                                        '<img class="img-voucher" src="'+ item.package_picurl +'" alt="'+item.package_name+'">' +
-                                    '</div>' +
-                                    '<div class="col-xs-6 column-2">' +                               
-                                        '<div class="description">' + item.package_name + '</div>';
-                                        html += '<div class="note"></div>';
-
-                                html +='<div class="icon-coin-wrapper">' +
-                                            '<div class="icon-coin"></div>' +
-                                        '</div>' +
-                                        '<div class="w-coin">'+ item.min_point +'</div>' +
-                                        '<div style="clear: both;"></div>' +
-                                        '<div class="remaining">已兑换 '+ total_used +' 张</div>' +
-                                    '</div>' +
-                                    '<div class="col-xs-3 column-3">' +
-                                        '<div class="btn-redeem openeditmodel_p'+ i + ' ' + cls_cannot_redeem + '">兑换</div>' +
-                                    '</div>';
-
-                                html +='</div>';
-
-
-                    if(item.package_type == 1){
-                        htmlmodel += '<!-- Modal starts -->' +
-                                '<div class="modal fade col-lg-12" id="viewvouchermode_p'+ i +'" tabindex="-1" >' +
-                                    '<div class="modal-dialog modal-sm" role="document">' +
-                                        '<div class="modal-content">' +
-                                            '<div class="modal-body">' +
-                                                '<div class="modal-row">' +
-                                                    '<div class="modal-img-voucher">' +
-                                                        '<img src="' + item.package_picurl +'" alt="' + item.package_name + '" class="img-voucher" />' +
-                                                    '</div>' +
-
-                                                    '<div class="wrapper modal-full-height">' +
-                                                        '<div class="modal-card">' +
-                                                            '<div class="modal-center">' +
-                                                                '兑换本产品需要消耗:' +
-                                                            '</div>' +
-                                                        '</div>' +
-
-                                                        '<div class="modal-card">' +
-                                                                '<div class="icon-coin-wrapper modal-icon">' +
-                                                                    '<div class="icon-coin"></div>' +
-                                                                '</div>' +
-                                                                '<div class="wabao-price">'+ item.min_point +'金币</div>' +
-                                                        '</div>' +
-
-                                                        '<div class="modal-card">' +
-                                                            '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 金币</div>' +
-                                                        '</div>' +
-
-                                                        '<div id="error-'+ item.id + '" class="error"></div>';
-
-                                                        if ((available_quantity > 0) && (item.min_point <= parseInt(data.current_point))) {
-
-                                                            htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeemVip(\''+ token +'\', \''+ item.id +'\');">' +
-                                                            '<a class="btn btn_submit" >确定兑换</a>' +
-                                                            '</div>' +
-                                                            '<div>' +
-                                                                '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
-                                                            '</div>';
-                                                        } else {
-                                                            htmlmodel += '<div>' +
-                                                                '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不能兑换</a>' +
-                                                            '</div>';
-                                                        }
-
-                                                         htmlmodel += '</div>' +
-                                                '</div>' +
-                                            '</div>' +
-                                        '</div>' +
-                                    '</div>' +
-                                '</div>' + 
-                                '<!-- Modal Ends -->';
-                    } else if(item.package_type == 2){
-                        htmlmodel += '<!-- Modal starts -->' +
-                                        '<div class="modal fade col-lg-12" id="viewvouchermode_p'+ i +'" tabindex="-1" >' +
-                                            '<div class="modal-dialog modal-sm-vip" role="document">' +
-                                                '<div class="btn-close-wrapper">' +
-                                                    '<img class="closeeditmodel_p'+ i +'" src="/client/images/btn-close-modal.png" width="22" height="22" />' +
-                                                '</div>' +
-                                                '<div class="modal-content vip-content">' +
-
-                                                    '<div class="wrapper modal-full-height bg-vip-copy modal-body">' +
-                                                        '<span class="vip-copy">复制淘口令，打开淘宝APP购买<br />' +
-                                                        '每' + item.package_price + '元可兑换一次VIP入场券</span>' +
-                                                        '<div class="modal-card">' +
-                                                            '<div id="cut" class="copyvoucher">¥ K8454DFGH45H</div>' +
-                                                            '<div class="cutBtn">一键复制</div>' +
-                                                        '</div>' +
-                                                    '</div>' +
-                                                    
-                                                    '<div class="modal-body">' +
-                                                        '<div class="modal-row">' +
-                                                            '<ul class="nav nav-pills">' +
-                                                              '<li class="active take-all-space-you-can"><a data-toggle="tab" href="#single-tab">单张提交</a></li>' +
-                                                              '<li class="take-all-space-you-can"><a data-toggle="tab" href="#multiple">批量提交</a></li>' +
-                                                            '</ul>' +
-                                                            '<div class="tab-content">' +
-                                                              '<div id="single-tab" class="tab-pane fade in active vip-tab-pane">' +
-                                                                '卡号： <input id="txt_cardno" type="text" name="card_no" placeholder="请输入卡号" /><br /><hr>' +
-                                                                '密码： <input id="txt_password" type="text" name="password" placeholder="请输入密码" /><br /><hr>' +
-                                                                '<span class="modal-description">注意事项：请提交面值为100元的话费券，如果提交多次错误花费券，您的账号会被封号</span>' +
-                                                                '<div class="modal-card">' +
-                                                                    '<div id="request-'+ item.id +'" onClick="requestVip(\'' + token + '\', \''+ item.id +'\', \'single\', '+ i +');">' +
-                                                                        '<a class="btn btn-submit-vip">提交</a>' +
-                                                                    '</div>' +
-                                                                '</div>' +
-                                                              '</div>' +
-
-                                                              '<div id="multiple" class="tab-pane fade vip-tab-pane">' +
-                                                                '<textarea id="txa_card" placeholder="卡号与密码之间用空额隔开，每张一行用回车隔开"></textarea><br />' +
-                                                                '<div class="textarea-link-wrapper">' +
-                                                                '<div class="textarea-link open-card-no-modal">卡密示例</div>' +
-                                                                '</div>' +
-                                                                '<span class="modal-description">注意事项：请提交面值为100元的话费券，如果提交多次错误花费券，您的账号会被封号</span>' +
-                                                                '<div class="modal-card">' +
-                                                                    '<div id="request-'+ item.id +'" onClick="requestVip(\'' + token + '\', \''+ item.id +'\', \'multiple\', '+ i +');">' +
-                                                                        '<a class="btn btn-submit-vip" >提交</a>' +
-                                                                    '</div>' +
-                                                                '</div>' +
-                                                              '</div>' +
-                                                            '</div>' +
-
-                                                            
-                                                        '</div>' +
-                                                    '</div>' +
-                                                '</div>' +
-                                            '</div>' +
-                                        '</div>' +
-                                        '<!-- Modal Ends -->';                
-                    }
-                });*/
 
                 $.each(records, function(i, item) {
                     var available_quantity = item.available_quantity;
@@ -407,6 +243,7 @@ function getProductList(token) {
                     $('#card-no-modal').modal('hide');
                 });
             }
+
         } // end success
     }); // end $.ajax
 } // end function
@@ -747,5 +584,141 @@ function confirmredeemvip(token,id,code)
     });
 	
 	
+}
+
+function getNewProductList(token) {
+    var member_id = $('#hidUserId').val();
+
+    $.ajax({
+        type: 'GET',
+        url: "/api/get-product-list", 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        success: function(data) {
+            //console.log(data);
+            var records = data.records;
+            var packages = data.packages;
+            var html = '';
+            var htmlmodel = '';
+
+            if(records.length === 0){
+                //do nothing
+                
+            } else {
+                $.each(records, function(i, item) {
+                    var available_quantity = item.available_quantity;
+                    var used_quantity = 0;
+                    var reserved_quantity = item.reserved_quantity;
+                    var cannot_redeem = false;
+                    var cls_cannot_redeem = '';
+
+                    if(available_quantity === null){
+                        available_quantity = 0;
+                    }
+
+                    if(used_quantity === null){
+                        used_quantity = 0;
+                    }
+
+                    if(reserved_quantity === null){
+                        reserved_quantity = 0;
+                    }
+
+                    if(available_quantity == 0){
+                        cls_cannot_redeem = 'btn-cannot-redeem';
+                    }
+
+                    var total_used = parseInt(used_quantity) + parseInt(reserved_quantity) || 0;
+
+                    html += '<div class="row">' +
+                                '<div class="col-xs-3 column-1">' +
+                                    '<img class="img-voucher" src="'+ item.picture_url +'" alt="'+item.name+'">' +
+                                '</div>' +
+                                '<div class="col-xs-6 column-2">' +
+                                    '<div class="description">' + item.name + '<div class="description-info">' + item.description + '</div></div>' +
+                                    '<div class="remaining">已兑换 '+ total_used +' 张</div>' +
+                                '</div>' +
+                                '<div class="col-xs-3 column-3">' +
+                                    '<div class="btn-redeem openeditmodel_'+ i + ' ' + cls_cannot_redeem +'">兑换</div>' +
+                                '</div>';
+
+                            html += '</div>';
+
+                    htmlmodel += '<!-- Modal starts -->' +
+                            '<div class="modal fade col-lg-12" id="viewvouchermode_'+ i +'" tabindex="-1" >' +
+                                '<div class="modal-dialog modal-sm" role="document">' +
+                                    '<div class="modal-content">' +
+                                        '<div class="modal-body">' +
+                                            '<div class="modal-row">' +
+                                                '<div class="modal-img-voucher">' +
+                                                    '<img src="' + item.picture_url +'" alt="alipay voucher 50" class="img-voucher" />' +
+                                                '</div>' +
+
+                                                '<div class="wrapper modal-full-height">' +
+                                                    '<div class="modal-card">' +
+                                                        '<div class="modal-center">' +
+                                                            '兑换本产品需要消耗:' +
+                                                        '</div>' +
+                                                    '</div>' +
+
+                                                    '<div class="modal-card">' +
+                                                            // '<div class="icon-coin-wrapper modal-icon">' +
+                                                            //     '<div class="icon-coin"></div>' +
+                                                            // '</div>' +
+                                                            '<div class="wabao-price">'+ item.price +' 元</div>' +
+                                                    '</div>' +
+
+                                                    '<div class="modal-card">' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point/10) +' 元</div>' +
+                                                    '</div>' +
+
+                                                    '<div id="error-'+ item.id + '" class="error"></div>';
+
+                                                    if ((available_quantity > 0) && item.min_point <= parseInt(data.current_point)) {
+
+                                                        htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
+                                                        '<a class="btn btn_submit" >确定兑换</a>' +
+                                                        '</div>' +
+                                                        '<div>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
+                                                        '</div>';
+                                                    } else {
+                                                        htmlmodel += '<div>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不能兑换</a>' +
+                                                        '</div>';
+                                                    }
+
+                                                     htmlmodel += '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' + 
+                            '<!-- Modal Ends -->';
+                });
+
+                $('#prize').append(html);
+                $( ".cardFull" ).append(htmlmodel);
+
+                $.each(records, function(i, item) {
+                    $('.openeditmodel_' + i).click(function() {
+                        $('#viewvouchermode_' + i).modal('show');
+                    });
+                });
+
+                $('.open-card-no-modal').click(function() {
+                    $('#card-no-modal').modal('show');
+                });
+
+                $('.btn-close-card').click(function() {
+                    $('#card-no-modal').modal('hide');
+                });
+            }
+
+        } // end success
+    }); // end $.ajax
 }
         

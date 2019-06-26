@@ -60,7 +60,7 @@ class payment extends Command
                 $res = $_Controller->MonTradeQuery_vip();
             } else if ($option == 'trade_expired_vip') {
                 $res = $_Controller->MonTradeExpired_vip();
-            {
+            } else {
                 $res = "do nothing [option => trade_query, trade_expired, trade_query_vip, trade_expired_vip]";
             }
 
