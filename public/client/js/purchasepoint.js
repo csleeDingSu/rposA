@@ -5,7 +5,7 @@ $(document).ready(function () {
     getPackagePurchasePoint();
 
     $('.button-submit').click(function(){
-        purchase();
+        purchasePoint();
     });
 
     var clipboard = new ClipboardJS('.cutBtn', {
@@ -55,45 +55,42 @@ function getPackagePurchasePoint() {
         var val = $(this).attr('data-value');
         // var price = Math.trunc($(this).attr('data-price'));
         var price = $(this).attr('package-price');
-        //alert(val);
         $('#radio-value').val(val);
-        $('.point').html(price +'元');
-        $('._point').html(price);
+        $('#point').val(price);
+
+        if (price > 0) {
+            $('#point').prop('readonly', true);
+            $('._point').html(price);
+            $('#point').attr('style', 'width: ' + (($('#point').val().length * 5) - 5) + '%;');
+        } else {
+            $('._point').html(0);
+            $('#point').focus();  
+            $('#point').prop('readonly', false);
+            $('#point').attr('style', 'width: 30%');
+        }
+
     });        
 }
 
-function purchase(){
+function purchasePoint(){
     var id = $('#hidUserId').val();
     var txt_name = null; //$('#txt_name').val();
     var packageid = $('#radio-value').val();
+    var pay_amount = $('#point').val();
 
     if(packageid <= 0){
-        $('.error').html('未选择场次无法提交，请选择场次');
+        $('.error').html('未选择金额无法提交，请选择金额');
         $('.error').show();
     } else {
-        $.ajax({
-            type: 'POST',
-            url: "/api/buy-basic-package",
-            data: { 'memberid': id, 'packageid': packageid, 'ref_note': txt_name },
-            dataType: "json",
-            beforeSend: function( xhr ) {
-                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            },
-            error: function (error) { console.log(error.responseText) },
-            success: function(data) {
-                
-                if(data.success) {
-                    $('.error').hide();
-                    $('#modal-successful').modal();
-                    setTimeout(function(){ 
-                        $('#modal-successful').modal('hide');
-                        window.location.href = "/round";
-                    }, 2000);
-                } else {
-                    $('.error').html(data.message);
-                    $('.error').show();
-                }
-            }
-        });
+
+        var url = '/payment/purchasepoint';
+        var form = $('<form action="' + url + '" method="post">' +
+          '<input type="text" name="member_id" value="' + id + '" />' +
+          '<input type="text" name="packageid" value="' + packageid + '" />' +
+          '<input type="text" name="pay_amount" value="' + pay_amount + '" />' +
+          '</form>');
+        $('body').append(form);
+        form.submit();
+
     }
 }

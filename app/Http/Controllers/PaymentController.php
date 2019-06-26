@@ -562,4 +562,45 @@ class PaymentController extends BaseController
         
     }
 
+    public function payment($type, Request $request)
+    {
+        try {
+
+            $data['status'] = null;
+
+            if ($type != 'purchasepoint') {
+
+                $member_id = Auth::guard('member')->user()->id ;
+                $request->merge(['member_id' => $member_id]); 
+                $request->merge(['pay_amount' => 120]); 
+                // $data = ['payment_transaction_id' => '999', 'pay_final_amount' => '120', 'qrcode' => 'abc'];
+            }
+
+            $data = $this->Pay_Index($request);
+
+            if (is_array($data)) {
+                if (!empty($data['payment_transaction_id'])) {
+                    //submit vip upgrade
+                    $upgrade_vip = $this->submit_vip_upgrade($member_id);
+                    //store vip upgrade id
+                    if (empty($upgrade_vip->refid)) {
+                        $data = ['payment_transaction_id' => '-1', 'pay_final_amount' => '0', 'qrcode' => null];
+                    } else {
+                        payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip->refid]);    
+                    }                
+                }
+            } else {
+                $data = json_decode($data, true);
+            }
+
+            return view('client/payment', $data);
+
+        } catch (\Exception $e) {
+            //log error
+            \Log::error($e);
+            //return $e->getMessage();
+            return redirect()->back()->with('msg', '订单出现异常,请勿支付,请重新发起订单！');
+        }
+    }
+
 }

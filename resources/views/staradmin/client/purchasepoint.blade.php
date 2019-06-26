@@ -37,13 +37,21 @@
 					</form>
 
 					<div class="col-xs-12">
-						<div class="label-reload">充值金额<span class="point">0元</span>
+						<div class="label-reload">充值金额
+							<input id="point" placeholder="0.00" type="number" maxlength="8"/>
+							<!-- <span class="point">0.00</span> -->
+							<span class="yuan">元</span>
 						</div>
 					</div>
 
 					<div class="col-xs-12">				
 						<div class="button-submit">确认充值</div>
 						<div class="error"></div>
+						@if (Session::has('msg'))
+							<div class="alert alert-warning" role="alert">	
+								{{Session::get('msg')}}
+							</div>
+						@endif
 					</div>
 
 				</div>

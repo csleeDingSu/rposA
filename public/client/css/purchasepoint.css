@@ -75,8 +75,34 @@ html, body {
 
 .point {
 	color: #ff6262;
-	font-size: 23px;
+	font-size: 27px;
 	padding-left: 10px;
+}
+
+.yuan {
+	color: #ff6262;
+	font-size: 27px;
+}
+
+#point {
+	color: #ff6262;
+	font-size: 27px;
+    border: none; 
+    text-align: right;
+    width:20%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ff6262;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #ff6262;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #ff6262;
 }
 
 .text-right {
@@ -345,7 +371,7 @@ html, body {
 	color: #666666;
 	font-size: 18px;
     margin-top: 20px;
-
+    float: left;
 }
 
 .other-title {
