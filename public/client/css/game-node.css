@@ -468,7 +468,8 @@ body{
 
 .btn-rules-normal {
 	/*width: 200px;*/
-	margin-left: 0.5rem;
+	/*margin-left: 0.5rem;*/
+    text-align: center;
 }
 
 .balance {
