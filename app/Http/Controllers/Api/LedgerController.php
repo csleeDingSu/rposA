@@ -79,7 +79,7 @@ class LedgerController extends Controller
 		
 		if ($result)
 		{
-			$data    = ['confirmed_at'=>now(),'updated_at'=>now(),'status'=>3,'notes'=>'rejected by admin'];
+			$data    = ['confirmed_at'=>now(),'updated_at'=>now(),'status'=>3,'reject_notes'=>$request->notes];
 			$result  = Wallet::update_topup_request($result->id, $data);
 			
 			return ['success' => true];
