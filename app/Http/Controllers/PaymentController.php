@@ -680,7 +680,7 @@ class PaymentController extends BaseController
             $ledger = new LedgerController;
             $request->merge(['refid' => $r->upgrade_vip_id]);
             $request->merge(['memberid' => $r->member_id]);
-            $request->merge(['note' => "订单已过期"]);
+            $request->merge(['notes' => "订单已过期"]);
             
             $p = json_decode(json_encode($ledger->reject_point_purchase($request),true));
             $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $p->original];
