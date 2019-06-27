@@ -45,7 +45,7 @@
 							<span class="spanAcuPointAndBalance">0</span>元
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
+						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -74,10 +74,10 @@
 					</a>
 					<div style="clear:both"></div>
 				</div>
-				<div class="btn-rules-wrapper btn-info-vip-wrapper">
+				<!--div class="btn-rules-wrapper btn-info-vip-wrapper">
 						<div class="btn-info-vip">99%稳赢玩法</div>
 					<div style="clear:both"></div>
-				</div>
+				</div-->
 			</div>
 			@else
 			<div class="box" id="btn-vip-wrapper">
@@ -113,7 +113,7 @@
 	</div>
 	<!-- end information table -->
 
-	<h2 class="strikethrough"><span>已抽奖<div class="span-play-count">0</div>次</span></h2>
+	<!--h2 class="strikethrough"><span>已抽奖<div class="span-play-count">0</div>次</span></h2-->
 
 	<!-- swiper iframe -->
 	<div class="swiper-container">
@@ -229,7 +229,7 @@
 		<div class="carousel-cell">
 			<div class="frame-wrapper">
 				<div id="wheel_banner">
-					<img src="{{ asset('/client/images/wheel/banner.png') }}" />
+					<img src="{{ asset('/client/images/vip/banner.png') }}" />
 				</div>
 				<div id="wheel_container" class="big-border">
 					<div class="small-border g6">
@@ -265,7 +265,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">开始抽奖</div>
+				<div id="txtCounter" class="middle-label">幸运转盘</div>
 				<div class="DB_G_hand start-game"></div>
 		    </div>
 		</div>
@@ -329,28 +329,23 @@
 	<section class="barWrapper">
       	<article class="barBox">
 	      <div class="rule"></div>
-	        
+	      <div>
+	      	<div class="col-xs-6 div-today">今日盈亏：</div>
+	      	<div class="col-xs-6 btn-info-vip">必看99%中奖攻略></div>
+	      </div>
 	      <div class="barIn">
-		        <div class="bet-box">
-		        	<input class="button-bet" type="text" />
+		        <div class="bet-box long-box">
+		        	<div class="bet-background">
+		        		<div class="btn-minus"></div>
+		        		<div class="span-bet">0</div>
+		        		<div class="btn-add"></div>
+		        	</div>
 		        </div>
 		        <div class="bet-box">
 		        	<div class="button-bet" data-value="10"><span class="plus-sign">+</span>10</div>
 		        </div>
 		        <div class="bet-box">
-		        	<div class="button-bet" data-value="100"><span class="plus-sign">+</span>100</div>
-		        </div>
-		        <div class="bet-box">
-		        	<div class="button-bet" data-value="1000"><span class="plus-sign">+</span>1000</div>
-		        </div>
-		        <div class="bet-box long-box">
-		        	竞猜金币: <span class="span-bet">0</span>
-		        </div>
-		        <div class="bet-box">
-		        	<div class="button-bet-all">全投</div>
-		        </div>
-		        <div class="bet-box">
-		        	<div class="button-bet-reset">清零</div>
+		        	<div class="button-bet-reset">清空</div>
 		        </div>
 	      </div>
 	      <div style="clear: both;"></div>

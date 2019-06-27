@@ -47,9 +47,9 @@
 }
 
 .barIn .bet-box {
-	margin: 0.2rem auto 0.1rem auto;
+	margin: 0.3rem auto 0.3rem auto;
 	width: 1.62rem;
-	height: 0.5rem;
+	height: 0.7rem;
 	float: left;
 }
 
@@ -63,46 +63,40 @@
 
 .barIn .long-box {
 	margin-left: 0.2rem;
+	margin-right: 0.2rem;
 	margin-bottom: 0.4rem;
-	width: 3.24rem;
-	text-align: left;
-	font-size: 15px;
-	color: #e4caff;
+	width: 3rem;
+	text-align: center;
+	color: #ffcc29;
 	padding-left: 0.1rem;
 }
 
-.button-bet {
+.bet-background {
+	background:url(/client/images/vip/bet-background.png) no-repeat;
+	width: 324px;
+	height: 78px;
+	transform: scale(0.45); 
+	-webkit-transform: scale(0.45);
+	-webkit-transform-origin:left top;
+	padding-top: 8px;
+}
+
+.button-bet, .button-bet-reset {
 	background:url(/client/images/vip/bet-default.png) no-repeat;
-	width: 142px;
-	height: 54px;
+	width: 134px;
+	height: 68px;
 	z-index: 200;
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
-	color: #b297ce;
+	color: #a45500;
 	font-size: 30px;
-	padding-top: 5px;
+	padding-top: 10px;
 	cursor: pointer;
 }
 
-.button-bet:hover {
+.button-bet:hover, .button-bet-reset:hover {
 	background:url(/client/images/vip/bet-selected.png) no-repeat;
-	color: #e4caff;
-}
-
-.button-bet-all, .button-bet-reset {
-	border-radius: 5px;
-	background: #b45df4;
-	color: white;
-	font-size: 14px;
-	padding: 0.1rem;
-	margin-right: 0.2rem;
-	cursor: pointer;
-}
-
-.button-bet-reset {
-	background: transparent;
-	border: 1px solid #d7b1ff;
 }
 
 .plus-sign {
@@ -110,6 +104,51 @@
 }
 
 .span-bet {
-	color: #fff000;
-	font-size: 23px;
+	color: #ffcc29;
+	font-size: 40px;
+	float: left;
+	width: 190px;
+}
+
+.btn-minus {
+	float: left;
+	background:url(/client/images/vip/bet-minus.png) no-repeat;
+	width: 52px;
+	height: 55px;
+	margin-left: 15px;
+	margin-top: 3px;
+	cursor: pointer;
+}
+
+.btn-minus:hover {
+	background:url(/client/images/vip/bet-minus-hover.png) no-repeat;
+}
+
+.btn-add {
+	float: right;
+	background:url(/client/images/vip/bet-add.png) no-repeat;
+	width: 52px;
+	height: 55px;
+	margin-top: 3px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.btn-add:hover {
+	background:url(/client/images/vip/bet-add-hover.png) no-repeat;
+}
+
+.div-today {
+	padding-left: 0;
+	font-size: 14px;
+	font-weight: 700;
+	color: #fff;
+	text-align: left;
+	padding-bottom: 10px;
+}
+
+.icon-sign {
+	width: 20px;
+	height: 20px;
+	margin-right: 2px;
 }

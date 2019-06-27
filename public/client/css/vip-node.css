@@ -1,3 +1,7 @@
+.card-flex .cardBody {
+    background-color: #8c35d8;
+}
+
 .btn-rules-wrapper {
 	width: 120px;
 	height: 40px;
@@ -12,22 +16,12 @@
 }
 
 .btn-info-vip {
-	background: url('/client/images/vip/vip-info.png') no-repeat;
-	width: 200px;
-	height: 80px;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
-	-webkit-transform-origin:left top;
-	padding: 2px 5px 0px 15px;
-	font-size: 24px;
+	text-decoration: underline;
+	font-size: 14px;
+	color: #ffc600;
 	cursor: pointer;
-	color: #c24900;
-	margin-top: -3px;
-	text-align: left;
-	padding-left: 30px;
-	padding-top: 20px;
-	border-top-left-radius: 40px;
-	border-bottom-left-radius: 40px;
+	padding-right: 0;
+	font-weight: 700;
 }
 
 .btn-rectangle, .btn-rectangle:active {
@@ -149,4 +143,21 @@
 	margin: 10px 0;
 }
 
+#wheel_banner img {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 100; 
+	width:320px;
+	height:334px;
+	top: -10px;
+}
 
+@media only screen and (max-width: 360px) {
+	#wheel_banner img {
+		width:280px;
+		height:292px;
+	}
+}
