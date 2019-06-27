@@ -83,7 +83,7 @@ class PaymentController extends BaseController
         $request->merge(['member_id' => $member_id]); 
         $request->merge(['pay_amount' => 120]); 
         // $data = ['payment_transaction_id' => '999', 'pay_final_amount' => '120', 'qrcode' => 'abc'];
-        $data = $this->Pay_Index($request);
+        $data = $this->Pay_Index($request, 'upgrade_vip');
 
         if (is_array($data)) {
             if (!empty($data['payment_transaction_id'])) {
@@ -93,7 +93,7 @@ class PaymentController extends BaseController
                 if (empty($upgrade_vip->refid)) {
                     $data = ['payment_transaction_id' => '-1', 'pay_final_amount' => '0', 'qrcode' => null];
                 } else {
-                    payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $upgrade_vip->refid]);    
+                    payment_transaction::where('id', $data['payment_transaction_id'])->update(['refid' => $upgrade_vip->refid]);    
                 }                
             }
         } else {
@@ -103,7 +103,7 @@ class PaymentController extends BaseController
         return view('client/membership_buy_vip', $data);
     }
 
-    public function Pay_Index(Request $request)
+    public function Pay_Index(Request $request, $type = null)
     {
         try {
 
@@ -145,7 +145,7 @@ class PaymentController extends BaseController
             \Log::info(json_encode(['Pay_Index URL' => $tjurl, 'native' => $native], true));
             \Log::info(json_encode(['md5str' => $md5str], true));
             //insert send payment
-            $res_id = payment_transaction::create(['member_id' => $request->input('member_id'),'pay_orderid' => $pay_orderid, 'pay_amount' => $pay_amount, 'pay_params' => json_encode($native, true)])->id;
+            $res_id = payment_transaction::create(['member_id' => $request->input('member_id'),'pay_orderid' => $pay_orderid, 'pay_amount' => $pay_amount, 'pay_params' => json_encode($native, true), 'type' => $type])->id;
 
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
@@ -491,7 +491,7 @@ class PaymentController extends BaseController
     public function MonTradeQuery_vip()
     {
         $request = new Request;
-        $data = payment_transaction::whereNotNull('upgrade_vip_id')
+        $data = payment_transaction::whereNotNull('refid')
         ->where(function ($query) {
             $query->whereNull('trade_state')
                   ->orWhere(function ($query) {
@@ -514,9 +514,9 @@ class PaymentController extends BaseController
                 if ($trade_status == 'SUCCESS') {
                     //update confirm-vip
                     $product = new ProductController;
-                    $request->merge(['id' => $r->upgrade_vip_id]);
+                    $request->merge(['id' => $r->refid]);
                     $vip_package = json_decode(json_encode($product->confirm_vip($request),true));
-                    $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
+                    $vip_package_result = ['refid' => $r->refid, 'vip_package_result' => $vip_package->original];
                 }
             }
             $result = ['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'vip_package_result' => $vip_package_result]; 
@@ -531,7 +531,7 @@ class PaymentController extends BaseController
     public function MonTradeExpired_vip()
     {
         $request = new Request;
-        $data = payment_transaction::whereNotNull('upgrade_vip_id')
+        $data = payment_transaction::whereNotNull('refid')
         ->where(function ($query) {
             $query->whereNull('trade_state')
                   ->orWhere(function ($query) {
@@ -549,11 +549,11 @@ class PaymentController extends BaseController
             //update vip package - reject vip
             $vip_package_result = null;
             $product = new ProductController;
-            $request->merge(['id' => $r->upgrade_vip_id]);
+            $request->merge(['id' => $r->refid]);
             $request->merge(['note' => "订单已过期"]);
             
             $vip_package = json_decode(json_encode($product->reject_vip($request),true));
-            $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $vip_package->original];
+            $vip_package_result = ['refid' => $r->refid, 'vip_package_result' => $vip_package->original];
             $result = ['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]; 
             var_dump($result);
             \Log::info(json_encode($result,true));
@@ -579,7 +579,7 @@ class PaymentController extends BaseController
                 // $data = ['payment_transaction_id' => '999', 'pay_final_amount' => '120', 'qrcode' => 'abc'];
             }
 
-            $data = $this->Pay_Index($request);
+            $data = $this->Pay_Index($request, $type);
 
             if (is_array($data)) {
                 if (!empty($data['payment_transaction_id'])) {
@@ -589,7 +589,7 @@ class PaymentController extends BaseController
                     if (empty($p->refid)) {
                         $data = ['payment_transaction_id' => '-1', 'pay_final_amount' => '0', 'qrcode' => null];
                     } else {
-                        payment_transaction::where('id', $data['payment_transaction_id'])->update(['upgrade_vip_id' => $p->refid]);    
+                        payment_transaction::where('id', $data['payment_transaction_id'])->update(['refid' => $p->refid]);    
                     }                
                 }
             } else {
@@ -619,7 +619,7 @@ class PaymentController extends BaseController
     public function MonTradeQuery()
     {
         $request = new Request;
-        $data = payment_transaction::whereNotNull('upgrade_vip_id')
+        $data = payment_transaction::whereNotNull('refid')
         ->where(function ($query) {
             $query->whereNull('trade_state')
                   ->orWhere(function ($query) {
@@ -642,10 +642,10 @@ class PaymentController extends BaseController
                 if ($trade_status == 'SUCCESS') {
                     //update confirm purchase point
                     $ledger = new LedgerController;
-                    $request->merge(['refid' => $r->upgrade_vip_id]);
+                    $request->merge(['refid' => $r->refid]);
                     $request->merge(['memberid' => $r->member_id]);
                     $p = json_decode(json_encode($ledger->confirm_point_purchase($request),true));
-                    $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $p->original];
+                    $vip_package_result = ['refid' => $r->refid, 'vip_package_result' => $p->original];
                 }
             }
             $result = ['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'vip_package_result' => $vip_package_result]; 
@@ -660,7 +660,7 @@ class PaymentController extends BaseController
     public function MonTradeExpired()
     {
         $request = new Request;
-        $data = payment_transaction::whereNotNull('upgrade_vip_id')
+        $data = payment_transaction::whereNotNull('refid')
         ->where(function ($query) {
             $query->whereNull('trade_state')
                   ->orWhere(function ($query) {
@@ -678,12 +678,12 @@ class PaymentController extends BaseController
             //update vip package - reject vip
             $vip_package_result = null;
             $ledger = new LedgerController;
-            $request->merge(['refid' => $r->upgrade_vip_id]);
+            $request->merge(['refid' => $r->refid]);
             $request->merge(['memberid' => $r->member_id]);
             $request->merge(['notes' => "订单已过期"]);
             
             $p = json_decode(json_encode($ledger->reject_point_purchase($request),true));
-            $vip_package_result = ['upgrade_vip_id' => $r->upgrade_vip_id, 'vip_package_result' => $p->original];
+            $vip_package_result = ['refid' => $r->refid, 'vip_package_result' => $p->original];
             $result = ['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]; 
             var_dump($result);
             \Log::info(json_encode($result,true));
