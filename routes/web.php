@@ -200,7 +200,7 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 
 	Route::any( '/membership/buy/vip', 'PaymentController@membership_buy_vip' )->name( 'client.membership.buy.vip' );
 
-	Route::any( '/payment/{type}', 'PaymentController@payment' )->name( 'client.payment' );
+	Route::any( '/payment', 'PaymentController@payment' )->name( 'client.payment' );
 
 } );
 

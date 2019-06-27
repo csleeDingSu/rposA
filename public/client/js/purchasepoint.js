@@ -83,8 +83,9 @@ function purchasePoint(){
         $('.error').show();
     } else {
 
-        var url = '/payment/purchasepoint';
+        var url = '/payment';
         var form = $('<form action="' + url + '" method="post">' +
+          '<input type="text" name="type" value="purchasepoint" />' +
           '<input type="text" name="member_id" value="' + id + '" />' +
           '<input type="text" name="packageid" value="' + packageid + '" />' +
           '<input type="text" name="pay_amount" value="' + pay_amount + '" />' +
