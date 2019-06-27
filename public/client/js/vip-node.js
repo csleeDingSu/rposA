@@ -346,6 +346,8 @@ function resetGame() {
     $('.middle-label').html('开始竞猜');
     $('.radio-primary').unbind('click');
     $('.button-bet').unbind('click');
+    $('.btn-minus').unbind('click');
+    $('.btn-add').unbind('click');
     $('.button-bet-reset').unbind('click');
     $('.button-bet-all').unbind('click');
     $('.small-border').removeClass('fast-rotate');
@@ -410,6 +412,8 @@ function checkSelection() {
         $('#btnWheel').unbind('click');
 
         $('.button-bet').unbind('click');
+        $('.btn-add').unbind('click');
+        $('.btn-minus').unbind('click');
         $('.button-bet-reset').unbind('click');
         $('.button-bet-all').unbind('click');
 
@@ -473,6 +477,36 @@ function bindBetButton(){
         var final_bet = add_bet + initial_bet;
 
         if(final_bet <= g_vip_point){
+            $('.span-bet').html(final_bet);
+            showPayout();
+            previous_bet = final_bet;
+        } else {
+
+        }
+
+    });
+
+    $('.btn-add').click(function(){
+        var add_bet = 1;
+        var initial_bet = parseInt($('.span-bet').html());
+        var final_bet = add_bet + initial_bet;
+
+        if(final_bet <= g_vip_point){
+            $('.span-bet').html(final_bet);
+            showPayout();
+            previous_bet = final_bet;
+        } else {
+
+        }
+
+    });
+
+    $('.btn-minus').click(function(){
+        var minus_bet = 1;
+        var initial_bet = parseInt($('.span-bet').html());
+        var final_bet = initial_bet - minus_bet;
+
+        if(final_bet >= 0){
             $('.span-bet').html(final_bet);
             showPayout();
             previous_bet = final_bet;
@@ -591,23 +625,8 @@ function showPayout(){
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
 
-            $('.odd-payout')
-                  .prop('number', bet_amount)
-                  .animateNumber(
-                    {
-                      number: previous_bet
-                    },
-                    1000
-                  );
-
-            $('.even-payout')
-              .prop('number', bet_amount)
-              .animateNumber(
-                {
-                  number: previous_bet
-                },
-                1000
-              );
+            $('.odd-payout').html(bet_amount);
+            $('.even-payout').html(bet_amount);
 
         } else {
 
@@ -628,30 +647,12 @@ function showPayout(){
                 $('.instruction').css('visibility', 'hidden');
 
                 if(selected == 'odd'){
-                    $('.odd-sign').html('+');
-                    $('.even-sign').html('-');
+                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + bet_amount + "</span>");
+                    $('.span-even').html('谢谢参与');
                 } else {
-                    $('.odd-sign').html('-');
-                    $('.even-sign').html('+');
+                    $('.span-odd').html('谢谢参与');
+                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + bet_amount + "</span>");
                 }
-
-                $('.odd-payout')
-                      .prop('number', previous_bet)
-                      .animateNumber(
-                        {
-                          number: bet_amount
-                        },
-                        1000
-                      );
-
-                $('.even-payout')
-                  .prop('number', previous_bet)
-                  .animateNumber(
-                    {
-                      number: bet_amount
-                    },
-                    1000
-                  );
 
                 $.ajax({
                     type: 'GET',
