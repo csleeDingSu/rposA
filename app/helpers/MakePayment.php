@@ -52,6 +52,8 @@ class MakePayment
             //insert send payment
             $res_id = payment_transaction::create(['member_id' => $request->input('member_id'),'pay_orderid' => $pay_orderid, 'pay_amount' => $pay_amount, 'pay_params' => json_encode($native, true), 'type' => $type])->id;
 
+            // return ['payment_transaction_id' => $res_id];
+            
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);

@@ -274,20 +274,23 @@ class PaymentController extends BaseController
             $request->merge(['pay_orderid' => $r->pay_orderid]);
             $res = $this->payment->Pay_Trade_query($request);
             $trade_status = null;
-            $vip_package_result = null;
+            $package_result = null;
             if (!empty($res)) {
                 $_res = json_decode($res);
                 $trade_status = empty($_res->data[0]->trade_state) ? null : $_res->data[0]->trade_state;
                 if ($trade_status == 'SUCCESS') {
-                    //update confirm purchase point
-                    $ledger = new LedgerController;
-                    $request->merge(['refid' => $r->refid]);
-                    $request->merge(['memberid' => $r->member_id]);
-                    $p = json_decode(json_encode($ledger->confirm_point_purchase($request),true));
-                    $vip_package_result = ['refid' => $r->refid, 'vip_package_result' => $p->original];
+                    if ($r->type == 'purchasepoint') {
+                        //update confirm purchase point
+                        $ledger = new LedgerController;
+                        $request->merge(['refid' => $r->refid]);
+                        $request->merge(['memberid' => $r->member_id]);
+                        $p = $ledger->confirm_point_purchase($request);
+                        $package_result = ['refid' => $r->refid, 'package_result' => json_encode($p, true)];    
+                    }
+                    
                 }
             }
-            $result = ['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'vip_package_result' => $vip_package_result]; 
+            $result = ['pay_orderid' => $r->pay_orderid, 'trade_status' => $trade_status, 'package_result' => $package_result]; 
             var_dump($result);
             \Log::info(json_encode($result,true));
         }           
@@ -314,18 +317,21 @@ class PaymentController extends BaseController
         foreach($data as $r) {
             //update to expired
             payment_transaction::where('id',$r->id)->update(['trade_state' => 'expired']);
-            //update vip package - reject vip
-            $vip_package_result = null;
-            $ledger = new LedgerController;
-            $request->merge(['refid' => $r->refid]);
-            $request->merge(['memberid' => $r->member_id]);
-            $request->merge(['notes' => "订单已过期"]);
-            
-            $p = json_decode(json_encode($ledger->reject_point_purchase($request),true));
-            $vip_package_result = ['refid' => $r->refid, 'vip_package_result' => $p->original];
-            $result = ['pay_orderid' => $r->pay_orderid, 'vip_package_result' => $vip_package_result]; 
-            var_dump($result);
-            \Log::info(json_encode($result,true));
+            //update package - reject
+            $package_result = null;
+
+            if ($r->type == 'purchasepoint') {
+                //update confirm purchase point
+                $ledger = new LedgerController;
+                $request->merge(['refid' => $r->refid]);
+                $request->merge(['memberid' => $r->member_id]);
+                $request->merge(['notes' => "订单已过期"]);
+                $p = $ledger->reject_point_purchase($request);
+                $package_result = ['refid' => $r->refid, 'package_result' => json_encode($p, true)];
+                $result = ['pay_orderid' => $r->pay_orderid, 'package_result' => $package_result]; 
+                var_dump($result);
+                \Log::info(json_encode($result,true));    
+            }            
         } 
 
         return "completed";
