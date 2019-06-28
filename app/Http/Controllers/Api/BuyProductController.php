@@ -17,6 +17,8 @@ class BuyProductController extends Controller
     {
 		$member_id = $request->memberid;
 		
+		$result =  BuyProduct::list_available_redeem_package(0);
+		
 		$type = ['1'=>'virtual card','2'=>'Product'];
 		
 		return response()->json(['success' => true,'type_reference'=>$type ,  'records' => $result]);
