@@ -330,7 +330,7 @@
 	          <h2 class="payout-info hide"></h2>
 	        <ul>
 	          <li>
-	            <span class="span-1">10</span>
+	            <span class="span-1">1</span>
 	            <dl>
 	              <dd></dd>
 	              <dd></dd>
@@ -344,7 +344,7 @@
 	            </dl>
 	          </li>
 	          <li>
-	            <span class="span-2">30</span>
+	            <span class="span-2">3</span>
 	            <dl>
 	              <dd></dd>
 	              <dd></dd>
@@ -358,7 +358,7 @@
 	            </dl>
 	          </li>
 	          <li>
-	            <span class="span-3">70</span>
+	            <span class="span-3">7</span>
 	            <dl>
 	              <dd></dd>
 	              <dd></dd>
@@ -372,7 +372,7 @@
 	            </dl>
 	          </li>
 	          <li>
-	            <span class="span-4">150</span>
+	            <span class="span-4">15</span>
 	            <dl>
 	              <dd></dd>
 	              <dd></dd>
@@ -386,7 +386,7 @@
 	            </dl>
 	          </li>
 	          <li>
-	            <span class="span-5">310</span>
+	            <span class="span-5">31</span>
 	            <dl>
 	              <dd></dd>
 	              <dd></dd>
@@ -400,7 +400,7 @@
 	            </dl>
 	          </li>
 	          <li>
-	            <span class="span-6">630</span>
+	            <span class="span-6">63</span>
 	            <dl>
 	              <dd></dd>
 	              <dd></dd>
@@ -416,7 +416,7 @@
 	        </ul>
 	      </div>
 
-	      <p style="font-size:0px;"><span class="span-balance">1200</span> / 1200</p>
+	      <p style="font-size:0px;"><span class="span-balance">120</span> / 120</p>
 	        
 	      <div class="barIn">
 	        <a id="viewgamerules"><p><span class="result-info"></span><span class="viewgamerules">玩法说明</span></p></a>
@@ -868,7 +868,7 @@
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
 								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info">前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
+								<div class="packet-info">前5局猜错<span class="highlight">亏损57积分</span><br />第6局猜对<span class="highlight-green">奖励63积分</span><br />最终奖励6积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
 								<div class="instructions">
 									您已赢到6元，还差9元可兑换
 								</div>
@@ -899,7 +899,7 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="modal-instruction">前5局猜错，<span class="highlight-grey">总亏损570积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注630积分</span>，猜对能获得630积分奖励，减去亏损的570还能赚60积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span></div>
+								<div class="modal-instruction">前5局猜错，<span class="highlight-grey">总亏损57积分</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注63积分</span>，猜对能获得63积分奖励，减去亏损的570还能赚6积分。<br /><span class="highlight-red">赚到的积分可兑换红包</span></div>
 								<div class="close-win-modal modal-redeem-button">
 									知道了
 								</div>												
@@ -923,7 +923,7 @@
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
 								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info">前5局猜错<span class="highlight">亏损570积分</span><br />第6局猜对<span class="highlight-green">奖励630积分</span><br />最终奖励60积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
+								<div class="packet-info">前5局猜错<span class="highlight">亏损57积分</span><br />第6局猜对<span class="highlight-green">奖励63积分</span><br />最终奖励6积分，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
 								<div class="instructions">
 									您已赢到6元，还差9元可兑换
 								</div>
@@ -951,11 +951,11 @@
 								  倍增式玩法说明
 								</div>
 								<div class="instructions">
-									第1局10积分，如果猜错了怎么办？<br/>
-									第2局就投30积分，如果第2局猜对，就能得到30积分，扣掉第1局亏的10积分，最终还赚20积分。<br />
-									如果第2局还猜错，第3局就投70积分。 。 。<br />
-									1200游戏积分能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
-									如果猜对就返回从10积分开始。
+									第1局1积分，如果猜错了怎么办？<br/>
+									第2局就投3积分，如果第2局猜对，就能得到3积分，扣掉第1局亏的1积分，最终还赚2积分。<br />
+									如果第2局还猜错，第3局就投7积分。 。 。<br />
+									120游戏积分能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
+									如果猜对就返回从1积分开始。
 								</div>
 								<div class="close-modal modal-warning-button">
 							{{-- @if($betting_count > 0) --}}
@@ -973,44 +973,6 @@
 		</div>
 	</div>
 
-	<!-- <div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-title">
-				<h1>倍增式玩法说明</h1>
-			</div>
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="instructions">
-									系统默认拥有1200的游戏金币，第一次投10金币，那么只有2种情况，猜对或猜错：<br />
-									<span class="highlight-red">如果猜错：</span>下一局投30金币，猜对能获得30金币奖励，扣掉10金币亏损，还赚20金币，如果还猜错，就投70金币，不停倍增。。。<br />
-									1200金币可投6次；这是猜单双的游戏，6次之内猜对的概率有99.9%。<br />
-									<span class="highlight-green">如果猜对：</span>每次猜对就返回从10金币按以上原则重新开始，无限循环。
-								</div>
-								<div class="instructions">
-									第1局10积分，如果猜错了怎么办？<br/>
-									第2局就投30积分，如果第2局猜对，就能得到30积分，扣掉第1局亏的10积分，最终还赚20积分。<br />
-									如果第2局还猜错，第3局就投70积分。 。 。<br />
-									1200游戏积分能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
-									如果猜对就返回从10积分开始。
-								</div>
-
-								@if($betting_count > 0)
-									<div class="btn-game-rules btn-rules-close">返回{{env('game_name', '幸运转盘')}}</div>
-								@else
-									<div class="btn-game-rules btn-rules-timer"><span class="span-read">请阅读游戏规则</span> <span class="txtTimer"></span></div>	
-								@endif
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div> -->
-<!-- Steps Modal Ends -->
-
 <!-- New - Top right corner Game Rules starts -->
 	<div class="modal fade col-md-12" id="top-corner-game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg close-modal" role="document">
@@ -1024,11 +986,11 @@
 								</div>
 								<div class="instructions">
 									<p>
-									默认拥有1200游戏积分用来抽奖，赚到的积分会换成红包，10积分兑换1元红包。</p>
+									默认拥有120游戏积分用来抽奖，赚到的积分会换成红包，1积分兑换1元红包。</p>
 									<p>
 									这是自助的抽奖转盘，先选单数或双数再按抽奖，抽中就有积分奖励，抽错就扣除积分。</p>
 									<p>
-									1200积分被分成6次，按倍增式玩法，只要6次之内猜对，就能一直赚红包。</p>
+									12积分被分成6次，按倍增式玩法，只要6次之内猜对，就能一直赚红包。</p>
 								</div>
 								<div class="close-modal modal-warning-button">
 									知道了
