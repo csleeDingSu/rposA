@@ -365,6 +365,119 @@
 				</div>
 			  </div>
 		</div>
+		<div style="clear: both;"></div>
+
+		<div class="redeem-banner">
+			<img src="{{ asset('/client/images/vip/redeem-banner.png') }}" alt="share">
+		</div>
+
+		<div class="redeem-prize">
+			<div class="left-box">
+				<div class="prize-box">
+					<div class="image-wrapper">
+						<img src="{{ asset('/client/images/vip/prize_1.png') }}">
+					</div>
+					<div class="redeem-product">iPhone X 256G全网通智能手机</div>
+					<div class="redeem-details">
+						<div class="redeem-price">7500 <span class="redeem-currency">金币</span></div>
+						<div class="redeem-button-wrapper">
+							<div class="redeem-button">兑换</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-box">
+				<div class="prize-box">
+					<div class="image-wrapper">
+						<img src="{{ asset('/client/images/vip/prize_2.png') }}">
+					</div>
+					<div class="redeem-product">Apple/苹果iPad Air 10.5英寸智能平板电脑</div>
+					<div class="redeem-details">
+						<div class="redeem-price">7500 <span class="redeem-currency">金币</span></div>
+						<div class="redeem-button-wrapper">
+							<div class="redeem-button">兑换</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="redeem-prize">
+			<div class="left-box">
+				<div class="prize-box">
+					<div class="image-wrapper">
+						<img src="{{ asset('/client/images/vip/prize_3.png') }}">
+					</div>
+					<div class="redeem-product">iPhone X 256G全网通智能手机</div>
+					<div class="redeem-details">
+						<div class="redeem-price">7500 <span class="redeem-currency">金币</span></div>
+						<div class="redeem-button-wrapper">
+							<div class="redeem-button">兑换</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-box">
+				<div class="prize-box">
+					<div class="image-wrapper">
+						<img src="{{ asset('/client/images/vip/prize_4.png') }}">
+					</div>
+					<div class="redeem-product">Apple/苹果iPad Air 10.5英寸智能平板电脑</div>
+					<div class="redeem-details">
+						<div class="redeem-price">7500 <span class="redeem-currency">金币</span></div>
+						<div class="redeem-button-wrapper">
+							<div class="redeem-button">兑换</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="redeem-prize">
+			<div class="left-box">
+				<div class="prize-box">
+					<div class="image-wrapper">
+						<img src="{{ asset('/client/images/vip/prize_5.png') }}">
+					</div>
+					<div class="redeem-product">iPhone X 256G全网通智能手机</div>
+					<div class="redeem-details">
+						<div class="redeem-price">7500 <span class="redeem-currency">金币</span></div>
+						<div class="redeem-button-wrapper">
+							<div class="redeem-button">兑换</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-box">
+				<div class="prize-box">
+					<div class="image-wrapper">
+						<img src="{{ asset('/client/images/vip/prize_6.png') }}">
+					</div>
+					<div class="redeem-product">Apple/苹果iPad Air 10.5英寸智能平板电脑</div>
+					<div class="redeem-details">
+						<div class="redeem-price">7500 <span class="redeem-currency">金币</span></div>
+						<div class="redeem-button-wrapper">
+							<div class="redeem-button">兑换</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both"></div>
+
+		<div class="redeem-info">
+			<div class="info-box">
+				<div class="info-title">
+					<img src="{{ asset('/client/images/vip/decoration.png') }}" />换购规则<img src="{{ asset('/client/images/vip/decoration.png') }}" />
+				</div>
+				<hr />
+				关于金币：<span class="info-highlight">金币是用来换购产品使用，通过幸运转盘游戏获得，1金币等于1元。</span><br />
+				<br />
+				如何换购：<span class="info-highlight">进入礼品专区，挑选换购产品，下单后平台发货，每次换购完会自动扣除等值金币。</span>
+				<br />
+			</div>
+		</div>
+
 		<!-- end button wrapper -->
 	    </article>
     </section>

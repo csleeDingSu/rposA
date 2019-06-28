@@ -161,3 +161,138 @@
 		height:292px;
 	}
 }
+
+.redeem-banner {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.redeem-banner img {
+	width: 100%;
+	height: 100%;
+
+}
+
+.redeem-prize .col-xs-6 {
+	padding: 0;
+}
+
+.left-box {
+	float: left;
+	width: 50%;
+	padding-right: 5px;
+	padding-bottom: 10px;
+}
+
+.right-box {
+	float: left;
+	width: 50%;
+	padding-left: 5px;
+	padding-bottom: 10px;
+}
+
+.prize-box {
+	background: url('/client/images/vip/gift-box.png') no-repeat;
+	background-size:100% 100%;  
+	content: '';
+	position: relative;
+	display: table-cell;
+}
+
+.prize-box .image-wrapper {
+	width: 130px;
+	height: 130px;
+	margin: 0 auto;
+}
+
+.prize-box .image-wrapper img {
+	margin: 15px auto;
+	width: 100%;
+	height: 100%;
+
+}
+
+.redeem-product {
+	font-size: 12px;
+	color: #e1d3ed;
+	margin-top: 20px;
+	text-align: left;
+	padding: 20px 20px 10px 20px;
+	height: 70px;
+}
+
+.redeem-price {
+	font-size: 17px;
+	color: #ffae00;
+	float: left;
+	text-align: left;
+	width: 60%;
+	display: block;
+	padding-left: 20px;
+}
+
+.redeem-currency {
+	font-size: 10px;
+}
+
+.redeem-button-wrapper {
+	width: 40%;
+	float: left;
+}
+
+.redeem-button {
+	background:url(/client/images/vip/redeem-button.png) no-repeat;
+	width: 102px;
+	height: 44px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	position: absolute;
+	font-size: 24px;
+	padding-top: 4px;
+	cursor: pointer;
+}
+
+.redeem-details {
+	overflow: auto;
+	height: 20px;
+	margin-bottom: 10px;
+}
+
+.redeem-info {
+	margin-bottom: 30px;
+}
+
+.info-box {
+	background:url(/client/images/vip/redeem-info.png) left top no-repeat;
+	background-size:100% 100%;  
+	content: '';
+	position: relative;
+	display: table-cell;
+	padding: 10px 15px 22px 15px;
+	font-size: 14px;
+	text-align: left;
+}
+
+.info-box hr {
+	border: none;
+	border-top: 1px dashed #cf98fd;
+	height: 1px;
+	width: 100%;
+}
+
+.info-title {
+	font-size: 19px;
+	text-align: center;
+}
+
+.info-title img {
+	width: 19px;
+	height: 19px;
+	margin: 0 10px;
+}
+
+.info-highlight {
+	color: #ffa800;
+}
