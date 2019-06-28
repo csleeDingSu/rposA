@@ -112,3 +112,10 @@
   float: right;
   font-size: 0.28rem;
 }
+
+.gameLink {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 6rem 3rem;
+  position: absolute;
+}
