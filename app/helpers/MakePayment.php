@@ -84,6 +84,11 @@ class MakePayment
         } catch (\Exception $e) {
             //log error
             \Log::error($e);
+            
+            if (!empty($res_id)) {
+            	payment_transaction::where('id', $res_id)->update(['remark' => $e->getMessage()]);	
+            }
+            
             return $e->getMessage();
         }
         
