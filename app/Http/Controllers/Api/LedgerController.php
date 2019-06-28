@@ -87,4 +87,13 @@ class LedgerController extends Controller
 		return ['success' => false, 'message' => 'unknown record/ rejected already'];
 	}
 	
+	public function topup_history(Request $request)
+	{
+		$memberid = $request->memberid;
+		$result   = \DB::table('request_topup')->where('member_id',$memberid)->get();
+		$status   = ['1'=>'pending confirmation','2'=>'confirmed','3'=>'rejected'];
+		return ['success' => true , 'records'=>$result , 'status_reference'=>$status]; 
+		return $result;
+	}
+	
 }
