@@ -309,7 +309,7 @@ class BasicPackage extends Model
 
 
 		
-		return ['basic_redeem_count'=>$basic_count,'vip_redeem_count'=>$intro_count,'vip_redeem_count'=>$ito_count,'redeem_count'=>$rede_count,'eligible_to_enter'=>$eligible_to_enter];
+		return ['basic_redeem_count'=>$basic_count,'vip_redeem_count'=>$vip_count,'vip_redeem_count'=>$ito_count,'redeem_count'=>$rede_count,'eligible_to_enter'=>$eligible_to_enter];
 	}
 	
 }
