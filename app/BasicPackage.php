@@ -266,7 +266,7 @@ class BasicPackage extends Model
 	{
 		$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
 		$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
-		$ito_count   = \DB::table('view_member_introduce_count')->where('wechat_verification_status',0)->where('memberid',$memberid)->get();
+		$ito_count   = \DB::table('view_member_introduce_count')->where('wechat_verification_status',0)->where('memberid',$memberid)->first();
 		$rede_count  = \DB::table('view_buy_product_count')->where('member_id',$memberid)->first();
 
 		$ledger      = \DB::table('mainledger')->where('member_id',$memberid)->first();
