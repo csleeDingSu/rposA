@@ -36,7 +36,7 @@ class RedeemedProduct extends Model
     {
         //return $this->belongsToMany(OrderDetail::class, 'id', 'order_id');
 
-        return $this->belongsToMany(OrderDetail::class, 'order_id', 'id');
+       // return $this->belongsToMany(OrderDetail::class, 'order_id', 'id');
 
         return $this->morphTo(OrderDetail::class, 'id', 'order_id');
 
