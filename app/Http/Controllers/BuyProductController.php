@@ -330,12 +330,12 @@ class BuyProductController extends BaseController
 		
 		$id = $request->id;
 		//$record = BuyProduct::get_basic_package($id);
-		$record = RedeemedProduct::with('product','order_detail','shipping_detail')->where('member_id', $member_id)->first();
+		$record = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('member_id', $member_id)->first();
 		if ($record)
 		{
 			$now = Carbon::now();
 			$data = ['redeem_state'=>0,'confirmed_at'=>$now,'reject_notes'=>$request->reason];		
-			//no need to refund anything
+			
 			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RBP','credit', 'redeem product rejected,point refund to customer');
 			
 			BuyProduct::update_redeemed($record->id, $data);
