@@ -274,7 +274,7 @@ class BasicPackage extends Model
 		$eligible_to_enter = FALSE;
 		if ($basic_count)
 		{
-			if ($basic_count->used_count >= 1)
+			if ($basic_count->used_quantity >= 1)
 			{
 				$eligible_to_enter = TRUE;
 			}
