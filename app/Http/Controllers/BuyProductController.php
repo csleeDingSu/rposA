@@ -323,7 +323,7 @@ class BuyProductController extends BaseController
 			$dd =  view('buyproduct.pendinglist.render_card_detail', ['result' => $result, 'orderid' => $id])->render();
 		} 
 
-		return response()->json(['success' => true,'result'=>$dd]);
+		return response()->json(['success' => true,'data'=>$dd]);
 
     }
     
