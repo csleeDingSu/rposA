@@ -33,7 +33,7 @@ class BuyProductController extends Controller
     {
 		$member_id = $request->memberid;
 		
-		$result =  RedeemedProduct::with('order_detail','shipping_detail')->where('member_id', $member_id)->get();
+		$result =  RedeemedProduct::with('product','order_detail','shipping_detail')->where('member_id', $member_id)->get();
 		//$result =  RedeemedProduct::with('neworder_detail')->where('member_id', $member_id)->get();
 		//$result =  RedeemedProduct::where('member_id', $member_id)->get();
 		
