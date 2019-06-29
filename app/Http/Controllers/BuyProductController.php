@@ -330,7 +330,7 @@ class BuyProductController extends BaseController
 		
 		$id = $request->id;
 		//$record = BuyProduct::get_basic_package($id);
-		$record = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('member_id', $member_id)->first();
+		$record = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('id', $id)->first();
 		if ($record)
 		{
 			$now = Carbon::now();
