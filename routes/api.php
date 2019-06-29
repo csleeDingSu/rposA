@@ -127,6 +127,8 @@ Route::group(['namespace' => 'Api'],function()
 	Route::post('/confirm-point-purchase', 'LedgerController@confirm_point_purchase')->name('api_confirm_point_purchase');
 	Route::post('/reject-point-purchase', 'LedgerController@reject_point_purchase')->name('reject_point_purchase');
 	Route::post('/topup-history', 'LedgerController@topup_history')->name('topup_history');
+
+	Route::get('/get-buyproduct-history', 'BuyProductController@buyproduct_history')->name('buyproduct_history');
 	
 	
 	
