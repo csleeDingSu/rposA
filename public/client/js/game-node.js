@@ -805,7 +805,7 @@ function showProgressBar(bol_show){
         $('.spanAcuPoint').html(0);
         $('.spanAcuPointAndBalance').html(0);
         
-        result_info = '剩余<span style="text-decoration:underline">'+ balance / 10 +'</span>元&nbsp;';
+        result_info = '剩余<span style="text-decoration:underline">'+ balance / 10 +'</span>元体验金&nbsp;';
         $('.result-info').html(result_info);
 
 
@@ -902,7 +902,7 @@ function showProgressBar(bol_show){
                 break;
         }
 
-        result_info = '剩余<span style="text-decoration:underline">'+ span_balance / 10 +'</span>元&nbsp;';
+        result_info = '剩余<span style="text-decoration:underline">'+ span_balance / 10 +'</span>元体验金&nbsp;';
 
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
