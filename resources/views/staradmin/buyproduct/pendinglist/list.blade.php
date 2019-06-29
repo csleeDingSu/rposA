@@ -39,11 +39,10 @@ function confirm_redeem_with_input(id)	{
 					id:  id,
 				},
 				success: function ( result ) {
-					if ( result.success == true ) {
+					if ( result) {
 						swal.close();
-						var data = result.html;
-
-						$('#carddata').html(data);
+						
+						$('#carddata').html(result);
 
 						$('#carddetailmode').modal('show');						
 						
