@@ -266,9 +266,10 @@ class BasicPackage extends Model
 	{
 		$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
 		$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
+		$ito_count   = \DB::table('view_member_introduce_count')->where('memberid',$memberid)->get();
+		$rede_count  = \DB::table('view_buy_product_count')->where('member_id',$memberid)->first();
 		
-		
-		return ['basic_redeem_count'=>$basic_count,'vip_redeem_count'=>$vip_count];
+		return ['basic_redeem_count'=>$basic_count,'vip_redeem_count'=>$intro_count,'vip_redeem_count'=>$ito_count,'redeem_count'=>$rede_count];
 	}
 	
 }
