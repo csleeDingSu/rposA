@@ -34,7 +34,7 @@ class BuyProductController extends Controller
 		$member_id = $request->memberid;
 		
 		$result =  RedeemedProduct::with('order_detail')->where('member_id', $member_id);
-		$result =  RedeemedProduct::where('member_id', $member_id);
+		$result =  RedeemedProduct::where('member_id', $member_id)->get();
 		
 		$type = ['1'=>'virtual card','2'=>'Product'];
 		
