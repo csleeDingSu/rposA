@@ -10,6 +10,11 @@ use Validator;
 use Carbon\Carbon;
 use App\Wallet;
 use App\BuyProduct;
+
+use App\RedeemedProduct;
+use App\OrderDetail;
+use App\ShippingDetail;
+
 class BuyProductController extends Controller
 {	
 	
@@ -28,7 +33,7 @@ class BuyProductController extends Controller
     {
 		$member_id = $request->memberid;
 		
-		$result =  BuyProduct::buyproduct_history(0);
+		$result =  RedeemedProduct::with('order_detail')->where('member_id', $member_id);
 		
 		$type = ['1'=>'virtual card','2'=>'Product'];
 		

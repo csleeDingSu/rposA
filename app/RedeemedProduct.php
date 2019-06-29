@@ -26,6 +26,16 @@ class RedeemedProduct extends Model
      */
     protected $hidden = [
     ];
+
+    public function order_detail()
+    {
+        return $this->belongsTo(OrderDetail::class, 'order_id', 'id');
+    }
+
+    public function shipping_detail()
+    {
+        return $this->belongsTo(ShippingDetail::class, 'order_id', 'id');
+    }
 	
 		
 }
