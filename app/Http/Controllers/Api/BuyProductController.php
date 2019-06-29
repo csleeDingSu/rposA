@@ -166,7 +166,7 @@ class BuyProductController extends Controller
 						];
 				$id = BuyProduct::save_redeemed($data);
 				
-				$order = ['address'=>$request->address,'receiver_name'=>$request->receiver_name,'contact_numer'=>$request->contact_numer,'city'=>$request->city,'zip'=>$request->zip,'order_id'=>$id];
+				$order = ['address'=>$request->address,'receiver_name'=>$request->receiver_name,'contact_number'=>$request->contact_number,'city'=>$request->city,'zip'=>$request->zip,'order_id'=>$id];
 				
 				\DB::table('shipping_details')->insert($order);				
 				
