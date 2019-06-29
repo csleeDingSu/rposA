@@ -47,7 +47,7 @@ class RedeemedProduct extends Model
 
     public function shipping_detail()
     {
-        return $this->belongsTo(ShippingDetail::class, 'order_id', 'id');
+        return $this->hasmany(ShippingDetail::class, 'order_id', 'id');
     }
 	
 		
