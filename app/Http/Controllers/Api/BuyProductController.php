@@ -23,6 +23,19 @@ class BuyProductController extends Controller
 		
 		return response()->json(['success' => true,'type_reference'=>$type ,  'records' => $result]);
 	}
+
+	public function buyproduct_history(Request $request)
+    {
+		$member_id = $request->memberid;
+		
+		$result =  BuyProduct::buyproduct_history(0);
+		
+		$type = ['1'=>'virtual card','2'=>'Product'];
+		
+		return response()->json(['success' => true,'type_reference'=>$type ,  'records' => $result]);
+	}
+
+	
 	
 	public function request_product_upgrade(Request $request)
     {
