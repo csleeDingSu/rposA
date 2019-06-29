@@ -332,7 +332,7 @@ class BuyProductController extends BaseController
 					{
 						$card[] = ['card_num'=>$d_card[$i],'card_pass'=>$d_card[$i]];
 					}
-					/App/OrderDetail::insert($card);
+					\App\OrderDetail::insert($card);
 				break;
 				case '2':
 					$shipping = ['shipping_method'=>'','tracking_number'=>'','notes'=>'','tracking_partner'=>''];
