@@ -312,7 +312,7 @@ class BuyProductController extends BaseController
     	$id = $request->id;
     	$result = \App\OrderDetail::where('order_id', $id)->get();
     	if ($request->ajax()) {
-			return view('buyproduct.pendinglist.ajaxlist', ['result' => $result, 'orderid' => $id])->render();
+			return view('buyproduct.pendinglist.ajaxlist', ['result' => $result])->render();
 		} 
     }
     
