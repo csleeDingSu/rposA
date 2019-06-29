@@ -286,13 +286,13 @@ class BasicPackage extends Model
 				$eligible_to_enter = TRUE;
 			}
 		}
-		if ($ito_count)
+		/*if ($ito_count)
 		{
 			if ($ito_count->count >= 1)
 			{
 				$eligible_to_enter = TRUE;
 			}
-		}
+		}*/
 		if ($ledger)
 		{
 			if ($ledger->current_point >= 120)
