@@ -32,11 +32,11 @@ class BuyProductController extends Controller
 	public function buyproduct_history(Request $request)
     {
 		$member_id = $request->memberid;
-		\DB::connection()->enableQueryLog();
+		//\DB::connection()->enableQueryLog();
 		$result =  RedeemedProduct::with('product','order_detail','shipping_detail')->where('member_id', $member_id)->get();
 
-		 $queries = \DB::getQueryLog();
-         dd($queries);
+		 //$queries = \DB::getQueryLog();
+         //dd($queries);
 
 
 		//$result =  RedeemedProduct::with('neworder_detail')->where('member_id', $member_id)->get();
