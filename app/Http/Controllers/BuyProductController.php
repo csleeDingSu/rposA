@@ -307,13 +307,24 @@ class BuyProductController extends BaseController
 		}
     }
 
+    public function get_shipping_detail(Request $request)
+    {
+    	$id = $request->id;
+    	$result = \App\ShippingDetail::where('order_id', $id)->first();
+    	return response()->json(['success' => true,'result'=>$result]);
+    }
+
+
 	public function render_card_detail(Request $request)
     {
     	$id = $request->id;
     	$result = \App\OrderDetail::where('order_id', $id)->get();
     	if ($request->ajax()) {
-			return view('buyproduct.pendinglist.render_card_detail', ['result' => $result, 'orderid' => $id])->render();
+			$dd =  view('buyproduct.pendinglist.render_card_detail', ['result' => $result, 'orderid' => $id])->render();
 		} 
+
+		return response()->json(['success' => true,'result'=>$dd]);
+
     }
     
 	
