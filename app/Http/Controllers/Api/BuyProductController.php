@@ -133,18 +133,18 @@ class BuyProductController extends Controller
 				$input = [
 						 'address'        => $request->address,
 						 'receiver_name'  => $request->receiver_name,	
-						 'contact_numer'  => $request->contact_numer,	
+						 'contact_number'  => $request->contact_number,	
 						 'city'           => $request->city,	
 						 'zip'            => $request->zip,	
 						];				
 				
 				$validator = Validator::make($input, 
 					[
-						'address'       => 'required|min:10',
-						'receiver_name' => 'required',
-						'contact_numer' => 'required|min:1',
-						'city'          => 'required',
-						'zip'           => 'required',
+						'address'        => 'required|min:10',
+						'receiver_name'  => 'required',
+						'contact_number' => 'required|min:1',
+						'city'           => 'required',
+						'zip'            => 'required',
 					]
 				);
 				if ($validator->fails()) {
