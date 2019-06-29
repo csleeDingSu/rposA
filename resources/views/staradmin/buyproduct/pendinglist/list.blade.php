@@ -39,6 +39,11 @@ function confirm_redeem_with_input(id)	{
 					id:  id,
 				},
 				success: function ( result ) {
+					swal.close();
+					$('#carddata').html(result);
+					$('#carddetailmode').modal('show');	
+
+/*
 					if ( result) {
 						swal.close();
 						
@@ -48,7 +53,7 @@ function confirm_redeem_with_input(id)	{
 						
 					} else {						
 						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
-					}
+					}*/
 				},
 				error: function ( xhr, ajaxOptions, thrownError ) {
 					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
