@@ -82,6 +82,8 @@ class BuyProductController extends Controller
 		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);
 
 		if (!empty($package->deleted_at)) return response()->json(['success' => false, 'message' => 'package deleted']);
+
+		if ($package->status != 1) return response()->json(['success' => false, 'message' => 'package not in active']);
 		
 		//check quantity	
 		$used_count = $package->used_quantity + $package->reserved_quantity;
