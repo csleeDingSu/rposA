@@ -39,9 +39,9 @@ function confirm_redeem_with_input(id)	{
 					id:  id,
 				},
 				success: function ( result ) {
-					//console.log(result.result);
+					console.log(result.data);
 					swal.close();
-					//$('#carddata').html(result.result);
+					$('#carddata').html(result.data);
 					$('#carddetailmode').modal('show');	
 
 /*
