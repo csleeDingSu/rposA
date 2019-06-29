@@ -34,7 +34,7 @@ class RedeemedProduct extends Model
 
     public function neworder_detail()
     {
-        return $this->belongsTo(OrderDetail::class, 'id', 'order_id');
+        return $this->hasmany(OrderDetail::class, 'id', 'order_id');
 
        // return $this->belongsToMany(OrderDetail::class, 'order_id', 'id');
 
