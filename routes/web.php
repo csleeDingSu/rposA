@@ -586,6 +586,10 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::post('/buyproduct/redeem-confirm', 'BuyProductController@confirm_product')->name('buyproduct_redeem_confirm');	
 	Route::post('/buyproduct/redeem-reject', 'BuyProductController@reject_product')->name('buyproduct_redeem_reject');
 
+
+	Route::get('/buyproduct/render-card', 'BuyProductController@render_card_detail')->name('render_card_detail');
+	
+
 } );
 //END
 

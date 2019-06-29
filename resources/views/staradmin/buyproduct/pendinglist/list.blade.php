@@ -30,7 +30,7 @@ function confirm_redeem_with_input(id)	{
 				}
 			} )
 			$.ajax( {
-				url: "{{route('render.card.detail')}}",
+				url: "{{route('render_card_detail')}}",
 				type: 'get',
 				dataType: "json",
 				data: {

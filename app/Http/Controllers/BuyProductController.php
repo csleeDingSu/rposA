@@ -306,6 +306,14 @@ class BuyProductController extends BaseController
 		{
 		}
     }
+
+	public function render_card_detail(Request $request)
+    {
+    	$id = $request->id;
+    	$result = \App\OrderDetail::where('order_id', $id)->get();
+		return view('buyproduct.pendinglist.ajaxlist', ['result' => $result, 'orderid' => $orderid])->render(); 
+    }
+    
 	
 	public function confirm_buyproduct(Request $request)
     {
