@@ -281,7 +281,7 @@ class BasicPackage extends Model
 		}
 		if ($vip_count)
 		{
-			if ($vip_count->used_count >= 1)
+			if ($vip_count->used_quantity >= 1)
 			{
 				$eligible_to_enter = TRUE;
 			}
