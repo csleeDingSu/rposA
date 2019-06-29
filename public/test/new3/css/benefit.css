@@ -6,7 +6,7 @@
     text-align: center;
     background: url(../images/benefitBg.png) top center no-repeat;
     background-size: 100% auto;
-    height: 14.2rem;
+    height: 12.5rem;
 }
 
 .product {
@@ -96,7 +96,7 @@
 }
 
 .product .list-2 .mset span {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
 }
 
 .product .list-2 .mset a.type {
@@ -111,4 +111,11 @@
   cursor: pointer;
   float: right;
   font-size: 0.28rem;
+}
+
+.gameLink {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 6rem 3rem;
+  position: absolute;
 }

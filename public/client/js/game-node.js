@@ -805,7 +805,7 @@ function showProgressBar(bol_show){
         $('.spanAcuPoint').html(0);
         $('.spanAcuPointAndBalance').html(0);
         
-        result_info = '剩余<span style="text-decoration:underline">'+ balance / 10 +'</span>体验金&nbsp;';
+        result_info = '剩余<span style="text-decoration:underline">'+ balance / 10 +'</span>元&nbsp;';
         $('.result-info').html(result_info);
 
 
@@ -822,7 +822,7 @@ function showProgressBar(bol_show){
                 previous_bet = current_bet;
                 current_bet = 10;                
 
-                payout_info = '押注1体验金，猜对+1，猜错-1。';
+                payout_info = '押注1元，猜对+1，猜错-1。';
                 //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注10积分，猜对+10，猜错-10。';
                 //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中赚10金币，可兑换1元。';//'猜中得10，赚10金币。';
                 $('.span-1').html("1");
@@ -841,7 +841,7 @@ function showProgressBar(bol_show){
                 span_balance = 1190;
                 result_info = '本轮错了1次，还剩5次。';
 
-                payout_info = '押注3体验金，猜对+3，猜错-3。';
+                payout_info = '押注3元，猜对+3，猜错-3。';
                 //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注30积分，猜对+30，猜错-30。';
                 //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得30，赚20金币。';//'猜中得30，扣除之前亏损10，赚20金币。';
                 $('.span-1').html("-1");                        
@@ -852,7 +852,7 @@ function showProgressBar(bol_show){
                 span_balance = 1160;
                 result_info = '本轮错了2次，还剩4次。';
 
-                payout_info = '押注7体验金，猜对+7，猜错-7。';
+                payout_info = '押注7元，猜对+7，猜错-7。';
                 // payout_info = '<span class=\'caption_bet\'>[单数]</span>押注70积分，猜对+70，猜错-70。';
                 //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得70，赚30金币。';//'猜中得70，扣除前2次亏损40，赚30金币。';
                 $('.span-1').html("-1");
@@ -864,7 +864,7 @@ function showProgressBar(bol_show){
                 span_balance = 1090;
                 result_info = '本轮错了3次，还剩3次。';
 
-                payout_info = '押注15体验金，猜对+15，猜错-15。';
+                payout_info = '押注15元，猜对+15，猜错-15。';
                 //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注150积分，猜对+150，猜错-150。';
                 //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得150，赚40金币。';//'猜中得150，扣除前3次亏损110，赚40金币。';
                 $('.span-1').html("-1");
@@ -877,7 +877,7 @@ function showProgressBar(bol_show){
                 span_balance = 940;
                 result_info = '本轮错了4次，还剩2次。';
 
-                payout_info = '押注31体验金，猜对+31，猜错-31。';
+                payout_info = '押注31元，猜对+31，猜错-31。';
                 //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注310积分，猜对+310，猜错-310。';
                 //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得310，赚50金币。';//'猜中得310，扣除前4次亏损260，赚50金币。';
                 $('.span-1').html("-1");
@@ -891,7 +891,7 @@ function showProgressBar(bol_show){
                 span_balance = 630;
                 result_info = '本轮剩1次机会，猜错清零。';                
 
-                payout_info = '押注63体验金，猜对+63，猜错-63。';
+                payout_info = '押注63元，猜对+63，猜错-63。';
                 // payout_info = '<span class=\'caption_bet\'>[单数]</span>押注630积分，猜对+630，猜错-630。';
                 //'您选择<span class=\'caption_bet\'>[单数]</span>，猜中得630，赚60金币。';//'猜中得630，扣除前5次亏损570，赚60金币。';
                 $('.span-1').html("-1");
@@ -902,7 +902,7 @@ function showProgressBar(bol_show){
                 break;
         }
 
-        result_info = '剩余<span style="text-decoration:underline">'+ span_balance / 10 +'</span>体验金&nbsp;';
+        result_info = '剩余<span style="text-decoration:underline">'+ span_balance / 10 +'</span>元&nbsp;';
 
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
@@ -930,7 +930,7 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            info = '前0局猜错<span class="highlight">亏损0体验金</span><br />第1局猜对<span class="highlight-green">奖励1体验金</span><br />最终赚了1体验金，<span class="highlight-red">换到了1元</span><br />满15元可兑换红包';
+            info = '前0局猜错<span class="highlight">亏损0元</span><br />第1局猜对<span class="highlight-green">奖励1元</span><br />最终赚了1元，<span class="highlight-red">换到了1元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/10.png';
             html += '<span class="packet-sign">+</span>1<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 1;
@@ -938,7 +938,7 @@ function showWinModal(){
         break;
 
         case 2:
-            info = '前1局猜错<span class="highlight">亏损1体验金</span><br />第2局猜对<span class="highlight-green">奖励3体验金</span><br />最终赚了2体验金，<span class="highlight-red">换到了2元</span><br />满15元可兑换红包';
+            info = '前1局猜错<span class="highlight">亏损1元</span><br />第2局猜对<span class="highlight-green">奖励3元</span><br />最终赚了2元，<span class="highlight-red">换到了2元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/30.png';
             html += '<span class="packet-sign">+</span>2<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 2;
@@ -946,7 +946,7 @@ function showWinModal(){
         break;
 
         case 3:
-            info = '前2局猜错<span class="highlight">亏损4体验金</span><br />第3局猜对<span class="highlight-green">奖励7体验金</span><br />最终赚了3体验金，<span class="highlight-red">换到了3元</span><br />满15元可兑换红包';
+            info = '前2局猜错<span class="highlight">亏损4元</span><br />第3局猜对<span class="highlight-green">奖励7元</span><br />最终赚了3元，<span class="highlight-red">换到了3元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/70.png';
             html += '<span class="packet-sign">+</span>3<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 3;
@@ -954,7 +954,7 @@ function showWinModal(){
         break;
 
         case 4:
-            info = '前3局猜错<span class="highlight">亏损11体验金</span><br />第4局猜对<span class="highlight-green">奖励15体验金</span><br />最终赚了4体验金，<span class="highlight-red">换到了4元</span><br />满15元可兑换红包';
+            info = '前3局猜错<span class="highlight">亏损11元</span><br />第4局猜对<span class="highlight-green">奖励15元</span><br />最终赚了4元，<span class="highlight-red">换到了4元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/150.png';
             html += '<span class="packet-sign">+</span>4<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 4;
@@ -962,7 +962,7 @@ function showWinModal(){
         break;
 
         case 5:
-            info = '前4局猜错<span class="highlight">亏损26体验金</span><br />第5局猜对<span class="highlight-green">奖励31体验金</span><br />最终赚了5体验金，<span class="highlight-red">换到了5元</span><br />满15元可兑换红包';
+            info = '前4局猜错<span class="highlight">亏损26元</span><br />第5局猜对<span class="highlight-green">奖励31元</span><br />最终赚了5元，<span class="highlight-red">换到了5元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/310.png';
             html += '<span class="packet-sign">+</span>5<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 5;
@@ -970,7 +970,7 @@ function showWinModal(){
         break;
 
         case 6:
-            info = '前5局猜错<span class="highlight">亏损57体验金</span><br />第6局猜对<span class="highlight-green">奖励63体验金</span><br />最终赚了6体验金，<span class="highlight-red">换到了6元</span><br />满15元可兑换红包';
+            info = '前5局猜错<span class="highlight">亏损57元</span><br />第6局猜对<span class="highlight-green">奖励63元</span><br />最终赚了6元，<span class="highlight-red">换到了6元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/630.png';
             html += '<span class="packet-sign">+</span>6<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point/10) - 6;
@@ -1017,40 +1017,40 @@ function showLoseModal(){
     switch (level) {
 
         case 1:
-            instruction = '前1局猜错，<span class="highlight-green">总亏损1体验金</span>，根据倍增式玩法，第2局<span class="highlight-orange">将押注3体验金</span>，如猜对能获得3体验金奖励，减去亏损的1还能赚2体验金。<br />赚到的体验金自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前1局猜错，<span class="highlight-grey">总亏损1体验金</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注3体验金</span>，猜对能获得3体验金奖励，减去亏损的1还能赚2体验金。<br /><span class="highlight-red">赚到的体验金可兑换红包，1体验金兑换1元。</span>';
+            instruction = '前1局猜错，<span class="highlight-green">总亏损1元</span>，根据倍增式玩法，第2局<span class="highlight-orange">将押注3元</span>，如猜对能获得3元奖励，减去亏损的1还能赚2元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前1局猜错，<span class="highlight-grey">总亏损1元</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注3元</span>，猜对能获得3元奖励，减去亏损的1还能赚2元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
             image = '/client/images/progress-bar/lose_10.png';
             html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">5次内猜对奖励加倍</div>'; 
             result_info = '5次内猜对奖励加倍';
         break;
 
         case 2:
-            instruction = '前2局猜错，<span class="highlight-green">总亏损4体验金</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注7体验金</span>，如猜对能获得7体验金奖励，减去亏损的40还能赚3体验金。<br />赚到的体验金自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前2局猜错，<span class="highlight-grey">总亏损4体验金</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注7体验金</span>，猜对能获得7体验金奖励，减去亏损的40还能赚3体验金。<br /><span class="highlight-red">赚到的体验金可兑换红包，1体验金兑换1元。</span>';
+            instruction = '前2局猜错，<span class="highlight-green">总亏损4元</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注7元</span>，如猜对能获得7元奖励，减去亏损的40还能赚3元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前2局猜错，<span class="highlight-grey">总亏损4元</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注7元</span>，猜对能获得7元奖励，减去亏损的40还能赚3元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
             image = '/client/images/progress-bar/lose_30.png';
             html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">4次内猜对奖励加倍</div>'; 
             result_info = '4次内猜对奖励加倍';
         break;
 
         case 3:
-            instruction = '前3局猜错，<span class="highlight-green">总亏损11体验金</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注15体验金</span>，如猜对能获得15体验金奖励，减去亏损的11还能赚4体验金。<br />赚到的体验金自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前3局猜错，<span class="highlight-grey">总亏损11体验金</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注15体验金</span>，猜对能获得15体验金奖励，减去亏损的11还能赚4体验金。<br /><span class="highlight-red">赚到的体验金可兑换红包，1体验金兑换1元。</span>';
+            instruction = '前3局猜错，<span class="highlight-green">总亏损11元</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注15元</span>，如猜对能获得15元奖励，减去亏损的11还能赚4元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前3局猜错，<span class="highlight-grey">总亏损11元</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注15元</span>，猜对能获得15元奖励，减去亏损的11还能赚4元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
             image = '/client/images/progress-bar/lose_70.png';
             html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">3次内猜对奖励加倍</div>'; 
             result_info = '3次内猜对奖励加倍';
         break;
 
         case 4:
-            instruction = '前4局猜错，<span class="highlight-green">总亏损26体验金</span>，根据倍增式玩法，第5局<span class="highlight-orange">将押注31体验金</span>，如猜对能获得31体验金奖励，减去亏损的260还能赚5体验金。<br />赚到的体验金自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前4局猜错，<span class="highlight-grey">总亏损26体验金</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注31体验金</span>，猜对能获得31体验金奖励，减去亏损的260还能赚5体验金。<br /><span class="highlight-red">赚到的体验金可兑换红包，1体验金兑换1元。</span>';
+            instruction = '前4局猜错，<span class="highlight-green">总亏损26元</span>，根据倍增式玩法，第5局<span class="highlight-orange">将押注31元</span>，如猜对能获得31元奖励，减去亏损的260还能赚5元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前4局猜错，<span class="highlight-grey">总亏损26元</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注31元</span>，猜对能获得31元奖励，减去亏损的260还能赚5元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
             image = '/client/images/progress-bar/lose_150.png';
             html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">2次内猜对奖励加倍</div>'; 
             result_info = '2次内猜对奖励加倍';
         break;
 
         case 5:
-            instruction = '前5局猜错，<span class="highlight-green">总亏损57体验金</span>，根据倍增式玩法，第6局<span class="highlight-orange">将押注63体验金</span>，如猜对能获得63体验金奖励，减去亏损的57还能赚6体验金。<br />赚到的体验金自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前5局猜错，<span class="highlight-grey">总亏损57体验金</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注63体验金</span>，猜对能获得63体验金奖励，减去亏损的57还能赚6体验金。<br /><span class="highlight-red">赚到的体验金可兑换红包，1体验金兑换1元。</span>';
+            instruction = '前5局猜错，<span class="highlight-green">总亏损57元</span>，根据倍增式玩法，第6局<span class="highlight-orange">将押注63元</span>，如猜对能获得63元奖励，减去亏损的57还能赚6元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
+            instruction = '前5局猜错，<span class="highlight-grey">总亏损57元</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注63元</span>，猜对能获得63元奖励，减去亏损的57还能赚6元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
             image = '/client/images/progress-bar/lose_310.png';
             html += '<div class="modal-win-title">很遗憾猜错了</div><div class="modal-result">1次内猜对奖励加倍</div>'; 
             result_info = '1次内猜对奖励加倍';

@@ -868,7 +868,7 @@
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
 								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info">前5局猜错<span class="highlight">亏损57体验金</span><br />第6局猜对<span class="highlight-green">奖励63体验金</span><br />最终奖励6体验金，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
+								<div class="packet-info">前5局猜错<span class="highlight">亏损57元</span><br />第6局猜对<span class="highlight-green">奖励63元</span><br />最终奖励6元，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
 								<div class="instructions">
 									您已赢到6元，还差9元可兑换
 								</div>
@@ -899,7 +899,7 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="modal-instruction">前5局猜错，<span class="highlight-grey">总亏损57体验金</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注63体验金</span>，猜对能获得63体验金奖励，减去亏损的570还能赚6体验金。<br /><span class="highlight-red">赚到的体验金可兑换红包</span></div>
+								<div class="modal-instruction">前5局猜错，<span class="highlight-grey">总亏损57元</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注63元</span>，猜对能获得63元奖励，减去亏损的570还能赚6元。<br /><span class="highlight-red">赚到的元可兑换红包</span></div>
 								<div class="close-win-modal modal-redeem-button">
 									知道了
 								</div>												
@@ -923,7 +923,7 @@
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
 								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info">前5局猜错<span class="highlight">亏损57体验金</span><br />第6局猜对<span class="highlight-green">奖励63体验金</span><br />最终奖励6体验金，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
+								<div class="packet-info">前5局猜错<span class="highlight">亏损57元</span><br />第6局猜对<span class="highlight-green">奖励63元</span><br />最终奖励6元，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
 								<div class="instructions">
 									您已赢到6元，还差9元可兑换
 								</div>
@@ -951,11 +951,11 @@
 								  倍增式玩法说明
 								</div>
 								<div class="instructions">
-									第1局1体验金，如果猜错了怎么办？<br/>
-									第2局就投3体验金，如果第2局猜对，就能得到3体验金，扣掉第1局亏的1体验金，最终还赚2体验金。<br />
-									如果第2局还猜错，第3局就投7体验金。 。 。<br />
-									120游戏体验金能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
-									如果猜对就返回从1体验金开始。
+									第1局1元，如果猜错了怎么办？<br/>
+									第2局就投3元，如果第2局猜对，就能得到3元，扣掉第1局亏的1元，最终还赚2元。<br />
+									如果第2局还猜错，第3局就投7元。 。 。<br />
+									120游戏元能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
+									如果猜对就返回从1元开始。
 								</div>
 								<div class="close-modal modal-warning-button">
 							{{-- @if($betting_count > 0) --}}
@@ -986,11 +986,11 @@
 								</div>
 								<div class="instructions">
 									<p>
-									默认拥有120游戏体验金用来抽奖，赚到的体验金会换成红包，1体验金兑换1元红包。</p>
+									默认拥有120游戏元用来抽奖，赚到的元会换成红包，1元兑换1元红包。</p>
 									<p>
-									这是自助的抽奖转盘，先选单数或双数再按抽奖，抽中就有体验金奖励，抽错就扣除体验金。</p>
+									这是自助的抽奖转盘，先选单数或双数再按抽奖，抽中就有元奖励，抽错就扣除元。</p>
 									<p>
-									12体验金被分成6次，按倍增式玩法，只要6次之内猜对，就能一直赚红包。</p>
+									12元被分成6次，按倍增式玩法，只要6次之内猜对，就能一直赚红包。</p>
 								</div>
 								<div class="close-modal modal-warning-button">
 									知道了
