@@ -29,8 +29,8 @@ class RedeemedProduct extends Model
 
     public function product()
     {
-        return $this->belongsTo(OrderDetail::class, 'id', 'product_id');
-        return $this->belongsTo(OrderDetail::class, 'product_id', 'id');
+        //return $this->belongsTo(BuyProduct::class, 'id', 'product_id');
+        return $this->belongsTo(BuyProduct::class, 'product_id', 'id');
     }
 
     public function order_detail()
