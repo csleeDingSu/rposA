@@ -27,6 +27,11 @@ class RedeemedProduct extends Model
     protected $hidden = [
     ];
 
+    public function product()
+    {
+        return $this->belongsTo(OrderDetail::class, 'product_id', 'id');
+    }
+
     public function order_detail()
     {
         return $this->hasmany(OrderDetail::class, 'order_id', 'id');
