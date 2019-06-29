@@ -17,85 +17,46 @@
 <script language="javascript">
 	
 function confirm_redeem_with_input(id)	{
-	
-	
-	Swal({
-	  title: '@lang("dingsu.reject_confirmation")',
-	  text: '@lang("dingsu.reject_redeem_conf_text")',
-	  type: 'warning',
-	  showCancelButton: true,
-	  confirmButtonText: '@lang("dingsu.confirm")',
-	  cancelButtonText: '@lang("dingsu.cancel")',
-	  closeOnConfirm: false,
-	  input: 'text',		
-  	  animation: "slide-from-top",
-      inputPlaceholder: '@lang("dingsu.reject_notes")',
-		showLoaderOnConfirm: true,
-		inputValidator: (value) => {
-			if (!value) {
-			  return '@lang("dingsu.error_empty_note")'
-			}
-		  },
-		input: 'text',		
-  	  animation: "slide-from-top",
-      inputPlaceholder: '@lang("dingsu.card_pass")',
-		showLoaderOnConfirm: true,
-		inputValidator: (value) => {
-			if (!value) {
-			  return '@lang("dingsu.error_empty_note")'
-			}
-		  },
-		html:
-    '<input id="card_num" name="card_num" class="swal2-input" placeholder="">' +
-    '<input id="card_pass" name="card_pass" class="swal2-input">',
-	}
-		
-		
-		
-		).then((result) => {
-	  if (result.value) {
-		   
 
-		  $.ajax({
-				url: '{{route('buyproduct_redeem_reject')}}',
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				},
-				
-				type: 'post', 
-				data: JSON.stringify({ id: id, _token:"{{ csrf_token() }}" ,'reason':result.value}), 
-				dataType: "json",
-				contentType: 'application/json; charset=utf-8',
-				success: function (response) {
-
-			  		if ( response.success == false ) 
-						{
-							swal({  icon: 'error',  title: '@lang("dingsu.reject_error")',text: '@lang("dingsu.try_again")', button: '@lang("dingsu.okay")',});
-						}
-					else 
-						{
-							swal({  icon: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.reject_admin_success")', button: '@lang("dingsu.okay")',});
-
-							var df = '<label class="badge badge-danger">@lang("dingsu.rejected")</label>';
-
-							$('#statustd_'+id).html(df);
-							$('#actiontd_'+id).html('');
-						}
-
-				},
-				error: function (xhr, ajaxOptions, thrownError) {
-					swal({  icon: 'error',  title: '@lang("dingsu.reject_error")',text: '@lang("dingsu.try_again")', button: '@lang("dingsu.okay")',});
+			swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.fetching_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
 				}
-			});
-	  } 
-      else{
-			swal({
-        title: "<i>Title</i>", 
-        html: 'A custom message.</br> jkldfjkjdklfjlk',
+			} )
+			$.ajax( {
+				url: "{{route('render.card.detail')}}",
+				type: 'get',
+				dataType: "json",
+				data: {
+					_method: 'get',
+					_token: "{{ csrf_token() }}",
+					id:  id,
+				},
+				success: function ( result ) {
+					if ( result.success == true ) {
+						swal.close();
+						var data = result.html;
 
-    });  
-	  }
-	})
+						$('#carddata').html(data);
+
+						$('#carddetailmode').modal('show');						
+						
+					} else {						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+					}
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+				}
+			} );
+
+
 }
 	
 

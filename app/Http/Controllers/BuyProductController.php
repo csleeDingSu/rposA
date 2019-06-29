@@ -298,24 +298,48 @@ class BuyProductController extends BaseController
 		return view('main', $data);
 	}
 	
-	/**
-	 * @todo:- get random length from config
-	 *
-	 **/
+	public function update_redeem_buyproduct(Request $request)
+    {
+    	$id = $request->id;
+		$record = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('id', $id)->first();
+		if ($record)
+		{
+		}
+    }
+	
 	public function confirm_buyproduct(Request $request)
     {
 		$id = $request->id;
-		$record = BuyProduct::get_basic_package($id);
-		
+		$record = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('id', $id)->first();
+		$card = [];
 		if ($record)
 		{
+			
+			$quantity = $record->quantity;
+
+			switch ($type)
+			{
+				case '1':
+					for ($i=0;$i<$quantity;$i++)
+					{
+						$card[] = ['card_num'=>$d_card[$i],'card_pass'=>$d_card[$i]];
+					}
+					/App/OrderDetail::insert($card);
+				break;
+				case '2':
+					$shipping = ['shipping_method'=>'','tracking_number'=>'','notes'=>'','tracking_partner'=>''];
+
+				break;
+			}
+
+			
+
 			$now = Carbon::now();
 			$passcode = unique_random('basic_redeemed','passcode',8);
 			$data = ['redeem_state'=>3,'confirmed_at'=>$now,'passcode'=>$passcode,'redeemed_at'=>$now];
 			BuyProduct::update_BuyProduct($record->id, $data);
 			
-			Wallet::update_basic_wallet($record->member_id,$record->package_life,$record->package_point,'BPR');
-			
+			Wallet::update_basic_wallet($record->member_id,$record->package_life,$record->package_point,'BPR');			
 			
 			return response()->json(['success' => true, 'message' => 'success']);
 		}
@@ -326,8 +350,6 @@ class BuyProductController extends BaseController
 	
 	public function reject_product(Request $request)
     {
-		//return false;
-		
 		$id = $request->id;
 		//$record = BuyProduct::get_basic_package($id);
 		$record = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('id', $id)->first();
