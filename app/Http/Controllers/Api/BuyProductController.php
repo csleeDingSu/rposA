@@ -80,6 +80,8 @@ class BuyProductController extends Controller
 		$package   = BuyProduct::get_view_product($packageid);
 		
 		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);
+
+		if (!empty($package->deleted_at) return response()->json(['success' => false, 'message' => 'package deleted']);
 		
 		//check quantity	
 		$used_count = $package->used_quantity + $package->reserved_quantity;
