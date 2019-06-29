@@ -324,20 +324,21 @@ class BuyProductController extends BaseController
 		}	
 	}
 	
-	public function reject_buyproduct(Request $request)
+	public function reject_product(Request $request)
     {
 		//return false;
 		
 		$id = $request->id;
-		$record = BuyProduct::get_basic_package($id);
+		//$record = BuyProduct::get_basic_package($id);
+		$record = RedeemedProduct::with('product','order_detail','shipping_detail')->where('member_id', $member_id)->first();
 		if ($record)
 		{
 			$now = Carbon::now();
 			$data = ['redeem_state'=>0,'confirmed_at'=>$now,'reject_notes'=>$request->reason];		
 			//no need to refund anything
-			//Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RBP','credit', 'basic package rejected,point refund to customer');
+			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RBP','credit', 'redeem product rejected,point refund to customer');
 			
-			BuyProduct::update_BuyProduct($record->id, $data);
+			BuyProduct::update_redeemed($record->id, $data);
 			
 			return response()->json(['success' => true, 'message' => 'success']);
 		}
