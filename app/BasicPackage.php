@@ -270,7 +270,7 @@ class BasicPackage extends Model
 		$ito_count         = [];
 		$rede_count        = [];
 		$playcount         = \DB::table('member_game_result')->where('game_id',103)->where('member_id',$memberid)->count();
-		$trueon            = [];
+		$trueon            = ['playcount'];
 		//print_r($playcount );
 		
 		if ($playcount < 1 )
