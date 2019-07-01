@@ -733,46 +733,47 @@ function showPayout(){
 function bindCalculateButton(){
     $('.btn-calculate-vip').click(function( event ){
         event.stopImmediatePropagation();
+        window.parent.location.href = "/purchasepoint";
 
-        var user_id = $('#hidUserId').val();
-        var selected = $('div.clicked').find('input:radio').val();
-        var level = parseInt($('#hidLevel').val());
+        // var user_id = $('#hidUserId').val();
+        // var selected = $('div.clicked').find('input:radio').val();
+        // var level = parseInt($('#hidLevel').val());
 
-        if (typeof selected == 'undefined') {
-            $.ajax({
-                type: 'POST',
-                url: "/api/check-redeem",
-                data: { 'memberid': user_id },
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { console.log(error.responseText) },
-                success: function(data) {
-                    console.log(data);
-                    if(data.success){
-                        var point = data.wabao_point;
-                        var vip_point = data.vip_point;
+        // if (typeof selected == 'undefined') {
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: "/api/check-redeem",
+        //         data: { 'memberid': user_id },
+        //         dataType: "json",
+        //         beforeSend: function( xhr ) {
+        //             xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        //         },
+        //         error: function (error) { console.log(error.responseText) },
+        //         success: function(data) {
+        //             console.log(data);
+        //             if(data.success){
+        //                 var point = data.wabao_point;
+        //                 var vip_point = data.vip_point;
 
-                        $('.spanVipPoint').html(vip_point/10);
-                        $('.packet-point').html(point);
+        //                 $('.spanVipPoint').html(vip_point/10);
+        //                 $('.packet-point').html(point);
 
-                        $('#reset-life-max').modal();
+        //                 $('#reset-life-max').modal();
                             
-                        bindResetLifeButton();
-                        $('#btn-close-max').click(function(){
-                            $('#reset-life-max').modal('hide');
-                        });
+        //                 bindResetLifeButton();
+        //                 $('#btn-close-max').click(function(){
+        //                     $('#reset-life-max').modal('hide');
+        //                 });
 
-                    } else {
-                        $('.redeem-error').html(data.message);
-                        $('#reset-life-bet').modal();
-                    }
-                }
-            });
-        } else {
-            $('#reset-life-bet').modal();
-        }
+        //             } else {
+        //                 $('.redeem-error').html(data.message);
+        //                 $('#reset-life-bet').modal();
+        //             }
+        //         }
+        //     });
+        // } else {
+        //     $('#reset-life-bet').modal();
+        // }
     });
 }
 
