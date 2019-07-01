@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\MakePayment as mp;
+use \App\Helpers\MakePayment;
 use App\Http\Controllers\Api\LedgerController;
 use App\Http\Controllers\Api\ProductController as ApiProductController;
 use App\Http\Controllers\ProductController as ProductController;
@@ -19,7 +19,7 @@ class PaymentController extends BaseController
     public function __construct() {
 
         //
-        $this->payment = new mp();
+        $this->payment = new MakePayment();
        
     }
 
