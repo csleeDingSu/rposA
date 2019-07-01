@@ -270,8 +270,8 @@ class BasicPackage extends Model
 		$ito_count         = [];
 		$rede_count        = [];
 		$playcount         = \DB::table('member_game_result')->where('game_id',103)->where('member_id',$memberid)->count();
-		
-		print_r($playcount );
+		$trueon            = [];
+		//print_r($playcount );
 		
 		if ($playcount < 1 )
 		{
@@ -287,6 +287,7 @@ class BasicPackage extends Model
 				if ($basic_count->used_quantity >= 1)
 				{
 					$eligible_to_enter = TRUE;
+					$trueon[] = 'basic_count';
 				}
 			}
 			//redeemed product
@@ -295,6 +296,7 @@ class BasicPackage extends Model
 				if ($rede_count->used_quantity >= 1)
 				{
 					$eligible_to_enter = TRUE;
+					$trueon[] = 'rede_count';
 				}
 			}
 			//success invite a friend
@@ -303,6 +305,7 @@ class BasicPackage extends Model
 				if ($ito_count->count >= 1)
 				{
 					$eligible_to_enter = TRUE;
+					$trueon[] = 'ito_count';
 				}
 			}
 			//bet require minimum 120 point in wallet
@@ -311,6 +314,7 @@ class BasicPackage extends Model
 				if ($ledger->current_point >= 120)
 				{
 					$eligible_to_enter = TRUE;
+					$trueon[] = 'ledger';
 				}
 			}
 			if ($eligible_to_enter == TRUE)
@@ -323,7 +327,7 @@ class BasicPackage extends Model
 			$eligible_to_enter = 'true';
 		}
 		
-		return ['eligible_to_enter'=>$eligible_to_enter];
+		return ['eligible_to_enter'=>$eligible_to_enter,'true_on'=>$trueon];
 	}
 	
 }
