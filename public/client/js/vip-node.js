@@ -39,6 +39,7 @@ $(function () {
     if(wechat_status == 0 && wechat_name != null) {
 
         getToken();
+        getProduct();
         closeModal();
 
         ifvisible.on("wakeup", function(){
@@ -267,6 +268,53 @@ function getToken(){
         $(".loading").fadeOut("slow");
     }
     
+}
+
+function getProduct(){
+    $.getJSON( "/api/get-product-list", function( data ) {
+        console.log(data);
+
+        var html = '';
+
+        $.each(data.records, function(i, item) {
+            
+            if(i % 2 === 0){
+                html += '<div class="redeem-prize">' + 
+                            '<div class="left-box">' +
+                            '<div class="prize-box">' +
+                                '<div class="image-wrapper">' +
+                                    '<img src="'+ item.picture_url +'">' +
+                                '</div>' +
+                                '<div class="redeem-product">'+ item.name +'</div>' +
+                                '<div class="redeem-details">' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.price) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-button-wrapper">' +
+                                        '<div class="redeem-button">兑换</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>';
+            } else {
+                html += '<div class="right-box">' +
+                            '<div class="prize-box">' +
+                                '<div class="image-wrapper">' +
+                                    '<img src="'+ item.picture_url +'">' +
+                                '</div>' +
+                                '<div class="redeem-product">'+ item.name +'</div>' +
+                                '<div class="redeem-details">' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.price) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-button-wrapper">' +
+                                        '<div class="redeem-button">兑换</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+            }    
+        });
+
+        $('.redeem-prize-wrapper').html(html);
+    });
 }
 
 function resetTimer(){
