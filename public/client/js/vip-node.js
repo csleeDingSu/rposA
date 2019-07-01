@@ -1346,7 +1346,7 @@ function check_vip_status() {
             $('.pointStillNeed').html(120 - yourPoint);
 
             if(data.success){
-                if ((data.result.eligible_to_enter)) {
+                if (!(data.result.eligible_to_enter)) {
 
                     $('#modal-check-vip-status').modal({backdrop: 'static', keyboard: false});
                 }
