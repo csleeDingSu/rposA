@@ -159,17 +159,19 @@ class ClientController extends BaseController
 
 		} else {
 
-			$member = Auth::guard('member')->user()->id	;
-			$data['member'] = Member::get_member($member);
+			// $member = Auth::guard('member')->user()->id	;
+			// $data['member'] = Member::get_member($member);
 
-			if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0) {
+			// if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0) {
 
-				return view('client/vip-node');
+			// 	return view('client/vip-node');
 
-			} else {
+			// } else {
 
-				return redirect('/arcade');
-			}
+			// 	return redirect('/arcade');
+			// }
+
+			return view('client/vip-node');
 
 		}
 	}

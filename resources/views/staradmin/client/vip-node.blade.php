@@ -1061,6 +1061,40 @@
 </div>
 <!-- customer service modal Ends -->
 
+<!-- check-vip-status modal -->
+<div class="modal fade col-md-12" id="modal-check-vip-status" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-title">金币不足</div>
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<div class="instructions2">VIP专场需满120金币</div>
+							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
+							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
+							<a href="/purchasepoint">
+								<div class="btn-purchase-point">立刻充值</div>
+							</a>
+						</div>
+						<div class="vip-title">
+							<img src="{{ asset('/client/images/vip/left_deco.png') }}" width="18px" height="13px" /> VIP专场特权 <img src="{{ asset('/client/images/vip/right_deco.png') }}" width="18px" height="13px" />
+						</div>
+						<div class="vip-desc">
+							<ul>
+								<li><span class="vip-highlight">兑换精选豪礼，</span>iPhone拿不停。</li>
+								<li><span class="vip-highlight">无上限封顶，</span>想赢多少都行。</li>
+								<li><span class="vip-highlight">自由式玩法，</span>自选金额不受限。</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- check-vip-status modal Ends-->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -1079,6 +1113,9 @@
 	<script type="text/javascript">
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+
+
+    $('.modal-minimum-wallet').modal('show');
 
 		$(document).ready(function () {
 

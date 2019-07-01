@@ -296,3 +296,110 @@
 .info-highlight {
 	color: #ffa800;
 }
+
+#modal-check-vip-status .modal-dialog {
+	width: 85%;
+}
+
+#modal-check-vip-status .modal-title {
+    background: #f9f1e4;
+    color: #e5a054;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: 500;
+    border: none;
+	box-shadow: none;
+	width: 100%;
+}
+
+#modal-check-vip-status .modal-content {
+    border: none;
+	box-shadow: none;
+	background: #f9f1e4;
+	margin-top: -5px;
+	width: 100%;
+}
+
+#modal-check-vip-status .modal-card {
+	background-color: #fff;
+	border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 20px;
+    line-height: 30px;
+    width: 100%;
+
+}
+
+#modal-check-vip-status .btn-purchase-point {
+
+    background-image: url("/client/images/vip/topup-bg.png");
+    background-size: cover;
+    display: inline-block;
+    border: none;
+    padding: 10px; 
+    width: 260px; 
+    height: 60px; 
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    margin-top:20px;
+
+}
+
+#modal-check-vip-status .instructions {
+	font-size: 12px;
+	color: #666;
+	text-align: left;
+	padding-bottom: 30px;
+	padding-top: 10px;
+}
+
+#modal-check-vip-status .instructions2 {
+	color: #8c7c7c;
+	font-size: 18px;
+	/*margin: 10px 0;*/
+}
+
+#modal-check-vip-status .instructions3 {
+	color: #d28f44;
+	background-color: #f9f1e4;
+	font-size: 12px;
+	text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin: 10px 12%;
+}
+
+#modal-check-vip-status .vip-title {	
+    font-size: 19px;
+    color: #807562;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#modal-check-vip-status .vip-desc {
+    font-size: 14px;
+    color: #8c7c7c;
+    text-align: left;
+    padding-left: 20%;
+    line-height: 25px;
+
+}
+
+#modal-check-vip-status .yourPoint {
+	color: #37322d;
+	font-weight: bold;
+}
+
+#modal-check-vip-status .pointStillNeed {
+	color: #ee7931;
+	font-weight: bold;
+}

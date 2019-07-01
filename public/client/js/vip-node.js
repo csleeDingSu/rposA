@@ -164,6 +164,8 @@ function initUser(records){
         $(".spanLife").html(life);
         $(".span-play-count").html(play_count);
     }
+
+    check_vip_status();
 }
 
 function initGame(data, level, latest_result, consecutive_lose){
@@ -1322,3 +1324,36 @@ function musicPlay(music) {
 
 }
 //load audio - end
+
+function check_vip_status() {
+    var username = $('#hidUsername').val();
+    var session = $('#hidSession').val();
+    var id = $('#hidUserId').val();
+
+    $.ajax({
+        type: 'POST',
+        url: "/api/check-vip-status",
+        data: { 'memberid': id },
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + session);
+        },
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            // console.log(data);
+            var yourPoint = $('.spanAcuPointAndBalance').html();
+            $('.yourPoint').html(yourPoint);//;
+            $('.pointStillNeed').html(120 - yourPoint);
+
+            if(data.success){
+                if ((data.result.eligible_to_enter)) {
+
+                    $('#modal-check-vip-status').modal({backdrop: 'static', keyboard: false});
+                }
+                //nothing
+            } else {
+                $('#modal-check-vip-status').modal({backdrop: 'static', keyboard: false});
+            }
+        }
+    });
+}
