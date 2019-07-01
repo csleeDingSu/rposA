@@ -403,6 +403,10 @@
 		height:292px;
 	}
 
+	#modal-check-vip-status .modal-dialog {
+		width: 320px;
+	}
+
 	#modal-check-vip-status .instructions3 {
 	    margin: 5% 5%;
 	}
