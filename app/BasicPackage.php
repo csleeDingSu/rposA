@@ -271,6 +271,8 @@ class BasicPackage extends Model
 		$rede_count        = [];
 		$playcount         = \DB::table('member_game_result')->where('game_id',103)->where('member_id',$memberid)->count();
 		
+		print_r($playcount );
+		
 		if ($playcount < 1 )
 		{
 			$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
