@@ -1526,7 +1526,7 @@ class GameController extends Controller
 		$type       = 1;
 		$vip        = '';
 		$gameid     = $request->gameid;
-		$memberid   = $request->memberid;			
+		$memberid   = $request->memberid;
 		
 		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();	
 		
@@ -1537,9 +1537,20 @@ class GameController extends Controller
 		$res->status     = 1;
 		$res->deleted_at = $now;
 		
+		
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
-		$gametype = $res->gametype ;	
+		$gametype = $res->gametype ;
+		
+		//check eligible 
+		$eligible_to_play = \App\BasicPackage::check_vip_status($memberid);
+		
+		if ($eligible_to_play['eligible_to_enter'] != 'true')
+		{
+			$res->save();
+			return response()->json(['success' => false, 'message' => "not eligible to bet VIP"]);
+		}
+		
 		
 		//check point 				
 		$play_status   = Wallet::get_wallet_details($memberid);
