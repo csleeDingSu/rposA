@@ -62,6 +62,7 @@ class LedgerController extends Controller
 		
 		if ($result)
 		{
+			$result->point = $result->point * 10;
 			$wallet  = Wallet::update_basic_wallet($memberid,0,$result->point,'TOP','credit', $result->notes);			
 			$data    = ['confirmed_at'=>now(),'updated_at'=>now(),'status'=>2];
 			$result  = Wallet::update_topup_request($result->id, $data);
