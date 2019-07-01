@@ -53,7 +53,7 @@
 									@if($list->type == 1)
 										<a href="javascript:void(0)" onClick="confirm_redeem_with_input({{ $list->id }})" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-check  "></i></a>
 									@elseif ($list->type == 2)
-										<a href="javascript:void(0)" onClick="confirm_redeem({{ $list->id }})" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-check  "></i></a>
+										<a href="javascript:void(0)" onClick="confirm_redeem_with_input({{ $list->id }})" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-check  "></i></a>
 									@endif
 									
 									

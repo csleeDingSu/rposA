@@ -317,50 +317,101 @@ class BuyProductController extends BaseController
 
 	public function render_card_detail(Request $request)
     {
-    	$id = $request->id;
-    	$result = \App\OrderDetail::where('order_id', $id)->get();
-    	if ($request->ajax()) {
-			$dd =  view('buyproduct.pendinglist.render_card_detail', ['result' => $result, 'orderid' => $id])->render();
-		} 
-
+    	$id       = $request->id;
+		$record   = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('id', $id)->first();
+		$product  = $record->product;
+		$order    = $record->order_detail;
+		$shipping = $record->shipping_detail;
+		switch ($product->type)
+		{
+			case '1':
+				$dd =  view('buyproduct.pendinglist.render_card_detail', ['result' => $order, 'orderid' => $id])->render();
+			break;
+			case '2':
+				$dd =  view('buyproduct.pendinglist.render_shipping_detail', ['result' => $shipping, 'orderid' => $id])->render();
+			break;
+		}				
 		return response()->json(['success' => true,'data'=>$dd]);
-
     }
     
 	
-	public function confirm_buyproduct(Request $request)
+	public function confirm_product(Request $request)
     {
-		$id = $request->id;
-		$record = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('id', $id)->first();
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+		$id = $input['rid'];
+		$record  = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('id', $id)->first();
+		$order   = $record->order_detail;
+		$product = $record->product;
+		$shi_de  = $record->shipping_detail;
 		$card = [];
 		if ($record)
-		{
-			
+		{			
 			$quantity = $record->quantity;
-
-			switch ($type)
+			switch ($product->type)
 			{
-				case '1':
-					for ($i=0;$i<$quantity;$i++)
-					{
-						$card[] = ['card_num'=>$d_card[$i],'card_pass'=>$d_card[$i]];
+				case '1':					
+					$validate_array = [];
+					for($i=0;$i<$quantity;$i++) {
+						$validate_array['card_num_'. $order[$i]->id ]  = 'required';
+						$validate_array['card_pass_'. $order[$i]->id ] = 'required';
+					}					
+					$validator = Validator::make($input,$validate_array );
+					if ($validator->fails()) {
+						return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 					}
-					\App\OrderDetail::insert($card);
+					
+					for($i=0;$i<$quantity;$i++) 
+					{
+						$card    = ['card_num'=> $input['card_num_'.$order[$i]->id],'card_pass'=>$input['card_pass_'.$order[$i]->id]];
+						
+						$card_up = new \App\OrderDetail();
+						$card_up->exists = true;
+						$card_up->id = $order[$i]->id ;
+						$card_up->fill($card);
+						$card_up->save();
+					}
+					
 				break;
 				case '2':
-					$shipping = ['shipping_method'=>'','tracking_number'=>'','notes'=>'','tracking_partner'=>''];
+					
+					$validator = Validator::make($input, [
+						// 'position'       => 'required|numeric|min:1|max:99|unique:redeem_condition,position,'.$id,
+						// 'minimum_point'  => 'required|numeric|min:1|max:9999',						
+						
+						//'shipping_method'      => 'required',
+						'address'              => 'required',
+						//'unit_detail'          => 'required',
+						'city'                 => 'required',
+						'zip'                  => 'required',
+						'country'              => 'required',
+						'tracking_number'      => 'required',
+						'notes'                => 'required',
+						'tracking_partner'     => 'required',
+						'contact_numer'        => 'required',						
+						'receiver_name'        => 'required',
+						//'alternative_contact_number'  => 'required',
+						
+					]);
+					if ($validator->fails()) {
+						return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+					}
+					$shi_de = $shi_de[0];				
 
+					$sdetails = new \App\ShippingDetail();
+					$sdetails->exists = true;
+					$sdetails->id = $shi_de->id;
+					$sdetails->fill($input);
+					$sdetails->save();
 				break;
 			}
 
-			
-
 			$now = Carbon::now();
-			$passcode = unique_random('basic_redeemed','passcode',8);
-			$data = ['redeem_state'=>3,'confirmed_at'=>$now,'passcode'=>$passcode,'redeemed_at'=>$now];
-			BuyProduct::update_BuyProduct($record->id, $data);
+			$data = ['redeem_state'=>3,'confirmed_at'=>$now,'redeemed_at'=>$now];
+		//	BuyProduct::update_redeemed($record->id, $data);
 			
-			Wallet::update_basic_wallet($record->member_id,$record->package_life,$record->package_point,'BPR');			
+		//	Wallet::update_basic_wallet($record->member_id,$record->package_life,$record->package_point,'BPR');			
 			
 			return response()->json(['success' => true, 'message' => 'success']);
 		}

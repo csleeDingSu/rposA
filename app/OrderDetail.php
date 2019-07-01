@@ -15,9 +15,7 @@ class OrderDetail extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        
-    ];
+    protected $fillable = [ 'card_num','card_pass'];
 
     /**
      * The attributes that should be hidden for arrays.

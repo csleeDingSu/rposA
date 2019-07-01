@@ -8,6 +8,7 @@
 </section>
 
 <section class="model">
+	@include('buyproduct.pendinglist.model')
 </section>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
@@ -15,9 +16,60 @@
 
 
 <script language="javascript">
+	function confirm_redeem()	{
+		$('#validation-errors').html('');
+		var id    = $("#rid").val();	
+		var datav =  $("#formrender").serialize();		
+		swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.fetching_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+			$.ajax( {
+				url: '{{route('buyproduct_redeem_confirm')}}',
+				type: 'post',
+				dataType: "json",
+				data: {
+					_method: 'post',
+					_token: "{{ csrf_token() }}",
+					_data:  datav,
+				},
+				success: function ( result ) {
+					//console.log(result);
+					swal.close();
+				
+				if ( result.success == true) {
+						$('#carddata').html('');
+						$('#carddetailmode').modal('hide');	
+						swal({  icon: 'success',  title: '@lang("dingsu.done")',text: '@lang("dingsu.redeem_admin_success")', button: '@lang("dingsu.okay")',});
+						var df = '<label class="badge badge-success">@lang("dingsu.confirmed")</label>';
+						$('#statustd_'+id).html(df);
+						$('#actiontd_'+id).html('');						
+				}
+				else
+					{
+						$.each(result.message, function(key,value) {							
+						 $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
+					   });						
+					}
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					$.each(xhr.responseJSON.errors, function(key,value) {
+					 $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
+				 });
+				}
+			} );
+}
+	
 	
 function confirm_redeem_with_input(id)	{
-
+$('#validation-errors').html('');
 			swal( {
 				title: '@lang("dingsu.please_wait")',
 				text: '@lang("dingsu.fetching_data")..',
@@ -39,7 +91,7 @@ function confirm_redeem_with_input(id)	{
 					id:  id,
 				},
 				success: function ( result ) {
-					console.log(result.data);
+					//console.log(result.data);
 					swal.close();
 					$('#carddata').html(result.data);
 					$('#carddetailmode').modal('show');	
@@ -111,7 +163,7 @@ function confirm_redeem_with_input(id)	{
 	})
 }
 	
-function confirm_redeem(id)	{
+function ori_confirm_redeem(id)	{
 	Swal({
 	title: '@lang("dingsu.redeem_confirmation")',
 	text: '@lang("dingsu.redeem_conf_text")',
