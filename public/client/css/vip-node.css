@@ -155,13 +155,6 @@
 	top: -10px;
 }
 
-@media only screen and (max-width: 360px) {
-	#wheel_banner img {
-		width:280px;
-		height:292px;
-	}
-}
-
 .redeem-banner {
 	width: 100%;
 	height: 100%;
@@ -298,7 +291,7 @@
 }
 
 #modal-check-vip-status .modal-dialog {
-	width: 85%;
+	width: 350px;
 }
 
 #modal-check-vip-status .modal-title {
@@ -402,4 +395,24 @@
 #modal-check-vip-status .pointStillNeed {
 	color: #ee7931;
 	font-weight: bold;
+}
+
+@media only screen and (max-width: 360px) {
+	#wheel_banner img {
+		width:280px;
+		height:292px;
+	}
+
+	#modal-check-vip-status .instructions3 {
+	    margin: 5% 5%;
+	}
+
+	#modal-check-vip-status .btn-purchase-point {
+		margin-left: -5%;
+	}
+
+	#modal-check-vip-status .vip-desc {
+		padding-left: 18%;
+	}
+
 }
