@@ -312,6 +312,10 @@ class BasicPackage extends Model
 				$eligible_to_enter = 'true';
 			}
 		}
+		else
+		{
+			$eligible_to_enter = 'true';
+		}
 		
 		return ['eligible_to_enter'=>$eligible_to_enter];
 
