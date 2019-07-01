@@ -603,7 +603,7 @@ function getNewProductList(token) {
             var packages = data.packages;
             var html = '';
             var htmlmodel = '';
-            var current_point = $('.wabao-coin').val();
+            var current_point = $('.wabao-coin').text();
 
             if(records.length === 0){
                 //do nothing
@@ -626,6 +626,11 @@ function getNewProductList(token) {
 
                     if(reserved_quantity === null){
                         reserved_quantity = 0;
+                    }
+
+                    if (item.point_to_redeem > parseInt(current_point)){
+                        cannot_redeem = true;
+                        cls_cannot_redeem = 'btn-cannot-redeem';
                     }
 
                     if(available_quantity == 0){
@@ -678,9 +683,9 @@ function getNewProductList(token) {
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    if ((available_quantity > 0) && item.min_point <= parseInt(current_point)) {
+                                                    if ((available_quantity > 0) && item.point_to_redeem <= parseInt(current_point)) {
 
-                                                        htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
+                                                        htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeemProduct(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
                                                         '</div>' +
                                                         '<div>' +
@@ -721,5 +726,28 @@ function getNewProductList(token) {
 
         } // end success
     }); // end $.ajax
+}
+
+function redeemProduct(token, product_id){
+
+    var member_id = $('#hidUserId').val();
+    
+    $.ajax({
+        type: 'POST',
+        url: "/api/request-redeem",
+        data: { 'memberid': member_id, 'productid': product_id },
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            if(data.success) {
+                window.location.href = "/redeem/history";
+            } else {
+                $('#error-' + product_id).html(data.message);
+            }
+        }
+    });
 }
         
