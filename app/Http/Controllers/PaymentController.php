@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \App\Helpers\MakePayment;
+use \App\helpers\MakePayment;
 use App\Http\Controllers\Api\LedgerController;
 use App\Http\Controllers\Api\ProductController as ApiProductController;
 use App\Http\Controllers\ProductController as ProductController;
