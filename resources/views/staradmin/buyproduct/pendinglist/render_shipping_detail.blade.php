@@ -16,9 +16,9 @@
 		</div>
 		<div class="col-md-6">
 			<div class="form-group row">
-				<label for="contact_numer" class="col-sm-6 col-form-label">@lang('dingsu.contact_numer') <span class="text-danger">*</span></label>
+				<label for="contact_number" class="col-sm-6 col-form-label">@lang('dingsu.contact_number') <span class="text-danger">*</span></label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="contact_numer" value="{{$list->contact_numer}}">
+					<input type="text" class="form-control" name="contact_number" value="{{$list->contact_number}}">
 				</div>
 			</div>
 		</div>
