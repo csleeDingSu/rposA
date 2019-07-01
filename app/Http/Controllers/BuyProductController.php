@@ -389,7 +389,7 @@ class BuyProductController extends BaseController
 						'tracking_number'      => 'required',
 						'notes'                => 'required',
 						'tracking_partner'     => 'required',
-						'contact_numer'        => 'required',						
+						'contact_number'        => 'required',						
 						'receiver_name'        => 'required',
 						//'alternative_contact_number'  => 'required',
 						
