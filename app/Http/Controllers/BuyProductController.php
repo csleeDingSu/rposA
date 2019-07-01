@@ -409,7 +409,7 @@ class BuyProductController extends BaseController
 
 			$now = Carbon::now();
 			$data = ['redeem_state'=>3,'confirmed_at'=>$now,'redeemed_at'=>$now];
-		//	BuyProduct::update_redeemed($record->id, $data);
+			BuyProduct::update_redeemed($record->id, $data);
 			
 		//	Wallet::update_basic_wallet($record->member_id,$record->package_life,$record->package_point,'BPR');			
 			
