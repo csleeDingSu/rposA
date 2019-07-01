@@ -61,12 +61,12 @@ function getPackagePurchasePoint() {
         if (price > 0) {
             $('#point').prop('readonly', true);
             $('._point').html(price);
-            $('#point').attr('style', 'width: ' + (($('#point').val().length * 5) - 5) + '%;');
+            $('#point').attr('style', 'width: ' + (($('#point').val().length * 5) - 4) + '%;');
         } else {
             $('._point').html(0);
             $('#point').focus();  
             $('#point').prop('readonly', false);
-            $('#point').attr('style', 'width: 30%');
+            $('#point').attr('style', 'width: 31%');
         }
 
     });        
