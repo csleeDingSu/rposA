@@ -53,9 +53,9 @@ function getToken(){
         //console.log(data);
         if(data.success) {
             getProductList(data.access_token);
+            getNewProductList(data.access_token);
             getPosts(page, data.access_token);
             scrollBottom(data.access_token);
-            getNewProductList(data.access_token);
         }      
     });
 }
@@ -603,6 +603,7 @@ function getNewProductList(token) {
             var packages = data.packages;
             var html = '';
             var htmlmodel = '';
+            var current_point = $('.wabao-coin').val();
 
             if(records.length === 0){
                 //do nothing
@@ -672,12 +673,12 @@ function getNewProductList(token) {
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point/10) +' 元</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(current_point) +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    if ((available_quantity > 0) && item.min_point <= parseInt(data.current_point)) {
+                                                    if ((available_quantity > 0) && item.min_point <= parseInt(current_point)) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
