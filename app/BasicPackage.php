@@ -264,52 +264,70 @@ class BasicPackage extends Model
 	
 	public static function check_vip_status($memberid)
 	{
-		$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
-		$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
-		$ito_count   = \DB::table('view_member_introduce_count')->where('wechat_verification_status',0)->where('memberid',$memberid)->first();
-		$rede_count  = \DB::table('view_buy_product_count')->where('member_id',$memberid)->first();
-
-		$ledger      = \DB::table('mainledger')->where('member_id',$memberid)->first();
-
 		$eligible_to_enter = FALSE;
-		if ($basic_count)
+		$basic_count       = [];
+		$vip_count         = [];
+		$ito_count         = [];
+		$rede_count        = [];
+		$playcount         = \DB::table('member_game_result')->where('game_id',103)->where('member_id',$memberid)->count();
+		$trueon            = ['playcount'];
+		//print_r($playcount );
+		
+		if ($playcount < 1 )
 		{
-			if ($basic_count->used_quantity >= 1)
+			$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
+			//$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
+			$ito_count   = \DB::table('view_member_introduce_count')->where('wechat_verification_status',0)->where('memberid',$memberid)->first();
+			$rede_count  = \DB::table('view_buy_product_count')->where('member_id',$memberid)->first();
+			$ledger      = \DB::table('mainledger')->where('member_id',$memberid)->first();
+							 
+			//purchased package
+			if ($basic_count)
 			{
-				$eligible_to_enter = TRUE;
+				if ($basic_count->used_quantity >= 1)
+				{
+					$eligible_to_enter = TRUE;
+					$trueon[] = 'basic_count';
+				}
+			}
+			//redeemed product
+			if ($rede_count)
+			{
+				if ($rede_count->used_quantity >= 1)
+				{
+					$eligible_to_enter = TRUE;
+					$trueon[] = 'rede_count';
+				}
+			}
+			//success invite a friend
+			if (!empty($ito_count))
+			{
+				if ($ito_count->count >= 1)
+				{
+					$eligible_to_enter = TRUE;
+					$trueon[] = 'ito_count';
+				}
+			}
+			//bet require minimum 120 point in wallet
+			if ($ledger)
+			{
+				if ($ledger->current_point >= 120)
+				{
+					$eligible_to_enter = TRUE;
+					$trueon[] = 'ledger';
+				}
+			}
+			if ($eligible_to_enter == TRUE)
+			{
+				$eligible_to_enter = 'true';
 			}
 		}
-		if ($vip_count)
-		{
-			if ($vip_count->used_quantity >= 1)
-			{
-				$eligible_to_enter = TRUE;
-			}
-		}
-		if (!empty($ito_count))
-		{
-			if ($ito_count->count >= 1)
-			{
-				$eligible_to_enter = TRUE;
-			}
-		}
-		if ($ledger)
-		{
-			if ($ledger->current_point >= 120)
-			{
-				$eligible_to_enter = TRUE;
-			}
-		}
-
-		if ($eligible_to_enter == TRUE)
+		else
 		{
 			$eligible_to_enter = 'true';
 		}
-
-
-
 		
-		return ['basic_redeem_count'=>$basic_count,'vip_redeem_count'=>$vip_count,'vip_redeem_count'=>$ito_count,'redeem_count'=>$rede_count,'eligible_to_enter'=>$eligible_to_enter];
+		return ['eligible_to_enter'=>$eligible_to_enter,'debug_'=>$trueon];
 	}
 	
 }
