@@ -85,6 +85,7 @@
 							<div class="icon-vip"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						<!--
 						@if(count($vip_status->where('redeem_state', '3')) > 0)
 							<div class="vip-inprogress">@lang('dingsu.inprogress')</div>
 						@elseif(count($vip_status->where('redeem_state', '2')) > 0)
@@ -94,6 +95,7 @@
 						@else
 							<div class="vip-redeemticket">@lang('dingsu.redeem_vip_ticket')</div>
 						@endif
+					-->
 						VIP专场
 					</div>
 				</li>
@@ -337,7 +339,8 @@
             }
 
             $('.vipmember').click(function(){
-				window.location.href = "/vipmember";
+				// window.location.href = "/vipmember";
+				window.location.href = "/vip";
 			});
 
 			$('.round').click(function(){
