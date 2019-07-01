@@ -264,48 +264,56 @@ class BasicPackage extends Model
 	
 	public static function check_vip_status($memberid)
 	{
-		$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
-		$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
-		$ito_count   = \DB::table('view_member_introduce_count')->where('wechat_verification_status',0)->where('memberid',$memberid)->first();
-		$rede_count  = \DB::table('view_buy_product_count')->where('member_id',$memberid)->first();
-
-		$ledger      = \DB::table('mainledger')->where('member_id',$memberid)->first();
-
 		$eligible_to_enter = FALSE;
-		if ($basic_count)
+		$basic_count       = [];
+		$vip_count         = [];
+		$ito_count         = [];
+		$rede_count        = [];
+		$playcount         = \DB::table('member_game_result')->where('game_id',103)->where('member_id',$memberid)->count();
+		
+		if ($playcount < 1 )
 		{
-			if ($basic_count->used_quantity >= 1)
-			{
-				$eligible_to_enter = TRUE;
-			}
-		}
-		if ($vip_count)
-		{
-			if ($vip_count->used_quantity >= 1)
-			{
-				$eligible_to_enter = TRUE;
-			}
-		}
-		if (!empty($ito_count))
-		{
-			if ($ito_count->count >= 1)
-			{
-				$eligible_to_enter = TRUE;
-			}
-		}
-		if ($ledger)
-		{
-			if ($ledger->current_point >= 120)
-			{
-				$eligible_to_enter = TRUE;
-			}
-		}
+			$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
+			$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
+			$ito_count   = \DB::table('view_member_introduce_count')->where('wechat_verification_status',0)->where('memberid',$memberid)->first();
+			$rede_count  = \DB::table('view_buy_product_count')->where('member_id',$memberid)->first();
+			$ledger      = \DB::table('mainledger')->where('member_id',$memberid)->first();
 
-		if ($eligible_to_enter == TRUE)
-		{
-			$eligible_to_enter = 'true';
+			if ($basic_count)
+			{
+				if ($basic_count->used_quantity >= 1)
+				{
+					$eligible_to_enter = TRUE;
+				}
+			}
+			if ($vip_count)
+			{
+				if ($vip_count->used_quantity >= 1)
+				{
+					$eligible_to_enter = TRUE;
+				}
+			}
+			if (!empty($ito_count))
+			{
+				if ($ito_count->count >= 1)
+				{
+					$eligible_to_enter = TRUE;
+				}
+			}
+			if ($ledger)
+			{
+				if ($ledger->current_point >= 120)
+				{
+					$eligible_to_enter = TRUE;
+				}
+			}
+			if ($eligible_to_enter == TRUE)
+			{
+				$eligible_to_enter = 'true';
+			}
 		}
-
+		
+		return ['eligible_to_enter'=>$eligible_to_enter];
 
 
 		
