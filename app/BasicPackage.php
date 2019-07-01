@@ -274,11 +274,12 @@ class BasicPackage extends Model
 		if ($playcount < 1 )
 		{
 			$basic_count = \DB::table('view_basic_member_redeem_count')->where('member_id',$memberid)->first();
-			$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
+			//$vip_count   = \DB::table('view_vip_member_redeem_count')->where('member_id',$memberid)->first();
 			$ito_count   = \DB::table('view_member_introduce_count')->where('wechat_verification_status',0)->where('memberid',$memberid)->first();
 			$rede_count  = \DB::table('view_buy_product_count')->where('member_id',$memberid)->first();
 			$ledger      = \DB::table('mainledger')->where('member_id',$memberid)->first();
-
+							 
+			//purchased package
 			if ($basic_count)
 			{
 				if ($basic_count->used_quantity >= 1)
@@ -286,13 +287,15 @@ class BasicPackage extends Model
 					$eligible_to_enter = TRUE;
 				}
 			}
-			if ($vip_count)
+			//redeemed product
+			if ($rede_count)
 			{
-				if ($vip_count->used_quantity >= 1)
+				if ($rede_count->used_quantity >= 1)
 				{
 					$eligible_to_enter = TRUE;
 				}
 			}
+			//success invite a friend
 			if (!empty($ito_count))
 			{
 				if ($ito_count->count >= 1)
@@ -300,6 +303,7 @@ class BasicPackage extends Model
 					$eligible_to_enter = TRUE;
 				}
 			}
+			//bet require minimum 120 point in wallet
 			if ($ledger)
 			{
 				if ($ledger->current_point >= 120)
@@ -318,10 +322,6 @@ class BasicPackage extends Model
 		}
 		
 		return ['eligible_to_enter'=>$eligible_to_enter];
-
-
-		
-		return ['basic_redeem_count'=>$basic_count,'vip_redeem_count'=>$vip_count,'vip_redeem_count'=>$ito_count,'redeem_count'=>$rede_count,'eligible_to_enter'=>$eligible_to_enter];
 	}
 	
 }
