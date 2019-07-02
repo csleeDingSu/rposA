@@ -53,7 +53,6 @@ function getToken(){
         //console.log(data);
         if(data.success) {
             getProductList(data.access_token);
-            getNewProductList(data.access_token);
             getPosts(page, data.access_token);
             scrollBottom(data.access_token);
         }      
@@ -246,6 +245,10 @@ function getProductList(token) {
 
         } // end success
     }); // end $.ajax
+    
+    //new list of buy product
+    getNewProductList(token);
+
 } // end function
 
 function scrollBottom(token){
