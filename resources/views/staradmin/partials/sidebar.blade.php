@@ -1,17 +1,3 @@
-@if( Auth::user()->name == 'admin2' )
-	<nav class="sidebar sidebar-offcanvas" id="sidebar">
-		<ul class="nav">
-
-			<li class="nav-item">
-				<a class="nav-link" href="/product/product-new">
-              <i class="menu-icon  icon-list text-danger"></i>
-              <span class="menu-title text-capitalize"> @lang('dingsu.redeem') 2 </span>
-            </a>
-			</li>
-
-		</ul>
-	</nav>
-@else
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 	<ul class="nav">
 		<li class="nav-item">
@@ -134,7 +120,7 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uibuyproduct" aria-expanded="false" aria-controls="uibuyproduct">
               <i class="menu-icon  icon-layers   text-info"></i>
-              <span class="menu-title"> @lang('dingsu.buyproduct')  @lang('dingsu.list')</span>
+              <span class="menu-title"> @lang('dingsu.buyproduct')</span>
               <i class="menu-arrow"></i>
             </a>
 		
@@ -158,14 +144,14 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#redeem" aria-expanded="false" aria-controls="redeem">
               <i class="menu-icon icon-present text-success"></i>
-              <span class="menu-title text-capitalize">@lang('dingsu.product')</span>
+              <span class="menu-title text-capitalize">@lang('dingsu.softpins') @lang('dingsu.product')</span>
               <i class="menu-arrow"></i>
             </a>		
 
 			<div class="collapse" id="redeem">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item">
-						<a class="nav-link" href="/product/list"> @lang('dingsu.product') @lang('dingsu.list') </a>
+						<a class="nav-link" href="/product/list">@lang('dingsu.softpins') @lang('dingsu.product') @lang('dingsu.list') </a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/product/softpins"> @lang('dingsu.softpins') </a>
@@ -187,7 +173,7 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uipackage" aria-expanded="false" aria-controls="uipackage">
               <i class="menu-icon  icon-layers   text-info"></i>
-              <span class="menu-title"> VIP @lang('dingsu.package')  @lang('dingsu.list')</span>
+              <span class="menu-title"> VIP @lang('dingsu.package')</span>
               <i class="menu-arrow"></i>
             </a>
 		
@@ -211,7 +197,7 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uibasicpackage" aria-expanded="false" aria-controls="uibasicpackage">
               <i class="menu-icon  icon-layers   text-info"></i>
-              <span class="menu-title"> @lang('dingsu.basicpackage')  @lang('dingsu.list')</span>
+              <span class="menu-title"> @lang('dingsu.basicpackage')</span>
               <i class="menu-arrow"></i>
             </a>
 		
@@ -319,4 +305,3 @@
 		</li>
 	</ul>
 </nav>
-@endif
