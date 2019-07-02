@@ -601,4 +601,6 @@ return [
 	'country'=>'国家',
 	'tracking_number' => '快递服务追踪号码',
 	'tracking_partner' => '快递服务名称',
+	'card_num' => '卡号',
+	'card_pass' => '密码',
 ];

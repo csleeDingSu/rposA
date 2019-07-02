@@ -634,7 +634,8 @@ return [
 	'country'=>'Country',
 	'tracking_number' => 'Courier Service Tracking Number',
 	'tracking_partner' => 'Courier Service Name',
-	
+	'card_num' => 'Card Number',
+	'card_pass' => 'Passcode',
 	
 	
 	
