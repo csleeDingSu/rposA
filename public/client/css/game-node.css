@@ -18,11 +18,10 @@ body{
     position: relative;
     background-image: url("/client/images/wheel/background_game.png");
     background-repeat: no-repeat;
-    /*background-size: 100% auto;*/
+    background-size: 100% auto;
     background-position: center top;
     background-attachment: scroll;
     background-color: #8c36d9;
-    background-size: cover;
 }
 
 .information-table {
