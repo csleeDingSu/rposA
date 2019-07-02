@@ -591,4 +591,16 @@ return [
 	'buyproduct' => '购买产品',
 	'point_to_redeem' => '兑换积分',
 	'virtual_card' => '卡',
+
+	'receiver_name'=>'收货者姓名',
+	'contact_number'=>'收货者联络电话号码',
+	'alternative'=>'替代',
+	'address'=>'收货地址',
+	'city'=>'省 / 城市 ',
+	'zip'=>'邮编',
+	'country'=>'国家',
+	'tracking_number' => '快递服务追踪号码',
+	'tracking_partner' => '快递服务名称',
+	'card_num' => '卡号',
+	'card_pass' => '密码',
 ];

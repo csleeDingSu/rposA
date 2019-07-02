@@ -17,7 +17,7 @@
 					
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-success" onclick="return confirm_redeem();return false;">@lang('dingsu.submit')</button>
+					<button type="button" class="btn btn-success" onclick="return confirm_redeem();return false;">@lang('dingsu.confirm')</button>
 					<button type="button" class="btn btn-dark" data-dismiss="modal">@lang('dingsu.cancel')</button>
 				</div>
 				

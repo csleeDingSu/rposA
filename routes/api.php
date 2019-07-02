@@ -131,6 +131,9 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/get-buyproduct-history', 'BuyProductController@buyproduct_history')->name('buyproduct_history');
 	
 	
+	Route::get('/today-play_statistics', 'GameController@today_play_statistics')->name('today_play_statistics');
+	
+	
 	
 	
 });

@@ -625,11 +625,17 @@ return [
 	'buyproduct' => 'Product',
 	'point_to_redeem' => 'Points to redeem',
 	'virtual_card' => 'Card',
-	''=>'',
-	''=>'',
-	''=>'',
-	''=>'',
-	
+	'receiver_name'=>'Receiver Name',
+	'contact_number'=>'Contact Number',
+	'alternative'=>'Alternative',
+	'address'=>'Shipping Address',
+	'city'=>'City',
+	'zip'=>'Postcode',
+	'country'=>'Country',
+	'tracking_number' => 'Courier Service Tracking Number',
+	'tracking_partner' => 'Courier Service Name',
+	'card_num' => 'Card Number',
+	'card_pass' => 'Passcode',
 	
 	
 	
