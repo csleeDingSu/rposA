@@ -11,9 +11,10 @@
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.name')</th>
-								<th>@lang('dingsu.username')</th>
+								<th>@lang('dingsu.phone')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.buy_price')</th>
+								<th>@lang('dingsu.quantity')</th>
 								<th>@lang('dingsu.status')</th>
 								<th class="">@lang('dingsu.action')</th>
 							</tr>
@@ -32,6 +33,9 @@
 								</td>
 								<td>
 									{{ $list->used_point }}
+								</td>
+								<td>
+									{{ $list->quantity }}
 								</td>
 								<td id="statustd_{{ $list->id }}">
 									@if($list->redeem_state == 0)
