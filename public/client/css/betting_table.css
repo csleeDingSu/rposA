@@ -68,7 +68,7 @@
 	width: 3rem;
 	text-align: center;
 	color: #ffcc29;
-	padding-left: 0.1rem;
+	/*padding-left: 0.1rem;*/
 }
 
 .bet-background {
@@ -79,6 +79,7 @@
 	-webkit-transform: scale(0.45);
 	-webkit-transform-origin:left top;
 	padding-top: 8px;
+	background-size: contain;
 }
 
 .button-bet, .button-bet-reset {
@@ -93,10 +94,12 @@
 	font-size: 30px;
 	padding-top: 10px;
 	cursor: pointer;
+	background-size: contain;
 }
 
 .button-bet:hover, .button-bet-reset:hover {
 	background:url(/client/images/vip/bet-selected.png) no-repeat;
+	background-size: contain;
 }
 
 .plus-sign {
@@ -118,10 +121,12 @@
 	margin-left: 15px;
 	margin-top: 3px;
 	cursor: pointer;
+	background-size: contain;
 }
 
 .btn-minus:hover {
 	background:url(/client/images/vip/bet-minus-hover.png) no-repeat;
+	background-size: contain;
 }
 
 .btn-add {
@@ -132,10 +137,12 @@
 	margin-top: 3px;
 	margin-right: 15px;
 	cursor: pointer;
+	background-size: contain;
 }
 
 .btn-add:hover {
 	background:url(/client/images/vip/bet-add-hover.png) no-repeat;
+	background-size: contain;
 }
 
 .div-today {
