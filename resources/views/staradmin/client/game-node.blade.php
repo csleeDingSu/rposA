@@ -76,11 +76,11 @@
 			</div>
 			@else
 			<div class="box" id="btn-vip-wrapper">
-				<!-- <div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper"> -->
-					<div class="btn-rules-wrapper btn-vip-wrapper">
-					<a href="/vip">
+				<div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper">
+					<!-- <div class="btn-rules-wrapper btn-vip-wrapper"> -->
+					<!-- <a href="/vip"> -->
 						<div class="btn-rules-vip">VIP收益翻倍</div>
-					</a>
+					<!-- </a> -->
 					<div style="clear:both"></div>
 				</div>
 			</div>

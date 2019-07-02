@@ -78,14 +78,14 @@
 			</div>
 			<ul class="list-group">
 
-				<!-- VIP专场 -->
+				<!-- VIP专场
 				<li class="list-group-item first-item">
 					<div class="vipmember">
 						<div class="icon-wrapper">
 							<div class="icon-vip"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						<!--
+						!--
 						@if(count($vip_status->where('redeem_state', '3')) > 0)
 							<div class="vip-inprogress">@lang('dingsu.inprogress')</div>
 						@elseif(count($vip_status->where('redeem_state', '2')) > 0)
@@ -95,13 +95,14 @@
 						@else
 							<div class="vip-redeemticket">@lang('dingsu.redeem_vip_ticket')</div>
 						@endif
-					-->
+					--
 						VIP专场
 					</div>
 				</li>
+				-->
 				
 				<!-- 兑换奖品 -->
-				<li class="list-group-item">
+				<li class="list-group-item first-item">
 					<div class="redeembtn">
 						<div class="icon-wrapper">
 							<div class="icon-redeem"></div>
