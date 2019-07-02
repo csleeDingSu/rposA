@@ -97,13 +97,13 @@ function getProductList(token) {
 
             if(records.length === 0){
 
-                html += '<div class="history-row">' +
-                            '<div class="col-xs-12">' +
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' +
-                            '</div>' +
-                        '</div>';
+                // html += '<div class="history-row">' +
+                //             '<div class="col-xs-12">' +
+                //                 '<div class="empty">对不起 - 你现在还没有数据。</div>' +
+                //             '</div>' +
+                //         '</div>';
 
-                $('#prize').html(html);
+                // $('#softpin').html(html);
 
             } else {
                 var current_life = parseInt($(".nTxt").html());
@@ -205,7 +205,7 @@ function getProductList(token) {
                             '<!-- Modal Ends -->';
                 });
 
-                $('#prize').html(html);
+                $('#softpin').html(html);
                 $( ".cardFull" ).after( htmlmodel);
 
                 var wechat_status = $('#hidWechatId').val();
@@ -243,12 +243,12 @@ function getProductList(token) {
                 });
             }
 
+            //new list of buy product
+            getNewProductList(records.length, token);
+
         } // end success
     }); // end $.ajax
     
-    //new list of buy product
-    getNewProductList(token);
-
 } // end function
 
 function scrollBottom(token){
@@ -589,7 +589,7 @@ function confirmredeemvip(token,id,code)
 	
 }
 
-function getNewProductList(token) {
+function getNewProductList(softpinCount, token) {
     var member_id = $('#hidUserId').val();
 
     $.ajax({
@@ -608,8 +608,14 @@ function getNewProductList(token) {
             var htmlmodel = '';
             var current_point = $('.wabao-coin').text();
 
-            if(records.length === 0){
-                //do nothing
+            if(records.length === 0 && softpinCount <= 0){
+                html += '<div class="history-row">' +
+                            '<div class="col-xs-12">' +
+                                '<div class="empty">对不起 - 你现在还没有数据。</div>' +
+                            '</div>' +
+                        '</div>';
+
+                $('#newProduct').html(html);
                 
             } else {
                 $.each(records, function(i, item) {
@@ -709,8 +715,8 @@ function getNewProductList(token) {
                             '<!-- Modal Ends -->';
                 });
 
-                $('#prize').append(html);
-                $( ".cardFull" ).append(htmlmodel);
+                $('#newProduct').html(html);
+                $( ".cardFull" ).after(htmlmodel);
 
                 $.each(records, function(i, item) {
                     $('.openeditmodel_' + i).click(function() {

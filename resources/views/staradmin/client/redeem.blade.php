@@ -61,8 +61,9 @@
 			<div class="tab-content">
 				<!-- redeem list content -->
 				<div id="prize" class="prize tab-pane fade {{ empty($slug) ? 'in active' : '' }}">
+					<div id="softpin"></div>
+					<div id="newProduct"></div>
 				</div>
-
 
 				<!-- end redeem list content -->
 
