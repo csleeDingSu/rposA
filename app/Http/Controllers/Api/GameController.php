@@ -1869,6 +1869,12 @@ class GameController extends Controller
 		//$firstwin = \App\Product::IsFirstWin($memberid,$status);
 
 		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
-	}	
+	}
+	
+	public function today_play_statistics(Request $request)
+    {
+		$records = Game::today_play_statistics($request->memberid,$request->gameid);
+		return response()->json(['success' => true, 'record' => $records]); 
+	}
 
 }
