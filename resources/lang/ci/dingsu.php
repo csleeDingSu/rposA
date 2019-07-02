@@ -588,4 +588,7 @@ return [
 	'backorder'=>'后端购买',
 	'update_success_msg'=>'成功更新',
 	'default_option'=>'-- 请选择 --',
+	'buyproduct' => '购买产品',
+	'point_to_redeem' => '兑换积分',
+	'virtual_card' => '卡',
 ];
