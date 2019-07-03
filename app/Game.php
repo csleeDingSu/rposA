@@ -775,7 +775,7 @@ class Game extends Model
 	{
 		$date   = date('Y-m-d');
 		$date   = '2019-06-17';
-		$result = DB::table('view_game_win_lose_by_date')->where('member_id', $memberid)->where('game_id', $gameid)->where('created_at', $date )->get();
+		$result = DB::table('view_game_win_lose_by_date')->where('member_id', $memberid)->where('game_id', $gameid)->where('created_at', $date )->first();
 		return $result;
 	}
 }
