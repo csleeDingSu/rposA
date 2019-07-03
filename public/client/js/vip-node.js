@@ -1423,9 +1423,9 @@ function get_today_profit() {
         },
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
-            console.log(data.record.length);
+            // console.log(data.record);
             if(data.success){
-                if (data.record.length > 0) {
+                if(data.record && data.record !="") {
 
                     $('.profit').html((parseInt(data.record.total_win) - parseInt(data.record.total_lose))/10);    
                 } else {
