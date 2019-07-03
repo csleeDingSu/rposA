@@ -368,6 +368,7 @@ function startGame() {
             updateResult(betting_records);
             show_win = false;
             show_lose = false;
+            get_today_profit();
         }
     });
 
@@ -1402,6 +1403,36 @@ function check_vip_status() {
                 //nothing
             } else {
                 $('#modal-check-vip-status').modal({backdrop: 'static', keyboard: false});
+            }
+        }
+    });
+}
+
+function get_today_profit() {
+    var username = $('#hidUsername').val();
+    var session = $('#hidSession').val();
+    var id = $('#hidUserId').val();
+
+    $.ajax({
+        type: 'GET',
+        url: "/api/today-play_statistics",
+        data: { 'memberid': id, 'gameid': 103 },
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + session);
+        },
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            console.log(data.record[0].total_reward);
+            if(data.success){
+                if (data.record.length > 0) {
+
+                    $('.profit').html(parseInt(data.record[0].total_win - data.record[0].total_lose)/10);    
+                } else {
+                    $('.profit').html(0);
+                }                
+            } else {
+                $('.profit').html(0);
             }
         }
     });
