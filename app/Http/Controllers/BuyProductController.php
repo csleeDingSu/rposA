@@ -359,7 +359,7 @@ class BuyProductController extends BaseController
 					}					
 					$validator = Validator::make($input,$validate_array );
 					if ($validator->fails()) {
-						return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+						return response()->json(['success' => false, 'message' => $validator->errors()]);
 					}
 					
 					for($i=0;$i<$quantity;$i++) 
@@ -395,7 +395,7 @@ class BuyProductController extends BaseController
 						
 					]);
 					if ($validator->fails()) {
-						return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+						return response()->json(['success' => false, 'message' => $validator->errors()]);
 					}
 					$shi_de = $shi_de[0];				
 
