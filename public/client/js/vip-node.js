@@ -1423,7 +1423,7 @@ function get_today_profit() {
         },
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
-            console.log(data.record[0].total_reward);
+            // console.log(data.record[0]);
             if(data.success){
                 if (data.record.length > 0) {
 
