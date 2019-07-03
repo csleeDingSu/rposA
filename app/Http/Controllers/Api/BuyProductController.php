@@ -21,7 +21,7 @@ class BuyProductController extends Controller
 	public function get_virtual_card_details(Request $request)
 	{
 		$orderid = $request->orderid;
-		$result  = OrderDetail::get($orderid);
+		$result  = OrderDetail::where('order_id',$orderid)->get();
 		return response()->json(['success' => true,'records' => $result]);
 	}
 	
