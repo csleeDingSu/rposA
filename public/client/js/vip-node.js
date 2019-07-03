@@ -1427,7 +1427,7 @@ function get_today_profit() {
             if(data.success){
                 if (data.record.length > 0) {
 
-                    $('.profit').html(parseInt(data.record[0].total_win - data.record[0].total_lose)/10);    
+                    $('.profit').html((parseInt(data.record[0].total_win) - parseInt(data.record[0].total_lose))/10);    
                 } else {
                     $('.profit').html(0);
                 }                
