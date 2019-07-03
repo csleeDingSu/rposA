@@ -14,8 +14,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 
 <script language="javascript">
+	
 	function confirm_redeem()	{
 		$('#validation-errors').html('');
 		var id    = $("#rid").val();	
@@ -54,19 +56,36 @@
 				}
 				else
 					{
-						$.each(result.message, function(key,value) {							
-						 $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
-					   });						
+						displayFieldErrors(result.message);						
 					}
 				},
 				error: function ( xhr, ajaxOptions, thrownError ) {
-					$.each(xhr.responseJSON.errors, function(key,value) {
-					 $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
-				 });
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
 				}
 			} );
 }
 	
+function displayFieldErrors(response){
+
+    var gotErrors = false;
+
+    var errorPostion = "top";
+
+    $.each(response, function (key, item) {
+        //key is the field
+       // gotErrors = true;
+		console.log(key);
+        $("#" + key).notify(item, {position: errorPostion});
+
+        if (errorPostion === "top") {
+            errorPostion = "bottom";
+        } else {
+            errorPostion = "top";
+        }
+    });
+
+    return gotErrors;
+}
 	
 function confirm_redeem_with_input(id)	{
 $('#validation-errors').html('');

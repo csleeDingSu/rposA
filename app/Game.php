@@ -773,7 +773,11 @@ class Game extends Model
 	
 	public static function today_play_statistics($memberid, $gameid)
 	{
-		$result = DB::table('view_game_win_lose_by_date')->where('member_id', $memberid)->where('game_id', $gameid)->where('created_at', 'like',date('Y-m-d') . '%')->get();
+		//DB::enableQueryLog(); 
+		$date   = date('Y-m-d');
+		//$date   = '2019-06-17';
+		$result = DB::table('view_game_win_lose_by_date')->where('member_id', $memberid)->where('game_id', $gameid)->where('created_at', $date )->first();
+		//dd(DB::getQueryLog());
 		return $result;
 	}
 }
