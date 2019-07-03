@@ -532,7 +532,11 @@ function bindBetButton(){
             showPayout();
             previous_bet = final_bet;
         } else {
-
+            $('.spinning').html('金币不足，无法下注');
+             $('.spinning').css('visibility', 'visible');
+            setTimeout(function(){ 
+                $('.spinning').css('visibility', 'hidden');
+            }, 3000);
         }
 
     });
@@ -547,7 +551,11 @@ function bindBetButton(){
             showPayout();
             previous_bet = final_bet;
         } else {
-
+            $('.spinning').html('金币不足，无法下注');
+             $('.spinning').css('visibility', 'visible');
+            setTimeout(function(){ 
+                $('.spinning').css('visibility', 'hidden');
+            }, 3000);
         }
 
     });
