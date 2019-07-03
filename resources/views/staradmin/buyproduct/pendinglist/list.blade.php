@@ -17,27 +17,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 
 <script language="javascript">
-function displayFieldErrors(response){
-
-    var gotErrors = false;
-
-    var errorPostion = "top";
-
-    $.each(response, function (key, item) {
-        //key is the field
-       // gotErrors = true;
-		console.log(key);
-        $("#" + key).notify(item, {position: errorPostion});
-
-        if (errorPostion === "top") {
-            errorPostion = "bottom";
-        } else {
-            errorPostion = "top";
-        }
-    });
-
-    return gotErrors;
-}	
+	
 	function confirm_redeem()	{
 		$('#validation-errors').html('');
 		var id    = $("#rid").val();	
@@ -85,6 +65,27 @@ function displayFieldErrors(response){
 			} );
 }
 	
+function displayFieldErrors(response){
+
+    var gotErrors = false;
+
+    var errorPostion = "top";
+
+    $.each(response, function (key, item) {
+        //key is the field
+       // gotErrors = true;
+		console.log(key);
+        $("#" + key).notify(item, {position: errorPostion});
+
+        if (errorPostion === "top") {
+            errorPostion = "bottom";
+        } else {
+            errorPostion = "top";
+        }
+    });
+
+    return gotErrors;
+}
 	
 function confirm_redeem_with_input(id)	{
 $('#validation-errors').html('');
