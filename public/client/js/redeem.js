@@ -683,7 +683,7 @@ function getNewProductList(softpinCount, token) {
                                                             // '<div class="icon-coin-wrapper modal-icon">' +
                                                             //     '<div class="icon-coin"></div>' +
                                                             // '</div>' +
-                                                            '<div class="wabao-price">'+ item.price +' 元</div>' +
+                                                            '<div class="wabao-price">'+ item.point_to_redeem +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
