@@ -3,14 +3,14 @@
 	<div class="col-lg-12 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="card-title">@lang('dingsu.basic') @lang('dingsu.package') @lang('dingsu.list')</h4>
+				<h4 class="card-title">@lang('dingsu.product') @lang('dingsu.list')</h4>
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
-								<th>@lang('dingsu.package') @lang('dingsu.name')</th>
+								<th>@lang('dingsu.product') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.phone')</th>
 								<th>@lang('dingsu.price')</th>
 								<th>@lang('dingsu.point')</th>

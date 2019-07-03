@@ -3,16 +3,16 @@
 	<div class="col-lg-12 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="card-title">@lang('dingsu.basic') @lang('dingsu.package') @lang('dingsu.pending') @lang('dingsu.list')</h4>
+				<h4 class="card-title">@lang('dingsu.basic') @lang('dingsu.product') @lang('dingsu.pending') @lang('dingsu.list')</h4>
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
-								<th>@lang('dingsu.package') @lang('dingsu.name')</th>
+								<th>@lang('dingsu.product') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.phone')</th>
-								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
+								<th>@lang('dingsu.product') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.buy_price')</th>
 								<th>@lang('dingsu.quantity')</th>
 								<th>@lang('dingsu.status')</th>
@@ -52,17 +52,8 @@
 								</td>
 								<td id="actiontd_{{ $list->id }}">
 									
-									
-									
-									@if($list->type == 1)
-										<a href="javascript:void(0)" onClick="confirm_redeem_with_input({{ $list->id }})" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-check  "></i></a>
-									@elseif ($list->type == 2)
-										<a href="javascript:void(0)" onClick="confirm_redeem_with_input({{ $list->id }})" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-check  "></i></a>
-									@endif
-									
-									
-									
-									
+									<a href="javascript:void(0)" onClick="confirm_redeem_with_input({{ $list->id }})" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-check  "></i></a>
+																	
 									
 									<a href="javascript:void(0)" onClick="confirm_Delete({{ $list->id }})" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-close  "></i></a>
 								</td>
