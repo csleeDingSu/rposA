@@ -14,9 +14,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
-
 <script language="javascript">
+	
+function displayFieldErrors(response,remove_error)
+{
+	$('.inputTxtError').remove();
+    $.each(response, function (key, item) {		
+        var msg = '<label class="error mt-2 text-danger inputTxtError" for="'+key+'">'+item+'</label>';
+        $('input[name="' + key + '"], select[name="' + key + '"]').addClass('form-control-danger').after(msg);
+		
+    });
+}
 	
 	function confirm_redeem()	{
 		$('#validation-errors').html('');
@@ -56,7 +64,7 @@
 				}
 				else
 					{
-						displayFieldErrors(result.message);						
+						displayFieldErrors(result.message,'removeoldrecords');						
 					}
 				},
 				error: function ( xhr, ajaxOptions, thrownError ) {
@@ -64,28 +72,7 @@
 				}
 			} );
 }
-	
-function displayFieldErrors(response){
 
-    var gotErrors = false;
-
-    var errorPostion = "top";
-
-    $.each(response, function (key, item) {
-        //key is the field
-       // gotErrors = true;
-		console.log(key);
-        $("#" + key).notify(item, {position: errorPostion});
-
-        if (errorPostion === "top") {
-            errorPostion = "bottom";
-        } else {
-            errorPostion = "top";
-        }
-    });
-
-    return gotErrors;
-}
 	
 function confirm_redeem_with_input(id)	{
 $('#validation-errors').html('');
@@ -135,97 +122,6 @@ $('#validation-errors').html('');
 
 }
 	
-
-
-	function bk_confirm_redeem(id)	{
-	Swal({
-	title: '@lang("dingsu.redeem_confirmation")',
-	text: '@lang("dingsu.redeem_conf_text")',
-	type: 'warning',
-	showCancelButton: true,
-	confirmButtonText: '@lang("dingsu.confirm")',
-	cancelButtonText: '@lang("dingsu.cancel")',
-	closeOnConfirm: false
-	}).then((result) => {
-		if (result.value) 
-		 {
-			$.ajax({
-			url: '{{route('buyproduct_redeem_confirm')}}',
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			},
-			contentType: 'application/json; charset=utf-8',
-			type: 'post',            
-			data: JSON.stringify({ id: id, _token:"{{ csrf_token() }}" }), 
-			dataType: "json",
-			success: function (response) {
-
-			if ( response.success == false ) 
-			{
-				swal({  icon: 'error',  title: '@lang("dingsu.redeem_error")',text: '@lang("dingsu.try_again")', button: '@lang("dingsu.okay")',});
-			}
-			else 
-			{
-				swal({  icon: 'success',  title: '@lang("dingsu.done")',text: '@lang("dingsu.redeem_admin_success")', button: '@lang("dingsu.okay")',});
-				var df = '<label class="badge badge-success">@lang("dingsu.confirmed")</label>';
-						
-				$('#statustd_'+id).html(df);
-				$('#actiontd_'+id).html('');
-			}
-
-		},
-		error: function (xhr, ajaxOptions, thrownError) {
-			swal({  icon: 'error',  title: '@lang("dingsu.redeem_error")',text: '@lang("dingsu.try_again")', button: '@lang("dingsu.okay")',});
-		}
-	});
-	} 
-	})
-}
-	
-function ori_confirm_redeem(id)	{
-	Swal({
-	title: '@lang("dingsu.redeem_confirmation")',
-	text: '@lang("dingsu.redeem_conf_text")',
-	type: 'warning',
-	showCancelButton: true,
-	confirmButtonText: '@lang("dingsu.confirm")',
-	cancelButtonText: '@lang("dingsu.cancel")',
-	closeOnConfirm: false
-	}).then((result) => {
-		if (result.value) 
-		 {
-			$.ajax({
-			url: '{{route('buyproduct_redeem_confirm')}}',
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			},
-			contentType: 'application/json; charset=utf-8',
-			type: 'post',            
-			data: JSON.stringify({ id: id, _token:"{{ csrf_token() }}" }), 
-			dataType: "json",
-			success: function (response) {
-
-			if ( response.success == false ) 
-			{
-				swal({  icon: 'error',  title: '@lang("dingsu.redeem_error")',text: '@lang("dingsu.try_again")', button: '@lang("dingsu.okay")',});
-			}
-			else 
-			{
-				swal({  icon: 'success',  title: '@lang("dingsu.done")',text: '@lang("dingsu.redeem_admin_success")', button: '@lang("dingsu.okay")',});
-				var df = '<label class="badge badge-success">@lang("dingsu.confirmed")</label>';
-						
-				$('#statustd_'+id).html(df);
-				$('#actiontd_'+id).html('');
-			}
-
-		},
-		error: function (xhr, ajaxOptions, thrownError) {
-			swal({  icon: 'error',  title: '@lang("dingsu.redeem_error")',text: '@lang("dingsu.try_again")', button: '@lang("dingsu.okay")',});
-		}
-	});
-	} 
-	})
-}
 	
 function confirm_Delete(id)	{
 	
@@ -288,11 +184,7 @@ function confirm_Delete(id)	{
 			});
 	  } 
       else{
-			swal({
-        title: "<i>Title</i>", 
-        html: 'A custom message.</br> jkldfjkjdklfjlk',
-
-    });  
+			  
 	  }
 	})
 }
