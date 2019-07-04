@@ -257,6 +257,10 @@
 	margin-top:10px;
 }
 
+.redeem-details a {
+	color: white;
+}
+
 .redeem-info {
 	margin-bottom: 30px;
 }
