@@ -783,7 +783,7 @@ public function add_setting()
 					$current_level = 1;
 					$current_bet = $wallet->bet;
 
-
+					$max_po = \Config::get('app.coin_max');
 
 					$credit                   	= 0;
 					$debit                    	= $wallet->acupoint; //"{{ $level->bet_amount}}"
@@ -792,20 +792,20 @@ public function add_setting()
 					$award_current_bal			= $award_bal_before-$wallet->acupoint;
 					$current_life_acupoint	 	= $award_bal_before-$wallet->acupoint;
 
-					$crd_credit                   	= env('coin_max', 150);
+					$crd_credit                   	= $max_po;
 					$crd_debit                    	= 0; //"{{ $level->bet_amount}}"
 					if($wallet->acupoint){
-						$wallet->acupoint=150;
+						$wallet->acupoint=$max_po;
 					}
 					$crd_bal_before			= $wallet->point;
 					
-					$crd_bal_after			= $crd_bal_before+env('coin_max', 150);
-					$crd_current_bal			= $crd_bal_before+env('coin_max', 150);
+					$crd_bal_after			= $crd_bal_before+$max_po;
+					$crd_current_bal			= $crd_bal_before+$max_po;
 
 					
 
 					if ($is_redeemable == true){
-						$current_point=$wallet->point+ env('coin_max', 150);
+						$current_point=$wallet->point+ $max_po;
 						//Wallet::life_redeem_post_ledgerhistory_pnt($memberid,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);
 						//Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
 
