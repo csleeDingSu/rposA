@@ -111,7 +111,7 @@ function updateHistory(records){
             strbet = "双数";
         }
 
-        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount/10) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
 
         $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
         $('.history-body').find('#row-' + counter).find('.history').html(history);
@@ -129,16 +129,16 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
-        var balance = parseInt(records.point/10);
+        var balance = parseInt(records.point);
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
         var play_count = parseInt(records.play_count);
         
-        var vip_point =  parseInt(records.point/10);
+        var vip_point =  parseInt(records.point);
         var vip_life =  parseInt(records.vip_life);
-        g_vip_point = parseInt(point/10);
+        g_vip_point = parseInt(point);
 
         if(vip_life == 0){
             vip_point = 0;
@@ -149,16 +149,16 @@ function initUser(records){
         $('#spanPoint').html(total_balance);
         
         $('#hidTotalBalance').val(total_balance);
-        $('.wallet-point').html(point/10);
-        $('.packet-point').html(point/10);
+        $('.wallet-point').html(point);
+        $('.packet-point').html(point);
         if(show_win){
             
         } else {
             $('.spanAcuPoint').html(point);
-            $('.spanAcuPointAndBalance').html(point/10);
+            $('.spanAcuPointAndBalance').html(point);
         }
-        $('.packet-acupoint').html(acupoint/10);
-        $('.packet-acupoint-to-win').html(15 - acupoint/10);
+        $('.packet-acupoint').html(acupoint);
+        $('.packet-acupoint-to-win').html(15 - acupoint);
         $('#hidBalance').val(balance);
         $(".nTxt").html(life);
         $(".spanVipLife").html(vip_life);
@@ -713,12 +713,14 @@ function showPayout(){
                     $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + bet_amount + "</span>");
                 }
 
+                $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
+
                 $.ajax({
                     type: 'GET',
                     url: "/api/update-game-result-temp?gameid=103&gametype=1&memberid="+ user_id
                     + "&drawid=0" 
                     + "&bet="+ selected 
-                    + "&betamt=" + (bet_amount * 10)
+                    + "&betamt=" + (bet_amount)
                     + "&level=" + level,
                     dataType: "json",
                     beforeSend: function( xhr ) {
@@ -1435,7 +1437,7 @@ function get_today_profit() {
             if(data.success){
                 if(data.record && data.record !="") {
 
-                    $('.profit').html((parseInt(data.record.total_win) - parseInt(data.record.total_lose))/10);    
+                    $('.profit').html((parseInt(data.record.total_win) - parseInt(data.record.total_lose)));    
                 } else {
                     $('.profit').html(0);
                 }                
