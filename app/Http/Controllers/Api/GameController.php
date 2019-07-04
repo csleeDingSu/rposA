@@ -1634,9 +1634,16 @@ class GameController extends Controller
 		{
 			$reward = $betamt;
 			
+			$se_game  = \App\Game::where('id',$gameid)->first();
+			
+			if (!empty($se_game->win_ratio))
+			{
+				$reward = $betamt * $se_game->win_ratio;
+			}
+						
 			$r_status = 1;
 			
-			Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP			
+			Wallet::update_basic_wallet($memberid,0,$reward,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP			
 		}	
 		else
 		{
