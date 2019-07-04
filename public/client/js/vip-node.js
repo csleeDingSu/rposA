@@ -688,6 +688,8 @@ function showPayout(){
             $('.odd-payout').html(bet_amount * g_ratio);
             $('.even-payout').html(bet_amount * g_ratio);
 
+            $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
+            
         } else {
 
             checked(level, true);
@@ -707,11 +709,11 @@ function showPayout(){
                 $('.instruction').css('visibility', 'hidden');
 
                 if(selected == 'odd'){
-                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + bet_amount + "</span>");
+                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (bet_amount * g_ratio) + "</span>");
                     $('.span-even').html('谢谢参与');
                 } else {
                     $('.span-odd').html('谢谢参与');
-                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + bet_amount + "</span>");
+                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (bet_amount * g_ratio) + "</span>");
                 }
 
                 $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
