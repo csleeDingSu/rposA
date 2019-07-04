@@ -770,13 +770,14 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		$now = Carbon::now()->toDateTimeString();
 		if($status=="win")
 		{
+			/*
 			$se_game  = \App\Game::where('id',$gameid)->first();
 			
 			if (!empty($se_game->win_ratio))
 			{
 				$level->point_reward = $level->point_reward * $se_game->win_ratio;
 			}
-			
+			*/
 			
 			$balance_before                 = $mainledger->current_balance;
 			$credit                         = $level->point_reward;
