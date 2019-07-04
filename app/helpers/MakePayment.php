@@ -67,11 +67,11 @@ class MakePayment
 
             if (strpos($response,"<title>正在跳转付款页</title>") >= 0) {
                 //2nd lv screen (redirect page)
-                $_response = $this->Pay_Index_2ndScreen($response, $res_id);
+                $_response = self::Pay_Index_2ndScreen($response, $res_id);
 
                 //3nd lv screen (qrcode)
                 if (strpos($_response,"<title>微信付款</title>") >= 0) {
-                    $__response = $this->Pay_Index_3ndScreen($_response, $res_id);
+                    $__response = self::Pay_Index_3ndScreen($_response, $res_id);
                     return $__response;
 
                 } else {
@@ -102,37 +102,37 @@ class MakePayment
         $str  = '<form method="post"';
         $from = 'action="';
         $to   = '" name="pay">';
-        $_action = $this->pay_filter_value($content, $str, $from, $to);
+        $_action = self::pay_filter_value($content, $str, $from, $to);
         
         $str  = '<input type="hidden" name="pay_amount" ';
         $from = 'value="';
         $to   = '">';
-        $_pay_amount = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_amount = self::pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_applydate" ';
         // $from = 'value="';
         // $to   = '">';
-        $_pay_applydate = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_applydate = self::pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_bankcode" ';
-        $_pay_bankcode = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_bankcode = self::pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_callbackurl" ';
-        $_pay_callbackurl = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_callbackurl = self::pay_filter_value($content, $str, $from, $to);
         //$_pay_callbackurl = url('/api/pay_callback');
 
         $str  = '<input type="hidden" name="pay_memberid" ';
-        $_pay_memberid = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_memberid = self::pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_notifyurl" ';
-        $_pay_notifyurl = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_notifyurl = self::pay_filter_value($content, $str, $from, $to);
         //$_pay_notifyurl = url('/api/pay_notify');
 
         $str  = '<input type="hidden" name="pay_orderid" ';
-        $_pay_orderid = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_orderid = self::pay_filter_value($content, $str, $from, $to);
 
         $str  = '<input type="hidden" name="pay_md5sign" ';
-        $_pay_md5sign = $this->pay_filter_value($content, $str, $from, $to);
+        $_pay_md5sign = self::pay_filter_value($content, $str, $from, $to);
         
         $_native["pay_amount"] = $_pay_amount;
         $_native["pay_applydate"] = $_pay_applydate;
@@ -174,12 +174,12 @@ class MakePayment
         $str  = '<div class="money">';
         $from = '<span id="money">';
         $to   = '</span>';
-        $money = $this->pay_filter_value($content, $str, $from, $to);
+        $money = self::pay_filter_value($content, $str, $from, $to);
 
         $str  = 'var qrcode = new QRCode(document.getElementById("showqr"), {';
         $from = 'text: "';
         $to   = '",';
-        $qrcode = $this->pay_filter_value($content, $str, $from, $to);
+        $qrcode = self::pay_filter_value($content, $str, $from, $to);
         if (empty($qrcode)) {
 
             $html = $content;
