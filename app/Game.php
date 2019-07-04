@@ -330,7 +330,7 @@ class Game extends Model
 		if (!empty($id))
 		{
 			$result = DB::table('games')
-				->select('games.game_name','game_category.id as categoryid', 'game_category.game_time as result_time','game_category.block_time as freeze_time')
+				->select('games.win_ratio','games.game_name','game_category.id as categoryid', 'game_category.game_time as result_time','game_category.block_time as freeze_time')
 				->join('game_category', 'games.game_category', '=', 'game_category.id')
 				->where('games.id', $id)
 				->first();
