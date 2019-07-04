@@ -1338,13 +1338,13 @@ class GameController extends Controller
 		
 		///$status = 'lose';
 		
-		$wallet   = Wallet::new_game_wallet_update ($memberid,  $status, $level);
+		$wallet   = Wallet::new_game_wallet_update ($memberid,  $status, $level, $gameid);
 		
 		$r_status = 2;
 		
 		if ($status == 'win') 			
 		{
-			$reward = $level->point_reward;
+			$reward = $wallet['credit'];
 			
 			$r_status = 1;
 			
