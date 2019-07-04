@@ -16,6 +16,7 @@ var game_records = null; //game setting
 var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
+var g_ratio = 2;
 
 $(function () {
 
@@ -684,8 +685,8 @@ function showPayout(){
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
 
-            $('.odd-payout').html(bet_amount);
-            $('.even-payout').html(bet_amount);
+            $('.odd-payout').html(bet_amount * g_ratio);
+            $('.even-payout').html(bet_amount * g_ratio);
 
         } else {
 
@@ -976,8 +977,8 @@ function showProgressBar(bol_show){
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
         $('.result-info').html(result_info);
-        $('.odd-payout').html(previous_bet);
-        $('.even-payout').html(previous_bet);
+        $('.odd-payout').html(previous_bet * g_ratio);
+        $('.even-payout').html(previous_bet  * g_ratio);
 
         if(bol_show) {
             checked(level, true);
