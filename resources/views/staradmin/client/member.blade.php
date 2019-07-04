@@ -50,13 +50,13 @@
 				  </div>
 				  <div class="col-xs-6 border-right">
 				  	未结算
-				  	<div class="balance numbers">{{ number_format($wallet->current_life_acupoint/10, 0, '.', '') }}</div>
+				  	<div class="balance numbers">{{ number_format($wallet->current_life_acupoint, 0, '.', '') }}</div>
 				  	 元
 				  </div>
 				  <div class="col-xs-6">
 				  	已兑换
 				  	<div class="life numbers">				  		
-				  		{{ number_format($usedpoint/10, 0, '.', '') }} 元
+				  		{{ number_format($usedpoint, 0, '.', '') }} 元
 				  	</div>
 
 				  </div>
@@ -320,10 +320,10 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
-			var current_point = parseInt("<?php Print(number_format($wallet->current_point/10, 0, '.', ''));?>");
+			var current_point = parseInt("<?php Print(number_format($wallet->current_point, 0, '.', ''));?>");
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
-                previous_point = (parseInt(previous_point)/10);
+                previous_point = (parseInt(previous_point));
 
                 $('.wabao-coin')
                   .prop('number', previous_point)
