@@ -299,7 +299,7 @@ function getPosts(page, token){
 }
 
 function populateHistoryData(records, token) {
-    return false;
+
     var data = records.data;
     var current_page = parseInt(records.current_page);
     var limit = parseInt(records.per_page);
@@ -327,6 +327,8 @@ function populateHistoryData(records, token) {
 
         $.each(data, function(i, item) {
             
+            var txt_pinstatus = '等待发放';
+            var lbl_pinstatus = 'pending';
 
             if(item.request_at){
                 var t = item.request_at.split(/[- :]/);
@@ -402,40 +404,113 @@ function populateHistoryData(records, token) {
                     html += '</div>';
                 }*/
 
+            } else if (item.type == '1') { //new buy product - card / virtual item
+
+                html += '<div class="row row-new"><div class="redeem-info">' +
+                '<div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>' +
+                '<div class="redeem-status confirmed">已发放</div>' +
+                '</div>' +
+                '<div class="product-info"><div class="product-img">' +
+                '<img src="https://wabao666.com/client/images/10.png" alt="product name"></div>' +
+                '            <div class="product-detail">' +
+                '                <div class="product-name">骏网充值卡10元</div>' +
+                '                <div class="product-desc">可兑换支付宝现金</div>' +
+                '            </div>' +
+                '            <div class="redeem-result">' +
+                '                <div class="redeem-quantity">X1</div>' +
+                '                <div class="redeem-action"  data-toggle="collapse" data-target="#content-99">点击查看</div>' +
+                '            </div>' +
+                '            <div id="content-99" class="collapse">' +
+                '            <div class="card-wrapper">卡号： <span id="number99" class="numbers">code</span> <span id="copynumber99" class="copynumber">复制</span><br />密码：<span id="code99" class="numbers">passcode</span> <span id="copycode99" class="copycode">复制</span>' +
+                '            </div>' +
+                '            <div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>' +
+                '        </div>' +
+                '   </div>' +
+                '</div>';
+
+            } else if (item.type == '2') { //new buy product - physical item
+
+                html += '<div class="row row-new">' +
+                '        <div class="redeem-info">' +
+                '            <div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>' +
+                '            <div class="redeem-status pending">等待发货</div>' +
+                '        </div>' +
+                '        <div class="product-info">' +
+                '            <div class="product-img">' +
+                '                <img src="http://dev.boge56.com/client/images/products/p1.png">' +
+                '            </div>' +
+                '            <div class="product-detail">' +
+                '                <div class="product-name">iPhone X 256G深黑色全网通苹果智能手机</div>' +
+                '                <div class="product-desc">7500 金币</div>' +
+                '            </div>' +
+                '            <div class="redeem-result">' +
+                '                <div class="redeem-quantity">X1</div>' +
+                '            </div>' +
+                '        </div>' +
+                '    </div>';
+
+                html += '    <div class="row row-new">' +
+                '        <div class="redeem-info">' +
+                '            <div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>' +
+                '            <div class="redeem-status confirmed">已发货</div>' +
+                '        </div>' +
+                '        <div class="product-info">' +
+                '            <div class="product-img">' +
+                '                <img src="http://dev.boge56.com/client/images/products/p1.png">' +
+                '            </div>' +
+                '            <div class="product-detail">' +
+                '                <div class="product-name">iPhone X 256G深黑色全网通苹果智能手机</div>' +
+                '                <div class="product-desc">7500 金币</div>' +
+                '            </div>' +
+                '            <div class="redeem-result">' +
+                '                <div class="redeem-quantity">X1</div>' +
+                '            </div>' +
+                '        </div>' +
+                '        <div class="corrier-info">' +
+                '            快递单号： <span class="tracking-num">compamny 123456</span>&nbsp;<span id="copycode99" class="copycode">复制</span>' +
+                '        </div>' +
+                '    </div>';
+
             } else {
                 counter += 1;
-                
-                html += '<div class="history-row">' +
-                    '<div class="col-xs-2 column-4">' +
-                        counter +
-                    '</div>' +
-                    '<div class="col-xs-7 column-5">' +
-                        '<div class="description-history">'+ item.product_name + '</div>' +
-                        '<div class="balance">兑换时间:'+ str_date +'</div>' +
-                    '</div>';
 
                 if(item.pin_status == 4) { // Pending
-                    html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-pending">等待发放</div>' +
-                            '</div>' + 
-                        '</div>';
-
+                    txt_pinstatus = '等待发放';
+                    lbl_pinstatus = 'pending';
                 } else if (item.pin_status == 2) { // Confirmed
-                    html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">提现现金</div>' +
-                            '</div>' + 
-                        '</div>' +
-                    '<div id="content-' + item.id + '" class="collapse">' +
-                        '<div class="card-wrapper">卡号： <span id="number' + item.id + '" class="numbers">'+ item.code +'</span> <span id="copynumber' + item.id + '" class="copynumber">复制</span>' + 
-                        '<br />密码：<span id="code' + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.id + '" class="copycode">复制</span></div>';
+                    txt_pinstatus = '已发放';
+                    lbl_pinstatus = 'confirmed';
+                } else {
+                    
+                }
 
-                    //temporary hardcode
-                    html += '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。';
-
-                       html += '</div>' +
-   
-                            '</div>';
-
+                html += '<div class="row row-new"><div class="redeem-info">' +
+                '<div class="redeem-time">兑换时间:'+ str_date +'</div>' +
+                '<div class="redeem-status '+lbl_pinstatus+'">'+txt_pinstatus+'</div>' +
+                '</div>' +
+                '<div class="product-info"><div class="product-img">' +
+                '<img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
+                '            <div class="product-detail">' +
+                '                <div class="product-name">'+item.product_name+'</div>' +
+                '                <div class="product-desc">可兑换支付宝现金</div>' +
+                '            </div>' +
+                '            <div class="redeem-result">' +
+                '                <div class="redeem-quantity">X1</div>';
+                if (item.pin_status == 2) {
+                    html += '     <div class="redeem-action"  data-toggle="collapse" data-target="#content-' + item.id + '">点击查看</div>' +
+                '            </div>' +
+                '            <div id="content-' + item.id + '" class="collapse">' +
+                '            <div class="card-wrapper">卡号： <span id="number' + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.id + '" class="copynumber">复制</span><br />密码：<span id="code' + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.id + '" class="copycode">复制</span>' +
+                '            </div>' +
+                '            <div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>' +
+                '        </div>' +
+                '   </div>' +
+                '</div>';
+                } else {
+                    html += '</div>' +
+                    '   </div>' +
+                    '</div>';
+                
                     // Copy card number
                     var clipboard_cardno = new ClipboardJS('#copynumber' + item.id, {
                         target: function () {
@@ -472,8 +547,6 @@ function populateHistoryData(records, token) {
                         $('#copycode' + item.id).addClass('copy-success').html('成功');
                     });
 
-                } else {
-                    html += '</div>';
                 }
             }
 
