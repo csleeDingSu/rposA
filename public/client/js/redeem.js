@@ -299,6 +299,7 @@ function getPosts(page, token){
 }
 
 function populateHistoryData(records, token) {
+    return false;
     var data = records.data;
     var current_page = parseInt(records.current_page);
     var limit = parseInt(records.per_page);

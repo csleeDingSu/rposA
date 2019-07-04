@@ -40,7 +40,7 @@
 		<div class="card">
 			<img src="{{ asset('/client/images/redeem-background.png') }}" alt="redeem background">
 			<div class="summary-table">
-				<div class="label-coin">可兑换红包 <span class="wabao-coin"></span>元</div>
+				<div class="label-coin">可兑换金额 <span class="wabao-coin"></span>元</div>
 				<div class="label-desc">邀请好友送更多场次，抽更多红包！</div>
 				<a href="/share" class="link-button">
 					<div class="btn-invite">邀请好友</div>
@@ -52,8 +52,8 @@
 		<div class="full-width-tabs">
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
-			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换红包</a></li>
-			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的充值卡</a></li>
+			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换奖品</a></li>
+			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的奖品</a></li>
 			</ul>
 			<!-- end redeem tabs -->
 
@@ -69,7 +69,47 @@
 
 				<!-- redeem history content -->
 				<div id="history" class="tab-pane fade {{ (!empty($slug) and $slug == 'history') ? 'in active' : '' }}">
+
+					<div class="row">
+						<div class="redeem-info">
+							<div class="col-xs-6">兑换时间: 2019-07-03 15:07:24</div>
+							<div class="col-xs-6 redeem-status">已发放</div>
+						</div>
+						<div class="col-xs-3 column-1">
+							<img class="img-voucher" src="https://wabao666.com/client/images/10.png" alt="product name">
+						</div>
+						<div class="col-xs-6 column-2">
+							<div class="description">
+								product_name
+								<div class="description-info">可兑换支付宝现金</div>
+							</div>
+							<div class="remaining">已兑换 1 张</div>
+						</div>
+						<div class="col-xs-3 column-3">
+							<div class="btn-redeem openeditmodel99 btn-cannot-redeem">兑换</div>
+						</div>
+					</div>
+
+					<div class="history-row">
+						<div class="redeem-info">
+							<div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>
+							<div class="redeem-status">已发放</div>
+						</div>
+	                    <div class="product-info">
+	                        <img class="product-img" src="https://wabao666.com/client/images/10.png" width="50" height="50" />
+	                        <div class="product-name">product mname</div>
+	                        <div class="product-desc">可兑换支付宝现金</div>
+	                    	<div class="btn-pending" data-toggle="collapse" data-target="#content-99">点击查看</div>
+	                    </div>
+	                    <div id="content-99" class="collapse">
+	                    	<div class="card-wrapper">卡号： <span id="number99" class="numbers">code</span> <span id="copynumber99" class="copynumber">复制</span><br />密码：<span id="code99" class="numbers">passcode</span> <span id="copycode99" class="copycode">复制</span>
+	                    	</div>
+	                    	<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>
+	                    </div>
+	                </div>
+
 					<div id="redeem-history"></div>
+
 					<p class="isnext">下拉显示更多...</p>
 				</div>
 				<!-- end redeem list content -->
