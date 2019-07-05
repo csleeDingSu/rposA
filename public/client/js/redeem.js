@@ -75,19 +75,19 @@ function getProductList(token) {
             var current_point = parseInt(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
-                previous_point = (parseInt(previous_point)/10);
+                previous_point = (parseInt(previous_point));
 
                 $('.wabao-coin')
                   .prop('number', previous_point)
                   .animateNumber(
                     {
-                      number: (current_point/10)
+                      number: (current_point)
                     },
                     1000
                   );
                 Cookies.remove('previous_point');
             } else {
-                $('.wabao-coin').html((current_point/10));
+                $('.wabao-coin').html((current_point));
             }            
 
             var records = data.records.data;
@@ -173,11 +173,11 @@ function getProductList(token) {
                                                             // '<div class="icon-coin-wrapper modal-icon">' +
                                                             //     '<div class="icon-coin"></div>' +
                                                             // '</div>' +
-                                                            '<div class="wabao-price">'+ item.min_point/10 +' 元</div>' +
+                                                            '<div class="wabao-price">'+ item.min_point +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point/10) +' 元</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
@@ -299,6 +299,7 @@ function getPosts(page, token){
 }
 
 function populateHistoryData(records, token) {
+
     var data = records.data;
     var current_page = parseInt(records.current_page);
     var limit = parseInt(records.per_page);
@@ -326,6 +327,9 @@ function populateHistoryData(records, token) {
 
         $.each(data, function(i, item) {
             
+            var txt_status = '等待发放';
+            var cls_status = 'pending';
+            var html_card_detail = null;
 
             if(item.request_at){
                 var t = item.request_at.split(/[- :]/);
@@ -401,84 +405,185 @@ function populateHistoryData(records, token) {
                     html += '</div>';
                 }*/
 
-            } else {
-                counter += 1;
-                
-                html += '<div class="history-row">' +
-                    '<div class="col-xs-2 column-4">' +
-                        counter +
-                    '</div>' +
-                    '<div class="col-xs-7 column-5">' +
-                        '<div class="description-history">'+ item.product_name + '</div>' +
-                        '<div class="balance">兑换时间:'+ str_date +'</div>' +
-                    '</div>';
+            } else if (item.type == '1') { //new buy product - card / virtual item
 
-                if(item.pin_status == 4) { // Pending
-                    html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-pending">等待发放</div>' +
-                            '</div>' + 
+                if(item.redeem_state == 1) { // Pending
+                    txt_status = '等待发放';
+                    cls_status = 'pending';
+                } else if (item.redeem_state == 2 || item.redeem_state == 3) { // 2 = Confirmed, 3 redeemed
+                    txt_status = '已发放';
+                    cls_status = 'confirmed';
+                    getVirtualCardDetails(item.id, token);
+                } else {
+                    txt_status = '被拒绝';
+                    cls_status = 'rejected';
+                }
+
+                html += '<div class="row row-new">' +
+                            '<div class="redeem-info">' +
+                                '<div class="redeem-time">兑换时间: '+str_date+'</div>' +
+                                '<div class="redeem-status '+cls_status+'">'+txt_status+'</div>' +
+                            '</div>' +
+                            '<div class="product-info">'+
+                                '<div class="product-img"><img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
+                                '<div class="product-detail">' +
+                                    '<div class="product-name">'+item.product_name+'</div>' +
+                                    '<div class="product-desc">可兑换支付宝现金</div>' +
+                                '</div>' +
+                                '<div class="redeem-result">' +
+                                    '<div class="redeem-quantity">X'+item.quantity+'</div>';                
+                if (item.redeem_state == 2 || item.redeem_state == 3) {
+                    html +=         '<div class="redeem-action"  data-toggle="collapse" data-target="#content-buyproduct-v-' + item.id + '">点击查看</div>' +                             
+                                '</div>' +
+                                '<div class="redeem-card-detail-' + item.id + '"></div>' +
+                            '</div>' +
                         '</div>';
+                    // html +=         '<div class="redeem-action"  data-toggle="collapse" data-target="#content-99">点击查看</div>' +
+                    //             '</div>' +
+                    //             '<div id="content-99" class="collapse">' +
+                    //                 '<div class="card-wrapper">卡号： <span id="number99" class="numbers">code</span> <span id="copynumber99" class="copynumber">复制</span><br />密码：<span id="code99" class="numbers">passcode</span> <span id="copycode99" class="copycode">复制</span></div>' +
+                    //                 '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>' +
+                    //             '</div>' +
+                    //         '</div>' +
+                    //     '</div>';
+                } else {
+                    html +=     '</div>' +
+                            '</div>' +
+                        '</div>';
+                }
 
-                } else if (item.pin_status == 2) { // Confirmed
-                    html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-card" data-toggle="collapse" data-target="#content-' + item.id + '">提现现金</div>' +
-                            '</div>' + 
-                        '</div>' +
-                    '<div id="content-' + item.id + '" class="collapse">' +
-                        '<div class="card-wrapper">卡号： <span id="number' + item.id + '" class="numbers">'+ item.code +'</span> <span id="copynumber' + item.id + '" class="copynumber">复制</span>' + 
-                        '<br />密码：<span id="code' + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.id + '" class="copycode">复制</span></div>';
+            } else if (item.type == '2') { //new buy product - physical item
 
-                    //temporary hardcode
-                    html += '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。';
+                if(item.redeem_state == 1) { // Pending
+                    txt_status = '等待发货';
+                    cls_status = 'pending';
+                } else if (item.redeem_state == 2 || item.redeem_state == 3) { // 2 = Confirmed, 3 redeemed
+                    txt_status = '已发货';
+                    cls_status = 'confirmed';
+                } else {
+                    txt_status = '被拒绝';
+                    cls_status = 'rejected';
+                }
 
-                       html += '</div>' +
-   
+                html += '<div class="row row-new">' +
+                            '<div class="redeem-info">' +
+                                '<div class="redeem-time">兑换时间: '+str_date+'</div>' +
+                                '<div class="redeem-status '+cls_status+'">'+txt_status+'</div>' +
+                            '</div>' +
+                            '<div class="product-info">' +
+                                '<div class="product-img"><img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
+                                '<div class="product-detail">' +
+                                    '<div class="product-name">'+item.product_name+'</div>' +
+                                    '<div class="product-desc">'+item.used_point+' 金币</div>' +
+                                '</div>' +
+                                '<div class="redeem-result">' +
+                                    '<div class="redeem-quantity">X'+ item.quantity +'</div>' +
+                                '</div>' +
                             '</div>';
 
-                    // Copy card number
-                    var clipboard_cardno = new ClipboardJS('#copynumber' + item.id, {
+                if (item.redeem_state == 2 || item.redeem_state == 3) {
+                    html += '<div class="corrier-info">' +
+                                '快递单号： <span class="tracking-num">'+ item.tracking_partner +'&nbsp;<span id="number-buyproduct-' + item.type + '-' + item.id + '" >'+ item.tracking_number +'</span>&nbsp;<span id="copynumber-buyproduct-' + item.type + '-' + item.id + '" class="copynumber">复制</span>' +
+                            '</div>';
+
+                    // Copy tracking number
+                    var clipboard_trackingno = new ClipboardJS('#copynumber-buyproduct-' + item.type + '-' + item.id, {
                         target: function () {
-                            return document.querySelector('#number' + item.id);
+                            return document.querySelector('#number-buyproduct-' + item.type + '-' + item.id);
+                        }
+                    });
+
+                    clipboard_trackingno.on('success', function (e) {
+                        $('.copynumber').removeClass('copy-success').html('复制');
+                        $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('成功');
+                    });
+
+                    clipboard_trackingno.on('error', function (e) {
+                        $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('成功');
+                    });
+                }
+
+                html += '</div>';
+
+            } else {
+
+                if(item.pin_status == 4) { // Pending
+                    txt_status = '等待发放';
+                    cls_status = 'pending';
+                } else if (item.pin_status == 2) { // Confirmed
+                    txt_status = '已发放';
+                    cls_status = 'confirmed';
+                } else {
+                    txt_status = '被拒绝';
+                    cls_status = 'rejected';
+                }
+
+                html += '<div class="row row-new">' +
+                            '<div class="redeem-info">' +
+                                '<div class="redeem-time">兑换时间:'+ str_date +'</div>' +
+                                '<div class="redeem-status '+cls_status+'">'+txt_status+'</div>' +
+                            '</div>' +
+                            '<div class="product-info"><div class="product-img"><img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
+                            '<div class="product-detail">' +
+                                '<div class="product-name">'+item.product_name+'</div>' +
+                                '<div class="product-desc">可兑换支付宝现金</div>' +
+                            '</div>' +
+                            '<div class="redeem-result">' +
+                                '<div class="redeem-quantity">X1</div>';
+                if (item.pin_status == 2) {
+                    html += '     <div class="redeem-action"  data-toggle="collapse" data-target="#content-' + item.type + item.id + '">点击查看</div>' +
+                            '</div>' +
+                            '<div id="content-' + item.type + item.id + '" class="collapse">' +
+                                '<div class="card-wrapper">卡号： <span id="number' + item.type + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.type + item.id + '" class="copynumber">复制</span><br />密码：<span id="code' + item.type + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.type + item.id + '" class="copycode">复制</span></div>' +
+                                '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>' +
+                            '</div></div>' +
+                        '</div>';
+
+                    // Copy card number
+                    var clipboard_cardno = new ClipboardJS('#copynumber' + item.type + item.id, {
+                        target: function () {
+                            return document.querySelector('#number' + item.type + item.id);
                         }
                     });
 
                     clipboard_cardno.on('success', function (e) {
                         $('.copynumber').removeClass('copy-success').html('复制');
                         $('.copycode').removeClass('copy-success').html('复制');
-                        $('#copynumber' + item.id).addClass('copy-success').html('成功');
+                        $('#copynumber' + item.type + item.id).addClass('copy-success').html('成功');
                     });
 
                     clipboard_cardno.on('error', function (e) {
                         // $('#copynumber' + item.id).addClass('copy-fail').html('失败');
-                        $('#copynumber' + item.id).addClass('copy-success').html('成功');
+                        $('#copynumber' + item.type + item.id).addClass('copy-success').html('成功');
                     });
 
                     // Copy passcode
-                    var clipboard_code = new ClipboardJS('#copycode' + item.id, {
+                    var clipboard_code = new ClipboardJS('#copycode' + item.type + item.id, {
                         target: function () {
-                            return document.querySelector('#code' + item.id);
+                            return document.querySelector('#code' + item.type + item.id);
                         }
                     });
 
                     clipboard_code.on('success', function (e) {
                         $('.copynumber').removeClass('copy-success').html('复制');
                         $('.copycode').removeClass('copy-success').html('复制');
-                        $('#copycode' + item.id).addClass('copy-success').html('成功');
+                        $('#copycode' + item.type + item.id).addClass('copy-success').html('成功');
                     });
 
                     clipboard_code.on('error', function (e) {
                         // $('#copycode' + item.id).addClass('copy-fail').html('失败');
-                        $('#copycode' + item.id).addClass('copy-success').html('成功');
+                        $('#copycode' + item.type + item.id).addClass('copy-success').html('成功');
                     });
 
                 } else {
-                    html += '</div>';
+                    html += '       </div>' +
+                                '</div>' +
+                            '</div>';
                 }
             }
 
         });
 
-        $( ".cardFull" ).after( htmlmodel);
     }
 
     return html;
@@ -758,5 +863,74 @@ function redeemProduct(token, product_id){
             }
         }
     });
+}
+
+function getVirtualCardDetails(id, token){
+
+    var member_id = $('#hidUserId').val();
+
+    $.ajax({
+        type: "GET",
+        url: "/api/get-virtual-card-details?memberid=" + member_id + "&orderid=" + id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error) },
+        success: function(data) {
+            // console.log(data);
+            var records = data.records;
+            var html = '';
+
+            html += '<div id="content-buyproduct-v-' + id + '" class="collapse">';
+
+            $.each(records, function(i, item) {
+                console.log(item.card_num);
+
+                html += '<div class="card-wrapper">卡号： <span id="number-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_num + '</span> <span id="copynumber-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copynumber">复制</span>' +
+                        '<br />密码：<span id="code-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_pass + '</span> <span id="copycode-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copycode">复制</span></div>' +
+                        '<br/>';
+
+                // Copy card number
+                var _clipboard_cardno = new ClipboardJS('#copynumber-buyproduct-v-' + item.order_id + '-' + item.id, {
+                    target: function () {
+                        return document.querySelector('#number-buyproduct-v-' + item.order_id + '-' + item.id);
+                    }
+                });
+
+                _clipboard_cardno.on('success', function (e) {
+                    $('.copynumber').removeClass('copy-success').html('复制');
+                    $('.copycode').removeClass('copy-success').html('复制');
+                    $('#copynumber-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
+                });
+
+                _clipboard_cardno.on('error', function (e) {
+                    $('#copynumber-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
+                });
+
+                // Copy passcode
+                var _clipboard_code = new ClipboardJS('#copycode-buyproduct-v-' + item.order_id + '-' + item.id, {
+                    target: function () {
+                        return document.querySelector('#code-buyproduct-v-' + item.order_id + '-' + item.id);
+                    }
+                });
+
+                _clipboard_code.on('success', function (e) {
+                    $('.copynumber').removeClass('copy-success').html('复制');
+                    $('.copycode').removeClass('copy-success').html('复制');
+                    $('#copycode-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
+                });
+
+                _clipboard_code.on('error', function (e) {
+                    $('#copycode-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
+                });
+            });
+
+            html += '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>' +
+                                '</div>';
+
+            $('.redeem-card-detail-' + id).html(html);
+        }
+     });
 }
         

@@ -40,7 +40,7 @@
 		<div class="card">
 			<img src="{{ asset('/client/images/redeem-background.png') }}" alt="redeem background">
 			<div class="summary-table">
-				<div class="label-coin">可兑换红包 <span class="wabao-coin"></span>元</div>
+				<div class="label-coin">可兑换金额 <span class="wabao-coin"></span>元</div>
 				<div class="label-desc">邀请好友送更多场次，抽更多红包！</div>
 				<a href="/share" class="link-button">
 					<div class="btn-invite">邀请好友</div>
@@ -52,8 +52,8 @@
 		<div class="full-width-tabs">
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
-			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换红包</a></li>
-			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的充值卡</a></li>
+			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换奖品</a></li>
+			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的奖品</a></li>
 			</ul>
 			<!-- end redeem tabs -->
 
@@ -69,7 +69,131 @@
 
 				<!-- redeem history content -->
 				<div id="history" class="tab-pane fade {{ (!empty($slug) and $slug == 'history') ? 'in active' : '' }}">
+
+<!--
+					<div class="row row-new">
+						<div class="redeem-info">
+							<div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>
+							<div class="redeem-status confirmed">已发放</div>
+						</div>
+						<div class="product-info">
+							<div class="product-img">
+								<img src="https://wabao666.com/client/images/10.png" alt="product name">
+							</div>
+							<div class="product-detail">
+								<div class="product-name">骏网充值卡10元</div>
+								<div class="product-desc">可兑换支付宝现金</div>
+							</div>
+							<div class="redeem-result">
+								<div class="redeem-quantity">X1</div>
+								<div class="redeem-action"  data-toggle="collapse" data-target="#content-99">点击查看</div>
+							</div>
+							<div id="content-99" class="collapse">
+	                    	<div class="card-wrapper">卡号： <span id="number99" class="numbers">code</span> <span id="copynumber99" class="copynumber">复制</span><br />密码：<span id="code99" class="numbers">passcode</span> <span id="copycode99" class="copycode">复制</span>
+	                    	</div>
+	                    	<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>
+	                    </div>
+
+						</div>
+						
+					</div>
+
+					<div class="row row-new">
+						<div class="redeem-info">
+							<div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>
+							<div class="redeem-status pending">等待开放</div>
+						</div>
+						<div class="product-info">
+							<div class="product-img">
+								<img src="https://wabao666.com/client/images/10.png" alt="product name">
+							</div>
+							<div class="product-detail">
+								<div class="product-name">骏网充值卡10元</div>
+								<div class="product-desc">可兑换支付宝现金</div>
+							</div>
+							<div class="redeem-result">
+								<div class="redeem-quantity">X1</div>
+							</div>
+							
+	                    </div>
+
+					</div>
+
+					<div class="row row-new">
+						<div class="redeem-info">
+							<div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>
+							<div class="redeem-status pending">等待发货</div>
+						</div>
+						<div class="product-info">
+							<div class="product-img">
+								<img src="http://dev.boge56.com/client/images/products/p1.png">
+							</div>
+							<div class="product-detail">
+								<div class="product-name">iPhone X 256G深黑色全网通苹果智能手机</div>
+								<div class="product-desc">7500 金币</div>
+							</div>
+							<div class="redeem-result">
+								<div class="redeem-quantity">X1</div>
+							</div>
+							
+	                    </div>
+
+					</div>
+
+					<div class="row row-new">
+						<div class="redeem-info">
+							<div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>
+							<div class="redeem-status confirmed">已发货</div>
+						</div>
+						<div class="product-info">
+							<div class="product-img">
+								<img src="http://dev.boge56.com/client/images/products/p1.png">
+							</div>
+							<div class="product-detail">
+								<div class="product-name">iPhone X 256G深黑色全网通苹果智能手机</div>
+								<div class="product-desc">7500 金币</div>
+							</div>
+							<div class="redeem-result">
+								<div class="redeem-quantity">X1</div>
+							</div>							
+	                    </div>
+	                    <div class="corrier-info">
+							快递单号： <span class="tracking-num">compamny 123456</span>&nbsp;
+<span id="copycode99" class="copycode">复制</span>
+						</div>
+
+					</div>
+
+					<div class="row row-new">
+						<div class="redeem-info">
+							<div class="redeem-time">兑换时间: 2019-07-03 15:07:24</div>
+							<div class="redeem-status confirmed">已发放</div>
+						</div>
+						<div class="product-info">
+							<div class="product-img">
+								<img src="http://dev.boge56.com/client/images/products/p6.png">
+							</div>
+							<div class="product-detail">
+								<div class="product-name">骏网一卡通1000元充值卡</div>
+								<div class="product-desc">1000 金币</div>
+							</div>
+							<div class="redeem-result">
+								<div class="redeem-quantity">X1</div>
+								<div class="redeem-action"  data-toggle="collapse" data-target="#content-999">点击查看</div>
+							</div>
+							<div id="content-999" class="collapse">
+	                    	<div class="card-wrapper">卡号： <span id="number999" class="numbers">code</span> <span id="copynumber999" class="copynumber">复制</span><br />密码：<span id="code999" class="numbers">passcode</span> <span id="copycode99" class="copycode">复制</span>
+	                    	</div>
+	                    	<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>
+	                    </div>
+
+						</div>
+						
+					</div>
+
+	-->				
 					<div id="redeem-history"></div>
+
 					<p class="isnext">下拉显示更多...</p>
 				</div>
 				<!-- end redeem list content -->
