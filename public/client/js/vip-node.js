@@ -17,6 +17,7 @@ var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
 var g_ratio = 1;
+var g_w_ratio = 2;
 
 $(function () {
 
@@ -102,6 +103,8 @@ function updateHistory(records){
         var strwinloss = "猜对";
         var strsign = '+';
         var className = item.bet;
+        var bet_amt = getNumeric(item.bet_amount);
+        var loseOrReward = item.reward > 0 ? getNumeric(item.reward) : bet_amt;
 
         if(item.is_win == null){
             strwinloss = "猜错";
@@ -112,7 +115,7 @@ function updateHistory(records){
             strbet = "双数";
         }
 
-        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ bet_amt +'金币，' + strwinloss + '，' + strsign + loseOrReward +'金币';
 
         $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
         $('.history-body').find('#row-' + counter).find('.history').html(history);
@@ -130,16 +133,18 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
-        var balance = parseInt(records.point);
+        $('.wallet-point').html(0);
+        $('.packet-point').html(0);
+        var balance = getNumeric(records.point);
         var life = records.life;
-        var point = parseInt(records.point);
-        var acupoint =  parseInt(records.acupoint);
-        g_current_point = parseInt(records.acupoint);
+        var point = getNumeric(records.point);
+        var acupoint =  getNumeric(records.acupoint);
+        g_current_point = getNumeric(records.acupoint);
         var play_count = parseInt(records.play_count);
         
-        var vip_point =  parseInt(records.point);
+        var vip_point =  getNumeric(records.point);
         var vip_life =  parseInt(records.vip_life);
-        g_vip_point = parseInt(point);
+        g_vip_point = getNumeric(point);
 
         if(vip_life == 0){
             vip_point = 0;
@@ -365,8 +370,8 @@ function startGame() {
             latest_result = data.record.bettinghistory.data;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
-            g_ratio = parseFloat(parseFloat(data.record.setting.win_ratio) + 1).toFixed(2);
-            // console.log(g_ratio);
+            g_ratio = getNumeric(data.record.setting.win_ratio);
+            g_w_ratio = g_ratio + 1;
             initGame(game_records, level, latest_result, consecutive_lose);
             
             //console.log(data);
@@ -689,8 +694,8 @@ function showPayout(){
             $('#spanPoint').html(total_balance);
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
-            $('.odd-payout').html(parseFloat(bet_amount * g_ratio).toFixed(2));
-            $('.even-payout').html(parseFloat(bet_amount * g_ratio).toFixed(2));
+            $('.odd-payout').html(getNumeric(bet_amount * g_w_ratio));
+            $('.even-payout').html(getNumeric(bet_amount * g_w_ratio));
 
             $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
             
@@ -713,11 +718,11 @@ function showPayout(){
                 $('.instruction').css('visibility', 'hidden');
 
                 if(selected == 'odd'){
-                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (parseFloat(bet_amount * g_ratio).toFixed(2)) + "</span>");
+                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric(bet_amount * g_w_ratio)) + "</span>");
                     $('.span-even').html('谢谢参与');
                 } else {
                     $('.span-odd').html('谢谢参与');
-                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (parseFloat(bet_amount * g_ratio).toFixed(2)) + "</span>");
+                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric(bet_amount * g_w_ratio)) + "</span>");
                 }
 
                 $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
@@ -983,8 +988,8 @@ function showProgressBar(bol_show){
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
         $('.result-info').html(result_info);
-        $('.odd-payout').html(parseFloat(previous_bet * g_ratio).toFixed(2));
-        $('.even-payout').html(parseFloat(previous_bet * g_ratio).toFixed(2));
+        $('.odd-payout').html(getNumeric(previous_bet * g_w_ratio));
+        $('.even-payout').html(getNumeric(previous_bet * g_w_ratio));
 
         if(bol_show) {
             checked(level, true);
@@ -1003,7 +1008,7 @@ function showWinModal(){
     var image = '';
     var info = '';
     var remain = 0;
-    var bet_amount = parseInt($('.span-bet').html());
+    var bet_amount = getNumeric(getNumeric($('.span-bet').html()) * g_ratio);
     var instructions = '您已赢到'+ bet_amount +'元';
     html += '<span class="packet-sign">+</span>'+ bet_amount +'<span class="packet-currency">元</span>';
 
@@ -1094,8 +1099,8 @@ function showLoseModal(){
     var image = '';
     var result_info = '6次内猜对奖励加倍';
 
-    var balance = parseInt($('#hidBalance').val());
-    var bet_amount = parseInt($('.span-bet').html());
+    var balance = getNumeric($('#hidBalance').val());
+    var bet_amount = getNumeric($('.span-bet').html());
     var newbalance = balance - bet_amount;
     var instruction = '您还剩余'+ newbalance +'元，继续加油哦';
 
@@ -1444,7 +1449,7 @@ function get_today_profit() {
             if(data.success){
                 if(data.record && data.record !="") {
 
-                    $('.profit').html((parseInt(data.record.total_win) - parseInt(data.record.total_lose)));    
+                    $('.profit').html(getNumeric(getNumeric(data.record.total_win) - getNumeric(data.record.total_lose)));    
                 } else {
                     $('.profit').html(0);
                 }                
@@ -1453,4 +1458,10 @@ function get_today_profit() {
             }
         }
     });
+}
+
+function getNumeric(value) {
+    
+    return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value)) ;
+
 }

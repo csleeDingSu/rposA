@@ -282,6 +282,10 @@ class BuyProductController extends BaseController
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
 			}
+			if (isset($input['s_status'])) {
+				if ($input['s_status'] != '' )
+					$result = $result->where('redeem_state','=',$input['s_status']);
+			}
 		}
 		
 		$result =  $result->orderby('id','DESC')->paginate(30);

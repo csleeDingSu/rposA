@@ -343,7 +343,7 @@ body{
 	position: relative;
 	/*margin-left: 10px;*/
 	color: #fff;
-	font-size: 40px;
+	/*font-size: 40px;*/
 	cursor: pointer;
 	border-radius: 40px;
 	margin-left: 12px;
@@ -491,7 +491,7 @@ body{
 
 .spanAcuPointAndBalance{
 	padding-top: 2px;
-	font-size: 40px;
+	font-size: 35px;
 }
 
 .btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {
@@ -2294,7 +2294,7 @@ if it's not present, don't show loader */
 
 .spanAcuPoint2 {
 	position: absolute;
-	margin-top: 5px;
+	margin-top: 10px;
 	text-align: center;
 	width: 175px;
 	margin-left: 58px;

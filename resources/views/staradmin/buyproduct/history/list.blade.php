@@ -9,10 +9,12 @@
 
 <section class="model">
 </section>
-
+@section('bottom_js')
+    @parent
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
-
+<script src="{{ asset('staradmin/js/tooltips.js') }}"></script>
+<script src="{{ asset('staradmin/js/popover.js') }}"></script>
 
 <script language="javascript">
 	
@@ -70,3 +72,4 @@ $(function() {
             }
         });	
 </script>
+@endsection
