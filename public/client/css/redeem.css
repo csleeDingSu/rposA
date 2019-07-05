@@ -17,7 +17,7 @@
     width: 4rem;
 
 }
-	
+
 @media only screen and (max-width: 500px) {
     .container {
 		width: 100%;
@@ -385,7 +385,7 @@ html, body {
 	}
 
 	.product-detail {
-	    width: 3.3rem;
+	    width: 3.8rem;
 	}
 }
 
@@ -535,10 +535,6 @@ html, body {
 		top:-1.7em; /* vertical position */
 		border-width: 10px;
 		margin-left: 147px;
-	}
-
-	.product-detail {
-	    width: 3.3rem;
 	}
 
 }
@@ -897,10 +893,6 @@ textarea {
 	  width: 260px;
 	  height: 80px;
 	  padding: 5px;
-	}
-
-	.product-detail {
-	    width: 3.3rem;
 	}
 }
 
