@@ -50,13 +50,15 @@
 				  </div>
 				  <div class="col-xs-6 border-right">
 				  	未结算
-				  	<div class="balance numbers">{{ number_format($wallet->current_life_acupoint, 0, '.', '') }}</div>
+				  	<div class="balance numbers">
+				  		<span class="wabao-acupoint"></span>
+				  	</div>
 				  	 元
 				  </div>
 				  <div class="col-xs-6">
 				  	已兑换
 				  	<div class="life numbers">				  		
-				  		{{ number_format($usedpoint, 0, '.', '') }} 元
+				  		<span class="wabao-usedpoint"></span>元
 				  	</div>
 
 				  </div>
@@ -321,10 +323,12 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
-			var current_point = parseInt("<?php Print(number_format($wallet->current_point, 0, '.', ''));?>");
+			var current_point = getNumeric("<?php Print($wallet->current_point);?>");
+			var acupoint = getNumeric("<?php Print($wallet->current_life_acupoint);?>");
+			var usedpoint = getNumeric("<?php Print($usedpoint);?>");
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
-                previous_point = (parseInt(previous_point));
+                previous_point = (getNumeric(previous_point));
 
                 $('.wabao-coin')
                   .prop('number', previous_point)
@@ -338,6 +342,10 @@
             } else {
                 $('.wabao-coin').html((current_point));
             }
+
+            $('.wabao-acupoint').html(acupoint);
+
+            $('.wabao-usedpoint').html(usedpoint);
 
             $('.vipmember').click(function(){
 				// window.location.href = "/vipmember";
@@ -439,5 +447,11 @@
 			});
 	
 		});	
+
+		function getNumeric(value) {
+    
+		    return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value)) ;
+
+		}
 	</script>
 @endsection
