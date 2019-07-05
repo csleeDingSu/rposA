@@ -14,7 +14,7 @@
 	font-size: 13px;
     color: #333;
     padding: 10px 10px 10px 10px;
-    width: 4rem;
+    /*width: 4rem;*/
 
 }
 
@@ -26,7 +26,7 @@
 	}
 
 	.product-detail {
-	    width: 3.3rem;
+	    width: 4.3rem;
 	}
 }
 
@@ -301,10 +301,6 @@ html, body {
 	.card {
 	    height: 3rem;
 	}
-
-	.product-detail {
-	    width: 3.3rem;
-	}
 }
 
 @media only screen and (max-width: 400px) {
@@ -321,7 +317,7 @@ html, body {
     }
 
     .product-detail {
-	    width: 3.3rem;
+	    width: 4rem;
 	}
 }
 
