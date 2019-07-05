@@ -292,6 +292,10 @@ html, body {
 	.card {
 	    height: 3rem;
 	}
+
+	.product-detail {
+	    width: 3.3rem;
+	}
 }
 
 @media only screen and (max-width: 400px) {
@@ -306,6 +310,10 @@ html, body {
     	padding-right: 0px;
     	width: 160px;
     }
+
+    .product-detail {
+	    width: 3.3rem;
+	}
 }
 
 @media only screen and (max-width: 360px) {
@@ -366,6 +374,10 @@ html, body {
 		font-size: 10px;
 		padding-top: 4px;
 	}
+
+	.product-detail {
+	    width: 3.3rem;
+	}
 }
 
 @media only screen and (max-width: 320px) {
@@ -373,6 +385,10 @@ html, body {
 		width: 220px;
 		padding-right: 0;
 		font-size: 11px;
+	}
+
+	.product-detail {
+	    width: 3.3rem;
 	}
 }
 /* End Redeem List Content */
@@ -510,6 +526,10 @@ html, body {
 		top:-1.7em; /* vertical position */
 		border-width: 10px;
 		margin-left: 147px;
+	}
+
+	.product-detail {
+	    width: 3.3rem;
 	}
 
 }
@@ -869,6 +889,10 @@ textarea {
 	  height: 80px;
 	  padding: 5px;
 	}
+
+	.product-detail {
+	    width: 3.3rem;
+	}
 }
 
 @media only screen and (max-width: 320px) {
@@ -896,6 +920,10 @@ textarea {
 	  width: 245px;
 	  height: 80px;
 	  padding: 5px;
+	}
+
+	.product-detail {
+	    width: 3.3rem;
 	}
 }
 
