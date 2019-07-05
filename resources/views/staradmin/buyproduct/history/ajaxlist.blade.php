@@ -38,7 +38,7 @@
 									@elseif ($list->redeem_state == 1)
 									<label class="badge badge-info" data-custom-class="tooltip-primary" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ $list->ref_note }}">@lang('dingsu.pending') @lang('dingsu.confirmation')</label> 
 									@elseif ($list->redeem_state == 3)
-									<label class="badge badge-danger" data-custom-class="tooltip-success" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ $list->ref_note }}">@lang('dingsu.redeemed')</label> 
+									<label class="badge badge-success" data-custom-class="tooltip-primary" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ $list->ref_note }}">@lang('dingsu.redeemed')</label> 
 									@else
 									<label class="badge badge-danger">@lang('dingsu.unknown') @lang('dingsu.status')</label> 
 									@endif	
