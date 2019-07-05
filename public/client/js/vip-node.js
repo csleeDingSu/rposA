@@ -16,6 +16,7 @@ var game_records = null; //game setting
 var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
+var g_ratio = 2;
 
 $(function () {
 
@@ -111,7 +112,7 @@ function updateHistory(records){
             strbet = "双数";
         }
 
-        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount/10) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
 
         $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
         $('.history-body').find('#row-' + counter).find('.history').html(history);
@@ -129,16 +130,16 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
-        var balance = parseInt(records.point/10);
+        var balance = parseInt(records.point);
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
         var play_count = parseInt(records.play_count);
         
-        var vip_point =  parseInt(records.point/10);
+        var vip_point =  parseInt(records.point);
         var vip_life =  parseInt(records.vip_life);
-        g_vip_point = parseInt(point/10);
+        g_vip_point = parseInt(point);
 
         if(vip_life == 0){
             vip_point = 0;
@@ -149,16 +150,16 @@ function initUser(records){
         $('#spanPoint').html(total_balance);
         
         $('#hidTotalBalance').val(total_balance);
-        $('.wallet-point').html(point/10);
-        $('.packet-point').html(point/10);
+        $('.wallet-point').html(point);
+        $('.packet-point').html(point);
         if(show_win){
             
         } else {
             $('.spanAcuPoint').html(point);
-            $('.spanAcuPointAndBalance').html(point/10);
+            $('.spanAcuPointAndBalance').html(point);
         }
-        $('.packet-acupoint').html(acupoint/10);
-        $('.packet-acupoint-to-win').html(15 - acupoint/10);
+        $('.packet-acupoint').html(acupoint);
+        $('.packet-acupoint-to-win').html(15 - acupoint);
         $('#hidBalance').val(balance);
         $(".nTxt").html(life);
         $(".spanVipLife").html(vip_life);
@@ -288,9 +289,11 @@ function getProduct(){
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
                                     '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<a href="/buy">' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button">兑换</div>' +
                                     '</div>' +
+                                    '</a>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
@@ -303,9 +306,11 @@ function getProduct(){
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
                                     '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<a href="/buy">' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button">兑换</div>' +
                                     '</div>' +
+                                    '</a>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
@@ -684,9 +689,11 @@ function showPayout(){
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
 
-            $('.odd-payout').html(bet_amount);
-            $('.even-payout').html(bet_amount);
+            $('.odd-payout').html(bet_amount * g_ratio);
+            $('.even-payout').html(bet_amount * g_ratio);
 
+            $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
+            
         } else {
 
             checked(level, true);
@@ -706,19 +713,21 @@ function showPayout(){
                 $('.instruction').css('visibility', 'hidden');
 
                 if(selected == 'odd'){
-                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + bet_amount + "</span>");
+                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (bet_amount * g_ratio) + "</span>");
                     $('.span-even').html('谢谢参与');
                 } else {
                     $('.span-odd').html('谢谢参与');
-                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + bet_amount + "</span>");
+                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (bet_amount * g_ratio) + "</span>");
                 }
+
+                $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
 
                 $.ajax({
                     type: 'GET',
                     url: "/api/update-game-result-temp?gameid=103&gametype=1&memberid="+ user_id
                     + "&drawid=0" 
                     + "&bet="+ selected 
-                    + "&betamt=" + (bet_amount * 10)
+                    + "&betamt=" + (bet_amount)
                     + "&level=" + level,
                     dataType: "json",
                     beforeSend: function( xhr ) {
@@ -974,8 +983,8 @@ function showProgressBar(bol_show){
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
         $('.result-info').html(result_info);
-        $('.odd-payout').html(previous_bet);
-        $('.even-payout').html(previous_bet);
+        $('.odd-payout').html(previous_bet * g_ratio);
+        $('.even-payout').html(previous_bet  * g_ratio);
 
         if(bol_show) {
             checked(level, true);
@@ -1435,7 +1444,7 @@ function get_today_profit() {
             if(data.success){
                 if(data.record && data.record !="") {
 
-                    $('.profit').html((parseInt(data.record.total_win) - parseInt(data.record.total_lose))/10);    
+                    $('.profit').html((parseInt(data.record.total_win) - parseInt(data.record.total_lose)));    
                 } else {
                     $('.profit').html(0);
                 }                

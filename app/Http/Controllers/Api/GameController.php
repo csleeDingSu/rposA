@@ -417,7 +417,7 @@ class GameController extends Controller
 				$records =  Game::add_play_history($insdata,$filter);
 				//$records = member_game_result::firstOrCreate($filter, $insdata)->id;
                 
-                if ($wallet['acupoint'] >= 150 ) $this->update_notification($memberid, $gameid,'0');
+                if ($wallet['acupoint'] >= \Config::get('app.coin_max') ) $this->update_notification($memberid, $gameid,'0');
 				
 				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result]); 
 			}
@@ -599,17 +599,17 @@ class GameController extends Controller
 				}
 				if ($wallet->life >= 1) 
 				{
-					
+					$max_po = \Config::get('app.coin_max');
 					
 					if ($close != 'yes') {
 						
-						if ($wallet->acupoint < 150) 
+						if ($wallet->acupoint < $max_po) 
 						{
-							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below '.$max_po.' point']); 
 						}
 						
-						if($wallet->acupoint>150){
-							$wallet->acupoint=150;
+						if($wallet->acupoint>$max_po){
+							$wallet->acupoint=$max_po;
 						}
 
 					}else{
@@ -682,18 +682,19 @@ class GameController extends Controller
 					}
 					$credit        	= 0;
 					$debit        	= $wallet->acupoint; 
+					$max_po = \Config::get('app.coin_max');
 					
-					if ($debit >= 150 )
+					if ($debit >= $max_po )
 					{
-						$debit = 150;
+						$debit = $max_po;
 					}
 										
 					
 					if ($close != 'yes') {
 						
-						if ($wallet->acupoint < 150) 
+						if ($wallet->acupoint < $max_po) 
 						{
-							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below 150 point']); 
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below '.$max_po.' point']); 
 						}
 					}
 					
@@ -1337,17 +1338,17 @@ class GameController extends Controller
 		
 		///$status = 'lose';
 		
-		$wallet   = Wallet::new_game_wallet_update ($memberid,  $status, $level);
+		$wallet   = Wallet::new_game_wallet_update ($memberid,  $status, $level, $gameid);
 		
 		$r_status = 2;
 		
 		if ($status == 'win') 			
 		{
-			$reward = $level->point_reward;
+			$reward = $wallet['credit'];
 			
 			$r_status = 1;
 			
-			if ($wallet['acupoint'] >= 150 ) $this->update_notification($memberid, $gameid,'0');
+			if ($wallet['acupoint'] >= \Config::get('app.coin_max') ) $this->update_notification($memberid, $gameid,'0');
 		}		
 
 		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level,'reward' => $reward];		
@@ -1490,7 +1491,7 @@ class GameController extends Controller
 			
 			$r_status = 1;
 			
-			if ($wallet['acupoint'] >= 150 ) $this->update_notification($memberid, $gameid,'0');
+			if ($wallet['acupoint'] >= \Config::get('app.coin_max') ) $this->update_notification($memberid, $gameid,'0');
 		}		
 
 		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level,'reward' => $reward];		
@@ -1633,9 +1634,16 @@ class GameController extends Controller
 		{
 			$reward = $betamt;
 			
+			$se_game  = \App\Game::where('id',$gameid)->first();
+			
+			if (!empty($se_game->win_ratio))
+			{
+				$reward = $betamt * $se_game->win_ratio;
+			}
+						
 			$r_status = 1;
 			
-			Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP			
+			Wallet::update_basic_wallet($memberid,0,$reward,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP			
 		}	
 		else
 		{

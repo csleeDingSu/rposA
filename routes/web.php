@@ -177,6 +177,10 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/buy');
 	} );
 
+	Route::get( '/confirm', function () {
+		return view( 'client/confirm');
+	} );
+
 	Route::get( '/vipmember', function () {
 		return view( 'client/vipmember');
 	} );

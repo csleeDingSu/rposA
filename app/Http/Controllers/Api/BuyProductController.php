@@ -18,6 +18,13 @@ use App\ShippingDetail;
 class BuyProductController extends Controller
 {	
 	
+	public function get_virtual_card_details(Request $request)
+	{
+		$orderid = $request->orderid;
+		$result  = OrderDetail::where('order_id',$orderid)->get();
+		return response()->json(['success' => true,'records' => $result]);
+	}
+	
 	public function list_package(Request $request)
     {
 		$member_id = $request->memberid;

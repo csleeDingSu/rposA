@@ -109,7 +109,7 @@ function updateHistory(records){
             strbet = "双数";
         }
 
-        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount / 10) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount / 10) +'金币';
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
 
         $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
         $('.history-body').find('#row-' + counter).find('.history').html(history);
@@ -127,12 +127,13 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
-        var balance = parseInt(records.balance);
+        var balance = parseInt(records.balance / 10);
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
         var play_count = parseInt(records.play_count);
+        var max_acupoint = 15;
         //g_current_point = parseInt(records.balance) + parseInt(records.acupoint);
 
         if(life == 0){
@@ -143,16 +144,16 @@ function initUser(records){
         $('#spanPoint').html(total_balance);
         
         $('#hidTotalBalance').val(total_balance);
-        $('.wallet-point').html(point/10);
-        $('.packet-point').html(point/10);
+        $('.wallet-point').html(point);
+        $('.packet-point').html(point);
         if(show_win){
             
         } else {
             $('.spanAcuPoint').html(acupoint);
-            $('.spanAcuPointAndBalance').html(acupoint/10);
+            $('.spanAcuPointAndBalance').html(acupoint);
         }
-        $('.packet-acupoint').html(acupoint/10);
-        $('.packet-acupoint-to-win').html(15 - acupoint/10);
+        $('.packet-acupoint').html(acupoint);
+        $('.packet-acupoint-to-win').html(15 - acupoint);
         $('#hidBalance').val(balance);
         $(".nTxt").html(life);
         $(".spanLife").html(life);
@@ -160,13 +161,9 @@ function initUser(records){
 
         setBalance();
 
-        /*if(acupoint == 50 || acupoint == 100){
-            $('.speech-bubble-point').html('已赚了'+ acupoint +'积分大约可换'+ acupoint/10 +'元').fadeIn(1000).delay(2000).fadeOut(400);
-        }*/
-
         if(life == 0){
             $('#reset-life-share').modal();
-        } else if (user_id > 0 && acupoint >= 150) {
+        } else if (user_id > 0 && acupoint >= max_acupoint) {
             bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
         }
@@ -460,20 +457,11 @@ function closeWinModal() {
             console.log('play coin mp3');  
         } 
 
-         if(g_current_point > 150){
-             g_current_point = 150;
+         if(g_current_point > 15){
+             g_current_point = 15;
          }
-
-        /*$('.spanAcuPointAndBalance')
-          .prop('number', g_previous_point/10)
-          .animateNumber(
-            {
-              number: g_current_point/10
-            },
-            500
-          );*/
         
-        $('.spanAcuPointAndBalance').html(g_current_point/10);
+        $('.spanAcuPointAndBalance').html(g_current_point);
         $('.spanAcuPoint').html(g_current_point);
 
         $(this).off('click');
@@ -518,7 +506,7 @@ function bindBetButton(){
         //console.log(user_id +":" + balance + ":" + life );
         if(user_id > 0 && life > 0){
 
-            if(balance < 630) {
+            if(balance < 63) {
                 if(consecutive_lose == 'yes'){
                     bindResetLifeButton();
                     $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
@@ -533,7 +521,7 @@ function bindBetButton(){
                 $('#reset-life-share').modal();
         }
 
-        if (user_id > 0 && acupoint >= 150) {
+        if (user_id > 0 && acupoint >= 15) {
             bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
         }
@@ -605,19 +593,19 @@ function showPayout(){
             $('.payout-info').addClass("hide");
 
             $('.odd-payout')
-                  .prop('number', bet_amount / 10)
+                  .prop('number', bet_amount)
                   .animateNumber(
                     {
-                      number: previous_bet / 10
+                      number: previous_bet
                     },
                     500
                   );
 
             $('.even-payout')
-              .prop('number', bet_amount / 10)
+              .prop('number', bet_amount)
               .animateNumber(
                 {
-                  number: previous_bet / 10
+                  number: previous_bet
                 },
                 500
               );
@@ -666,19 +654,19 @@ function showPayout(){
                 }
 
                 $('.odd-payout')
-                      .prop('number', previous_bet / 10)
+                      .prop('number', previous_bet)
                       .animateNumber(
                         {
-                          number: bet_amount / 10
+                          number: bet_amount
                         },
                         500
                       );
 
                 $('.even-payout')
-                  .prop('number', previous_bet / 10)
+                  .prop('number', previous_bet)
                   .animateNumber(
                     {
-                      number: bet_amount / 10
+                      number: bet_amount
                     },
                     500
                   );
@@ -789,7 +777,7 @@ function showProgressBar(bol_show){
     var consecutive_lose = $('#hidConsecutiveLose').val();
     var balance = parseInt($('#hidBalance').val());
     var payout_info = '';
-    var span_balance = 1200;
+    var span_balance = 120;
     var result_info ='';
 
     if(consecutive_lose == 'yes') {
@@ -805,7 +793,7 @@ function showProgressBar(bol_show){
         $('.spanAcuPoint').html(0);
         $('.spanAcuPointAndBalance').html(0);
         
-        result_info = '剩余<span style="text-decoration:underline">'+ balance / 10 +'</span>元体验金&nbsp;';
+        result_info = '剩余<span style="text-decoration:underline">'+ balance +'</span>元体验金&nbsp;';
         $('.result-info').html(result_info);
 
 
@@ -820,7 +808,7 @@ function showProgressBar(bol_show){
             default:
             case 1:
                 previous_bet = current_bet;
-                current_bet = 10;                
+                current_bet = 1;                
 
                 payout_info = '押注1元，猜对+1，猜错-1。';
                 //payout_info = '<span class=\'caption_bet\'>[单数]</span>押注10积分，猜对+10，猜错-10。';
@@ -836,9 +824,9 @@ function showProgressBar(bol_show){
 
                 break;
             case 2:
-                current_bet = 30;
-                previous_bet = 10;
-                span_balance = 1190;
+                current_bet = 3;
+                previous_bet = 1;
+                span_balance = 119;
                 result_info = '本轮错了1次，还剩5次。';
 
                 payout_info = '押注3元，猜对+3，猜错-3。';
@@ -847,9 +835,9 @@ function showProgressBar(bol_show){
                 $('.span-1').html("-1");                        
                 break;
             case 3:                    
-                current_bet = 70;
-                previous_bet = 30;
-                span_balance = 1160;
+                current_bet = 7;
+                previous_bet = 3;
+                span_balance = 116;
                 result_info = '本轮错了2次，还剩4次。';
 
                 payout_info = '押注7元，猜对+7，猜错-7。';
@@ -859,9 +847,9 @@ function showProgressBar(bol_show){
                 $('.span-2').html("-3");
                 break;
             case 4:
-                current_bet = 150;
-                previous_bet = 70;
-                span_balance = 1090;
+                current_bet = 15;
+                previous_bet = 7;
+                span_balance = 109;
                 result_info = '本轮错了3次，还剩3次。';
 
                 payout_info = '押注15元，猜对+15，猜错-15。';
@@ -872,9 +860,9 @@ function showProgressBar(bol_show){
                 $('.span-3').html("-7");
                 break;
             case 5:
-                current_bet = 310;
-                previous_bet = 150;
-                span_balance = 940;
+                current_bet = 31;
+                previous_bet = 15;
+                span_balance = 94;
                 result_info = '本轮错了4次，还剩2次。';
 
                 payout_info = '押注31元，猜对+31，猜错-31。';
@@ -886,9 +874,9 @@ function showProgressBar(bol_show){
                 $('.span-4').html("-15");
                 break;
             case 6:
-                current_bet = 630;
-                previous_bet = 310;
-                span_balance = 630;
+                current_bet = 63;
+                previous_bet = 31;
+                span_balance = 63;
                 result_info = '本轮剩1次机会，猜错清零。';                
 
                 payout_info = '押注63元，猜对+63，猜错-63。';
@@ -902,13 +890,13 @@ function showProgressBar(bol_show){
                 break;
         }
 
-        result_info = '剩余<span style="text-decoration:underline">'+ span_balance / 10 +'</span>元体验金&nbsp;';
+        result_info = '剩余<span style="text-decoration:underline">'+ span_balance +'</span>元体验金&nbsp;';
 
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
         $('.result-info').html(result_info);
-        $('.odd-payout').html(previous_bet / 10);
-        $('.even-payout').html(previous_bet / 10);
+        $('.odd-payout').html(previous_bet);
+        $('.even-payout').html(previous_bet);
 
         if(bol_show) {
             checked(level, true);
@@ -933,7 +921,7 @@ function showWinModal(){
             info = '前0局猜错<span class="highlight">亏损0元</span><br />第1局猜对<span class="highlight-green">奖励1元</span><br />最终赚了1元，<span class="highlight-red">换到了1元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/10.png';
             html += '<span class="packet-sign">+</span>1<span class="packet-currency">元</span>';
-            remain = 15 - (g_previous_point/10) - 1;
+            remain = 15 - (g_previous_point) - 1;
             instructions = '您已赢到1元，';
         break;
 
@@ -941,7 +929,7 @@ function showWinModal(){
             info = '前1局猜错<span class="highlight">亏损1元</span><br />第2局猜对<span class="highlight-green">奖励3元</span><br />最终赚了2元，<span class="highlight-red">换到了2元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/30.png';
             html += '<span class="packet-sign">+</span>2<span class="packet-currency">元</span>';
-            remain = 15 - (g_previous_point/10) - 2;
+            remain = 15 - (g_previous_point) - 2;
             instructions = '您已赢到2元，';        
         break;
 
@@ -949,7 +937,7 @@ function showWinModal(){
             info = '前2局猜错<span class="highlight">亏损4元</span><br />第3局猜对<span class="highlight-green">奖励7元</span><br />最终赚了3元，<span class="highlight-red">换到了3元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/70.png';
             html += '<span class="packet-sign">+</span>3<span class="packet-currency">元</span>';
-            remain = 15 - (g_previous_point/10) - 3;
+            remain = 15 - (g_previous_point) - 3;
             instructions = '您已赢到3元，';
         break;
 
@@ -957,7 +945,7 @@ function showWinModal(){
             info = '前3局猜错<span class="highlight">亏损11元</span><br />第4局猜对<span class="highlight-green">奖励15元</span><br />最终赚了4元，<span class="highlight-red">换到了4元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/150.png';
             html += '<span class="packet-sign">+</span>4<span class="packet-currency">元</span>';
-            remain = 15 - (g_previous_point/10) - 4;
+            remain = 15 - (g_previous_point) - 4;
             instructions = '您已赢到4元，';
         break;
 
@@ -965,7 +953,7 @@ function showWinModal(){
             info = '前4局猜错<span class="highlight">亏损26元</span><br />第5局猜对<span class="highlight-green">奖励31元</span><br />最终赚了5元，<span class="highlight-red">换到了5元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/310.png';
             html += '<span class="packet-sign">+</span>5<span class="packet-currency">元</span>';
-            remain = 15 - (g_previous_point/10) - 5;
+            remain = 15 - (g_previous_point) - 5;
             instructions = '您已赢到5元，';
         break;
 
@@ -973,7 +961,7 @@ function showWinModal(){
             info = '前5局猜错<span class="highlight">亏损57元</span><br />第6局猜对<span class="highlight-green">奖励63元</span><br />最终赚了6元，<span class="highlight-red">换到了6元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/630.png';
             html += '<span class="packet-sign">+</span>6<span class="packet-currency">元</span>';
-            remain = 15 - (g_previous_point/10) - 6;
+            remain = 15 - (g_previous_point) - 6;
             instructions = '您已赢到6元，';
         break;
 

@@ -134,6 +134,9 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/today-play_statistics', 'GameController@today_play_statistics')->name('today_play_statistics');
 	
 	
+	Route::get('/get-virtual-card-details', 'BuyProductController@get_virtual_card_details')->name('get_virtual_card_details');
+	
+	
 	
 	
 });

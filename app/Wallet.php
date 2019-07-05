@@ -764,12 +764,21 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 	return true;
 }
 	
-	public static function new_game_wallet_update ($memberid, $status, $level)
+	public static function new_game_wallet_update ($memberid, $status, $level, $gameid = FALSE)
 	{
 		$mainledger = self::current_wallet($memberid);
 		$now = Carbon::now()->toDateTimeString();
 		if($status=="win")
 		{
+			/*
+			$se_game  = \App\Game::where('id',$gameid)->first();
+			
+			if (!empty($se_game->win_ratio))
+			{
+				$level->point_reward = $level->point_reward * $se_game->win_ratio;
+			}
+			*/
+			
 			$balance_before                 = $mainledger->current_balance;
 			$credit                         = $level->point_reward;
 			$debit                          = '0';
@@ -848,7 +857,7 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 		}
 		
 		event(new \App\Events\EventWalletUpdate($memberid));
-		return ['status'=>$status,'point'=>$current_point,'balance'=>$current_balance,'acupoint'=>$current_life_acupoint];
+		return ['status'=>$status,'point'=>$current_point,'balance'=>$current_balance,'acupoint'=>$current_life_acupoint,'credit'=>$credit ];
 	}
 	
 	public static function add_topup_request($chunk)

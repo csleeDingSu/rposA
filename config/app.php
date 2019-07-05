@@ -238,4 +238,8 @@ return [
 	'ads_product_image_url' => '/ad/product_image/',
 	'banner_url' => public_path("ad\banner"),
 	'shareurl' => 'wabao666.com/share_product/',
+	
+	'coin_max' => env('coin_max', 15),
+	
+	
 ];
