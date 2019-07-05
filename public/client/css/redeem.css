@@ -470,7 +470,7 @@ html, body {
 	border-color: rgba(255, 255, 255, 0);
 	border-bottom-color: #f4f7f9;
 	border-width: 10px;
-	margin-left: 149px;
+	margin-left: -50px;
 }
 
 .collapse:before {
@@ -478,7 +478,7 @@ html, body {
 	border-color: rgba(227, 227, 227, 0);
 	border-bottom-color: #e3e3e3;
 	border-width: 12px;
-	margin-left: 147px;
+	margin-left: -52px;
 }
 
 .numbers {
@@ -1288,6 +1288,9 @@ textarea {
 }
 .pending {
 	color: #ff5e1e;
+}
+.rejected {
+	color: red;
 }
 
 .corrier-info {
