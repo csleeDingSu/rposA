@@ -8,7 +8,16 @@
 	width: 500px;
 	background-color: #f3f3f3;
 }
-	
+
+.product-detail {
+	float: left;
+	font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    /*width: 4rem;*/
+
+}
+
 @media only screen and (max-width: 500px) {
     .container {
 		width: 100%;
@@ -17,7 +26,7 @@
 	}
 
 	.product-detail {
-	    width: 3.3rem;
+	    width: 4.3rem;
 	}
 }
 
@@ -306,6 +315,10 @@ html, body {
     	padding-right: 0px;
     	width: 160px;
     }
+
+    .product-detail {
+	    width: 4rem;
+	}
 }
 
 @media only screen and (max-width: 360px) {
@@ -366,6 +379,10 @@ html, body {
 		font-size: 10px;
 		padding-top: 4px;
 	}
+
+	.product-detail {
+	    width: 3.8rem;
+	}
 }
 
 @media only screen and (max-width: 320px) {
@@ -373,6 +390,10 @@ html, body {
 		width: 220px;
 		padding-right: 0;
 		font-size: 11px;
+	}
+
+	.product-detail {
+	    width: 3.3rem;
 	}
 }
 /* End Redeem List Content */
@@ -897,6 +918,10 @@ textarea {
 	  height: 80px;
 	  padding: 5px;
 	}
+
+	.product-detail {
+	    width: 3.3rem;
+	}
 }
 
 .bg-vip-copy {
@@ -1243,15 +1268,6 @@ textarea {
 	width: 75px;
 	height: 75px;
 	padding: 10px;
-}
-
-.product-detail {
-	float: left;
-	font-size: 13px;
-    color: #333;
-    padding: 10px 10px 10px 10px;
-    width: 4.5rem;
-
 }
 
 .product-name {
