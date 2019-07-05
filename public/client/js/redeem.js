@@ -75,19 +75,19 @@ function getProductList(token) {
             var current_point = parseInt(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
-                previous_point = (parseInt(previous_point)/10);
+                previous_point = (parseInt(previous_point));
 
                 $('.wabao-coin')
                   .prop('number', previous_point)
                   .animateNumber(
                     {
-                      number: (current_point/10)
+                      number: (current_point)
                     },
                     1000
                   );
                 Cookies.remove('previous_point');
             } else {
-                $('.wabao-coin').html((current_point/10));
+                $('.wabao-coin').html((current_point));
             }            
 
             var records = data.records.data;
@@ -173,11 +173,11 @@ function getProductList(token) {
                                                             // '<div class="icon-coin-wrapper modal-icon">' +
                                                             //     '<div class="icon-coin"></div>' +
                                                             // '</div>' +
-                                                            '<div class="wabao-price">'+ item.min_point/10 +' 元</div>' +
+                                                            '<div class="wabao-price">'+ item.min_point +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point/10) +' 元</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
