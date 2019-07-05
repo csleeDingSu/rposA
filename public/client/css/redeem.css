@@ -440,19 +440,21 @@ html, body {
 
 .collapse, .collapsing {
 	background: #f4f7f9;
-	color: #333333;
-	font-size: 14px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #e3e3e3;
-	position:relative;
-	z-index: 100;
+    color: #333333;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+    z-index: 100;
+    margin-top: 25px;
+    border-top: 1px solid #e3e3e3
 }
 
 .collapse:after, .collapse:before {
     content:"";
     position:absolute;
-    left:50%; /* horizontal position */
+    left:100%; /* horizontal position */
     border-width: 0em 1em 1em 0em; /* the angle of the pipe */
     border-style: solid;
     border-color: white transparent;
@@ -468,7 +470,7 @@ html, body {
 	border-color: rgba(255, 255, 255, 0);
 	border-bottom-color: #f4f7f9;
 	border-width: 10px;
-	margin-left: -10px;
+	margin-left: -50px;
 }
 
 .collapse:before {
@@ -476,7 +478,7 @@ html, body {
 	border-color: rgba(227, 227, 227, 0);
 	border-bottom-color: #e3e3e3;
 	border-width: 12px;
-	margin-left: -12px;
+	margin-left: -52px;
 }
 
 .numbers {
@@ -497,13 +499,13 @@ html, body {
 	.collapse:after {
 		top:-1.3em; /* vertical position */
 		border-width: 8px;
-		margin-left: -8px;
+		margin-left: 149px;
 	}
 
 	.collapse:before {
 		top:-1.7em; /* vertical position */
 		border-width: 10px;
-		margin-left: -10px;
+		margin-left: 147px;
 	}
 
 }
@@ -1194,9 +1196,115 @@ textarea {
 
 .link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
 	text-decoration: none;
+}
 
 .red_note {
 	color: red;
     font-size: 10px;
     padding-bottom: 15px;
+}
+
+.redeem-info {
+    font-size: 12px;
+    color: #999;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 10px;
+}
+
+.redeem-time {
+	width: 50%;
+    float: left;
+}
+
+.redeem-status {
+    text-align: right;
+}
+
+.product-info {
+    font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    float: left;
+    width: 100%;
+}
+
+.product-info::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.product-img img{
+	float: left;
+	width: 75px;
+	height: 75px;
+	padding: 10px;
+}
+
+.product-detail {
+	float: left;
+	font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+}
+
+.product-name {
+	padding-bottom: 10px;
+}
+
+.product-desc {
+	font-size: 12px;
+    color: #ff5e1e;
+}
+
+.redeem-result {
+	font-size: 13px;
+    color: #333;
+    text-align: right;
+    padding: 10px 0px 10px 10px;
+}
+
+.redeem-quantity {
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
+
+.redeem-action {
+    color: #fff;
+    font-size: 14px;
+    border-radius: 20px;
+    width: 80px;
+    height: 30px;
+    padding: 3px;
+    border: 1px solid #01a7f1;
+    cursor: pointer;
+    background-color: #01a7f1;
+    float: right;
+    text-align: center;
+}
+
+.confirmed {
+	color: #01a7f1;
+}
+.pending {
+	color: #ff5e1e;
+}
+.rejected {
+	color: red;
+}
+
+.corrier-info {
+	font-size: 13px;
+    color: #999;
+    border-top: 1px solid #e2e2e2;
+    padding: 10px;
+}
+
+.tracking-num {
+	font-weight: bold;
+}
+
+.row-new {
+	margin: 10px 0px 10px 0px;
+	padding: 0;
 }
