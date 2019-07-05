@@ -48,7 +48,7 @@ class AmendWallet extends Command
 				$npoint = $opoint / 10;
 				\DB::table('mainledger')
 				->where('id', $val->id)
-				->update(['current_point'=>$npoint]);				
+				->update(['current_point'=>$npoint,'is_batched'=>1]);				
 				$this->info($val->member_id.'-- updated point from '.$opoint. ' to '.$npoint);
 			}		   
 		}		
