@@ -19,6 +19,17 @@
 							</div>
 						</div>
 						<div class="col">
+							<label>@lang('dingsu.status')</label>
+							<div id="bloodhound">
+								<select class="form-control" name="s_status" id="s_status">
+									<option value="">@lang('dingsu.default_select')</option>
+									<option value="0">@lang('dingsu.rejected')</option>
+									<option value="1">@lang('dingsu.pending') @lang('dingsu.confirmation')</option>
+									<option value="3">@lang('dingsu.redeemed')</option>
+								</select>
+							</div>
+						</div>
+						<div class="col">
 							<label>@lang('dingsu.action')</label>
 							<div id="bloodhound">
 								<button onClick="Search();return false();" type="button" id="search" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info search"> <i class="  icon-magnifier  "></i> </button>
