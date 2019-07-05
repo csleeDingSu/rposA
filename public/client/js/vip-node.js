@@ -16,7 +16,7 @@ var game_records = null; //game setting
 var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
-var g_ratio = 2;
+var g_ratio = 1;
 
 $(function () {
 
@@ -365,8 +365,9 @@ function startGame() {
             latest_result = data.record.bettinghistory.data;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
+            g_ratio = parseFloat(parseFloat(data.record.setting.win_ratio) + 1).toFixed(2);
+            // console.log(g_ratio);
             initGame(game_records, level, latest_result, consecutive_lose);
-
             
             //console.log(data);
             updateHistory(betting_records);
@@ -688,9 +689,8 @@ function showPayout(){
             $('#spanPoint').html(total_balance);
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
-
-            $('.odd-payout').html(bet_amount * g_ratio);
-            $('.even-payout').html(bet_amount * g_ratio);
+            $('.odd-payout').html(parseFloat(bet_amount * g_ratio).toFixed(2));
+            $('.even-payout').html(parseFloat(bet_amount * g_ratio).toFixed(2));
 
             $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
             
@@ -713,11 +713,11 @@ function showPayout(){
                 $('.instruction').css('visibility', 'hidden');
 
                 if(selected == 'odd'){
-                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (bet_amount * g_ratio) + "</span>");
+                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (parseFloat(bet_amount * g_ratio).toFixed(2)) + "</span>");
                     $('.span-even').html('谢谢参与');
                 } else {
                     $('.span-odd').html('谢谢参与');
-                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (bet_amount * g_ratio) + "</span>");
+                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (parseFloat(bet_amount * g_ratio).toFixed(2)) + "</span>");
                 }
 
                 $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
@@ -983,8 +983,8 @@ function showProgressBar(bol_show){
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
         $('.result-info').html(result_info);
-        $('.odd-payout').html(previous_bet * g_ratio);
-        $('.even-payout').html(previous_bet  * g_ratio);
+        $('.odd-payout').html(parseFloat(previous_bet * g_ratio).toFixed(2));
+        $('.even-payout').html(parseFloat(previous_bet * g_ratio).toFixed(2));
 
         if(bol_show) {
             checked(level, true);

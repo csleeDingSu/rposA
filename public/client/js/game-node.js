@@ -109,7 +109,16 @@ function updateHistory(records){
             strbet = "双数";
         }
 
-        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ parseInt(item.bet_amount) +'金币，' + strwinloss + '，' + strsign + parseInt(item.bet_amount) +'金币';
+        //temporary 
+        var _bet_amount = parseInt(item.bet_amount);
+
+        if (_bet_amount == 10 || _bet_amount == 30 || _bet_amount == 70 || _bet_amount == 150 || _bet_amount == 310 || _bet_amount == 630) {
+
+            _bet_amount = parseInt(item.bet_amount / 10);
+
+        }
+
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ _bet_amount +'金币，' + strwinloss + '，' + strsign + _bet_amount +'金币';
 
         $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
         $('.history-body').find('#row-' + counter).find('.history').html(history);
