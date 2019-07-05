@@ -40,7 +40,9 @@ class AmendWallet extends Command
      */
     public function handle()
     {
-       /*
+        $this->info('not in use');
+		die();
+		/**
 	   $data = \DB::table('mainledger')->where('is_batched',0)->where('current_point','>',9)->get()->toArray();
 		foreach (array_chunk($data,100) as $key=>$value) {
 			foreach ($value as $val)
