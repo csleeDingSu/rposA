@@ -72,10 +72,10 @@ function getProductList(token) {
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
-            var current_point = parseInt(data.current_point);
+            var current_point = getNumeric(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
-                previous_point = (parseInt(previous_point));
+                previous_point = (getNumeric(previous_point));
 
                 $('.wabao-coin')
                   .prop('number', previous_point)
@@ -106,7 +106,7 @@ function getProductList(token) {
                 // $('#softpin').html(html);
 
             } else {
-                var current_life = parseInt($(".nTxt").html());
+                var current_life = getNumeric($(".nTxt").html());
 
                 $.each(records, function(i, item) {
                     var available_quantity = item.available_quantity;
@@ -127,7 +127,7 @@ function getProductList(token) {
                         reserved_quantity = 0;
                     }
 
-                    if (item.min_point > parseInt(data.current_point)){
+                    if (item.min_point > getNumeric(data.current_point)){
                         cannot_redeem = true;
                         cls_cannot_redeem = 'btn-cannot-redeem';
                     }
@@ -177,12 +177,12 @@ function getProductList(token) {
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(data.current_point) +' 元</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(data.current_point) +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    if ((available_quantity > 0) && item.min_point <= parseInt(data.current_point)) {
+                                                    if ((available_quantity > 0) && item.min_point <= getNumeric(data.current_point)) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
@@ -742,7 +742,7 @@ function getNewProductList(softpinCount, token) {
                         reserved_quantity = 0;
                     }
 
-                    if (item.point_to_redeem > parseInt(current_point)){
+                    if (item.point_to_redeem > getNumeric(current_point)){
                         cannot_redeem = true;
                         cls_cannot_redeem = 'btn-cannot-redeem';
                     }
@@ -792,12 +792,12 @@ function getNewProductList(softpinCount, token) {
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ parseInt(current_point) +' 元</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(current_point) +' 元</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    if ((available_quantity > 0) && item.point_to_redeem <= parseInt(current_point)) {
+                                                    if ((available_quantity > 0) && item.point_to_redeem <= getNumeric(current_point)) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeemProduct(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
@@ -932,5 +932,11 @@ function getVirtualCardDetails(id, token){
             $('.redeem-card-detail-' + id).html(html);
         }
      });
+}
+
+function getNumeric(value) {
+    
+    return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value)) ;
+
 }
         
