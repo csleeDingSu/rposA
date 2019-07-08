@@ -48,7 +48,7 @@
 								<p class="card-text mb-0">@lang('dingsu.basic') @lang('dingsu.package')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
-										<a href="/basicpackage/redeem-list" class="pending_vip_verification">
+										<a href="/basicpackage/redeem-list" class="pending_basic_package_verification">
 										
 											{{$result->pending_basic_package_verification}} </a></h3>
 
@@ -62,12 +62,12 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
 							<div class="wrapper text-center text-sm-left">
-								<p class="card-text mb-0">@lang('dingsu.vip') @lang('dingsu.package')</p>
+								<p class="card-text mb-0">@lang('dingsu.buy') @lang('dingsu.product')</p>
 								<div class="fluid-container">
 									<h3 class="mb-0 font-weight-medium">
-										<a href="/package/redeem-list" class="pending_vip_verification">
+										<a href="/buyproduct/redeem-list" class="pending_buy_product">
 										
-											{{$result->pending_vip_verification}} </a></h3>
+											{{$result->pending_buy_product}} </a></h3>
 
 								
 								</div>
@@ -442,7 +442,8 @@
 		console.log(data);
 		$('.pending_wechat').html(data.pending_wechat);
 		$('.pending_redeem_verification').html(data.pending_redeem_verification);
-		$('.pending_vip_verification').html(data.pending_vip_verification);
+		$('.pending_basic_package_verification').html(data.pending_basic_package_verification);
+		$('.pending_buy_product').html(data.pending_buy_product);
 		$('.unreleased_voucher_count').html(data.unreleased_voucher_count);
 		$('.today_user_registration').html(data.today_user_registration);
 		$('.today_product_redeem').html(data.today_product_redeem);

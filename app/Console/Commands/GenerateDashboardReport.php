@@ -71,8 +71,10 @@ class GenerateDashboardReport extends Command
 		$report['today_basic_redeem']  		    = Report::total_basicpackage_redeem($today);
 		
 		//right now data
-		$report['current_game_player']  			= Report::current_game_player( $today );
-		$report['current_vip_game_player']  			= Report::current_game_player($today, 'vip');
+		$report['current_game_player']  		= Report::current_game_player( $today );
+		$report['current_vip_game_player']  	= Report::current_game_player($today, 'vip');
+		
+		$report['pending_buy_product']          = Report::pending_buy_product();
 		
 		$re = Report::wabao_redeem_user();		
 		foreach ($re as $ruser)
