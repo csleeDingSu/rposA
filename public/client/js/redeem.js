@@ -849,7 +849,7 @@ function redeemProduct(token, product_id){
     $.ajax({
         type: 'POST',
         url: "/buy",
-        data: { 'memberid': member_id, 'productid': product_id },
+        data: { 'memberid': member_id, 'id': product_id },
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
