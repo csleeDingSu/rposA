@@ -636,7 +636,7 @@ return [
 	'tracking_partner' => 'Courier Service Name',
 	'card_num' => 'Card Number',
 	'card_pass' => 'Passcode',
-	
+	'win_ratio' => 'return rate',
 	
 	
 	
