@@ -526,4 +526,20 @@ class BuyProductController extends BaseController
 			return response()->json(['success' => false, 'message' => 'unknown product']);
 		}	
 	}
+
+	public function confirm(Request $request){
+		$id = $request->hid_package_id;
+		$record = BuyProduct::get_product($id);	
+		return view( 'client/confirm', ['request' => $request, 'record' => $record]);
+	}
+
+	public function buy(Request $request){
+		$id = $request->hid_package_id;
+		$record = BuyProduct::get_product($id);
+		if($record->type == 1){
+			return view( 'client/confirm', ['request' => $request, 'record' => $record]);
+		} else {
+			return view( 'client/buy', ['request' => $request]);
+		}
+	}
 }
