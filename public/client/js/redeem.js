@@ -858,7 +858,7 @@ function redeemProduct(token, product_id){
         success: function(data) {
             if(data.success) {
                 // window.location.href = "/redeem/history";
-                return data;
+                $("html").html(data);
             } else {
                 $('#error-' + product_id).html(data.message);
             }
