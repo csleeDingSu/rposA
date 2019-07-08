@@ -845,11 +845,11 @@ function getNewProductList(softpinCount, token) {
 function redeemProduct(token, product_id){
 
     var member_id = $('#hidUserId').val();
-    
+
     $.ajax({
         type: 'POST',
         url: "/buy",
-        data: { 'memberid': member_id, 'id': product_id },
+        data: { 'memberid': member_id, 'hid_package_id': product_id },
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
