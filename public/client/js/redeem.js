@@ -774,7 +774,7 @@ function getNewProductList(softpinCount, token) {
                                         '<div class="modal-body">' +
                                             '<div class="modal-row">' +
                                                 '<div class="modal-img-voucher">' +
-                                                    '<img src="' + item.picture_url +'" alt="alipay voucher 50" class="img-voucher" />' +
+                                                    '<img src="' + item.picture_url +'" alt=" ' + item.name + ' " class="img-voucher" />' +
                                                 '</div>' +
 
                                                 '<div class="wrapper modal-full-height">' +
@@ -848,7 +848,7 @@ function redeemProduct(token, product_id){
     
     $.ajax({
         type: 'POST',
-        url: "/api/request-redeem",
+        url: "/buy",
         data: { 'memberid': member_id, 'productid': product_id },
         dataType: "json",
         beforeSend: function( xhr ) {
@@ -857,7 +857,7 @@ function redeemProduct(token, product_id){
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
             if(data.success) {
-                window.location.href = "/redeem/history";
+                // window.location.href = "/redeem/history";
             } else {
                 $('#error-' + product_id).html(data.message);
             }
