@@ -603,4 +603,5 @@ return [
 	'tracking_partner' => '快递服务名称',
 	'card_num' => '卡号',
 	'card_pass' => '密码',
+	'win_ratio' => '回报率',
 ];
