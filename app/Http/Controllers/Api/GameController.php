@@ -1568,8 +1568,8 @@ class GameController extends Controller
 		}				
 		if ($play_status->life<1)
 		{
-			$res->save();
-			return response()->json(['success' => false,'message' => 'not enough life to play']);			
+			//$res->save();
+			//return response()->json(['success' => false,'message' => 'not enough life to play']);			
 		}
 					
 		$input = [
@@ -1634,7 +1634,9 @@ class GameController extends Controller
 		{
 			$reward = $betamt;
 			
-			$se_game  = \App\Game::where('id',$gameid)->first();
+			//$se_game  = \App\Game::where('id',$gameid)->first();
+			
+			$se_game  = \App\Game::gamesetting($gameid);
 			
 			if (!empty($se_game->win_ratio))
 			{

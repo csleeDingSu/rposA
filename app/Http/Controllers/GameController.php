@@ -294,7 +294,9 @@ public function save_gamecategory(Request $request)
 	'is_session_end_on_update' 	=> $request->is_session_end_on_update,	
 	'is_override_core_setting' 	=> $request->is_override_core_setting,
 	'is_support_custom_setting' => $request->is_support_custom_setting,
-	'game_time' 			=> $request->game_time];
+	'game_time' 			=> $request->game_time,
+	'win_ratio' 			=> $request->win_ratio,
+	];
 	
 	Game::save_gamecategory($data);
 	
@@ -346,7 +348,8 @@ public function update_gamecategory($id, Request $request)
 	'is_session_end_on_update' 	=> $request->is_session_end_on_update,	
 	'is_override_core_setting' 	=> $request->is_override_core_setting,
 	'is_support_custom_setting' => $request->is_support_custom_setting,
-	'game_time' 			=> $request->game_time];
+	'game_time' 			=> $request->game_time,
+	'win_ratio' 			=> $request->win_ratio];
 
 
 	Game::update_gamecategory($id,$data);
