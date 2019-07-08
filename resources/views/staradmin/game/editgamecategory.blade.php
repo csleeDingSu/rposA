@@ -59,6 +59,19 @@
 						</div>
 						
 					  </div>
+					  
+					  <div class="row"> 
+						  <div class="col-md-6">
+						  <div class="form-group row">
+						  <label for="win_ratio" class="col-sm-3 col-form-label">@lang('dingsu.win_ratio')</label>
+                          <div class="col-sm-9">
+                                <input id="win_ratio" name="win_ratio" class="form-control" type="text" value="{{ old('win_ratio', $out->win_ratio) }}" maxlength="5">
+							</div>
+						  </div>
+						</div>
+						
+						
+					  </div>
 						
 <!-- 						
 					<div class="row"> 
