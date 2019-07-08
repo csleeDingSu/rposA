@@ -859,7 +859,7 @@ function redeemProduct(token, product_id){
             if(data.success) {
                 // window.location.href = "/redeem/history";
                 // $("html").html(data);
-                $("body").html(data);
+               $("html").html($("html", data).html());
             } else {
                 $('#error-' + product_id).html(data.message);
             }
