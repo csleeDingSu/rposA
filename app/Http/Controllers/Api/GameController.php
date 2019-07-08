@@ -1634,7 +1634,9 @@ class GameController extends Controller
 		{
 			$reward = $betamt;
 			
-			$se_game  = \App\Game::where('id',$gameid)->first();
+			//$se_game  = \App\Game::where('id',$gameid)->first();
+			
+			$se_game  = \App\Game::gamesetting($gameid);
 			
 			if (!empty($se_game->win_ratio))
 			{
