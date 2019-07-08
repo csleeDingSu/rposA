@@ -844,27 +844,8 @@ function getNewProductList(softpinCount, token) {
 
 function redeemProduct(token, product_id){
 
-    var member_id = $('#hidUserId').val();
+    window.location.href = "/buy?hid_package_id=" + product_id;
 
-    $.ajax({
-        type: 'POST',
-        url: "/buy",
-        data: { 'memberid': member_id, 'hid_package_id': product_id },
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            if(data.success) {
-                // window.location.href = "/redeem/history";
-                // $("html").html(data);
-               $("html").html($("html", data).html());
-            } else {
-                $('#error-' + product_id).html(data.message);
-            }
-        }
-    });
 }
 
 function getVirtualCardDetails(id, token){

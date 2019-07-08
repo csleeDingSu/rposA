@@ -173,7 +173,7 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/purchase');
 	} );
 
-	Route::post( '/buy', 'BuyProductController@buy' );
+	Route::any( '/buy', 'BuyProductController@buy' );
 
 	Route::post( '/confirm', 'BuyProductController@confirm' );
 
