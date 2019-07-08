@@ -1568,8 +1568,8 @@ class GameController extends Controller
 		}				
 		if ($play_status->life<1)
 		{
-			$res->save();
-			return response()->json(['success' => false,'message' => 'not enough life to play']);			
+			//$res->save();
+			//return response()->json(['success' => false,'message' => 'not enough life to play']);			
 		}
 					
 		$input = [
