@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css') }}" />
-    
+	<link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}">
 
     <style>
     	
@@ -49,19 +49,6 @@
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
-
-				<!-- <div class="btn-calculate">
-					<div class="balance-banner">
-						<span class="spanAcuPoint">0</span>
-					</div>
-				</div> -->
-				<!--div class="coin"></div>
-				<div class="number">
-					<span class="balance spanAcuPoint">0</span>
-					<div class="btn-calculate-wrapper">
-						<div class="btn-calculate">兑换红包</div>
-					</div>
-				</div-->
 			</div>
 			
 			<div class="box" id="btn-vip-wrapper">
@@ -328,7 +315,7 @@
 		        <div class="bet-box long-box">
 		        	<div class="bet-background">
 		        		<div class="btn-minus"></div>
-		        		<div class="span-bet">0</div>
+		        		<input class="span-bet" type="text" value="0" />
 		        		<div class="btn-add"></div>
 		        	</div>
 		        </div>
@@ -1008,12 +995,20 @@
     <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/public.js') }}" ></script>
-	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
+	<script src="{{ asset('/client/js/slide.js') }}"></script>
 
 	<script type="text/javascript">
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
 
+    (function() {
+			    var ev = new $.Event('remove'),
+			        orig = $.fn.remove;
+			    $.fn.remove = function() {
+			        $(this).trigger(ev);
+			        return orig.apply(this, arguments);
+			    }
+			})();
 
     $('.modal-minimum-wallet').modal('show');
 
@@ -1062,22 +1057,7 @@
 
 			if (user_id <= 0) {
 				openmodel();
-			}
-
-		});
-
-		var htmlOrBody = $('html, body'), // scrollTop works on <body> for some browsers, <html> for others
-		    scrollTopPadding = 8,
-		    scrollTopLast = 0;
-
-		$('input').focus(function() {
-		    // get textarea's offset top position
-		    var textareaTop = $(this).offset().top;
-		    // scroll to the textarea
-		    htmlOrBody.scrollTop(textareaTop - scrollTopPadding);
-		}).blur(function() {
-		    // scroll back to position before textarea focus
-		    htmlOrBody.scrollTop(scrollTopLast);
+			}			
 		});
 
 	</script>
