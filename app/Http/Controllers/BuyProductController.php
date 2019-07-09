@@ -391,7 +391,7 @@ class BuyProductController extends BaseController
 						'zip'                  => 'required',
 						'country'              => 'required',
 						'tracking_number'      => 'required',
-						'notes'                => 'required',
+						//'notes'                => 'required',
 						'tracking_partner'     => 'required',
 						'contact_number'        => 'required',						
 						'receiver_name'        => 'required',
