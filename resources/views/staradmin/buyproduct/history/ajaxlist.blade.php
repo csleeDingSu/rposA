@@ -12,8 +12,8 @@
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.product') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.phone')</th>
-								<th>@lang('dingsu.price')</th>
-								<th>@lang('dingsu.point')</th>
+								<th>@lang('dingsu.product_price')</th>
+								<th>@lang('dingsu.buy_price')</th>
 								<th>@lang('dingsu.status')</th>
 							</tr>
 						</thead>

@@ -643,8 +643,7 @@ return [
 	'not_enough_life' => 'not enough life to play',
 	'not_enough_balance' => 'not enough balance',
 	'exceeded_coin_limit' => 'exceeded the coin limit',
-	
-	
+	'buy' => 'Buy',
 	
 	
 	
