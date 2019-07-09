@@ -1,23 +1,26 @@
 @extends('layouts.default')
 
-@section('title', '兑换红包')
+<!-- section('title', '兑换红包')
 
-@section('left-menu')
+section('left-menu')
     <a href="/profile" class="back">
         <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
     </a>
-@endsection
+endsection
 
-@section('menu')
+section('menu')
     <a href="/summary">
         红包明细
     </a>
-@endsection
-
+endsection
+ -->
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/redeem.css') }}" />
 	<link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
+@endsection
+
+@section('top-navbar')
 @endsection
 
 @section('top-javascript')
@@ -27,7 +30,7 @@
 @endsection
 
 @section('content') 
-<div class="full-height">
+<div class="full-height no-header">
 	<div class="container">
 		<!-- wabao coin info -->
 		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
@@ -36,15 +39,23 @@
 		<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
 		<input type="hidden" id="page" value="1" />
 		<input type="hidden" id="max_page" value="1" />
-
 		<div class="card">
-			<img src="{{ asset('/client/images/redeem-background.png') }}" alt="redeem background">
+			<img src="{{ asset('/client/images/redeem-background.jpg') }}" alt="redeem background">
 			<div class="summary-table">
-				<div class="label-coin">可兑换金额 <span class="wabao-coin"></span>元</div>
-				<div class="label-desc">邀请好友送更多场次，抽更多红包！</div>
-				<a href="/share" class="link-button">
-					<div class="btn-invite">邀请好友</div>
-				</a>
+				<div class="nav-top">
+					<div class="col-xs-2 nav-left">
+						<a href="/profile">返回</a>
+					</div>
+					<div class="col-xs-8">
+						兑换奖品
+					</div>
+					<div class="col-xs-2 nav-right">
+						<a href="/summary">明细</a>
+					</div>
+				</div>
+				<div class="label-coin"><span class="wabao-coin"></span>元</div>				
+				<div class="label-desc">
+					<a href="/share">邀请好友送场次，抽红包，去邀请 ></a></div>
 			</div>
 		</div>
 		<!-- end wabao coin info -->
