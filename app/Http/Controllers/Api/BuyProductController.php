@@ -156,7 +156,7 @@ class BuyProductController extends Controller
 				
 				$validator = Validator::make($input, 
 					[
-						'address'        => 'required|min:10',
+						'address'        => 'required|min:1',
 						'receiver_name'  => 'required',
 						'contact_number' => 'required|min:1',
 					]
