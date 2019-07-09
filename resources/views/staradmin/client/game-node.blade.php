@@ -48,19 +48,6 @@
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
-
-				<!-- <div class="btn-calculate">
-					<div class="balance-banner">
-						<span class="spanAcuPoint">0</span>
-					</div>
-				</div> -->
-				<!--div class="coin"></div>
-				<div class="number">
-					<span class="balance spanAcuPoint">0</span>
-					<div class="btn-calculate-wrapper">
-						<div class="btn-calculate">兑换红包</div>
-					</div>
-				</div-->
 			</div>
 
 
