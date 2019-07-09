@@ -18,6 +18,7 @@ var latest_result = null; //latest result
 var last_bet = null;
 var g_ratio = 1;
 var g_w_ratio = 2;
+var show_default = true;
 
 $(function () {
 
@@ -267,7 +268,7 @@ function getToken(){
             //console.log(data);
             if(data.success) {
                 token = data.access_token;
-                startGame();            
+                startGame();       
             } else {
                 $(".reload").show();
             }      
@@ -999,13 +1000,19 @@ function showProgressBar(bol_show){
         $('.result-info').html(result_info);
         var lastreward = getNumeric($('#hidLastReward').val()) > 0 ? getNumeric($('#hidLastReward').val()) : (getNumeric($('#hidLastBetAmount').val()) * g_ratio);
 
-        if ((getNumeric($('#hidLatestResult').val()) % 1) > 0) {
-            $('.span-odd').html('谢谢参与');
-            $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+        if (show_default) {
+            show_default = false;     
+            $('.odd-payout').html(0);
+            $('.even-payout').html(0);
         } else {
-            $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
-            $('.span-even').html('谢谢参与');
-        }        
+            if ((getNumeric($('#hidLatestResult').val()) % 1) > 0) {
+                $('.span-odd').html('谢谢参与');
+                $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+            } else {
+                $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+                $('.span-even').html('谢谢参与');
+            }
+        }       
 
         if(bol_show) {
             checked(level, true);
