@@ -1218,7 +1218,7 @@ class GameController extends Controller
 		
 		if(!$res)
 		{
-			return response()->json(['success' => false, 'message' => "no betting"]);
+			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting') ]);
 		}
 		
 		//check point 
@@ -1233,21 +1233,21 @@ class GameController extends Controller
 		
 		if ($play_status['point']<1)
 		{
-			//return ['success' => false, 'message' => 'not enough point'];			
+			//return ['success' => false, 'message' =>  trans('dingsu.not_enough_point') ];			
 		}
 		
 		if ($play_status['life']<1)
 		{
-			return response()->json(['success' => false,'message' => 'not enough life to play']);
+			return response()->json(['success' => false,'message' => trans('dingsu.not_enough_life')]);
 			
 		}
 		if (empty($is_playable)&&empty($is_redeemable))// 0
 		{
-			return response()->json(['success' => false, 'message' => 'not enough balance to play']);
+			return response()->json(['success' => false, 'message' => trans('dingsu.not_enough_balance')]);
 			
 		}elseif (empty($is_playable)&&!empty($is_redeemable))//1
 		{
-			return response()->json(['success' => false, 'message' => 'exceeded the coin limit']);
+			return response()->json(['success' => false, 'message' => trans('dingsu.exceeded_coin_limit')]);
 		}
 		
 		
@@ -1533,7 +1533,7 @@ class GameController extends Controller
 		
 		if(!$res)
 		{
-			return response()->json(['success' => false, 'message' => "no betting"]);
+			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting')]);
 		}
 		$res->status     = 1;
 		$res->deleted_at = $now;
@@ -1549,7 +1549,7 @@ class GameController extends Controller
 		if ($eligible_to_play['eligible_to_enter'] != 'true')
 		{
 			$res->save();
-			return response()->json(['success' => false, 'message' => "not eligible to bet VIP"]);
+			return response()->json(['success' => false, 'message' => trans('dingsu.not_eligible_to_play_vip')]);
 		}
 		
 		
@@ -1559,12 +1559,12 @@ class GameController extends Controller
 		if ($play_status->point<1)
 		{
 			$res->save();
-			return ['success' => false, 'message' => 'not enough point'];			
+			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
 		}		
 		if ($play_status->point< $betamt )
 		{
 			$res->save();
-			return ['success' => false, 'message' => 'not enough point'];			
+			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
 		}				
 		if ($play_status->life<1)
 		{
