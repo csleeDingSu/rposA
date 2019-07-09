@@ -109,8 +109,10 @@
 .span-bet {
 	color: #ffcc29;
 	font-size: 40px;
-	float: left;
 	width: 190px;
+	text-align: center;
+	background: transparent;
+	border: none;
 }
 
 .btn-minus {

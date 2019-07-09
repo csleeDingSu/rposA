@@ -325,6 +325,7 @@ function getProduct(){
                             '</div>' +
                         '</div>';
             }
+            html += '<input id="hid_price_'+ item.id +'" name="hid_price_'+ item.id +'" type="hidden" value="'+item.point_to_redeem+'">';
         });
 
         html += '</form>';
@@ -332,7 +333,17 @@ function getProduct(){
         $('.redeem-prize-wrapper').html(html);
         $('.redeem-button').click(function(){
             $( "#hid_package_id" ).val($(this).attr('rel'));
-            $( "#frm_buy" ).submit();
+            console.log($(this).attr('rel'));
+            var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
+            if (getNumeric(price) > getNumeric(g_vip_point)) {
+                $('#modal-insufficient-point').modal();
+                setTimeout(function(){ 
+                    $('#modal-insufficient-point').modal('hide');
+                }, 3000);                
+            } else {
+                $( "#frm_buy" ).submit();    
+            }
+            
         });
     });
 }
@@ -423,7 +434,7 @@ function resetGame() {
     $('.button-bet-reset').unbind('click');
     $('.button-bet-all').unbind('click');
     $('.small-border').removeClass('fast-rotate');
-    $('.span-bet').html(0);
+    $('.span-bet').val(0);
     previous_bet = 0;
 
     startGame();
@@ -465,7 +476,7 @@ function setBalance() {
 
 function checkSelection() {
     var selected = $('div.clicked').find('input:radio').val();
-    if (parseInt($('.span-bet').html()) == 0) {
+    if (parseInt($('.span-bet').val()) == 0) {
         $('.spinning').html('请投入竞猜金币<br />再点击“开始抽奖”进行抽奖');
          $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
@@ -543,13 +554,40 @@ function bindSpinningButton() {
 
 function bindBetButton(){
 
+    $(".span-bet").focus(function(){
+        document.activeElement.blur();  // 阻止弹出系统软键盘
+        var _cliss = $(this).attr("class");
+
+        $('body').keyboard({
+            defaults:'number',    //键盘显示类型   English 字母  number 数字  symbol 符号
+            inputClass:_cliss,        //输入框Class
+            caseSwitch:'toLowerCase', //英文大小写  toLowerCase 小写  toUpperCase 大写
+        });
+
+        $('#keycontent').bind('remove', function() {
+            var final_bet = parseInt($('.span-bet').val());
+
+            if(final_bet <= g_vip_point){
+                $('.span-bet').val(final_bet);
+                showPayout();
+                previous_bet = final_bet;
+            } else {
+                $('.spinning').html('金币不足，无法下注');
+                 $('.spinning').css('visibility', 'visible');
+                setTimeout(function(){ 
+                    $('.spinning').css('visibility', 'hidden');
+                }, 3000);
+            }
+        });
+    });
+
     $('.button-bet').click(function(){
         var add_bet = parseInt($(this).data('value'));
-        var initial_bet = parseInt($('.span-bet').html());
+        var initial_bet = parseInt($('.span-bet').val());
         var final_bet = add_bet + initial_bet;
 
         if(final_bet <= g_vip_point){
-            $('.span-bet').html(final_bet);
+            $('.span-bet').val(final_bet);
             showPayout();
             previous_bet = final_bet;
         } else {
@@ -564,11 +602,11 @@ function bindBetButton(){
 
     $('.btn-add').click(function(){
         var add_bet = 1;
-        var initial_bet = parseInt($('.span-bet').html());
+        var initial_bet = parseInt($('.span-bet').val());
         var final_bet = add_bet + initial_bet;
 
         if(final_bet <= g_vip_point){
-            $('.span-bet').html(final_bet);
+            $('.span-bet').val(final_bet);
             showPayout();
             previous_bet = final_bet;
         } else {
@@ -583,11 +621,11 @@ function bindBetButton(){
 
     $('.btn-minus').click(function(){
         var minus_bet = 1;
-        var initial_bet = parseInt($('.span-bet').html());
+        var initial_bet = parseInt($('.span-bet').val());
         var final_bet = initial_bet - minus_bet;
 
         if(final_bet >= 0){
-            $('.span-bet').html(final_bet);
+            $('.span-bet').val(final_bet);
             showPayout();
             previous_bet = final_bet;
         } else {
@@ -597,13 +635,13 @@ function bindBetButton(){
     });
 
     $('.button-bet-reset').click(function(){
-        $('.span-bet').html(0);
+        $('.span-bet').val(0);
         showPayout();
         previous_bet = 0;
     });
 
     $('.button-bet-all').click(function(){
-        $('.span-bet').html(g_vip_point);
+        $('.span-bet').val(g_vip_point);
         showPayout();
         previous_bet = g_vip_point;
     });
@@ -659,7 +697,7 @@ function showPayout(){
     var level = parseInt($('#hidLevel').val());
     var user_id = $('#hidUserId').val();
 
-    var bet_amount = parseInt($('.span-bet').html());
+    var bet_amount = parseInt($('.span-bet').val());
     var newbalance = balance - bet_amount;
     var newtotalbalance = total_balance - bet_amount;
     var bet_count = $('#hidbetting_count').val();
@@ -1031,7 +1069,8 @@ function showWinModal(){
     var image = '';
     var info = '';
     var remain = 0;
-    var bet_amount = getNumeric(getNumeric($('.span-bet').html()) * g_w_ratio);
+
+    var bet_amount = getNumeric(getNumeric($('.span-bet').val()) * g_w_ratio);
     var instructions = '您已赢到'+ bet_amount +'元';
     html += '<span class="packet-sign">+</span>'+ bet_amount +'<span class="packet-currency">元</span>';
 
@@ -1123,7 +1162,7 @@ function showLoseModal(){
     var result_info = '6次内猜对奖励加倍';
 
     var balance = getNumeric($('#hidBalance').val());
-    var bet_amount = getNumeric($('.span-bet').html());
+    var bet_amount = getNumeric($('.span-bet').val());
     var newbalance = balance - bet_amount;
     var instruction = '您还剩余'+ newbalance +'元，继续加油哦';
 

@@ -383,29 +383,6 @@ body{
 	position: relative;
 }
 
-.number {
-	float: left;
-	position: absolute;
-	margin-left: 20px;
-	margin-top: 1px;
-	background-color: #63147f;
-	border-top-right-radius: 15px;
-	border-bottom-right-radius: 15px;
-	min-width: 135px;
-	font-size: 0.7em;
-	padding-left: 15px;
-	padding-right: 2px;
-	padding-top: 2px;
-	height:26px;
-	width: auto;
-	text-align: center;
-	font-weight: 700;
-}
-
-.number-vip {
-	min-width: 115px;
-}
-
 .btn-rules {
 	float: right;
 	background-color: #63147f;
