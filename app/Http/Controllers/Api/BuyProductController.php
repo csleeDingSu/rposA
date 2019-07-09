@@ -159,8 +159,6 @@ class BuyProductController extends Controller
 						'address'        => 'required|min:10',
 						'receiver_name'  => 'required',
 						'contact_number' => 'required|min:1',
-						'city'           => 'required',
-						'zip'            => 'required',
 					]
 				);
 				if ($validator->fails()) {
