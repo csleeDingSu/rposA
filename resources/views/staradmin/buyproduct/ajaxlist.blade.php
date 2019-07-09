@@ -14,7 +14,7 @@
 								<th>@lang('dingsu.image')</th>		
 								<th>@lang('dingsu.name')</th>								
 								<th>@lang('dingsu.price')</th>
-								<th>@lang('dingsu.point_to_redeem')</th>
+								<th>@lang('dingsu.buy_price')</th>
 								<th>@lang('dingsu.available_quantity')</th>
 								<th>@lang('dingsu.used_quantity')</th>
 								<th>@lang('dingsu.reserved_quantity')</th>
