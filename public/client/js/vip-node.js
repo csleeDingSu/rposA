@@ -325,6 +325,7 @@ function getProduct(){
                             '</div>' +
                         '</div>';
             }
+            html += '<input id="hid_price_'+ item.id +'" name="hid_price_'+ item.id +'" type="hidden" value="'+item.point_to_redeem+'">';
         });
 
         html += '</form>';
@@ -332,7 +333,17 @@ function getProduct(){
         $('.redeem-prize-wrapper').html(html);
         $('.redeem-button').click(function(){
             $( "#hid_package_id" ).val($(this).attr('rel'));
-            $( "#frm_buy" ).submit();
+            console.log($(this).attr('rel'));
+            var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
+            if (getNumeric(price) > getNumeric(g_vip_point)) {
+                $('#modal-insufficient-point').modal();
+                setTimeout(function(){ 
+                    $('#modal-insufficient-point').modal('hide');
+                }, 3000);                
+            } else {
+                $( "#frm_buy" ).submit();    
+            }
+            
         });
     });
 }
