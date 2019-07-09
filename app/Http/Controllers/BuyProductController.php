@@ -387,11 +387,11 @@ class BuyProductController extends BaseController
 						//'shipping_method'      => 'required',
 						'address'              => 'required',
 						//'unit_detail'          => 'required',
-						'city'                 => 'required',
-						'zip'                  => 'required',
-						'country'              => 'required',
+						//'city'                 => 'required',
+						//'zip'                  => 'required',
+						//'country'              => 'required',
 						'tracking_number'      => 'required',
-						'notes'                => 'required',
+						//'notes'                => 'required',
 						'tracking_partner'     => 'required',
 						'contact_number'        => 'required',						
 						'receiver_name'        => 'required',
@@ -525,5 +525,21 @@ class BuyProductController extends BaseController
 		else{
 			return response()->json(['success' => false, 'message' => 'unknown product']);
 		}	
+	}
+
+	public function confirm(Request $request){
+		$id = $request->hid_package_id;
+		$record = BuyProduct::get_product($id);	
+		return view( 'client/confirm', ['request' => $request, 'record' => $record]);
+	}
+
+	public function buy(Request $request){
+		$id = $request->hid_package_id;
+		$record = BuyProduct::get_product($id);
+		if($record->type == 1){
+			return view( 'client/confirm', ['request' => $request, 'record' => $record]);
+		} else {
+			return view( 'client/buy', ['request' => $request]);
+		}
 	}
 }

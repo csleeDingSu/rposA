@@ -193,13 +193,19 @@ try {
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
+        var previous_bet_amount = 0;
+        var previous_reward = 0;
 
         if(latest_result.length > 0){
             previous_result = latest_result[0].result;
+            previous_bet_amount = latest_result[0].bet_amount;
+            previous_reward = latest_result[0].reward;
         }
 
         //$('#hidLevel').val(level);
-        $('#hidLatestResult').val(previous_result);
+        $('#hidLatestResult').val(previous_result);   
+        $('#hidLastBetAmount').val(previous_bet_amount);
+        $('#hidLastReward').val(previous_reward);     
         $('#hidConsecutiveLose').val(consecutive_lose);
 
         $('.barBox').find('li').removeClass('on');
@@ -280,7 +286,8 @@ function getProduct(){
     $.getJSON( "/api/get-product-list", function( data ) {
         console.log(data);
 
-        var html = '';
+        var html = '<form id="frm_buy" method="post" action="/buy">' +
+                        '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';
 
         $.each(data.records, function(i, item) {
             
@@ -294,16 +301,15 @@ function getProduct(){
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
                                     '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
-                                    '<a href="/buy">' +
                                     '<div class="redeem-button-wrapper">' +
-                                        '<div class="redeem-button">兑换</div>' +
+                                        '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
-                                    '</a>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
             } else {
-                html += '<div class="right-box">' +
+                html += '<div class="redeem-prize">' + 
+                            '<div class="right-box">' +
                             '<div class="prize-box">' +
                                 '<div class="image-wrapper">' +
                                     '<img src="'+ item.picture_url +'">' +
@@ -311,19 +317,22 @@ function getProduct(){
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
                                     '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
-                                    '<a href="/buy">' +
                                     '<div class="redeem-button-wrapper">' +
-                                        '<div class="redeem-button">兑换</div>' +
+                                        '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
-                                    '</a>' +
                                 '</div>' +
                             '</div>' +
-                        '</div>' +
-                    '</div>';
-            }    
+                        '</div>';
+            }
         });
 
+        html += '</form>';
+
         $('.redeem-prize-wrapper').html(html);
+        $('.redeem-button').click(function(){
+            $( "#hid_package_id" ).val($(this).attr('rel'));
+            $( "#frm_buy" ).submit();
+        });
     });
 }
 
@@ -988,8 +997,15 @@ function showProgressBar(bol_show){
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
         $('.result-info').html(result_info);
-        $('.odd-payout').html(getNumeric(previous_bet * g_w_ratio));
-        $('.even-payout').html(getNumeric(previous_bet * g_w_ratio));
+        var lastreward = getNumeric($('#hidLastReward').val()) > 0 ? getNumeric($('#hidLastReward').val()) : (getNumeric($('#hidLastBetAmount').val()) * g_ratio);
+
+        if ((getNumeric($('#hidLatestResult').val()) % 1) > 0) {
+            $('.span-odd').html('谢谢参与');
+            $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+        } else {
+            $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+            $('.span-even').html('谢谢参与');
+        }        
 
         if(bol_show) {
             checked(level, true);
@@ -1008,7 +1024,7 @@ function showWinModal(){
     var image = '';
     var info = '';
     var remain = 0;
-    var bet_amount = getNumeric(getNumeric($('.span-bet').html()) * g_ratio);
+    var bet_amount = getNumeric(getNumeric($('.span-bet').html()) * g_w_ratio);
     var instructions = '您已赢到'+ bet_amount +'元';
     html += '<span class="packet-sign">+</span>'+ bet_amount +'<span class="packet-currency">元</span>';
 
@@ -1459,3 +1475,7 @@ function get_today_profit() {
         }
     });
 }
+
+function getNumeric(value) {
+    return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
+  }

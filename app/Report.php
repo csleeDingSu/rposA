@@ -220,4 +220,9 @@ class Report extends Model
 		return $count->wherein('redeem_state' ,['2','3'])->count();
 	}
 	
+	public static function pending_buy_product()
+	{		
+		return $count = DB::table('view_buy_product_pending')->count();		
+	}
+	
 }

@@ -39,7 +39,7 @@
 <div class="row">
 		<div class="col-md-6">
 			<div class="form-group row">
-				<label for="city" class="col-sm-6 col-form-label">@lang('dingsu.city') <span class="text-danger">*</span></label>
+				<label for="city" class="col-sm-6 col-form-label">@lang('dingsu.city') </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="city" id="city" value="{{$list->city}}">
 				</div>
@@ -47,7 +47,7 @@
 		</div>
 		<div class="col-md-6">
 			<div class="form-group row">
-				<label for="zip" class="col-sm-6 col-form-label">@lang('dingsu.zip') <span class="text-danger">*</span></label>
+				<label for="zip" class="col-sm-6 col-form-label">@lang('dingsu.zip') </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="zip" id="zip" value="{{$list->zip}}">
 				</div>
@@ -57,9 +57,9 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group row">
-				<label for="country" class="col-sm-6 col-form-label">@lang('dingsu.country') <span class="text-danger">*</span></label>
+				<label for="country" class="col-sm-6 col-form-label">@lang('dingsu.country') </label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="country" id="country" required value="{{$list->country}}">
+					<input type="text" class="form-control" name="country" id="country" value="{{$list->country}}">
 				</div>
 			</div>
 		</div>
