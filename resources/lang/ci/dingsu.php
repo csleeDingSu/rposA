@@ -604,4 +604,5 @@ return [
 	'card_num' => '卡号',
 	'card_pass' => '密码',
 	'win_ratio' => '回报率',
+	'buy' => '购买',
 ];

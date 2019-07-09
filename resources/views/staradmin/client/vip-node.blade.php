@@ -77,6 +77,8 @@
 			<input id="hidHall" type="hidden" value="" />
 			<input id="hidBet" type="hidden" value="" />
 			<input id="hidLastBet" type="hidden" value="" />
+			<input id="hidLastBetAmount" type="hidden" value="" />
+			<input id="hidLastReward" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
 			<input id="hidWechatId" type="hidden" value="0" />

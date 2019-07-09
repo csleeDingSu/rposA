@@ -774,7 +774,7 @@ function getNewProductList(softpinCount, token) {
                                         '<div class="modal-body">' +
                                             '<div class="modal-row">' +
                                                 '<div class="modal-img-voucher">' +
-                                                    '<img src="' + item.picture_url +'" alt="alipay voucher 50" class="img-voucher" />' +
+                                                    '<img src="' + item.picture_url +'" alt=" ' + item.name + ' " class="img-voucher" />' +
                                                 '</div>' +
 
                                                 '<div class="wrapper modal-full-height">' +
@@ -844,25 +844,8 @@ function getNewProductList(softpinCount, token) {
 
 function redeemProduct(token, product_id){
 
-    var member_id = $('#hidUserId').val();
-    
-    $.ajax({
-        type: 'POST',
-        url: "/api/request-redeem",
-        data: { 'memberid': member_id, 'productid': product_id },
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            if(data.success) {
-                window.location.href = "/redeem/history";
-            } else {
-                $('#error-' + product_id).html(data.message);
-            }
-        }
-    });
+    window.location.href = "/buy?hid_package_id=" + product_id;
+
 }
 
 function getVirtualCardDetails(id, token){

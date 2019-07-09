@@ -41,7 +41,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="point_to_redeem" class="col-sm-3 col-form-label">@lang('dingsu.vip_consumed_point')  <span class="text-danger">*</span></label>
+								<label for="point_to_redeem" class="col-sm-3 col-form-label">@lang('dingsu.buy_price')  <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input id="point_to_redeem" name="point_to_redeem" class="form-control" type="text" value="{{ old('point_to_redeem')}}" required maxlength="10">
 								</div>

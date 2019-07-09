@@ -637,9 +637,13 @@ return [
 	'card_num' => 'Card Number',
 	'card_pass' => 'Passcode',
 	'win_ratio' => 'return rate',
-	
-	
-	
+	'not_eligible_to_play_vip' => 'not eligible to play vip',
+	'not_enough_point' => 'not enough points to play',
+	'no_active_betting' => 'no active betting',
+	'not_enough_life' => 'not enough life to play',
+	'not_enough_balance' => 'not enough balance',
+	'exceeded_coin_limit' => 'exceeded the coin limit',
+	'buy' => 'Buy',
 	
 	
 	

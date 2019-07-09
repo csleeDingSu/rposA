@@ -51,12 +51,14 @@ html, body {
 .summary-table {
     color: white;
     z-index: 10;
-    position: relative;
+    /*position: relative;*/
     text-align: center;
     width: 470px;
     margin: 0 auto;
     margin-top: -190px;
     text-align: center;
+    height: 3rem;
+
 }
 
 .left {
@@ -65,13 +67,14 @@ html, body {
 
 .label-coin {
 	font-size: 0.29rem;
-	padding: 10px;
+	/*padding: 10px;*/
+	padding-top: 10px;
 }
 
 .label-desc {
 	color: #fee04d;
 	font-size: 0.2rem;
-	padding: 15px 0 5px 0;
+	/*padding: 15px 0 5px 0;*/
 }
 
 .icon-coin-wrapper {
@@ -126,7 +129,7 @@ html, body {
 }
 .full-width-tabs > ul.nav.nav-pills > li > a, .modal-row > ul.nav.nav-pills > li > a{
 	text-align: center;
-	padding-top: 0;
+	padding-top: 0.1rem;
 }
 
 .take-all-space-you-can{
@@ -290,12 +293,12 @@ html, body {
 
 	.label-coin {
 		font-size: 0.36rem;
-		padding: 10px;
+		/*padding: 10px;*/
 	}
 
 	.label-desc {
 		font-size: 0.28rem;
-		padding: 15px 0 5px 0;
+		/*padding: 15px 0 5px 0;*/
 	}
 
 	.card {
@@ -1329,4 +1332,33 @@ textarea {
 .row-new {
 	margin: 10px 0px 10px 0px;
 	padding: 0;
+}
+
+.nav-top {
+	font-size: 18px;
+	padding: 5px;
+	height: 45px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.nav-left a{
+	color: #fff;
+	text-align: left;
+}
+
+.nav-right a{
+	color: #fff;
+	text-align: right;
+}
+
+.label-desc a{
+	color: #fee04d;
+}
+.label-desc a:hover{
+    color: #fee04d;
+}
+
+.wabao-coin {
+	font-size: 0.8rem;
 }
