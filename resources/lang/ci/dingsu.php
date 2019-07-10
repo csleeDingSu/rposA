@@ -605,4 +605,9 @@ return [
 	'card_pass' => '密码',
 	'win_ratio' => '回报率',
 	'buy' => '购买',
+	'unknown_package'=>'找不到package',
+	'package_deleted'=>'package 已经删除',
+	'package_inactive'=>'非活动 package',
+	'no_available_quantity'=>'没有足够的数量购买',
+	'not_enough_point_to_redeem'=>'金币不住，无法兑换',
 ];

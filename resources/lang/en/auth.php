@@ -38,5 +38,14 @@ return [
     //'password_notexists' => 'The password is incorrect.',
 
     'alpha_num' => 'The password may only contain letters and numbers.',
+	'memberid_empty'=>'please enter your member id',
+	'packageid_empty'=>'package cannot be empty',
+	'quantity_empty'=>'please enter your quantity',
+	'address_empty'=>'please enter your address',
+	'receiver_name_empty'=>'please enter your receiver name',
+	'contact_number_empty'=>'please enter your contact number',
+	''=>'',
+	''=>'',
+	''=>'',
 ];
 
