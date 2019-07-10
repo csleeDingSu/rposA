@@ -124,11 +124,17 @@ function purchase() {
         success: function(data) {
             console.log(data);
             if(data.success) {
-                $('.error').hide();
-                $('#modal-successful').modal();
+                // $('.error').hide();
+                //$('#modal-successful').modal();
+                window.top.location.href = "/redeem/history";
             } else {
-                $('.error').html(data.message);
-                $('.error').show();
+                // $('.error').html(data.message);
+                // $('.error').show();
+                $('.error-msg').html(data.message);
+                $('#modal-error-msg').modal();
+                setTimeout(function(){ 
+                    $('#modal-error-msg').modal('hide');
+                }, 3000); 
             }
         }
     });

@@ -3,13 +3,13 @@
 @section('title', '兑换订单')
 
 @section('left-menu')
-    @if ($record->type == 1)
-        <a href="/vip" class="back">
+    <!-- if ($record->type == 1) -->
+        <a href="javascript:history.back()" class="back">
             <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true">返回</div>
         </a>
-     @else
+     <!-- else
         <div class="icon-back glyphicon glyphicon-menu-left back" aria-hidden="true">返回</div>
-     @endif
+     endif -->
 
 @endsection
 
@@ -130,6 +130,15 @@
         </div>
     </div>
 <!-- Steps Modal Ends -->
+
+<!-- error msg modal -->
+<div class="modal fade col-md-12" id="modal-error-msg" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="error-msg"></div>                 
+    </div>
+</div>
+<!-- error msg modal Ends -->
+
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
