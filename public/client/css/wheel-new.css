@@ -58,7 +58,8 @@
 	margin-right: auto;
 	z-index: 100; 
 	width:320px;
-	height:320px;
+	height:332px;
+    margin-top: -10px;
 }
 
 .small-border {
@@ -226,7 +227,7 @@
 
 	#wheel_banner img {
 		width:280px;
-		height:280px;
+		height:292px;
 	}
 
 	.flickity-prev-next-button.previous {
