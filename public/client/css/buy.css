@@ -45,7 +45,7 @@
     .panel-default input, .panel-default textarea {
     	font-size: 15px;
         background: #fff;
-        color: #999;
+        color: #333;
         padding: 10px;
         border: none;
         width: 100%;
@@ -221,4 +221,38 @@
 		height: 80px;
 		margin-top: 10px;
 		margin-bottom: 15px;
+	}
+
+	.error {
+		color:#ee3c3c;
+		padding-left:10px;
+		font-size: 15px;
+		font-weight: 500;
+	}
+
+	::-webkit-input-placeholder { /* Edge */
+	  color: #999;
+	}
+
+	:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	  color: #999;
+	}
+
+	::placeholder {
+	  color: #999;
+	}
+
+	.error-msg {
+		color: #fff;
+	    font-size: 16px;
+	    width: 220px;
+	    border-top-left-radius: 3px;
+	    border-top-right-radius: 3px;
+	    border-bottom-left-radius: 3px;
+	    border-bottom-right-radius: 3px;
+	    background-color: #000;
+	    padding: 10px;
+	    text-align: center;
+	    background-color: rgba(0, 0, 0, 0.6);
+	    /* margin-top: 50px; */
 	}
