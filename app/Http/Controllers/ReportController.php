@@ -222,10 +222,10 @@ class ReportController extends BaseController
 						break;	
 						case 'reserved':
 							//$result = $result->wherein('redeem_status',['confirmed','pending confirmation']);
-							$result = $result->wherein('pin_status',[2,4]);
+							$result = $result->wherein('pin_status',[3,4]);
 						break;
 						case 'used':
-							$result = $result->where('pin_status',1);
+							$result = $result->wherein('pin_status',[1,2]);
 						break;	
 							/*//Active
 						4 - used
