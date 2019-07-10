@@ -19,6 +19,8 @@
 @endsection
 
 @section('content')
+<input type="hidden" id="hid_wallet_point" name="hid_wallet_point" value="{{$wallet->point}}">
+
 <div class="container">
 	<div class="image_wrapper">
 		<img src="{{ asset('/client/images/buy/divider.png') }}" />
