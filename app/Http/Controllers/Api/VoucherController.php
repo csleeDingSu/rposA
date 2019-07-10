@@ -147,7 +147,8 @@ class VoucherController extends Controller
 		
 		if ($strSearch)
 		{
-			$vouchers =  $this->getcurl($strSearch);
+			//$vouchers =  $this->getcurl($strSearch);
+			$vouchers =  $this->new_getcurl($strSearch);	
 		}
 		else
 		{
@@ -244,7 +245,7 @@ class VoucherController extends Controller
             CURLOPT_RETURNTRANSFER => 1,
             //CURLOPT_URL => 'http://shimaigou.com/index.php?r=index/search&s_type=1&kw='.$keyword,
 			//CURLOPT_URL => 'http://yhq.cn/index.php?r=index/search&s_type=1&kw='.$keyword,
-			CURLOPT_URL => 'http://www.shimaigou.com/index.php?input=2&r=l&kw=%E5%AE%9D',
+			CURLOPT_URL => 'http://www.shimaigou.com/index.php?input=2&r=l&kw='.$keyword,
             CURLOPT_USERAGENT => $userAgent,
 			CURLOPT_HEADER => 0,
         ));
