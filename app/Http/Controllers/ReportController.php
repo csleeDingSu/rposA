@@ -226,8 +226,7 @@ class ReportController extends BaseController
 						break;
 						case 'used':
 							$result = $result->wherein('pin_status',[1,2]);
-						break;	
-							
+						break;								
 					}					
 				}
 						
