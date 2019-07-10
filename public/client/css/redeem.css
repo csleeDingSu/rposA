@@ -1362,3 +1362,8 @@ textarea {
 .wabao-coin {
 	font-size: 0.8rem;
 }
+
+.col-xs-2 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
