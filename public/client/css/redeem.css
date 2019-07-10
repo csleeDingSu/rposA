@@ -232,8 +232,8 @@ html, body {
 }
 
 .description, .description-history {
-	font-size: 18px;
-	font-weight: bold;
+	font-size: 15px;
+	/*font-weight: bold;*/
 	color: #555;
 	min-height: 50px;
 }
@@ -364,12 +364,12 @@ html, body {
 	}
 
 	.description {
-		font-size: 0.29rem;
+		font-size: 0.25rem;
 		min-height: 45px;
 	}
 
 	.description-history {
-		font-size: 0.29rem;
+		font-size: 0.25rem;
 		min-height: 25px;
 	}
 
