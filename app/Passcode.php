@@ -16,7 +16,7 @@ class Passcode extends Model
      * @var array
      */
     protected $fillable = [
-        'goodsid', 'passcode',  'updated_at','goodsid'
+        'goodsid', 'passcode',  'updated_at','goodsid','pid'
     ];
 
     /**
