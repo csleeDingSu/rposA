@@ -230,4 +230,49 @@ class VoucherController extends Controller
 		
 		return $res;
     }
+	
+	
+	
+	private function new_getcurl($keyword)
+    {
+		$file  = "http://www.shimaigou.com/index.php?input=2&r=l&kw=%E5%AE%9D";
+				
+		$curl = curl_init();		
+		$userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36"';
+
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            //CURLOPT_URL => 'http://shimaigou.com/index.php?r=index/search&s_type=1&kw='.$keyword,
+			//CURLOPT_URL => 'http://yhq.cn/index.php?r=index/search&s_type=1&kw='.$keyword,
+			CURLOPT_URL => 'http://www.shimaigou.com/index.php?input=2&r=l&kw=%E5%AE%9D',
+            CURLOPT_USERAGENT => $userAgent,
+			CURLOPT_HEADER => 0,
+        ));
+        
+        $resp = curl_exec($curl);
+		
+		curl_close($curl);
+		
+        if($resp) {  
+			return $this->new_filter_content( $resp );
+        } 
+    }
+    
+    private function new_filter_content($content) 
+    {		
+		$str  = 'var lsitData=[';
+		$arr  = explode($str, $content);		
+		
+		if (empty($arr[1])) 
+		{
+			return [];
+		}
+		$arr  = explode('];', $arr[1]);
+		
+		$res  = '['.$arr[0].']';	
+		
+		$res  = json_decode($res,true);
+		
+		return $res;
+    }
 }
