@@ -644,7 +644,14 @@ return [
 	'not_enough_balance' => 'not enough balance',
 	'exceeded_coin_limit' => 'exceeded the coin limit',
 	'buy' => 'Buy',
-	
+	'unknown_package'=>' we cant find the package',
+	'package_deleted'=>'package already deleted',
+	'package_inactive'=>'Inactive package ',
+	'no_available_quantity'=>'not enough quantity to purchase',
+	'not_enough_point_to_redeem'=>'not enough point to redeem',
+	''=>'',
+	''=>'',
+	''=>'',
 	
 	
 
