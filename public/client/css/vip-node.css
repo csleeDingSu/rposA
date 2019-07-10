@@ -152,7 +152,7 @@
 	z-index: 100; 
 	width:320px;
 	height:334px;
-	top: -10px;
+	/*top: -10px;*/
 }
 
 .redeem-banner {
@@ -443,3 +443,7 @@
     background-color: rgba(0, 0, 0, 0.6);
     /* margin-top: 50px; */
 }
+
+.flickity-enabled.is-draggable {
+	margin-top: -15px !important;
+ }
