@@ -129,7 +129,7 @@ html, body {
 }
 .full-width-tabs > ul.nav.nav-pills > li > a, .modal-row > ul.nav.nav-pills > li > a{
 	text-align: center;
-	padding-top: 0.1rem;
+	padding-top: 0.15rem;
 }
 
 .take-all-space-you-can{
