@@ -77,6 +77,11 @@ class BuyProductController extends Controller
 				'memberid' => 'required',
 				'packageid' => 'required',
 				'quantity' => 'required|min:1'
+			],
+			 [
+				'memberid.required'   =>trans('auth.memberid_empty'),
+				'packageid.required'  =>trans('auth.packageid_empty'),
+				'quantity.required'   =>trans('auth.quantity_empty'),				
 			]
 		);
 		if ($validator->fails()) {
@@ -86,18 +91,18 @@ class BuyProductController extends Controller
 		//check package
 		$package   = BuyProduct::get_view_product($packageid);
 		
-		if (!$package) return response()->json(['success' => false, 'message' => 'unknown package']);
+		if (!$package) return response()->json(['success' => false, 'message' => trans('dingsu.unknown_package')]);
 
-		if (!empty($package->deleted_at)) return response()->json(['success' => false, 'message' => 'package deleted']);
+		if (!empty($package->deleted_at)) return response()->json(['success' => false, 'message' => trans('dingsu.package_deleted')]);
 
-		if ($package->status != 1) return response()->json(['success' => false, 'message' => 'package not in active']);
+		if ($package->status != 1) return response()->json(['success' => false, 'message' => trans('dingsu.package_inactive')]);
 		
 		//check quantity	
 		$used_count = $package->used_quantity + $package->reserved_quantity;
 		
 		if ($used_count >= $package->available_quantity)
 		{
-			return response()->json(['success' => false, 'message' => 'no available quantity to buy']);
+			return response()->json(['success' => false, 'message' => trans('dingsu.no_available_quantity')]);
 		}
 		
 		//check point
@@ -107,7 +112,7 @@ class BuyProductController extends Controller
 		
 		if ($required_point > $wallet->point)
 		{
-			return response()->json(['success' => false, 'message' => 'not enough point to redeem']);
+			return response()->json(['success' => false, 'message' => trans('dingsu.not_enough_point_to_redeem')]);
 		}		
 				
 		//$setting   = \App\Admin::get_setting();
@@ -159,6 +164,11 @@ class BuyProductController extends Controller
 						'address'        => 'required|min:1',
 						'receiver_name'  => 'required',
 						'contact_number' => 'required|min:1',
+					],
+					[
+						'address.required'        =>trans('auth.address_empty'),
+						'receiver_name.required'  =>trans('auth.receiver_name_empty'),
+						'contact_number.required' =>trans('auth.contact_number_empty'),				
 					]
 				);
 				if ($validator->fails()) {
