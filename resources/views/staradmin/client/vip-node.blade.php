@@ -992,7 +992,7 @@
 <!-- insufficient point modal -->
 <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
 	<div class="modal-dialog modal-lg">
-		<div class="insufficient-point">金币不足，无法下注</div>					
+		<div class="insufficient-point">金币不足，无法兑换</div>					
 	</div>
 </div>
 <!-- insufficient point modal Ends -->

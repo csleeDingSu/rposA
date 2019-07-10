@@ -38,4 +38,10 @@ return [
     //'password_notexists' => '登录密码输入错误.',
     
     'alpha_num' => '密码只能包含字母和数字。',
+    'memberid_empty'=>'请输入正确账户ID',
+    'packageid_empty'=>'请输入正确package ID',
+    'quantity_empty'=>'请输入正确数量',
+    'address_empty'=>'请输入正确地址',
+    'receiver_name_empty'=>'请输入收货人姓名',
+    'contact_number_empty'=>'请输入联络号码',
 ];
