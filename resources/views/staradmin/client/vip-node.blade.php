@@ -307,10 +307,10 @@
 	<section class="barWrapper">
       	<article class="barBox">
 	      <div class="rule"></div>
-	      <!-- <div>
+	      <div>
 	      	<div class="col-xs-6 div-today">今日盈亏：<span class="profit"></span></div>
-	      	<div class="col-xs-6 btn-info-vip">必看99%中奖攻略></div>
-	      </div> -->
+	      	<!-- <div class="col-xs-6 btn-info-vip">必看99%中奖攻略></div> -->
+	      </div>
 	      <div class="barIn">
 		        <div class="bet-box long-box">
 		        	<div class="bet-background">
