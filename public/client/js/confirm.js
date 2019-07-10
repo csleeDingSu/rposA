@@ -75,7 +75,12 @@ $(document).ready(function () {
         var price = parseInt($('.lbl_price').html());
         var quantity = parseInt($(this).val());
         var total =  quantity * price;
-        $('.span_price').html(total);
+        var wallet_point = parseFloat($('#hid_wallet_point').val()).toFixed(2);
+        if (total > wallet_point) {
+            $('.span_price').html('金币不足');    
+        } else {
+            $('.span_price').html(total);
+        }
         
     });
 

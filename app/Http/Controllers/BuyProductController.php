@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 use App\Wallet;
 
 use Carbon\Carbon;
@@ -530,7 +531,9 @@ class BuyProductController extends BaseController
 	public function confirm(Request $request){
 		$id = $request->hid_package_id;
 		$record = BuyProduct::get_product($id);	
-		return view( 'client/confirm', ['request' => $request, 'record' => $record]);
+		$member = Auth::guard('member')->user()->id	;		
+		$wallet = Wallet::get_wallet_details($member);
+		return view( 'client/confirm', ['request' => $request, 'record' => $record, 'wallet' => $wallet]);
 	}
 
 	public function buy(Request $request){
