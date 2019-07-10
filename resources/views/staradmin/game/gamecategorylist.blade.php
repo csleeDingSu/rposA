@@ -14,6 +14,7 @@
 							<!-- <th>@lang('dingsu.game') @lang('dingsu.type')</th>	 -->
 							<th>@lang('dingsu.game') @lang('dingsu.time')</th>	
 							<th>@lang('dingsu.block') @lang('dingsu.time')</th>	
+							<th>@lang('dingsu.win_ratio')</th>	
 							<th class="">@lang('dingsu.action')</th>
 						</tr>
 					</thead>
@@ -28,6 +29,7 @@
 								{{ $list->game_time }}
 							</td>
                             <td>{{ $list->block_time }}</td>
+							<td>{{ $list->win_ratio }}</td>
 							<td>
 								
 								
