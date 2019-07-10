@@ -218,7 +218,7 @@ class ReportController extends BaseController
 					switch ($type)
 					{
 						case 'rejected':
-							$result = $result->where('pin_status',3);
+							$result = $result->where('redeem_status','confirmed');
 						break;	
 						case 'reserved':
 							//$result = $result->wherein('redeem_status',['confirmed','pending confirmation']);
