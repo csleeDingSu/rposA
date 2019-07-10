@@ -2,12 +2,14 @@
 	$.fn.keyboard = function (options) {
 		var bodyW = document.documentElement.clientWidth || document.body.clientWidth;
 		var itemWidth = (bodyW - 40) / 10;
+		var point = $('.span-bet').val();
 
 		var keyBoard = '<div id="keycontent">\n' +
 			'<div id="keyboard">\n' +
 			'    <div class="keyTitle">\n' +
-			'        <div class="keyText">正在使用米粒键盘</div>\n' +
-			'        <div class="keyHide">收起</div>\n' +
+			'        <div class="keyText"><img src="/client/images/coin.png" /><input id="txt_key" type="text" value="'+ point +'" disabled /></div>\n' +
+			'        <div class="keyButton keyAllIn">全投</div>\n' +
+			'        <div class="keyButton keyClear">清空</div>\n' +
 			'    </div>\n' +
 			'    <div class="keyContent"></div>\n' +
 			' </div>\n' +
@@ -82,6 +84,17 @@
 				_this.remove();
 
 			});
+			_this.on('click', '.keyClear', function () { //完成
+				keyState($(this));
+				$('#txt_key').val(0);
+				$('.span-bet').val(0);
+			});
+			_this.on('click', '.keyAllIn', function () { //完成
+				keyState($(this));
+				var point = $('#hidTotalBalance').val();
+				$('#txt_key').val(point);
+				$('.span-bet').val(point);
+			});
 
 
 			function inputVal(_this) {
@@ -94,6 +107,7 @@
 				val = parseInt(val);
 
 				$('.' + defaults.inputClass + '').val(val);
+				$('#txt_key').val(val);
 			}
 
 			function inputValDel() {
@@ -110,6 +124,7 @@
 				val = parseInt(val);
 
 				$('.' + defaults.inputClass + '').val(val);
+				$('#txt_key').val(val);
 			}
 
 

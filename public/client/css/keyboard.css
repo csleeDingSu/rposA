@@ -11,7 +11,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 207px;
+    height: 240px;
     background-color: #f2f2f2;
     font-size: 14px;
     z-index: 9999;
@@ -107,7 +107,7 @@
 }
 #keyboard .number li{
     flex: 0 0 calc(33.33% - 1px);
-    height: calc(174px / 4);
+    height: calc(194px / 4);
     line-height: 40px;
     background-color: #ffffff;
     text-align: center;
@@ -117,7 +117,7 @@
 }
 #keyboard .numDel{
     width: calc(33.33%);
-    height: calc(174px / 4);
+    height: calc(194px / 4);
     line-height: 40px;
     background-color: #f2f2f2;
     text-align: center;
@@ -129,7 +129,7 @@
 }
 #keyboard .numComplete{
     width: calc(33.33% - 2px);
-    height: calc(174px / 4);
+    height: calc(194px / 4);
     line-height: 40px;
     background-color: #f2f2f2;
     text-align: center;
@@ -138,17 +138,51 @@
     bottom: 0;
     border-top: 1px solid #f2f2f2;
 }
+
 #keyboard .keyTitle{
     display: flex;
     justify-content:space-between;
-    background-color: #ffffff;
-    border-top: 1px solid #f2f2f2;
+    background-color: #efefef;
     font-size: 12px;
-    height: 28px;
-    line-height: 28px;
-    padding: 0 6px;
-    color: #999999;
+    height: 40px;
+    line-height: 40px;
+    padding: 6px;
+    color: #595959;
 }
-#keyboard .keyTitle .keyHide{
-    color: blue;
+
+#keyboard .keyTitle .keyText{
+    width: 66.66%;
+}
+
+#keyboard .keyTitle .keyText input{
+    border: none;
+    width: 100%;
+    height: 28px;
+    border-radius: 5px;
+    padding: 0 35px;
+}
+
+#keyboard .keyTitle .keyText input[type="text"]:disabled {
+    background: #fff;
+}
+
+#keyboard .keyTitle .keyText img{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-left: 6px;
+    margin-top: 4px;
+}
+
+#keyboard .keyTitle .keyButton{
+    text-align: center;
+    width: 16.66%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+#keyboard .keyTitle .keyButton:last-child {
+    border-left: 1px solid #cbcbcb;
 }
