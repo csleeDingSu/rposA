@@ -8,7 +8,7 @@
 		{{ $list->pin_name }}
 		</td>
 	<td>
-		{{ $list->username }}  {{ $list->redeem_status }}
+		{{ $list->username }}  
 	</td>
 	
 	
