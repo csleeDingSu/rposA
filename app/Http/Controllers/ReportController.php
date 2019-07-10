@@ -225,7 +225,7 @@ class ReportController extends BaseController
 							$result = $result->where('pin_status',[4]);
 						break;
 						case 'used':
-							$result = $result->wherein('redeem_status','confirmed');
+							$result = $result->where('redeem_status','confirmed');
 						break;	
 							
 					}					
