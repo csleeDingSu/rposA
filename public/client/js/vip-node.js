@@ -53,7 +53,6 @@ $(function () {
         $(".loading").fadeOut("slow");
         return false;
     }
-
 });
 
 function updateResult(records){
@@ -433,6 +432,7 @@ function resetGame() {
     $('.btn-add').unbind('click');
     $('.button-bet-reset').unbind('click');
     $('.button-bet-all').unbind('click');
+    $(".span-bet").unbind('focus');
     $('.small-border').removeClass('fast-rotate');
     $('.span-bet').val(0);
     previous_bet = 0;
