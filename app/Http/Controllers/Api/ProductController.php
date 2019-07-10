@@ -366,22 +366,63 @@ class ProductController extends Controller
 		return response()->json(['success' => 'true','wabaofee' => $setting->wabao_fee]); 
 	}
 	
+	private function goodsid($id)
+	{
+		$curl = curl_init();
+        $userAgent = 'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0';
+		$userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36"';
+        curl_setopt_array($curl, array(
+            //CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'http://www.shimaigou.com/index.php?r=l/d&u=4413&id='.$id,
+           // CURLOPT_USERAGENT => $userAgent,
+			//CURLOPT_HEADER => 0,
+           // CURLOPT_POST => 1,
+			CURLOPT_VERBOSE => 0,
+			CURLOPT_RETURNTRANSFER => 1,
+            
+        ));
+        $resp = curl_exec($curl);        
+       
+        if($resp) { 
+            $str  = '"goodsid":"';
+			$arr  = explode($str, $resp);
+			
+			if (empty($arr[1])) 
+			{
+				return $id;
+			}
+			
+			$arr  = explode('","title"', $arr[1]);	
+			
+			$id = $arr[0];
+			return $id;
+			
+        } 
+	}
+	
 	public function passcode(Request $request)
     {
 		$id = $request->_keyword;
 		if (!$id) return response()->json(['success' => 'false']); 
-		$record   = \App\Passcode::where('goodsid',$id)->first();
+		//$record   = \App\Passcode::where('goodsid',$id)->first();
+		$record   = \App\Passcode::where('pid',$id)->orwhere('goodsid',$id)->first();
 		
 		if ($record)
 		{
 			return response()->json(['success' => 'true','record' => $record]); 
+		}
+		
+		$id    = $this->goodsid($id);
+		if (empty($id))
+		{
+			return response()->json(['success' => 'false','message'=>'we cant find the ID']); 	
 		}
 		$url   = "http://item.taobao.com/item.htm?id=".$id;
 		$data  = $this->getcurl($url);
 		
 		if ($data)
 		{
-			$data = ['passcode'=>$data,'goodsid'=>$id ];
+			$data = ['passcode'=>$data,'goodsid'=>$id,'pid'=>$pid  ];
 			$record   = \App\Passcode::create($data);
 			return response()->json(['success' => 'true','record' => $data]); 
 		}

@@ -82,7 +82,7 @@
 	background-size: contain;
 }
 
-.button-bet, .button-bet-reset {
+.button-bet, .button-bet-reset, .button-info {
 	background:url(/client/images/vip/bet-default.png) no-repeat;
 	width: 134px;
 	height: 68px;
@@ -97,7 +97,7 @@
 	background-size: contain;
 }
 
-.button-bet:hover, .button-bet-reset:hover {
+.button-bet:hover, .button-bet-reset:hover, .button-info:hover {
 	background:url(/client/images/vip/bet-selected.png) no-repeat;
 	background-size: contain;
 }
@@ -160,4 +160,43 @@
 	width: 20px;
 	height: 20px;
 	margin-right: 2px;
+}
+
+.bubble-info {
+    position: absolute;
+    padding-left: 4.95rem;
+    margin-top: -0.4rem;
+    -webkit-animation: updownbubble 2s infinite ease-in-out;
+    -o-animation: updownbubble 2s infinite ease-in-out;
+    -ms-animation: updownbubble 2s infinite ease-in-out;
+    -moz-animation: updownbubble 2s infinite ease-in-out;
+    animation: updownbubble 2s infinite ease-in-out;
+}
+
+@-webkit-keyframes updownbubble {
+    0% { transform: translateY(0px)  }
+    50% { transform: translateY(5px) }
+    100% { transform: translateY(0px) }
+}
+
+@keyframes updownbubble {
+    0% { transform: translateY(0px)  }
+    50% { transform: translateY(5px) }
+    100% { transform: translateY(0px) }
+}
+
+.bubble-info span {
+	color: #8139b2;
+    letter-spacing: 0.02rem;
+    text-align: center;
+    width: 1.4rem;
+    position: absolute;
+    padding-top: 0.06rem;
+    font-size: 0.24rem;
+}
+
+.bubble-info img {
+    width: 1.35rem;
+    border: 0;
+    vertical-align: middle;
 }

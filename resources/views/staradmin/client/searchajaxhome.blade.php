@@ -10,7 +10,7 @@
 						 $item['voucher_pass']   = $item['quan_jine'] ;
 						 $item['product_name']   = $item['d_title'] ;
 						 $item['month_sales']    = $item['xiaoliang'] ;
-						 $item['goodsid']        = $item['goodsid'] ;
+						 $item['goodsid']        = $item['id'] ;
 
 $item = (object )$item;
 @endphp

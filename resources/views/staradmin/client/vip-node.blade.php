@@ -309,7 +309,7 @@
 	      <div class="rule"></div>
 	      <div>
 	      	<div class="col-xs-6 div-today">今日盈亏：<span class="profit"></span></div>
-	      	<div class="col-xs-6 btn-info-vip">必看99%中奖攻略></div>
+	      	<!-- <div class="col-xs-6 btn-info-vip">必看99%中奖攻略></div> -->
 	      </div>
 	      <div class="barIn">
 		        <div class="bet-box long-box">
@@ -319,11 +319,18 @@
 		        		<div class="btn-add"></div>
 		        	</div>
 		        </div>
-		        <div class="bet-box">
+		        <!-- <div class="bet-box">
 		        	<div class="button-bet" data-value="10"><span class="plus-sign">+</span>10</div>
-		        </div>
+		        </div> -->
 		        <div class="bet-box">
 		        	<div class="button-bet-reset">清空</div>
+		        </div>
+		        <div class="bet-box">		        	
+		        	<div class="button-info">玩法</div>
+		        </div>
+		        <div class="bubble-info">
+		        	<span>99%猜中</span>
+		        	<img src="{{ asset('/client/images/vip/bubble-bg.png') }}">
 		        </div>
 	      </div>
 	      <div style="clear: both;"></div>
@@ -1060,6 +1067,10 @@
 		    });
 
 		    $('.btn-info-vip').click( function() {
+		        $('#modal-sure-win').modal();
+		    });
+
+		    $('.button-info').click( function() {
 		        $('#modal-sure-win').modal();
 		    });
 
