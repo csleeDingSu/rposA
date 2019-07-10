@@ -569,7 +569,6 @@ function bindBetButton(){
 
             if(final_bet <= g_vip_point){
                 $('.span-bet').val(final_bet);
-                showPayout();
                 previous_bet = final_bet;
             } else {
                 $('.spinning').html('金币不足，无法下注');
@@ -577,7 +576,12 @@ function bindBetButton(){
                 setTimeout(function(){ 
                     $('.spinning').css('visibility', 'hidden');
                 }, 3000);
+                $('.span-bet').val(parseInt(g_vip_point));
+                previous_bet = g_vip_point;
             }
+
+            showPayout();
+
         });
     });
 
@@ -588,7 +592,6 @@ function bindBetButton(){
 
         if(final_bet <= g_vip_point){
             $('.span-bet').val(final_bet);
-            showPayout();
             previous_bet = final_bet;
         } else {
             $('.spinning').html('金币不足，无法下注');
@@ -596,7 +599,10 @@ function bindBetButton(){
             setTimeout(function(){ 
                 $('.spinning').css('visibility', 'hidden');
             }, 3000);
+            $('.span-bet').val(parseInt(g_vip_point));
+            previous_bet = g_vip_point;
         }
+        showPayout();
 
     });
 
@@ -607,7 +613,6 @@ function bindBetButton(){
 
         if(final_bet <= g_vip_point){
             $('.span-bet').val(final_bet);
-            showPayout();
             previous_bet = final_bet;
         } else {
             $('.spinning').html('金币不足，无法下注');
@@ -615,7 +620,10 @@ function bindBetButton(){
             setTimeout(function(){ 
                 $('.spinning').css('visibility', 'hidden');
             }, 3000);
+            $('.span-bet').val(parseInt(g_vip_point));
+            previous_bet = g_vip_point;
         }
+        showPayout();
 
     });
 
@@ -1163,7 +1171,7 @@ function showLoseModal(){
 
     var balance = getNumeric($('#hidBalance').val());
     var bet_amount = getNumeric($('.span-bet').val());
-    var newbalance = balance - bet_amount;
+    var newbalance = getNumeric(balance - bet_amount);
     var instruction = '您还剩余'+ newbalance +'元，继续加油哦';
 
     switch (level) {
