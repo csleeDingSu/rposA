@@ -745,7 +745,7 @@ function showPayout(){
             $('.odd-payout').html(getNumeric(bet_amount * g_w_ratio));
             $('.even-payout').html(getNumeric(bet_amount * g_w_ratio));
 
-            $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
+            $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point - bet_amount));
             
         } else {
 
@@ -773,7 +773,7 @@ function showPayout(){
                     $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric(bet_amount * g_w_ratio)) + "</span>");
                 }
 
-                $('.spanAcuPointAndBalance').html(g_vip_point - bet_amount);
+                $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point - bet_amount));
 
                 $.ajax({
                     type: 'GET',
@@ -1475,7 +1475,7 @@ function check_vip_status() {
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
             // console.log(data);
-            var yourPoint = $('.spanAcuPointAndBalance').html();
+            var yourPoint = getNumeric($('.spanAcuPointAndBalance').html());
             $('.yourPoint').html(yourPoint);//;
             $('.pointStillNeed').html(120 - yourPoint);
 
