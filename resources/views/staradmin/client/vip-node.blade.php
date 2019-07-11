@@ -53,10 +53,11 @@
 			
 			<div class="box" id="btn-vip-wrapper">
 				<div class="btn-rules-wrapper btn-vip-wrapper">
-					<a href="/arcade">
+					<!-- <a href="/arcade"> -->
 						<!--div class="btn-vip"></div-->
-						<div class="btn-rules-vip">返回普通场</div>
-					</a>
+						<!-- <div class="btn-rules-vip">返回普通场</div> -->
+						<div class="btn-rules-vip">99%必中玩法</div>
+					<!-- </a> -->
 					<div style="clear:both"></div>
 				</div>
 				<!--div class="btn-rules-wrapper btn-info-vip-wrapper">
@@ -1057,16 +1058,12 @@
 			});
 
 			$('#viewgamerules').on('click', showGameRules);
-
-			$('.btn-vip-modal .btn-rules-vip').html('如何赚红包').addClass('btn-rules-normal');
-
-			// $('.btn-vip-modal').on('click', showGameRules);
-
+			
 			$('.btn-vip-modal').click( function() {
 		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
 		    });
 
-		    $('.btn-info-vip').click( function() {
+		    $('.btn-rules-vip').click( function() {
 		        $('#modal-sure-win').modal();
 		    });
 
