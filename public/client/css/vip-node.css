@@ -24,22 +24,6 @@
 	font-weight: 700;
 }
 
-.btn-rectangle, .btn-rectangle:active {
-	background: url('/client/images/vip/btn-default.png') no-repeat;
-	width: 322px;
-	height: 112px;
-	padding-top: 20px;
-}
-
-.btn-rectangle.clicked {
-	background: url('/client/images/vip/btn-selected.png') no-repeat;
-	width: 322px;
-	height: 112px;
-    padding-top: 20px;
-    color: #8c6d28;
-  /* other styles */
-}
-
 .strikethrough span:before,
 .strikethrough span:after {
   border-bottom: none;
