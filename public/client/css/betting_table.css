@@ -27,79 +27,42 @@
 	width: 6.72rem;
 }
 .barBox .rule{
-	height: 0.5rem;
+	height: 1.2rem;
 	padding-top: .85rem;
 	box-sizing: border-box;
 	position: relative;
 }
 
-.barIn{
-	background:url(/client/images/vip/table-bg.png) left top no-repeat;
-	background-size:100% 100%;  
-	content: '';
-	position: relative;
-	z-index: 200;
-	left:0;
-	top:0;
-	right: 0;
-	bottom:0;
-	display: table-cell;
+.barBox .col-xs-2 {
+	padding: 0;
 }
 
-.barIn .bet-box {
-	margin: 0.3rem auto 0.3rem auto;
-	width: 1.62rem;
-	height: 0.65rem;
-	float: left;
+.bet-box {
+	margin-right: 0.3rem;
+	height: 1.2rem;
 }
 
-.barIn .bet-box:first-child {
-	margin-left: 0.2rem;
+.bet-box:last-child {
+	margin-right: 0;
 }
 
-.barIn .bet-box:last-child {
-	width: 1.58rem;
-}
-
-.barIn .long-box {
-	margin-left: 0.2rem;
-	margin-right: 0.2rem;
-	margin-bottom: 0.3rem;
-	width: 3rem;
-	text-align: center;
-	color: #ffcc29;
-	/*padding-left: 0.1rem;*/
-}
-
-.bet-background {
-	background:url(/client/images/vip/bet-background.png) no-repeat;
-	width: 324px;
-	height: 78px;
-	transform: scale(0.45); 
-	-webkit-transform: scale(0.45);
-	-webkit-transform-origin:left top;
-	padding-top: 8px;
-	background-size: contain;
-}
-
-.button-bet, .button-bet-reset, .button-info {
-	background:url(/client/images/vip/bet-default.png) no-repeat;
-	width: 134px;
-	height: 68px;
+.button-bet {
+	background:url(/client/images/vip/btn-bet.png) no-repeat;
+	width: 104px;
+	height: 104px;
 	z-index: 200;
 	transform: scale(0.5); 
 	-webkit-transform: scale(0.5);
 	-webkit-transform-origin:left top;
-	color: #a45500;
+	color: #cc7816;
 	font-size: 30px;
-	padding-top: 10px;
+	padding-top: 30px;
 	cursor: pointer;
 	background-size: contain;
 }
 
-.button-bet:hover, .button-bet-reset:hover, .button-info:hover {
-	background:url(/client/images/vip/bet-selected.png) no-repeat;
-	background-size: contain;
+.button-bet-clear {
+	background:url(/client/images/vip/btn-clear.png) no-repeat;
 }
 
 .plus-sign {
