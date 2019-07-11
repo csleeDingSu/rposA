@@ -3,7 +3,7 @@
 }
 
 .btn-rules-wrapper {
-	width: 120px;
+	width: 130px;
 	height: 40px;
 	float: right;
 }
@@ -446,4 +446,8 @@
 
 .flickity-enabled.is-draggable {
 	margin-top: -15px !important;
+ }
+
+ .btn-rules-vip, .btn-rules-normal {
+ 	padding-left: 25px;
  }

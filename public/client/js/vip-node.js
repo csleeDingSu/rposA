@@ -1051,13 +1051,23 @@ function showProgressBar(bol_show){
             $('.odd-payout').html(0);
             $('.even-payout').html(0);
         } else {
-            if ((getNumeric($('#hidLatestResult').val()) % 1) > 0) {
-                $('.span-odd').html('谢谢参与');
-                $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+            if (getNumeric($('#hidLastReward').val()) > 0) {
+                if ((getNumeric($('#hidLatestResult').val()) % 2) === 0) {
+                    $('.span-odd').html('谢谢参与');
+                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+                } else {
+                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+                    $('.span-even').html('谢谢参与');
+                }
             } else {
-                $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
-                $('.span-even').html('谢谢参与');
-            }
+                if ((getNumeric($('#hidLatestResult').val()) % 2) === 0) {
+                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+                    $('.span-even').html('谢谢参与');
+                } else {
+                    $('.span-odd').html('谢谢参与');
+                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");                    
+                }
+            }            
         }       
 
         if(bol_show) {
