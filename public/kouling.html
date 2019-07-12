@@ -18,7 +18,7 @@
 			
 		
 	<link rel="stylesheet" href="https://wabao666.com/client/css/flickity.min.css">
-	<link rel="stylesheet" href="https://wabao666.com/client/css/share_product.css" />
+	<link rel="stylesheet" href="https://wabao666.com/client/css/kouling.css" />
 
 		
     </head>
@@ -43,16 +43,23 @@
 			</li>
 			<li class="dbox">
 					<div id="button-wrapper">
-						<div class="caption_redeem_angpao">
+						<!-- <div class="caption_redeem_angpao">
 							<span>99%中奖 最少15元</span>
 							<img src="https://wabao666.com/client/images/share_product_caption_redeem_angpao.png" />
-						</div>
+						</div> -->
+						<img class="c15" src="https://wabao666.com/client/images/15.png" />
 						<img class="btn-product-details" src="https://wabao666.com/client/images/btn-redeem.png" />
 						<a class="copyBtn"> 
-							<div id="btn-copy" class="btn-copy">领取优惠券</div>
+							<div id="btn-copy" class="btn-copy">
+								领取优惠券<br/>
+								<span class="juan">券后19.9元</span>
+							</div>
 						</a>
-						<a href="/intro">
-							<div id="btn-voucher" class="freeVoucherBtn"><span>转盘抽奖</span></div>
+						<a href="https://wabao666.com/intro">
+							<div id="btn-voucher" class="freeVoucherBtn">
+								<span>转盘抽奖</span><br/>
+								<span class="jiang">奖后19.9元</span>
+							</div>
 						</a>
 					</div>
 				
@@ -215,6 +222,8 @@ $(function(){
 		$('#img').attr('src', jsObject.image);
 		$('#coupons').attr('href',jsObject.url);
 		$('#btn-copy').attr('data-clipboard-text', '￥'+jsObject.tkl+'￥');
+		$('.juan').text('券后15元');
+		$('.jiang').text('奖后15元');
 
 	} else {
 
@@ -226,6 +235,8 @@ $(function(){
 		var Title =getParams_('title');
 		// var Pay =getParams_('Pay');
 		// var bonus =getParams_('bonus');
+		var juan =getParams_('juan');
+		var jiang =getParams_('jiang');
 		
 		console.log('taowords ' + taowords);
 		console.log('url ' + url);
@@ -233,6 +244,8 @@ $(function(){
 		console.log('Title ' + Title);
 		// console.log('Pay ' + Pay);
 		// console.log('bonus ' + bonus);
+		console.log('juan ' + juan);
+		console.log('jiang ' + jiang);
 		
 		if (taowords.length > 0) {
 			$('#img').attr('src', image);
@@ -244,6 +257,9 @@ $(function(){
 			$('#product_name').text(Title);
 			// $('#Pay').text(Pay);
 			// $('#bonus').text(bonus);
+			$('.juan').text('券后' + juan + '元');
+			$('.jiang').text('奖后' + jiang + '元');
+			
 		}
 	}	
 	
@@ -264,14 +280,14 @@ $(function(){
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
 				$('#btn-copy').css('padding-top', '0.1rem');
-				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
+				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: 0.05rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
 				$('#btn-copy').css('padding-top', '0.1rem');
-				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
+				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: 0.05rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			

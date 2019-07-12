@@ -1,0 +1,479 @@
+
+section {
+	background-color: #dbdbdb;
+}	
+	
+	.header .top li a, .header .top li a:hover, .header .top li a:focus {
+			text-decoration: none;
+		}
+		
+	.infinite-scroll {
+		background-image: url("/client/images/share_product_bg.png");
+		background-repeat: no-repeat;
+    	background-size: cover;background-size: 100% 100%;
+    height:14rem;
+    /*width:2rem;*/
+    /*top:-0.03rem;*/
+    /*left:-0.03rem;*/
+		position:relative !important;	
+	    /*background: white;*/
+	    color: black;
+	    /*text-align: center;*/
+	    margin: 0.2rem;
+	    margin-bottom: 0rem;
+	    border-top-left-radius: 6px;
+	    border-top-right-radius: 6px;
+	    border-bottom-left-radius: 6px;
+	    border-bottom-right-radius: 6px;
+	    padding: 0.5rem;
+	    /*padding-bottom: 30px;*/
+	    font-weight: 700;
+	    /*height: 7rem !important;*/
+      /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);*/
+      /*line-height: 2px !important;*/
+
+	}
+
+	.infinite-scroll .imgBox {
+	  margin: 0 auto;
+	  /*border: 0.01rem solid #efefef;*/
+	  /*padding: 0.15rem;*/
+	  /*padding-right: 0.3rem;*/
+	  font-size: 0;
+	  display: inline-block;
+	  margin-bottom: 0.1rem;
+	}
+
+	.infinite-scroll .imgBox img {
+		width: 100%; 
+	    height: 100%; 
+	    object-fit: contain;
+	    /*max-width: 6rem;*/
+	}
+
+	.infinite-scroll h2 {
+		font-size: 26px;
+		font-size: 4vw;
+	  font-weight: 500;
+	  color: #666666;
+	  margin-bottom: 0.1rem;
+	}
+
+	.lbl{
+	  text-align: center;
+	  font-size: 100%;
+	  font-size: 0.25rem;
+	  color: #bebebe;
+	  font-weight: 0 !important;
+	  line-height: 0.6rem;
+	}
+
+	.lbl_cur{
+		/*width: 5%;*/
+	  text-align: center;
+	  font-size: 100%;
+	  font-size: 0.25rem;
+	  color: #e5615c;
+	  font-weight: 0 !important;
+	  line-height: 0.6rem;
+	}
+
+	.infinite-scroll .price1 .price2{
+		/*width: 35%;*/
+	  
+		/*font-size: 0.4rem;*/
+		/*font-size: 100%;*/
+		font-size: 0.40rem;
+	  	font-weight: 700;
+	  	color: #f75656;
+	  	padding-right: 0.1rem;
+	  	/*margin-bottom: -0.2rem;*/
+	  	line-height: 0.6rem;
+	}
+
+	.infinite-scroll .price1 .price3{
+
+		/*width: 40%;*/
+	  
+		font-size: 0.25rem;
+		color: #bebebe;
+		/*text-decoration: line-through;*/
+		line-height: 0.6rem;
+
+	}
+
+	.infinite-scroll .button {
+		padding: 0.3rem 0;
+	}
+
+	.infinite-scroll .button a {
+	  width: 100%;
+	  padding: 0.25rem;
+	  /*margin-left: 0.18rem;*/
+	  /*margin-right: 0.18rem;*/
+	  text-align: center;
+	  border-radius: 0.1rem;
+	  display: inline-block;
+	  /*font-size: 0.4rem;	  */
+	  line-height: 0.48rem;	  
+	  -webkit-border-radius: 0.1rem;
+	  -moz-border-radius: 0.1rem;
+	  -ms-border-radius: 0.1rem;
+	  -o-border-radius: 0.1rem;
+	}
+
+	.getvoucher {
+		/*margin-top: 0.3rem;*/
+		font-weight: 500;
+		color: #f75656;
+		border: 0.02rem solid #ff5949;
+		font-size: 100%;
+		/*font-size: 5.8vw;*/
+		font-size: 0.4rem;
+
+	}
+
+	.playgame {
+
+		margin-top: 0.3rem;
+		font-weight: 600;
+		color: #fff;
+		background-color: #f75656;
+		font-size: 100%;
+		/*font-size: 6.2vw;*/
+		font-size: 0.45rem;
+		text-decoration: none;
+	  	
+	}
+
+	.getvoucher:hover { color:#f75656 ; text-decoration: none; }
+	.playgame:link, .playgame:visited, .playgame:hover, .playgame:active { color:#fff ; text-decoration: none; }
+
+.showTips .inBox {
+	position: absolute; 
+	z-index: 1; 
+	text-align: center; 
+	bottom: 0;
+	margin-bottom: 1.3rem;
+	animation: MoveUpDown 1s linear infinite;
+}
+
+.showTips img {
+	margin: 0 auto;
+	  font-size: 0;
+	  display: inline-block;
+	  margin-bottom: 0.2rem;
+	width: 6.5rem !important; 
+    object-fit: contain;
+
+}
+
+.showTips .ply {
+	padding-left:0.04rem;
+}
+
+
+#speech-packet-modal {
+  color: white;
+  text-align: center;
+  /*position: relative; //changed to relative from fixed also works if position is not there*/
+
+  position: absolute; 
+  top: 0rem;
+  z-index: 3;
+  width: 100%;
+
+}
+
+#speech-packet-modal h4{	
+	color: white;
+	padding: 0.1rem;
+	text-align: center; 
+	padding-top:0.4rem;
+	font-size: 3.5vw;
+ }
+
+#speech-packet-modal h5{
+	color: white;
+	font-size: 2.5vw;
+	text-align: center; 
+	padding: 0 auto;
+}
+
+@media only screen and (max-width: 800px) {
+    #speech-packet-modal h4{
+    	font-size: 5.5vw;
+	 }
+
+	#speech-packet-modal h5{
+		font-size: 3.5vw;
+	}
+}
+
+
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0.3rem;
+  }
+  50% {
+    bottom: 0rem;
+  }
+}
+
+.cardFoot {
+    position: relative;
+    z-index: 30;
+}
+
+.dbox2 {
+	position: relative;
+	text-align: center;
+}
+.imgShareBtn {
+	/*position: relative;*/
+	width: 100%;
+}
+
+.sharebtn_text {
+	position: absolute;
+	font-weight: 100;
+	width: 100%;
+	text-align: left;	
+}
+
+.sharebtn_text .cur {
+	color: #fff;
+	font-size: 0.3rem;
+	position: absolute;
+	text-align: left;
+	bottom: 0.2rem;
+}
+
+.sharebtn_text .vprice {
+	color: #fff;
+	font-size:0.6rem;
+	font-weight: 700;
+	position: absolute;
+	text-align: center;
+	bottom: 0.2rem;
+	left:0.25rem;
+}
+
+.sharebtn_text .vpass {
+	color: #fff;
+	font-size: 0.2rem;
+	position: absolute;
+	text-align: center;
+	bottom: 0.2rem;
+	left:2rem;
+	line-height: 0.3rem;
+}
+
+.sharebtn_text .vlink {
+	color: #fff;
+	font-size: 0.3rem;
+	position: absolute;
+	text-align: center;
+	bottom: 0.35rem;
+	left:66%;
+	width: 34%;
+	cursor:pointer;
+
+}
+
+.titleimg {
+	width: 100%;
+	padding-top: 0.1rem;
+	padding-bottom: 0.05rem;
+}
+
+.columnval {
+  float: left;
+  width: 44%;
+  position:relative; /* and this has to be relative */
+  margin:1%;
+
+}
+ 
+.marginleft {	
+  margin-left: 0.35rem;
+}
+
+.marginright {	
+  /*margin-right: 0.35rem;*/
+  margin-left: 0.1rem;
+}
+
+.marginbottom {
+	margin-bottom: 0.5rem;
+}
+
+.free {
+    position:absolute;
+    background-image: url("../images/share_product_free.png");
+    background-repeat: no-repeat;
+    background-size: cover;background-size: 100% 100%;
+    height:1.5rem;
+    width:1.5rem;
+    top:-0.03rem;
+    left:-0.03rem;
+}
+
+.featuredbg {
+
+	position:relative;	
+    background: white;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 0.2rem;
+    height: 5rem;
+}
+
+.featureddetail h2 {
+	color: #9c9c9c;
+	font-size: 0.24rem;
+	padding-top: 0.2rem;
+	height:0.65rem;
+}
+
+.featureddetail h3 .lbl{
+	color: #e46158;
+	font-size: 0.24rem;
+}
+
+.featureddetail h3 .lbl_cur{
+	color: #e46158;
+	font-size: 0.24rem;
+}
+
+.featureddetail h3 .price2{
+	color: #e46158;
+	font-size: 0.30rem;
+}
+
+.featureddetail h3 .price3{
+	color: #c6c6c6;
+	font-size: 0.24rem;
+	text-decoration: line-through;
+}
+
+.cvoucher {
+
+	position:absolute;	
+    background: grey;
+    color: white;
+	text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 5.5%;
+    font-size:0.3rem;
+    font-weight: 500;
+    top:85%;
+    display: none;
+    width: 91.5%;
+    height: 12.5%;
+}
+
+.vlink2 {
+	background-image: linear-gradient(to right, grey 50%, rgba(255,255,255,0) 0%);
+	background-position: top;
+	background-size: 0.2rem 1px;
+	background-repeat: repeat-x;
+
+	text-align: center;
+	padding-top: 5%;
+	font-size: 0.24rem;
+	color: #c6c6c6;
+
+}
+
+.intruction {
+
+	font-size: 0.25rem;
+	color: #a9a9a9;
+	line-height: 0.45rem;
+	font-weight: normal;
+	padding-top: 0.4rem;
+}
+
+.instruction_highlight {
+	color: #f59972 !important;
+}
+
+.caption_redeem_angpao {
+ /*position: relative !important;*/
+ /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
+ /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
+ padding-left: 3rem;
+}
+
+@keyframes MoveUpDown_angpao_p {
+  0%, 100% {
+    bottom: 1.07rem;
+  }
+  50% {
+    bottom: 1.05rem;
+  }
+}
+
+@-webkit-keyframes MoveUpDown_angpao_p {
+  0%, 100% {
+    bottom: 1.07rem;
+  }
+  50% {
+    bottom: 1.05rem;
+  }
+}
+
+.caption_redeem_angpao span {
+ padding-top: 0.06rem !important;
+}
+
+.btn-product-details {
+  width: 100%;  
+}
+
+#button-wrapper {
+	/*margin-top:0.45rem !important;*/
+	margin-top:0.3rem !important;
+	width: 100% !important;
+}
+
+#btn-copy {
+	padding-top:0.1rem !important;
+    font-weight: 500;
+    font-size: 0.26rem;
+
+}
+#btn-voucher {
+	padding-top: 0.1rem !important;
+    padding-right: 0.9rem !important;
+    text-align: right;
+}
+
+#btn-voucher span {
+	font-weight: 500;
+	font-size: 0.24rem;
+}
+
+.juan {
+    font-weight: 600;
+    font-size: 0.29rem;
+}
+
+.jiang {
+    font-weight: 600 !important;
+    font-size: 0.29rem !important;
+}
+
+.c15 {
+    position: absolute;
+    padding-top: 0.1rem;
+    padding-left: 3.7rem;
+    height: 0.5rem;
+}
