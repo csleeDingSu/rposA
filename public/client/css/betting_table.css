@@ -46,7 +46,7 @@
 	margin-right: 0;
 }
 
-div.button-bet, div.button-bet-clear {
+.button-bet, .button-bet-clear {
 	background:url(/client/images/vip/btn-bet.png) no-repeat;
 	width: 104px;
 	height: 104px;
@@ -61,8 +61,13 @@ div.button-bet, div.button-bet-clear {
 	background-size: contain;
 }
 
-div.button-bet-clear {
+.button-bet-clear {
 	background:url(/client/images/vip/btn-clear.png) no-repeat;
+}
+
+.button-bet:hover, .button-bet-clear:hover {
+	transform: scale(0.3);
+	-webkit-transform: scale(0.3);
 }
 
 .plus-sign {
