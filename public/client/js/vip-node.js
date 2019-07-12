@@ -430,7 +430,7 @@ function resetGame() {
     $('.button-bet').unbind('click');
     $('.btn-minus').unbind('click');
     $('.btn-add').unbind('click');
-    $('.button-bet-reset').unbind('click');
+    $('.button-bet-clear').unbind('click');
     $('.button-bet-all').unbind('click');
     $(".span-bet").unbind('focus');
     $('.small-border').removeClass('fast-rotate');
@@ -497,7 +497,7 @@ function checkSelection() {
         $('.button-bet').unbind('click');
         $('.btn-add').unbind('click');
         $('.btn-minus').unbind('click');
-        $('.button-bet-reset').unbind('click');
+        $('.button-bet-clear').unbind('click');
         $('.button-bet-all').unbind('click');
 
         bindSpinningButton();
@@ -586,7 +586,7 @@ function bindBetButton(){
     });
 
     $('.button-bet').click(function(){
-        var add_bet = parseInt($(this).data('value'));
+        var add_bet = parseInt($(this).html());
         var initial_bet = parseInt($('.span-bet').val());
         var final_bet = add_bet + initial_bet;
 
@@ -642,7 +642,7 @@ function bindBetButton(){
 
     });
 
-    $('.button-bet-reset').click(function(){
+    $('.button-bet-clear').click(function(){
         $('.span-bet').val(0);
         showPayout();
         previous_bet = 0;
