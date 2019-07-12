@@ -66,8 +66,8 @@
 }
 
 .button-bet:hover, .button-bet-clear:hover {
-	transform: scale(0.3);
-	-webkit-transform: scale(0.3);
+	transform: scale(0.4);
+	-webkit-transform: scale(0.4);
 }
 
 .plus-sign {
