@@ -477,3 +477,11 @@ section {
     padding-left: 3.7rem;
     height: 0.5rem;
 }
+
+@media only screen and (min-width: 500px) {
+
+	.c15 {
+	    padding-left: 3.6rem;
+	    height: 0.45rem;
+	}
+}
