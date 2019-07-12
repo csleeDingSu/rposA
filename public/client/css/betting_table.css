@@ -46,7 +46,7 @@
 	margin-right: 0;
 }
 
-.button-bet {
+div.button-bet, div.button-bet-clear {
 	background:url(/client/images/vip/btn-bet.png) no-repeat;
 	width: 104px;
 	height: 104px;
@@ -61,7 +61,7 @@
 	background-size: contain;
 }
 
-.button-bet-clear {
+div.button-bet-clear {
 	background:url(/client/images/vip/btn-clear.png) no-repeat;
 }
 

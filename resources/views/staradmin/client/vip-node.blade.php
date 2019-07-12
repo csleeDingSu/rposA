@@ -308,6 +308,7 @@
 	<section class="barWrapper">
       	<article class="barBox">
 	      <div class="rule"></div>
+	      <input type="hidden" class="span-bet" value="0" />
 	      	<div class="col-xs-2">
 		        <div class="bet-box">
 		        	<div class="button-bet">1</div>
@@ -335,7 +336,7 @@
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div class="button-bet button-bet-clear"></div>
+		        	<div class="button-bet-clear"></div>
 		        </div>
 		    </div>
 		    <div style="clear: both;"></div>
