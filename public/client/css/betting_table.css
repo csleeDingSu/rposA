@@ -65,9 +65,9 @@
 	background:url(/client/images/vip/btn-clear.png) no-repeat;
 }
 
-.button-bet:hover, .button-bet-clear:hover {
-	transform: scale(0.4);
-	-webkit-transform: scale(0.4);
+.button-bet:active, .button-bet-clear:active {
+  transform: scale(0.4);
+  -webkit-transform-origin:10% 10%;
 }
 
 .plus-sign {
