@@ -610,4 +610,7 @@ return [
 	'package_inactive'=>'非活动 package',
 	'no_available_quantity'=>'没有足够的数量购买',
 	'not_enough_point_to_redeem'=>'金币不住，无法兑换',
+	'draw_details'=>'平局细节',
+	'win' => '赢',
+	'lose' => '输',
 ];
