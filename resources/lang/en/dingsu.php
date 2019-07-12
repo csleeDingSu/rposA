@@ -649,10 +649,9 @@ return [
 	'package_inactive'=>'Inactive package ',
 	'no_available_quantity'=>'not enough quantity to purchase',
 	'not_enough_point_to_redeem'=>'not enough point to redeem',
-	''=>'',
-	''=>'',
-	''=>'',
-	
+	'draw_details'=>'Draw Details',
+	'win' => 'win',
+	'lose' => 'lose',
 	
 
 ];

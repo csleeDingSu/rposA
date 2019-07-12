@@ -6,7 +6,7 @@
     text-align: center;
     background: url(../images/benefitBg.png) top center no-repeat;
     background-size: 100% auto;
-    height: 12.5rem;
+    height: 6.5rem;
 }
 
 .product {
@@ -64,14 +64,14 @@
 .product .list-2 .quan {
     vertical-align: top;
     height: 0.32rem;
-    width: 2.4rem;
+    width: 1rem;
     background: transparent;
     background-size: auto 0.44rem;
     display: inline-block;
 }
 
 .product .list-2 .quan p {
-  width: 1.2rem;
+  width: 1rem;
   text-align: center;
   display: inline-block;
   font-size: 0.24rem;
@@ -82,6 +82,35 @@
 }
 
 .product .list-2 .quan h3 {
+  font-size: 0.24rem;
+  color: #ff2d2d;
+  line-height: 0.32rem;
+  height: 0.32rem;
+  display: inline-block;
+  width: 1rem;
+}
+
+.product .list-2 .draw {
+    vertical-align: top;
+    height: 0.32rem;
+    width: 1.2rem;
+    background: transparent;
+    background-size: auto 0.44rem;
+    display: inline-block;
+}
+
+.product .list-2 .draw p {
+  width: 1.2rem;
+  text-align: center;
+  display: inline-block;
+  font-size: 0.24rem;
+  color: #ff2d2d;
+  line-height: 0.32rem;
+  height: 0.32rem;
+  vertical-align: top;
+}
+
+.product .list-2 .draw h3 {
   font-size: 0.24rem;
   color: #ff2d2d;
   line-height: 0.32rem;

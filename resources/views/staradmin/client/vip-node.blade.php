@@ -308,33 +308,38 @@
 	<section class="barWrapper">
       	<article class="barBox">
 	      <div class="rule"></div>
-	      <div>
-	      	<div class="col-xs-6 div-today">今日盈亏：<span class="profit"></span></div>
-	      	<!-- <div class="col-xs-6 btn-info-vip">必看99%中奖攻略></div> -->
-	      </div>
-	      <div class="barIn">
-		        <div class="bet-box long-box">
-		        	<div class="bet-background">
-		        		<div class="btn-minus"></div>
-		        		<input class="span-bet" type="text" value="0" />
-		        		<div class="btn-add"></div>
-		        	</div>
-		        </div>
-		        <!-- <div class="bet-box">
-		        	<div class="button-bet" data-value="10"><span class="plus-sign">+</span>10</div>
-		        </div> -->
+	      <input type="hidden" class="span-bet" value="0" />
+	      	<div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div class="button-bet-reset">清空</div>
+		        	<div class="button-bet">1</div>
 		        </div>
+		    </div>
+		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div class="button-info">玩法</div>
+		        	<div class="button-bet">10</div>
 		        </div>
-		        <div class="bubble-info">
-		        	<span>99%猜中</span>
-		        	<img src="{{ asset('/client/images/vip/bubble-bg.png') }}">
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">
+		        	<div class="button-bet">50</div>
 		        </div>
-	      </div>
-	      <div style="clear: both;"></div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">		        	
+		        	<div class="button-bet">100</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">
+		        	<div class="button-bet">500</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">		        	
+		        	<div class="button-bet-clear"></div>
+		        </div>
+		    </div>
+		    <div style="clear: both;"></div>
 	      <!-- button wrapper -->
 		<div class="button-wrapper">
 	        <div class="button-card radio-primary">
