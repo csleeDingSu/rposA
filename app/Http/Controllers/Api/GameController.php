@@ -580,8 +580,10 @@ class GameController extends Controller
 	public function life_redemption($memberid, $gameid, $life)
     {
 		$credit_bal=0;
-
-
+		$_bal = 1200;
+		if ($gameid == 102) {
+			$_bal = 120;  //temporary hardcoded... should refer to db.. configurable
+		}
 
 		if ($life == 'yes')
 		{
@@ -627,8 +629,8 @@ class GameController extends Controller
 
 // ---------------------Balance--------------------------------------
 					$balance_before		=$wallet->balance;
-					if($balance_before!=1200){
-						$credit_bal= 1200-$wallet->balance;
+					if($balance_before!=$_bal){
+						$credit_bal= $_bal-$wallet->balance;
 						//$credit_bal=+1200;
 						}
 					$current_balance	= $wallet->balance +$credit_bal;

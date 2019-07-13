@@ -613,4 +613,5 @@ return [
 	'draw_details'=>'平局细节',
 	'win' => '赢',
 	'lose' => '输',
+	'amended' => '修改',
 ];

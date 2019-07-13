@@ -136,7 +136,7 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
-        var balance = parseInt(records.balance / 10);
+        var balance = parseInt(records.balance);
         var life = records.life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
@@ -225,7 +225,7 @@ try {
 
         var show_game_rules = Cookies.get('show_game_rules');
 
-        if (balance == 1200 && acupoint == 0) {
+        if (balance == 120 && acupoint == 0) {
             bindBetButton();
         } else {
             Cookies.remove('show_game_rules');
