@@ -326,7 +326,7 @@
 			var acupoint = getNumeric("<?php Print($wallet->current_life_acupoint);?>");
 			var usedpoint = getNumeric("<?php Print($usedpoint);?>");
             var previous_point = Cookies.get('previous_point');
-            if(previous_point !== undefined){
+            if(previous_point !== undefined && previous_point > 0){
                 previous_point = (getNumeric(previous_point));
 
                 $('.wabao-coin')
