@@ -1688,7 +1688,7 @@ class GameController extends Controller
 				return $this->result_condition('conditionally_win', $memberid, $data);
 			}
 		}		
-		return $this->result_condition('forcetolose', $memberid, $data);		
+		return $this->result_condition('auto', $memberid, $data);		
 	}
 	
 	private function result_condition($makeUserWin = 'auto', $memberid, $data)
