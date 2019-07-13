@@ -768,6 +768,11 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 	{
 		$mainledger = self::current_wallet($memberid);
 		$now = Carbon::now()->toDateTimeString();
+		$_bal = 1200;
+		if ($gameid == 102) {
+			$_bal = 120; //temporary hardcoded... need to move into db.. configurable
+		}
+
 		if($status=="win")
 		{
 			/*
@@ -782,10 +787,10 @@ public static function postledger_history($memberid,$credit,$debit,$credit_bal,$
 			$balance_before                 = $mainledger->current_balance;
 			$credit                         = $level->point_reward;
 			$debit                          = '0';
-			$credit_bal  					= 1200- $balance_before;
+			$credit_bal  					= $_bal - $balance_before;
 			$debit_bal                      = 0;
-			$current_balance                = '1200';
-			$balance_after                  = '1200';
+			$current_balance                = $_bal;
+			$balance_after                  = $_bal;
 			$current_point					= $mainledger->current_point;// + $level->point_reward;
 			$current_bet                    = $level->bet_amount;//how much they bet
 			$current_life                   = $mainledger->current_life;
