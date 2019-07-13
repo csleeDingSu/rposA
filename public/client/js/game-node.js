@@ -225,7 +225,7 @@ try {
 
         var show_game_rules = Cookies.get('show_game_rules');
 
-        if (balance == 1200 && acupoint == 0) {
+        if (balance == 120 && acupoint == 0) {
             bindBetButton();
         } else {
             Cookies.remove('show_game_rules');
