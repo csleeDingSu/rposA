@@ -652,6 +652,7 @@ return [
 	'draw_details'=>'Draw Details',
 	'win' => 'win',
 	'lose' => 'lose',
+	'amended' => 'amended',
 	
 
 ];

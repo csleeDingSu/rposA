@@ -78,7 +78,10 @@ $(document).ready(function () {
         var wallet_point = parseFloat($('#hid_wallet_point').val()).toFixed(2);
         if (total > wallet_point) {
             $('.btn-confirm').html('金币不足');    
+        } else {
+            $('.btn-confirm').html('确认兑换');    
         }
+
         $('.span_price').html(total);        
     });
 
