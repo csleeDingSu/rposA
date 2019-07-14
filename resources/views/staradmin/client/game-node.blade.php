@@ -50,18 +50,6 @@
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
 			</div>
 
-
-			@if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0)
-			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper btn-vip-wrapper">
-					<a href="/vip">
-						<!--div class="btn-vip"></div-->
-						<div class="btn-rules-vip">进入VIP专场</div>
-					</a>
-					<div style="clear:both"></div>
-				</div>
-			</div>
-			@else
 			<div class="box" id="btn-vip-wrapper">
 				<div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper">
 						<!--div class="btn-vip"></div-->
@@ -69,7 +57,6 @@
 					<div style="clear:both"></div>
 				</div>
 			</div>
-			@endif
 
 			<input id="result" type="hidden" value="6">
 		    <input id="freeze_time" type="hidden" value="">
