@@ -656,7 +656,7 @@ return [
 	'CRPNT' => 'Credit Point',
 	'RPNT' => 'Redeem point',
 	'RBAL' => 'Redeem Balance',
-	'ABAL' => 'Added point',
+	'ABAL' => 'Added Balance',
 	'DBAL' => 'Deducted Balance',
 	'DPNT' => 'Deducted point',
 	'APPNT' => 'Accumulated point Redeemed',
