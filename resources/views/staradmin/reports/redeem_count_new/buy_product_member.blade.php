@@ -18,7 +18,7 @@
 	<td>{{ $list->id }}</td>
 	<td>{{ $list->created_at }}</td>
 	<td>		
-		{{ $list->package_name }}
+		{{ $list->product->name }}
 		</td>
 	<td>									
 		@switch($list->product->type)
