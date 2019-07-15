@@ -29,11 +29,11 @@
 		<label class="badge badge-warning">@lang('dingsu.active')</label>
 		@elseif ($list->redeem_status == 1)
 		<label class="badge badge-success">@lang('dingsu.redeemed')</label> 
-		@elseif ($list->redeem_status == 'confirmed')
+		@elseif ($list->redeem_status == 3)
 		<label class="badge badge-success">@lang('dingsu.confirmed')</label> 
-		@elseif ($list->redeem_status == 'rejected')
+		@elseif ($list->redeem_status == 0)
 		<label class="badge badge-danger">@lang('dingsu.rejected')</label> 
-		@elseif ($list->redeem_status == 'pending')
+		@elseif ($list->redeem_status == 1)
 		<label class="badge badge-info">@lang('dingsu.pending') @lang('dingsu.confirmation')</label> @else
 		<label class="badge badge-danger">@lang('dingsu.unknown') @lang('dingsu.status')</label> @endif
 		
