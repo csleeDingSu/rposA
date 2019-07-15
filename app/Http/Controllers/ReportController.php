@@ -280,7 +280,7 @@ class ReportController extends BaseController
 			
 		}
 		$result = $result->get();
-		print_r($result );die();
+		//print_r($result->product );die();
 		return view('reports.redeem_count_new.'.$page, ['result' => $result])->render(); 
 	}
 	
