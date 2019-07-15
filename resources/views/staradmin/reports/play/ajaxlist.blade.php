@@ -13,11 +13,11 @@
 										<th>@lang('dingsu.drawid')</th>
 										<th>@lang('dingsu.gameid')</th>
 										<th>@lang('dingsu.phone')</th>
+										<th>@lang('dingsu.bet_amount')</th>
 										<th>@lang('dingsu.game_result')</th>
 										<th>@lang('dingsu.play_result')</th>
 										<th>@lang('dingsu.play_status')</th>
-										<th>@lang('dingsu.bet_amount')</th>
-										<th>@lang('dingsu.status')</th>
+										
 							</tr>
 						</thead>
 						<tbody>
@@ -29,7 +29,10 @@
 	<td>{{ $list->played_time }}</td>
 	<td>{{ $list->draw_id }}</td>
 	<td>{{ $list->game_id }}</td>	
-	<td>{{ $list->phone }}</td>	
+	<td>{{ $list->phone }}</td>
+	<td>
+		{{ $list->bet_amount }}
+	</td>
 	<td>{{ $list->bet }}</td>
 	<td>{{ $list->game_result }}</td>
 	<td>
@@ -40,11 +43,9 @@
 		@endif
 	</td>
 							
-	<td>
-		{{ $list->bet_amount }}
-	</td>
 	
-	<td>
+	
+	<!-- <td>
 		@if($list->member_status == 0)
 		<label class="badge badge-success">@lang('dingsu.active')</label> 
 		@elseif ($list->member_status == 1)
@@ -53,7 +54,7 @@
 		<label class="badge badge-warning">@lang('dingsu.suspended')</label> 
 		@else 
 		@endif
-	</td>	
+	</td> -->	
 								
 								
 								
