@@ -212,7 +212,9 @@ class ReportController extends BaseController
 		switch ($pack)
 		{
 			case 'buyproduct':
-				$result =  \DB::table('view_buy_product_user_list')->where('product_id',$id); 
+				$page   = 'buy_product_member';	
+				//$result =  \DB::table('view_buy_product_user_list')->where('product_id',$id);
+				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('product_id', $id);
 				if ($type)
 				{
 					switch ($type)
