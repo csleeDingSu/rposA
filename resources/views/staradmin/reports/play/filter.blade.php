@@ -17,9 +17,9 @@
 						</div>
 						
 						<div class="col">
-							<label>@lang('dingsu.username')</label>
+							<label>@lang('dingsu.gameid')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
+								<input type="text" class="form-control typeahead tt-input" name="s_gameid" id="s_gameid" placeholder="@lang('dingsu.gameid')">
 							</div>
 						</div>
 						

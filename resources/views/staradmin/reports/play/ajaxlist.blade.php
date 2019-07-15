@@ -11,12 +11,12 @@
 								
 								<th>@lang('dingsu.played_time')</th>
 										<th>@lang('dingsu.drawid')</th>
+										<th>@lang('dingsu.gameid')</th>
+										<th>@lang('dingsu.phone')</th>
 										<th>@lang('dingsu.game_result')</th>
 										<th>@lang('dingsu.play_result')</th>
 										<th>@lang('dingsu.play_status')</th>
-										<th>@lang('dingsu.name')</th>
-										<th>@lang('dingsu.wechat') @lang('dingsu.name')</th>
-										<th>@lang('dingsu.wechat_status')</th>
+										<th>@lang('dingsu.bet_amount')</th>
 										<th>@lang('dingsu.status')</th>
 							</tr>
 						</thead>
@@ -28,6 +28,8 @@
 								
 	<td>{{ $list->played_time }}</td>
 	<td>{{ $list->draw_id }}</td>
+	<td>{{ $list->game_id }}</td>	
+	<td>{{ $list->phone }}</td>	
 	<td>{{ $list->bet }}</td>
 	<td>{{ $list->game_result }}</td>
 	<td>
@@ -37,22 +39,11 @@
 		<label class="badge badge-danger">@lang('dingsu.lose')</label> 		
 		@endif
 	</td>
-	<td>{{ $list->username }}</td>							
+							
 	<td>
-		{{ $list->wechat_name }}
+		{{ $list->bet_amount }}
 	</td>
-	<td>
-		@if($list->wechat_verification_status == 0)
-		<label class="badge badge-success">@lang('dingsu.verified')</label> 
-		@elseif ($list->wechat_verification_status == 1)
-		<label class="badge badge-info">@lang('dingsu.unverified')</label> 
-		@elseif ($list->wechat_verification_status == 2)
-		<label class="badge badge-warning">@lang('dingsu.rejected')</label> 
-		@elseif ($list->wechat_verification_status == 3)
-		<label class="badge badge-danger">@lang('dingsu.suspended')</label> 
-		@else 
-		@endif
-	</td>
+	
 	<td>
 		@if($list->member_status == 0)
 		<label class="badge badge-success">@lang('dingsu.active')</label> 
