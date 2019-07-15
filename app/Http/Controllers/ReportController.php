@@ -214,7 +214,7 @@ class ReportController extends BaseController
 			case 'buyproduct':
 				$page   = 'buy_product_member';	
 				//$result =  \DB::table('view_buy_product_user_list')->where('product_id',$id);
-				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail')->where('product_id', $id);
+				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail','member')->where('product_id', $id);
 				if ($type)
 				{
 					switch ($type)
