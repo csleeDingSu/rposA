@@ -55,5 +55,10 @@ class RedeemedProduct extends Model
         return $this->hasmany(ShippingDetail::class, 'order_id', 'id');
     }
 	
+	public function member()
+    {
+        return $this->belongsTo(\App\Members::class, 'member_id', 'id');
+    }
+	
 		
 }
