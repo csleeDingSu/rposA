@@ -6,6 +6,7 @@
     @parent
 
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
@@ -93,8 +94,6 @@
 
 	</div>
 	<!-- end information table -->
-
-	<h2 class="strikethrough"><span>已抽奖<div class="span-play-count">0</div>次</span></h2>
 
 	<!-- swiper iframe -->
 	<div class="swiper-container">
@@ -246,7 +245,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">开始抽奖</div>
+				<div id="txtCounter" class="middle-label">点击抽奖</div>
 				<div class="DB_G_hand start-game"></div>
 		    </div>
 		</div>
@@ -309,102 +308,39 @@
 	<!-- progress bar -->
 	<section class="barWrapper">
       	<article class="barBox">
-	      <div class="rule">
-	          <h2 class="payout-info hide"></h2>
-	        <ul>
-	          <li>
-	            <span class="span-1">1</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-2">3</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-3">7</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-4">15</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-5">31</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	          <li>
-	            <span class="span-6">63</span>
-	            <dl>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	              <dd></dd>
-	            </dl>
-	          </li>
-	        </ul>
-	      </div>
-
-	      <p style="font-size:0px;"><span class="span-balance">120</span> / 120</p>
-	        
-	      <div class="barIn">
-	        <a id="viewgamerules"><p><span class="result-info"></span><span class="viewgamerules">玩法说明</span></p></a>
-	        <div class="barImg"></div>
-	      </div>
+	      <div class="rule"></div>
+	      <div class="rule-content"><span class="span-content">上局亏了1金币，这局请投3金币</span> <span id="viewgamerules" class="span-rule">玩法说明></span></div>
+	      <div class="col-xs-2">
+		        <div class="bet-box">
+		        	<div data-level="1" class="button-bet-default">1</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">		        	
+		        	<div data-level="2" class="button-bet-default">3</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">
+		        	<div data-level="3" class="button-bet-default">7</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">		        	
+		        	<div data-level="4" class="button-bet-default">15</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">
+		        	<div data-level="5" class="button-bet-default">31</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">		        	
+		        	<div data-level="6" class="button-bet-default">63</div>
+		        </div>
+		    </div>
+		    <div style="clear: both;"></div>
 
 	      <!-- button wrapper -->
 		<div class="button-wrapper">

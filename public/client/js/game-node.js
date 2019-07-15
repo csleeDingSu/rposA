@@ -202,6 +202,24 @@ try {
             previous_result = latest_result[0].result;
         }
 
+        showContent();
+        $( ".button-bet-default" ).each(function() {
+            $( this ).removeClass( "button-bet-inactive" );
+            $( this ).removeClass( "button-bet-active" );
+
+            if($( this ).attr('data-level') < level){
+                $( this ).addClass( "button-bet-inactive" );
+            } else if($( this ).attr('data-level') == level){
+                $( this ).addClass( "button-bet-active" );
+
+                $( ".button-bet-active" ).click(function(){
+                    $('.middle-label').html('开始抽奖');
+                    $('#btnPointer').attr("src","/client/images/wheel/pointer.png").addClass('ready');
+                    showPayoutBet();
+                });
+            }
+        });
+
         $('#hidLevel').val(level);
         $('#hidLatestResult').val(previous_result);
         $('#hidConsecutiveLose').val(consecutive_lose);
@@ -388,7 +406,8 @@ function resetGame() {
     $('div.clicked').removeClass('clicked').find('.bet-container').hide();
     $('.payout-info').addClass('hide');
     $('.spinning').css('visibility', 'hidden');
-    $('.middle-label').html('开始竞猜');
+    $('.middle-label').html('点击抽奖');
+    $('#btnPointer').attr("src","/client/images/wheel/pointer-default.png").removeClass('ready');
     $('.radio-primary').unbind('click');
     $('.small-border').removeClass('fast-rotate');
 
@@ -430,20 +449,28 @@ function setBalance() {
 }
 
 function checkSelection() {
-    var selected = $('div.clicked').find('input:radio').val();
-    if (typeof selected == 'undefined'){
-        $('.spinning').html('请先选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
-         $('.spinning').css('visibility', 'visible');
+    if($('#btnPointer').hasClass('ready')){
+        var selected = $('div.clicked').find('input:radio').val();
+        if (typeof selected == 'undefined'){
+            $('.spinning').html('请先选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
+             $('.spinning').css('visibility', 'visible');
+            setTimeout(function(){ 
+                $('.spinning').css('visibility', 'hidden');
+            }, 3000);
+        } else {
+            $('.middle-label').html('正在抽奖');
+            $('.DB_G_hand').hide();
+            $('.radio-primary').unbind('click');
+            $('#btnWheel').unbind('click');
+            bindSpinningButton();
+            startTimer(5, 5, 1);
+        }
+    } else {
+        $('.spinning').html('请先选择金币<br />再点击“开始抽奖”进行抽奖');
+        $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
             $('.spinning').css('visibility', 'hidden');
         }, 3000);
-    } else {
-        $('.middle-label').html('正在抽奖');
-        $('.DB_G_hand').hide();
-        $('.radio-primary').unbind('click');
-        $('#btnWheel').unbind('click');
-        bindSpinningButton();
-        startTimer(5, 5, 1);
     }
 }
 
@@ -562,27 +589,27 @@ function showPayout(){
 
     switch (level) {
         case 1:
-            //previous_bet = 0;
+            previous_bet = 0;
         break;
 
         case 2:
-            previous_bet = 10;
+            previous_bet = 1;
         break;
 
         case 3:
-            previous_bet = 30;
+            previous_bet = 3;
         break;
 
         case 4:
-            previous_bet = 70;
+            previous_bet = 7;
         break;
 
         case 5:
-            previous_bet = 150;
+            previous_bet = 15;
         break;
 
         case 6:
-            previous_bet = 310;
+            previous_bet = 31;
         break;
 
     }
@@ -708,6 +735,57 @@ function showPayout(){
     
 }
 
+function showPayoutBet(){
+    var level = parseInt($('#hidLevel').val());
+
+    var bet_amount = parseInt($('#hidBet').val());
+
+    switch (level) {
+        case 1:
+            previous_bet = 0;
+        break;
+
+        case 2:
+            previous_bet = 1;
+        break;
+
+        case 3:
+            previous_bet = 3;
+        break;
+
+        case 4:
+            previous_bet = 7;
+        break;
+
+        case 5:
+            previous_bet = 15;
+        break;
+
+        case 6:
+            previous_bet = 31;
+        break;
+
+    }
+
+    $('.odd-payout')
+          .prop('number', previous_bet)
+          .animateNumber(
+            {
+              number: bet_amount
+            },
+            500
+          );
+
+    $('.even-payout')
+      .prop('number', previous_bet)
+      .animateNumber(
+        {
+          number: bet_amount
+        },
+        500
+      );    
+}
+
 function bindCalculateButton(){
     $('.btn-calculate').click( function() {
         $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
@@ -781,6 +859,41 @@ function bindResetLifeButton(){
     });
 }
 
+function showContent() {
+    var level = parseInt($('#hidLevel').val());
+    var content = '';
+
+    switch (level) {
+
+        default:
+        case 1:
+            content = '这局请投1金币';
+        break;
+
+        case 2:
+            content = '上局亏了1金币，这局请投3金币';
+        break;
+
+        case 3:
+            content = '上局亏了3金币，这局请投7金币';
+        break;
+
+        case 4:
+            content = '上局亏了7金币，这局请投15金币';
+        break;
+
+        case 5:
+            content = '上局亏了15金币，这局请投31金币';
+        break;
+
+        case 6:
+            content = '上局亏了31金币，这局请投63金币';
+        break;
+    }
+
+    $('.span-content').html(content);
+}
+
 function showProgressBar(bol_show){
     var level = parseInt($('#hidLevel').val());
     var consecutive_lose = $('#hidConsecutiveLose').val();
@@ -816,7 +929,7 @@ function showProgressBar(bol_show){
 
             default:
             case 1:
-                previous_bet = current_bet;
+                previous_bet = 1;
                 current_bet = 1;                
 
                 payout_info = '押注1元，猜对+1，猜错-1。';
@@ -1192,8 +1305,8 @@ DomeWebController = {
 
         that.getEle("$wheelContainer").wheelOfFortune({
             'wheelImg': "/client/images/wheel.png",//转轮图片
-            'pointerImg': "/client/images/pointer.png",//指针图片
-            'buttonImg': "/client/images/pointer.png",//开始按钮图片
+            'pointerImg': "/client/images/wheel/pointer-default.png",//指针图片
+            'buttonImg': "/client/images/wheel/pointer-default.png",//开始按钮图片
             'wSide': 200,//转轮边长(默认使用图片宽度)
             'pSide': 100,//指针边长(默认使用图片宽度)
             'bSide': 50,//按钮边长(默认使用图片宽度)

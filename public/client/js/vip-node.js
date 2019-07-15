@@ -476,6 +476,7 @@ function setBalance() {
 
 function checkSelection() {
     var selected = $('div.clicked').find('input:radio').val();
+
     if (parseInt($('.span-bet').val()) == 0) {
         $('.spinning').html('请投入竞猜金币<br />再点击“开始抽奖”进行抽奖');
          $('.spinning').css('visibility', 'visible');
@@ -590,6 +591,8 @@ function bindBetButton(){
         var initial_bet = parseInt($('.span-bet').val());
         var final_bet = add_bet + initial_bet;
 
+        $('#btnPointer').attr("src","/client/images/wheel/pointer.png");
+
         if(final_bet <= g_vip_point){
             $('.span-bet').val(final_bet);
             previous_bet = final_bet;
@@ -646,6 +649,7 @@ function bindBetButton(){
         $('.span-bet').val(0);
         showPayout();
         previous_bet = 0;
+        $('#btnPointer').attr("src","/client/images/wheel/pointer-default.png");
     });
 
     $('.button-bet-all').click(function(){
