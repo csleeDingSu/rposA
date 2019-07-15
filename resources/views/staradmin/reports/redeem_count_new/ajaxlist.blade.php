@@ -51,6 +51,8 @@
 									<label class="badge badge-warning">@lang('dingsu.inactive')</label> 
 									@elseif ($list->package_status == 3)
 									<label class="badge badge-danger">@lang('dingsu.suspended')</label> 
+									@elseif ($list->package_status == 0)
+									<label class="badge badge-danger">@lang('dingsu.suspended')</label> 
 									@else 
 									@endif
 								
