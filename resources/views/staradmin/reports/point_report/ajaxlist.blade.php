@@ -22,10 +22,21 @@
 						<tbody>
 							@foreach($result as $list)
 							
-							@if($list->credit_type=='ABAL' or $list->credit_type=='DBAL')
+							@if($list->credit_type=='ABAL')
 							@php
 								$list->credit = $list->credit /10;
+								$list->balance_before  = $list->balance_before /10;
+								$list->balance_after  = $list->balance_after /10;
+							@endphp
+							@elseif($list->credit_type=='DBAL')
+							@php
 								$list->debit  = $list->debit /10;
+								$list->balance_before  = $list->balance_before /10;
+								$list->balance_after  = $list->balance_after /10;
+							@endphp
+							@elseif($list->credit_type=='RBAL')
+							@php
+								$list->credit  = $list->credit /10;
 								$list->balance_before  = $list->balance_before /10;
 								$list->balance_after  = $list->balance_after /10;
 							@endphp
