@@ -211,7 +211,7 @@ class ReportController extends BaseController
 		
 		switch ($pack)
 		{
-			case 'buy_product':
+			case 'buyproduct':
 				$result =  \DB::table('view_buy_product_user_list')->where('product_id',$id); 
 				if ($type)
 				{
@@ -275,9 +275,7 @@ class ReportController extends BaseController
 					}					
 				}
 			break;
-			case 'vip':
-				$result = $result->where('bet','even');
-			break;
+			
 		}
 		$result = $result->get();
 		return view('reports.redeem_count_new.'.$page, ['result' => $result])->render(); 
