@@ -90,7 +90,7 @@
                         '</div>' +
                     '</div>' +
                     '<div id="btnWheel" class="trigger">&nbsp;</div>' +
-                    '<img id="btnPointer" src="/client/images/wheel/pointer.png" width="36%" class="middle" b>';
+                    '<img id="btnPointer" src="/client/images/wheel/pointer-default.png" width="36%" class="middle" b>';
 
             html += '<script>' +
                     'bindTriggerButton();' +
