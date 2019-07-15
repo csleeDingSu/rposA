@@ -21,7 +21,7 @@
 		{{ $list->package_name }}
 		</td>
 	<td>									
-		@switch($list->type)
+		@switch($list->product->type)
 			@case('1')
 				<label class="badge badge-success">@lang('dingsu.virtual_card')</label>
 				@break
