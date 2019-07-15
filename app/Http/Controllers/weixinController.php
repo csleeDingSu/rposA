@@ -25,7 +25,7 @@ class weixinController extends BaseController
 
         $type = !empty($type) ? $type : (empty($request->input('type')) ? 'snsapi_base' : 'snsapi_userinfo');
         $getUserInfo = 'getUserInfo_' . $type;
-        $appid='你的AppId';
+        $appid=env('weixinid');//'你的AppId';
         $redirect_uri =  urlencode(env('APP_URL') . "/" . $getUserInfo);
         $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
 
@@ -84,8 +84,8 @@ class weixinController extends BaseController
     public function getUserInfo_snsapi_base(Request $request)
     {
 
-        $appid = "你的AppId";  
-        $secret = "你的AppSecret";  
+        $appid = env('weixinid'); //"你的AppId";  
+        $secret = env('weixinsecret');//"你的AppSecret";  
         $code = $request->input('code');
  
         //第一步:取全局access_token
@@ -109,8 +109,8 @@ class weixinController extends BaseController
 
     public function getUserInfo_snsapi_userinfo(Request $request)
     {
-        $appid = "你的AppId";  
-        $secret = "你的AppSecret";  
+        $appid = env('weixinid'); //"你的AppId";  
+        $secret = env('weixinsecret');//"你的AppSecret";  
         $code = $request->input('code');
  
         //第一步:取得openid
