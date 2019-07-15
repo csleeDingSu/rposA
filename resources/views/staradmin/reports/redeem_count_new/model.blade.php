@@ -13,18 +13,8 @@
 					<div class="row">
 						<div class="col-md-12">	
 							<div class="table-responsive">				
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>@lang('dingsu.id')</th>
-										<th>@lang('dingsu.create_Date')</th>
-										<th>@lang('dingsu.package') @lang('dingsu.name')</th>
-										<th>@lang('dingsu.username')</th>										
-										<th>@lang('dingsu.status')</th>										
-									</tr>
-								</thead>
-								<tbody class="memberlist" id="memberlist">
-								</tbody>
+							<table class="table table-hover memberlist" id="memberlist">
+								
 								</table>
 							</div>
 						</div>

@@ -744,9 +744,8 @@
 
 
 <!-- VIP Modal -->
-
 	<div class="modal fade col-md-12" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
-		<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-dialog modal-sm close-modal" role="document">
 			<div class="modal-content vip-background">
 				<div class="modal-body">				
 					<div class="modal-row">
@@ -764,7 +763,10 @@
 											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
 										</ul>
 									</div>
-									<a href="/membership/buy/vip"><div class="btn-vip-submit">120元开通会员</div></a>
+									<!-- <a href="/membership/buy/vip"><div class="btn-vip-submit">120元开通会员</div></a> -->
+									<div class="close-modal modal-warning-button">
+										知道了
+									</div>
 								</div>								
 							</div>
 						</div>
@@ -978,17 +980,17 @@
 
 			$('#viewgamerules').on('click', showGameRules);
 
-			// $('.btn-vip-modal .btn-rules-vip').html('如何赚红包').addClass('btn-rules-normal');
+			$('.btn-vip-modal .btn-rules-vip').html('如何获得红包').addClass('btn-rules-normal');
 
 			// $('.btn-vip-modal').on('click', showGameRules);
 
-			// $('.btn-vip-modal').click( function() {
-		 //        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
-		 //    });
-
-		 	$('.btn-vip-modal').click( function() {
-		        $('#vip-modal').modal({backdrop: 'static', keyboard: false});
+			$('.btn-vip-modal').click( function() {
+		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
 		    });
+
+		 	// $('.btn-vip-modal').click( function() {
+		  //       $('#vip-modal').modal({backdrop: 'static', keyboard: false});
+		  //   });
 
 			if (user_id <= 0) {
 				openmodel();

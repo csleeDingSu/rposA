@@ -1,4 +1,13 @@
-
+<thead>
+<tr>
+<th>@lang('dingsu.id')</th>
+<th>@lang('dingsu.create_Date')</th>
+<th>@lang('dingsu.package') @lang('dingsu.name')</th>
+<th>@lang('dingsu.username')</th>										
+<th>@lang('dingsu.status')</th>										
+</tr>
+</thead>
+<tbody >
 @foreach ($result as $key=>$list)
 <tr id="tr">
 	<td>{{ $list->id }}</td>
@@ -31,4 +40,4 @@
 	</td>							
 </tr>
 @endforeach
-				
+	</tbody >			

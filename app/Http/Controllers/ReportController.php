@@ -211,6 +211,29 @@ class ReportController extends BaseController
 		
 		switch ($pack)
 		{
+			case 'buyproduct':
+				$page   = 'buy_product_member';	
+				//$result =  \DB::table('view_buy_product_user_list')->where('product_id',$id);
+				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail','member')->where('product_id', $id);
+				if ($type)
+				{
+					switch ($type)
+					{
+						case 'all':
+						break;
+						case 'rejected':
+							$result = $result->where('redeem_state',0);
+						break;	
+						case 'reserved':
+							$result = $result->where('redeem_state',1);
+						break;
+						case 'used':
+							$result = $result->wherein('redeem_state',[2,3,4]);
+						break;	
+					}					
+				}
+			break;
+			
 			case 'product':
 				$page = 'product_member';	
 				$result =  \DB::table('view_redeem_history_all')->where('pid',$id); 
@@ -254,11 +277,10 @@ class ReportController extends BaseController
 					}					
 				}
 			break;
-			case 'vip':
-				$result = $result->where('bet','even');
-			break;
+			
 		}
 		$result = $result->get();
+		//print_r($result->product );die();
 		return view('reports.redeem_count_new.'.$page, ['result' => $result])->render(); 
 	}
 	
@@ -270,8 +292,8 @@ class ReportController extends BaseController
 		{
 			$drawid = '0';
 		}		
-		$result =  \DB::table('report_played_member')->where('game_id','101');
-		
+		$result =  \DB::table('report_played_member');
+		//->where('game_id','101')
 		//filters
 		$input = array();		
 		parse_str($request->_data, $input);
@@ -282,8 +304,8 @@ class ReportController extends BaseController
     	if ($input) 
 		{
 			//filter					
-			if (!empty($input['s_username'])) {
-				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			if (!empty($input['s_gameid'])) {
+				$result = $result->where('game_id','LIKE', "%{$input['s_gameid']}%") ;				
 			}
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				

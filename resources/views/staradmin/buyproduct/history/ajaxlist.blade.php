@@ -11,9 +11,10 @@
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.product') @lang('dingsu.name')</th>
-								<th>@lang('dingsu.phone')</th>
+								<th>@lang('dingsu.phone')</th>								
 								<th>@lang('dingsu.product_price')</th>
-								<th>@lang('dingsu.buy_price')</th>
+								<th>@lang('dingsu.quantity')</th>
+								<th>@lang('dingsu.used_point')</th>
 								<th>@lang('dingsu.status')</th>
 							</tr>
 						</thead>
@@ -22,16 +23,16 @@
 							<tr id="tr_{{ $list->id }}">
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
-								<td>{{ $list->name }}</td>
+								<td>{{ $list->package_name }}</td>
 								<td>
 									{{ $list->phone }}
 								</td>
 								<td>
-									{{ $list->price }}
+									{{ $list->point_to_redeem }}
 								</td>
-								<td>
-									{{ $list->used_point }}
-								</td>
+								<td>{{ $list->quantity }}</td>								
+								<td>{{ $list->used_point }}</td>
+								
 								<td id="statustd_{{ $list->id }}">
 									@if($list->redeem_state == 0)
 									<label class="badge badge-warning" data-custom-class="tooltip-danger" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ $list->reject_notes }}">@lang('dingsu.rejected')</label> 
