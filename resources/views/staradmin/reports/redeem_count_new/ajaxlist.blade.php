@@ -26,19 +26,19 @@
 							<tr id="tr">
 								<td>{{ $list->type }}</td>
 								<td>
-									<button type="button" data-type="all" data-id="{{$list->package_id}}" data-count="{{$list->total}}" data-producttype="{{$list->type}}" class="btn   Showmembers"> {{ $list->total }} </button>
+									<span type="button" data-type="all" data-id="{{$list->package_id}}" data-count="{{$list->total}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-success Showmembers"> {{ $list->total }} </span>
 								</td>
 								<td>
-									<button type="button" data-type="used" data-id="{{$list->package_id}}" data-count="{{$list->used_quantity}}" data-producttype="{{$list->type}}" class="btn   Showmembers"> {{ $list->used_quantity }} </button>
+									<span type="button" data-type="used" data-id="{{$list->package_id}}" data-count="{{$list->used_quantity}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-success Showmembers"> {{ $list->used_quantity }} </span>
 								</td>
 								
 								<td id="reserved_quantity">
 								
-									<button type="button" data-type="reserved" data-id="{{$list->package_id}}" data-count="{{$list->reserved_quantity}}" data-producttype="{{$list->type}}" class="btn   Showmembers"> {{ $list->reserved_quantity }} </button>
+									<span type="button" data-type="reserved" data-id="{{$list->package_id}}" data-count="{{$list->reserved_quantity}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-warning Showmembers"> {{ $list->reserved_quantity }} </span>
 								</td>
 								<td id="rejected_quantity">
 								
-									<button type="button" data-type="rejected" data-id="{{$list->package_id}}" data-count="{{$list->rejected_quantity}}" data-producttype="{{$list->type}}" class="btn   Showmembers"> {{ $list->rejected_quantity }} </button>
+									<span type="button" data-type="rejected" data-id="{{$list->package_id}}" data-count="{{$list->rejected_quantity}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-danger Showmembers"> {{ $list->rejected_quantity }} </span>
 								</td>
 								<td>{{ $list->package_name }}</td>
 								<td>{{ $list->package_price }}</td>
