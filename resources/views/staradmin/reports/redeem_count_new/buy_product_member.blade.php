@@ -47,11 +47,11 @@
 		
 		
 		
-		@if ($list->redeem_status == 3)
+		@if ($list->redeem_state == 3)
 		<label class="badge badge-success">@lang('dingsu.confirmed')</label> 
-		@elseif ($list->redeem_status == 0)
+		@elseif ($list->redeem_state == 0)
 		<label class="badge badge-danger">@lang('dingsu.rejected')</label> 
-		@elseif ($list->redeem_status == 1)
+		@elseif ($list->redeem_state == 1)
 		<label class="badge badge-info">@lang('dingsu.pending') @lang('dingsu.confirmation')</label> @else
 		<label class="badge badge-danger">@lang('dingsu.unknown') @lang('dingsu.status')</label> @endif
 		
