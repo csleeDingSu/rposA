@@ -291,8 +291,8 @@ class ReportController extends BaseController
 		{
 			$drawid = '0';
 		}		
-		$result =  \DB::table('report_played_member')->where('game_id','101');
-		
+		$result =  \DB::table('report_played_member');
+		//->where('game_id','101')
 		//filters
 		$input = array();		
 		parse_str($request->_data, $input);
