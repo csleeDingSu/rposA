@@ -15,7 +15,7 @@
 	<td>{{ $list->id }}</td>
 	<td>{{ $list->created_at }}</td>
 	<td>		
-		{{ $list->pin_name }}
+		{{ $list->package_name }}
 		</td>
 	<td>
 		{{ $list->phone }}  
