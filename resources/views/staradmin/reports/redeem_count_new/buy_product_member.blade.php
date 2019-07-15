@@ -38,7 +38,7 @@
 		{{ $list->phone }}  
 	</td>
 	<td>
-		{{ $list->point_to_redeem }}
+		{{ $list->product->point_to_redeem }}
 	</td>
 	<td>{{ $list->quantity }}</td>								
 	<td>{{ $list->used_point }}</td>
