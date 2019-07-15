@@ -632,3 +632,6 @@ Route::any('asyncmysqlevent/{api}/{drawid}', function ($api, $drawid) {
 	});
     $promise->wait();
 });
+
+Route::any( '/weixin/{type?}', 'weixinController@index' )->name( 'weixin.index' );
+Route::any( '/weixin/getUserInfo', 'weixinController@getUserInfo' )->name( 'weixin.getUserInfo' );
