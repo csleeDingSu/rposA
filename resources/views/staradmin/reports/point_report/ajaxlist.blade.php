@@ -23,10 +23,12 @@
 							@foreach($result as $list)
 							
 							@if($list->credit_type=='ABAL' or $list->credit_type=='DBAL')
+							@php
 								$list->credit = $list->credit /10;
 								$list->debit  = $list->debit /10;
 								$list->balance_before  = $list->balance_before /10;
 								$list->balance_after  = $list->balance_after /10;
+							@endphp
 							@endif
 							
 							<tr id="tr_{{ $list->id }}">
