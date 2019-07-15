@@ -1,6 +1,4 @@
-<div class="row">
-
-	
+<div class="row">	
 
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
@@ -28,41 +26,12 @@
 							<div id="bloodhound">
 								<select id="s_type" name="s_type" class="form-control">
 									<option value="" selected>@lang('dingsu.default_select')</option>
-									<option value="CRPNT">@lang('dingsu.credit') @lang('dingsu.point')</option>
-									<option value="RPNT">@lang('dingsu.redeem') @lang('dingsu.point')</option>
-									<option value="RBAL">@lang('dingsu.redeem') @lang('dingsu.balance')</option>
-									<option value="ABAL">@lang('dingsu.added') @lang('dingsu.balance')</option>
-									<option value="APNT">@lang('dingsu.added') @lang('dingsu.point')</option>
-									<option value="DBAL">@lang('dingsu.deducted') @lang('dingsu.balance')</option>
-									<option value="DPNT">@lang('dingsu.deducted') @lang('dingsu.point')</option>
-									<option value="APPNT">@lang('dingsu.acpoint') @lang('dingsu.redeemed')</option>
-									<option value="ALFE">@lang('dingsu.added') @lang('dingsu.life')</option>
-									<option value="APVIP">@lang('dingsu.added') @lang('dingsu.vip') @lang('dingsu.point')</option>
-									<option value="DPVIP">@lang('dingsu.deducted') @lang('dingsu.vip') @lang('dingsu.point')</option>
-									<option value="ALVIP">@lang('dingsu.added') @lang('dingsu.vip') @lang('dingsu.life')</option>
-									<option value="DLVIP">@lang('dingsu.deducted') @lang('dingsu.vip') @lang('dingsu.life')</option>
-									<option value="DLRVL">@lang('dingsu.reset') @lang('dingsu.vip') @lang('dingsu.life')</option>
-									<option value="APMNT">@lang('dingsu.vip') @lang('dingsu.point') @lang('dingsu.merged')</option>
-									<option value="APRFN">@lang('dingsu.vip') @lang('dingsu.refund')</option>
-									<option value="ALPRV">@lang('dingsu.added_vip_life_by_redeemed') @lang('dingsu.package')</option>
-									<option value="APLRV">@lang('dingsu.added_vip_point_by_redeemed')</option>
-									
-									<option value="WVRFE">@lang('dingsu.fee') </option>
-									<option value="ALACL">@lang('dingsu.admin') @lang('dingsu.amended') @lang('dingsu.life')</option>
-									<option value="ALILE">@lang('dingsu.introduction') @lang('dingsu.life')</option>
-									<option value="APACP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.point')</option>
-									<option value="APAVP">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.point')</option>
-									<option value="ALAVL">@lang('dingsu.admin') @lang('dingsu.add') @lang('dingsu.vip') @lang('dingsu.life')</option>
-									<option value="DPRPO">@lang('dingsu.redeem_product_using_point')</option>
-									<option value="DPBVP">@lang('dingsu.buy_vip_using_point')</option>
-									
-									
-									<option value="APBPR">@lang('dingsu.addedbasicpoint')</option>
-									<option value="ALBPR">@lang('dingsu.addedbasiclife')</option>
+									@foreach($type_list as $type)
+										<option value="{{ $type->type }}">@lang('dingsu.'.$type->name) </option>
+									@endforeach									
 								</select>
 							</div>
-						</div>
-						
+						</div>						
 						
 						<div class="col">
 							<label>@lang('dingsu.sort_by')</label>
@@ -85,8 +54,7 @@
 					</form>
 				</div>
 			</div>
-		</div>
-	
+		</div>	
 </div>
 
 

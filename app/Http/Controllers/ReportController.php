@@ -110,7 +110,8 @@ class ReportController extends BaseController
 				
 		if ($request->ajax()) {
             return view('reports.point_report.ajaxlist', ['result' => $result])->render();  
-        }					
+        }	
+		$data['type_list']   = \App\LedgerType::where('status',1)->get();
 		return view('main', $data);	
 	}
 	
