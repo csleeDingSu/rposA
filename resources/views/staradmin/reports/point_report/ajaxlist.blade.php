@@ -21,29 +21,35 @@
 						</thead>
 						<tbody>
 							@foreach($result as $list)
+							@php
+							$list->changed = '';
+							@endphp
 							
 							@if($list->credit_type=='ABAL')
 							@php
 								$list->credit = $list->credit /10;
 								$list->balance_before  = $list->balance_before /10;
 								$list->balance_after  = $list->balance_after /10;
+							$list->changed = 'ya';
 							@endphp
 							@elseif($list->credit_type=='DBAL')
 							@php
 								$list->debit  = $list->debit /10;
 								$list->balance_before  = $list->balance_before /10;
 								$list->balance_after  = $list->balance_after /10;
+							$list->changed = 'ya';
 							@endphp
 							@elseif($list->credit_type=='RBAL')
 							@php
 								$list->credit  = $list->credit /10;
 								$list->balance_before  = $list->balance_before /10;
 								$list->balance_after  = $list->balance_after /10;
+							$list->changed = 'ya';
 							@endphp
 							@endif
 							
 							<tr id="tr_{{ $list->id }}">
-								<td>{{ $list->id }}</td>
+								<td>{{ $list->id }} - {{ $list->changed }}</td>
 								<td>{{ $list->created_at }}</td>
 								<td>{{ $list->phone }}</td>
 								<td>{{ $list->credit }}</td>
