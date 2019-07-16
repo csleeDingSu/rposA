@@ -122,7 +122,7 @@ class weixinController extends BaseController
 
         if (!empty($userinfo['openid'])) {
             //Create / update 
-            $filter = ['openid' => $userinfo['openid']，'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
+            $filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
             $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
             $res_id = weixin::updateOrCreate($filter, $array)->id;
         }
@@ -167,7 +167,7 @@ class weixinController extends BaseController
 
         if (!empty($userinfo['openid'])) {
             //Create / update 
-            $filter = ['openid' => $userinfo['openid']， 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
+            $filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
             $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
             $res_id = weixin::updateOrCreate($filter, $array)->id;
         }
