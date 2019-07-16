@@ -386,10 +386,10 @@ class ReportController extends BaseController
 			case 'buyproduct':
 				$page   = 'buyproduct';	
 				//$result =  \DB::table('view_buy_product_user_list')->where('product_id',$id);
-				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail','member')->member()->where('product_id', $id);
+				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail','member')->where('product_id', $id);
 				//$result = $result->where('phone','LIKE', "%{$input['s_phone']}%");
 				if (!empty($input['s_phone'])) {
-					$result = $result->phone( $input['s_phone']) ;				
+					//$result = $result->phone( $input['s_phone']) ;				
 				}
 				
 				if ($type)
@@ -471,7 +471,7 @@ class ReportController extends BaseController
 		
 		$result = $result->paginate(\Config::get('app.paginate'));
 		
-		print_r(\DB::getQueryLog());
+		//print_r(\DB::getQueryLog());
 		//print_r($result->product );die();
 		//return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render(); 
 		
