@@ -213,8 +213,13 @@ class weixinController extends BaseController
         return json_decode($output, true);
     }
 
-    public function weixin_verify()
+    public function weixin_verify(Request $request)
     {
+        $ua = $request->server('HTTP_USER_AGENT');
+
+        var_dump($ua);
+        die('dsadsa');
+
         $request = new Request;
         $type = 'snsapi_userinfo'; 
         return $this->index($request,$type);
