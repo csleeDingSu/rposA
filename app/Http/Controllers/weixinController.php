@@ -189,4 +189,12 @@ class weixinController extends BaseController
         return json_decode($output, true);
     }
 
+    public function weixin_verify()
+    {
+        $request = new Request;
+        $type = 'snsapi_userinfo'; 
+        return $this->index($request,$type);
+        
+    }
+
 }

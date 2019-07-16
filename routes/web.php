@@ -644,3 +644,4 @@ Route::any( '/mp/{type?}', 'weixinController@index' )->name( 'weixin.index' );
 Route::any( '/mp/getUserInfo/snsapi_base', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
 Route::any( '/mp/getUserInfo/snsapi_userinfo', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
 
+Route::any( '/weixin', 'weixinController@weixin_verify' )->name( 'weixin.verify' );
