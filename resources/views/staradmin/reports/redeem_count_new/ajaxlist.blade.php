@@ -26,20 +26,37 @@
 							<tr id="tr">
 								<td>{{ $list->type }}</td>
 								<td>
+									@if($list->total > 0)
 									<a target="_blank" href="/report/redeem-details?type=all&pid={{$list->package_id}}&producttype={{$list->type}}"  data-type="all" data-id="{{$list->package_id}}" data-count="{{$list->total}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-primary "> {{ $list->total }} </a>
+									@else 
+										0
+									@endif
 								</td>
 								<td>
+									@if($list->used_quantity > 0)
+									
 									<a target="_blank" href="/report/redeem-details?type=used&pid={{$list->package_id}}&producttype={{$list->type}}"
 									    data-type="used" data-id="{{$list->package_id}}" data-count="{{$list->used_quantity}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-success "> {{ $list->used_quantity }} </a>
+									@else 
+										0
+									@endif
 								</td>
 								
 								<td id="reserved_quantity">
+									@if($list->reserved_quantity > 0)
 								<a target="_blank" href="/report/redeem-details?type=reserved&pid={{$list->package_id}}&producttype={{$list->type}}"
 									data-type="reserved" data-id="{{$list->package_id}}" data-count="{{$list->reserved_quantity}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-warning "> {{ $list->reserved_quantity }} </a>
+									@else 
+										0
+									@endif
 								</td>
 								<td id="rejected_quantity">
+									@if($list->rejected_quantity > 0)
 								<a target="_blank" href="/report/redeem-details?type=rejected&pid={{$list->package_id}}&producttype={{$list->type}}"
 									 data-type="rejected" data-id="{{$list->package_id}}" data-count="{{$list->rejected_quantity}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-danger "> {{ $list->rejected_quantity }} </a>
+									@else 
+										0
+									@endif
 								</td>
 								<td>{{ $list->package_name }}</td>
 								<td>{{ $list->package_price }}</td>
