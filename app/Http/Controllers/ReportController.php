@@ -118,7 +118,7 @@ class ReportController extends BaseController
 	public function list_gameplayed (Request $request)
 	{
 				
-		$result =  \DB::table('report_played_count');
+		$result =  \DB::table('report_played_count')->where('game_id',101);
 		$input = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
