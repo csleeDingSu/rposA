@@ -18,12 +18,11 @@
 							@foreach($result as $list)							
 							
 							
-							<tr id="tr_{{ $list->draw_id }}">
+							<tr id="tr_">
 								<td>{{ $list->created_at }}</td>
 								<td>{{ $list->game_id }}</td>
 								<td id="playedusers_total">
-								<button type="button" data-type="all" data-id="{{$list->draw_id}}" data-count="{{$list->played_users}}" id="{{$list->draw_id}}" class="btn   Showplayedmembers  "> {{ $list->played_users }} </button>
-								
+								<button type="button" data-type="all" data-date="{{$list->created_at}}" data-id="{{$list->game_id}}" data-count="{{$list->played_users}}" class="btn   Showplayedmembers  "> {{ $list->played_users }} </button>								
 								</td>
 								
 							</tr>
