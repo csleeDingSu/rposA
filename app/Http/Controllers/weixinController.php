@@ -116,7 +116,7 @@ class weixinController extends BaseController
         if (!empty($userinfo['openid'])) {
             //Create / update 
             $filter = ['openid' => $userinfo['openid']];
-            $array = ['openid' => $userinfo['openid'], 'nickname' => $userinfo['nickname'], 'sex' => $userinfo['sex'], 'language' => $userinfo['language'], 'city' => $userinfo['city'], 'province' => $userinfo['province'], 'country' => $userinfo['country'], 'headimgurl' => $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
+            $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
             $res_id = weixin::updateOrCreate($filter, $array)->id;
         }
         
@@ -135,14 +135,32 @@ class weixinController extends BaseController
         $oauth2 = $this->getJson($oauth2Url);
         // var_dump($oauth2);
   
-        //第二步:根据全局access_token和openid查询用户信息  
-        $access_token = $oauth2["access_token"];  
-        $openid = $oauth2['openid'];  
-        $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
-        $userinfo = $this->getJson($get_user_info_url);
- 
+        if (empty($oauth2["access_token"])) {
+
+            return $oauth2;
+
+        } else {
+
+            //第二步:根据全局access_token和openid查询用户信息  
+            $access_token = $oauth2["access_token"];  
+            $openid = $oauth2['openid'];  
+            $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+            $userinfo = $this->getJson($get_user_info_url);
+                     
+        }
+
+        
         //打印用户信息
-        var_dump($userinfo);
+        // var_dump($userinfo);
+
+        if (!empty($userinfo['openid'])) {
+            //Create / update 
+            $filter = ['openid' => $userinfo['openid']];
+            $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
+            $res_id = weixin::updateOrCreate($filter, $array)->id;
+        }
+        
+        return $userinfo;
         
     }
 
