@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\MemberRegisterController;
+use App\Members;
 use App\weixin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,6 +35,13 @@ class weixinController extends BaseController
 
         // header("Location:".$url);
         return redirect()->to($url);
+
+        /*
+        $result = ['success' => true, 'openid' => '111222333444', 'nickname' => 'testwechatapi', 'headimgurl' => 'http', 'sex' => 0];
+
+        return $this->accessToWabao($result);
+        */
+
 
     }
 
@@ -130,7 +139,7 @@ class weixinController extends BaseController
         if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
             $result = ['success' => false, 'message' => 'not valid weixin detail'];
         } else {
-            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl']];
+            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex']];
         }
         
         // return $userinfo;
@@ -182,11 +191,14 @@ class weixinController extends BaseController
         if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
             $result = ['success' => false, 'message' => 'not valid weixin detail'];
         } else {
-            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl']];
+            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex']];
         }
+
+        //auto login / register
+        return $this->accessToWabao($result);
         
         // return $userinfo;
-        return $result;
+        // return $result;
         
     }
 
@@ -208,6 +220,31 @@ class weixinController extends BaseController
         $request = new Request;
         $type = 'snsapi_userinfo'; 
         return $this->index($request,$type);
+    }
+
+    public function accessToWabao($content)
+    {
+        if ($content['success'] == true) {
+            //is existing user
+            $user = Members::where('wechat_name',$content['nickname'])->select('*')->first();
+            if (empty($user)) {
+                //register new user
+                $reg = new MemberRegisterController;
+                $request = new Request;
+                $request->merge(['datav' => ['phone='.$content['nickname'].'&password='.$content['openid'].'&confirmpassword='.$content['openid'].'&wechat_name='.$content['nickname']]]); 
+                return $reg->doreg($request);
+            } else {
+                //login
+                $login = new MemberRegisterController;
+                $request = new Request;
+                $request->merge(['username' => $user->username]);
+                return $login->dologin($request);
+            }            
+
+        } else {
+            //to login screen
+            return redirect()->route('login');
+        }
     }
 
 }
