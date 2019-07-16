@@ -94,11 +94,13 @@ class weixinController extends BaseController
         \Log::info(json_encode(['weixin URL' => $url], true));
         
         $token = $this->getJson($url);
+        \Log::info(json_encode(['weixin token' => $token], true));
         // var_dump($token);
         
         //第二步:取得openid
         $oauth2Url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$secret&code=$code&grant_type=authorization_code";
         $oauth2 = $this->getJson($oauth2Url);
+        \Log::info(json_encode(['weixin oauth2' => $oauth2], true));
         // var_dump($oauth2);
   
         //第三步:根据全局access_token和openid查询用户信息  
@@ -109,7 +111,8 @@ class weixinController extends BaseController
         } else {
             $access_token = $token["access_token"];  
             $openid = empty($oauth2['openid']) ? null : $oauth2['openid'];  
-            $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+            //$get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+            $get_user_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
             \Log::info(json_encode(['weixin URL' => $get_user_info_url], true));
             $userinfo = $this->getJson($get_user_info_url);
         }
@@ -148,7 +151,8 @@ class weixinController extends BaseController
             //第二步:根据全局access_token和openid查询用户信息  
             $access_token = $oauth2["access_token"];  
             $openid = $oauth2['openid'];  
-            $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+            // $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+            $get_user_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
             $userinfo = $this->getJson($get_user_info_url);
 
         }
