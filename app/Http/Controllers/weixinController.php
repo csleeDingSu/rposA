@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\weixin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
