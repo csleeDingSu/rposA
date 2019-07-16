@@ -11,6 +11,7 @@
 								<th>#</th>										
 								<th>@lang('dingsu.played_time')</th>
 								<th>@lang('dingsu.drawid')</th>
+								<th>@lang('dingsu.gameid')</th>
 								<th>@lang('dingsu.game_result')</th>
 								<th>@lang('dingsu.play_result')</th>
 								<th>@lang('dingsu.play_status')</th>
@@ -29,6 +30,7 @@
 								<td>{{ $loop->iteration }}</td>	
 								<td>{{ $list->played_time }}</td>
 								<td>{{ $list->draw_id }}</td>
+								<td>{{ $list->game_id }}</td>
 								<td>{{ $list->bet }}</td>
 								<td>{{ $list->game_result }}</td>
 								<td>
