@@ -386,7 +386,7 @@ class ReportController extends BaseController
 			case 'buyproduct':
 				$page   = 'buyproduct';	
 				//$result =  \DB::table('view_buy_product_user_list')->where('product_id',$id);
-				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail','member')->where('product_id', $id)->where('phone', '101010');
+				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail','member')->where('product_id', $id)->where('member.phone', '101010');
 				//$result = $result->where('phone','LIKE', "%{$input['s_phone']}%");
 				if ($type)
 				{
