@@ -398,6 +398,41 @@ class ReportController extends BaseController
 	}
 	
 	
+	public function played_count_details (Request $request)
+	{
+				
+		$result =  \DB::table('played_count_by_date');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	//if ($input) 
+		//{
+			//filter					
+			if (!empty($request->gameid)) {
+				$result = $result->where('game_id', $request->gameid) ;				
+			}
+			
+			if (!empty($request->date)) {
+				$result = $result->where('created_at', $request->date) ;				
+			}
+		//}		
+		$result =  $result->orderby('created_at','ASC')->paginate(\Config::get('app.paginate'));
+				
+		$data['page']    = 'reports.playcount.list'; 	
+				
+		$data['result']  = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.playcount.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+	}
+	
+	
+	
+	
 	public function redeem_details (Request $request)
 	{
 		$id     = $request->pid;
