@@ -64,4 +64,3 @@
 {!! $result->render() !!}
 
 
-<br><br> test<br>
