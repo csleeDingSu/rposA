@@ -279,7 +279,8 @@ class ReportController extends BaseController
 			break;
 			
 		}
-		$result = $result->get();
+		//$result = $result->get();
+		$result = $result->paginate(\Config::get('app.paginate'));
 		//print_r($result->product );die();
 		return view('reports.redeem_count_new.'.$page, ['result' => $result])->render(); 
 	}
