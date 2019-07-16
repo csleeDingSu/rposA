@@ -127,7 +127,14 @@ class weixinController extends BaseController
             $res_id = weixin::updateOrCreate($filter, $array)->id;
         }
         
-        return $userinfo;
+        if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
+            $result = ['success' => false, 'message' => 'not valid weixin detail'];
+        } else {
+            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl']];
+        }
+        
+        // return $userinfo;
+        return $result;
         
     }
 
@@ -171,8 +178,15 @@ class weixinController extends BaseController
             $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
             $res_id = weixin::updateOrCreate($filter, $array)->id;
         }
+
+        if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
+            $result = ['success' => false, 'message' => 'not valid weixin detail'];
+        } else {
+            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl']];
+        }
         
-        return $userinfo;
+        // return $userinfo;
+        return $result;
         
     }
 
@@ -194,13 +208,16 @@ class weixinController extends BaseController
         $request = new Request;
         $type = 'snsapi_userinfo'; 
         $res = $this->index($request,$type);
-        if (empty($res['openid']) && empty($res['nickname'])) {
-            $result = ['success' => false, 'message' => 'not valid weixin detail'];
-        } else {
-            $result = ['success' => true, 'openid' => empty($res['openid']) ? null : $res['openid'], 'nickname' => empty($res['nickname']) ? null : $res['nickname'], 'headimgurl' => empty($res['headimgurl']) ? null : $res['headimgurl']];
-        }
+        // var_dump($res);
+        // die('dasda');
 
-        return $result;
+        // if (empty($res['openid']) && empty($res['nickname'])) {
+        //     $result = ['success' => false, 'message' => 'not valid weixin detail'];
+        // } else {
+        //     $result = ['success' => true, 'openid' => empty($res['openid']) ? null : $res['openid'], 'nickname' => empty($res['nickname']) ? null : $res['nickname'], 'headimgurl' => empty($res['headimgurl']) ? null : $res['headimgurl']];
+        // }
+
+        // return $result;
         
     }
 
