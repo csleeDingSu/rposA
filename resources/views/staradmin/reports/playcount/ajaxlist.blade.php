@@ -22,7 +22,7 @@
 								<td>{{ $list->created_at }}</td>
 								<td>{{ $list->game_id }}</td>
 								<td id="playedusers_total">
-									@if($list->total > 0)
+									@if($list->played_users > 0)
 									
 									<a target="_blank" href="/report/redeem-details?date={{$list->created_at}}&gameid={{$list->game_id}}"
 									 class="badge badge-pill badge-success"> {{ $list->played_users }} </a>	
