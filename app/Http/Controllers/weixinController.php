@@ -111,8 +111,8 @@ class weixinController extends BaseController
         } else {
             $access_token = $token["access_token"];  
             $openid = empty($oauth2['openid']) ? null : $oauth2['openid'];  
-            //$get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
-            $get_user_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
+            $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+            // $get_user_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
             \Log::info(json_encode(['weixin get_user_info_url' => $get_user_info_url], true));
             $userinfo = $this->getJson($get_user_info_url);
         }
