@@ -25,7 +25,7 @@ class weixinController extends BaseController
 
         $type = !empty($type) ? $type : (empty($request->input('type')) ? 'snsapi_base' : 'snsapi_userinfo');
         $getUserInfo = 'getUserInfo_' . $type;
-        $appid=/env('weixinid'); /'你的AppId';
+        $appid=env('weixinid'); //'你的AppId';
         $redirect_uri =  urlencode(env('APP_URL') . "/" . $getUserInfo);
         $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
 
