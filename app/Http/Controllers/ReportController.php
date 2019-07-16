@@ -419,12 +419,12 @@ class ReportController extends BaseController
 		//}		
 		$result =  $result->orderby('created_at','ASC')->paginate(\Config::get('app.paginate'));
 				
-		$data['page']    = 'reports.playcount.list'; 	
+		$data['page']    = 'reports.playcount.detail.list'; 	
 				
 		$data['result']  = $result; 
 				
 		if ($request->ajax()) {
-            return view('reports.playcount.ajaxlist', ['result' => $result])->render();  
+            return view('reports.playcount.detail.ajaxlist', ['result' => $result])->render();  
         }
 					
 		return view('main', $data);	

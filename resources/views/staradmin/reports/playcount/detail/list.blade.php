@@ -1,10 +1,10 @@
 
 <section class="filter">
-	@include('reports.playcount.filter')
+	@include('reports.playcount.detail.filter')
 </section>
 
 <section class="datalist">
-	@include('reports.playcount.ajaxlist')
+	@include('reports.playcount.detail.ajaxlist')
 </section>
 
 
