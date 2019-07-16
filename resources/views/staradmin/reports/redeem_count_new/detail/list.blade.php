@@ -1,15 +1,15 @@
 
 <section class="filter">
-	
+	@include('reports.redeem_count_new.detail.filter')
 </section>
 
 <section class="datalist">
-	@include('reports.redeem_count_new.ajaxlist')
+	@include($ajaxpage)
 </section>
 
 
 <section class="models">
-	@include('reports.redeem_count_new.model')
+	
 </section>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css"/>
