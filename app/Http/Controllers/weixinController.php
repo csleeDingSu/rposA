@@ -91,10 +91,12 @@ class weixinController extends BaseController
         //第一步:取全局access_token
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
         $token = getJson($url);
+        var_dump($token);
  
         //第二步:取得openid
         $oauth2Url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$secret&code=$code&grant_type=authorization_code";
         $oauth2 = getJson($oauth2Url);
+        var_dump($oauth2);
   
         //第三步:根据全局access_token和openid查询用户信息  
         $access_token = $token["access_token"];  
@@ -116,6 +118,7 @@ class weixinController extends BaseController
         //第一步:取得openid
         $oauth2Url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$secret&code=$code&grant_type=authorization_code";
         $oauth2 = getJson($oauth2Url);
+        var_dump($oauth2);
   
         //第二步:根据全局access_token和openid查询用户信息  
         $access_token = $oauth2["access_token"];  
