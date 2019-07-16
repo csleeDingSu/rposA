@@ -375,6 +375,12 @@ class ReportController extends BaseController
 		$pack   = $request->producttype;
 		$page   = 'basic_package';
 		
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	
+		
 		switch ($pack)
 		{
 			case 'buyproduct':
@@ -444,7 +450,20 @@ class ReportController extends BaseController
 			break;
 			
 		}
-		//$result = $result->get();
+		
+		
+		if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}			
+		}
+		
+		
+		
+		
+		
 		$result = $result->paginate(\Config::get('app.paginate'));
 		//print_r($result->product );die();
 		//return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render(); 
