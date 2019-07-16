@@ -22,7 +22,13 @@
 								<td>{{ $list->created_at }}</td>
 								<td>{{ $list->game_id }}</td>
 								<td id="playedusers_total">
-								<button type="button" data-type="all" data-date="{{$list->created_at}}" data-id="{{$list->game_id}}" data-count="{{$list->played_users}}" class="btn   Showplayedmembers  "> {{ $list->played_users }} </button>								
+									@if($list->total > 0)
+									
+									<a target="_blank" href="/report/redeem-details?date={{$list->created_at}}&gameid={{$list->game_id}}"
+									 class="badge badge-pill badge-success"> {{ $list->played_users }} </a>	
+									@else 
+										0
+									@endif
 								</td>
 								
 							</tr>
