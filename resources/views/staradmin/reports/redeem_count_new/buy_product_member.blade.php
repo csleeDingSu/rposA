@@ -60,3 +60,5 @@
 </tr>
 @endforeach
 </tbody>	
+
+{!! $result->render() !!}
