@@ -195,10 +195,8 @@ class weixinController extends BaseController
         }
 
         //auto login / register
-        return $this->accessToWabao($result);
-        
-        // return $userinfo;
-        // return $result;
+        // return $this->accessToWabao($result);
+        return $result;
         
     }
 
