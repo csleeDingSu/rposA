@@ -632,3 +632,10 @@ Route::any('asyncmysqlevent/{api}/{drawid}', function ($api, $drawid) {
 	});
     $promise->wait();
 });
+
+Route::any('MP_verify', function () {
+	// var_dump(public_path());
+		// die('dasdsa');
+		// return '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt';
+	echo \File::get(public_path() . '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt');
+});
