@@ -26,7 +26,7 @@
 							
 							
 							<tr id="tr_">
-								<td>{{ ++$key }}</td>	
+								<td>{{ $loop->iteration }}</td>	
 								<td>{{ $list->played_time }}</td>
 								<td>{{ $list->draw_id }}</td>
 								<td>{{ $list->bet }}</td>
