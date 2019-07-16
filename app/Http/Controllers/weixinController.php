@@ -27,8 +27,8 @@ class weixinController extends BaseController
         $type = !empty($type) ? $type : (empty($request->input('type')) ? 'snsapi_base' : 'snsapi_userinfo');
         $appid=env('weixinid'); //'你的AppId';
         $redirect_uri =  urlencode(env('APP_URL') . "/mp/getUserInfo/" . $type);
-        $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
-
+        $url ="https://mp.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
+        \Log::info(json_encode(['weixin URL' => $url], true));
         // var_dump($url);
 
         // header("Location:".$url);
@@ -90,6 +90,9 @@ class weixinController extends BaseController
  
         //第一步:取全局access_token
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
+
+        \Log::info(json_encode(['weixin URL' => $url], true));
+        
         $token = $this->getJson($url);
         // var_dump($token);
         
@@ -107,6 +110,7 @@ class weixinController extends BaseController
             $access_token = $token["access_token"];  
             $openid = $oauth2['openid'];  
             $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+            \Log::info(json_encode(['weixin URL' => $get_user_info_url], true));
             $userinfo = $this->getJson($get_user_info_url);
         }
         //打印用户信息
@@ -146,7 +150,7 @@ class weixinController extends BaseController
             $openid = $oauth2['openid'];  
             $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
             $userinfo = $this->getJson($get_user_info_url);
-                     
+
         }
 
         
