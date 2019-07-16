@@ -63,7 +63,9 @@
 				data: {
 					_method: 'get',
 					_token: "{{ csrf_token() }}",
-					_data: $( "#searchform" ).serialize()
+					_data: $( "#searchform" ).serialize(),
+					date: $( "#s_date" ).val(),
+					gameid: $( "#s_gameid" ).val(),
 				},
 			} ).done( function ( data ) {
 				$( '.datalist' ).html( data );
