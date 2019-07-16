@@ -278,12 +278,16 @@
 				<ul class="nav flex-column sub-menu">
 					<!-- <li class="nav-item">
 						<a class="nav-link" href="/report/redeem_life">@lang('dingsu.redeem_life')</a>
-					</li> -->
+					</li> 
+					<li class="nav-item">
+						<a class="nav-link" href="/report/redeem_product">@lang('dingsu.redeem_product')</a>
+					</li>
+					-->
 					<li class="nav-item">
 						<a class="nav-link" href="/report/point_report">@lang('dingsu.point_report')</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/report/redeem_product">@lang('dingsu.redeem_product')</a>
+						<a class="nav-link" href="/report/played-count">@lang('dingsu.played_count')</a>
 					</li>
 					
 					<li class="nav-item">
