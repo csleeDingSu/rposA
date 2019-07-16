@@ -640,7 +640,7 @@ Route::any('MP_verify', function () {
 	echo \File::get(public_path() . '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt');
 });
 
-Route::any( '/weixin/{type?}', 'weixinController@index' )->name( 'weixin.index' );
-Route::any( '/weixin/getUserInfo/snsapi_base', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
-Route::any( '/weixin/getUserInfo/snsapi_userinfo', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
+Route::any( '/mp/{type?}', 'weixinController@index' )->name( 'weixin.index' );
+Route::any( '/mp/getUserInfo/snsapi_base', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
+Route::any( '/mp/getUserInfo/snsapi_userinfo', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
 
