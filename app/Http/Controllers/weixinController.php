@@ -105,7 +105,7 @@ class weixinController extends BaseController
         $userinfo = $this->getJson($get_user_info_url);
  
         //打印用户信息
-        var_dump($userinfo);
+        // var_dump($userinfo);
         //array(16) { ["subscribe"]=> int(1) ["openid"]=> string(28) "oqafz03zBZ4wN8HZ8Q40YdkGX07o" ["nickname"]=> string(8) "Cheechee" ["sex"]=> int(1) ["language"]=> string(5) "zh_CN" ["city"]=> string(6) "杭州" ["province"]=> string(6) "浙江" ["country"]=> string(6) "中国" ["headimgurl"]=> string(126) "http://thirdwx.qlogo.cn/mmopen/PiajxSqBRaEIFcn25kkxQyyRpn2SiaO3Erhk9w9lO5GR59CSBhjdy8KphERdoLriaaRZXthDibI1maALaNiacBIK9vQ/132" ["subscribe_time"]=> int(1561867602) ["remark"]=> string(0) "" ["groupid"]=> int(0) ["tagid_list"]=> array(0) { } ["subscribe_scene"]=> string(16) "ADD_SCENE_SEARCH" ["qr_scene"]=> int(0) ["qr_scene_str"]=> string(0) "" }
 
         //Create / update 
