@@ -447,7 +447,19 @@ class ReportController extends BaseController
 		//$result = $result->get();
 		$result = $result->paginate(\Config::get('app.paginate'));
 		//print_r($result->product );die();
-		return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render(); 
+		//return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render(); 
+		
+		$data['page']    = 'reports.redeem_count_new.list'; 	
+				
+		$data['result']  = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+		
+		
 	}
 	
 	
