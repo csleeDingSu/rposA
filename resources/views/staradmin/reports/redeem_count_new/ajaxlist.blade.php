@@ -26,7 +26,7 @@
 							<tr id="tr">
 								<td>{{ $list->type }}</td>
 								<td>
-									<span type="button" data-type="all" data-id="{{$list->package_id}}" data-count="{{$list->total}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-primary Showmembers"> {{ $list->total }} </span>
+									<a href="/report/redeem-details?type=all&pid={{$list->package_id}}&producttype={{$list->type}}" type="button" data-type="all" data-id="{{$list->package_id}}" data-count="{{$list->total}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-primary Showmembers"> {{ $list->total }} </span>
 								</td>
 								<td>
 									<span type="button" data-type="used" data-id="{{$list->package_id}}" data-count="{{$list->used_quantity}}" data-producttype="{{$list->type}}" class="badge badge-pill badge-success Showmembers"> {{ $list->used_quantity }} </span>
