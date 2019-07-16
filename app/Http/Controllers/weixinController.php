@@ -193,7 +193,14 @@ class weixinController extends BaseController
     {
         $request = new Request;
         $type = 'snsapi_userinfo'; 
-        return $this->index($request,$type);
+        $res = $this->index($request,$type);
+        if (empty($res['openid']) && empty($res['nickname'])) {
+            $result = ['success' => false, 'message' => 'not valid weixin detail'];
+        } else {
+            $result = ['success' => true, 'openid' => empty($res['openid']) ? null : $res['openid'], 'nickname' => empty($res['nickname']) ? null : $res['nickname'], 'headimgurl' => empty($res['headimgurl']) ? null : $res['headimgurl']];
+        }
+
+        return $result;
         
     }
 
