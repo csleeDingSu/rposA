@@ -8,6 +8,7 @@ use App\weixin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Khsing\WechatAgent\WechatAgent;
 
 class weixinController extends BaseController
 {
@@ -215,9 +216,10 @@ class weixinController extends BaseController
 
     public function weixin_verify(Request $request)
     {
-        $ua = $request->server('HTTP_USER_AGENT');
+        $agent = new WechatAgent;
+        // $agent->is("Wechat");
 
-        var_dump($ua);
+        var_dump($agent->is("Wechat"));
         die('dsadsa');
 
         $request = new Request;
