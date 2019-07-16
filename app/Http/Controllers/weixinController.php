@@ -219,12 +219,16 @@ class weixinController extends BaseController
         $agent = new WechatAgent;
         // $agent->is("Wechat");
 
-        var_dump($agent->is("Wechat"));
-        die('dsadsa');
+        if ($agent->is("Wechat")) {
 
-        $request = new Request;
-        $type = 'snsapi_userinfo'; 
-        return $this->index($request,$type);
+            $request = new Request;
+            $type = 'snsapi_userinfo'; 
+            return $this->index($request,$type);
+
+        } else {
+            return ['success' => false, 'message' => 'Please open it in the WeChat. 请在微信浏览器中打开'];
+        }
+        
     }
 
     public function accessToWabao($content)
