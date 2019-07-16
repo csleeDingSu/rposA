@@ -46,6 +46,11 @@
 							</div>
 						</div>
 					</div>
+						
+						<input type="hidden" name="producttype" id="producttype" value="{{\Request::get('producttype')}}">
+						<input type="hidden" name="pid" id="pid" value="{{\Request::get('pid')}}">
+						<input type="hidden" name="type" id="type" value="{{\Request::get('type')}}">
+						
 					</form>
 				</div>
 			</div>

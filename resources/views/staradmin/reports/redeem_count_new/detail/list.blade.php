@@ -19,42 +19,7 @@
 	
 	$( function () {
 		
-		$(".datalist").on("click",".Showmembers", function() {
-			var id    = $(this).data('id');
-			var type  = $(this).data('type');
-			var count = $(this).data('count');
-			var ptype = $(this).data('producttype');
-			
-			//alert(id );
-			if (count)
-				{
-					swal( {
-						title: '@lang("dingsu.please_wait")',
-						text: '@lang("dingsu.updating_data")..',
-						allowOutsideClick: false,
-						closeOnEsc: false,
-						allowEnterKey: false,
-						buttons: false,
-						onOpen: () => {
-							swal.showLoading()
-						}
-					} )			
-
-					$.ajax({
-						url: "{{route('ajax_redeem_members')}}",
-						data: {_method: 'get', _token :"{{ csrf_token() }}",id:id,type:type,ptype:ptype},
-					}).done(function (data) {
-						$('.memberlist').html(data);
-						swal.close();
-						$('#childlist').modal('show');
-					}).fail(function () {
-						alert('child list could not be loaded.');
-						swal.close();
-					});					
-				}		
-		});
-
-
+		
 		$( ".filter" ).on( "click", ".search", function ( e ) {
 			e.preventDefault();
 			getdatalist( '' );
