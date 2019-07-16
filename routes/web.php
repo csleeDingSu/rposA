@@ -641,6 +641,6 @@ Route::any('MP_verify', function () {
 });
 
 Route::any( '/weixin/{type?}', 'weixinController@index' )->name( 'weixin.index' );
-Route::any( '/weixin/getUserInfo_snsapi_base', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
-Route::any( '/weixin/getUserInfo_snsapi_userinfo', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
+Route::any( '/weixin/getUserInfo/snsapi_base', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
+Route::any( '/weixin/getUserInfo/snsapi_userinfo', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
 
