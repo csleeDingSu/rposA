@@ -544,6 +544,10 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	Route::get( '/report/ledger', 'ReportController@ledger_details' )->name( 'ledger_details' );
 	
+	Route::get( '/report/redeem-details', 'ReportController@redeem_details' )->name( 'redeem_details' );
+	
+	
+	
 	
 	Route::get('/get-wallet/{id?}', function ( $id = 0) {
 		$data = \DB::table('view_members')->where('id',$id)->get();
@@ -632,3 +636,6 @@ Route::any('asyncmysqlevent/{api}/{drawid}', function ($api, $drawid) {
 	});
     $promise->wait();
 });
+
+Route::any( '/weixin/{type?}', 'weixinController@index' )->name( 'weixin.index' );
+Route::any( '/weixin/getUserInfo', 'weixinController@getUserInfo' )->name( 'weixin.getUserInfo' );

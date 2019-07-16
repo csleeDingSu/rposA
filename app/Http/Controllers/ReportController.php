@@ -118,7 +118,7 @@ class ReportController extends BaseController
 	public function list_gameplayed (Request $request)
 	{
 				
-		$result =  \DB::table('report_played_count');
+		$result =  \DB::table('report_played_count')->where('game_id',101);
 		$input = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
@@ -279,7 +279,8 @@ class ReportController extends BaseController
 			break;
 			
 		}
-		$result = $result->get();
+		//$result = $result->get();
+		$result = $result->paginate(\Config::get('app.paginate'));
 		//print_r($result->product );die();
 		return view('reports.redeem_count_new.'.$page, ['result' => $result])->render(); 
 	}
@@ -361,6 +362,132 @@ class ReportController extends BaseController
             return view('reports.ledger.ajaxlist', ['result' => $result])->render();  
         }
 		return view('main', $data);			
+	}
+	
+	
+	
+	
+	
+	public function redeem_details (Request $request)
+	{
+		$id     = $request->pid;
+		$type   = $request->type;
+		$pack   = $request->producttype;
+		$page   = 'basic_package';
+		
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	\DB::enableQueryLog(); 
+		
+		switch ($pack)
+		{
+			case 'buyproduct':
+				$page   = 'buyproduct';	
+				//$result =  \DB::table('view_buy_product_user_list')->where('product_id',$id);
+				$result = \App\RedeemedProduct::with('product','order_detail','shipping_detail','member')->where('product_id', $id);
+				//$result = $result->where('phone','LIKE', "%{$input['s_phone']}%");
+				if (!empty($input['s_phone'])) {
+					//$result = $result->phone( $input['s_phone']) ;				
+				}
+				
+				if ($type)
+				{
+					switch ($type)
+					{
+						case 'all':
+						break;
+						case 'rejected':
+							$result = $result->where('redeem_state',0);
+						break;	
+						case 'reserved':
+							$result = $result->where('redeem_state',1);
+						break;
+						case 'used':
+							$result = $result->wherein('redeem_state',[2,3,4]);
+						break;	
+					}					
+				}
+			break;
+			
+			case 'product':
+				$page = 'product';	
+				$result =  \DB::table('view_redeem_history_all')->where('pid',$id); 
+				if ($type)
+				{
+					switch ($type)
+					{
+						case 'rejected':
+							$result = $result->where('pin_status',3);
+						break;	
+						case 'reserved':
+							//$result = $result->wherein('redeem_status',['confirmed','pending confirmation']);
+							$result = $result->where('pin_status',4);
+						break;
+						case 'used':
+							$result = $result->wherein('pin_status',[1,2]);
+						break;	
+							
+					}					
+				}						
+				
+			break;
+			case 'basic_package':
+				$result =  \DB::table('view_basic_package_user_list')->where('package_id',$id); 
+				if ($type)
+				{
+					switch ($type)
+					{
+						case 'all':
+						break;
+						case 'rejected':
+							$result = $result->where('redeem_state',0);
+						break;	
+						case 'reserved':
+							$result = $result->where('redeem_state',1);
+						break;
+						case 'used':
+							$result = $result->wherein('redeem_state',[2,3,4]);
+						break;	
+					}					
+				}
+			break;
+			
+		}
+		
+		
+		if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_phone'])) {
+				//$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}			
+		}
+		
+		
+		
+		
+		
+		$result = $result->paginate(\Config::get('app.paginate'));
+		
+		//print_r(\DB::getQueryLog());
+		//print_r($result->product );die();
+		//return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render(); 
+		
+		$data['page']    = 'reports.redeem_count_new.detail.list'; 	
+		
+		$data['ajaxpage']= 'reports.redeem_count_new.detail.'.$page; 	
+				
+		$data['result']  = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+		
+		
 	}
 	
 	
