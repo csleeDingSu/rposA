@@ -639,3 +639,6 @@ Route::any('MP_verify', function () {
 		// return '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt';
 	echo \File::get(public_path() . '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt');
 });
+
+Route::any( '/weixin/{type?}', 'weixinController@index' )->name( 'weixin.index' );
+Route::any( '/weixin/getUserInfo', 'weixinController@getUserInfo' )->name( 'weixin.getUserInfo' );
