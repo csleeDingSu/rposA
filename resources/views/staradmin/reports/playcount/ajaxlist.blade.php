@@ -24,7 +24,7 @@
 								<td id="playedusers_total">
 									@if($list->played_users > 0)
 									
-									<a target="_blank" href="/report/redeem-details?date={{$list->created_at}}&gameid={{$list->game_id}}"
+									<a target="_blank" href="/played-count/details?date={{$list->created_at}}&gameid={{$list->game_id}}"
 									 class="badge badge-pill badge-success"> {{ $list->played_users }} </a>	
 									@else 
 										0
