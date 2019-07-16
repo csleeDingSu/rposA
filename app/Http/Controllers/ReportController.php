@@ -379,7 +379,7 @@ class ReportController extends BaseController
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
 		
-    	
+    	\DB::enableQueryLog(); 
 		
 		switch ($pack)
 		{
@@ -450,7 +450,7 @@ class ReportController extends BaseController
 			break;
 			
 		}
-		\DB::enableQueryLog(); 
+		
 		
 		if ($input) 
 		{
@@ -461,7 +461,7 @@ class ReportController extends BaseController
 		}
 		
 		
-		dd(DB::getQueryLog());
+		dd(\DB::getQueryLog());
 		
 		
 		$result = $result->paginate(\Config::get('app.paginate'));
