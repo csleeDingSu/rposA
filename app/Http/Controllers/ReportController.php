@@ -461,10 +461,12 @@ class ReportController extends BaseController
 		}
 		
 		
-		dd(\DB::getQueryLog());
+		
 		
 		
 		$result = $result->paginate(\Config::get('app.paginate'));
+		
+		dd(\DB::getQueryLog());
 		//print_r($result->product );die();
 		//return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render(); 
 		
