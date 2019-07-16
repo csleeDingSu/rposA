@@ -15,7 +15,7 @@
 								<input type="text" class="form-control typeahead tt-input" name="s_phone" id="s_phone" placeholder="@lang('dingsu.phone')">
 							</div>
 						</div>
-						
+						<!--
 						<div class="col">
 							<label>@lang('dingsu.code')</label>
 							<div id="the-basics">
@@ -37,7 +37,7 @@
 								</select>
 							</div>
 						</div>
-
+-->
 						<div class="col">
 							<label>@lang('dingsu.action')</label>
 							<div id="bloodhound">
