@@ -3,60 +3,28 @@
 	<div class="col-lg-12 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="card-title">@lang('dingsu.play') @lang('dingsu.list')</h4>
+				<h4 class="card-title">@lang('dingsu.draw') @lang('dingsu.played') @lang('dingsu.list')</h4>
 				<div class="table-responsive">
 					<table class="table table-hover listtable" id="listtable">
 						<thead>
 							<tr>
+								<th>@lang('dingsu.created_at')</th>
+								<th>@lang('dingsu.game_id')</th>
+								<th>@lang('dingsu.played_users')</th>
 								
-								<th>@lang('dingsu.played_time')</th>
-										<th>@lang('dingsu.drawid')</th>
-										<th>@lang('dingsu.gameid')</th>
-										<th>@lang('dingsu.phone')</th>
-										<th>@lang('dingsu.bet_amount')</th>
-										<th>@lang('dingsu.game_result')</th>
-										<th>@lang('dingsu.play_result')</th>
-										<th>@lang('dingsu.play_status')</th>
-										
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($result as $list)
+							@foreach($result as $list)							
 							
-							<tr id="tr">
-								
-								
-	<td>{{ $list->played_time }}</td>
-	<td>{{ $list->draw_id }}</td>
-	<td>{{ $list->game_id }}</td>	
-	<td>{{ $list->phone }}</td>
-	<td>
-		{{ $list->bet_amount }}
-	</td>
-	<td>{{ $list->bet }}</td>
-	<td>{{ $list->game_result }}</td>
-	<td>
-		@if($list->is_win == 1)
-		<label class="badge badge-success">@lang('dingsu.win')</label> 		
-		@else 
-		<label class="badge badge-danger">@lang('dingsu.lose')</label> 		
-		@endif
-	</td>
 							
-	
-	
-	<!-- <td>
-		@if($list->member_status == 0)
-		<label class="badge badge-success">@lang('dingsu.active')</label> 
-		@elseif ($list->member_status == 1)
-		<label class="badge badge-danger">@lang('dingsu.inactive')</label> 
-		@elseif ($list->member_status == 2)
-		<label class="badge badge-warning">@lang('dingsu.suspended')</label> 
-		@else 
-		@endif
-	</td> -->	
+							<tr id="tr_{{ $list->draw_id }}">
+								<td>{{ $list->created_at }}</td>
+								<td>{{ $list->game_id }}</td>
+								<td id="playedusers_total">
+								<button type="button" data-type="all" data-id="{{$list->draw_id}}" data-count="{{$list->played_users}}" id="{{$list->draw_id}}" class="btn   Showplayedmembers  "> {{ $list->played_users }} </button>
 								
-								
+								</td>
 								
 							</tr>
 							@endforeach
