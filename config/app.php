@@ -240,7 +240,7 @@ return [
 	'shareurl' => 'wabao666.com/share_product/',
 	
 	'coin_max' => env('coin_max', 15),
-	'paginate' => 30,
+	'paginate' => 3,
 	
 	
 ];
