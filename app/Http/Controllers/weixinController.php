@@ -90,12 +90,12 @@ class weixinController extends BaseController
         //第一步:取全局access_token
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
         $token = $this->getJson($url);
-        var_dump($token);
+        // var_dump($token);
         
         //第二步:取得openid
         $oauth2Url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$secret&code=$code&grant_type=authorization_code";
         $oauth2 = $this->getJson($oauth2Url);
-        var_dump($oauth2);
+        // var_dump($oauth2);
   
         //第三步:根据全局access_token和openid查询用户信息  
         $access_token = $token["access_token"];  
@@ -105,6 +105,14 @@ class weixinController extends BaseController
  
         //打印用户信息
         var_dump($userinfo);
+        //array(16) { ["subscribe"]=> int(1) ["openid"]=> string(28) "oqafz03zBZ4wN8HZ8Q40YdkGX07o" ["nickname"]=> string(8) "Cheechee" ["sex"]=> int(1) ["language"]=> string(5) "zh_CN" ["city"]=> string(6) "杭州" ["province"]=> string(6) "浙江" ["country"]=> string(6) "中国" ["headimgurl"]=> string(126) "http://thirdwx.qlogo.cn/mmopen/PiajxSqBRaEIFcn25kkxQyyRpn2SiaO3Erhk9w9lO5GR59CSBhjdy8KphERdoLriaaRZXthDibI1maALaNiacBIK9vQ/132" ["subscribe_time"]=> int(1561867602) ["remark"]=> string(0) "" ["groupid"]=> int(0) ["tagid_list"]=> array(0) { } ["subscribe_scene"]=> string(16) "ADD_SCENE_SEARCH" ["qr_scene"]=> int(0) ["qr_scene_str"]=> string(0) "" }
+
+        //Create / update 
+        $filter = ['openid' => $userinfo['openid']];
+        $array = ['openid' => $userinfo['openid'], 'nickname' => $userinfo['nickname'], 'sex' => $userinfo['sex'], 'language' => $userinfo['language'], 'city' => $userinfo['city'], 'province' => $userinfo['province'], 'country' => $userinfo['country'], 'headimgurl' => $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
+        $res_id = weixin::updateOrCreate($filter, $array)->id;
+
+        return $userinfo;
         
     }
 
@@ -117,7 +125,7 @@ class weixinController extends BaseController
         //第一步:取得openid
         $oauth2Url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$secret&code=$code&grant_type=authorization_code";
         $oauth2 = $this->getJson($oauth2Url);
-        var_dump($oauth2);
+        // var_dump($oauth2);
   
         //第二步:根据全局access_token和openid查询用户信息  
         $access_token = $oauth2["access_token"];  
