@@ -449,7 +449,7 @@ class ReportController extends BaseController
 		//print_r($result->product );die();
 		//return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render(); 
 		
-		$data['page']    = 'reports.redeem_count_new.list'; 	
+		$data['page']    = 'reports.redeem_count_new.detail.list'; 	
 				
 		$data['result']  = $result; 
 				
