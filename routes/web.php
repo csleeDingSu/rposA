@@ -546,6 +546,8 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	Route::get( '/report/redeem-details', 'ReportController@redeem_details' )->name( 'redeem_details' );
 	
+	Route::get( '/report/played-count', 'ReportController@played_count_by_date' )->name( 'played_count_by_date' );
+	
 	
 	
 	

@@ -61,7 +61,7 @@ class ReportController extends BaseController
 					$result = $result->where('pin_status','=',$input['s_status']);
 			}
 		}		
-		$result         =  $result->orderby('created_at','ASC')->paginate(30);
+		$result         =  $result->orderby('created_at','ASC')->paginate(\Config::get('app.paginate'));
 				
 		$data['page']   = 'reports.redeem_product.list'; 	
 				
@@ -102,7 +102,7 @@ class ReportController extends BaseController
 				$order_by = $input['order_by'] ;				
 			}
 		}		
-		$result         =  $result->orderby('created_at',$order_by)->paginate(50);
+		$result         =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
 				
 		$data['page']   = 'reports.point_report.list'; 	
 				
@@ -130,7 +130,7 @@ class ReportController extends BaseController
 				$result = $result->where('draw_id', "{$input['s_drawid']}") ;				
 			}
 		}		
-		$result =  $result->orderby('draw_id','ASC')->paginate(30);
+		$result =  $result->orderby('draw_id','ASC')->paginate(\Config::get('app.paginate'));
 				
 		$data['page']    = 'reports.draw.list'; 	
 				
@@ -161,7 +161,7 @@ class ReportController extends BaseController
 				//$result = $result->where('content','LIKE', "%{$input['s_content']}%") ;				
 			}
 		}		
-		$result =  $result->paginate(30);
+		$result =  $result->paginate(\Config::get('app.paginate'));
 				
 		$data['page']    = 'reports.redeem_count_new.list'; 	
 				
@@ -317,7 +317,7 @@ class ReportController extends BaseController
 						
 			
 		}		
-		$result         =  $result->orderby('created_at',$order_by)->paginate(30);
+		$result         =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
 			
 		$data['page']   = 'reports.play.list'; 	
 				
@@ -352,7 +352,7 @@ class ReportController extends BaseController
 				$result = $result->where('username','LIKE', "%{$input['s_phone']}%") ;				
 			}
 		}		
-		$result         =  $result->orderby('created_at',$order_by)->paginate(30);
+		$result         =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
 			
 		$data['page']   = 'reports.ledger.list'; 	
 				
@@ -365,7 +365,37 @@ class ReportController extends BaseController
 	}
 	
 	
-	
+	public function played_count_by_date (Request $request)
+	{
+				
+		$result =  \DB::table('played_count_by_date');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_gameid'])) {
+				$result = $result->where('game_id', "{$input['s_gameid']}") ;				
+			}
+			
+			if (!empty($input['s_date'])) {
+				$result = $result->where('created_at', "{$input['s_date']}") ;				
+			}
+		}		
+		$result =  $result->orderby('created_at','ASC')->paginate(\Config::get('app.paginate'));
+				
+		$data['page']    = 'reports.playcount.list'; 	
+				
+		$data['result']  = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.playcount.ajaxlist', ['result' => $result])->render();  
+        }
+					
+		return view('main', $data);	
+	}
 	
 	
 	public function redeem_details (Request $request)
