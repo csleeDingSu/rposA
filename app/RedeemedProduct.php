@@ -60,5 +60,10 @@ class RedeemedProduct extends Model
         return $this->belongsTo(\App\Members::class, 'member_id', 'id');
     }
 	
+	public function scopePhone($query, $phone = '') 
+	{
+		return $query->where('phone', $phone);
+	}
+	
 		
 }
