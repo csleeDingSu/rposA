@@ -6,20 +6,20 @@
 			<div class="card">
 				<div class="card-body">
 					<form class="" name="searchform" id="searchform" action="" method="get" autocomplete="on">
-					<h4 class="card-title">Search</h4>
+					<h4 class="card-title">@lang('dingsu.play') @lang('dingsu.detail')</h4>
 					<div class="form-group row">
 																		
 						<div class="col">
 							<label>@lang('dingsu.gameid')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_gameid" id="s_gameid" placeholder="@lang('dingsu.gameid')" value="{{$request->gameid}}">
+								<input type="text" class="form-control typeahead tt-input" name="s_gameid" id="s_gameid" placeholder="@lang('dingsu.gameid')" value="{{ app('request')->input('gameid') }}">
 							</div>
 						</div>
 						
 						<div class="col">
 							<label>@lang('dingsu.date')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_date" id="s_date" placeholder="@lang('dingsu.date')" value="{{$request->date}}">
+								<input type="text" class="form-control typeahead tt-input" name="s_date" id="s_date" placeholder="@lang('dingsu.date')" value="{{ app('request')->input('date') }}">
 							</div>
 						</div>
 
