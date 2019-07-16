@@ -63,7 +63,10 @@
 				data: {
 					_method: 'get',
 					_token: "{{ csrf_token() }}",
-					_data: $( "#searchform" ).serialize()
+					_data: $( "#searchform" ).serialize(),
+					producttype: $( "#producttype" ).val(),
+					type: $( "#type" ).val(),
+					pid: $( "#pid" ).val()
 				},
 			} ).done( function ( data ) {
 				$( '.datalist' ).html( data );
