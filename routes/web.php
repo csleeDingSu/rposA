@@ -640,5 +640,15 @@ Route::any('asyncmysqlevent/{api}/{drawid}', function ($api, $drawid) {
     $promise->wait();
 });
 
-Route::any( '/weixin/{type?}', 'weixinController@index' )->name( 'weixin.index' );
-Route::any( '/weixin/getUserInfo', 'weixinController@getUserInfo' )->name( 'weixin.getUserInfo' );
+Route::any('MP_verify', function () {
+	// var_dump(public_path());
+		// die('dasdsa');
+		// return '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt';
+	echo \File::get(public_path() . '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt');
+});
+
+Route::any( '/mp/{type?}', 'weixinController@index' )->name( 'weixin.index' );
+Route::any( '/mp/getUserInfo/snsapi_base', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
+Route::any( '/mp/getUserInfo/snsapi_userinfo', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
+
+Route::any( '/weixin', 'weixinController@weixin_verify' )->name( 'weixin.verify' );

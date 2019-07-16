@@ -80,7 +80,7 @@
 			</div>
 			<ul class="list-group">
 
-				@if(env('APP_ENV') != 'prod')
+			@if(env('APP_ENV') != 'prod')
 
 				<!-- VIP专场 -->
 				<li class="list-group-item first-item">
@@ -94,7 +94,7 @@
 				</li>
 				
 				<!-- 兑换奖品 -->
-				<li class="list-group-item">
+				<li class="list-group-item first-item">
 					<div class="redeembtn">
 						<div class="icon-wrapper">
 							<div class="icon-redeem"></div>
