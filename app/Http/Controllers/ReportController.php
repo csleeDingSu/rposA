@@ -401,7 +401,7 @@ class ReportController extends BaseController
 	public function played_count_details (Request $request)
 	{
 				
-		$result =  \DB::table('played_count_by_date');
+		$result =  \DB::table('report_played_member');
 		$input = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
@@ -414,7 +414,7 @@ class ReportController extends BaseController
 			}
 			
 			if (!empty($request->date)) {
-				$result = $result->where('created_at', $request->date) ;				
+				$result = $result->where('play_time', $request->date) ;				
 			}
 		//}		
 		$result =  $result->orderby('created_at','ASC')->paginate(\Config::get('app.paginate'));
