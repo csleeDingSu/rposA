@@ -450,6 +450,8 @@ class ReportController extends BaseController
 		//return view('reports.redeem_count_new.detail.'.$page, ['result' => $result])->render(); 
 		
 		$data['page']    = 'reports.redeem_count_new.detail.list'; 	
+		
+		$data['ajaxpage']= 'reports.redeem_count_new.detail.'.$page; 	
 				
 		$data['result']  = $result; 
 				
