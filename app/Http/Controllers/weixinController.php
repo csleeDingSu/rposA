@@ -155,6 +155,7 @@ class weixinController extends BaseController
             $appid = env('weixinid');//"你的AppId";  
             $secret = env('weixinsecret');//"你的AppSecret";  
             $code = $request->input('code');
+            $wx = new WX();
 
             //第一步:取得openid
             $oauth2 = $wx->test($appid, $secret, $code);
