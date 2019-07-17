@@ -11,7 +11,7 @@ class MakePayment
     public static function Pay_Index(Request $request)
     {
         try {
-        	$type = $request->input('type');
+            $type = $request->input('type');
             $pay_memberid = empty($request->input('pay_memberid')) ? env('PAY_ID', '10003') : $request->input('pay_memberid');//"10002";   //商户ID
             $pay_orderid = 'E'.Carbon::now()->timestamp.rand(100000,999999);
             //'E'.date("YmdHis").rand(100000,999999);    //订单号
@@ -88,7 +88,7 @@ class MakePayment
             \Log::error($e);
             
             if (!empty($res_id)) {
-            	payment_transaction::where('id', $res_id)->update(['remark' => $e->getMessage()]);	
+                payment_transaction::where('id', $res_id)->update(['remark' => $e->getMessage()]);  
             }
             
             return $e->getMessage();
