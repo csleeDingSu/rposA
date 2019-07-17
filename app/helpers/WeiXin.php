@@ -3,7 +3,8 @@ namespace App\Helpers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log; 
+use Illuminate\Support\Facades\Log;
+use Khsing\WechatAgent\WechatAgent; 
 
 class WeiXin
 { 
@@ -146,9 +147,19 @@ class WeiXin
         return json_decode($output, true);
     }
 
-    public static function test($appid, $secret, $code) {
+    public static function isWeiXin()
+    {        
+        $agent = new WechatAgent;
 
-        return $appid;
+        if ($agent->is("Wechat")) {
+             
+            return true;
+
+        } else {
+
+            return false;
+
+        }
         
     }
 

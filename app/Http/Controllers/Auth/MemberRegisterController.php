@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
+use \App\helpers\WeiXin as WX;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\weixinController;
 use App\Mail\SendMail;
@@ -44,7 +45,7 @@ class MemberRegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest:member');
-        $this->wx = new weixinController();
+        $this->wx = new WX();
     }
 
     protected function validatereg(Request $request)
@@ -139,11 +140,12 @@ class MemberRegisterController extends Controller
 		}
 
 		//weixin_verify
-        // $request = new Request;
-        // $res = $this->wx->weixin_verify($request, env('wabao666_domain'));
-        // if (!empty($res['success']) && $res['success'] == false) {
+        if ($this->wx->isWeiXin()) {
+            $request = new Request;
+            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
+        } else {
             return view('auth.login',$data);    
-        // }
+        }
 	}
     
     public function doreg(Request $request)
