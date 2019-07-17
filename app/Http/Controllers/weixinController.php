@@ -247,7 +247,9 @@ class weixinController extends BaseController
 
             if (!empty($res->success) && ($res->success == true)) {
                 $d = json_decode($res->data);
-                $url = "http://$domain$d['url']";
+                return $d;
+
+                $url = "http://$domain" . $d['url'];
                 return $url;
                 // return redirect()->to($url);
             }
