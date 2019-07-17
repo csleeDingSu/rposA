@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use Session;
 use Larashop\Notifications\ResetPassword as ResetPasswordNotification;
-
+use Carbon\ Carbon;
 use Validator;
 class MemberLoginController extends Controller
 {
@@ -329,5 +329,101 @@ class MemberLoginController extends Controller
 		
 		return response()->json(['success' => true, 'data' => $user]);
 		*/
+    }
+	
+	public function wechat_auth(Request $request) {		
+        
+        $forceupdate = '';
+		$url = "/cs/220";
+        $openid     = $request->openid; 
+		$wechatname = $request->nickname;		
+		//$openid     = 'adsfsafsdfdsaf2423'; 
+		//$wechatname = '67rfdsf';	
+				
+		if (empty($wechatname))
+		{
+			return response()->json(['success' => false,'message'=>[trans('auth.empty_wechatname')] ]);
+		}
+		if (empty($openid))
+		{
+			return response()->json(['success' => false,'message'=>[trans('auth.empty_openid')] ]);
+		}
+		
+		$record = \App\Members::where('wechat_name', $wechatname)->first();
+		
+		if ($record)
+		{
+			if ( $record->openid != $openid  )
+			{
+				//return response()->json(['success' => false,'message'=>[trans('auth.openid_mismatch')] ]);
+				$forceupdate = 'yes';
+			}
+			//To fix old register
+			if (!empty($record->phone))
+			{
+				if ( $record->phone != $wechatname  )
+				{
+					return response()->json(['success' => false,'message'=>[trans('auth.wechatname_mismatch')] ]);
+				}
+			}
+			else
+			{
+				$forceupdate = 'yes';
+			}
+			
+		}
+		else
+		{
+			//register
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>1,'phone'=>$wechatname,'username'=>$wechatname ]);
+			
+			$wallet = \App\Wallet::create([
+					'current_life'    => 0,
+					'member_id'       => $user->id,
+					'current_balance' => env('initial_balance',120),
+					'balance_before'  => env('initial_balance',120)
+				]);
+		}
+					
+		$user = \App\Members::where('phone', $wechatname)->first();		
+		
+		//create login session
+		Auth::guard('member')->loginUsingId($user->id);
+		//update loggedin userdata
+		$user = Auth::guard('member')->user();
+		$user->active_session = Session::getId();
+		if ($forceupdate)
+		{
+			$user->phone     = $wechatname;
+			$user->username  = $wechatname;
+			$user->openid    = $openid;
+		}
+		
+		$user->save();
+		//create token
+		$tokenResult = $user->createToken('APITOKEN');
+		$token = $tokenResult->token;
+		$token->expires_at = Carbon::now()->addMinutes(10);
+		$token->save();
+		
+		//re route 
+		$rou = Session::get('re_route');
+			
+		if ($rou == 'yes')
+		{
+			$url = "/arcade";
+			Session::forget('re_route');
+			//Session::flush();
+		}
+		
+		
+		return response()->json([
+			'success'      => true,
+			'data'         => $user->only(['id', 'username', 'phone', 'email','created_at']),
+			'access_token' => $tokenResult->accessToken,
+			'token_type'   => 'Bearer',
+			'expires_at'   => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
+			'url' => $url
+		]);
     }
 }
