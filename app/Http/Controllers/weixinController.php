@@ -224,7 +224,7 @@ class weixinController extends BaseController
 
         if ($content['success'] == true) {
             //wechat auth api
-            $url = "http://" . $domain . "/api/wechat-auth");
+            $url = "http://" . $domain . "/api/wechat-auth";
             // $url = "http://dev.boge56.com/api/wechat-auth";
             $payload["nickname"] = $content['nickname']; //'100000';
             $payload["openid"] = $content['openid']; //'8767gbasd67cg';
