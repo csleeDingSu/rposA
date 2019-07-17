@@ -234,6 +234,7 @@ class weixinController extends BaseController
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
+            \Log::info($res);
 
             if (!empty($res->success) && ($res->success == true)) {
                 
