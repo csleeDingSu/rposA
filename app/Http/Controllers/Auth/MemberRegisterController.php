@@ -2,20 +2,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\weixinController;
+use App\Mail\SendMail;
+use App\Members;
+use Auth;
+use DB;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-
 use Illuminate\Support\Facades\Hash;
-use Auth;
-use Session;
-use App\Members;
-use Validator;
-use DB;
-
-
+use Illuminate\Validation\ValidationException;
 use Mail;
-use App\Mail\SendMail;
+use Session;
+use Validator;
 class MemberRegisterController extends Controller
 {
     /*
@@ -46,6 +44,7 @@ class MemberRegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest:member');
+        $this->wx = new weixinController();
     }
 
     protected function validatereg(Request $request)
@@ -138,8 +137,13 @@ class MemberRegisterController extends Controller
 			}
 			
 		}
-		
-		return view('auth.login', $data);
+
+		//weixin_verify
+        $request = new Request;
+        $res = $this->wx->weixin_verify($request, env('wabao666_domain'));
+        if (!empty($res['success']) && $res['success'] == false) {
+            return view('auth.login',$data);    
+        }
 	}
     
     public function doreg(Request $request)

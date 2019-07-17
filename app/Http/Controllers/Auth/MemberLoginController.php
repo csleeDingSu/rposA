@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\weixinController;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
-use Auth;
-use Session;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Larashop\Notifications\ResetPassword as ResetPasswordNotification;
 use Carbon\ Carbon;
+use Session;
 use Validator;
 class MemberLoginController extends Controller
 {
@@ -45,6 +46,7 @@ class MemberLoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest:member');
+        $this->wx = new weixinController();
     }
 	
 	
@@ -63,7 +65,14 @@ class MemberLoginController extends Controller
         $data['slug'] = $slug;
 		// return view('client.login', $data);
 		//return view('common.memberlogin', $data);
-        return view('auth.login',$data);
+
+        //weixin_verify
+        $request = new Request;
+        $res = $this->wx->weixin_verify($request, env('wabao666_domain'));
+        if (!empty($res['success']) && $res['success'] == false) {
+            return view('auth.login',$data);    
+        }
+        
 	}
 	
 	/**
