@@ -395,6 +395,7 @@ class MemberLoginController extends Controller
 		
 		//create login session
 		Auth::guard('member')->loginUsingId($user->id, true);
+		print_r($user->id);
 		//update loggedin userdata
 		$user = Auth::guard('member')->user();
 		$user->active_session = Session::getId();
