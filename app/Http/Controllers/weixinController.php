@@ -17,7 +17,7 @@ class weixinController extends BaseController
     public function __construct() {
 
         //
-        $wx = new WX();
+        $this->wx = new WX();
        
     }
 
@@ -85,7 +85,7 @@ class weixinController extends BaseController
 
             $request = new Request;
             $type = 'snsapi_userinfo'; 
-            return $wx->index($request,$type,$domain);
+            return $this->wx->index($request,$type,$domain);
 
         } else {
 
@@ -95,21 +95,20 @@ class weixinController extends BaseController
         
     }
 
-    public static function getUserInfo_snsapi_base(Request $request, $domain = null)
+    public function getUserInfo_snsapi_base(Request $request, $domain = null)
     {
         try {
 
             $appid = env('weixinid');//"你的AppId";  
             $secret = env('weixinsecret');//"你的AppSecret";  
             $code = $request->input('code');
-            $wx = new WX();
 
             //第一步:取全局access_token
-            $token = $wx->access_token($appid, $secret);
+            $token = $this->wx->access_token($appid, $secret);
             // var_dump($token);
             
             //第二步:取得openid
-            $oauth2 = $wx->oauth2($appid, $secret, $code);            
+            $oauth2 = $this->wx->oauth2($appid, $secret, $code);            
             // var_dump($oauth2);
       
             //第三步:根据全局access_token和openid查询用户信息  
@@ -121,7 +120,7 @@ class weixinController extends BaseController
 
                 $access_token = $token["access_token"];  
                 $openid = empty($oauth2['openid']) ? null : $oauth2['openid']; 
-                $userinfo = $wx->getUserInfo_snsapi_base($access_token, $openid); 
+                $userinfo = $this->wx->getUserInfo_snsapi_base($access_token, $openid); 
 
             }
             //打印用户信息
@@ -129,16 +128,16 @@ class weixinController extends BaseController
 
             if (!empty($userinfo['openid'])) {
                 //store
-                $res_id = self::storeWeiXin($userinfo);
+                $res_id = $this->storeWeiXin($userinfo);
             }
             
-            $result = self::showWeiXin($userinfo);
+            $result = $this->showWeiXin($userinfo);
             
             // return $userinfo;
             // return $result;
 
             //auto login / register
-            return self::accessToWabao($result,$domain);
+            return $this->accessToWabao($result,$domain);
         
         } catch (\Exception $e) {
             //log error
@@ -149,17 +148,16 @@ class weixinController extends BaseController
 
     }
 
-    public static function getUserInfo_snsapi_userinfo(Request $request, $domain = null)
+    public function getUserInfo_snsapi_userinfo(Request $request, $domain = null)
     {
         try {
 
             $appid = env('weixinid');//"你的AppId";  
             $secret = env('weixinsecret');//"你的AppSecret";  
             $code = $request->input('code');
-            $wx = new WX();
-
+           
             //第一步:取得openid
-            $oauth2 = $wx->openid($appid, $secret, $code);
+            $oauth2 = $this->wx->openid($appid, $secret, $code);
       
             if (empty($oauth2["access_token"])) {
 
@@ -170,7 +168,7 @@ class weixinController extends BaseController
                 //第二步:根据全局access_token和openid查询用户信息  
                 $access_token = $oauth2["access_token"];  
                 $openid = empty($oauth2['openid']) ? null : $oauth2['openid']; 
-                $userinfo = $wx->getUserInfo_snsapi_userinfo($access_token, $openid);
+                $userinfo = $this->wx->getUserInfo_snsapi_userinfo($access_token, $openid);
 
             }
             
@@ -179,15 +177,15 @@ class weixinController extends BaseController
 
             if (!empty($userinfo['openid'])) {
                 //store
-                $res_id = self::storeWeiXin($userinfo);
+                $res_id = $this->storeWeiXin($userinfo);
             }
 
-            $result = self::showWeiXin($userinfo);
+            $result = $this->showWeiXin($userinfo);
 
             //return $result;
 
             //auto login / register
-            return self::accessToWabao($result,$domain);
+            return $this->accessToWabao($result,$domain);
         
         } catch (\Exception $e) {
             //log error
