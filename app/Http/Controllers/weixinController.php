@@ -17,7 +17,7 @@ class weixinController extends BaseController
     public function __construct() {
 
         //
-        $this->wx = new WX();
+        $wx = new WX();
        
     }
 
@@ -85,7 +85,7 @@ class weixinController extends BaseController
 
             $request = new Request;
             $type = 'snsapi_userinfo'; 
-            return $this->wx->index($request,$type,$domain);
+            return $wx->index($request,$type,$domain);
 
         } else {
 
@@ -104,11 +104,11 @@ class weixinController extends BaseController
             $code = $request->input('code');
 
             //第一步:取全局access_token
-            $token = $this->wx->access_token($appid, $secret);
+            $token = $wx->access_token($appid, $secret);
             // var_dump($token);
             
             //第二步:取得openid
-            $oauth2 = $this->wx->oauth2($appid, $secret, $code);            
+            $oauth2 = $wx->oauth2($appid, $secret, $code);            
             // var_dump($oauth2);
       
             //第三步:根据全局access_token和openid查询用户信息  
@@ -120,7 +120,7 @@ class weixinController extends BaseController
 
                 $access_token = $token["access_token"];  
                 $openid = empty($oauth2['openid']) ? null : $oauth2['openid']; 
-                $userinfo = $this->wx->getUserInfo_snsapi_base($access_token, $openid); 
+                $userinfo = $wx->getUserInfo_snsapi_base($access_token, $openid); 
 
             }
             //打印用户信息
@@ -157,8 +157,9 @@ class weixinController extends BaseController
             $code = $request->input('code');
 
             //第一步:取得openid
-            $oauth2 = $this->wx->test($appid, $secret, $code);
-            // var_dump($oauth2);
+            $oauth2 = $wx->test($appid, $secret, $code);
+            var_dump($oauth2);
+            die('dadsa');
       
             if (empty($oauth2["access_token"])) {
 
@@ -169,7 +170,7 @@ class weixinController extends BaseController
                 //第二步:根据全局access_token和openid查询用户信息  
                 $access_token = $oauth2["access_token"];  
                 $openid = empty($oauth2['openid']) ? null : $oauth2['openid']; 
-                $userinfo = $this->wx->getUserInfo_snsapi_userinfo($access_token, $openid);
+                $userinfo = $wx->getUserInfo_snsapi_userinfo($access_token, $openid);
 
             }
             
