@@ -24,12 +24,13 @@ class weixinController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $type = null)
+    public function index(Request $request, $type = null, $domain = null)
     {
 
+        $domain = !empty($domain) ? $domain : 'dev.boge56.com';
         $type = !empty($type) ? $type : (empty($request->input('type')) ? 'snsapi_base' : 'snsapi_userinfo');
         $appid=env('weixinid'); //'你的AppId';
-        $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type);
+        $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain);
         $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
         \Log::info(json_encode(['weixin URL' => $url], true));
         // var_dump($url);
@@ -91,7 +92,7 @@ class weixinController extends BaseController
         //
     }
 
-    public function getUserInfo_snsapi_base(Request $request)
+    public function getUserInfo_snsapi_base(Request $request, $domain = null)
     {
 
         $appid = env('weixinid');//"你的AppId";  
@@ -128,7 +129,6 @@ class weixinController extends BaseController
         }
         //打印用户信息
         // var_dump($userinfo);
-        //array(16) { ["subscribe"]=> int(1) ["openid"]=> string(28) "oqafz03zBZ4wN8HZ8Q40YdkGX07o" ["nickname"]=> string(8) "Cheechee" ["sex"]=> int(1) ["language"]=> string(5) "zh_CN" ["city"]=> string(6) "杭州" ["province"]=> string(6) "浙江" ["country"]=> string(6) "中国" ["headimgurl"]=> string(126) "http://thirdwx.qlogo.cn/mmopen/PiajxSqBRaEIFcn25kkxQyyRpn2SiaO3Erhk9w9lO5GR59CSBhjdy8KphERdoLriaaRZXthDibI1maALaNiacBIK9vQ/132" ["subscribe_time"]=> int(1561867602) ["remark"]=> string(0) "" ["groupid"]=> int(0) ["tagid_list"]=> array(0) { } ["subscribe_scene"]=> string(16) "ADD_SCENE_SEARCH" ["qr_scene"]=> int(0) ["qr_scene_str"]=> string(0) "" }
 
         if (!empty($userinfo['openid'])) {
             //Create / update 
@@ -144,11 +144,14 @@ class weixinController extends BaseController
         }
         
         // return $userinfo;
-        return $result;
+        // return $result;
+
+        //auto login / register
+        return $this->accessToWabao($result,$domain);
         
     }
 
-    public function getUserInfo_snsapi_userinfo(Request $request)
+    public function getUserInfo_snsapi_userinfo(Request $request, $domain = null)
     {
         $appid = env('weixinid');//"你的AppId";  
         $secret = env('weixinsecret');//"你的AppSecret";  
@@ -195,9 +198,11 @@ class weixinController extends BaseController
             $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex']];
         }
 
+        //return $result;
+
         //auto login / register
-        // return $this->accessToWabao($result);
-        return $result;
+        return $this->accessToWabao($result,$domain);
+        
         
     }
 
@@ -214,8 +219,8 @@ class weixinController extends BaseController
         return json_decode($output, true);
     }
 
-    public function weixin_verify(Request $request)
-    {
+    public function weixin_verify(Request $request, $domain = null)
+    {        
         $agent = new WechatAgent;
         // $agent->is("Wechat");
 
@@ -223,36 +228,29 @@ class weixinController extends BaseController
 
             $request = new Request;
             $type = 'snsapi_userinfo'; 
-            return $this->index($request,$type);
+            return $this->index($request,$type,$domain);
 
         } else {
+
             return ['success' => false, 'message' => 'Please open it in the WeChat. 请在微信浏览器中打开'];
+
         }
         
     }
 
-    public function accessToWabao($content)
+    public function accessToWabao($content, $domain = null)
     {
         if ($content['success'] == true) {
-            //is existing user
-            $user = Members::where('wechat_name',$content['nickname'])->select('*')->first();
-            if (empty($user)) {
-                //register new user
-                $reg = new MemberRegisterController;
-                $request = new Request;
-                $request->merge(['datav' => ['phone='.$content['nickname'].'&password='.$content['openid'].'&confirmpassword='.$content['openid'].'&wechat_name='.$content['nickname']]]); 
-                return $reg->doreg($request);
-            } else {
-                //login
-                $login = new MemberRegisterController;
-                $request = new Request;
-                $request->merge(['username' => $user->username]);
-                return $login->dologin($request);
-            }            
+            //wechat auth api
+            $res = $this->getJson("http://dev.boge56.com/api/wechat-auth?nickname=100000&openid=8767gbasd67cg");          
+            //$res = $this->getJson("http://$domain/api/wechat-auth?nickname=$content['nickname']&openid=$content['openid']");
+
+            return $res;
 
         } else {
             //to login screen
-            return redirect()->route('login');
+            //return redirect()->route('login');
+            return $content;
         }
     }
 
