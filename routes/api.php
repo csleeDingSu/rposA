@@ -144,7 +144,7 @@ Route::group(['namespace' => 'Api'],function()
 Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');
 
 
-Route::any('wechat-auth', 'Auth\MemberLoginController@wechat_auth')->name('wechat_auth');
+Route::post('wechat-auth', 'Auth\MemberLoginController@wechat_auth')->name('wechat_auth');
 
 
 //cron_test
