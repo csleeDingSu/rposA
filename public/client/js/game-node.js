@@ -200,22 +200,68 @@ try {
 
         if(latest_result.length > 0){
             previous_result = latest_result[0].result;
+            $('.middle-label').html('<div style="font-size:40px;padding-top:10px">'+previous_result+'</div>');
         }
 
-        showContent();
+        showContent(level);
         $( ".button-bet-default" ).each(function() {
             $( this ).removeClass( "button-bet-inactive" );
             $( this ).removeClass( "button-bet-active" );
 
             if($( this ).attr('data-level') < level){
                 $( this ).addClass( "button-bet-inactive" );
+                $( this ).unbind( "click" );
+
             } else if($( this ).attr('data-level') == level){
                 $( this ).addClass( "button-bet-active" );
-
+                $( this ).unbind( "click" );
                 $( ".button-bet-active" ).click(function(){
-                    $('.middle-label').html('开始抽奖');
-                    $('#btnPointer').attr("src","/client/images/wheel/pointer.png").addClass('ready');
+                    var selected = $('div.clicked').find('input:radio').val();
+                    if (typeof selected == 'undefined'){
+                        $('.middle-label').html('选择单双');
+                    } else {
+                        $('.middle-label').html('开始抽奖');
+                    }
+                    
+                    $('#btnPointer').addClass('ready');
                     showPayoutBet();
+                });
+            } else {
+                var suggestion_bet = 1;
+                switch (level){
+
+                    default:
+                    case 1:
+                        $suggestion_bet = 1;
+                    break;
+
+                    case 2:
+                        $suggestion_bet = 3;
+                    break;
+
+                    case 3:
+                        $suggestion_bet = 7;
+                    break;
+
+                    case 4:
+                        $suggestion_bet = 15;
+                    break;
+
+                    case 5:
+                        $suggestion_bet = 31;
+                    break;
+
+                    case 6:
+                        $suggestion_bet = 63;
+                    break;
+                }
+
+                $( this ).click(function(){
+                    $('.spinning').html('选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”');
+                     $('.spinning').css('visibility', 'visible');
+                    setTimeout(function(){ 
+                        $('.spinning').css('visibility', 'hidden');
+                    }, 3000);
                 });
             }
         });
@@ -406,8 +452,7 @@ function resetGame() {
     $('div.clicked').removeClass('clicked').find('.bet-container').hide();
     $('.payout-info').addClass('hide');
     $('.spinning').css('visibility', 'hidden');
-    $('.middle-label').html('点击抽奖');
-    $('#btnPointer').attr("src","/client/images/wheel/pointer-default.png").removeClass('ready');
+    $('#btnPointer').removeClass('ready');
     $('.radio-primary').unbind('click');
     $('.small-border').removeClass('fast-rotate');
 
@@ -452,6 +497,7 @@ function checkSelection() {
     if($('#btnPointer').hasClass('ready')){
         var selected = $('div.clicked').find('input:radio').val();
         if (typeof selected == 'undefined'){
+            $('.middle-label').html('选择单双');
             $('.spinning').html('请先选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
              $('.spinning').css('visibility', 'visible');
             setTimeout(function(){ 
@@ -461,11 +507,12 @@ function checkSelection() {
             $('.middle-label').html('正在抽奖');
             $('.DB_G_hand').hide();
             $('.radio-primary').unbind('click');
-            $('#btnWheel').unbind('click');
+            $('.btn-trigger').unbind('click');
             bindSpinningButton();
             startTimer(5, 5, 1);
         }
     } else {
+        $('.middle-label').html('选择金币');
         $('.spinning').html('请先选择金币<br />再点击“开始抽奖”进行抽奖');
         $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
@@ -616,6 +663,8 @@ function showPayout(){
 
         if (typeof selected == 'undefined'){
 
+            $('.middle-label').html('选择单双');
+
             if(bet_count == 0){
                 $('.selection').show();
                 $('.start-game').hide();
@@ -632,7 +681,7 @@ function showPayout(){
                   .prop('number', bet_amount)
                   .animateNumber(
                     {
-                      number: previous_bet
+                      number: 0
                     },
                     500
                   );
@@ -641,7 +690,7 @@ function showPayout(){
               .prop('number', bet_amount)
               .animateNumber(
                 {
-                  number: previous_bet
+                  number: 0
                 },
                 500
               );
@@ -664,6 +713,12 @@ function showPayout(){
             // });
 
         } else {
+
+            if($('#btnPointer').hasClass('ready')){
+                $('.middle-label').html('开始抽奖');
+            } else {
+                $('.middle-label').html('选择金币');
+            }
 
             checked(level, true);
             changbar(level);
@@ -690,7 +745,7 @@ function showPayout(){
                 }
 
                 $('.odd-payout')
-                      .prop('number', previous_bet)
+                      .prop('number', 0)
                       .animateNumber(
                         {
                           number: bet_amount
@@ -699,7 +754,7 @@ function showPayout(){
                       );
 
                 $('.even-payout')
-                  .prop('number', previous_bet)
+                  .prop('number', 0)
                   .animateNumber(
                     {
                       number: bet_amount
@@ -768,7 +823,7 @@ function showPayoutBet(){
     }
 
     $('.odd-payout')
-          .prop('number', previous_bet)
+          .prop('number', 0)
           .animateNumber(
             {
               number: bet_amount
@@ -777,7 +832,7 @@ function showPayoutBet(){
           );
 
     $('.even-payout')
-      .prop('number', previous_bet)
+      .prop('number', 0)
       .animateNumber(
         {
           number: bet_amount
@@ -793,7 +848,8 @@ function bindCalculateButton(){
 }
 
 function bindTriggerButton(){
-    $('#btnWheel').click( function() {
+    $('.btn-trigger').click(function( event ){
+        event.stopImmediatePropagation();
         checkSelection();
     });
 }
@@ -859,8 +915,7 @@ function bindResetLifeButton(){
     });
 }
 
-function showContent() {
-    var level = parseInt($('#hidLevel').val());
+function showContent(level) {
     var content = '';
 
     switch (level) {
@@ -1017,8 +1072,8 @@ function showProgressBar(bol_show){
         $('.span-balance').html(span_balance);
         $('#hidBet').val(current_bet);
         $('.result-info').html(result_info);
-        $('.odd-payout').html(previous_bet);
-        $('.even-payout').html(previous_bet);
+        $('.odd-payout').html(0);
+        $('.even-payout').html(0);
 
         if(bol_show) {
             checked(level, true);
@@ -1261,9 +1316,14 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
+        $('.middle-label').html('<div style="font-size:40px;padding-top:10px">'+result+'</div>');              
+    
+    }, (freeze_time - 1) * 1000);
+
+    setTimeout(function(){
         // if (show_win) {
         //     musicPlay(2);   
-        // }               
+        // }
         resetGame();
     }, freeze_time * 1000);
     

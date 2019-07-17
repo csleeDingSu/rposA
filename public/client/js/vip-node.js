@@ -200,6 +200,7 @@ try {
             previous_result = latest_result[0].result;
             previous_bet_amount = latest_result[0].bet_amount;
             previous_reward = latest_result[0].reward;
+            $('.middle-label').html('<div style="font-size:40px;padding-top:10px">'+previous_result+'</div>');
         }
 
         //$('#hidLevel').val(level);
@@ -425,7 +426,6 @@ function resetGame() {
     $('div.clicked').removeClass('clicked').find('.bet-container').hide();
     $('.payout-info').addClass('hide');
     $('.spinning').css('visibility', 'hidden');
-    $('.middle-label').html('开始竞猜');
     $('.radio-primary').unbind('click');
     $('.button-bet').unbind('click');
     $('.btn-minus').unbind('click');
@@ -493,7 +493,7 @@ function checkSelection() {
         $('.middle-label').html('正在抽奖');
         $('.DB_G_hand').hide();
         $('.radio-primary').unbind('click');
-        $('#btnWheel').unbind('click');
+        $('.btn-trigger').unbind('click');
 
         $('.button-bet').unbind('click');
         $('.btn-add').unbind('click');
@@ -591,8 +591,6 @@ function bindBetButton(){
         var initial_bet = parseInt($('.span-bet').val());
         var final_bet = add_bet + initial_bet;
 
-        $('#btnPointer').attr("src","/client/images/wheel/pointer.png");
-
         if(final_bet <= g_vip_point){
             $('.span-bet').val(final_bet);
             previous_bet = final_bet;
@@ -649,7 +647,6 @@ function bindBetButton(){
         $('.span-bet').val(0);
         showPayout();
         previous_bet = 0;
-        $('#btnPointer').attr("src","/client/images/wheel/pointer-default.png");
     });
 
     $('.button-bet-all').click(function(){
@@ -743,6 +740,8 @@ function showPayout(){
 
         if (typeof selected == 'undefined'){
 
+            $('.middle-label').html('选择单双');
+
             if(bet_count == 0){
                 $('.selection').show();
                 $('.start-game').hide();
@@ -760,6 +759,12 @@ function showPayout(){
             $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point - bet_amount));
             
         } else {
+
+            if(bet_amount > 0){
+                $('.middle-label').html('开始抽奖');
+            } else {
+                $('.middle-label').html('选择金币');
+            }
 
             checked(level, true);
             changbar(level);
@@ -861,7 +866,8 @@ function bindCalculateButton(){
 }
 
 function bindTriggerButton(){
-    $('#btnWheel').click( function() {
+    $('.btn-trigger').click(function( event ){
+        event.stopImmediatePropagation();
         checkSelection();
     });
 }
@@ -1319,6 +1325,11 @@ function triggerResult(){
     });
 
     $( "#btnPointer" ).trigger( "click" );
+
+    setTimeout(function(){
+        $('.middle-label').html('<div style="font-size:40px;padding-top:10px">'+result+'</div>');              
+    
+    }, (freeze_time - 1) * 1000);
 
     setTimeout(function(){
         // if (show_win) {

@@ -49,14 +49,12 @@ body{
 .btn-rectangle, .btn-rectangle:active {
 	margin: 0 auto;
 	background: url('/client/images/wheel/btn-default.png') no-repeat;
-	width: 325px;
-	height: 100px;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
-	-webkit-transform-origin:left top;
-    font-size: 40px;
+	background-size: contain;
+    width: 100%;
+    height: 100%;
+    font-size: 0.4rem;
     color: #fff;
-    padding-top: 16px;
+    padding-top: 0.16rem;
     outline: none !important;
 	box-shadow: none;
 	cursor: pointer;
@@ -66,16 +64,8 @@ body{
 .btn-rectangle.clicked {
 	margin: 0 auto;
 	background: url('/client/images/wheel/btn-selected.png') no-repeat;
-	width: 325px;
-	height: 100px;
-	transform: scale(0.5); 
-	-webkit-transform: scale(0.5);
-	-webkit-transform-origin:left top;
-    font-size: 40px;
+	background-size: contain;
     color: #8c6d28;
-    cursor: pointer;
-    padding-top: 16px;
-  /* other styles */
 }
 
 .bet-container, .bet {
@@ -94,36 +84,14 @@ body{
 	width: 100%
 	height: 80px;
 	position: relative;
-	margin-top: 10px;
+	margin-top: 0.4rem;
 }
 
 .button-card {
 	margin-top: 0;
-	width: 165px !important;
-	height: 70px;
+	width: 3.3rem !important;
+	height: 1rem;
 	float: left;
-}
-
-@media only screen and (max-width: 360px) {
-    .btn-rectangle, .btn-rectangle:active {
-		transform: scale(0.4); 
-		-webkit-transform: scale(0.4);
-		-webkit-transform-origin:left top;
-	  /* other styles */
-	}
-
-	.btn-rectangle.clicked {
-		transform: scale(0.4); 
-		-webkit-transform: scale(0.4);
-		-webkit-transform-origin:left top;
-	  /* other styles */
-	}
-
-	.button-card {
-		width: 135px !important;
-		height: 70px;
-		float: left;
-	}
 }
 
 .progress-bar-container {

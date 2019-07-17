@@ -40,7 +40,7 @@
 .barBox .rule ul li{ flex:1;text-align: center; height: .35rem; position: relative; border-right:.04rem solid rgba(255,255,255,0.4);}
 
 .barBox .rule-content{
-	font-size: 14px;
+	font-size: 0.28rem;
 	color: #fff;
 	padding-bottom: 0.25rem;
 	font-weight: 700;
