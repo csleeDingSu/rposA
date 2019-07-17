@@ -146,6 +146,12 @@ class WeiXin
         return json_decode($output, true);
     }
 
+    public static function test($appid, $secret, $code) {
+
+        return $appid;
+        
+    }
+
     
 
 

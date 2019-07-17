@@ -95,7 +95,7 @@ class weixinController extends BaseController
         
     }
 
-    public static function getUserInfo_snsapi_base(Request $request, $domain = null)
+    public function getUserInfo_snsapi_base(Request $request, $domain = null)
     {
         try {
 
@@ -148,17 +148,16 @@ class weixinController extends BaseController
 
     }
 
-    public static function getUserInfo_snsapi_userinfo(Request $request, $domain = null)
+    public function getUserInfo_snsapi_userinfo(Request $request, $domain = null)
     {
         try {
 
             $appid = env('weixinid');//"你的AppId";  
             $secret = env('weixinsecret');//"你的AppSecret";  
             $code = $request->input('code');
-     
+           
             //第一步:取得openid
             $oauth2 = $this->wx->openid($appid, $secret, $code);
-            // var_dump($oauth2);
       
             if (empty($oauth2["access_token"])) {
 
@@ -225,19 +224,16 @@ class weixinController extends BaseController
 
         if ($content['success'] == true) {
             //wechat auth api
-            // $url = "http://" . $domain . "/api/wechat-auth");
-            $url = "http://dev.boge56.com/api/wechat-auth";
-            $payload["nickname"] = '100000';
-            $payload["openid"] = '8767gbasd67cg';
+            $url = "http://" . $domain . "/api/wechat-auth";
+            // $url = "http://dev.boge56.com/api/wechat-auth";
+            $payload["nickname"] = $content['nickname']; //'100000';
+            $payload["openid"] = $content['openid']; //'8767gbasd67cg';
 
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
-            $res = $req->getBody();
-
-            var_dump($res);
-            die('dasdsad');
+            $res = json_decode($req->getBody());
 
             if (!empty($res->success) && ($res->success == true)) {
                 
