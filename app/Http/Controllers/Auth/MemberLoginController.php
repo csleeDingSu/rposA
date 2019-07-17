@@ -423,7 +423,7 @@ class MemberLoginController extends Controller
 			//Session::flush();
 		}
 		
-		
+		dd(Auth::check());
 		return response()->json([
 			'success'      => true,
 			'data'         => $user->only(['id', 'username', 'phone', 'email','wechat_name','created_at']),
