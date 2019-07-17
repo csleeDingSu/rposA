@@ -68,10 +68,10 @@ class MemberLoginController extends Controller
 
         //weixin_verify
         $request = new Request;
-        $res = $this->wx->weixin_verify($request, env('wabao666_domain'));
-        if (!empty($res['success']) && $res['success'] == false) {
+        // $res = $this->wx->weixin_verify($request, env('wabao666_domain'));
+        // if (!empty($res['success']) && $res['success'] == false) {
             return view('auth.login',$data);    
-        }
+        // }
         
 	}
 	
