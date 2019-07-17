@@ -5,7 +5,7 @@
  ***/
 namespace App\Http\Controllers;
 
-
+use \App\helpers\WeiXin as WX;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -49,6 +49,8 @@ class ClientController extends BaseController
 		}
 		else
 		{
+			//wechat integration
+
 			return redirect()->route('render.member.register');
 		}		
 	}
@@ -129,15 +131,25 @@ class ClientController extends BaseController
 	{
 		$betting_count = 0;
 
+
+
 		if (!Auth::Guard('member')->check())
 		{
 			// $msg = trans('dingsu.please_login');
 			// \Session::flash('success',$msg);
 
 			// return redirect('/nlogin');
-			$data['betting_count'] = 0;
-			return view('client/game-node', $data);
 
+			//weixin_verify
+			$this->wx = new WX();
+			if ($this->wx->isWeiXin()) {
+            	$request = new Request;
+	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
+	        } else {
+	            $data['betting_count'] = 0;
+				return view('client/game-node', $data);
+	        }
+			
 		} else {
 
 			$member = Auth::guard('member')->user()->id	;
