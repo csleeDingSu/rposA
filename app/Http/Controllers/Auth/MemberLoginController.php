@@ -395,7 +395,7 @@ class MemberLoginController extends Controller
 		
 		//create login session
 		Auth::guard('member')->loginUsingId($user->id, true);
-		print_r(Auth::guard('member')->user());
+		//print_r(Auth::guard('member')->user());
 		//update loggedin userdata
 		$user = Auth::guard('member')->user();
 		$user->active_session = Session::getId();
@@ -424,7 +424,7 @@ class MemberLoginController extends Controller
 			//Session::flush();
 		}
 		
-		dd(Auth::check());
+		//dd(Auth::check());
 		return response()->json([
 			'success'      => true,
 			'data'         => $user->only(['id', 'username', 'phone', 'email','wechat_name','created_at']),
