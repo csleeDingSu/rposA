@@ -245,7 +245,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">点击抽奖</div>
+				<div id="txtCounter" class="middle-label">选择单双</div>
 				<div class="DB_G_hand start-game"></div>
 		    </div>
 		</div>
@@ -357,6 +357,7 @@
 					选择双数
 				</div>
 			  </div>
+			  <div class="btn-trigger"></div>
 		</div>
 		<!-- end button wrapper -->
 	    </article>

@@ -244,7 +244,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">幸运转盘</div>
+				<div id="txtCounter" class="middle-label">选择单双</div>
 				<div class="DB_G_hand start-game"></div>
 		    </div>
 		</div>
@@ -347,7 +347,7 @@
 					<input name="rdbBet" class="invisible" type="radio" value="odd">
 					选择单数
 				</div>
-				<div class="DB_G_hand selection"></div>
+				<div class="DB_G_hand selection"></div>				
 			  </div>
 			  <div class="button-card radio-primary right">
 				<div class="radio btn-rectangle">
@@ -355,6 +355,7 @@
 					选择双数
 				</div>
 			  </div>
+			  <div class="btn-trigger"></div>
 		</div>
 		<div style="clear: both;"></div>
 

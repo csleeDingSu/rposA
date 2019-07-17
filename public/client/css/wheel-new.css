@@ -78,7 +78,6 @@
 	height: 85px;
 	width: 80px;
 	z-index: 200;
-	cursor: pointer;
 }
 
 .middle {
@@ -153,6 +152,19 @@
   -webkit-transform-origin:left top;
 }
 
+.btn-trigger {
+  position: absolute;
+  background-repeat: no-repeat;
+  width: 1.5rem;
+  height: 1.5rem;
+  left: 40%; 
+  top: -0.3rem; 
+  background-image: url(/client/images/wheel/start.png);
+  background-size: cover;
+  z-index: 100;
+  cursor: pointer;
+}
+
 .DB_G_hand {
   display: none;
   position: absolute;
@@ -165,7 +177,7 @@
   -webkit-animation: guideHand2 .5s step-start infinite;
   animation: guideHand2 .5s step-start infinite;
   background-size: cover;
-  z-index: 100;
+  z-index: 200;
 }
 
 @keyframes guideHand2 {
