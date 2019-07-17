@@ -131,17 +131,11 @@ class weixinController extends BaseController
         // var_dump($userinfo);
 
         if (!empty($userinfo['openid'])) {
-            //Create / update 
-            $filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
-            $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
-            $res_id = weixin::updateOrCreate($filter, $array)->id;
+            //store
+            $res_id = $this->storeWeiXin($userinfo);
         }
         
-        if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
-            $result = ['success' => false, 'message' => 'not valid weixin detail'];
-        } else {
-            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex']];
-        }
+        $result = $this->showWeiXin($userinfo);
         
         // return $userinfo;
         // return $result;
@@ -186,17 +180,11 @@ class weixinController extends BaseController
         // var_dump($userinfo);
 
         if (!empty($userinfo['openid'])) {
-            //Create / update 
-            $filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
-            $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
-            $res_id = weixin::updateOrCreate($filter, $array)->id;
+            //store
+            $res_id = $this->storeWeiXin($userinfo);
         }
 
-        if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
-            $result = ['success' => false, 'message' => 'not valid weixin detail'];
-        } else {
-            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex']];
-        }
+        $result = $this->showWeiXin($userinfo);
 
         //return $result;
 
@@ -266,5 +254,28 @@ class weixinController extends BaseController
             return $content;
         }
     }
+
+    public function storeWeiXin($userinfo)
+    {
+        $filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
+        $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
+    
+        return weixin::updateOrCreate($filter, $array)->id;
+        
+    }
+
+    public function showWeiXin($userinfo)
+    {
+        $sex = empty($userinfo['sex']) ? null : (($userinfo['sex'] == 1) ? "MALE" : "FEMALE");
+
+        if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
+            $result = ['success' => false, 'message' => 'not valid weixin detail'];
+        } else {
+            $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'sex' => $sex];
+        }
+
+        return $result;
+    }
+
 
 }
