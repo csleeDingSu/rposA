@@ -394,7 +394,7 @@ class MemberLoginController extends Controller
 		$user = \App\Members::where('phone', $wechatname)->first();		
 		
 		//create login session
-		Auth::guard('member')->loginUsingId($user->id);
+		Auth::guard('member')->loginUsingId($user->id, true);
 		//update loggedin userdata
 		$user = Auth::guard('member')->user();
 		$user->active_session = Session::getId();
