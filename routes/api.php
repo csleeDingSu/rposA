@@ -143,6 +143,10 @@ Route::group(['namespace' => 'Api'],function()
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
 Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');
 
+
+Route::any('wechat-auth', 'Auth\MemberLoginController@wechat_auth')->name('wechat_auth');
+
+
 //cron_test
 Route::get('/cron_test', 'TestController@cron_test')->name('cron_test');
 

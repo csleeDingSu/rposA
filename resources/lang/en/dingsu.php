@@ -686,5 +686,11 @@ return [
 	'APTOP' => 'Topup Rejected',
 	'DPGBV' => 'VIP deducted for betting',
 	'APGBV' => 'VIP betting reward',
+	'gameid'=>'Game ID',
+	'date'=>'Date',
+	'played_count'=>'Played Count',
+	''=>'',
+	''=>'',
+	
 
 ];
