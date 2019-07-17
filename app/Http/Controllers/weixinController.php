@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \App\helpers\WeiXin;
+use \App\helpers\WeiXin as WX;
 use App\Http\Controllers\Auth\MemberRegisterController;
 use App\Members;
 use App\weixin;
@@ -17,7 +17,7 @@ class weixinController extends BaseController
     public function __construct() {
 
         //
-        $this->wx = new WeiXin();
+        $this->wx = new WX();
        
     }
 
