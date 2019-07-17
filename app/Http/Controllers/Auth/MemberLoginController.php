@@ -349,7 +349,7 @@ class MemberLoginController extends Controller
 			return response()->json(['success' => false,'message'=>[trans('auth.empty_openid')] ]);
 		}
 		
-		$record = \App\Members::where('wechat_name', $wechatname)->orwhere('phone', $wechatname)->first();
+		$record = \App\Members::where('wechat_name', $wechatname)->first();
 		
 		if ($record)
 		{
@@ -374,6 +374,12 @@ class MemberLoginController extends Controller
 		}
 		else
 		{
+			$preg = \App\Members::where('wechat_name', $wechatname)->first();
+			if ($record)
+			{
+				return response()->json(['success' => false,'message'=>[trans('auth.user_already_exists')] ]);
+			}
+			
 			//register
 			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>1,'phone'=>$wechatname,'username'=>$wechatname ]);
 			
