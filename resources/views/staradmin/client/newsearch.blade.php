@@ -44,7 +44,9 @@
     var ua = navigator.userAgent.toLowerCase();
     //alert(ua);
     function checkDownload() {
-        if (ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) {
+        var bdisable = true;
+
+        if ((ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) && bdisable == false) {
             document.writeln("<div id=\"weixinTips\" style=\"display:block;background:rgba(255, 255, 255,1);width:100%;height:100%;position:fixed;left:0;top:0;z-index:9999\"><div id=\"weixinTipsImg\" style=\"background:url("+bg+") top center no-repeat;background-size:100%;width:100%;height:100%\"><\/div><\/div>");
 
             // document.getElementById("weixinTips").style.display = "block";
