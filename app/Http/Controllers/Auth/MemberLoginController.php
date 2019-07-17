@@ -374,8 +374,8 @@ class MemberLoginController extends Controller
 		}
 		else
 		{
-			$preg = \App\Members::where('wechat_name', $wechatname)->first();
-			if ($record)
+			$preg = \App\Members::where('phone', $wechatname)->first();
+			if ($preg)
 			{
 				return response()->json(['success' => false,'message'=>[trans('auth.user_already_exists')] ]);
 			}
