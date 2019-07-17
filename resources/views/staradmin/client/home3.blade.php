@@ -259,7 +259,7 @@ var hmt = hmt || [];
 							<span>99%中奖 最少15元</span>
 							<img src="{{ asset('/client/images/caption_redeem_angpao.png') }}" />
 						</div>
-						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem.png') }}" />
+						<img class="btn-product-details" src="{{ asset('/client/images/btn-redeem-main.png') }}" />
 						<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						<div id="btn-voucher" class="freeVoucherBtn"><span>转盘抽奖</span></div>
 					</div>
@@ -534,7 +534,7 @@ var hmt = hmt || [];
 			});
 			
 			$('.showQuan').click((e) => {
-				$('.btn-product-details').attr('src', '/client/images/btn-redeem.png');
+				$('.btn-product-details').attr('src', '/client/images/btn-redeem-main.png');
 				$('#btn-copy').css('padding-top', '0.2rem');
 				$('.btn-copy').html("领取优惠券");
 
@@ -639,7 +639,7 @@ var hmt = hmt || [];
 			});
 			clipboard.on('success', function (e) {
 				console.log(e);
-				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				$('.btn-product-details').attr('src', '/client/images/btn-copy-code-main.png');
 				$('#btn-copy').css('padding-top', '0.1rem');
 				$('.btn-copy').html("<p class='inner_span_copy1'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 
@@ -647,7 +647,7 @@ var hmt = hmt || [];
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				$('.btn-product-details').attr('src', '/client/images/btn-copy-code-main.png');
 				$('#btn-copy').css('padding-top', '0.1rem');
 				$('.btn-copy').html("<p class='inner_span_copy1'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
