@@ -79,8 +79,7 @@ class WeiXin
                 \Log::info(json_encode(['weixin getUserInfo_snsapi_base' => $userinfo], true));
 
                 return $userinfo;
-            }
-        
+            
         } catch (\Exception $e) {
             //log error
             \Log::error($e);
@@ -124,9 +123,6 @@ class WeiXin
                 \Log::info(json_encode(['weixin getUserInfo_snsapi_userinfo' => $userinfo], true));
 
                 return $userinfo;
-
-            }
-
         
         } catch (\Exception $e) {
             //log error
