@@ -96,7 +96,9 @@
     var ua = navigator.userAgent.toLowerCase();
     //alert(ua);
     function checkDownload() {
-        if (ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) {
+        var bdisable = true;
+
+        if ((ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) && bdisable == false) {
             document.getElementById("weixinTips").style.display = "block";
             document.title="请在浏览器中打开...";
             // return false;
