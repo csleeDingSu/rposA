@@ -349,7 +349,7 @@ class MemberLoginController extends Controller
 			return response()->json(['success' => false,'message'=>[trans('auth.empty_openid')] ]);
 		}
 		
-		$record = \App\Members::where('wechat_name', $wechatname)->first();
+		$record = \App\Members::where('wechat_name', $wechatname)->orwhere('phone', $wechatname)->first();
 		
 		if ($record)
 		{
@@ -394,9 +394,10 @@ class MemberLoginController extends Controller
 		$user->active_session = Session::getId();
 		if ($forceupdate)
 		{
-			$user->phone     = $wechatname;
-			$user->username  = $wechatname;
-			$user->openid    = $openid;
+			$user->phone        = $wechatname;
+			$user->username     = $wechatname;
+			$user->openid       = $openid;
+			$user->wechat_name  = $wechatname;
 		}
 		
 		$user->save();
