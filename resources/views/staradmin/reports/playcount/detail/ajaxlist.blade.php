@@ -16,7 +16,7 @@
 								<th>@lang('dingsu.play_result')</th>
 								<th>@lang('dingsu.play_status')</th>
 								<th>@lang('dingsu.bet_amount')</th>
-								<th>@lang('dingsu.win')</th>
+								<th>@lang('dingsu.reward')</th>
 								<th>@lang('dingsu.name')</th>
 								<th>@lang('dingsu.status')</th>
 								
