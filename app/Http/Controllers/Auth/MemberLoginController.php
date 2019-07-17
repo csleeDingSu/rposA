@@ -381,7 +381,7 @@ class MemberLoginController extends Controller
 			}
 			
 			//register
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>1,'phone'=>$wechatname,'username'=>$wechatname ]);
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','phone'=>$wechatname,'username'=>$wechatname ]);
 			
 			$wallet = \App\Wallet::create([
 					'current_life'    => 0,
