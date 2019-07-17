@@ -235,9 +235,6 @@ class weixinController extends BaseController
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
 
-            var_dump($res);
-            die('dasdsad');
-
             if (!empty($res->success) && ($res->success == true)) {
                 
                 $url = "http://" . $domain . $res->url;
