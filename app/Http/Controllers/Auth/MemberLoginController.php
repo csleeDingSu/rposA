@@ -334,9 +334,10 @@ class MemberLoginController extends Controller
 	public function wechat_auth(Request $request) {		
         
         $forceupdate = '';
-		$url = "/cs/220";
-        $openid     = $request->openid; 
-		$wechatname = $request->nickname;		
+		$changephone = '';
+		$url         = "/cs/220";
+        $openid      = $request->openid; 
+		$wechatname  = $request->nickname;		
 		//$openid     = 'adsfsafsdfdsaf2423'; 
 		//$wechatname = '67rfdsf';	
 				
@@ -361,14 +362,15 @@ class MemberLoginController extends Controller
 			//To fix old register
 			if (!empty($record->phone))
 			{
-				if ( $record->phone != $wechatname  )
+				$changephone = '';
+				/*if ( $record->phone != $wechatname  )
 				{
 					return response()->json(['success' => false,'message'=>[trans('auth.wechatname_mismatch')] ]);
-				}
+				}*/
 			}
 			else
 			{
-				$forceupdate = 'yes';
+				$changephone = 'yes';
 			}
 			
 		}
@@ -399,13 +401,19 @@ class MemberLoginController extends Controller
 		//update loggedin userdata
 		$user = Auth::guard('member')->user();
 		$user->active_session = Session::getId();
-		if ($forceupdate)
+		if ($changephone)
 		{
 			$user->phone        = $wechatname;
 			$user->username     = $wechatname;
 			$user->openid       = $openid;
-			$user->wechat_name  = $wechatname;
 		}
+		if ($forceupdate)
+		{
+			$user->openid       = $openid;
+		}
+		
+		
+		
 		
 		$user->save();
 		//create token
