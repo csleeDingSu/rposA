@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use \App\helpers\WeiXin;
 use App\Http\Controllers\Auth\MemberRegisterController;
 use App\Members;
 use App\weixin;
@@ -16,6 +17,7 @@ class weixinController extends BaseController
     public function __construct() {
 
         //
+        $this->wx = new WeiXin();
        
     }
 
@@ -24,26 +26,8 @@ class weixinController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $type = null, $domain = null)
+    public function index(Request $request)
     {
-
-        $domain = !empty($domain) ? $domain : 'dev.boge56.com';
-        $type = !empty($type) ? $type : (empty($request->input('type')) ? 'snsapi_base' : 'snsapi_userinfo');
-        $appid=env('weixinid'); //'你的AppId';
-        $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain);
-        $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
-        \Log::info(json_encode(['weixin URL' => $url], true));
-        // var_dump($url);
-
-        // header("Location:".$url);
-        return redirect()->to($url);
-
-        /*
-        $result = ['success' => true, 'openid' => '111222333444', 'nickname' => 'testwechatapi', 'headimgurl' => 'http', 'sex' => 0];
-
-        return $this->accessToWabao($result);
-        */
-
 
     }
 
@@ -92,121 +76,6 @@ class weixinController extends BaseController
         //
     }
 
-    public function getUserInfo_snsapi_base(Request $request, $domain = null)
-    {
-
-        $appid = env('weixinid');//"你的AppId";  
-        $secret = env('weixinsecret');//"你的AppSecret";  
-        $code = $request->input('code');
- 
-        //第一步:取全局access_token
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$secret";
-
-        \Log::info(json_encode(['weixin URL' => $url], true));
-        
-        $token = $this->getJson($url);
-        \Log::info(json_encode(['weixin token' => $token], true));
-        // var_dump($token);
-        
-        //第二步:取得openid
-        $oauth2Url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$secret&code=$code&grant_type=authorization_code";
-        $oauth2 = $this->getJson($oauth2Url);
-        \Log::info(json_encode(['weixin oauth2' => $oauth2], true));
-        // var_dump($oauth2);
-  
-        //第三步:根据全局access_token和openid查询用户信息  
-        if (empty($token["access_token"])) {
-
-            return $oauth2;
-
-        } else {
-            $access_token = $token["access_token"];  
-            $openid = empty($oauth2['openid']) ? null : $oauth2['openid'];  
-            $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
-            // $get_user_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
-            \Log::info(json_encode(['weixin get_user_info_url' => $get_user_info_url], true));
-            $userinfo = $this->getJson($get_user_info_url);
-        }
-        //打印用户信息
-        // var_dump($userinfo);
-
-        if (!empty($userinfo['openid'])) {
-            //store
-            $res_id = $this->storeWeiXin($userinfo);
-        }
-        
-        $result = $this->showWeiXin($userinfo);
-        
-        // return $userinfo;
-        // return $result;
-
-        //auto login / register
-        return $this->accessToWabao($result,$domain);
-        
-    }
-
-    public function getUserInfo_snsapi_userinfo(Request $request, $domain = null)
-    {
-        $appid = env('weixinid');//"你的AppId";  
-        $secret = env('weixinsecret');//"你的AppSecret";  
-        $code = $request->input('code');
- 
-        //第一步:取得openid
-        $oauth2Url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$secret&code=$code&grant_type=authorization_code";
-        \Log::info(json_encode(['weixin oauth2Url' => $oauth2Url], true));
-
-        $oauth2 = $this->getJson($oauth2Url);
-        \Log::info(json_encode(['weixin oauth2' => $oauth2], true));
-        // var_dump($oauth2);
-  
-        if (empty($oauth2["access_token"])) {
-
-            return $oauth2;
-
-        } else {
-
-            //第二步:根据全局access_token和openid查询用户信息  
-            $access_token = $oauth2["access_token"];  
-            $openid = $oauth2['openid'];  
-            // $get_user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
-            $get_user_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
-            \Log::info(json_encode(['weixin get_user_info_url' => $get_user_info_url], true));
-            $userinfo = $this->getJson($get_user_info_url);
-
-        }
-
-        
-        //打印用户信息
-        // var_dump($userinfo);
-
-        if (!empty($userinfo['openid'])) {
-            //store
-            $res_id = $this->storeWeiXin($userinfo);
-        }
-
-        $result = $this->showWeiXin($userinfo);
-
-        //return $result;
-
-        //auto login / register
-        return $this->accessToWabao($result,$domain);
-        
-        
-    }
-
-    public function getJson($url){
-        
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($ch);
-
-        curl_close($ch);
-        return json_decode($output, true);
-    }
-
     public function weixin_verify(Request $request, $domain = null)
     {        
         $agent = new WechatAgent;
@@ -216,7 +85,7 @@ class weixinController extends BaseController
 
             $request = new Request;
             $type = 'snsapi_userinfo'; 
-            return $this->index($request,$type,$domain);
+            return $this->wx->index($request,$type,$domain);
 
         } else {
 
@@ -226,33 +95,106 @@ class weixinController extends BaseController
         
     }
 
-    public function accessToWabao($content, $domain = null)
+    public static function getUserInfo_snsapi_base(Request $request, $domain = null)
     {
-        if ($content['success'] == true) {
-            //wechat auth api
-            $res = $this->getJson("http://dev.boge56.com/api/wechat-auth?nickname=100000&openid=8767gbasd67cg");    
+        try {
 
-            var_dump(json_decode($res));
+            $appid = env('weixinid');//"你的AppId";  
+            $secret = env('weixinsecret');//"你的AppSecret";  
+            $code = $request->input('code');
 
-            return json_encode($res);      
-            //$res = $this->getJson("http://$domain/api/wechat-auth?nickname=$content['nickname']&openid=$content['openid']");
+            //第一步:取全局access_token
+            $token = $this->wx->access_token($appid, $secret);
+            // var_dump($token);
+            
+            //第二步:取得openid
+            $oauth2 = $this->wx->oauth2($appid, $secret, $code);            
+            // var_dump($oauth2);
+      
+            //第三步:根据全局access_token和openid查询用户信息  
+            if (empty($token["access_token"])) {
 
-            if (!empty($res->success) && ($res->success == true)) {
-                $d = json_decode($res->data);
-                return $d;
+                return $oauth2;
 
-                $url = "http://" . $domain . $d['url'];
-                //return $url;
-                return redirect()->to($url);
+            } else {
+
+                $access_token = $token["access_token"];  
+                $openid = empty($oauth2['openid']) ? null : $oauth2['openid']; 
+                $userinfo = $this->wx->getUserInfo_snsapi_base($access_token, $openid); 
+
+            }
+            //打印用户信息
+            // var_dump($userinfo);
+
+            if (!empty($userinfo['openid'])) {
+                //store
+                $res_id = $this->storeWeiXin($userinfo);
+            }
+            
+            $result = $this->showWeiXin($userinfo);
+            
+            // return $userinfo;
+            // return $result;
+
+            //auto login / register
+            return $this->accessToWabao($result,$domain);
+        
+        } catch (\Exception $e) {
+            //log error
+            \Log::error($e);
+                        
+            return $e->getMessage();
+        }
+
+    }
+
+    public static function getUserInfo_snsapi_userinfo(Request $request, $domain = null)
+    {
+        try {
+
+            $appid = env('weixinid');//"你的AppId";  
+            $secret = env('weixinsecret');//"你的AppSecret";  
+            $code = $request->input('code');
+     
+            //第一步:取得openid
+            $oauth2 = $this->wx->openid($appid, $secret, $code);
+            // var_dump($oauth2);
+      
+            if (empty($oauth2["access_token"])) {
+
+                return $oauth2;
+
+            } else {
+
+                //第二步:根据全局access_token和openid查询用户信息  
+                $access_token = $oauth2["access_token"];  
+                $openid = empty($oauth2['openid']) ? null : $oauth2['openid']; 
+                $userinfo = $this->wx->getUserInfo_snsapi_userinfo($access_token, $openid);
+
+            }
+            
+            //打印用户信息
+            // var_dump($userinfo);
+
+            if (!empty($userinfo['openid'])) {
+                //store
+                $res_id = $this->storeWeiXin($userinfo);
             }
 
-            return $res;
+            $result = $this->showWeiXin($userinfo);
 
-        } else {
-            //to login screen
-            //return redirect()->route('login');
-            return $content;
+            //return $result;
+
+            //auto login / register
+            return $this->accessToWabao($result,$domain);
+        
+        } catch (\Exception $e) {
+            //log error
+            \Log::error($e);
+                        
+            return $e->getMessage();
         }
+        
     }
 
     public function storeWeiXin($userinfo)
@@ -275,6 +217,42 @@ class weixinController extends BaseController
         }
 
         return $result;
+    }
+
+    public function accessToWabao($content, $domain = null)
+    {
+        $domain = empty($domain) ? "dev.boge56.com" : $domain;
+
+        if ($content['success'] == true) {
+            //wechat auth api
+            // $url = "http://" . $domain . "/api/wechat-auth");
+            $url = "http://dev.boge56.com/api/wechat-auth";
+            $payload["nickname"] = '100000';
+            $payload["openid"] = '8767gbasd67cg';
+
+            $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+            $option = ['connect_timeout' => 60, 'timeout' => 180];
+            $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+            $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
+            $res = $req->getBody();
+
+            var_dump($res);
+            die('dasdsad');
+
+            if (!empty($res->success) && ($res->success == true)) {
+                
+                $url = "http://" . $domain . $res->url;
+                //return $url;
+                return redirect()->to($url);
+            }
+
+            return $res;
+
+        } else {
+            //to login screen
+            //return redirect()->route('login');
+            return $content;
+        }
     }
 
 
