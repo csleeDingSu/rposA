@@ -426,7 +426,7 @@ class MemberLoginController extends Controller
 		
 		return response()->json([
 			'success'      => true,
-			'data'         => $user->only(['id', 'username', 'phone', 'email','created_at']),
+			'data'         => $user->only(['id', 'username', 'phone', 'email','wechat_name','created_at']),
 			'access_token' => $tokenResult->accessToken,
 			'token_type'   => 'Bearer',
 			'expires_at'   => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
