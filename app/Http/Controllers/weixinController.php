@@ -233,7 +233,7 @@ class weixinController extends BaseController
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
-            $res = $req->getBody();
+            $res = json_decode($req->getBody());
 
             var_dump($res);
             die('dasdsad');
