@@ -245,6 +245,13 @@ class weixinController extends BaseController
             $res = $this->getJson("http://dev.boge56.com/api/wechat-auth?nickname=100000&openid=8767gbasd67cg");          
             //$res = $this->getJson("http://$domain/api/wechat-auth?nickname=$content['nickname']&openid=$content['openid']");
 
+            if (!empty($res->success) && ($res->success == true)) {
+                $d = json_decode($res->data);
+                $url = "http://$domain$d['url']";
+                return $url;
+                // return redirect()->to($url);
+            }
+
             return $res;
 
         } else {
