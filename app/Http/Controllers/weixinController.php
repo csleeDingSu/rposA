@@ -129,16 +129,16 @@ class weixinController extends BaseController
 
             if (!empty($userinfo['openid'])) {
                 //store
-                $res_id = $this->storeWeiXin($userinfo);
+                $res_id = self::storeWeiXin($userinfo);
             }
             
-            $result = $this->showWeiXin($userinfo);
+            $result = self::showWeiXin($userinfo);
             
             // return $userinfo;
             // return $result;
 
             //auto login / register
-            return $this->accessToWabao($result,$domain);
+            return self::accessToWabao($result,$domain);
         
         } catch (\Exception $e) {
             //log error
@@ -179,15 +179,15 @@ class weixinController extends BaseController
 
             if (!empty($userinfo['openid'])) {
                 //store
-                $res_id = $this->storeWeiXin($userinfo);
+                $res_id = self::storeWeiXin($userinfo);
             }
 
-            $result = $this->showWeiXin($userinfo);
+            $result = self::showWeiXin($userinfo);
 
             //return $result;
 
             //auto login / register
-            return $this->accessToWabao($result,$domain);
+            return self::accessToWabao($result,$domain);
         
         } catch (\Exception $e) {
             //log error
