@@ -204,17 +204,24 @@ try {
         }
 
         $( ".button-bet-default" ).each(function() {
+            $( this ).next().hide();
+            $( this ).next().removeClass('clicked-circle');
             $( this ).removeClass( "button-bet-inactive" );
             $( this ).removeClass( "button-bet-active" );
+            $( this ).removeClass( "clicked-button-bet" );
 
             if($( this ).attr('data-level') < level){
                 $( this ).addClass( "button-bet-inactive" );
                 $( this ).unbind( "click" );
 
             } else if($( this ).attr('data-level') == level){
+                $( this ).next().addClass('circle-border').show();
                 $( this ).addClass( "button-bet-active" );
                 $( this ).unbind( "click" );
-                $( ".button-bet-active" ).click(function(){
+                $( ".circle-border" ).click(function(){
+                    $( this ).removeClass('circle-border').addClass('clicked-circle');
+                    $( this ).prev().addClass('clicked-button-bet');
+
                     var selected = $('div.clicked').find('input:radio').val();
                     if (typeof selected == 'undefined'){
                         $('.middle-label').html('选择单双');
