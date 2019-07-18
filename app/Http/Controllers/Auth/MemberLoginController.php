@@ -431,7 +431,7 @@ class MemberLoginController extends Controller
 			Session::forget('re_route');
 			//Session::flush();
 		}
-		return redirect($url);
+		//return redirect($url);
 		//dd(Auth::check());
 		return response()->json([
 			'success'      => true,
