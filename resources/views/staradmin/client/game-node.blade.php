@@ -313,7 +313,6 @@
 		        <div class="bet-box">
 		        	<div data-level="1" class="button-bet-default">1</div>
 		        	<div class="circle-border">
-		        		<div class="circle-core"></div>
 		        	</div>
 		        </div>
 			
@@ -322,15 +321,13 @@
 		        <div class="bet-box">		        	
 		        	<div data-level="2" class="button-bet-default">3</div>
 		        	<div class="circle-border">
-		        		<div class="circle-core"></div>
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
 		        	<div data-level="3" class="button-bet-default">7</div>
-		        	<div class="circle-border">
-		        		<div class="circle-core"></div>
+		        	<div class="circle-border clicked-bet">
 		        	</div>
 		        </div>
 		    </div>
@@ -338,7 +335,6 @@
 		        <div class="bet-box">		        	
 		        	<div data-level="4" class="button-bet-default">15</div>
 		        	<div class="circle-border">
-		        		<div class="circle-core"></div>
 		        	</div>
 		        </div>
 		    </div>
@@ -346,7 +342,6 @@
 		        <div class="bet-box">
 		        	<div data-level="5" class="button-bet-default">31</div>
 		        	<div class="circle-border">
-		        		<div class="circle-core"></div>
 		        	</div>
 		        </div>
 		    </div>
@@ -354,7 +349,6 @@
 		        <div class="bet-box">		        	
 		        	<div data-level="6" class="button-bet-default">63</div>
 		        	<div class="circle-border">
-		        		<div class="circle-core"></div>
 		        	</div>
 		        </div>
 		    </div>
