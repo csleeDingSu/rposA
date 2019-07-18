@@ -134,8 +134,8 @@
 	margin-left: auto;
 	margin-right: auto;
 	z-index: 100; 
-	width:320px;
-	height:334px;
+	width:6rem;
+	height:6.2rem;
 	/*top: -10px;*/
 }
 
@@ -391,11 +391,6 @@
 }
 
 @media only screen and (max-width: 360px) {
-	#wheel_banner img {
-		width:280px;
-		height:292px;
-	}
-
 	#modal-check-vip-status .modal-dialog {
 		width: 320px;
 	}

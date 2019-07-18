@@ -1,4 +1,4 @@
-html, body {
+information-tablehtml, body {
 	height: 100%;
 }
 
@@ -8,8 +8,13 @@ body{
 	margin:0px;
 }
 
-.card-flex .cardBody {
-	
+.card-flex .cardBody {	
+    background-image: url("/client/images/wheel/background_game.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: scroll;
+    background-color: #8c36d9;
 }
 
 .full-height {
@@ -27,7 +32,6 @@ body{
 .information-table {
 	margin: 0 auto;
 	width: 400px;
-	padding-bottom: 10px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -272,7 +276,7 @@ body{
 .grid-container {
   display: grid;
   grid-template-columns: auto  150px;
-  height: 56.5px;
+  height: 0.9rem;
 }
 
 .box {
@@ -1523,15 +1527,9 @@ body{
 
 .frame-wrapper {
     margin: 0 auto;
-    width: 400px;
-	height: 330px;
+    width: 8rem;
+	height: 6.3rem;
 	display:block;    
-}
-
-@media only screen and (max-width: 360px) {
-    .frame-wrapper {
-    	width: 320px;
-	}
 }
 
 .rules-content {

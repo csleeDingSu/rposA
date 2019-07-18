@@ -246,7 +246,6 @@
 					</div>
 				</div>
 				<div id="txtCounter" class="middle-label">选择单双</div>
-				<div class="DB_G_hand start-game"></div>
 		    </div>
 		</div>
 
@@ -309,7 +308,6 @@
 	<section class="barWrapper">
       	<article class="barBox">
 	      <div class="rule"></div>
-	      <div class="rule-content"><span class="span-content">上局亏了1金币，这局请投3金币</span> <span id="viewgamerules" class="span-rule">玩法说明></span></div>
 	      <div class="col-xs-2">
 		        <div class="bet-box">
 		        	<div data-level="1" class="button-bet-default">1</div>
@@ -349,7 +347,6 @@
 					<input name="rdbBet" class="invisible" type="radio" value="odd">
 					选择单数
 				</div>
-				<div class="DB_G_hand selection"></div>
 			  </div>
 			  <div class="button-card radio-primary right">
 				<div class="radio btn-rectangle">
