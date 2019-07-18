@@ -244,7 +244,7 @@ function getProductList(token) {
             }
 
             //new list of buy product
-            getNewProductList(records.length, token);
+            //getNewProductList(records.length, token);
 
         } // end success
     }); // end $.ajax
@@ -406,6 +406,7 @@ function populateHistoryData(records, token) {
                 }*/
 
             } else if (item.type == '1') { //new buy product - card / virtual item
+                /* close for basic game - only show on vip
 
                 if(item.redeem_state == 1) { // Pending
                     txt_status = '等待发放';
@@ -452,7 +453,11 @@ function populateHistoryData(records, token) {
                         '</div>';
                 }
 
+                */
+
             } else if (item.type == '2') { //new buy product - physical item
+
+                /* close for basic game - only show on vip
 
                 if(item.redeem_state == 1) { // Pending
                     txt_status = '等待发货';
@@ -504,7 +509,7 @@ function populateHistoryData(records, token) {
                 }
 
                 html += '</div>';
-
+                */
             } else {
 
                 if(item.pin_status == 4) { // Pending
