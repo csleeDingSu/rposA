@@ -232,27 +232,27 @@ try {
 
                     default:
                     case 1:
-                        $suggestion_bet = 1;
+                        suggestion_bet = 1;
                     break;
 
                     case 2:
-                        $suggestion_bet = 3;
+                        suggestion_bet = 3;
                     break;
 
                     case 3:
-                        $suggestion_bet = 7;
+                        suggestion_bet = 7;
                     break;
 
                     case 4:
-                        $suggestion_bet = 15;
+                        suggestion_bet = 15;
                     break;
 
                     case 5:
-                        $suggestion_bet = 31;
+                        suggestion_bet = 31;
                     break;
 
                     case 6:
-                        $suggestion_bet = 63;
+                        suggestion_bet = 63;
                     break;
                 }
 

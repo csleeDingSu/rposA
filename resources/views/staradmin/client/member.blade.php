@@ -94,7 +94,7 @@
 				</li>
 				
 				<!-- 兑换奖品 -->
-				<li class="list-group-item first-item">
+				<li class="list-group-item">
 					<div class="redeembtn">
 						<div class="icon-wrapper">
 							<div class="icon-redeem"></div>
