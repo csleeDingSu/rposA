@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use \App\helpers\WeiXin as WX;
 use App\Http\Controllers\Controller;
-use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
+use Auth;
+use Session;
 use Larashop\Notifications\ResetPassword as ResetPasswordNotification;
 use Carbon\ Carbon;
-use Session;
 use Validator;
 class MemberLoginController extends Controller
 {
@@ -46,7 +45,6 @@ class MemberLoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest:member');
-        $this->wx = new WX();
     }
 	
 	
@@ -65,15 +63,7 @@ class MemberLoginController extends Controller
         $data['slug'] = $slug;
 		// return view('client.login', $data);
 		//return view('common.memberlogin', $data);
-
-        //weixin_verify
-        if ($this->wx->isWeiXin()) {
-            $request = new Request;
-            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
-        } else {
-            return view('auth.login',$data);    
-        }
-        
+        return view('auth.login',$data);
 	}
 	
 	/**
@@ -441,7 +431,7 @@ class MemberLoginController extends Controller
 			Session::forget('re_route');
 			//Session::flush();
 		}
-		
+		return redirect($url);
 		//dd(Auth::check());
 		return response()->json([
 			'success'      => true,
@@ -449,6 +439,7 @@ class MemberLoginController extends Controller
 			'access_token' => $tokenResult->accessToken,
 			'token_type'   => 'Bearer',
 			'expires_at'   => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
+			'is_auth'      => Auth::check(),
 			'url' => $url
 		]);
     }
