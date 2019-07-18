@@ -235,6 +235,8 @@ class weixinController extends BaseController
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
             \Log::info(json_encode(['accessToWabao' => $res], true));
+			
+			print_r($res);die();
 
             if (!empty($res->success) && ($res->success == true)) {
                 
