@@ -244,7 +244,7 @@ function getProductList(token) {
             }
 
             //new list of buy product
-            getNewProductList(records.length, token);
+            //getNewProductList(records.length, token);
 
         } // end success
     }); // end $.ajax
@@ -405,6 +405,7 @@ function populateHistoryData(records, token) {
                     html += '</div>';
                 }*/
 
+/* close for basic game - only show on vip
             } else if (item.type == '1') { //new buy product - card / virtual item
 
                 if(item.redeem_state == 1) { // Pending
@@ -504,7 +505,7 @@ function populateHistoryData(records, token) {
                 }
 
                 html += '</div>';
-
+*/
             } else {
 
                 if(item.pin_status == 4) { // Pending
