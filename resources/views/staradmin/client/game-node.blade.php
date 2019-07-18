@@ -607,12 +607,13 @@
 										</div>
 									</a>
 								</div>
-								<div class="span-purchase">嫌邀请好友麻烦？直接购买！</div>
+								
+								<!-- <div class="span-purchase">嫌邀请好友麻烦？直接购买！</div>
 								<a href="/purchase" class="link-button">
 									<div class="modal-share-button">
 										点击购买
 									</div>
-								</a>
+								</a> -->
 							</div>
 						</div>
 					</div>							
