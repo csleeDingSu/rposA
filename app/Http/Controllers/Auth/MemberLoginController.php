@@ -443,4 +443,214 @@ class MemberLoginController extends Controller
 			'url' => $url
 		]);
     }
+	
+	
+	
+	public function otp_login($otp = 'iselKwasPQOgjnC') {
+		
+		
+		$user->activation_code = $otp = unique_random('members', 'activation_code', 15);
+		$user->activation_code_expiry =Carbon::now()->addMinutes(10);
+		
+		
+		//die('saf');
+		
+		//dd('asdf');dd(session()->all());
+		
+		$openid = $otp;
+		$url	= '';
+		
+		if (empty($openid))
+		{
+			 \Log::warning(json_encode(['unauthorised_login' => 'empty OTP'], true));
+			//return redirect($url);
+		}
+		
+		$record = \App\Member::where('activation_code', $otp)->first();
+		
+		if ($record)
+		{
+			if (Carbon::parse($record->activation_code_expiry)->gt(Carbon::now()))
+			{
+				\Auth::guard('member')->loginUsingId($record->id,true);
+				
+				$user = Auth::guard('member')->user();
+				$user->active_session = Session::getId();
+				$user->save();
+				
+				 return response()->json(['success' => true, 'url' => '']);
+				
+			//	$temp_pass = Hash::make($openid);
+			//	print_r($temp_pass);die();
+				
+				$record->password = Hash::make($openid);
+				$record->save();
+				$user = Auth::guard('member')->user();
+				
+				//print_r($user);die();
+				
+				$array = ['username' => $record->phone, 'password' => $openid];
+				
+				
+				Auth::guard('member')->attempt(['username' => $record->phone, 'password' =>  $openid]);
+			
+				$user = Auth::guard('member')->user();
+				$user->active_session = Session::getId();
+				$user->save();
+				
+				 return response()->json(['success' => true, 'url' => '']);
+				
+				
+				$bRes = Auth::guard('member')->attempt($array, 1);
+				if ($bRes) {
+					 return response()->json(['success' => true, 'url' => '']);
+					dd('ya');
+				}
+				
+				/*$user = Auth::guard('member')->user(); print_r($user);
+				$user->active_session         = Session::getId();
+				//$user->activation_code_expiry = '';
+				//$user->activation_code        = '';
+				
+				$user->email        = 'sfd';
+				
+				$user->save();
+				*/
+				//$user = Auth::guard('web')->login($usera);
+				
+				//$user = Auth::guard('member')->user();
+				
+				//$user = Auth::guard('web')->login($user);
+				
+				//\Auth::login($user,true);
+				//$record->active_session         = Session::getId();
+				//$record->save();
+				//Session(['test' => 'test_value']);
+				//$user = Auth::guard('member')->user();
+				//return redirect()->intended('home');
+				dd($user);
+				
+				//$data = \Session::all();
+				//print_r($data);
+				//die();
+				dd(Auth::user());
+				dd(Auth::check());
+				die();
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				$user = Auth::guard('member')->user();
+				
+				print_r($user);
+				
+				\Auth::guard('member')->loginUsingId($record->id);
+				
+				
+				$user = Auth::guard('member')->user();
+				
+				print_r($user);
+				
+				$user->active_session         = Session::getId();
+				//$user->activation_code_expiry = '';
+				//$user->activation_code        = '';
+				
+				$user->email        = 'sfd';
+				
+				$user->save();
+				
+				//print_r($user);
+				
+				$user = \App\Member::where('id', $user->id)->first();
+				
+				Auth::login($user);
+				
+				\Auth::guard('member')->loginUsingId($user->id);
+				//Auth::guard('member')->login($user);
+				
+				//print_r($loginRequest);die();
+
+    			//Auth::guard('member')->login($loginRequest);
+		
+				dd(Auth::guest());
+
+				
+				$user = Auth::guard('member')->user();
+				
+				
+				Auth::guard('member')->login($record);
+				
+				die();
+				
+				
+				//create login session
+				\Auth::guard('member')->loginUsingId($record->id);
+				
+				
+				// Auth::guard('member')->login($user->id);
+				
+				
+				
+				//update loggedin userdata
+				$user = Auth::guard('member')->user();
+				$user->active_session         = Session::getId();
+				//$user->activation_code_expiry = '';
+				//$user->activation_code        = '';
+				
+				$user->email        = 'sfd';
+				
+				$user->save();
+				
+				
+				//$user = Auth::guard('member')->user();
+				
+				
+				
+				//\Auth::guard('member')->login($record); 
+				
+				Auth::guard('member')->login($record);
+				
+				/*try {
+				   \Auth::guard('member')->login($record); 
+				} catch (Error $e) {
+				   echo 'Now you can catch me!';
+				}
+				*/
+				
+				
+				
+				
+				print_r($user);
+				
+				dd(Auth::check());
+				die('yaaaa');
+			}
+			//return redirect($url);
+			die('expired');			
+		}
+			
+		die('unknown');
+		
+		
+		return redirect($url);
+		
+    }
+	
 }
