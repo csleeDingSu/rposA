@@ -253,6 +253,11 @@ class weixinController extends BaseController
     public function accessToWabao($content, $domain = null)
     {
         $domain = empty($domain) ? "dev.boge56.com" : $domain;
+		
+		 $payload["nickname"] = 49564456; //'100000';
+         $payload["openid"] = 'asf43fcsdf';
+		
+		$this->getcurl($payload);
 
         if ($content['success'] == true) {
             //wechat auth api
