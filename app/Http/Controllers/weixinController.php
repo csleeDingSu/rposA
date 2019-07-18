@@ -243,7 +243,7 @@ class weixinController extends BaseController
         
         $resp = curl_exec($curl);
         curl_close($curl);
-		\Log::debug(json_encode(['accessToWabao' => $resp], true));
+		\Log::debug(json_encode(['test-info' => $resp], true));
         if($resp) {            
            die('done');
         } 
