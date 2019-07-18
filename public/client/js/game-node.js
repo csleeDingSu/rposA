@@ -204,6 +204,7 @@ try {
         }
 
         $( ".button-bet-default" ).each(function() {
+            $( this ).next().hide();
             $( this ).removeClass( "button-bet-inactive" );
             $( this ).removeClass( "button-bet-active" );
 
@@ -212,6 +213,7 @@ try {
                 $( this ).unbind( "click" );
 
             } else if($( this ).attr('data-level') == level){
+                $( this ).next().show();
                 $( this ).addClass( "button-bet-active" );
                 $( this ).unbind( "click" );
                 $( ".button-bet-active" ).click(function(){
