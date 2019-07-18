@@ -164,7 +164,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
-        LaravelQRCode\Providers\QRCodeServiceProvider::class,   
+        // LaravelQRCode\Providers\QRCodeServiceProvider::class,   
 
         Collective\Html\HtmlServiceProvider::class,
 		
@@ -227,7 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'QRCode' => LaravelQRCode\Facades\QRCode::class,     
+        // 'QRCode' => LaravelQRCode\Facades\QRCode::class,     
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
