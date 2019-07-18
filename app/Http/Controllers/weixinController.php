@@ -218,63 +218,25 @@ class weixinController extends BaseController
         return $result;
     }
 	
-	
-	private function getcurl($payload)
-    {        
-        ini_set('max_execution_time', 3);
 		
-        $userAgent = 'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0';
-		
-		$url = "http://localhost:8000/api/wechat-login";
-		$curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_RETURNTRANSFER => 1,
-			CURLOPT_TIMEOUT        => 30,
-            CURLOPT_URL            => $url,
-            CURLOPT_USERAGENT      => $userAgent,
-            CURLOPT_POST           => 1,
-			CURLOPT_ENCODING       => 'gzip',
-            CURLOPT_POSTFIELDS     => 
-			[
-                'nickname' => $content['nickname'],
-				'openid'   => $content['openid'],
-            ]
-        ));
-        
-        $resp = curl_exec($curl);
-        curl_close($curl);
-		\Log::debug(json_encode(['test-info' => $resp], true));
-        if($resp) {            
-           die('done');
-        } 
-		
-    }
 
     public function accessToWabao($content, $domain = null)
     {
         $domain = empty($domain) ? "dev.boge56.com" : $domain;
 		
-		 $payload["nickname"] = 49564456; //'100000';
-         $payload["openid"] = 'asf43fcsdf';
-		
-		$this->getcurl($payload);
-
         if ($content['success'] == true) {
             //wechat auth api
             $url = "http://" . $domain . "/api/wechat-auth";
             // $url = "http://dev.boge56.com/api/wechat-auth";
             $payload["nickname"] = $content['nickname']; //'100000';
             $payload["openid"] = $content['openid']; //'8767gbasd67cg';
-			/*
+			
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
             \Log::info(json_encode(['accessToWabao' => $res], true));
-			*/
-			$this->getcurl($payload);
-			
 			
 
             if (!empty($res->success) && ($res->success == true)) {
