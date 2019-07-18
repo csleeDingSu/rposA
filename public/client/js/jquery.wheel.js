@@ -54,6 +54,9 @@
                     cls_odd = '-';
                     cls_even = '+';
                 }
+
+                cls_odd = '';
+                cls_even = '';
             }
 
         var html =

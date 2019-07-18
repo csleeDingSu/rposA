@@ -200,7 +200,7 @@ try {
             previous_result = latest_result[0].result;
             previous_bet_amount = latest_result[0].bet_amount;
             previous_reward = latest_result[0].reward;
-            $('.middle-label').html('<div style="font-size:40px;padding-top:10px">'+previous_result+'</div>');
+            $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+previous_result+'</div>');
         }
 
         //$('#hidLevel').val(level);
@@ -1327,7 +1327,7 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
-        $('.middle-label').html('<div style="font-size:40px;padding-top:10px">'+result+'</div>');              
+        $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+result+'</div>');              
     
     }, (freeze_time - 1) * 1000);
 
