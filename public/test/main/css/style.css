@@ -503,7 +503,7 @@ p.vip-life {
   z-index: 10;
 }
 .navBox dt a {
-  z-index: 4;
+  z-index: 200;
   display: block;
   position: relative;
   top: -0.45rem;
@@ -526,7 +526,7 @@ p.vip-life {
   border: 0.02rem solid #cbcbcb;
   left: 50%;
   margin-left: -0.598rem;
-  z-index: 1;
+  z-index: 100;
 }
 .navBox dt:after {
   content: "";
