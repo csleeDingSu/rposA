@@ -200,10 +200,9 @@ try {
 
         if(latest_result.length > 0){
             previous_result = latest_result[0].result;
-            $('.middle-label').html('<div style="font-size:40px;padding-top:10px">'+previous_result+'</div>');
+            $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+previous_result+'</div>');
         }
 
-        showContent(level);
         $( ".button-bet-default" ).each(function() {
             $( this ).removeClass( "button-bet-inactive" );
             $( this ).removeClass( "button-bet-active" );
@@ -677,23 +676,8 @@ function showPayout(){
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
 
-            $('.odd-payout')
-                  .prop('number', bet_amount)
-                  .animateNumber(
-                    {
-                      number: 0
-                    },
-                    500
-                  );
-
-            $('.even-payout')
-              .prop('number', bet_amount)
-              .animateNumber(
-                {
-                  number: 0
-                },
-                500
-              );
+            $('.odd-sign').html('');
+            $('.even-sign').html('');
 
             
             // $.ajax({
@@ -743,24 +727,6 @@ function showPayout(){
                     $('.odd-sign').html('-');
                     $('.even-sign').html('+');
                 }
-
-                $('.odd-payout')
-                      .prop('number', 0)
-                      .animateNumber(
-                        {
-                          number: bet_amount
-                        },
-                        500
-                      );
-
-                $('.even-payout')
-                  .prop('number', 0)
-                  .animateNumber(
-                    {
-                      number: bet_amount
-                    },
-                    500
-                  );
 
                 $.ajax({
                     type: 'GET',
@@ -822,23 +788,8 @@ function showPayoutBet(){
 
     }
 
-    $('.odd-payout')
-          .prop('number', 0)
-          .animateNumber(
-            {
-              number: bet_amount
-            },
-            500
-          );
-
-    $('.even-payout')
-      .prop('number', 0)
-      .animateNumber(
-        {
-          number: bet_amount
-        },
-        500
-      );    
+    $('.odd-payout').html(bet_amount);
+    $('.even-payout').html(bet_amount);
 }
 
 function bindCalculateButton(){
@@ -1316,7 +1267,7 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
-        $('.middle-label').html('<div style="font-size:40px;padding-top:10px">'+result+'</div>');              
+        $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+result+'</div>');              
     
     }, (freeze_time - 1) * 1000);
 
