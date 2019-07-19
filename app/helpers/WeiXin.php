@@ -173,7 +173,7 @@ class WeiXin
                 $secret = env('weixinsecret');//"你的AppSecret";
                 $token = self::access_token($appid, $secret);
                 $type = (empty($type) ? 'QR_SCENE' : $type); //QR_SCENE, QR_LIMIT_SCENE
-                $scene = (empty($scene)) ? 'scene_str' : $scene); //scene_id, scene_str
+                $scene = (empty($scene) ? 'scene_str' : $scene); //scene_id, scene_str
                 $detail = $request->input('detail');
                 
                 //wechat qrcode
