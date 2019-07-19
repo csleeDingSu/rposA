@@ -759,8 +759,8 @@ html, body {
 .profile-img-circle
 {
 	border-radius: 50%;
-	background-size: cover;
- 	display: block;
+	/*background-size: cover;
+ 	display: block;*/
 	max-width: 40px;
 	max-height: 40px;
 	width: 40px;
