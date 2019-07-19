@@ -18,7 +18,18 @@ class Member extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',  'username', 'current_life', 'affiliate_id'
+        'username',
+        'email',
+		'password',
+		'affiliate_id',
+		'referred_by',
+		'wechat_name',
+		'phone',
+		'wechat_verification_status',
+		'game_life',
+		'current_life',
+		'gender',
+		'profile_pic'
     ];
 
     /**

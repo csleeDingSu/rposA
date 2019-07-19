@@ -231,7 +231,9 @@ class weixinController extends BaseController
             // $url = "http://dev.boge56.com/api/wechat-auth";
             $payload["nickname"] = $content['nickname']; //'100000';
             $payload["openid"] = $content['openid']; //'8767gbasd67cg';
-			
+			$payload["sex"] = $content['sex'];
+            $payload["headimgurl"] = $content['headimgurl'];
+
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
