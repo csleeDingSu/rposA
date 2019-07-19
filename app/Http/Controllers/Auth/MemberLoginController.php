@@ -339,7 +339,8 @@ class MemberLoginController extends Controller
         $openid      = $request->openid; 
 		$wechatname  = $request->nickname;	
 		
-		print_r($request->all());
+				
+		\Log::debug(json_encode(['request' => $request->all()], true));
 		
 		//$openid     = 'adsfsafsdfdsaf2423'; 
 		//$wechatname = '67rfdsf';	
