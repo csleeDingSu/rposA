@@ -385,7 +385,7 @@ class MemberLoginController extends Controller
 			{
 				return response()->json(['success' => false,'message'=>[trans('auth.user_already_exists')] ]);
 			}
-			
+			\Log::debug(json_encode(['new user' => $openid ], true));
 			//register
 			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','phone'=>$wechatname,'username'=>$wechatname,'gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
 			
