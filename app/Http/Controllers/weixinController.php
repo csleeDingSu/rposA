@@ -315,12 +315,16 @@ class weixinController extends BaseController
 
         if (env('APP_URL') == env('weixinurl')) {            
             $u = weixin::where('openid',$openid)->whereNotNull('nickname')->select('*')->first();
+        
             if (!empty($u)) {
                 $qrcode = $this->wx->showqrcode($u->ticket);
             }
+
         } else {
+
             $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
-            $qrcode = $this->wx->getJson($url);            
+            $qrcode = $this->wx->send_curl($url);            
+        
         }
         
         return $qrcode;

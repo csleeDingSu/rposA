@@ -234,10 +234,25 @@ class WeiXin
         }
     }
 
+    public static function send_curl($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        
+        return $output; 
+                
+    }
+
     public static function showqrcode($ticket)
     {
         $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" . $ticket;
-        $qrcode = self::getJson($url);
+
+        $qrcode = self::send_curl($url);
         
         return $qrcode; 
                 
