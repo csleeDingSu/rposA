@@ -187,6 +187,9 @@ class WeiXin
 
             }
 
+            \Log::info(json_encode(['qrcode url' => $url], true));
+            \Log::info(json_encode(['qrcode payload' => $payload], true));
+
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
