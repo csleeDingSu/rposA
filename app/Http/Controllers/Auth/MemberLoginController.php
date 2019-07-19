@@ -337,7 +337,8 @@ class MemberLoginController extends Controller
 		$changephone = '';
 		$url         = "/cs/220";
         $openid      = $request->openid; 
-		$wechatname  = $request->nickname;		
+		$wechatname  = $request->nickname;	
+		
 		//$openid     = 'adsfsafsdfdsaf2423'; 
 		//$wechatname = '67rfdsf';	
 				
@@ -383,7 +384,7 @@ class MemberLoginController extends Controller
 			}
 			
 			//register
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','phone'=>$wechatname,'username'=>$wechatname ]);
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','phone'=>$wechatname,'username'=>$wechatname,'gender'=>$request->gender,'profile_pic'=>$request->headimgurl ]);
 			
 			$wallet = \App\Wallet::create([
 					'current_life'    => 0,
@@ -396,11 +397,10 @@ class MemberLoginController extends Controller
 		$user = \App\Members::where('phone', $wechatname)->first();		
 		
 		//create login session
-		Auth::guard('member')->loginUsingId($user->id, true);
+		//Auth::guard('member')->loginUsingId($user->id, true);
 		//print_r(Auth::guard('member')->user());
 		//update loggedin userdata
-		$user = Auth::guard('member')->user();
-		$user->active_session = Session::getId();
+		//$user = Auth::guard('member')->user();
 		if ($changephone)
 		{
 			$user->phone        = $wechatname;
@@ -412,10 +412,20 @@ class MemberLoginController extends Controller
 			$user->openid       = $openid;
 		}
 		
+		$user->activation_code = $otp = unique_random('members', 'activation_code', 15);
+		$user->activation_code_expiry =Carbon::now()->addMinutes(10);
 		
-		
+		$url = '/wechat-login/'.$otp;
 		
 		$user->save();
+		
+		return response()->json([
+			'success'      => true,			
+			'url' => $url
+		]);
+		
+		
+		/*
 		//create token
 		$tokenResult = $user->createToken('APITOKEN');
 		$token = $tokenResult->token;
@@ -442,28 +452,20 @@ class MemberLoginController extends Controller
 			'is_auth'      => Auth::check(),
 			'url' => $url
 		]);
+		*/
     }
 	
 	
 	
-	public function otp_login($otp = 'iselKwasPQOgjnC') {
+	public function otp_login($otp = FALSE) {
 		
-		
-		$user->activation_code = $otp = unique_random('members', 'activation_code', 15);
-		$user->activation_code_expiry =Carbon::now()->addMinutes(10);
-		
-		
-		//die('saf');
-		
-		//dd('asdf');dd(session()->all());
-		
-		$openid = $otp;
+			
 		$url	= '';
 		
-		if (empty($openid))
+		if (empty($otp))
 		{
-			 \Log::warning(json_encode(['unauthorised_login' => 'empty OTP'], true));
-			//return redirect($url);
+			\Log::warning(json_encode(['unauthorised_login' => 'empty OTP'], true));
+			return redirect($url);
 		}
 		
 		$record = \App\Member::where('activation_code', $otp)->first();
@@ -475,182 +477,18 @@ class MemberLoginController extends Controller
 				\Auth::guard('member')->loginUsingId($record->id,true);
 				
 				$user = Auth::guard('member')->user();
-				$user->active_session = Session::getId();
-				$user->save();
-				
-				 return response()->json(['success' => true, 'url' => '']);
-				
-			//	$temp_pass = Hash::make($openid);
-			//	print_r($temp_pass);die();
-				
-				$record->password = Hash::make($openid);
-				$record->save();
-				$user = Auth::guard('member')->user();
-				
-				//print_r($user);die();
-				
-				$array = ['username' => $record->phone, 'password' => $openid];
-				
-				
-				Auth::guard('member')->attempt(['username' => $record->phone, 'password' =>  $openid]);
-			
-				$user = Auth::guard('member')->user();
-				$user->active_session = Session::getId();
-				$user->save();
-				
-				 return response()->json(['success' => true, 'url' => '']);
-				
-				
-				$bRes = Auth::guard('member')->attempt($array, 1);
-				if ($bRes) {
-					 return response()->json(['success' => true, 'url' => '']);
-					dd('ya');
-				}
-				
-				/*$user = Auth::guard('member')->user(); print_r($user);
-				$user->active_session         = Session::getId();
-				//$user->activation_code_expiry = '';
-				//$user->activation_code        = '';
-				
-				$user->email        = 'sfd';
-				
-				$user->save();
-				*/
-				//$user = Auth::guard('web')->login($usera);
-				
-				//$user = Auth::guard('member')->user();
-				
-				//$user = Auth::guard('web')->login($user);
-				
-				//\Auth::login($user,true);
-				//$record->active_session         = Session::getId();
-				//$record->save();
-				//Session(['test' => 'test_value']);
-				//$user = Auth::guard('member')->user();
-				//return redirect()->intended('home');
-				dd($user);
-				
-				//$data = \Session::all();
-				//print_r($data);
-				//die();
-				dd(Auth::user());
-				dd(Auth::check());
-				die();
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				$user = Auth::guard('member')->user();
-				
-				print_r($user);
-				
-				\Auth::guard('member')->loginUsingId($record->id);
-				
-				
-				$user = Auth::guard('member')->user();
-				
-				print_r($user);
-				
-				$user->active_session         = Session::getId();
-				//$user->activation_code_expiry = '';
-				//$user->activation_code        = '';
-				
-				$user->email        = 'sfd';
-				
-				$user->save();
-				
-				//print_r($user);
-				
-				$user = \App\Member::where('id', $user->id)->first();
-				
-				Auth::login($user);
-				
-				\Auth::guard('member')->loginUsingId($user->id);
-				//Auth::guard('member')->login($user);
-				
-				//print_r($loginRequest);die();
-
-    			//Auth::guard('member')->login($loginRequest);
-		
-				dd(Auth::guest());
-
-				
-				$user = Auth::guard('member')->user();
-				
-				
-				Auth::guard('member')->login($record);
-				
-				die();
-				
-				
-				//create login session
-				\Auth::guard('member')->loginUsingId($record->id);
-				
-				
-				// Auth::guard('member')->login($user->id);
-				
-				
-				
-				//update loggedin userdata
-				$user = Auth::guard('member')->user();
-				$user->active_session         = Session::getId();
-				//$user->activation_code_expiry = '';
-				//$user->activation_code        = '';
-				
-				$user->email        = 'sfd';
-				
-				$user->save();
-				
-				
-				//$user = Auth::guard('member')->user();
-				
-				
-				
-				//\Auth::guard('member')->login($record); 
-				
-				Auth::guard('member')->login($record);
-				
-				/*try {
-				   \Auth::guard('member')->login($record); 
-				} catch (Error $e) {
-				   echo 'Now you can catch me!';
-				}
-				*/
-				
-				
-				
-				
-				print_r($user);
-				
-				dd(Auth::check());
-				die('yaaaa');
+				$user->active_session  = Session::getId();
+				$user->activation_code = '';
+				$user->activation_code_expiry = '';
+				$user->save();				
+				return redirect('/home');			
 			}
-			//return redirect($url);
-			die('expired');			
+			\Log::warning(json_encode(['unauthorised_wechat_login' => 'expired OTP'], true));
+			return redirect($url);
 		}
-			
-		die('unknown');
+		\Log::warning(json_encode(['unauthorised_wechat_login' => 'unknown OTP'], true));
 		
-		
-		return redirect($url);
-		
+		return redirect($url);		
     }
 	
 }
