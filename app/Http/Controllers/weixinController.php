@@ -298,7 +298,7 @@ class weixinController extends BaseController
             
         }
         
-        return $tiket;
+        return $ticket;
         
     }
 
