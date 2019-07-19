@@ -323,6 +323,7 @@ class weixinController extends BaseController
             $qrcode = $this->wx->getJson($url);            
         }
         
+        return $qrcode;
     }
 
     
