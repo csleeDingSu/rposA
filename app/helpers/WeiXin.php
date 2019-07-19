@@ -180,24 +180,18 @@ class WeiXin
                 $payload["action_name"] = "QR_SCENE";
                 $payload["action_info"] =  ['scene' => ['scene_id' => $request->input('scene_id')]];
 
-                $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
-                $option = ['connect_timeout' => 60, 'timeout' => 180];
-                $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-                $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
-                $res = json_decode($req->getBody());                
-
             } else {
 
                 $url = env('weixinurl') . "/weixin/qrcode/" . $type;
                 $payload["scene_id"] = $request->input('scene_id');
 
-                $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
-                $option = ['connect_timeout' => 60, 'timeout' => 180];
-                $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-                $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
-                $res = json_decode($req->getBody());
-
             }
+
+            $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+            $option = ['connect_timeout' => 60, 'timeout' => 180];
+            $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+            $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
+            $res = json_decode($req->getBody());
 
             \Log::info(json_encode(['qrcode' => $res], true));
             return $res;
