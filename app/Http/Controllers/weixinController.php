@@ -285,7 +285,7 @@ class weixinController extends BaseController
         if (!empty($r)) {
             if (empty($r->ticket)) {
 
-                $type="QR_LIMIT_SCENE";
+                $type="QR_LIMIT_STR_SCENE";
                 $scene="scene_str";
                 $request = New Request;
                 $request->merge(['detail' => $payload['openid']]); 
