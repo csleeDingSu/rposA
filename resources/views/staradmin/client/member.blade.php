@@ -6,12 +6,6 @@
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/client/css/member.css') }}" />
-@endsection
-
-@section('top-navbar')
-@endsection
-
-@section('content')
 
 <style>
 .profile-img-circle
@@ -24,14 +18,33 @@
 	
 }	
 
+.wechatname {
+	font-size: 20px;	
+	padding-top: 16px;
+	padding-bottom: 10px;
+	text-overflow: ellipsis;
+	overflow: hidden;	
+	display: block;
+ 	width: 100px;
+  	white-space: nowrap;	  
+	  
+}
 </style>
+@endsection
+
+
+@section('top-navbar')
+@endsection
+
+@section('content')
+
 <div class="full-height no-header">
 	<div class="container">
 		<div class="member-box">
 			<!-- member id -->
 			<div class="card left">
 				<div class="col-xs-6 member-wrapper">
-					<div class="profile-pic">  <img class="profile-img-circle" src="{{ $member->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp; </div>
+					<div class="profile-pic"><img class="profile-img-circle" src="{{ $member->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp; </div>
 					<div class="name wechatname">{{ $member->wechat_name ?? $member->username }} </div>
 					<div style="clear: both;"></div>
 				</div>
