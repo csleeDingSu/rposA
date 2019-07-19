@@ -39,8 +39,7 @@
 	overflow: hidden;	
 	display: block;
  	width: 100px;
-  	white-space: nowrap;
-	  
+  	white-space: nowrap;	  
 	  
 }
 </style>
