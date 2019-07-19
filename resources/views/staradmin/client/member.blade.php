@@ -14,34 +14,7 @@
 @section('content')
 
 <style>
-.profile-pic
-{
-	float: left;
-	padding-top: 13px;
-	padding-bottom: 10px;
-}
 
-.profile-img-circle
-{
-	border-radius: 50% !important; 
-	max-width: 40px;
-	max-height: 40px;
-	width: 40px !important;
-	height: 40px;
-	
-}
-	
-.wechatname {
-	font-size: 20px;	
-	padding-top: 16px;
-	padding-bottom: 10px;
-	text-overflow: ellipsis;
-	overflow: hidden;	
-	display: block;
- 	width: 100px;
-  	white-space: nowrap;	  
-	  
-}
 </style>
 <div class="full-height no-header">
 	<div class="container">
