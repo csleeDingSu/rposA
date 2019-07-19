@@ -163,7 +163,7 @@ class WeiXin
         
     }
 
-    public static function qrcode(Request $request, $type)
+    public static function qrcode(Request $request, $type = null, $format = null)
     {
         try {
 
@@ -172,11 +172,14 @@ class WeiXin
                 $appid = env('weixinid');//"你的AppId";  
                 $secret = env('weixinsecret');//"你的AppSecret";
                 $token = self::access_token($appid, $secret);
-
+                $type = (empty($type) ? 'QR_SCENE' : $type); //QR_SCENE, QR_LIMIT_SCENE
+                $format = (empty($format)) ? 'scene_str' : $format); //scene_id, scene_str
+                $detail = $request->input('detail');
+                
                 //wechat qrcode
                 $url ="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" . $token["access_token"]; 
                 
-                $code = '{"expire_seconds": 604800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": " . $request->input('scene_id') . "}}}';
+                $code = '{"expire_seconds": 604800, "action_name": "'.$type.'", "action_info": {"scene": {"' . $format . '": ' . $detail . '}}}';
                 \Log::info(json_encode(['qrcode url' => $url], true));
                 \Log::info(json_encode(['qrcode payload' => $code], true));
 
@@ -205,8 +208,8 @@ class WeiXin
 
             } else {
 
-                $url = env('weixinurl') . "/weixin/qrcode/" . $type;
-                $payload["scene_id"] = $request->input('scene_id');
+                $url = env('weixinurl') . "/weixin/qrcode/" . $type . "/" . $format;
+                $payload["detail"] = $request->input('detail');
                 \Log::info(json_encode(['qrcode url' => $url], true));
                 \Log::info(json_encode(['qrcode payload' => $payload], true));
 
