@@ -30,16 +30,16 @@ html, body {
 .member-wrapper {
 	padding: 0;
 }
-
+/*
 .name {
 	font-size: 20px;
-	/*float: left;*/
+	float: left;
 	padding-top: 16px;
 	padding-bottom: 10px;
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
-
+*/
 .unverify {
 	cursor: pointer;
 }
