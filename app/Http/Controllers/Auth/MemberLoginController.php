@@ -399,7 +399,7 @@ class MemberLoginController extends Controller
 				]);
 		}
 					
-		$user = \App\Members::where('phone', $wechatname)->first();		
+		$user = \App\Members::where('wechat_name', $wechatname)->first();		
 		
 		//create login session
 		//Auth::guard('member')->loginUsingId($user->id, true);
