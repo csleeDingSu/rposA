@@ -113,7 +113,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	
 	$this->get( 'cs/{id?}', 'Api\VoucherController@show' )->name( 'api.vclist' );
 
-	$this->get( '/', 'Api\VoucherController@index' )->name( 'api.vlist' );
+	$this->get( '/', 'ClientController@member_access_game_node' )->name( 'home' );
 
 	$this->get( '/search/{strSearch?}', 'Api\VoucherController@search' )->name( 'api.slist' );
 	
