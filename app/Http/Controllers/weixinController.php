@@ -278,7 +278,7 @@ class weixinController extends BaseController
         $ticket = null;
 
         //retrieve weixin records
-        $r = weixin::where('openid' => $payload['openid'])->select('*')->first();
+        $r = weixin::where('openid', $payload['openid'])->select('*')->first();
         //validate openid
         if (!empty($r)) {
             if (empty($r->ticket)) {
