@@ -204,7 +204,7 @@ class WeiXin
 
                 // $ticket = $res->ticket;
 
-                \Log::info(json_encode(['qrcode' => json_decode($res)], true));
+                \Log::info(json_encode(['qrcode' => $res], true));
 
             } else {
 
