@@ -191,9 +191,10 @@ class WeiXin
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
-            $res = json_decode($req->getBody());
 
-            \Log::info(json_encode(['qrcode' => $res], true));
+            $res = $req->getBody();
+
+            \Log::info(json_encode(['qrcode' => json_decode($res)], true));
             return $res;
            
         } catch (\Exception $e) {
