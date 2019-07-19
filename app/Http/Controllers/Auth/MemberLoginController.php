@@ -389,8 +389,10 @@ class MemberLoginController extends Controller
 			//register
 			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
 			
+			$setting = \App\Admin::get_setting();
+			
 			$wallet = \App\Wallet::create([
-					'current_life'    => 0,
+					'current_life'    => $setting->game_default_life,
 					'member_id'       => $user->id,
 					'current_balance' => env('initial_balance',120),
 					'balance_before'  => env('initial_balance',120)
