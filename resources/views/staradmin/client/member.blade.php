@@ -18,6 +18,7 @@
 {
 	float: left;
 	padding-top: 13px;
+	padding-bottom: 10px;
 }
 
 .profile-img-circle
