@@ -19,8 +19,8 @@
 			<!-- member id -->
 			<div class="card left">
 				<div class="col-xs-6 member-wrapper">
-					<div class="profile-pic">    </div>
-					<div class="name"><img class="profile-img-circle" src="{{ $member->profile_pic }}"> {{ $member->wechat_name  }} </div>
+					<div class="profile-pic">  <img class="profile-img-circle" src="{{ $member->profile_pic }}">  </div>
+					<div class="name">{{ $member->wechat_name  }} </div>
 					<div style="clear: both;"></div>
 				</div>
 				<div class="col-xs-6 member-wrapper">
