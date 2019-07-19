@@ -747,3 +747,11 @@ html, body {
 .cutBtnCS2-fail {
     background: #999999;
 }
+
+
+.profile-img-circle
+{
+	border-radius: 50%;
+	background-size: cover;
+ 	display: block;
+}
