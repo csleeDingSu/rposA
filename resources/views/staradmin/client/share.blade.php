@@ -581,8 +581,11 @@ ol>li:before {
     <img class="ribbon_img" src="{{asset('/cshare/images/ribbon.png')}}" >
     <!-- <div class="btn_ribbon ">&nbsp;</div> -->
 
-
+    @if (empty($wechatqrcode))
     <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
+    @else
+    <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($wechatqrcode).'"/>';?>
+    @endif
 		
     <img class="btn_ribbon" src="{{asset('/cshare/images/btn.png')}}" >
 

@@ -296,7 +296,16 @@ class ClientController extends BaseController
 		Session::push('sharepic', $data->id);
 		Session::save();
 		
-		return view('client/share', ['data'=>$data]);
+		//show wechat qrcode
+		$u = Member::get_member(Auth::guard('member')->user()->id);
+		// $u = Member::get_member(60);
+		$this->wx = new WX();
+		$url = env('APP_URL') . "/weixin/showqrcode/" . $u->openid;
+		$wechatqrcode = $this->wx->send_curl($url);
+
+		$wechatqrcode = empty(json_decode($wechatqrcode, true)['message']) ? $wechatqrcode : null; 
+		
+		return view('client/share', ['data'=>$data, 'wechatqrcode' => $wechatqrcode]);
 	}
 	
 	public function sharetest(Request $request)
