@@ -30,7 +30,7 @@ html, body {
 .member-wrapper {
 	padding: 0;
 }
-
+/*
 .name {
 	font-size: 20px;
 	float: left;
@@ -39,7 +39,7 @@ html, body {
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
-
+*/
 .unverify {
 	cursor: pointer;
 }
@@ -753,14 +753,27 @@ html, body {
 .profile-pic
 {
 	float: left;
-	padding-top: 10px;
+	padding-top: 13px;
+	padding-bottom: 10px;
 }
 
 .profile-img-circle
 {
-	border-radius: 50%;
-	background-size: cover;
- 	display: block;
+	border-radius: 50% !important; 
 	max-width: 40px;
 	max-height: 40px;
+	width: 40px !important;
+	height: 40px;
+	
+}	
+.wechatname {
+	font-size: 20px;	
+	padding-top: 16px;
+	padding-bottom: 10px;
+	text-overflow: ellipsis;
+	overflow: hidden;	
+	display: block;
+ 	width: 100px;
+  	white-space: nowrap;	  
+	  
 }

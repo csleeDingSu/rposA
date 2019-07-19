@@ -1,3 +1,6 @@
+@php
+if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) { 
+@endphp
 <div class="cardFoot">
 	<div class="navBox">
 		<dl class="dbox">
@@ -61,3 +64,6 @@
 		</dl>
 	</div>
 </div>
+		@php
+} 
+@endphp
