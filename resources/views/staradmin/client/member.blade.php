@@ -5,30 +5,9 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/client/css/member_.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/member.css') }}" />
 
 <style>
-.profile-img-circle
-{
-	border-radius: 50% !important; 
-	max-width: 40px;
-	max-height: 40px;
-	width: 40px !important;
-	height: 40px;
-	
-}	
-
-.wechatname {
-	font-size: 20px;	
-	padding-top: 16px;
-	padding-bottom: 10px;
-	text-overflow: ellipsis;
-	overflow: hidden;	
-	display: block;
- 	width: 100px;
-  	white-space: nowrap;	  
-	  
-}
 </style>
 @endsection
 
