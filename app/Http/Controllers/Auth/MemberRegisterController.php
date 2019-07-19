@@ -419,6 +419,7 @@ class MemberRegisterController extends Controller
 
 	public function getGameOrDefaultRoute()
 	{
+		/*
 		//route to main screen
 		$url = "/cs/" . env('voucher_featured_id','220');
 		$rou = Session::get('re_route');
@@ -430,7 +431,8 @@ class MemberRegisterController extends Controller
 			Session::forget('re_route');
 			//Session::flush();
 		}
-		
+		*/
+		$url = "/arcade";
 		return response()->json(['success' => true, 'url' => $url]);
 	}
 	
