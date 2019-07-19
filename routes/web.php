@@ -85,6 +85,8 @@ Route::get('locale/{locale}', function ($locale) {
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
+	Route::get( '/', 'ClientController@member_access_game_node' )->name( 'home' );
+	
 	$this->get( '/home', 'Api\VoucherController@index' )->name( 'api.vlist' ); //cs20181003 - temp fix redirect to /home
 
 	$this->get( '/ads', 'Api\ProductController@index' )->name( 'api.client.ad' );
@@ -111,9 +113,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::any( '/tips', 'ClientController@tips' )->name( 'client.tips' );
 	
-	$this->get( 'cs/{id?}', 'Api\VoucherController@show' )->name( 'api.vclist' );
-
-	$this->get( '/', 'ClientController@member_access_game_node' )->name( 'home' );
+	$this->get( 'cs/{id?}', 'Api\VoucherController@show' )->name( 'api.vclist' );	
 
 	$this->get( '/search/{strSearch?}', 'Api\VoucherController@search' )->name( 'api.slist' );
 	
