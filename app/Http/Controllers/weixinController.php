@@ -282,15 +282,18 @@ class weixinController extends BaseController
         //validate openid
         if (!empty($r)) {
             if (empty($r->ticket)) {
+
                 $type="QR_LIMIT_SCENE";
                 $scene="scene_str";
                 $request = New Request;
                 $request->merge(['detail' => json_encode($payload)]); 
                 $res = $this->weixin_qrcode($request, $type, $scene);
-                $this->updateQRCodeResponse($payload, $res);
-                $ticket = $res->ticket;            
+                $ticket = $this->updateQRCodeResponse($payload, $res);
+
             } else {
+
                 $ticket = $r->tiket;
+            
             }
             
         }
@@ -301,8 +304,9 @@ class weixinController extends BaseController
 
     public function updateQRCodeResponse($userinfo, $response)
     {
-        return weixin::where('openid', $userinfo['openid'])->where('nickname', $userinfo['nickname'])->update(['ticket' => json_decode($response)->ticket,'response_qrcode'=>$response]);
-       
+        weixin::where('openid', $userinfo['openid'])->where('nickname', $userinfo['nickname'])->update(['ticket' => json_decode($response)->ticket,'response_qrcode'=>$response]);
+        
+        return json_decode($response)->ticket;
     }
 
     
