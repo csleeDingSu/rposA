@@ -24,13 +24,13 @@
 	
 }	
 .wechatname {
-	font-size: 14px;	
+	font-size: 20px;	
 	padding-top: 16px;
 	padding-bottom: 10px;
 	text-overflow: ellipsis;
 	overflow: hidden;	
 	display: block;
- 	width: 100px;
+ 	width: 50px;
   	white-space: nowrap;	  
 	  
 }
