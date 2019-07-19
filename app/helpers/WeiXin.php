@@ -176,28 +176,49 @@ class WeiXin
                 //wechat qrcode
                 $url ="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" . $token["access_token"]; 
                 
-                $payload["expire_seconds"] = 604800;
-                $payload["action_name"] = "QR_SCENE";
-                $payload["action_info"] =  ["scene" => ["scene_id" => $request->input('scene_id')]];
+                $code = '{"expire_seconds": 604800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": " . $request->input('scene_id') . "}}}';
+                \Log::info(json_encode(['qrcode url' => $url], true));
+                \Log::info(json_encode(['qrcode payload' => $code], true));
+
+                $ch1 = curl_init();
+                curl_setopt($ch1, CURLOPT_URL,$url);
+                curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER,false);
+                curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST,false);
+
+                curl_setopt($ch1, CURLOPT_POST,1);
+                curl_setopt($ch1, CURLOPT_POSTFIELDS,$code);
+
+                curl_setopt($ch1, CURLOPT_RETURNTRANSFER,1);//禁止调用时就输出获取到的数据
+                $result = curl_exec($ch1);
+                curl_close($ch1);
+                $res = json_decode($result); 
+
+                // Class Object
+                // (
+                //     [ticket] => gQGA8TwAAAAAAArerreS5odHRwOi8vd2VpeGlytrreLmNvbS9xLzAyci1mSDF0SmtjazAxMDAwMGcwM1cAAgQFovJZAwQAAAAA
+                //     [url] => http://weixin.qq.com/q/02r-fgsGtJkck010000g03W
+                // )
+
+                // $ticket = $res->ticket;
+
+                \Log::info(json_encode(['qrcode' => json_decode($res)], true));
 
             } else {
 
                 $url = env('weixinurl') . "/weixin/qrcode/" . $type;
                 $payload["scene_id"] = $request->input('scene_id');
+                \Log::info(json_encode(['qrcode url' => $url], true));
+                \Log::info(json_encode(['qrcode payload' => $payload], true));
+
+                $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+                $option = ['connect_timeout' => 60, 'timeout' => 180];
+                $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+                $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
+
+                $res = $req->getBody();
 
             }
-
-            \Log::info(json_encode(['qrcode url' => $url], true));
-            \Log::info(json_encode(['qrcode payload' => $payload], true));
-
-            $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
-            $option = ['connect_timeout' => 60, 'timeout' => 180];
-            $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-            $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
-
-            $res = $req->getBody();
-
-            \Log::info(json_encode(['qrcode' => json_decode($res)], true));
+            
             return $res;
            
         } catch (\Exception $e) {
