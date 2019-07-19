@@ -13,6 +13,23 @@
 
 @section('content')
 
+<style>
+.profile-pic
+{
+	float: left;
+	padding-top: 10px;
+}
+
+.profile-img-circle
+{
+	border-radius: 50% !important; 
+	max-width: 40px;
+	max-height: 40px;
+	width: 40px !important;
+	height: 40px;
+	
+}
+</style>
 <div class="full-height no-header">
 	<div class="container">
 		<div class="member-box">
