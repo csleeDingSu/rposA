@@ -125,6 +125,7 @@
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						轮盘抽奖
+						<div class="game-life-count">剩余<span class="game-life"></span>次</div>
 					</div>
 				</li>
 				
@@ -370,6 +371,8 @@
             $('.wabao-acupoint').html(acupoint);
 
             $('.wabao-usedpoint').html(usedpoint);
+
+            $('.game-life').html("<?php Print($member->current_life);?>");
 
             $('.gamebtn').click(function(){
 					window.location.href = "/arcade";

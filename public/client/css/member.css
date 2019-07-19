@@ -293,6 +293,15 @@ html, body {
 	margin-top: 0px;
 }
 
+.game-life-count {
+	float: right;
+	margin-top: -3px;
+	margin-right: 2px;
+	color: red;
+	font-size: 18px;
+}
+
+
 .icon-vip {
 	background: url('/client/images/icon-vip.png') no-repeat;
 	width: 44px;
