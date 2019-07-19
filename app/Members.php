@@ -22,7 +22,9 @@ class Members extends Model
 		'phone',
 		'wechat_verification_status',
 		'game_life',
-		'current_life'
+		'current_life',
+		'gender','profile_pic',
+		
     ];
 
     /**

@@ -480,7 +480,7 @@ class MemberLoginController extends Controller
 				$user->activation_code = '';
 				$user->activation_code_expiry = '';
 				$user->save();				
-				return redirect('/home');			
+				return redirect('/arcade');			
 			}
 			\Log::warning(json_encode(['unauthorised_wechat_login' => 'expired OTP'], true));
 			return redirect($url);
