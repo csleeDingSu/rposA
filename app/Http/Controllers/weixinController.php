@@ -309,6 +309,11 @@ class weixinController extends BaseController
         return json_decode($response)->ticket;
     }
 
+    public function weixin_showqrcode($openid)
+    {
+        return $this->wx->showqrcode($openid);        
+    }
+
     
 
 
