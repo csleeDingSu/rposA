@@ -206,6 +206,8 @@ class WeiXin
 
                 \Log::info(json_encode(['qrcode' => $res], true));
 
+                $res = json_encode($res);
+
             } else {
 
                 $url = env('weixinurl') . "/weixin/qrcode/" . $type . "/" . $scene;
