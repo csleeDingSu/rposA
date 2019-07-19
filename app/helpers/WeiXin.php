@@ -172,9 +172,6 @@ class WeiXin
                 $appid = env('weixinid');//"你的AppId";  
                 $secret = env('weixinsecret');//"你的AppSecret";
                 $token = self::access_token($appid, $secret);
-                var_dump($token);
-                return $token;
-                die('dasdsa');
 
                 //wechat qrcode
                 $url ="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=$token"; 
