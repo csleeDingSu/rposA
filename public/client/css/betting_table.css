@@ -86,8 +86,8 @@
 }
 
 .button-bet:active, .button-bet-clear:active, .button-bet-active:active {
-  transform: scale(0.9);
-  -webkit-transform-origin:50% 50%;
+  background:url(/client/images/vip/btn-bet-active.png) no-repeat;
+  background-size: contain;
 }
 
 .plus-sign {
@@ -220,16 +220,17 @@
 .clicked-circle {
   width: 1.1rem;
   height: 1.1rem;
-  padding: 3px;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: linear-gradient(0deg, rgba(63,249,220,0.3), rgba(63,249,220,1));
   position: absolute;
   top: -0.05rem;
   left: -0.05rem;
+  box-shadow: 0 0 0.16rem #3ff9dc, inset 0 0 0.16rem #3ff9dc;
 }
 
 .clicked-button-bet {
 	z-index: 100;
+	background:url(/client/images/vip/btn-bet-active.png) no-repeat;
+    background-size: contain;
 }

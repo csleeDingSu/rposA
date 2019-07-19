@@ -45,7 +45,7 @@
 							<span class="spanAcuPointAndBalance">0</span>元
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-redeemcash" src="{{ asset('/client/images/btn-redeemcash.png') }}" />
+						<div class="btn-redeemcash">抽奖规则</div>
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -53,13 +53,10 @@
 
 			@if(env('APP_ENV') != 'prod')
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper btn-vip-wrapper">
 					<a href="/vip">
-						<!--div class="btn-vip"></div-->
-						<div class="btn-rules-vip">进入VIP专场</div>
+						<div class="btn-life">剩余3场</div>
 					</a>
 					<div style="clear:both"></div>
-				</div>
 			</div>
 			@else
 			<div class="box" id="btn-vip-wrapper">
@@ -371,6 +368,11 @@
 			  <div class="btn-trigger"></div>
 		</div>
 		<!-- end button wrapper -->
+		<div style="clear: both;"></div>
+
+		<div class="redeem-banner">
+			<img src="{{ asset('/client/images/wheel/banner-title.png') }}" alt="share">
+		</div>
 	    </article>
     </section>
 	<!-- end progress bar -->
