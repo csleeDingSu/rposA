@@ -5,7 +5,7 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/client/css/member.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/member_.css') }}" />
 
 <style>
 .profile-img-circle
