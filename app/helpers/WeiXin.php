@@ -236,7 +236,7 @@ class WeiXin
 
     public static function showqrcode($ticket)
     {
-        $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" .$u->ticket;
+        $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" . $ticket;
         $qrcode = self::getJson($url);
         
         return $qrcode; 
