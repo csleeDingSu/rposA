@@ -23,17 +23,7 @@
 	height: 40px;
 	
 }	
-.wechatname {
-	font-size: 20px;	
-	padding-top: 16px;
-	padding-bottom: 10px;
-	text-overflow: ellipsis;
-	overflow: hidden;	
-	display: block;
- 	width: 50px;
-  	white-space: nowrap;	  
-	  
-}
+
 </style>
 <div class="full-height no-header">
 	<div class="container">
