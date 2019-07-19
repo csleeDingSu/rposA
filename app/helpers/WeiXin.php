@@ -239,7 +239,7 @@ class WeiXin
         $qrcode = null;
 
         if (env('APP_URL') == env('weixinurl')) {            
-            $u = weixin::where('openid',$openid)->whereNotNull('nickname')->first();
+            $u = weixin::where('openid',$openid)->whereNotNull('nickname')->select('*')->first();
             if (!empty($u)) {
                 $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" .$u->ticket;
                 $qrcode = self::getJson($url);
