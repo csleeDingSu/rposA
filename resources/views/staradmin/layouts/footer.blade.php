@@ -1,5 +1,5 @@
 @php
-if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) { 
+if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) and !Request::is('arcade') ) { 
 @endphp
 <div class="cardFoot">
 	<div class="navBox">

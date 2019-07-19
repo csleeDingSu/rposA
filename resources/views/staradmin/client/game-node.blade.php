@@ -54,7 +54,7 @@
 			@if(env('APP_ENV') != 'prod')
 			<div class="box" id="btn-vip-wrapper">
 					<a href="/vip">
-						<div class="btn-life">剩余3场</div>
+						<div class="btn-life">剩余{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}场</div>
 					</a>
 					<div style="clear:both"></div>
 			</div>
