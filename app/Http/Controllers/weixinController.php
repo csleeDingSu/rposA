@@ -128,7 +128,7 @@ class weixinController extends BaseController
 
             if (!empty($userinfo['openid'])) {
                 //store
-                $res_id = $this->storeWeiXin($userinfo);
+                $res_id = $this->storeWeiXin($userinfo, $access_token);
             }
             
             $result = $this->showWeiXin($userinfo);
@@ -177,7 +177,7 @@ class weixinController extends BaseController
 
             if (!empty($userinfo['openid'])) {
                 //store
-                $res_id = $this->storeWeiXin($userinfo);
+                $res_id = $this->storeWeiXin($userinfo, $access_token);
             }
 
             $result = $this->showWeiXin($userinfo);
@@ -196,10 +196,10 @@ class weixinController extends BaseController
         
     }
 
-    public function storeWeiXin($userinfo)
+    public function storeWeiXin($userinfo, $access_token)
     {
         $filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
-        $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
+        $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'access_token' => $access_token, 'response' => json_encode($userinfo)];
     
         return weixin::updateOrCreate($filter, $array)->id;
         
@@ -234,13 +234,15 @@ class weixinController extends BaseController
 			$payload["sex"] = $content['sex'];
             $payload["headimgurl"] = $content['headimgurl'];
 
+            //wechat qrcode
+            $payload["ticket"] = $this->getQrcodeTicket($payload);
+            
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
-            \Log::info(json_encode(['accessToWabao' => $res], true));
-			
+            \Log::info(json_encode(['accessToWabao' => $res], true));			
 
             if (!empty($res->success) && ($res->success == true)) {
                 
@@ -257,6 +259,78 @@ class weixinController extends BaseController
             return $content;
         }
     }
+
+    public function weixin_qrcode(Request $request, $type, $scene)
+    {
+        $res = $this->wx->qrcode($request, $type, $scene);
+        $res = $this->isJSON($res) ? $res : json_encode($res);
+
+        \Log::info(json_encode(['weixin_qrcode' => $res], true));
+        return $res;
+    }
+
+    function isJSON($string){
+       return is_string($string) && is_array(json_decode($string, true)) ? true : false;
+    }
+
+    public function getQrcodeTicket($payload)
+    {
+        $ticket = null;
+
+        //retrieve weixin records
+        $r = weixin::where('openid', $payload['openid'])->select('*')->first();
+        //validate openid
+        if (!empty($r)) {
+            if (empty($r->ticket)) {
+
+                $type="QR_LIMIT_SCENE";
+                $scene="scene_str";
+                $request = New Request;
+                $request->merge(['detail' => json_encode($payload)]); 
+                $res = $this->weixin_qrcode($request, $type, $scene);
+                $ticket = $this->updateQRCodeResponse($payload, $res);
+
+            } else {
+
+                $ticket = $r->tiket;
+            
+            }
+            
+        }
+        
+        return $ticket;
+        
+    }
+
+    public function updateQRCodeResponse($userinfo, $response)
+    {
+        weixin::where('openid', $userinfo['openid'])->where('nickname', $userinfo['nickname'])->update(['ticket' => json_decode($response)->ticket,'response_qrcode'=>$response]);
+        
+        return json_decode($response)->ticket;
+    }
+
+    public function weixin_showqrcode($openid)
+    {
+        $qrcode = null;
+
+        if (env('APP_URL') == env('weixinurl')) {            
+            $u = weixin::where('openid',$openid)->whereNotNull('nickname')->select('*')->first();
+        
+            if (!empty($u)) {
+                $qrcode = $this->wx->showqrcode($u->ticket);
+            }
+
+        } else {
+
+            $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
+            $qrcode = $this->wx->send_curl($url);            
+        
+        }
+        
+        return $qrcode;
+    }
+
+    
 
 
 }
