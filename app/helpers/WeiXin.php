@@ -163,6 +163,55 @@ class WeiXin
         
     }
 
+    public static function qrcode(Request $request, $type)
+    {
+        try {
+
+            if (env('APP_URL') == env('weixinurl')) {
+
+                $appid = env('weixinid');//"你的AppId";  
+                $secret = env('weixinsecret');//"你的AppSecret";
+                $token = $this->wx->access_token($appid, $secret);
+                var_dump($token);
+                die('dasdsa');
+
+                //wechat qrcode
+                $url ="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=$token"; 
+                
+                $payload["expire_seconds"] = 604800;
+                $payload["action_name"] = "QR_SCENE";
+                $payload["action_info"] =  ['scene' => ['scene_id' => $request->input('scene_id')]];
+
+                $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+                $option = ['connect_timeout' => 60, 'timeout' => 180];
+                $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+                $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
+                $res = json_decode($req->getBody());                
+
+            } else {
+
+                $url = env('weixinurl') . "/weixin/qrcode/" . $type;
+                $payload["scene_id"] = $request->input('scene_id');
+
+                $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+                $option = ['connect_timeout' => 60, 'timeout' => 180];
+                $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+                $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
+                $res = json_decode($req->getBody());
+
+            }
+
+            \Log::info(json_encode(['qrcode' => $res], true));
+            return $res;
+           
+        } catch (\Exception $e) {
+            //log error
+            \Log::error($e);
+                        
+            return $e->getMessage();
+        }
+    }
+
     
 
 

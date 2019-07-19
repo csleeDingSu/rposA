@@ -128,7 +128,7 @@ class weixinController extends BaseController
 
             if (!empty($userinfo['openid'])) {
                 //store
-                $res_id = $this->storeWeiXin($userinfo);
+                $res_id = $this->storeWeiXin($userinfo, $access_token);
             }
             
             $result = $this->showWeiXin($userinfo);
@@ -177,7 +177,7 @@ class weixinController extends BaseController
 
             if (!empty($userinfo['openid'])) {
                 //store
-                $res_id = $this->storeWeiXin($userinfo);
+                $res_id = $this->storeWeiXin($userinfo, $access_token);
             }
 
             $result = $this->showWeiXin($userinfo);
@@ -196,10 +196,10 @@ class weixinController extends BaseController
         
     }
 
-    public function storeWeiXin($userinfo)
+    public function storeWeiXin($userinfo, $access_token)
     {
         $filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
-        $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'response' => json_encode($userinfo)];
+        $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'access_token' => $access_token, 'response' => json_encode($userinfo)];
     
         return weixin::updateOrCreate($filter, $array)->id;
         
@@ -256,6 +256,13 @@ class weixinController extends BaseController
             //return redirect()->route('login');
             return $content;
         }
+    }
+
+    public function weixin_qrcode(Request $request, $type)
+    {
+        $res = $this->wx->qrcode($request, $type);
+        \Log::info(json_encode(['weixin_qrcode' => $res], true));
+        return $res;
     }
 
 

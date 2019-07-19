@@ -23,6 +23,7 @@ class CreateWeiXinTable extends Migration
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->string('country')->nullable();
+            $table->string('access_token')->nullable();
             $table->longtext('headimgurl')->nullable();
             $table->longtext('response')->nullable();
             $table->timestamps();
