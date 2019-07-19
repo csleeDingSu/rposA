@@ -24,7 +24,7 @@
 	
 }	
 .wechatname {
-	font-size: 20px;	
+	font-size: 14px;	
 	padding-top: 16px;
 	padding-bottom: 10px;
 	text-overflow: ellipsis;
