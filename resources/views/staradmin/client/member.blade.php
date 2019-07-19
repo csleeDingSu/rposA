@@ -17,7 +17,7 @@
 .profile-pic
 {
 	float: left;
-	padding-top: 10px;
+	padding-top: 13px;
 }
 
 .profile-img-circle
@@ -32,7 +32,7 @@
 	
 .wechatname {
 	font-size: 20px;
-	float: left;
+	
 	padding-top: 16px;
 	padding-bottom: 10px;
 	text-overflow: ellipsis;
