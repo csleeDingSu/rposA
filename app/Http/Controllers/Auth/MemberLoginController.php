@@ -457,8 +457,7 @@ class MemberLoginController extends Controller
 	
 	
 	
-	public function otp_login($otp = FALSE) {
-		
+	public function otp_login($otp = FALSE) {		
 			
 		$url	= '';
 		
