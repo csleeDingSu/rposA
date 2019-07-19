@@ -198,7 +198,8 @@ class weixinController extends BaseController
 
     public function storeWeiXin($userinfo, $access_token)
     {
-        $filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
+        //$filter = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname']];
+        $filter = ['openid' => $userinfo['openid']];
         $array = ['openid' => $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'sex' => empty($userinfo['sex']) ? null : $userinfo['sex'], 'language' => empty($userinfo['language']) ? null : $userinfo['language'], 'city' => empty($userinfo['city']) ? null : $userinfo['city'], 'province' => empty($userinfo['province']) ? null : $userinfo['province'], 'country' => empty($userinfo['country']) ? null : $userinfo['country'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'access_token' => $access_token, 'response' => json_encode($userinfo)];
     
         return weixin::updateOrCreate($filter, $array)->id;
@@ -209,7 +210,8 @@ class weixinController extends BaseController
     {
         $sex = empty($userinfo['sex']) ? null : (($userinfo['sex'] == 1) ? "MALE" : "FEMALE");
 
-        if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
+        //if (empty($userinfo['openid']) && empty($userinfo['nickname'])) {
+        if (empty($userinfo['openid'])) {
             $result = ['success' => false, 'message' => 'not valid weixin detail'];
         } else {
             $result = ['success' => true, 'openid' => empty($userinfo['openid']) ? null : $userinfo['openid'], 'nickname' => empty($userinfo['nickname']) ? null : $userinfo['nickname'], 'headimgurl' => empty($userinfo['headimgurl']) ? null : $userinfo['headimgurl'], 'sex' => $sex];
