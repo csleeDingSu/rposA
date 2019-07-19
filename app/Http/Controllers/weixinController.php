@@ -288,7 +288,7 @@ class weixinController extends BaseController
                 $type="QR_LIMIT_SCENE";
                 $scene="scene_str";
                 $request = New Request;
-                $request->merge(['detail' => json_encode($payload)]); 
+                $request->merge(['detail' => $payload['openid']]); 
                 $res = $this->weixin_qrcode($request, $type, $scene);
                 $ticket = $this->updateQRCodeResponse($payload, $res);
 
