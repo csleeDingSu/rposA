@@ -281,6 +281,18 @@ html, body {
 	float: left;
 }
 
+.icon-wheel {
+	background: url('/client/images/icon-wheel.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
 .icon-vip {
 	background: url('/client/images/icon-vip.png') no-repeat;
 	width: 44px;

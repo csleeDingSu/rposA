@@ -106,9 +106,7 @@
 			</div>
 			<ul class="list-group">
 
-			@if(env('APP_ENV') != 'prod')
-
-				<!-- VIP专场 -->
+				<!-- VIP专场
 				<li class="list-group-item first-item">
 					<div class="vipmember">
 						<div class="icon-wrapper">
@@ -116,6 +114,17 @@
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						VIP专场
+					</div>
+				</li>
+			-->
+				<!-- 轮盘抽奖 -->
+				<li class="list-group-item first-item">
+					<div class="gamebtn">
+						<div class="icon-wrapper">
+							<div class="icon-wheel"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						轮盘抽奖
 					</div>
 				</li>
 				
@@ -127,21 +136,7 @@
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>兑换奖品
 					</div>
-				</li>
-				@else
-
-				<!-- 兑换奖品 -->
-				<li class="list-group-item first-item">
-					<div class="redeembtn">
-						<div class="icon-wrapper">
-							<div class="icon-redeem"></div>
-						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>兑换奖品
-					</div>
-				</li>
-				
-				@endif
-				
+				</li>				
 
 				<!-- 我的奖品 -->
 				<li class="list-group-item">
@@ -375,6 +370,10 @@
             $('.wabao-acupoint').html(acupoint);
 
             $('.wabao-usedpoint').html(usedpoint);
+
+            $('.gamebtn').click(function(){
+					window.location.href = "/arcade";
+				});
 
             $('.vipmember').click(function(){
 				// window.location.href = "/vipmember";
