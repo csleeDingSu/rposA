@@ -258,9 +258,9 @@ class weixinController extends BaseController
         }
     }
 
-    public function weixin_qrcode(Request $request, $type, $format)
+    public function weixin_qrcode(Request $request, $type, $scene)
     {
-        $res = $this->wx->qrcode($request, $type, $format);
+        $res = $this->wx->qrcode($request, $type, $scene);
         \Log::info(json_encode(['weixin_qrcode' => $res], true));
         return $res;
     }
