@@ -387,7 +387,7 @@ class MemberLoginController extends Controller
 			}
 			\Log::debug(json_encode(['new user' => $openid ], true));
 			//register
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','phone'=>$wechatname,'username'=>$wechatname,'gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
 			
 			$wallet = \App\Wallet::create([
 					'current_life'    => 0,
@@ -406,17 +406,16 @@ class MemberLoginController extends Controller
 		//$user = Auth::guard('member')->user();
 		if ($changephone)
 		{
-			$user->phone        = $wechatname;
-			$user->username     = $wechatname;
-			$user->openid       = $openid;
-		}
-		if ($forceupdate)
-		{
-			$user->openid       = $openid;
+			//$user->phone        = $wechatname;
+			//$user->username     = $wechatname;
+			//$user->openid       = $openid;
 		}
 		
+		$user->openid          = $openid;
+		$user->gender          = $request->sex;
+		$user->profile_pic     = $request->headimgurl;
 		$user->activation_code = $otp = unique_random('members', 'activation_code', 15);
-		$user->activation_code_expiry =Carbon::now()->addMinutes(10);
+		$user->activation_code_expiry = Carbon::now()->addMinutes(10);
 		
 		$url = '/wechat-login/'.$otp;
 		
