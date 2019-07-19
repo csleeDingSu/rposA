@@ -178,7 +178,7 @@ class WeiXin
                 
                 $payload["expire_seconds"] = 604800;
                 $payload["action_name"] = "QR_SCENE";
-                $payload["action_info"] =  ['scene' => ['scene_id' => $request->input('scene_id')]];
+                $payload["action_info"] =  ["scene" => ["scene_id" => $request->input('scene_id')]];
 
             } else {
 
