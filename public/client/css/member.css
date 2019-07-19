@@ -748,6 +748,11 @@ html, body {
     background: #999999;
 }
 
+.profile-pic
+{
+	float: left;
+	padding-top: 10px;
+}
 
 .profile-img-circle
 {
