@@ -174,7 +174,7 @@ class WeiXin
                 $token = self::access_token($appid, $secret);
 
                 //wechat qrcode
-                $url ="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=$token"; 
+                $url ="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" . $token["access_token"]; 
                 
                 $payload["expire_seconds"] = 604800;
                 $payload["action_name"] = "QR_SCENE";
