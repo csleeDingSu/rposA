@@ -24,8 +24,11 @@ class CreateWeiXinTable extends Migration
             $table->string('province')->nullable();
             $table->string('country')->nullable();
             $table->string('access_token')->nullable();
+            $table->string('ticket')->nullable();
+            $table->longtext('qrcode')->nullable();
             $table->longtext('headimgurl')->nullable();
             $table->longtext('response')->nullable();
+            $table->longtext('response_qrcode')->nullable();
             $table->timestamps();
         });
 

@@ -234,13 +234,15 @@ class weixinController extends BaseController
 			$payload["sex"] = $content['sex'];
             $payload["headimgurl"] = $content['headimgurl'];
 
+            //wechat qrcode
+            $payload["ticket"] = $this->getQrcodeTicket($payload);
+            
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
-            \Log::info(json_encode(['accessToWabao' => $res], true));
-			
+            \Log::info(json_encode(['accessToWabao' => $res], true));			
 
             if (!empty($res->success) && ($res->success == true)) {
                 
@@ -270,6 +272,40 @@ class weixinController extends BaseController
     function isJSON($string){
        return is_string($string) && is_array(json_decode($string, true)) ? true : false;
     }
+
+    public function getQrcodeTicket($payload)
+    {
+        $ticket = null;
+
+        //retrieve weixin records
+        $r = weixin::where('openid' => $payload['openid'])->select('*')->first();
+        //validate openid
+        if (!empty($r)) {
+            if (empty($r->ticket)) {
+                $type="QR_LIMIT_SCENE";
+                $scene="scene_str";
+                $request = New Request;
+                $request->merge(['detail' => json_encode($payload)]); 
+                $res = $this->weixin_qrcode($request, $type, $scene);
+                $this->updateQRCodeResponse($payload, $res);
+                $ticket = $res->ticket;            
+            } else {
+                $ticket = $r->tiket;
+            }
+            
+        }
+        
+        return $tiket;
+        
+    }
+
+    public function updateQRCodeResponse($userinfo, $response)
+    {
+        return weixin::where('openid', $userinfo['openid'])->where('nickname', $userinfo['nickname'])->update(['ticket' => $response->ticket, 'response_qrcode'=>$response]);
+       
+    }
+
+    
 
 
 }
