@@ -301,6 +301,7 @@ class weixinController extends BaseController
 
     public function updateQRCodeResponse($userinfo, $response)
     {
+        \Log::warning($response);
         return weixin::where('openid', $userinfo['openid'])->where('nickname', $userinfo['nickname'])->update(['ticket' => $response->ticket, 'response_qrcode'=>$response]);
        
     }
