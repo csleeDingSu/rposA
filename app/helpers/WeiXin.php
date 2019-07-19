@@ -218,7 +218,7 @@ class WeiXin
                 $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
                 $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
 
-                $res = $req->getBody();
+                $res = json_decode($req->getBody());
 
             }
             
