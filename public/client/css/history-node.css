@@ -2,9 +2,9 @@
     display: table;
     margin: auto;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 16px;
+    font-size: 0.32rem;
     background: white;
-    border-radius: 6px;
+    border-radius: 0.12rem;
 }
 
 .history-wrapper {
@@ -13,90 +13,61 @@
 
 .history-table {
     border-collapse: separate;
-    border-spacing: 5px;
+    border-spacing: 0.1rem;
     margin: 0 auto;
-    padding: 0 5px;
+    padding: 0 0.1rem;
 }
 
 .history-table td {
     background-color: #f8f8f8;
-    padding: 0px 10px 3px 10px;
-    margin: 20px auto;
+    padding: 0px 0.2rem 0.06rem 0.2rem;
+    margin: 0.4rem auto;
     text-align: center;
-    height: 30px;
+    height: 0.6rem;
     color: #bbb;
     font-weight: 500;
     border: 1px solid #efefef;
-    border-radius: 3px;
+    border-radius: 0.06rem;
 }
 
 td.history {
-    width: 240px;
-    font-size: 11px;
+    width: 4rem;
+    font-size: 0.22rem;
     color: #333;
     text-align: left;
 }
 
 .history-number {
-    width: 50px;
-    font-size: 12px;
-    padding: 0px 5px 3px 5px;
+    width: 0.8rem;
+    font-size: 0.24rem;
+    padding: 0px 0.1rem 0.06rem 0.1rem;
 }
 
 td.legend, td.timer {
-    padding: 0 0 0 6px;
-    height: 20px;
+    padding: 0 0 0 0.12rem;
+    height: 0.4rem;
     background-color: white;
     border: none;
 }
 
 td.timer {
-    font-size: 17px;
+    font-size: 0.34rem;
     color: #333;
     font-weight: 500;
-    padding: 5px 0;
+    padding: 0.1rem 0;
 }
 
 .legend-item {
     float: left;
-    padding-top: 10px;
-    padding-right: 10px;
+    padding-top: 0.2rem;
+    padding-right: 0.2rem;
     color: white;
-    font-size: 12px;
+    font-size: 0.24rem;
 }
 
 .overlap {
-    margin-left: -23px;
+    margin-left: -0.46rem;
 }
-
-/* iPhone 5 ----------- */
-@media only screen and (max-width: 360px) {
-    .history-table {
-        border-spacing: 3px;
-        padding: 0 10px;
-    }
-
-    .history-table td {
-        padding: 2px 6px 3px 6px;
-        height: 26px;
-        margin-right: 100px;
-    }
-
-    td.history {
-        width: 220px;
-    }
-
-    .legend-item {
-        padding-top: 10px;
-        padding-right: 10px;
-        font-size: 10px;
-    }
-
-    .overlap {
-        margin-left: -18px;
-    }
-}
-
 
 table .odd {
     color: #fb973f;
@@ -109,12 +80,12 @@ table .even {
 .points {
     float: right;
     color: #5b5563;
-    font-size: 20px;
-    margin-top: 5px;
+    font-size: 0.4rem;
+    margin-top: 0.1rem;
     font-weight: 100;
 }
 
 .additional {
     color: #48b43d;
-    font-size: 18px;
+    font-size: 0.36rem;
 }

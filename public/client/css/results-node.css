@@ -3,7 +3,7 @@
     margin: auto;
     font-family: "Microsoft YaHei", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
     background: white;
-    border-radius: 6px;
+    border-radius: 0.12rem;
 }
 
 .results-wrapper {
@@ -11,53 +11,53 @@
 }
 
 div.timer-row {
-  font-size: 17px;
+  font-size: 0.34rem;
   color: #333;
-  padding: 12px 0;
+  padding: 0.18rem 0;
 }
 
 div.legend-row {
-  font-size: 13px;
+  font-size: 0.26rem;
   color: #666;
-  padding: 12px 0;
+  padding: 0.24rem 0;
 }
 
 .results-row > div.box-wrapper {
   float: left;
-  width: 55px;
-  height: 60px;
+  width: 1.1rem;
+  height: 1.2rem;
 }
 
 .results-row > div.chain-wrapper {
-  width: 20px;
+  width: 0.4rem;
   float: left;
-  height: 60px;
+  height: 1.2rem;
 }
 
 .results-row > div.results-right {
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .results-row > div.results-left {
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .results-box {
-  width: 50px;
-  height: 50px;
-  font-size: 14px;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.28rem;
   color: #fb973f;
-  border-radius: 40px;
+  border-radius: 0.8rem;
   border: 1px solid #e1e1e1;
   background: #fff;
   z-index: 100;
   position: relative;
-  padding-top: 4px;
+  padding-top: 0.08rem;
 }
 
 .results-box div {
-  font-size: 10px;
-  margin-top: -2px;
+  font-size: 0.2rem;
+  margin-top: -0.04rem;
 }
 
 .odd-box {
@@ -71,74 +71,27 @@ div.legend-row {
 }
 
 .chain {
-  width: 230px;
-  height: 4px;
+  width: 4.6rem;
+  height: 0.08rem;
   background: #f0f0f0;
   position: relative;
-  margin-left: 40px;
-  margin-top: 23px;
+  margin-left: 0.8rem;
+  margin-top: 0.46rem;
   z-index: 0;
 }
 
 .right-chain {
-  margin-top: 40px;
-  margin-left: -32px;
-  width: 4px;
-  height: 20px;
+  margin-top: 0.8rem;
+  margin-left: -0.64rem;
+  width: 0.08rem;
+  height: 0.4rem;
   background: #f0f0f0;
 }
 
 .left-chain {
-  margin-top: 16px;
-  margin-left: 43px;
-  width: 4px;
-  height: 20px;
+  margin-top: 0.32rem;
+  margin-left: 0.86rem;
+  width: 0.08rem;
+  height: 0.4rem;
   background: #f0f0f0;
-}
-
-/* iPhone 5 ----------- */
-@media only screen and (max-width: 360px) {
-    .results-row > div.box-wrapper {
-      width: 45px;
-      height: 50px;
-    }
-
-    .results-row > div.results-right {
-      margin-left: 0px;
-    }
-
-    .results-row > div.results-left {
-      margin-left: 0px;
-    }
-
-    .results-box {
-      font-size: 14px;
-      width: 40px;
-      height: 40px;
-    }
-
-    .results-box div {
-      font-size: 8px;
-      margin-top: -4px;
-    }
-
-    .results-row > div.chain-wrapper {
-      height: 50px;
-    }
-
-    .right-chain {
-      margin-top: 40px;
-      margin-left: -27px;
-    }
-
-    .left-chain {
-      margin-top: 10px;
-      margin-left: 38px;
-    }
-
-    .chain {
-      margin-top: 20px;
-      width: 180px;
-      height: 4px;
-    }
 }
