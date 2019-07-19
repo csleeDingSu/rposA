@@ -234,20 +234,10 @@ class WeiXin
         }
     }
 
-    public static function showqrcode($openid)
+    public static function showqrcode($ticket)
     {
-        $qrcode = null;
-
-        if (env('APP_URL') == env('weixinurl')) {            
-            $u = weixin::where('openid',$openid)->whereNotNull('nickname')->select('*')->first();
-            if (!empty($u)) {
-                $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" .$u->ticket;
-                $qrcode = self::getJson($url);
-            }
-        } else {
-            $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
-            $qrcode = self::getJson($url);            
-        }
+        $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" .$u->ticket;
+        $qrcode = self::getJson($url);
         
         return $qrcode; 
                 
