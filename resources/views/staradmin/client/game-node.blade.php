@@ -51,22 +51,11 @@
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
 			</div>
 
-			@if(env('APP_ENV') != 'prod')
 			<div class="box" id="btn-vip-wrapper">
-					<a href="/vip">
-						<div class="btn-life">剩余{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}场</div>
-					</a>
-					<div style="clear:both"></div>
+				<div class="btn-life">剩余{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}场</div>
+				<div style="clear:both"></div>
 			</div>
-			@else
-			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-rules-wrapper btn-vip-modal btn-vip-wrapper">
-					<div class="btn-rules-vip">VIP收益翻倍</div>
-					<div style="clear:both"></div>
-				</div>
-			</div>
-			@endif
-
+			
 			<input id="result" type="hidden" value="6">
 		    <input id="freeze_time" type="hidden" value="">
 		    <input id="draw_id" type="hidden" value="">
