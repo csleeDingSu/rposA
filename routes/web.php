@@ -654,4 +654,4 @@ Route::any('MP_verify', function () {
 Route::any( '/weixin/{domain?}', 'weixinController@weixin_verify' )->name( 'weixin.verify' );
 Route::any( '/mp/getUserInfo/snsapi_base/{domain?}', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
 Route::any( '/mp/getUserInfo/snsapi_userinfo/{domain?}', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
-Route::any( '/weixin/qrcode/{type}', 'weixinController@weixin_qrcode' )->name( 'weixin.qrcode' );
+Route::any( '/weixin/qrcode/{type}/{scene}', 'weixinController@weixin_qrcode' )->name( 'weixin.qrcode' );
