@@ -754,4 +754,6 @@ html, body {
 	border-radius: 50%;
 	background-size: cover;
  	display: block;
+	max-width: 40px;
+	max-height: 40px;
 }
