@@ -29,6 +29,15 @@
 	height: 40px;
 	
 }
+	
+.wechatname {
+	font-size: 20px;
+	float: left;
+	padding-top: 16px;
+	padding-bottom: 10px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
 </style>
 <div class="full-height no-header">
 	<div class="container">
@@ -37,7 +46,7 @@
 			<div class="card left">
 				<div class="col-xs-6 member-wrapper">
 					<div class="profile-pic">  <img class="profile-img-circle" src="{{ $member->profile_pic }}"> &nbsp; </div>
-					<div class="name">{{ $member->wechat_name ?? $member->username }} </div>
+					<div class="name wechatname">{{ $member->wechat_name ?? $member->username }} </div>
 					<div style="clear: both;"></div>
 				</div>
 				<div class="col-xs-6 member-wrapper">
