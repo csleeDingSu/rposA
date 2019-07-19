@@ -339,6 +339,8 @@ class MemberLoginController extends Controller
         $openid      = $request->openid; 
 		$wechatname  = $request->nickname;	
 		
+		print_r($request->all());
+		
 		//$openid     = 'adsfsafsdfdsaf2423'; 
 		//$wechatname = '67rfdsf';	
 				
