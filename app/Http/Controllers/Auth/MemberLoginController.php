@@ -486,7 +486,7 @@ class MemberLoginController extends Controller
 			return redirect($url);
 		}
 		
-		$record = \App\Member::where('activation_code', $otp)->where('wechat_verification_status', '0')->first();
+		$record = \App\Member::where('activation_code', $otp)->first();
 		
 		if ($record)
 		{
