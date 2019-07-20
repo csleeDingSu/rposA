@@ -337,13 +337,16 @@ class MemberLoginController extends Controller
 		$changephone = '';
 		$url         = "/cs/220";
         $openid      = $request->openid; 
-		$wechatname  = $request->nickname;	
+		$wechatname  = $request->nickname;
+		
+		\Log::debug(json_encode(['request' => $request->all()], true));
 		
 		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+			\Log::debug(json_encode(['wechat' =>'wechat browser'], true));
 			dd('use wechat to login');
 		}
 				
-		\Log::debug(json_encode(['request' => $request->all()], true));
+		
 		
 		//$openid     = 'adsfsafsdfdsaf2423'; 
 		//$wechatname = '67rfdsf';	
