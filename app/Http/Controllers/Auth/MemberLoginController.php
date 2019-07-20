@@ -469,7 +469,7 @@ class MemberLoginController extends Controller
 	
 	public function otp_login($otp = FALSE) {		
 			
-		$url	= '/arcade';
+		$url	= '';
 		
 		
 
@@ -490,6 +490,12 @@ class MemberLoginController extends Controller
 		
 		if ($record)
 		{
+			if ($record->wechat_verification_status == 0)
+			{
+				\Log::warning(json_encode(['unauthorised_wechat_login' => 'wechat verification failed'], true));
+				dd('waiting for admin verification');
+			}
+			
 			if (Carbon::parse($record->activation_code_expiry)->gt(Carbon::now()))
 			{
 				\Auth::guard('member')->loginUsingId($record->id,true);
