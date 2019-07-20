@@ -9,6 +9,7 @@
 						<thead>
 							<tr>
 								<th>@lang('dingsu.created_at')</th>
+								<th>@lang('dingsu.wechat_name')</th>
 								<th>@lang('dingsu.member')</th>
 								<th>@lang('dingsu.type')</th>								
 								<th>@lang('dingsu.product')</th>
@@ -23,7 +24,8 @@
 								
 								
 	<td>{{ $list->created_at }}        </td>
-	<td><button type="button" data-type="{{ $list->type }}" data-date="{{$list->created_at}}" data-id="{{$list->member_id}}" class="btn  ShowMember"> {{ $list->username }} </button>
+	<td> </td>
+								<td><button type="button" data-type="{{ $list->type }}" data-date="{{$list->created_at}}" data-id="{{$list->member_id}}" class="btn  ShowMember"> {{ $list->username }} </button>
 								    </td>
 	<td>{{ $list->type }}</td>
 	<td>{{ $list->pname }}</td>

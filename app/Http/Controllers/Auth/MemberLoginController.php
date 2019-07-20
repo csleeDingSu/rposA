@@ -337,13 +337,16 @@ class MemberLoginController extends Controller
 		$changephone = '';
 		$url         = "/cs/220";
         $openid      = $request->openid; 
-		$wechatname  = $request->nickname;	
+		$wechatname  = $request->nickname;
 		
-		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+		\Log::debug(json_encode(['request' => $request->all()], true));
+		
+		if( preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) { 
+			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
 			dd('use wechat to login');
 		}
 				
-		\Log::debug(json_encode(['request' => $request->all()], true));
+		
 		
 		//$openid     = 'adsfsafsdfdsaf2423'; 
 		//$wechatname = '67rfdsf';	
@@ -390,9 +393,9 @@ class MemberLoginController extends Controller
 			}
 			\Log::debug(json_encode(['new user' => $openid ], true));
 			//register
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
-			
 			$setting = \App\Admin::get_setting();
+			
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ,'current_life' =>$setting->game_default_life ]);			
 			
 			$wallet = \App\Wallet::create([
 					'current_life'    => $setting->game_default_life,
@@ -400,6 +403,7 @@ class MemberLoginController extends Controller
 					'current_balance' => env('initial_balance',120),
 					'balance_before'  => env('initial_balance',120)
 				]);
+			
 		}
 					
 		$user = \App\Members::where('openid', $openid)->first();		
@@ -466,11 +470,12 @@ class MemberLoginController extends Controller
 	
 	public function otp_login($otp = FALSE) {		
 			
-		$url	= '/arcade';
+		$url	= '';
 		
 		
 
 		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
 			dd('use wechat to login');
 		}
 		
@@ -482,10 +487,16 @@ class MemberLoginController extends Controller
 			return redirect($url);
 		}
 		
-		$record = \App\Member::where('activation_code', $otp)->where('wechat_verification_status', '0')->first();
+		$record = \App\Member::where('activation_code', $otp)->first();
 		
 		if ($record)
 		{
+			if ($record->wechat_verification_status == 1)
+			{
+				//\Log::warning(json_encode(['unauthorised_wechat_login' => 'wechat verification failed'], true));
+				//dd('waiting for admin verification');
+			}
+			
 			if (Carbon::parse($record->activation_code_expiry)->gt(Carbon::now()))
 			{
 				\Auth::guard('member')->loginUsingId($record->id,true);

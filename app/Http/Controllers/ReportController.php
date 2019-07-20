@@ -50,6 +50,9 @@ class ReportController extends BaseController
 			if (!empty($input['s_username'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
 			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+			}
 			if (!empty($input['s_code'])) {
 				$result = $result->where('code','LIKE', "%{$input['s_code']}%") ;				
 			}
@@ -93,7 +96,9 @@ class ReportController extends BaseController
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
 			}
-						
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+			}		
 			if (isset($input['s_type'])) {
 				if ($input['s_type'] != '' )
 					$result = $result->where('credit_type','=',$input['s_type']);
@@ -314,7 +319,9 @@ class ReportController extends BaseController
 			if (!empty($input['s_drawid'])) {
 				$result = $result->where('draw_id','LIKE', "%{$input['s_drawid']}%") ;				
 			}
-						
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+			}			
 			
 		}		
 		$result         =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
@@ -350,6 +357,9 @@ class ReportController extends BaseController
 			}
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
 			}
 		}		
 		$result         =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
