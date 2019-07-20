@@ -17,7 +17,8 @@
 								<th>@lang('dingsu.play_status')</th>
 								<th>@lang('dingsu.bet_amount')</th>
 								<th>@lang('dingsu.reward')</th>
-								<th>@lang('dingsu.name')</th>
+								<th>@lang('dingsu.phone')</th>
+								<th>@lang('dingsu.wechat_name')</th>
 								<th>@lang('dingsu.status')</th>
 								
 							</tr>
@@ -42,8 +43,8 @@
 								</td>
 								<td>{{ $list->bet_amount }}</td>	
 								<td>{{ $list->reward }}</td>	
-								<td>{{ $list->username }}</td>							
-								
+								<td>{{ $list->phone }}</td>							
+								<td>{{ $list->wechat_name }}</td>
 								<td>
 									@if($list->member_status == 0)
 									<label class="badge badge-success">@lang('dingsu.active')</label> 
