@@ -488,7 +488,7 @@ class MemberLoginController extends Controller
 				
 				$user = Auth::guard('member')->user();
 				$user->active_session  = Session::getId();
-				$user->activation_code = '';
+				$user->activation_code = null;
 				$user->activation_code_expiry = '';
 				$user->save();				
 				return redirect('/arcade');			
