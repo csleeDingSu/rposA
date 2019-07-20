@@ -339,6 +339,9 @@ class MemberLoginController extends Controller
         $openid      = $request->openid; 
 		$wechatname  = $request->nickname;	
 		
+		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+			dd('use wechat to login');
+		}
 				
 		\Log::debug(json_encode(['request' => $request->all()], true));
 		
@@ -354,7 +357,7 @@ class MemberLoginController extends Controller
 			return response()->json(['success' => false,'message'=>[trans('auth.empty_openid')] ]);
 		}
 		
-		$record = \App\Members::where('wechat_name', $wechatname)->first();
+		$record = \App\Members::where('openid', $openid)->first();
 		
 		if ($record)
 		{
@@ -387,7 +390,7 @@ class MemberLoginController extends Controller
 			}
 			\Log::debug(json_encode(['new user' => $openid ], true));
 			//register
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
 			
 			$setting = \App\Admin::get_setting();
 			
@@ -399,7 +402,7 @@ class MemberLoginController extends Controller
 				]);
 		}
 					
-		$user = \App\Members::where('wechat_name', $wechatname)->first();		
+		$user = \App\Members::where('openid', $openid)->first();		
 		
 		//create login session
 		//Auth::guard('member')->loginUsingId($user->id, true);
@@ -463,7 +466,15 @@ class MemberLoginController extends Controller
 	
 	public function otp_login($otp = FALSE) {		
 			
-		$url	= '';
+		$url	= '/arcade';
+		
+		
+
+		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+			dd('use wechat to login');
+		}
+		
+		\Log::warning(json_encode(['otp' => $otp], true));
 		
 		if (empty($otp))
 		{
@@ -471,7 +482,7 @@ class MemberLoginController extends Controller
 			return redirect($url);
 		}
 		
-		$record = \App\Member::where('activation_code', $otp)->first();
+		$record = \App\Member::where('activation_code', $otp)->where('wechat_verification_status', '0')->first();
 		
 		if ($record)
 		{
@@ -481,7 +492,7 @@ class MemberLoginController extends Controller
 				
 				$user = Auth::guard('member')->user();
 				$user->active_session  = Session::getId();
-				$user->activation_code = '';
+				$user->activation_code = null;
 				$user->activation_code_expiry = '';
 				$user->save();				
 				return redirect('/arcade');			
