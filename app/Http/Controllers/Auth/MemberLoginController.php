@@ -341,8 +341,8 @@ class MemberLoginController extends Controller
 		
 		\Log::debug(json_encode(['request' => $request->all()], true));
 		
-		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
-			\Log::debug(json_encode(['wechat' =>'wechat browser'], true));
+		if( preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) { 
+			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
 			dd('use wechat to login');
 		}
 				
@@ -473,7 +473,8 @@ class MemberLoginController extends Controller
 		
 		
 
-		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+		if( preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
 			dd('use wechat to login');
 		}
 		
