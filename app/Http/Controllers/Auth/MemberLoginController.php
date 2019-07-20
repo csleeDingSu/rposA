@@ -393,9 +393,9 @@ class MemberLoginController extends Controller
 			}
 			\Log::debug(json_encode(['new user' => $openid ], true));
 			//register
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
-			
 			$setting = \App\Admin::get_setting();
+			
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ,'current_life' =>$setting->game_default_life ]);			
 			
 			$wallet = \App\Wallet::create([
 					'current_life'    => $setting->game_default_life,
@@ -403,6 +403,7 @@ class MemberLoginController extends Controller
 					'current_balance' => env('initial_balance',120),
 					'balance_before'  => env('initial_balance',120)
 				]);
+			
 		}
 					
 		$user = \App\Members::where('openid', $openid)->first();		
