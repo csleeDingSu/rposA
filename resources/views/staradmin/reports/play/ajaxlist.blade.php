@@ -13,6 +13,7 @@
 										<th>@lang('dingsu.drawid')</th>
 										<th>@lang('dingsu.gameid')</th>
 										<th>@lang('dingsu.phone')</th>
+										<th>@lang('dingsu.wechat_name')</th>
 										<th>@lang('dingsu.bet_amount')</th>
 										<th>@lang('dingsu.game_result')</th>
 										<th>@lang('dingsu.play_result')</th>
@@ -30,6 +31,7 @@
 	<td>{{ $list->draw_id }}</td>
 	<td>{{ $list->game_id }}</td>	
 	<td>{{ $list->phone }}</td>
+	<td>{{ $list->wechat_name }}</td>
 	<td>
 		{{ $list->bet_amount }}
 	</td>
