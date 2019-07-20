@@ -467,10 +467,14 @@ class MemberLoginController extends Controller
 	public function otp_login($otp = FALSE) {		
 			
 		$url	= '/arcade';
+		
+		
 
 		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
 			dd('use wechat to login');
 		}
+		
+		\Log::warning(json_encode(['otp' => $otp], true));
 		
 		if (empty($otp))
 		{
