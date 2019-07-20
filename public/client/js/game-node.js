@@ -608,6 +608,15 @@ function bindBetButton(){
 
         } else if(user_id > 0 && life == 0){
                 $('#reset-life-share').modal();
+                $('.button-card').click( function() {
+                    $('#reset-life-share').modal();
+                });
+                $('.btn-trigger').click( function() {
+                    $('#reset-life-share').modal();
+                });
+                $('.barWrapper').click( function() {
+                    $('#reset-life-share').modal();
+                });                
         }
 
         if (user_id > 0 && acupoint >= 15) {
