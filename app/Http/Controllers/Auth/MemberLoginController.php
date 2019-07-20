@@ -339,6 +339,9 @@ class MemberLoginController extends Controller
         $openid      = $request->openid; 
 		$wechatname  = $request->nickname;	
 		
+		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+			dd('use wechat to login');
+		}
 				
 		\Log::debug(json_encode(['request' => $request->all()], true));
 		
@@ -354,7 +357,7 @@ class MemberLoginController extends Controller
 			return response()->json(['success' => false,'message'=>[trans('auth.empty_openid')] ]);
 		}
 		
-		$record = \App\Members::where('wechat_name', $wechatname)->first();
+		$record = \App\Members::where('openid', $openid)->first();
 		
 		if ($record)
 		{
@@ -399,7 +402,7 @@ class MemberLoginController extends Controller
 				]);
 		}
 					
-		$user = \App\Members::where('wechat_name', $wechatname)->first();		
+		$user = \App\Members::where('openid', $openid)->first();		
 		
 		//create login session
 		//Auth::guard('member')->loginUsingId($user->id, true);
@@ -463,7 +466,7 @@ class MemberLoginController extends Controller
 	
 	public function otp_login($otp = FALSE) {		
 			
-		$url	= '';
+		$url	= '/arcade';
 
 		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
 			dd('use wechat to login');
