@@ -23,7 +23,7 @@ class Members extends Model
 		'wechat_verification_status',
 		'game_life',
 		'current_life',
-		'gender','profile_pic',
+		'gender','profile_pic','openid'
 		
     ];
 
