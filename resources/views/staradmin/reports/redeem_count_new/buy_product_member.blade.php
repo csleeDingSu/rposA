@@ -5,6 +5,7 @@
 		<th>@lang('dingsu.package') @lang('dingsu.name')</th>
 		<th>@lang('dingsu.type')</th>
 		<th>@lang('dingsu.phone')</th>
+		<th>@lang('dingsu.wechat_name')</th>
 		<th>@lang('dingsu.product_price')</th>
 		<th>@lang('dingsu.quantity')</th>
 		<th>@lang('dingsu.used_point')</th>
@@ -36,6 +37,9 @@
 	</td> 
 	<td>
 		{{ $list->member->phone }}  
+	</td>
+	<td>
+		{{ $list->member->wechat_name }}  
 	</td>
 	<td>
 		{{ $list->product->point_to_redeem }}
