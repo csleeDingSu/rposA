@@ -490,7 +490,7 @@ class MemberLoginController extends Controller
 		
 		if ($record)
 		{
-			if ($record->wechat_verification_status == 0)
+			if ($record->wechat_verification_status == 1)
 			{
 				\Log::warning(json_encode(['unauthorised_wechat_login' => 'wechat verification failed'], true));
 				dd('waiting for admin verification');
