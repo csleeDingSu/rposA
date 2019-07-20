@@ -24,8 +24,7 @@
 								
 								
 	<td>{{ $list->created_at }}        </td>
-	<td><button type="button" data-type="{{ $list->type }}" data-date="{{$list->created_at}}" data-id="{{$list->member_id}}" class="btn  ShowMember"> {{ $list->wechat_name }} </button>
-								    </td>
+	<td> </td>
 								<td><button type="button" data-type="{{ $list->type }}" data-date="{{$list->created_at}}" data-id="{{$list->member_id}}" class="btn  ShowMember"> {{ $list->username }} </button>
 								    </td>
 	<td>{{ $list->type }}</td>
