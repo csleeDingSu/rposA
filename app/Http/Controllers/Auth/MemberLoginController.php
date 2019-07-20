@@ -493,8 +493,8 @@ class MemberLoginController extends Controller
 		{
 			if ($record->wechat_verification_status == 1)
 			{
-				\Log::warning(json_encode(['unauthorised_wechat_login' => 'wechat verification failed'], true));
-				dd('waiting for admin verification');
+				//\Log::warning(json_encode(['unauthorised_wechat_login' => 'wechat verification failed'], true));
+				//dd('waiting for admin verification');
 			}
 			
 			if (Carbon::parse($record->activation_code_expiry)->gt(Carbon::now()))
