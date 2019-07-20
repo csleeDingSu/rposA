@@ -29,7 +29,7 @@ class Member extends Authenticatable
 		'game_life',
 		'current_life',
 		'gender',
-		'profile_pic'
+		'profile_pic','openid'
     ];
 
     /**
