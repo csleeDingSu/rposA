@@ -4,7 +4,7 @@
 <th>@lang('dingsu.create_Date')</th>
 <th>@lang('dingsu.package') @lang('dingsu.name')</th>
 <th>@lang('dingsu.username')</th>
-	<th>@lang('dingsu.wechat_name')</th>
+	
 <th>@lang('dingsu.status')</th>										
 </tr>
 </thead>
@@ -19,9 +19,6 @@
 		</td>
 	<td>
 		{{ $list->username }}  
-	</td>
-	<td>
-		{{ $list->wechat_name }}  
 	</td>
 	
 	
