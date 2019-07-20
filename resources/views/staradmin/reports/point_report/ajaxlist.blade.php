@@ -28,7 +28,7 @@
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
 								<td>{{ $list->phone }}</td>
-								<td>{{ $list->wechat_name }}</td>
+								<td></td>
 								<td>{{ $list->credit }}</td>
 								<td>{{ $list->debit }}</td>
 								<td>{{ $list->balance_before }}</td>
