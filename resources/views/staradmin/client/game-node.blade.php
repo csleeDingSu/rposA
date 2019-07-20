@@ -1000,6 +1000,19 @@
 				openmodel();
 			}
 
+			if ($(".nTxt").html() == 0) {
+                $('.button-card').click( function() {
+                    $('#reset-life-share').modal();
+                });
+                $('.btn-trigger').click( function() {
+                    $('#reset-life-share').modal();
+                });
+                $('.barWrapper').click( function() {
+                    $('#reset-life-share').modal();
+                });    
+            }
+			
+
 		});
 		
 
