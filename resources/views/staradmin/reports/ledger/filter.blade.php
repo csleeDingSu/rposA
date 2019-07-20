@@ -6,15 +6,13 @@
 			<div class="card">
 				<div class="card-body">
 					<form class="" name="searchform" id="searchform" action="" method="get" autocomplete="on">
-					<h4 class="card-title">Search</h4>
+					<h4 class="card-title">@lang('dingsu.search')</h4>
 					<div class="form-group row">
 						
-						
-						
 						<div class="col">
-							<label>@lang('dingsu.username')</label>
+							<label>@lang('dingsu.wechat_name')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
+								<input type="text" class="form-control typeahead tt-input" name="s_wechat_name" id="s_wechat_name" placeholder="@lang('dingsu.wechat_name')">
 							</div>
 						</div>
 						
