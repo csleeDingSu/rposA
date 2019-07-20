@@ -390,7 +390,7 @@ class MemberLoginController extends Controller
 			}
 			\Log::debug(json_encode(['new user' => $openid ], true));
 			//register
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'0','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ]);
 			
 			$setting = \App\Admin::get_setting();
 			
@@ -482,7 +482,7 @@ class MemberLoginController extends Controller
 			return redirect($url);
 		}
 		
-		$record = \App\Member::where('activation_code', $otp)->first();
+		$record = \App\Member::where('activation_code', $otp)->where('wechat_verification_status', '0')->first();
 		
 		if ($record)
 		{
