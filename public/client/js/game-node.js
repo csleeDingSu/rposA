@@ -15,6 +15,7 @@ var game_records = null; //game setting
 var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
+var g_life = 0;
 
 $(function () {
 
@@ -138,6 +139,7 @@ function initUser(records){
     } else {
         var balance = parseInt(records.balance);
         var life = records.life;
+        g_life = life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
@@ -263,11 +265,16 @@ try {
                 }
 
                 $( this ).click(function(){
-                    $('.spinning').html('选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”');
-                     $('.spinning').css('visibility', 'visible');
-                    setTimeout(function(){ 
-                        $('.spinning').css('visibility', 'hidden');
-                    }, 3000);
+
+                    if (g_life > 0) {
+                        $('.spinning').html('选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”');
+                         $('.spinning').css('visibility', 'visible');
+                        setTimeout(function(){ 
+                            $('.spinning').css('visibility', 'hidden');
+                        }, 3000);    
+                    } else {
+                        $('#reset-life-share').modal();
+                    }
                 });
             }
         });
@@ -801,14 +808,22 @@ function showPayoutBet(){
 
 function bindCalculateButton(){
     $('.btn-calculate').click( function() {
-        $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+        if (g_life > 0) {
+            $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+        } else {
+            $('#reset-life-share').modal();
+        }
     });
 }
 
 function bindTriggerButton(){
     $('.btn-trigger').click(function( event ){
-        event.stopImmediatePropagation();
-        checkSelection();
+        if (g_life > 0) {
+            event.stopImmediatePropagation();
+            checkSelection();
+        } else {
+            $('#reset-life-share').modal();
+        }
     });
 }
 
