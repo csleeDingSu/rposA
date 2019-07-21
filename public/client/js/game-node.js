@@ -265,11 +265,16 @@ try {
                 }
 
                 $( this ).click(function(){
-                    $('.spinning').html('选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”');
-                     $('.spinning').css('visibility', 'visible');
-                    setTimeout(function(){ 
-                        $('.spinning').css('visibility', 'hidden');
-                    }, 3000);
+
+                    if (g_life > 0) {
+                        $('.spinning').html('选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”');
+                         $('.spinning').css('visibility', 'visible');
+                        setTimeout(function(){ 
+                            $('.spinning').css('visibility', 'hidden');
+                        }, 3000);    
+                    } else {
+                        $('#reset-life-share').modal();
+                    }
                 });
             }
         });
@@ -803,21 +808,21 @@ function showPayoutBet(){
 
 function bindCalculateButton(){
     $('.btn-calculate').click( function() {
-        if (g_life <= 0) {
-            $('#reset-life-share').modal();
-        } else {
+        if (g_life > 0) {
             $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+        } else {
+            $('#reset-life-share').modal();
         }
     });
 }
 
 function bindTriggerButton(){
     $('.btn-trigger').click(function( event ){
-        if (g_life <= 0) {
-            $('#reset-life-share').modal();
-        } else {
+        if (g_life > 0) {
             event.stopImmediatePropagation();
             checkSelection();
+        } else {
+            $('#reset-life-share').modal();
         }
     });
 }
