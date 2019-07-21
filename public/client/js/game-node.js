@@ -15,6 +15,7 @@ var game_records = null; //game setting
 var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
+var g_life = 0;
 
 $(function () {
 
@@ -138,6 +139,7 @@ function initUser(records){
     } else {
         var balance = parseInt(records.balance);
         var life = records.life;
+        g_life = life;
         var point = parseInt(records.point);
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
@@ -801,14 +803,22 @@ function showPayoutBet(){
 
 function bindCalculateButton(){
     $('.btn-calculate').click( function() {
-        $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+        if (g_life <= 0) {
+            $('#reset-life-share').modal();
+        } else {
+            $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+        }
     });
 }
 
 function bindTriggerButton(){
     $('.btn-trigger').click(function( event ){
-        event.stopImmediatePropagation();
-        checkSelection();
+        if (g_life <= 0) {
+            $('#reset-life-share').modal();
+        } else {
+            event.stopImmediatePropagation();
+            checkSelection();
+        }
     });
 }
 
