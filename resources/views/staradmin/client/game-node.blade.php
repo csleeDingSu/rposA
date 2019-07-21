@@ -1002,11 +1002,21 @@
 			}
 
 			if (life == 0) {
-                $('.button-card', '.btn-trigger', '.barWrapper', '.btn-redeemcash').click( function() {
+                $('.button-card').click( function() {
                     $('#reset-life-share').modal();
-                    $('.spinning').css('visibility', 'hidden');
                 });
+                $('.btn-trigger').click( function() {
+                    $('#reset-life-share').modal();
+                });
+                $('.barWrapper').click( function() {
+                    $('#reset-life-share').modal();
+                });
+                $('.btn-redeemcash').click( function() {
+                    $('#reset-life-share').modal();
+                });    
+                $('.spinning').css('visibility', 'hidden');
             }
+
 
 		});
 		
