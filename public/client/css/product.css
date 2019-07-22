@@ -43,6 +43,10 @@
     color: #999;
 }
 
+.product .list-2 h2 {
+    padding-right: 0.2rem;
+}
+
 .btn-product {
     background-size: cover;
     width: 2.02rem;
