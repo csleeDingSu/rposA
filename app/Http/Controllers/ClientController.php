@@ -299,7 +299,7 @@ class ClientController extends BaseController
 		//show wechat qrcode
 		$u = Member::get_member(Auth::guard('member')->user()->id);
 		$this->wx = new WX();
-		$url = env('APP_URL') . "/weixin/showqrcode/" . $u->openid
+		$url = env('APP_URL') . "/weixin/showqrcode/" . $u->openid;
 		$qrcode = $this->wx->send_curl($url); 
 
 		return view('client/share', ['data'=>$data, 'wechat_qrcode' =>$qrcode]);
