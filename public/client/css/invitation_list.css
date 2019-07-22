@@ -39,7 +39,7 @@ html, body {
     border-radius:0px;
     color:#666666;
     font-weight: 500;
-    /*background: #ffffff;*/
+    background: #ffffff;
     font-size: 16px;
     padding: 0px 10px;
 }
@@ -246,12 +246,12 @@ html, body {
 
 .lbl-my-lvl-total-invitation {
     /*color: #fc5e39;*/
-    font-size: 0.4rem;   
+    font-size: 0.3rem;   
     background-color: white !important;
 }
 .lbl-next-lvl-total-invitation {
     /*color: #555;*/
-    font-size: 0.4rem;
+    font-size: 0.3rem;
     background-color: white !important;      
 }
 
@@ -275,4 +275,13 @@ html, body {
     float: right;
     /*color: #fd7422;*/
     font-size: 20px;
+}
+
+.tab-content {
+    background-color: white;
+}
+
+.newline {
+    background-color: #f3f3f3;
+    height:10px;
 }
