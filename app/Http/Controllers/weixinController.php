@@ -313,21 +313,29 @@ class weixinController extends BaseController
 
     public function weixin_showqrcode($openid)
     {
-        $qrcode = null;
+       $qrcode = null;
 
-        if (env('APP_URL') == env('weixinurl')) {            
+        // if (env('APP_URL') == env('weixinurl')) {            
             $u = weixin::where('openid',$openid)->whereNotNull('nickname')->select('*')->first();
         
             if (!empty($u)) {
-                $qrcode = $this->wx->showqrcode($u->ticket);
+                // $qrcode = $this->wx->showqrcode($u->ticket);
+
+                $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" . $u->ticket;
+
+                $qrcode = $this->wx->send_curl($url);
+                
+                // $temp = file_put_contents(public_path().'/client/qr/'. $openid, base64_decode($qrcode));
+
             }
 
-        } else {
+        // } else {
 
-            $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
-            $qrcode = $this->wx->send_curl($url);            
-        
-        }
+        //     $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
+        //     $qrcode = $this->wx->send_curl($url);  
+        //     $temp = file_put_contents(public_path().'/client/qr/'. $openid .'.jpg', base64_decode($qrcode));
+          
+        // }
         
         return $qrcode;
     }
