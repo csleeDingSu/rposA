@@ -324,7 +324,7 @@ class weixinController extends BaseController
 
                 $filename = "wechatqr-".time().".png";
                 $path = public_path() . "/client/qr/" . $filename;
-                $url = "/client/qr/" . $filename;
+                $url = env('weixinurl') . "/client/qr/" . $filename;
                 //$img = substr($qrcode, strpos($qrcode, ",")+1);
                 // $data = base64_decode($img);
                 $success = file_put_contents($path, $qrcode);
