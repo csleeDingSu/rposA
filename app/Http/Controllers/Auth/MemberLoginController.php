@@ -433,6 +433,9 @@ class MemberLoginController extends Controller
 		
 		$user->save();
 		
+		
+		\Log::debug(json_encode(['redirect to ' => $url ], true));
+		
 		return response()->json([
 			'success'      => true,			
 			'url' => $url
