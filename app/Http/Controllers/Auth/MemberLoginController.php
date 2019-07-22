@@ -331,7 +331,9 @@ class MemberLoginController extends Controller
 		*/
     }
 	
-	public function wechat_auth(Request $request) {		
+	public function wechat_auth(Request $request) 
+	{		
+		\Auth::logout();
         
         $forceupdate = '';
 		$changephone = '';
