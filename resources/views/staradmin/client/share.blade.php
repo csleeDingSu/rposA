@@ -42,7 +42,12 @@ $filename = public_path().'/client/qr/'.$affiliate_id.'.png';
 
 //QRcode::png($url, $filename, 'L', '3', 2);  //old
 QRcode::png($url, $filename, 'L', '3.6', 5); 
-$showIcon = $filename;
+
+if (empty($wechatqrcode)) {
+  $showIcon = $filename;
+} else {
+  $showIcon = public_path(). $wechatqrcode;
+}
 
 $showimage = public_path( 'client/bar/'.$data->filename );
 //$showIcon = "https://chart.googleapis.com/chart?chs=190x190&cht=qr&chl=$url&choe=UTF-8";
@@ -584,11 +589,7 @@ ol>li:before {
     <img class="ribbon_img" src="{{asset('/cshare/images/ribbon.png')}}" >
     <!-- <div class="btn_ribbon ">&nbsp;</div> -->
 
-    @if (empty($wechatqrcode))
     <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
-    @else
-    <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($wechatqrcode).'"/>';?>
-    @endif
 		
     <img class="btn_ribbon" src="{{asset('/cshare/images/btn.png')}}" >
 
