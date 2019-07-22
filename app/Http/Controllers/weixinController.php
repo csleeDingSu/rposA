@@ -332,7 +332,7 @@ class weixinController extends BaseController
         return $qrcode;
     }
 
-    public function createwxaqrcode(Request $request)
+    public function weixin_createwxaqrcode(Request $request)
     {
         $res = $this->wx->createwxaqrcode($request);
         $res = $this->isJSON($res) ? $res : json_encode($res);
