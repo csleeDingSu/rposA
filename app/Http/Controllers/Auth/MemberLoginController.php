@@ -341,11 +341,12 @@ class MemberLoginController extends Controller
 		
 		\Log::debug(json_encode(['request' => $request->all()], true));
 		
+		/*
 		if( preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) { 
 			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
 			dd('use wechat to login');
 		}
-				
+		*/		
 		
 		
 		//$openid     = 'adsfsafsdfdsaf2423'; 
@@ -382,6 +383,8 @@ class MemberLoginController extends Controller
 			{
 				$changephone = 'yes';
 			}
+			
+			\Log::debug(json_encode(['existing user' => $openid ], true));
 			
 		}
 		else
