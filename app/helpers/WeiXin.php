@@ -258,7 +258,7 @@ class WeiXin
                 
     }
 
-    public function createwxaqrcode($request, $openid)
+    public function createwxaqrcode($request)
     {
         try {
 
