@@ -331,5 +331,55 @@ class ClientController extends BaseController
 		return view('client/share_new', ['data'=>$data]);
 	}
 	
+	public function test_otp_login($otp = FALSE) {		
+			
+		$url	= '';
+		
+		\Log::warning(json_encode(['otp' => $otp], true));
+/*
+		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
+			dd('use wechat to login');
+		}
+		*/
+		
+		
+		if (empty($otp))
+		{
+			\Log::warning(json_encode(['unauthorised_login' => 'empty OTP'], true));
+			return redirect($url);
+		}
+		
+		$record = \App\Member::where('activation_code', $otp)->first();
+		
+		if ($record)
+		{
+			if ($record->wechat_verification_status == 1)
+			{
+				//\Log::warning(json_encode(['unauthorised_wechat_login' => 'wechat verification failed'], true));
+				//dd('waiting for admin verification');
+			}
+			
+			if (Carbon::parse($record->activation_code_expiry)->gt(Carbon::now()))
+			{
+				\Auth::guard('member')->loginUsingId($record->id,true);
+				
+				$user = \Auth::guard('member')->user();
+				$user->active_session  = Session::getId();
+				$user->activation_code = null;
+				$user->activation_code_expiry = '';
+				$user->save();	
+				
+				\Log::debug(json_encode(['wechat_login' => 'verified and redirect to game'], true));
+				return redirect('/arcade');			
+			}
+			\Log::warning(json_encode(['unauthorised_wechat_login' => 'expired OTP'], true));
+			return redirect($url);
+		}
+		\Log::warning(json_encode(['unauthorised_wechat_login' => 'unknown OTP'], true));
+		
+		return redirect($url);		
+    }
+	
 	
 }
