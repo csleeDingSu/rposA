@@ -478,14 +478,14 @@ class MemberLoginController extends Controller
 			
 		$url	= '';
 		
-		
+		\Log::warning(json_encode(['otp' => $otp], true));
 
 		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
 			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
 			dd('use wechat to login');
 		}
 		
-		\Log::warning(json_encode(['otp' => $otp], true));
+		
 		
 		if (empty($otp))
 		{
