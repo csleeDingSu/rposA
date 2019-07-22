@@ -475,9 +475,10 @@ class MemberLoginController extends Controller
     }
 	
 	
-	
+	//deprecated
 	public function otp_login($otp = FALSE) {		
-			
+			dd('deprecated');
+		
 		$url	= '';
 		
 		\Log::warning(json_encode(['otp' => $otp], true));

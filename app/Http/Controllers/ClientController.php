@@ -331,18 +331,16 @@ class ClientController extends BaseController
 		return view('client/share_new', ['data'=>$data]);
 	}
 	
-	public function test_otp_login($otp = FALSE) {		
+	public function wechat_otp_login($otp = FALSE) {		
 			
 		$url	= '';
 		
 		\Log::warning(json_encode(['otp' => $otp], true));
-/*
+
 		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
 			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
 			dd('use wechat to login');
 		}
-		*/
-		
 		
 		if (empty($otp))
 		{
@@ -378,8 +376,8 @@ class ClientController extends BaseController
 		}
 		\Log::warning(json_encode(['unauthorised_wechat_login' => 'unknown OTP'], true));
 		
-		return redirect($url);		
-    }
+		return redirect($url);	
+	}
 	
 	
 }
