@@ -1,5 +1,6 @@
 
 <section class="filter">
+	@include('reports.redeem_count_new.detail.filter')
 </section>
 
 <section class="datalist">

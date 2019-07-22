@@ -22,7 +22,9 @@ class Reroute
 		//{
 			//die('guest');
 			Session::put('re_route','yes');
-			return redirect('/login');
+			//Reroute error
+			\Log::warning(json_encode(['sso' => 'invalid Reroute'], true));
+			return redirect('/arcade');
 		}
 		//die('imhere');
 		return redirect('/arcade');

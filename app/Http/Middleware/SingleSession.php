@@ -23,8 +23,12 @@ class SingleSession
 		   {
 			  // do logout
 			   Auth::Guard('member')->logout();
+			   
+			   //single session error
+			   \Log::warning(json_encode(['sso' => 'invalid request'], true));
+			   
 			  // Redirecto login page
-			   return redirect( '/login' );
+			   return redirect( '/arcade' );
 		   }
 		}
 		return $next($request);

@@ -629,7 +629,9 @@ Route::any( '/share_product_api', function () {
 
 
 
-Route::any('/wechat-login/{otp?}', 'Auth\MemberLoginController@otp_login')->name('wechat_otp_login');
+//Route::any('/wechat-login/{otp?}', 'Auth\MemberLoginController@otp_login')->name('wechat_otp_login');
+
+Route::any('/wechat-login/{otp?}', 'ClientController@wechat_otp_login')->name('wechat_otp_login');
 
 Route::any('asyncmysqlevent/{api}/{drawid}', function ($api, $drawid) {
 	$url = env('APP_URL', 'wabao666.com') . "/$api/$drawid";

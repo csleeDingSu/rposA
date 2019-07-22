@@ -50,7 +50,9 @@ $showimage = public_path( 'client/bar/'.$data->filename );
 
 $mainimg = imagecreatefrompng( $showIcon );
 
-$image = imagecreatefromjpeg( $showimage );
+// $image = imagecreatefromjpeg( $showimage );
+
+$image = imagecreatefrompng( $showimage );
 
 $white = imagecolorallocate( $mainimg, 255, 255, 255 );
 
@@ -62,7 +64,8 @@ imagefill( $mainimg, 0, 0, $white );
 
 // imagecopymerge( $image, $mainimg, 13, 641, 0, 0, 132, 132, 100 );
 //imagecopymerge( $image, $mainimg, 21, 663, 0, 0, 100, 100, 100 ); //old
-imagecopymerge( $image, $mainimg, 190, 400, 9, 9, 120, 120, 100 );
+// imagecopymerge( $image, $mainimg, 190, 400, 9, 9, 120, 120, 100 ); //for img3.jpeg
+imagecopymerge( $image, $mainimg, 187, 542, 9, 9, 120, 120, 100 );
 
 ob_start();
 imagepng( $image );
@@ -261,7 +264,7 @@ border-radius: 20px;
        <span class="head2">分享到微信的方法</span>
      </div>     
      <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 16%">    
-       <span class="head3">按住宣传图3秒 > 选择分享图片 > 选择微信</span>
+       <span class="head3">按住广告图3秒 > 分享给好友 > 选择好友</span>
      </div>
     
     

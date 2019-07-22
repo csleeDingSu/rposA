@@ -221,18 +221,24 @@ try {
                 $( this ).addClass( "button-bet-active" );
                 $( this ).unbind( "click" );
                 $( ".circle-border" ).click(function(){
-                    $( this ).removeClass('circle-border').addClass('clicked-circle');
-                    $( this ).prev().addClass('clicked-button-bet');
 
-                    var selected = $('div.clicked').find('input:radio').val();
-                    if (typeof selected == 'undefined'){
-                        $('.middle-label').html('选择单双');
+                    if(g_life == 0){
+                        $('#reset-life-share').modal();
                     } else {
-                        $('.middle-label').html('开始抽奖');
+
+                        $( this ).removeClass('circle-border').addClass('clicked-circle');
+                        $( this ).prev().addClass('clicked-button-bet');
+
+                        var selected = $('div.clicked').find('input:radio').val();
+                        if (typeof selected == 'undefined'){
+                            $('.middle-label').html('选择单双');
+                        } else {
+                            $('.middle-label').html('开始抽奖');
+                        }
+                        
+                        $('#btnPointer').addClass('ready');
+                        showPayoutBet();
                     }
-                    
-                    $('#btnPointer').addClass('ready');
-                    showPayoutBet();
                 });
             } else {
                 var suggestion_bet = 1;
@@ -267,8 +273,12 @@ try {
                 $( this ).click(function(){
 
                     if (g_life > 0) {
-                        $('.spinning').html('选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”');
-                         $('.spinning').css('visibility', 'visible');
+                       var betwarningmsg = '选错提示“按倍增式投法：第'+level+'局起步'+ suggestion_bet +'元”'; //'选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”';
+                        if (level > 1) {
+                            betwarningmsg = '选错提示“按倍增式投法：第'+level+'局加倍x'+ (((level-1) * level) + 1) +'”';
+                        }
+                        $('.spinning').html(betwarningmsg);
+                        $('.spinning').css('visibility', 'visible');
                         setTimeout(function(){ 
                             $('.spinning').css('visibility', 'hidden');
                         }, 3000);    
@@ -511,7 +521,7 @@ function checkSelection() {
         var selected = $('div.clicked').find('input:radio').val();
         if (typeof selected == 'undefined'){
             $('.middle-label').html('选择单双');
-            $('.spinning').html('请先选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
+            $('.spinning').html('请选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
              $('.spinning').css('visibility', 'visible');
             setTimeout(function(){ 
                 $('.spinning').css('visibility', 'hidden');
@@ -526,7 +536,7 @@ function checkSelection() {
         }
     } else {
         $('.middle-label').html('选择金币');
-        $('.spinning').html('请先选择金币<br />再点击“开始抽奖”进行抽奖');
+        $('.spinning').html('请选择金币<br />再点击“开始抽奖”进行抽奖');
         $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
             $('.spinning').css('visibility', 'hidden');
@@ -809,7 +819,8 @@ function showPayoutBet(){
 function bindCalculateButton(){
     $('.btn-calculate').click( function() {
         if (g_life > 0) {
-            $('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+            //$('#reset-life-play').modal({backdrop: 'static', keyboard: false});
+            $('#game-rules').modal();
         } else {
             $('#reset-life-share').modal();
         }

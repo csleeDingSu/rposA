@@ -331,7 +331,10 @@ class MemberLoginController extends Controller
 		*/
     }
 	
-	public function wechat_auth(Request $request) {		
+	public function wechat_auth(Request $request) 
+	{		
+		//\Auth::logout();
+		\Auth::guard('member')->logout();
         
         $forceupdate = '';
 		$changephone = '';
@@ -385,7 +388,6 @@ class MemberLoginController extends Controller
 			}
 			
 			\Log::debug(json_encode(['existing user' => $openid ], true));
-			
 		}
 		else
 		{
@@ -398,7 +400,14 @@ class MemberLoginController extends Controller
 			//register
 			$setting = \App\Admin::get_setting();
 			
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ,'current_life' =>$setting->game_default_life ]);			
+			$user = \App\Members::create(['openid'=>$openid ,
+										  'wechat_name'=>$wechatname,
+										  'wechat_verification_status'=>'1',
+										  'gender'=>$request->sex,
+										  'profile_pic'=>$request->headimgurl ,
+										  'current_life' =>$setting->game_default_life,
+										  'affiliate_id'=>unique_random('members', 'affiliate_id', 10) 
+										 ]);			
 			
 			$wallet = \App\Wallet::create([
 					'current_life'    => $setting->game_default_life,
@@ -473,9 +482,10 @@ class MemberLoginController extends Controller
     }
 	
 	
-	
+	//deprecated
 	public function otp_login($otp = FALSE) {		
-			
+			dd('deprecated');
+		
 		$url	= '';
 		
 		\Log::warning(json_encode(['otp' => $otp], true));
