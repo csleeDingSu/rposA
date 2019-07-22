@@ -261,7 +261,7 @@ border-radius: 20px;
        <span class="head2">分享到微信的方法</span>
      </div>     
      <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 16%">    
-       <span class="head3">按住宣传图3秒 > 选择分享图片 > 选择微信</span>
+       <span class="head3">按住广告图3秒 > 分享给好友 > 选择好友</span>
      </div>
     
     
