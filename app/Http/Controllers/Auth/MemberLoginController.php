@@ -505,7 +505,9 @@ class MemberLoginController extends Controller
 				$user->active_session  = Session::getId();
 				$user->activation_code = null;
 				$user->activation_code_expiry = '';
-				$user->save();				
+				$user->save();	
+				
+				\Log::debug(json_encode(['wechat_login' => 'verified and redirect to game'], true));
 				return redirect('/arcade');			
 			}
 			\Log::warning(json_encode(['unauthorised_wechat_login' => 'expired OTP'], true));
