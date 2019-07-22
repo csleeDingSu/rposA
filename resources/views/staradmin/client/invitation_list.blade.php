@@ -60,6 +60,7 @@
         </div>
 
         </div>
+        <div class="newline"></div>
 
         <div class="tab-content">
             <div id="my-lvl-invitation" class="tab-pane fade in active">
