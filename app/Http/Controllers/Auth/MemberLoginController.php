@@ -400,7 +400,7 @@ class MemberLoginController extends Controller
 			//register
 			$setting = \App\Admin::get_setting();
 			
-			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ,'current_life' =>$setting->game_default_life ]);			
+			$user = \App\Members::create(['openid'=>$openid ,'wechat_name'=>$wechatname,'wechat_verification_status'=>'1','gender'=>$request->sex,'profile_pic'=>$request->headimgurl ,'current_life' =>$setting->game_default_life,'affiliate_id'=>unique_random('members', 'affiliate_id', 10) ]);			
 			
 			$wallet = \App\Wallet::create([
 					'current_life'    => $setting->game_default_life,
