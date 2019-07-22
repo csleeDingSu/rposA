@@ -313,29 +313,32 @@ class weixinController extends BaseController
 
     public function weixin_showqrcode($openid)
     {
-       $qrcode = null;
+        $qrcode = null;
+        $url = null;
 
-        // if (env('APP_URL') == env('weixinurl')) {            
+        if (env('APP_URL') == env('weixinurl')) {            
             $u = weixin::where('openid',$openid)->whereNotNull('nickname')->select('*')->first();
         
             if (!empty($u)) {
-                // $qrcode = $this->wx->showqrcode($u->ticket);
+                $qrcode = $this->wx->showqrcode($u->ticket);
 
-                $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" . $u->ticket;
-
-                $qrcode = $this->wx->send_curl($url);
-                
-                // $temp = file_put_contents(public_path().'/client/qr/'. $openid, base64_decode($qrcode));
+                $filename = "wechatqr-".time().".png";
+                $path = public_path() . "/client/qr/" . $filename;
+                $url = "/client/qr/" . $filename;
+                //$img = substr($qrcode, strpos($qrcode, ",")+1);
+                // $data = base64_decode($img);
+                $success = file_put_contents($path, $qrcode);
+                return $success ? $url : 'Unable to save the file.';
 
             }
 
-        // } else {
+        } else {
 
-        //     $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
-        //     $qrcode = $this->wx->send_curl($url);  
-        //     $temp = file_put_contents(public_path().'/client/qr/'. $openid .'.jpg', base64_decode($qrcode));
-          
-        // }
+            $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
+            $qrcode = $this->wx->send_curl($url);            
+            return $this->wx->send_curl($url);            
+        
+        }
         
         return $qrcode;
     }
