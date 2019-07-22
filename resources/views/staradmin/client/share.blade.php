@@ -50,7 +50,9 @@ $showimage = public_path( 'client/bar/'.$data->filename );
 
 $mainimg = imagecreatefrompng( $showIcon );
 
-$image = imagecreatefromjpeg( $showimage );
+// $image = imagecreatefromjpeg( $showimage );
+
+$image = imagecreatefrompng( $showimage );
 
 $white = imagecolorallocate( $mainimg, 255, 255, 255 );
 
