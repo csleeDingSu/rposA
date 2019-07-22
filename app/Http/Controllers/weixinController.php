@@ -324,7 +324,7 @@ class weixinController extends BaseController
 
                 $filename = "wechatqr-".time().".png";
                 $path = public_path() . "/client/qr/" . $filename;
-                $url = "/client/qr/" . $filename;
+                $url = env('weixinurl') . "/client/qr/" . $filename;
                 //$img = substr($qrcode, strpos($qrcode, ",")+1);
                 // $data = base64_decode($img);
                 $success = file_put_contents($path, $qrcode);
@@ -340,6 +340,15 @@ class weixinController extends BaseController
         }
         
         return $qrcode;
+    }
+
+    public function weixin_createwxaqrcode(Request $request)
+    {
+        $res = $this->wx->createwxaqrcode($request);
+        $res = $this->isJSON($res) ? $res : json_encode($res);
+
+        \Log::info(json_encode(['createwxaqrcode' => $res], true));
+        return $res;
     }
 
     

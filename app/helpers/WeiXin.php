@@ -258,6 +258,71 @@ class WeiXin
                 
     }
 
+    public function createwxaqrcode($request)
+    {
+        try {
+
+            if (env('APP_URL') == env('weixinurl')) {
+
+                $appid = env('weixinid');//"你的AppId";  
+                $secret = env('weixinsecret');//"你的AppSecret";
+                $token = self::access_token($appid, $secret);
+                $path = $request->input('path');
+                $width = $request->input('width');
+                
+                //wechat createwxaqrcode
+                $url ="https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" . $token["access_token"]; 
+                
+                $payload = '{"path": "'.$path.'", "width": '. $width .'}';
+                \Log::info(json_encode(['qrcode url' => $url], true));
+                \Log::info(json_encode(['qrcode payload' => $payload], true));
+
+                $ch1 = curl_init();
+                curl_setopt($ch1, CURLOPT_URL,$url);
+                curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER,false);
+                curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST,false);
+
+                curl_setopt($ch1, CURLOPT_POST,1);
+                curl_setopt($ch1, CURLOPT_POSTFIELDS,$payload);
+
+                curl_setopt($ch1, CURLOPT_RETURNTRANSFER,1);//禁止调用时就输出获取到的数据
+                $result = curl_exec($ch1);
+                curl_close($ch1);
+                $res = json_decode($result); 
+
+                \Log::info(json_encode(['createwxaqrcode' => $res], true));
+
+                $res = json_encode($res);
+
+            } else {
+
+                $url = env('weixinurl') . "/weixin/createwxa/qrcode";
+                $payload["path"] = $request->input('path');
+                $payload["width"] = $request->input('width');
+                \Log::info(json_encode(['createwxaqrcode url' => $url], true));
+                \Log::info(json_encode(['createwxaqrcode payload' => $payload], true));
+
+                $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+                $option = ['connect_timeout' => 60, 'timeout' => 180];
+                $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+                $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
+
+                $res = json_decode($req->getBody());
+
+            }
+            
+            return $res;
+           
+        } catch (\Exception $e) {
+            //log error
+            \Log::error($e);
+                        
+            return $e->getMessage();
+        }
+
+        
+    }
+
     
 
 

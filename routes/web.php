@@ -652,12 +652,11 @@ Route::any('MP_verify', function () {
 		// return '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt';
 	echo \File::get(public_path() . '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt');
 });
+Route::any( '/mp/getUserInfo/snsapi_base/{domain?}', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
+Route::any( '/mp/getUserInfo/snsapi_userinfo/{domain?}', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
 
 Route::any( '/weixin/{domain?}', 'weixinController@weixin_verify' )->name( 'weixin.verify' );
 Route::any( '/weixin/showqrcode/{openid}', 'weixinController@weixin_showqrcode' )->name( 'weixin.showqrcode' );
-
-Route::any( '/mp/getUserInfo/snsapi_base/{domain?}', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
-Route::any( '/mp/getUserInfo/snsapi_userinfo/{domain?}', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
 Route::any( '/weixin/qrcode/{type}/{scene}', 'weixinController@weixin_qrcode' )->name( 'weixin.qrcode' );
-
+Route::any( '/weixin/createwxa/qrcode', 'weixinController@weixin_createwxaqrcode' )->name( 'weixin.createwxa.qrcode' );
 
