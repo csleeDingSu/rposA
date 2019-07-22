@@ -100,7 +100,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	//old game screen
 	Route::get( '/arcade_old', 'ClientController@member_access_game' )->name( 'client.arcade' );
 	//switched to new game screen
-	Route::get( '/arcade', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
+	Route::get( '/arcade/{id?}', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
 
 	Route::get( '/vip', 'ClientController@member_access_vip_node' )->name( 'client.vip' );
 
