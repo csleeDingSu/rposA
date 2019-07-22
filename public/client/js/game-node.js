@@ -221,18 +221,24 @@ try {
                 $( this ).addClass( "button-bet-active" );
                 $( this ).unbind( "click" );
                 $( ".circle-border" ).click(function(){
-                    $( this ).removeClass('circle-border').addClass('clicked-circle');
-                    $( this ).prev().addClass('clicked-button-bet');
 
-                    var selected = $('div.clicked').find('input:radio').val();
-                    if (typeof selected == 'undefined'){
-                        $('.middle-label').html('选择单双');
+                    if(g_life == 0){
+                        $('#reset-life-share').modal();
                     } else {
-                        $('.middle-label').html('开始抽奖');
+
+                        $( this ).removeClass('circle-border').addClass('clicked-circle');
+                        $( this ).prev().addClass('clicked-button-bet');
+
+                        var selected = $('div.clicked').find('input:radio').val();
+                        if (typeof selected == 'undefined'){
+                            $('.middle-label').html('选择单双');
+                        } else {
+                            $('.middle-label').html('开始抽奖');
+                        }
+                        
+                        $('#btnPointer').addClass('ready');
+                        showPayoutBet();
                     }
-                    
-                    $('#btnPointer').addClass('ready');
-                    showPayoutBet();
                 });
             } else {
                 var suggestion_bet = 1;
