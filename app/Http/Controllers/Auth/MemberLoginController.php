@@ -386,6 +386,19 @@ class MemberLoginController extends Controller
 			
 			\Log::debug(json_encode(['existing user' => $openid ], true));
 			
+			\Auth::guard('member')->loginUsingId($record->id,true);
+				
+			$user = Auth::guard('member')->user();
+			$user->active_session  = Session::getId();
+			$user->activation_code = null;
+			$user->activation_code_expiry = '';
+			$user->save();	
+
+			\Log::debug(json_encode(['wechat_pre_login' => 'verified and redirect to game'], true));
+			return redirect('/arcade');	
+			
+			
+			
 		}
 		else
 		{
