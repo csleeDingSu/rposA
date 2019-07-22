@@ -365,10 +365,11 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
+	
 
 	
 </div>
-
+@include('client.product')
 @endsection
 
 @section('footer-javascript')

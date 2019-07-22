@@ -21,6 +21,8 @@ use DB;
 use App;
 use Auth;
 use session;
+
+use App\Category;
 use App\Wallet;
 
 use App\Members as Member;
@@ -30,6 +32,8 @@ use App\tips;
 use App\member_game_result;
 
 use App\view_vip_status;
+
+use Carbon\Carbon;
 
 //use App\Http\Controllers\Api\MemberController;
 
@@ -127,18 +131,49 @@ class ClientController extends BaseController
 		}
 	}
 
-	public function member_access_game_node()
+	public function member_access_game_node($cid = 220, Request $request)
 	{
 		$betting_count = 0;
 
+		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
+
+		if ($cid)
+		{
+			//$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
+			//$vouchers = Voucher_category::latest()
+			$vouchers = \DB::table('voucher_category')
+			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
+			->where('voucher_category.category' ,'=' , $cid)
+			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
+			->groupBy('vouchers.id')
+			->orderby('vouchers.id','DESC')
+			->paginate(5);
+
+			//$vouchers = Voucher::get_vouchers($cid)->paginate(5);
+			//pagination already have the count data so no need to call again
+			//$vouchers_total = Voucher::where('category' ,'=' , $cid)->count(); 
+			
+		}
+		else{
+			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->paginate(5);
+			
+		}
+
+		if ($request->ajax()) {
+    		$view = view('client.ajaxhome',compact('vouchers', 'setting'))->render();
+            return response()->json(['html'=>$view]);
+        }
+
+        $category = Category::where('parent_id', 0)->orderby('position','ASC')->get();
+		
+        $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
 
 
 		if (!Auth::Guard('member')->check())
 		{
-			// $msg = trans('dingsu.please_login');
-			// \Session::flash('success',$msg);
-
-			// return redirect('/nlogin');
+			
+			$member_mainledger = null;
+			$firstwin 		   = null;
 
 			//weixin_verify
 			$this->wx = new WX();
@@ -147,14 +182,23 @@ class ClientController extends BaseController
 	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
 	        } else {
 	            $data['betting_count'] = 0;
-				return view('client/game-node', $data);
+				return view('client/game-node',compact('betting_count','vouchers','category','cid','banner','member_mainledger', "setting",'firstwin'));
 	        }
 			
 		} else {
 
-			$member = Auth::guard('member')->user()->id	;
-			$data['betting_count'] = member_game_result::where("member_id", $member)->get()->count();
-			return view('client/game-node', $data);
+			$member_id = Auth::guard('member')->user()->id;
+
+        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();
+			
+			if($request->session()->get('firstwin') == 'no'){
+				$firstwin = null;
+			} else {
+				$firstwin = \App\Product::IsFirstWin($member_id);
+			}
+
+			$data['betting_count'] = member_game_result::where("member_id", $member_id)->get()->count();
+			return view('client/game-node', compact('betting_count','vouchers','category','cid','banner','member_mainledger', "setting",'firstwin'));
 
 		}
 

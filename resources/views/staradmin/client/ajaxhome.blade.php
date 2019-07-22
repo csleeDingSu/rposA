@@ -92,7 +92,6 @@
 												</div>
 											</div>
 											<div style="clear: both;"></div>
-											<div class="divider">&nbsp;</div>
 
 											<!--
 											<div class="mset">
