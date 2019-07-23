@@ -321,22 +321,20 @@ class weixinController extends BaseController
         
             if (!empty($u)) {
                 $qrcode = $this->wx->showqrcode($u->ticket);
-
-                $filename = "wechatqr-".time().".png";
-                $path = public_path() . "/client/qr/" . $filename;
-                $url = env('weixinurl') . "/client/qr/" . $filename;
-                //$img = substr($qrcode, strpos($qrcode, ",")+1);
-                // $data = base64_decode($img);
-                $success = file_put_contents($path, $qrcode);
-                return $success ? $url : 'Unable to save the file.';
-
+                return $qrcode;                
             }
 
         } else {
 
             $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
-            return $this->wx->send_curl($url);            
-        
+            $qrcode = $this->wx->send_curl($url);  
+            $filename = "wechatqr-".time().".png";
+            $path = public_path() . "/client/qr/" . $filename;
+            //$img = substr($qrcode, strpos($qrcode, ",")+1);
+            // $data = base64_decode($img);
+            $success = file_put_contents($path, $qrcode);
+            return $success ? $path : 'Unable to save the file.';
+          
         }
         
         return $qrcode;
