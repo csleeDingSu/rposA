@@ -1,0 +1,235 @@
+.barWrapper{
+	box-sizing: border-box;
+	padding: 0;
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -o-flex;
+	justify-content: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-o-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	-o-align-items: center;
+	flex-direction: column;
+	margin-top: -50px;
+}
+.barWrapper::before,
+.barWrapper::after{
+
+}
+
+.barBox{
+	height: 1.7rem;
+	width: 6.72rem;
+}
+.barBox .rule{
+	height: 1.2rem;
+	padding-top: .85rem;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.barBox .col-xs-2 {
+	padding: 0;
+}
+
+.bet-box {
+	margin-right: 0.3rem;
+	height: 1rem;
+	width: 1rem;
+}
+
+.bet-box:last-child {
+	margin-right: 0;
+}
+
+.button-bet, .button-bet-clear, .button-bet-default, .button-bet-inactive, .button-bet-active {
+	background:url(/client/images/vip/btn-bet.png) no-repeat;
+	background-size: contain;
+    width: 100%;
+    height: 100%;
+	color: #cc7816;
+	font-size: 0.36rem;
+	padding-top: 0.22rem;
+	position: relative;
+	z-index: 0;
+}
+
+.button-bet {
+	cursor: pointer;
+}
+
+.button-bet-clear {
+	background:url(/client/images/vip/btn-clear.png) no-repeat;
+	background-size: contain;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.button-bet-active {
+	font-size: 0.42rem;
+	padding-top: 0.20rem;
+	cursor: pointer;
+}
+
+.button-bet-inactive {
+	background:url(/client/images/vip/btn-bet-default.png) no-repeat;
+	background-size: contain;
+	width: 100%;
+    height: 100%;
+	color: #e1e1e1;
+}
+
+.button-bet:active, .button-bet-clear:active, .button-bet-active:active {
+  transform: scale(0.9);
+  -webkit-transform-origin:50% 50%;
+}
+
+.plus-sign {
+	font-size: 28px;
+}
+
+.span-bet {
+	color: #ffcc29;
+	font-size: 40px;
+	width: 190px;
+	text-align: center;
+	background: transparent;
+	border: none;
+}
+
+.btn-minus {
+	float: left;
+	background:url(/client/images/vip/bet-minus.png) no-repeat;
+	width: 52px;
+	height: 55px;
+	margin-left: 15px;
+	margin-top: 3px;
+	cursor: pointer;
+	background-size: contain;
+}
+
+.btn-minus:hover {
+	background:url(/client/images/vip/bet-minus-hover.png) no-repeat;
+	background-size: contain;
+}
+
+.btn-add {
+	float: right;
+	background:url(/client/images/vip/bet-add.png) no-repeat;
+	width: 52px;
+	height: 55px;
+	margin-top: 3px;
+	margin-right: 15px;
+	cursor: pointer;
+	background-size: contain;
+}
+
+.btn-add:hover {
+	background:url(/client/images/vip/bet-add-hover.png) no-repeat;
+	background-size: contain;
+}
+
+.div-today {
+	padding-left: 0;
+	font-size: 14px;
+	font-weight: 700;
+	color: #fff;
+	text-align: left;
+	padding-bottom: 10px;
+}
+
+.icon-sign {
+	width: 0.35rem;
+	height: 0.35rem;
+	margin-right: 0.04rem;
+}
+
+.bubble-info {
+    position: absolute;
+    padding-left: 4.95rem;
+    margin-top: -0.4rem;
+    -webkit-animation: updownbubble 2s infinite ease-in-out;
+    -o-animation: updownbubble 2s infinite ease-in-out;
+    -ms-animation: updownbubble 2s infinite ease-in-out;
+    -moz-animation: updownbubble 2s infinite ease-in-out;
+    animation: updownbubble 2s infinite ease-in-out;
+}
+
+@-webkit-keyframes updownbubble {
+    0% { transform: translateY(0px)  }
+    50% { transform: translateY(5px) }
+    100% { transform: translateY(0px) }
+}
+
+@keyframes updownbubble {
+    0% { transform: translateY(0px)  }
+    50% { transform: translateY(5px) }
+    100% { transform: translateY(0px) }
+}
+
+.bubble-info span {
+	color: #8139b2;
+    letter-spacing: 0.02rem;
+    text-align: center;
+    width: 1.4rem;
+    position: absolute;
+    padding-top: 0.06rem;
+    font-size: 0.24rem;
+}
+
+.bubble-info img {
+    width: 1.35rem;
+    border: 0;
+    vertical-align: middle;
+}
+
+/* KEYFRAMES */
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to{
+    transform: rotate(359deg);
+  }
+}
+
+/* SPINNING CIRCLE */
+.circle-border {
+  display: none;
+  width: 1rem;
+  height: 1rem;
+  padding: 3px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(0deg, rgba(255,255,255,0) 80%, rgba(63,249,220,1) 100%);
+  animation: spin .8s linear 0s infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.clicked-circle {
+  width: 1.1rem;
+  height: 1.1rem;
+  padding: 3px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(0deg, rgba(63,249,220,0.3), rgba(63,249,220,1));
+  position: absolute;
+  top: -0.05rem;
+  left: -0.05rem;
+}
+
+.clicked-button-bet {
+	z-index: 100;
+}
