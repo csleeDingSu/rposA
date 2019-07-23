@@ -38,7 +38,8 @@ td.history {
 }
 
 .history-number {
-    width: 0.8rem;
+    /*width: 0.8rem;*/
+	width: 20%;
     font-size: 0.24rem;
     padding: 0px 0.1rem 0.06rem 0.1rem;
 }
