@@ -134,8 +134,13 @@
 	font-size: 14px;
 	float: right;
 }
+
+.product_section {
+	/*margin-top: 1.6rem;*/
+	margin-bottom: 1rem;
+}
 </style>        
- <section class="cardFull card-flex">
+ <section class="cardFull card-flex product_section">
             <div class="rowval">
               <div class="columnval featuredbg marginleft">
               	<a href="/">
