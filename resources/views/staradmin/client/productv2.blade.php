@@ -140,7 +140,7 @@
 	margin-bottom: 0.5rem;
 }
 </style>        
- <section class="cardFull card-flex product_section">
+ <section class="card-flex product_section">
             <div class="rowval">
               <div class="columnval featuredbg marginleft">
               	<a href="/">
