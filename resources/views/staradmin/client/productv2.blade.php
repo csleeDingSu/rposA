@@ -50,7 +50,7 @@
 	}
 
 	.marginbottom {
-		margin-bottom: 0.5rem;
+		margin-bottom: 1rem;
 	}
 
 	.featuredbg {
@@ -137,7 +137,7 @@
 
 .product_section {
 	/*margin-top: 1.6rem;*/
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 }
 </style>        
  <section class="cardFull card-flex product_section">
