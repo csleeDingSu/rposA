@@ -10,7 +10,7 @@
 .history-wrapper {
     display: table-cell;
 }
-
+/*
 .history-table {
     border-collapse: separate;
     border-spacing: 0.1rem;
@@ -38,11 +38,47 @@ td.history {
 }
 
 td.history-number {
-    /*width: 0.8rem;*/
+    /*width: 0.8rem;* /
 	width: 20% !important;
     font-size: 0.24rem;
     padding: 0px 0.1rem 0.06rem 0.1rem;
 }
+*/
+
+
+.history-table {
+    border-collapse: separate;
+    border-spacing: 5px;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+
+.history-table td {
+    background-color: #f8f8f8;
+    padding: 0px 10px 3px 10px;
+    margin: 20px auto;
+    text-align: center;
+    height: 30px;
+    color: #bbb;
+    font-weight: 500;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+}
+
+td.history {
+    width: 240px;
+    font-size: 11px;
+    color: #333;
+    text-align: left;
+}
+
+.history-number {
+    width: 50px;
+    font-size: 12px;
+    padding: 0px 5px 3px 5px;
+}
+
+
 
 td.legend, td.timer {
     padding: 0 0 0 0.12rem;
