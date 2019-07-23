@@ -10,7 +10,8 @@ class WeiXin
 { 
     public static function index(Request $request, $type = null, $domain = null)
     {
-        try {
+        \Log::error($request->all());die();
+		try {
 
             $domain = !empty($domain) ? $domain : 'dev.boge56.com';
             $type = !empty($type) ? $type : (empty($request->input('type')) ? 'snsapi_base' : 'snsapi_userinfo');
