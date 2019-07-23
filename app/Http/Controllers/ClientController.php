@@ -33,6 +33,7 @@ use App\member_game_result;
 
 use App\view_vip_status;
 
+use Khsing\WechatAgent\WechatAgent;
 //use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
@@ -410,6 +411,17 @@ class ClientController extends BaseController
 		\Log::warning(json_encode(['unauthorised_wechat_login' => 'unknown OTP'], true));
 		
 		return redirect($url);	
+	}
+	
+	
+	public function vregister($refcode = NULL)
+	{
+		$agent = new WechatAgent;
+		
+		if ($agent->is("Wechat")) {
+			return redirect('/weixin/'.\Config::get('app.url').'?refcode='.$ref); 
+		}
+		return view('client/angpao'); 
 	}
 	
 	

@@ -239,14 +239,19 @@ Route::group( [ 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function (
 	//register
 	$this->get( 'register/{token?}', 'MemberRegisterController@showRegisterForm' )->name( 'member.register' );
 	$this->post( '/doregister', 'MemberRegisterController@doregister' )->name( 'submit.member.register' );
+	/*
 	$this->get( 'vregister/{token?}', function () {
 		// return File::get(public_path() . '/vwechat/index.html');
 		return view( 'client/angpao' );
 	} );
+	*/
 	$this->get( 'vvregister/{token?}', function () {
 		return view( 'client/vwechat' );
 		// return File::get(public_path() . '/vwechat/index.html');
 	} );
+	
+	
+	$this->get( 'vregister/{token?}', 'ClientController@vregister' )->name( 'member.vregister' );
 
 } );
 
