@@ -46,7 +46,7 @@ QRcode::png($url, $filename, 'L', '3.6', 5);
 if (empty($wechatqrcode)) {
   $showIcon = $filename;
 } else {
-  $showIcon = public_path(). $wechatqrcode;
+  $showIcon = $wechatqrcode;
 }
 
 $showimage = public_path( 'client/bar/'.$data->filename );
