@@ -370,7 +370,7 @@
 	
 </div>
 {{-- @include('client.product') --}}
-{{-- @include('client.productv2') --}}
+@include('client.productv2')
 @endsection
 
 @section('footer-javascript')
