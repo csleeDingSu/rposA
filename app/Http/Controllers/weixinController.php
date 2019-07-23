@@ -136,8 +136,11 @@ class weixinController extends BaseController
             // return $userinfo;
             // return $result;
 
-            //auto login / register
-            return $this->accessToWabao($result,$domain);
+            //auto login / register            
+            $data['domain'] = $domain;
+            $data['result'] = $result;
+            $data['refcode'] = $request->input('refcode');
+            return $this->accessToWabao($data);        
         
         } catch (\Exception $e) {
             //log error
@@ -185,8 +188,11 @@ class weixinController extends BaseController
             //return $result;
 
             //auto login / register
-            return $this->accessToWabao($result,$domain);
-        
+            $data['domain'] = $domain;
+            $data['result'] = $result;
+            $data['refcode'] = $request->input('refcode');
+            return $this->accessToWabao($data);
+                
         } catch (\Exception $e) {
             //log error
             \Log::error($e);
@@ -222,8 +228,12 @@ class weixinController extends BaseController
     
         
 
-    public function accessToWabao($content, $domain = null)
+    public function accessToWabao($data)
     {
+        $content = $data['content'];
+        $domain = $data['domain'];
+        $refcode = $data['refcode'];
+
         $domain = empty($domain) ? "dev.boge56.com" : $domain;
         
         if ($content['success'] == true) {
@@ -238,6 +248,9 @@ class weixinController extends BaseController
 
             //wechat qrcode
             $payload["ticket"] = $this->getQrcodeTicket($payload);
+
+            //refer code
+            $payload["refcode"] = $refcode;
             
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
