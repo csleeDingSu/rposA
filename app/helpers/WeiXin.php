@@ -9,15 +9,14 @@ use Khsing\WechatAgent\WechatAgent;
 class WeiXin
 { 
     public static function index(Request $request, $type = null, $domain = null)
-    {
-        
+    {        
 		try {
 
             $domain = !empty($domain) ? $domain : 'dev.boge56.com';
             $type = !empty($type) ? $type : (empty($request->input('type')) ? 'snsapi_base' : 'snsapi_userinfo');
             $appid=env('weixinid'); //'你的AppId';
             $refcode = $request->refcode; 
-            $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain . '?refcode' . $refcode);
+            $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain . '?refcode=' . $refcode);
             $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
             \Log::info(json_encode(['weixin URL' => $url], true));
             
