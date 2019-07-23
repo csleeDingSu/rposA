@@ -219,13 +219,13 @@ class weixinController extends BaseController
 
         return $result;
     }
-	
-		
+    
+        
 
     public function accessToWabao($content, $domain = null)
     {
         $domain = empty($domain) ? "dev.boge56.com" : $domain;
-		
+        
         if ($content['success'] == true) {
             //wechat auth api
             $http = ($domain == 'wabao666.com') ? "https://" : "http://";
@@ -233,7 +233,7 @@ class weixinController extends BaseController
             // $url = "http://dev.boge56.com/api/wechat-auth";
             $payload["nickname"] = $content['nickname']; //'100000';
             $payload["openid"] = $content['openid']; //'8767gbasd67cg';
-			$payload["sex"] = $content['sex'];
+            $payload["sex"] = $content['sex'];
             $payload["headimgurl"] = $content['headimgurl'];
 
             //wechat qrcode
@@ -244,7 +244,7 @@ class weixinController extends BaseController
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
-            \Log::info(json_encode(['accessToWabao' => $res], true));			
+            \Log::info(json_encode(['accessToWabao' => $res], true));           
 
             if (!empty($res->success) && ($res->success == true)) {
                 
