@@ -10,7 +10,7 @@ class WeiXin
 { 
     public static function index(Request $request, $type = null, $domain = null)
     {
-        \Log::error($request->all());die();
+        \Log::error($request->input());die();
 		try {
 
             $domain = !empty($domain) ? $domain : 'dev.boge56.com';
