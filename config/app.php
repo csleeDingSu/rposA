@@ -241,6 +241,6 @@ return [
 	
 	'coin_max' => env('coin_max', 15),
 	'paginate' => 15,
-	
+	'wabao666_domain' => env('wabao666_domain'),
 	
 ];
