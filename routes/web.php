@@ -251,10 +251,12 @@ Route::group( [ 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function (
 	} );
 	
 	
-	$this->get( 'vregister/{token?}', 'ClientController@vregister' )->name( 'member.vregister' );
 
 } );
 
+Route::group( [  'middleware' => [ 'guest' ] ], function () {
+	$this->get( 'vregister/{token?}', 'ClientController@vregister' )->name( 'member.vregister' );
+} );
 
 $this->get( 'login', 'Auth\MemberLoginController@showLoginForm' )->name( 'login' );
 //Auth Routes END
