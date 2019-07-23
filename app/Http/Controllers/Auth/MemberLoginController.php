@@ -341,6 +341,24 @@ class MemberLoginController extends Controller
 		$url         = "/cs/220";
         $openid      = $request->openid; 
 		$wechatname  = $request->nickname;
+		$referred_by = null;		
+		
+		if (!empty( $request->refcode) )  
+		{
+			$referred_by = $request->refcode;	
+		
+			$ref         = \App\Members::CheckReferral($referred_by);
+
+			if (!empty($ref->id))
+			{					
+				$referred_by = $ref->id;	 
+			}	
+			else
+			{
+				$referred_by = null;
+			}			
+		}
+			
 		
 		\Log::debug(json_encode(['request' => $request->all()], true));
 		
@@ -400,13 +418,15 @@ class MemberLoginController extends Controller
 			//register
 			$setting = \App\Admin::get_setting();
 			
-			$user = \App\Members::create(['openid'=>$openid ,
-										  'wechat_name'=>$wechatname,
-										  'wechat_verification_status'=>'1',
-										  'gender'=>$request->sex,
-										  'profile_pic'=>$request->headimgurl ,
-										  'current_life' =>$setting->game_default_life,
-										  'affiliate_id'=>unique_random('members', 'affiliate_id', 10) 
+			$user = \App\Members::create([
+										  'wechat_verification_status' => '1',
+										  'openid'       => $openid ,
+										  'wechat_name'  => $wechatname,
+										  'gender'       => $request->sex,
+										  'profile_pic'  => $request->headimgurl ,
+										  'current_life' => $setting->game_default_life,
+										  'referred_by'  => $referred_by,
+										  'affiliate_id' => unique_random('members', 'affiliate_id', 10) 
 										 ]);			
 			
 			$wallet = \App\Wallet::create([
