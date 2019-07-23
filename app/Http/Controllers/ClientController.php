@@ -419,7 +419,7 @@ class ClientController extends BaseController
 		$agent = new WechatAgent;
 		
 		if ($agent->is("Wechat")) {
-			return redirect(\Config::get('app.url').'/weixin/'.\Config::get('app.wabao666_domain').'?refcode='.$refcode); 
+			return redirect(\Config::get('app.url').'/weixin/'.urlEncode(\Config::get('app.wabao666_domain').'?refcode='.$refcode)); 
 		}
 		return view('client/angpao'); 
 	}
