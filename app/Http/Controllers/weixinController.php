@@ -81,9 +81,9 @@ class weixinController extends BaseController
         $agent = new WechatAgent;
         // $agent->is("Wechat");
 		
-		\Log::error($request->refcode);die();
+		//\Log::error($request->refcode);die();
 		
-		$request = new Request;
+		//$request = new Request;
             $type = 'snsapi_userinfo'; 
             return $this->wx->index($request,$type,$domain);
 
