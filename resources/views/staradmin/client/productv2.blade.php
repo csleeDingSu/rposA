@@ -135,7 +135,7 @@
 	float: right;
 }
 </style>        
- 
+ <section class="cardFull card-flex">
             <div class="rowval">
               <div class="columnval featuredbg marginleft">
               	<a href="/">
@@ -259,3 +259,4 @@
                 </div>
               </div>
               </div>
+</section>
