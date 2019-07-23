@@ -219,13 +219,13 @@ class weixinController extends BaseController
 
         return $result;
     }
-	
-		
+    
+        
 
     public function accessToWabao($content, $domain = null)
     {
         $domain = empty($domain) ? "dev.boge56.com" : $domain;
-		
+        
         if ($content['success'] == true) {
             //wechat auth api
             $http = ($domain == 'wabao666.com') ? "https://" : "http://";
@@ -233,7 +233,7 @@ class weixinController extends BaseController
             // $url = "http://dev.boge56.com/api/wechat-auth";
             $payload["nickname"] = $content['nickname']; //'100000';
             $payload["openid"] = $content['openid']; //'8767gbasd67cg';
-			$payload["sex"] = $content['sex'];
+            $payload["sex"] = $content['sex'];
             $payload["headimgurl"] = $content['headimgurl'];
 
             //wechat qrcode
@@ -244,7 +244,7 @@ class weixinController extends BaseController
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
-            \Log::info(json_encode(['accessToWabao' => $res], true));			
+            \Log::info(json_encode(['accessToWabao' => $res], true));           
 
             if (!empty($res->success) && ($res->success == true)) {
                 
@@ -321,23 +321,20 @@ class weixinController extends BaseController
         
             if (!empty($u)) {
                 $qrcode = $this->wx->showqrcode($u->ticket);
-
-                $filename = "wechatqr-".time().".png";
-                $path = public_path() . "/client/qr/" . $filename;
-                $url = env('weixinurl') . "/client/qr/" . $filename;
-                //$img = substr($qrcode, strpos($qrcode, ",")+1);
-                // $data = base64_decode($img);
-                $success = file_put_contents($path, $qrcode);
-                return $success ? $url : 'Unable to save the file.';
-
+                return $qrcode;                
             }
 
         } else {
 
             $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
-            $qrcode = $this->wx->send_curl($url);            
-            return $this->wx->send_curl($url);            
-        
+            $qrcode = $this->wx->send_curl($url);  
+            $filename = "wechatqr-".time().".png";
+            $path = public_path() . "/client/qr/" . $filename;
+            //$img = substr($qrcode, strpos($qrcode, ",")+1);
+            // $data = base64_decode($img);
+            $success = file_put_contents($path, $qrcode);
+            return $success ? $path : 'Unable to save the file.';
+          
         }
         
         return $qrcode;
