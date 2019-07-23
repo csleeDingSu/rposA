@@ -230,7 +230,7 @@ class weixinController extends BaseController
 
     public function accessToWabao($data)
     {
-        $content = $data['content'];
+        $content = $data['result'];
         $domain = $data['domain'];
         $refcode = $data['refcode'];
 
