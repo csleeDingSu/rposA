@@ -1,0 +1,120 @@
+.history-body {
+    display: table;
+    margin: auto;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    background: white;
+    border-radius: 6px;
+}
+
+.history-wrapper {
+    display: table-cell;
+}
+
+.history-table {
+    border-collapse: separate;
+    border-spacing: 5px;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+
+.history-table td {
+    background-color: #f8f8f8;
+    padding: 0px 10px 3px 10px;
+    margin: 20px auto;
+    text-align: center;
+    height: 30px;
+    color: #bbb;
+    font-weight: 500;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+}
+
+td.history {
+    width: 240px;
+    font-size: 11px;
+    color: #333;
+    text-align: left;
+}
+
+.history-number {
+    width: 50px;
+    font-size: 12px;
+    padding: 0px 5px 3px 5px;
+}
+
+td.legend, td.timer {
+    padding: 0 0 0 6px;
+    height: 20px;
+    background-color: white;
+    border: none;
+}
+
+td.timer {
+    font-size: 17px;
+    color: #333;
+    font-weight: 500;
+    padding: 5px 0;
+}
+
+.legend-item {
+    float: left;
+    padding-top: 10px;
+    padding-right: 10px;
+    color: white;
+    font-size: 12px;
+}
+
+.overlap {
+    margin-left: -23px;
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (max-width: 360px) {
+    .history-table {
+        border-spacing: 3px;
+        padding: 0 10px;
+    }
+
+    .history-table td {
+        padding: 2px 6px 3px 6px;
+        height: 26px;
+        margin-right: 100px;
+    }
+
+    td.history {
+        width: 220px;
+    }
+
+    .legend-item {
+        padding-top: 10px;
+        padding-right: 10px;
+        font-size: 10px;
+    }
+
+    .overlap {
+        margin-left: -18px;
+    }
+}
+
+
+table .odd {
+    color: #fb973f;
+}
+
+table .even {
+    color: #b77eff;
+}
+
+.points {
+    float: right;
+    color: #5b5563;
+    font-size: 20px;
+    margin-top: 5px;
+    font-weight: 100;
+}
+
+.additional {
+    color: #48b43d;
+    font-size: 18px;
+}
