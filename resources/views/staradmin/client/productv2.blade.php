@@ -101,16 +101,17 @@
 }
 
 .featureddetail h3 .btn-go{
-	    text-align: center;
+	text-align: center;
     border: 1px solid red;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 12px;
     color: white;
     padding-left: 5px;
     background-color: red;
     float: right;
     padding-right: 7px;
     padding-top: 2px;
+    margin-top: 5px;
 }
 
 .featureddetail h3 .imgThunder{
