@@ -80,10 +80,9 @@ class weixinController extends BaseController
     {        
         $agent = new WechatAgent;
         // $agent->is("Wechat");
+		if ($agent->is("Wechat")) {
 
-        if ($agent->is("Wechat")) {
-
-            $request = new Request;
+           // $request = new Request;
             $type = 'snsapi_userinfo'; 
             return $this->wx->index($request,$type,$domain);
 
@@ -136,8 +135,11 @@ class weixinController extends BaseController
             // return $userinfo;
             // return $result;
 
-            //auto login / register
-            return $this->accessToWabao($result,$domain);
+            //auto login / register            
+            $data['domain'] = $domain;
+            $data['result'] = $result;
+            $data['refcode'] = $request->input('refcode');
+            return $this->accessToWabao($data);        
         
         } catch (\Exception $e) {
             //log error
@@ -185,8 +187,11 @@ class weixinController extends BaseController
             //return $result;
 
             //auto login / register
-            return $this->accessToWabao($result,$domain);
-        
+            $data['domain'] = $domain;
+            $data['result'] = $result;
+            $data['refcode'] = $request->input('refcode');
+            return $this->accessToWabao($data);
+                
         } catch (\Exception $e) {
             //log error
             \Log::error($e);
@@ -219,13 +224,17 @@ class weixinController extends BaseController
 
         return $result;
     }
-	
-		
+    
+        
 
-    public function accessToWabao($content, $domain = null)
+    public function accessToWabao($data)
     {
+        $content = $data['result'];
+        $domain = $data['domain'];
+        $refcode = $data['refcode'];
+
         $domain = empty($domain) ? "dev.boge56.com" : $domain;
-		
+        
         if ($content['success'] == true) {
             //wechat auth api
             $http = ($domain == 'wabao666.com') ? "https://" : "http://";
@@ -233,18 +242,21 @@ class weixinController extends BaseController
             // $url = "http://dev.boge56.com/api/wechat-auth";
             $payload["nickname"] = $content['nickname']; //'100000';
             $payload["openid"] = $content['openid']; //'8767gbasd67cg';
-			$payload["sex"] = $content['sex'];
+            $payload["sex"] = $content['sex'];
             $payload["headimgurl"] = $content['headimgurl'];
 
             //wechat qrcode
             $payload["ticket"] = $this->getQrcodeTicket($payload);
+
+            //refer code
+            $payload["refcode"] = $refcode;
             
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];
             $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
             $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
             $res = json_decode($req->getBody());
-            \Log::info(json_encode(['accessToWabao' => $res], true));			
+            \Log::info(json_encode(['accessToWabao' => $res], true));           
 
             if (!empty($res->success) && ($res->success == true)) {
                 
@@ -314,22 +326,39 @@ class weixinController extends BaseController
     public function weixin_showqrcode($openid)
     {
         $qrcode = null;
+        $url = null;
 
         if (env('APP_URL') == env('weixinurl')) {            
             $u = weixin::where('openid',$openid)->whereNotNull('nickname')->select('*')->first();
         
             if (!empty($u)) {
                 $qrcode = $this->wx->showqrcode($u->ticket);
+                return $qrcode;                
             }
 
         } else {
 
             $url = env('weixinurl') . "/weixin/showqrcode/" . $openid;
-            $qrcode = $this->wx->send_curl($url);            
-        
+            $qrcode = $this->wx->send_curl($url);  
+            $filename = "wechatqr-".time().".png";
+            $path = public_path() . "/client/qr/" . $filename;
+            //$img = substr($qrcode, strpos($qrcode, ",")+1);
+            // $data = base64_decode($img);
+            $success = file_put_contents($path, $qrcode);
+            return $success ? $path : 'Unable to save the file.';
+          
         }
         
         return $qrcode;
+    }
+
+    public function weixin_createwxaqrcode(Request $request)
+    {
+        $res = $this->wx->createwxaqrcode($request);
+        $res = $this->isJSON($res) ? $res : json_encode($res);
+
+        \Log::info(json_encode(['createwxaqrcode' => $res], true));
+        return $res;
     }
 
     

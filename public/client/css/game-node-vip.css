@@ -1,4 +1,4 @@
-html, body {
+information-tablehtml, body {
 	height: 100%;
 }
 
@@ -8,7 +8,12 @@ body{
 	margin:0px;
 }
 
-.card-flex .cardBody {
+.card-flex .cardBody {	
+    background-image: url("/client/images/wheel/background_game.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: scroll;
     background-color: #8c36d9;
 }
 
@@ -22,12 +27,18 @@ body{
     background-position: center top;
     background-attachment: scroll;
     background-color: #8c36d9;
-    height: 12rem;
 }
 
 .information-table {
 	margin: 0 auto;
-	width: 100%;
+	width: 400px;
+}
+
+@media only screen and (max-width: 500px) {
+
+	.information-table {
+		width: 100%;
+	}
 }
 
 .text {
@@ -264,7 +275,7 @@ body{
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto  1.5rem;
+  grid-template-columns: auto  150px;
   height: 0.9rem;
 }
 
@@ -288,22 +299,26 @@ body{
 }
 
 .btn-calculate {
-	width: 1.5rem;
-	height: 0.39rem;
+	width: 150px;
+	height: 39px;
 }
 
 .balance-banner {
 	background: rgba(0,0,0,0.3);
-	width: 4rem;
-	height: 0.72rem;
+	width: 360px;
+	height: 72px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
 	float: left;
 	z-index: 100;
 	position: relative;
+	/*margin-left: 10px;*/
 	color: #fff;
+	/*font-size: 40px;*/
 	cursor: pointer;
-	border-radius: 0.4rem;
-	margin-left: 0.1rem;
-	font-size: 0.2rem;
+	border-radius: 40px;
+	margin-left: 12px;
 }
 
 .btn-vip {
@@ -382,30 +397,22 @@ body{
 
 .btn-rules-vip, .btn-rules-normal {
 	background-color: rgba(0,0,0,.3);
-	width: 2rem;
-	height: 0.72rem;
+	width: 300px;
+	height: 72px;
+	transform: scale(0.5); 
+	-webkit-transform: scale(0.5);
+	-webkit-transform-origin:left top;
+	padding: 2px 5px 0px 15px;
+	font-size: 33px;
 	cursor: pointer;
 	color: #ffffff;
+	margin-top: -3px;
 	text-align: left;
-	padding: 0.1rem;
-	border-top-left-radius: 0.4rem;
-	border-bottom-left-radius: 0.4rem;
-	float: right;
-}
-
-.btn-life {
-	width: 1.85rem;
-	height: 0.85rem;
-	cursor: pointer;
-	text-align: left;
-	padding: 0.2rem 0 0.2rem 0.25rem;
-	background: url('/client/images/wheel/life-balance.png') no-repeat top center;
-	background-size: contain;
-	text-align: center;
-	color: #bb770c;
-	font-size: 0.28rem;
-	float: right;
-	margin-top: -0.07rem;
+	padding-left: 55px;
+	padding-top: 10px;
+	font-weight: 700;
+	border-top-left-radius: 40px;
+	border-bottom-left-radius: 40px;
 }
 
 .btn-rules-normal {
@@ -432,7 +439,8 @@ body{
 }
 
 .spanAcuPointAndBalance{
-	font-size: 0.45rem;
+	padding-top: 2px;
+	font-size: 35px;
 }
 
 .btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {
@@ -2215,32 +2223,24 @@ if it's not present, don't show loader */
 
 .btn-redeemcash {
 	position: absolute;
-	margin-left: 2.4rem;
-	width: 1.56rem;
-	height: 0.58rem;
-	margin-top: 0.08rem;
-	background: url('/client/images/wheel/btn-rules.png') no-repeat top center;
-	background-size: cover;
-	text-align: center;
-	color: #d3c4b3;
-	font-size: 0.26rem;
-	padding-top: 0.08rem;
+	margin-left: 40px;
+	width: 130px;
+	margin-top: 10px;
 }
 
 .icon-newcoin {
 	position: absolute;
-	width: 0.5rem;
-	margin-top: 0.1rem;
-	margin-left: -1.9rem;
+	width: 50px;
+	margin-top: 10px;
+	margin-left: -170px
 }
 
 .spanAcuPoint2 {
 	position: absolute;
-	margin-top: 0.02rem;
+	margin-top: 10px;
 	text-align: center;
-	width: 1.8rem;
-	margin-left: 0.6rem;
-	font-size: 0.45rem;
+	width: 175px;
+	margin-left: 58px;
 }
 
 .caption_bet {
@@ -2462,15 +2462,3 @@ if it's not present, don't show loader */
 	font-weight: 700;
 	display: inline-block;
 }
-
-.redeem-banner {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-	margin-top: 0.5rem;
-}
-
-.redeem-banner img {
-	width: 80%;
-}
-

@@ -1,0 +1,54 @@
+.product_section {
+	margin-top: 1.6rem;
+}
+
+.cardHeader, .header {
+	height: 0.9rem;
+}
+
+.main {
+    background-color: #8c36d9;
+}
+
+.main .txt a {
+	color: #fff;
+}
+
+.main .txt a.on {
+	color: #ffd200;
+	border-bottom: 0.04rem solid #ffd200;
+}
+
+.product {
+    background: #8c36d9;
+}
+
+.list-2 .dbox {
+	background: #fff;
+	border-radius: 0.1rem;
+}
+
+.product .list-2 li {
+	margin-top: 0.2rem;
+}
+
+.product .list-2 .imgBox img {
+	padding: 0.2rem 0 0.2rem 0.2rem;
+}
+
+.product .list-2 .price {
+    padding: 0.2rem 0.2rem 0.24rem 0;
+    font-size: 0.24rem;
+    line-height: 0.28rem;
+    color: #999;
+}
+
+.product .list-2 h2 {
+    padding-right: 0.2rem;
+}
+
+.btn-product {
+    background-size: cover;
+    width: 2.02rem;
+    height: 0.49rem;
+}

@@ -100,7 +100,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	//old game screen
 	Route::get( '/arcade_old', 'ClientController@member_access_game' )->name( 'client.arcade' );
 	//switched to new game screen
-	Route::get( '/arcade', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
+	Route::get( '/arcade/{id?}', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
 
 	Route::get( '/vip', 'ClientController@member_access_vip_node' )->name( 'client.vip' );
 
@@ -127,6 +127,10 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::get( '/customer_service', function () {
 		return view( 'client/customer_service' );
+	} );
+
+	Route::get( '/product/detail', function () {
+		return view( 'client/productv2_detail' );
 	} );
 	
 } );
@@ -239,17 +243,24 @@ Route::group( [ 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function (
 	//register
 	$this->get( 'register/{token?}', 'MemberRegisterController@showRegisterForm' )->name( 'member.register' );
 	$this->post( '/doregister', 'MemberRegisterController@doregister' )->name( 'submit.member.register' );
+	/*
 	$this->get( 'vregister/{token?}', function () {
 		// return File::get(public_path() . '/vwechat/index.html');
 		return view( 'client/angpao' );
 	} );
+	*/
 	$this->get( 'vvregister/{token?}', function () {
 		return view( 'client/vwechat' );
 		// return File::get(public_path() . '/vwechat/index.html');
 	} );
+	
+	
 
 } );
 
+Route::group( [  'middleware' => [ 'guest' ] ], function () {
+	$this->get( 'vregister/{token?}', 'ClientController@vregister' )->name( 'member.vregister' );
+} );
 
 $this->get( 'login', 'Auth\MemberLoginController@showLoginForm' )->name( 'login' );
 //Auth Routes END
@@ -652,12 +663,11 @@ Route::any('MP_verify', function () {
 		// return '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt';
 	echo \File::get(public_path() . '/mp/MP_verify_ZDL0jybF5U5fGlLy.txt');
 });
+Route::any( '/mp/getUserInfo/snsapi_base/{domain?}', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
+Route::any( '/mp/getUserInfo/snsapi_userinfo/{domain?}', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
 
 Route::any( '/weixin/{domain?}', 'weixinController@weixin_verify' )->name( 'weixin.verify' );
 Route::any( '/weixin/showqrcode/{openid}', 'weixinController@weixin_showqrcode' )->name( 'weixin.showqrcode' );
-
-Route::any( '/mp/getUserInfo/snsapi_base/{domain?}', 'weixinController@getUserInfo_snsapi_base' )->name( 'weixin.getUserInfo_snsapi_base' );
-Route::any( '/mp/getUserInfo/snsapi_userinfo/{domain?}', 'weixinController@getUserInfo_snsapi_userinfo' )->name( 'weixin.getUserInfo_snsapi_userinfo' );
 Route::any( '/weixin/qrcode/{type}/{scene}', 'weixinController@weixin_qrcode' )->name( 'weixin.qrcode' );
-
+Route::any( '/weixin/createwxa/qrcode', 'weixinController@weixin_createwxaqrcode' )->name( 'weixin.createwxa.qrcode' );
 

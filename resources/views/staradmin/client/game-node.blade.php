@@ -365,10 +365,12 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
+	
 
 	
 </div>
-
+{{-- @include('client.product') --}}
+@include('client.productv2')
 @endsection
 
 @section('footer-javascript')

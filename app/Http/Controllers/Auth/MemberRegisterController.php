@@ -15,6 +15,10 @@ use Illuminate\Validation\ValidationException;
 use Mail;
 use Session;
 use Validator;
+
+use Khsing\WechatAgent\WechatAgent;
+
+
 class MemberRegisterController extends Controller
 {
     /*
@@ -123,6 +127,12 @@ class MemberRegisterController extends Controller
 	{
 
 		$data = [];
+		
+		$agent = new WechatAgent;
+
+        if ($agent->is("Wechat")) {
+			return redirect('/weixin/'.\Config::get('app.url').'?refcode='.$ref); 
+		}
 		
 		
 		if (!empty($ref))
