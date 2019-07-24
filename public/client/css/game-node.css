@@ -2474,3 +2474,15 @@ if it's not present, don't show loader */
 	width: 80%;
 }
 
+.to-top {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /*display: flex;*/
+    justify-content: space-between;
+    text-align: right;
+}
+
+.to-top img{
+	height: 60px;
+}
