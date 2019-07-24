@@ -232,12 +232,15 @@ try {
                         var selected = $('div.clicked').find('input:radio').val();
                         if (typeof selected == 'undefined'){
                             //$('.middle-label').html('选择单双');
+                            $('.span-odd').html('请选单双').show();
+                            $('.span-even').html('请选单双').show();
+                            $('.shan div').addClass('clicked');
                         } else {
                             //$('.middle-label').html('开始抽奖');
                         }
                         
                         $('#btnPointer').addClass('ready');
-                        showPayoutBet();
+                        showPayout();
                     }
                 });
             } else {
@@ -479,6 +482,8 @@ function resetGame() {
     $('.radio-primary').unbind('click');
     $('.small-border').removeClass('fast-rotate');
 
+    $('.shan span').hide();
+    $('.shan div').removeClass('clicked');
     startGame();
 }
 
@@ -520,7 +525,10 @@ function checkSelection() {
     if($('#btnPointer').hasClass('ready')){
         var selected = $('div.clicked').find('input:radio').val();
         if (typeof selected == 'undefined'){
-            //$('.middle-label').html('选择单双');
+            $('.span-odd').html('请选单双').show();
+            $('.span-even').html('请选单双').show();
+            $('.shan div').addClass('clicked');
+
             $('.spinning').html('请选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
              $('.spinning').css('visibility', 'visible');
             setTimeout(function(){ 
@@ -536,6 +544,10 @@ function checkSelection() {
         }
     } else {
         //$('.middle-label').html('选择金币');
+        $('.span-odd').html('请选金币').show();
+        $('.span-even').html('请选金币').show();
+        $('.shan div').addClass('clicked');
+
         $('.spinning').html('请选择金币<br />再点击“开始抽奖”进行抽奖');
         $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
@@ -657,36 +669,13 @@ function showPayout(){
     var newtotalbalance = total_balance - bet_amount;
     var bet_count = $('#hidbetting_count').val();
 
-    switch (level) {
-        case 1:
-            previous_bet = 0;
-        break;
-
-        case 2:
-            previous_bet = 1;
-        break;
-
-        case 3:
-            previous_bet = 3;
-        break;
-
-        case 4:
-            previous_bet = 7;
-        break;
-
-        case 5:
-            previous_bet = 15;
-        break;
-
-        case 6:
-            previous_bet = 31;
-        break;
-
-    }
 
         if (typeof selected == 'undefined'){
 
             //$('.middle-label').html('选择单双');
+            $('.span-odd').removeClass('ready lose').html('请选单双').show();
+            $('.span-even').removeClass('ready lose').html('请选单双').show();
+            $('.shan div').addClass('clicked');
 
             if(bet_count == 0){
                 $('.selection').show();
@@ -699,9 +688,6 @@ function showPayout(){
             $('#spanPoint').html(total_balance);
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
-
-            $('.odd-sign').html('');
-            $('.even-sign').html('');
 
             
             // $.ajax({
@@ -722,10 +708,29 @@ function showPayout(){
 
         } else {
 
+            if(selected == 'odd'){
+                $('.div-odd').removeClass('lose');
+                $('.div-even').addClass('lose');
+            } else {
+                $('.div-odd').addClass('lose');
+                $('.div-even').removeClass('lose');
+            }
+
             if($('#btnPointer').hasClass('ready')){
                 //$('.middle-label').html('开始抽奖');
+                if(selected == 'odd'){
+                    $('.span-odd').removeClass('lose').addClass('ready').html('+'+bet_amount);
+                    $('.span-even').addClass('ready lose').html('-'+bet_amount);
+                } else {
+                    $('.span-odd').addClass('ready lose').html('-'+bet_amount);
+                    $('.span-even').removeClass('lose').addClass('ready').html('+'+bet_amount);
+                }
             } else {
                 //$('.middle-label').html('选择金币');
+                $('.span-odd').removeClass('ready lose').html('请选金币').show();
+                $('.span-even').removeClass('ready lose').html('请选金币').show();
+                $('.shan div').addClass('clicked');
+
             }
 
             checked(level, true);
@@ -744,13 +749,7 @@ function showPayout(){
                 //$('#spanPoint').html(newtotalbalance);
                 $('.instruction').css('visibility', 'hidden');
 
-                if(selected == 'odd'){
-                    $('.odd-sign').html('+');
-                    $('.even-sign').html('-');
-                } else {
-                    $('.odd-sign').html('-');
-                    $('.even-sign').html('+');
-                }
+                
 
                 $.ajax({
                     type: 'GET',
@@ -778,42 +777,6 @@ function showPayout(){
         }
 
     
-}
-
-function showPayoutBet(){
-    var level = parseInt($('#hidLevel').val());
-
-    var bet_amount = parseInt($('#hidBet').val());
-
-    switch (level) {
-        case 1:
-            previous_bet = 0;
-        break;
-
-        case 2:
-            previous_bet = 1;
-        break;
-
-        case 3:
-            previous_bet = 3;
-        break;
-
-        case 4:
-            previous_bet = 7;
-        break;
-
-        case 5:
-            previous_bet = 15;
-        break;
-
-        case 6:
-            previous_bet = 31;
-        break;
-
-    }
-
-    $('.odd-payout').html(bet_amount);
-    $('.even-payout').html(bet_amount);
 }
 
 function bindCalculateButton(){
