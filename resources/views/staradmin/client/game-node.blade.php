@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/productv2.css') }}" />
     
 
     <style>
