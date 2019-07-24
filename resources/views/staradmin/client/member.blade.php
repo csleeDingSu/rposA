@@ -252,6 +252,55 @@
 	</div>
 <!-- Steps Modal Ends -->
 
+<style>
+
+.viewimg
+{
+	margin-top: -50px;
+	border-radius: 50px;
+}
+.qrimg
+{
+	max-width:100%;
+	max-height:100%;
+	
+}
+.imgdiv
+{
+	width: 90%;
+	text-align: center;margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+</style>
+
+<!-- Steps Modal starts -->
+	<div class="modal fade col-md-12" id="new-verify-wechat" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<img class="viewimg" src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+								<div class=" text-center">
+									由于有个别用户用多个小号									
+								</div>								
+							</div>
+							<div class="row imgdiv">								
+								<img class="qrimg" src="{{ asset('/client/qr/qr.jpg') }}" alt="qr image" />
+							</div>
+							<div class="row">								
+								<div class="bottom">复制微信号</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Steps Modal Ends -->
+
 <!-- Steps Modal starts -->
 	<div class="modal fade col-md-12" id="verify-wechat" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
@@ -394,18 +443,18 @@
 
 				$('.redeembtn').click(function(){
 					$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
-					$('#verify-wechat').modal();
+					$('#new-verify-wechat').modal();
 				});
 				$('.redeemhistorybtn').click(function(){
 					$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
-					$('#verify-wechat').modal();
+					$('#new-verify-wechat').modal();
 				});
 
 			}
 
 			$('.unverify').click(function(){
 				$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
-				$('#verify-wechat').modal();
+				$('#new-verify-wechat').modal();
 			});
 
 			var clipboard = new ClipboardJS('.cutBtn', {
