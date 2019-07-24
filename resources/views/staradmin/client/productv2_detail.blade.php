@@ -5,7 +5,8 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/client/css/productv2_detail.css') }}" />	
+	<link rel="stylesheet" href="{{ asset('/client/css/productv2_detail.css') }}" />
+		
 @endsection
 
 @section('top-navbar')
@@ -14,6 +15,12 @@
 @section('content')
 @php ($item = $voucher)
 	<div class="infinite-scroll" id="product">
+		<div class="header_pr header_goods ">
+    		<header class="icon_header">
+    			<a href="javascript:history.back()" class="iconfont fa fa-angle-left fa-2x" aria-hidden="true"></a>
+        	</header>	
+        </div>
+
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
