@@ -149,6 +149,13 @@
 }
 </style>        
  <section class="card-flex product_section">
+    @php ($total_voucher = count($vouchers))
+
+    @foreach ($vouchers as $v)
+    {{ $total_voucher}} <br>
+        <p>This is {{ $v->id }}</p>
+    @endforeach
+
             <div class="rowval">
               <div class="columnval featuredbg marginleft">
               	<a href="/product/detail">
