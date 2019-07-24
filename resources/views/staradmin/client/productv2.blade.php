@@ -188,7 +188,7 @@
                 </div>
         @else
                 <div class="columnval featuredbg marginright">
-                    <a href="/product/detail">
+                    <a href="/product/detail/{{$v->id}}">
                         <img src="{{$v->product_picurl}}" style="width:100%">
                         <div class="dbox1">
                             <span class="featureddetail">
