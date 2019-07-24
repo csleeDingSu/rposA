@@ -167,7 +167,7 @@ function initUser(records){
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
         $('#hidBalance').val(balance);
-        $(".nTxt").html(life);
+        $("#nTxt").val(life);
         $(".spanLife").html(life);
         $(".span-play-count").html(play_count);
 
@@ -196,7 +196,7 @@ try {
         var level = level.position;
         var previous_result = 1;
         var consecutive_lose = consecutive_lose;
-        var life = $(".nTxt").html();
+        var life = $("#nTxt").val();
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
@@ -598,7 +598,7 @@ function bindBetButton(){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
-        var life = $(".nTxt").html();
+        var life = $("#nTxt").val();
         var acupoint = parseInt($('.spanAcuPoint').html());
         var draw_id = $('#draw_id').val();
         var consecutive_lose = $('#hidConsecutiveLose').val();
