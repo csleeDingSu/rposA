@@ -110,7 +110,7 @@
 	text-align: center;
     border: 1px solid red;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 13px;
     color: white;
     padding-left: 5px;
     background-color: red;
@@ -122,7 +122,7 @@
 }
 
 .featureddetail h3 .imgThunder{
-	height: 20px;
+	height: 19px;
     padding-bottom: 3px;
 }
 
