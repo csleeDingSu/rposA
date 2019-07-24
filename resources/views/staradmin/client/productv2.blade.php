@@ -95,7 +95,7 @@
 
 .featureddetail h3 .new-price{
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   color: red;
   font-weight: 0 !important;
   line-height: 0.6rem;
@@ -128,18 +128,18 @@
 
 .featureddetail h3 .normal-txt{
 	color: #c6c6c6;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .featureddetail h3 .normal-price{
 	color: #c6c6c6;
-	font-size: 14px;
+	font-size: 12px;
 	text-decoration: line-through;
 }
 
 .featureddetail h3 .normal-sell{
 	color: #c6c6c6;
-	font-size: 14px;
+	font-size: 12px;
 	float: right;
 }
 
