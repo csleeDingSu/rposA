@@ -288,7 +288,7 @@
 								</div>								
 							</div>
 							<div class="row imgdiv">								
-								<img class="qrimg" src="{{ asset('/client/qr/qr.jpg') }}" alt="qr image" />
+								<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
 							</div>
 							<div class="row">								
 								<div class="bottom">复制微信号</div>
