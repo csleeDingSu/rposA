@@ -1,0 +1,193 @@
+.footer {
+		    position: fixed;
+		    bottom: 0;
+		    width: 100%;
+
+		    display: flex;
+		    justify-content: space-between;
+		    text-align: justify;
+		}
+
+		.infinite-scroll {
+			background: white;
+		}
+
+		.infinite-scroll .imgBox {
+		  margin: 0 auto;
+		  font-size: 0;
+		  display: inline-block;
+		  margin-bottom: 0.1rem;
+		}
+
+		.infinite-scroll .imgBox img {
+			width: 100%; 
+		    height: 100%; 
+		    object-fit: contain;
+		}
+
+		.infinite-scroll h2 {
+		    margin: 0 0.2rem 0 0.2rem;
+			font-size: 4vw;
+			font-weight: 500;
+			color: #666666;
+			line-height: 0.6rem;
+		}
+
+		.infinite-scroll h3 {		
+		    margin: 0 0.2rem 0 0.2rem;
+    		font-size: 3.5vw;
+    		color: #bebebe;
+    		line-height: 0.6rem;
+		}
+
+		.infinite-scroll .normal-price {
+			margin: 0 0.2rem 0 0.2rem;
+		    color: grey;
+		    font-size: 6vw;
+		    width: 1.3rem;
+		    position: absolute;
+		}
+
+		.infinite-scroll .normal-price .cur{
+			font-size: 3vw;
+		}
+
+		.infinite-scroll .normal-price .txt{
+			font-size: 3vw;
+		    text-align: right;
+		    margin-top: -0.15rem;
+		}
+
+		.infinite-scroll .normal-price-icon-minus {
+			margin-left: 1.6rem;
+		    position: absolute;
+		    height: 35px;
+		    margin-top: 0.1rem;
+		}
+
+		.infinite-scroll .voucher-price-icon-minus {
+			position: absolute;
+    		margin-left: 3.4rem;
+    		height: 35px;
+		    margin-top: 0.1rem;
+		}
+
+		.infinite-scroll .new-price-icon-equal {
+			position: absolute;
+    		margin-left: 5.35rem;
+		    height: 35px;
+		    margin-top: 0.1rem;
+		}
+
+		.infinite-scroll .voucher-price {
+		    margin: 0 0.2rem 0 0.2rem;
+		    color: #8c36d9;
+		    font-size: 4vw;
+		    width: 1.2rem;
+		    position: absolute;
+		    border: 1px dashed #8c36d9;
+		    border-radius: 5px;
+		    margin-left: 2.15rem;
+		    text-align: center;
+		    padding: 0.05rem;
+		}
+
+		.infinite-scroll .voucher-price .cur{
+			font-size: 3vw;
+		}
+
+		.infinite-scroll .voucher-price .txt{
+			font-size: 3vw;
+		    text-align: center;
+		    margin-top: 0rem;
+		}
+
+		.infinite-scroll .draw-price {
+			margin: 0 0.2rem 0 0.2rem;
+		    color: red;
+		    font-size: 4vw;
+		    width: 1.2rem;
+		    position: absolute;
+		    border: 1px dashed red;
+		    border-radius: 5px;
+		    margin-left: 4rem;
+		    text-align: center;
+		    padding: 0.05rem;
+		}
+
+		.infinite-scroll .draw-price .cur{
+			font-size: 3vw;
+		}
+
+		.infinite-scroll .draw-price .txt{
+			font-size: 3vw;
+    		/*padding-left: 8vw;*/
+		}
+
+		.infinite-scroll .new-price {
+			margin: 0 0.2rem 0 0.2rem;
+		    color: red;
+		    font-size: 7vw;
+		    width: 1.2rem;
+		    position: absolute;
+		    margin-left: 6rem;
+		    text-align: center;
+		    /* padding: 0.05rem; */
+		}
+
+		.infinite-scroll .new-price .new-cur{
+			font-size: 3.5vw;
+		}
+
+		.infinite-scroll .new-price .txt{
+			font-size: 3vw;
+		    /* padding-left: 8vw; */
+		    margin-top: -0.1rem;
+		    text-align: right;
+		}
+
+	.caption_redeem_angpao {
+	 /*position: relative !important;*/
+	 /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
+	 /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
+	 padding-left: 3.8rem !important;
+	}
+
+	.caption_redeem_angpao img {
+		width: 1.6rem !important;
+    	height: 0.55rem !important;
+	}
+
+	.caption_redeem_angpao span {
+	 /*padding-top: 0.06rem !important;*/
+	 width: 1.7rem !important;
+	}
+
+	.btn-product-details {
+	  width: 100%;  
+	}
+
+	#button-wrapper {
+		margin-top:-1rem !important;
+		width: 100% !important;
+	}
+
+	#btn-copy {
+		padding-left: 0 !important;
+	    text-align: center;
+	    width: 3.76rem;
+	    padding-top: 1.25rem;
+	}
+
+	#btn-voucher {
+		padding-left: 0.3rem;
+	    text-align: center;
+	    width: 3.76rem;
+	    padding-top: 1.25rem;
+	    margin-left: 3.76rem;
+
+	}
+	.product-detail-btn-bg {
+		max-width: 100%;
+    	max-height: 100%;
+	}

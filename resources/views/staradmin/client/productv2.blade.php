@@ -9,20 +9,20 @@
 
 	.voucher-price {
 		text-align: center;
-	    border: 1px solid #8c36d9;
-	    border-radius: 10px;
-	    font-size: 10px;
-	    color: #8c36d9;
-	    padding: 5px;
+        border: 1px solid #8c36d9;
+        border-radius: 5px;
+        font-size: 10px;
+        color: #8c36d9;
+        padding: 3px;
     }
 
 	.draw-price {
 		text-align: center;
 	    border: 1px solid red;
-	    border-radius: 10px;
+	    border-radius: 5px;
 	    font-size: 10px;
 	    color: red;
-	    padding: 5px;
+	    padding: 3px;
 	}
 	
 	.columnval {
@@ -33,6 +33,12 @@
 	  margin-left:0.08rem;
 
 	}
+
+    .rowval {
+        padding-bottom: 1px;
+        padding-left: 1px;
+        padding-right: 1px;
+    }
 	 
 	.rowval::after {
 	  clear: both;
@@ -83,14 +89,14 @@
 .featureddetail h3 .new-lbl-cur{
   text-align: center;
   font-size: 12px;
-  color: #e5615c;
+  color: red;
   font-weight: 0 !important;
 }
 
 .featureddetail h3 .new-price{
   text-align: center;
   font-size: 24px;
-  color: #e5615c;
+  color: red;
   font-weight: 0 !important;
   line-height: 0.6rem;
 }
@@ -103,8 +109,8 @@
 .featureddetail h3 .btn-go{
 	text-align: center;
     border: 1px solid red;
-    border-radius: 10px;
-    font-size: 12px;
+    border-radius: 5px;
+    font-size: 14px;
     color: white;
     padding-left: 5px;
     background-color: red;
@@ -112,10 +118,12 @@
     padding-right: 7px;
     padding-top: 2px;
     margin-top: 5px;
+    font-weight: bold;
 }
 
 .featureddetail h3 .imgThunder{
-	height: 25px;
+	height: 20px;
+    padding-bottom: 3px;
 }
 
 .featureddetail h3 .normal-txt{
