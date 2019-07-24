@@ -4,7 +4,7 @@
 		}
 
 	.line {
-		padding: 8px;
+		padding: 5px;
 	}
 
 	.voucher-price {
@@ -80,7 +80,7 @@
 
 	.featureddetail h2 {
 		color: black;
-	    padding: 0.08rem;
+	    padding: 5px;
 	    white-space: nowrap; 
 	  	overflow: hidden;
 	  	text-overflow: ellipsis;
@@ -177,9 +177,8 @@
                                 </div>
                                 <div class="line">
                                 	<h3>
-                                    	<span class="new-lbl-cur">￥</span>
-                                    	<span class="new-price">{{$v->discount_price}}</span>
-                                    	<span class="new-txt">到手价</span>
+                                    	<span class="new-price">
+                                            <span class="new-lbl-cur">￥</span>{{$v->discount_price}}</span><span class="new-txt">到手价</span>
                                     	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
                                     </h3>
                                 </div>
@@ -189,7 +188,7 @@
                 </div>
         @else
                 <div class="columnval featuredbg marginright">
-                    <a href="/product/detail">
+                    <a href="/product/detail/{{$v->id}}">
                         <img src="{{$v->product_picurl}}" style="width:100%">
                         <div class="dbox1">
                             <span class="featureddetail">
@@ -209,9 +208,8 @@
                                 </div>
                                 <div class="line">
                                 	<h3>
-    	                            	<span class="new-lbl-cur">￥</span>
-                                    	<span class="new-price">{{$v->discount_price}}</span>
-                                    	<span class="new-txt">到手价</span>
+                                    	<span class="new-price">
+                                            <span class="new-lbl-cur">￥</span>{{$v->discount_price}}</span><span class="new-txt">到手价</span>
                                     	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
     	                            </h3>
                                 </div>
