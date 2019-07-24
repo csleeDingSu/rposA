@@ -443,6 +443,7 @@ function startGame() {
             latest_result = data.record.bettinghistory.data;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
+			console.log('consecutive_lose:'+consecutive_lose);
             initGame(game_records, level, latest_result, consecutive_lose);
 
             
