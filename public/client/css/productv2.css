@@ -3,7 +3,7 @@
 		}
 
 	.line {
-		padding: 5px;
+	    padding: 0 5px 5px 5px;
 	}
 
 	.voucher-price {
@@ -94,10 +94,10 @@
 
 .featureddetail h3 .new-price{
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   color: red;
   font-weight: 0 !important;
-  line-height: 0.6rem;
+  line-height: 0.5rem;
 }
 
 .featureddetail h3 .new-txt{

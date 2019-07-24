@@ -30,6 +30,8 @@
 @endsection
 
 @section('content')
+<a name="top"></a>
+
 <div class="loading"></div>
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
@@ -373,6 +375,8 @@
 </div>
 {{-- @include('client.product') --}}
 @include('client.productv2')
+<!-- go back to top -->
+<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
 @endsection
 
 @section('footer-javascript')
@@ -1024,3 +1028,4 @@
 <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
 
 	@include('client.intromodel')
+
