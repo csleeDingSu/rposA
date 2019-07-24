@@ -95,7 +95,7 @@
 
 .featureddetail h3 .new-price{
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   color: red;
   font-weight: 0 !important;
   line-height: 0.6rem;
