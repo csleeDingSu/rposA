@@ -660,6 +660,8 @@ class Game extends Model
 			}
 		}
 		
+		\Log::info(json_encode(['consecutive lose memberid' => $win], true));
+		
 		if ($win <= 0) return '';
 		return 'yes';
 		
