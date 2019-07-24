@@ -202,7 +202,7 @@ try {
 
         if(latest_result.length > 0){
             previous_result = latest_result[0].result;
-            $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+previous_result+'</div>');
+            $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+previous_result+'</div>');
         }
 
         $( ".button-bet-default" ).each(function() {
@@ -231,9 +231,9 @@ try {
 
                         var selected = $('div.clicked').find('input:radio').val();
                         if (typeof selected == 'undefined'){
-                            $('.middle-label').html('选择单双');
+                            //$('.middle-label').html('选择单双');
                         } else {
-                            $('.middle-label').html('开始抽奖');
+                            //$('.middle-label').html('开始抽奖');
                         }
                         
                         $('#btnPointer').addClass('ready');
@@ -520,14 +520,14 @@ function checkSelection() {
     if($('#btnPointer').hasClass('ready')){
         var selected = $('div.clicked').find('input:radio').val();
         if (typeof selected == 'undefined'){
-            $('.middle-label').html('选择单双');
+            //$('.middle-label').html('选择单双');
             $('.spinning').html('请选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
              $('.spinning').css('visibility', 'visible');
             setTimeout(function(){ 
                 $('.spinning').css('visibility', 'hidden');
             }, 3000);
         } else {
-            $('.middle-label').html('正在抽奖');
+            //$('.middle-label').html('正在抽奖');
             $('.DB_G_hand').hide();
             $('.radio-primary').unbind('click');
             $('.btn-trigger').unbind('click');
@@ -535,7 +535,7 @@ function checkSelection() {
             startTimer(5, 5, 1);
         }
     } else {
-        $('.middle-label').html('选择金币');
+        //$('.middle-label').html('选择金币');
         $('.spinning').html('请选择金币<br />再点击“开始抽奖”进行抽奖');
         $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
@@ -686,7 +686,7 @@ function showPayout(){
 
         if (typeof selected == 'undefined'){
 
-            $('.middle-label').html('选择单双');
+            //$('.middle-label').html('选择单双');
 
             if(bet_count == 0){
                 $('.selection').show();
@@ -723,9 +723,9 @@ function showPayout(){
         } else {
 
             if($('#btnPointer').hasClass('ready')){
-                $('.middle-label').html('开始抽奖');
+                //$('.middle-label').html('开始抽奖');
             } else {
-                $('.middle-label').html('选择金币');
+                //$('.middle-label').html('选择金币');
             }
 
             checked(level, true);
@@ -1300,7 +1300,7 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
-        $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+result+'</div>');              
+        $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+result+'</div>');              
     
     }, (freeze_time - 1) * 1000);
 
