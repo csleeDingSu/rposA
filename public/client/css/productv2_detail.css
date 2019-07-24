@@ -27,23 +27,25 @@
 
 		.infinite-scroll h2 {
 		    margin: 0 0.2rem 0 0.2rem;
-			font-size: 4vw;
+			font-size: 5vw;
 			font-weight: 500;
 			color: #666666;
 			line-height: 0.6rem;
+			padding-bottom: 20px;
 		}
 
 		.infinite-scroll h3 {		
 		    margin: 0 0.2rem 0 0.2rem;
-    		font-size: 3.5vw;
+    		font-size: 4vw;
     		color: #bebebe;
     		line-height: 0.6rem;
+    		padding-bottom: 20px;
 		}
 
 		.infinite-scroll .normal-price {
 			margin: 0 0.2rem 0 0.2rem;
 		    color: grey;
-		    font-size: 6vw;
+		    font-size: 5vw;
 		    width: 1.3rem;
 		    position: absolute;
 		}
@@ -74,7 +76,7 @@
 
 		.infinite-scroll .new-price-icon-equal {
 			position: absolute;
-    		margin-left: 5.35rem;
+    		margin-left: 5.25rem;
 		    height: 35px;
 		    margin-top: 0.1rem;
 		}
@@ -87,7 +89,7 @@
 		    position: absolute;
 		    border: 1px dashed #8c36d9;
 		    border-radius: 5px;
-		    margin-left: 2.15rem;
+		    margin-left: 2.1rem;
 		    text-align: center;
 		    padding: 0.05rem;
 		}
@@ -110,7 +112,7 @@
 		    position: absolute;
 		    border: 1px dashed red;
 		    border-radius: 5px;
-		    margin-left: 4rem;
+		    margin-left: 3.9rem;
 		    text-align: center;
 		    padding: 0.05rem;
 		}
@@ -128,9 +130,9 @@
 			margin: 0 0.2rem 0 0.2rem;
 		    color: red;
 		    font-size: 7vw;
-		    width: 1.2rem;
+		    width: 1.7rem;
 		    position: absolute;
-		    margin-left: 6rem;
+		    margin-left: 5.7rem;
 		    text-align: center;
 		    /* padding: 0.05rem; */
 		}
@@ -141,7 +143,7 @@
 
 		.infinite-scroll .new-price .txt{
 			font-size: 3vw;
-		    /* padding-left: 8vw; */
+		     padding-right: 1.6vw; 
 		    margin-top: -0.1rem;
 		    text-align: right;
 		}

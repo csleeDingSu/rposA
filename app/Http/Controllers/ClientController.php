@@ -134,7 +134,7 @@ class ClientController extends BaseController
 	{
 		$betting_count = 0;
 
-		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
+		// $setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 
 		if ($cid)
 		{
@@ -146,7 +146,7 @@ class ClientController extends BaseController
 			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
 			->groupBy('vouchers.id')
 			->orderby('vouchers.id','DESC')
-			->paginate(5);
+			->paginate(6);
 
 			//$vouchers = Voucher::get_vouchers($cid)->paginate(5);
 			//pagination already have the count data so no need to call again
@@ -154,7 +154,7 @@ class ClientController extends BaseController
 			
 		}
 		else{
-			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->paginate(5);
+			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->paginate(6);
 			
 		}
 
@@ -163,9 +163,9 @@ class ClientController extends BaseController
             return response()->json(['html'=>$view]);
         }
 
-        $category = Category::where('parent_id', 0)->orderby('position','ASC')->get();
+        // $category = Category::where('parent_id', 0)->orderby('position','ASC')->get();
 		
-        $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
+        // $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
 
 
 		if (!Auth::Guard('member')->check())
@@ -181,7 +181,7 @@ class ClientController extends BaseController
 	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
 	        } else {
 	            $data['betting_count'] = 0;
-				return view('client/game-node',compact('betting_count','vouchers','category','cid','banner','member_mainledger', "setting",'firstwin'));
+				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin'));
 	        }
 			
 		} else {
@@ -197,7 +197,7 @@ class ClientController extends BaseController
 			}
 
 			$data['betting_count'] = member_game_result::where("member_id", $member_id)->get()->count();
-			return view('client/game-node', compact('betting_count','vouchers','category','cid','banner','member_mainledger', "setting",'firstwin'));
+			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin'));
 
 		}
 

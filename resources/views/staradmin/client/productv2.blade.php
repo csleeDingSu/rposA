@@ -35,7 +35,7 @@
 	}
 
     .rowval {
-        padding-bottom: 1px;
+        padding-bottom: 2px;
         padding-left: 1px;
         padding-right: 1px;
     }
@@ -148,199 +148,79 @@
 	margin-bottom: 0.2rem;
 }
 </style>        
+@if (!empty($vouchers))
+
  <section class="card-flex product_section">
+    @php ($t = 0)
+    @foreach($vouchers as $v)
+        @php ($t += 1)
+        @if ($t % 2 != 0)
             <div class="rowval">
-              <div class="columnval featuredbg marginleft">
-              	<a href="/product/detail">
-                <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
-                    <div class="dbox1">
+                <div class="columnval featuredbg marginleft">
+                  	<a href="/product/detail/{{$v->id}}">
+                        <img src="{{$v->product_picurl}}" style="width:100%">
+                        <div class="dbox1">
                             <span class="featureddetail">
-                                <h2>宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋</h2>
+                                <h2>{{$v->product_name}}</h2>
                                 <div class="line">
-                                <h3>
-                                	<span class="voucher-price">领券减10元</span>
-                                	<span class="draw-price">抽奖补贴15元</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                                <h3>
-                                	<span class="normal-txt">原价</span>
-                                	<span class="normal-price">￥55</span>
-                                	<span class="normal-sell">热销1234件</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                            	<h3>
-	                            	<span class="new-lbl-cur">￥</span>
-                                	<span class="new-price">20</span>
-                                	<span class="new-txt">到手价</span>
-                                	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
-	                            </h3>
-                            </div>
+                                    <h3>
+                                    	<span class="voucher-price">领券减{{$v->voucher_price}}元</span>
+                                    	<span class="draw-price">抽奖补贴15元</span>
+                                    </h3>
+                                </div>
+                                <div class="line">
+                                    <h3>
+                                    	<span class="normal-txt">原价</span>
+                                    	<span class="normal-price">￥{{$v->product_price}}</span>
+                                    	<span class="normal-sell">热销{{$v->sales_show}}件</span>
+                                    </h3>
+                                </div>
+                                <div class="line">
+                                	<h3>
+                                    	<span class="new-lbl-cur">￥</span>
+                                    	<span class="new-price">{{$v->discount_price}}</span>
+                                    	<span class="new-txt">到手价</span>
+                                    	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
+                                    </h3>
+                                </div>
                             </span>                         
                         </div>
                     </a>
                 </div>
-              <div class="columnval featuredbg marginright">
-              	<a href="/product/detail">
-                <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
-                <div class="dbox1">
-                        <span class="featureddetail">
-                            <h2>宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋</h2>
-                            <div class="line">
-                                <h3>
-                                	<span class="voucher-price">领券减10元</span>
-                                	<span class="draw-price">抽奖补贴15元</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                                <h3>
-                                	<span class="normal-txt">原价</span>
-                                	<span class="normal-price">￥55</span>
-                                	<span class="normal-sell">热销1234件</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                            	<h3>
-	                            	<span class="new-lbl-cur">￥</span>
-                                	<span class="new-price">20</span>
-                                	<span class="new-txt">到手价</span>
-                                	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
-	                            </h3>
-                            </div>
-                        </span>                         
-                </div>
-            </a>
-              </div>
-              </div>
-
-              <div class="rowval">
-              <div class="columnval featuredbg marginleft">
-              	<a href="/product/detail">
-                <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
-                    <div class="dbox1">
+        @else
+                <div class="columnval featuredbg marginright">
+                    <a href="/product/detail">
+                        <img src="{{$v->product_picurl}}" style="width:100%">
+                        <div class="dbox1">
                             <span class="featureddetail">
-                                <h2>宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋</h2>
+                                <h2>{{$v->product_name}}</h2>
                                 <div class="line">
-                                <h3>
-                                	<span class="voucher-price">领券减10元</span>
-                                	<span class="draw-price">抽奖补贴15元</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                                <h3>
-                                	<span class="normal-txt">原价</span>
-                                	<span class="normal-price">￥55</span>
-                                	<span class="normal-sell">热销1234件</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                            	<h3>
-	                            	<span class="new-lbl-cur">￥</span>
-                                	<span class="new-price">20</span>
-                                	<span class="new-txt">到手价</span>
-                                	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
-	                            </h3>
-                            </div>
-                            </span>                         
-                        </div>
-                       </a>
-                </div>
-              <div class="columnval featuredbg marginright">
-              	<a href="/product/detail">
-                <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
-                <div class="dbox1">
-                        <span class="featureddetail">
-                            <h2>宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋</h2>
-                            <div class="line">
-                                <h3>
-                                	<span class="voucher-price">领券减10元</span>
-                                	<span class="draw-price">抽奖补贴15元</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                                <h3>
-                                	<span class="normal-txt">原价</span>
-                                	<span class="normal-price">￥55</span>
-                                	<span class="normal-sell">热销1234件</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                            	<h3>
-	                            	<span class="new-lbl-cur">￥</span>
-                                	<span class="new-price">20</span>
-                                	<span class="new-txt">到手价</span>
-                                	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
-	                            </h3>
-                            </div>
-                        </span>                         
-                </div>
-            </a>
-              </div>
-              </div>
-
-              <div class="rowval">
-              <div class="columnval featuredbg marginleft marginbottom">
-              	<a href="/product/detail">
-                <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
-                    <div class="dbox1">
-                            <span class="featureddetail">
-                                <h2>宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋</h2>
+                                    <h3>
+                                    	<span class="voucher-price">领券减{{$v->voucher_price}}元</span>
+                                    	<span class="draw-price">抽奖补贴15元</span>
+                                    </h3>
+                                </div>
                                 <div class="line">
-                                <h3>
-                                	<span class="voucher-price">领券减10元</span>
-                                	<span class="draw-price">抽奖补贴15元</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                                <h3>
-                                	<span class="normal-txt">原价</span>
-                                	<span class="normal-price">￥55</span>
-                                	<span class="normal-sell">热销1234件</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                            	<h3>
-	                            	<span class="new-lbl-cur">￥</span>
-                                	<span class="new-price">20</span>
-                                	<span class="new-txt">到手价</span>
-                                	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
-	                            </h3>
-                            </div>
+                                    <h3>
+                                    	<span class="normal-txt">原价</span>
+                                    	<span class="normal-price">￥{{$v->product_price}}</span>
+                                    	<span class="normal-sell">热销{{$v->sales_show}}件</span>
+                                    </h3>
+                                </div>
+                                <div class="line">
+                                	<h3>
+    	                            	<span class="new-lbl-cur">￥</span>
+                                    	<span class="new-price">{{$v->discount_price}}</span>
+                                    	<span class="new-txt">到手价</span>
+                                    	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
+    	                            </h3>
+                                </div>
                             </span>                         
                         </div>
                     </a>
                 </div>
-              <div class="columnval featuredbg marginright marginbottom">
-              	<a href="/product/detail">
-                <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
-                <div class="dbox1">
-                        <span class="featureddetail">
-                            <h2>宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋</h2>
-                            <div class="line">
-                                <h3>
-                                	<span class="voucher-price">领券减10元</span>
-                                	<span class="draw-price">抽奖补贴15元</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                                <h3>
-                                	<span class="normal-txt">原价</span>
-                                	<span class="normal-price">￥55</span>
-                                	<span class="normal-sell">热销1234件</span>
-                                </h3>
-                            </div>
-                            <div class="line">
-                            	<h3>
-	                            	<span class="new-lbl-cur">￥</span>
-                                	<span class="new-price">20</span>
-                                	<span class="new-txt">到手价</span>
-                                	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
-	                            </h3>
-                            </div>
-                        </span>                         
-                </div>
-            </a>
-              </div>
-              </div>
+            </div>
+        @endif
+    @endforeach              
 </section>
+@endif
