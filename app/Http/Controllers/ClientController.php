@@ -146,7 +146,7 @@ class ClientController extends BaseController
 			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
 			->groupBy('vouchers.id')
 			->orderby('vouchers.id','DESC')
-			->paginate(20);
+			->paginate(10);
 
 			//$vouchers = Voucher::get_vouchers($cid)->paginate(5);
 			//pagination already have the count data so no need to call again
@@ -154,7 +154,7 @@ class ClientController extends BaseController
 			
 		}
 		else{
-			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->paginate(20);
+			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->paginate(10);
 			
 		}
 
