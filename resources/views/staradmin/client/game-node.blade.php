@@ -56,6 +56,7 @@
 				<div style="clear:both"></div>
 			</div>
 			
+			<input id="nTxt" class="nTxt" type="hidden" value="">
 			<input id="result" type="hidden" value="6">
 		    <input id="freeze_time" type="hidden" value="">
 		    <input id="draw_id" type="hidden" value="">
