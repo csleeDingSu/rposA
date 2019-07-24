@@ -12,17 +12,18 @@
 @endsection
 
 @section('content')
+@php ($item = $voucher)
 	<div class="infinite-scroll" id="product">
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
-					<img src="<?=str_replace('_160x160.jpg', '', empty($item->product_picurl) ? env('shareproduct_img', 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg') : $item->product_picurl)?>">
+					<img src="<?=str_replace('_160x160.jpg', '', empty($item->product_picurl) ? 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg' : $item->product_picurl)?>">
 				</a>
 			</li>
 			<li class="dbox">
 				<div class="dbox1">
 					<span>
-						<h2>{{empty($item->product_name) ? env('shareproduct_content', '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋') : $item->product_name}}</h2>
+						<h2>{{empty($item->product_name) ? '宝宝鞋儿童小熊鞋老爹鞋子2019新款春秋男童运动鞋潮网红鞋女童鞋' : $item->product_name}}</h2>
 						<h3>热销2562件</h3>
 					</span>							
 				</div>
@@ -35,13 +36,13 @@
 					</div>
 					<div class="normal-price">
 						<span class="cur">￥</span>
-						49.9
+						{{empty($item->product_price) ? 99 : $item->product_price}}
 						<div class="txt">原价</div>
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="voucher-price">
                 		<span class="cur">￥</span>
-                		20
+                		{{empty($item->voucher_price) ? 99 : $item->voucher_price}}
                 		<div class="txt">优惠券</div>
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
@@ -53,7 +54,7 @@
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
                 		<span class="new-cur">￥</span>
-                		4.9
+                		{{empty($item->discount_price) ? 0 : $item->discount_price}}
                 		<div class="txt">到手价</div>
                 	</div>	
 				</div>

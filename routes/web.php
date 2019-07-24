@@ -129,10 +129,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/customer_service' );
 	} );
 
-	Route::get( '/product/detail', function () {
-		return view( 'client/productv2_detail' );
-	} );
-	
+	Route::get( '/product/detail/{id?}', 'ShareProductController@getVoucherDetail' )->name( 'client.productv2_detail' );	
 } );
 
 //Member routes with member guard
