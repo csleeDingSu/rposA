@@ -233,7 +233,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">选择单双</div>
+				<div id="txtCounter" class="middle-label"></div>
 		    </div>
 		</div>
 
