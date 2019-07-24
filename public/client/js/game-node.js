@@ -16,6 +16,7 @@ var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
 var g_life = 0;
+var consecutive_lose = null;
 
 $(function () {
 
@@ -754,6 +755,7 @@ function showPayout(){
                     $('.odd-sign').html('-');
                     $('.even-sign').html('+');
                 }
+				
 
                 $.ajax({
                     type: 'GET',
