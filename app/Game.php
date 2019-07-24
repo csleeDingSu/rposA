@@ -660,8 +660,8 @@ class Game extends Model
 			}
 		}
 		
-		if ($win <= 0) return 'yes';
-		return '';
+		if ($win <= 0) return '';
+		return 'yes';
 		
 		
 		$c_lose = '';
