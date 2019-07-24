@@ -12,7 +12,7 @@
         border-radius: 5px;
         font-size: 10px;
         color: #8c36d9;
-        padding: 3px;
+        padding: 1px;
     }
 
 	.draw-price {
@@ -21,7 +21,7 @@
 	    border-radius: 5px;
 	    font-size: 10px;
 	    color: red;
-	    padding: 3px;
+	    padding: 1px;
 	}
 	
 	.columnval {
