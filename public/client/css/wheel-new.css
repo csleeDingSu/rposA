@@ -259,41 +259,69 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 	width: 100%;
 	height:0.4rem;
 	line-height: 0.4rem;
+	color: #d7d7d7;
+	display: none;
+}
+
+.g6 .shan span.ready {
+	width: 100%;
+	font-size: 0.4rem;
+	color: #fbbc00;
 	display: block;
+}
+
+.g6 .shan span.lose {
+	color: #b8b8b8;
 }
 
 .g6 .shan span span {
 	display: inline;
 }
 
-.g6 .shan .span-even, .g6 .shan div .even-number {
-	color:#6a3991;
-}
 
 .g6 .shan div {
-	border-radius: 0.04rem;
-	background: rgba(244,151,76,0.8);
+	background: url('/client/images/wheel/hongbaoicon.png') no-repeat;
+	background-size: cover;
+	width: 0.64rem;
+	height: 0.81rem;
 	padding: 0.04rem;
 	font-size: 0.2rem;
-	color: #fff;
-	width: 45%;
-	margin: 0.05rem auto 0 auto;
+	color: #de7600;
+	
+	width: 0.96rem;
+	height: 1.22rem;
+	margin: 0 auto;
 }
 
-.g6 .shan .div-even {
-	background: rgba(106,57,145,0.8)
+.g6 .shan div.clicked {
+	width: 0.64rem;
+	height: 0.81rem;
+	margin: 0.16rem auto 0 auto;
+}
+
+.g6 .shan div.lose {
+	background: url('/client/images/wheel/huiseicon.png') no-repeat;
+	background-size: cover;
+	width: 0.64rem;
+	height: 0.81rem;
+	margin: 0.16rem auto 0 auto;
 }
 
 .g6 .shan div span {
 	display: inline-block;
-	border-radius: 50%;
-	width: 0.24rem;
-	height: 0.24rem;
-	padding: 0.02rem 0.04rem 0.04rem 0.04rem;
-	background: #fff;
-	color: #f4974c;
+	color: #de7600;
 	text-align: center;
-	font: 0.16rem Arial, sans-serif;
+	font: 0.3rem Arial, sans-serif;
+	margin-top: 0.2rem;
+}
+
+.g6 .shan div.lose span {
+	color: #838383;
+}
+
+.g6 .shan div.clicked span {
+	margin-top: 0.13rem;
+	font-size: 0.2rem;
 }
 
 .g6 .shan:nth-of-type(1) {-webkit-transform: rotate(0deg);left:30%;top:3%;}
