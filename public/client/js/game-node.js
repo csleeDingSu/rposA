@@ -295,7 +295,7 @@ try {
         $('.barBox').find('li').removeClass('on');
 	
 		console.log('consecutive_lose'+consecutive_lose);
-		console.log('life'+life);
+		console.log('life'+g_life);
 
         if (consecutive_lose == 'yes' && life > 0) {
             bindResetLifeButton();
