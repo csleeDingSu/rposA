@@ -183,7 +183,7 @@ function initUser(records){
 
 function initGame(data, level, latest_result, consecutive_lose){
 try {
-	console.log('initgame_consecutive_lose'.consecutive_lose);
+	console.log('initgame_consecutive_lose'+consecutive_lose);
  
     var user_id = $('#hidUserId').val();
     trigger = false;
@@ -200,7 +200,7 @@ try {
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
-		console.log('insideconsecutive_lose'.consecutive_lose);
+		console.log('insideconsecutive_lose'+consecutive_lose);
         if(latest_result.length > 0){
             previous_result = latest_result[0].result;
             $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+previous_result+'</div>');
@@ -296,8 +296,8 @@ try {
 
         $('.barBox').find('li').removeClass('on');
 	
-		console.log('consecutive_lose'.consecutive_lose);
-		console.log('life'.life);
+		console.log('consecutive_lose'+consecutive_lose);
+		console.log('life'+life);
 
         if (consecutive_lose == 'yes' && life > 0) {
             bindResetLifeButton();
