@@ -257,7 +257,7 @@
 .viewimg
 {
 	margin-top: -50px;
-	border-radius: 50px;
+	border-radius:50px 50px 0px 50px;
 }
 .qrimg
 {
@@ -282,7 +282,9 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<img class="viewimg" src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+								
+									<img class="viewimg" src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+								
 								<div class=" text-center">
 									由于有个别用户用多个小号									
 								</div>								
