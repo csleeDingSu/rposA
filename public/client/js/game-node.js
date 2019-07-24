@@ -16,6 +16,7 @@ var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
 var g_life = 0;
+var consecutive_lose = null;
 
 $(function () {
 
@@ -166,7 +167,7 @@ function initUser(records){
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
         $('#hidBalance').val(balance);
-        $(".nTxt").html(life);
+        $("#nTxt").val(life);
         $(".spanLife").html(life);
         $(".span-play-count").html(play_count);
 
@@ -183,7 +184,7 @@ function initUser(records){
 
 function initGame(data, level, latest_result, consecutive_lose){
 try {
- 
+	
     var user_id = $('#hidUserId').val();
     trigger = false;
 
@@ -195,11 +196,10 @@ try {
         var level = level.position;
         var previous_result = 1;
         var consecutive_lose = consecutive_lose;
-        var life = $(".nTxt").html();
+        var life = $("#nTxt").val();
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
-
         if(latest_result.length > 0){
             previous_result = latest_result[0].result;
             $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+previous_result+'</div>');
@@ -297,6 +297,9 @@ try {
         $('#hidConsecutiveLose').val(consecutive_lose);
 
         $('.barBox').find('li').removeClass('on');
+	
+		console.log('consecutive_lose'+consecutive_lose);
+		console.log('life'+g_life);
 
         if (consecutive_lose == 'yes' && life > 0) {
             bindResetLifeButton();
@@ -446,6 +449,7 @@ function startGame() {
             latest_result = data.record.bettinghistory.data;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
+			console.log('consecutive_lose:'+consecutive_lose);
             initGame(game_records, level, latest_result, consecutive_lose);
 
             
@@ -606,7 +610,7 @@ function bindBetButton(){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
-        var life = $(".nTxt").html();
+        var life = $("#nTxt").val();
         var acupoint = parseInt($('.spanAcuPoint').html());
         var draw_id = $('#draw_id').val();
         var consecutive_lose = $('#hidConsecutiveLose').val();
@@ -749,7 +753,16 @@ function showPayout(){
                 //$('#spanPoint').html(newtotalbalance);
                 $('.instruction').css('visibility', 'hidden');
 
-                
+
+                if(selected == 'odd'){
+                    $('.odd-sign').html('+');
+                    $('.even-sign').html('-');
+                } else {
+                    $('.odd-sign').html('-');
+                    $('.even-sign').html('+');
+                }
+				
+
 
                 $.ajax({
                     type: 'GET',
