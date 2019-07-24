@@ -662,8 +662,8 @@ class Game extends Model
 		
 		\Log::info(json_encode(['consecutive lose memberid' => [$memberid=>$win]], true));
 		
-		if ($win <= 0) return '';
-		return 'yes';
+		if ($win <= 0) return 'yes';
+		return '';
 		
 		
 		$c_lose = '';
