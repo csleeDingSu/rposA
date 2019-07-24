@@ -128,6 +128,10 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/customer_service', function () {
 		return view( 'client/customer_service' );
 	} );
+
+	Route::get( '/product/detail', function () {
+		return view( 'client/productv2_detail' );
+	} );
 	
 } );
 

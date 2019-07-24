@@ -143,7 +143,7 @@
  <section class="card-flex product_section">
             <div class="rowval">
               <div class="columnval featuredbg marginleft">
-              	<a href="/">
+              	<a href="/product/detail">
                 <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
                     <div class="dbox1">
                             <span class="featureddetail">
@@ -174,6 +174,7 @@
                     </a>
                 </div>
               <div class="columnval featuredbg marginright">
+              	<a href="/product/detail">
                 <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
                 <div class="dbox1">
                         <span class="featureddetail">
@@ -201,11 +202,13 @@
                             </div>
                         </span>                         
                 </div>
+            </a>
               </div>
               </div>
 
               <div class="rowval">
               <div class="columnval featuredbg marginleft">
+              	<a href="/product/detail">
                 <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
                     <div class="dbox1">
                             <span class="featureddetail">
@@ -233,8 +236,10 @@
                             </div>
                             </span>                         
                         </div>
+                       </a>
                 </div>
               <div class="columnval featuredbg marginright">
+              	<a href="/product/detail">
                 <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
                 <div class="dbox1">
                         <span class="featureddetail">
@@ -262,11 +267,13 @@
                             </div>
                         </span>                         
                 </div>
+            </a>
               </div>
               </div>
 
               <div class="rowval">
               <div class="columnval featuredbg marginleft marginbottom">
+              	<a href="/product/detail">
                 <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
                     <div class="dbox1">
                             <span class="featureddetail">
@@ -294,8 +301,10 @@
                             </div>
                             </span>                         
                         </div>
+                    </a>
                 </div>
               <div class="columnval featuredbg marginright marginbottom">
+              	<a href="/product/detail">
                 <img src="https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg" style="width:100%">
                 <div class="dbox1">
                         <span class="featureddetail">
@@ -323,6 +332,7 @@
                             </div>
                         </span>                         
                 </div>
+            </a>
               </div>
               </div>
 </section>
