@@ -394,18 +394,17 @@ body{
 }
 
 .btn-life {
-	width: 1.85rem;
-	height: 0.85rem;
-	cursor: pointer;
-	text-align: left;
-	padding: 0.2rem 0 0.2rem 0.25rem;
-	background: url('/client/images/wheel/life-balance.png') no-repeat top center;
-	background-size: contain;
-	text-align: center;
-	color: #bb770c;
-	font-size: 0.28rem;
-	float: right;
-	margin-top: -0.07rem;
+	width: 2.6rem;
+    height: 1rem;
+    cursor: pointer;
+    padding: 0.08rem 0 0 0.8rem;
+    background: url(/client/images/wheel/life-balance.png) no-repeat top center;
+    background-size: contain;
+    text-align: left;
+    color: #fefeec;
+    font-size: 0.45rem;
+    float: right;
+    margin-top: -0.07rem;
 }
 
 .btn-rules-normal {
@@ -2222,7 +2221,7 @@ if it's not present, don't show loader */
 	background: url('/client/images/wheel/btn-rules.png') no-repeat top center;
 	background-size: cover;
 	text-align: center;
-	color: #d3c4b3;
+	color: #fff;
 	font-size: 0.26rem;
 	padding-top: 0.08rem;
 }
@@ -2231,7 +2230,7 @@ if it's not present, don't show loader */
 	position: absolute;
 	width: 0.5rem;
 	margin-top: 0.1rem;
-	margin-left: -1.9rem;
+	margin-left: -1.6rem;
 }
 
 .spanAcuPoint2 {
@@ -2239,7 +2238,7 @@ if it's not present, don't show loader */
 	margin-top: 0.02rem;
 	text-align: center;
 	width: 1.8rem;
-	margin-left: 0.6rem;
+	margin-left: 1rem;
 	font-size: 0.45rem;
 }
 
@@ -2485,4 +2484,30 @@ if it's not present, don't show loader */
 
 .to-top img{
 	height: 60px;
+}
+
+.profile-pic {
+	float: left;
+    margin: -0.02rem 0 0 0;
+}
+
+.profile-img-circle {
+    border-radius: 50% !important;
+    max-width: 0.8rem;
+    max-height: 0.8rem;
+    width: 1rem !important;
+    height: 1rem;
+    border: 2px solid #a5807a !important;
+}
+
+.icon-wheel-corner {
+	position: absolute;
+    margin: -0.01rem 0 0 -1.77rem;
+    height: 0.7rem;
+}
+
+.icon-arrow-next {
+	position: absolute;
+    margin: -0.01rem 0 0 0.95rem;
+    height: 0.7rem;
 }
