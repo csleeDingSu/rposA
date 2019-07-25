@@ -72,7 +72,7 @@
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						<a href="/arcade">
-							<div id="btn-voucher" class="freeVoucherBtn"><span>马上抽奖</span></div>
+							<div id="btn-voucher" class="btn-voucher">马上抽奖</div>
 						</a>
 					</div>
 				
