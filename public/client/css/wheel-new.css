@@ -134,7 +134,7 @@
   margin-top: 0.1rem;
   right: auto;
   background: url('/client/images/wheel/previous.png') no-repeat;
-  background-size: cover;
+  background-size: contain;
   width: 0.59rem;
   height: 0.9rem;
 }
@@ -142,7 +142,7 @@
 .flickity-prev-next-button.next {
   margin-top: 0.1rem;
   background: url('/client/images/wheel/next.png') no-repeat;
-  background-size: cover;
+  background-size: contain;
   width: 0.59rem;
   height: 0.9rem;
   right: 0rem;
@@ -156,7 +156,7 @@
   left: 40%; 
   top: -0.3rem; 
   background-image: url(/client/images/wheel/start.png);
-  background-size: cover;
+  background-size: contain;
   z-index: 100;
   cursor: pointer;
 }
@@ -165,8 +165,8 @@
   display: none;
   position: absolute;
   background-repeat: no-repeat;
-  width: 71px;
-  height: 75px;
+  width: 1.42rem;
+  height: 1.5rem;
   left: 53%; 
   top: 46%; 
   background-image: url(/client/images/wheel/hand1.png);

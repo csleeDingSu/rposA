@@ -365,6 +365,7 @@
 				</div>
 			  </div>
 			  <div class="btn-trigger"></div>
+			  <div class="DB_G_hand"></div>
 		</div>
 		<!-- end button wrapper -->
 		<div style="clear: both;"></div>
