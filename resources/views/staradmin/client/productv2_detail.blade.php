@@ -42,26 +42,22 @@
 						<img src="{{ asset('/client/images/productv2_detail_caption.png') }}" />
 					</div>
 					<div class="normal-price">
-						<span class="cur">￥</span>
-						{{empty($item->product_price) ? 99 : $item->product_price}}
+						<span class="cur">￥<span class="price">{{empty($item->product_price) ? 99 : $item->product_price}}</span></span>
 						<div class="txt">原价</div>
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="voucher-price">
-                		<span class="cur">￥</span>
-                		{{empty($item->voucher_price) ? 99 : $item->voucher_price}}
+                		<span class="cur">￥<span class="price">{{empty($item->voucher_price) ? 99 : $item->voucher_price}}</span></span>
                 		<div class="txt">优惠券</div>
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="draw-price">
-                		<span class="cur">￥</span>
-                		15
+                		<span class="cur">￥<span class="price">	15</span></span>
                 		<div class="txt">抽奖补贴</div>
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
-                		<span class="new-cur">￥</span>
-                		{{empty($item->discount_price) ? 0 : $item->discount_price}}
+                		<span class="new-cur">￥<span class="price">{{empty($item->discount_price) ? 0 : $item->discount_price}}</span></span>
                 		<div class="txt">到手价</div>
                 	</div>	
 				</div>

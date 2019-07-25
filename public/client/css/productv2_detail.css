@@ -31,7 +31,7 @@
 			font-weight: 500;
 			color: #666666;
 			line-height: 0.6rem;
-			padding-bottom: 20px;
+			padding-bottom: 5px;
 		}
 
 		.infinite-scroll h3 {		
@@ -39,7 +39,7 @@
     		font-size: 4vw;
     		color: #bebebe;
     		line-height: 0.6rem;
-    		padding-bottom: 20px;
+    		padding-bottom: 10px;
 		}
 
 		.infinite-scroll .normal-price {
@@ -48,37 +48,43 @@
 		    font-size: 5vw;
 		    width: 1.3rem;
 		    position: absolute;
+		    padding: 0.05rem 0 0 0;
 		}
 
 		.infinite-scroll .normal-price .cur{
 			font-size: 3vw;
 		}
 
+		.infinite-scroll .normal-price .price {
+		    font-size: 5vw;
+		}
+
 		.infinite-scroll .normal-price .txt{
 			font-size: 3vw;
 		    text-align: right;
 		    margin-top: -0.15rem;
+	        padding-right: 0.15rem;
 		}
 
 		.infinite-scroll .normal-price-icon-minus {
 			margin-left: 1.6rem;
 		    position: absolute;
-		    height: 35px;
-		    margin-top: 0.1rem;
+		    height: 20px;
+		    margin-top: 0.25rem;
 		}
 
 		.infinite-scroll .voucher-price-icon-minus {
 			position: absolute;
     		margin-left: 3.4rem;
-    		height: 35px;
-		    margin-top: 0.1rem;
+    		height: 20px;
+		    margin-top: 0.25rem;
 		}
 
 		.infinite-scroll .new-price-icon-equal {
 			position: absolute;
     		margin-left: 5.25rem;
-		    height: 35px;
-		    margin-top: 0.1rem;
+		    height: 20px;
+		    margin-top: 0.25rem;
 		}
 
 		.infinite-scroll .voucher-price {
@@ -96,6 +102,10 @@
 
 		.infinite-scroll .voucher-price .cur{
 			font-size: 3vw;
+		}
+
+		.infinite-scroll .voucher-price .price {
+		    font-size: 4vw;
 		}
 
 		.infinite-scroll .voucher-price .txt{
@@ -121,9 +131,12 @@
 			font-size: 3vw;
 		}
 
+		.infinite-scroll .draw-price .price {
+		    font-size: 4vw;
+		}
+
 		.infinite-scroll .draw-price .txt{
 			font-size: 3vw;
-    		/*padding-left: 8vw;*/
 		}
 
 		.infinite-scroll .new-price {
@@ -141,11 +154,17 @@
 			font-size: 3.5vw;
 		}
 
+		.infinite-scroll .new-price .price {
+		    font-size: 7vw;
+		}
+
 		.infinite-scroll .new-price .txt{
 			font-size: 3vw;
 		     padding-right: 1.6vw; 
 		    margin-top: -0.1rem;
 		    text-align: right;
+	        padding-right: 0.23rem;
+
 		}
 
 	.caption_redeem_angpao {
@@ -178,7 +197,7 @@
 		padding-left: 0 !important;
     	text-align: center;
     	width: 3.76rem;
-    	margin-top: 1.02rem;
+    	margin-top: 0.97rem;
     	font-size: 5vw;
 	}
 
@@ -186,7 +205,7 @@
 	    padding-left: 0.5rem !important;
 	    text-align: center;
 	    width: 3.76rem;
-	    margin-top: 1.02rem;
+	    margin-top: 0.97rem;
 	    margin-left: 3.76rem;
 	    font-size: 5vw;
 	    color: #fff;
@@ -195,7 +214,6 @@
 	.product-detail-btn-bg {
 		max-width: 100%;
     	max-height: 100%;
-    	height: 1rem;
 	}
 
 	.header_pr {
@@ -250,4 +268,8 @@
 		  color: white;
 		  padding:10px;
 		  padding-left:16px;
+		}
+
+		.inner_span_copy1 {
+			font-size: 0.35rem !important;
 		}
