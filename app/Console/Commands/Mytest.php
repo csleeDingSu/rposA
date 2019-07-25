@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Voucher;
 
-use Excel;
+//use Excel;
 
 
 class Mytest extends Command
