@@ -152,7 +152,7 @@
 	 /*position: relative !important;*/
 	 /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
 	 /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
-	 padding-left: 3.8rem !important;
+	 padding-left: 3.7rem !important;
 	}
 
 	.caption_redeem_angpao img {
@@ -162,7 +162,7 @@
 
 	.caption_redeem_angpao span {
 	 /*padding-top: 0.06rem !important;*/
-	 width: 1.7rem !important;
+	 width: 1.65rem !important;
 	}
 
 	.btn-product-details {
@@ -176,22 +176,26 @@
 
 	#btn-copy {
 		padding-left: 0 !important;
-	    text-align: center;
-	    width: 3.76rem;
-	    padding-top: 1.25rem;
+    	text-align: center;
+    	width: 3.76rem;
+    	margin-top: 1.02rem;
+    	font-size: 5vw;
 	}
 
 	#btn-voucher {
-		padding-left: 0.3rem;
+	    padding-left: 0.5rem !important;
 	    text-align: center;
 	    width: 3.76rem;
-	    padding-top: 1.25rem;
+	    margin-top: 1.02rem;
 	    margin-left: 3.76rem;
-
+	    font-size: 5vw;
+	    color: #fff;
 	}
+
 	.product-detail-btn-bg {
 		max-width: 100%;
     	max-height: 100%;
+    	height: 1rem;
 	}
 
 	.header_pr {
