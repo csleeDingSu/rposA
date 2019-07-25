@@ -239,7 +239,7 @@
   position: absolute;
   top: -0.05rem;
   left: -0.05rem;
-  box-shadow: 0 0 0.16rem #3ff9dc, inset 0 0 0.16rem #3ff9dc;
+  box-shadow: 0 0 0.5rem #ecdbf9, inset 0 0 0.16rem #ecdbf9;
 }
 
 .clicked-button-bet {
