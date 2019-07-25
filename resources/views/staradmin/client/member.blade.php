@@ -257,7 +257,7 @@
 .viewimg
 {
 	margin-top: -50px;
-	border-radius: 50px;
+	border-radius:50px 50px 0px 50px;
 }
 .qrimg
 {
@@ -282,16 +282,18 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<img class="viewimg" src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+								
+									<img class="viewimg" src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+								
 								<div class=" text-center">
-									由于有个别用户用多个小号									
+									加客服微信领红包									
 								</div>								
 							</div>
 							<div class="row imgdiv">								
 								<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
 							</div>
 							<div class="row">								
-								<div class="bottom">复制微信号</div>
+								<div class="bottom">长安识别二维码</div>
 							</div>
 						</div>
 					</div>							

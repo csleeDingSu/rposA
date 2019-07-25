@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/productv2.css') }}" />
     
 
     <style>
@@ -29,6 +30,8 @@
 @endsection
 
 @section('content')
+<a name="top"></a>
+
 <div class="loading"></div>
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
@@ -40,6 +43,7 @@
 			<div class="box">
 				<div class="btn-calculate">
 					<div class="balance-banner">
+						<div class="profile-pic"><img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp; </div>
 						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0</span>元
@@ -52,8 +56,13 @@
 			</div>
 
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-life">剩余{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}场</div>
-				<div style="clear:both"></div>
+				<a href="/profile">
+					<img class="icon-wheel-corner" src="{{ asset('/client/images/wheel/icon-wheel-corner.png') }}" />
+					<div class="btn-life">剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+					</div>
+					<img class="icon-arrow-next" src="{{ asset('/client/images/wheel/icon-arrow-next.png') }}" />
+					<div style="clear:both"></div>
+				</a>
 			</div>
 			
 			<input id="nTxt" class="nTxt" type="hidden" value="">
@@ -232,7 +241,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">选择单双</div>
+				<div id="txtCounter" class="middle-label"></div>
 		    </div>
 		</div>
 
@@ -372,6 +381,8 @@
 </div>
 {{-- @include('client.product') --}}
 @include('client.productv2')
+<!-- go back to top -->
+<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
 @endsection
 
 @section('footer-javascript')
@@ -1023,3 +1034,4 @@
 <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
 
 	@include('client.intromodel')
+

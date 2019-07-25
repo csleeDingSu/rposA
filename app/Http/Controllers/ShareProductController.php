@@ -181,4 +181,11 @@ class ShareProductController extends BaseController
 		return view('client/new_share_product2', $data);
 	}
 
+	public function getVoucherDetail($id)
+	{
+		$data['voucher'] = Voucher::where('id',$id)->select('*')->first();
+		return view('client/productv2_detail', $data);
+		
+	}
+
 }
