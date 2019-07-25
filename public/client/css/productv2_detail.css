@@ -31,7 +31,7 @@
 			font-weight: 500;
 			color: #666666;
 			line-height: 0.6rem;
-			padding-bottom: 20px;
+			padding-bottom: 5px;
 		}
 
 		.infinite-scroll h3 {		
@@ -39,7 +39,7 @@
     		font-size: 4vw;
     		color: #bebebe;
     		line-height: 0.6rem;
-    		padding-bottom: 20px;
+    		padding-bottom: 10px;
 		}
 
 		.infinite-scroll .normal-price {
@@ -48,37 +48,43 @@
 		    font-size: 5vw;
 		    width: 1.3rem;
 		    position: absolute;
+		    padding: 0.1rem 0 0 0;
+		    text-align: right;
 		}
 
 		.infinite-scroll .normal-price .cur{
 			font-size: 3vw;
 		}
 
+		.infinite-scroll .normal-price .price {
+		    font-size: 5vw;
+		}
+
 		.infinite-scroll .normal-price .txt{
 			font-size: 3vw;
-		    text-align: right;
 		    margin-top: -0.15rem;
+            padding: 0.05rem 0.15rem 0 0;
 		}
 
 		.infinite-scroll .normal-price-icon-minus {
 			margin-left: 1.6rem;
 		    position: absolute;
-		    height: 35px;
-		    margin-top: 0.1rem;
+		    height: 20px;
+		    margin-top: 0.3rem;
 		}
 
 		.infinite-scroll .voucher-price-icon-minus {
 			position: absolute;
-    		margin-left: 3.4rem;
-    		height: 35px;
-		    margin-top: 0.1rem;
+    		margin-left: 3.3rem;
+    		height: 20px;
+		    margin-top: 0.3rem;
 		}
 
 		.infinite-scroll .new-price-icon-equal {
 			position: absolute;
-    		margin-left: 5.25rem;
-		    height: 35px;
-		    margin-top: 0.1rem;
+    		margin-left: 5.1rem;
+		    height: 20px;
+		    margin-top: 0.3rem;
 		}
 
 		.infinite-scroll .voucher-price {
@@ -89,19 +95,23 @@
 		    position: absolute;
 		    border: 1px dashed #8c36d9;
 		    border-radius: 5px;
-		    margin-left: 2.1rem;
-		    text-align: center;
-		    padding: 0.05rem;
+		    margin-left: 1.95rem;
+		    text-align: right;
+		    padding: 0.1rem;
 		}
 
 		.infinite-scroll .voucher-price .cur{
 			font-size: 3vw;
 		}
 
+		.infinite-scroll .voucher-price .price {
+		    font-size: 4vw;
+		}
+
 		.infinite-scroll .voucher-price .txt{
 			font-size: 3vw;
-		    text-align: center;
 		    margin-top: 0rem;
+    		padding: 0 0 0 0.15rem;
 		}
 
 		.infinite-scroll .draw-price {
@@ -112,18 +122,21 @@
 		    position: absolute;
 		    border: 1px dashed red;
 		    border-radius: 5px;
-		    margin-left: 3.9rem;
-		    text-align: center;
-		    padding: 0.05rem;
+		    margin-left: 3.7rem;
+		    text-align: right;
+		    padding: 0.1rem;
 		}
 
 		.infinite-scroll .draw-price .cur{
 			font-size: 3vw;
 		}
 
+		.infinite-scroll .draw-price .price {
+		    font-size: 4vw;
+		}
+
 		.infinite-scroll .draw-price .txt{
 			font-size: 3vw;
-    		/*padding-left: 8vw;*/
 		}
 
 		.infinite-scroll .new-price {
@@ -132,27 +145,28 @@
 		    font-size: 7vw;
 		    width: 1.7rem;
 		    position: absolute;
-		    margin-left: 5.7rem;
-		    text-align: center;
-		    /* padding: 0.05rem; */
+		    margin-left: 5.1rem;
+		    text-align: right;
 		}
 
 		.infinite-scroll .new-price .new-cur{
 			font-size: 3.5vw;
 		}
 
+		.infinite-scroll .new-price .price {
+		    font-size: 7vw;
+		}
+
 		.infinite-scroll .new-price .txt{
-			font-size: 3vw;
-		     padding-right: 1.6vw; 
+			font-size: 3vw; 
 		    margin-top: -0.1rem;
-		    text-align: right;
 		}
 
 	.caption_redeem_angpao {
 	 /*position: relative !important;*/
 	 /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
 	 /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
-	 padding-left: 3.7rem !important;
+	 padding-left: 3.5rem !important;
 	}
 
 	.caption_redeem_angpao img {
@@ -161,7 +175,7 @@
 	}
 
 	.caption_redeem_angpao span {
-	 /*padding-top: 0.06rem !important;*/
+	 padding-top: 0.07rem !important;
 	 width: 1.65rem !important;
 	}
 
@@ -178,7 +192,7 @@
 		padding-left: 0 !important;
     	text-align: center;
     	width: 3.76rem;
-    	margin-top: 1.02rem;
+    	margin-top: 0.97rem;
     	font-size: 5vw;
 	}
 
@@ -186,7 +200,7 @@
 	    padding-left: 0.5rem !important;
 	    text-align: center;
 	    width: 3.76rem;
-	    margin-top: 1.02rem;
+	    margin-top: 0.97rem;
 	    margin-left: 3.76rem;
 	    font-size: 5vw;
 	    color: #fff;
@@ -250,4 +264,8 @@
 		  color: white;
 		  padding:10px;
 		  padding-left:16px;
+		}
+
+		.inner_span_copy1 {
+			font-size: 0.35rem !important;
 		}

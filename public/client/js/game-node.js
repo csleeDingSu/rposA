@@ -801,7 +801,7 @@ function showPayout(){
 }
 
 function bindCalculateButton(){
-    $('.btn-calculate').click( function() {
+    $('.btn-redeemcash').click( function() {
         if (g_life > 0) {
             //$('#reset-life-play').modal({backdrop: 'static', keyboard: false});
             $('#game-rules').modal();

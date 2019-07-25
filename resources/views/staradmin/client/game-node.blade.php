@@ -23,6 +23,8 @@
 		    top: 25%;
 		}
 
+		.isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
+
     </style>
 @endsection
     	
@@ -41,10 +43,11 @@
 	<div class="information-table">
 		<div class="grid-container">
 			<div class="box">
+				<div class="profile-pic">
+					<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
+				</div>
 				<div class="btn-calculate">
 					<div class="balance-banner">
-						<div class="profile-pic"><img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp; </div>
-						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0</span>元
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
@@ -421,9 +424,19 @@
 	
 </div>
 {{-- @include('client.product') --}}
-@include('client.productv2')
+<div class="infinite-scroll">
+	<ul class="list-2">								
+			@include('client.productv2')
+	</ul>
+	{{ $vouchers->links() }}
+	
+	<p class="isnext">下拉显示更多...</p>
+
+</div>
+
 <!-- go back to top -->
-<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
+	<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
+	
 @endsection
 
 @section('footer-javascript')
@@ -1016,6 +1029,11 @@
 
 			var user_id = $('#hidUserId').val();
 
+			$('.profile-pic').click(function(){
+				window.location.href = '/profile';
+			});
+
+
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
 			});
@@ -1061,6 +1079,38 @@
                     $('#reset-life-share').modal();
                 });
             }
+
+            being.scrollBottom('.cardBody', '.box', () => {		
+            aler('dasds');	
+				page++;
+				var max_page = parseInt($('#max_page').val());
+				if(page > max_page) {
+					$('#page').val(page);
+					$(".isnext").html("@lang('dingsu.end_of_result')");
+					$('.isnext').css('padding-bottom', '50px');
+
+				}else{
+					getPosts(page);
+				}	
+			});
+
+            function getPosts(page){
+				$.ajax({
+					type: "GET",
+					url: window.location+"/?page"+page, 
+					data: { page: page },
+					beforeSend: function(){ 
+					},
+					complete: function(){ 
+					  $('#loading').remove
+					},
+					success: function(responce) { 
+						alert(response);
+
+						$('.list-2').append(responce.html);
+					}
+				 });
+			}
 
 
 		});
