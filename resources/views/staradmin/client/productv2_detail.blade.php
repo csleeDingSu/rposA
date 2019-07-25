@@ -26,11 +26,11 @@
 				<a class="dbox0 imgBox" href="#">
 					@php ($photourl = empty($item->product_picurl) ? null : $item->product_picurl)
 
-					@php ($extnjpg = substr($photourl, strpos($photourl,'.jpg')+strlen('.jpg'),strlen($photourl)))
+					@php ($photourl = str_replace('_310x310.jpg', '', $photourl))
 
-					@php ($newurl = substr($photourl,0,strpos($photourl,$extnjpg)))
+					@php ($photourl = str_replace('_160x160.jpg', '', $photourl))
 
-					<img src="{{$newurl}}">
+					<img src="{{$photourl}}">
 				</a>
 			</li>
 			<li class="dbox">
