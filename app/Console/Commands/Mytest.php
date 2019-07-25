@@ -132,6 +132,10 @@ class Mytest extends Command
 				
 				$this->info($url);
 				
+				$data = Excel::load($url, function($reader) {})->get();
+				$count = count($data);
+				$this->info('-- as');
+				
 				
 				Excel::load($url, function ($reader) {
 
@@ -144,7 +148,6 @@ class Mytest extends Command
 				
 				
 				die();
-				
 
 				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
 				$insdata = [];
