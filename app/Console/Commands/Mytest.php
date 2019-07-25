@@ -132,6 +132,10 @@ class Mytest extends Command
 				
 				$this->info($url);
 				
+				$rows = \Excel::load($url)->get();
+				Log::warning($rows);
+				
+				
 				$data = \Excel::load($url, function($reader) {})->get();
 				$count = count($data);
 				$this->info('-- as');
