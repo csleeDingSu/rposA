@@ -132,7 +132,7 @@ class Mytest extends Command
 				
 				$this->info($url);
 				
-				$data = Excel::load($url, function($reader) {})->get();
+				$data = \Excel::load($url, function($reader) {})->get();
 				$count = count($data);
 				$this->info('-- as');
 				
