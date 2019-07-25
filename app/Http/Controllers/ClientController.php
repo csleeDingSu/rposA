@@ -159,7 +159,7 @@ class ClientController extends BaseController
 		}
 
 		if ($request->ajax()) {
-    		$view = view('client.ajaxhome',compact('vouchers', 'setting'))->render();
+    		$view = view('client.productv2',compact('vouchers'))->render();
             return response()->json(['html'=>$view]);
         }
 
