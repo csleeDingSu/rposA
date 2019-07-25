@@ -100,9 +100,6 @@
 			<div class="frame-wrapper">
 				<div class="results-body">
 					<div class="results-wrapper">
-					<div class="timer-row">
-		        		历史开奖记录
-					</div>
 					<div class="results-row">
 						<div class="chain-wrapper results-left">
 							<div class="chain"></div>
@@ -178,6 +175,7 @@
 				  	<div class="results-row">
 				  		<div class="chain-wrapper results-left">
 				  			<div class="chain"></div>
+				  			<div class="left-chain"></div>
 				  		</div>
 				  		<div class="box-wrapper">
 							<div id="result-20" class="results-box"></div>
@@ -195,6 +193,28 @@
 							<div id="result-16" class="results-box"></div>
 						</div>
 						<div class="chain-wrapper results-right"></div>		
+				  	</div>
+
+				  	<div class="results-row">
+				  		<div class="chain-wrapper results-left">
+				  			<div class="chain"></div>
+				  		</div>
+				  		<div class="box-wrapper">
+							<div id="result-21" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-22" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-23" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-24" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-25" class="results-box"></div>
+						</div>
+						<div class="chain-wrapper results-right"></div>
 				  	</div>
 
 				  	<div class="legend-row">
@@ -254,9 +274,6 @@
 					<div class="history-wrapper">
 						<table class="history-table">
 						    <tbody>
-						    	<tr>
-						        	<td class="timer" colspan="2">猜数记录</td>
-						        </tr>
 						        <tr id="row-1">
 						            <td class="history-number"></td>
 						            <td class="history">
@@ -289,8 +306,13 @@
 						            <td class="history-number"></td>
 						            <td class="history"></td>
 						        </tr>
-						        <tr>
-						        	<td class="legend" colspan="2"></td>
+						        <tr id="row-8">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
+						        </tr>
+						        <tr id="row-9">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
 						        </tr>
 						    </tbody>
 						</table>
@@ -310,7 +332,10 @@
 	      <div class="col-xs-2">
 	      	
 		        <div class="bet-box">
-		        	<div data-level="1" class="button-bet-default">1</div>
+		        	<div data-level="1" class="button-bet-default">
+		        		<div class="bet_amount">1</div>
+		        		<div class="bet_status">起步</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
@@ -318,35 +343,50 @@
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div data-level="2" class="button-bet-default">3</div>
+		        	<div data-level="2" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>3</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div data-level="3" class="button-bet-default">7</div>
+		        	<div data-level="3" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>7</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border clicked-bet">
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div data-level="4" class="button-bet-default">15</div>
+		        	<div data-level="4" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>15</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div data-level="5" class="button-bet-default">31</div>
+		        	<div data-level="5" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>31</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div data-level="6" class="button-bet-default">63</div>
+		        	<div data-level="6" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>63</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
@@ -356,13 +396,13 @@
 	      <!-- button wrapper -->
 		<div class="button-wrapper">
 	        <div class="button-card radio-primary">
-	        	<div class="radio btn-rectangle">
+	        	<div class="radio btn-rectangle left-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="odd">
 					选择单数
 				</div>
 			  </div>
 			  <div class="button-card radio-primary right">
-				<div class="radio btn-rectangle">
+				<div class="radio btn-rectangle right-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="even">
 					选择双数
 				</div>

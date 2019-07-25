@@ -50,9 +50,20 @@ body{
     padding-top: 0.16rem;
     outline: none !important;
 	box-shadow: none;
-	cursor: pointer;
+	cursor: pointer;	
   /* other styles */
 }
+
+.left-rectangle {
+	text-align: left;
+	padding-left: 0.65rem;
+}
+
+.right-rectangle {
+	text-align: right;
+	padding-right: 0.65rem;
+}
+
 
 .btn-rectangle.clicked {
 	margin: 0 auto;
@@ -471,6 +482,7 @@ body{
 	width: 35px;
 }
 */
+
 .right {
 	float: right;
 }
