@@ -127,6 +127,20 @@ class Mytest extends Command
 				$array_data = [];
 				
 				$this->info($url);
+				
+				
+				Excel::load($url, function ($reader) {
+
+				 $reader->each(function($sheet) {    
+					 foreach ($sheet->toArray() as $row) {
+						$this->info(json_encode($row));
+					 }
+				 });
+			});
+				
+				
+				die();
+				
 
 				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
 				$insdata = [];
