@@ -133,7 +133,7 @@ class Mytest extends Command
 				$array_data = [];
 				
 				$this->info($url);
-				
+				/*
 				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
 				$this->info('-- as');
 				
@@ -156,6 +156,7 @@ class Mytest extends Command
 				
 				
 				die();
+				*/
 
 				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
 				$insdata = [];
