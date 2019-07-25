@@ -125,6 +125,8 @@ class Mytest extends Command
 				$path     = 'uploads/excel/'.$filename;
 				$url      = \Storage::url($path);
 				$array_data = [];
+				
+				$this->info($url);
 
 				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
 				$insdata = [];
