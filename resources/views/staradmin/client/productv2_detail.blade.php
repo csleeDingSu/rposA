@@ -24,7 +24,7 @@
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
-					<img src="<?=str_replace('_160x160.jpg', '', empty($item->product_picurl) ? 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg' : $item->product_picurl)?>">
+					<img src="<?=str_replace('_310x310.jpg', '', empty($item->product_picurl) ? 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg' : $item->product_picurl)?>">
 				</a>
 			</li>
 			<li class="dbox">
@@ -47,7 +47,7 @@
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="voucher-price">
-                		<span class="cur">￥<span class="price">{{empty($item->voucher_price) ? 99 : $item->voucher_price}}</span></span>
+                		<span class="cur">￥<span class="price">{{empty($item->voucher_price) ? 99 : number_format($item->voucher_price,2)}}</span></span>
                 		<div class="txt">优惠券</div>
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
@@ -57,7 +57,7 @@
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
-                		<span class="new-cur">￥<span class="price">{{empty($item->discount_price) ? 0 : $item->discount_price}}</span></span>
+                		<span class="new-cur">￥<span class="price">{{empty($item->discount_price) ? 0 : number_format($item->discount_price,2)}}</span></span>
                 		<div class="txt">到手价</div>
                 	</div>	
 				</div>
