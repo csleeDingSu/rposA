@@ -38,14 +38,15 @@
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
+<div class="cardBody">
+			<div class="box">
+
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
 		<div class="grid-container">
 			<div class="box">
-				<div class="profile-pic">
-					<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
-				</div>
+				
 				<div class="btn-calculate">
 					<div class="balance-banner">
 						<div class="spanAcuPoint2">
@@ -56,6 +57,9 @@
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
+				<div class="profile-pic">
+					<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
+				</div>
 			</div>
 
 			<div class="box" id="btn-vip-wrapper">
@@ -425,7 +429,7 @@
 	<p class="isnext">下拉显示更多...</p>
 
 </div>
-
+</div></div>
 <!-- go back to top -->
 	<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
 	
@@ -1073,7 +1077,7 @@
             }
 
             being.scrollBottom('.cardBody', '.box', () => {		
-            aler('dasds');	
+
 				page++;
 				var max_page = parseInt($('#max_page').val());
 				if(page > max_page) {
@@ -1086,26 +1090,27 @@
 				}	
 			});
 
-            function getPosts(page){
-				$.ajax({
-					type: "GET",
-					url: window.location+"/?page"+page, 
-					data: { page: page },
-					beforeSend: function(){ 
-					},
-					complete: function(){ 
-					  $('#loading').remove
-					},
-					success: function(responce) { 
-						alert(response);
-
-						$('.list-2').append(responce.html);
-					}
-				 });
-			}
-
-
 		});
+
+		$('ul.pagination').hide();
+		
+		var page=1;
+
+		function getPosts(page){
+			$.ajax({
+				type: "GET",
+				url: window.location+"/?page"+page, 
+				data: { page: page },
+				beforeSend: function(){ 
+				},
+				complete: function(){ 
+				  $('#loading').remove
+				},
+				success: function(responce) { 
+					$('.list-2').append(responce.html);
+				}
+			 });
+		}
 		
 
 	</script>
