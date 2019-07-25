@@ -125,6 +125,8 @@ class Mytest extends Command
 					die();
 				}				
 				$this->info('-- getting file from server');
+				
+				$filename = 'upv1547179877';
 				$filename = $filename.'.xls';
 				$path     = 'uploads/excel/'.$filename;
 				$url      = \Storage::url($path);
