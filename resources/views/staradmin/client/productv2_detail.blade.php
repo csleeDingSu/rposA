@@ -24,7 +24,13 @@
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
-					<img src="<?=str_replace('_310x310.jpg', '', empty($item->product_picurl) ? 'https://img.alicdn.com/bao/uploaded/i2/4204664043/O1CN01TCTohy1fjjnPv9Pte_!!0-item_pic.jpg' : $item->product_picurl)?>">
+					@php ($photourl = empty($item->product_picurl) ? null : $item->product_picurl)
+
+					@php ($extnjpg = substr($photourl, strpos($photourl,'.jpg')+strlen('.jpg'),strlen($photourl)))
+
+					@php ($newurl = substr($photourl,0,strpos($photourl,$extnjpg)))
+
+					<img src="{{$newurl}}">
 				</a>
 			</li>
 			<li class="dbox">
