@@ -52,7 +52,7 @@
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="draw-price">
-                		<span class="cur">￥<span class="price">	15</span></span>
+                		<span class="cur">￥<span class="price">	{{trim(empty($item->voucher_price) ? 15 : 15)}}</span></span>
                 		<div class="txt">抽奖补贴</div>
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
@@ -100,14 +100,14 @@
 			clipboard.on('success', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('margin-top', '1.02rem');
+				$('#btn-copy').css('margin-top', '0.95rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('margin-top', '1.02rem');
+				$('#btn-copy').css('margin-top', '0.95rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 

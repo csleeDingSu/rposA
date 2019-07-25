@@ -48,7 +48,8 @@
 		    font-size: 5vw;
 		    width: 1.3rem;
 		    position: absolute;
-		    padding: 0.05rem 0 0 0;
+		    padding: 0.1rem 0 0 0;
+		    text-align: right;
 		}
 
 		.infinite-scroll .normal-price .cur{
@@ -61,30 +62,29 @@
 
 		.infinite-scroll .normal-price .txt{
 			font-size: 3vw;
-		    text-align: right;
 		    margin-top: -0.15rem;
-	        padding-right: 0.15rem;
+            padding: 0.05rem 0.15rem 0 0;
 		}
 
 		.infinite-scroll .normal-price-icon-minus {
 			margin-left: 1.6rem;
 		    position: absolute;
 		    height: 20px;
-		    margin-top: 0.25rem;
+		    margin-top: 0.3rem;
 		}
 
 		.infinite-scroll .voucher-price-icon-minus {
 			position: absolute;
-    		margin-left: 3.4rem;
+    		margin-left: 3.3rem;
     		height: 20px;
-		    margin-top: 0.25rem;
+		    margin-top: 0.3rem;
 		}
 
 		.infinite-scroll .new-price-icon-equal {
 			position: absolute;
-    		margin-left: 5.25rem;
+    		margin-left: 5.1rem;
 		    height: 20px;
-		    margin-top: 0.25rem;
+		    margin-top: 0.3rem;
 		}
 
 		.infinite-scroll .voucher-price {
@@ -95,9 +95,9 @@
 		    position: absolute;
 		    border: 1px dashed #8c36d9;
 		    border-radius: 5px;
-		    margin-left: 2.1rem;
-		    text-align: center;
-		    padding: 0.05rem;
+		    margin-left: 1.95rem;
+		    text-align: right;
+		    padding: 0.1rem;
 		}
 
 		.infinite-scroll .voucher-price .cur{
@@ -110,8 +110,8 @@
 
 		.infinite-scroll .voucher-price .txt{
 			font-size: 3vw;
-		    text-align: center;
 		    margin-top: 0rem;
+    		padding: 0 0 0 0.15rem;
 		}
 
 		.infinite-scroll .draw-price {
@@ -122,9 +122,9 @@
 		    position: absolute;
 		    border: 1px dashed red;
 		    border-radius: 5px;
-		    margin-left: 3.9rem;
-		    text-align: center;
-		    padding: 0.05rem;
+		    margin-left: 3.7rem;
+		    text-align: right;
+		    padding: 0.1rem;
 		}
 
 		.infinite-scroll .draw-price .cur{
@@ -145,9 +145,8 @@
 		    font-size: 7vw;
 		    width: 1.7rem;
 		    position: absolute;
-		    margin-left: 5.7rem;
-		    text-align: center;
-		    /* padding: 0.05rem; */
+		    margin-left: 5.1rem;
+		    text-align: right;
 		}
 
 		.infinite-scroll .new-price .new-cur{
@@ -159,19 +158,15 @@
 		}
 
 		.infinite-scroll .new-price .txt{
-			font-size: 3vw;
-		     padding-right: 1.6vw; 
+			font-size: 3vw; 
 		    margin-top: -0.1rem;
-		    text-align: right;
-	        padding-right: 0.23rem;
-
 		}
 
 	.caption_redeem_angpao {
 	 /*position: relative !important;*/
 	 /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
 	 /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
-	 padding-left: 3.7rem !important;
+	 padding-left: 3.5rem !important;
 	}
 
 	.caption_redeem_angpao img {
@@ -180,7 +175,7 @@
 	}
 
 	.caption_redeem_angpao span {
-	 /*padding-top: 0.06rem !important;*/
+	 padding-top: 0.07rem !important;
 	 width: 1.65rem !important;
 	}
 
