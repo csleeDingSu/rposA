@@ -43,7 +43,7 @@
 			<div class="box">
 				<div class="btn-calculate">
 					<div class="balance-banner">
-						<div class="profile-pic"><img class="profile-img-circle" src="{{ $member->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp; </div>
+						<div class="profile-pic"><img class="profile-img-circle" src="/client/images/avatar.png"> &nbsp; </div>
 						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0</span>元
