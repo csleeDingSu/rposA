@@ -3,7 +3,7 @@
     margin: auto;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 0.32rem;
-    background: white;
+    background: transparent;
     border-radius: 0.12rem;
 }
 
@@ -14,7 +14,7 @@
 .history-table {
     border-collapse: separate;
     border-spacing: 0.1rem;
-    margin: 0 auto;
+    margin: 0.35rem auto 0 auto;
     padding: 0 0.1rem;
 }
 
@@ -31,7 +31,6 @@
 }
 
 td.history {
-    width: 3.8rem;
     font-size: 0.22rem;
     color: #333;
     text-align: left;

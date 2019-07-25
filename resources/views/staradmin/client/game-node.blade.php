@@ -23,6 +23,8 @@
 		    top: 25%;
 		}
 
+		.isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
+
     </style>
 @endsection
     	
@@ -36,15 +38,17 @@
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
+<div class="cardBody">
+			<div class="box">
+
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
 		<div class="grid-container">
 			<div class="box">
+				
 				<div class="btn-calculate">
 					<div class="balance-banner">
-						<div class="profile-pic"><img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp; </div>
-						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0</span>元
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
@@ -53,6 +57,9 @@
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
+				<div class="profile-pic">
+					<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
+				</div>
 			</div>
 
 			<div class="box" id="btn-vip-wrapper">
@@ -97,9 +104,6 @@
 			<div class="frame-wrapper">
 				<div class="results-body">
 					<div class="results-wrapper">
-					<div class="timer-row">
-		        		历史开奖记录
-					</div>
 					<div class="results-row">
 						<div class="chain-wrapper results-left">
 							<div class="chain"></div>
@@ -175,6 +179,7 @@
 				  	<div class="results-row">
 				  		<div class="chain-wrapper results-left">
 				  			<div class="chain"></div>
+				  			<div class="left-chain"></div>
 				  		</div>
 				  		<div class="box-wrapper">
 							<div id="result-20" class="results-box"></div>
@@ -194,8 +199,26 @@
 						<div class="chain-wrapper results-right"></div>		
 				  	</div>
 
-				  	<div class="legend-row">
-				  		开奖结果从下往上，最新结果在最上面
+				  	<div class="results-row">
+				  		<div class="chain-wrapper results-left">
+				  			<div class="chain"></div>
+				  		</div>
+				  		<div class="box-wrapper">
+							<div id="result-21" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-22" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-23" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-24" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-25" class="results-box"></div>
+						</div>
+						<div class="chain-wrapper results-right"></div>
 				  	</div>
 				  </div>
 				</div>
@@ -251,9 +274,6 @@
 					<div class="history-wrapper">
 						<table class="history-table">
 						    <tbody>
-						    	<tr>
-						        	<td class="timer" colspan="2">猜数记录</td>
-						        </tr>
 						        <tr id="row-1">
 						            <td class="history-number"></td>
 						            <td class="history">
@@ -286,8 +306,9 @@
 						            <td class="history-number"></td>
 						            <td class="history"></td>
 						        </tr>
-						        <tr>
-						        	<td class="legend" colspan="2"></td>
+						        <tr id="row-8">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
 						        </tr>
 						    </tbody>
 						</table>
@@ -307,7 +328,10 @@
 	      <div class="col-xs-2">
 	      	
 		        <div class="bet-box">
-		        	<div data-level="1" class="button-bet-default">1</div>
+		        	<div data-level="1" class="button-bet-default">
+		        		<div class="bet_amount">1</div>
+		        		<div class="bet_status">起步</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
@@ -315,35 +339,50 @@
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div data-level="2" class="button-bet-default">3</div>
+		        	<div data-level="2" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>3</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div data-level="3" class="button-bet-default">7</div>
+		        	<div data-level="3" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>7</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border clicked-bet">
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div data-level="4" class="button-bet-default">15</div>
+		        	<div data-level="4" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>15</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div data-level="5" class="button-bet-default">31</div>
+		        	<div data-level="5" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>31</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div data-level="6" class="button-bet-default">63</div>
+		        	<div data-level="6" class="button-bet-default">
+		        		<div class="bet_amount"><span class="multiply">x</span>63</div>
+		        		<div class="bet_status">加倍</div>
+		        	</div>
 		        	<div class="circle-border">
 		        	</div>
 		        </div>
@@ -353,18 +392,19 @@
 	      <!-- button wrapper -->
 		<div class="button-wrapper">
 	        <div class="button-card radio-primary">
-	        	<div class="radio btn-rectangle">
+	        	<div class="radio btn-rectangle left-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="odd">
 					选择单数
 				</div>
 			  </div>
 			  <div class="button-card radio-primary right">
-				<div class="radio btn-rectangle">
+				<div class="radio btn-rectangle right-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="even">
 					选择双数
 				</div>
 			  </div>
 			  <div class="btn-trigger"></div>
+			  <div class="DB_G_hand"></div>
 		</div>
 		<!-- end button wrapper -->
 		<div style="clear: both;"></div>
@@ -380,9 +420,19 @@
 	
 </div>
 {{-- @include('client.product') --}}
-@include('client.productv2')
+<div class="infinite-scroll">
+	<ul class="list-2">								
+			@include('client.productv2')
+	</ul>
+	{{ $vouchers->links() }}
+	
+	<p class="isnext">下拉显示更多...</p>
+
+</div>
+</div></div>
 <!-- go back to top -->
-<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
+	<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
+	
 @endsection
 
 @section('footer-javascript')
@@ -975,6 +1025,11 @@
 
 			var user_id = $('#hidUserId').val();
 
+			$('.profile-pic').click(function(){
+				window.location.href = '/profile';
+			});
+
+
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
 			});
@@ -1021,8 +1076,41 @@
                 });
             }
 
+            being.scrollBottom('.cardBody', '.box', () => {		
+
+				page++;
+				var max_page = parseInt($('#max_page').val());
+				if(page > max_page) {
+					$('#page').val(page);
+					$(".isnext").html("@lang('dingsu.end_of_result')");
+					$('.isnext').css('padding-bottom', '50px');
+
+				}else{
+					getPosts(page);
+				}	
+			});
 
 		});
+
+		$('ul.pagination').hide();
+		
+		var page=1;
+
+		function getPosts(page){
+			$.ajax({
+				type: "GET",
+				url: window.location+"/?page"+page, 
+				data: { page: page },
+				beforeSend: function(){ 
+				},
+				complete: function(){ 
+				  $('#loading').remove
+				},
+				success: function(responce) { 
+					$('.list-2').append(responce.html);
+				}
+			 });
+		}
 		
 
 	</script>

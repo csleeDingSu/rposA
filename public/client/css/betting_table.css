@@ -53,10 +53,25 @@
     width: 100%;
     height: 100%;
 	color: #cc7816;
-	font-size: 0.36rem;
-	padding-top: 0.22rem;
 	position: relative;
 	z-index: 0;
+}
+
+.bet_amount {
+	padding-top: 0.22rem;
+	font-size: 0.3rem;
+	line-height: 0.3rem;
+}
+
+.bet_status {
+	padding-top: 0.02rem;
+	font-size: 0.2rem;
+	line-height: 0.2rem;
+}
+
+.multiply {
+	font-size: 0.25rem;
+	display: inline-block;
 }
 
 .button-bet {
@@ -72,8 +87,6 @@
 }
 
 .button-bet-active {
-	font-size: 0.42rem;
-	padding-top: 0.20rem;
 	cursor: pointer;
 }
 
@@ -226,7 +239,7 @@
   position: absolute;
   top: -0.05rem;
   left: -0.05rem;
-  box-shadow: 0 0 0.16rem #3ff9dc, inset 0 0 0.16rem #3ff9dc;
+  box-shadow: 0 0 0.5rem #ecdbf9, inset 0 0 0.16rem #ecdbf9;
 }
 
 .clicked-button-bet {

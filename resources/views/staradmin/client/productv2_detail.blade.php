@@ -42,26 +42,22 @@
 						<img src="{{ asset('/client/images/productv2_detail_caption.png') }}" />
 					</div>
 					<div class="normal-price">
-						<span class="cur">￥</span>
-						{{empty($item->product_price) ? 99 : $item->product_price}}
+						<span class="cur">￥<span class="price">{{empty($item->product_price) ? 99 : $item->product_price}}</span></span>
 						<div class="txt">原价</div>
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="voucher-price">
-                		<span class="cur">￥</span>
-                		{{empty($item->voucher_price) ? 99 : $item->voucher_price}}
+                		<span class="cur">￥<span class="price">{{empty($item->voucher_price) ? 99 : $item->voucher_price}}</span></span>
                 		<div class="txt">优惠券</div>
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="draw-price">
-                		<span class="cur">￥</span>
-                		15
+                		<span class="cur">￥<span class="price">	{{trim(empty($item->voucher_price) ? 15 : 15)}}</span></span>
                 		<div class="txt">抽奖补贴</div>
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
-                		<span class="new-cur">￥</span>
-                		{{empty($item->discount_price) ? 0 : $item->discount_price}}
+                		<span class="new-cur">￥<span class="price">{{empty($item->discount_price) ? 0 : $item->discount_price}}</span></span>
                 		<div class="txt">到手价</div>
                 	</div>	
 				</div>
@@ -72,7 +68,7 @@
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						<a href="/arcade">
-							<div id="btn-voucher" class="freeVoucherBtn"><span>马上抽奖</span></div>
+							<div id="btn-voucher" class="btn-voucher">马上抽奖</div>
 						</a>
 					</div>
 				
@@ -104,14 +100,14 @@
 			clipboard.on('success', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('padding-top', '1.25rem');
+				$('#btn-copy').css('margin-top', '0.95rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('padding-top', '1.25rem');
+				$('#btn-copy').css('margin-top', '0.95rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 

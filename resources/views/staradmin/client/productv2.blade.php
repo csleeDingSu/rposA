@@ -1,6 +1,5 @@
 @if (!empty($vouchers))
 
- <section class="card-flex product_section">
     @php ($t = 0)
     @foreach($vouchers as $v)
         @php ($t += 1)
@@ -69,6 +68,5 @@
                 </div>
             </div>
         @endif
-    @endforeach              
-</section>
+    @endforeach 
 @endif
