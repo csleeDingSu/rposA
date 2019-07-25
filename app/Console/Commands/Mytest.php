@@ -134,7 +134,7 @@ class Mytest extends Command
 				
 				$this->info($url);
 				
-				$rows = \Excel::load($url)->get();
+				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
 				$this->info('-- as');
 				
 				$rows = \Excel::load($url)->get();
