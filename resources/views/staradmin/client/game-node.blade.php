@@ -216,10 +216,6 @@
 						</div>
 						<div class="chain-wrapper results-right"></div>
 				  	</div>
-
-				  	<div class="legend-row">
-				  		开奖结果从下往上，最新结果在最上面
-				  	</div>
 				  </div>
 				</div>
 			</div>
@@ -307,10 +303,6 @@
 						            <td class="history"></td>
 						        </tr>
 						        <tr id="row-8">
-						            <td class="history-number"></td>
-						            <td class="history"></td>
-						        </tr>
-						        <tr id="row-9">
 						            <td class="history-number"></td>
 						            <td class="history"></td>
 						        </tr>
