@@ -104,14 +104,14 @@
 			clipboard.on('success', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('padding-top', '1.25rem');
+				$('#btn-copy').css('margin-top', '1.02rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('padding-top', '1.25rem');
+				$('#btn-copy').css('margin-top', '1.02rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
