@@ -128,6 +128,7 @@
 						  	</div>
 
 
+
 						  	<div class="results-row">
 						  		<div class="chain-wrapper results-left">
 						  			<div class="chain"></div>
@@ -203,6 +204,7 @@
 						  </div>
 						</div>
 					</div>
+
 				</div>
 
 				<div class="carousel-cell">
@@ -247,7 +249,6 @@
 						<div id="txtCounter" class="middle-label">选择单双</div>
 				    </div>
 				</div>
-
 				<div class="carousel-cell">
 					<div class="frame-wrapper">
 						<div class="history-body">
@@ -378,6 +379,7 @@
 			    </article>
 		    </section>
 			<!-- end progress bar -->
+
 
 		</div>
 		<section class="card-flex product_section">

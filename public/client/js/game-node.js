@@ -16,6 +16,7 @@ var result_records = null; //game history
 var latest_result = null; //latest result
 var last_bet = null;
 var g_life = 0;
+var consecutive_lose = null;
 
 $(function () {
 
@@ -63,7 +64,7 @@ function updateResult(records){
     var str_result = '单数';
 
     var length = Object.keys(records).length;
-    var maxCount = 20;
+    var maxCount = 25;
 
     if(length < maxCount){
         maxCount = parseInt(length);
@@ -166,7 +167,7 @@ function initUser(records){
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
         $('#hidBalance').val(balance);
-        $(".nTxt").html(life);
+        $("#nTxt").val(life);
         $(".spanLife").html(life);
         $(".span-play-count").html(play_count);
 
@@ -183,7 +184,7 @@ function initUser(records){
 
 function initGame(data, level, latest_result, consecutive_lose){
 try {
- 
+	
     var user_id = $('#hidUserId').val();
     trigger = false;
 
@@ -195,14 +196,13 @@ try {
         var level = level.position;
         var previous_result = 1;
         var consecutive_lose = consecutive_lose;
-        var life = $(".nTxt").html();
+        var life = $("#nTxt").val();
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
-
         if(latest_result.length > 0){
             previous_result = latest_result[0].result;
-            $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+previous_result+'</div>');
+            $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+previous_result+'</div>');
         }
 
         $( ".button-bet-default" ).each(function() {
@@ -215,11 +215,18 @@ try {
             if($( this ).attr('data-level') < level){
                 $( this ).addClass( "button-bet-inactive" );
                 $( this ).unbind( "click" );
+                $( this ).find('.bet_status').html('失败');
 
             } else if($( this ).attr('data-level') == level){
                 $( this ).next().addClass('circle-border').show();
                 $( this ).addClass( "button-bet-active" );
                 $( this ).unbind( "click" );
+
+                if(level == 1)
+                    $( this ).find('.bet_status').html('起步');
+                else
+                    $( this ).find('.bet_status').html('加倍');
+
                 $( ".circle-border" ).click(function(){
 
                     if(g_life == 0){
@@ -231,16 +238,20 @@ try {
 
                         var selected = $('div.clicked').find('input:radio').val();
                         if (typeof selected == 'undefined'){
-                            $('.middle-label').html('选择单双');
+                            //$('.middle-label').html('选择单双');
+                            $('.span-odd').html('请选单双').show();
+                            $('.span-even').html('请选单双').show();
+                            $('.shan div').addClass('clicked');
                         } else {
-                            $('.middle-label').html('开始抽奖');
+                            //$('.middle-label').html('开始抽奖');
                         }
                         
                         $('#btnPointer').addClass('ready');
-                        showPayoutBet();
+                        showPayout();
                     }
                 });
             } else {
+                $( this ).find('.bet_status').html('加倍');
                 var suggestion_bet = 1;
                 switch (level){
 
@@ -294,6 +305,9 @@ try {
         $('#hidConsecutiveLose').val(consecutive_lose);
 
         $('.barBox').find('li').removeClass('on');
+	
+		console.log('consecutive_lose'+consecutive_lose);
+		console.log('life'+g_life);
 
         if (consecutive_lose == 'yes' && life > 0) {
             bindResetLifeButton();
@@ -443,6 +457,7 @@ function startGame() {
             latest_result = data.record.bettinghistory.data;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
+			console.log('consecutive_lose:'+consecutive_lose);
             initGame(game_records, level, latest_result, consecutive_lose);
 
             
@@ -479,6 +494,8 @@ function resetGame() {
     $('.radio-primary').unbind('click');
     $('.small-border').removeClass('fast-rotate');
 
+    $('.shan span').hide();
+    $('.shan div').removeClass('clicked');
     startGame();
 }
 
@@ -520,14 +537,17 @@ function checkSelection() {
     if($('#btnPointer').hasClass('ready')){
         var selected = $('div.clicked').find('input:radio').val();
         if (typeof selected == 'undefined'){
-            $('.middle-label').html('选择单双');
+            $('.span-odd').html('请选单双').show();
+            $('.span-even').html('请选单双').show();
+            $('.shan div').addClass('clicked');
+
             $('.spinning').html('请选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
              $('.spinning').css('visibility', 'visible');
             setTimeout(function(){ 
                 $('.spinning').css('visibility', 'hidden');
             }, 3000);
         } else {
-            $('.middle-label').html('正在抽奖');
+            //$('.middle-label').html('正在抽奖');
             $('.DB_G_hand').hide();
             $('.radio-primary').unbind('click');
             $('.btn-trigger').unbind('click');
@@ -535,7 +555,11 @@ function checkSelection() {
             startTimer(5, 5, 1);
         }
     } else {
-        $('.middle-label').html('选择金币');
+        //$('.middle-label').html('选择金币');
+        $('.span-odd').html('请选金币').show();
+        $('.span-even').html('请选金币').show();
+        $('.shan div').addClass('clicked');
+
         $('.spinning').html('请选择金币<br />再点击“开始抽奖”进行抽奖');
         $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
@@ -594,7 +618,7 @@ function bindBetButton(){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
-        var life = $(".nTxt").html();
+        var life = $("#nTxt").val();
         var acupoint = parseInt($('.spanAcuPoint').html());
         var draw_id = $('#draw_id').val();
         var consecutive_lose = $('#hidConsecutiveLose').val();
@@ -657,36 +681,13 @@ function showPayout(){
     var newtotalbalance = total_balance - bet_amount;
     var bet_count = $('#hidbetting_count').val();
 
-    switch (level) {
-        case 1:
-            previous_bet = 0;
-        break;
-
-        case 2:
-            previous_bet = 1;
-        break;
-
-        case 3:
-            previous_bet = 3;
-        break;
-
-        case 4:
-            previous_bet = 7;
-        break;
-
-        case 5:
-            previous_bet = 15;
-        break;
-
-        case 6:
-            previous_bet = 31;
-        break;
-
-    }
 
         if (typeof selected == 'undefined'){
 
-            $('.middle-label').html('选择单双');
+            //$('.middle-label').html('选择单双');
+            $('.span-odd').removeClass('ready lose').html('请选单双').show();
+            $('.span-even').removeClass('ready lose').html('请选单双').show();
+            $('.shan div').addClass('clicked');
 
             if(bet_count == 0){
                 $('.selection').show();
@@ -699,9 +700,6 @@ function showPayout(){
             $('#spanPoint').html(total_balance);
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
-
-            $('.odd-sign').html('');
-            $('.even-sign').html('');
 
             
             // $.ajax({
@@ -722,10 +720,29 @@ function showPayout(){
 
         } else {
 
-            if($('#btnPointer').hasClass('ready')){
-                $('.middle-label').html('开始抽奖');
+            if(selected == 'odd'){
+                $('.div-odd').removeClass('lose');
+                $('.div-even').addClass('lose');
             } else {
-                $('.middle-label').html('选择金币');
+                $('.div-odd').addClass('lose');
+                $('.div-even').removeClass('lose');
+            }
+
+            if($('#btnPointer').hasClass('ready')){
+                //$('.middle-label').html('开始抽奖');
+                if(selected == 'odd'){
+                    $('.span-odd').removeClass('lose').addClass('ready').html('+'+bet_amount);
+                    $('.span-even').addClass('ready lose').html('-'+bet_amount);
+                } else {
+                    $('.span-odd').addClass('ready lose').html('-'+bet_amount);
+                    $('.span-even').removeClass('lose').addClass('ready').html('+'+bet_amount);
+                }
+            } else {
+                //$('.middle-label').html('选择金币');
+                $('.span-odd').removeClass('ready lose').html('请选金币').show();
+                $('.span-even').removeClass('ready lose').html('请选金币').show();
+                $('.shan div').addClass('clicked');
+
             }
 
             checked(level, true);
@@ -744,6 +761,7 @@ function showPayout(){
                 //$('#spanPoint').html(newtotalbalance);
                 $('.instruction').css('visibility', 'hidden');
 
+
                 if(selected == 'odd'){
                     $('.odd-sign').html('+');
                     $('.even-sign').html('-');
@@ -751,6 +769,8 @@ function showPayout(){
                     $('.odd-sign').html('-');
                     $('.even-sign').html('+');
                 }
+				
+
 
                 $.ajax({
                     type: 'GET',
@@ -778,42 +798,6 @@ function showPayout(){
         }
 
     
-}
-
-function showPayoutBet(){
-    var level = parseInt($('#hidLevel').val());
-
-    var bet_amount = parseInt($('#hidBet').val());
-
-    switch (level) {
-        case 1:
-            previous_bet = 0;
-        break;
-
-        case 2:
-            previous_bet = 1;
-        break;
-
-        case 3:
-            previous_bet = 3;
-        break;
-
-        case 4:
-            previous_bet = 7;
-        break;
-
-        case 5:
-            previous_bet = 15;
-        break;
-
-        case 6:
-            previous_bet = 31;
-        break;
-
-    }
-
-    $('.odd-payout').html(bet_amount);
-    $('.even-payout').html(bet_amount);
 }
 
 function bindCalculateButton(){
@@ -1300,7 +1284,7 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
-        $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+result+'</div>');              
+        $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+result+'</div>');              
     
     }, (freeze_time - 1) * 1000);
 

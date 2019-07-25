@@ -335,6 +335,8 @@ class MemberLoginController extends Controller
 	{		
 		//\Auth::logout();
 		\Auth::guard('member')->logout();
+		
+		\Log::info(json_encode(['wechat auth' => $request->all()], true));
         
         $forceupdate = '';
 		$changephone = '';

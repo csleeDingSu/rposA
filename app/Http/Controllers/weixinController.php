@@ -80,10 +80,9 @@ class weixinController extends BaseController
     {        
         $agent = new WechatAgent;
         // $agent->is("Wechat");
+		if ($agent->is("Wechat")) {
 
-        if ($agent->is("Wechat")) {
-
-            $request = new Request;
+           // $request = new Request;
             $type = 'snsapi_userinfo'; 
             return $this->wx->index($request,$type,$domain);
 
@@ -230,7 +229,7 @@ class weixinController extends BaseController
 
     public function accessToWabao($data)
     {
-        $content = $data['content'];
+        $content = $data['result'];
         $domain = $data['domain'];
         $refcode = $data['refcode'];
 

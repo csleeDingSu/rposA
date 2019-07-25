@@ -1,0 +1,144 @@
+.results-body {
+    display: table;
+    margin: auto;
+    font-family: "Microsoft YaHei", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+    background: white;
+    border-radius: 6px;
+}
+
+.results-wrapper {
+    display: table-cell;
+}
+
+div.timer-row {
+  font-size: 17px;
+  color: #333;
+  padding: 12px 0;
+}
+
+div.legend-row {
+  font-size: 13px;
+  color: #666;
+  padding: 12px 0;
+}
+
+.results-row > div.box-wrapper {
+  float: left;
+  width: 55px;
+  height: 60px;
+}
+
+.results-row > div.chain-wrapper {
+  width: 20px;
+  float: left;
+  height: 60px;
+}
+
+.results-row > div.results-right {
+  margin-left: 0px;
+}
+
+.results-row > div.results-left {
+  margin-left: 0px;
+}
+
+.results-box {
+  width: 50px;
+  height: 50px;
+  font-size: 14px;
+  color: #fb973f;
+  border-radius: 40px;
+  border: 1px solid #e1e1e1;
+  background: #fff;
+  z-index: 100;
+  position: relative;
+  padding-top: 4px;
+}
+
+.results-box div {
+  font-size: 10px;
+  margin-top: -2px;
+}
+
+.odd-box {
+  color: #fb973f;
+  border: 1px solid #fb973f;
+}
+
+.even-box {
+  color: #b77eff;
+  border: 1px solid #b77eff;
+}
+
+.chain {
+  width: 230px;
+  height: 4px;
+  background: #f0f0f0;
+  position: relative;
+  margin-left: 40px;
+  margin-top: 23px;
+  z-index: 0;
+}
+
+.right-chain {
+  margin-top: 40px;
+  margin-left: -32px;
+  width: 4px;
+  height: 20px;
+  background: #f0f0f0;
+}
+
+.left-chain {
+  margin-top: 16px;
+  margin-left: 43px;
+  width: 4px;
+  height: 20px;
+  background: #f0f0f0;
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (max-width: 360px) {
+    .results-row > div.box-wrapper {
+      width: 45px;
+      height: 50px;
+    }
+
+    .results-row > div.results-right {
+      margin-left: 0px;
+    }
+
+    .results-row > div.results-left {
+      margin-left: 0px;
+    }
+
+    .results-box {
+      font-size: 14px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .results-box div {
+      font-size: 8px;
+      margin-top: -4px;
+    }
+
+    .results-row > div.chain-wrapper {
+      height: 50px;
+    }
+
+    .right-chain {
+      margin-top: 40px;
+      margin-left: -27px;
+    }
+
+    .left-chain {
+      margin-top: 10px;
+      margin-left: 38px;
+    }
+
+    .chain {
+      margin-top: 20px;
+      width: 180px;
+      height: 4px;
+    }
+}
