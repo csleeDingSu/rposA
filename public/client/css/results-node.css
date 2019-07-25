@@ -1,6 +1,6 @@
 .results-body {
     display: table;
-    margin: auto;
+    margin: 0.35rem auto 0 auto;
     font-family: "Microsoft YaHei", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
     background: transparent;
     border-radius: 0.12rem;
