@@ -134,7 +134,7 @@ class Mytest extends Command
 				
 				$this->info($url);
 				
-				$rows = Excel::load($url)->get();
+				$rows = \Excel::load($url)->get();
 				$this->info('-- as');
 				
 				$rows = \Excel::load($url)->get();
