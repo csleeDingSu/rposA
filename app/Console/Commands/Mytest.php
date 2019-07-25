@@ -120,7 +120,7 @@ class Mytest extends Command
 				//	$cron->save();
 					die();
 				}				
-
+				$this->info('-- getting file from server');
 				$filename = $filename.'.xls';
 				$path     = 'uploads/excel/'.$filename;
 				$url      = \Storage::url($path);
@@ -129,6 +129,7 @@ class Mytest extends Command
 				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
 				$insdata = [];
 				$count = count($tdata);
+				$this->info('-- processing file');
 
 				if ($count > 0) {			
 					$arrayhead = $tdata[0];
