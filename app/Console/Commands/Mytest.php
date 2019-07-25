@@ -7,6 +7,10 @@ use App\Http\Controllers\TestController;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Voucher;
+
+use Excel;
+
+
 class Mytest extends Command
 {
     /**
