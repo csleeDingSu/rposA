@@ -145,7 +145,7 @@ class ClientController extends BaseController
 			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
 			->groupBy('vouchers.id')
 			->orderby('vouchers.id','DESC')
-			->paginate(10);
+			->paginate(6);
 
 			//$vouchers = Voucher::get_vouchers($cid)->paginate(5);
 			//pagination already have the count data so no need to call again
@@ -153,13 +153,15 @@ class ClientController extends BaseController
 			
 		}
 		else{
-			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->paginate(10);
+			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->paginate(6);
 			
 		}
 
 		if ($request->ajax()) {
+			\Log::warning('get vouchers 2nd page');
     		$view = view('client.productv2',compact('vouchers'))->render();
             return response()->json(['html'=>$view]);
+            // return view('client/game-node', compact('vouchers'));
         }
 
         // $category = Category::where('parent_id', 0)->orderby('position','ASC')->get();

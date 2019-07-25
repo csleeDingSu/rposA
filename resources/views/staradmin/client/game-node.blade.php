@@ -32,368 +32,369 @@
 @endsection
 
 @section('content')
-<a name="top"></a>
-
 <div class="loading"></div>
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
-<div class="full-height">
-	<!-- information table -->
-	<div class="information-table">
-		<div class="grid-container">
-			<div class="box">
-				<div class="profile-pic">
-					<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
-				</div>
-				<div class="btn-calculate">
-					<div class="balance-banner">
-						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0</span>元
-							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
+<div class="cardBody">
+	<div class="box">
+		<a name="top"></a>
+		<div class="full-height">
+			<!-- information table -->
+			<div class="information-table">
+				<div class="grid-container">
+					<div class="box">				
+						<div class="btn-calculate">
+							<div class="balance-banner">
+								<div class="spanAcuPoint2">
+									<span class="spanAcuPointAndBalance">0</span>元
+									<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
+								</div>
+								<div class="btn-redeemcash">抽奖规则</div>
+							</div>
 						</div>
-						<div class="btn-redeemcash">抽奖规则</div>
+						<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
+						<div class="profile-pic">
+							<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
+						</div>
+					</div>
+
+					<div class="box" id="btn-vip-wrapper">
+						<a href="/profile">
+							<img class="icon-wheel-corner" src="{{ asset('/client/images/wheel/icon-wheel-corner.png') }}" />
+							<div class="btn-life">剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+							</div>
+							<img class="icon-arrow-next" src="{{ asset('/client/images/wheel/icon-arrow-next.png') }}" />
+							<div style="clear:both"></div>
+						</a>
+					</div>
+					
+					<input id="result" type="hidden" value="6">
+				    <input id="freeze_time" type="hidden" value="">
+				    <input id="draw_id" type="hidden" value="">
+					<input id="hidTotalBalance" type="hidden" value="" />
+					<input id="hidBalance" type="hidden" value="" />
+					<input id="hidLevel" type="hidden" value="" />
+					<input id="hidLevelId" type="hidden" value="" />
+					<input id="hidLatestResult" type="hidden" value="" />
+					<input id="hidConsecutiveLose" type="hidden" value="" />
+					<input id="hidHall" type="hidden" value="" />
+					<input id="hidBet" type="hidden" value="" />
+					<input id="hidLastBet" type="hidden" value="" />
+					<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
+					<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
+					<input id="hidWechatId" type="hidden" value="0" />
+					<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
+					<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+					<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
+					<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
+					<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
+			  	</div>
+
+			</div>
+			<!-- end information table -->
+
+			<!-- swiper iframe -->
+			<div class="swiper-container">
+				<div class="carousel-cell">
+					<div class="frame-wrapper">
+						<div class="results-body">
+							<div class="results-wrapper">
+							<div class="timer-row">
+				        		历史开奖记录
+							</div>
+							<div class="results-row">
+								<div class="chain-wrapper results-left">
+									<div class="chain"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-1" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-2" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-3" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-4" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-5" class="results-box"></div>
+								</div>
+								<div class="chain-wrapper results-right">
+									<div class="right-chain"></div>
+								</div>
+						  	</div>
+
+
+						  	<div class="results-row">
+						  		<div class="chain-wrapper results-left">
+						  			<div class="chain"></div>
+						  			<div class="left-chain"></div>
+						  		</div>
+						  		<div class="box-wrapper">
+									<div id="result-10" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-9" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-8" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-7" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-6" class="results-box"></div>
+								</div>
+								<div class="chain-wrapper results-right"></div>
+						  	</div>
+
+						  	<div class="results-row">
+						  		<div class="chain-wrapper results-left">
+						  			<div class="chain"></div>
+						  		</div>
+						  		<div class="box-wrapper">
+									<div id="result-11" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-12" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-13" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-14" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-15" class="results-box"></div>
+								</div>
+								<div class="chain-wrapper results-right">
+									<div class="right-chain results-right"></div>
+								</div>
+						  	</div>
+
+						  	<div class="results-row">
+						  		<div class="chain-wrapper results-left">
+						  			<div class="chain"></div>
+						  		</div>
+						  		<div class="box-wrapper">
+									<div id="result-20" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-19" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-18" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-17" class="results-box"></div>
+								</div>
+								<div class="box-wrapper">
+									<div id="result-16" class="results-box"></div>
+								</div>
+								<div class="chain-wrapper results-right"></div>		
+						  	</div>
+
+						  	<div class="legend-row">
+						  		开奖结果从下往上，最新结果在最上面
+						  	</div>
+						  </div>
+						</div>
 					</div>
 				</div>
-				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
-			</div>
 
-			<div class="box" id="btn-vip-wrapper">
-				<a href="/profile">
-					<img class="icon-wheel-corner" src="{{ asset('/client/images/wheel/icon-wheel-corner.png') }}" />
-					<div class="btn-life">剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+				<div class="carousel-cell">
+					<div class="frame-wrapper">
+						<div id="wheel_banner">
+							<img src="{{ asset('/client/images/wheel/banner.png') }}" />
+						</div>
+						<div id="wheel_container" class="big-border">
+							<div class="small-border g6">
+
+								<div class="shan">
+									<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>金币</span>
+									<div class="div-odd">单数 <span class="odd-number">1</span></div>
+								</div>
+
+								<div class="shan">
+									<span class="span-even">0金币</span>
+									<div class="div-even">双数 <span class="even-number">2</span></div>
+								</div>
+
+								<div class="shan">
+									<span class="span-odd">0金币</span>
+									<div class="div-odd">单数 <span class="odd-number">3</span></div>
+								</div>
+
+								<div class="shan">
+									<span class="span-even">0金币</span>
+									<div class="div-even">双数 <span class="even-number">4</span></div>
+								</div>
+								
+								<div class="shan">
+									<span class="span-odd">0金币</span>
+									<div class="div-odd">单数 <span class="odd-number">5</span></div>
+								</div>
+
+								<div class="shan">
+									<span class="span-even">0金币</span>
+									<div class="div-even">双数 <span class="even-number">6</span></div>
+								</div>						
+							</div>
+						</div>
+						<div id="txtCounter" class="middle-label">选择单双</div>
+				    </div>
+				</div>
+
+				<div class="carousel-cell">
+					<div class="frame-wrapper">
+						<div class="history-body">
+							<div class="history-wrapper">
+								<table class="history-table">
+								    <tbody>
+								    	<tr>
+								        	<td class="timer" colspan="2">猜数记录</td>
+								        </tr>
+								        <tr id="row-1">
+								            <td class="history-number"></td>
+								            <td class="history">
+								            	<!--div class="points">630 <span class="additional">+40</span></div-->
+									        </td>
+								        </tr>
+								        <tr id="row-2">
+								            <td class="history-number"></td>
+								            <td class="history">
+								            </td>
+								        </tr>
+								        <tr id="row-3">
+								            <td class="history-number"></td>
+								            <td class="history">
+								            </td>
+								        </tr>
+								        <tr id="row-4">
+								            <td class="history-number"></td>
+								            <td class="history"></td>
+								        </tr>
+								        <tr id="row-5">
+								            <td class="history-number"></td>
+								            <td class="history"></td>
+								        </tr>
+								        <tr id="row-6">
+								            <td class="history-number"></td>
+								            <td class="history"></td>
+								        </tr>
+								        <tr id="row-7">
+								            <td class="history-number"></td>
+								            <td class="history"></td>
+								        </tr>
+								        <tr>
+								        	<td class="legend" colspan="2"></td>
+								        </tr>
+								    </tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-					<img class="icon-arrow-next" src="{{ asset('/client/images/wheel/icon-arrow-next.png') }}" />
-					<div style="clear:both"></div>
-				</a>
+				</div>
 			</div>
-			
-			<input id="result" type="hidden" value="6">
-		    <input id="freeze_time" type="hidden" value="">
-		    <input id="draw_id" type="hidden" value="">
-			<input id="hidTotalBalance" type="hidden" value="" />
-			<input id="hidBalance" type="hidden" value="" />
-			<input id="hidLevel" type="hidden" value="" />
-			<input id="hidLevelId" type="hidden" value="" />
-			<input id="hidLatestResult" type="hidden" value="" />
-			<input id="hidConsecutiveLose" type="hidden" value="" />
-			<input id="hidHall" type="hidden" value="" />
-			<input id="hidBet" type="hidden" value="" />
-			<input id="hidLastBet" type="hidden" value="" />
-			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
-			<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
-			<input id="hidWechatId" type="hidden" value="0" />
-			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
-			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
-			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
-			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
-			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
-	  	</div>
+			<!-- end swiper iframe -->
+			<div class="spinning">转盘转动中，请等待结果。</div>
+			<!--div class="instruction">请猜下一局幸运号是单数或双数</div-->
 
+			<!-- progress bar -->
+			<section class="barWrapper">
+		      	<article class="barBox">
+			      <div class="rule"></div>
+			      <div class="col-xs-2">
+			      	
+				        <div class="bet-box">
+				        	<div data-level="1" class="button-bet-default">1</div>
+				        	<div class="circle-border">
+				        	</div>
+				        </div>
+					
+				    </div>
+				    <div class="col-xs-2">
+				        <div class="bet-box">		        	
+				        	<div data-level="2" class="button-bet-default">3</div>
+				        	<div class="circle-border">
+				        	</div>
+				        </div>
+				    </div>
+				    <div class="col-xs-2">
+				        <div class="bet-box">
+				        	<div data-level="3" class="button-bet-default">7</div>
+				        	<div class="circle-border clicked-bet">
+				        	</div>
+				        </div>
+				    </div>
+				    <div class="col-xs-2">
+				        <div class="bet-box">		        	
+				        	<div data-level="4" class="button-bet-default">15</div>
+				        	<div class="circle-border">
+				        	</div>
+				        </div>
+				    </div>
+				    <div class="col-xs-2">
+				        <div class="bet-box">
+				        	<div data-level="5" class="button-bet-default">31</div>
+				        	<div class="circle-border">
+				        	</div>
+				        </div>
+				    </div>
+				    <div class="col-xs-2">
+				        <div class="bet-box">		        	
+				        	<div data-level="6" class="button-bet-default">63</div>
+				        	<div class="circle-border">
+				        	</div>
+				        </div>
+				    </div>
+				    <div style="clear: both;"></div>
+
+			      <!-- button wrapper -->
+				<div class="button-wrapper">
+			        <div class="button-card radio-primary">
+			        	<div class="radio btn-rectangle">
+							<input name="rdbBet" class="invisible" type="radio" value="odd">
+							选择单数
+						</div>
+					  </div>
+					  <div class="button-card radio-primary right">
+						<div class="radio btn-rectangle">
+							<input name="rdbBet" class="invisible" type="radio" value="even">
+							选择双数
+						</div>
+					  </div>
+					  <div class="btn-trigger"></div>
+				</div>
+				<!-- end button wrapper -->
+				<div style="clear: both;"></div>
+
+				<div class="redeem-banner">
+					<img src="{{ asset('/client/images/wheel/banner-title.png') }}" alt="share">
+				</div>
+			    </article>
+		    </section>
+			<!-- end progress bar -->
+
+		</div>
+		<section class="card-flex product_section">
+			<div class="infinite-scroll">
+				<ul class="list-2">								
+						@include('client.productv2')
+				</ul>
+				{{ $vouchers->links() }}
+				
+				<p class="isnext">下拉显示更多...</p>
+			</div>
+		</section>
 	</div>
-	<!-- end information table -->
-
-	<!-- swiper iframe -->
-	<div class="swiper-container">
-		<div class="carousel-cell">
-			<div class="frame-wrapper">
-				<div class="results-body">
-					<div class="results-wrapper">
-					<div class="timer-row">
-		        		历史开奖记录
-					</div>
-					<div class="results-row">
-						<div class="chain-wrapper results-left">
-							<div class="chain"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-1" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-2" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-3" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-4" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-5" class="results-box"></div>
-						</div>
-						<div class="chain-wrapper results-right">
-							<div class="right-chain"></div>
-						</div>
-				  	</div>
-
-
-				  	<div class="results-row">
-				  		<div class="chain-wrapper results-left">
-				  			<div class="chain"></div>
-				  			<div class="left-chain"></div>
-				  		</div>
-				  		<div class="box-wrapper">
-							<div id="result-10" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-9" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-8" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-7" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-6" class="results-box"></div>
-						</div>
-						<div class="chain-wrapper results-right"></div>
-				  	</div>
-
-				  	<div class="results-row">
-				  		<div class="chain-wrapper results-left">
-				  			<div class="chain"></div>
-				  		</div>
-				  		<div class="box-wrapper">
-							<div id="result-11" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-12" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-13" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-14" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-15" class="results-box"></div>
-						</div>
-						<div class="chain-wrapper results-right">
-							<div class="right-chain results-right"></div>
-						</div>
-				  	</div>
-
-				  	<div class="results-row">
-				  		<div class="chain-wrapper results-left">
-				  			<div class="chain"></div>
-				  		</div>
-				  		<div class="box-wrapper">
-							<div id="result-20" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-19" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-18" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-17" class="results-box"></div>
-						</div>
-						<div class="box-wrapper">
-							<div id="result-16" class="results-box"></div>
-						</div>
-						<div class="chain-wrapper results-right"></div>		
-				  	</div>
-
-				  	<div class="legend-row">
-				  		开奖结果从下往上，最新结果在最上面
-				  	</div>
-				  </div>
-				</div>
-			</div>
-		</div>
-
-		<div class="carousel-cell">
-			<div class="frame-wrapper">
-				<div id="wheel_banner">
-					<img src="{{ asset('/client/images/wheel/banner.png') }}" />
-				</div>
-				<div id="wheel_container" class="big-border">
-					<div class="small-border g6">
-
-						<div class="shan">
-							<span class="span-odd"><span class="odd-sign"></span><span class="odd-payout">0</span>金币</span>
-							<div class="div-odd">单数 <span class="odd-number">1</span></div>
-						</div>
-
-						<div class="shan">
-							<span class="span-even">0金币</span>
-							<div class="div-even">双数 <span class="even-number">2</span></div>
-						</div>
-
-						<div class="shan">
-							<span class="span-odd">0金币</span>
-							<div class="div-odd">单数 <span class="odd-number">3</span></div>
-						</div>
-
-						<div class="shan">
-							<span class="span-even">0金币</span>
-							<div class="div-even">双数 <span class="even-number">4</span></div>
-						</div>
-						
-						<div class="shan">
-							<span class="span-odd">0金币</span>
-							<div class="div-odd">单数 <span class="odd-number">5</span></div>
-						</div>
-
-						<div class="shan">
-							<span class="span-even">0金币</span>
-							<div class="div-even">双数 <span class="even-number">6</span></div>
-						</div>						
-					</div>
-				</div>
-				<div id="txtCounter" class="middle-label">选择单双</div>
-		    </div>
-		</div>
-
-		<div class="carousel-cell">
-			<div class="frame-wrapper">
-				<div class="history-body">
-					<div class="history-wrapper">
-						<table class="history-table">
-						    <tbody>
-						    	<tr>
-						        	<td class="timer" colspan="2">猜数记录</td>
-						        </tr>
-						        <tr id="row-1">
-						            <td class="history-number"></td>
-						            <td class="history">
-						            	<!--div class="points">630 <span class="additional">+40</span></div-->
-							        </td>
-						        </tr>
-						        <tr id="row-2">
-						            <td class="history-number"></td>
-						            <td class="history">
-						            </td>
-						        </tr>
-						        <tr id="row-3">
-						            <td class="history-number"></td>
-						            <td class="history">
-						            </td>
-						        </tr>
-						        <tr id="row-4">
-						            <td class="history-number"></td>
-						            <td class="history"></td>
-						        </tr>
-						        <tr id="row-5">
-						            <td class="history-number"></td>
-						            <td class="history"></td>
-						        </tr>
-						        <tr id="row-6">
-						            <td class="history-number"></td>
-						            <td class="history"></td>
-						        </tr>
-						        <tr id="row-7">
-						            <td class="history-number"></td>
-						            <td class="history"></td>
-						        </tr>
-						        <tr>
-						        	<td class="legend" colspan="2"></td>
-						        </tr>
-						    </tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end swiper iframe -->
-	<div class="spinning">转盘转动中，请等待结果。</div>
-	<!--div class="instruction">请猜下一局幸运号是单数或双数</div-->
-
-	<!-- progress bar -->
-	<section class="barWrapper">
-      	<article class="barBox">
-	      <div class="rule"></div>
-	      <div class="col-xs-2">
-	      	
-		        <div class="bet-box">
-		        	<div data-level="1" class="button-bet-default">1</div>
-		        	<div class="circle-border">
-		        	</div>
-		        </div>
-			
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">		        	
-		        	<div data-level="2" class="button-bet-default">3</div>
-		        	<div class="circle-border">
-		        	</div>
-		        </div>
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">
-		        	<div data-level="3" class="button-bet-default">7</div>
-		        	<div class="circle-border clicked-bet">
-		        	</div>
-		        </div>
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">		        	
-		        	<div data-level="4" class="button-bet-default">15</div>
-		        	<div class="circle-border">
-		        	</div>
-		        </div>
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">
-		        	<div data-level="5" class="button-bet-default">31</div>
-		        	<div class="circle-border">
-		        	</div>
-		        </div>
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">		        	
-		        	<div data-level="6" class="button-bet-default">63</div>
-		        	<div class="circle-border">
-		        	</div>
-		        </div>
-		    </div>
-		    <div style="clear: both;"></div>
-
-	      <!-- button wrapper -->
-		<div class="button-wrapper">
-	        <div class="button-card radio-primary">
-	        	<div class="radio btn-rectangle">
-					<input name="rdbBet" class="invisible" type="radio" value="odd">
-					选择单数
-				</div>
-			  </div>
-			  <div class="button-card radio-primary right">
-				<div class="radio btn-rectangle">
-					<input name="rdbBet" class="invisible" type="radio" value="even">
-					选择双数
-				</div>
-			  </div>
-			  <div class="btn-trigger"></div>
-		</div>
-		<!-- end button wrapper -->
-		<div style="clear: both;"></div>
-
-		<div class="redeem-banner">
-			<img src="{{ asset('/client/images/wheel/banner-title.png') }}" alt="share">
-		</div>
-	    </article>
-    </section>
-	<!-- end progress bar -->
-	
-
-	
-</div>
-{{-- @include('client.product') --}}
-<div class="infinite-scroll">
-	<ul class="list-2">								
-			@include('client.productv2')
-	</ul>
-	{{ $vouchers->links() }}
-	
-	<p class="isnext">下拉显示更多...</p>
-
 </div>
 
 <!-- go back to top -->
-	<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
+<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
 	
 @endsection
 
@@ -956,7 +957,6 @@
 <!-- New - Top right corner Game Rules starts -->
 
 	@parent
-	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="{{ asset('/client/cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js') }}"></script>
@@ -1037,9 +1037,8 @@
                     $('#reset-life-share').modal();
                 });
             }
-
-            being.scrollBottom('.cardBody', '.box', () => {		
-            aler('dasds');	
+        //scroll pagination start
+            being.scrollBottom('.cardBody', '.box', () => {
 				page++;
 				var max_page = parseInt($('#max_page').val());
 				if(page > max_page) {
@@ -1052,7 +1051,11 @@
 				}	
 			});
 
-            function getPosts(page){
+			$('ul.pagination').hide();
+		
+			var page=1;
+					
+			function getPosts(page){
 				$.ajax({
 					type: "GET",
 					url: window.location+"/?page"+page, 
@@ -1060,27 +1063,25 @@
 					beforeSend: function(){ 
 					},
 					complete: function(){ 
-					  $('#loading').remove
+					  // $('#loading').remove
 					},
 					success: function(responce) { 
-						alert(response);
-
 						$('.list-2').append(responce.html);
 					}
 				 });
 			}
-
-
+		//scroll pagination end
 		});
-		
 
 	</script>
-
+	
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game-node.js') }}"></script>
+
+
 @endsection
 
 <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
 
-	@include('client.intromodel')
+@include('client.intromodel')
 
