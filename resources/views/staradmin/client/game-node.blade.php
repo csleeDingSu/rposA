@@ -43,6 +43,7 @@
 			<div class="box">
 				<div class="btn-calculate">
 					<div class="balance-banner">
+						<div class="profile-pic"><img class="profile-img-circle" src="/client/images/avatar.png"> &nbsp; </div>
 						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0</span>元
@@ -55,8 +56,13 @@
 			</div>
 
 			<div class="box" id="btn-vip-wrapper">
-				<div class="btn-life">剩余{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}场</div>
-				<div style="clear:both"></div>
+				<a href="/profile">
+					<img class="icon-wheel-corner" src="{{ asset('/client/images/wheel/icon-wheel-corner.png') }}" />
+					<div class="btn-life">剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+					</div>
+					<img class="icon-arrow-next" src="{{ asset('/client/images/wheel/icon-arrow-next.png') }}" />
+					<div style="clear:both"></div>
+				</a>
 			</div>
 			
 			<input id="nTxt" class="nTxt" type="hidden" value="">
