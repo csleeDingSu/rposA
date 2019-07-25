@@ -64,7 +64,7 @@ function updateResult(records){
     var str_result = '单数';
 
     var length = Object.keys(records).length;
-    var maxCount = 20;
+    var maxCount = 25;
 
     if(length < maxCount){
         maxCount = parseInt(length);
@@ -215,11 +215,18 @@ try {
             if($( this ).attr('data-level') < level){
                 $( this ).addClass( "button-bet-inactive" );
                 $( this ).unbind( "click" );
+                $( this ).find('.bet_status').html('失败');
 
             } else if($( this ).attr('data-level') == level){
                 $( this ).next().addClass('circle-border').show();
                 $( this ).addClass( "button-bet-active" );
                 $( this ).unbind( "click" );
+
+                if(level == 1)
+                    $( this ).find('.bet_status').html('起步');
+                else
+                    $( this ).find('.bet_status').html('加倍');
+
                 $( ".circle-border" ).click(function(){
 
                     if(g_life == 0){
@@ -244,6 +251,7 @@ try {
                     }
                 });
             } else {
+                $( this ).find('.bet_status').html('加倍');
                 var suggestion_bet = 1;
                 switch (level){
 
