@@ -63,7 +63,7 @@
 		.infinite-scroll .normal-price .txt{
 			font-size: 3vw;
 		    margin-top: -0.15rem;
-            padding: 0.05rem 0.15rem 0 0;
+            padding: 0.05rem 0 0 0;
 		}
 
 		.infinite-scroll .normal-price-icon-minus {
@@ -96,7 +96,7 @@
 		    border: 1px dashed #8c36d9;
 		    border-radius: 5px;
 		    margin-left: 1.95rem;
-		    text-align: right;
+		    text-align: center;
 		    padding: 0.1rem;
 		}
 
@@ -111,7 +111,6 @@
 		.infinite-scroll .voucher-price .txt{
 			font-size: 3vw;
 		    margin-top: 0rem;
-    		padding: 0 0 0 0.15rem;
 		}
 
 		.infinite-scroll .draw-price {
@@ -123,7 +122,7 @@
 		    border: 1px dashed red;
 		    border-radius: 5px;
 		    margin-left: 3.7rem;
-		    text-align: right;
+		    text-align: center;
 		    padding: 0.1rem;
 		}
 
