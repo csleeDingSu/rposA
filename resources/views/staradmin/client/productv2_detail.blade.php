@@ -42,28 +42,28 @@
 				</div>
 			</li>
 			<li class="dbox">
-				<div class="dbox1">
+				<div class="dbox1 line-price">
 					<div class="caption_redeem_angpao">
 						<span>如何补贴</span>
 						<img src="{{ asset('/client/images/productv2_detail_caption.png') }}" />
 					</div>
 					<div class="normal-price">
-						<span class="cur">￥<span class="price">{{empty($item->product_price) ? 99 : $item->product_price}}</span></span>
+						<span class="cur">￥<span class="price">{{number_format(empty($item->product_price) ? 99 : $item->product_price, 2) + 0}}</span></span>
 						<div class="txt">原价</div>
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="voucher-price">
-                		<span class="cur">￥<span class="price">{{empty($item->voucher_price) ? 99 : number_format($item->voucher_price,2)}}</span></span>
+                		<span class="cur">￥<span class="price">{{number_format(empty($item->voucher_price) ? 99 : $item->voucher_price,2) + 0}}</span></span>
                 		<div class="txt">优惠券</div>
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="draw-price">
-                		<span class="cur">￥<span class="price">	{{trim(empty($item->voucher_price) ? 15 : 15)}}</span></span>
+                		<span class="cur">￥<span class="price">15</span>
                 		<div class="txt">抽奖补贴</div>
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
-                		<span class="new-cur">￥<span class="price">{{empty($item->discount_price) ? 0 : number_format($item->discount_price,2)}}</span></span>
+                		<span class="new-cur">￥<span class="price">{{number_format(empty($item->discount_price) ? 0 : $item->discount_price,2) + 0}}</span></span>
                 		<div class="txt">到手价</div>
                 	</div>	
 				</div>

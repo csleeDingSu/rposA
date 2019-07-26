@@ -490,7 +490,8 @@
 			});
 
 			$('#csBtn').click(function () {
-				$('#csModal').modal();
+				// $('#csModal').modal();
+				$('#new-verify-wechat').modal();
 			});
 
 			var clipboard = new ClipboardJS('.cutBtnCS2', {

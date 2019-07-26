@@ -48,7 +48,6 @@
 	    font-size: 5vw;
 	    width: 1.3rem;
 	    position: absolute;
-	    padding: 0.1rem 0 0 0;
 	    text-align: right;
 	}
 
@@ -67,37 +66,36 @@
 	}
 
 	.infinite-scroll .normal-price-icon-minus {
-		margin-left: 1.6rem;
+		margin-left: 1.7rem;
 	    position: absolute;
 	    height: 20px;
-	    margin-top: 0.3rem;
+	    margin-top: 0.2rem;
 	}
 
 	.infinite-scroll .voucher-price-icon-minus {
 		position: absolute;
-		margin-left: 3.3rem;
+		margin-left: 3.2rem;
 		height: 20px;
-	    margin-top: 0.3rem;
+	    margin-top: 0.2rem;
 	}
 
 	.infinite-scroll .new-price-icon-equal {
 		position: absolute;
-		margin-left: 5.1rem;
+		margin-left: 5rem;
 	    height: 20px;
-	    margin-top: 0.3rem;
+	    margin-top: 0.2rem;
 	}
 
 	.infinite-scroll .voucher-price {
 	    margin: 0 0.2rem 0 0.2rem;
 	    color: #8c36d9;
 	    font-size: 4vw;
-	    width: 1.2rem;
 	    position: absolute;
 	    border: 1px dashed #8c36d9;
 	    border-radius: 5px;
-	    margin-left: 1.95rem;
+	    margin-left: 2.1rem;
 	    text-align: center;
-	    padding: 0.1rem;
+	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
 	}
 
 	.infinite-scroll .voucher-price .cur{
@@ -110,20 +108,20 @@
 
 	.infinite-scroll .voucher-price .txt{
 		font-size: 3vw;
-	    margin-top: 0rem;
+        margin-top: -0.1rem;
+
 	}
 
 	.infinite-scroll .draw-price {
 		margin: 0 0.2rem 0 0.2rem;
 	    color: red;
 	    font-size: 4vw;
-	    width: 1.2rem;
 	    position: absolute;
 	    border: 1px dashed red;
 	    border-radius: 5px;
-	    margin-left: 3.7rem;
+	    margin-left: 3.6rem;
 	    text-align: center;
-	    padding: 0.1rem;
+	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
 	}
 
 	.infinite-scroll .draw-price .cur{
@@ -136,15 +134,16 @@
 
 	.infinite-scroll .draw-price .txt{
 		font-size: 3vw;
+	    margin-top: -0.1rem;
 	}
 
 	.infinite-scroll .new-price {
-		margin: 0 0.2rem 0 0.2rem;
+		margin: -0.1rem 0.2rem 0 0.2rem;
 	    color: red;
 	    font-size: 7vw;
 	    width: 1.7rem;
 	    position: absolute;
-	    margin-left: 5.1rem;
+	    margin-left: 4.75rem;
 	    text-align: right;
 	}
 
@@ -370,4 +369,8 @@
 		margin-right: 15%;
 		padding:15px;
 		font-size: 20px
+	}
+
+	.line-price {
+		padding: 0.2rem 0 0 0;
 	}
