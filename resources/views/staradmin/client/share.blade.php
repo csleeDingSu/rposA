@@ -557,6 +557,61 @@ ol>li:before {
 .padding-left {
   padding-left: 0.4rem;
 }
+
+  .header_pr {
+        left: 0;
+        width: 100%;
+        top: 0;
+        zoom: 1;
+
+        -webkit-transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0);
+        -webkit-transform: 0;
+        -moz-transform: 0;
+        -ms-transform: 0;
+        transform: 0;
+        position: fixed;
+        z-index: 160;
+        border-bottom: solid 1px #ddd;
+
+    }
+
+    .header_goods {
+        background: 0 0;
+        border-bottom: 0;
+        padding:10px;
+    }
+    .icon_header {
+        width: 100%;
+        line-height: 45px;
+        position: relative;
+    }
+    .icon_header, .icon_header>a {
+        z-index: 5;
+        height: 45px;
+        zoom: 1;
+    }
+
+    .header_goods .icon_header>a {
+        display: inline-block;
+        height: 50px;
+        color: #fff;
+        width: 50px;
+        line-height: 30px;
+        background: rgba(0,0,0,.3);
+        border-radius: 100px;
+        top: 7px;
+        left: 7px;
+    }
+
+  .icon-zuojiantou:before {
+      content: "<";
+  }
+  .fa-angle-left {
+    color: white;
+    padding:10px;
+    padding-left:16px;
+  }
   
   @media only screen and (min-width: 300px) { .ribbon { margin-left: 0.71rem !important; } }
 
@@ -579,6 +634,13 @@ ol>li:before {
 @media only screen and (min-width: 1100px) { .ribbon { margin-left: 3rem !important; } }
 
    </style>
+
+  <div class="header_pr header_goods ">
+    <header class="icon_header">
+      <a href="javascript:history.back()" class="iconfont fa fa-angle-left fa-2x" aria-hidden="true"></a>
+    </header> 
+  </div>
+
 <div class="container">
 
   <div class="ribbon-holder" align="center">
