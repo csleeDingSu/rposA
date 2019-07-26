@@ -60,11 +60,12 @@
         </div>
 
         </div>
+        <div class="newline"></div>
+
         <div class="tab-content">
             <div id="my-lvl-invitation" class="tab-pane fade in active">
                 <div class="full-width-tabs">
-                <!-- close
-                    <ul class="nav nav-pills">                        
+                    <ul class="nav nav-pills">
                         <li class="take-all-space-you-can">
                             <a class="tab" data-toggle="tab" href="#pending-tab" data-status="pending">
                                 <div>未微信认证
@@ -90,12 +91,12 @@
                             </a>
                         </li>          
                     </ul>
-                -->
+
                     <div id="invitation" class="tab-content">
                         <div id="default-tab" class="tab-pane fade in active"></div>
-                        <!-- <div id="pending-tab" class="tab-pane fade"></div>
+                        <div id="pending-tab" class="tab-pane fade"></div>
                         <div id="verified-tab" class="tab-pane fade"></div>
-                        <div id="failed-tab" class="tab-pane fade"></div> -->
+                        <div id="failed-tab" class="tab-pane fade"></div>
                         <p class="isnext">下拉显示更多...</p>
                     </div><!-- invitation -->
                 </div>
@@ -103,7 +104,6 @@
 
             <div id="next-lvl-invitation" class="tab-pane fade">
                 <div class="full-width-tabs">
-                <!-- close
                     <ul class="nav nav-pills">
                         <li class="take-all-space-you-can">
                             <a class="tab" data-toggle="tab" href="#next-lvl-pending-tab" data-status="next-lvl-pending">
@@ -130,15 +130,13 @@
                             </a>
                         </li>          
                     </ul>
-                -->
 
                     <div id="invitation_next_lvl" class="tab-content">
                         <div id="next-lvl-default-tab" class="tab-pane fade in active"></div>
-                        <!-- <div id="next-lvl-pending-tab" class="tab-pane fade"></div>
+                        <div id="next-lvl-pending-tab" class="tab-pane fade"></div>
                         <div id="next-lvl-verified-tab" class="tab-pane fade"></div>
                         <div id="next-lvl-failed-tab" class="tab-pane fade"></div>
-                         -->
-                         <p class="isnext">下拉显示更多...</p>
+                        <p class="isnext">下拉显示更多...</p>
                     </div>                    
                 </div>
                 <!-- next-lvl-invitation -->

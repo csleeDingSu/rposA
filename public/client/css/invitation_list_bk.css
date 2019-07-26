@@ -27,7 +27,7 @@ html, body {
 
 /* Tabs */
 .full-width-tabs {
-    /*padding-top: 0.2rem;*/
+    padding-top: 0.2rem;
 }
 
 .full-width-tabs > .nav-pills > .active > a {

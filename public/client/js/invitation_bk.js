@@ -144,8 +144,6 @@ function getPosts(page, token, status){
             var records = data.result;
             var html = populateInvitationData(records, token, status);
 
-            status = 'default';
-
             if(current_page == 1){
                 $('#'+ status +'-tab').html(html);
             } else {
@@ -182,8 +180,6 @@ function getPosts_NextLvl(page, token, status){
             $('#max_page').val(last_page);
             var records = data.result;
             var html = populateInvitationData(records, token, status);
-
-            status = 'default';
 
             if(current_page == 1){
                 $('#next-lvl-'+ status +'-tab').html(html);
@@ -246,12 +242,12 @@ function populateInvitationData(records, token, _status = null) {
                 }
 
                 //set default
-                // if (_status == 'default') {
-                //     var str_class = "";
-                //     var str_class_additional = "default_additional";
-                // } else {
+                if (_status == 'default') {
+                    var str_class = "";
+                    var str_class_additional = "default_additional";
+                } else {
                     var str_class_additional = "additional";
-                // }
+                }
                 
                 html += '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +

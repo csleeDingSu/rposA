@@ -81,6 +81,9 @@ class MemberController extends Controller
 			break;
 			case 'failed':
 				$status = ['2','3'];
+			break;
+			case 'default':
+				$status = ['0','1','2','3'];
 			break;	
 		}
 		$result = Member::get_second_level_child_data($request->memberid, $status); 
@@ -124,6 +127,9 @@ class MemberController extends Controller
 			break;
 			case 'failed':
 				$status = ['2','3'];
+			break;
+			case 'default':
+				$status = ['0','1','2','3'];
 			break;	
 		}
 		$result = Member::get_introducer_history($request->memberid, $status); 

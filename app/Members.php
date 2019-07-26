@@ -202,7 +202,7 @@ class Members extends Model
 						  ->from('members')
 						  ->whereRaw('referred_by = '.$memberid);
 				})
-				->where('wechat_verification_status',$status)
+				->whereIn('wechat_verification_status',$status)
 				->paginate(15);
 		return $result;
 	}
