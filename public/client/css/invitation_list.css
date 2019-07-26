@@ -300,3 +300,17 @@ html, body {
     height: 0.6rem;
     border: 2px solid #a5807a !important;
 }
+
+.row-full {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    padding-bottom: 50px;
+    color: black;
+}
+
+.share-link {
+    color: red;
+}

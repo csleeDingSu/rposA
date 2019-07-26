@@ -152,9 +152,9 @@ function getPosts(page, token, status){
                 $('#'+ status +'-tab').append(html);
             }
 
-            if(current_page == last_page){
-                $(".isnext").html(end_of_result);
-            }
+            // if(current_page == last_page){
+            //     $(".isnext").html(end_of_result);
+            // }
 
             page++;
             $('#page').val(page);
@@ -191,9 +191,9 @@ function getPosts_NextLvl(page, token, status){
                 $('#next-lvl-'+ status +'-tab').append(html);
             }
 
-            if(current_page == last_page){
-                $(".isnext").html(end_of_result);
-            }
+            // if(current_page == last_page){
+            //     $(".isnext").html(end_of_result);
+            // }
 
             page++;
             $('#page').val(page);
@@ -275,9 +275,9 @@ function populateInvitationData(records, token, _status = null) {
             });
 
             if(current_page == 1 && last_page == 1 && html === '') {
-                html = '<div class="row">' + 
+                html = '<div class="row-full">' + 
                             '<div class="col-xs-12">' + 
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
+                                '<div class="empty">你还没邀请朋友。<br>想邀请吗？<a href="/share" class="share-link">请点击这里。</a></div>' + 
                             '</div>' + 
                         '</div>';
             }

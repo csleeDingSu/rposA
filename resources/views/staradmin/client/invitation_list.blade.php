@@ -96,7 +96,7 @@
                         <!-- <div id="pending-tab" class="tab-pane fade"></div>
                         <div id="verified-tab" class="tab-pane fade"></div>
                         <div id="failed-tab" class="tab-pane fade"></div> -->
-                        <p class="isnext">下拉显示更多...</p>
+                        <!-- <p class="isnext">下拉显示更多...</p> -->
                     </div><!-- invitation -->
                 </div>
             </div>
@@ -138,7 +138,7 @@
                         <div id="next-lvl-verified-tab" class="tab-pane fade"></div>
                         <div id="next-lvl-failed-tab" class="tab-pane fade"></div>
                          -->
-                         <p class="isnext">下拉显示更多...</p>
+                         <!-- <p class="isnext">下拉显示更多...</p> -->
                     </div>                    
                 </div>
                 <!-- next-lvl-invitation -->
