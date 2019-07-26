@@ -560,7 +560,7 @@ function checkSelection() {
         $('.span-even').html('请选金币').show();
         $('.shan div').addClass('clicked');
 
-        $('.spinning').html('请选择金币<br />再点击“开始抽奖”进行抽奖');
+        $('.spinning').html('请选择金币');
         $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
             $('.spinning').css('visibility', 'hidden');
