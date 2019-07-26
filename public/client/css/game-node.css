@@ -1425,12 +1425,13 @@ body{
 #game-rules .instructions {
 	margin-top: 5px;
 	margin-bottom: 10px;
-	font-size: 13px;
-	font-weight: 300;
+	font-size: 14px;
+	font-weight: 400;
 	color: #999;
 	padding:10px;
 	/*text-align: center;*/
-	letter-spacing: 0.35px;
+	letter-spacing: 0.5px;
+	line-height: 0.35px;
 }
 
 #game-rules .game-title {
