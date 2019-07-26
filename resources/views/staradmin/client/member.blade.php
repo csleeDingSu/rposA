@@ -293,7 +293,7 @@
 								<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
 							</div>
 							<div class="row">								
-								<div class="bottom">长安识别二维码</div>
+								<div class="bottom">长按识别二维码</div>
 							</div>
 						</div>
 					</div>							
