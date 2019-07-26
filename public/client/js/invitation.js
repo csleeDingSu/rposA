@@ -252,10 +252,14 @@ function populateInvitationData(records, token, _status = null) {
                 // } else {
                     var str_class_additional = "additional";
                 // }
-                
+           
+                var _photo = !(item.profile_pic == null) ? item.profile_pic :"/client/images/avatar.png";      
+                var _wechatname = !(item.wechat_name == null) ? item.wechat_name : "";      
                 html += '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
-                                '<div class="item">' + item.phone.substring(0,3) + '&#10033;&#10033;&#10033;&#10033;' + item.phone.substring((item.phone.length - 4),item.phone.length) + '</div>' +
+                                '<div class="item">' +
+                                    '<img class="profile-img-circle" src="' + _photo + '">&nbsp;' + _wechatname + 
+                                '</div>' +
                                 '<div class="date">' + str_date + '</div>' +
                             '</div>' +
                             '<div class="col-xs-4 column-2">' +

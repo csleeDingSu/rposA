@@ -182,7 +182,7 @@ html, body {
 .item {
     text-align: left;
     color: #333333;
-    font-size: 0.36rem;
+    font-size: 0.35rem;
     font-weight: 500;
 }
 
@@ -285,4 +285,18 @@ html, body {
 .newline {
     background-color: #f3f3f3;
     height: 0.2rem;
+}
+
+.profile-pic {
+    /*position: absolute;*/
+    /*margin: -0.42rem 0 0 0.1rem;*/
+}
+
+.profile-img-circle {
+    border-radius: 50% !important;
+    max-width: 0.8rem;
+    max-height: 0.8rem;
+    width: 0.6rem !important;
+    height: 0.6rem;
+    border: 2px solid #a5807a !important;
 }

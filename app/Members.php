@@ -132,7 +132,7 @@ class Members extends Model
 	
 	public static function get_introducer_history($refid,$status,$limit = 50)
 	{
-		$result = Members::select('id','username','firstname','created_at','phone','introducer_life','wechat_verification_status')->where('referred_by', $refid);
+		$result = Members::select('id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','wechat_name','profile_pic')->where('referred_by', $refid);
 				
 		if ($status != '') $result->whereIn('wechat_verification_status', $status);
 		
@@ -195,7 +195,7 @@ class Members extends Model
 	
 	public static function get_second_level_child_data($memberid, $status = 0)
 	{
-		$result = DB::table('members')->select('id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','referred_by','introducer_bonus_life')
+		$result = DB::table('members')->select('id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','referred_by','introducer_bonus_life','wechat_name','profile_pic')
 				->whereIn('referred_by', function($query) use ($memberid)
 				{
 					$query->select('id')
