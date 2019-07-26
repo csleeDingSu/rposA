@@ -8,20 +8,22 @@
 
 	.voucher-price {
 		text-align: center;
-        border: 1px solid #8c36d9;
+        /*border: 1px solid #8c36d9;*/
         border-radius: 5px;
         font-size: 10px;
         color: #8c36d9;
-        padding: 1px 2px 1px 2px;
+        padding: 1px 7px 1px 7px;
+    	background-color: #f1e6fa;
     }
 
 	.draw-price {
 		text-align: center;
-	    border: 1px solid red;
+	    /*border: 1px solid red;*/
 	    border-radius: 5px;
 	    font-size: 10px;
 	    color: red;
-	    padding: 1px 2px 1px 2px;
+	    padding: 1px 7px 1px 7px;
+    	background-color: #fae7e6;
 	}
 	
 	.columnval {
@@ -116,7 +118,7 @@
     float: right;
     padding-right: 7px;
     padding-top: 2px;
-    margin-top: 5px;
+    margin-top: 2px;
     font-weight: bold;
 }
 
