@@ -144,17 +144,15 @@ function getPosts(page, token, status){
             var records = data.result;
             var html = populateInvitationData(records, token, status);
 
-            status = 'default';
-
             if(current_page == 1){
                 $('#'+ status +'-tab').html(html);
             } else {
                 $('#'+ status +'-tab').append(html);
             }
 
-            // if(current_page == last_page){
-            //     $(".isnext").html(end_of_result);
-            // }
+            if(current_page == last_page){
+                $(".isnext").html(end_of_result);
+            }
 
             page++;
             $('#page').val(page);
@@ -183,17 +181,15 @@ function getPosts_NextLvl(page, token, status){
             var records = data.result;
             var html = populateInvitationData(records, token, status);
 
-            status = 'default';
-
             if(current_page == 1){
                 $('#next-lvl-'+ status +'-tab').html(html);
             } else {
                 $('#next-lvl-'+ status +'-tab').append(html);
             }
 
-            // if(current_page == last_page){
-            //     $(".isnext").html(end_of_result);
-            // }
+            if(current_page == last_page){
+                $(".isnext").html(end_of_result);
+            }
 
             page++;
             $('#page').val(page);
@@ -246,20 +242,16 @@ function populateInvitationData(records, token, _status = null) {
                 }
 
                 //set default
-                // if (_status == 'default') {
-                //     var str_class = "";
-                //     var str_class_additional = "default_additional";
-                // } else {
+                if (_status == 'default') {
+                    var str_class = "";
+                    var str_class_additional = "default_additional";
+                } else {
                     var str_class_additional = "additional";
-                // }
-           
-                var _photo = !(item.profile_pic == null) ? item.profile_pic :"/client/images/avatar.png";      
-                var _wechatname = !(item.wechat_name == null) ? item.wechat_name : "";      
+                }
+                
                 html += '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
-                                '<div class="item">' +
-                                    '<img class="profile-img-circle" src="' + _photo + '">&nbsp;' + _wechatname + 
-                                '</div>' +
+                                '<div class="item">' + item.phone.substring(0,3) + '&#10033;&#10033;&#10033;&#10033;' + item.phone.substring((item.phone.length - 4),item.phone.length) + '</div>' +
                                 '<div class="date">' + str_date + '</div>' +
                             '</div>' +
                             '<div class="col-xs-4 column-2">' +
@@ -275,9 +267,9 @@ function populateInvitationData(records, token, _status = null) {
             });
 
             if(current_page == 1 && last_page == 1 && html === '') {
-                html = '<div class="row-full">' + 
+                html = '<div class="row">' + 
                             '<div class="col-xs-12">' + 
-                                '<div class="empty">你还没邀请朋友。<br>想邀请吗？<a href="/share" class="share-link">请点击这里。</a></div>' + 
+                                '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
                             '</div>' + 
                         '</div>';
             }

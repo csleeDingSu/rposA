@@ -416,6 +416,7 @@ body{
     font-size: 0.45rem;
     float: right;
     margin-top: -0.07rem;
+    margin-right: -0.05rem;
 }
 
 .btn-rules-normal {
@@ -1425,11 +1426,12 @@ body{
 	margin-top: 5px;
 	margin-bottom: 10px;
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 400;
 	color: #999;
 	padding:10px;
 	/*text-align: center;*/
 	letter-spacing: 0.5px;
+	line-height: 0.4rem;
 }
 
 #game-rules .game-title {
@@ -1522,6 +1524,7 @@ body{
 	border-radius: 25px;
 	margin-left: 10%;
 	margin-right: 10%;
+	padding: 10px;
 }
 
 /* End Game Rules Modal */
@@ -2514,12 +2517,12 @@ if it's not present, don't show loader */
 
 .icon-wheel-corner {
 	position: absolute;
-    margin: 0.05rem 0 0 -1.77rem;
+    margin: 0.05rem 0 0 -1.7rem;
     height: 0.6rem;
 }
 
 .icon-arrow-next {
 	position: absolute;
-    margin: 0.09rem 0 0 1.15rem;
-    height: 0.5rem;
+    margin: 0.14rem 0.1rem 0.14rem 1.1rem;
+    height: 0.45rem;
 }

@@ -937,14 +937,20 @@
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
 								<div class="modal-title">
-								  倍增式玩法说明
+								  抽奖规则说明
 								</div>
 								<div class="instructions">
-									第1局1元，如果猜错了怎么办？<br/>
-									第2局就投3元，如果第2局猜对，就能得到3元，扣掉第1局亏的1元，最终还赚2元。<br />
-									如果第2局还猜错，第3局就投7元。 。 。<br />
-									120游戏元能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
-									如果猜对就返回从1元开始。
+									<p>
+										这是一个自助抽奖转盘，每次抽奖需自行设置单数或双数，并设置抽奖金币，抽中获得双倍回报。
+									</p>
+									<p>&nbsp;</p>
+									<p>
+										官方提供免费转盘金币，按照倍增玩法（具体规则进入抽奖体验)，赚到的金币可兑换红包。
+									</p>
+									<p>&nbsp;</p>
+									<p>每场抽奖需抽满15元才可兑换红包。</p>
+									<p>&nbsp;</p>
+									<p>邀请好友可获得更多抽奖场次。</p>
 								</div>
 								<div class="close-modal modal-warning-button">
 							{{-- @if($betting_count > 0) --}}

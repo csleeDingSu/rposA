@@ -42,28 +42,28 @@
 				</div>
 			</li>
 			<li class="dbox">
-				<div class="dbox1">
+				<div class="dbox1 line-price">
 					<div class="caption_redeem_angpao">
 						<span>如何补贴</span>
 						<img src="{{ asset('/client/images/productv2_detail_caption.png') }}" />
 					</div>
 					<div class="normal-price">
-						<span class="cur">￥<span class="price">{{empty($item->product_price) ? 99 : $item->product_price}}</span></span>
+						<span class="cur">￥<span class="price">{{number_format(empty($item->product_price) ? 99 : $item->product_price, 2) + 0}}</span></span>
 						<div class="txt">原价</div>
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="voucher-price">
-                		<span class="cur">￥<span class="price">{{empty($item->voucher_price) ? 99 : number_format($item->voucher_price,2)}}</span></span>
+                		<span class="cur">￥<span class="price">{{number_format(empty($item->voucher_price) ? 99 : $item->voucher_price,2) + 0}}</span></span>
                 		<div class="txt">优惠券</div>
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="draw-price">
-                		<span class="cur">￥<span class="price">	{{trim(empty($item->voucher_price) ? 15 : 15)}}</span></span>
+                		<span class="cur">￥<span class="price">15</span>
                 		<div class="txt">抽奖补贴</div>
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
-                		<span class="new-cur">￥<span class="price">{{empty($item->discount_price) ? 0 : number_format($item->discount_price,2)}}</span></span>
+                		<span class="new-cur">￥<span class="price">{{number_format(empty($item->discount_price) ? 0 : $item->discount_price,2) + 0}}</span></span>
                 		<div class="txt">到手价</div>
                 	</div>	
 				</div>
@@ -86,6 +86,10 @@
 		</ul>
 	</div>
 
+@endsection
+
+@section('footer-javascript')
+
 	<!-- draw rules starts -->
 	<div class="modal fade col-md-12" id="draw-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg close-modal" role="document">
@@ -98,7 +102,10 @@
 								  抽奖补贴说明
 								</div>
 								<div class="instructions">
-									平台所有产品均可通过抽奖可获得15元的奖补贴，在领券后可再减去15元0元。
+									<p>抽奖补贴由挖宝官方提供，新用户能免费获得1场次免费抽奖，通过抽奖可获得15元红包。</p>
+									<p>&nbsp;</p>
+									<p>用户可通过邀请好友，获得更多抽奖场次，从而获得更多购物红包。
+									</p>
 								</div>
 								<div class="modal-go-button">
 									马上抽奖
@@ -110,11 +117,6 @@
 			</div>
 		</div>
 	</div>
-
-
-@endsection
-
-@section('footer-javascript')
 
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>

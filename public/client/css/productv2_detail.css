@@ -48,112 +48,111 @@
 	    font-size: 5vw;
 	    width: 1.3rem;
 	    position: absolute;
-	    padding: 0.1rem 0 0 0;
 	    text-align: right;
 	}
 
 	.infinite-scroll .normal-price .cur{
-		font-size: 3vw;
+		font-size: 3.5vw;
 	}
 
 	.infinite-scroll .normal-price .price {
-	    font-size: 5vw;
+	    font-size: 6vw;
 	}
 
 	.infinite-scroll .normal-price .txt{
 		font-size: 3vw;
-	    margin-top: -0.15rem;
+	    margin-top: -0.2rem;
         padding: 0.05rem 0 0 0;
 	}
 
 	.infinite-scroll .normal-price-icon-minus {
-		margin-left: 1.6rem;
+		margin-left: 1.7rem;
 	    position: absolute;
 	    height: 20px;
-	    margin-top: 0.3rem;
+	    margin-top: 0.2rem;
 	}
 
 	.infinite-scroll .voucher-price-icon-minus {
 		position: absolute;
-		margin-left: 3.3rem;
+		margin-left: 3.2rem;
 		height: 20px;
-	    margin-top: 0.3rem;
+	    margin-top: 0.2rem;
 	}
 
 	.infinite-scroll .new-price-icon-equal {
 		position: absolute;
-		margin-left: 5.1rem;
+		margin-left: 5rem;
 	    height: 20px;
-	    margin-top: 0.3rem;
+	    margin-top: 0.2rem;
 	}
 
 	.infinite-scroll .voucher-price {
 	    margin: 0 0.2rem 0 0.2rem;
 	    color: #8c36d9;
 	    font-size: 4vw;
-	    width: 1.2rem;
 	    position: absolute;
 	    border: 1px dashed #8c36d9;
 	    border-radius: 5px;
-	    margin-left: 1.95rem;
+	    margin-left: 2.1rem;
 	    text-align: center;
-	    padding: 0.1rem;
+	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
 	}
 
 	.infinite-scroll .voucher-price .cur{
-		font-size: 3vw;
+		font-size: 3.5vw;
 	}
 
 	.infinite-scroll .voucher-price .price {
-	    font-size: 4vw;
+	    font-size: 5vw;
 	}
 
 	.infinite-scroll .voucher-price .txt{
 		font-size: 3vw;
-	    margin-top: 0rem;
+        margin-top: -0.1rem;
+
 	}
 
 	.infinite-scroll .draw-price {
 		margin: 0 0.2rem 0 0.2rem;
 	    color: red;
 	    font-size: 4vw;
-	    width: 1.2rem;
 	    position: absolute;
 	    border: 1px dashed red;
 	    border-radius: 5px;
-	    margin-left: 3.7rem;
+	    margin-left: 3.6rem;
 	    text-align: center;
-	    padding: 0.1rem;
+	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
 	}
 
 	.infinite-scroll .draw-price .cur{
-		font-size: 3vw;
+		font-size: 3.5vw;
 	}
 
 	.infinite-scroll .draw-price .price {
-	    font-size: 4vw;
+	    font-size: 5vw;
 	}
 
 	.infinite-scroll .draw-price .txt{
 		font-size: 3vw;
+	    margin-top: -0.1rem;
 	}
 
 	.infinite-scroll .new-price {
-		margin: 0 0.2rem 0 0.2rem;
+		margin: -0.2rem 0.2rem 0 0.2rem;
 	    color: red;
-	    font-size: 7vw;
+	    font-size: 8vw;
 	    width: 1.7rem;
 	    position: absolute;
-	    margin-left: 5.1rem;
+	    margin-left: 4.75rem;
 	    text-align: right;
 	}
 
 	.infinite-scroll .new-price .new-cur{
-		font-size: 3.5vw;
+		font-size: 4vw;
 	}
 
 	.infinite-scroll .new-price .price {
-	    font-size: 7vw;
+	    font-size: 8vw;
 	}
 
 	.infinite-scroll .new-price .txt{
@@ -165,7 +164,7 @@
 	 /*position: relative !important;*/
 	 /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
 	 /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
-	 padding-left: 3.5rem !important;
+	 padding-left: 3.4rem !important;
 	}
 
 	.caption_redeem_angpao img {
@@ -208,7 +207,6 @@
 	.product-detail-btn-bg {
 		max-width: 100%;
     	max-height: 100%;
-    	height: 1rem;
 	}
 
 	.header_pr {
@@ -291,14 +289,13 @@
 
 	.modal-content, .modal-title {
 		background: white;
-		width: 380px;
+		width: 320px;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
 	.modal-full-height {
 		text-align:center;
-		padding-bottom: 10px;
 		margin: 0 auto;
 	}
 
@@ -324,7 +321,7 @@
 	}
 
 	.modal-card {
-		width: 350px;
+		width: 100%;
 		margin: 0 auto;
 		font-size: 16px;
 	}
@@ -353,21 +350,34 @@
 	}
 
 	#draw-rules .instructions {
+		
 		margin-top: 5px;
 		margin-bottom: 10px;
-		font-size: 16px;
-		font-weight: 500;
+		font-size: 14px;
+		font-weight: 400;
 		color: #999;
-		padding:10px 10px 50px 10px;
+		padding:10px;
+		/*text-align: center;*/
 		letter-spacing: 0.5px;
+		line-height: 0.4rem;
+
 	}
 
 	#draw-rules .modal-go-button {
-		background-color: #ff6767; background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff0d0d));	
+		background-color: #ff504a; 
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff504a));	
 		color: white;
-		border-radius: 25px;
+		border-radius: 100px;
 		margin-left: 15%;
 		margin-right: 15%;
 		padding:15px;
 		font-size: 20px
+	}
+
+	#draw-rules .modal-body {
+		padding: 15px;
+	}
+
+	.line-price {
+		padding: 0.2rem 0 0 0;
 	}
