@@ -1431,7 +1431,7 @@ body{
 	padding:10px;
 	/*text-align: center;*/
 	letter-spacing: 0.5px;
-	line-height: 0.35px;
+	line-height: 0.35rem;
 }
 
 #game-rules .game-title {
