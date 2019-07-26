@@ -3,6 +3,10 @@
 		}
 
 	.line {
+	    padding: 5px 5px 0 5px;
+	}
+
+	.line-end {
 	    padding: 0 5px 5px 5px;
 	}
 
@@ -77,14 +81,22 @@
 	    border-top-right-radius: 6px;
 	    /*border-bottom-left-radius: 6px;*/
 	    /*border-bottom-right-radius: 6px;*/
+	    padding: 0 0 5px 0;
 	}
 
 	.featureddetail h2 {
 		color: black;
-	    padding: 5px;
-	    white-space: nowrap; 
+	    padding: 5px 5px 0 5px;
+	    /*white-space: nowrap; 
 	  	overflow: hidden;
-	  	text-overflow: ellipsis;
+	  	text-overflow: ellipsis;*/
+
+	  	overflow: hidden;
+	    text-overflow: ellipsis;
+	    -webkit-line-clamp: 2;
+	    display: -webkit-box;
+	    -webkit-box-orient: vertical;
+	    height: 36px;
 	}
 
 .featureddetail h3 .new-lbl-cur{

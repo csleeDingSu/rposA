@@ -13,22 +13,22 @@
                                 <h2>{{$v->product_name}}</h2>
                                 <div class="line">
                                     <h3>
-                                    	<span class="voucher-price">领券减{{number_format($v->voucher_price, 2)}}元</span>
+                                    	<span class="voucher-price">领券减{{number_format($v->voucher_price, 2) + 0}}元</span>
                                     	<span class="draw-price">抽奖补贴15元</span>
                                     </h3>
                                 </div>
                                 <div class="line">
                                     <h3>
                                     	<span class="normal-txt">原价</span>
-                                    	<span class="normal-price">￥{{number_format($v->product_price,2)}}</span>
+                                    	<span class="normal-price">￥{{number_format($v->product_price,2) + 0}}</span>
                                     	<span class="normal-sell">热销{{$v->sales_show}}件</span>
                                     </h3>
                                 </div>
-                                <div class="line">
+                                <div class="line-end">
                                 	<h3>
                                     	<span class="new-price">
                                             <span class="new-txt">到手价</span>
-                                            <span class="new-lbl-cur">￥</span>{{number_format($v->discount_price,2)}}</span>
+                                            <span class="new-lbl-cur">￥</span>{{number_format($v->discount_price,2) + 0}}</span>
                                     	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
                                     </h3>
                                 </div>
@@ -45,22 +45,22 @@
                                 <h2>{{$v->product_name}}</h2>
                                 <div class="line">
                                     <h3>
-                                    	<span class="voucher-price">领券减{{number_format($v->voucher_price,2)}}元</span>
+                                    	<span class="voucher-price">领券减{{number_format($v->voucher_price,2) + 0}}元</span>
                                     	<span class="draw-price">抽奖补贴15元</span>
                                     </h3>
                                 </div>
                                 <div class="line">
                                     <h3>
                                     	<span class="normal-txt">原价</span>
-                                    	<span class="normal-price">￥{{number_format($v->product_price,2)}}</span>
+                                    	<span class="normal-price">￥{{number_format($v->product_price,2) + 0}}</span>
                                     	<span class="normal-sell">热销{{$v->sales_show}}件</span>
                                     </h3>
                                 </div>
-                                <div class="line">
+                                <div class="line-end">
                                 	<h3>
                                     	<span class="new-price">
                                             <span class="new-txt">到手价</span>
-                                            <span class="new-lbl-cur">￥</span>{{number_format($v->discount_price,2)}}</span>
+                                            <span class="new-lbl-cur">￥</span>{{number_format($v->discount_price,2) + 0}}</span>
                                     	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
     	                            </h3>
                                 </div>
