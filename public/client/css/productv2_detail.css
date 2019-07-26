@@ -208,7 +208,6 @@
 	.product-detail-btn-bg {
 		max-width: 100%;
     	max-height: 100%;
-    	height: 1rem;
 	}
 
 	.header_pr {
@@ -291,7 +290,7 @@
 
 	.modal-content, .modal-title {
 		background: white;
-		width: 380px;
+		width: 320px;
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -363,7 +362,8 @@
 	}
 
 	#draw-rules .modal-go-button {
-		background-color: #ff6767; background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff0d0d));	
+		background-color: #ff504a; 
+		/*background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff0d0d));	*/
 		color: white;
 		border-radius: 25px;
 		margin-left: 15%;
