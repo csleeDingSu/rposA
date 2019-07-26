@@ -6,6 +6,10 @@
 	    padding: 5px 5px 0 5px;
 	}
 
+	.line-end {
+	    padding: 0 5px 5px 5px;
+	}
+
 	.voucher-price {
 		text-align: center;
         /*border: 1px solid #8c36d9;*/

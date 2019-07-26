@@ -24,7 +24,7 @@
                                     	<span class="normal-sell">热销{{$v->sales_show}}件</span>
                                     </h3>
                                 </div>
-                                <div class="line">
+                                <div class="line-end">
                                 	<h3>
                                     	<span class="new-price">
                                             <span class="new-txt">到手价</span>
@@ -56,7 +56,7 @@
                                     	<span class="normal-sell">热销{{$v->sales_show}}件</span>
                                     </h3>
                                 </div>
-                                <div class="line">
+                                <div class="line-end">
                                 	<h3>
                                     	<span class="new-price">
                                             <span class="new-txt">到手价</span>
