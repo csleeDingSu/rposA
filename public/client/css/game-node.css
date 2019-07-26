@@ -416,7 +416,7 @@ body{
     font-size: 0.45rem;
     float: right;
     margin-top: -0.07rem;
-    margin-right: -0.01rem;
+    margin-right: -0.05rem;
 }
 
 .btn-rules-normal {
@@ -2515,12 +2515,12 @@ if it's not present, don't show loader */
 
 .icon-wheel-corner {
 	position: absolute;
-    margin: 0.05rem 0 0 -1.77rem;
+    margin: 0.05rem 0 0 -1.7rem;
     height: 0.6rem;
 }
 
 .icon-arrow-next {
 	position: absolute;
-    margin: 0.12rem 0.1rem 0 1.15rem;
+    margin: 0.14rem 0.1rem 0.14rem 1.1rem;
     height: 0.45rem;
 }
