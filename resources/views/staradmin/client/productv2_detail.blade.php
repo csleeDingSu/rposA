@@ -86,6 +86,10 @@
 		</ul>
 	</div>
 
+@endsection
+
+@section('footer-javascript')
+
 	<!-- draw rules starts -->
 	<div class="modal fade col-md-12" id="draw-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg close-modal" role="document">
@@ -110,11 +114,6 @@
 			</div>
 		</div>
 	</div>
-
-
-@endsection
-
-@section('footer-javascript')
 
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
