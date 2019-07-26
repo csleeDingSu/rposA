@@ -86,6 +86,32 @@
 		</ul>
 	</div>
 
+	<!-- draw rules starts -->
+	<div class="modal fade col-md-12" id="draw-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-title">
+								  抽奖补贴说明
+								</div>
+								<div class="instructions">
+									平台所有产品均可通过抽奖可获得15元的奖补贴，在领券后可再减去15元0元。
+								</div>
+								<div class="modal-go-button">
+									马上抽奖
+								</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 @endsection
 
 @section('footer-javascript')
@@ -117,7 +143,18 @@
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 			});
 
-			
+			$('.draw-price').click( function() {
+	        	$('#draw-rules').modal();
+	    	});
+
+	    	$('.caption_redeem_angpao').click( function() {
+	        	$('#draw-rules').modal();
+	    	});
+
+	    	$('.modal-go-button').click( function() {
+	        	window.location.href = '/arcade';
+	    	});
+	    	
 		})
 		
 	</script>
