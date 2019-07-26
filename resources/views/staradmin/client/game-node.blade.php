@@ -1076,6 +1076,7 @@
                 });
             }
 
+            //execute scroll pagination
             being.scrollBottom('.cardBody', '.box', () => {		
 
 				page++;
@@ -1092,6 +1093,7 @@
 
 		});
 
+	//scroll pagination - start
 		$('ul.pagination').hide();
 		
 		var page=1;
@@ -1111,6 +1113,7 @@
 				}
 			 });
 		}
+	//scroll pagination - end
 		
 
 	</script>
