@@ -1,16 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
 
 .container {
-	width: 500px;
+	width: 100%;
+	padding: 0;
 	background-color: #f3f3f3;
-}
-	
-@media only screen and (max-width: 500px) {
-    .container {
-		width: 100%;
-		padding: 0;
-
-	}
 }
 
 html, body {
@@ -25,13 +18,13 @@ html, body {
     background-color: #ffffff !important;
 }
 .full-width-tabs > .nav-pills > li > a{
-    border-radius:0px;
+    border-radius:0;
     color:#666666;
     font-weight: 500;
     background: #ffffff;
-    font-size: 18px;
+    font-size: 0.36rem;
     border-top: 1px solid #f2f2f2;
-    padding: 15px 15px;
+    padding: 0.3rem 0.3rem;
 }
 
 .full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
@@ -53,17 +46,17 @@ html, body {
 /* End Tabs */
 
 .tab-content {
-	margin-top: 10px;
-	padding-bottom: 20px;
+	margin-top: 0.2rem;
+	padding-bottom: 0.4rem;
 }
 
 .row {
-	height: 70px;
+	height: 1.4rem;
 	color: #cccccc;
-	font-size: 14px;
-	padding-top: 10px;
-	margin-right: 0px;
-	margin-left: 0px;
+	font-size: 0.28rem;
+	padding-top: 0.2rem;
+	margin-right: 0;
+	margin-left: 0;
 	border-top: 1px solid #e3e3e3;
 	background: #ffffff;
 }
@@ -73,47 +66,41 @@ html, body {
 }
 
 .column-1 {
-	padding-right: 5px;
-	padding-left: 10px;
+	padding-right: 0.1rem;
+	padding-left: 0.2rem;
 }
 
 .column-2 {
-	padding-right: 5px;
-	padding-left: 10px;
+	padding-right: 0.1rem;
+	padding-left: 0.2rem;
 	text-align: left;
 }
 
 .right-wrapper {
 	float: right;
-	margin-right: 10px;
-}
-
-@media only screen and (max-width: 360px) {
-    .column-2 {
-    	padding-left: 0px;
-    }
+	margin-right: 0.2rem;
 }
 
 .fa {
 	display: block;
-	margin-top: 3px;
-	margin-left: -1px;
+	margin-top: 0.06rem;
+	margin-left: -0.02rem;
 }
 
 .label {
     display: inline-block;
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    border-radius: 25px;
-    margin-top: 0px;
+    width: 0.5rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: 0;
     color: #b5b5ba;
-    font-size: 14px;
+    font-size: 0.28rem;
 }
 
 .pass, .fail {
     float: left;
-    margin-right: 10px;
+    margin-right: 0.2rem;
 }
 
 .pass .label {
@@ -129,26 +116,24 @@ html, body {
 .date {
 	text-align: left;
 	color: #7f7f7f;
-	font-size: 12px;
-	padding-top: 8px;
+	font-size: 0.24rem;
+	padding-top: 0.16rem;
 }
 
 .icon-coin-wrapper {
-	height: 20px;
-	width: 20px;
+	width: 0.5rem;
+	height: 0.51rem;
 	float: right;
-	margin-top: 6px;
-	margin-right: 3px;
+	margin-top: 0.12rem;
+	margin-right: -0.05rem;
 	padding-top: 0;
 }
 
 .icon-coin {
-	background: url('/client/images/game.png') no-repeat -1674px -715px;
-	width: 82px;
-	height: 82px;
-	transform: scale(0.22); 
-	-webkit-transform: scale(0.22);
-	-webkit-transform-origin:left top;
+	background: url('/client/images/coin.png') no-repeat;
+	width: 1.5rem;
+	height: 1.51rem;
+	background-size: contain;
 	float: left;
 	z-index: 100;
 	position: relative;
@@ -156,18 +141,18 @@ html, body {
 
 .points {
 	color: #ef3636;
-	font-size: 20px;
+	font-size: 0.4rem;
 	float: right;
 }
 
 .balance {
 	float: right;
 	color: #747474;
-	padding-top: 3px;
+	padding-top: 0.06rem;
 }
 
 .empty {
-	font-size: 12px;
+	font-size: 0.24rem;
 	color: #ff8624;
 }
 

@@ -1,16 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
 
 .container {
-	width: 500px;
+	width: 100%;
+	padding: 0;
 	background-color: #f3f3f3;
-}
-	
-@media only screen and (max-width: 500px) {
-    .container {
-		width: 100%;
-		padding: 0;
-
-	}
 }
 
 html, body {
@@ -19,16 +12,16 @@ html, body {
 }
 
 #summary {
-	margin-top: 10px;
+	margin-top: 0.2rem;
 }
 
 .row {
-	height: 70px;
+	height: 1.4rem;
 	color: #494949;
-	font-size: 14px;
-	padding-top: 10px;
-	margin-right: 0px;
-	margin-left: 0px;
+	font-size: 0.28rem;
+	padding-top: 0.2rem;
+	margin-right: 0;
+	margin-left: 0;
 	border-top: 1px solid #e3e3e3;
 	background: #ffffff;
 }
@@ -38,39 +31,33 @@ html, body {
 }
 
 .column-1 {
-	padding-right: 5px;
-	padding-left: 10px;
+	padding-right: 0.1rem;
+	padding-left: 0.2rem;
 }
 
 .column-2 {
-	padding-right: 5px;
-	padding-left: 10px;
+	padding-right: 0.1rem;
+	padding-left: 0.2rem;
 	text-align: left;
 }
 
 .right-wrapper {
 	float: right;
-	margin-right: 10px;
-}
-
-@media only screen and (max-width: 360px) {
-    .column-2 {
-    	padding-left: 0px;
-    }
+	margin-right: 0.2rem;
 }
 
 .item {
 	text-align: left;
 	color: #333333;
-	font-size: 16px;
+	font-size: 0.32rem;
 	font-weight: 500;
 }
 
 .date {
 	text-align: left;
 	color: #999999;
-	font-size: 14px;
-	padding-top: 3px;
+	font-size: 0.28rem;
+	padding-top: 0.06rem;
 }
 
 .icon-coin-wrapper {
@@ -96,7 +83,7 @@ html, body {
 
 .points {
 	color: #ff4e4e;
-	font-size: 20px;
+	font-size: 0.4rem;
 	float: right;
 }
 
