@@ -27,7 +27,8 @@
                                 <div class="line">
                                 	<h3>
                                     	<span class="new-price">
-                                            <span class="new-lbl-cur">￥</span>{{number_format($v->discount_price,2)}}</span><span class="new-txt">到手价</span>
+                                            <span class="new-txt">到手价</span>
+                                            <span class="new-lbl-cur">￥</span>{{number_format($v->discount_price,2)}}</span>
                                     	<span class="btn-go"><img class="imgThunder" src="/client/images/icon-thunder.png">马上抢</span>
                                     </h3>
                                 </div>
