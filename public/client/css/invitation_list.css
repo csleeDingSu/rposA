@@ -1,8 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
 
 .container {
-    width: 500px;
     background-color: #f3f3f3;
+    width: 100%;
+    padding: 0;
 }
     
 html, body {
@@ -11,18 +12,18 @@ html, body {
 }
 
 .information-table {
-    padding-top:5px;
+    padding-top: 0.1rem;
+    padding-bottom: 0.3rem;
     background: white;
-    height: 220px;
 }
 
 .information-table  div[class^="col"] {
     background: white;
     text-align: center;
     color: #666666;
-    font-size: 16px;
-    padding-right: 10px;
-    padding-left: 10px;
+    font-size: 0.32rem;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
 }
 
 /* Tabs */
@@ -36,12 +37,12 @@ html, body {
     background-color: transparent !important;
 }
 .full-width-tabs > .nav-pills > li > a{
-    border-radius:0px;
+    border-radius:0;
     color:#666666;
     font-weight: 500;
     background: #ffffff;
-    font-size: 16px;
-    padding: 0px 10px;
+    font-size: 0.32rem;
+    padding: 0 0.2rem;
 }
 
 .full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
@@ -99,7 +100,7 @@ html, body {
 }
 
 .number {
-    font-size: 50px;
+    font-size: 0.9rem;
     text-align: left;
     width: 50%;
 }
@@ -107,30 +108,30 @@ html, body {
 .btn-invite {
     background-color: white;
     color: #ff6f44;
-    border-radius: 30px;
-    font-size: 18px;
+    border-radius: 0.6rem;
+    font-size: 0.36rem;
     float: right;
-    width: 100px;
-    padding: 5px;
-    margin-top: -10px;
+    width: 2rem;
+    padding: 0.1rem;
+    margin-top: -0.2rem;
 }
 
 .description {
-    font-size: 18px;
+    font-size: 0.36rem;
     float: left;
 }
 
 #invitation {
-    margin-top: 10px;
+    margin-top: 0.2rem;
 }
 
 .row {
-    height: 70px;
+    height: 1.4rem;
     color: #494949;
-    font-size: 14px;
-    padding-top: 10px;
-    margin-right: 0px;
-    margin-left: 0px;
+    font-size: 0.28rem;
+    padding-top: 0.2rem;
+    margin-right: 0;
+    margin-left: 0;
     border-top: 1px solid #e3e3e3;
     background: #ffffff;
 }
@@ -140,13 +141,13 @@ html, body {
 }
 
 .column-1 {
-    padding-right: 5px;
-    padding-left: 10px;
+    padding-right: 0.1rem;
+    padding-left: 0.2rem;
 }
 
 .column-2 {
-    padding-right: 5px;
-    padding-left: 10px;
+    padding-right: 0.1rem;
+    padding-left: 0.2rem;
     text-align: left;
 }
 
@@ -181,27 +182,27 @@ html, body {
 .item {
     text-align: left;
     color: #333333;
-    font-size: 18px;
+    font-size: 0.36rem;
     font-weight: 500;
 }
 
 .date {
     text-align: left;
     color: #999999;
-    font-size: 14px;
-    padding-top: 3px;
+    font-size: 0.28rem;
+    padding-top: 0.06rem;
 }
 
 .status {
     /*color: #ff4e4e;*/
-    font-size: 16px;
+    font-size: 0.32rem;
     float: right;
 }
 
 .additional {
     float: right;
     color: #fd7422;
-    font-size: 20px;
+    font-size: 0.4rem;
 }
 
 .pending {
@@ -222,7 +223,7 @@ html, body {
      color: #999;
      line-height: 1.6em;
      padding: .15rem 0;
-     margin-bottom: 20px;
+     margin-bottom: 0.4rem;
 }
 
 .total-pending {
@@ -264,7 +265,7 @@ html, body {
 }
 
 #invitation_next_lvl {
-    margin-top: 10px;
+    margin-top: 0.2rem;
 }
 
 .verified {
@@ -274,7 +275,7 @@ html, body {
 .default_additional {
     float: right;
     /*color: #fd7422;*/
-    font-size: 20px;
+    font-size: 0.4rem;
 }
 
 .tab-content {
@@ -283,5 +284,5 @@ html, body {
 
 .newline {
     background-color: #f3f3f3;
-    height:10px;
+    height: 0.2rem;
 }
