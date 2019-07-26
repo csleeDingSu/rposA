@@ -9,6 +9,8 @@
 		@section('top-css')
 			
 			<link href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+			<link rel="stylesheet" href="{{ asset('/client/fontawesome-free-5.5.0-web/css/all.css') }}" >
+
 			<!-- <link rel="stylesheet" href="{{ asset('/client/css/sweetalert2.min.css') }}"/> -->
         
         <link rel="stylesheet" href="{{ asset('/test/main/css/public.css') }}" />
