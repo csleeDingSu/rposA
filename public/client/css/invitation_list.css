@@ -298,7 +298,7 @@ html, body {
     max-height: 0.8rem;
     width: 0.6rem !important;
     height: 0.6rem;
-    border: 2px solid #a5807a !important;
+    /*border: 2px solid #a5807a !important;*/
 }
 
 .row-full {
