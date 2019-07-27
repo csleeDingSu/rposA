@@ -27,14 +27,14 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0",
-		"laravel/homestead": "^8.0"
+        "laravel/homestead": "^8.0"
     },
     "autoload": {
         "classmap": [
             "database/seeds",
             "database/factories"
         ],
-		"files": [
+        "files": [
             "app/helpers/string.php" 
         ],
         "psr-4": {
