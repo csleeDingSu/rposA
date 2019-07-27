@@ -689,7 +689,7 @@ return [
 	'gameid'=>'Game ID',
 	'date'=>'Date',
 	'played_count'=>'Played Count',
-	''=>'',
+	'rank_to_first'=>'To Top',
 	''=>'',
 	
 

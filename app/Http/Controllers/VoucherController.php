@@ -1378,10 +1378,29 @@ public function update_category($id, Request $request)
 		}		
 		echo json_encode($dbi);
 	}
-	
-	
 
-	
+	public function ajax_update_rank($id)
+	{
+		try {
+			$now = Carbon::now()->toDateTimeString();
+			//update datetime
+			Voucher::where('id', $id)->update(['created_at' => $now, 'updated_at' => $now]);
+
+			//retrieve original voucher
+			//$oriVoucher = Voucher::where('id', $id)->first();
+			//insert voucher
+			//$newVoucher = $ori_voucher->replicate();
+			//$newid = $newVoucher->save()->id;
+			//remove original voucher	
+			//$oriVoucher->delete();
+
+			return response()->json(['success' => true]);
+		
+		}  catch (\Exception $ex) {
+			 \log::error($ex);
+			 return response()->json(['success' => false, 'message' => $ex.message]);
+		}
+	}	
 }
 
 

@@ -78,6 +78,7 @@
 								<div class="btn-toolbar">
 								<button type="button" data-id="{{$item->id}}" id="{{$item->id}}" class="btn btn-inverse-info openeditmodel  ">@lang('dingsu.edit')</button>&nbsp;
 								<button type="button" onClick="return Deletevoucher({{$item->id}});return false;" class="btn btn-inverse-danger  ">@lang('dingsu.delete')</button>
+								<button type="button" onClick="return SetRankvoucher({{$item->id}});return false;" class="btn btn-inverse-info">@lang('dingsu.rank_to_first')</button>
 								</div>
 							</div>
 								

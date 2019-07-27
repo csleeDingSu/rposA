@@ -614,4 +614,5 @@ return [
 	'win' => '赢',
 	'lose' => '输',
 	'amended' => '修改',
+	'rank_to_first' => '最前',
 ];

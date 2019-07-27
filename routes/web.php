@@ -385,6 +385,8 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	//Route::post('/voucher/favorite', 'VoucherController@add_subcate')->name( 'voucher.add_subcate' );
 	Route::post( '/voucher/setting/category/edit/{id}', 'VoucherController@update_category' )->name( 'voucher.update_category' );
 	
+	//update rank
+	Route::any( '/voucher/ajaxupdaterank/{id?}', 'VoucherController@ajax_update_rank' )->name( 'ajaxupdatevoucherrank' );
 	
 	//product
 	Route::get( '/product/', 'ProductController@list_product' )->name( 'product.list.all' );

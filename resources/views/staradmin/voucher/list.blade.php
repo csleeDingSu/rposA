@@ -465,6 +465,23 @@ function save_tag()
 
 //---------------------------------------------------
 
+			function SetRankvoucher( id ) {
+				$.ajax( {
+					url: "/voucher/ajaxupdaterank/"+ id,
+					type: 'get',
+					dataType: "json",
+					success: function ( result ) {
+						if ( result.success == true ) {
+							swal( "Done!", '@lang("dingsu.voucher_update_success_message")', "success" );
+						} else {							
+							swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+						}
+					},
+					error: function ( xhr, ajaxOptions, thrownError ) {
+						swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+					}
+				} );
+			}
 
 			function Deletevoucher( id ) {
 
