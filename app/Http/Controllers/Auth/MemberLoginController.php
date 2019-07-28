@@ -447,7 +447,7 @@ class MemberLoginController extends Controller
         if (!empty($openid)) {
             $filter = ['openid' => $openid];
             $array = ['openid' => $openid, 'wechat_name' => $wechatname, 'gender' => $request->sex, 'profile_pic' => $request->headimgurl];
-            Members::updateOrCreate($filter, $array)->id;    
+            \App\Members::updateOrCreate($filter, $array)->id;    
         }
         
 		$user = \App\Members::where('openid', $openid)->first();		
