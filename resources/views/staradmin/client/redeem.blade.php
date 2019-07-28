@@ -341,5 +341,15 @@ endsection
     <script src="{{ asset('/client/js/redeem.js') }}"></script>
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
+    	
+    	$(document).ready(function () {
+	    	var wechat_status = $('#hidWechatId').val();
+	    	consol.log(wechat_status);
+
+		    if (wechat_status > 0) {
+		        window.location.href = "/goprofile";
+		    }
+		});		
+
     </script>
 @endsection
