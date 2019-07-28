@@ -190,6 +190,8 @@ class weixinController extends BaseController
             $data['domain'] = $domain;
             $data['result'] = $result;
             $data['refcode'] = $request->input('refcode');
+            $data['goto'] = $request->input('goto');
+            
             return $this->accessToWabao($data);
                 
         } catch (\Exception $e) {
@@ -232,6 +234,7 @@ class weixinController extends BaseController
         $content = $data['result'];
         $domain = $data['domain'];
         $refcode = $data['refcode'];
+        $goto = $data['goto'];
 
         $domain = empty($domain) ? "dev.boge56.com" : $domain;
         
@@ -250,6 +253,8 @@ class weixinController extends BaseController
 
             //refer code
             $payload["refcode"] = $refcode;
+            //go to
+            $payload["goto"] = $goto;
             
             $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
             $option = ['connect_timeout' => 60, 'timeout' => 180];

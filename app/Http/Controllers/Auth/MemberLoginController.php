@@ -344,7 +344,8 @@ class MemberLoginController extends Controller
         $openid      = $request->openid; 
 		$wechatname  = html_entity_decode($request->nickname);
 		$referred_by = null;		
-		
+		$goto = $request->input('goto');
+
 		if (!empty( $request->refcode) )  
 		{
 			$referred_by = $request->refcode;	
@@ -460,7 +461,7 @@ class MemberLoginController extends Controller
 		$user->activation_code = $otp = unique_random('members', 'activation_code', 15);
 		$user->activation_code_expiry = Carbon::now()->addMinutes(10);
 		
-		$url = '/wechat-login/'.$otp;
+		$url = '/wechat-login/'.$otp . '/' . $goto;
 		
 		$user->save();
 		

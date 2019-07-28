@@ -123,7 +123,7 @@ class MemberRegisterController extends Controller
 	}
     
     
-    public function showAuthForm($ref = FALSE)
+    public function showAuthForm($ref = FALSE, $goto = null)
 	{
 
 		$data = [];
@@ -131,7 +131,7 @@ class MemberRegisterController extends Controller
 		$agent = new WechatAgent;
 
         if ($agent->is("Wechat")) {
-			return redirect('/weixin/'.\Config::get('app.url').'?refcode='.$ref); 
+			return redirect('/weixin/'.\Config::get('app.url').'?refcode='.$ref.'&goto=' .$goto); 
 		}
 		
 		

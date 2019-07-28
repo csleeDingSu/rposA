@@ -53,7 +53,6 @@ class ClientController extends BaseController
 		else
 		{
 			//wechat integration
-
 			return redirect()->route('render.member.register');
 		}		
 	}
@@ -368,11 +367,11 @@ class ClientController extends BaseController
 		return view('client/share_new', ['data'=>$data]);
 	}
 	
-	public function wechat_otp_login($otp = FALSE) {		
+	public function wechat_otp_login($otp = FALSE, $goto = null) {		
 			
 		$url	= '';
 		
-		\Log::warning(json_encode(['otp' => $otp], true));
+		\Log::warning(json_encode(['otp' => $otp, 'goto' => $goto], true));
 
 		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
 			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
@@ -406,7 +405,13 @@ class ClientController extends BaseController
 				$user->save();	
 				
 				\Log::debug(json_encode(['wechat_login' => 'verified and redirect to game'], true));
-				return redirect('/arcade');			
+
+				if (empty($goto)) {
+					return redirect('/arcade');				
+				} else {
+					return redirect($goto);				
+				}
+				
 			}
 			\Log::warning(json_encode(['unauthorised_wechat_login' => 'expired OTP'], true));
 			return redirect($url);
