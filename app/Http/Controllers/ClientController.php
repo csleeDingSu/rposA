@@ -53,8 +53,8 @@ class ClientController extends BaseController
 		else
 		{
 			//wechat integration
-			//return redirect()->route('render.member.register');
-			return redirect('/nlogin?goto=profile');
+			return redirect()->route('render.member.register');
+			// return redirect('/nlogin?goto=profile');
 		}		
 	}
 	
@@ -423,14 +423,37 @@ class ClientController extends BaseController
 	}
 	
 	
-	public function vregister($refcode = NULL)
+	public function vregister($refcode = NULL, Request $request)
 	{
 		$agent = new WechatAgent;
+		$goto = $request->input('goto');
 		
 		if ($agent->is("Wechat")) {
-			return redirect(\Config::get('app.url').'/weixin/'.urlEncode(\Config::get('app.wabao666_domain').'?refcode='.$refcode)); 
+			return redirect(\Config::get('app.url').'/weixin/'.urlEncode(\Config::get('app.wabao666_domain').'?refcode='.$refcode.'&goto=' . $goto)); 
 		}
 		return view('client/angpao'); 
+	}
+
+	public function member_access_profile()
+	{
+		if (!Auth::Guard('member')->check())
+		{
+			//weixin_verify
+			$this->wx = new WX();
+			if ($this->wx->isWeiXin()) {
+            	$request = new Request;
+            	$request->merge(['goto' => 'profile']); 
+	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
+	        } else {
+	            return redirect('/profile'); 
+	        }
+			
+		} else {
+
+			return redirect('/profile');
+
+		}
+		
 	}
 	
 	
