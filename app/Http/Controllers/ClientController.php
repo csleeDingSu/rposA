@@ -53,7 +53,8 @@ class ClientController extends BaseController
 		else
 		{
 			//wechat integration
-			return redirect()->route('render.member.register');
+			//return redirect()->route('render.member.register');
+			return redirect('/nlogin?goto=profile');
 		}		
 	}
 	

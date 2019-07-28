@@ -412,13 +412,15 @@ class MemberLoginController extends Controller
 		}
 		else
 		{
-			$preg = \App\Members::where('phone', $wechatname)->first();
-			if ($preg)
-			{
-				return response()->json(['success' => false,'message'=>[trans('auth.user_already_exists')] ]);
-			}
-			\Log::debug(json_encode(['new user' => $openid ], true));
-			//register
+            //temporary disable - error when wechatname content with symbol
+			// $preg = \App\Members::where('phone', $wechatname)->first();
+			// if ($preg)
+			// {
+			// 	return response()->json(['success' => false,'message'=>[trans('auth.user_already_exists')] ]);
+			// }
+			// \Log::debug(json_encode(['new user' => $openid ], true));
+			
+            //register
 			$setting = \App\Admin::get_setting();
 			
 			$user = \App\Members::create([
@@ -440,7 +442,14 @@ class MemberLoginController extends Controller
 				]);
 			
 		}
-					
+
+        //update wechat info
+        if (!empty($openid)) {
+            $filter = ['openid' => $openid];
+            $array = ['openid' => $openid, 'wechat_name' => $wechatname, 'gender' => $request->sex, 'profile_pic' => $request->headimgurl];
+            Members::updateOrCreate($filter, $array)->id;    
+        }
+        
 		$user = \App\Members::where('openid', $openid)->first();		
 		
 		//create login session
