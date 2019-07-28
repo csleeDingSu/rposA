@@ -37,12 +37,15 @@ class VoucherController extends Controller
 		//$category = Category::where('display_name',env('voucher_featured_label','精选'))->where('parent_id',0)->select('id')->first();
 
 		// return redirect('/cs/' . $category->id);
-		return redirect('/cs/' . env('voucher_featured_id','220'));
+		// return redirect('/cs/' . env('voucher_featured_id','220'));
+		return redirect('/arcade');
 		
     }
 
     public function show($cid = false,Request $request)
     {
+    /**disable main screen
+
 		$setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 
         if ($cid)
@@ -99,6 +102,10 @@ class VoucherController extends Controller
 
 		
         return view('client.home3', compact('vouchers','category','cid','banner','member_mainledger', "setting",'firstwin'));
+	**/
+    
+        //redirect to game screen
+        return redirect('/arcade');
 		
     }
 	
