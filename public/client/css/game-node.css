@@ -2526,3 +2526,16 @@ if it's not present, don't show loader */
     margin: 0.14rem 0.1rem 0.14rem 1.1rem;
     height: 0.45rem;
 }
+
+#lose-modal .modal-win-title {
+    font-weight: 500;
+    font-size: 18px;
+    color: #000;
+    padding: 10px 0 10px 0;
+}
+
+#lose-modal .modal-result {
+    color: #62c807;
+    font-weight: 500;
+    font-size: 24px;
+}

@@ -879,7 +879,7 @@
 	<div class="modal fade col-md-12" id="lose-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-title modal-win-header">
-				<div class="modal-win-title">差点抽中。。。再来一次。。。</div>
+				<div class="modal-win-title">差点抽中...再来一次...</div>
 				<div class="modal-result">您还有1次机会</div>			
 			</div>
 
