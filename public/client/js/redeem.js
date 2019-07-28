@@ -3,7 +3,6 @@ var page_count = 1;
 
 $(document).ready(function () {
 
-
     $('.tab').click(function(){
         var title = $(this).html();
         $('.navbar-brand').html(title); 
