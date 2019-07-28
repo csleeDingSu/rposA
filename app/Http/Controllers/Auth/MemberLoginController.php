@@ -342,7 +342,7 @@ class MemberLoginController extends Controller
 		$changephone = '';
 		$url         = "/cs/220";
         $openid      = $request->openid; 
-		$wechatname  = $request->nickname;
+		$wechatname  = html_entity_decode($request->nickname);
 		$referred_by = null;		
 		
 		if (!empty( $request->refcode) )  
