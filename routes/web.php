@@ -132,9 +132,6 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/product/detail/{id?}', 'ShareProductController@getVoucherDetail' )->name( 'client.productv2_detail' );	
 } );
 
-//temporary remove middleware auth:member
-Route::get( '/profile', 'ClientController@member_profile' )->name( 'client.profile' );
-	
 //Member routes with member guard
 Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	
@@ -196,12 +193,8 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	} );
 	
 	Route::get( '/referral-list', 'ClientController@member_referral_list' )->name( 'client.referral.list' );
-
-	//temporary disable
-	// Route::get( '/profile', 'ClientController@member_profile' )->name( 'client.profile' );
-	
-	
-	
+	Route::get( '/profile', 'ClientController@member_profile' )->name( 'client.profile' );
+		
 	Route::get( '/client/profile', 'ClientController@member_profile' )->name( 'client.profile.page' );
 
 	Route::any( '/membership/buy/vip', 'PaymentController@membership_buy_vip' )->name( 'client.membership.buy.vip' );
