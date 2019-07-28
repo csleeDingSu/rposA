@@ -17,10 +17,11 @@ class WeiXin
             $appid=env('weixinid'); //'你的AppId';
             $refcode = $request->refcode;
             $goto = $request->goto;
-            if (empty($refcode)) {
-                $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain );    
+
+            if (strpos($domain, 'refcode') !== false) {
+                $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain . '&goto=' . $goto);
             } else {
-                $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain . '?refcode=' . $refcode . '&goto=' . $goto);    
+                $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain . '?refcode=' . $refcode . '&goto=' . $goto);
             }
             
             $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
