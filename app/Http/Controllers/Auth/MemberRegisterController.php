@@ -48,7 +48,7 @@ class MemberRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:member');
+        // $this->middleware('guest:member');
         $this->wx = new WX();
     }
 
