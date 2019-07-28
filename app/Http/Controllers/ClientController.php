@@ -53,8 +53,8 @@ class ClientController extends BaseController
 		else
 		{
 			//wechat integration
-
 			return redirect()->route('render.member.register');
+			// return redirect('/nlogin?goto=profile');
 		}		
 	}
 	
@@ -368,11 +368,11 @@ class ClientController extends BaseController
 		return view('client/share_new', ['data'=>$data]);
 	}
 	
-	public function wechat_otp_login($otp = FALSE) {		
+	public function wechat_otp_login($otp = FALSE, $goto = null) {		
 			
 		$url	= '';
 		
-		\Log::warning(json_encode(['otp' => $otp], true));
+		\Log::warning(json_encode(['otp' => $otp, 'goto' => $goto], true));
 
 		if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
 			\Log::debug(json_encode(['wechat' =>'not in wechat browser'], true));
@@ -406,7 +406,13 @@ class ClientController extends BaseController
 				$user->save();	
 				
 				\Log::debug(json_encode(['wechat_login' => 'verified and redirect to game'], true));
-				return redirect('/arcade');			
+
+				if (empty($goto)) {
+					return redirect('/arcade');				
+				} else {
+					return redirect($goto);				
+				}
+				
 			}
 			\Log::warning(json_encode(['unauthorised_wechat_login' => 'expired OTP'], true));
 			return redirect($url);
@@ -417,14 +423,37 @@ class ClientController extends BaseController
 	}
 	
 	
-	public function vregister($refcode = NULL)
+	public function vregister($refcode = NULL, Request $request)
 	{
 		$agent = new WechatAgent;
+		$goto = $request->input('goto');
 		
 		if ($agent->is("Wechat")) {
-			return redirect(\Config::get('app.url').'/weixin/'.urlEncode(\Config::get('app.wabao666_domain').'?refcode='.$refcode)); 
+			return redirect(\Config::get('app.url').'/weixin/'.urlEncode(\Config::get('app.wabao666_domain').'?refcode='.$refcode.'&goto=' . $goto)); 
 		}
 		return view('client/angpao'); 
+	}
+
+	public function member_access_profile()
+	{
+		if (!Auth::Guard('member')->check())
+		{
+			//weixin_verify
+			$this->wx = new WX();
+			if ($this->wx->isWeiXin()) {
+            	$request = new Request;
+            	$request->merge(['goto' => 'profile']); 
+	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
+	        } else {
+	            return redirect('/profile'); 
+	        }
+			
+		} else {
+
+			return redirect('/profile');
+
+		}
+		
 	}
 	
 	

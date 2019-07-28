@@ -101,6 +101,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/arcade_old', 'ClientController@member_access_game' )->name( 'client.arcade' );
 	//switched to new game screen
 	Route::get( '/arcade/{id?}', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
+	Route::get( '/goprofile', 'ClientController@member_access_profile' )->name( 'client.access_profile' );
 
 	Route::get( '/vip', 'ClientController@member_access_vip_node' )->name( 'client.vip' );
 
@@ -194,9 +195,7 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	
 	Route::get( '/referral-list', 'ClientController@member_referral_list' )->name( 'client.referral.list' );
 	Route::get( '/profile', 'ClientController@member_profile' )->name( 'client.profile' );
-	
-	
-	
+		
 	Route::get( '/client/profile', 'ClientController@member_profile' )->name( 'client.profile.page' );
 
 	Route::any( '/membership/buy/vip', 'PaymentController@membership_buy_vip' )->name( 'client.membership.buy.vip' );
@@ -612,7 +611,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 Route::get('/mytest', 'AdminController@mytest')->name('mytest');
 
-Route::get('nlogin/{token?}', 'Auth\MemberRegisterController@showAuthForm')->name('render.member.register');
+Route::get('nlogin/{token?}/{goto?}', 'Auth\MemberRegisterController@showAuthForm')->name('render.member.register');
 Route::any('nlogin', 'Auth\MemberLoginController@dologin')->name('submit.member.login');
 Route::post('nreg', 'Auth\MemberRegisterController@doreg')->name('submit.member.newregister');
 
@@ -641,7 +640,7 @@ Route::any( '/share_product_api', function () {
 
 //Route::any('/wechat-login/{otp?}', 'Auth\MemberLoginController@otp_login')->name('wechat_otp_login');
 
-Route::any('/wechat-login/{otp?}', 'ClientController@wechat_otp_login')->name('wechat_otp_login');
+Route::any('/wechat-login/{otp?}/{goto?}', 'ClientController@wechat_otp_login')->name('wechat_otp_login');
 
 Route::any('asyncmysqlevent/{api}/{drawid}', function ($api, $drawid) {
 	$url = env('APP_URL', 'wabao666.com') . "/$api/$drawid";
