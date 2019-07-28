@@ -3,6 +3,11 @@ var page_count = 1;
 
 $(document).ready(function () {
 
+    var wechat_status = $('#hidWechatId').val();
+
+    if (wechat_status > 0) {
+        window.location.href = "/goprofile";
+    }
 
     $('.tab').click(function(){
         var title = $(this).html();

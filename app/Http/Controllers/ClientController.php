@@ -455,6 +455,28 @@ class ClientController extends BaseController
 		}
 		
 	}
+
+	public function member_access_redeem()
+	{
+		if (!Auth::Guard('member')->check())
+		{
+			//weixin_verify
+			$this->wx = new WX();
+			if ($this->wx->isWeiXin()) {
+            	$request = new Request;
+            	$request->merge(['goto' => 'redeem']); 
+	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
+	        } else {
+	            return redirect('/redeem'); 
+	        }
+			
+		} else {
+
+			return redirect('/redeem');
+
+		}
+		
+	}
 	
 	
 }

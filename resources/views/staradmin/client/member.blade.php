@@ -49,7 +49,7 @@
 				  	</div> 元
 				  	<div class="redeembtn">
 				  	<!-- <a href="/redeem"> -->
-					  	<div class="button-redeem">马上兑换</div>
+					  	<div class="button-redeem">兑换红包</div>
 					<!-- </a> -->
 					</div>
 				  </div>
@@ -114,7 +114,7 @@
 						<div class="icon-wrapper">
 							<div class="icon-redeem"></div>
 						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>兑换奖品
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>兑换红包
 					</div>
 				</li>				
 
@@ -125,7 +125,7 @@
 							<div class="icon-play"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						我的奖品
+						我的红包
 					</div>
 				</li>
 
