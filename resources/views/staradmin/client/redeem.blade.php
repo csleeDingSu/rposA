@@ -344,7 +344,6 @@ endsection
     	
     	$(document).ready(function () {
 	    	var wechat_status = $('#hidWechatId').val();
-	    	consol.log(wechat_status);
 
 		    if (wechat_status > 0) {
 		        window.location.href = "/goprofile";
