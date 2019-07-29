@@ -402,15 +402,16 @@
 					<input name="rdbBet" class="invisible" type="radio" value="odd">
 					选择单数
 				</div>
+				<div class="DB_G_hand_2"></div>
 			  </div>
 			  <div class="button-card radio-primary right">
 				<div class="radio btn-rectangle right-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="even">
 					选择双数
 				</div>
+				<div class="DB_G_hand_2 right-hand"></div>
 			  </div>
 			  <div class="btn-trigger"></div>
-			  <div class="DB_G_hand_2"></div>
 			  <div class="DB_G_hand_3"></div>
 		</div>
 		<!-- end button wrapper -->
