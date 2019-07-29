@@ -2514,7 +2514,7 @@ if it's not present, don't show loader */
     font-weight: 500;
     font-size: 16px;
     color: #4d4d4d;
-    padding: 10px 0 10px 0;
+    padding: 8px 0 8px 0;
 }
 
 #lose-modal .modal-result {
