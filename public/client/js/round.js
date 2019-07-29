@@ -65,8 +65,12 @@ function getPosts(page, token, status){
                 $('#'+ status +'-tab').append(html);
             }
 
-            if(current_page == last_page){
-                $(".isnext").html(end_of_result);
+            if ((records.data == '' || records.data == null) && current_page == 1) {
+                $(".isnext").html('');
+            } else {
+                if(current_page == last_page){
+                    $(".isnext").html(end_of_result);
+                }
             }
 
             page++;
@@ -137,9 +141,9 @@ function populateData(records, token) {
             });
 
             if(current_page == 1 && last_page == 1 && html === '') {
-                html = '<div class="row">' + 
+                html = '<div class="row-full">' + 
                             '<div class="col-xs-12">' + 
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' + 
+                                '<div class="empty">你还没开通幸运转盘场次。<br>想开通吗？<a href="/purchase" class="share-link">请点击这里。</a></div>' + 
                             '</div>' + 
                         '</div>';
             }

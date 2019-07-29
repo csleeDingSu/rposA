@@ -198,3 +198,17 @@ html, body {
      padding: .15rem 0;
      margin-bottom: 0.4rem;
 }
+
+.row-full {
+    height: 10.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    padding-bottom: 50px;
+    color: black;
+}
+
+.share-link {
+    color: red;
+}
