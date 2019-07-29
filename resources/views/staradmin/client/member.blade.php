@@ -5,7 +5,7 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/client/css/member_n.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/member.css') }}" />
 
 <style>
 </style>
