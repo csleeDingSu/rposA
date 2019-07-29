@@ -208,6 +208,7 @@ try {
         $( ".button-bet-default" ).each(function() {
             $( this ).next().hide();
             $( this ).next().removeClass('clicked-circle');
+            $( this ).next().next().hide();
             $( this ).removeClass( "button-bet-inactive" );
             $( this ).removeClass( "button-bet-active" );
             $( this ).removeClass( "clicked-button-bet" );
@@ -219,6 +220,7 @@ try {
 
             } else if($( this ).attr('data-level') == level){
                 $( this ).next().addClass('circle-border').show();
+                $( this ).next().next().show();
                 $( this ).addClass( "button-bet-active" );
                 $( this ).unbind( "click" );
 
@@ -235,6 +237,8 @@ try {
 
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
+                        $( this ).next().hide();
+                        $( '.DB_G_hand_2' ).show();
 
                         var selected = $('div.clicked').find('input:radio').val();
                         if (typeof selected == 'undefined'){
@@ -537,6 +541,7 @@ function checkSelection() {
     if($('#btnPointer').hasClass('ready')){
         var selected = $('div.clicked').find('input:radio').val();
         if (typeof selected == 'undefined'){
+            $( '.DB_G_hand_2' ).show();
             $('.span-odd').html('请选单双').show();
             $('.span-even').html('请选单双').show();
             $('.shan div').addClass('clicked');
@@ -548,7 +553,7 @@ function checkSelection() {
             }, 3000);
         } else {
             //$('.middle-label').html('正在抽奖');
-            $('.DB_G_hand').hide();
+            $('.DB_G_hand_3').hide();
             $('.radio-primary').unbind('click');
             $('.btn-trigger').unbind('click');
             bindSpinningButton();
@@ -688,7 +693,13 @@ function showPayout(){
 
 
         if (typeof selected == 'undefined'){
-
+            if($('#btnPointer').hasClass('ready')){
+                $( '.DB_G_hand_2' ).show();
+                $( '.DB_G_hand_3' ).hide();
+            } else {
+                $( '.DB_G_hand_2' ).hide();
+                $( '.DB_G_hand_3' ).hide();
+            }
             //$('.middle-label').html('选择单双');
             $('.span-odd').removeClass('ready lose').html('请选单双').show();
             $('.span-even').removeClass('ready lose').html('请选单双').show();
@@ -724,6 +735,7 @@ function showPayout(){
             // });
 
         } else {
+            
 
             if(selected == 'odd'){
                 $('.div-odd').removeClass('lose');
@@ -735,6 +747,8 @@ function showPayout(){
 
             if($('#btnPointer').hasClass('ready')){
                 //$('.middle-label').html('开始抽奖');
+                $( '.DB_G_hand_2' ).hide();
+                $( '.DB_G_hand_3' ).show();
                 if(selected == 'odd'){
                     $('.span-odd').removeClass('lose').addClass('ready').html('+'+bet_amount);
                     $('.span-even').addClass('ready lose').html('-'+bet_amount);
@@ -744,6 +758,8 @@ function showPayout(){
                 }
             } else {
                 //$('.middle-label').html('选择金币');
+                $( '.DB_G_hand_2' ).hide();
+                $( '.DB_G_hand_3' ).hide();
                 $('.span-odd').removeClass('ready lose').html('请选金币').show();
                 $('.span-even').removeClass('ready lose').html('请选金币').show();
                 $('.shan div').addClass('clicked');
