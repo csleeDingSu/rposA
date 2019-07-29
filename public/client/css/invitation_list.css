@@ -302,7 +302,7 @@ html, body {
 }
 
 .row-full {
-    height: 400px;
+    height: 8rem;
     display: flex;
     align-items: center;
     justify-content: center;
