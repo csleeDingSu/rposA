@@ -602,7 +602,7 @@ function closeWinModal() {
         $('.speech-bubble-point').css('display', 'block');
         setTimeout(function(){ 
             $('.speech-bubble-point').css('display', 'none');
-        }, 10000);
+        }, 5000);
 
     });
 }
