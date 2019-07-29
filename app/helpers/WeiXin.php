@@ -15,8 +15,8 @@ class WeiXin
             $domain = !empty($domain) ? $domain : 'dev.boge56.com';
             $type = !empty($type) ? $type : (empty($request->input('type')) ? 'snsapi_base' : 'snsapi_userinfo');
             $appid=env('weixinid'); //'你的AppId';
-            $refcode = $request->refcode;
-            $goto = $request->goto;
+            $refcode = $request->input('refcode');
+            $goto = $request->input('goto');
 
             if (strpos($domain, 'refcode') !== false) {
                 $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain . '&goto=' . $goto);
