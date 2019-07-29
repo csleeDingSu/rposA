@@ -56,7 +56,7 @@
 						<div class="btn-redeemcash">抽奖规则</div>
 					</div>
 				</div>
-				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
+				<div class="speech-bubble-point">满15元即可领取</div>
 				<div class="profile-pic">
 					<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
 				</div>

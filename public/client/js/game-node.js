@@ -599,6 +599,11 @@ function closeWinModal() {
         $('#win-modal').modal('hide');
         $('#lose-modal').modal('hide');
         
+        $('.speech-bubble-point').css('display', 'block');
+        setTimeout(function(){ 
+            $('.speech-bubble-point').css('display', 'none');
+        }, 10000);
+
     });
 }
 

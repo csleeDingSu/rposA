@@ -2272,33 +2272,16 @@ if it's not present, don't show loader */
 }
 
 .speech-bubble-point {
-	position: relative;
-	background: #ffe12e;
-	border-radius: 3px;
-	font-size: 12px;
-	color: #a27124;
-	height: 20px;
-	width: 170px;
-	padding: 2px 5px;
-	top: -30px;
-	left: 20px;
-	z-index: 200;
-	display: none;
-	clear:both;
-}
-
-.speech-bubble-point:after {
-	content: '';
 	position: absolute;
-	top: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 5px solid transparent;
-	border-bottom-color: #ffe12e;
-	border-top: 0;
-	margin-left: -5px;
-	margin-top: -5px;
+    background-image: url(/client/images/tishi.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    font-size: 0.25rem;
+    width: 2rem;
+    height: 0.5rem;
+    padding: 0.08rem 0 0 0;
+    margin: 0.3rem 0 0 0.6rem;
+    display: none;
 }
 
 /* top-corner-game-rules Modal */
