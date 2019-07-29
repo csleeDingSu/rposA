@@ -439,14 +439,23 @@ class ClientController extends BaseController
 		if (!Auth::Guard('member')->check())
 		{
 			//weixin_verify
-			$this->wx = new WX();
-			if ($this->wx->isWeiXin()) {
-            	$request = new Request;
+			if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
+				return redirect('/profile');
+			} else {
+				$this->wx = new WX();
+				$request = new Request;
             	$request->merge(['goto' => 'profile']); 
 	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
-	        } else {
-	            return redirect('/profile'); 
-	        }
+			}
+			
+			// $this->wx = new WX();
+			// if ($this->wx->isWeiXin()) {
+   //          	$request = new Request;
+   //          	$request->merge(['goto' => 'profile']); 
+	  //           return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
+	  //       } else {
+	  //           return redirect('/profile'); 
+	  //       }
 			
 		} else {
 
