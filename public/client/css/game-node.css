@@ -2512,8 +2512,8 @@ if it's not present, don't show loader */
 
 #lose-modal .modal-win-title {
     font-weight: 500;
-    font-size: 18px;
-    color: #000;
+    font-size: 16px;
+    color: #4d4d4d;
     padding: 10px 0 10px 0;
 }
 

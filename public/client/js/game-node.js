@@ -1172,41 +1172,46 @@ function showLoseModal(){
 
         case 1:
             // instruction = '前1局猜错，<span class="highlight-green">总亏损1元</span>，根据倍增式玩法，第2局<span class="highlight-orange">将押注3元</span>，如猜对能获得3元奖励，减去亏损的1还能赚2元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前1局猜错，<span class="highlight-grey">总亏损1元</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注3元</span>，猜对能获得3元奖励，减去亏损的1还能赚2元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            // instruction = '前1局猜错，<span class="highlight-grey">总亏损1元</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注3元</span>，猜对能获得3元奖励，减去亏损的1还能赚2元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            instruction = '前1局没抽中，<span class="highlight-grey">总亏损1元</span>，第2局将<span class="highlight-green">加倍✕3</span>，抽中得3元，减去亏损的1元还能赚2元。';
             image = '/client/images/progress-bar/lose_10.png';
-            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励翻倍x2</div>'; 
+            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励2元红包</div>'; 
             result_info = '5次内猜对奖励加倍';
         break;
 
         case 2:
             // instruction = '前2局猜错，<span class="highlight-green">总亏损4元</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注7元</span>，如猜对能获得7元奖励，减去亏损的40还能赚3元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前2局猜错，<span class="highlight-grey">总亏损4元</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注7元</span>，猜对能获得7元奖励，减去亏损的40还能赚3元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            // instruction = '前2局猜错，<span class="highlight-grey">总亏损4元</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注7元</span>，猜对能获得7元奖励，减去亏损的40还能赚3元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            instruction = '前2局没抽中，<span class="highlight-grey">总亏损4元</span>，第3局将<span class="highlight-green">加倍✕7</span>，抽中得7元，减去亏损的4元还能赚3元。';
             image = '/client/images/progress-bar/lose_30.png';
-            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励翻倍x3</div>'; 
+            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励3元红包</div>'; 
             result_info = '4次内猜对奖励加倍';
         break;
 
         case 3:
             // instruction = '前3局猜错，<span class="highlight-green">总亏损11元</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注15元</span>，如猜对能获得15元奖励，减去亏损的11还能赚4元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前3局猜错，<span class="highlight-grey">总亏损11元</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注15元</span>，猜对能获得15元奖励，减去亏损的11还能赚4元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            // instruction = '前3局猜错，<span class="highlight-grey">总亏损11元</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注15元</span>，猜对能获得15元奖励，减去亏损的11还能赚4元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            instruction = '前3局没抽中，<span class="highlight-grey">总亏损11元</span>，第4局将<span class="highlight-green">加倍✕15</span>，抽中得15元，减去亏损的11元还能赚4元。';
             image = '/client/images/progress-bar/lose_70.png';
-            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励翻倍x4</div>'; 
+            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励4元红包</div>'; 
             result_info = '3次内猜对奖励加倍';
         break;
 
         case 4:
             // instruction = '前4局猜错，<span class="highlight-green">总亏损26元</span>，根据倍增式玩法，第5局<span class="highlight-orange">将押注31元</span>，如猜对能获得31元奖励，减去亏损的260还能赚5元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前4局猜错，<span class="highlight-grey">总亏损26元</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注31元</span>，猜对能获得31元奖励，减去亏损的260还能赚5元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            // instruction = '前4局猜错，<span class="highlight-grey">总亏损26元</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注31元</span>，猜对能获得31元奖励，减去亏损的260还能赚5元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            instruction = '前4局没抽中，<span class="highlight-grey">总亏损26元</span>，第5局将<span class="highlight-green">加倍✕31</span>，抽中得31元，减去亏损的26元还能赚5元。';
             image = '/client/images/progress-bar/lose_150.png';
-            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励翻倍x5</div>'; 
+            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励5元红包</div>'; 
             result_info = '2次内猜对奖励加倍';
         break;
 
         case 5:
             // instruction = '前5局猜错，<span class="highlight-green">总亏损57元</span>，根据倍增式玩法，第6局<span class="highlight-orange">将押注63元</span>，如猜对能获得63元奖励，减去亏损的57还能赚6元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
-            instruction = '前5局猜错，<span class="highlight-grey">总亏损57元</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注63元</span>，猜对能获得63元奖励，减去亏损的57还能赚6元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            // instruction = '前5局猜错，<span class="highlight-grey">总亏损57元</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注63元</span>，猜对能获得63元奖励，减去亏损的57还能赚6元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
+            instruction = '前5局没抽中，<span class="highlight-grey">总亏损57元</span>，第6局将<span class="highlight-green">加倍✕63</span>，抽中得63元，减去亏损的57元还能赚6元。';
             image = '/client/images/progress-bar/lose_310.png';
-            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励翻倍x6</div>'; 
+            html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励6元红包</div>'; 
             result_info = '1次内猜对奖励加倍';
         break;
 
