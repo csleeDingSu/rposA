@@ -286,11 +286,12 @@
 									<img class="viewimg" src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
 								
 								<div class=" text-center">
-									加客服微信领红包									
+									兑换红包请扫码加客服微信<br>
+									工作时间:早上9点-晚上9点									
 								</div>								
 							</div>
 							<div class="row imgdiv">								
-								<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
+								<img class="qrimg" src="{{ asset('/client/images/csqrcode.gif') }}" alt="qr image" />
 							</div>
 							<div class="row">								
 								<div class="bottom">长按识别二维码</div>
