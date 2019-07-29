@@ -859,7 +859,7 @@
 	<div class="modal fade col-md-12" id="win-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-				<div class="packet-title">恭喜您猜对了</div>
+				<div class="packet-title">恭喜您抽中了</div>
 				<div class="modal-body" style="padding:10px !important;">
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							

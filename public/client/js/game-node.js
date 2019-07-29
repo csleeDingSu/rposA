@@ -288,7 +288,7 @@ try {
                 $( this ).click(function(){
 
                     if (g_life > 0) {
-                       var betwarningmsg = '选错提示“按倍增式投法：第'+level+'局起步'+ suggestion_bet +'元”'; //'选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”';
+                       var betwarningmsg = '选错提示“按倍增式投法：第'+level+'局请选起步'+ suggestion_bet +'元”'; //'选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”';
                         if (level > 1) {
                             betwarningmsg = '选错提示“按倍增式投法：第'+level+'局加倍x'+ (((level-1) * level) + 1) +'”';
                         }
@@ -589,7 +589,12 @@ function closeWinModal() {
         
         if (g_current_point > g_previous_point) {
             musicPlay(1);  
-            console.log('play coin mp3');  
+            // console.log('play coin mp3');  
+
+            $('.speech-bubble-point').css('display', 'block');
+            setTimeout(function(){ 
+                $('.speech-bubble-point').css('display', 'none');
+            }, 5000);
         } 
 
          if(g_current_point > 15){
@@ -604,11 +609,6 @@ function closeWinModal() {
         $('#win-modal').modal('hide');
         $('#lose-modal').modal('hide');
         
-        $('.speech-bubble-point').css('display', 'block');
-        setTimeout(function(){ 
-            $('.speech-bubble-point').css('display', 'none');
-        }, 5000);
-
     });
 }
 
@@ -1084,51 +1084,51 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            info = '前0局猜错<span class="highlight">亏损0元</span><br />第1局猜对<span class="highlight-green">奖励1元</span><br />最终赚了1元，<span class="highlight-red">换到了1元</span><br />满15元可兑换红包';
+            info = '前0局猜错<span class="highlight">亏损0元</span><br />第1局猜对<span class="highlight-green">奖励1元</span><br /><span class="highlight-red">最终赚了1元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/10.png';
             html += '<span class="packet-sign">+</span>1<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point) - 1;
-            instructions = '您已赢到1元，';
+            instructions = '你已赚到' + (g_previous_point + 1) + '元，';
         break;
 
         case 2:
-            info = '前1局猜错<span class="highlight">亏损1元</span><br />第2局猜对<span class="highlight-green">奖励3元</span><br />最终赚了2元，<span class="highlight-red">换到了2元</span><br />满15元可兑换红包';
+            info = '前1局猜错<span class="highlight">亏损1元</span><br />第2局猜对<span class="highlight-green">奖励3元</span><br /><span class="highlight-red">最终赚了2元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/30.png';
             html += '<span class="packet-sign">+</span>2<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point) - 2;
-            instructions = '您已赢到2元，';        
+            instructions = '你已赚到' + (g_previous_point + 2) + '元，';   
         break;
 
         case 3:
-            info = '前2局猜错<span class="highlight">亏损4元</span><br />第3局猜对<span class="highlight-green">奖励7元</span><br />最终赚了3元，<span class="highlight-red">换到了3元</span><br />满15元可兑换红包';
+            info = '前2局猜错<span class="highlight">亏损4元</span><br />第3局猜对<span class="highlight-green">奖励7元</span><br /><span class="highlight-red">最终赚了3元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/70.png';
             html += '<span class="packet-sign">+</span>3<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point) - 3;
-            instructions = '您已赢到3元，';
+            instructions = '你已赚到' + (g_previous_point + 3) + '元，';
         break;
 
         case 4:
-            info = '前3局猜错<span class="highlight">亏损11元</span><br />第4局猜对<span class="highlight-green">奖励15元</span><br />最终赚了4元，<span class="highlight-red">换到了4元</span><br />满15元可兑换红包';
+            info = '前3局猜错<span class="highlight">亏损11元</span><br />第4局猜对<span class="highlight-green">奖励15元</span><br /><span class="highlight-red">最终赚了4元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/150.png';
             html += '<span class="packet-sign">+</span>4<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point) - 4;
-            instructions = '您已赢到4元，';
+            instructions = '你已赚到' + (g_previous_point + 4) + '元，';
         break;
 
         case 5:
-            info = '前4局猜错<span class="highlight">亏损26元</span><br />第5局猜对<span class="highlight-green">奖励31元</span><br />最终赚了5元，<span class="highlight-red">换到了5元</span><br />满15元可兑换红包';
+            info = '前4局猜错<span class="highlight">亏损26元</span><br />第5局猜对<span class="highlight-green">奖励31元</span><br /><span class="highlight-red">最终赚了5元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/310.png';
             html += '<span class="packet-sign">+</span>5<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point) - 5;
-            instructions = '您已赢到5元，';
+            instructions = '你已赚到' + (g_previous_point + 5) + '元，';
         break;
 
         case 6:
-            info = '前5局猜错<span class="highlight">亏损57元</span><br />第6局猜对<span class="highlight-green">奖励63元</span><br />最终赚了6元，<span class="highlight-red">换到了6元</span><br />满15元可兑换红包';
+            info = '前5局猜错<span class="highlight">亏损57元</span><br />第6局猜对<span class="highlight-green">奖励63元</span><br /><span class="highlight-red">最终赚了6元</span><br />满15元可兑换红包';
             image = '/client/images/progress-bar/630.png';
             html += '<span class="packet-sign">+</span>6<span class="packet-currency">元</span>';
             remain = 15 - (g_previous_point) - 6;
-            instructions = '您已赢到6元，';
+            instructions = '你已赚到' + (g_previous_point + 6) + '元，';
         break;
 
     }
