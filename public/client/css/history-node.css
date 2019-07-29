@@ -34,6 +34,7 @@ td.history {
     font-size: 0.22rem;
     color: #333;
     text-align: left;
+    min-width: 3.8rem;
 }
 
 td.history-number {
