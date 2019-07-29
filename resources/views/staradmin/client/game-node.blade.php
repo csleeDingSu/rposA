@@ -334,6 +334,7 @@
 		        	</div>
 		        	<div class="circle-border">
 		        	</div>
+		        	<div class="DB_G_hand_1"></div>
 		        </div>
 			
 		    </div>
@@ -345,6 +346,7 @@
 		        	</div>
 		        	<div class="circle-border">
 		        	</div>
+		        	<div class="DB_G_hand_1"></div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
@@ -353,8 +355,9 @@
 		        		<div class="bet_amount"><span class="multiply">x</span>7</div>
 		        		<div class="bet_status">加倍</div>
 		        	</div>
-		        	<div class="circle-border clicked-bet">
+		        	<div class="circle-border">
 		        	</div>
+		        	<div class="DB_G_hand_1"></div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
@@ -365,6 +368,7 @@
 		        	</div>
 		        	<div class="circle-border">
 		        	</div>
+		        	<div class="DB_G_hand_1"></div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
@@ -375,6 +379,7 @@
 		        	</div>
 		        	<div class="circle-border">
 		        	</div>
+		        	<div class="DB_G_hand_1"></div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
@@ -385,6 +390,7 @@
 		        	</div>
 		        	<div class="circle-border">
 		        	</div>
+		        	<div class="DB_G_hand_1"></div>
 		        </div>
 		    </div>
 		    <div style="clear: both;"></div>
@@ -404,7 +410,8 @@
 				</div>
 			  </div>
 			  <div class="btn-trigger"></div>
-			  <div class="DB_G_hand"></div>
+			  <div class="DB_G_hand_2"></div>
+			  <div class="DB_G_hand_3"></div>
 		</div>
 		<!-- end button wrapper -->
 		<div style="clear: both;"></div>
