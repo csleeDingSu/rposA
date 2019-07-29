@@ -798,3 +798,8 @@ html, body {
   	white-space: nowrap;	  
 	  
 }
+
+.cs-working-hour {
+	font-size: 14px;
+	color: #888888;
+}

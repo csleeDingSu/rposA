@@ -287,7 +287,7 @@
 								
 								<div class=" text-center">
 									兑换红包请扫码加客服微信<br>
-									工作时间:早上9点-晚上9点									
+									<span class="cs-working-hour">工作时间:早上9点-晚上9点</span>
 								</div>								
 							</div>
 							<div class="row imgdiv">								
