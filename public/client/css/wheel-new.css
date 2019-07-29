@@ -161,19 +161,28 @@
   cursor: pointer;
 }
 
-.DB_G_hand {
+.DB_G_hand_1, .DB_G_hand_2, .DB_G_hand_3{
   display: none;
   position: absolute;
   background-repeat: no-repeat;
-  width: 1.42rem;
-  height: 1.5rem;
+  width: 1.13rem;
+  height: 1.2rem;
   left: 53%; 
-  top: 46%; 
+  margin-top: 8%; 
   background-image: url(/client/images/wheel/hand1.png);
   -webkit-animation: guideHand2 .5s step-start infinite;
   animation: guideHand2 .5s step-start infinite;
   background-size: cover;
   z-index: 200;
+}
+
+.DB_G_hand_2 {
+	left: 28%; 
+}
+
+.DB_G_hand_1 {
+	margin-top: -0.7rem;
+	left: 50%; 
 }
 
 @keyframes guideHand2 {
