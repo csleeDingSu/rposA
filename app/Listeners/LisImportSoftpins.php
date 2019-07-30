@@ -3,14 +3,14 @@
 namespace App\Listeners;
 
 use App\Events\ImportSoftpins;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Storage;
-
 use App\Product;
-use Excel;
-use DB;
+use App\softpins;
 use Carbon\Carbon;
+use DB;
+use Excel;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Storage;
 
 class LisImportSoftpins
 {
@@ -81,7 +81,9 @@ class LisImportSoftpins
 				$ke = array_keys($val);
 				
 				foreach ($val as $akey=>$voar) 
-				{	
+				{
+					if (empty($voar)) break;
+						
 					$m = 0;
 					$insdata = array();
 					foreach($ke as $mkey=>$mva)
@@ -123,8 +125,10 @@ class LisImportSoftpins
 				$i++;
 			}
 			
-			foreach (array_chunk($dbc,800) as $t) {
-			   DB::table('softpins')->insert($t);
+			foreach ($dbc as $t) {
+			// foreach (array_chunk($dbc,800) as $t) {
+			   // DB::table('softpins')->insert($t);
+				softpins::updateOrCreate($t, $t)->id;
 			}
 		}
 		else { die('File Missing/No excel rows to process'); }

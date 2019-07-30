@@ -18,12 +18,18 @@
 				<div class="row">
 					<div class="col-md-8">
 						<div class="form-group row">
-							<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.'.$title->title) <span class="text-danger">*</span></label>
+							<label for="game_name" class="col-sm-3 col-form-label">
+								@lang('dingsu.'.$title->title) 
+
+								@if ($title->is_mandatory == 1)
+									<span class="text-danger">*</span>
+								@endif
+
+							</label>
 							<div class="col-sm-9">
 																
 								<input type="hidden" name="sys_tit[]" id="{{$title->id}}" value="{{$title->id}}">
-								
-								
+								<input type="hidden" name="is_mandatory[]" id="is_mandatory_{{$title->id}}" value="{{$title->is_mandatory}}">								
 								
 								<select id="file_title_{{$loop->iteration}}" name="file_title[]" class="form-control positionTypes">
 									<option class="defaultoption" value="">@lang('dingsu.default_select')</option>
@@ -69,7 +75,8 @@ $(document).on("submit", "#importform", function(e){
 	$( 'select' ) . each( function () {
 		var value = $( this ) . val();
 		var id = $( this ) . attr( 'id' );
-		if ( value == '' ) {
+		var is_mandatory = $('#is_mandatory_' + id).val();
+		if ( value == '' && is_mandatory == 1) {
 			alert( "@lang('dingsu.select_all_dropdown')" );
 			e . preventDefault();
 			return false;
