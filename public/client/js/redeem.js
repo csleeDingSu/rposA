@@ -538,8 +538,8 @@ function populateHistoryData(records, token) {
                     html += '     <div class="redeem-action"  data-toggle="collapse" data-target="#content-' + item.type + item.id + '">点击查看</div>' +
                             '</div>' +
                             '<div id="content-' + item.type + item.id + '" class="collapse">' +
-                                '<div class="card-wrapper">卡号： <span id="number' + item.type + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.type + item.id + '" class="copynumber">复制</span><br />密码：<span id="code' + item.type + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.type + item.id + '" class="copycode">复制</span></div><br />淘宝令：<span id="code_hash' + item.type + item.id + '" class="code_hash">' + item.code_hash + '</span> <span id="copycode_hash' + item.type + item.id + '" class="copycode_hash">复制</span></div>' +
-                                '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>' +
+                                '<div class="card-wrapper">卡号： <span id="number' + item.type + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.type + item.id + '" class="copynumber">复制</span><br />密码：<span id="code' + item.type + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.type + item.id + '" class="copycode">复制</span><br />淘宝令：<span id="code_hash' + item.type + item.id + '" class="code_hash">' + item.code_hash + '</span> <span id="copycode_hash' + item.type + item.id + '" class="copycode_hash">复制</span></div>' +
+                                '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
                             '</div></div>' +
                         '</div>';
 
@@ -934,7 +934,7 @@ function getVirtualCardDetails(id, token){
                 });
             });
 
-            html += '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>' +
+            html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
                                 '</div>';
 
             $('.redeem-card-detail-' + id).html(html);

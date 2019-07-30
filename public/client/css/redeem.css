@@ -1188,7 +1188,7 @@ textarea {
 	 padding: .15rem 0;
 }
 
-.copynumber, .copycode {
+.copynumber, .copycode, .copycode_hash {
 	color: #2096f2;
 }
 
