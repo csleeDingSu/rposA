@@ -63,6 +63,20 @@
 						</div>
 						
 					</div>
+
+					<div class="row">						
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="code_hash" class="col-sm-3 col-form-label">@lang('dingsu.codehash')  <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<input id="code_hash" name="code_hash" class="form-control" type="text" autofocus value="{{ old('code_hash')}}">
+								</div>
+							</div>
+						</div>
+						
+					</div>
+
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-success" onclick="return addpins();return false;">@lang('dingsu.add')</button>
