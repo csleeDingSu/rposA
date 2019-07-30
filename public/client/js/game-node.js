@@ -288,9 +288,9 @@ try {
                 $( this ).click(function(){
 
                     if (g_life > 0) {
-                       var betwarningmsg = '选错提示“按倍增式投法：第'+level+'局请选起步'+ suggestion_bet +'元”'; //'选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”';
+                       var betwarningmsg = '第'+level+'局请选起步'+ suggestion_bet +'元'; //'选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”';
                         if (level > 1) {
-                            betwarningmsg = '选错提示“按倍增式投法：第'+level+'局加倍x'+ (((level-1) * level) + 1) +'”';
+                            betwarningmsg = '第'+level+'局加倍x'+ (((level-1) * level) + 1);
                         }
                         $('.spinning').html(betwarningmsg);
                         $('.spinning').css('visibility', 'visible');

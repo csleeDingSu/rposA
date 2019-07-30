@@ -143,7 +143,7 @@ function populateData(records, token) {
             if(current_page == 1 && last_page == 1 && html === '') {
                 html = '<div class="row-full">' + 
                             '<div class="col-xs-12">' + 
-                                '<div class="empty">你还没开通幸运转盘场次。<br>想开通吗？<a href="/purchase" class="share-link">请点击这里。</a></div>' + 
+                                '<div class="empty">你还没开通幸运转盘场次<br><a href="/purchase" class="share-link">邀请好友送场次></a></div>' + 
                             '</div>' + 
                         '</div>';
             }

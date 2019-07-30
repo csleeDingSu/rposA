@@ -47,7 +47,7 @@ endsection
 						<a href="/profile">返回</a>
 					</div>
 					<div class="col-xs-8">
-						兑换奖品
+						兑换红包
 					</div>
 					<div class="col-xs-2 nav-right">
 						<a href="/summary">明细</a>
@@ -63,8 +63,8 @@ endsection
 		<div class="full-width-tabs">
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
-			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换奖品</a></li>
-			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的奖品</a></li>
+			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换红包</a></li>
+			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的红包</a></li>
 			</ul>
 			<!-- end redeem tabs -->
 
