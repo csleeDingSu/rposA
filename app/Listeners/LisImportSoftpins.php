@@ -125,7 +125,8 @@ class LisImportSoftpins
 				$i++;
 			}
 			
-			foreach (array_chunk($dbc,800) as $t) {
+			foreach ($dbc as $t) {
+			// foreach (array_chunk($dbc,800) as $t) {
 			   // DB::table('softpins')->insert($t);
 				softpins::updateOrCreate($t, $t)->id;
 			}
