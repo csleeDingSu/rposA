@@ -297,6 +297,7 @@ class ProductController extends BaseController
 					'pin_name'   => $dbi['pin_name'],			 
 					'code'       => $dbi['code'],
 					'passcode'   => $dbi['passcode'],
+					'code_hash'   => $dbi['code_hash'],
 			  	 ];
 		
 		$validator = Validator::make($input, [
@@ -315,7 +316,7 @@ class ProductController extends BaseController
 		
 		
 		$now = Carbon::now();
-		$data = ['product_id' => $input['product_id'],'pin_name' => $input['pin_name'],'code' => $input['code'],'passcode' => $input['passcode'],'created_at' => $now];
+		$data = ['product_id' => $input['product_id'],'pin_name' => $input['pin_name'],'code' => $input['code'],'passcode' => $input['passcode'],'created_at' => $now, 'code_hash' => $input['code_hash']];
 		
 		$id = Product::save_pin($data);
 		
@@ -328,6 +329,7 @@ class ProductController extends BaseController
 		$row .= '<td>'.$softpin->pin_name.'</td>';
 		$row .= '<td>'.$softpin->product_name.'</td>';
 		$row .= '<td>'.$softpin->code.'</td>';
+		$row .= '<td>'.$softpin->code_hash.'</td>';
 		$row .= "<td><label class='badge badge-warning'>".trans('dingsu.active')."</label></td>";
 		$row .= '<td><a href="javascript:void(0)" onClick="confirm_Delete('.$softpin->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a></td>';
 		$row .= '</tr>';
