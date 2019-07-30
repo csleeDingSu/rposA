@@ -538,7 +538,7 @@ function populateHistoryData(records, token) {
                     html += '     <div class="redeem-action"  data-toggle="collapse" data-target="#content-' + item.type + item.id + '">点击查看</div>' +
                             '</div>' +
                             '<div id="content-' + item.type + item.id + '" class="collapse">' +
-                                '<div class="card-wrapper">卡号： <span id="number' + item.type + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.type + item.id + '" class="copynumber">复制</span><br />密码：<span id="code' + item.type + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.type + item.id + '" class="copycode">复制</span><br />淘宝令：<span id="code_hash' + item.type + item.id + '" class="code_hash">￥EXpZYiJPcpg￥</span> <span id="copycode_hash' + item.type + item.id + '" class="copycode_hash">复制</span></div>' +
+                                '<div class="card-wrapper">卡号： <span id="number' + item.type + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.type + item.id + '" class="copynumber">复制</span><br />密码：<span id="code' + item.type + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.type + item.id + '" class="copycode">复制</span><br />淘口令：<span id="code_hash' + item.type + item.id + '" class="numbers">￥EXpZYiJPcpg￥</span> <span id="copycode_hash' + item.type + item.id + '" class="copycode_hash">复制</span></div>' +
                                 '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
                             '</div></div>' +
                         '</div>';
