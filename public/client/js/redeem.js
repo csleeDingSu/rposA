@@ -692,9 +692,9 @@ function requestVip(token, package_id, type, index){
 
 function confirmredeemvip(token,id,code)
 {
-	var member_id = $('#hidUserId').val();
+    var member_id = $('#hidUserId').val();
     
-	$.ajax({
+    $.ajax({
         type: 'POST',
         url: "/api/redeem-vip",
         data: { 'memberid': member_id, 'passcode': code },
@@ -715,8 +715,8 @@ function confirmredeemvip(token,id,code)
             }
         }
     });
-	
-	
+    
+    
 }
 
 function getNewProductList(softpinCount, token) {
