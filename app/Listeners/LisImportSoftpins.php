@@ -82,7 +82,7 @@ class LisImportSoftpins
 				
 				foreach ($val as $akey=>$voar) 
 				{
-					if (empty($voar)) continue;
+					// if (empty($voar)) continue;
 						
 					$m = 0;
 					$insdata = array();
