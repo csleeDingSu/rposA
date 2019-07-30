@@ -277,7 +277,7 @@ function populateInvitationData(records, token, _status = null) {
             if(current_page == 1 && last_page == 1 && html === '') {
                 html = '<div class="row-full">' + 
                             '<div class="col-xs-12">' + 
-                                '<div class="empty">你还没邀请朋友。<br>想邀请吗？<a href="/share" class="share-link">请点击这里。</a></div>' + 
+                                '<div class="empty">你还没邀请朋友<br><a href="/share" class="share-link">邀请好友送场次></a></div>' + 
                             '</div>' + 
                         '</div>';
             }

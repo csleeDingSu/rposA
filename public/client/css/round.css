@@ -206,9 +206,9 @@ html, body {
     justify-content: center;
     background-color: #f3f3f3;
     padding-bottom: 50px;
-    color: black;
+    color: #666;
 }
 
 .share-link {
-    color: red;
+    color: #ff4444;
 }

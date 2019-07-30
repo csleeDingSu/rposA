@@ -74,14 +74,14 @@
 
 	.infinite-scroll .voucher-price-icon-minus {
 		position: absolute;
-		margin-left: 3.2rem;
+		margin-left: 3.45rem;
 		height: 20px;
 	    margin-top: 0.2rem;
 	}
 
 	.infinite-scroll .new-price-icon-equal {
 		position: absolute;
-		margin-left: 5rem;
+		margin-left: 5.25rem;
 	    height: 20px;
 	    margin-top: 0.2rem;
 	}
@@ -96,6 +96,7 @@
 	    margin-left: 2.1rem;
 	    text-align: center;
 	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
+	    width: 1.15rem;
 	}
 
 	.infinite-scroll .voucher-price .cur{
@@ -119,9 +120,10 @@
 	    position: absolute;
 	    border: 1px dashed red;
 	    border-radius: 5px;
-	    margin-left: 3.6rem;
+	    margin-left: 3.82rem;
 	    text-align: center;
 	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
+	    width: 1.15rem;
 	}
 
 	.infinite-scroll .draw-price .cur{
@@ -143,7 +145,7 @@
 	    font-size: 8vw;
 	    width: 1.7rem;
 	    position: absolute;
-	    margin-left: 4.75rem;
+	    margin-left: 5.1rem;
 	    text-align: right;
 	}
 
