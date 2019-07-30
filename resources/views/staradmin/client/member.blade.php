@@ -129,16 +129,17 @@
 					</div>
 				</li>
 
-				<!-- 我的场次 -->
-				<li class="list-group-item">
-					<div class="round">
-						<div class="icon-wrapper">
-							<div class="icon-round"></div>
+				<!-- 我的场次
+					<li class="list-group-item">
+						<div class="round">
+							<div class="icon-wrapper">
+								<div class="icon-round"></div>
+							</div>
+							<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+							我的场次
 						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						我的场次
-					</div>
-				</li>
+					</li>
+				-->
 
 				<!-- 邀请记录 -->
 				<li class="list-group-item">
