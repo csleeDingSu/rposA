@@ -81,7 +81,9 @@ class LisImportSoftpins
 				$ke = array_keys($val);
 				
 				foreach ($val as $akey=>$voar) 
-				{	
+				{
+					if (empty($voar)) continue;
+						
 					$m = 0;
 					$insdata = array();
 					foreach($ke as $mkey=>$mva)
