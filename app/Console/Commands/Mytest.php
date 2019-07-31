@@ -158,7 +158,7 @@ class Mytest extends Command
 				die();
 				*/
 
-				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
+				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->ignoreEmpty()->get()->toArray();
 				$insdata = [];
 				$count = count($tdata);
 				$this->info('-- processing file');
