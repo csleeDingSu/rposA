@@ -265,6 +265,10 @@
 					</div>
 				</div>
 				<div id="txtCounter" class="middle-label"></div>
+				<div class="first-life">
+					<div class="div-life">你还有<span class="span-life">15</span>次抽奖机会</div>
+					<div class="div-time"><span class="span-time">12</span>小时<span class="span-time">30</span>分<span class="span-time">20</span>秒后到期</div>
+				</div>
 		    </div>
 		</div>
 

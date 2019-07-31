@@ -112,6 +112,38 @@
 	font-weight: 500;
 }
 
+.first-life {
+	border: 0.08rem solid #9d46ff;
+	background: #fffae3;
+	font-size: 0.26rem;
+	line-height: 0.3rem;
+	color: #aaaaa9;
+	border-radius: 0.12rem;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	width: 2.8rem;
+	height: 0.8rem;
+	margin-top: -0.6rem;
+	z-index: 300;
+	padding: 0.06rem;
+}
+
+.span-life {
+	color: #a86eff;
+}
+
+.div-time {
+	line-height: 0.22rem;
+	font-size: 0.2rem;
+}
+
+.span-time {
+	color: #ed8b00;
+}
+
 .flickity-viewport {
 	width: 100%;
   	height: 6.3rem;
