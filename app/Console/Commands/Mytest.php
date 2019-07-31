@@ -157,13 +157,15 @@ class Mytest extends Command
 				
 				die();
 				*/
+				
+				$count = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->ignoreEmpty()->getTotalRowsOfFile();
 
-				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->ignoreEmpty()->get()->toArray();
+				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->ignoreEmpty()->limitRows($count)->get()->toArray();
 				
 				$tdata = array_filter($tdata);
 				
 				$insdata = [];
-				$count = count($tdata);
+				//$count = count($tdata);
 				$this->info('-- processing file');
 				
 				$this->info('-- Total count '.$count);

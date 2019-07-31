@@ -157,10 +157,11 @@ class WeiXin
 
     public static function isWeiXin()
     {        
-        $agent = new WechatAgent;
+        // $agent = new WechatAgent;
 
-        if ($agent->is("Wechat")) {
-             
+        // if ($agent->is("Wechat")) {
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') == true) {     
+            
             return true;
 
         } else {
