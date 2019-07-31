@@ -290,8 +290,20 @@ function getPosts(page, token){
                 $('#redeem-history').append(html);
             }
 
-            if(current_page == last_page){
-                $(".isnext").html(end_of_result);
+            if ((records.data == '' || records.data == null) && current_page == 1) {
+                $(".isnext").html('');
+            } else {
+                var empty = html.match("empty");
+                if(current_page == last_page){
+                    if (empty == '' || empty == null) {
+
+                        $(".isnext").html(end_of_result); 
+
+                    }else{
+                       $(".isnext").html('');    
+                    }
+                    
+                }
             }
 
             page++;
@@ -304,6 +316,7 @@ function populateHistoryData(records, token) {
 
     var data = records.data;
     var current_page = parseInt(records.current_page);
+    var last_page = parseInt(records.last_page);
     var limit = parseInt(records.per_page);
 
     var html = '';
@@ -320,11 +333,11 @@ function populateHistoryData(records, token) {
 
     if(data.length === 0){
 
-        html += '<div class="history-row">' +
-                    '<div class="col-xs-12">' +
-                        '<div class="empty">对不起 - 你现在还没有数据。</div>' +
-                    '</div>' +
-                '</div>';
+        // html += '<div class="history-row">' +
+        //             '<div class="col-xs-12">' +
+        //                 '<div class="empty">对不起 - 你现在还没有数据。</div>' +
+        //             '</div>' +
+        //         '</div>';
     } else {
 
         $.each(data, function(i, item) {
@@ -612,6 +625,14 @@ function populateHistoryData(records, token) {
 
         });
 
+    }
+
+    if(current_page == 1 && last_page == 1 && html === '') {
+        html = '<div class="row-full">' + 
+                    '<div class="col-xs-12">' + 
+                        '<div class="empty">你还没兑换红包<br><a href="/arcade" class="share-link">去拿红包></a></div>' + 
+                    '</div>' + 
+                '</div>';
     }
 
     return html;
