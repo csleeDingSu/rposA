@@ -12,6 +12,7 @@
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.product') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.username')</th>
+								<th>@lang('dingsu.wechat')</th>
 								<th>@lang('dingsu.product') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.status')</th>
 							</tr>
@@ -25,6 +26,10 @@
 
 								<td>
 									{{ $list->username }}
+								</td>
+								<td>
+									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+									{{ $list->wechat_name }}
 								</td>
 								<td>
 									{{ $list->product_price }}
@@ -63,3 +68,19 @@
             </div>	
 	@endif	
 	</div>
+
+@section('top-css')
+    @parent	
+	<style>
+		.profile-img-circle
+		{
+			border-radius: 50% !important; 
+			max-width: 40px;
+			max-height: 40px;
+			width: 40px !important;
+			height: 40px;
+			
+		}
+
+	</style>
+@endsection

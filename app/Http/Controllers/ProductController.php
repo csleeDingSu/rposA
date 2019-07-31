@@ -460,6 +460,9 @@ class ProductController extends BaseController
 			if (!empty($input['s_username'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
 			}
+			if (!empty($input['s_wechatname'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechatname']}%") ;				
+			}
 			if (isset($input['s_status'])) {
 				if ($input['s_status'] != '' )
 					$result = $result->where('redeem_state','=',$input['s_status']);

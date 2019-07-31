@@ -21,6 +21,13 @@
 								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
 							</div>
 						</div>
+
+						<div class="col">
+							<label>@lang('dingsu.wechat')</label>
+							<div id="bloodhound">
+								<input type="text" class="form-control typeahead tt-input" name="s_wechatname" id="s_wechatname" placeholder="@lang('dingsu.wechat')">
+							</div>
+						</div>
 						<div class="col">
 							<label>@lang('dingsu.status')</label>
 							<div id="bloodhound">
