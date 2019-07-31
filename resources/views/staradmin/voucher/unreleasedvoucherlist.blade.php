@@ -106,13 +106,13 @@
 				if (process == 'yes')
 				{
 					$("#import_no_div").remove();
-					$( "#so_notification" ).append( '<div id="import_no_div" class="alert alert-fill-info" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.import_in_progress")</div>');
+					$( "#so_notification" ).append( '<div id="import_no_div" class="import_no_div alert alert-fill-info" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.import_in_progress")</div>');
 					
 					$( "#so_notification" ).show();
 				}
 				else
 				{
-					$("#import_no_div").remove();
+					$(".import_no_div").remove();
 				}
 				
 			 });
@@ -122,13 +122,13 @@
 				console.log('moveprocess:'+process);
 				if (process == 'yes')
 				{
-					$( "#so_notification" ).append( '<div id="bulkmove_no_div" class="alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.bulkmove_in_progress")</div>');
+					$( "#so_notification" ).append( '<div id="bulkmove_no_div" class="bulkmove_no_div alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.bulkmove_in_progress")</div>');
 					
 					$( "#so_notification" ).show();
 				}
 				else
 				{
-					$("#bulkmove_no_div").remove();
+					$(".bulkmove_no_div").remove();
 				}
 				
 			 });
@@ -139,13 +139,13 @@
 				console.log('deleteprocess:'+process);
 				if (process == 'yes')
 				{
-					$( "#so_notification" ).append( '<div id="bulkdelete_no_div" class="alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.buldelete_in_progress")</div>');
+					$( "#so_notification" ).append( '<div id="bulkdelete_no_div" class="bulkdelete_no_div alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.buldelete_in_progress")</div>');
 					
 					$( "#so_notification" ).show();
 				}
 				else
 				{
-					$("#bulkdelete_no_div").remove();
+					$(".bulkdelete_no_div").remove();
 				}
 				
 			 });
