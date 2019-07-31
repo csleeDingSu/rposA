@@ -159,6 +159,9 @@ class Mytest extends Command
 				*/
 
 				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->ignoreEmpty()->get()->toArray();
+				
+				$tdata = array_filter($tdata);
+				
 				$insdata = [];
 				$count = count($tdata);
 				$this->info('-- processing file');
