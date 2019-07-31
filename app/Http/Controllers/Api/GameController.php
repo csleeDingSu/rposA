@@ -936,9 +936,11 @@ class GameController extends Controller
 		
 		$bettinghistory   = Game::get_betting_history_grouped($gameid, $memberid, $vip);
 		
+		$usedlife         = \App\Game::IsFirstWin($memberid,$status);
+		
 		//$gamehistory      = Game::get_game_member_history($memberid,$gameid);	
 		
-		$result = ['setting'=>$setting,'consecutive_lose'=>$consecutive_lose,'level' => $level,'bettinghistory' => $bettinghistory];
+		$result = ['setting'=>$setting,'consecutive_lose'=>$consecutive_lose,'level' => $level,'bettinghistory' => $bettinghistory,'usedlife' => $usedlife];
 			
 		return response()->json(['success' => true,'requested_time'=>$now,'response_time'=>now(),  'record' => $result]);
 	}
