@@ -86,6 +86,7 @@
 			<input id="hidBet" type="hidden" value="" />
 			<input id="hidLastBet" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
+			<input id="hidCreatedAt" type="hidden" value="{{isset(Auth::Guard('member')->user()->created_at) ? Auth::Guard('member')->user()->created_at : 0}}" />
 			<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
 			<input id="hidWechatId" type="hidden" value="0" />
 			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
@@ -266,8 +267,8 @@
 				</div>
 				<div id="txtCounter" class="middle-label"></div>
 				<div class="first-life">
-					<div class="div-life">你还有<span class="span-life">15</span>次抽奖机会</div>
-					<div class="div-time"><span class="span-time">12</span>小时<span class="span-time">30</span>分<span class="span-time">20</span>秒后到期</div>
+					<div class="div-life">还剩<span class="span-life">15</span>次抽奖</div>
+					<div class="div-time"></div>
 				</div>
 		    </div>
 		</div>
