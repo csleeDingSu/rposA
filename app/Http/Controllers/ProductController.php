@@ -444,7 +444,7 @@ class ProductController extends BaseController
 	
 	public function get_redeemhistory(Request $request)
     {
-		$result =  \DB::table('view_redeem_history');	
+		$result =  \DB::table('view_redeem_history')->whereNotNull('member_id');	
 		$input = array();
 		
 		parse_str($request->_data, $input);
