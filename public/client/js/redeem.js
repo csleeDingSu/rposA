@@ -1,6 +1,6 @@
 var page = 1;
 var page_count = 1;
-var reload_pass = '￥EXpZYiJPcpg￥';
+var reload_pass = '?EXpZYiJPcpg?';
 
 $(document).ready(function () {
 
@@ -20,11 +20,11 @@ $(document).ready(function () {
     });
 
     clipboard.on('success', function (e) {
-        $('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+        $('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>????');
     });
 
     clipboard.on('error', function (e) {
-        $('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+        $('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>????');
     });
 
     var clipboard_verify = new ClipboardJS('.cutBtn', {
@@ -34,11 +34,11 @@ $(document).ready(function () {
     });
 
     clipboard_verify.on('success', function (e) {
-        $('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+        $('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>????');
     });
 
     clipboard_verify.on('error', function (e) {
-        $('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+        $('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>????');
     });
 
     $('.btn-close-verify').click(function() {
@@ -101,7 +101,7 @@ function getProductList(token) {
 
                 // html += '<div class="history-row">' +
                 //             '<div class="col-xs-12">' +
-                //                 '<div class="empty">对不起 - 你现在还没有数据。</div>' +
+                //                 '<div class="empty">??? - ?????????</div>' +
                 //             '</div>' +
                 //         '</div>';
 
@@ -145,11 +145,11 @@ function getProductList(token) {
                                     '<img class="img-voucher" src="'+ item.product_picurl +'" alt="'+item.product_name+'">' +
                                 '</div>' +
                                 '<div class="col-xs-6 column-2">' +
-                                    '<div class="description">' + item.product_name + '<div class="description-info">可兑换支付宝现金</div></div>' +
-                                    '<div class="remaining">已兑换 '+ total_used +' 张</div>' +
+                                    '<div class="description">' + item.product_name + '<div class="description-info">????????</div></div>' +
+                                    '<div class="remaining">??? '+ total_used +' ?</div>' +
                                 '</div>' +
                                 '<div class="col-xs-3 column-3">' +
-                                    '<div class="btn-redeem openeditmodel'+ i + ' ' + cls_cannot_redeem +'">兑换</div>' +
+                                    '<div class="btn-redeem openeditmodel'+ i + ' ' + cls_cannot_redeem +'">??</div>' +
                                 '</div>';
 
                             html += '</div>';
@@ -167,7 +167,7 @@ function getProductList(token) {
                                                 '<div class="wrapper modal-full-height">' +
                                                     '<div class="modal-card">' +
                                                         '<div class="modal-center">' +
-                                                            '兑换本产品需要消耗:' +
+                                                            '?????????:' +
                                                         '</div>' +
                                                     '</div>' +
 
@@ -175,11 +175,11 @@ function getProductList(token) {
                                                             // '<div class="icon-coin-wrapper modal-icon">' +
                                                             //     '<div class="icon-coin"></div>' +
                                                             // '</div>' +
-                                                            '<div class="wabao-price">'+ item.min_point +' 元</div>' +
+                                                            '<div class="wabao-price">'+ item.min_point +' ?</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(data.current_point) +' 元</div>' +
+                                                        '<div class="wabao-balance">????? '+ getNumeric(data.current_point) +' ?</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
@@ -187,14 +187,14 @@ function getProductList(token) {
                                                     if ((available_quantity > 0) && item.min_point <= getNumeric(data.current_point)) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
-                                                        '<a class="btn btn_submit" >确定兑换</a>' +
+                                                        '<a class="btn btn_submit" >????</a>' +
                                                         '</div>' +
                                                         '<div>' +
-                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">????</a>' +
                                                         '</div>';
                                                     } else {
                                                         htmlmodel += '<div>' +
-                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不能兑换</a>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">?????</a>' +
                                                         '</div>';
                                                     }
 
@@ -290,8 +290,20 @@ function getPosts(page, token){
                 $('#redeem-history').append(html);
             }
 
-            if(current_page == last_page){
-                $(".isnext").html(end_of_result);
+            if ((records.data == '' || records.data == null) && current_page == 1) {
+                $(".isnext").html('');
+            } else {
+                var empty = html.match("empty");
+                if(current_page == last_page){
+                    if (empty == '' || empty == null) {
+
+                        $(".isnext").html(end_of_result); 
+
+                    }else{
+                       $(".isnext").html('');    
+                    }
+                    
+                }
             }
 
             page++;
@@ -304,6 +316,7 @@ function populateHistoryData(records, token) {
 
     var data = records.data;
     var current_page = parseInt(records.current_page);
+    var last_page = parseInt(records.last_page);
     var limit = parseInt(records.per_page);
 
     var html = '';
@@ -320,16 +333,16 @@ function populateHistoryData(records, token) {
 
     if(data.length === 0){
 
-        html += '<div class="history-row">' +
-                    '<div class="col-xs-12">' +
-                        '<div class="empty">对不起 - 你现在还没有数据。</div>' +
-                    '</div>' +
-                '</div>';
+        // html += '<div class="history-row">' +
+        //             '<div class="col-xs-12">' +
+        //                 '<div class="empty">??? - ?????????</div>' +
+        //             '</div>' +
+        //         '</div>';
     } else {
 
         $.each(data, function(i, item) {
             
-            var txt_status = '等待发放';
+            var txt_status = '????';
             var cls_status = 'pending';
             var html_card_detail = null;
 
@@ -346,25 +359,25 @@ function populateHistoryData(records, token) {
                         counter +
                     '</div>' +
                     '<div class="col-xs-7 column-5">' +
-                        '<div class="description">'+ item.product_name + ' ' + (item.used_point || '') + '金币</div>' +
-                        '<div class="balance">兑换时间:'+ str_date +'</div>' +
+                        '<div class="description">'+ item.product_name + ' ' + (item.used_point || '') + '??</div>' +
+                        '<div class="balance">????:'+ str_date +'</div>' +
                     '</div>';
 
                 if(item.redeem_state == 1) { // Pending
                     html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-pending-vip">等待发放</div>' +
+                                '<div class="btn-pending-vip">????</div>' +
                             '</div>' + 
                         '</div>';
 
                 } else if (item.redeem_state == 2) { // Confirmed
                     html += '<div class="col-xs-3 column-6">' +
-                                '<div class="btn-card-vip" data-toggle="collapse" data-target="#content-p-' + item.id + '">查看密码</div>' +
+                                '<div class="btn-card-vip" data-toggle="collapse" data-target="#content-p-' + item.id + '">????</div>' +
                             '</div>' + 
                         '</div>' +
                     '<div id="content-p-' + item.id + '" class="collapse">' +
-                        '<div class="card-wrapper">游戏密码：<span class="codes-vip">' + item.passcode + '</span>' +
-                        '&nbsp;&nbsp;<button class="btn-vip" data-id="'+item.passcode+'" onClick="confirmredeemvip(\''+ token +'\', \''+ item.id +'\', \''+ item.passcode +'\')"  >进入VIP专场</button></div>' +
-                        '<div class="instruction">进入VIP专场 > 打开游戏页面VIP专场 > 粘帖密码 > 进入VIP专场</div>' +    
+                        '<div class="card-wrapper">????:<span class="codes-vip">' + item.passcode + '</span>' +
+                        '&nbsp;&nbsp;<button class="btn-vip" data-id="'+item.passcode+'" onClick="confirmredeemvip(\''+ token +'\', \''+ item.id +'\', \''+ item.passcode +'\')"  >??VIP??</button></div>' +
+                        '<div class="instruction">??VIP?? > ??????VIP?? > ???? > ??VIP??</div>' +    
                     '</div>';
 
                     htmlmodel += '<!-- Modal starts -->' +
@@ -374,14 +387,14 @@ function populateHistoryData(records, token) {
                                                 '<div class="modal-body">' +
                                                     '<div class="modal-row">' +
                                                         '<div class="vip-label">' +
-                                                            'VIP专场游戏密码' +
+                                                            'VIP??????' +
                                                         '</div>' +
                                                         '<div class="vip-code">' +
                                                             item.passcode +
                                                         '</div>' +
                                                         '<a href="/vip">' +
                                                             '<div class="btn-enter-vip">' +
-                                                                '进入专场' +
+                                                                '????' +
                                                             '</div>' +
                                                         '</a>' +
                                                     '</div>' +
@@ -393,7 +406,7 @@ function populateHistoryData(records, token) {
 
                 } else if (item.redeem_state == 3) { // Redeemed
                     html += '<div class="col-xs-3 column-6">' +
-                                '<a href="/vip"><div class="btn-pending">正在使用</div></a>' +
+                                '<a href="/vip"><div class="btn-pending">????</div></a>' +
                             '</div>' + 
                         '</div>';
                 } else if (item.redeem_state == 4) { // Used
@@ -411,41 +424,41 @@ function populateHistoryData(records, token) {
                 /* close for basic game - only show on vip
 
                 if(item.redeem_state == 1) { // Pending
-                    txt_status = '等待发放';
+                    txt_status = '????';
                     cls_status = 'pending';
                 } else if (item.redeem_state == 2 || item.redeem_state == 3) { // 2 = Confirmed, 3 redeemed
-                    txt_status = '已发放';
+                    txt_status = '???';
                     cls_status = 'confirmed';
                     getVirtualCardDetails(item.id, token);
                 } else {
-                    txt_status = '被拒绝';
+                    txt_status = '???';
                     cls_status = 'rejected';
                 }
 
                 html += '<div class="row row-new">' +
                             '<div class="redeem-info">' +
-                                '<div class="redeem-time">兑换时间: '+str_date+'</div>' +
+                                '<div class="redeem-time">????: '+str_date+'</div>' +
                                 '<div class="redeem-status '+cls_status+'">'+txt_status+'</div>' +
                             '</div>' +
                             '<div class="product-info">'+
                                 '<div class="product-img"><img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
                                 '<div class="product-detail">' +
                                     '<div class="product-name">'+item.product_name+'</div>' +
-                                    '<div class="product-desc">可兑换支付宝现金</div>' +
+                                    '<div class="product-desc">????????</div>' +
                                 '</div>' +
                                 '<div class="redeem-result">' +
                                     '<div class="redeem-quantity">X'+item.quantity+'</div>';                
                 if (item.redeem_state == 2 || item.redeem_state == 3) {
-                    html +=         '<div class="redeem-action"  data-toggle="collapse" data-target="#content-buyproduct-v-' + item.id + '">点击查看</div>' +                             
+                    html +=         '<div class="redeem-action"  data-toggle="collapse" data-target="#content-buyproduct-v-' + item.id + '">????</div>' +                             
                                 '</div>' +
                                 '<div class="redeem-card-detail-' + item.id + '"></div>' +
                             '</div>' +
                         '</div>';
-                    // html +=         '<div class="redeem-action"  data-toggle="collapse" data-target="#content-99">点击查看</div>' +
+                    // html +=         '<div class="redeem-action"  data-toggle="collapse" data-target="#content-99">????</div>' +
                     //             '</div>' +
                     //             '<div id="content-99" class="collapse">' +
-                    //                 '<div class="card-wrapper">卡号： <span id="number99" class="numbers">code</span> <span id="copynumber99" class="copynumber">复制</span><br />密码：<span id="code99" class="numbers">passcode</span> <span id="copycode99" class="copycode">复制</span></div>' +
-                    //                 '<div class="instruction">兑现方法：打开支付宝APP>搜索“闲鱼信用回收”并进入>选“卡券”>选骏网一卡通86>选面额并输入卡密>兑换现金成功。</div>' +
+                    //                 '<div class="card-wrapper">??: <span id="number99" class="numbers">code</span> <span id="copynumber99" class="copynumber">??</span><br />??:<span id="code99" class="numbers">passcode</span> <span id="copycode99" class="copycode">??</span></div>' +
+                    //                 '<div class="instruction">????:?????APP>??“??????”???>?“??”>??????86>????????>???????</div>' +
                     //             '</div>' +
                     //         '</div>' +
                     //     '</div>';
@@ -462,26 +475,26 @@ function populateHistoryData(records, token) {
                 /* close for basic game - only show on vip
 
                 if(item.redeem_state == 1) { // Pending
-                    txt_status = '等待发货';
+                    txt_status = '????';
                     cls_status = 'pending';
                 } else if (item.redeem_state == 2 || item.redeem_state == 3) { // 2 = Confirmed, 3 redeemed
-                    txt_status = '已发货';
+                    txt_status = '???';
                     cls_status = 'confirmed';
                 } else {
-                    txt_status = '被拒绝';
+                    txt_status = '???';
                     cls_status = 'rejected';
                 }
 
                 html += '<div class="row row-new">' +
                             '<div class="redeem-info">' +
-                                '<div class="redeem-time">兑换时间: '+str_date+'</div>' +
+                                '<div class="redeem-time">????: '+str_date+'</div>' +
                                 '<div class="redeem-status '+cls_status+'">'+txt_status+'</div>' +
                             '</div>' +
                             '<div class="product-info">' +
                                 '<div class="product-img"><img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
                                 '<div class="product-detail">' +
                                     '<div class="product-name">'+item.product_name+'</div>' +
-                                    '<div class="product-desc">'+item.used_point+' 金币</div>' +
+                                    '<div class="product-desc">'+item.used_point+' ??</div>' +
                                 '</div>' +
                                 '<div class="redeem-result">' +
                                     '<div class="redeem-quantity">X'+ item.quantity +'</div>' +
@@ -490,7 +503,7 @@ function populateHistoryData(records, token) {
 
                 if (item.redeem_state == 2 || item.redeem_state == 3) {
                     html += '<div class="corrier-info">' +
-                                '快递单号： <span class="tracking-num">'+ item.tracking_partner +'&nbsp;<span id="number-buyproduct-' + item.type + '-' + item.id + '" >'+ item.tracking_number +'</span>&nbsp;<span id="copynumber-buyproduct-' + item.type + '-' + item.id + '" class="copynumber">复制</span>' +
+                                '????: <span class="tracking-num">'+ item.tracking_partner +'&nbsp;<span id="number-buyproduct-' + item.type + '-' + item.id + '" >'+ item.tracking_number +'</span>&nbsp;<span id="copynumber-buyproduct-' + item.type + '-' + item.id + '" class="copynumber">??</span>' +
                             '</div>';
 
                     // Copy tracking number
@@ -501,12 +514,12 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_trackingno.on('success', function (e) {
-                        $('.copynumber').removeClass('copy-success').html('复制');
-                        $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('成功');
+                        $('.copynumber').removeClass('copy-success').html('??');
+                        $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('??');
                     });
 
                     clipboard_trackingno.on('error', function (e) {
-                        $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('成功');
+                        $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('??');
                     });
                 }
 
@@ -515,34 +528,34 @@ function populateHistoryData(records, token) {
             } else {
 
                 if(item.pin_status == 4) { // Pending
-                    txt_status = '等待发放';
+                    txt_status = '????';
                     cls_status = 'pending';
                 } else if (item.pin_status == 2) { // Confirmed
-                    txt_status = '已发放';
+                    txt_status = '???';
                     cls_status = 'confirmed';
                 } else {
-                    txt_status = '被拒绝';
+                    txt_status = '???';
                     cls_status = 'rejected';
                 }
 
                 html += '<div class="row row-new">' +
                             '<div class="redeem-info">' +
-                                '<div class="redeem-time">兑换时间:'+ str_date +'</div>' +
+                                '<div class="redeem-time">????:'+ str_date +'</div>' +
                                 '<div class="redeem-status '+cls_status+'">'+txt_status+'</div>' +
                             '</div>' +
                             '<div class="product-info"><div class="product-img"><img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
                             '<div class="product-detail">' +
                                 '<div class="product-name">'+item.product_name+'</div>' +
-                                '<div class="product-desc">可兑换支付宝现金</div>' +
+                                '<div class="product-desc">????????</div>' +
                             '</div>' +
                             '<div class="redeem-result">' +
                                 '<div class="redeem-quantity">X1</div>';
                 if (item.pin_status == 2) {
-                    html += '     <div class="redeem-action"  data-toggle="collapse" data-target="#content-' + item.type + item.id + '">点击查看</div>' +
+                    html += '     <div class="redeem-action"  data-toggle="collapse" data-target="#content-' + item.type + item.id + '">????</div>' +
                             '</div>' +
                             '<div id="content-' + item.type + item.id + '" class="collapse">' +
-                                '<div class="card-wrapper">卡号： <span id="number' + item.type + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.type + item.id + '" class="copynumber">复制</span><br />密码：<span id="code' + item.type + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.type + item.id + '" class="copycode">复制</span><br />淘口令：<span id="code_hash' + item.type + item.id + '" class="numbers">' + reload_pass +'</span> <span id="copycode_hash' + item.type + item.id + '" class="copycode_hash">复制</span></div>' +
-                                '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
+                                '<div class="card-wrapper">??: <span id="number' + item.type + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.type + item.id + '" class="copynumber">??</span><br />??:<span id="code' + item.type + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.type + item.id + '" class="copycode">??</span><br />???:<span id="code_hash' + item.type + item.id + '" class="numbers">' + reload_pass +'</span> <span id="copycode_hash' + item.type + item.id + '" class="copycode_hash">??</span></div>' +
+                                '<div class="instruction">??????:???????›????APP›????????›????›??????›??????????›3???????</div>' +
                             '</div></div>' +
                         '</div>';
 
@@ -554,15 +567,15 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_code_hash.on('success', function (e) {
-                        $('.copynumber').removeClass('copy-success').html('复制');
-                        $('.copycode').removeClass('copy-success').html('复制');
-                        $('.copycode_hash').removeClass('copy-success').html('复制');
-                        $('#copycode_hash' + item.type + item.id).addClass('copy-success').html('成功');                                                
+                        $('.copynumber').removeClass('copy-success').html('??');
+                        $('.copycode').removeClass('copy-success').html('??');
+                        $('.copycode_hash').removeClass('copy-success').html('??');
+                        $('#copycode_hash' + item.type + item.id).addClass('copy-success').html('??');                                                
                     });
 
                     clipboard_code_hash.on('error', function (e) {
-                        // $('#copynumber' + item.id).addClass('copy-fail').html('失败');
-                        $('#copycode_hash' + item.type + item.id).addClass('copy-success').html('成功');
+                        // $('#copynumber' + item.id).addClass('copy-fail').html('??');
+                        $('#copycode_hash' + item.type + item.id).addClass('copy-success').html('??');
                     });
 
                     // Copy card number
@@ -573,15 +586,15 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_cardno.on('success', function (e) {
-                        $('.copynumber').removeClass('copy-success').html('复制');
-                        $('.copycode').removeClass('copy-success').html('复制');
-                        $('.copycode_hash').removeClass('copy-success').html('复制');
-                        $('#copynumber' + item.type + item.id).addClass('copy-success').html('成功');                                                
+                        $('.copynumber').removeClass('copy-success').html('??');
+                        $('.copycode').removeClass('copy-success').html('??');
+                        $('.copycode_hash').removeClass('copy-success').html('??');
+                        $('#copynumber' + item.type + item.id).addClass('copy-success').html('??');                                                
                     });
 
                     clipboard_cardno.on('error', function (e) {
-                        // $('#copynumber' + item.id).addClass('copy-fail').html('失败');
-                        $('#copynumber' + item.type + item.id).addClass('copy-success').html('成功');
+                        // $('#copynumber' + item.id).addClass('copy-fail').html('??');
+                        $('#copynumber' + item.type + item.id).addClass('copy-success').html('??');
                     });
 
                     // Copy passcode
@@ -592,15 +605,15 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_code.on('success', function (e) {
-                        $('.copynumber').removeClass('copy-success').html('复制');
-                        $('.copycode').removeClass('copy-success').html('复制');
-                        $('.copycode_hash').removeClass('copy-success').html('复制');
-                        $('#copycode' + item.type + item.id).addClass('copy-success').html('成功');
+                        $('.copynumber').removeClass('copy-success').html('??');
+                        $('.copycode').removeClass('copy-success').html('??');
+                        $('.copycode_hash').removeClass('copy-success').html('??');
+                        $('#copycode' + item.type + item.id).addClass('copy-success').html('??');
                     });
 
                     clipboard_code.on('error', function (e) {
-                        // $('#copycode' + item.id).addClass('copy-fail').html('失败');
-                        $('#copycode' + item.type + item.id).addClass('copy-success').html('成功');
+                        // $('#copycode' + item.id).addClass('copy-fail').html('??');
+                        $('#copycode' + item.type + item.id).addClass('copy-success').html('??');
                     });
 
                 } else {
@@ -612,6 +625,14 @@ function populateHistoryData(records, token) {
 
         });
 
+    }
+
+    if(current_page == 1 && last_page == 1 && html === '') {
+        html = '<div class="row-full">' + 
+                    '<div class="col-xs-12">' + 
+                        '<div class="empty">???????<br><a href="/arcade" class="share-link">????></a></div>' + 
+                    '</div>' + 
+                '</div>';
     }
 
     return html;
@@ -744,7 +765,7 @@ function getNewProductList(softpinCount, token) {
             if(records.length === 0 && softpinCount <= 0){
                 html += '<div class="history-row">' +
                             '<div class="col-xs-12">' +
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' +
+                                '<div class="empty">??? - ?????????</div>' +
                             '</div>' +
                         '</div>';
 
@@ -787,10 +808,10 @@ function getNewProductList(softpinCount, token) {
                                 '</div>' +
                                 '<div class="col-xs-6 column-2">' +
                                     '<div class="description">' + item.name + '<div class="description-info">' + item.description + '</div></div>' +
-                                    '<div class="remaining">已兑换 '+ total_used +' 张</div>' +
+                                    '<div class="remaining">??? '+ total_used +' ?</div>' +
                                 '</div>' +
                                 '<div class="col-xs-3 column-3">' +
-                                    '<div class="btn-redeem openeditmodel_'+ i + ' ' + cls_cannot_redeem +'">兑换</div>' +
+                                    '<div class="btn-redeem openeditmodel_'+ i + ' ' + cls_cannot_redeem +'">??</div>' +
                                 '</div>';
 
                             html += '</div>';
@@ -808,7 +829,7 @@ function getNewProductList(softpinCount, token) {
                                                 '<div class="wrapper modal-full-height">' +
                                                     '<div class="modal-card">' +
                                                         '<div class="modal-center">' +
-                                                            '兑换本产品需要消耗:' +
+                                                            '?????????:' +
                                                         '</div>' +
                                                     '</div>' +
 
@@ -816,11 +837,11 @@ function getNewProductList(softpinCount, token) {
                                                             // '<div class="icon-coin-wrapper modal-icon">' +
                                                             //     '<div class="icon-coin"></div>' +
                                                             // '</div>' +
-                                                            '<div class="wabao-price">'+ item.point_to_redeem +' 元</div>' +
+                                                            '<div class="wabao-price">'+ item.point_to_redeem +' ?</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(current_point) +' 元</div>' +
+                                                        '<div class="wabao-balance">????? '+ getNumeric(current_point) +' ?</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
@@ -828,14 +849,14 @@ function getNewProductList(softpinCount, token) {
                                                     if ((available_quantity > 0) && item.point_to_redeem <= getNumeric(current_point)) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeemProduct(\''+ token +'\', \''+ item.id +'\');">' +
-                                                        '<a class="btn btn_submit" >确定兑换</a>' +
+                                                        '<a class="btn btn_submit" >????</a>' +
                                                         '</div>' +
                                                         '<div>' +
-                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">????</a>' +
                                                         '</div>';
                                                     } else {
                                                         htmlmodel += '<div>' +
-                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不能兑换</a>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">?????</a>' +
                                                         '</div>';
                                                     }
 
@@ -898,8 +919,8 @@ function getVirtualCardDetails(id, token){
             $.each(records, function(i, item) {
                 console.log(item.card_num);
 
-                html += '<div class="card-wrapper">卡号： <span id="number-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_num + '</span> <span id="copynumber-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copynumber">复制</span>' +
-                        '<br />密码：<span id="code-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_pass + '</span> <span id="copycode-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copycode">复制</span></div>' +
+                html += '<div class="card-wrapper">??: <span id="number-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_num + '</span> <span id="copynumber-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copynumber">??</span>' +
+                        '<br />??:<span id="code-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_pass + '</span> <span id="copycode-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copycode">??</span></div>' +
                         '<br/>';
 
                 // Copy card number
@@ -910,13 +931,13 @@ function getVirtualCardDetails(id, token){
                 });
 
                 _clipboard_cardno.on('success', function (e) {
-                    $('.copynumber').removeClass('copy-success').html('复制');
-                    $('.copycode').removeClass('copy-success').html('复制');
-                    $('#copynumber-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
+                    $('.copynumber').removeClass('copy-success').html('??');
+                    $('.copycode').removeClass('copy-success').html('??');
+                    $('#copynumber-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('??');
                 });
 
                 _clipboard_cardno.on('error', function (e) {
-                    $('#copynumber-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
+                    $('#copynumber-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('??');
                 });
 
                 // Copy passcode
@@ -927,17 +948,17 @@ function getVirtualCardDetails(id, token){
                 });
 
                 _clipboard_code.on('success', function (e) {
-                    $('.copynumber').removeClass('copy-success').html('复制');
-                    $('.copycode').removeClass('copy-success').html('复制');
-                    $('#copycode-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
+                    $('.copynumber').removeClass('copy-success').html('??');
+                    $('.copycode').removeClass('copy-success').html('??');
+                    $('#copycode-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('??');
                 });
 
                 _clipboard_code.on('error', function (e) {
-                    $('#copycode-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
+                    $('#copycode-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('??');
                 });
             });
 
-            html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
+            html += '<div class="instruction">??????:???????›????APP›????????›????›??????›??????????›3???????</div>' +
                                 '</div>';
 
             $('.redeem-card-detail-' + id).html(html);
