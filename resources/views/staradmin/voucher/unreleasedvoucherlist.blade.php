@@ -122,6 +122,8 @@
 				console.log('moveprocess:'+process);
 				if (process == 'yes')
 				{
+					$(".bulkmove_no_div").remove();
+					
 					$( "#so_notification" ).append( '<div id="bulkmove_no_div" class="bulkmove_no_div alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.bulkmove_in_progress")</div>');
 					
 					$( "#so_notification" ).show();
@@ -139,6 +141,8 @@
 				console.log('deleteprocess:'+process);
 				if (process == 'yes')
 				{
+					$(".bulkdelete_no_div").remove();
+					
 					$( "#so_notification" ).append( '<div id="bulkdelete_no_div" class="bulkdelete_no_div alert alert-fill-danger" role="alert">   <i class="mdi mdi-alert-circle"></i> @lang("dingsu.buldelete_in_progress")</div>');
 					
 					$( "#so_notification" ).show();
