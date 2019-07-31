@@ -436,8 +436,8 @@ class ClientController extends BaseController
 
 	public function member_access_profile()
 	{
-		if (!Auth::Guard('member')->check())
-		{
+		// if (!Auth::Guard('member')->check())
+		// {
 			//weixin_verify
 			// if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) ) {
 			// 	return redirect('/profile');
@@ -457,11 +457,11 @@ class ClientController extends BaseController
 	  //           return redirect('/profile'); 
 	  //       }
 			
-		} else {
+		// } else {
 
-			return redirect('/profile');
+			// return redirect('/profile');
 
-		}
+		// }
 		
 	}
 
