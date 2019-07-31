@@ -162,6 +162,8 @@ class Mytest extends Command
 				$insdata = [];
 				$count = count($tdata);
 				$this->info('-- processing file');
+				
+				$this->info('-- Total count '.$count);
 
 				if ($count > 0) {			
 					$arrayhead = $tdata[0];
