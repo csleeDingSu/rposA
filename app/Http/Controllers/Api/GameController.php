@@ -936,7 +936,7 @@ class GameController extends Controller
 		
 		$bettinghistory   = Game::get_betting_history_grouped($gameid, $memberid, $vip);
 		
-		$usedlife         = \App\Game::IsFirstWin($memberid,$status);
+		$usedlife         = \App\Game::IsFirstWin($memberid);
 		
 		//$gamehistory      = Game::get_game_member_history($memberid,$gameid);	
 		
