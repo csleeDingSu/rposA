@@ -124,10 +124,17 @@ class ImportVoucher extends Command
 				$path     = 'uploads/excel/'.$filename;
 				$url      = \Storage::url($path);
 				$array_data = [];
+				
+				$this->info('-- processing file '.$filename);
 
-				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->get()->toArray();
+				$count = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->ignoreEmpty()->getTotalRowsOfFile();
+
+				$tdata = \Excel::selectSheetsByIndex(0)->load($url, function($reader){})->ignoreEmpty()->limitRows($count)->get()->toArray();
+				
 				$insdata = [];
-				$count = count($tdata);
+				//$count = count($tdata);
+				
+				$this->info('-- Total count '.$count);
 
 				if ($count > 0) {			
 					$arrayhead = $tdata[0];
