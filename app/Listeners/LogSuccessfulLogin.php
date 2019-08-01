@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use Carbon\Carbon;
 
-class LogAuthenticated
+class LogSuccessfulLogin
 {
     /**
      * Create the event listener.
@@ -29,6 +29,8 @@ class LogAuthenticated
     public function handle(Authenticated $event)
     {
 		$user = \Auth::guard('member')->user();
+		
+		if (!$user) return false;
 		
 		if ($user->is_purged_gamelife != 1)
 		{
