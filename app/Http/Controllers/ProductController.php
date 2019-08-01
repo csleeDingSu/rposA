@@ -385,6 +385,12 @@ class ProductController extends BaseController
 			if (!empty($input['s_username'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
 			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+			}
 		}
 		$result =  $result->orderby('id','DESC')->paginate(30);
 		
@@ -459,6 +465,12 @@ class ProductController extends BaseController
 			}
 			if (!empty($input['s_username'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
 			}
 			if (isset($input['s_status'])) {
 				if ($input['s_status'] != '' )
@@ -680,6 +692,12 @@ class ProductController extends BaseController
 			if (!empty($input['s_username'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
 			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+			}
 		}
 		
 		//DB::enableQueryLog();
@@ -721,6 +739,12 @@ class ProductController extends BaseController
 			}
 			if (!empty($input['s_username'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
+			}
+			if (!empty($input['s_phone'])) {
+				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
 			}
 		}
 		
