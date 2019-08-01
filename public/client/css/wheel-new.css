@@ -112,6 +112,35 @@
 	font-weight: 500;
 }
 
+.first-life {
+	background-image: url(/client/images/wheel/time.png);
+	background-size: cover;
+	font-size: 0.26rem;
+	line-height: 0.32rem;
+	color: #fff;
+	border-radius: 0.12rem;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	width: 4.17rem;
+	height: 0.91rem;
+	margin-top: -0.8rem;
+	z-index: 300;
+	padding-top: 0.22rem;
+	display: none;
+}
+
+.div-time {
+	line-height: 0.26rem;
+	font-size: 0.2rem;
+}
+
+.span-time {
+	color: #ed8b00;
+}
+
 .flickity-viewport {
 	width: 100%;
   	height: 6.3rem;

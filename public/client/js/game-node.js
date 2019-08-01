@@ -17,6 +17,7 @@ var latest_result = null; //latest result
 var last_bet = null;
 var g_life = 0;
 var consecutive_lose = null;
+var usedlife = 0;
 
 $(function () {
 
@@ -200,6 +201,18 @@ try {
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
+
+        if(usedlife == 0){
+            $('.first-life').show();
+            $('.span-life').html(15-g_current_point);
+
+            countDownLife();
+
+        } else {
+            
+            $('.first-life').hide();
+        }
+
         if(latest_result.length > 0){
             previous_result = latest_result[0].result;
             $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+previous_result+'</div>');
@@ -456,6 +469,7 @@ function startGame() {
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
+            usedlife = data.record.usedlife;
             game_records = data.record.setting;
             betting_records = data.record.bettinghistory.data;
             latest_result = data.record.bettinghistory.data;
@@ -1474,3 +1488,44 @@ function musicPlay(music) {
 
 }
 //load audio - end
+
+function countDownLife(){
+    // Set the date we're counting down to
+    var created_date = $('#hidCreatedAt').val();
+    var countDownDate = new Date(created_date);
+    countDownDate.setDate( countDownDate.getDate() + 1 );
+    countDownDate.getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      // Get today's date and time
+      var now = new Date().getTime();
+        
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+        
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+      var minutes = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+      var seconds = pad(Math.floor((distance % (1000 * 60)) / 1000));
+        
+      // Output the result in an element with id="demo"
+      $(".div-time").html('<span class="span-time">'+hours+'</span>小时<span class="span-time">'+minutes+'</span>分<span class="span-time">'+seconds+'</span>秒后到期');
+        
+      // If the count down is over, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        $(".div-time").html("EXPIRED");
+      }
+    }, 1000);
+}
+
+function pad(value) {
+    if(value < 10) {
+        return '0' + value;
+    } else {
+        return value;
+    }
+}
