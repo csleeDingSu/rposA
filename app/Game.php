@@ -766,9 +766,15 @@ class Game extends Model
 	
 	public static function IsFirstLife($memberid,$count = '0')
 	{		
-		$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS life'))->where('member_id',$memberid)->first();		
-		$result->life = $result->life + $count ;
-		return $result->life;
+		$count      = 0;
+		if ($memberid)
+		{
+			$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS life'))->where('member_id',$memberid)->first();			
+			$user   =  DB::table('members')->select('is_purged_gamelife')->where('id', $memberid)->first();
+			
+			$count  = $result->life + $user->is_purged_gamelife ;
+		}
+		return $count;
 	}
 	
 	
