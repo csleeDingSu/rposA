@@ -136,7 +136,7 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::get('/get-virtual-card-details', 'BuyProductController@get_virtual_card_details')->name('get_virtual_card_details');
 	
-	Route::get('/check-first-life-purge-status', 'MemberLoginController@purge_game_life')->name('purge_game_life');
+	Route::get('/check-first-life-purge-status', 'MemberController@purge_game_life')->name('purge_game_life');
 	
 	
 });
