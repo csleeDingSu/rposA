@@ -147,6 +147,9 @@ Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilo
 Route::post('wechat-auth', 'Auth\MemberLoginController@wechat_auth')->name('wechat_auth');
 
 
+Route::get('check-first-life-purge-status', 'Api\MemberLoginController@purge_game_life')->name('purge_game_life');
+
+
 //cron_test
 Route::get('/cron_test', 'TestController@cron_test')->name('cron_test');
 
