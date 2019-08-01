@@ -439,7 +439,9 @@
 	</ul>
 	{{ $vouchers->links() }}
 	
-	<p class="isnext">下拉显示更多...</p>
+	@if (!empty($vouchers))
+		<p class="isnext">下拉显示更多...</p>
+	@endif
 
 </div>
 </div></div>
@@ -1129,6 +1131,10 @@
 				},
 				success: function(responce) { 
 					$('.list-2').append(responce.html);
+					console.log(responce);
+					// if (responce.html == null || responce.html = '') {
+					// 	$(".isnext").html('');	
+					// }
 				}
 			 });
 		}
