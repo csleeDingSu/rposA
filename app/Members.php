@@ -248,7 +248,7 @@ class Members extends Model
 						
 			if ($usedlife < 1)
 			{
-				if (Carbon::parse($user->created_at)->lt(Carbon::now()->subDay(1)))
+				if (\Carbon\Carbon::parse($user->created_at)->lt(\Carbon\Carbon::now()->subDay(1)))
 				{
 					\Log::debug(json_encode(['date gt 24 hrs' =>'yes','phone'=>$user->phone,'wechat_name'=>$user->wechat_name], true));
 					
