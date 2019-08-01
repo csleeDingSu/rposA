@@ -1,7 +1,8 @@
 @extends('layouts.default')
 
-<!-- section('title', '兑换红包')
+@section('title', '兑换红包')
 
+<!--
 section('left-menu')
     <a href="/profile" class="back">
         <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
