@@ -1517,7 +1517,7 @@ function countDownLife(){
       // If the count down is over, write some text 
       if (distance < 0) {
         clearInterval(x);
-        $(".div-time").html("EXPIRED");
+        $('.first-life').hide();
       }
     }, 1000);
 }
