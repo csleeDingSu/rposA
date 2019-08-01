@@ -16,9 +16,23 @@
 						</div>
 
 						<div class="col">
-							<label>@lang('dingsu.username')</label>
+							<label>@lang('dingsu.phone')</label>
 							<div id="bloodhound">
-								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
+								<input type="text" class="form-control typeahead tt-input" name="s_phone" id="s_phone" placeholder="@lang('dingsu.phone')">
+							</div>
+						</div>
+						
+						<div class="col">
+							<label>@lang('dingsu.code')</label>
+							<div id="bloodhound">
+								<input type="text" class="form-control typeahead tt-input" name="s_code" id="s_code" placeholder="@lang('dingsu.code')">
+							</div>
+						</div>
+						
+						<div class="col">
+							<label>@lang('dingsu.wechat_name')</label>
+							<div id="bloodhound">
+								<input type="text" class="form-control typeahead tt-input" name="s_wechat_name" id="s_wechat_name" placeholder="@lang('dingsu.wechat_name')">
 							</div>
 						</div>
 

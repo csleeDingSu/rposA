@@ -9,7 +9,7 @@ use App\Members as Member;
 use Validator;
 use Carbon\Carbon;
 use App\Wallet;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 class MemberController extends Controller
 {
     
@@ -186,6 +186,18 @@ class MemberController extends Controller
 		$record = \App\BasicPackage::check_vip_status($member);
 		return response()->json(['success' => true,'result' => $record]);
 	}
+	
+	public function purge_game_life(Request $request)
+	{
+		$user = Member::find($request->memberid);
+		if (!$user) return response()->json(['success' => false,'message' => 'unknown member']);
+		$result = Member::purge_game_life($user);		
+		return $result;
+	}
+	
+	
+		
+		
 	
 	
 }

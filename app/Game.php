@@ -764,12 +764,17 @@ class Game extends Model
 		DB::table('test')->insert($chunk);
 	}
 	
-	public static function IsFirstLife($memberid,$count = '1')
-	{
-		
-		$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS life'))->where('member_id',$memberid)->first();
-		
-		return $result->life;
+	public static function IsFirstLife($memberid,$count = '0')
+	{		
+		$count      = 0;
+		if ($memberid)
+		{
+			$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS life'))->where('member_id',$memberid)->first();			
+			$user   =  DB::table('members')->select('is_purged_gamelife')->where('id', $memberid)->first();
+			
+			$count  = $result->life + $user->is_purged_gamelife ;
+		}
+		return $count;
 	}
 	
 	

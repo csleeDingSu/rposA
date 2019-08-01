@@ -236,6 +236,125 @@ class Members extends Model
 		
 	}
 	
+	
+	public static function purge_game_life($user)
+    {				
+		$msg = 'no changes on life';
+		$gameid = 102;
+		if ($user->is_purged_gamelife != 1)
+		{
+			$usedlife = \App\Game::IsFirstLife($user->id);
+			
+			//\Log::debug(json_encode(['used life' =>$usedlife,'phone'=>$user->phone,'wechat_name'=>$user->wechat_name], true));
+						
+			if ($usedlife < 1)
+			{
+				if (\Carbon\Carbon::parse($user->created_at)->lt(\Carbon\Carbon::now()->subDay(1)))
+				{
+					//\Log::debug(json_encode(['date gt 24 hrs' =>'yes','phone'=>$user->phone,'wechat_name'=>$user->wechat_name], true));
+					
+					$wallet = \App\Wallet::get_wallet_details($user->id);
+					
+					if (!empty($wallet->life))
+					{
+						$max_po = \Config::get('app.coin_max');
+						
+						if (!$max_po) $max_po = 15;
+						
+						if ($wallet->acupoint < $max_po) 
+						{
+							$wallet->acupoint = 0;
+						}
+						else
+						{
+							$wallet->acupoint = $max_po;
+						}
+						
+						$credit_bal=0;
+						$_bal = 120;
+						
+						$current_life	= $wallet->life-1;
+						$credit        	= 0;
+						$debit        	= $wallet->acupoint; 
+
+
+	// ---------------------Balance--------------------------------------
+						$balance_before		=$wallet->balance;
+						if($balance_before!=$_bal){
+							$credit_bal= $_bal-$wallet->balance;
+						}
+						$current_balance	= $wallet->balance +$credit_bal;
+						$balance_after		= $current_balance;
+						$debit_bal			= 0;
+						$current_level 		= 1;
+						$current_bet 		= $wallet->bet;
+	// ---------------------Point--------------------------------------
+
+						$award_bal_before		= $wallet->acupoint;
+						$award_bal_after		= $award_bal_before-$wallet->acupoint;
+						$award_current_bal		= $award_bal_before-$wallet->acupoint;
+						$current_life_acupoint	= $award_bal_before-$wallet->acupoint;
+
+						$current_point=$wallet->point+ $wallet->acupoint;
+					
+						
+						//ac credit 
+						$crd_credit             = $wallet->acupoint;
+						$crd_debit              = 0; 
+						$crd_bal_before			= $wallet->point;
+						$crd_bal_after			= $crd_bal_before+$wallet->acupoint;
+						$crd_current_bal		= $crd_bal_after;
+						
+						
+						//update main ledger
+						$mainledger = [ 
+							'current_point'         => $current_point,
+							'current_balance'       => $current_balance,
+							'current_life_acupoint' => $wallet->acupoint,
+						];
+						
+						DB::table('mainledger')->
+							where('member_id', $user->id)
+							->update($mainledger);
+						
+						//update point ledger balance
+						\App\Wallet::life_redeem_post_ledgerhistory_bal($user->id,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
+						//update point ledger history
+						\App\Wallet::life_redeem_post_ledgerhistory_pnt($user->id,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);						
+						//ac credit
+						\App\Wallet::life_redeem_post_ledgerhistory_crd($user->id,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
+						
+						//reset game level
+						Game::reset_member_game_level($user->id , $gameid);
+						
+						
+						
+						//reduce one life 
+						\App\Wallet::update_basic_wallet($user->id,1,0,'PWL','deduct', '.Auto purged 1 life');
+						\Log::debug(json_encode(['purged life' => 1,'phone'=>$user->phone,'wechat_name'=>$user->wechat_name], true));
+						
+						$msg = '1 purged life';
+					}					
+					//update flag
+					$user->is_purged_gamelife = 1;
+					$user->save();
+					
+					return response()->json(['success' => true,'message' => $msg]);
+				}	
+			}
+			else
+			{
+				//update flag
+				$user->is_purged_gamelife = 1;
+				$user->save();
+				
+				$msg = 'flag updated.no changes on life';
+			}	
+		}
+		
+		return response()->json(['success' => false,'message' => $msg]);
+	}
+	
 		
 		
 }
