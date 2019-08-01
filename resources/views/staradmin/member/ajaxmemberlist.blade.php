@@ -14,7 +14,8 @@
 							<th>@lang('dingsu.create_Date')</th>
 							<th>@lang('dingsu.name')</th>
 							<th>@lang('dingsu.wechat_name')</th>							
-							<th>@lang('dingsu.referred_count')</th>							
+							<th>@lang('dingsu.referred_count')</th>	
+							<th>@lang('dingsu.used_life')</th>		
 							<th>@lang('dingsu.life')</th>
 							<th>@lang('dingsu.current_point') </th>
 							<th>@lang('dingsu.wechat_status')</th>
@@ -41,6 +42,7 @@
 							<td><img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;{{ $list->wechat_name }}</td>
 							
 							<td><h6 class="ShowChildMembers text-info font-weight-semibold ml-2" data-id="{{ $list->id }}" data-count="{{ $list->totalcount }}" >{{ $list->totalcount }}</h6> </td>
+							<td id="">	{{ $list->usedlife }}</td>
 							<td id="cl_{{ $list->id }}">
 								{{ $list->current_life }}
 							</td>
