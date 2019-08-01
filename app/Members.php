@@ -239,7 +239,7 @@ class Members extends Model
 	
 	public static function purge_game_life($user)
     {				
-		$msg = '';
+		$msg = 'no changes on life';
 		if ($user->is_purged_gamelife != 1)
 		{
 			$usedlife = \App\Game::IsFirstLife($user->id);
@@ -266,6 +266,8 @@ class Members extends Model
 					//update flag
 					$user->is_purged_gamelife = 1;
 					$user->save();
+					
+					return response()->json(['success' => true,'message' => $msg]);
 				}	
 			}
 			else
@@ -274,11 +276,11 @@ class Members extends Model
 				$user->is_purged_gamelife = 1;
 				$user->save();
 				
-				$msg = 'flag updated';
+				$msg = 'flag updated.no changes on life';
 			}	
 		}
 		
-		return response()->json(['success' => true,'message' => $msg]);
+		return response()->json(['success' => false,'message' => $msg]);
 	}
 	
 		
