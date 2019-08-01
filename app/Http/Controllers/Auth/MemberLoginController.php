@@ -475,11 +475,9 @@ class MemberLoginController extends Controller
 		// $user->save(); //not working -- fail to save
 
         //temporary use this
-        $endTime = new Carbon();
-        $endTime->addMinutes(10);
+        $endTime = Carbon::now()->addMinutes(10)->format('Y-m-d H:i:s');
         $filter = ['openid' => $openid];
-        $array = ['openid' => $openid, 'activation_code' => $otp];
-        // $array = ['openid' => $openid, 'activation_code' => $otp, 'activation_code_expiry' => $endTime];
+        $array = ['openid' => $openid, 'activation_code' => $otp, 'activation_code_expiry' => $endTime];
         \Log::debug(json_encode(['endtime' => $endTime], true));
 
         \App\Members::updateOrCreate($filter, $array)->id; 		
