@@ -37,7 +37,7 @@
 							<td>
 								{{ $list->created_at }}
 							</td>
-							<td @if($list->referred_by != 0) class="text-primary font-weight-bold" @endif >{{ $member->wechat_name ?? $member->username }}</td>
+							<td @if($list->referred_by != 0) class="text-primary font-weight-bold" @endif >{{ $list->wechat_name ?? $list->username }}</td>
 							<td><img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;{{ $list->wechat_name }}</td>
 							
 							<td><h6 class="ShowChildMembers text-info font-weight-semibold ml-2" data-id="{{ $list->id }}" data-count="{{ $list->totalcount }}" >{{ $list->totalcount }}</h6> </td>
