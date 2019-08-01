@@ -81,11 +81,11 @@
 
 .middle {
 	position: absolute; 
-	left: 35%; 
-	top: 33%; 
+	left: 38%; 
+	top: 34%; 
 	z-index: 100;
-	width: 1.8rem;
-	height: 2.1rem;
+	width: 1.49rem;
+	height: 1.92rem;
 	-webkit-transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
 	transition: all 4s cubic-bezier(1, 0.00001, 0.00001, 1);
 }
@@ -93,14 +93,15 @@
 .middle-label{
 	position: absolute; 
 	left: 43.8%; 
-	top: 44.5%; 
+	top: 44%; 
 	z-index: 100;
 	width: 1rem;
 	height: 1rem;
-	line-height: 0.4rem;
-	font-size: 0.36rem;
-	font-weight: 700;
+	line-height: 0.28rem;
+	font-size: 0.28rem;
+	font-weight: 500;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #9f4ff4;
 }
 
 .counter{
