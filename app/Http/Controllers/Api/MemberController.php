@@ -189,7 +189,7 @@ class MemberController extends Controller
 	
 	public function purge_game_life(Request $request)
 	{
-		$user = \Auth::guard('member')->user();
+		$user = Auth::guard('member')->user();
 		if (!$user) return response()->json(['success' => false,'message' => 'unknown member']);
 		$record = Member::purge_game_life($user);
 		return response()->json(['success' => true,'result' => $record]);
