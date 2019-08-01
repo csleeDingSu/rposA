@@ -42,7 +42,7 @@
 							<td><img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;{{ $list->wechat_name }}</td>
 							
 							<td><h6 class="ShowChildMembers text-info font-weight-semibold ml-2" data-id="{{ $list->id }}" data-count="{{ $list->totalcount }}" >{{ $list->totalcount }}</h6> </td>
-							<td id="">	{{ $list->usedlife }}</td>
+							<td id="">	{{ $list->usedlife + $list->is_purged_gamelife }}</td>
 							<td id="cl_{{ $list->id }}">
 								{{ $list->current_life }}
 							</td>
