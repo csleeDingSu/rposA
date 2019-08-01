@@ -246,7 +246,7 @@ function getProductList(token) {
             }
 
             //new list of buy product
-            //getNewProductList(records.length, token);
+            getNewProductList(records.length, token);
 
         } // end success
     }); // end $.ajax
