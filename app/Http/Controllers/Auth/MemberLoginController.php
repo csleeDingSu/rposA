@@ -472,8 +472,13 @@ class MemberLoginController extends Controller
 		
 		$url = '/wechat-login/'.$otp . '/' . $goto;
 		
-		$user->save();
+		// $user->save(); //not working -- fail to save
         
+        //temporary use this
+        $filter = ['openid' => $openid];
+        $array = ['openid' => $openid, 'activation_code' => $otp, 'activation_code_expiry' => Carbon::now()->addMinutes(10)];
+        \App\Members::updateOrCreate($filter, $array)->id; 		
+		
 		\Log::debug(json_encode(['redirect to ' => $url ], true));
 		
 		return response()->json([
