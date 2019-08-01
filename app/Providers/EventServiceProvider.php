@@ -28,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
 		'App\Events\ImportAds' => [
             'App\Listeners\LisImportAds',
         ],
+		'Illuminate\Auth\Events\Authenticated' => [
+        	'App\Listeners\LogAuthenticated',
+    	],    
     ];
 
     /**
