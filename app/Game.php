@@ -769,7 +769,7 @@ class Game extends Model
 		
 		$result =  DB::table('member_game_result')->select(DB::raw('COUNT(CASE WHEN is_reset = 1 THEN 1 END) AS life'))->where('member_id',$memberid)->first();
 		
-		$user = \Auth::guard('member')->user();
+		$user = \Auth::guard('member')->user(); print_r($user);
 		
 		if (!empty($user->is_purged_gamelife))
 		{
