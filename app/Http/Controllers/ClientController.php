@@ -406,6 +406,8 @@ class ClientController extends BaseController
 				$user->save();	
 				
 				\Log::debug(json_encode(['wechat_login' => 'verified and redirect to game'], true));
+				
+				event(new \Illuminate\Auth\Events\Login());
 
 				if (empty($goto)) {
 					return redirect('/arcade');				
