@@ -1527,7 +1527,7 @@ function countDownLife(){
       if (distance < 0) {
         clearInterval(x);
         $('.first-life').hide();
-        window.top.location.href = "/arcade";
+        checkFirstLifePurgeStatus();
       }
     }, 1000);
 }
@@ -1538,4 +1538,25 @@ function pad(value) {
     } else {
         return value;
     }
+}
+
+function checkFirstLifePurgeStatus(){
+    var user_id = $('#hidUserId').val();
+
+    $.ajax({
+        type: 'GET',
+        url: "/api/check-first-life-purge-status?memberid=102&memberid=" + user_id,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            console.log(data);
+            // if (data.success) {
+
+            // }
+            window.top.location.href = "/arcade";
+        }
+    });
 }
