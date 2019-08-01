@@ -191,8 +191,8 @@ class MemberController extends Controller
 	{
 		$user = Member::find($request->memberid);
 		if (!$user) return response()->json(['success' => false,'message' => 'unknown member']);
-		$record = Member::purge_game_life($user);
-		return response()->json(['success' => true,'result' => $record]);
+		$result = Member::purge_game_life($user);		
+		return $result;
 	}
 	
 	
