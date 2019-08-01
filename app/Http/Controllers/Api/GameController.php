@@ -925,7 +925,7 @@ class GameController extends Controller
 		$memberid = $request->memberid;
 		$vip      = $request->vip;	
 		$now      = Carbon::now();
-		
+		$user     = Auth::guard('member')->user();
 		$setting =  Game::gamesetting($gameid);
 		
 		$out = Game::get_single_gameresult_by_gameid($gameid,$now );
@@ -936,8 +936,8 @@ class GameController extends Controller
 		
 		$bettinghistory   = Game::get_betting_history_grouped($gameid, $memberid, $vip);
 		
-		$usedlife         = \App\Game::IsFirstLife($memberid);
-		
+		$usedlife         = \App\Game::IsFirstLife($memberid,$user->is_purged_gamelife);
+						
 		//$gamehistory      = Game::get_game_member_history($memberid,$gameid);	
 		
 		$result = ['setting'=>$setting,'consecutive_lose'=>$consecutive_lose,'level' => $level,'bettinghistory' => $bettinghistory,'usedlife' => $usedlife];
@@ -1676,7 +1676,8 @@ class GameController extends Controller
 	
 	private function decide_result_condition($memberid, $data)
     {
-		$IsFirstLife = Game::IsFirstLife($memberid,1);
+		$user = Auth::guard('member')->user();
+		$IsFirstLife = Game::IsFirstLife($memberid,$user->is_purged_gamelife);
 		
 		if ($data) 
 		{
