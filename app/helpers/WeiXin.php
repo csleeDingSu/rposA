@@ -18,6 +18,8 @@ class WeiXin
             $refcode = $request->input('refcode');
             $goto = $request->input('goto');
 
+            \Log::warning(json_encode(['domain' => $domain,'refcode' => $refcode,'goto' => $goto], true));
+
             if (strpos($domain, 'refcode') !== false) {
                 $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain . '&goto=' . $goto);
             } else {
