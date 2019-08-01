@@ -237,7 +237,7 @@ class Members extends Model
 	}
 	
 	
-	public function purge_game_life($user)
+	public static function purge_game_life($user)
     {				
 		if ($user->is_purged_gamelife != 1)
 		{
