@@ -163,7 +163,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(acupoint);
-            $('.spanAcuPointAndBalance').html(acupoint);
+            $('.spanAcuPointAndBalance').html(g_current_point);
         }
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
@@ -185,7 +185,7 @@ function initUser(records){
 
 function initGame(data, level, latest_result, consecutive_lose){
 try {
-	
+    
     var user_id = $('#hidUserId').val();
     trigger = false;
 
@@ -203,8 +203,6 @@ try {
         var acupoint = parseInt($('.spanAcuPoint').html());
 
         if(usedlife == 0){
-            $('.first-life').show();
-            $('.span-life').html(15-g_current_point);
 
             countDownLife();
 
@@ -322,9 +320,9 @@ try {
         $('#hidConsecutiveLose').val(consecutive_lose);
 
         $('.barBox').find('li').removeClass('on');
-	
-		console.log('consecutive_lose'+consecutive_lose);
-		console.log('life'+g_life);
+    
+        console.log('consecutive_lose'+consecutive_lose);
+        console.log('life'+g_life);
 
         if (consecutive_lose == 'yes' && life > 0) {
             bindResetLifeButton();
@@ -475,7 +473,7 @@ function startGame() {
             latest_result = data.record.bettinghistory.data;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
-			console.log('consecutive_lose:'+consecutive_lose);
+            console.log('consecutive_lose:'+consecutive_lose);
             initGame(game_records, level, latest_result, consecutive_lose);
 
             
@@ -804,7 +802,7 @@ function showPayout(){
                     $('.odd-sign').html('-');
                     $('.even-sign').html('+');
                 }
-				
+                
 
 
                 $.ajax({
@@ -1496,6 +1494,17 @@ function countDownLife(){
     countDownDate.setDate( countDownDate.getDate() + 1 );
     countDownDate.getTime();
 
+    // Get today's date and time
+    var now = new Date().getTime();
+        
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    if (distance > 0) {
+        $('.first-life').show();
+        $('.span-life').html(15-g_current_point);
+    }
+    
     // Update the count down every 1 second
     var x = setInterval(function() {
 
@@ -1517,7 +1526,7 @@ function countDownLife(){
       // If the count down is over, write some text 
       if (distance < 0) {
         clearInterval(x);
-        $(".div-time").html("EXPIRED");
+        $('.first-life').hide();
       }
     }, 1000);
 }
