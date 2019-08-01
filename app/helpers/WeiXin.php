@@ -24,8 +24,10 @@ class WeiXin
                 $redirect_uri =  urlencode(env('weixinurl') . "/mp/getUserInfo/" . $type . "/" . $domain . '?refcode=' . $refcode . '&goto=' . $goto);
             }
             
-            $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect"; 
-            \Log::info(json_encode(['weixin URL' => $url], true));
+            $url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$type&state=1#wechat_redirect";
+
+            \Log::warning(json_encode(['domain' => $domain,'refcode' => $refcode,'goto' => $goto, 'redirect_uri' => $redirect_uri, 'url' => $url], true));
+            // \Log::info(json_encode(['weixin URL' => $url], true));
             
             return redirect()->to($url);
         
