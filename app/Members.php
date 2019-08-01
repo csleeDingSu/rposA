@@ -239,6 +239,7 @@ class Members extends Model
 	
 	public static function purge_game_life($user)
     {				
+		$msg = '';
 		if ($user->is_purged_gamelife != 1)
 		{
 			$usedlife = \App\Game::IsFirstLife($user->id);
