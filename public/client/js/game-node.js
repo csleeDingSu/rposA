@@ -163,7 +163,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(acupoint);
-            $('.spanAcuPointAndBalance').html(acupoint);
+            $('.spanAcuPointAndBalance').html(g_current_point);
         }
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
