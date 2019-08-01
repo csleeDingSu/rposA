@@ -26,8 +26,11 @@ class LogSuccessfulLogin
      * @param  GenerateVoucher  $event
      * @return void
      */
+	//Not In Use
     public function handle(Login $event)
     {
+		return ;
+		dd('no use');
 		$user = \Auth::guard('member')->user();
 		
 		if (!$user) return false;
