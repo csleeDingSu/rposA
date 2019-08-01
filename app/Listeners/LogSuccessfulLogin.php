@@ -35,6 +35,8 @@ class LogSuccessfulLogin
 		if ($user->is_purged_gamelife != 1)
 		{
 			$usedlife = \App\Game::IsFirstLife($user->id);
+			
+			\Log::debug(json_encode(['used life' =>$usedlife], true));
 						
 			if ($usedlife < 1)
 			{
