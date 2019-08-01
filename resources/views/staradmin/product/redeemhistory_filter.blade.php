@@ -18,7 +18,7 @@
 						<div class="col">
 							<label>@lang('dingsu.phone')</label>
 							<div id="bloodhound">
-								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
+								<input type="text" class="form-control typeahead tt-input" name="s_phone" id="s_phone" placeholder="@lang('dingsu.username')">
 							</div>
 						</div>
 						
