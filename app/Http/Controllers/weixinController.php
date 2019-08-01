@@ -251,7 +251,7 @@ class weixinController extends BaseController
             $payload["headimgurl"] = $content['headimgurl'];
 
             //wechat qrcode
-            $payload["ticket"] = $this->getQrcodeTicket($payload);
+            // $payload["ticket"] = $this->getQrcodeTicket($payload);
 
             //refer code
             $payload["refcode"] = $refcode;
