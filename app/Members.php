@@ -259,6 +259,8 @@ class Members extends Model
 						//reduce one life 
 						\App\Wallet::update_basic_wallet($user->id,1,0,'PWL','deduct', '.Auto purged 1 life');
 						\Log::debug(json_encode(['purged life' => 1,'phone'=>$user->phone,'wechat_name'=>$user->wechat_name], true));
+						
+						$msg = '1 purged life';
 					}					
 					//update flag
 					$user->is_purged_gamelife = 1;
@@ -270,8 +272,13 @@ class Members extends Model
 				//update flag
 				$user->is_purged_gamelife = 1;
 				$user->save();
+				
+				$msg = 'flag updated';
 			}	
 		}
+		
+		return response()->json(['success' => true,'message' => $msg]);
+	}
 	
 		
 		
