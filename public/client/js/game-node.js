@@ -1527,6 +1527,7 @@ function countDownLife(){
       if (distance < 0) {
         clearInterval(x);
         $('.first-life').hide();
+        window.top.location.href = "/arcade";
       }
     }, 1000);
 }
