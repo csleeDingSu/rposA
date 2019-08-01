@@ -1545,7 +1545,7 @@ function checkFirstLifePurgeStatus(){
 
     $.ajax({
         type: 'GET',
-        url: "/api/check-first-life-purge-status?memberid=102&memberid=" + user_id,
+        url: "/api/first-life-purge?memberid=102&memberid=" + user_id,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
