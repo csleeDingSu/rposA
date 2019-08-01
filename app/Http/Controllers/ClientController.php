@@ -401,8 +401,8 @@ class ClientController extends BaseController
 				
 				$user = \Auth::guard('member')->user();
 				$user->active_session  = Session::getId();
-				$user->activation_code = null;
-				$user->activation_code_expiry = '';
+				// $user->activation_code = null;
+				// $user->activation_code_expiry = '';
 				$user->save();	
 				
 				\Log::debug(json_encode(['wechat_login' => 'verified and redirect to game'], true));
