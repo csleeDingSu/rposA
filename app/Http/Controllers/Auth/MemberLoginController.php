@@ -478,7 +478,8 @@ class MemberLoginController extends Controller
         $endTime = new Carbon();
         $endTime->addMinutes(10);
         $filter = ['openid' => $openid];
-        $array = ['openid' => $openid, 'activation_code' => $otp, 'activation_code_expiry' => $endTime];
+        $array = ['openid' => $openid, 'activation_code' => $otp];
+        // $array = ['openid' => $openid, 'activation_code' => $otp, 'activation_code_expiry' => $endTime];
         \Log::debug(json_encode(['endtime' => $endTime], true));
 
         \App\Members::updateOrCreate($filter, $array)->id; 		
