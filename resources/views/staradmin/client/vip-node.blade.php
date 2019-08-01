@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table-vip.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game-node-vip.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/results-node-vip.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/history-node-vip.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/wheel-new-vip.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}">
 
@@ -100,9 +100,6 @@
 			<div class="frame-wrapper">
 				<div class="results-body">
 					<div class="results-wrapper">
-					<div class="timer-row">
-		        		历史开奖记录
-					</div>
 					<div class="results-row">
 						<div class="chain-wrapper results-left">
 							<div class="chain"></div>
@@ -197,8 +194,26 @@
 						<div class="chain-wrapper results-right"></div>		
 				  	</div>
 
-				  	<div class="legend-row">
-				  		开奖结果从下往上，最新结果在最上面
+				  	<div class="results-row">
+				  		<div class="chain-wrapper results-left">
+				  			<div class="chain"></div>
+				  		</div>
+				  		<div class="box-wrapper">
+							<div id="result-21" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-22" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-23" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-24" class="results-box"></div>
+						</div>
+						<div class="box-wrapper">
+							<div id="result-25" class="results-box"></div>
+						</div>
+						<div class="chain-wrapper results-right"></div>
 				  	</div>
 				  </div>
 				</div>
@@ -255,9 +270,6 @@
 					<div class="history-wrapper">
 						<table class="history-table">
 						    <tbody>
-						    	<tr>
-						        	<td class="timer" colspan="2">猜数记录</td>
-						        </tr>
 						        <tr id="row-1">
 						            <td class="history-number"></td>
 						            <td class="history">
@@ -290,8 +302,9 @@
 						            <td class="history-number"></td>
 						            <td class="history"></td>
 						        </tr>
-						        <tr>
-						        	<td class="legend" colspan="2"></td>
+						        <tr id="row-8">
+						            <td class="history-number"></td>
+						            <td class="history"></td>
 						        </tr>
 						    </tbody>
 						</table>
@@ -343,14 +356,14 @@
 	      <!-- button wrapper -->
 		<div class="button-wrapper">
 	        <div class="button-card radio-primary">
-	        	<div class="radio btn-rectangle">
+	        	<div class="radio btn-rectangle left-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="odd">
 					选择单数
 				</div>
 				<div class="DB_G_hand selection"></div>				
 			  </div>
 			  <div class="button-card radio-primary right">
-				<div class="radio btn-rectangle">
+				<div class="radio btn-rectangle right-rectangle">
 					<input name="rdbBet" class="invisible" type="radio" value="even">
 					选择双数
 				</div>
