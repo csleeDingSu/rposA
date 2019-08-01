@@ -9,7 +9,7 @@ use App\Members as Member;
 use Validator;
 use Carbon\Carbon;
 use App\Wallet;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 class MemberController extends Controller
 {
     
