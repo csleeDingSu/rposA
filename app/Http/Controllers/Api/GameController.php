@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use App\Wallet;
 use App\member_game_result;
 use App\member_game_bet_temp;
-
+use Auth;
 use App\member_game_notification;
 use App\Package;
 class GameController extends Controller
