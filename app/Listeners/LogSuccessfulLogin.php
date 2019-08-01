@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Listeners;
-use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Auth\Events\Login;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,7 +26,7 @@ class LogSuccessfulLogin
      * @param  GenerateVoucher  $event
      * @return void
      */
-    public function handle(Authenticated $event)
+    public function handle(Login $event)
     {
 		$user = \Auth::guard('member')->user();
 		
