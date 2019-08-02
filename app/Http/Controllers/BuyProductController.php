@@ -241,6 +241,9 @@ class BuyProductController extends BaseController
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
 			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+			}
 		}
 		
 		//DB::enableQueryLog();
@@ -286,6 +289,9 @@ class BuyProductController extends BaseController
 			if (isset($input['s_status'])) {
 				if ($input['s_status'] != '' )
 					$result = $result->where('redeem_state','=',$input['s_status']);
+			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
 			}
 		}
 		
