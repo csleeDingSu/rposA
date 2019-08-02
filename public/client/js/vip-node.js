@@ -200,7 +200,7 @@ try {
             previous_result = latest_result[0].result;
             previous_bet_amount = latest_result[0].bet_amount;
             previous_reward = latest_result[0].reward;
-            $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+previous_result+'</div>');
+            $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+previous_result+'</div>');
         }
 
         //$('#hidLevel').val(level);
@@ -437,6 +437,8 @@ function resetGame() {
     $('.span-bet').val(0);
     previous_bet = 0;
 
+    $('.shan span').hide();
+    $('.shan div').removeClass('clicked-vip');
     startGame();
 }
 
@@ -490,7 +492,7 @@ function checkSelection() {
             $('.spinning').css('visibility', 'hidden');
         }, 3000);
     } else {
-        $('.middle-label').html('正在抽奖');
+        //$('.middle-label').html('正在抽奖');
         $('.DB_G_hand').hide();
         $('.radio-primary').unbind('click');
         $('.btn-trigger').unbind('click');
@@ -711,36 +713,12 @@ function showPayout(){
     var newtotalbalance = total_balance - bet_amount;
     var bet_count = $('#hidbetting_count').val();
 
-    switch (level) {
-        case 1:
-            //previous_bet = 0;
-        break;
-
-        case 2:
-            previous_bet = 10;
-        break;
-
-        case 3:
-            previous_bet = 30;
-        break;
-
-        case 4:
-            previous_bet = 70;
-        break;
-
-        case 5:
-            previous_bet = 150;
-        break;
-
-        case 6:
-            previous_bet = 310;
-        break;
-
-    }
-
         if (typeof selected == 'undefined'){
 
-            $('.middle-label').html('选择单双');
+            //$('.middle-label').html('选择单双');
+            $('.span-odd').removeClass('ready-vip lose-vip').html(bet_amount+"<br /><span class='span-ratio'>x"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+            $('.span-even').removeClass('ready-vip lose-vip').html(bet_amount+"<br /><span class='span-ratio'>x"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+            $('.shan div').addClass('clicked-vip').removeClass('lose-vip');
 
             if(bet_count == 0){
                 $('.selection').show();
@@ -753,17 +731,46 @@ function showPayout(){
             $('#spanPoint').html(total_balance);
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
-            $('.odd-payout').html(getNumeric(bet_amount * g_w_ratio));
-            $('.even-payout').html(getNumeric(bet_amount * g_w_ratio));
+            $('.odd-payout').html(bet_amount);
+            $('.even-payout').html(bet_amount);
 
             $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point - bet_amount));
+
+            if(bet_amount > 0){
+
+            } else {
+                //$('.middle-label').html('选择金币');
+                $('.span-odd').hide();
+                $('.span-even').hide();
+                $('.shan div').removeClass('clicked-vip');
+            }
             
         } else {
 
-            if(bet_amount > 0){
-                $('.middle-label').html('开始抽奖');
+            if(selected == 'odd'){
+                $('.div-odd').removeClass('lose-vip');
+                $('.div-even').addClass('lose-vip');
             } else {
-                $('.middle-label').html('选择金币');
+                $('.div-odd').addClass('lose-vip');
+                $('.div-even').removeClass('lose-vip');
+            }
+
+            if(bet_amount > 0){
+                //$('.middle-label').html('开始抽奖');
+                if(selected == 'odd'){
+                    $('.span-odd').removeClass('lose-vip').addClass('ready-vip').html(bet_amount+"<br /><span class='span-ratio'>x"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+                    $('.span-even').addClass('ready-vip lose-vip').html('谢谢参与');
+                } else {
+                    $('.span-odd').addClass('ready-vip lose-vip').html('谢谢参与');
+                    $('.span-even').removeClass('lose-vip').addClass('ready-vip').html(bet_amount+"<br /><span class='span-ratio'>x"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+                }
+                $('.shan div').addClass('clicked-vip');
+
+            } else {
+                //$('.middle-label').html('选择金币');
+                $('.span-odd').removeClass('ready-vip lose-vip').html('请选金币').css('display', 'inline-block');
+                $('.span-even').removeClass('ready-vip lose-vip').html('请选金币').css('display', 'inline-block');
+                $('.shan div').addClass('clicked-vip');
             }
 
             checked(level, true);
@@ -782,13 +789,7 @@ function showPayout(){
                 //$('#spanPoint').html(newtotalbalance);
                 $('.instruction').css('visibility', 'hidden');
 
-                if(selected == 'odd'){
-                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric(bet_amount * g_w_ratio)) + "</span>");
-                    $('.span-even').html('谢谢参与');
-                } else {
-                    $('.span-odd').html('谢谢参与');
-                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric(bet_amount * g_w_ratio)) + "</span>");
-                }
+                
 
                 $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point - bet_amount));
 
@@ -1064,18 +1065,18 @@ function showProgressBar(bol_show){
             if (getNumeric($('#hidLastReward').val()) > 0) {
                 if ((getNumeric($('#hidLatestResult').val()) % 2) === 0) {
                     $('.span-odd').html('谢谢参与');
-                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+                    $('.span-even').html(getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward));
                 } else {
-                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+                    $('.span-odd').html(getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward));
                     $('.span-even').html('谢谢参与');
                 }
             } else {
                 if ((getNumeric($('#hidLatestResult').val()) % 2) === 0) {
-                    $('.span-odd').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /><span class='odd-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");
+                    $('.span-odd').html(getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward));
                     $('.span-even').html('谢谢参与');
                 } else {
                     $('.span-odd').html('谢谢参与');
-                    $('.span-even').html("<img src='/client/images/vip/icon-sign.png' class='icon-sign' /></div><span class='even-payout'>" + (getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward)) + "</span>");                    
+                    $('.span-even').html(getNumeric($('#hidLastBetAmount').val()) + getNumeric(lastreward));                    
                 }
             }            
         }       
@@ -1327,7 +1328,7 @@ function triggerResult(){
     $( "#btnPointer" ).trigger( "click" );
 
     setTimeout(function(){
-        $('.middle-label').html('<div style="font-size:0.8rem;padding-top:0.2rem">'+result+'</div>');              
+        $('.middle-label').html('<div style="font-size:0.6rem;padding-top:0.25rem">'+result+'</div>');             
     
     }, (freeze_time - 1) * 1000);
 

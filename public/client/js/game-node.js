@@ -256,7 +256,7 @@ try {
                             //$('.middle-label').html('选择单双');
                             $('.span-odd').html('请选单双').show();
                             $('.span-even').html('请选单双').show();
-                            $('.shan div').addClass('clicked');
+                            $('.shan div').addClass('clicked').removeClass('lose');
                         } else {
                             //$('.middle-label').html('开始抽奖');
                         }
@@ -556,7 +556,7 @@ function checkSelection() {
             $( '.DB_G_hand_2' ).show();
             $('.span-odd').html('请选单双').show();
             $('.span-even').html('请选单双').show();
-            $('.shan div').addClass('clicked');
+            $('.shan div').addClass('clicked').removeClass('lose');
 
             $('.spinning').html('请选择单数或选择双数<br />再点击“开始抽奖”进行抽奖');
              $('.spinning').css('visibility', 'visible');
@@ -715,7 +715,7 @@ function showPayout(){
             //$('.middle-label').html('选择单双');
             $('.span-odd').removeClass('ready lose').html('请选单双').show();
             $('.span-even').removeClass('ready lose').html('请选单双').show();
-            $('.shan div').addClass('clicked');
+            $('.shan div').addClass('clicked').removeClass('lose');
 
             if(bet_count == 0){
                 $('.selection').show();

@@ -112,6 +112,35 @@
 	font-weight: 500;
 }
 
+.first-life {
+	background-image: url(/client/images/wheel/time.png);
+	background-size: cover;
+	font-size: 0.26rem;
+	line-height: 0.32rem;
+	color: #fff;
+	border-radius: 0.12rem;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	width: 4.17rem;
+	height: 0.91rem;
+	margin-top: -0.8rem;
+	z-index: 300;
+	padding-top: 0.22rem;
+	display: none;
+}
+
+.div-time {
+	line-height: 0.26rem;
+	font-size: 0.2rem;
+}
+
+.span-time {
+	color: #ed8b00;
+}
+
 .flickity-viewport {
 	width: 100%;
   	height: 6.3rem;
@@ -134,7 +163,7 @@
   margin-top: 0.1rem;
   right: auto;
   background: url('/client/images/wheel/previous.png') no-repeat;
-  background-size: cover;
+  background-size: contain;
   width: 0.59rem;
   height: 0.9rem;
 }
@@ -142,7 +171,7 @@
 .flickity-prev-next-button.next {
   margin-top: 0.1rem;
   background: url('/client/images/wheel/next.png') no-repeat;
-  background-size: cover;
+  background-size: contain;
   width: 0.59rem;
   height: 0.9rem;
   right: 0rem;
@@ -156,24 +185,38 @@
   left: 40%; 
   top: -0.3rem; 
   background-image: url(/client/images/wheel/start.png);
-  background-size: cover;
+  background-size: contain;
   z-index: 100;
   cursor: pointer;
 }
 
-.DB_G_hand {
+.DB_G_hand_1, .DB_G_hand_2, .DB_G_hand_3{
   display: none;
   position: absolute;
   background-repeat: no-repeat;
-  width: 71px;
-  height: 75px;
+  width: 1.13rem;
+  height: 1.2rem;
   left: 53%; 
-  top: 46%; 
+  margin-top: 8%; 
   background-image: url(/client/images/wheel/hand1.png);
   -webkit-animation: guideHand2 .5s step-start infinite;
   animation: guideHand2 .5s step-start infinite;
   background-size: cover;
   z-index: 200;
+}
+
+.DB_G_hand_2 {
+	left: 23%;
+	margin-top: -0.5rem;
+}
+
+.DB_G_hand_1 {
+	margin-top: -0.7rem;
+	left: 50%; 
+}
+
+.right-hand {
+	left: 80%;
 }
 
 @keyframes guideHand2 {
@@ -257,43 +300,88 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 }
 .g6 .shan span {
 	width: 100%;
-	height:0.4rem;
-	line-height: 0.4rem;
+	height:0.3rem;
+	line-height: 0.3rem;
+	color: #d7d7d7;
+	display: none;
+	height: 0.4rem;
+}
+
+.g6 .shan span .span-ratio {
+	height:0.2rem;
+	line-height: 0.2rem;
+	font-size: 0.2rem;
+}
+
+.g6 .shan span.ready {
+	width: 100%;
+	font-size: 0.4rem;
+	color: #fbbc00;
 	display: block;
+}
+
+.g6 .shan span.ready-vip {
+	width: 100%;
+	color: #fbbc00;
+	display: block;
+}
+
+.g6 .shan span.ready-vip .span-ratio {
+	color: #fbbc00;
+}
+
+.g6 .shan span.lose, .g6 .shan span.lose-vip {
+	color: #b8b8b8;
 }
 
 .g6 .shan span span {
 	display: inline;
 }
 
-.g6 .shan .span-even, .g6 .shan div .even-number {
-	color:#6a3991;
-}
 
 .g6 .shan div {
-	border-radius: 0.04rem;
-	background: rgba(244,151,76,0.8);
+	background: url('/client/images/wheel/hongbaoicon.png') no-repeat;
+	background-size: cover;
+	width: 0.64rem;
+	height: 0.81rem;
 	padding: 0.04rem;
 	font-size: 0.2rem;
-	color: #fff;
-	width: 45%;
-	margin: 0.05rem auto 0 auto;
+	color: #de7600;
+	
+	width: 0.96rem;
+	height: 1.22rem;
+	margin: 0 auto;
 }
 
-.g6 .shan .div-even {
-	background: rgba(106,57,145,0.8)
+.g6 .shan div.clicked, .g6 .shan div.clicked-vip {
+	width: 0.64rem;
+	height: 0.81rem;
+	margin: 0.16rem auto 0 auto;
+}
+
+.g6 .shan div.lose, .g6 .shan div.lose-vip {
+	background: url('/client/images/wheel/huiseicon.png') no-repeat;
+	background-size: cover;
+	width: 0.64rem;
+	height: 0.81rem;
+	margin: 0.16rem auto 0 auto;
 }
 
 .g6 .shan div span {
 	display: inline-block;
-	border-radius: 50%;
-	width: 0.24rem;
-	height: 0.24rem;
-	padding: 0.02rem 0.04rem 0.04rem 0.04rem;
-	background: #fff;
-	color: #f4974c;
+	color: #de7600;
 	text-align: center;
-	font: 0.16rem Arial, sans-serif;
+	font: 0.3rem Arial, sans-serif;
+	margin-top: 0.2rem;
+}
+
+.g6 .shan div.lose span, .g6 .shan div.lose-vip span {
+	color: #838383;
+}
+
+.g6 .shan div.clicked span, .g6 .shan div.clicked-vip span {
+	margin-top: 0.13rem;
+	font-size: 0.2rem;
 }
 
 .g6 .shan:nth-of-type(1) {-webkit-transform: rotate(0deg);left:30%;top:3%;}
