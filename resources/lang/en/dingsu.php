@@ -692,6 +692,7 @@ return [
 	'rank_to_first'=>'To Top',
 	'used_life'=>'Used Life',
 	'used_point' => 'Used Point',
+	'show_all'=>'Show all',
 	
 
 ];
