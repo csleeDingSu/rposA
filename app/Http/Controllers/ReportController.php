@@ -505,7 +505,19 @@ class ReportController extends BaseController
 						break;	
 							
 					}					
-				}						
+				}
+				
+				if ($input) 
+				{
+					//filter					
+					if (!empty($input['s_phone'])) {
+						$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+					}
+					if (!empty($input['s_wechat_name'])) {
+						$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+					}
+				}
+				
 				
 			break;
 			case 'basic_package':
