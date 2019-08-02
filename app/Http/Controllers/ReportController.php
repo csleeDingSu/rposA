@@ -323,7 +323,13 @@ class ReportController extends BaseController
 				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
 			}			
 			
-		}		
+		}	
+		
+		if (empty($input['s_gameid']) or $input['s_gameid'] != 'all') {
+			$result = $result->where('game_id', 103 ) ;				
+		}
+		
+		
 		$result         =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
 			
 		$data['page']   = 'reports.play.list'; 	
