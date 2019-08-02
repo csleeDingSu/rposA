@@ -13,7 +13,7 @@ body{
 }
 
 .full-height {
-	padding-top: 10px;
+	padding-top: 0.2rem;
     margin: 0 auto;    
     position: relative;
     background-image: url("/client/images/wheel/background_game.png");
