@@ -5,35 +5,28 @@
  ***/
 namespace App\Http\Controllers;
 
-use \App\helpers\WeiXin as WX;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-use Illuminate\Database\Eloquent\Model;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
+use App;
+use App\Category;
+use App\helpers\VIPApp;
+use App\Members as Member;
+use App\Wallet;
+use App\member_game_result;
+use App\tips;
+use App\view_vip_status;
+use Auth;
 use Carbon\ Carbon;
 use DB;
-use App;
-use Auth;
-use session;
-
-use App\Category;
-use App\Wallet;
-
-use App\Members as Member;
-
-use App\tips;
-
-use App\member_game_result;
-
-use App\view_vip_status;
-
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Khsing\WechatAgent\WechatAgent;
+use \App\helpers\WeiXin as WX;
+use session;
 //use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
@@ -132,6 +125,12 @@ class ClientController extends BaseController
 
 	public function member_access_game_node($cid = 220, Request $request)
 	{
+		//isVIP APP
+		$this->vp = new VIPApp();
+		if ($this->vp->isVIPApp()) {
+			return redirect('/vip');
+		}
+
 		$betting_count = 0;
 
 		// $setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();

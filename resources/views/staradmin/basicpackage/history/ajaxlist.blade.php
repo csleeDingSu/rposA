@@ -12,6 +12,7 @@
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.phone')</th>
+								<th>@lang('dingsu.name')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.point')</th>
 								<th>@lang('dingsu.buy_price')</th>
@@ -28,6 +29,10 @@
 								<td>{{ $list->package_name }}</td>
 								<td>
 									{{ $list->phone }}
+								</td>
+								<td>
+									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+									{{ $list->wechat_name ?? $list->username }}
 								</td>
 								<td>
 									{{ $list->package_price }}

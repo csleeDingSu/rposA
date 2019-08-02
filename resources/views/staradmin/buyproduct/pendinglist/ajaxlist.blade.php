@@ -12,6 +12,7 @@
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.product') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.phone')</th>
+								<th>@lang('dingsu.name')</th>
 								<th>@lang('dingsu.product_price')</th>
 								<th>@lang('dingsu.buy_price')</th>
 								<th>@lang('dingsu.quantity')</th>
@@ -24,9 +25,10 @@
 							<tr id="tr_{{ $list->id }}">
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
-								<td>{{ $list->name }}</td>
+								<td>{{ $list->phone }}</td>
 								<td>
-									{{ $list->username }}
+									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+									{{ $list->wechat_name ?? $list->username }}
 								</td>
 								<td>
 									{{ $list->price }}

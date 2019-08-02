@@ -11,7 +11,7 @@
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.phone')</th>
-								<th>@lang('dingsu.wechat_name')</th>
+								<th>@lang('dingsu.name')</th>
 								<th>@lang('dingsu.credit')</th>
 								<th>@lang('dingsu.debit')</th>
 								<th>@lang('dingsu.before_balance')</th>
@@ -28,7 +28,10 @@
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
 								<td>{{ $list->phone }}</td>
-								<td>{{ $list->wechat_name }}</td>
+								<td>
+									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+									{{ $list->wechat_name ?? $list->username }}
+								</td>
 								<td>{{ $list->credit }}</td>
 								<td>{{ $list->debit }}</td>
 								<td>{{ $list->balance_before }}</td>

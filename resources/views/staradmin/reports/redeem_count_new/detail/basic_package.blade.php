@@ -11,7 +11,7 @@
 <th>@lang('dingsu.id')</th>
 <th>@lang('dingsu.create_Date')</th>
 <th>@lang('dingsu.package') @lang('dingsu.name')</th>
-<th>@lang('dingsu.username')</th>		
+<th>@lang('dingsu.phone')</th>		
 	<th>@lang('dingsu.wechat_name')</th>
 <th>@lang('dingsu.status')</th>										
 </tr>
@@ -27,10 +27,11 @@
 		
 		</td>
 	<td>
-		{{ $list->username }}
+		{{ $list->phone }}
 	</td>
 	<td>
-		{{ $list->wechat_name }}
+		<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+		{{ $list->wechat_name ?? $list->username }}
 	</td>
 	
 	<td id="statustd_{{ $list->id }}">

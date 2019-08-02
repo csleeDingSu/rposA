@@ -19,6 +19,12 @@
 							</div>
 						</div>
 						<div class="col">
+							<label>@lang('dingsu.wechat_name')</label>
+							<div id="bloodhound">
+								<input type="text" class="form-control typeahead tt-input" name="s_wechat_name" id="s_wechat_name" placeholder="@lang('dingsu.wechat_name')">
+							</div>
+						</div>
+						<div class="col">
 							<label>@lang('dingsu.action')</label>
 							<div id="bloodhound">
 								<button onClick="Search();return false();" type="button" id="search" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info search"> <i class="  icon-magnifier  "></i> </button>

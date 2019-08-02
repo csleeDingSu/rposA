@@ -14,7 +14,8 @@
 								<th>@lang('dingsu.card') @lang('dingsu.name')</th>
 								<th>@lang('dingsu.card') @lang('dingsu.passcode')</th>
 								<th>@lang('dingsu.ref_note')</th>
-								<th>@lang('dingsu.username')</th>
+								<th>@lang('dingsu.phone')</th>
+								<th>@lang('dingsu.wechat_name')</th>
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.point')</th>
 								<th>@lang('dingsu.status')</th>
@@ -31,7 +32,11 @@
 								<td>{{ $list->cardpass }}</td>
 								<td>{{ $list->ref_note }}</td>
 								<td>
-									{{ $list->username }}
+									{{ $list->phone }}
+								</td>
+								<td>
+									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+									{{ $list->wechat_name ?? $list->username }}
 								</td>
 								<td>
 									{{ $list->package_price }}
