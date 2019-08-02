@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/game-node-vip.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/wheel-new-vip.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}">
 
