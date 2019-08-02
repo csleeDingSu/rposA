@@ -84,8 +84,9 @@
 				</a>
 			</div>
 			<ul class="list-group">
+			@if(env('THISVIPAPP','false'))
 
-				<!-- VIP专场
+				<!-- VIP专场 -->
 				<li class="list-group-item first-item">
 					<div class="vipmember">
 						<div class="icon-wrapper">
@@ -95,7 +96,8 @@
 						VIP专场
 					</div>
 				</li>
-			-->
+			
+			@else
 				<!-- 轮盘抽奖 -->
 				<li class="list-group-item first-item">
 					<div class="gamebtn">
@@ -107,7 +109,8 @@
 						<div class="game-life-count">剩余<span class="game-life"></span>次</div>
 					</div>
 				</li>
-				
+			@endif
+
 				<!-- 兑换奖品 -->
 				<li class="list-group-item">
 					<div class="redeembtn">

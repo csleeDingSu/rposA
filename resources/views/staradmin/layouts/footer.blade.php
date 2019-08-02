@@ -29,7 +29,7 @@ if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) an
 						<a href="/arcade">
 					@endif
 						<div id="footer-life">
-							@if(Request::is('vip'))
+							@if(Request::is('vip') || env('THISVIPAPP','false'))
 								<i class="nVip">&nbsp;</i>
 								<!-- <p class="vip-life">VIP专场 剩余<span class="spanVipLife">&nbsp;</span>次</p> -->
 								<p class="vip-life">VIP专场</p>
