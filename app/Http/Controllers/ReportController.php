@@ -329,6 +329,7 @@ class ReportController extends BaseController
 		}	
 		
 		if (empty($input['s_gameid']) or $input['s_gameid'] != 'all') {
+			echo 'imhere';
 			$result = $result->where('game_id', 103 ) ;				
 		}
 		
