@@ -309,10 +309,13 @@ class ReportController extends BaseController
 		
     	if ($input) 
 		{
-			//filter					
-			if (!empty($input['s_gameid'])) {
-				$result = $result->where('game_id','LIKE', "%{$input['s_gameid']}%") ;				
+			//filter
+			if ($input['s_gameid'] != 'all') {
+				if (!empty($input['s_gameid'])) {
+					$result = $result->where('game_id','LIKE', "%{$input['s_gameid']}%") ;				
+				}
 			}
+			
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
 			}
