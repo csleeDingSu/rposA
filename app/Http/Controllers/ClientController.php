@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Category;
-use App\Helpers\VIPApp;
+use App\helpers\VIPApp;
 use App\Members as Member;
 use App\Wallet;
 use App\member_game_result;
