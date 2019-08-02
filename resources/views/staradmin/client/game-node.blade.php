@@ -65,7 +65,7 @@
 			<div class="box" id="btn-vip-wrapper">
 				<a href="/profile">
 					<img class="icon-wheel-corner" src="{{ asset('/client/images/wheel/icon-wheel-corner.png') }}" />
-					<div class="btn-life">剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+					<div class="btn-life">剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}场
 					</div>
 					<img class="icon-arrow-next" src="{{ asset('/client/images/wheel/icon-arrow-next.png') }}" />
 					<div style="clear:both"></div>
