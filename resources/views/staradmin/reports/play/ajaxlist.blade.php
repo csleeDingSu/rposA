@@ -12,6 +12,7 @@
 								<th>@lang('dingsu.played_time')</th>
 										<th>@lang('dingsu.drawid')</th>
 										<th>@lang('dingsu.gameid')</th>
+										<th>@lang('dingsu.game') @lang('dingsu.name')</th>
 										<th>@lang('dingsu.phone')</th>
 										<th>@lang('dingsu.wechat_name')</th>
 										<th>@lang('dingsu.bet_amount')</th>
@@ -30,6 +31,7 @@
 	<td>{{ $list->played_time }}</td>
 	<td>{{ $list->draw_id }}</td>
 	<td>{{ $list->game_id }}</td>	
+	<td>{{ $list->game_name }}</td>	
 	<td>{{ $list->phone }}</td>
 	<td>{{ $list->wechat_name }}</td>
 	<td>

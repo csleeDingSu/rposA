@@ -289,10 +289,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/report/played-count">@lang('dingsu.played_count')</a>
 					</li>
-					
+					<!--
 					<li class="nav-item">
 						<a class="nav-link" href="/report/draw-details">@lang('dingsu.draw_details')</a>
-					</li>
+					</li> -->
 					<li class="nav-item">
 						<a class="nav-link" href="/report/redeem-count">@lang('dingsu.redeem_product')</a>
 					</li>

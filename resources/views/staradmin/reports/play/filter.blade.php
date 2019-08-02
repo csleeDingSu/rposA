@@ -13,13 +13,22 @@
 							<label>@lang('dingsu.drawid')</label>
 							<div id="the-basics">
 								<input type="text" class="form-control typeahead tt-input" name="s_drawid" id="s_drawid" placeholder="@lang('dingsu.drawid')">
+								
+								
+								
+								
 							</div>
 						</div>
 						
 						<div class="col">
 							<label>@lang('dingsu.gameid')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_gameid" id="s_gameid" placeholder="@lang('dingsu.gameid')">
+								<select id="s_gameid" name="s_gameid" class="form-control">
+									<option value="" >@lang('dingsu.default_select')</option>
+									<option value="103" selected>103</option>
+									<option value="102">102</option>
+									<option value="101">101</option>
+								</select>
 							</div>
 						</div>
 						

@@ -46,7 +46,8 @@
 		{{ $list->member->phone }}  
 	</td>
 	<td>
-		{{ $list->member->wechat_name }}
+		<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+		{{ $list->wechat_name ?? $list->username }}
 	</td>
 	<td>
 		{{ $list->product->point_to_redeem }}

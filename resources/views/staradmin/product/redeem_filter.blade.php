@@ -14,7 +14,12 @@
 								<input type="text" class="form-control typeahead tt-input" name="s_product_name" id="s_product_name" placeholder="@lang('dingsu.product')">
 							</div>
 						</div>
-
+						<div class="col">
+							<label>@lang('dingsu.code')</label>
+							<div id="bloodhound">
+								<input type="text" class="form-control typeahead tt-input" name="s_code" id="s_code" placeholder="@lang('dingsu.code')">
+							</div>
+						</div>
 						<div class="col">
 							<label>@lang('dingsu.phone')</label>
 							<div id="bloodhound">

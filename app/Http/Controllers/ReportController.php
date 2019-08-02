@@ -323,7 +323,13 @@ class ReportController extends BaseController
 				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
 			}			
 			
-		}		
+		}	
+		
+		if (empty($input['s_gameid']) or $input['s_gameid'] != 'all') {
+			$result = $result->where('game_id', 103 ) ;				
+		}
+		
+		
 		$result         =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
 			
 		$data['page']   = 'reports.play.list'; 	
@@ -357,6 +363,9 @@ class ReportController extends BaseController
 			}
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('username','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_username'])) {
+				$result = $result->where('username','LIKE', "%{$input['s_username']}%") ;				
 			}
 			if (!empty($input['s_wechat_name'])) {
 				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
@@ -505,7 +514,19 @@ class ReportController extends BaseController
 						break;	
 							
 					}					
-				}						
+				}
+				
+				if ($input) 
+				{
+					//filter					
+					if (!empty($input['s_phone'])) {
+						$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+					}
+					if (!empty($input['s_wechat_name'])) {
+						$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+					}
+				}
+				
 				
 			break;
 			case 'basic_package':
