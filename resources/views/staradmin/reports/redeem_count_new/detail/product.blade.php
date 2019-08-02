@@ -26,7 +26,7 @@
 		{{ $list->pin_name }}
 		</td>
 	<td>
-		{{ $list->phone }}  
+		{{ $list->username }}  
 	</td>
 	<td>
 		<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
