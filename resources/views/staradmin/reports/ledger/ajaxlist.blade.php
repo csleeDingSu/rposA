@@ -24,11 +24,15 @@
 								
 								
 	<td>{{ $list->created_at }}        </td>
-	<td class="card-title text-info">
+	<td>
 									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
-									{{ $list->wechat_name ?? $list->username }}
+									
+		
+		<button type="button" data-type="{{ $list->type }}" data-date="{{$list->created_at}}" data-id="{{$list->member_id}}" class="btn  ShowMember card-title text-info"> {{ $list->wechat_name ?? $list->username }} </button>
+		
+		
 								</td>
-								<td class="card-title text-info"><button type="button" data-type="{{ $list->type }}" data-date="{{$list->created_at}}" data-id="{{$list->member_id}}" class="btn  ShowMember"> {{ $list->username }} </button>
+								<td ><button type="button" data-type="{{ $list->type }}" data-date="{{$list->created_at}}" data-id="{{$list->member_id}}" class="btn  ShowMember card-title text-info"> {{ $list->username }} </button>
 								    </td>
 	<td>{{ $list->type }}</td>
 	<td>{{ $list->pname }}</td>
