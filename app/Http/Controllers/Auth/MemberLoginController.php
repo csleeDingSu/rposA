@@ -413,12 +413,13 @@ class MemberLoginController extends Controller
 		else
 		{
             //temporary disable - error when wechatname content with symbol
-			// $preg = \App\Members::where('phone', $wechatname)->first();
-			// if ($preg)
-			// {
-			// 	return response()->json(['success' => false,'message'=>[trans('auth.user_already_exists')] ]);
-			// }
-			// \Log::debug(json_encode(['new user' => $openid ], true));
+			 $preg = \App\Members::where('phone', $wechatname)->first();
+			 if ($preg)
+			 {
+			 	return response()->json(['success' => false,'message'=>[trans('auth.user_already_exists')] ]);
+			 }
+			
+			\Log::debug(json_encode(['new user' => $openid ], true));
 			
             //register
 			$setting = \App\Admin::get_setting();
