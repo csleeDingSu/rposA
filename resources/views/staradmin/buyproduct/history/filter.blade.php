@@ -19,6 +19,12 @@
 							</div>
 						</div>
 						<div class="col">
+							<label>@lang('dingsu.wechat_name')</label>
+							<div id="bloodhound">
+								<input type="text" class="form-control typeahead tt-input" name="s_wechat_name" id="s_wechat_name" placeholder="@lang('dingsu.wechat_name')">
+							</div>
+						</div>
+						<div class="col">
 							<label>@lang('dingsu.status')</label>
 							<div id="bloodhound">
 								<select class="form-control" name="s_status" id="s_status">
