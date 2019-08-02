@@ -11,7 +11,8 @@
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
 								<th>@lang('dingsu.product') @lang('dingsu.name')</th>
-								<th>@lang('dingsu.phone')</th>								
+								<th>@lang('dingsu.phone')</th>			
+								<th>@lang('dingsu.name')</th>			
 								<th>@lang('dingsu.product_price')</th>
 								<th>@lang('dingsu.quantity')</th>
 								<th>@lang('dingsu.used_point')</th>
@@ -26,6 +27,10 @@
 								<td>{{ $list->package_name }}</td>
 								<td>
 									{{ $list->phone }}
+								</td>
+								<td>
+									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+									{{ $list->wechat_name ?? $list->username }}
 								</td>
 								<td>
 									{{ $list->point_to_redeem }}

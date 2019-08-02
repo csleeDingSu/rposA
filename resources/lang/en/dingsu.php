@@ -308,7 +308,7 @@ return [
 	'reject_conf_text' => 'This action will reject the wechat account approval',
 	
 	'redeem' => 'Redeem',
-	'wechat_status' => 'Wechat status',
+	'wechat_status' => 'Wechat Status',
 	'allow_login' => 'Allow Login',
 	'allow_registration' => 'Allow Registration',
 	'site_maintenance' => 'Site maintenance',
@@ -382,7 +382,7 @@ return [
 	'history' => 'history',
 	'log' => 'log',
 	'softpin' => 'softpin',
-	'referred_count' => 'Total referred',
+	'referred_count' => 'Total Referred',
 	'user_account_success_message' => 'Account has been created successfully and is ready to use',
 	'add_new_user' => 'Add new user',
 	'edit_user' => 'Edit user details',
@@ -690,7 +690,8 @@ return [
 	'date'=>'Date',
 	'played_count'=>'Played Count',
 	'rank_to_first'=>'To Top',
-	''=>'',
+	'used_life'=>'Used Life',
+	'used_point' => 'Used Point',
 	
 
 ];

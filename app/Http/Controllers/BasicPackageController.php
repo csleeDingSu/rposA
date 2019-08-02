@@ -206,6 +206,9 @@ class BasicPackageController extends BaseController
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
 			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+			}
 		}
 		
 		//DB::enableQueryLog();
@@ -247,6 +250,9 @@ class BasicPackageController extends BaseController
 			}
 			if (!empty($input['s_phone'])) {
 				$result = $result->where('phone','LIKE', "%{$input['s_phone']}%") ;				
+			}
+			if (!empty($input['s_wechat_name'])) {
+				$result = $result->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
 			}
 		}
 		
