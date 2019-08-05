@@ -43,7 +43,7 @@
 				  	<div class="point numbers">
 						<span class="wabao-coin"></span>
 				  	</div> 元
-				  
+				  <br/>
 					<div class="topup-redeem">
 					  	<div class="button-topup">
 					  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />

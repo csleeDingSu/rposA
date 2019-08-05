@@ -40,7 +40,12 @@
 						<a href="/profile">返回</a>
 					</div>
 					<div class="col-xs-8">
-						兑换红包
+						@if(env('THISVIPAPP','false'))
+							兑换奖品
+						@else
+							兑换红包
+						@endif
+						
 					</div>
 					<div class="col-xs-2 nav-right">
 						<a href="/summary">明细</a>
@@ -60,7 +65,7 @@
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
 			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">
-			  @if(!env('THISVIPAPP','false'))
+			  @if(env('THISVIPAPP','false'))
 				兑换奖品
 			 @else
 				兑换红包
@@ -69,7 +74,7 @@
 				</a></li>
 			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">
 			
-			@if(!env('THISVIPAPP','false'))
+			@if(env('THISVIPAPP','false'))
 				我的奖品
 			 @else
 				我的红包
@@ -352,14 +357,5 @@
     <script src="{{ asset('/client/js/redeem.js') }}"></script>
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
-    	
-    	$(document).ready(function () {
-	    	var wechat_status = $('#hidWechatId').val();
-
-		    if (wechat_status > 0) {
-		        window.location.href = "/goprofile";
-		    }
-		});		
-
     </script>
 @endsection
