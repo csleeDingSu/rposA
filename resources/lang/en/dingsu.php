@@ -693,6 +693,8 @@ return [
 	'used_life'=>'Used Life',
 	'used_point' => 'Used Point',
 	'show_all'=>'Show all',
+	'monthly_new_registration'=>'New registration',
+	'register_date'=>'Register date',
 	
 
 ];
