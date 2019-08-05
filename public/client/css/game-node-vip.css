@@ -1828,23 +1828,18 @@ if it's not present, don't show loader */
 }
 
 /* Wechat Modal */
-#lose-modal .modal-title {
-	font-size: 20px;
-	color: #999;
+#lose-modal .modal-win-title {
+	font-size: 0.46rem;
+	color: #ff6067;
 	font-weight: 500;
-	margin-bottom: -1px;
-}
-
-.modal-win-title {
-	font-weight: 500;
-	font-size: 18px;
-	color: #999;
-	padding-top: 10px;
+	padding-top: 3.2rem;
 }
 
 #lose-modal .modal-content{
-	background: white;
-	width: 300px;
+	background: url('/client/images/vip/lose-modal-bg.png') no-repeat;
+  	background-size: contain;
+	width: 6.66rem;
+	height: 6.44rem;
 	margin-left: auto;
 	margin-right: auto;
 	border: 0;
@@ -1859,14 +1854,18 @@ if it's not present, don't show loader */
 }
 
 #lose-modal .modal-instruction {
-	color: #999;
-	font-size: 11px;
-	line-height: 22px;
-	text-align: left;
-	margin-bottom: 20px;
-	background: #f6f6f6;
-	padding: 10px 12px 10px 15px;
-	border-radius: 6px;
+	color: #888;
+	font-size: 0.28rem;
+	text-align: center;
+	margin: 0.1rem auto 0.6rem auto;
+}
+
+#lose-modal .modal-redeem-button {
+	background: #ffae00;
+	margin-left: 5%;
+	margin-right: 5%;
+	font-size: 0.4rem;
+	padding: 0.16rem;
 }
 
 .separator {
@@ -2045,33 +2044,30 @@ if it's not present, don't show loader */
 }
 
 #win-modal .modal-card {
-    width: 260px;
     margin: 0 auto;
     font-size: 16px;
+    width: 100%;
 }
 
 #win-modal .packet-value {
-	font-size: 60px;
-	color: #ff414b;
+	font-size: 0.96rem;
+	line-height: 1rem;
+	color: #ff6067;
 	font-weight: 500;
-	height: 95px;
+	padding-bottom: 0.4rem;
 }
 
 #win-modal .packet-info {
 	font-size: 11px;
 	font-weight: 500;
-	color: #999;
+	color: #ff6067;
 	text-align: left;
 	line-height: 18px;
 	padding-left: 50px;
 }
 
-#win-modal .packet-sign {
-	font-size: 35px;
-}
-
 #win-modal .packet-currency {
-	font-size: 20px;
+	font-size: 0.3rem;
 }
 
 #win-modal .modal-content {
@@ -2083,8 +2079,6 @@ if it's not present, don't show loader */
   border-top-right-radius: 6px;
   padding: 10px;
   font-weight: 700;
-  width: 301px !important;
-  height: 382px;
   padding: 0;
   position:relative;
   -webkit-box-shadow: none;
@@ -2103,12 +2097,10 @@ if it's not present, don't show loader */
 }
 
 #win-modal .instructions {
-  font-size: 16px;
+  font-size: 0.28rem;
   font-weight: 500;
-  color: #ffe0d2;
+  color: #888;
   text-align: center;
-  line-height: 28px;
-  padding-top: 40px;
 }
 
 #win-modal .highlight {
@@ -2120,16 +2112,16 @@ if it's not present, don't show loader */
 }
 
 #win-modal .btn-red-packet {
-  background: url('/client/images/btn-red-packet.png') no-repeat top center;
-  font-size: 18px;
-  color: #b95d0c;
-  background-size: contain;
-  width: 260px;
-  height: 76px;
-  padding-top: 16px;
+	background: #ffae00;
+  font-size: 0.36rem;
+  width: 4rem;
+  height: 0.85rem;
+  padding-top: 0.15rem;
   cursor: pointer;
   text-align: center;
   font-weight: 500;
+  border-radius: 0.6rem;
+  margin: 0 auto;
 }
 /* Win Modal */
 
