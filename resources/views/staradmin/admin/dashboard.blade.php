@@ -392,8 +392,28 @@
 }
 	</style>
 	
-	
+<script src="{{ asset('staradmin/js/chart.min.js') }}"></script>
+<script src="{{ asset('staradmin/js/chart.js') }}"></script>
+
 <script language="javascript">
+	
+	var reguser = new Array();
+	var labels  = new Array();
+		
+	var member_label  = '@lang("dingsu.member")';
+	
+	var regsiter_date = '@lang("dingsu.regsiter_date")';
+	var obj =<?php echo json_encode($chart_user_reg );?>;
+	
+	
+	obj.forEach(function(data){
+		//console.log(data);		
+		reguser.push(data.total_reg);
+		labels.push(data.created_at);
+		
+	});
+	
+	
 	@section('socket')
     @parent
 	
