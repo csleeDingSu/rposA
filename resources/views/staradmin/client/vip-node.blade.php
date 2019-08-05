@@ -56,7 +56,7 @@
 					<!-- <a href="/arcade"> -->
 						<!--div class="btn-vip"></div-->
 						<!-- <div class="btn-rules-vip">返回普通场</div> -->
-						<div class="btn-rules-vip">99%必中玩法</div>
+						<div class="btn-rules-vip"><img src="{{ asset('/client/images/wheel/money.png') }}" />必中玩法</div>
 					<!-- </a> -->
 					<div style="clear:both"></div>
 				</div>
