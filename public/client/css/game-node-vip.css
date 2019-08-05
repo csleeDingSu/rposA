@@ -304,7 +304,7 @@ body{
 
 .balance-banner {
 	background: rgba(0,0,0,0.3);
-	width: 3.6rem;
+	width: 4rem;
 	height: 0.72rem;
 	float: left;
 	z-index: 100;
@@ -314,7 +314,7 @@ body{
 	/*font-size: 40px;*/
 	cursor: pointer;
 	border-radius: 0.4rem;
-	margin-left: 0.12rem;
+	margin-left: 0.2rem;
 }
 
 .btn-vip {
@@ -392,12 +392,13 @@ body{
 }
 
 .btn-rules-vip, .btn-rules-normal {
-	background-color: rgba(0,0,0,.3);
-	width: 2.7rem;
+	background: url(/client/images/wheel/life-balance.png) no-repeat top center;
+	width: 2.28rem;
 	height: 0.72rem;
+	background-size: contain;
 	font-size: 0.33rem;
 	cursor: pointer;
-	color: #ffffff;
+	color: #fefeec;
 	font-weight: 700;
 	text-align: left;
 	padding: 0.1rem 0.1rem 0.1rem 0.3rem;
@@ -405,6 +406,12 @@ body{
 	border-bottom-left-radius: 0.4rem;
 	float: right;
 	margin-top: -0.04rem;
+}
+
+.btn-rules-vip img {
+	width: 0.35rem;
+	height: 0.35rem;
+	margin-right: 0.1rem;
 }
 
 .btn-rules-normal {
@@ -1518,7 +1525,7 @@ body{
 /* Swiper */
 
 .frame-wrapper {
-    margin: 0 auto;
+    margin: 0.2rem auto 0 auto;
     width: 8rem;
 	height: 6.3rem;
 	display:block;    
@@ -2207,7 +2214,7 @@ if it's not present, don't show loader */
 
 .btn-redeemcash {
 	position: absolute;
-	margin-left: 0.4rem;
+	margin-left: 0.6rem;
 	width: 1.3rem;
 	margin-top: 0.1rem;
 }
@@ -2216,14 +2223,14 @@ if it's not present, don't show loader */
 	position: absolute;
 	width: 0.5rem;
 	margin-top: 0.1rem;
-	margin-left: -1.7rem;
+	margin-left: -1.9rem;
 }
 
 .spanAcuPoint2 {
 	position: absolute;
 	margin-top: 0.1rem;
 	text-align: center;
-	width: 1.75rem;
+	width: 2rem;
 	margin-left: 0.58rem;
 	font-size: 0.2rem;
 }
