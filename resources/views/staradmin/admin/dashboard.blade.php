@@ -407,6 +407,11 @@
 	
 	var chart_vert_count = "{{$chart_vert_count}}";
 	
+	if (chart_vert_count<=1)
+	{
+		chart_vert_count = 10;
+	}
+	
 	
 	obj.forEach(function(data){
 		//console.log(data);		
