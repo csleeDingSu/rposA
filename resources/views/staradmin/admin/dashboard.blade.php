@@ -99,7 +99,23 @@
 
 <h3>@lang('dingsu.current_items')</h3>
 <div class="row">
-	<div class="col-md-4 grid-margin stretch-card">
+	<div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="p-4 border-bottom bg-light">
+                    <h4 class="card-title mb-0">@lang('dingsu.monthly_new_registration')</h4>
+                  </div>
+                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <div class="d-flex justify-content-between align-items-center pb-4">
+                      
+                      <div id="stacked-bar-traffic-legend"><div class="chartjs-legend"><ul><li><span style="background-color:#5D62B4"></span>@lang('dingsu.members')</li><li><span style="background-color:#54C3BE"></span>@lang('dingsu.members')</li></ul></div></div>
+                    </div>
+                   
+                    <canvas id="registerstackedbarChart" style="height: 279px; display: block; width: 559px;" width="559" height="279" class="chartjs-render-monitor"></canvas>
+                  </div>
+                </div>
+              </div>
+	
+	<div class="col-md-3 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
 				<h2 class="card-title text-primary ">@lang('dingsu.current_items')</h2>
@@ -127,7 +143,7 @@
 	</div>
 
 
-	<div class="col-md-4 grid-margin stretch-card">
+	<div class="col-md-3 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
 				<h2 class="card-title text-primary ">@lang('dingsu.today') @lang('dingsu.users')</h2>
@@ -192,6 +208,8 @@
 		</div>
 
 	</div>
+	
+	<!--
 	<div data-disabled="true" class="col-md-4 grid-margin stretch-card gameinfo">
 		<div class="card">
 
@@ -262,7 +280,7 @@
 		</div>
 
 	</div>
-
+-->
 
 
 </div>
@@ -379,7 +397,7 @@
 	@section('socket')
     @parent
 	
-	
+	/*
      socket.on("dashboard-gameinfo" + ":App\\Events\\EventDynamicChannel", function(result) {
 				var record = result.data;
 				console.log('gameinfo:'+record.draw_id);
@@ -392,7 +410,7 @@
 						$('.c_played_users').html(record.played_users);
 					}
 			 });
-			
+		*/	
 	socket.on("dashboard-basicplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var r = result.data;
 		if (r.type == 'reset')
