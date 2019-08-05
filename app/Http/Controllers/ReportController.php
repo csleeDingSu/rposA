@@ -31,6 +31,9 @@ class ReportController extends BaseController
 			->get();		
 		$data['chart_user_reg'] = $chart_user_reg;
 		
+		$count = count($chart_user_reg);
+		$data['chart_vert_count'] = ceil($count / 10) * 10;
+		
 		return view('main', $data);
 	}
 	
