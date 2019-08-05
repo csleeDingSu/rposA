@@ -62,7 +62,14 @@ class ClientController extends BaseController
 		$data['page'] = 'client.member'; 
 		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
 
-		return view('client/member', $data);
+		//isVIP APP
+		$this->vp = new VIPApp();
+		if ($this->vp->isVIPApp()) {
+			return view('client/member_vip', $data);
+		} else {
+			return view('client/member', $data);
+		}
+		
 	}
 
 	public function member_access_game()

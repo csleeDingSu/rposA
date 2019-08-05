@@ -1,20 +1,11 @@
 @extends('layouts.default')
 
-@section('title', '兑换红包')
+@if(env('THISVIPAPP','false'))
+	@section('title', '兑换奖品')
+@else
+	@section('title', '兑换红包')
+@endif
 
-<!--
-section('left-menu')
-    <a href="/profile" class="back">
-        <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
-    </a>
-endsection
-
-section('menu')
-    <a href="/summary">
-        红包明细
-    </a>
-endsection
- -->
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/redeem.css') }}" />
@@ -49,15 +40,23 @@ endsection
 						<a href="/profile">返回</a>
 					</div>
 					<div class="col-xs-8">
-						兑换红包
+						@if(env('THISVIPAPP','false'))
+							兑换奖品
+						@else
+							兑换红包
+						@endif
+						
 					</div>
 					<div class="col-xs-2 nav-right">
 						<a href="/summary">明细</a>
 					</div>
 				</div>
-				<div class="label-coin"><span class="wabao-coin"></span>元</div>				
-				<div class="label-desc">
-					<a href="/share">邀请好友送场次，抽红包，去邀请 ></a></div>
+				<div class="label-coin"><span class="wabao-coin"></span>元</div>	
+				@if(!env('THISVIPAPP','false'))			
+					<div class="label-desc">
+						<a href="/share">邀请好友送场次，抽红包，去邀请 ></a>
+					</div>
+				@endif
 			</div>
 		</div>
 		<!-- end wabao coin info -->
@@ -65,8 +64,23 @@ endsection
 		<div class="full-width-tabs">
 			<!-- redeem tabs -->
 			<ul class="nav nav-pills">
-			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">兑换红包</a></li>
-			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">我的红包</a></li>
+			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">
+			  @if(env('THISVIPAPP','false'))
+				兑换奖品
+			 @else
+				兑换红包
+			@endif
+
+				</a></li>
+			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">
+			
+			@if(env('THISVIPAPP','false'))
+				我的奖品
+			 @else
+				我的红包
+			@endif
+
+			  </a></li>
 			</ul>
 			<!-- end redeem tabs -->
 
@@ -343,14 +357,5 @@ endsection
     <script src="{{ asset('/client/js/redeem.js') }}"></script>
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
-    	
-    	$(document).ready(function () {
-	    	var wechat_status = $('#hidWechatId').val();
-
-		    if (wechat_status > 0) {
-		        window.location.href = "/goprofile";
-		    }
-		});		
-
     </script>
 @endsection

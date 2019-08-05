@@ -257,7 +257,7 @@ body{
 }
 
 .active {
-  animation: pulse 0.5s infinite;
+  /*animation: pulse 0.5s infinite;*/
 }
 
 @keyframes pulse {
