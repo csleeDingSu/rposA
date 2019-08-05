@@ -139,6 +139,9 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/first-life-purge', 'MemberController@purge_game_life')->name('purge_game_life');
 	
 	
+	Route::post('/update-phone', 'MemberController@update_phone')->name('submit_update_phone');
+	
+	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
 Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');
