@@ -217,7 +217,7 @@ class MemberController extends Controller
 			$record->save();				
 			return response()->json(['success' => true]);	
 		}		
-		return response()->json(['success' => false]);
+		return response()->json(['success' => false,'message' =>['Unknown user']]);
 	}	
 		
 	
