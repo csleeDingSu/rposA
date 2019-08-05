@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '金币充值')
+@section('title', '修改手机号码')
 
 @section('left-menu')
     <a href="javascript:history.back()" class="back">
@@ -11,7 +11,7 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/client/css/purchasepoint.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/edit-setting.css') }}" />
 @endsection
 
 @section('content')
@@ -27,25 +27,21 @@
 			<div class="information-table">
 				<div class="row">
 					<div class="col-xs-12">
-					  	<div class="label-title">选择充值金币</div>
-					</div>
-
-					<form method="post" action="">
-						<input type="hidden" id="radio-value" name="radio-value" />
-					  	<div class="radio-group"></div>
-					  
-					</form>
-
+					<img src="{{ asset('/client/images/setting-vip/edit-phone.png') }}" alt=""> 
+					</div>	
 					<div class="col-xs-12">
-						<div class="label-reload">充值金额
-							<input id="point" placeholder="0.00" type="number" maxlength="8"/>
-							<!-- <span class="point">0.00</span> -->
-							<span class="yuan">元</span>
+						<div class="notification">
+							请务必提交正确的手机号码<br>
+							否则会无法兑奖
 						</div>
 					</div>
 
+					<div class="col-xs-12">
+						<input id="phone" placeholder="{{isset(Auth::Guard('member')->user()->phone) ? Auth::Guard('member')->user()->phone : '123456789012345'}}" type="number" maxlength="15" />
+					</div>
+
 					<div class="col-xs-12">				
-						<div class="button-submit">确认充值</div>
+						<div class="button-submit">保存</div>
 						<div class="error"></div>
 						@if (Session::has('msg'))
 							<div class="alert alert-warning" role="alert">	
@@ -57,9 +53,7 @@
 				</div>
 
 			</div>
-			<!-- end member details -->
-
-
+			<!-- end details -->
 		  	
 		</div>
 		
@@ -67,8 +61,6 @@
 </div>
 
 @endsection
-
-
 
 @section('footer-javascript')
 <!-- Steps Modal starts -->
@@ -95,5 +87,5 @@
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
-	<script src="{{ asset('/client/js/purchasepoint.js') }}"></script>
+	<script src="{{ asset('/client/js/edit-setting.js') }}"></script>
 @endsection

@@ -205,6 +205,10 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 
 	Route::any( '/payment', 'PaymentController@payment' )->name( 'client.payment' );
 
+	Route::get( '/edit-setting', function () {
+		return view( 'client/edit_setting');
+	} );
+
 } );
 
 //Member routes end

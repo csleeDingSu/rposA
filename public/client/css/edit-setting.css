@@ -1,0 +1,475 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.container {
+	width: 500px;
+	background-color: #f3f3f3;
+	position: relative;
+}
+	
+@media only screen and (max-width: 500px) {
+    .container {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+html, body {
+	height: 100%;
+	background-color: #f3f3f3;
+}
+
+.card {
+	font-size: 16px;
+	color: white;
+}
+
+.img_flow {
+	background-size: contain;
+	width: 70%;
+	height: 80%;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.information-table {
+	padding-top:10px;
+	background: white;
+	display: block;
+	text-align: center;
+	position: relative;
+	padding-bottom: 20px;
+	height: 650px;
+}
+
+.information-table .col-xs-12, .information-table .col-xs-6 {
+	background: white;
+	color: #888888;
+	font-size: 16px;
+	padding-right: 20px;
+    padding-left: 20px;
+}
+
+.information-table .col-xs-4 {
+	padding-left: 0px;
+	padding-right: 10px;
+}
+
+.information-table a {
+	text-decoration: none;
+}
+
+.row {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.label-title {
+	color: #333;
+	font-size: 17px;
+	padding-left: 0;
+	padding-bottom: 15px;
+	font-weight: 600;
+}
+
+.point {
+	color: #ff6262;
+	font-size: 27px;
+	padding-left: 10px;
+}
+
+.yuan {
+	color: #ff6262;
+	font-size: 27px;
+}
+
+#point {
+	color: #ff6262;
+	font-size: 27px;
+    border: none; 
+    text-align: right;
+    width:20%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #333333;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #333333;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #333333;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.button-copy {
+	position: absolute;
+	width:70px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid #639aeb;
+    cursor:pointer;
+    margin: -5.5px 0 10px -10px; 
+    color: #639aeb;
+    text-align: center;
+    font-size: 11px;
+}
+
+.button-status {
+	color: #52a2fc;
+	border-left: 1px solid #eeeeee;
+}
+
+.left {
+	text-align: left;
+}
+
+.member-box {
+	/*width: 90%;*/
+	position: absolute;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.top-background {
+	background-color: white;
+}
+
+.top-background img {
+	margin-top: -15%;
+	width: 100%;
+    height: 100%;
+}
+
+.bottom-background {
+	height: 130px;
+}
+
+@media only screen and (max-width: 500px) {
+    .member-box {
+		/*width: 90%;*/
+	}
+
+	.top-background img {
+		margin-top: -10%;
+	}
+}
+
+@media only screen and (max-width:400px) {
+	.top-background img {
+		margin-top: -5%;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+    .member-box {
+	}
+}
+
+.listing-table {
+	margin-top: 10px;
+	margin-bottom: 25px;
+	text-align: left;
+	color: #f75a5a;
+	font-size: 13px;
+	background-color: white;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.listing-table .col-xs-4 {
+	text-align: left;
+	padding-right: 0;
+	padding-left: 10px;
+	font-size: 15px;
+	color: #fd6a42;
+	width: 85px;
+}
+
+.listing-table .col-xs-8 {
+	text-align: left;
+	padding-left: 0;
+	padding-right: 0;
+	font-size: 15px;
+	color: #7babf2;
+	width: default;
+}
+
+.listing-table .input-wrapper {
+	margin: 20px 10px 0 10px;
+}
+
+.listing-table input {
+	text-align: center;
+	padding: 7px 5px 10px 5px;
+	border-radius: 6px;
+	font-size: 18px;
+	color: #cdced7;
+	background: #6e7082;
+	border: none;
+	outline: none;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.button-submit {
+	color: #fff;
+	font-size: 18px;
+	padding: 7px 5px 10px 5px;
+	border-radius: 5px;
+	background: #70a2fe;
+	text-align: center;
+	cursor: pointer;
+	margin-top: 20px;
+
+}
+
+.error {
+	font-size: 13px;
+	text-align: center;
+	color: #f75a5a;
+	display: none;
+}
+
+/* Modal Box */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Modal Box */
+.modal-content, .modal-footer {
+    background: rgba(0, 0, 0, 0.7);
+    width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+
+.modal-full-height {
+    text-align:center;
+    padding-bottom: 0;
+    margin: 0 auto;
+}
+
+.modal-body {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.modal-card {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.modal-backdrop.in {
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+#modal-successful .col-xs-6 {
+	border-top: 1px solid #eeeeee;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.copyvoucher {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis ;
+}
+
+.instructions {
+    font-weight: 500;
+    color: #fff;
+    padding-top: 10px;
+	padding-bottom: 15px;
+	font-size: 17px;
+}
+
+@media only screen and (max-width: 360px) {
+    .modal-content, .modal-title, .modal-footer {
+        width: 300px;
+    }
+
+    .modal-card {
+        width: 230px;
+        font-size: 16px;
+    }
+}
+/* End Modal box */
+
+.promotion {
+	width: 60%;
+	position: absolute;
+	top: -25%;
+	right: 6%;
+	z-index: 10;
+}
+
+.promotion img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.radio-group{
+    position: relative;
+    padding-right: 15px;
+	padding-left: 15px;
+	height: 210px;
+	margin-left: 5px;
+}
+
+.radio{
+    display:inline-block;
+    width:100%;
+    height: 70px;
+    border-radius: 6px;
+    border: 1px solid #d5d5d5;
+    cursor:pointer;
+    margin: 0 0 10px 0; 
+    color: #b8b8b8;
+    text-align: center;
+    font-size: 13px;
+    padding-top:8px;
+}
+
+.radio-title {
+	color: #666666;
+	font-size: 16px;
+	padding-top:15px;
+}
+
+.label-reload{
+	color: #666666;
+	font-size: 18px;
+    margin-top: 20px;
+    float: left;
+}
+
+.other-title {
+	color: #bababa;
+	font-size: 16px;
+	padding-top:15px;
+}
+
+.radio.selected{
+    border-color: #f8a647;
+    color: #fb8900;
+    background:url("/client/images/purchasepoint/selected_coin_bg.png") no-repeat center center;
+}
+
+.radio.selected .radio-title{
+    color: #fff;
+}
+
+.radio.selected .other-title{
+    color: #fff;
+}
+
+.radio.selected .radio-price {
+	font-size: 13px;
+	color: #f8a647;
+}
+
+/*@media only screen and (max-width: 500px) {
+	.radio{
+		height: 55px;
+	}
+}*/
+
+@media only screen and (max-width: 360px) {
+	.radio{
+		font-size: 10px;
+	}
+}
+
+.copy-success {
+	background: #3dcc32;
+	color: #fff;
+}
+
+.copy-fail {
+	background: #999999;
+	color: #fff;
+}
+
+.how-to-pay {
+	font-size: 13px;
+	color: #999;
+	width: 355px;
+}
+
+.qq-info {
+	/*padding:5px;*/
+	display: inline-block;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	font-size: 17px;
+	color: #333;
+	font-weight: 500;
+}
+
+.qq-icon {
+
+	display: inline-block;
+	height: 20px;
+}
+
+.qq {
+	text-align: center;
+	margin: auto;
+  /*width: 50%;*/
+  /*border: 3px solid green;*/
+  padding: 10px;
+    overflow: auto;
+
+}
+
+.copy {
+	display: inline-block;
+	width: 70px;padding: 10px;
+}
+
+.notification {
+    margin: 15px 0 15px 0;
+}
+
+#phone {
+	color: #000;
+	font-size: 18px;
+	padding: 7px 5px 10px 5px;
+	border-radius: 5px;
+	background: #f1f1f1;
+	text-align: center;
+	cursor: pointer;
+	margin-top: 20px;
+	border: none;
+	width: 100%;
+}
