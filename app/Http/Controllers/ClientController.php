@@ -132,6 +132,10 @@ class ClientController extends BaseController
 
 	public function member_access_game_node($cid = 220, Request $request)
 	{
+		$ua = $request->server('HTTP_USER_AGENT');
+		
+		\Log::debug(json_encode(['useragent' => $ua], true)); 
+		
 		//isVIP APP
 		$this->vp = new VIPApp();
 		if ($this->vp->isVIPApp()) {
