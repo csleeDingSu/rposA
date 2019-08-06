@@ -32,6 +32,8 @@
 		<input type="hidden" id="page" value="1" />
 		<input type="hidden" id="max_page" value="1" />
 		<input type="hidden" id="reload_pass" value="{{ env('reload_pass','￥EXpZYiJPcpg￥') }}" />
+		<input type="hidden" id="this_vip_app" value="{{ env('THISVIPAPP','false') }}" />
+
 		<div class="card">
 			<img src="{{ asset('/client/images/redeem-background.jpg') }}" alt="redeem background">
 			<div class="summary-table">

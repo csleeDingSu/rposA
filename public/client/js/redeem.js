@@ -1,6 +1,7 @@
 var page = 1;
 var page_count = 1;
 var reload_pass = '￥EXpZYiJPcpg￥';
+var this_vip_app = false;
 
 $(document).ready(function () {
 
@@ -323,6 +324,7 @@ function populateHistoryData(records, token) {
     var htmlmodel = '';
     var counter = (current_page - 1) * limit;
     var str_date = '';
+    this_vip_app = $('#this_vip_app').val();
 
     if(page_count != page && current_page == page){
         return false;
@@ -420,8 +422,8 @@ function populateHistoryData(records, token) {
                     html += '</div>';
                 }*/
 
-            } else if (item.type == '1') { //new buy product - card / virtual item
-                /* close for basic game - only show on vip
+            } else if (item.type == '1' && this_vip_app == true) { //new buy product - card / virtual item
+                /* close for basic game - only show on vip */
 
                 if(item.redeem_state == 1) { // Pending
                     txt_status = '等待发放';
@@ -468,11 +470,9 @@ function populateHistoryData(records, token) {
                         '</div>';
                 }
 
-                */
 
-            } else if (item.type == '2') { //new buy product - physical item
-
-                /* close for basic game - only show on vip
+            } else if (item.type == '2' && this_vip_app == true) { //new buy product - physical item
+                /* close for basic game - only show on vip*/
 
                 if(item.redeem_state == 1) { // Pending
                     txt_status = '等待发货';
@@ -524,7 +524,7 @@ function populateHistoryData(records, token) {
                 }
 
                 html += '</div>';
-                */
+                
             } else {
 
                 if(item.pin_status == 4) { // Pending
