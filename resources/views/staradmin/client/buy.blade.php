@@ -21,6 +21,7 @@
 
     <form method="post" action="/confirm" id='buy'>
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <input id="hidEdit" name="hidEdit" type="hidden" value="{{ $request->hidEdit }}" />
             <input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
             <input type="hidden" id="hid_package_id" name="hid_package_id" value="{{ $request->hid_package_id }}">
             <div class="panel panel-default">
