@@ -108,7 +108,7 @@
 .redeem-banner img {
 	width: 105%;
 	margin-left: -10px;
-	margin-top: 0.2rem;
+	margin-top: 0.4rem;
 }
 
 .redeem-prize .col-xs-6 {
@@ -381,5 +381,5 @@
 }
 
 .flickity-enabled.is-draggable {
-	margin-top: -15px !important;
+	margin-top: -10px !important;
  }

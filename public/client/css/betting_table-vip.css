@@ -15,7 +15,7 @@
 	-moz-align-items: center;
 	-o-align-items: center;
 	flex-direction: column;
-	margin-top: -50px;
+	margin-top: -40px;
 }
 .barWrapper::before,
 .barWrapper::after{
