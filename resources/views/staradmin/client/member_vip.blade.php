@@ -318,7 +318,7 @@
             $('.wabao-usedpoint').html(usedpoint);
 
             $('.button-topup').click(function(){
-				window.location.href = "/purchasepoint";
+				window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
 			});
 
 			$('.round').click(function(){
