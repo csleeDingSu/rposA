@@ -402,7 +402,7 @@
 		
 	var member_label  = '@lang("dingsu.member")';
 	
-	var regsiter_date = '@lang("dingsu.regsiter_date")';
+	var register_date = '@lang("dingsu.regsiter_date")';
 	var obj =<?php echo json_encode($chart_user_reg );?>;
 	
 	var chart_vert_count = "{{$chart_vert_count}}";
