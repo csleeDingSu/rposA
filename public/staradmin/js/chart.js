@@ -145,7 +145,7 @@ if ($('canvas').length) {
             display: true,
             scaleLabel: {
               display: true,
-              labelString: regsiter_date,
+              labelString: register_date,
               fontColor: '#334344',
               fontSize: 12,
               lineHeight: 2
@@ -180,7 +180,7 @@ if ($('canvas').length) {
               fontColor: chartFontcolor,
               stepSize: 10,
               min: 0,
-              max: 50,
+              max: chart_vert_count,
               autoSkip: true,
               autoSkipPadding: 15,
               maxRotation: 0,
