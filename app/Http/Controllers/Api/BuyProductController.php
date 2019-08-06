@@ -29,6 +29,12 @@ class BuyProductController extends Controller
 	{
 		$memberid = $request->memberid;
 		$result   =  RedeemedProduct::with('product','shipping_detail')->where('member_id', $memberid)->latest()->first();
+		
+		
+		if (!empty($result->shipping_detail))
+		{
+			$result = $result->shipping_detail;
+		}
 
 		return response()->json(['success' => true,'records' => $result]);
 	}
