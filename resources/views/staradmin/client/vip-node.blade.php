@@ -985,7 +985,7 @@
 							<div class="instructions2">VIP专场需满120金币</div>
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
-							<a href="https://j.youzan.com/tIigBi" rel="external" target="_blank">
+							<a href="https://j.youzan.com/tIigBi" rel="external" target="_system">
 								<div class="btn-purchase-point">立刻充值</div>
 							</a>
 						</div>
