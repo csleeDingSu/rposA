@@ -19,7 +19,7 @@
 						</div>
 						<div class="row">
 							<!--<button class="sec_reg_btn" type="button">没有帐号，去注册</button>	-->
-							<a class="ssec_reg_btn"  href="/member/login/register" target="_blank">没有帐号，去注册</a>
+							<a class="ssec_reg_btn"  href="chrome://http://member/login/register" target="_blank">没有帐号，去注册</a>
 							 
 						</div>
 						
