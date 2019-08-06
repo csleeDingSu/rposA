@@ -21,6 +21,7 @@
 
     <form method="post" action="/confirm" id='buy'>
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
             <input type="hidden" id="hid_package_id" name="hid_package_id" value="{{ $request->hid_package_id }}">
             <div class="panel panel-default">
                 <div class="panel-title">请填写正确的收货地址，如因地址不正确导致无法收到产品，造成损失由您自己承担，平台不负责任。</div>
