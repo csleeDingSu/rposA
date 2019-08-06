@@ -331,7 +331,8 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 }
 
 .g6 .shan span.lose, .g6 .shan span.lose-vip {
-	color: #b8b8b8;
+	/*color: #b8b8b8;*/
+	color: #d7d7d7;
 }
 
 .g6 .shan span span {

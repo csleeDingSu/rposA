@@ -259,7 +259,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">选择单双</div>
+				<div id="txtCounter" class="middle-label"></div>
 				<div class="DB_G_hand start-game"></div>
 		    </div>
 		</div>
@@ -985,9 +985,11 @@
 							<div class="instructions2">VIP专场需满120金币</div>
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
-							<a href="https://j.youzan.com/tIigBi" rel="external" target="_system">
+
+							<a href="https://j.youzan.com/tIigBi" onclick="window.open(this.href,'_system'); return false;">
 								<div class="btn-purchase-point">立刻充值</div>
 							</a>
+
 						</div>
 						<div class="vip-title">
 							<img src="{{ asset('/client/images/vip/left_deco.png') }}" width="18px" height="13px" /> VIP专场特权 <img src="{{ asset('/client/images/vip/right_deco.png') }}" width="18px" height="13px" />

@@ -15,7 +15,7 @@
 
 			<dd class="dbox1">
 				<a href="/profile" class="footer-icon">
-					@if(Request::is('profile'))
+					@if(!Request::is('vip'))
 						<img src="{{ asset('/client/images/profile-vip/icon-profile-active.png') }}" width="25" height="25" />
 						<p class="active">个人中心</p>
 					@else
