@@ -19,7 +19,7 @@ if ($('body').hasClass("dark-theme")) {
   var chartGridLineColor = 'rgba(0,0,0,0.08)';
 }
 
-
+var chart_vert_count = chart_vert_count;
 
 if ($('canvas').length) {
   Chart.defaults.global.tooltips.enabled = false;
