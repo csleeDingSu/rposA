@@ -319,6 +319,7 @@
 
             $('.button-topup').click(function(){
 				window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
+				// rel="external" target="_blank"
 			});
 
 			$('.round').click(function(){

@@ -822,7 +822,7 @@ function showPayout(){
 function bindCalculateButton(){
     $('.btn-calculate-vip').click(function( event ){
         event.stopImmediatePropagation();
-        window.parent.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
+        window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
 
         // var user_id = $('#hidUserId').val();
         // var selected = $('div.clicked').find('input:radio').val();
