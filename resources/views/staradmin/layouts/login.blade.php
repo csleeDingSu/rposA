@@ -152,7 +152,12 @@
         		@yield('content')
 			</div>
 
-			@include('layouts/footer')
+			@if(env('THISVIPAPP','false'))
+				@include('layouts/footer_vip')
+			@else
+				@include('layouts/footer')
+			@endif
+			
 		</section>
 
 		@section('footer-javascript')
