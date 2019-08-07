@@ -285,7 +285,7 @@ function getToken(){
 
 function getProduct(){
     $.getJSON( "/api/get-product-list", function( data ) {
-        console.log(data);
+        // console.log(data);
 
         var html = '<form id="frm_buy" method="post" action="/buy">' +
                         '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';

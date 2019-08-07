@@ -1,309 +1,233 @@
-/*******************************
-* Does not work properly if "in" is added after "collapse".
-* Get free snippets on bootpen.com
-*******************************/
-    .container {
-        padding: 0;        
-        margin-top: 40px;
-    }
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
 
-    .panel-group .panel {
-        border-radius: 0;
-        box-shadow: none;
-        border-color: #EEEEEE;
-    }
-
-    .panel-default > .panel-heading {
-        padding: 0;
-        border-radius: 0;
-        color: #212121;
-        background-color: #FAFAFA;
-        border-color: #EEEEEE;
-    }
-
-    .panel-title {
-        font-size: 14px;
-        background: #FFFFFF;
-        color: #333333;
-    }
-
-    .panel-title > a {
-        display: block;
-        padding: 10px 15px;
-        text-decoration: none;
-    }
-
-    .panel-body {
-        color: #747474;
-    }
-
-    .more-less {
-        float: right;
-        color: #212121;
-    }
-
-    .panel-default > .panel-heading + .panel-collapse > .panel-body {
-        border-top-color: #EEEEEE;
-    }
-
-    .more-less {
-        color: #cccccc;
-    }
-
-    .title {
-        display: inline-block;
-        border-left: 2px solid #48affa;
-        padding-left: 5px;
-        font-weight: 600;
-    }
-
-/* ----- v CAN BE DELETED v ----- */
-body {
-    background-color: #f2f2f2;
+.fade {
+    cursor: pointer;
 }
 
-.listing-table {
-    text-align: left;
-    color: #686868;
-    font-size: 14px;
-    margin-top: 10px;
-    background-color: white;
+.container {
+    width: 100%;
+    background-color: #ff971c;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: #ff971c;
+}
+
+.card {
+    width: 100%;
+    height: 2rem;
+    margin: 0 auto;
+    font-size: 16px;
+    background: #fff;
+}
+
+.card  img {
+    width: 100%;
     height: 100%;
 }
 
-.tips_container {
+.nav-top {
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    height: 45px;
+    font-weight: 600;
+    color: #fff;
 
-    background-size: 100%;
-    height: 1000px;
-    width: 100%;
-    /*font-size: 16px;*/
+}
+
+.left {
+    float: left;
+    width:33.33333%;
+    text-align:left;
+    padding: 0 0 0 10px;
+}
+
+.center {
+    float: left;
+  width:33.33333%;
+  text-align:center;
+}
+
+.right {
+    float: left;
+  width:33.33333%;
+  text-align:right;
+  padding: 0 10px 0 0;
+}
+
+.nav-top .left a{
+    color: #fff;
+}
+
+.nav-top-back {
+    padding-bottom: 3px !important;
+    height: 20px !important;
+    width: 11px !important;
+}
+
+.banner {
+    background: url('/client/images/how-to-play/banner.png') no-repeat;
+    background-color: #ff971c;
+    background-size: contain;
+}
+
+.note {
+    border-radius: 20px;
+    background-color: #fff8e0;
+    background-size: cover;
+    padding: 0.1rem 0.5rem 0.5rem 0.5rem;
+    margin: 0.5rem;
+    color: #c78d50;
+    font-size: 0.27rem;
+    text-align: left;
+}
+
+.note-top {
+    margin-top: 3.2rem;
+}
+
+.title {
+    background: url(/client/images/how-to-play/title.png) no-repeat;
+    background-size: contain;
+    padding: 0.09rem 0.4rem 0 0.4rem;
+    color: #fff;
+    font-size: 0.3rem;
+    font-weight: bold;
+    height: 1rem;
+    text-align: center;
+    position: relative;
+    margin: -0.31rem 0.5rem 0.1rem 0.5rem;
+}
+
+.img-money {
+    width: 1.2rem !important;
+    position: relative;
+    margin: -1.4rem 0 0 4.4rem;
+    padding: 0.1rem;
+}
+
+.btn-tips {
+    background: #ff874c;
+    color: white;
+    font-size: 0.3rem;
+    font-weight: bold;
+    border-radius: 1rem;
+    height: 0.7rem;
+    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+    margin: 0.3rem 0.8rem 0.1rem 0.8rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.introduction {
+}
+
+.product {
+ margin: 0;
+ height: 5rem;
+ background: transparent;
+}
+
+.redeem-prize .col-xs-6 {
+    padding: 0;
+}
+
+.left-box {
+    float: left;
+    width: 25%;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    position: relative;
+    display: table;
+}
+
+.right-box {
+    float: left;
+    width: 30%;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    position: relative;
+    display: table;
+}
+
+.prize-box {
+    background-size:150px 150px;
+    position: relative;
+    display: table-cell;
+}
+
+.prize-box .image-wrapper {
+    width: 1.25rem;
+    height: 1.25rem;
     margin: 0 auto;
-    background-image: url("/client/images/tips.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-
-    /*transform: scale(0.5); */
-    /*-webkit-transform: scale(0.5);*/
-    /*-webkit-transform-origin:left top;*/
-
 }
 
-.panel-step1 {
-
-    background-size: 65%;
-    height: 190px;
+.prize-box .image-wrapper img {
+    /*margin: 0.3rem auto;*/
     width: 100%;
-    background-image: url("/client/images/tips_step1.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-
-    margin-top: 325px;
-    margin-left: 55px;
-    display: inline-block;
+    height: 100%;
+    background-color: #f8f1d9;
+    border-radius: 10px;
+    padding:0.1rem;
 }
 
-.panel-step1-btn {
-    background-size: 45%;
-    height: 40px;
-    width: 100%;
-    margin: 0 auto;
-    background-image: url("/client/images/btn-share.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-
-    margin-left: 95px;
-    display: inline-block;
+.redeem-product {
+    font-size: 0.2rem;
+    color: #cf8d50;
+    margin-top: 0;
+    text-align: center;
+    padding: 0.05rem 0.08rem 0.05rem 0.08rem;
+    /*height: 1rem;    */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;    
 }
 
-.panel-step2 {
-    background-size: 68%;
-    height: 190px;
-    width: 100%;
-    background-image: url("/client/images/tips_step2.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-    margin-top: 77px;
-    margin-left: 56px;
-    display: inline-block;
+.redeem-price {
+    background-color: #ff874c;
+    font-size: 0.18rem;
+    color: #fff8e0;
+    text-align: center;
+    width: 80%;
+    display: block;
+    border-radius: 5px;
+    margin-left: 0.13rem;
 }
 
-.panel-step2-btn {
-    background-size: 45%;
-    height: 40px;
-    width: 100%;
-    margin: 0 auto;
-    background-image: url("/client/images/btn-game.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-    margin-left: 95px;
-    display: inline-block;
+.redeem-currency {
+    font-size: 0.2rem;
 }
 
-@media only screen and (min-width: 300px) {
-    
-    .tips_container {
-        
-        height: 850px;
-        
-    }
-
-    .panel-step1 {
-        height: 170px;
-        margin-top: 290px;
-    }
-
-    .panel-step2 {
-        height: 180px;
-        margin-top: 50px;
-    }
-
-
+.redeem-button-wrapper {
+    width: 40%;
+    float: left;
 }
 
-@media only screen and (min-width: 350px) {
-
-    .tips_container {
-        
-        height: 950px;
-        
-    }
-    
-    .panel-step1 {
-        height: 185px;
-        margin-top: 325px;
-    }
-
-    .panel-step2 {
-     
-        height: 190px;
-        margin-top: 80px;
-     
-    }
-
+.redeem-button {
+    background:url(/client/images/vip/redeem-button.png) no-repeat;
+    width: 1.02rem;
+    height: 0.44rem;
+    background-size: contain;
+    font-size: 0.24rem;
+    padding-top: 0.04rem;
+    cursor: pointer;
 }
 
-@media only screen and (min-width: 370px) {
-    
-    .tips_container {
-        
-        height: 1000px;
-        
-    }
-
-    .panel-step1 {
-        height: 200px;
-        margin-top: 340px;
-    }
-
-    .panel-step2 {
-     
-        height: 215px;
-        margin-top: 65px;
-     
-    }
-
+.redeem-details {
+    overflow: hidden;
+    margin-bottom: 0.2rem;
+    margin-top:0.1rem;
 }
 
-@media only screen and (min-width: 400px) {
-    
-    .tips_container {
-        
-        height: 1100px;
-        
-    }
-
-    .panel-step1 {
-        height: 210px;
-        margin-top: 370px;
-    }
-
-    .panel-step2 {
-     
-        height: 225px;
-        margin-top: 85px;
-     
-    }
+.redeem-details a {
+    color: white;
 }
 
-@media only screen and (min-width: 410px) {
-    
-    .tips_container {
-        
-        height: 1100px;
-        
-    }
-
-    .panel-step1 {
-        height: 210px;
-        margin-top: 375px;
-    }
-
-    .panel-step2 {
-     
-        height: 225px;
-        margin-top: 85px;
-     
-    }
+.redeem-info {
+    margin-bottom: 30px;
 }
-
-
-@media only screen and (min-width: 500px) {
-    .tips_container {
-        
-        height: 2000px;
-        
-    }
-
-    .panel-step1 {
-        height: 380px;
-        margin-top: 650px;
-        margin-left: 115px;
-        display: inline-block;
-    }
-
-    .panel-step1-btn {
-
-        height: 80px;
-        margin-left: 195px;
-        display: inline-block;
-    }
-
-    .panel-step2 {
-        height: 410px;
-        margin-top: 155px;
-        margin-left: 130px;
-        display: inline-block;
-    }
-
-    .panel-step2-btn {
-        height: 80px;
-        margin-left: 195px;
-        display: inline-block;
-    }
-}
-
-@media only screen and (min-width: 700px) {
-    
-    .panel-step1 {
-        height: 400px;
-        margin-top: 660px;
-    }
-}
-
-@media only screen and (min-width: 900px) {
-    
-    .panel-step1 {
-
-        margin-top: 690px;
-    }
-}
-
-@media only screen and (min-width: 950px) {
-    
-    .panel-step1 {
-        margin-top: 680px;
-    }
-}
-
-
-

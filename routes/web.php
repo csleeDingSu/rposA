@@ -135,7 +135,9 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::get( '/product/detail/{id?}', 'ShareProductController@getVoucherDetail' )->name( 'client.productv2_detail' );
 
-	Route::any( '/how-to-play', 'ClientController@how_to_play' )->name( 'client.how_to_play' );	
+	Route::any( '/how-to-play', 'ClientController@how_to_play' )->name( 'client.how_to_play' );
+
+	Route::any( '/tips-new', 'ClientController@tips_new' )->name( 'client.tips_new' );	
 } );
 
 //Member routes with member guard

@@ -509,9 +509,14 @@ class ClientController extends BaseController
 	public function how_to_play()
 	{
 
-		// $tips =  tips::whereNull('deleted_at')->orderBy('seq')->get();
-		// return view( 'client/how_to_play', compact( 'tips' ) );
 		return view('client/how_to_play');
+
+	}
+
+	public function tips_new()
+	{
+
+		return view('client/tips_new');
 
 	}
 	
