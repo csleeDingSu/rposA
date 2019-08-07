@@ -45,7 +45,8 @@
 							<span class="spanAcuPointAndBalance">0</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<a href="https://j.youzan.com/tIigBi?xapp-target=browser">
+						<!-- <a href="https://j.youzan.com/tIigBi?xapp-target=browser"> -->
+						<a href="www.baidu.com?xapp-target=browser">
 							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 						</a>
 					</div>
@@ -988,7 +989,9 @@
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
 
-							<a href="https://j.youzan.com/tIigBi?xapp-target=browser">
+							<!-- <a href="https://j.youzan.com/tIigBi?xapp-target=browser"> -->
+							<!-- <a href="www.baidu.com?xapp-target=browser"> -->
+							<a href="http://App-Prefs//www.baidu.com" rel="nofollow">
 								<div class="btn-purchase-point">立刻充值</div>
 							</a>
 
