@@ -19,6 +19,7 @@ var last_bet = null;
 var g_ratio = 1;
 var g_w_ratio = 2;
 var show_default = true;
+var g_betting_history_total = 0;
 
 $(function () {
 
@@ -173,6 +174,8 @@ function initUser(records){
     }
 
     check_vip_status();
+
+    firstlogin();
 }
 
 function initGame(data, level, latest_result, consecutive_lose){
@@ -389,6 +392,7 @@ function startGame() {
             game_records = data.record.setting;
             betting_records = data.record.bettinghistory.data;
             latest_result = data.record.bettinghistory.data;
+            g_betting_history_total = data.record.bettinghistory.total;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
             g_ratio = getNumeric(data.record.setting.win_ratio);
@@ -1468,6 +1472,14 @@ function get_today_profit() {
         }
     });
 }
+
+function firstlogin() {
+    if (g_betting_history_total <= 10) { //set when to show
+        $('#modal-first-login').modal();    
+    }
+    
+}
+
 
 function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
