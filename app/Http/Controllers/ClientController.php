@@ -218,14 +218,14 @@ class ClientController extends BaseController
 
 	public function member_access_vip_node()
 	{
-		if (!Auth::Guard('member')->check())
-		{
-			$msg = trans('dingsu.please_login');
-			\Session::flash('success',$msg);
+		// if (!Auth::Guard('member')->check())
+		// {
+		// 	$msg = trans('dingsu.please_login');
+		// 	\Session::flash('success',$msg);
 
-			return redirect('/nlogin');
+		// 	return redirect('/nlogin');
 
-		} else {
+		// } else {
 
 			// $member = Auth::guard('member')->user()->id	;
 			// $data['member'] = Member::get_member($member);
@@ -241,7 +241,7 @@ class ClientController extends BaseController
 
 			return view('client/vip-node');
 
-		}
+		// }
 	}
 
 	public function member_update_wechatname(Request $request)

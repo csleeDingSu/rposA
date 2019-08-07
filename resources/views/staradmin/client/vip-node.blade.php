@@ -1090,7 +1090,12 @@
 
 			if (user_id <= 0) {
 				openmodel();
-			}			
+			}	
+
+			$('.btn-calculate-vip').click( function() {
+		        window.open("https://j.youzan.com/tIigBi", "_system");
+		    });
+
 		});
 
 	</script>
