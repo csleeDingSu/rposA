@@ -1104,8 +1104,9 @@ function showWinModal(){
     var remain = 0;
 
     var bet_amount = getNumeric(getNumeric($('.span-bet').val()) * g_w_ratio);
-    var instructions = '您已赢了'+ bet_amount +'元';
-    html += bet_amount +'<span class="packet-currency">元</span>';
+    var total = getNumeric(getNumeric($('.spanAcuPointAndBalance').html()) + bet_amount);
+    var instructions = '您已抽中'+ total +'金币';
+    html += bet_amount;
 
     if(remain < 0){
         remain = 0;
@@ -1145,7 +1146,7 @@ function showLoseModal(){
     var balance = getNumeric($('#hidBalance').val());
     var bet_amount = getNumeric($('.span-bet').val());
     var newbalance = getNumeric(balance - bet_amount);
-    var instruction = '这局亏了'+ bet_amount +'元，继续加油哦';
+    var instruction = '这局亏损'+ bet_amount +'金币，继续加油哦';
 
     //$('.modal-progress-bar').attr("src", image);
     $('#lose-modal .modal-instruction').html(instruction);

@@ -820,13 +820,13 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-title">中奖金额</div>
-								<div class="packet-value">6<span class="packet-currency">元</span></div>
+								<div class="packet-title">抽中金币</div>
+								<div class="packet-value">6</div>
 								<div class="close-win-modal modal-redeem-button btn-red-packet">
 									确认领取
 								</div>
 								<div class="instructions">
-									您已赢了6元
+									您已抽中6金币
 								</div>
 								
 							</div>
