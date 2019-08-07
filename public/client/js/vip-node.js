@@ -173,8 +173,6 @@ function initUser(records){
         $(".span-play-count").html(play_count);
     }
 
-    check_vip_status();
-
     firstlogin();
 }
 
@@ -1476,6 +1474,8 @@ function get_today_profit() {
 function firstlogin() {
     if (g_betting_history_total <= 10) { //set when to show
         $('#modal-first-login').modal();    
+    } else {
+        check_vip_status();
     }
     
 }
