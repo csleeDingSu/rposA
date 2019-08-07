@@ -133,7 +133,9 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/customer_service' );
 	} );
 
-	Route::get( '/product/detail/{id?}', 'ShareProductController@getVoucherDetail' )->name( 'client.productv2_detail' );	
+	Route::get( '/product/detail/{id?}', 'ShareProductController@getVoucherDetail' )->name( 'client.productv2_detail' );
+
+	Route::any( '/how-to-play', 'ClientController@how_to_play' )->name( 'client.how_to_play' );	
 } );
 
 //Member routes with member guard
@@ -611,7 +613,6 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 
 	Route::get('/buyproduct/render-card', 'BuyProductController@render_card_detail')->name('render_card_detail');
-	
 
 } );
 //END
