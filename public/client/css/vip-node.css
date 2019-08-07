@@ -105,6 +105,10 @@
 	/*top: -10px;*/
 }
 
+.redeem-banner {
+	padding: 0.2rem 0 0.2rem 0;
+}
+
 .redeem-banner img {
 	width: 105%;
 	margin-left: -10px;
