@@ -39,7 +39,7 @@
 			<!-- member details -->
 			<div class="information-table">
 				  <div class="col-xs-12">
-				  	<span class="label-title">可兑换金额</span><br />
+				  	<span class="label-title">可换购金额</span><br />
 				  	<div class="point numbers">
 						<span class="wabao-coin"></span>
 				  	</div> 元
@@ -63,12 +63,11 @@
 				  	<div class="balance numbers">
 				  		<span class="wabao-acupoint"></span>
 				  	</div>
-				  	 元
 				  </div>
 				  <div class="col-xs-6">
 				  	已兑换
 				  	<div class="life numbers">				  		
-				  		<span class="wabao-usedpoint"></span>元
+				  		<span class="wabao-usedpoint"></span>
 				  	</div>
 
 				  </div>
