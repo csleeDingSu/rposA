@@ -1,0 +1,210 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.fade {
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    background-color: #ff971c;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: #ff971c;
+}
+
+.card {
+    width: 100%;
+    height: 2rem;
+    margin: 0 auto;
+    font-size: 16px;
+    background: #fff;
+}
+
+.card  img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.nav-top {
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    height: 45px;
+    font-weight: 600;
+    color: #a6a6a6;
+    background-color: #fff;
+
+}
+
+.left {
+    float: left;
+    width:33.33333%;
+    text-align:left;
+    padding: 0 0 0 10px;
+    color: #a6a6a6;
+}
+
+.center {
+    float: left;
+  width:33.33333%;
+  text-align:center;
+  color: #333333;
+}
+
+.right {
+    float: left;
+  width:33.33333%;
+  text-align:right;
+  padding: 0 10px 0 0;
+  color: #a6a6a6;
+}
+
+.nav-top .left a{
+    color: #a6a6a6;
+}
+
+.nav-top-back {
+    padding-bottom: 3px;
+    height: 20px;
+    width: 11px;
+}
+
+.topic {
+    color: #fff;
+    font-size: 0.5rem;
+    font-weight: bold;
+    padding: 0.5rem 0 0.2rem 0;
+}
+
+.note {
+    border-radius: 20px;
+    background-color: #fff8e0;
+    background-size: cover;
+    padding: 0.1rem 0.5rem 0.5rem 0.5rem;
+    margin: 0.5rem;
+    color: #c78d50;
+    font-size: 0.27rem;
+    text-align: left;
+}
+
+.title {
+    background: url(/client/images/how-to-play/title.png) no-repeat;
+    background-size: contain;
+    padding: 0.09rem 0.4rem 0 0.4rem;
+    color: #fff;
+    font-size: 0.3rem;
+    font-weight: bold;
+    height: 1rem;
+    text-align: center;
+    position: relative;
+    margin: -0.31rem 0.5rem 0.1rem 0.5rem;
+}
+
+.img-money {
+    width: 1.2rem !important;
+    position: relative;
+    margin: -1.4rem 0 0 4.4rem;
+    padding: 0.1rem;
+}
+
+.btn-tips {
+    background: #ff874c;
+    color: white;
+    font-size: 0.3rem;
+    font-weight: bold;
+    border-radius: 1rem;
+    height: 0.7rem;
+    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+    margin: 0.3rem 0.8rem 0.1rem 0.8rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.introduction {
+    padding-bottom: 0.2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.introduction-bet {
+    padding: 0 0 1.2rem 0;
+}
+
+.introduction-detail {
+    background-color: #faf2d5;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.2rem;
+    line-height: 0.35rem;
+}
+
+.button-line {
+    padding-top: 0.3rem;
+    text-align: center;
+}
+
+.btn-topup {
+    border-radius: 1rem;
+    background-color: #ff885b;
+    padding: 0.15rem 0.5rem 0.15rem 0.5rem;
+    color: #fff;
+    margin-right:0.2rem;
+}
+
+.btn-play {
+    border-radius: 1rem;
+    padding: 0.15rem 0.5rem 0.15rem 0.5rem;
+    color: #ff885b;
+    border-width: 1px;
+    border-color: #ff885b;
+    border-style: solid;
+}
+
+.circle {
+    color: #ffae00;
+    background-color: #fff;
+    border: 1px solid #ffae00;
+    height: 0.8rem;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 0.8rem;
+    text-align: center;
+    padding: 0.13rem 0 0 0;
+    font-size: 0.4rem;
+    /* font-weight: bold; */
+    line-height: 0.25rem;
+    float: left;
+}
+
+.circle .txt{
+    font-size: 0.2rem;
+}
+
+
+.line-connect {
+    border: 1px solid #ffae00;
+    height: 1px;
+    width: 5px;
+    padding: 0;
+    float: left;
+    background-color: #ffae00;
+    margin-top: 0.43rem;
+}
+
+.first-padding{
+    margin-left: 0.12rem;
+}
+
+.second-padding{
+    margin-left: 0.6rem;
+}
+
+.third-padding{
+    margin-left: 1rem;
+}
+

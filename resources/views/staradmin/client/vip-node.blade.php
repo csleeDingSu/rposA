@@ -1083,7 +1083,8 @@
 		    });
 
 		    $('.btn-rules-vip').click( function() {
-		        $('#modal-sure-win').modal();
+		        // $('#modal-sure-win').modal();
+		        window.location.href = "/how-to-play";
 		    });
 
 		    $('.button-info').click( function() {

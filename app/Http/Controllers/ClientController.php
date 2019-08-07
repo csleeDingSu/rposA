@@ -505,6 +505,20 @@ class ClientController extends BaseController
 		}
 		
 	}
+
+	public function how_to_play()
+	{
+
+		return view('client/how_to_play');
+
+	}
+
+	public function tips_new()
+	{
+
+		return view('client/tips_new');
+
+	}
 	
 	
 }
