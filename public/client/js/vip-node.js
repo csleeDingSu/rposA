@@ -824,9 +824,9 @@ function bindCalculateButton(){
         event.stopImmediatePropagation();
         // window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
         // window.open("https://j.youzan.com/tIigBi", '_system');
-        event.preventDefault();
-        var targetURL = "https://j.youzan.com/tIigBi"; //$(this).attr("href");
-        window.open(targetURL, "_system");
+        // event.preventDefault();
+        // var targetURL = "https://j.youzan.com/tIigBi"; //$(this).attr("href");
+        // window.open(targetURL, "_system");
 
         // var user_id = $('#hidUserId').val();
         // var selected = $('div.clicked').find('input:radio').val();

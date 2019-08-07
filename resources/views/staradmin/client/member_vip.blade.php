@@ -46,8 +46,10 @@
 				  <br/>
 					<div class="topup-redeem">
 					  	<div class="button-topup">
-					  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />
-					  		{{ trans('dingsu.topup') }}
+					  		<a href="https://j.youzan.com/tIigBi" rel="nofollow">
+						  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />
+						  		{{ trans('dingsu.topup') }}
+						  	</a>
 					  	</div>
 					  	<div class="button-redeem redeembtn">
 							<img class="icon-redeemtion" src="{{ asset('/client/images/profile-vip/icon-redeem.png') }}" alt="{{ trans('dingsu.redeemtion') }}" />
@@ -317,11 +319,11 @@
 
             $('.wabao-usedpoint').html(usedpoint);
 
-            $('.button-topup').click(function(){
-				// window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
-				// rel="external" target="_blank"
-				window.open("https://j.youzan.com/tIigBi", '_system');
-			});
+   //          $('.button-topup').click(function(){
+			// 	// window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
+			// 	// rel="external" target="_blank"
+			// 	window.open("https://j.youzan.com/tIigBi", '_system');
+			// });
 
 			$('.round').click(function(){
 				window.location.href = "/round";

@@ -45,7 +45,9 @@
 							<span class="spanAcuPointAndBalance">0</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+						<a href="https://j.youzan.com/tIigBi" rel="nofollow">
+							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+						</a>
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -986,7 +988,7 @@
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
 
-							<a href="https://j.youzan.com/tIigBi" onclick="window.open(this.href,'_system'); return false;">
+							<a href="https://j.youzan.com/tIigBi" rel="nofollow">
 								<div class="btn-purchase-point">立刻充值</div>
 							</a>
 
@@ -1092,9 +1094,9 @@
 				openmodel();
 			}	
 
-			$('.btn-calculate-vip').click( function() {
-		        window.open("https://j.youzan.com/tIigBi", "_system");
-		    });
+			// $('.btn-calculate-vip').click( function() {
+		 //        window.open("https://j.youzan.com/tIigBi", "_system");
+		 //    });
 
 		});
 
