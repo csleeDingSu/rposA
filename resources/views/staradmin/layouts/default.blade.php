@@ -52,9 +52,12 @@
 @endif
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		
+		@if (empty($title_customize))
         <title>{{env('APP_NAME')}} - @yield('title')</title>
-		
+		@else
+		<title>{{$title_customize}}</title>
+		@endif
+
 		@section('top-css')
 			<link href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" rel="stylesheet">
 			<link rel="stylesheet" href="{{ asset('/client/fontawesome-free-5.5.0-web/css/all.css') }}" >
