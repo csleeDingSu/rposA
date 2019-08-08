@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '抽奖攻略')
+@section('title', 'app下载')
 
 @section('top-css')
     @parent
