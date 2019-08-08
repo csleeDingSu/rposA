@@ -333,16 +333,26 @@ function getProduct(){
 
         $('.redeem-prize-wrapper').html(html);
         $('.redeem-button').click(function(){
-            $( "#hid_package_id" ).val($(this).attr('rel'));
-            console.log($(this).attr('rel'));
-            var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
-            if (getNumeric(price) > getNumeric(g_vip_point)) {
-                $('#modal-insufficient-point').modal();
-                setTimeout(function(){ 
-                    $('#modal-insufficient-point').modal('hide');
-                }, 3000);                
+
+            var user_id = $('#hidUserId').val();
+            if(user_id == 0){
+                // window.top.location.href = "/member";
+                // $( '#login-intropopup' ).modal( 'show' );
+                $( '#nonloginmodal' ).modal( 'show' );
             } else {
-                $( "#frm_buy" ).submit();    
+
+                $( "#hid_package_id" ).val($(this).attr('rel'));
+                console.log($(this).attr('rel'));
+                var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
+                if (getNumeric(price) > getNumeric(g_vip_point)) {
+                    $('#modal-insufficient-point').modal();
+                    setTimeout(function(){ 
+                        $('#modal-insufficient-point').modal('hide');
+                    }, 3000);                
+                } else {
+                    $( "#frm_buy" ).submit();    
+                }
+
             }
             
         });
@@ -622,23 +632,32 @@ function bindBetButton(){
     });
 
     $('.button-bet').click(function(){
-        var add_bet = parseInt($(this).html());
-        var initial_bet = parseInt($('.span-bet').val());
-        var final_bet = add_bet + initial_bet;
-
-        if(final_bet <= g_vip_point){
-            $('.span-bet').val(final_bet);
-            previous_bet = final_bet;
+         var user_id = $('#hidUserId').val();
+        if(user_id == 0){
+            // window.top.location.href = "/member";
+            // $( '#login-intropopup' ).modal( 'show' );
+            $( '#nonloginmodal' ).modal( 'show' );
         } else {
-            $('.spinning').html('金币不足，无法下注');
-             $('.spinning').css('visibility', 'visible');
-            setTimeout(function(){ 
-                $('.spinning').css('visibility', 'hidden');
-            }, 3000);
-            $('.span-bet').val(parseInt(g_vip_point));
-            previous_bet = g_vip_point;
+
+            var add_bet = parseInt($(this).html());
+            var initial_bet = parseInt($('.span-bet').val());
+            var final_bet = add_bet + initial_bet;
+
+            if(final_bet <= g_vip_point){
+                $('.span-bet').val(final_bet);
+                previous_bet = final_bet;
+            } else {
+                $('.spinning').html('金币不足，无法下注');
+                 $('.spinning').css('visibility', 'visible');
+                setTimeout(function(){ 
+                    $('.spinning').css('visibility', 'hidden');
+                }, 3000);
+                $('.span-bet').val(parseInt(g_vip_point));
+                previous_bet = g_vip_point;
+            }
+            showPayout();
+
         }
-        showPayout();
 
     });
 
@@ -702,7 +721,8 @@ function bindBetButton(){
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
             // window.top.location.href = "/member";
-            $( '#login-intropopup' ).modal( 'show' );
+            // $( '#login-intropopup' ).modal( 'show' );
+            $( '#nonloginmodal' ).modal( 'show' );
         }
 
         if(isNaN(balance)){
@@ -854,7 +874,10 @@ function showPayout(){
 
 function bindCalculateButton(){
     $('.btn-calculate-vip').click(function( event ){
+        
         event.stopImmediatePropagation();
+        
+
         // window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
         // window.open("https://j.youzan.com/tIigBi", '_system');
         // event.preventDefault();
@@ -905,8 +928,16 @@ function bindCalculateButton(){
 
 function bindTriggerButton(){
     $('.btn-trigger').click(function( event ){
-        event.stopImmediatePropagation();
-        checkSelection();
+        var user_id = $('#hidUserId').val();
+        if(user_id == 0){
+            // window.top.location.href = "/member";
+            // $( '#login-intropopup' ).modal( 'show' );
+            $( '#nonloginmodal' ).modal( 'show' );
+        }else {
+            event.stopImmediatePropagation();
+            checkSelection();
+        }
+        
     });
 }
 
@@ -1504,10 +1535,11 @@ function get_today_profit() {
 }
 
 function firstlogin() {
-    if (g_betting_history_total <= 10) { //set when to show
+    if ($('#justlogin').val() == 'yes') { //set when to show
+        $('#justlogin_after').val('no');
         $('#modal-first-login').modal();    
     } else {
-        check_vip_status();
+        // check_vip_status();
     }
     
 }
