@@ -19,9 +19,9 @@
 						</div>
 						<div class="row">
 							<!-- <button class="sec_reg_btn" type="button">没有帐号，去注册</button>	 -->
-							<a class="ssec_reg_btn" data-url="http://dev.boge56.com/member/login/register"  href="market://details?id=com.myapp.package" target="_blank" rel="nofollow">没有帐号，去注册</a>
+							<a class="ssec_reg_btn" data-url="http://dev.boge56.com/member/login/register"  href="googlechrome://details?id=com.myapp.package" target="_blank" rel="nofollow">没有帐号，去注册</a>
 							
-							 <form action="http://hastrk.com/serve?action=click&publisher_id=1&site_id=2" target="_blank">
+							 <form action="googlechrome://hastrk.com/serve?action=click&publisher_id=1&site_id=2" target="_blank">
         <input type="submit" value="Download" />
     </form>
 						
