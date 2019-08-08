@@ -47,7 +47,6 @@ function getAddress(){
             dataType: "json",
             error: function (error) { console.log(error.responseText) },
             success: function(data) {
-                console.log(data);
                 if(data.success) {
                     if(data.records !== undefined){
                         if($('#txt_name').val() === ''){
