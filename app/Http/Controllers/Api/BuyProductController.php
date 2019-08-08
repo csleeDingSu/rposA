@@ -28,9 +28,10 @@ class BuyProductController extends Controller
 	public function get_latest_address(Request $request)
 	{
 		$memberid = $request->memberid;
-		$result   = \DB::table('order_shipping_detail')->where('member_id', $memberid)->latest('order_date')->first();
+		$result   = \DB::table('order_shipping_detail')->where('member_id', $memberid)->latest('order_date')->first();		
+		$type     = \DB::table('ref_credit_type')->get();
 		
-		return response()->json(['success' => true,'records' => $result]);
+		return response()->json(['success' => true,'records' => $result,'credit_type' => $type]);
 	}
 	
 	public function list_package(Request $request)
