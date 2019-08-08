@@ -519,6 +519,38 @@ class ClientController extends BaseController
 		return view('client/tips_new');
 
 	}
+
+	public function download_app()
+	{
+		$devices = "android";
+		$isMacDevices = false;
+
+		//Detect special conditions devices
+		$iPod    = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
+		$iPhone  = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+		$iPad    = stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
+		$Android = stripos($_SERVER['HTTP_USER_AGENT'],"Android");
+		$webOS   = stripos($_SERVER['HTTP_USER_AGENT'],"webOS");
+
+		//do something with this information
+		if( $iPod || $iPhone ){
+		    //browser reported as an iPhone/iPod touch -- do something here
+		    $devices = "iphone";
+		    $isMacDevices = true;
+		}else if($iPad){
+		    //browser reported as an iPad -- do something here
+		    $devices = "ipad";
+		    $isMacDevices = true;
+		}else if($Android){
+		    //browser reported as an Android device -- do something here
+		    $devices = "android";
+		}else if($webOS){
+		    //browser reported as a webOS device -- do something here
+		    $devices = "webos";
+		}
+
+		return view('client/download_app',compact('devices', 'isMacDevices'));
+	}
 	
 	
 }
