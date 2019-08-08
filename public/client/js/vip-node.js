@@ -45,6 +45,7 @@ $(function () {
         getToken();
         getProduct();
         closeModal();
+        firstlogin();
 
         ifvisible.on("wakeup", function(){
             //resetTimer();
@@ -172,8 +173,6 @@ function initUser(records){
         $(".spanLife").html(life);
         $(".span-play-count").html(play_count);
     }
-
-    firstlogin();
 }
 
 function initGame(data, level, latest_result, consecutive_lose){
