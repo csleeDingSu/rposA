@@ -21,7 +21,7 @@
     <div class="container banner">
         <div class="nav-top">
             <span class="left">
-                <a href="javascript:history.back()">返回</a>
+                <a href="/vip">返回</a>
             </span>
             <span class="center">
                 玩法介绍
