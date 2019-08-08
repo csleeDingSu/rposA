@@ -1,3 +1,6 @@
+@php
+if( !Request::is('download-app') ) { 
+@endphp
 <div class="cardFoot">
 	<div class="navBox">
 		<dl class="dbox">
@@ -32,3 +35,6 @@
 		color: #ff9600 !important;
 	}	
 </style>
+@php
+} 
+@endphp

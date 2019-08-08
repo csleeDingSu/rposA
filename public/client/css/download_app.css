@@ -42,9 +42,9 @@ html, body {
 .logo {
     background: url(/client/images/download-app/logo.png) no-repeat;
     background-size: contain;
-    height: 2.5rem;
+    height: 2rem;
     position: relative;
-    margin: 1rem 0 0.1rem 2.5rem;
+    margin: 1rem 0 0.1rem 2.75rem;
 }
 
 .topic {
@@ -72,29 +72,29 @@ html, body {
 }
 
 .img-wheel {
-    width: 2.1rem !important;
+    width: 2rem !important;
     position: relative;
-    margin: 0 0 0.4rem 0;
+    margin: 0.1rem 0 0.5rem 0.2rem;
     padding: 0.1rem;
 }
 
 .title {
     padding: 0 0.1rem 0 0;
     color: #ffe44f;
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     font-weight: bold;
     text-align: left;
     position: relative;
-    margin: -2.6rem 0 0.1rem 2.2rem;
+    margin: -2.5rem 0 0.1rem 2.6rem;
 }
 
 .introduction {
-    padding: 0 0.1rem 0 0;
+    padding: 0 0.1rem 0.2rem 0;
     text-align: left;
     color: #e8d1ff;
-    font-size: 0.3rem;
-    font-weight: 500;
-    margin: 0 0 0.3rem 2.2rem;
+    font-size: 0.25rem;
+    font-weight: 400;
+    margin: 0 0 0.3rem 2.6rem;
 }
 
 .cust-star {
@@ -137,7 +137,7 @@ html, body {
 .img-guide1 {
     background: url(/client/images/download-app/guide1.png) no-repeat;
     background-size: cover;
-    height: 6rem;
+    height: 5.2rem;
     position: relative;
     padding: 0.1rem;
     margin: 0.2rem 0.5rem 0.1rem 0.5rem;
@@ -146,7 +146,7 @@ html, body {
 .img-guide2 {
     background: url(/client/images/download-app/guide2.png) no-repeat;
     background-size: cover;
-    height: 6rem;
+    height: 5.2rem;
     position: relative;
     padding: 0.1rem;
     margin: 0.2rem 0.5rem 0.1rem 0.5rem;
@@ -155,7 +155,7 @@ html, body {
 .img-guide3 {
     background: url(/client/images/download-app/guide3.png) no-repeat;
     background-size: cover;
-    height: 6rem;
+    height: 5.2rem;
     position: relative;
     padding: 0.1rem;
     margin: 0.2rem 0.5rem 0.1rem 0.5rem;
