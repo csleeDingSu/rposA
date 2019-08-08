@@ -21,7 +21,7 @@
 							<!-- <button class="sec_reg_btn" type="button">没有帐号，去注册</button>	 -->
 							<a class="ssec_reg_btn" data-url="http://dev.boge56.com/member/login/register"  href="googlechrome://dev.boge56.com/member/login/register" target="_blank" rel="nofollow">没有帐号，去注册</a>
 							
-							<button class="button1" id="button1" onclick="window.open('http://dev.boge56.com/member/login/register','_blank','resizable=yes')" >clcick </button>
+							<button class="button1" id="button1" onclick="window.open('http://dev.boge56.com/mytestview','_blank','resizable=yes')" >clcick </button>
 													
 						</div>
 						
