@@ -19,10 +19,8 @@
 						</div>
 						<div class="row">
 							<!-- <button class="sec_reg_btn" type="button">没有帐号，去注册</button>	 -->
-							<a class="ssec_reg_btn" data-url="http://dev.boge56.com/member/login/register"  href="googlechrome://dev.boge56.com/member/login/register" target="_blank" rel="nofollow">没有帐号，去注册</a>
-							
-							<button class="button1" id="button1" onclick="window.open('http://dev.boge56.com/api/mytestview','_blank','resizable=yes')" >clcick </button>
-													
+							<a class="ssec_reg_btn"  href="chrome://http://member/login/register" target="_blank">没有帐号，去注册</a>
+							 
 						</div>
 						
 					</div>
@@ -194,12 +192,15 @@
 
 				 //switch to login form
 				 $( '#sec_login_btn_new' ).click( function (e) {
-				 	 $( '#nonloginmodal' ).modal( 'hide' );
-					 $( '#regis-intropopup' ).modal( 'hide' );
-					 $( '#login-intropopup' ).modal( 'show' );
-					 $( '.sec_login_btn' ).html( '没有帐号，去注册' );					 
-					 $( '.modal-title' ).html( '<h1>账号登录</h1>' );
-					 $( '.btnsubmit' ).html( '登录' );
+				 	//  $( '#nonloginmodal' ).modal( 'hide' );
+					 // $( '#regis-intropopup' ).modal( 'hide' );
+					 // $( '#login-intropopup' ).modal( 'show' );
+					 // $( '.sec_login_btn' ).html( '没有帐号，去注册' );					 
+					 // $( '.modal-title' ).html( '<h1>账号登录</h1>' );
+					 // $( '.btnsubmit' ).html( '登录' );
+
+					 //link to login
+					 window.location.href = "<?php Print(URL::to('/member/login'));?>";
 				 } );
 
 

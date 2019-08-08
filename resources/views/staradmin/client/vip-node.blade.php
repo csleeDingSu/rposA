@@ -45,9 +45,11 @@
 							<span class="spanAcuPointAndBalance">0</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
+						
 						<a href="https://j.youzan.com/tIigBi" onclick="window.open(this.href,'_blank'); return false;">
 							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 						</a>
+					
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -89,9 +91,11 @@
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
+			<input id='justlogin' type="hidden" value="{{Session::get('justlogin')}}" />			
 	  	</div>
 
 	</div>
+
 	<!-- end information table -->
 
 	<!--h2 class="strikethrough"><span>已抽奖<div class="span-play-count">0</div>次</span></h2-->
@@ -1125,4 +1129,4 @@
 
 <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
 
-	@include('client.intromodel')
+	@include('client.intromodel_vip')

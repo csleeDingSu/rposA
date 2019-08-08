@@ -7,9 +7,9 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Category;
-use App\helpers\VIPApp;
 use App\Members as Member;
 use App\Wallet;
+use App\helpers\VIPApp;
 use App\member_game_result;
 use App\tips;
 use App\view_vip_status;
@@ -218,6 +218,17 @@ class ClientController extends BaseController
 
 	public function member_access_vip_node()
 	{
+		if (Auth::Guard('member')->check()) {
+			if (empty(Session::get('justlogin'))) {
+				Session::put('justlogin', 'yes');
+			} else {
+				Session::put('justlogin', 'no');
+			}
+		} else {
+			Session::forget('justlogin');
+		}
+		
+
 		// if (!Auth::Guard('member')->check())
 		// {
 		// 	$msg = trans('dingsu.please_login');
@@ -508,7 +519,6 @@ class ClientController extends BaseController
 
 	public function how_to_play()
 	{
-
 		return view('client/how_to_play');
 
 	}
