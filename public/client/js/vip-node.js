@@ -533,11 +533,42 @@ function closeWinModal() {
         
         if (g_vip_point > g_previous_point) {
             musicPlay(1);  
-            console.log('play coin mp3');  
-        } 
+            console.log('play coin mp3');
+
+            setTimeout(function(){
+                var decimal_places = 2;
+                var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+
+                $('.spanAcuPointAndBalance')
+              .prop('number', g_previous_point * decimal_factor)
+              .animateNumber(
+                {
+                  number: g_vip_point * decimal_factor,
+
+                  numberStep: function(now, tween) {
+                    var floored_number = Math.floor(now) / decimal_factor,
+                        target = $(tween.elem);
+
+                    if (decimal_places > 0) {
+                      // force decimal places even if they are 0
+                      floored_number = floored_number.toFixed(decimal_places);
+
+                      // replace '.' separator with ','
+                      floored_number = floored_number.toString();
+                    }
+
+                    target.text(floored_number);
+                  }
+                },
+                1000)
+          }, 1000);
+            
+        }
         
-        $('.spanAcuPointAndBalance').html(g_vip_point);
-        $('.spanAcuPoint').html(g_vip_point);
+        setTimeout(function(){
+            $('.spanAcuPointAndBalance').html(g_vip_point);
+            $('.spanAcuPoint').html(g_vip_point);
+        }, 2300);
 
         $(this).off('click');
         event.stopImmediatePropagation();
@@ -1106,8 +1137,9 @@ function showWinModal(){
     var remain = 0;
 
     var bet_amount = getNumeric(getNumeric($('.span-bet').val()) * g_w_ratio);
-    var total = getNumeric(getNumeric($('.spanAcuPointAndBalance').html()) + bet_amount);
-    var instructions = '您已抽中'+ total +'金币';
+    g_previous_point = getNumeric($('.spanAcuPointAndBalance').html());
+    g_vip_point = getNumeric(g_previous_point + bet_amount);
+    var instructions = '您已抽中'+ g_vip_point +'金币';
     html += bet_amount;
 
     if(remain < 0){
