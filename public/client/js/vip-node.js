@@ -338,7 +338,8 @@ function getProduct(){
             if(user_id == 0){
                 // window.top.location.href = "/member";
                 // $( '#login-intropopup' ).modal( 'show' );
-                $( '#nonloginmodal' ).modal( 'show' );
+                // $( '#nonloginmodal' ).modal( 'show' );
+                $( '#modal-no-login' ).modal( 'show' );
             } else {
 
                 $( "#hid_package_id" ).val($(this).attr('rel'));
@@ -636,7 +637,8 @@ function bindBetButton(){
         if(user_id == 0){
             // window.top.location.href = "/member";
             // $( '#login-intropopup' ).modal( 'show' );
-            $( '#nonloginmodal' ).modal( 'show' );
+            // $( '#nonloginmodal' ).modal( 'show' );
+            $( '#modal-no-login' ).modal( 'show' );
         } else {
 
             var add_bet = parseInt($(this).html());
@@ -722,7 +724,8 @@ function bindBetButton(){
         if(user_id == 0){
             // window.top.location.href = "/member";
             // $( '#login-intropopup' ).modal( 'show' );
-            $( '#nonloginmodal' ).modal( 'show' );
+            // $( '#nonloginmodal' ).modal( 'show' );
+            $( '#modal-no-login' ).modal( 'show' );
         }
 
         if(isNaN(balance)){
@@ -932,7 +935,8 @@ function bindTriggerButton(){
         if(user_id == 0){
             // window.top.location.href = "/member";
             // $( '#login-intropopup' ).modal( 'show' );
-            $( '#nonloginmodal' ).modal( 'show' );
+            // $( '#nonloginmodal' ).modal( 'show' );
+            $( '#modal-no-login' ).modal( 'show' );
         }else {
             event.stopImmediatePropagation();
             checkSelection();

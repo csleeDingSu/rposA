@@ -1039,6 +1039,21 @@
 </div>
 <!-- insufficient point modal Ends -->
 
+<!-- haven't login start modal -->
+<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg nologin-bg" role="document">
+		<div class="instructions1">独创的自助式抽奖，<br>赚积分换购超值奖品，本专场以下特点</div>
+		<div class="instructions2">1. 无抽奖上限，无限任你抽。</div>
+		<div class="instructions2">2. 大量超值奖品，闪电换购。</div>
+		<div class="instructions2">3. 100%公平机制，绝无作弊。</div>
+
+		<a href="/nlogin">
+			<div class="btn-login"></div>
+		</a>
+	</div>
+</div>
+<!-- haven't login modal Ends-->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -1111,9 +1126,9 @@
 		        $('#modal-sure-win').modal();
 		    });
 
-			if (user_id <= 0) {
-				openmodel();
-			}	
+			// if (user_id <= 0) {
+			// 	openmodel();
+			// }	
 
 			// $('.btn-calculate-vip').click( function() {
 		 //        window.open("https://j.youzan.com/tIigBi", "_system");
@@ -1126,7 +1141,3 @@
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/vip-node.js') }}"></script>
 @endsection
-
-<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
-
-	@include('client.intromodel_vip')
