@@ -42,7 +42,7 @@
 				  	<span class="label-title">可换购金额</span><br />
 				  	<div class="point numbers">
 						<span class="wabao-coin"></span>
-				  	</div> 元
+				  	</div> 金币
 				  <br/>
 					<div class="topup-redeem">
 					  	<div class="button-topup">

@@ -138,6 +138,8 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::any( '/how-to-play', 'ClientController@how_to_play' )->name( 'client.how_to_play' );
 
 	Route::any( '/tips-new', 'ClientController@tips_new' )->name( 'client.tips_new' );	
+
+	Route::any( '/download-app', 'ClientController@download_app' )->name( 'client.download_app' );	
 } );
 
 //Member routes with member guard
