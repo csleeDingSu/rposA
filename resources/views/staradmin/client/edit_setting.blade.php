@@ -27,7 +27,7 @@
 			<div class="information-table">
 				<div class="row">
 					<div class="col-xs-12">
-					<img src="{{ asset('/client/images/setting-vip/edit-phone.png') }}" alt=""> 
+					<img class="img-phone" src="{{ asset('/client/images/setting-vip/edit-phone.png') }}" alt=""> 
 					</div>	
 					<div class="col-xs-12">
 						<div class="notification">

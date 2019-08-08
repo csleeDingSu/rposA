@@ -801,7 +801,8 @@ html, body {
 
 .icon-setting {
 	object-fit: cover;
-    width: 20px;
+    width: 15px;
+    padding-bottom: 3px;
 }
 
 .button-topup {

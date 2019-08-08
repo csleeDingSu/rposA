@@ -39,7 +39,7 @@
 			<!-- member details -->
 			<div class="information-table">
 				  <div class="col-xs-12">
-				  	<span class="label-title">可换购金额</span><br />
+				  	<span class="label-title">可换购金币</span><br />
 				  	<div class="point numbers">
 						<span class="wabao-coin"></span>
 				  	</div> 金币
@@ -61,7 +61,7 @@
 				  <div class="col-xs-6 border-right">
 				  	未兑换
 				  	<div class="balance numbers">
-				  		<span class="wabao-acupoint"></span>
+				  		<span class="wabao-coin"></span>
 				  	</div>
 				  </div>
 				  <div class="col-xs-6">
@@ -272,12 +272,15 @@
 								客服微信在线时间：<span class="highlight">早上9点~晚上9点</span>
 							</div>
 						</div>
-						<div class="row imgdiv">								
-							<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
+						<div class="row">
+							<div id="cutCS" class="copyvoucher">{{env('wechat_id', 'BCKACOM')}}</div>
+							<div class="cutBtnCS">点击复制</div>
 						</div>
-						<div class="row">								
-							<div class="bottom">长按识别二维码</div>
-						</div>						
+						<div class="modal-card">
+							<div class="instructions-dark">
+								请按复制按钮，复制成功后到微信添加。<br/> 如复制不成功，请到微信手动输入添加。
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
