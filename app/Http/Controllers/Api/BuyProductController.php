@@ -28,14 +28,8 @@ class BuyProductController extends Controller
 	public function get_latest_address(Request $request)
 	{
 		$memberid = $request->memberid;
-		$result   =  RedeemedProduct::with('product','shipping_detail')->where('member_id', $memberid)->latest()->first();
+		$result   = \DB::table('order_shipping_detail')->where('member_id', $memberid)->latest('order_date')->first();
 		
-		
-		if (!empty($result->shipping_detail))
-		{
-			$result = $result->shipping_detail;
-		}
-
 		return response()->json(['success' => true,'records' => $result]);
 	}
 	
