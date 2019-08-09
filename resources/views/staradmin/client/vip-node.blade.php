@@ -1049,7 +1049,7 @@
 		第二局设3金币，没抽中。<br />
 		第三局设8金币，抽中了。<br />
 		这就是倍增法：当你没抽中的时候，就设定更多的金币，<br />
-		像案例里的<span class="highlight1">第三局抽中赚了15.68</span>，扣除<span class="highlight2">三局投入的11金币</span>，<br />
+		像案例里的<span class="highlight1">第三局抽中赚了15.68金币</span>，扣除<span class="highlight2">三局投入的11金币</span>，<br />
 		最终<span class="highlight3">赚到4.68金币</span>。
 	</div>
 	<div class="formTableTitle">可以参考以下的倍增表格：</div>
