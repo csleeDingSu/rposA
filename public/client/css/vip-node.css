@@ -461,4 +461,81 @@ width: 6rem;     font-size: 0.26rem; }
     text-align: center;
     padding: 2rem 0 0 0;
 }
+
+.openForm{
+	background: #fff;
+	border-radius:.1rem .1rem 0 0 ;
+	-webkit-border-radius:.1rem .1rem 0 0 ;
+	-moz-border-radius:.1rem .1rem 0 0 ;
+	-ms-border-radius:.1rem .1rem 0 0 ;
+	-o-border-radius:.1rem .1rem 0 0 ;
+	position: absolute;
+	display: none;
+	bottom: 0;
+	z-index: 200;
+	width: 100%;
+	left: 0;
+	padding: 0.3rem;
+}
+
+.formTitle{
+	font-size: .36rem;
+	text-align: center;
+	color: #333;
+	margin-bottom: 0.3rem;
+}
+
+.formBody{
+	font-size: .26rem;
+	color: #666;
+	line-height: .4rem;
+}
+
+
+.highlight1{
+	color: #333;
+	font-weight: 700;
+}
+
+.highlight2{
+	color: #53bf03;
+	font-weight: 700;
+}
+
+.highlight3{
+	color: #ff4848;
+	font-weight: 700;
+}
+
+.formTableTitle{
+	color: #333;
+	font-size: 0.26rem;
+	text-align: center;
+	padding: 0.3rem 0 0.2rem 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.22rem;
+  color: #333;
+}
+
+td, th {
+  border: 1px solid #dfdfdf;
+  padding: 0.1rem;
+  text-align: center;
+}
+
+th {
+	background-color: #618eff;
+	color: #fff;
+}
+
+tr:nth-child(odd) {
+  background-color: #f4f4f4;
+}
+
+td:last-child {
+	color: #ff4848;
 }

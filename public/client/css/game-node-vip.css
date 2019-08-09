@@ -307,7 +307,6 @@ body{
 	width: 4rem;
 	height: 0.72rem;
 	float: left;
-	z-index: 100;
 	position: relative;
 	/*margin-left: 10px;*/
 	color: #fff;
