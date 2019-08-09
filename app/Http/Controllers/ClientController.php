@@ -566,7 +566,7 @@ class ClientController extends BaseController
 	{
 		$agent = new Agent();
 		
-		$data['wbp']   = '';
+		$wbp   = '';
 
 		$platform = $agent->platform();
 		$browser  = $agent->browser();
@@ -575,7 +575,7 @@ class ClientController extends BaseController
 		{
 			if ($browser == 'Chrome')
 			{
-				$data['wbp'] = 'googlechrome://navigate?url=';
+				$wbp = 'googlechrome://navigate?url=';
 				//\Log::warning(json_encode(['imhere' => 'ya'], true));
 			}
 		}
