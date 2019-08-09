@@ -56,16 +56,20 @@
 
     .more-less {
         color: #cccccc;
+        padding: 0.2rem 0 0.2rem 0;
     }
 
     .faq-title {
         display: inline-block;
         border-left: 0.06rem solid #48affa;
-        padding-left: 0.1rem;
-        font-weight: 600;
+        padding: 0.2rem;
     }
 
 /* ----- v CAN BE DELETED v ----- */
 body {
     background-color: #f2f2f2;
+}
+
+.navbar-default .navbar-brand {
+    width: 100% !important;
 }
