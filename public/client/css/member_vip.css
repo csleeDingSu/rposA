@@ -829,10 +829,10 @@ html, body {
 	float: right;
     color: #bb8b4c;
     font-size: 16px;
-    padding: 3px 0px 3px 15px;
+    padding: 3px 0px 3px 10px;
     border-radius: 20px;
     background-color: #ffefda;
-    width: 80px;
+    width: 70px;
     margin: 0 5px 0 5px;
     background: rgba(255,255,255,0.5);
 }
