@@ -992,7 +992,7 @@
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
 
-							<a href="https://j.youzan.com/tIigBi" onclick="window.open(this.href,'_system'); return false;">
+							<a href="https://j.youzan.com/tIigBi" target="_blank">
 								<div class="btn-purchase-point">立刻充值</div>
 							</a>
 
