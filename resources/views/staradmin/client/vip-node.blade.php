@@ -46,7 +46,7 @@
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
 						
-						<a href="https://j.youzan.com/tIigBi" onclick="window.open(this.href,'_blank'); return false;">
+						<a  href="googlechrome://navigate?url=https://j.youzan.com/tIigBi">
 							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 						</a>
 					
