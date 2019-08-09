@@ -48,16 +48,7 @@
 						<a  href="{{$wbp}}https://j.youzan.com/tIigBi">
 							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 						</a>
-						
-						<script>
-							function callurl()
-							{
-								alert();
-								window.open("https://j.youzan.com/tIigBi", '_blank');		
-							}
-						
-						</script>
-					
+											
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>

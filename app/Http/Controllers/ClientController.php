@@ -67,6 +67,25 @@ class ClientController extends BaseController
 		//isVIP APP
 		$this->vp = new VIPApp();
 		if ($this->vp->isVIPApp()) {
+			
+			
+			$agent = new Agent();
+		
+			$data['wbp']   = '';
+
+			$platform = $agent->platform();
+			$browser  = $agent->browser();
+
+			if ($platform == 'AndroidOS')
+			{
+				if ($browser == 'Chrome')
+				{
+					$data['wbp'] = 'googlechrome://navigate?url=';
+					//\Log::warning(json_encode(['imhere' => 'ya'], true));
+				}
+			}
+			
+			
 			return view('client/member_vip', $data);
 		} else {
 			return view('client/member', $data);
@@ -264,11 +283,11 @@ class ClientController extends BaseController
 			if ($browser == 'Chrome')
 			{
 				$wbp = 'googlechrome://navigate?url=';
-				\Log::warning(json_encode(['imhere' => 'ya'], true));
+				//\Log::warning(json_encode(['imhere' => 'ya'], true));
 			}
 		}
 			
-		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
+		//\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
 		
 		return view( 'client/vip-node', compact( 'wbp' ) );
 		
@@ -545,8 +564,22 @@ class ClientController extends BaseController
 
 	public function tips_new()
 	{
+		$agent = new Agent();
+		
+		$wbp   = '';
 
-		return view('client/tips_new');
+		$platform = $agent->platform();
+		$browser  = $agent->browser();
+
+		if ($platform == 'AndroidOS')
+		{
+			if ($browser == 'Chrome')
+			{
+				$wbp = 'googlechrome://navigate?url=';
+				//\Log::warning(json_encode(['imhere' => 'ya'], true));
+			}
+		}
+		return view( 'client/tips_new', compact( 'wbp' ) );
 
 	}
 
