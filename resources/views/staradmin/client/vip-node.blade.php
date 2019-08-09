@@ -46,7 +46,7 @@
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
 						
-						<a href="https://j.youzan.com/tIigBi" onclick="window.open(this.href,'_blank'); return false;">
+						<a  href="googlechrome://navigate?url=https://j.youzan.com/tIigBi">
 							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 						</a>
 					
@@ -1025,15 +1025,18 @@
 
 <!-- haven't login start modal -->
 <div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg nologin-bg" role="document">
-		<div class="instructions1">独创的自助式抽奖，<br>赚积分换购超值奖品，本专场以下特点</div>
-		<div class="instructions2">1. 无抽奖上限，无限任你抽。</div>
-		<div class="instructions2">2. 大量超值奖品，闪电换购。</div>
-		<div class="instructions2">3. 100%公平机制，绝无作弊。</div>
-
-		<a href="/nlogin">
-			<div class="btn-login"></div>
-		</a>
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="instructions1 nologin-bg">
+			<p>
+			独创的自助式抽奖，<br>赚积分换购超值奖品，本专场特点
+			</p>
+			<div class="instructions2 instruction-top-padding"><span class="glyphicon glyphicon-star cust-star"></span>无抽奖上限，无限任你抽。</div>
+			<div class="instructions2"><span class="glyphicon glyphicon-star cust-star"></span>大量超值奖品，闪电换购。</div>
+			<div class="instructions2"><span class="glyphicon glyphicon-star cust-star"></span>100%公平机制，绝无作弊。</div>
+			<a href="/nlogin">
+				<div class="btn-login"></div>
+			</a>
+		</div>		
 	</div>
 </div>
 <!-- haven't login modal Ends-->
