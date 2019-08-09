@@ -535,7 +535,7 @@ tr:nth-child(odd) {
   background-color: #f4f4f4;
 }
 
-td:last-child {
+.openForm td:last-child {
 	color: #ff4848;
 }
 
