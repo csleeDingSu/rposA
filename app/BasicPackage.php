@@ -264,6 +264,7 @@ class BasicPackage extends Model
 	
 	public static function check_vip_status($memberid)
 	{
+		return ['eligible_to_enter'=>'true'];
 		$eligible_to_enter = FALSE;
 		$basic_count       = [];
 		$vip_count         = [];
