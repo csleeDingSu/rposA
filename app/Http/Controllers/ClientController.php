@@ -258,7 +258,7 @@ class ClientController extends BaseController
 		
 		$platform = $agent->platform();
 		
-		if ($platform = 'AndroidOS')
+		if ($platform == 'AndroidOS')
 		{
 			$wbp = 'googlechrome://navigate?url=';
 		}
