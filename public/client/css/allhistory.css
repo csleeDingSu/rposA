@@ -152,8 +152,8 @@ html, body {
 }
 
 .empty {
-	font-size: 0.24rem;
-	color: #ff8624;
+	/*font-size: 0.24rem;*/
+	/*color: #ff8624;*/
 }
 
 #normal-pagination, #vip-pagination {
@@ -172,4 +172,19 @@ html, body {
 
 .navbar-default .navbar-brand {
 	width: 100% !important;
+}
+
+.row-full {
+	font-size: 20px;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    padding-bottom: 50px;
+    color: #666;
+}
+
+.share-link {
+    color: #ff4444;
 }
