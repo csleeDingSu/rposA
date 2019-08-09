@@ -264,7 +264,10 @@ class BasicPackage extends Model
 	
 	public static function check_vip_status($memberid)
 	{
-		return ['eligible_to_enter'=>'true'];
+		//no special check requirement
+		return ['eligible_to_enter'=>'true','debug_'=>['no_requirement']];
+		
+		//check requirement		
 		$eligible_to_enter = FALSE;
 		$basic_count       = [];
 		$vip_count         = [];
