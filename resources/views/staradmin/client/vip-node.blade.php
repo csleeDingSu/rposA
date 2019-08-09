@@ -1040,7 +1040,79 @@
 	</div>
 </div>
 <!-- haven't login modal Ends-->
+<div class="openForm">
+	<div class="formTitle">玩法介绍</div>
+	<div class="formBody">
+		这是个可设置金币的自助抽奖平台，每次50%抽中概率，如何提
+		高抽中概率？可以用倍增法，看如下：<br />
+		第一局设1金币，没抽中。<br />
+		第二局设3金币，没抽中。<br />
+		第三局设8金币，抽中了。<br />
+		这就是倍增法：当你没抽中的时候，就设定更多的金币，<br />
+		像案例里的<span class="highlight1">第三局抽中赚了15.68</span>，扣除<span class="highlight2">三局投入的11金币</span>，<br />
+		最终<span class="highlight3">赚到4.68金币</span>。
+	</div>
+	<div class="formTableTitle">可以参考以下的倍增表格：</div>
 
+	<table>
+	  <tr>
+	    <th>次数</th>
+	    <th>本次投入</th>
+	    <th>总投入</th>
+	    <th>抽中金币</th>
+	    <th>概率</th>
+	    <th>最终赚到</th>
+	  </tr>
+	  <tr>
+	    <td>1</td>
+	    <td>1</td>
+	    <td>1</td>
+	    <td>1.96</td>
+	    <td>50%</td>
+	    <td>0.96</td>
+	  </tr>
+	  <tr>
+	    <td>2</td>
+	    <td>3</td>
+	    <td>4</td>
+	    <td>5.88</td>
+	    <td>70%</td>
+	    <td>1.88</td>
+	  </tr>
+	  <tr>
+	    <td>3</td>
+	    <td>8</td>
+	    <td>11</td>
+	    <td>15.68</td>
+	    <td>87.50%</td>
+	    <td>4.68</td>
+	  </tr>
+	  <tr>
+	    <td>4</td>
+	    <td>18</td>
+	    <td>30</td>
+	    <td>35.28</td>
+	    <td>93.75%</td>
+	    <td>5.28</td>
+	  </tr>
+	  <tr>
+	    <td>5</td>
+	    <td>38</td>
+	    <td>68</td>
+	    <td>174.48</td>
+	    <td>96.87%</td>
+	    <td>6.48</td>
+	  </tr>
+	  <tr>
+	    <td>6</td>
+	    <td>80</td>
+	    <td>148</td>
+	    <td>156.8</td>
+	    <td>98.43%</td>
+	    <td>8.8</td>
+	  </tr>
+	</table>
+</div>
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -1104,14 +1176,19 @@
 		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
 		    });
 
-		    $('.btn-rules-vip').click( function() {
-		        // $('#modal-sure-win').modal();
-		        window.location.href = "/how-to-play";
-		    });
-
 		    $('.button-info').click( function() {
 		        $('#modal-sure-win').modal();
 		    });
+
+            $(".btn-rules-vip").click(() => {  
+                being.wrapShow();
+                $(".openForm").slideDown(150);
+                $(".wrapBox ").click(function (e) {
+                  being.wrapHide();
+                  $(".openForm").slideUp(150);
+                });
+              });
+
 
 			// if (user_id <= 0) {
 			// 	openmodel();
