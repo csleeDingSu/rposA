@@ -53,11 +53,13 @@
 						<a href="/summary">明细</a>
 					</div>
 				</div>
-				<div class="label-coin"><span class="wabao-coin"></span>元</div>	
-				@if(!env('THISVIPAPP','false'))			
+				@if(!env('THISVIPAPP','false'))
+					<div class="label-coin"><span class="wabao-coin"></span>元</div>			
 					<div class="label-desc">
 						<a href="/share">邀请好友送场次，抽红包，去邀请 ></a>
 					</div>
+				@else
+					<div class="label-coin"><span class="wabao-coin"></span>金币</div>
 				@endif
 			</div>
 		</div>
