@@ -564,8 +564,22 @@ class ClientController extends BaseController
 
 	public function tips_new()
 	{
+		$agent = new Agent();
+		
+		$data['wbp']   = '';
 
-		return view('client/tips_new');
+		$platform = $agent->platform();
+		$browser  = $agent->browser();
+
+		if ($platform == 'AndroidOS')
+		{
+			if ($browser == 'Chrome')
+			{
+				$data['wbp'] = 'googlechrome://navigate?url=';
+				//\Log::warning(json_encode(['imhere' => 'ya'], true));
+			}
+		}
+		return view( 'client/tips_new', compact( 'wbp' ) );
 
 	}
 
