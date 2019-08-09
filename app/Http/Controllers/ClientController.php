@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Validator;
 use Khsing\WechatAgent\WechatAgent;
 use \App\helpers\WeiXin as WX;
 use session;
+
+use Jenssegers\Agent\Agent;
 //use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
@@ -249,8 +251,16 @@ class ClientController extends BaseController
 
 			// 	return redirect('/arcade');
 			// }
+		
+		$agent = new Agent();
+		
+		$platform = $agent->platform();
+		
+		//if ()
+			
+		\Log::warning(json_encode(['platform' => $platform], true));
 
-			return view('client/vip-node');
+		return view('client/vip-node');
 
 		// }
 	}
