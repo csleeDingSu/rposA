@@ -30,7 +30,7 @@
             </div>
             <div id="collapse{{ $faq->id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{ $faq->id }}">
                 <div class="panel-body">
-                    {{ $faq->content }}
+                    {!! $faq->content !!}
                 </div>
             </div>
         </div>

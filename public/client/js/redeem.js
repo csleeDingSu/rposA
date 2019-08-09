@@ -2,8 +2,15 @@ var page = 1;
 var page_count = 1;
 var reload_pass = '￥EXpZYiJPcpg￥';
 var this_vip_app = false;
+var txt_coin = '元';
 
 $(document).ready(function () {
+
+    this_vip_app = $('#this_vip_app').val();
+
+    if (this_vip_app == true) {
+        txt_coin = "金币";
+    }
 
     reload_pass = $('#reload_pass').val();
 
@@ -176,11 +183,11 @@ function getProductList(token) {
                                                             // '<div class="icon-coin-wrapper modal-icon">' +
                                                             //     '<div class="icon-coin"></div>' +
                                                             // '</div>' +
-                                                            '<div class="wabao-price">'+ item.min_point +' 元</div>' +
+                                                            '<div class="wabao-price">'+ item.min_point +' ' + txt_coin + '</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(data.current_point) +' 元</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(data.current_point) +' ' + txt_coin + '</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
@@ -215,7 +222,7 @@ function getProductList(token) {
 
                 $.each(packages, function(i, item) {
                     $('.openeditmodel_p' + i).click(function() {
-                        if(wechat_status > 0){
+                        if(wechat_status > 0 && this_vip_app != true){
                             $('#wechat-verification-modal').modal('show');
                         } else {
                             $('#viewvouchermode_p' + i).modal('show');
@@ -229,7 +236,7 @@ function getProductList(token) {
 
                 $.each(records, function(i, item) {
                     $('.openeditmodel' + i).click(function() {
-                        if(wechat_status > 0){
+                        if(wechat_status > 0 && this_vip_app != true){
                             $('#wechat-verification-modal').modal('show');
                         } else {
                             $('#viewvouchermode' + i).modal('show');
@@ -324,7 +331,6 @@ function populateHistoryData(records, token) {
     var htmlmodel = '';
     var counter = (current_page - 1) * limit;
     var str_date = '';
-    this_vip_app = $('#this_vip_app').val();
 
     if(page_count != page && current_page == page){
         return false;
@@ -494,7 +500,7 @@ function populateHistoryData(records, token) {
                                 '<div class="product-img"><img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
                                 '<div class="product-detail">' +
                                     '<div class="product-name">'+item.product_name+'</div>' +
-                                    '<div class="product-desc">'+item.used_point+' 金币</div>' +
+                                    '<div class="product-desc">'+item.used_point+' ' + txt_coin + '</div>' +
                                 '</div>' +
                                 '<div class="redeem-result">' +
                                     '<div class="redeem-quantity">X'+ item.quantity +'</div>' +
@@ -837,11 +843,11 @@ function getNewProductList(softpinCount, token) {
                                                             // '<div class="icon-coin-wrapper modal-icon">' +
                                                             //     '<div class="icon-coin"></div>' +
                                                             // '</div>' +
-                                                            '<div class="wabao-price">'+ item.point_to_redeem +' 元</div>' +
+                                                            '<div class="wabao-price">'+ item.point_to_redeem +' ' + txt_coin + '</div>' +
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(current_point) +' 元</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(current_point) +' ' + txt_coin + '</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
