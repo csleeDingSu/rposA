@@ -45,9 +45,17 @@
 							<span class="spanAcuPointAndBalance">0</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<a  href="https://j.youzan.com/tIigBi">
+						<a  href="#" onClick="callurl()">
 							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 						</a>
+						
+						<script>
+							function callurl()
+							{
+								window.open("https://j.youzan.com/tIigBi", '_blank');		
+							}
+						
+						</script>
 					
 					</div>
 				</div>
