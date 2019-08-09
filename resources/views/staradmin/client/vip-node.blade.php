@@ -1015,26 +1015,10 @@
 </div>
 <!-- check-vip-status modal Ends-->
 
-<!-- 1st login start modal -->
-<div class="modal fade col-md-12" id="modal-first-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg firstlogin-bg" role="document">
-		<div class="modal-title">欢乐无限抽</div>
-		<div class="instructions1">独创的自助式抽奖，赚积分换购超值奖品，本专场以下特点：</div>
-		<div class="instructions2">1. 无抽奖上限，无限任你抽。</div>
-		<div class="instructions2">2. 大量超值奖品，闪电换购。</div>
-		<div class="instructions2">3. 100%公平抽奖机制，绝无作弊。</div>
-
-		<a href="/how-to-play">
-			<div class="btn-how-to-play">点击了解</div>
-		</a>
-	</div>
-</div>
-<!-- 1st start login modal Ends-->
-
 <!-- insufficient point modal -->
 <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
 	<div class="modal-dialog modal-lg">
-		<div class="insufficient-point">金币不足，无法兑换</div>					
+		<div class="insufficient-point">金币不足 请充值</div>					
 	</div>
 </div>
 <!-- insufficient point modal Ends -->
