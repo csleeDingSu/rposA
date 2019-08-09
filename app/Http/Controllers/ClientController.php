@@ -257,13 +257,14 @@ class ClientController extends BaseController
 		$wbp   = '';
 		
 		$platform = $agent->platform();
+		$browser  = $agent->browser();
 		
 		if ($platform == 'AndroidOS')
 		{
 			$wbp = 'googlechrome://navigate?url=';
 		}
 			
-		\Log::warning(json_encode(['platform' => $platform], true));
+		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
 		
 		return view( 'client/vip-node', compact( 'wbp' ) );
 		
