@@ -261,7 +261,10 @@ class ClientController extends BaseController
 		
 		if ($platform == 'AndroidOS')
 		{
-			$wbp = 'googlechrome://navigate?url=';
+			if ($browser == 'Chrome')
+			{
+				$wbp = 'googlechrome://navigate?url=';
+			}
 		}
 			
 		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
