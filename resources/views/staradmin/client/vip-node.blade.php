@@ -53,7 +53,7 @@
 							function callurl()
 							{
 								alert();
-								//window.open("https://j.youzan.com/tIigBi", '_blank');		
+								window.open("https://j.youzan.com/tIigBi", '_blank');		
 							}
 						
 						</script>
