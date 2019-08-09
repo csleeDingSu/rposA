@@ -45,7 +45,6 @@ $(function () {
         getToken();
         getProduct();
         closeModal();
-        firstlogin();
 
         ifvisible.on("wakeup", function(){
             //resetTimer();
@@ -617,7 +616,7 @@ function bindBetButton(){
                 $('.span-bet').val(final_bet);
                 previous_bet = final_bet;
             } else {
-                $('.spinning').html('金币不足，无法下注');
+                $('.spinning').html('金币不足 请充值');
                  $('.spinning').css('visibility', 'visible');
                 setTimeout(function(){ 
                     $('.spinning').css('visibility', 'hidden');
@@ -648,7 +647,7 @@ function bindBetButton(){
                 $('.span-bet').val(final_bet);
                 previous_bet = final_bet;
             } else {
-                $('.spinning').html('金币不足，无法下注');
+                $('.spinning').html('金币不足 请充值');
                  $('.spinning').css('visibility', 'visible');
                 setTimeout(function(){ 
                     $('.spinning').css('visibility', 'hidden');
@@ -671,7 +670,7 @@ function bindBetButton(){
             $('.span-bet').val(final_bet);
             previous_bet = final_bet;
         } else {
-            $('.spinning').html('金币不足，无法下注');
+            $('.spinning').html('金币不足 请充值');
              $('.spinning').css('visibility', 'visible');
             setTimeout(function(){ 
                 $('.spinning').css('visibility', 'hidden');
@@ -1536,17 +1535,6 @@ function get_today_profit() {
         }
     });
 }
-
-function firstlogin() {
-    if ($('#justlogin').val() == 'yes') { //set when to show
-        $('#justlogin_after').val('no');
-        $('#modal-first-login').modal();    
-    } else {
-        // check_vip_status();
-    }
-    
-}
-
 
 function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
