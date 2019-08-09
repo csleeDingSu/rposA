@@ -1,4 +1,4 @@
-var type = 'normal';
+var type = 'vip';
 var page = 1;
 var page_count = 1;
 
@@ -15,15 +15,7 @@ function getToken(){
         //console.log(data);
         if(data.success) {
             getPosts(page, data.access_token, type);
-            scrollBottom(data.access_token);
-
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                page = 1;
-                page_count = 1;
-                type = $(e.target).attr('data-type');
-                getPosts(page, data.access_token, type);
-                scrollBottom(data.access_token);
-            });
+            scrollBottom(data.access_token);            
         }     
     });
 }
@@ -71,6 +63,7 @@ function getPosts(page, token, type){
                 $('#' + type + '-history').append(html);
             }
 
+            
             if ((data.records.data == '' || data.records.data == null) && current_page == 1) {
                 $(".isnext").html('');
             } else {
@@ -159,10 +152,9 @@ function showBettingHistory(response) {
      if(length === 0){
         var history =  '<div class="row-full">' + 
                     '<div class="col-xs-12">' + 
-                        '<div class="empty">你还没挖宝<br><a href="/arcade" class="share-link">去挖宝></a></div>' + 
+                        '<div class="empty">你还没挖宝<br><a href="/vip" class="share-link">去挖宝></a></div>' + 
                     '</div>' + 
                 '</div>';
-
 
     } else {
         //console.log(results);
