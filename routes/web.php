@@ -149,7 +149,12 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get('/nshare', 'ClientController@sharetest')->name('show.link.sharetest');
 		
 	Route::get( '/allhistory', function () {
-		return view( 'client/allhistory' );
+		if (env('THISVIPAPP','false') == true) {
+			return view( 'client/allhistory_vip' );	
+		} else {
+			return view( 'client/allhistory' );
+		}
+		
 	} );
 
 	Route::get( '/summary', function () {
