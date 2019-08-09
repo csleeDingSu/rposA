@@ -264,6 +264,7 @@ class ClientController extends BaseController
 			if ($browser == 'Chrome')
 			{
 				$wbp = 'googlechrome://navigate?url=';
+				\Log::warning(json_encode(['imhere' => 'ya'], true));
 			}
 		}
 			
