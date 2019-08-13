@@ -257,22 +257,6 @@ body{
 	left: 97%;
 }
 
-.active {
-  animation: pulse 0.5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    background-color: #f69502;
-  }
-  50% {
-    background-color: #e5e5e5;
-  }
-  100% {
-    background-color: #f69502;
-  }
-}
-
 .grid-container {
   display: grid;
   grid-template-columns: auto  1.5rem;
@@ -408,7 +392,7 @@ body{
 	width: 2.6rem;
     height: 1rem;
     cursor: pointer;
-    padding: 0.08rem 0 0 0.3rem;
+    padding-top: 0.08rem;
     background: url(/client/images/wheel/life-balance.png) no-repeat top center;
     background-size: contain;
     text-align: center;
@@ -2499,15 +2483,17 @@ if it's not present, don't show loader */
 }
 
 .icon-wheel-corner {
-	position: absolute;
-    margin: 0.05rem 0 0 -1.7rem;
+    margin-top: 0.02rem;
+    margin-left: 0.1rem;
     height: 0.6rem;
+    float: left;
 }
 
 .icon-arrow-next {
-	position: absolute;
-    margin: 0.14rem 0.1rem 0.14rem 1.1rem;
+    margin: 0.1rem 0.05rem 0.14rem 0rem;
     height: 0.45rem;
+    right: 0;
+    float: right;
 }
 
 #lose-modal .modal-win-title {
