@@ -45,7 +45,11 @@
 							<span class="spanAcuPointAndBalance">0</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<a  href="{{$wbp}}https://j.youzan.com/tIigBi">
+						@if()
+							<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+						@else
+							<a  href="#" onclick="$('#modal-no-login').modal('show');">
+						@endif
 							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 						</a>
 											
@@ -991,7 +995,7 @@
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
 
-							<a href="https://j.youzan.com/tIigBi" target="_blank">
+							<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
 								<div class="btn-purchase-point">立刻充值</div>
 							</a>
 
@@ -1137,7 +1141,7 @@
 				<div class="instructions1"><p>68金币分5次抽奖，从1起步，不中下局加倍3，不中下局加倍8，不中下局加倍18，不中最后加倍38.</p></div>
 				<div class="instructions2"><p>以此倍增原理，5次机会，超高机率抽中！<u>点击详情></u></p></div>
 			</div>
-			<a href="{{env('TOPUP_URL','#')}}">
+			<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
 				<div class="btn-topup">立即充值</div>
 			</a>
 			<div class="btn-close-bg">
