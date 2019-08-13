@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Validator;
 use Khsing\WechatAgent\WechatAgent;
 use \App\helpers\WeiXin as WX;
 use session;
+
+use Jenssegers\Agent\Agent;
 //use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
@@ -58,13 +60,38 @@ class ClientController extends BaseController
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
 		$data['wallet']    = Wallet::get_wallet_details_all($member);
-		$data['usedpoint'] = \DB::table('view_usedpoint')->where('member_id',$member)->sum('point');
-		$data['page'] = 'client.member'; 
+		$usedpoint         = \DB::table('view_usedpoint')->where('member_id',$member);
+		
+		$this->vp = new VIPApp();
+		if ($this->vp->isVIPApp()) {
+			$usedpoint = $usedpoint->whereIn('credit_type',['DPRBP']);
+		}				
+		$data['usedpoint']  = $usedpoint->sum('point');		
+		$data['page']       = 'client.member'; 
 		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
 
 		//isVIP APP
 		$this->vp = new VIPApp();
 		if ($this->vp->isVIPApp()) {
+			
+			
+			$agent = new Agent();
+		
+			$data['wbp']   = '';
+
+			$platform = $agent->platform();
+			$browser  = $agent->browser();
+
+			if ($platform == 'AndroidOS')
+			{
+				if ($browser == 'Chrome')
+				{
+					$data['wbp'] = 'googlechrome://navigate?url=';
+					//\Log::warning(json_encode(['imhere' => 'ya'], true));
+				}
+			}
+			
+			
 			return view('client/member_vip', $data);
 		} else {
 			return view('client/member', $data);
@@ -249,9 +276,27 @@ class ClientController extends BaseController
 
 			// 	return redirect('/arcade');
 			// }
-
-			return view('client/vip-node');
-
+		
+		$agent = new Agent();
+		
+		$wbp   = '';
+		
+		$platform = $agent->platform();
+		$browser  = $agent->browser();
+		
+		if ($platform == 'AndroidOS')
+		{
+			if ($browser == 'Chrome')
+			{
+				$wbp = 'googlechrome://navigate?url=';
+				//\Log::warning(json_encode(['imhere' => 'ya'], true));
+			}
+		}
+			
+		//\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
+		
+		return view( 'client/vip-node', compact( 'wbp' ) );
+		
 		// }
 	}
 
@@ -525,8 +570,22 @@ class ClientController extends BaseController
 
 	public function tips_new()
 	{
+		$agent = new Agent();
+		
+		$wbp   = '';
 
-		return view('client/tips_new');
+		$platform = $agent->platform();
+		$browser  = $agent->browser();
+
+		if ($platform == 'AndroidOS')
+		{
+			if ($browser == 'Chrome')
+			{
+				$wbp = 'googlechrome://navigate?url=';
+				//\Log::warning(json_encode(['imhere' => 'ya'], true));
+			}
+		}
+		return view( 'client/tips_new', compact( 'wbp' ) );
 
 	}
 
