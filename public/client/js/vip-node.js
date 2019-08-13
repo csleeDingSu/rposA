@@ -162,7 +162,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(point);
-            $('.spanAcuPointAndBalance').html(point);
+            $('.spanAcuPointAndBalance').html(getNumeric(point));
         }
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
@@ -579,7 +579,7 @@ function closeWinModal() {
         }
         
         setTimeout(function(){
-            $('.spanAcuPointAndBalance').html(g_vip_point);
+            $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point));
             $('.spanAcuPoint').html(g_vip_point);
         }, 2300);
 
@@ -1025,7 +1025,7 @@ function showProgressBar(bol_show){
     
         $('.payout-info').html(payout_info).addClass('hide');
         $('.spanAcuPoint').html(0);
-        $('.spanAcuPointAndBalance').html(0);
+        $('.spanAcuPointAndBalance').html(getNumeric(0));
         
         result_info = '剩余<span style="text-decoration:underline">'+ balance +'</span>游戏积分&nbsp;';
         $('.result-info').html(result_info);
@@ -1541,5 +1541,7 @@ function get_today_profit() {
 }
 
 function getNumeric(value) {
-    return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
+    // return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
+    // console.log(parseFloat(value).toFixed(2));
+    return parseFloat(value).toFixed(2);
   }

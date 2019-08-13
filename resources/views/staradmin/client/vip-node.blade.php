@@ -42,7 +42,7 @@
 					<div class="balance-banner">
 						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0</span>
+							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
 						@if(isset(Auth::Guard('member')->user()->id))
