@@ -45,7 +45,7 @@
 							<span class="spanAcuPointAndBalance">0</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						@if()
+						@if(isset(Auth::Guard('member')->user()->id))
 							<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
 						@else
 							<a  href="#" onclick="$('#modal-no-login').modal('show');">
