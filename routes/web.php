@@ -111,7 +111,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/faq', function () {
 
 		$faqs = DB::table( 'faq' )->select( 'id', 'title', 'content' )->orderBy( 'id', 'desc' )->get();
-
+		
 		return view( 'client/faq', compact( 'faqs' ) );
 	} );
 
