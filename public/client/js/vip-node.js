@@ -171,6 +171,10 @@ function initUser(records){
         $(".spanVipLife").html(vip_life);
         $(".spanLife").html(life);
         $(".span-play-count").html(play_count);
+
+        if (play_count <= 0) { //is newbie 
+            $( '#modal-isnewbie' ).modal( 'show' );
+        }        
     }
 }
 
