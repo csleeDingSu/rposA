@@ -51,7 +51,7 @@ $(function () {
             //resetTimer();
         });
 
-        if (play_count <= 0) { //is newbie 
+        if (g_betting_history_total <= 0) { //is newbie 
             $( '#modal-isnewbie' ).modal( 'show' );
         }
 
