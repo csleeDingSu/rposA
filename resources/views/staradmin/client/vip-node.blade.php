@@ -1230,7 +1230,7 @@
                 });
               });
 
-            $(".open-openform").click(() => {  
+            $(".instructions2").click(() => {  
             	$('#modal-isnewbie').modal('hide');
 	            being.wrapShow();
 	            $(".openForm").slideDown(150);
