@@ -523,7 +523,7 @@ class BuyProductController extends BaseController
 			
 			Wallet::update_basic_wallet($member->id,$package->package_life,$package->package_freepoint,'BPR','credit','BackOrder');
 			
-			BuyProduct::save_basic_package($data);
+			BuyProduct::save_redeemed($data);
 
 			return response()->json(['success' => true, 'message' => 'success']);
 			
