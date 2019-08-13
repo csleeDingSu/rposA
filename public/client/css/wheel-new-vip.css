@@ -304,7 +304,7 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 	line-height: 0.3rem;
 	color: #d7d7d7;
 	display: none;
-	height: 0.4rem;
+	height: 0.6rem;
 }
 
 .g6 .shan span .span-ratio {
@@ -357,7 +357,6 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 .g6 .shan div.clicked, .g6 .shan div.clicked-vip {
 	width: 0.64rem;
 	height: 0.81rem;
-	margin: 0.16rem auto 0 auto;
 }
 
 .g6 .shan div.lose, .g6 .shan div.lose-vip {
@@ -365,7 +364,6 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 	background-size: cover;
 	width: 0.64rem;
 	height: 0.81rem;
-	margin: 0.16rem auto 0 auto;
 }
 
 .g6 .shan div span {

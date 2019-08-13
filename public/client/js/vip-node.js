@@ -770,8 +770,8 @@ function showPayout(){
         if (typeof selected == 'undefined'){
 
             //$('.middle-label').html('选择单双');
-            $('.span-odd').removeClass('ready-vip lose-vip').html(bet_amount+"<br /><span class='span-ratio'>x"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
-            $('.span-even').removeClass('ready-vip lose-vip').html(bet_amount+"<br /><span class='span-ratio'>x"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+            $('.span-odd').removeClass('ready-vip lose-vip').html("<strong>+"+bet_amount+"</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+            $('.span-even').removeClass('ready-vip lose-vip').html("<strong>+"+bet_amount+"</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
             $('.shan div').addClass('clicked-vip').removeClass('lose-vip');
 
             if(bet_count == 0){
@@ -812,11 +812,11 @@ function showPayout(){
             if(bet_amount > 0){
                 //$('.middle-label').html('开始抽奖');
                 if(selected == 'odd'){
-                    $('.span-odd').removeClass('lose-vip').addClass('ready-vip').html(bet_amount+"<br /><span class='span-ratio'>x"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+                    $('.span-odd').removeClass('lose-vip').addClass('ready-vip').html("<strong>+"+bet_amount+"</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
                     $('.span-even').addClass('ready-vip lose-vip').html('谢谢参与');
                 } else {
                     $('.span-odd').addClass('ready-vip lose-vip').html('谢谢参与');
-                    $('.span-even').removeClass('lose-vip').addClass('ready-vip').html(bet_amount+"<br /><span class='span-ratio'>x"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+                    $('.span-even').removeClass('lose-vip').addClass('ready-vip').html("<strong>+"+bet_amount+"</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
                 }
                 $('.shan div').addClass('clicked-vip');
 
