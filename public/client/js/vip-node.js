@@ -51,10 +51,6 @@ $(function () {
             //resetTimer();
         });
 
-        if (g_betting_history_total <= 0) { //is newbie 
-            $( '#modal-isnewbie' ).modal( 'show' );
-        }
-
     } else {
         $(".loading").fadeOut("slow");
         return false;
@@ -175,7 +171,7 @@ function initUser(records){
         $(".nTxt").html(life);
         $(".spanVipLife").html(vip_life);
         $(".spanLife").html(life);
-        $(".span-play-count").html(play_count);                
+        $(".span-play-count").html(play_count);   
     }
 }
 
@@ -435,6 +431,10 @@ function startGame() {
             initUser(wallet_records);
         }
     });
+
+    if (g_betting_history_total <= 0) { //is newbie 
+        $( '#modal-isnewbie' ).modal( 'show' );
+    }  
 }
 
 function resetGame() {
