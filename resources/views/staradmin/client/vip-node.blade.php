@@ -1098,7 +1098,7 @@
 	  <tr>
 	    <td>5</td>
 	    <td>38</td>
-	    <td>68</td>
+	    <td class="suggestion"><strong>68</strong><img src="/client/images/vip/label_suggestion.png" /></td>
 	    <td>174.48</td>
 	    <td>96.87%</td>
 	    <td>6.48</td>

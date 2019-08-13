@@ -539,6 +539,17 @@ tr:nth-child(odd) {
 	color: #ff4848;
 }
 
+.suggestion {
+	color:#ff8624;
+}
+
+.suggestion img {
+	width: 0.61rem;
+	height: 0.28rem;
+	position: absolute;
+	margin-top: -0.2rem;
+}
+
 .cust-star {
     font-size: 0.25rem;
     padding: 0.08rem 0.08rem 0 0;
