@@ -392,7 +392,8 @@
 		});	
 
 	function getNumeric(value) {
-	  	return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
+	  	// return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
+	  	return parseFloat(value).toFixed(2);
 	  }
 
 	</script>
