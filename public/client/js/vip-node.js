@@ -171,7 +171,7 @@ function initUser(records){
         $(".nTxt").html(life);
         $(".spanVipLife").html(vip_life);
         $(".spanLife").html(life);
-        $(".span-play-count").html(play_count);   
+        $(".span-play-count").html(play_count);  
     }
 }
 
@@ -431,10 +431,6 @@ function startGame() {
             initUser(wallet_records);
         }
     });
-
-    if (g_betting_history_total <= 0) { //is newbie 
-        $( '#modal-isnewbie' ).modal( 'show' );
-    }  
 }
 
 function resetGame() {
@@ -621,12 +617,13 @@ function bindBetButton(){
                 $('.span-bet').val(final_bet);
                 previous_bet = final_bet;
             } else {
-                $('.spinning').html('金币不足 请充值');
-                 $('.spinning').css('visibility', 'visible');
-                setTimeout(function(){ 
-                    $('.spinning').css('visibility', 'hidden');
-                }, 3000);
-                $('.span-bet').val(parseInt(g_vip_point));
+                // $('.spinning').html('金币不足 请充值');
+                //  $('.spinning').css('visibility', 'visible');
+                // setTimeout(function(){ 
+                //     $('.spinning').css('visibility', 'hidden');
+                // }, 3000);
+                $( '#modal-isnewbie' ).modal( 'show' );
+                $('.span-bet').val(getNumeric(g_vip_point));
                 previous_bet = g_vip_point;
             }
 
@@ -652,12 +649,13 @@ function bindBetButton(){
                 $('.span-bet').val(final_bet);
                 previous_bet = final_bet;
             } else {
-                $('.spinning').html('金币不足 请充值');
-                 $('.spinning').css('visibility', 'visible');
-                setTimeout(function(){ 
-                    $('.spinning').css('visibility', 'hidden');
-                }, 3000);
-                $('.span-bet').val(parseInt(g_vip_point));
+                // $('.spinning').html('金币不足 请充值');
+                //  $('.spinning').css('visibility', 'visible');
+                // setTimeout(function(){ 
+                //     $('.spinning').css('visibility', 'hidden');
+                // }, 3000);
+                $( '#modal-isnewbie' ).modal( 'show' );
+                $('.span-bet').val(getNumeric(g_vip_point));
                 previous_bet = g_vip_point;
             }
             showPayout();
@@ -675,12 +673,13 @@ function bindBetButton(){
             $('.span-bet').val(final_bet);
             previous_bet = final_bet;
         } else {
-            $('.spinning').html('金币不足 请充值');
-             $('.spinning').css('visibility', 'visible');
-            setTimeout(function(){ 
-                $('.spinning').css('visibility', 'hidden');
-            }, 3000);
-            $('.span-bet').val(parseInt(g_vip_point));
+            // $('.spinning').html('金币不足 请充值');
+            //  $('.spinning').css('visibility', 'visible');
+            // setTimeout(function(){ 
+            //     $('.spinning').css('visibility', 'hidden');
+            // }, 3000);
+            $( '#modal-isnewbie' ).modal( 'show' );
+            $('.span-bet').val(getNumeric(g_vip_point));
             previous_bet = g_vip_point;
         }
         showPayout();
