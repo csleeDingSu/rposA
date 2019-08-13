@@ -20,6 +20,7 @@ var g_ratio = 1;
 var g_w_ratio = 2;
 var show_default = true;
 var g_betting_history_total = 0;
+var play_count = 0;
 
 $(function () {
 
@@ -49,6 +50,10 @@ $(function () {
         ifvisible.on("wakeup", function(){
             //resetTimer();
         });
+
+        if (play_count <= 0) { //is newbie 
+            $( '#modal-isnewbie' ).modal( 'show' );
+        }
 
     } else {
         $(".loading").fadeOut("slow");
@@ -141,7 +146,7 @@ function initUser(records){
         var point = getNumeric(records.point);
         var acupoint =  getNumeric(records.acupoint);
         g_current_point = getNumeric(records.acupoint);
-        var play_count = parseInt(records.play_count);
+        play_count = parseInt(records.play_count);
         
         var vip_point =  getNumeric(records.point);
         var vip_life =  parseInt(records.vip_life);
@@ -170,11 +175,7 @@ function initUser(records){
         $(".nTxt").html(life);
         $(".spanVipLife").html(vip_life);
         $(".spanLife").html(life);
-        $(".span-play-count").html(play_count);
-
-        if (play_count <= 0) { //is newbie 
-            $( '#modal-isnewbie' ).modal( 'show' );
-        }        
+        $(".span-play-count").html(play_count);                
     }
 }
 
