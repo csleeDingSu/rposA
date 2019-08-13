@@ -641,24 +641,29 @@ function bindBetButton(){
             $( '#modal-no-login' ).modal( 'show' );
         } else {
 
-            var add_bet = parseInt($(this).html());
-            var initial_bet = parseInt($('.span-bet').val());
-            var final_bet = add_bet + initial_bet;
-
-            if(final_bet <= g_vip_point){
-                $('.span-bet').val(final_bet);
-                previous_bet = final_bet;
-            } else {
-                // $('.spinning').html('金币不足 请充值');
-                //  $('.spinning').css('visibility', 'visible');
-                // setTimeout(function(){ 
-                //     $('.spinning').css('visibility', 'hidden');
-                // }, 3000);
+            if (g_vip_point <= 0) {
                 $( '#modal-isnewbie' ).modal( 'show' );
-                $('.span-bet').val(getNumeric(g_vip_point));
-                previous_bet = g_vip_point;
+            } else {
+
+                var add_bet = parseInt($(this).html());
+                var initial_bet = parseInt($('.span-bet').val());
+                var final_bet = add_bet + initial_bet;
+
+                if(final_bet <= g_vip_point){
+                    $('.span-bet').val(final_bet);
+                    previous_bet = final_bet;
+                } else {
+                    $('.spinning').html('金币不足 请充值');
+                     $('.spinning').css('visibility', 'visible');
+                    setTimeout(function(){ 
+                        $('.spinning').css('visibility', 'hidden');
+                    }, 3000);
+                    $('.span-bet').val(getNumeric(g_vip_point));
+                    previous_bet = g_vip_point;
+                }
+                showPayout();
+
             }
-            showPayout();
 
         }
 
@@ -728,6 +733,11 @@ function bindBetButton(){
             // $( '#login-intropopup' ).modal( 'show' );
             // $( '#nonloginmodal' ).modal( 'show' );
             $( '#modal-no-login' ).modal( 'show' );
+        }
+
+        if (g_vip_point <= 0) {
+            $( '#modal-isnewbie' ).modal( 'show' );
+            return false;
         }
 
         if(isNaN(balance)){
@@ -940,8 +950,13 @@ function bindTriggerButton(){
             // $( '#nonloginmodal' ).modal( 'show' );
             $( '#modal-no-login' ).modal( 'show' );
         }else {
-            event.stopImmediatePropagation();
-            checkSelection();
+
+            if (g_vip_point <= 0) {
+                $( '#modal-isnewbie' ).modal( 'show' );
+            } else {            
+                event.stopImmediatePropagation();
+                checkSelection();
+            }
         }
         
     });
