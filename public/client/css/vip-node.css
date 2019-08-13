@@ -573,43 +573,44 @@
 
 .newbie-bg {
 	background-size: cover;
-    padding: 0 0.45rem 0 0.3rem;
+    padding: 0 0.8rem 0 0.8rem;
     text-align: center;
     position: relative;
     width: 100%;
+    height: 8rem;
 }
 
 #modal-isnewbie .introduction-bg {
     background-color: #fff;
     padding: 0.1rem 0.1rem 0.4rem 0.1rem;
     border-radius: 10px;
-    margin: -5.3rem 0.85rem 0.4rem 0.65rem;
+    margin: -5.3rem 1.2rem 0.5rem 1.2rem;
     position: relative;
 }
 
 
 #modal-isnewbie .title {
     color: #683bc5;
-    font-size: 0.35rem;
+    font-size: 0.3rem;
     text-align: center;
     line-height: 20px;
     font-weight: 500;
-    padding: 0.35rem;
+    padding: 0.2rem;
 }
 
 #modal-isnewbie .instructions1 {
 	color: #888888;
-    padding: 0 0.3rem 0 0.3rem;
-    font-size: 12px;
+    padding: 0 0.2rem 0 0.2rem;
+    font-size: 0.2rem;
     line-height: 20px;
     text-align: left;
-    margin: 40px 0 0 0;
+    margin: 0.55rem 0 0 0;
 }
 
 #modal-isnewbie .instructions2 {
 	color: #ef8717;
-    padding: 0 0.3rem 0 0.3rem;
-    font-size: 12px;
+    padding: 0 0.2rem 0 0.2rem;
+    font-size: 0.2rem;
     line-height: 20px;
     text-align: left;
 }
@@ -617,11 +618,11 @@
 #modal-isnewbie .btn-topup {
 	border-radius: 10px;
     background-color: #fca703;
-    padding: 8px;
+    padding: 0.15rem;
     color: #fff;
     text-align: center;
-    font-size: 18px;
-    margin: 0 50px 30px 40px;
+    font-size: 0.3rem;
+    margin: 0 1.2rem 0.5rem 1.2rem;
     position: relative;
 }
 
@@ -646,14 +647,14 @@
     color: #6939da;
     background-color: #fff;
     border: 1px solid #d2bdf0;
-    height: 0.9rem;
+    height: 0.8rem;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    width: 0.9rem;
+    width: 0.8rem;
     text-align: center;
-    padding: 0.25rem 0 0 0;
-    font-size: 20px;
+    padding: 0.17rem 0 0 0;
+    font-size: 0.45rem;
     line-height: 12px;
     float: left;
 }
@@ -675,9 +676,13 @@
 }
 
 #modal-isnewbie .introduction-bet{
-    margin-left: 0.45rem;
+    margin-left: 0.26rem;
 }
 
 #modal-isnewbie {
 	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#modal-isnewbie .modal.in .modal-dialog {
+    margin: 0 0 0 0;
 }
