@@ -1028,11 +1028,11 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="instructions1 nologin-bg">
 			<p>
-			独创的自助式抽奖，<br>赚积分换购超值奖品，本专场特点
+			自助抽奖赚金币<br>奖品任你换不停
 			</p>
-			<div class="instructions2 instruction-top-padding"><span class="glyphicon glyphicon-star cust-star"></span>无抽奖上限，无限任你抽。</div>
-			<div class="instructions2"><span class="glyphicon glyphicon-star cust-star"></span>大量超值奖品，闪电换购。</div>
-			<div class="instructions2"><span class="glyphicon glyphicon-star cust-star"></span>100%公平机制，绝无作弊。</div>
+			<div class="instructions2 instruction-top-padding"><span class="glyphicon glyphicon-star cust-star"></span>无限制抽奖 任你抽到爽</div>
+			<div class="instructions2"><span class="glyphicon glyphicon-star cust-star"></span>卡券奖品拿到手软</div>
+			<div class="instructions2"><span class="glyphicon glyphicon-star cust-star"></span>100%随机 绝无作弊</div>
 			<a href="/nlogin">
 				<div class="btn-login"></div>
 			</a>
@@ -1113,6 +1113,44 @@
 	  </tr>
 	</table>
 </div>
+
+<!-- is newbie start modal -->
+<div class="modal fade col-md-12" id="modal-isnewbie" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="newbie">
+			<img class="newbie-bg" src="{{ asset('/client/images/newbie-bg.png') }}">
+			<div class="introduction-bg">
+				<p class="title">
+				倍增投入，抽中机率高达98%
+				</p>
+				<div class="introduction-bet">
+	                <div class="circle">1<br><span class="txt">起步</span></div>
+	                <div class="line-connect"></div>
+	                <div class="circle">3<br><span class="txt">加倍</span></div>
+	                <div class="line-connect"></div>
+	                <div class="circle">8<br><span class="txt">加倍</span></div>
+	                <div class="line-connect"></div>
+	                <div class="circle">18<br><span class="txt">加倍</span></div>
+	                <div class="line-connect"></div>
+	                <div class="circle">38<br><span class="txt">加倍</span></div>
+	            </div>
+	            <br>
+				<div class="instructions1"><p>68金币分5次抽奖，从1起步，不中下局加倍3，不中下局加倍8，不中下局加倍18，不中最后加倍38.</p></div>
+				<div class="instructions2"><p>以此倍增原理，5次机会，超高机率抽中！<u>点击详情></u></p></div>
+			</div>
+			<a href="{{env('TOPUP_URL','#')}}">
+				<div class="btn-topup">立即充值</div>
+			</a>
+			<div class="btn-close-bg">
+				<a href="#" onClick="$('#modal-isnewbie').modal('hide');">
+					<img class="btn-close" src="{{ asset('/client/images/newbie_close.png') }}">
+				</a>
+			</div>
+		</div>	
+	</div>
+</div>
+<!-- is newbie modal Ends-->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -1189,14 +1227,15 @@
                 });
               });
 
-
-			// if (user_id <= 0) {
-			// 	openmodel();
-			// }	
-
-			// $('.btn-calculate-vip').click( function() {
-		 //        window.open("https://j.youzan.com/tIigBi", "_system");
-		 //    });
+            $(".open-openform").click(() => {  
+            	$('#modal-isnewbie').modal('hide');
+	            being.wrapShow();
+	            $(".openForm").slideDown(150);
+	            $(".wrapBox ").click(function (e) {
+	              being.wrapHide();
+	              $(".openForm").slideUp(150);
+	            });
+	          });
 
 		});
 

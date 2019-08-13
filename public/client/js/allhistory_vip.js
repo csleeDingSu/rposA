@@ -189,8 +189,8 @@ function showBettingHistory(response) {
             // if(winCount) {
             //     points = Math.round(bvalue.bet_amount);
             // }
-            points = Math.round(bvalue.bet_amount);
-
+            // points = Math.round(bvalue.bet_amount);
+            points = (bvalue.is_win > 0) ? bvalue.reward : bvalue.bet_amount;
 
                 var wallet_point = parseInt(bvalue.wallet_point);
 

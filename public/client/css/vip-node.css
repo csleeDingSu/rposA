@@ -436,7 +436,7 @@
 	background: url(/client/images/nologin-bg.png) no-repeat;
     background-size: contain;
     position: relative;
-    padding: 2.5rem 0.6rem 0 0.6rem;
+    padding: 2.05rem 0.6rem 0 0.6rem;
 }
 
 #modal-no-login .instructions1 {
@@ -556,3 +556,117 @@ tr:nth-child(odd) {
 	background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
+.newbie {
+	text-align: center;
+}
+
+.newbie-bg {
+	background-size: cover;
+    padding: 0 0.45rem 0 0.3rem;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+#modal-isnewbie .introduction-bg {
+    background-color: #fff;
+    padding: 0.1rem 0.1rem 0.4rem 0.1rem;
+    border-radius: 10px;
+    margin: -5.3rem 0.85rem 0.4rem 0.65rem;
+    position: relative;
+}
+
+
+#modal-isnewbie .title {
+    color: #683bc5;
+    font-size: 0.35rem;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 0.35rem;
+}
+
+#modal-isnewbie .instructions1 {
+	color: #888888;
+    padding: 0 0.3rem 0 0.3rem;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: left;
+    margin: 40px 0 0 0;
+}
+
+#modal-isnewbie .instructions2 {
+	color: #ef8717;
+    padding: 0 0.3rem 0 0.3rem;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: left;
+}
+
+#modal-isnewbie .btn-topup {
+	border-radius: 10px;
+    background-color: #fca703;
+    padding: 8px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 50px 30px 40px;
+    position: relative;
+}
+
+#modal-isnewbie .btn-close-bg {
+   	cursor: pointer;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    position: relative;
+}
+
+#modal-isnewbie .btn-close {
+	cursor: pointer;
+    padding: 0;
+    height: 33px;
+    width: 33px;
+    margin: 0;
+}
+
+#modal-isnewbie .circle {
+    color: #6939da;
+    background-color: #fff;
+    border: 1px solid #d2bdf0;
+    height: 0.9rem;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 0.9rem;
+    text-align: center;
+    padding: 0.25rem 0 0 0;
+    font-size: 20px;
+    line-height: 12px;
+    float: left;
+}
+
+#modal-isnewbie .circle .txt{
+    font-size: 10px;
+    color: #b193f6;
+}
+
+
+#modal-isnewbie .line-connect {
+    border: 1px solid #d2bdf0;
+    height: 1px;
+    width: 5px;
+    padding: 0;
+    float: left;
+    background-color: #d2bdf0;
+    margin-top: 22px;
+}
+
+#modal-isnewbie .introduction-bet{
+    margin-left: 0.45rem;
+}
+
+#modal-isnewbie {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
