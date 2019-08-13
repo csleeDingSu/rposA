@@ -60,8 +60,14 @@ class ClientController extends BaseController
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
 		$data['wallet']    = Wallet::get_wallet_details_all($member);
-		$data['usedpoint'] = \DB::table('view_usedpoint')->where('member_id',$member)->sum('point');
-		$data['page'] = 'client.member'; 
+		$usedpoint         = \DB::table('view_usedpoint')->where('member_id',$member);
+		
+		$this->vp = new VIPApp();
+		if ($this->vp->isVIPApp()) {
+			$usedpoint = $usedpoint->whereIn('credit_type',['DPRBP']);
+		}				
+		$data['usedpoint']  = $usedpoint->sum('point');		
+		$data['page']       = 'client.member'; 
 		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
 
 		//isVIP APP
