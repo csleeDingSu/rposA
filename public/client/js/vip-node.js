@@ -641,7 +641,7 @@ function bindBetButton(){
             $( '#modal-no-login' ).modal( 'show' );
         } else {
 
-            if (g_vip_point <= 0) {
+            if (g_vip_point < 1) {
                 $( '#modal-isnewbie' ).modal( 'show' );
             } else {
 
@@ -735,7 +735,7 @@ function bindBetButton(){
             $( '#modal-no-login' ).modal( 'show' );
         }
 
-        if (g_vip_point <= 0) {
+        if (g_vip_point < 1) {
             $( '#modal-isnewbie' ).modal( 'show' );
             return false;
         }
@@ -951,7 +951,7 @@ function bindTriggerButton(){
             $( '#modal-no-login' ).modal( 'show' );
         }else {
 
-            if (g_vip_point <= 0) {
+            if (g_vip_point < 1) {
                 $( '#modal-isnewbie' ).modal( 'show' );
             } else {            
                 event.stopImmediatePropagation();
