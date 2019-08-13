@@ -1054,7 +1054,7 @@
 	</div>
 	<div class="formTableTitle">可以参考以下的倍增表格：</div>
 
-	<table>
+	<table class="formTable">
 	  <tr>
 	    <th>次数</th>
 	    <th>本次投入</th>

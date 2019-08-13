@@ -513,25 +513,25 @@
 	padding: 0.3rem 0 0.2rem 0;
 }
 
-table {
+.formTable {
   border-collapse: collapse;
   width: 100%;
   font-size: 0.22rem;
   color: #333;
 }
 
-td, th {
+.formTable td, .formTable th {
   border: 1px solid #dfdfdf;
   padding: 0.1rem;
   text-align: center;
 }
 
-th {
+.formTable th {
 	background-color: #618eff;
 	color: #fff;
 }
 
-tr:nth-child(odd) {
+.formTable tr:nth-child(odd) {
   background-color: #f4f4f4;
 }
 
