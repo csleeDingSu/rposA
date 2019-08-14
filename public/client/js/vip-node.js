@@ -404,7 +404,7 @@ function startGame() {
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
             g_ratio = getNumeric(data.record.setting.win_ratio);
-            g_w_ratio = g_ratio + 1;
+            g_w_ratio = g_ratio; //g_ratio + 1;
             initGame(game_records, level, latest_result, consecutive_lose);
             
             //console.log(data);
