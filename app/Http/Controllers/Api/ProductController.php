@@ -122,9 +122,12 @@ class ProductController extends Controller
 				$data['confirmed_at'] = $now;
 			}			
 			
-			Wallet::update_basic_wallet($memberid,0,$product->min_point, 'RPO','debit', $product->min_point.' Point used for buy product');
+			$wallet = Wallet::update_basic_wallet($memberid,0,$product->min_point, 'RPO','debit', $product->min_point.' Point used for buy product');
 
 			Product::update_pin($product->id, $data);
+			
+			$refdata = [ 'id'=>$product->id, 'refid'=>$wallet['refid'], 'type'=>'product' ];
+			Wallet::add_ledger_ref($refdata);
 			
 			return response()->json(['success' => true, 'message' => 'success']);
 		}
@@ -223,9 +226,12 @@ class ProductController extends Controller
 					
 					$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>2,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'confirmed_at'=>$now,'passcode'=>$passcode];
 					
-					Wallet::update_basic_wallet($memberid,0,$package->min_point, 'BVP','debit', $package->min_point.' Point reserved for VIP package');
+					$wallet = Wallet::update_basic_wallet($memberid,0,$package->min_point, 'BVP','debit', $package->min_point.' Point reserved for VIP package');
 
-					$id = Package::save_vip_package($data);
+					$id = Package::save_vip_package($data);					
+					
+					$refdata = [ 'id'=>$id, 'refid'=>$wallet['refid'], 'type'=>'product' ];
+					Wallet::add_ledger_ref($refdata);
 
 					return response()->json(['success' => true, 'message' => 'success','refid'=>$id]);
 				}

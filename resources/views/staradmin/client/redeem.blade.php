@@ -94,6 +94,7 @@
 				<div id="prize" class="prize tab-pane fade {{ empty($slug) ? 'in active' : '' }}">
 					<div id="softpin"></div>
 					<div id="newProduct"></div>
+					<div class="vipProduct"></div>
 				</div>
 
 				<!-- end redeem list content -->
