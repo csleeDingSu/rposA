@@ -160,7 +160,7 @@
 
 .flickity-prev-next-button.previous {
   left: 0;
-  margin-top: 0.1rem;
+  margin-top: 0.25rem;
   right: auto;
   background: url('/client/images/wheel/previous.png') no-repeat;
   background-size: contain;
@@ -169,7 +169,7 @@
 }
 
 .flickity-prev-next-button.next {
-  margin-top: 0.1rem;
+  margin-top: 0.25rem;
   background: url('/client/images/wheel/next.png') no-repeat;
   background-size: contain;
   width: 0.59rem;
