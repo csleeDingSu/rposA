@@ -733,6 +733,7 @@ function bindBetButton(){
             // $( '#login-intropopup' ).modal( 'show' );
             // $( '#nonloginmodal' ).modal( 'show' );
             $( '#modal-no-login' ).modal( 'show' );
+            return false;
         }
 
         if (g_vip_point < 1) {

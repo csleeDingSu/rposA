@@ -244,17 +244,7 @@ class ClientController extends BaseController
 	}
 
 	public function member_access_vip_node()
-	{
-		if (Auth::Guard('member')->check()) {
-			if (empty(Session::get('justlogin'))) {
-				Session::put('justlogin', 'yes');
-			} else {
-				Session::put('justlogin', 'no');
-			}
-		} else {
-			Session::forget('justlogin');
-		}
-		
+	{	
 
 		// if (!Auth::Guard('member')->check())
 		// {
@@ -276,6 +266,10 @@ class ClientController extends BaseController
 
 			// 	return redirect('/arcade');
 			// }
+
+		if (env('THISVIPAPP', false) == false) {			
+			return redirect('/arcade');
+		}
 		
 		$agent = new Agent();
 		
