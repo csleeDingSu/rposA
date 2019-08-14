@@ -241,7 +241,7 @@ class Wallet extends Model
 				$history = self::add_ledger_history($history);
 			}	
 			event(new \App\Events\EventWalletUpdate($memberid));
-			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint];		
+			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint,'refid'=>$history];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
 	}
