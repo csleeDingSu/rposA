@@ -433,7 +433,7 @@
 }
 
 .nologin-bg {
-	background: url(/client/images/nologin-bg.png) no-repeat;
+	background: url(/client/images/nologin-bg2.png) no-repeat;
     background-size: contain;
     position: relative;
     padding: 3.7rem 0.3rem 0.6rem 0.3rem;
