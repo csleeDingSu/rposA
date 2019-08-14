@@ -1029,13 +1029,10 @@
 <!-- haven't login start modal -->
 <div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
-		<div class="instructions1 nologin-bg">
-			<p>
-			自助抽奖赚金币<br>奖品任你换不停
-			</p>
-			<div class="instructions2 instruction-top-padding"><span class="glyphicon glyphicon-star cust-star"></span>无限制抽奖 任你抽到爽</div>
-			<div class="instructions2"><span class="glyphicon glyphicon-star cust-star"></span>卡券奖品拿到手软</div>
-			<div class="instructions2"><span class="glyphicon glyphicon-star cust-star"></span>100%随机 绝无作弊</div>
+		<div class="nologin-bg">
+			<div class="instructions"><span class="highlight">无限制抽奖</span> 任你抽到爽</div>
+			<div class="instructions"><span class="highlight">卡券奖品</span> 拿到手软</div>
+			<div class="instructions"><span class="highlight">100%随机</span> 绝无作弊</div>			
 			<a href="/nlogin">
 				<div class="btn-login"></div>
 			</a>
