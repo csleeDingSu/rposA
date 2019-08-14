@@ -254,7 +254,11 @@ function getProductList(token) {
             }
 
             //new list of buy product
-            getNewProductList(records.length, token);
+            if (this_vip_app == true) {
+                getVIPProduct(records.length,token);
+            } else {
+                getNewProductList(records.length, token);    
+            }
 
         } // end success
     }); // end $.ajax
@@ -970,6 +974,164 @@ function getVirtualCardDetails(id, token){
             $('.redeem-card-detail-' + id).html(html);
         }
      });
+}
+
+function getVIPProduct(softpinCount, token){
+    $.getJSON( "/api/get-product-list", function( data ) {
+        // console.log(data);
+
+        if(data.records.length === 0 && softpinCount <= 0){
+            html += '<div class="history-row">' +
+                        '<div class="col-xs-12">' +
+                            '<div class="empty">对不起 - 你现在还没有数据。</div>' +
+                        '</div>' +
+                    '</div>';
+
+            $('#vipProduct').html(html);
+            return;
+        }
+
+        var html = "";
+        var htmlmodel = '';
+        var current_point = $('.wabao-coin').text();
+
+        $.each(data.records, function(i, item) {
+            
+            var available_quantity = item.available_quantity;
+            var used_quantity = 0;
+            var reserved_quantity = item.reserved_quantity;
+            var cannot_redeem = false;
+            var cls_redeem_btn = 'redeem-button-enable';
+
+            if(available_quantity === null){
+                available_quantity = 0;
+            }
+
+            if(used_quantity === null){
+                used_quantity = 0;
+            }
+
+            if(reserved_quantity === null){
+                reserved_quantity = 0;
+            }
+
+            if (item.point_to_redeem > getNumeric(current_point)){
+                cannot_redeem = true;
+                cls_redeem_btn = 'redeem-button-disable';
+            }
+
+            if(available_quantity == 0){
+                cls_redeem_btn = 'redeem-button-disable';
+            }
+
+            var total_used = parseInt(used_quantity) + parseInt(reserved_quantity) || 0;
+
+            if(i % 2 === 0){
+                html += '<div class="redeem-prize">' + 
+                            '<div class="left-box">' +
+                            '<div class="prize-box">' +
+                                '<div class="image-wrapper">' +
+                                    '<img src="'+ item.picture_url +'">' +
+                                '</div>' +
+                                '<div class="redeem-product">'+ item.name +'</div>' +
+                                '<div class="redeem-remaining">已兑换 '+ total_used +' 张</div>' +
+                                '<div class="redeem-details">' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-button-wrapper">' +
+                                        '<div class="' + cls_redeem_btn + ' openeditmodel_'+ item.id + '">兑换</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>';
+            } else {
+                html += '<div class="redeem-prize">' + 
+                            '<div class="right-box">' +
+                            '<div class="prize-box">' +
+                                '<div class="image-wrapper">' +
+                                    '<img src="'+ item.picture_url +'">' +
+                                '</div>' +
+                                '<div class="redeem-product">'+ item.name +'</div>' +
+                                '<div class="redeem-remaining">已兑换 '+ total_used +' 张</div>' +
+                                '<div class="redeem-details">' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-button-wrapper">' +
+                                        '<div class="' + cls_redeem_btn + ' openeditmodel_'+ item.id + '">兑换</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>';
+            }
+
+            htmlmodel += '<!-- Modal starts -->' +
+                            '<div class="modal fade col-lg-12" id="viewvouchermode_'+ item.id +'" tabindex="-1" >' +
+                                '<div class="modal-dialog modal-sm" role="document">' +
+                                    '<div class="modal-content">' +
+                                        '<div class="modal-body">' +
+                                            '<div class="modal-row">' +
+                                                '<div class="modal-img-voucher">' +
+                                                    '<img src="' + item.picture_url +'" alt=" ' + item.name + ' " class="img-voucher" />' +
+                                                '</div>' +
+
+                                                '<div class="wrapper modal-full-height">' +
+                                                    '<div class="modal-card">' +
+                                                        '<div class="modal-center">' +
+                                                            '兑换本产品需要消耗:' +
+                                                        '</div>' +
+                                                    '</div>' +
+
+                                                    '<div class="modal-card">' +
+                                                            // '<div class="icon-coin-wrapper modal-icon">' +
+                                                            //     '<div class="icon-coin"></div>' +
+                                                            // '</div>' +
+                                                            '<div class="wabao-price">'+ item.point_to_redeem +' ' + txt_coin + '</div>' +
+                                                    '</div>' +
+
+                                                    '<div class="modal-card">' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(current_point) +' ' + txt_coin + '</div>' +
+                                                    '</div>' +
+
+                                                    '<div id="error-'+ item.id + '" class="error"></div>';
+
+                                                    if ((available_quantity > 0) && item.point_to_redeem <= getNumeric(current_point)) {
+
+                                                        htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeemProduct(\''+ token +'\', \''+ item.id +'\');">' +
+                                                        '<a class="btn btn_submit" >确定兑换</a>' +
+                                                        '</div>' +
+                                                        '<div>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不兑换</a>' +
+                                                        '</div>';
+                                                    } else {
+                                                        htmlmodel += '<div>' +
+                                                            '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不能兑换</a>' +
+                                                        '</div>';
+                                                    }
+
+                                                     htmlmodel += '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' + 
+                            '<!-- Modal Ends -->';
+        });
+
+        $('.vipProduct').html(html);
+        $( ".cardFull" ).after(htmlmodel);
+
+        $.each(data.records, function(i, item) {
+            $('.openeditmodel_' + item.id).click(function() {
+                $('#viewvouchermode_' + item.id).modal('show');
+            });
+        });
+
+        $('.open-card-no-modal').click(function() {
+            $('#card-no-modal').modal('show');
+        });
+
+        $('.btn-close-card').click(function() {
+            $('#card-no-modal').modal('hide');
+        });
+    });
 }
 
 function getNumeric(value) {
