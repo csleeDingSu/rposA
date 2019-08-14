@@ -129,6 +129,7 @@
 
 		@if(env('THISVIPAPP',false))
 		  <script>
+		  	// alert('yes. i am in.');
 		    if(('standalone' in window.navigator)&&window.navigator.standalone){  
 		    var noddy,remotes=false;  
 		    document.addEventListener('click',function(event){  
