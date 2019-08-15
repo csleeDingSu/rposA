@@ -1035,18 +1035,16 @@
 </div>
 <!-- haven't login modal Ends-->
 <div class="openForm">
+	<div class="formWrapper">
 	<div class="formTitle">玩法介绍</div>
 	<div class="formBody">
-		这是个可设置金币的自助抽奖平台，每次50%抽中概率，如何提
-		高抽中概率？可以用倍增法，看如下：<br />
-		第一局设1金币，没抽中。<br />
-		第二局设3金币，没抽中。<br />
-		第三局设8金币，抽中了。<br />
-		这就是倍增法：当你没抽中的时候，就设定更多的金币，<br />
-		像案例里的<span class="highlight1">第三局抽中赚了15.68金币</span>，扣除<span class="highlight2">三局投入的11金币</span>，<br />
-		最终<span class="highlight3">赚到4.68金币</span>。
+		这是一个自助式抽奖平台，需自选单双和投入金币，1金币能抽中1.96金币。每次有50%中奖概率，使用倍增法能大幅提高中奖概率，倍增法说明：<br />
+		第一局投入1金币，没抽中。<br />
+		第二局投入3金币，又没抽中。<br />
+		第三局投入8金币，抽中了。<br />
+		当第三局抽中<span class="highlight1">赚了8×1.96=15.68金币</span>，扣除投入的<span class="highlight2">成本12金币</span>，最终<span class="highlight3">赚了3.68金币</span>。<br /><br />
+		以上案例就是倍增法，当一次没抽中，下一次投入更多金币，几次内抽中就可赚金币，抽中后又从1金币开始，无限循环，具体可参考以下表格：<br /><br />
 	</div>
-	<div class="formTableTitle">可以参考以下的倍增表格：</div>
 
 	<table class="formTable">
 	  <tr>
@@ -1106,6 +1104,11 @@
 	    <td>8.8</td>
 	  </tr>
 	</table>
+	</div>
+
+	<div class="btn-calculate-vip formButtonWrapper">
+		<div class="formButton">充值金币</div>
+	</div>
 </div>
 
 <!-- is newbie start modal -->
@@ -1231,7 +1234,7 @@
 	            });
 	          });
             
-        	$(".btn-redeemcash").click(() => {
+        	$(".btn-calculate-vip").click(() => {
         		if (user_id > 0) {
 	            	$('#modal-isnewbie').modal('show');
 	            } else {
