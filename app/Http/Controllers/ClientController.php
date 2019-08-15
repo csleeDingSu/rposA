@@ -287,7 +287,7 @@ class ClientController extends BaseController
 			}
 		}
 			
-		//\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
+		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
 		
 		return view( 'client/vip-node', compact( 'wbp' ) );
 		
