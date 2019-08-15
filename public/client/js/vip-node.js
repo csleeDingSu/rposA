@@ -163,7 +163,7 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(point);
-            $('.spanAcuPointAndBalance').html(getNumeric(point));
+            $('.spanAcuPointAndBalance').html(get2Decimal(point));
         }
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
@@ -297,7 +297,7 @@ function getProduct(){
                             '<div class="left-box">' +
                             '<div class="prize-box">' +
                                 '<div class="image-wrapper">' +
-                                    '<img src="'+ item.picture_url +'">' +
+                                    '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
@@ -313,7 +313,7 @@ function getProduct(){
                             '<div class="right-box">' +
                             '<div class="prize-box">' +
                                 '<div class="image-wrapper">' +
-                                    '<img src="'+ item.picture_url +'">' +
+                                    '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
@@ -332,6 +332,37 @@ function getProduct(){
 
         $('.redeem-prize-wrapper').html(html);
         $('.redeem-button').click(function(){
+
+            var user_id = $('#hidUserId').val();
+            if(user_id == 0){
+                // window.top.location.href = "/member";
+                // $( '#login-intropopup' ).modal( 'show' );
+                // $( '#nonloginmodal' ).modal( 'show' );
+                $( '#modal-no-login' ).modal( 'show' );
+            } else {
+
+                $( "#hid_package_id" ).val($(this).attr('rel'));
+                // console.log($(this).attr('rel'));
+                var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
+                // console.log(price);
+                // console.log(g_vip_point);
+                // console.log(getNumeric(price) > getNumeric(g_vip_point));
+                if (getNumeric(price) > getNumeric(g_vip_point)) {
+                    // console.log(1);
+                    $('#modal-insufficient-point').modal();
+                    setTimeout(function(){ 
+                        $('#modal-insufficient-point').modal('hide');
+                    }, 3000);                
+                } else {
+                    // console.log(2);
+                    $( "#frm_buy" ).submit();    
+                }
+
+            }
+            
+        });
+
+        $('.redeem-img').click(function(){
 
             var user_id = $('#hidUserId').val();
             if(user_id == 0){
@@ -576,7 +607,7 @@ function closeWinModal() {
         }
         
         setTimeout(function(){
-            $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point));
+            $('.spanAcuPointAndBalance').html(get2Decimal(g_vip_point));
             $('.spanAcuPoint').html(g_vip_point);
         }, 2300);
 
@@ -803,7 +834,7 @@ function showPayout(){
             $('.odd-payout').html(bet_amount);
             $('.even-payout').html(bet_amount);
 
-            $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point - bet_amount));
+            $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(g_vip_point - bet_amount)));
 
             if(bet_amount > 0){
 
@@ -860,7 +891,7 @@ function showPayout(){
 
                 
 
-                $('.spanAcuPointAndBalance').html(getNumeric(g_vip_point - bet_amount));
+                $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(g_vip_point - bet_amount)));
 
                 $.ajax({
                     type: 'GET',
@@ -1041,7 +1072,7 @@ function showProgressBar(bol_show){
     
         $('.payout-info').html(payout_info).addClass('hide');
         $('.spanAcuPoint').html(0);
-        $('.spanAcuPointAndBalance').html(getNumeric(0));
+        $('.spanAcuPointAndBalance').html(get2Decimal(0));
         
         result_info = '剩余<span style="text-decoration:underline">'+ balance +'</span>游戏积分&nbsp;';
         $('.result-info').html(result_info);
@@ -1557,7 +1588,13 @@ function get_today_profit() {
 }
 
 function getNumeric(value) {
+    return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
+    // console.log(parseFloat(value).toFixed(2));
+    // return parseFloat(value).toFixed(2);
+  }
+
+function get2Decimal(value) {
     // return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
     // console.log(parseFloat(value).toFixed(2));
     return parseFloat(value).toFixed(2);
-  }
+}
