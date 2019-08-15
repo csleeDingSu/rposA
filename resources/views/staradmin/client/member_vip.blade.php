@@ -129,13 +129,13 @@
 					</div>
 				</li>
 
-				<li class="list-group-item" id="csBtn">
+				<!-- <li class="list-group-item" id="csBtn">
 					<div class="icon-wrapper">
 						<div class="icon-customer"></div>
 					</div>
 					<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 					联系客服
-				</li>
+				</li> -->
 
 				<li class="list-group-item">
 					<div class="logout">					
@@ -370,6 +370,7 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
+			/*
 			var clipboardCS = new ClipboardJS('.cutBtnCS', {
 				target: function () {
 					return document.querySelector('#cutCS');
@@ -389,6 +390,7 @@
 				// $('#csModal').modal();
 				window.location.href = "http://api2.pop800.com/web800/c.do?l=cn&type=0&n=569521&w=0";
 			});
+			*/
 	
 		});	
 

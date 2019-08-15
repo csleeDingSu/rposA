@@ -1242,9 +1242,6 @@
 
 	</script>
 
-	<!-- <script language="javascript" src="http://api2.pop800.com/800.js?n=569521&s=01&p=l&l=cn"></script><div style="display:none;"><a href="http://www.pop800.com">在线客服</a></div> -->
-	<script language="javascript" src="http://api2.pop800.com/800.js?n=569521&t=3&l=cn"></script><div style="display:none;"><a href="http://www.pop800.com">在线客服</a></div>
-
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/vip-node.js') }}"></script>
 @endsection

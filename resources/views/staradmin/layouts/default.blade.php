@@ -186,6 +186,8 @@
 		</section>
 
 		@section('footer-javascript')
+			<script language="javascript" src="http://api2.pop800.com/800.js?n=569521&t=3&l=cn"></script><div style="display:none;"><a href="http://www.pop800.com">在线客服</a></div>
+
 			<script src="{{ asset('/client/js/jquery-1.11.1.min.js') }}"></script>
 			<script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
