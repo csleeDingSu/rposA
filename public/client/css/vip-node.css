@@ -541,9 +541,7 @@
 }
 
 .formButtonWrapper {
-	background-color: #f4f4f4;
-	margin-top: 0.3rem;
-	padding: 0.1rem 0.3rem;
+	padding: 0.3rem 0.3rem 0 0.3rem;
 }
 
 .formButton{
