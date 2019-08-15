@@ -45,13 +45,7 @@
 							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						@if(isset(Auth::Guard('member')->user()->id))
-							<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
-						@else
-							<a  href="#" onclick="$('#modal-no-login').modal('show');">
-						@endif
-							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
-						</a>
+						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 											
 					</div>
 				</div>
@@ -1236,7 +1230,14 @@
 	              $(".openForm").slideUp(150);
 	            });
 	          });
-
+            
+        	$(".btn-redeemcash").click(() => {
+        		if (user_id > 0) {
+	            	$('#modal-isnewbie').modal('show');
+	            } else {
+	            	$('#modal-no-login').modal('show');
+	            }
+            });
 		});
 
 	</script>
