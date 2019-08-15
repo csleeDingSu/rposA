@@ -161,7 +161,7 @@ class ClientController extends BaseController
 	{
 		$ua = $request->server('HTTP_USER_AGENT');
 		
-		\Log::debug(json_encode(['useragent' => $ua], true)); 
+		//\Log::debug(json_encode(['useragent' => $ua], true)); 
 		
 		//isVIP APP
 		$this->vp = new VIPApp();
@@ -271,6 +271,16 @@ class ClientController extends BaseController
 			return redirect('/arcade');
 		}
 		
+					
+		$wbp = $this->set_payment_browser();
+		
+		return view( 'client/vip-node', compact( 'wbp' ) );
+		
+		// }
+	}
+	
+	public function set_payment_browser()
+	{
 		$agent = new Agent();
 		
 		$wbp   = '';
@@ -287,11 +297,9 @@ class ClientController extends BaseController
 			}
 		}
 			
-		//\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
+		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
 		
-		return view( 'client/vip-node', compact( 'wbp' ) );
-		
-		// }
+		return $wbp;
 	}
 
 	public function member_update_wechatname(Request $request)

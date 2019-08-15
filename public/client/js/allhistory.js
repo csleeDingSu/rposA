@@ -16,14 +16,6 @@ function getToken(){
         if(data.success) {
             getPosts(page, data.access_token, type);
             scrollBottom(data.access_token);
-
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                page = 1;
-                page_count = 1;
-                type = $(e.target).attr('data-type');
-                getPosts(page, data.access_token, type);
-                scrollBottom(data.access_token);
-            });
         }     
     });
 }

@@ -186,6 +186,10 @@
 		</section>
 
 		@section('footer-javascript')
+			@if(env('THISVIPAPP','false'))
+				<script language="javascript" src="https://api2.pop800.com/800.js?n=569521&t=3&l=cn"></script><div style="display:none;"><a href="https://www.pop800.com">在线客服</a></div>
+			@endif
+
 			<script src="{{ asset('/client/js/jquery-1.11.1.min.js') }}"></script>
 			<script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>

@@ -45,13 +45,7 @@
 							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						@if(isset(Auth::Guard('member')->user()->id))
-							<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
-						@else
-							<a  href="#" onclick="$('#modal-no-login').modal('show');">
-						@endif
-							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
-						</a>
+						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 											
 					</div>
 				</div>
@@ -1136,7 +1130,7 @@
 	            </div>
 	            <br>
 				<div class="instructions1"><p>68金币分5次抽奖，从1起步，不中下局加倍3，不中下局加倍8，不中下局加倍18，不中最后加倍38.</p></div>
-				<div class="instructions2"><p>以此倍增原理，5次机会，超高机率抽中！<u>点击详情></u></p></div>
+				<div class="instructions2"><p>利用倍增原理，5次内抽中概率超高！ <u>点击详情></u></p></div>
 			</div>
 			<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
 				<div class="btn-topup">立即充值</div>
@@ -1236,7 +1230,14 @@
 	              $(".openForm").slideUp(150);
 	            });
 	          });
-
+            
+        	$(".btn-redeemcash").click(() => {
+        		if (user_id > 0) {
+	            	$('#modal-isnewbie').modal('show');
+	            } else {
+	            	$('#modal-no-login').modal('show');
+	            }
+            });
 		});
 
 	</script>

@@ -1031,7 +1031,7 @@ function getVIPProduct(softpinCount, token){
                             '<div class="left-box">' +
                             '<div class="prize-box">' +
                                 '<div class="image-wrapper">' +
-                                    '<img src="'+ item.picture_url +'">' +
+                                    '<img class="openeditmodel_'+ item.id + '" src="'+ item.picture_url +'">' +
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-remaining">已兑换 '+ total_used +' 张</div>' +
@@ -1048,7 +1048,7 @@ function getVIPProduct(softpinCount, token){
                             '<div class="right-box">' +
                             '<div class="prize-box">' +
                                 '<div class="image-wrapper">' +
-                                    '<img src="'+ item.picture_url +'">' +
+                                    '<img class="openeditmodel_'+ item.id + '" src="'+ item.picture_url +'">' +
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-remaining">已兑换 '+ total_used +' 张</div>' +

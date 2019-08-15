@@ -30,29 +30,12 @@
 		<input type="hidden" id="max_page" value="1" />
 
 		<div class="full-width-tabs">
-			<!-- betting history tabs -->
-			<ul class="nav nav-pills">
-			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#normal-tab" data-type="normal">普通专场</a></li>
-			  <li class="{{ (!empty($slug) and $slug == 'vip') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#vip-tab" data-type="vip">VIP专场</a></li>
-			</ul>
-			<!-- end betting history tabs -->
-
-			<!-- tab content -->
-			<div class="tab-content">
-				<!-- normal list content -->
-				<div id="normal-tab" class="tab-pane fade {{ empty($slug) ? 'in active' : '' }}">
-					<div id="normal-history"></div>
-					<p class="isnext">下拉显示更多...</p>
-				</div>
-				<!-- end normal list content -->
-
-				<!-- vip history content -->
-				<div id="vip-tab" class="tab-pane fade {{ (!empty($slug) and $slug == 'vip') ? 'in active' : '' }}">
-					<div id="vip-history"></div>
-					<p class="isnext">下拉显示更多...</p>
-				</div>
-				<!-- end vip list content -->
+			<!-- normal list content -->
+			<div id="normal-tab" class="tab-pane fade in active">
+				<div id="normal-history"></div>
+				<p class="isnext">下拉显示更多...</p>
 			</div>
+			<!-- end normal list content -->
 		</div>
 	</div>
 </div>
