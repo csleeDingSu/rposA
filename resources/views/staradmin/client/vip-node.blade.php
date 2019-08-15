@@ -1236,7 +1236,8 @@
             
         	$(".btn-calculate-vip").click(() => {
         		if (user_id > 0) {
-	            	$('#modal-isnewbie').modal('show');
+	            	// $('#modal-isnewbie').modal('show');
+	            	window.location.href = "{{$wbp}}{{env('TOPUP_URL','#')}}";
 	            } else {
 	            	$('#modal-no-login').modal('show');
 	            }
