@@ -161,7 +161,7 @@ class ClientController extends BaseController
 	{
 		$ua = $request->server('HTTP_USER_AGENT');
 		
-		\Log::debug(json_encode(['useragent' => $ua], true)); 
+		//\Log::debug(json_encode(['useragent' => $ua], true)); 
 		
 		//isVIP APP
 		$this->vp = new VIPApp();
