@@ -30,28 +30,14 @@
   width: 0;
 }
 
-#lose-modal .modal-instruction {
-	color: #ff6067;
-	font-size: 18px;
-	text-align: center;
-	margin-bottom: 20px;
-	background: white;
-	padding-left: 0;
-	padding-right: 0;
-}
-
 #win-modal .modal-content {
-  background: url('/client/images/vip/packet-background.png') no-repeat;
+  background: url('/client/images/vip/win-modal-bg.png') no-repeat;
   background-size: contain;
   color: white;
   text-align: center;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  padding: 10px;
   font-weight: 700;
-  width: 301px !important;
-  height: 338px;
-  padding: 0;
+  width: 6.14rem;
+  height: 7.36rem;
   position:relative;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -60,29 +46,9 @@
 }
 
 #win-modal .packet-title {
-	padding-top: 20px;
-	font-size: 21px;
-}
-
-#win-modal .packet-sign {
-	font-size: 45px;
-}
-
-#win-modal .packet-value {
-	font-size: 70px;
-	color: #ff414b;
-	font-weight: 500;
-	height: 130px;
-	padding-top: 20px;
-}
-
-#win-modal .packet-currency {
-	font-size: 30px;
-}
-
-#win-modal .instructions {
-  font-size: 17px;
-  padding-top: 30px;
+	padding-top: 2rem;
+	font-size: 0.34rem;
+	color: #ff6067;
 }
 
 #modal-sure-win .modal-title {
@@ -139,10 +105,14 @@
 	/*top: -10px;*/
 }
 
+.redeem-banner {
+	padding: 0.2rem 0 0.2rem 0;
+}
+
 .redeem-banner img {
-	width: 105%;
+	width: 90%;
 	margin-left: -10px;
-	margin-top: 0.2rem;
+	margin-top: 0.4rem;
 }
 
 .redeem-prize .col-xs-6 {
@@ -415,5 +385,301 @@
 }
 
 .flickity-enabled.is-draggable {
-	margin-top: -15px !important;
+	margin-top: -5px !important;
  }
+
+.firstlogin-bg {
+	background: url(/client/images/firstlogin-bg.png) no-repeat;
+    background-size: cover;
+    position: relative;
+    padding: 0;
+    /*height: 9rem;*/
+    margin: -3rem 0 0 0;
+    line-height: 0.45rem;
+}
+
+#modal-first-login .modal-title {
+    color: #ff6067;
+    background: transparent;
+    padding: 2.3rem 0 0 0;
+    width: 5rem;
+    font-size: 0.9rem;
+}
+
+#modal-first-login .instructions1 {
+    color: #aaaaaa;
+    padding: 0 0.7rem 0 0.7rem;
+    width: 6rem;
+    font-size: 0.26rem;
+}
+
+#modal-first-login .instructions2 {
+    color: #7a7a7a;
+    padding: 0 0.7rem 0 0.7rem;
+    width: 6rem;
+    font-size: 0.26rem;
+}
+
+.btn-how-to-play {
+	background: #ff6067;
+    color: white;
+    font-size: 0.3rem;
+    border-radius: 1rem;
+    height: 0.7rem;
+    padding: 0.12rem 0.1rem 0.1rem 0.1rem;
+    margin: 0.2rem 0.8rem 0.5rem 0.8rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.nologin-bg {
+	background: url(/client/images/nologin-bg2.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    padding: 3.7rem 0.3rem 0.6rem 0.3rem;
+    height: 7.5rem;
+    width: 5.5rem;
+}
+
+#modal-no-login .instructions {
+    color: #fff;
+    font-size: 0.3rem;
+    text-align: left;
+    line-height: 0.45rem;
+    padding: 0.02rem 0 0.2rem 1.05rem;
+    margin: 0;
+}
+
+#modal-no-login .highlight {
+	color: #fff71d;	
+}
+
+.btn-login {
+	background: transparent;
+    cursor: pointer;
+    text-align: center;
+    padding: 0;
+    height: 1.5rem;
+}
+
+.openForm{
+	background: #fff;
+	border-radius:.1rem .1rem 0 0 ;
+	-webkit-border-radius:.1rem .1rem 0 0 ;
+	-moz-border-radius:.1rem .1rem 0 0 ;
+	-ms-border-radius:.1rem .1rem 0 0 ;
+	-o-border-radius:.1rem .1rem 0 0 ;
+	position: absolute;
+	display: none;
+	bottom: 0;
+	z-index: 200;
+	width: 100%;
+	left: 0;
+	padding: 0.3rem;
+}
+
+.formTitle{
+	font-size: .36rem;
+	text-align: center;
+	color: #333;
+	margin-bottom: 0.3rem;
+}
+
+.formBody{
+	font-size: .26rem;
+	color: #666;
+	line-height: .4rem;
+}
+
+
+.highlight1{
+	color: #333;
+	font-weight: 700;
+}
+
+.highlight2{
+	color: #53bf03;
+	font-weight: 700;
+}
+
+.highlight3{
+	color: #ff4848;
+	font-weight: 700;
+}
+
+.formTableTitle{
+	color: #333;
+	font-size: 0.26rem;
+	text-align: center;
+	padding: 0.3rem 0 0.2rem 0;
+}
+
+.formTable {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.22rem;
+  color: #333;
+}
+
+.formTable td, .formTable th {
+  border: 1px solid #dfdfdf;
+  padding: 0.1rem;
+  text-align: center;
+}
+
+.formTable th {
+	background-color: #618eff;
+	color: #fff;
+}
+
+.formTable tr:nth-child(odd) {
+  background-color: #f4f4f4;
+}
+
+.openForm td:last-child {
+	color: #ff4848;
+}
+
+.suggestion {
+	color:#ff8624;
+}
+
+.suggestion img {
+	width: 0.61rem;
+	height: 0.28rem;
+	position: absolute;
+	margin-top: -0.2rem;
+}
+
+.cust-star {
+    font-size: 0.25rem;
+    padding: 0.08rem 0.08rem 0 0;
+}
+
+.modal.in .modal-dialog {
+    margin: -2rem 0 0 0;
+}
+
+#modal-no-login {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.newbie {
+	text-align: center;
+}
+
+.newbie-bg {
+	background-size: cover;
+    padding: 0 0.8rem 0 0.8rem;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    margin: 2rem 0 0 0;
+}
+
+#modal-isnewbie .introduction-bg {
+    background-color: #fff;
+    padding: 0.1rem 0.1rem 0.25rem 0.1rem;
+    border-radius: 10px;
+    margin: -4.65rem 1.2rem 0.25rem 1.2rem;
+    position: relative;
+}
+
+
+#modal-isnewbie .title {
+    color: #683bc5;
+    font-size: 0.3rem;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 0.15rem;
+}
+
+#modal-isnewbie .instructions1 {
+	color: #888888;
+    padding: 0 0.2rem 0 0.2rem;
+    font-size: 0.2rem;
+    line-height: 20px;
+    text-align: left;
+    margin: 0.55rem 0 0 0;
+}
+
+#modal-isnewbie .instructions2 {
+	color: #ef8717;
+    padding: 0 0.2rem 0 0.2rem;
+    font-size: 0.2rem;
+    line-height: 20px;
+    text-align: left;
+}
+
+#modal-isnewbie .btn-topup {
+	border-radius: 10px;
+    background-color: #fca703;
+    padding: 0.15rem;
+    color: #fff;
+    text-align: center;
+    font-size: 0.3rem;
+    margin: 0.35rem 1.2rem 0.85rem 1.2rem;
+    position: relative;
+}
+
+#modal-isnewbie .btn-close-bg {
+   	cursor: pointer;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    position: relative;
+}
+
+#modal-isnewbie .btn-close {
+	cursor: pointer;
+    padding: 0;
+    height: 33px;
+    width: 33px;
+    margin: 0;
+}
+
+#modal-isnewbie .circle {
+    color: #6939da;
+    background-color: #fff;
+    border: 1px solid #d2bdf0;
+    height: 0.7rem;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 0.7rem;
+    text-align: center;
+    padding: 0.12rem 0 0 0;
+    font-size: 0.35rem;
+    line-height: 12px;
+    float: left;
+}
+
+#modal-isnewbie .circle .txt{
+    font-size: 10px;
+    color: #b193f6;
+}
+
+
+#modal-isnewbie .line-connect {
+    border: 1px solid #d2bdf0;
+    height: 1px;
+    width: 5px;
+    padding: 0;
+    float: left;
+    background-color: #d2bdf0;
+    margin-top: 22px;
+}
+
+#modal-isnewbie .introduction-bet{
+    margin-left: 0.45rem;
+}
+
+#modal-isnewbie {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#modal-isnewbie .modal.in .modal-dialog {
+    margin: 0 0 0 0;
+}

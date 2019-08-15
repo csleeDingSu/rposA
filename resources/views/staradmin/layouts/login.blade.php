@@ -119,6 +119,23 @@
 		})();
 		</script>
 
+		@if(env('THISVIPAPP',false))
+		  <script>
+		  	// alert('yes. i am in.');
+		    if(('standalone' in window.navigator)&&window.navigator.standalone){  
+		    var noddy,remotes=false;  
+		    document.addEventListener('click',function(event){  
+		            noddy=event.target;  
+		            while(noddy.nodeName!=='A'&&noddy.nodeName!=='HTML') noddy=noddy.parentNode;  
+		            if('href' in noddy&&noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){  
+		                    event.preventDefault();  
+		                    document.location.href=noddy.href;  
+		            }  
+		    },false);  
+		}  
+		</script>
+		@endif
+
 		@show
     </head>
     <body>
@@ -136,7 +153,7 @@
 						</div>
 					</div>
 				
-					<div class="col-xs-3">
+					<div class="col-xs-3 left-menu">
 					  	<div class="menu-wrapper">
 					  		@yield('menu')
 					  	</div>
@@ -152,10 +169,19 @@
         		@yield('content')
 			</div>
 
-			@include('layouts/footer')
+			@if(env('THISVIPAPP','false'))
+				@include('layouts/footer_vip')
+			@else
+				@include('layouts/footer')
+			@endif
+			
 		</section>
 
 		@section('footer-javascript')
+			@if(env('THISVIPAPP','false'))
+				<script language="javascript" src="http://api2.pop800.com/800.js?n=569521&t=3&l=cn"></script><div style="display:none;"><a href="http://www.pop800.com">在线客服</a></div>
+			@endif
+
 			<script src="{{ asset('/client/js/jquery-1.11.1.min.js') }}"></script>
 			<script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>

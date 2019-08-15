@@ -13,7 +13,7 @@ body{
 }
 
 .full-height {
-	padding-top: 10px;
+	padding-top: 0.2rem;
     margin: 0 auto;    
     position: relative;
     background-image: url("/client/images/wheel/background_game.png");
@@ -87,7 +87,7 @@ body{
 	width: 100%
 	height: 80px;
 	position: relative;
-	margin-top: 0.4rem;
+	margin-top: 0.5rem;
 }
 
 .button-card {
@@ -257,7 +257,7 @@ body{
 }
 
 .active {
-  animation: pulse 0.5s infinite;
+  /*animation: pulse 0.5s infinite;*/
 }
 
 @keyframes pulse {
@@ -304,17 +304,18 @@ body{
 
 .balance-banner {
 	background: rgba(0,0,0,0.3);
-	width: 3.6rem;
+	width: 4rem;
 	height: 0.72rem;
 	float: left;
-	z-index: 100;
 	position: relative;
 	/*margin-left: 10px;*/
 	color: #fff;
 	/*font-size: 40px;*/
 	cursor: pointer;
 	border-radius: 0.4rem;
-	margin-left: 0.12rem;
+	margin-left: 0.2rem;
+	display: flex;
+	align-items: center;
 }
 
 .btn-vip {
@@ -392,19 +393,30 @@ body{
 }
 
 .btn-rules-vip, .btn-rules-normal {
-	background-color: rgba(0,0,0,.3);
-	width: 2.7rem;
+	background: url(/client/images/wheel/life-balance.png) no-repeat top center;
+	width: 2.28rem;
 	height: 0.72rem;
+	background-size: contain;
 	font-size: 0.33rem;
 	cursor: pointer;
-	color: #ffffff;
+	color: #fefeec;
 	font-weight: 700;
 	text-align: left;
-	padding: 0.1rem 0.1rem 0.1rem 0.3rem;
+	padding: 0rem 0.1rem 0rem 0.3rem;
 	border-top-left-radius: 0.4rem;
 	border-bottom-left-radius: 0.4rem;
 	float: right;
 	margin-top: -0.04rem;
+	margin-right: -0.05rem;
+	display: flex;
+	align-items: center;
+	justify-content: center；
+}
+
+.btn-rules-vip img {
+	width: 0.35rem;
+	height: 0.35rem;
+	margin-right: 0.1rem;
 }
 
 .btn-rules-normal {
@@ -1518,7 +1530,7 @@ body{
 /* Swiper */
 
 .frame-wrapper {
-    margin: 0 auto;
+    margin: 0.2rem auto 0 auto;
     width: 8rem;
 	height: 6.3rem;
 	display:block;    
@@ -1828,23 +1840,18 @@ if it's not present, don't show loader */
 }
 
 /* Wechat Modal */
-#lose-modal .modal-title {
-	font-size: 20px;
-	color: #999;
+#lose-modal .modal-win-title {
+	font-size: 0.46rem;
+	color: #ff6067;
 	font-weight: 500;
-	margin-bottom: -1px;
-}
-
-.modal-win-title {
-	font-weight: 500;
-	font-size: 18px;
-	color: #999;
-	padding-top: 10px;
+	padding-top: 3.2rem;
 }
 
 #lose-modal .modal-content{
-	background: white;
-	width: 300px;
+	background: url('/client/images/vip/lose-modal-bg.png') no-repeat;
+  	background-size: contain;
+	width: 6.66rem;
+	height: 6.44rem;
 	margin-left: auto;
 	margin-right: auto;
 	border: 0;
@@ -1859,14 +1866,18 @@ if it's not present, don't show loader */
 }
 
 #lose-modal .modal-instruction {
-	color: #999;
-	font-size: 11px;
-	line-height: 22px;
-	text-align: left;
-	margin-bottom: 20px;
-	background: #f6f6f6;
-	padding: 10px 12px 10px 15px;
-	border-radius: 6px;
+	color: #888;
+	font-size: 0.28rem;
+	text-align: center;
+	margin: 0.1rem auto 0.6rem auto;
+}
+
+#lose-modal .modal-redeem-button {
+	background: #ffae00;
+	margin-left: 5%;
+	margin-right: 5%;
+	font-size: 0.4rem;
+	padding: 0.16rem;
 }
 
 .separator {
@@ -2045,33 +2056,30 @@ if it's not present, don't show loader */
 }
 
 #win-modal .modal-card {
-    width: 260px;
     margin: 0 auto;
     font-size: 16px;
+    width: 100%;
 }
 
 #win-modal .packet-value {
-	font-size: 60px;
-	color: #ff414b;
+	font-size: 0.96rem;
+	line-height: 1rem;
+	color: #ff6067;
 	font-weight: 500;
-	height: 95px;
+	padding-bottom: 0.4rem;
 }
 
 #win-modal .packet-info {
 	font-size: 11px;
 	font-weight: 500;
-	color: #999;
+	color: #ff6067;
 	text-align: left;
 	line-height: 18px;
 	padding-left: 50px;
 }
 
-#win-modal .packet-sign {
-	font-size: 35px;
-}
-
 #win-modal .packet-currency {
-	font-size: 20px;
+	font-size: 0.3rem;
 }
 
 #win-modal .modal-content {
@@ -2083,8 +2091,6 @@ if it's not present, don't show loader */
   border-top-right-radius: 6px;
   padding: 10px;
   font-weight: 700;
-  width: 301px !important;
-  height: 382px;
   padding: 0;
   position:relative;
   -webkit-box-shadow: none;
@@ -2103,12 +2109,10 @@ if it's not present, don't show loader */
 }
 
 #win-modal .instructions {
-  font-size: 16px;
+  font-size: 0.28rem;
   font-weight: 500;
-  color: #ffe0d2;
+  color: #888;
   text-align: center;
-  line-height: 28px;
-  padding-top: 40px;
 }
 
 #win-modal .highlight {
@@ -2120,16 +2124,16 @@ if it's not present, don't show loader */
 }
 
 #win-modal .btn-red-packet {
-  background: url('/client/images/btn-red-packet.png') no-repeat top center;
-  font-size: 18px;
-  color: #b95d0c;
-  background-size: contain;
-  width: 260px;
-  height: 76px;
-  padding-top: 16px;
+	background: #ffae00;
+  font-size: 0.36rem;
+  width: 4rem;
+  height: 0.85rem;
+  padding-top: 0.15rem;
   cursor: pointer;
   text-align: center;
   font-weight: 500;
+  border-radius: 0.6rem;
+  margin: 0 auto;
 }
 /* Win Modal */
 
@@ -2214,25 +2218,22 @@ if it's not present, don't show loader */
 /* Reset Life Max Modal */
 
 .btn-redeemcash {
-	position: absolute;
-	margin-left: 0.4rem;
+	position: relative;
+	float: right;
 	width: 1.3rem;
-	margin-top: 0.1rem;
 }
 
 .icon-newcoin {
-	position: absolute;
+	position: relative;
 	width: 0.5rem;
-	margin-top: 0.1rem;
-	margin-left: -1.7rem;
+	margin-left: 0.1rem;
 }
 
 .spanAcuPoint2 {
-	position: absolute;
-	margin-top: 0.1rem;
+	position: relative;
 	text-align: center;
-	width: 1.75rem;
-	margin-left: 0.58rem;
+	width: 2rem;
+	margin-left: 0rem;
 	font-size: 0.2rem;
 }
 

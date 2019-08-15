@@ -111,7 +111,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/faq', function () {
 
 		$faqs = DB::table( 'faq' )->select( 'id', 'title', 'content' )->orderBy( 'id', 'desc' )->get();
-
+		
 		return view( 'client/faq', compact( 'faqs' ) );
 	} );
 
@@ -133,7 +133,13 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/customer_service' );
 	} );
 
-	Route::get( '/product/detail/{id?}', 'ShareProductController@getVoucherDetail' )->name( 'client.productv2_detail' );	
+	Route::get( '/product/detail/{id?}', 'ShareProductController@getVoucherDetail' )->name( 'client.productv2_detail' );
+
+	Route::any( '/how-to-play', 'ClientController@how_to_play' )->name( 'client.how_to_play' );
+
+	Route::any( '/tips-new', 'ClientController@tips_new' )->name( 'client.tips_new' );	
+
+	Route::any( '/download-app', 'ClientController@download_app' )->name( 'client.download_app' );	
 } );
 
 //Member routes with member guard
@@ -143,7 +149,12 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get('/nshare', 'ClientController@sharetest')->name('show.link.sharetest');
 		
 	Route::get( '/allhistory', function () {
-		return view( 'client/allhistory' );
+		if (env('THISVIPAPP','false') == true) {
+			return view( 'client/allhistory_vip' );	
+		} else {
+			return view( 'client/allhistory' );
+		}
+		
 	} );
 
 	Route::get( '/summary', function () {
@@ -204,6 +215,10 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::any( '/membership/buy/vip', 'PaymentController@membership_buy_vip' )->name( 'client.membership.buy.vip' );
 
 	Route::any( '/payment', 'PaymentController@payment' )->name( 'client.payment' );
+
+	Route::get( '/edit-setting', function () {
+		return view( 'client/edit_setting');
+	} );
 
 } );
 
@@ -607,7 +622,6 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 
 	Route::get('/buyproduct/render-card', 'BuyProductController@render_card_detail')->name('render_card_detail');
-	
 
 } );
 //END

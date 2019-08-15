@@ -26,6 +26,14 @@ class ReportController extends BaseController
 	{
 		$data['page']   = 'admin.dashboard';
 		$data['result'] =  DB::table('dashboard')->first();
+		$chart_user_reg =  DB::table('chart_member_register_by_date')
+			->where('created_at','>=',date('Y-m-01'))
+			->get();		
+		$data['chart_user_reg'] = $chart_user_reg;
+		
+		$count = count($chart_user_reg);
+		$data['chart_vert_count'] = ceil($count / 10) * 10;
+		
 		return view('main', $data);
 	}
 	

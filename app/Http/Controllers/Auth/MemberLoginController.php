@@ -63,7 +63,13 @@ class MemberLoginController extends Controller
         $data['slug'] = $slug;
 		// return view('client.login', $data);
 		//return view('common.memberlogin', $data);
-        return view('auth.login',$data);
+        
+        //isVIP APP         
+        if (env('THISVIPAPP', false)) {
+            return view('auth.login_vip',$data);    
+        } else {
+            return view('auth.login',$data);    
+        }
 	}
 	
 	/**

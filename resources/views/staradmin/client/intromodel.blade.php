@@ -18,7 +18,11 @@
 							<button class="btnsubmit" id="sec_login_btn_new" type="button">登录</button>							
 						</div>
 						<div class="row">
-							<button class="sec_reg_btn" type="button">没有帐号，去注册</button>							
+							<button class="sec_reg_btn" type="button">没有帐号，去注册</button>	
+							<!-- <a class="ssec_reg_btn"  href="googlechrome://navigate?url=dev.boge56.com/member/login/register" >没有帐号，去注册</a> -->
+							
+							<!-- <button class="button1" id="button1" onclick="window.open('http://dev.boge56.com/api/mytestview','_blank','resizable=yes')" >clcick </button> -->
+													
 						</div>
 						
 					</div>

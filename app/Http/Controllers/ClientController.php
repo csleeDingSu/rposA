@@ -7,9 +7,9 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Category;
-use App\helpers\VIPApp;
 use App\Members as Member;
 use App\Wallet;
+use App\helpers\VIPApp;
 use App\member_game_result;
 use App\tips;
 use App\view_vip_status;
@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Validator;
 use Khsing\WechatAgent\WechatAgent;
 use \App\helpers\WeiXin as WX;
 use session;
+
+use Jenssegers\Agent\Agent;
 //use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
@@ -58,11 +60,43 @@ class ClientController extends BaseController
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
 		$data['wallet']    = Wallet::get_wallet_details_all($member);
-		$data['usedpoint'] = \DB::table('view_usedpoint')->where('member_id',$member)->sum('point');
-		$data['page'] = 'client.member'; 
+		$usedpoint         = \DB::table('view_usedpoint')->where('member_id',$member);
+		
+		$this->vp = new VIPApp();
+		if ($this->vp->isVIPApp()) {
+			$usedpoint = $usedpoint->whereIn('credit_type',['DPRBP']);
+		}				
+		$data['usedpoint']  = $usedpoint->sum('point');		
+		$data['page']       = 'client.member'; 
 		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
 
-		return view('client/member', $data);
+		//isVIP APP
+		$this->vp = new VIPApp();
+		if ($this->vp->isVIPApp()) {
+			
+			
+			$agent = new Agent();
+		
+			$data['wbp']   = '';
+
+			$platform = $agent->platform();
+			$browser  = $agent->browser();
+
+			if ($platform == 'AndroidOS')
+			{
+				if ($browser == 'Chrome')
+				{
+					$data['wbp'] = 'googlechrome://navigate?url=';
+					//\Log::warning(json_encode(['imhere' => 'ya'], true));
+				}
+			}
+			
+			
+			return view('client/member_vip', $data);
+		} else {
+			return view('client/member', $data);
+		}
+		
 	}
 
 	public function member_access_game()
@@ -125,6 +159,10 @@ class ClientController extends BaseController
 
 	public function member_access_game_node($cid = 220, Request $request)
 	{
+		$ua = $request->server('HTTP_USER_AGENT');
+		
+		//\Log::debug(json_encode(['useragent' => $ua], true)); 
+		
 		//isVIP APP
 		$this->vp = new VIPApp();
 		if ($this->vp->isVIPApp()) {
@@ -206,15 +244,16 @@ class ClientController extends BaseController
 	}
 
 	public function member_access_vip_node()
-	{
-		if (!Auth::Guard('member')->check())
-		{
-			$msg = trans('dingsu.please_login');
-			\Session::flash('success',$msg);
+	{	
 
-			return redirect('/nlogin');
+		// if (!Auth::Guard('member')->check())
+		// {
+		// 	$msg = trans('dingsu.please_login');
+		// 	\Session::flash('success',$msg);
 
-		} else {
+		// 	return redirect('/nlogin');
+
+		// } else {
 
 			// $member = Auth::guard('member')->user()->id	;
 			// $data['member'] = Member::get_member($member);
@@ -228,9 +267,39 @@ class ClientController extends BaseController
 			// 	return redirect('/arcade');
 			// }
 
-			return view('client/vip-node');
-
+		if (env('THISVIPAPP', false) == false) {			
+			return redirect('/arcade');
 		}
+		
+					
+		$wbp = $this->set_payment_browser();
+		
+		return view( 'client/vip-node', compact( 'wbp' ) );
+		
+		// }
+	}
+	
+	public function set_payment_browser()
+	{
+		$agent = new Agent();
+		
+		$wbp   = '';
+		
+		$platform = $agent->platform();
+		$browser  = $agent->browser();
+		
+		if ($platform == 'AndroidOS')
+		{
+			if ($browser == 'Chrome')
+			{
+				$wbp = 'googlechrome://navigate?url=';
+				//\Log::warning(json_encode(['imhere' => 'ya'], true));
+			}
+		}
+			
+		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
+		
+		return $wbp;
 	}
 
 	public function member_update_wechatname(Request $request)
@@ -493,6 +562,67 @@ class ClientController extends BaseController
 
 		}
 		
+	}
+
+	public function how_to_play()
+	{
+		return view('client/how_to_play');
+
+	}
+
+	public function tips_new()
+	{
+		$agent = new Agent();
+		
+		$wbp   = '';
+
+		$platform = $agent->platform();
+		$browser  = $agent->browser();
+
+		if ($platform == 'AndroidOS')
+		{
+			if ($browser == 'Chrome')
+			{
+				$wbp = 'googlechrome://navigate?url=';
+				//\Log::warning(json_encode(['imhere' => 'ya'], true));
+			}
+		}
+		return view( 'client/tips_new', compact( 'wbp' ) );
+
+	}
+
+	public function download_app()
+	{
+		$devices = "android";
+		$isMacDevices = false;
+
+		//Detect special conditions devices
+		$iPod    = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
+		$iPhone  = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+		$iPad    = stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
+		$Android = stripos($_SERVER['HTTP_USER_AGENT'],"Android");
+		$webOS   = stripos($_SERVER['HTTP_USER_AGENT'],"webOS");
+
+		//do something with this information
+		if( $iPod || $iPhone ){
+		    //browser reported as an iPhone/iPod touch -- do something here
+		    $devices = "iphone";
+		    $isMacDevices = true;
+		}else if($iPad){
+		    //browser reported as an iPad -- do something here
+		    $devices = "ipad";
+		    $isMacDevices = true;
+		}else if($Android){
+		    //browser reported as an Android device -- do something here
+		    $devices = "android";
+		}else if($webOS){
+		    //browser reported as a webOS device -- do something here
+		    $devices = "webos";
+		}
+
+		$title_customize = '挖宝网app下载-玩无限抽奖，换超值奖品';
+
+		return view('client/download_app',compact('devices', 'isMacDevices', 'title_customize'));
 	}
 	
 	

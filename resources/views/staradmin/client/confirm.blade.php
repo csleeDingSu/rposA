@@ -45,6 +45,7 @@
             	</div>
             	<div class="col-xs-2">
                     <form id="frm_buy" method="post" action="/buy">
+                        <input id="hidEdit" name="hidEdit" type="hidden" value="1" />
                         <input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
                         <input type="hidden" id="hid_package_id" name="hid_package_id" value="{{ $request->hid_package_id }}">
                         <input type="hidden" id="txt_name" name="txt_name" value="{{ $request->txt_name }}">

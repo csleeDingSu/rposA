@@ -196,7 +196,29 @@ class MemberController extends Controller
 	}
 	
 	
-		
+	public function update_phone (Request $request)
+	{
+		$id = $request->memberid;
+		$record = Member::find($id);
+		if ($record)
+		{
+			$input = [
+				 'phone'   => $request->phone
+				  ];
+			$validator = Validator::make($input, 
+				[
+					'phone' => 'required|unique:members,phone,'.$id,
+				]
+			);
+			if ($validator->fails()) {
+				return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+			}	
+			$record->phone = $request->phone;
+			$record->save();				
+			return response()->json(['success' => true]);	
+		}		
+		return response()->json(['success' => false,'message' =>['Unknown user']]);
+	}	
 		
 	
 	

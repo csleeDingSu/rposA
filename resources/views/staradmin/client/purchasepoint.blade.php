@@ -3,7 +3,7 @@
 @section('title', '金币充值')
 
 @section('left-menu')
-    <a href="/profile" class="back">
+    <a href="javascript:history.back()" class="back">
         <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true"></div>
     </a>
 @endsection

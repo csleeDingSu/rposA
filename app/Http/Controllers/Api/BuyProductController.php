@@ -25,6 +25,16 @@ class BuyProductController extends Controller
 		return response()->json(['success' => true,'records' => $result]);
 	}
 	
+	public function get_latest_address(Request $request)
+	{
+		$memberid = $request->memberid;
+		// $result   = \DB::table('order_shipping_detail')->select('name','description','value')->where('member_id', $memberid)->latest('order_date')->first();		
+		$result   = \DB::table('order_shipping_detail')->select('receiver_name','contact_number','city','address')->where('member_id', $memberid)->latest('order_date')->first();		
+		$type     = \DB::table('ref_credit_type')->get();
+		
+		return response()->json(['success' => true,'records' => $result,'credit_type' => $type]);
+	}
+	
 	public function list_package(Request $request)
     {
 		$member_id = $request->memberid;
@@ -137,6 +147,9 @@ class BuyProductController extends Controller
 						];
 				$id = BuyProduct::save_redeemed($data);
 				
+				$refdata = [ 'id'=>$id, 'refid'=>$wallet['refid'], 'type'=>'buyproduct' ];
+				Wallet::add_ledger_ref($refdata);
+				
 				$quantity;
 				for ($i=1;$i<=$quantity;$i++)
 				{
@@ -189,6 +202,9 @@ class BuyProductController extends Controller
 							,'quantity'      => $request->quantity
 						];
 				$id = BuyProduct::save_redeemed($data);
+				
+				$refdata = [ 'id'=>$id, 'refid'=>$wallet['refid'], 'type'=>'buyproduct' ];
+				Wallet::add_ledger_ref($refdata);
 				
 				$order = ['address'=>$request->address,'receiver_name'=>$request->receiver_name,'contact_number'=>$request->contact_number,'city'=>$request->city,'zip'=>$request->zip,'order_id'=>$id];
 				

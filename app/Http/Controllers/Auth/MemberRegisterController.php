@@ -155,7 +155,12 @@ class MemberRegisterController extends Controller
             $request = new Request;
             return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
         } else {
-            return view('auth.login',$data);    
+        	//isVIP APP        	
+			if (env('THISVIPAPP', false)) {
+				return view('auth.login_vip',$data);    
+			} else {
+				return view('auth.login',$data);    
+			}            
         }
 	}
     

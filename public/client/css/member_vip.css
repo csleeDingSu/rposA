@@ -1,0 +1,848 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.container {
+	width: 500px;
+	background-color: #f2f2f2;
+	position: relative;
+}
+	
+@media only screen and (max-width: 500px) {
+    .container {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+html, body {
+	height: 100%;
+	background: #f2f2f2;
+}
+
+.full-height {
+    background:#f2f2f2;
+}
+
+.card {
+	font-size: 16px;
+	color: white;
+    padding: 10px 0 10px 0;
+}
+
+.member-wrapper {
+	padding: 0;
+}
+/*
+.name {
+	font-size: 20px;
+	float: left;
+	padding-top: 16px;
+	padding-bottom: 10px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+*/
+.unverify {
+	cursor: pointer;
+}
+
+.information-table {
+	padding-top:10px;
+	background: white;
+	height: 200px;
+	border-radius: 10px;
+	box-shadow: 0 3px 10px 0px rgba(241, 233, 219, 1);
+}
+
+.information-table .col-xs-12, .information-table .col-xs-6 {
+	background: white;
+	color: #888888;
+	font-size: 16px;
+	padding-right: 20px;
+    padding-left: 20px;
+}
+
+.information-table .col-xs-12:after {
+  	content: ""; /* This is necessary for the pseudo element to work. */ 
+    display: block; /* This will put the pseudo element on its own line. */
+    margin: 0 auto; /* This will center the border. */
+    width: 99%; /* Change this to whatever width you want. */
+    border-bottom: 1px solid #eeeeee; /* This creates the border. Replace black with whatever color you want. */
+}
+
+.information-table .col-xs-6 {
+	font-size: 16px;
+	margin-top: 5px;
+	padding: 5px 0;
+}
+
+.information-table .border-right {
+	border-right: 1px solid #eeeeee;
+}
+
+.information-table a {
+	text-decoration: none;
+}
+
+.label-title {
+	display: inline-block;
+	vertical-align: -2px;
+	padding: 10px 0 0 0;
+}
+
+.middle-border {
+	border-left: 1px solid #e8e8e8;
+	border-right: 1px solid #e8e8e8;
+}
+
+.numbers{
+    font-size:16px;
+    display: inline-block;
+}
+
+.point {
+	color: #505050;
+	font-size: 35px;
+	line-height: 42px;
+	padding-top: 5px;
+}
+
+.balance {
+	color: #ff6a52;
+}
+
+.life {
+	color: #505050;
+}
+
+.button-redeem {
+	color: white;
+    font-size: 16px;
+    padding: 3px 5px 5px 5px;
+    border-radius: 20px;
+    background-color: #ff806b;
+    width: 90px;
+    margin: 5px 5px 5px 5px;
+}
+
+.left {
+	text-align: left;
+}
+
+.member-box {
+	width: 440px;
+	height: 50px;
+	position: absolute;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.top-background {
+	background-color: white;
+}
+
+.top-background img {
+	margin-top: -15%;
+	width: 100%;
+    height: 100%;
+}
+
+.bottom-background {
+	background-color: white;
+}
+
+@media only screen and (max-width: 500px) {
+    .member-box {
+		width: 90%;
+	}
+
+	.top-background img {
+		margin-top: -10%;
+	}
+
+	.bottom-background {
+		height: 26px;
+	}
+}
+
+@media only screen and (max-width:400px) {
+	.top-background img {
+		margin-top: -5%;
+	}
+
+	.bottom-background {
+		height: 30px;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+    .member-box {
+	}
+}
+
+.listing-table {
+	text-align: left;
+	color: #686868;
+	font-size: 14px;
+	background-color: white;
+	/*height: 100%;*/
+}
+
+.long{
+	margin-top: 10px;
+	margin-bottom: 40px;
+}
+
+.image-wrapper {
+	width: 90%;
+	height: 90%;
+	margin: 0 auto;
+	padding-top: 19px;
+	padding-bottom: 10px;
+}
+
+.listing-table img {
+	width: 100%;
+	height: 100%;
+
+}
+
+.list-group {
+	margin-bottom: 0;
+}
+
+.list-group a {
+	text-decoration: none;
+	color: #686868;
+}
+
+.list-group-item {
+	border-top: 1px solid #d9d9d9;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	font-size: 16px;
+	padding: 15px 15px;
+}
+
+.first-item {
+	border-top: none;
+}
+
+.list-group-item:first-child, .list-group-item:last-child {
+	border-radius: 0px;
+}
+
+.glyphicon {
+	float: right;
+	color: #ccc;
+	margin-top: 2px;
+}
+
+.vip-count {
+	float: right;
+	margin-top: -1px;
+	margin-right: 2px;
+	font-weight: 500;
+	color: red;
+}
+
+.vip-inprogress {
+	float: right;
+	margin-top: -3px;
+	margin-right: 2px;
+	color: #007cef;
+	font-size: 18px;
+}
+
+.vip-redeemticket {
+	float: right;
+	margin-top: -3px;
+	margin-right: 2px;
+	color: #ccc;
+	font-size: 18px;
+}
+
+.vip-ticketnotinused {
+	float: right;
+	margin-top: -3px;
+	margin-right: 2px;
+	color: #ccc;
+	font-size: 18px;
+}
+
+.icon-wrapper {
+	height: 30px;
+	width: 30px;
+	float: left;
+}
+
+.icon-wheel {
+	background: url('/client/images/icon-wheel.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.game-life-count {
+	float: right;
+	margin-top: -3px;
+	margin-right: 2px;
+	color: red;
+	font-size: 18px;
+}
+
+
+.icon-vip {
+	background: url('/client/images/icon-vip.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.icon-add-friend {
+	background: url('/client/images/icon-invite.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.icon-play {
+	background: url('/client/images/icon-play.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.icon-round {
+	background: url('/client/images/icon-round.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.icon-play-history {
+	background: url('/client/images/icon-history.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.icon-redeem {
+	background: url('/client/images/icon-redeem.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.icon-tips {
+	background: url('/client/images/icon-tips.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+}
+
+.icon-faq {
+	background: url('/client/images/icon-faq.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.icon-customer {
+	background: url('/client/images/icon-wechat.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.icon-logout {
+	background: url('/client/images/icon-logout.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
+.note {
+	display: inline-block;
+	font-size: 10px;
+	color: #949494;
+	float: right;
+	padding-top: 2px;
+}
+
+
+/* Modal Box */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Modal Box */
+.modal-content, .modal-title {
+    background: white;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-full-height {
+    text-align:center;
+    padding-bottom: 10px;
+    margin: 0 auto;
+}
+
+.modal-wechat {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.modal-title {
+    background: #7dca33;
+    color: white;
+    text-align: center;
+    margin-top: 10%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.modal-title h1 {
+    /*font-size: 20px;*/
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color: #fff;
+	font-size: 24px;
+}
+
+.modal-card {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.copyvoucher {
+    background: #f0f0f0;
+    color: #7dca33;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 23px;
+    padding: 5px;
+    text-align: center;
+}
+
+.cutBtnCS, .cutBtnCS-success, .cutBtnCS-fail {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 6px;
+    font-size: 23px;
+    color: white;
+    padding: 6px;
+    background: #7dca33;
+}
+
+.cutBtnCS {
+	cursor: pointer;
+}
+
+.cutBtnCS-success {
+    background: #61b114;
+}
+
+.cutBtnCS-fail {
+    background: #999999;
+}
+
+.instructions, .instructions-dark {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #aaa;
+}
+
+.instructions-dark {
+    font-size: 12px;
+}
+
+.highlight {
+	color: #fca871;
+}
+
+@media only screen and (max-width: 360px) {
+    .modal-content, .modal-title {
+        width: 270px;
+    }
+
+    .modal-card {
+        width: 230px;
+        margin: 0 auto;
+        font-size: 16px;
+    }
+
+    .instructions {
+    	font-size: 13px;
+    }
+}
+/* End Modal box */
+
+/* Wechat Modal */
+#verify-steps .modal-content, #verify-steps .modal-title {
+	background: white;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#verify-steps .modal-full-height {
+	text-align:center;
+	margin: 0 auto;
+}
+
+#verify-steps .modal-wechat {
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#verify-steps .modal-title {
+	background: #4c89e2;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+}
+
+#verify-steps .modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-weight: 700;
+}
+
+#verify-steps .modal-card {
+	width: 250px;
+	margin: 0 auto;
+	font-size: 16px;
+}
+
+#verify-steps .copyvoucher {
+	border: 1px solid #dfdfdf;
+	background: #f7f7f7;
+	color: #51abff;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	padding: 6px;
+	font-size: 20px;
+}
+
+#verify-steps .cutBtn, #verify-steps .cutBtn-success, #verify-steps .cutBtn-fail {
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 5px;
+	font-size: 18px;
+	color: white;
+	padding: 6px;
+	background-color: #51acff;
+	background-image: none;
+}
+
+#verify-steps .cutBtn {
+	cursor: pointer;
+}
+
+#verify-steps .cutBtn-success {
+	background: #1ba908;
+}
+
+#verify-steps .cutBtn-fail {
+	background: #838383;
+}
+
+#verify-steps .instructions, #verify-steps .instructions-dark {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #999;
+}
+
+#verify-steps .instructions-dark {
+	margin-bottom: 0px;
+}
+
+#verify-steps .btn-close {
+	color: #ffd200;
+	font-size: 16px;
+	margin-top: 10px;
+	display: block;
+	text-align: center;
+	width: 250px;
+
+}
+
+#verify-steps .btn-close a {
+	text-decoration: underline;
+	color: #f7ff22;
+}
+
+#verify-steps .body-title {
+	color: #51abff;
+	font-size: 18px;
+}
+
+#verify-steps .glyphicon {
+	font-size: 20px;
+	display: block;
+	float: left;
+	padding-left: 10px;
+	margin-top: 0px;
+}
+
+#verify-steps .left {
+	display: block;
+	padding-bottom: 3px;
+	float: left;
+	padding-left: 10px;
+}
+
+#verify-steps .modal-title {
+	background: url('/client/images/wechat-header.png') no-repeat;
+	background-size: contain;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+	width: 300px !important;
+	height: 255px;
+}
+
+#verify-steps .modal-title h1 {
+	/*font-size: 20px;*/
+	margin-bottom: 0px;
+	margin-top: 100px;
+	font-weight: 200 !important;
+	font-size: 14px;
+}
+
+#verify-steps .reward {
+	/*font-size: 16px;*/
+	color: #fffc22;
+	font-weight: 200 !important;
+	padding: 0 !important;
+	margin-top: 0px;
+}
+
+#verify-steps .reward-amount {
+	font-size: 55px;
+	font-weight: 500;
+	/*font-size: 140px;*/
+	color: #fffc22;
+}
+
+#verify-steps .reward-instructions {
+	/*color: #f2ee10;*/
+	font-weight: 500;
+	/*font-size: 15px;*/
+	color: white;
+	/*font-size: 42px;*/
+	font-size: 16px;
+}
+/* End Wechat Modal*/
+
+.wechat-instructions {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 14px;
+	color: #5b5b5b;
+	text-align: left;
+	line-height: 0.5rem;
+}
+
+.wechat-instructions-highlight {
+	/*padding-top: 15px;*/
+	/*padding-bottom: 20px;*/
+	/*font-size: 12px;*/
+	color: #69b102;
+	text-align: left;
+}
+
+.cutBtnCS2, .cutBtnCS2-success, .cutBtnCS2-fail {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 25px;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    background: #7dca33;
+}
+
+.cutBtnCS2 {
+	cursor: pointer;
+}
+
+.cutBtnCS2-success {
+    background: #C0C0C0;
+}
+
+.cutBtnCS2-fail {
+    background: #999999;
+}
+
+.profile-pic
+{
+	float: left;
+	padding-top: 13px;
+	padding-bottom: 10px;
+}
+
+.profile-img-circle
+{
+	border-radius: 50% !important; 
+	max-width: 40px;
+	max-height: 40px;
+	width: 40px !important;
+	height: 40px;
+	
+}	
+.wechatname {
+	font-size: 20px;
+	text-overflow: ellipsis;
+	overflow: hidden;	
+	display: block;
+ 	width: 150px;
+  	white-space: nowrap;	  
+	  
+}
+
+.cs-working-hour {
+	font-size: 14px;
+	color: #888888;
+}
+
+.icon-setting {
+	object-fit: cover;
+    width: 15px;
+    padding-bottom: 3px;
+}
+
+.button-topup {
+	color: white;
+    font-size: 16px;
+    padding: 3px 5px 5px 5px;
+    border-radius: 20px;
+    background-color: #619dff;
+    width: 90px;
+    margin: 5px 5px 5px 5px;
+}
+
+.button-topup a {
+	color: white;
+}
+
+.topup-redeem {
+	display: -webkit-inline-box;
+    align-content: center;
+    padding: 5px 0 15px 0;
+}
+
+.button-setting {
+	float: right;
+    color: #bb8b4c;
+    font-size: 16px;
+    padding: 3px 0px 3px 10px;
+    border-radius: 20px;
+    background-color: #ffefda;
+    width: 70px;
+    margin: 0 5px 0 5px;
+    background: rgba(255,255,255,0.5);
+}
+
+.icon-redeemtion {
+	height: 20px;
+    padding-bottom: 2px;
+}
+
+.icon-topup {
+	height: 20px;
+    padding-bottom: 2px;
+}

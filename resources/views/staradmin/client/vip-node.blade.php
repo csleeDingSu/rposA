@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/game-node-vip.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/wheel-new-vip.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css') }}" />
 	<link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}">
 
@@ -42,10 +42,11 @@
 					<div class="balance-banner">
 						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0</span>元
+							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
 						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+											
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -56,7 +57,7 @@
 					<!-- <a href="/arcade"> -->
 						<!--div class="btn-vip"></div-->
 						<!-- <div class="btn-rules-vip">返回普通场</div> -->
-						<div class="btn-rules-vip">99%必中玩法</div>
+						<div class="btn-rules-vip"><img src="{{ asset('/client/images/wheel/money.png') }}" />玩法介绍</div>
 					<!-- </a> -->
 					<div style="clear:both"></div>
 				</div>
@@ -87,9 +88,11 @@
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
+			<input id='justlogin' type="hidden" value="{{Session::get('justlogin')}}" />			
 	  	</div>
 
 	</div>
+
 	<!-- end information table -->
 
 	<!--h2 class="strikethrough"><span>已抽奖<div class="span-play-count">0</div>次</span></h2-->
@@ -259,7 +262,7 @@
 						</div>						
 					</div>
 				</div>
-				<div id="txtCounter" class="middle-label">选择单双</div>
+				<div id="txtCounter" class="middle-label"></div>
 				<div class="DB_G_hand start-game"></div>
 		    </div>
 		</div>
@@ -814,18 +817,19 @@
 	<div class="modal fade col-md-12" id="win-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-				<div class="packet-title">恭喜您猜对了</div>
-				<div class="modal-body" style="padding:10px !important;">
+				<div class="modal-body">
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="instructions">
-									您已赢到6元
-								</div>
+								<div class="packet-title">抽中金币</div>
+								<div class="packet-value">6</div>
 								<div class="close-win-modal modal-redeem-button btn-red-packet">
 									确认领取
 								</div>
+								<div class="instructions">
+									您已抽中6金币
+								</div>
+								
 							</div>
 						</div>
 					</div>							
@@ -840,18 +844,15 @@
 
 	<div class="modal fade col-md-12" id="lose-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-title modal-win-header">
-				<div class="modal-win-title">很遗憾猜错了</div>		
-			</div>
-
 			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<div class="modal-instruction">您还剩余50元，继续加油哦</div>
+								<div class="modal-win-title">好可惜！差点就中了!</div>
+								<div class="modal-instruction">这局亏了50元，继续加油哦</div>
 								<div class="close-win-modal modal-redeem-button">
-									继续抽奖
+									再抽一次
 								</div>												
 							</div>
 						</div>
@@ -987,9 +988,11 @@
 							<div class="instructions2">VIP专场需满120金币</div>
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
-							<a href="/purchasepoint">
+
+							<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
 								<div class="btn-purchase-point">立刻充值</div>
 							</a>
+
 						</div>
 						<div class="vip-title">
 							<img src="{{ asset('/client/images/vip/left_deco.png') }}" width="18px" height="13px" /> VIP专场特权 <img src="{{ asset('/client/images/vip/right_deco.png') }}" width="18px" height="13px" />
@@ -1012,10 +1015,135 @@
 <!-- insufficient point modal -->
 <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
 	<div class="modal-dialog modal-lg">
-		<div class="insufficient-point">金币不足，无法兑换</div>					
+		<div class="insufficient-point">金币不足 请充值</div>					
 	</div>
 </div>
 <!-- insufficient point modal Ends -->
+
+<!-- haven't login start modal -->
+<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="nologin-bg">
+			<div class="instructions"><span class="highlight">无限制抽奖</span> 任你抽到爽</div>
+			<div class="instructions"><span class="highlight">卡券奖品</span> 拿到手软</div>
+			<div class="instructions"><span class="highlight">100%随机</span> 绝无作弊</div>			
+			<a href="/nlogin">
+				<div class="btn-login"></div>
+			</a>
+		</div>		
+	</div>
+</div>
+<!-- haven't login modal Ends-->
+<div class="openForm">
+	<div class="formTitle">玩法介绍</div>
+	<div class="formBody">
+		这是个可设置金币的自助抽奖平台，每次50%抽中概率，如何提
+		高抽中概率？可以用倍增法，看如下：<br />
+		第一局设1金币，没抽中。<br />
+		第二局设3金币，没抽中。<br />
+		第三局设8金币，抽中了。<br />
+		这就是倍增法：当你没抽中的时候，就设定更多的金币，<br />
+		像案例里的<span class="highlight1">第三局抽中赚了15.68金币</span>，扣除<span class="highlight2">三局投入的11金币</span>，<br />
+		最终<span class="highlight3">赚到4.68金币</span>。
+	</div>
+	<div class="formTableTitle">可以参考以下的倍增表格：</div>
+
+	<table class="formTable">
+	  <tr>
+	    <th>次数</th>
+	    <th>本次投入</th>
+	    <th>总投入</th>
+	    <th>抽中金币</th>
+	    <th>概率</th>
+	    <th>最终赚到</th>
+	  </tr>
+	  <tr>
+	    <td>1</td>
+	    <td>1</td>
+	    <td>1</td>
+	    <td>1.96</td>
+	    <td>50%</td>
+	    <td>0.96</td>
+	  </tr>
+	  <tr>
+	    <td>2</td>
+	    <td>3</td>
+	    <td>4</td>
+	    <td>5.88</td>
+	    <td>70%</td>
+	    <td>1.88</td>
+	  </tr>
+	  <tr>
+	    <td>3</td>
+	    <td>8</td>
+	    <td>11</td>
+	    <td>15.68</td>
+	    <td>87.50%</td>
+	    <td>4.68</td>
+	  </tr>
+	  <tr>
+	    <td>4</td>
+	    <td>18</td>
+	    <td>30</td>
+	    <td>35.28</td>
+	    <td>93.75%</td>
+	    <td>5.28</td>
+	  </tr>
+	  <tr>
+	    <td>5</td>
+	    <td>38</td>
+	    <td class="suggestion"><strong>68</strong><img src="/client/images/vip/label_suggestion.png" /></td>
+	    <td>174.48</td>
+	    <td>96.87%</td>
+	    <td>6.48</td>
+	  </tr>
+	  <tr>
+	    <td>6</td>
+	    <td>80</td>
+	    <td>148</td>
+	    <td>156.8</td>
+	    <td>98.43%</td>
+	    <td>8.8</td>
+	  </tr>
+	</table>
+</div>
+
+<!-- is newbie start modal -->
+<div class="modal fade col-md-12" id="modal-isnewbie" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="newbie">
+			<img class="newbie-bg" src="{{ asset('/client/images/newbie-bg.png') }}">
+			<div class="introduction-bg">
+				<p class="title">
+				倍增投入，抽中机率高达98%
+				</p>
+				<div class="introduction-bet">
+	                <div class="circle">1<br><span class="txt">起步</span></div>
+	                <div class="line-connect"></div>
+	                <div class="circle">3<br><span class="txt">加倍</span></div>
+	                <div class="line-connect"></div>
+	                <div class="circle">8<br><span class="txt">加倍</span></div>
+	                <div class="line-connect"></div>
+	                <div class="circle">18<br><span class="txt">加倍</span></div>
+	                <div class="line-connect"></div>
+	                <div class="circle">38<br><span class="txt">加倍</span></div>
+	            </div>
+	            <br>
+				<div class="instructions1"><p>68金币分5次抽奖，从1起步，不中下局加倍3，不中下局加倍8，不中下局加倍18，不中最后加倍38.</p></div>
+				<div class="instructions2"><p>利用倍增原理，5次内抽中概率超高！ <u>点击详情></u></p></div>
+			</div>
+			<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+				<div class="btn-topup">立即充值</div>
+			</a>
+			<div class="btn-close-bg">
+				<a href="#" onClick="$('#modal-isnewbie').modal('hide');">
+					<img class="btn-close" src="{{ asset('/client/images/newbie_close.png') }}">
+				</a>
+			</div>
+		</div>	
+	</div>
+</div>
+<!-- is newbie modal Ends-->
 
 	@parent
 	
@@ -1044,8 +1172,6 @@
 			        return orig.apply(this, arguments);
 			    }
 			})();
-
-    $('.modal-minimum-wallet').modal('show');
 
 		$(document).ready(function () {
 
@@ -1082,17 +1208,36 @@
 		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
 		    });
 
-		    $('.btn-rules-vip').click( function() {
-		        $('#modal-sure-win').modal();
-		    });
-
 		    $('.button-info').click( function() {
 		        $('#modal-sure-win').modal();
 		    });
 
-			if (user_id <= 0) {
-				openmodel();
-			}			
+            $(".btn-rules-vip").click(() => {  
+                being.wrapShow();
+                $(".openForm").slideDown(150);
+                $(".wrapBox ").click(function (e) {
+                  being.wrapHide();
+                  $(".openForm").slideUp(150);
+                });
+              });
+
+            $(".instructions2").click(() => {  
+            	$('#modal-isnewbie').modal('hide');
+	            being.wrapShow();
+	            $(".openForm").slideDown(150);
+	            $(".wrapBox ").click(function (e) {
+	              being.wrapHide();
+	              $(".openForm").slideUp(150);
+	            });
+	          });
+            
+        	$(".btn-redeemcash").click(() => {
+        		if (user_id > 0) {
+	            	$('#modal-isnewbie').modal('show');
+	            } else {
+	            	$('#modal-no-login').modal('show');
+	            }
+            });
 		});
 
 	</script>
@@ -1100,7 +1245,3 @@
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/vip-node.js') }}"></script>
 @endsection
-
-<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
-
-	@include('client.intromodel')

@@ -264,6 +264,10 @@ class BasicPackage extends Model
 	
 	public static function check_vip_status($memberid)
 	{
+		//no special check requirement
+		return ['eligible_to_enter'=>'true','debug_'=>['no_requirement']];
+		
+		//check requirement		
 		$eligible_to_enter = FALSE;
 		$basic_count       = [];
 		$vip_count         = [];
@@ -308,6 +312,7 @@ class BasicPackage extends Model
 					$trueon[] = 'ito_count';
 				}
 			}
+			/*
 			//bet require minimum 120 point in wallet
 			if ($ledger)
 			{
@@ -317,6 +322,7 @@ class BasicPackage extends Model
 					$trueon[] = 'ledger';
 				}
 			}
+			*/
 			if ($eligible_to_enter == TRUE)
 			{
 				$eligible_to_enter = 'true';

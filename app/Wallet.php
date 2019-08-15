@@ -21,6 +21,23 @@ class Wallet extends Model
 	protected $table_history = 'ledger_history';
 	
 	
+	//update source ref id
+	public static function add_ledger_ref($data)
+	{
+		if (empty($data['refid']))
+		{	
+			return FALSE;			
+		}
+		
+		$id     = $data['refid'];
+		$data   = [ 'ref_id'=>$data['id'], 'ref_type'=>$data['type'] ];		 
+		$ledger = DB::table('ledger_history')
+					   ->where('id', $id)
+					   ->update($data );
+		return TRUE;
+	}
+	
+	
 	public static function get_wallet_details($memberid)
 	{		
 		
@@ -224,7 +241,7 @@ class Wallet extends Model
 				$history = self::add_ledger_history($history);
 			}	
 			event(new \App\Events\EventWalletUpdate($memberid));
-			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint];		
+			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint,'refid'=>$history];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
 	}

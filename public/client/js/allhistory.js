@@ -16,14 +16,6 @@ function getToken(){
         if(data.success) {
             getPosts(page, data.access_token, type);
             scrollBottom(data.access_token);
-
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                page = 1;
-                page_count = 1;
-                type = $(e.target).attr('data-type');
-                getPosts(page, data.access_token, type);
-                scrollBottom(data.access_token);
-            });
         }     
     });
 }
@@ -71,8 +63,22 @@ function getPosts(page, token, type){
                 $('#' + type + '-history').append(html);
             }
 
-            if(current_page == last_page){
-                $(".isnext").html(end_of_result);
+            if ((data.records.data == '' || data.records.data == null) && current_page == 1) {
+                $(".isnext").html('');
+            } else {
+
+                var empty = html.match("empty");
+                if(current_page == last_page){
+                    if (empty == '' || empty == null) {
+
+                        $(".isnext").html(end_of_result); 
+
+                    }else{
+                       $(".isnext").html('');    
+                    }
+                    
+                }
+
             }
 
             page++;
@@ -143,11 +149,12 @@ function showBettingHistory(response) {
     page_count++;
 
      if(length === 0){
-        var history =   '<div class="row">' +
-                            '<div class="col-xs-12">' +
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' +
-                            '</div>' +
-                        '</div>';
+        var history =  '<div class="row-full">' + 
+                    '<div class="col-xs-12">' + 
+                        '<div class="empty">你还没挖宝<br><a href="/arcade" class="share-link">去挖宝></a></div>' + 
+                    '</div>' + 
+                '</div>';
+
 
     } else {
         //console.log(results);
@@ -182,7 +189,7 @@ function showBettingHistory(response) {
             // if(winCount) {
             //     points = Math.round(bvalue.bet_amount);
             // }
-            points = Math.round(bvalue.bet_amount/10);
+            points = Math.round(bvalue.bet_amount);
 
 
                 var wallet_point = parseInt(bvalue.wallet_point);
