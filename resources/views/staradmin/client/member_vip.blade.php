@@ -386,7 +386,8 @@
 			});
 
 			$('#csBtn').click(function () {
-				$('#csModal').modal();
+				// $('#csModal').modal();
+				window.location.href = "http://api2.pop800.com/web800/c.do?l=cn&type=0&n=569521&w=0";
 			});
 	
 		});	
