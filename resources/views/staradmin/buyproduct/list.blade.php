@@ -206,7 +206,7 @@ $('#formadd').on('submit', function(event){
 				swal({  icon: "error", type: 'error',  title: '@lang("dingsu.error")!',text: '@lang("dingsu.try_again")', confirmButtonText: '@lang("dingsu.okay")'});
 			}
 		} );
-	}
+	} );
 
 	
 	
