@@ -16,7 +16,7 @@
 							<div class="form-group row">
 								<label for="name" class="col-sm-3 col-form-label">@lang('dingsu.name') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
-									<input id="name" name="name" class="form-control" type="text" autofocus value="{{ old('name')}}" required>
+									<input id="name" name="name" class="form-control" type="text" autofocus value="{{ old('name')}}" >
 								</div>
 							</div>
 						</div>
@@ -24,7 +24,7 @@
 							<div class="form-group row">
 								<label for="available_quantity" class="col-sm-3 col-form-label">@lang('dingsu.available_quantity') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
-									<input id="available_quantity" name="available_quantity" class="form-control" type="text" autofocus value="{{ old('available_quantity')}}" required>
+									<input id="available_quantity" name="available_quantity" class="form-control" type="text" autofocus value="{{ old('available_quantity')}}" >
 								</div>
 							</div>
 						</div>
@@ -35,7 +35,7 @@
 							<div class="form-group row">
 								<label for="price" class="col-sm-3 col-form-label">@lang('dingsu.price') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
-									<input id="price" name="price" class="form-control" type="text" value="{{ old('price')}}" required maxlength="5"> 
+									<input id="price" name="price" class="form-control" type="text" value="{{ old('price')}}"  maxlength="5"> 
 								</div>
 							</div>
 						</div>
@@ -43,7 +43,7 @@
 							<div class="form-group row">
 								<label for="point_to_redeem" class="col-sm-3 col-form-label">@lang('dingsu.buy_price')  <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
-									<input id="point_to_redeem" name="point_to_redeem" class="form-control" type="text" value="{{ old('point_to_redeem')}}" required maxlength="10">
+									<input id="point_to_redeem" name="point_to_redeem" class="form-control" type="text" value="{{ old('point_to_redeem')}}"  maxlength="10">
 								</div>
 							</div>
 						</div>
@@ -58,7 +58,7 @@
 							<div class="form-group row">
 								<label for="discount_price" class="col-sm-3 col-form-label">@lang('dingsu.discount_price') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
-									<input id="discount_price" name="discount_price" class="form-control" type="text" value="{{ old('discount_price')}}" required maxlength="5"> 
+									<input id="discount_price" name="discount_price" class="form-control" type="text" value="{{ old('discount_price')}}"  maxlength="5"> 
 								</div>
 							</div>
 						</div>
@@ -102,7 +102,7 @@
 							<div class="form-group row">
 								<label for="picture_url" class="col-sm-3 col-form-label">@lang('dingsu.vip_package_image_url')  <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
-									<input id="picture_url" name="picture_url" class="form-control" type="text" required value="{{ old('picture_url')}}" >
+									<input id="picture_url" name="picture_url" class="form-control" type="text"  value="{{ old('picture_url')}}" >
 								</div>
 							</div>
 						</div>
