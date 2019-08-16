@@ -7,6 +7,7 @@ $(document).ready(function () {
     });
 
     $('.btn-confirm').click(function(){
+        $(this).attr("disabled", true);
         purchase();
     });
 
