@@ -1140,11 +1140,11 @@
 	                <div class="circle">38<br><span class="txt">加倍</span></div>
 	            </div>
 			</div>
-			<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+			<a  href="#" onclick="show_openform();">
 				<div class="btn-topup">点击了解详情</div>
 			</a>
 			<div class="btn-close-bg">
-				<a href="#" onClick="{{$wbp}}{{env('TOPUP_URL','#')}}">
+				<a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
 					无需了解 去充值金币 >
 				</a>
 			</div>
@@ -1238,16 +1238,19 @@
 	              $(".openForm").slideUp(150);
 	            });
 	          });
-
-        	// $(".btn-calculate-vip").click(() => {
-        	// 	if (user_id > 0) {
-	        //     	$('#modal-isnewbie').modal('show');
-	        //     	// window.location.href = "{{$wbp}}{{env('TOPUP_URL','#')}}";
-	        //     } else {
-	        //     	$('#modal-no-login').modal('show');
-	        //     }
-         //    });
+        	
 		});
+
+		function show_openform() { 
+			$('#modal-isnewbie').modal('hide');
+            being.wrapShow();
+            $(".openForm").slideDown(150);
+            $(".wrapBox ").click(function (e) {
+              being.wrapHide();
+              $(".openForm").slideUp(150);
+            });
+		}
+
 
 	</script>
 
