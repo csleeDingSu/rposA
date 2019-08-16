@@ -122,6 +122,7 @@ function openmodel() {
 		$('#mode').val('create');
 		$( '#validation-errors' ).html( '' );
 		$('#package_type').attr("disabled", false);
+		$('.imga, .imgdiv').hide();
 		$( '#openaddmodel' ).modal( 'show' );
 	}
 
@@ -239,6 +240,15 @@ function openmodel() {
 								$('#available_quantity').val(data.available_quantity);
 								$('#discount_price').val(data.discount_price);
 								$('#hidden_void').val(id);
+								
+								var appUrl =data.picture_url;
+								
+								$('.imga').data("id", id);
+								$('.imgdiv img').attr('src', appUrl);
+								$('.imga, .imgdiv').hide();				
+								if (data.picture_url)	{ 
+									$('.imga, .imgdiv').show();									
+								}
 								
 								$("#savebtn").html('@lang("dingsu.update")');								
 								$('#openaddmodel').modal('show');

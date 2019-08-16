@@ -45,7 +45,13 @@
 							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+						@if (isset(Auth::Guard('member')->user()->id))
+							<a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+						@else
+							<a href="#" onClick="$('#modal-no-login').modal('show');">
+						@endif						
+							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+						</a>
 											
 					</div>
 				</div>
@@ -1038,12 +1044,12 @@
 	<div class="formWrapper">
 	<div class="formTitle">玩法介绍</div>
 	<div class="formBody">
-		这是一个自助式抽奖平台，需自选单双和投入金币，1金币能抽中1.96金币。每次有50%中奖概率，使用倍增法能大幅提高中奖概率，倍增法说明：<br />
-		第一局投入1金币，没抽中。<br />
-		第二局投入3金币，又没抽中。<br />
-		第三局投入8金币，抽中了。<br />
-		当第三局抽中<span class="highlight1">赚了8×1.96=15.68金币</span>，扣除投入的<span class="highlight2">成本12金币</span>，最终<span class="highlight3">赚了3.68金币</span>。<br /><br />
-		以上案例就是倍增法，当一次没抽中，下一次投入更多金币，几次内抽中就可赚金币，抽中后又从1金币开始，无限循环，具体可参考以下表格：<br /><br />
+		这是自助抽奖平台，需自选单双和投币，投1金币抽中1.96金币，50%抽中概率，使用倍增法投币能让中奖概率提高到98.43%，倍增投币法说明：<br />
+		✗第一次投入1金币，没抽中。<br />
+		✗第二次投入3金币，也没中。<br />
+		✓第三次投入8金币，抽中了。<br />
+		当第三次抽中，<span class="highlight1">能赚到8×1.96=15.68金币</span>，扣除三次<span class="highlight2">总投币12金币</span>，最终<span class="highlight3">赚了3.68金币</span>。<br /><br />
+		这就是倍增投币法，从1金币起步，没抽中就增加，抽中后又从1金币起步，不停循环赚取大量金币，更具体倍增方案可参考表格：<br /><br />
 	</div>
 
 	<table class="formTable">
@@ -1107,7 +1113,9 @@
 	</div>
 
 	<div class="btn-calculate-vip formButtonWrapper">
-		<div class="formButton">充值金币</div>
+		<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+			<div class="formButton">充值金币</div>
+		</a>
 	</div>
 </div>
 
@@ -1234,13 +1242,14 @@
 	            });
 	          });
             
-        	$(".btn-calculate-vip").click(() => {
-        		if (user_id > 0) {
-	            	$('#modal-isnewbie').modal('show');
-	            } else {
-	            	$('#modal-no-login').modal('show');
-	            }
-            });
+        	// $(".btn-calculate-vip").click(() => {
+        	// 	if (user_id > 0) {
+	        //     	$('#modal-isnewbie').modal('show');
+	        //     	// window.location.href = "{{$wbp}}{{env('TOPUP_URL','#')}}";
+	        //     } else {
+	        //     	$('#modal-no-login').modal('show');
+	        //     }
+         //    });
 		});
 
 	</script>
