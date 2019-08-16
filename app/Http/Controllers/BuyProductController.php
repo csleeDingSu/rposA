@@ -240,7 +240,7 @@ class BuyProductController extends BaseController
 				];
 		 
 		$id = BuyProduct::save_package($data);
-		*/
+		* /
 		$row = $this->render_BuyProduct($id);
 		
 		
