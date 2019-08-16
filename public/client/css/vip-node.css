@@ -578,6 +578,7 @@
 }
 
 .modal.in .modal-dialog {
+	width: 100%;
     margin: -2rem 0 0 0;
 }
 
@@ -590,30 +591,32 @@
 }
 
 .newbie-bg {
-	background-size: cover;
+	background-size: contain;
     padding: 0 0.8rem 0 0.8rem;
     text-align: center;
     position: relative;
     width: 100%;
+    height: 100%;
     margin: 2rem 0 0 0;
 }
 
 #modal-isnewbie .introduction-bg {
     background-color: #fff;
-    padding: 0.1rem 0.1rem 0.25rem 0.1rem;
-    border-radius: 10px;
+    padding: 0.15rem 0.2rem;
+    border-radius: 0.2rem;
     margin: -4.65rem 1.2rem 0.25rem 1.2rem;
     position: relative;
+    height: 2.9rem;
 }
 
 
 #modal-isnewbie .title {
     color: #683bc5;
-    font-size: 0.3rem;
-    text-align: center;
-    line-height: 20px;
+    font-size: 0.26rem;
+    line-height: 0.46rem;
     font-weight: 500;
     padding: 0.15rem;
+    text-align: left;
 }
 
 #modal-isnewbie .instructions1 {
@@ -634,13 +637,13 @@
 }
 
 #modal-isnewbie .btn-topup {
-	border-radius: 10px;
+	border-radius: 0.2rem;
     background-color: #fca703;
     padding: 0.15rem;
     color: #fff;
     text-align: center;
     font-size: 0.3rem;
-    margin: 0.35rem 1.2rem 0.85rem 1.2rem;
+    margin: 0rem 1.2rem;
     position: relative;
 }
 
@@ -648,9 +651,13 @@
    	cursor: pointer;
     text-align: center;
     padding: 0;
-    margin: 0;
-    height: 50px;
+    margin-top: 0.2rem;
+    font-size: 0.3rem;
     position: relative;
+}
+
+#modal-isnewbie .btn-close-bg a {
+	color: #fff;
 }
 
 #modal-isnewbie .btn-close {
@@ -665,36 +672,36 @@
     color: #6939da;
     background-color: #fff;
     border: 1px solid #d2bdf0;
-    height: 0.7rem;
+    height: 0.8rem;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    width: 0.7rem;
+    width: 0.8rem;
     text-align: center;
     padding: 0.12rem 0 0 0;
     font-size: 0.35rem;
-    line-height: 12px;
+    line-height: 0.24rem;
     float: left;
 }
 
 #modal-isnewbie .circle .txt{
-    font-size: 10px;
+    font-size: 0.2rem;
     color: #b193f6;
 }
 
 
 #modal-isnewbie .line-connect {
     border: 1px solid #d2bdf0;
-    height: 1px;
-    width: 5px;
+    height: 0.02rem;
+    width: 0.1rem;
     padding: 0;
     float: left;
     background-color: #d2bdf0;
-    margin-top: 22px;
+    margin-top: 0.4rem;
 }
 
 #modal-isnewbie .introduction-bet{
-    margin-left: 0.45rem;
+    margin-left: 0.1rem;
 }
 
 #modal-isnewbie {

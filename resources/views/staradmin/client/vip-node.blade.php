@@ -1126,7 +1126,7 @@
 			<img class="newbie-bg" src="{{ asset('/client/images/newbie-bg.png') }}">
 			<div class="introduction-bg">
 				<p class="title">
-				倍增投入，抽中机率高达98%
+				使用倍增式抽奖法，68金币可划分成5次自助抽奖，5次里抽中1次，抽中机率96.87%，即可无限反复抽。
 				</p>
 				<div class="introduction-bet">
 	                <div class="circle">1<br><span class="txt">起步</span></div>
@@ -1139,16 +1139,13 @@
 	                <div class="line-connect"></div>
 	                <div class="circle">38<br><span class="txt">加倍</span></div>
 	            </div>
-	            <br>
-				<div class="instructions1"><p>68金币分5次抽奖，从1起步，不中下局加倍3，不中下局加倍8，不中下局加倍18，不中最后加倍38.</p></div>
-				<div class="instructions2"><p>利用倍增原理，5次内抽中概率超高！ <u>点击详情></u></p></div>
 			</div>
 			<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
-				<div class="btn-topup">立即充值</div>
+				<div class="btn-topup">点击了解详情</div>
 			</a>
 			<div class="btn-close-bg">
-				<a href="#" onClick="$('#modal-isnewbie').modal('hide');">
-					<img class="btn-close" src="{{ asset('/client/images/newbie_close.png') }}">
+				<a href="#" onClick="{{$wbp}}{{env('TOPUP_URL','#')}}">
+					无需了解 去充值金币 >
 				</a>
 			</div>
 		</div>	
@@ -1241,7 +1238,7 @@
 	              $(".openForm").slideUp(150);
 	            });
 	          });
-            
+
         	// $(".btn-calculate-vip").click(() => {
         	// 	if (user_id > 0) {
 	        //     	$('#modal-isnewbie').modal('show');
