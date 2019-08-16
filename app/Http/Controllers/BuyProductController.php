@@ -127,7 +127,7 @@ class BuyProductController extends BaseController
 		$product = new Buyproduct();
 		$product->exists = true;
 		$product->id = $id;
-		$product->fill($input);
+		$product->fill($request->all());
 		
 		$image = $request->file('product_image');
 		if ($image)
@@ -171,7 +171,7 @@ class BuyProductController extends BaseController
 		}
 		
 		$product = new Buyproduct();
-		$product->fill($input);
+		$product->fill($request->all());
 		
 		$image = $request->file('product_image');
 		if ($image)
