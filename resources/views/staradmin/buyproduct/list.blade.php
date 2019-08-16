@@ -126,8 +126,16 @@ function openmodel() {
 		$( '#openaddmodel' ).modal( 'show' );
 	}
 
-	function addproduct() {
-		var datav = $( "#formadd" ).serialize();
+$('#formadd').on('submit', function(event){
+		event.preventDefault();
+		var image = $('#product_image')[0].files[0];
+		
+		var formData = new FormData();
+	
+		formData.append('image', image);
+		formData.append('_token', "{{ csrf_token() }}");
+	
+		
 		$( '#validation-errors' ).html( '' );
 		swal( {
 			title: '@lang("dingsu.please_wait")',
@@ -142,12 +150,14 @@ function openmodel() {
 		} )
 		$.ajax( {
 			url: "{{route('buyproduct_save')}}",
-			type: 'post',
-			dataType: "json",
-			data: {
-				_token: "{{ csrf_token() }}",
-				_data: datav,
-			},
+			dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST', 
+            data:new FormData(this),
+            cache : false, 
+            processData: false,
 			success: function ( result ) {
 				if ( result.success != true ) {
 
@@ -201,8 +211,12 @@ function openmodel() {
 	
 	
 	$(".listtable").on("click",".editrow", function(){
-			var id=$(this).data('id');
+		var id=$(this).data('id');
+		$('#formadd')[0].reset();
 		$( '#validation-errors' ).html( '' );
+		$('.imga, .imgdiv').hide();
+		
+			
 			swal( {
 				title: '@lang("dingsu.please_wait")',
 				text: '@lang("dingsu.fetching_data")..',
