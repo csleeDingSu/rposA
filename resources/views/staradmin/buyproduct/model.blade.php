@@ -1,5 +1,5 @@
 <!-- Modal starts -->
-<form class="form-sample" name="formadd" id="formadd" action="" method="post" autocomplete="on">
+<form class="form-sample" name="formadd" id="formadd" action="" method="post" autocomplete="on" enctype="multipart/form-data">
 	<div class="modal fade" id="openaddmodel" tabindex="-1" role="dialog" aria-labelledby="openaddmodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
@@ -119,10 +119,33 @@
 					</div>
 					
 					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="product_image" class="col-sm-3 col-form-label">@lang('dingsu.image') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<input id="product_image" name="product_image" class="form-control" type="file" >
+									
+									<a href="javascript:void(0)" data-id = "" class="imga btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-close  "></i></a>
+							  
+									  <div class="imgdiv" style="width: 200px; height: 180px">
+									  <img src="" width="300px" height="280px"></img>
+
+									  </div>
+								
+								
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+					
+					
 					
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-success" id="savebtn" onclick="return addproduct();return false;">@lang('dingsu.add')</button>
+					<button type="submit" class="btn btn-success" id="savebtn" >@lang('dingsu.add')</button>
 					<button type="button" class="btn btn-dark" data-dismiss="modal">@lang('dingsu.cancel')</button>
 				</div>
 				<input type="hidden" name="hidden_void" id="hidden_void" value="">
