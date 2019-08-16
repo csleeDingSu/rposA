@@ -122,11 +122,20 @@ function openmodel() {
 		$('#mode').val('create');
 		$( '#validation-errors' ).html( '' );
 		$('#package_type').attr("disabled", false);
+		$('.imga, .imgdiv').hide();
 		$( '#openaddmodel' ).modal( 'show' );
 	}
 
-	function addproduct() {
-		var datav = $( "#formadd" ).serialize();
+$('#formadd').on('submit', function(event){
+		event.preventDefault();
+		var image = $('#product_image')[0].files[0];
+		
+		var formData = new FormData();
+	
+		formData.append('image', image);
+		formData.append('_token', "{{ csrf_token() }}");
+	
+		
 		$( '#validation-errors' ).html( '' );
 		swal( {
 			title: '@lang("dingsu.please_wait")',
@@ -141,12 +150,14 @@ function openmodel() {
 		} )
 		$.ajax( {
 			url: "{{route('buyproduct_save')}}",
-			type: 'post',
-			dataType: "json",
-			data: {
-				_token: "{{ csrf_token() }}",
-				_data: datav,
-			},
+			dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST', 
+            data:new FormData(this),
+            cache : false, 
+            processData: false,
 			success: function ( result ) {
 				if ( result.success != true ) {
 
@@ -195,13 +206,17 @@ function openmodel() {
 				swal({  icon: "error", type: 'error',  title: '@lang("dingsu.error")!',text: '@lang("dingsu.try_again")', confirmButtonText: '@lang("dingsu.okay")'});
 			}
 		} );
-	}
+	} );
 
 	
 	
 	$(".listtable").on("click",".editrow", function(){
-			var id=$(this).data('id');
+		var id=$(this).data('id');
+		$('#formadd')[0].reset();
 		$( '#validation-errors' ).html( '' );
+		$('.imga, .imgdiv').hide();
+		
+			
 			swal( {
 				title: '@lang("dingsu.please_wait")',
 				text: '@lang("dingsu.fetching_data")..',
@@ -239,6 +254,15 @@ function openmodel() {
 								$('#available_quantity').val(data.available_quantity);
 								$('#discount_price').val(data.discount_price);
 								$('#hidden_void').val(id);
+								
+								var appUrl =data.picture_url;
+								
+								$('.imga').data("id", id);
+								$('.imgdiv img').attr('src', appUrl);
+								$('.imga, .imgdiv').hide();				
+								if (data.picture_url)	{ 
+									$('.imga, .imgdiv').show();									
+								}
 								
 								$("#savebtn").html('@lang("dingsu.update")');								
 								$('#openaddmodel').modal('show');

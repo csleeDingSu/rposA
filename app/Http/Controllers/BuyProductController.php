@@ -68,6 +68,7 @@ class BuyProductController extends BaseController
 		return view('main', $data);	
 	}
 	
+	/*
 	public function updateproduct($input)
     {
 		$id = $input['hidden_void'];
@@ -95,6 +96,102 @@ class BuyProductController extends BaseController
 		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$row]);
 	}
 	
+	*/
+		
+	public function updateproduct($request)
+    {
+		$id = $request->hidden_void;
+		
+		$input = [
+					'name'   => $request->name, 			 
+					'discount_price' =>$request->discount_price,
+					'price' =>$request->price,
+					'picture_url' =>$request->picture_url,
+					'product_image' =>$request->product_image,
+			  	 ];
+		
+		
+		$validator = Validator::make($input, [
+			'name'   => 'required|string|min:2',
+			'discount_price' => 'nullable|between:0,99999.99',
+			'price' => 'numeric|between:0,99999.99',
+			'picture_url' => 'required_without:product_image',
+			'product_image' => 'required_without:picture_url',
+		]);
+ 
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$now = Carbon::now();
+		$product = new Buyproduct();
+		$product->exists = true;
+		$product->id = $id;
+		$product->fill($input);
+		
+		$image = $request->file('product_image');
+		if ($image)
+		{
+			$imagename = time().'.'.$image->getClientOriginalExtension();
+        	$destinationPath = public_path('product');
+        	$image->move($destinationPath, $imagename);			
+			$product->picture_url = url('/').'/product/'.$imagename;
+		}
+		$product->save();		 
+		
+		$row = $this->render_BuyProduct($product->id);
+		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$row]);
+	}	
+	
+	public function save_product(Request $request)
+    {	
+		if ($request->mode =='edit')
+		{
+			return $this->updateproduct($request);
+		}		
+		$input = [
+					'name'   => $request->name, 			 
+					'discount_price' =>$request->discount_price,
+					'price' =>$request->price,
+					'picture_url' =>$request->picture_url,
+					'product_image' =>$request->product_image,
+			  	 ];
+				
+		$validator = Validator::make($input, [
+			'name'   => 'required|string|min:2',
+			'discount_price' => 'nullable|between:0,99999.99',
+			'price' => 'numeric|between:0,99999.99',
+			'picture_url' => 'required_without:product_image',
+			'product_image' => 'required_without:picture_url',
+			
+		]);
+ 
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()]);
+		}
+		
+		$product = new Buyproduct();
+		$product->fill($input);
+		
+		$image = $request->file('product_image');
+		if ($image)
+		{
+			$imagename = time().'.'.$image->getClientOriginalExtension();
+        	$destinationPath = public_path('product');
+        	$image->move($destinationPath, $imagename);
+			$product->picture_url = url('/').'/product/'.$imagename;
+		}		
+		$now  = Carbon::now();
+		$product->save();
+		
+		$id = $product->id;
+		
+		$row = $this->render_BuyProduct($id);		
+		
+		return response()->json(['success' => true, 'message' => trans('dingsu.new_package_success_message'),'record'=>$row]);
+	}
+	
+	/*
 	public function save_product(Request $request)
     {
 		$input = array();		
@@ -143,13 +240,13 @@ class BuyProductController extends BaseController
 				];
 		 
 		$id = BuyProduct::save_package($data);
-		*/
+		* /
 		$row = $this->render_BuyProduct($id);
 		
 		
 		return response()->json(['success' => true, 'message' => trans('dingsu.new_package_success_message'),'record'=>$row]);
 	}
-	
+	*/
 	public function getBuyProduct(Request $request)
 	{
 		$id = $request->id;

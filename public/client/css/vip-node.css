@@ -475,7 +475,11 @@
 	z-index: 200;
 	width: 100%;
 	left: 0;
-	padding: 0.3rem;
+	padding-top: 0.3rem;
+}
+
+.formWrapper{
+	padding: 0 0.3rem;
 }
 
 .formTitle{
@@ -528,12 +532,29 @@
 }
 
 .formTable th {
-	background-color: #618eff;
+	background-color: #999;
 	color: #fff;
 }
 
 .formTable tr:nth-child(odd) {
   background-color: #f4f4f4;
+}
+
+.formButtonWrapper {
+	padding: 0.3rem 0.3rem 0 0.3rem;
+}
+
+.formButton{
+	background-image: linear-gradient(to right, #24a6f1 , #0084ff);
+	height: 0.98rem;
+	border-radius: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-size: 0.36rem;
+	cursor: pointer;
+	margin: 0 0 0.3rem 0;
 }
 
 .openForm td:last-child {

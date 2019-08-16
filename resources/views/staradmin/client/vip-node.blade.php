@@ -45,7 +45,13 @@
 							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+						@if (isset(Auth::Guard('member')->user()->id))
+							<a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+						@else
+							<a href="#" onClick="$('#modal-no-login').modal('show');">
+						@endif						
+							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+						</a>
 											
 					</div>
 				</div>
@@ -1035,18 +1041,16 @@
 </div>
 <!-- haven't login modal Ends-->
 <div class="openForm">
+	<div class="formWrapper">
 	<div class="formTitle">玩法介绍</div>
 	<div class="formBody">
-		这是个可设置金币的自助抽奖平台，每次50%抽中概率，如何提
-		高抽中概率？可以用倍增法，看如下：<br />
-		第一局设1金币，没抽中。<br />
-		第二局设3金币，没抽中。<br />
-		第三局设8金币，抽中了。<br />
-		这就是倍增法：当你没抽中的时候，就设定更多的金币，<br />
-		像案例里的<span class="highlight1">第三局抽中赚了15.68金币</span>，扣除<span class="highlight2">三局投入的11金币</span>，<br />
-		最终<span class="highlight3">赚到4.68金币</span>。
+		这是自助式抽奖，需自选单双和投入金币，投1金币可抽1.96金币，50%中奖率，使用倍增投币法能让中奖率提高到98%,<span class="highlight1">倍增投币法说明：</span><br />
+		✗第一次投入1金币，没抽中。<br />
+		✗第二次投入3金币，也没中。<br />
+		✓第三次投入8金币，抽中了。<br />
+		当第三次抽中，<span class="highlight1">能赚到8×1.96=15.68金币</span>，扣除三次<span class="highlight2">总投币12金币</span>，最终<span class="highlight3">赚了3.68金币</span>。<br /><br />
+		这就是倍增投币法，从1金币起步，没抽中就增加，抽中后又从1金币起步，不停循环赚取大量金币，更具体倍增方案可参考表格：<br />
 	</div>
-	<div class="formTableTitle">可以参考以下的倍增表格：</div>
 
 	<table class="formTable">
 	  <tr>
@@ -1076,10 +1080,10 @@
 	  <tr>
 	    <td>3</td>
 	    <td>8</td>
-	    <td>11</td>
+	    <td>12</td>
 	    <td>15.68</td>
 	    <td>87.50%</td>
-	    <td>4.68</td>
+	    <td>3.68</td>
 	  </tr>
 	  <tr>
 	    <td>4</td>
@@ -1106,6 +1110,13 @@
 	    <td>8.8</td>
 	  </tr>
 	</table>
+	</div>
+
+	<div class="btn-calculate-vip formButtonWrapper">
+		<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+			<div class="formButton">充值金币</div>
+		</a>
+	</div>
 </div>
 
 <!-- is newbie start modal -->
@@ -1231,13 +1242,14 @@
 	            });
 	          });
             
-        	$(".btn-redeemcash").click(() => {
-        		if (user_id > 0) {
-	            	$('#modal-isnewbie').modal('show');
-	            } else {
-	            	$('#modal-no-login').modal('show');
-	            }
-            });
+        	// $(".btn-calculate-vip").click(() => {
+        	// 	if (user_id > 0) {
+	        //     	$('#modal-isnewbie').modal('show');
+	        //     	// window.location.href = "{{$wbp}}{{env('TOPUP_URL','#')}}";
+	        //     } else {
+	        //     	$('#modal-no-login').modal('show');
+	        //     }
+         //    });
 		});
 
 	</script>
