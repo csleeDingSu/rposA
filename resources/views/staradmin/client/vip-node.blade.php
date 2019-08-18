@@ -1126,7 +1126,7 @@
 			<img class="newbie-bg" src="{{ asset('/client/images/newbie-bg.png') }}">
 			<div class="introduction-bg">
 				<p class="title">
-					使用<span class="txt-bold">倍增投币法</span>，68金币可投币5次，5次抽中1次的概率高达96.87%，超高中奖率让你抽到手软，点击下方按钮了解详细。
+					采用<span class="txt-bold">倍增投币法</span>，68金币可投币5次，每5次中1次就能不停抽奖，中奖率高达96.84%
 				</p>
 				<div class="introduction-bet">
 	                <div class="circle">1<br><span class="txt">起步</span></div>

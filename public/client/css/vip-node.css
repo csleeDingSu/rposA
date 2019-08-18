@@ -602,7 +602,7 @@
 
 #modal-isnewbie .introduction-bg {
     background-color: #fff;
-    padding: 0.15rem 0.03rem 0 0.03rem;
+    padding: 0.15rem 0.2rem;
     border-radius: 0.2rem;
     margin: -4.65rem 1.2rem 0.25rem 1.2rem;
     position: relative;
@@ -695,7 +695,7 @@
 }
 
 #modal-isnewbie .introduction-bet{
-    margin-left: 0.3rem;
+    margin-left: 0.1rem;
 }
 
 #modal-isnewbie {
