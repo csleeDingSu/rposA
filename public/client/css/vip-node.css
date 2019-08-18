@@ -602,7 +602,7 @@
 
 #modal-isnewbie .introduction-bg {
     background-color: #fff;
-    padding: 0.15rem 0.2rem;
+    padding: 0.15rem 0.03rem 0 0.03rem;
     border-radius: 0.2rem;
     margin: -4.65rem 1.2rem 0.25rem 1.2rem;
     position: relative;
@@ -619,20 +619,14 @@
     text-align: left;
 }
 
-#modal-isnewbie .instructions1 {
-	color: #888888;
-    padding: 0 0.2rem 0 0.2rem;
-    font-size: 0.2rem;
-    line-height: 20px;
-    text-align: left;
-    margin: 0.55rem 0 0 0;
-}
-
-#modal-isnewbie .instructions2 {
-	color: #ef8717;
-    padding: 0 0.2rem 0 0.2rem;
-    font-size: 0.2rem;
-    line-height: 20px;
+#modal-isnewbie .title .txt-bold {
+	float: none;
+    font-weight: bold;
+    color: #683bc5;
+    padding: 0;
+    color: #683bc5;
+    font-size: 0.26rem;
+    line-height: 0.46rem;
     text-align: left;
 }
 
@@ -701,7 +695,7 @@
 }
 
 #modal-isnewbie .introduction-bet{
-    margin-left: 0.1rem;
+    margin-left: 0.3rem;
 }
 
 #modal-isnewbie {
