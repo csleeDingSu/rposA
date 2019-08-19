@@ -631,11 +631,11 @@
 #modal-isnewbie .btn-topup {
 	border-radius: 0.2rem;
     background-color: #fca703;
-    padding: 0.15rem;
+    padding: 0.1rem 0.15rem 0.15rem 0.15rem;
     color: #fff;
     text-align: center;
     font-size: 0.3rem;
-    margin: 0rem 1.2rem;
+    margin: 0.4rem 1.2rem -0.08rem 1.2rem;
     position: relative;
 }
 
