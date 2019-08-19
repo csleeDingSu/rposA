@@ -613,8 +613,8 @@
 #modal-isnewbie .title {
     color: #683bc5;
     font-size: 0.26rem;
-    line-height: 0.46rem;
-    font-weight: 500;
+    line-height: 0.4rem;
+    font-weight: 100;
     padding: 0.15rem;
     text-align: left;
 }
