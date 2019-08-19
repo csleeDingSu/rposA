@@ -43,7 +43,7 @@ html, body {
 	background: #fff;
 }
 
-.card  img {
+.redeem-background {
     width: 100%;
     height: 100%;
 }
@@ -1498,5 +1498,11 @@ textarea {
 	color: #b9b9b9;
 	text-align: left;
 	padding: 0 0 0 0.3rem;
+}
+
+.icon-newcoin {
+	width: 0.5rem;
+	height: 0.5rem;
+	margin-top: -0.35rem;
 }
 /*vip product - end*/
