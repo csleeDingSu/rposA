@@ -602,7 +602,7 @@
 
 #modal-isnewbie .introduction-bg {
     background-color: #fff;
-    padding: 0.15rem 0.2rem;
+    padding: 0.25rem 0.2rem 0 0.2rem;
     border-radius: 0.2rem;
     margin: -5.3rem 1.2rem 0.25rem 1.2rem;
     position: relative;
