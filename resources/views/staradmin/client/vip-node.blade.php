@@ -333,6 +333,7 @@
 	      <input type="hidden" class="span-bet" value="0" />
 	      	<div class="col-xs-2">
 		        <div class="bet-box">
+		        	<div class="speech-bubble-chips">可多次点击</div>
 		        	<div class="button-bet">1</div>
 		        </div>
 		    </div>
@@ -357,7 +358,8 @@
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
-		        <div class="bet-box">		        	
+		        <div class="bet-box">
+		        	<div class="speech-bubble-clear">可清除重选</div>		        	
 		        	<div class="button-bet-clear"></div>
 		        </div>
 		    </div>
