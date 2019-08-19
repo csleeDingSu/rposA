@@ -25,6 +25,7 @@
 							<tr id="tr_{{ $list->id }}">
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
+								<td>{{ $list->name }}</td>
 								<td>{{ $list->phone }}</td>
 								<td>
 									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
