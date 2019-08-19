@@ -93,8 +93,7 @@
 			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
-			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
-			<input id='justlogin' type="hidden" value="{{Session::get('justlogin')}}" />			
+			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />		
 	  	</div>
 
 	</div>
