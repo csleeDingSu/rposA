@@ -1126,7 +1126,7 @@
 			<img class="newbie-bg" src="{{ asset('/client/images/newbie-bg.png') }}">
 			<div class="introduction-bg">
 				<p class="title">
-				使用倍增式抽奖法，68金币可划分成5次自助抽奖，5次里抽中1次，抽中机率96.87%，即可无限反复抽。
+					采用<span class="txt-bold">倍增式投币法</span>，68金币可投币5次，每5次内中1次即可无限抽，中奖率高达96.84%，大量金币等你抽。
 				</p>
 				<div class="introduction-bet">
 	                <div class="circle">1<br><span class="txt">起步</span></div>

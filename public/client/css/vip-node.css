@@ -578,7 +578,7 @@
 }
 
 .modal.in .modal-dialog {
-	width: 100%;
+	/*width: 100%;*/
     margin: -2rem 0 0 0;
 }
 
@@ -619,20 +619,14 @@
     text-align: left;
 }
 
-#modal-isnewbie .instructions1 {
-	color: #888888;
-    padding: 0 0.2rem 0 0.2rem;
-    font-size: 0.2rem;
-    line-height: 20px;
-    text-align: left;
-    margin: 0.55rem 0 0 0;
-}
-
-#modal-isnewbie .instructions2 {
-	color: #ef8717;
-    padding: 0 0.2rem 0 0.2rem;
-    font-size: 0.2rem;
-    line-height: 20px;
+#modal-isnewbie .title .txt-bold {
+	float: none;
+    font-weight: bold;
+    color: #683bc5;
+    padding: 0;
+    color: #683bc5;
+    font-size: 0.26rem;
+    line-height: 0.46rem;
     text-align: left;
 }
 
