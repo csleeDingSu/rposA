@@ -21,6 +21,7 @@ var g_w_ratio = 2;
 var show_default = true;
 var g_betting_history_total = 0;
 var play_count = 0;
+var bet_count = 0;
 
 $(function () {
 
@@ -58,17 +59,17 @@ $(function () {
 });
 
 function updateResult(records){
-    var bet_count = $('#hidbetting_count').val();
+
+    var str_result = '单数';
+
+    var length = Object.keys(records).length;
+    var maxCount = 20;
+    bet_count = length;
 
     if(bet_count > 0 && (!jQuery.isEmptyObject(records[0]))){
         last_bet = records[0].bet;
         $('#hidLastBet').val(last_bet);
     }
-    
-    var str_result = '单数';
-
-    var length = Object.keys(records).length;
-    var maxCount = 20;
 
     if(length < maxCount){
         maxCount = parseInt(length);
@@ -86,6 +87,11 @@ function updateResult(records){
         $('.results-body').find('#result-' + counter).html(item.result + '<div>'+ str_result +'</div>');
 
     });
+
+    if(bet_count == 0 && g_vip_point > 0) {
+        $('.speech-bubble-chips').show();
+        $('.speech-bubble-clear').show();
+    }
 }
 
 function updateHistory(records){
@@ -478,6 +484,7 @@ function resetGame() {
     $(".span-bet").unbind('focus');
     $('.small-border').removeClass('fast-rotate');
     $('.span-bet').val(0);
+    $('.speech-bubble-clear').hide();
     previous_bet = 0;
 
     $('.shan span').hide();
@@ -664,6 +671,7 @@ function bindBetButton(){
     });
 
     $('.button-bet').click(function(){
+        $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
             // window.top.location.href = "/member";
@@ -738,6 +746,7 @@ function bindBetButton(){
     });
 
     $('.button-bet-clear').click(function(){
+        $('.speech-bubble-clear').hide();
         $('.span-bet').val(0);
         showPayout();
         previous_bet = 0;

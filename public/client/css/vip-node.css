@@ -706,3 +706,49 @@
 	width: 100%;
     margin: 0 0 0 0;
 }
+
+.speech-bubble-chips, .speech-bubble-clear{
+	position: absolute;
+	background: #ffffff;
+	border-radius: .4em;
+	color: #a657fa;
+	width: 1.5rem;
+	font-size: 0.24rem;
+	margin-top: -0.7rem;
+	padding: 0.07rem 0 0.1rem 0;
+	display: none;
+}
+
+.speech-bubble-chips:after  {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 40%;
+	width: 0;
+	height: 0;
+	border: 0.2rem solid transparent;
+	border-top-color: #ffffff;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -0.1rem;
+	margin-bottom: -0.15rem;
+}
+
+.speech-bubble-clear{
+	margin-left: -0.4rem;
+}
+
+.speech-bubble-clear:after  {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 70%;
+	width: 0;
+	height: 0;
+	border: 0.2rem solid transparent;
+	border-top-color: #ffffff;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -0.1rem;
+	margin-bottom: -0.15rem;
+}
