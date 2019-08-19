@@ -604,9 +604,9 @@
     background-color: #fff;
     padding: 0.15rem 0.2rem;
     border-radius: 0.2rem;
-    margin: -4.65rem 1.2rem 0.25rem 1.2rem;
+    margin: -5.3rem 1.2rem 0.25rem 1.2rem;
     position: relative;
-    height: 2.9rem;
+    height: 3rem;
 }
 
 
@@ -645,7 +645,7 @@
    	cursor: pointer;
     text-align: center;
     padding: 0;
-    margin-top: 0.2rem;
+    margin-top: 0.45rem;
     font-size: 0.3rem;
     position: relative;
 }
@@ -657,8 +657,8 @@
 #modal-isnewbie .btn-close {
 	cursor: pointer;
     padding: 0;
-    height: 33px;
-    width: 33px;
+    height: 0.8rem;
+    width: 0.8rem;
     margin: 0;
 }
 
@@ -702,6 +702,7 @@
 	background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
-#modal-isnewbie .modal.in .modal-dialog {
+#modal-isnewbie .modal-dialog {
+	width: 100%;
     margin: 0 0 0 0;
 }
