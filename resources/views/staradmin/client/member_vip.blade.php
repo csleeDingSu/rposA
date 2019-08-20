@@ -175,6 +175,8 @@
 						</div>					
 					</li>
 				</a>
+				<div id="foz" data-href="http://www.google.fi">Google</div>
+
 			</ul>
 		 </div>
 		<!-- end member listing -->
@@ -439,6 +441,16 @@
 	  	// return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
 	  	return parseFloat(value).toFixed(2);
 	  }
+
+	  document.getElementById("foz").addEventListener("click", function(evt) {
+		    var a = document.createElement('a');
+		    a.setAttribute("href", this.getAttribute("data-href"));
+		    a.setAttribute("target", "_blank");
+
+		    var dispatch = document.createEvent("HTMLEvents");
+		    dispatch.initEvent("click", true, true);
+		    a.dispatchEvent(dispatch);
+		}, false);
 
 	</script>
 @endsection

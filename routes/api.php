@@ -147,6 +147,8 @@ Route::group(['namespace' => 'Api'],function()
 	Route::post('/notification-mark-as-read', 'LedgerController@mark_notifications')->name('mark_notifications');
 	Route::post('/notification-mark-all-read', 'LedgerController@mark_all_notifications')->name('mark_all_notifications');
 	
+	Route::get('/get-summary', 'MemberController@get_summary')->name('get_summary');
+	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
 Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');

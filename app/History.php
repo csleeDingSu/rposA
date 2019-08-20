@@ -22,7 +22,21 @@ class History extends Model
 		return $uuid;
 	}
 	
-	
+	public static function get_summary($memberid,$type = 'buyproduct')
+	{
+		$result = \DB::table('new_summary_report');
+		
+		if ($type == 'buyproduct')
+		{
+			$result = $result->where('type','!=','basicpackage');
+		}
+		elseif($type == 'basicpackage')
+		{
+			$result = $result->where('type','!=','buyproduct');
+		}
+		$result = $result->where('mamber_id', $memberid)->get();
+		return $result;		
+	}
 }
 
 
