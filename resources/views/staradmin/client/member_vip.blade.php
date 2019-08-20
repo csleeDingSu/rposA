@@ -146,6 +146,18 @@
 						{{ trans('dingsu.logout') }}
 					</div>					
 				</li>
+
+				<a href="/test/open-new-browser/">
+					<li class="list-group-item">
+						<div class="logout">					
+							<div class="icon-wrapper">
+								<div class="icon-customer"></div>
+							</div>
+							<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+							测试浏览器打开链接
+						</div>					
+					</li>
+				</a>
 			</ul>
 		 </div>
 		<!-- end member listing -->

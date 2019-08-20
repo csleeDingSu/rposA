@@ -82,6 +82,24 @@
           -o-border-radius: 0.42rem;
         }
 
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/client/images/preloader.gif') center no-repeat;
+            background-color: rgba(255, 255, 255, 1);
+            background-size: 62px 62px;
+        }
+
+
     </style>
 
 
@@ -132,6 +150,7 @@
 
 @section('content')
 @parent
+<div class="loading" id="loading"></div>
     <div class="loginBox">
                 <div class="hd flex">                    
                     <a class="{{ empty($slug) ? 'on' : '' }}">账号登录</a>
@@ -239,6 +258,19 @@
 @section('footer-javascript')
     @parent
             <script>
+
+                document.onreadystatechange = function () {
+                  var state = document.readyState
+                  if (state == 'interactive') {
+                    document.getElementById('loginBox').style.visibility="hidden";
+                  } else if (state == 'complete') {
+                    setTimeout(function(){
+                        document.getElementById('interactive');
+                        document.getElementById('loading').style.visibility="hidden";
+                        document.getElementById('loginBox').style.visibility="visible";
+                    },100);
+                  }
+                }
 
                 if ($("#refcode").val()) {
                     $( '.loginBox .bd' ).children( '.inBox' ).eq( 1 ).fadeIn( 0 ).siblings().fadeOut( 0 ); 
