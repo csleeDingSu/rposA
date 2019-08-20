@@ -11,6 +11,35 @@ use Carbon\Carbon;
 use App\Wallet;
 class LedgerController extends Controller
 {
+	public function get_notifications(Request $request)
+	{
+		$memberid      = $request->memberid;
+		$notification  = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+		return response()->json(['success' => true, 'records' => $notification,'count'=>$notification->count()]);
+	}
+	
+	public function mark_all_notifications(Request $request)
+	{
+		$memberid      = $request->memberid;		
+		$notification  =\App\Notification::where('member_id',$memberid)->where('is_read',0)->update(['read_at' => now(),'is_read'=>1]);
+		if ($notification)
+		{
+			return response()->json(['success' => true]);
+		}		
+		return response()->json(['success' => false]);
+	}
+	
+	public function mark_notifications(Request $request)
+	{
+		$memberid      = $request->memberid;		
+		$notification  =\App\Notification::where('member_id',$memberid)->where('id',$request->id)->update(['read_at' => now(),'is_read'=>1]);
+		if ($notification)
+		{
+			return response()->json(['success' => true]);
+		}		
+		return response()->json(['success' => false]);
+	}
+	
 	public function get_wallet_detail(Request $request)
 	{
 		$memberid = $request->memberid;
