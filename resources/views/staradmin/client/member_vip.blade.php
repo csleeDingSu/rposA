@@ -62,11 +62,9 @@
 				  	</div>
 				  <br/>
 					<div class="topup-redeem">
-					  	<div class="button-topup">
-					  		<a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
-						  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />
-						  		{{ trans('dingsu.topup') }}
-						  	</a>
+					  	<div class="button-topup" id="button-topup">
+					  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />
+					  		{{ trans('dingsu.topup') }}
 					  	</div>
 					  	<div class="button-redeem redeembtn">
 							<img class="icon-redeemtion" src="{{ asset('/client/images/profile-vip/icon-redeem.png') }}" alt="{{ trans('dingsu.redeemtion') }}" />
@@ -175,7 +173,16 @@
 						</div>					
 					</li>
 				</a>
-				<div id="foz" data-href="http://www.google.fi">Google</div>
+
+				<li class="list-group-item">
+					<div class="logout">					
+						<div class="icon-wrapper">
+							<div class="icon-customer"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						<div id="foz">测试浏览器 - safari</div>
+					</div>					
+				</li>
 
 			</ul>
 		 </div>
@@ -344,6 +351,43 @@
 			var acupoint = getNumeric("<?php Print($wallet->current_life_acupoint);?>");
 			var usedpoint = getNumeric("<?php Print($usedpoint);?>");
             var previous_point = Cookies.get('previous_point');
+            var wbp = "{{$wbp['wbp']}}";
+            var platform = "{{$wbp['platform']}}";
+            var browser = "{{$wbp['browser']}}";
+            var topupurl = "{{env('TOPUP_URL','#')}}";
+            	
+        	if (platform == 'iOS') {
+  				document.getElementById("foz").addEventListener("click", function(evt) {
+				    var a = document.createElement('a');
+				    a.setAttribute("href", topupurl);
+				    a.setAttribute("target", "_blank");
+
+				    var dispatch = document.createEvent("HTMLEvents");
+				    dispatch.initEvent("click", true, true);
+				    a.dispatchEvent(dispatch);
+				}, false);
+
+				document.getElementById("button-topup").addEventListener("click", function(evt) {
+				    var a = document.createElement('a');
+				    a.setAttribute("href", topupurl);
+				    a.setAttribute("target", "_blank");
+
+				    var dispatch = document.createEvent("HTMLEvents");
+				    dispatch.initEvent("click", true, true);
+				    a.dispatchEvent(dispatch);
+				}, false);      		
+
+        	} else {
+
+				$('.button-topup').click(function(){
+					if (browser == 'Chrome') {
+						window.location.href = wbp + topupurl;
+        			} else {
+        				window.location.href = topupurl;	
+        			}
+				});
+        	}
+
             if(previous_point !== undefined && previous_point > 0){
                 previous_point = (getNumeric(previous_point));
 
@@ -363,12 +407,6 @@
             $('.wabao-acupoint').html(acupoint);
 
             $('.wabao-usedpoint').html(usedpoint);
-
-   //          $('.button-topup').click(function(){
-			// 	// window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
-			// 	// rel="external" target="_blank"
-			// 	window.open("https://j.youzan.com/tIigBi", '_system');
-			// });
 
 			$('.round').click(function(){
 				window.location.href = "/round";
@@ -441,16 +479,6 @@
 	  	// return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
 	  	return parseFloat(value).toFixed(2);
 	  }
-
-	  document.getElementById("foz").addEventListener("click", function(evt) {
-		    var a = document.createElement('a');
-		    a.setAttribute("href", this.getAttribute("data-href"));
-		    a.setAttribute("target", "_blank");
-
-		    var dispatch = document.createEvent("HTMLEvents");
-		    dispatch.initEvent("click", true, true);
-		    a.dispatchEvent(dispatch);
-		}, false);
 
 	</script>
 @endsection

@@ -52,7 +52,7 @@
                 120金币分6次抽奖，从1金币起步，不中下局加倍3金币，不中下局加倍7金币，不中下局加倍15金币。<br>以此加倍原理，6次机会，只要抽中1次就有奖励。
             </div>
             <div class="button-line">
-                <a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+                <a href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
                     <span class="btn-topup">充值120金币</span>
                 </a>
                 <a href="/vip">
@@ -81,7 +81,7 @@
                 57金币分5次抽奖，从1金币起步，不中下局加倍3金币，不中下局加倍7金币，不中下局加倍15金币。<br>以此加倍原理，5次机会，只要抽中1次就有奖励。
             </div>
             <div class="button-line">
-                <a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+                <a href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
                     <span class="btn-topup">充值57金币</span>
                 </a>
                 <a href="/vip">
@@ -108,7 +108,7 @@
                 26金币分4次抽奖，从1金币起步，不中下局加倍3金币，不中下局加倍7金币，不中下局加倍15金币。<br>以此加倍原理，4次机会，只要抽中1次就有奖励。
             </div>
             <div class="button-line">
-                <a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+                <a href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
                     <span class="btn-topup">充值26金币</span>
                 </a>
                 <a href="/vip">

@@ -87,7 +87,7 @@
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
-			<input id="topupurl" type="hidden" value="{{$wbp}}{{env('TOPUP_URL','#')}}" />	
+			<input id="topupurl" type="hidden" value="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}" />	
 	  	</div>
 
 	</div>
@@ -990,7 +990,7 @@
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
 
-							<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+							<a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
 								<div class="btn-purchase-point">立刻充值</div>
 							</a>
 
@@ -1108,7 +1108,7 @@
 	</div>
 
 	<div class="btn-calculate-vip formButtonWrapper">
-		<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+		<a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
 			<div class="formButton">充值金币</div>
 		</a>
 	</div>
@@ -1139,7 +1139,7 @@
 				<div class="btn-topup">点击了解详情</div>
 			</a>
 			<div class="btn-close-bg">
-				<a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+				<a href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
 					无需了解 去充值金币 >
 				</a>
 			</div>
