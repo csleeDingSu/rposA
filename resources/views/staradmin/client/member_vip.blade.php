@@ -164,7 +164,7 @@
 					</div>					
 				</li>
 
-				<a href="/test/open-new-browser/">
+				<a href="/test/open-new-browser-2/">
 					<li class="list-group-item">
 						<div class="logout">					
 							<div class="icon-wrapper">
