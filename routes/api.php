@@ -143,7 +143,9 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::get('/get-latest-address', 'BuyProductController@get_latest_address')->name('get_latest_address');
 	
-	
+	Route::get('/get-notifications', 'LedgerController@get_notifications')->name('get_notifications');
+	Route::post('/notification-mark-as-read', 'LedgerController@mark_notifications')->name('mark_notifications');
+	Route::post('/notification-mark-all-read', 'LedgerController@mark_all_notifications')->name('mark_all_notifications');
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
