@@ -46,7 +46,7 @@
 				  <br/>
 					<div class="topup-redeem">
 					  	<div class="button-topup">
-					  		<a href="{{$wbp}}https://j.youzan.com/tIigBi">
+					  		<a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
 						  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />
 						  		{{ trans('dingsu.topup') }}
 						  	</a>

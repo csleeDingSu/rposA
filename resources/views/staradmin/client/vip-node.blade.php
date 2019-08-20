@@ -45,14 +45,7 @@
 							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						@if (isset(Auth::Guard('member')->user()->id))
-							<a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
-						@else
-							<a href="#" onClick="$('#modal-no-login').modal('show');">
-						@endif						
-							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
-						</a>
-											
+						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -93,7 +86,8 @@
 			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
-			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />		
+			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
+			<input id="topupurl" type="hidden" value="{{$wbp}}{{env('TOPUP_URL','#')}}" />	
 	  	</div>
 
 	</div>

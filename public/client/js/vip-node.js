@@ -808,6 +808,21 @@ function bindBetButton(){
 
         showPayout();
     });
+
+
+    $('.btn-redeemcash').click(function() {
+        var user_id = $('#hidUserId').val();
+        if(user_id == 0){
+            $('#modal-no-login').modal('show');
+        } else {
+            if (g_betting_history_total > 0) {
+                window.location.href = $('#topupurl').val();    
+            } else {
+                $('#modal-isnewbie').modal('show');
+            }
+            
+        }
+    });
 }
 
 function showPayout(){
