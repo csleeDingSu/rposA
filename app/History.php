@@ -32,7 +32,7 @@ class History extends Model
 		}
 		elseif($type == 'basicpackage')
 		{
-			$result = $result->where('type COLLATE utf8mb4_general_ci','!=','buyproduct');
+			$result = $result->where('type','!=','buyproduct');
 		}
 		$result = $result->where('member_id', $memberid)->get();
 		return $result;		
