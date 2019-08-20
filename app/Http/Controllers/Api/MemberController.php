@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Auth;
 class MemberController extends Controller
 {
     
+	public function get_summary(Request $request)
+    {
+		if ($request->type == 'vip')
+		{
+			$request->type = 'buyproduct';
+		}
+		else
+		{
+			$request->type = 'basicpackage';
+		}
+		$result = \App\History::get_summary($request->memberid,$request->type);
+		return response()->json(['success' => true,'records'=>$result]); 
+	}
 	public function update_profile()
     {
 		return response()->json(['success' => true]); 
