@@ -288,14 +288,14 @@ class ClientController extends BaseController
 		$platform = $agent->platform();
 		$browser  = $agent->browser();
 		
-		if ($platform == 'AndroidOS')
-		{
+		// if ($platform == 'AndroidOS')
+		// {
 			if ($browser == 'Chrome')
 			{
 				$wbp = 'googlechrome://navigate?url=';
 				//\Log::warning(json_encode(['imhere' => 'ya'], true));
 			}
-		}
+		// }
 			
 		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
 		
