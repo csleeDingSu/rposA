@@ -7,7 +7,24 @@
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/client/css/member_vip.css') }}" />
 
+	
 <style>
+	/* Paste this css to your style sheet file or under head tag */
+    /* This only works with JavaScript, 
+    if it's not present, don't show loader */
+    .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .loading {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url('/client/images/preloader.gif') center no-repeat;
+        background-color: rgba(255, 255, 255, 1);
+        background-size: 62px 62px;
+    }
 </style>
 @endsection
 
@@ -16,7 +33,7 @@
 @endsection
 
 @section('content')
-
+<div class="loading" id="loading"></div>
 <div class="full-height no-header">
 	<div class="container">
 		<div class="member-box">
@@ -307,6 +324,18 @@
 	<script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
 	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
 	<script type="text/javascript">
+
+		document.onreadystatechange = function () {
+          var state = document.readyState
+          if (state == 'interactive') {
+          } else if (state == 'complete') {
+            setTimeout(function(){
+                document.getElementById('interactive');
+                document.getElementById('loading').style.visibility="hidden";
+            },100);
+          }
+        }
+
 		$(document).ready(function () {
 			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
 			var current_point = getNumeric("<?php Print($wallet->current_point);?>");

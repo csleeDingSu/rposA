@@ -262,12 +262,10 @@
                 document.onreadystatechange = function () {
                   var state = document.readyState
                   if (state == 'interactive') {
-                    document.getElementById('loginBox').style.visibility="hidden";
                   } else if (state == 'complete') {
                     setTimeout(function(){
                         document.getElementById('interactive');
                         document.getElementById('loading').style.visibility="hidden";
-                        document.getElementById('loginBox').style.visibility="visible";
                     },100);
                   }
                 }
