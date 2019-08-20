@@ -54,6 +54,37 @@ class ClientController extends BaseController
 	}
 	
 	
+	public function set_payment_browser()
+	{
+		// return '';
+		//$ua = Request::server('HTTP_USER_AGENT');
+		$ua = $_SERVER['HTTP_USER_AGENT'];
+		\Log::debug(json_encode(['useragent' => $ua], true)); 
+		
+		$agent = new Agent();
+		
+		\Log::debug(json_encode(['useragent' => $agent], true)); 
+		
+		$wbp   = '';
+		
+		$platform = $agent->platform();
+		$browser  = $agent->browser();
+		
+		// if ($platform == 'AndroidOS')
+		// {
+			if ($browser == 'Chrome')
+			{
+				$wbp = 'googlechrome://navigate?url=';
+				//\Log::warning(json_encode(['imhere' => 'ya'], true));
+			}
+		// }
+			
+		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
+		
+		return $wbp;
+	}
+	
+	
 	
 	public function member_profile()
 	{
@@ -73,24 +104,8 @@ class ClientController extends BaseController
 		//isVIP APP
 		$this->vp = new VIPApp();
 		if ($this->vp->isVIPApp()) {
-			
-			
-			$agent = new Agent();
-		
-			$data['wbp']   = '';
-
-			$platform = $agent->platform();
-			$browser  = $agent->browser();
-
-			if ($platform == 'AndroidOS')
-			{
-				if ($browser == 'Chrome')
-				{
-					$data['wbp'] = 'googlechrome://navigate?url=';
-					//\Log::warning(json_encode(['imhere' => 'ya'], true));
-				}
-			}
-			
+						
+			$data['wbp'] = $this->set_payment_browser();
 			
 			return view('client/member_vip', $data);
 		} else {
@@ -270,7 +285,6 @@ class ClientController extends BaseController
 		if (env('THISVIPAPP', false) == false) {			
 			return redirect('/arcade');
 		}
-		
 					
 		$wbp = $this->set_payment_browser();
 		
@@ -279,29 +293,6 @@ class ClientController extends BaseController
 		// }
 	}
 	
-	public function set_payment_browser()
-	{
-		$agent = new Agent();
-		
-		$wbp   = '';
-		
-		$platform = $agent->platform();
-		$browser  = $agent->browser();
-		
-		// if ($platform == 'AndroidOS')
-		// {
-			if ($browser == 'Chrome')
-			{
-				$wbp = 'googlechrome://navigate?url=';
-				//\Log::warning(json_encode(['imhere' => 'ya'], true));
-			}
-		// }
-			
-		\Log::warning(json_encode(['platform' => $platform,'browser' => $browser], true));
-		
-		return $wbp;
-	}
-
 	public function member_update_wechatname(Request $request)
 	{
 		$memberid = $request->input('memberid');
@@ -572,21 +563,8 @@ class ClientController extends BaseController
 
 	public function tips_new()
 	{
-		$agent = new Agent();
+		$wbp = $this->set_payment_browser();
 		
-		$wbp   = '';
-
-		$platform = $agent->platform();
-		$browser  = $agent->browser();
-
-		if ($platform == 'AndroidOS')
-		{
-			if ($browser == 'Chrome')
-			{
-				$wbp = 'googlechrome://navigate?url=';
-				//\Log::warning(json_encode(['imhere' => 'ya'], true));
-			}
-		}
 		return view( 'client/tips_new', compact( 'wbp' ) );
 
 	}
