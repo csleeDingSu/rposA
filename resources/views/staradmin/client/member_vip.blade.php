@@ -354,10 +354,12 @@
             var wbp = "{{$wbp['wbp']}}";
             var platform = "{{$wbp['platform']}}";
             var browser = "{{$wbp['browser']}}";
-            var topupurl = "{{env('TOPUP_URL','#')}}";
+            var topupurl = decodeEntities("{{env('TOPUP_URL','#')}}");
             	
         	if (platform == 'iOS') {
   				document.getElementById("foz").addEventListener("click", function(evt) {
+  					alert(browser);
+  					alert(topupurl);
 				    var a = document.createElement('a');
 				    a.setAttribute("href", topupurl);
 				    a.setAttribute("target", "_blank");
@@ -368,10 +370,13 @@
 				}, false);
 
 				document.getElementById("button-topup").addEventListener("click", function(evt) {
+
+				    alert(browser);
+				    alert(topupurl);
+
 				    var a = document.createElement('a');
 				    a.setAttribute("href", topupurl);
 				    a.setAttribute("target", "_blank");
-
 				    var dispatch = document.createEvent("HTMLEvents");
 				    dispatch.initEvent("click", true, true);
 				    a.dispatchEvent(dispatch);
@@ -380,9 +385,12 @@
         	} else {
 
 				$('.button-topup').click(function(){
+					alert(browser);
 					if (browser == 'Chrome') {
+						alert(wbp + topupurl);
 						window.location.href = wbp + topupurl;
         			} else {
+        				alert(topupurl);
         				window.location.href = topupurl;	
         			}
 				});
@@ -479,6 +487,12 @@
 	  	// return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
 	  	return parseFloat(value).toFixed(2);
 	  }
+
+	  function decodeEntities(encodedString) {
+	  var textArea = document.createElement('textarea');
+	  textArea.innerHTML = encodedString;
+	  return textArea.value;
+	}
 
 	</script>
 @endsection
