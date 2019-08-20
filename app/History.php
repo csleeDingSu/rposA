@@ -34,7 +34,7 @@ class History extends Model
 		{
 			$result = $result->where('type','!=','buyproduct');
 		}
-		$result = $result->where('mamber_id', $memberid)->get();
+		$result = $result->where('member_id', $memberid)->get();
 		return $result;		
 	}
 }
