@@ -476,7 +476,8 @@ html, body {
     position: relative;
     z-index: 100;
     margin-top: 25px;
-    border-top: 1px solid #e3e3e3
+    border-top: 1px solid #e3e3e3;
+    width: 100%;
 }
 
 .collapse:after, .collapse:before {
@@ -527,13 +528,11 @@ html, body {
 	.collapse:after {
 		top:-1.3em; /* vertical position */
 		border-width: 8px;
-		margin-left: 149px;
 	}
 
 	.collapse:before {
 		top:-1.7em; /* vertical position */
 		border-width: 10px;
-		margin-left: 147px;
 	}
 
 }
@@ -1299,8 +1298,8 @@ textarea {
     font-size: 14px;
     border-radius: 20px;
     width: 80px;
-    height: 30px;
-    padding: 3px;
+    height: 24px;
+    padding: 1px 3px 2px 3px;
     border: 1px solid #01a7f1;
     cursor: pointer;
     background-color: #01a7f1;
