@@ -976,15 +976,15 @@ function getVirtualCardDetails(id, token){
                 _clipboard_code.on('error', function (e) {
                     $('#copycode-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
                 });
-            });
 
-            if (item.card_pass == '#' || item.card_pass == '') {
-                html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选电商卡›选京东E卡›选面额输入卡›等待回收</div>' +
-                                '</div>';
-            }else{
-                html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
-                                '</div>';
-            }
+                if (item.card_pass == '#' || item.card_pass == '') {
+                    html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选电商卡›选京东E卡›选面额输入卡›等待回收</div>' +
+                                    '</div>';
+                }else{
+                    html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
+                                    '</div>';
+                }
+            });
 
             $('.redeem-card-detail-' + id).html(html);
         }
