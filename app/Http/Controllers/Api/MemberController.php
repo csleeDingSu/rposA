@@ -24,7 +24,7 @@ class MemberController extends Controller
 			$request->type = 'basicpackage';
 		}
 		$result  = \App\History::get_summary($request->memberid,$request->type);
-		$ref_cre = \DB::table('ref_credit_type')->select('name','value')->get();
+		$ref_cre = \DB::table('ref_credit_type')->select('name','value','type')->get();
 		return response()->json(['success' => true,'records'=>$result,'credit_type_ref'=>$ref_cre]); 
 	}
 	public function update_profile()
