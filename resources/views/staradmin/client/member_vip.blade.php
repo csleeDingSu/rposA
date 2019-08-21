@@ -23,7 +23,7 @@
         z-index: 9999;
         background: url('/client/images/preloader.gif') center no-repeat;
         background-color: rgba(255, 255, 255, 1);
-        background-size: 62px 62px;
+        background-size: 30px 30px;
     }
 </style>
 @endsection
