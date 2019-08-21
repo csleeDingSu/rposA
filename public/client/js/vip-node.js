@@ -482,7 +482,7 @@ function resetGame() {
     $('.button-bet-clear').unbind('click');
     $('.button-bet-all').unbind('click');
     $(".span-bet").unbind('focus');
-    $('.small-border').removeClass('slow-rotate');
+    $('.small-border').removeClass('medium-rotate');
     $('.span-bet').val(0);
     $('.speech-bubble-clear').hide();
     previous_bet = 0;
@@ -1315,7 +1315,7 @@ function startTimer(duration, timer, freeze_time) {
         var trigger_time = freeze_time - 1;
         var id = $('#hidUserId').val();
         var level = parseInt($('#hidLevel').val());
-        $('.small-border').addClass('slow-rotate');
+        $('.small-border').addClass('medium-rotate');
         g_previous_point = parseInt($('.spanAcuPoint').html());
 
         $.ajax({
@@ -1333,7 +1333,7 @@ function startTimer(duration, timer, freeze_time) {
             },
             success: function(data) {
                 console.log(data);
-                $('.small-border').removeClass('slow-rotate');
+                $('.small-border').removeClass('medium-rotate');
                 $('#result').val(data.game_result);
                 if(data.status == 'win'){
                     show_win = true;

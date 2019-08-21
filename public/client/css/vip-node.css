@@ -577,11 +577,6 @@
     padding: 0.08rem 0.08rem 0 0;
 }
 
-.modal.in .modal-dialog {
-	/*width: 100%;*/
-    margin: -2rem 0 0 0;
-}
-
 #modal-no-login {
 	background-color: rgba(0, 0, 0, 0.5) !important;
 }
@@ -749,4 +744,12 @@
 	border-left: 0;
 	margin-left: -0.1rem;
 	margin-bottom: -0.15rem;
+}
+
+.modal.fade .modal-dialog {
+  transform: translate3d(0, -10%, 0);
+}
+
+.modal.in .modal-dialog {
+  transform: translate3d(0, 0, 0);
 }
