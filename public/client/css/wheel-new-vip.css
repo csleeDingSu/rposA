@@ -174,7 +174,8 @@
   background-size: contain;
   width: 0.59rem;
   height: 0.9rem;
-  right: 0rem;
+  right: 0;
+  float: right;
 }
 
 .btn-trigger {
