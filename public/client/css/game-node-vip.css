@@ -392,8 +392,8 @@ body{
 	margin-top: 3px;
 }
 
-.btn-rules-vip, .btn-rules-normal {
-	background: url(/client/images/wheel/life-balance.png) no-repeat top center;
+.btn-rules-vip {
+	background: url(/client/images/vip/btn-intro.png) no-repeat top center;
 	width: 2.28rem;
 	height: 0.72rem;
 	background-size: contain;
@@ -406,7 +406,7 @@ body{
 	border-top-left-radius: 0.4rem;
 	border-bottom-left-radius: 0.4rem;
 	float: right;
-	margin-top: -0.04rem;
+	margin-top: -0.02rem;
 	margin-right: -0.05rem;
 	display: flex;
 	align-items: center;
@@ -417,12 +417,6 @@ body{
 	width: 0.35rem;
 	height: 0.35rem;
 	margin-right: 0.1rem;
-}
-
-.btn-rules-normal {
-	/*width: 200px;*/
-	/*margin-left: 0.5rem;*/
-    /*text-align: center;*/
 }
 
 .balance {
