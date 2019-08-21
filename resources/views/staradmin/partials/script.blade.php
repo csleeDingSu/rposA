@@ -53,6 +53,8 @@
             socket.on('connect', function () {
                 socketIOConnectionUpdate('<span class="text-info">@lang("dingsu.connected_authenticating")</span>')
                 console.log('Token: '+result.token);
+				console.log('perfix: '+perfix);
+				
 				socket.emit('authenticate', {token: result.token});
             });
 
