@@ -572,11 +572,11 @@
 								$('.c_played_users').html(data.played_users);
 							}						
 					} else {						
-						alert('Error');
+						//alert('Error');
 					}
 				},
 				error: function ( xhr, ajaxOptions, thrownError ) {
-					alert('Error');
+					//alert('Error');
 				}
 			} );
 };
@@ -589,7 +589,7 @@
 	{
 		if (mcall)
 		{
-			ajax_call();
+		//	ajax_call();
 		}
 		/*else{
 			ajax_call();
