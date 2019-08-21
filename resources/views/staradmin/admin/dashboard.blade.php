@@ -425,7 +425,7 @@
     @parent
 	
 	
-	socket.on("test-channel" + ":App\\Events\\EventDynamicChannel" , function(data){
+	socket.on(perfix+"test-channel" + ":App\\Events\\EventDynamicChannel" , function(data){
 				console.log('members activedraw');
 				console.log(data);
 			  });
