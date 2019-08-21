@@ -48,14 +48,18 @@ html, body {
 
 .item {
 	text-align: left;
-	color: #333333;
-	font-size: 0.32rem;
-	font-weight: 500;
+    color: #333333;
+    font-size: 0.32rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 5.5rem;
 }
 
 .date {
 	text-align: left;
-	color: #999999;
+	color: #b6b6b6;
 	font-size: 0.28rem;
 	padding-top: 0.06rem;
 }
@@ -93,7 +97,7 @@ html, body {
 
 .balance {
 	float: right;
-	color: #999999;
+	color: #888;
 	padding-top: 3px;
 }
 
@@ -101,4 +105,19 @@ html, body {
 	margin-top: 10px;
 	margin-bottom: 30px;
 	margin-left: 10px;
+}
+
+.new_poins {
+	color: #333;
+}
+
+.row-full {
+	font-size: 20px;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    padding-bottom: 50px;
+    color: #666;
 }

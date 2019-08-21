@@ -45,7 +45,7 @@
 							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+						<img class="btn-calculate-vip btn-redeemcash" id="btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -87,7 +87,8 @@
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
-			<input id="topupurl" type="hidden" value="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}" />	
+			<input id="topupurl" type="hidden" value="{{env('TOPUP_URL','#')}}" />
+			<input id="isIOS" type="hidden" value="false" />	
 	  	</div>
 
 	</div>
@@ -990,9 +991,9 @@
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
 
-							<a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
-								<div class="btn-purchase-point">立刻充值</div>
-							</a>
+							<!-- <a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}"> -->
+								<div class="btn-purchase-point" id="btn-purchase-point">立刻充值</div>
+							<!-- </a> -->
 
 						</div>
 						<div class="vip-title">
@@ -1107,10 +1108,10 @@
 	</table>
 	</div>
 
-	<div class="btn-calculate-vip formButtonWrapper">
-		<a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
+	<div class="btn-calculate-vip formButtonWrapper" id="btn-calculate-vip">
+		<!-- <a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}"> -->
 			<div class="formButton">充值金币</div>
-		</a>
+		<!-- </a> -->
 	</div>
 </div>
 
@@ -1138,10 +1139,10 @@
 			<a  href="#" onclick="show_openform();">
 				<div class="btn-topup">点击了解详情</div>
 			</a>
-			<div class="btn-close-bg">
-				<a href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}">
+			<div class="btn-close-bg" id="btn-go-topup">
+				<!-- <a href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}"> -->
 					无需了解 去充值金币 >
-				</a>
+				<!-- </a> -->
 			</div>
 		</div>	
 	</div>
@@ -1162,6 +1163,62 @@
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/public.js') }}" ></script>
 	<script src="{{ asset('/client/js/slide.js') }}"></script>
+	<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+
+    <script type="text/javascript">
+		var wbp = "{{$wbp['wbp']}}";
+        var platform = "{{$wbp['platform']}}";
+        var browser = "{{$wbp['browser']}}";
+        var topupurl = $('#topupurl').val();
+
+        if (platform == 'iOS') {
+        	$('#isIOS').val('true');
+			document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false); 
+
+			document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false); 
+
+			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false);      		
+
+    	} else {
+    		$('#isIOS').val('false');
+    		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
+
+			document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
+
+			document.getElementById("btn-go-topup").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
+
+    	}
+	</script>
 
 	<script type="text/javascript">
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
@@ -1180,7 +1237,6 @@
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
-
 			var user_id = $('#hidUserId').val();
 
 			$('.reload').click(function(){
