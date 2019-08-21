@@ -399,7 +399,7 @@
 	
 	var reguser = new Array();
 	var labels  = new Array();
-		
+	//var perfix = "{{ config('app.REDIS_PREFIX') }}";
 	var member_label  = '@lang("dingsu.member")';
 	
 	var register_date = '@lang("dingsu.register_date")';
@@ -424,6 +424,12 @@
 	@section('socket')
     @parent
 	
+	
+	socket.on(perfix+"test-channel" + ":App\\Events\\EventDynamicChannel" , function(data){
+				console.log('members activedraw');
+				console.log(data);
+			  });
+	
 	/*
      socket.on("dashboard-gameinfo" + ":App\\Events\\EventDynamicChannel", function(result) {
 				var record = result.data;
@@ -438,7 +444,7 @@
 					}
 			 });
 		*/	
-	socket.on("dashboard-basicplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
+	socket.on(perfix+"dashboard-basicplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var r = result.data;
 		if (r.type == 'reset')
 		{
@@ -454,7 +460,7 @@
 		}
 	 });
 	
-	socket.on("master-reset" + ":App\\Events\\EventDashboardChannel", function(result) {
+	socket.on(perfix+"master-reset" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var r = result.data;
 		if (r.type == 'reset')
 		{
@@ -464,7 +470,7 @@
 	});
 		
 	
-	socket.on("dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
+	socket.on(perfix+"dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var r = result.data;
 		if (r.type == 'reset')
 		{
@@ -482,7 +488,7 @@
 	
 	var countdown;
 	
-	socket.on("dashboard-info" + ":App\\Events\\EventDashboardChannel", function(result) {
+	socket.on(perfix+"dashboard-info" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var data = result.data;
 		console.log(data);
 		$('.pending_wechat').html(data.pending_wechat);
@@ -572,11 +578,11 @@
 								$('.c_played_users').html(data.played_users);
 							}						
 					} else {						
-						alert('Error');
+						//alert('Error');
 					}
 				},
 				error: function ( xhr, ajaxOptions, thrownError ) {
-					alert('Error');
+					//alert('Error');
 				}
 			} );
 };
@@ -589,7 +595,7 @@
 	{
 		if (mcall)
 		{
-			ajax_call();
+		//	ajax_call();
 		}
 		/*else{
 			ajax_call();
@@ -602,6 +608,6 @@
 		
 	}
 	
-	updategame(1);
+	//updategame(1);
 	
 	</script>	

@@ -82,7 +82,7 @@
 	var trr = '';
 	@section('socket')
     @parent
-     socket.on("importnoti" + ":App\\Events\\EventDynamicChannel", function(data) {
+     socket.on(perfix+"importnoti" + ":App\\Events\\EventDynamicChannel", function(data) {
 				$('#divimportnoti').html('');
 				$.each(data.data, function( index, row ) {
 				  console.log(row);					

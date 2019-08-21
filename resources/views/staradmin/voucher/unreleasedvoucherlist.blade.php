@@ -100,7 +100,7 @@
 
 	@section('socket')
     @parent
-	socket.on("unr-import" + ":App\\Events\\EventDynamicChannel", function(data) {
+	socket.on(perfix+"unr-import" + ":App\\Events\\EventDynamicChannel", function(data) {
 				var process = data.data;
 				console.log('importprocess:'+process);
 				if (process == 'yes')
@@ -117,7 +117,7 @@
 				
 			 });
 	
-     socket.on("unr-bulkmove" + ":App\\Events\\EventDynamicChannel", function(data) {
+     socket.on(perfix+"unr-bulkmove" + ":App\\Events\\EventDynamicChannel", function(data) {
 				var process = data.data;
 				console.log('moveprocess:'+process);
 				if (process == 'yes')
@@ -136,7 +136,7 @@
 			 });
 			
 			
-			socket.on("unr-bulkdelete" + ":App\\Events\\EventDynamicChannel", function(data) {
+			socket.on(perfix+"unr-bulkdelete" + ":App\\Events\\EventDynamicChannel", function(data) {
 				var process = data.data;
 				console.log('deleteprocess:'+process);
 				if (process == 'yes')
