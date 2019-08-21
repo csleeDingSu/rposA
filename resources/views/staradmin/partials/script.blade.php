@@ -1,7 +1,7 @@
 	
 <script type="text/javascript">	
 	var url    = "{{ env('APP_URL')}}";		
-	var port   = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+	var port   = "{{ env('REDIS_CLI_PORT'), '3000' }}";
 	var perfix = "{{ env('REDIS_PERFIX'), 'RE' }}";
 	
 	$(document).ready(function () {
