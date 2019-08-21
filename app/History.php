@@ -24,8 +24,7 @@ class History extends Model
 	
 	public static function get_summary($memberid,$type = 'buyproduct')
 	{
-		$result = \DB::table('new_summary_report');
-		
+		$result = \DB::table('new_summary_report')->select('*');		
 		if ($type == 'buyproduct')
 		{
 			$result = $result->whereNotIn('type', ['basicpackage']);
