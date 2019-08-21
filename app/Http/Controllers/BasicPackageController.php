@@ -286,7 +286,10 @@ class BasicPackageController extends BaseController
 			$data = ['redeem_state'=>3,'confirmed_at'=>$now,'passcode'=>$passcode,'redeemed_at'=>$now];
 			BasicPackage::update_basicpackage($record->id, $data);
 			
-			Wallet::update_basic_wallet($record->member_id,$record->package_life,$record->package_point,'BPR');
+			$wallet  = Wallet::update_basic_wallet($record->member_id,$record->package_life,$record->package_point,'BPR');
+			
+			$refdata = [ 'id'=>$id, 'refid'=>$wallet['refid'], 'type'=>'basicpackage' ];
+			Wallet::add_ledger_ref($refdata);
 			
 			
 			return response()->json(['success' => true, 'message' => 'success']);
@@ -387,9 +390,12 @@ class BasicPackageController extends BaseController
 			$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$member->id,'redeem_state'=>3,'confirmed_at'=>$now,'request_at'=>$now,'used_point'=>0,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'ref_note'=>'backorder','buy_price'=>$usedprice,'cardpass'=>$request->cardpass,'cardnum'=>$request->cardnum,'passcode'=>$passcode,'redeemed_at'=>$now,'created_by'=>\Auth::guard('admin')->user()->name];
 			
 			
-			Wallet::update_basic_wallet($member->id,$package->package_life,$package->package_freepoint,'BPR','credit','BackOrder');
+			$wallet = Wallet::update_basic_wallet($member->id,$package->package_life,$package->package_freepoint,'BPR','credit','BackOrder');
 			
-			BasicPackage::save_basic_package($data);
+			$id = BasicPackage::save_basic_package($data);
+			
+			$refdata = [ 'id'=>$id, 'refid'=>$wallet['refid'], 'type'=>'basicpackage' ];
+			Wallet::add_ledger_ref($refdata);
 
 			return response()->json(['success' => true, 'message' => 'success']);
 			
