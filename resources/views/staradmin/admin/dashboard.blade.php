@@ -425,7 +425,7 @@
     @parent
 	
 	
-	socket.on(perfix+"test-channel" + ":App\\Events\\EventDynamicChannel" , function(data){
+	socket.on("test-channel" + ":App\\Events\\EventDynamicChannel" , function(data){
 				console.log('members activedraw');
 				console.log(data);
 			  });
@@ -608,6 +608,6 @@
 		
 	}
 	
-	updategame(1);
+	//updategame(1);
 	
 	</script>	
