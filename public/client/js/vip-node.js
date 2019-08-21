@@ -1311,18 +1311,6 @@ function showLoseModal(){
     //$('.modal-progress-bar').attr("src", image);
     $('#lose-modal .modal-instruction').html(instruction);
     
-    $('.highlight-link').click(function(){
-        $('#game-rules').modal();
-    });
-
-    $('.btn-rules-close').click(function(){
-        $('#game-rules').modal('hide');
-    });
-
-    $('.btn-rules-timer').click(function(){
-        $('#game-rules').modal('hide');
-    });
-
 }
 
 function startTimer(duration, timer, freeze_time) {
@@ -1498,28 +1486,6 @@ function changbar(number){
     let i=number;
     bar.removeClass();
     bar.addClass('barBox barBox-'+i);
-}
-
-function showGameRules( event ){
-    event.stopImmediatePropagation();
-    $('.button-card').off('click', showGameRules);
-
-    var bet_count = $('#hidbetting_count').val();
-
-    $( ".txtTimer" ).removeClass('hide');
-    $('#game-rules').modal({backdrop: 'static', keyboard: false});
-
-    var game_name = $('#game-name').val();
-    $( ".span-read" ).html('返回幸运转盘');
-
-    $('.btn-rules-close').click(function(){
-        $('#game-rules').modal('hide');
-        bindBetButton();
-    });
-
-    $('.btn-rules-timer').click(function(){
-        $('#game-rules').modal('hide');
-    });
 }
 
 //load audio - start
