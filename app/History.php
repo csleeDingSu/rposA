@@ -33,7 +33,7 @@ class History extends Model
 		{
 			$result = $result->whereNotIn('type', ['buyproduct']);
 		}
-		$result = $result->where('member_id', $memberid)->get();
+		$result = $result->where('member_id', $memberid)->orderby('created_at','DESC')->get();
 		return $result;		
 	}
 }
