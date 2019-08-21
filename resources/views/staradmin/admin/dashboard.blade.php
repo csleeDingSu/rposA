@@ -424,6 +424,12 @@
 	@section('socket')
     @parent
 	
+	
+	socket.on(perfix+"test-channel" + ":App\\Events\\EventDynamicChannel" , function(data){
+				console.log('members activedraw');
+				console.log(data);
+			  });
+	
 	/*
      socket.on("dashboard-gameinfo" + ":App\\Events\\EventDynamicChannel", function(result) {
 				var record = result.data;
