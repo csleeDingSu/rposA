@@ -4,6 +4,8 @@
 	var port   = "{{ env('REDIS_CLI_PORT'), '3000' }}";
 	var perfix = "{{ env('REDIS_PERFIX'), 'RE' }}";
 	
+	var perfix = "{{ config('app.REDIS_PERFIX') }}";
+	
 	$(document).ready(function () {
         socketIOConnectionUpdate('<span class="text-info">@lang("dingsu.requesting_token")</span>');
 
