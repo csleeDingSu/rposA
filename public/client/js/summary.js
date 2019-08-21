@@ -49,9 +49,9 @@ function getSummary(token) {
     $('#summary').html('');
 
      if(length === 0){
-        var summary =   '<div class="row">' +
+        var summary =   '<div class="row-full">' +
                             '<div class="col-xs-12">' +
-                                '<div class="empty">对不起 - 你现在还没有数据。</div>' +
+                                '<div class="empty">你还没兑换奖品<br><a href="/arcade" class="share-link">去换奖品></a></div>' +
                             '</div>' +
                         '</div>';
 
