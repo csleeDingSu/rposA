@@ -246,4 +246,6 @@ return [
 	'paginate' => 15,
 	'wabao666_domain' => env('wabao666_domain'),
 	
+	'REDIS_PERFIX' => env('REDIS_PERFIX', 'C'),
+	
 ];
