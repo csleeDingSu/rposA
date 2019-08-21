@@ -809,20 +809,38 @@ function bindBetButton(){
         showPayout();
     });
 
+     var user_id = $('#hidUserId').val();
 
-    $('.btn-redeemcash').click(function() {
-        var user_id = $('#hidUserId').val();
-        if(user_id == 0){
+    if(user_id == 0){
+
+        $('.btn-redeemcash').click(function() {
             $('#modal-no-login').modal('show');
-        } else {
-            if (g_betting_history_total > 0) {
-                window.location.href = $('#topupurl').val();    
-            } else {
-                $('#modal-isnewbie').modal('show');
-            }
+        });
             
+    } else {
+        if (g_betting_history_total > 0) {
+            if ($('#isIOS').val() == 'true') {
+                document.getElementById("btn-redeemcash").addEventListener("click", function(evt) {
+                    var a = document.createElement('a');
+                    a.setAttribute("href", $('#topupurl').val());
+                    a.setAttribute("target", "_blank");
+                    var dispatch = document.createEvent("HTMLEvents");
+                    dispatch.initEvent("click", true, true);
+                    a.dispatchEvent(dispatch);
+                }, false);
+            }else{
+
+                document.getElementById("btn-redeemcash").addEventListener('tap',function(){
+                    plus.runtime.openURL($('#topupurl').val());
+                });
+
+            }
+        } else {
+            $('.btn-redeemcash').click(function() {
+                $('#modal-isnewbie').modal('show');
+            });
         }
-    });
+    }   
 }
 
 function showPayout(){

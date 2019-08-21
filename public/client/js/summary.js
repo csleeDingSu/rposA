@@ -92,12 +92,13 @@ function getSummary(token) {
                 case 'DPRBP':
                     str_type = '兑奖-' + value.title;
                     str_points = '-' + getNumeric(value.debit) + '元';
-                    cls_negative = 'negative';
+                    cls_negative = 'new_poins';
                 break
 
                 case 'APACP':
                     str_type = '充值金币';
                     str_points = '+' + getNumeric(value.credit) + '元';
+                    cls_negative = 'new_poins';
                 break
             }
 

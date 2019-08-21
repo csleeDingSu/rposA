@@ -45,8 +45,8 @@
 				</div>
 				<div class="col-xs-6 member-wrapper">
 					<div class="button-setting">
-						<img class="icon-setting" src="{{ asset('/client/images/profile-vip/icon-edit.png') }}" alt="{{ trans('dingsu.setting') }}" />
-						{{ trans('dingsu.setting') }}
+						<img class="icon-setting" src="{{ asset('/client/images/profile-vip/icon-edit.png') }}" alt="明细" />
+						<span>明细</span>
 					</div>
 				</div>
 				<div style="clear: both;"></div>
@@ -62,10 +62,10 @@
 				  	</div>
 				  <br/>
 					<div class="topup-redeem">
-					  	<div class="button-topup" id="button-topup">
-					  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />
-					  		{{ trans('dingsu.topup') }}
-					  	</div>
+						  	<div class="button-topup" id="button-topup">
+						  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />
+						  		{{ trans('dingsu.topup') }}
+						  	</div>
 					  	<div class="button-redeem redeembtn">
 							<img class="icon-redeemtion" src="{{ asset('/client/images/profile-vip/icon-redeem.png') }}" alt="{{ trans('dingsu.redeemtion') }}" />
 					  		{{ trans('dingsu.redeemtion') }}
@@ -159,28 +159,6 @@
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						{{ trans('dingsu.logout') }}
-					</div>					
-				</li>
-
-				<a href="/test/open-new-browser-2/">
-					<li class="list-group-item">
-						<div class="logout">					
-							<div class="icon-wrapper">
-								<div class="icon-customer"></div>
-							</div>
-							<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-							测试浏览器打开链接
-						</div>					
-					</li>
-				</a>
-
-				<li class="list-group-item">
-					<div class="logout">					
-						<div class="icon-wrapper">
-							<div class="icon-customer"></div>
-						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						<div id="foz">测试浏览器 - safari</div>
 					</div>					
 				</li>
 
@@ -332,6 +310,10 @@
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
 	<script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
 	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
+	<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
 	<script type="text/javascript">
 
 		document.onreadystatechange = function () {
@@ -357,23 +339,7 @@
             var topupurl = decodeEntities("{{env('TOPUP_URL','#')}}");
             	
         	if (platform == 'iOS') {
-  				document.getElementById("foz").addEventListener("click", function(evt) {
-  					alert(browser);
-  					alert(topupurl);
-				    var a = document.createElement('a');
-				    a.setAttribute("href", topupurl);
-				    a.setAttribute("target", "_blank");
-
-				    var dispatch = document.createEvent("HTMLEvents");
-				    dispatch.initEvent("click", true, true);
-				    a.dispatchEvent(dispatch);
-				}, false);
-
 				document.getElementById("button-topup").addEventListener("click", function(evt) {
-
-				    alert(browser);
-				    alert(topupurl);
-
 				    var a = document.createElement('a');
 				    a.setAttribute("href", topupurl);
 				    a.setAttribute("target", "_blank");
@@ -384,16 +350,10 @@
 
         	} else {
 
-				$('.button-topup').click(function(){
-					alert(browser);
-					if (browser == 'Chrome') {
-						alert(wbp + topupurl);
-						window.location.href = wbp + topupurl;
-        			} else {
-        				alert(topupurl);
-        				window.location.href = topupurl;	
-        			}
-				});
+        		document.getElementById("button-topup").addEventListener('tap',function(){
+					plus.runtime.openURL(topupurl);
+				})
+
         	}
 
             if(previous_point !== undefined && previous_point > 0){
@@ -441,7 +401,8 @@
 			});
 
 			$('.button-setting').click(function(){
-				window.location.href = "/edit-setting";
+				// window.location.href = "/edit-setting";
+				window.location.href = "/summary";
 			});
 
 			var clipboard = new ClipboardJS('.cutBtn', {
