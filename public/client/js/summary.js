@@ -1,3 +1,5 @@
+var this_vip_app = false;
+
 $(function () {
     getToken();    
 });
@@ -17,22 +19,31 @@ function getToken(){
 
 function getSummary(token) {
     var user_id = $('#hidUserId').val();
+    this_vip_app = $('#this_vip_app').val();
+    var _url = "/api/member-point-list?memberid=" + user_id;
+    if (this_vip_app) {
+        _url = "api/get-summary?type=vip&memberid=" + user_id;
+    }
 
     $.ajax({
         type: 'GET',
-        url: "/api/member-point-list?memberid=" + user_id,
+        url: _url,
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         success: function(data) {
-            showSummary(data.result);
+            if (this_vip_app) {
+                showSummary(data.records);
+            } else {
+                showSummary(data.result);
+            }
         }
     });
 }
 
  function showSummary(results) {
-    //console.log(results);
+    // console.log(results);
     var length = results.length;
 
     $('#summary').html('');
@@ -77,11 +88,24 @@ function getSummary(token) {
                     str_points = '-' + getNumeric(value.debit) + '元';
                     cls_negative = 'negative';
                 break;
+
+                case 'DPRBP':
+                    str_type = '兑奖-' + value.title;
+                    str_points = '-' + getNumeric(value.debit) + '元';
+                    cls_negative = 'negative';
+                break
+
+                case 'APACP':
+                    str_type = '充值金币';
+                    str_points = '+' + getNumeric(value.credit) + '元';
+                break
             }
 
-            //skip/ignore data - credit 0 point
-            if (value.credit_type == 'CRPNT' && value.credit <= 0) {
-                return true;
+            if (!this_vip_app) {
+                //skip/ignore data - credit 0 point
+                if (value.credit_type == 'CRPNT' && value.credit <= 0) {
+                    return true;
+                }    
             }
 
             summary +=   '<div class="row">' +
