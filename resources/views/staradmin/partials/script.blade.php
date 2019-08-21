@@ -1,7 +1,8 @@
 	
 <script type="text/javascript">	
-	var url  = "{{ env('APP_URL')}}";		
-	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+	var url    = "{{ env('APP_URL')}}";		
+	var port   = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+	var perfix = "{{ env('REDIS_PERFIX'), 'RE' }}";
 	
 	$(document).ready(function () {
         socketIOConnectionUpdate('<span class="text-info">@lang("dingsu.requesting_token")</span>');
