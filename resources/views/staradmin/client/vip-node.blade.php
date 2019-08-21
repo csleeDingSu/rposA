@@ -56,7 +56,7 @@
 					<!-- <a href="/arcade"> -->
 						<!--div class="btn-vip"></div-->
 						<!-- <div class="btn-rules-vip">返回普通场</div> -->
-						<div class="btn-rules-vip"><img src="{{ asset('/client/images/wheel/money.png') }}" />玩法介绍</div>
+						<div class="btn-rules-vip"></div>
 					<!-- </a> -->
 					<div style="clear:both"></div>
 				</div>
@@ -327,27 +327,27 @@
 	      	<div class="col-xs-2">
 		        <div class="bet-box">
 		        	<div class="speech-bubble-chips">可多次点击</div>
-		        	<div class="button-bet">1</div>
+		        	<div class="button-bet button-bet-1">1</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div class="button-bet">10</div>
+		        	<div class="button-bet button-bet-10">10</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div class="button-bet">50</div>
+		        	<div class="button-bet button-bet-50">50</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div class="button-bet">100</div>
+		        	<div class="button-bet button-bet-100">100</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div class="button-bet">500</div>
+		        	<div class="button-bet button-bet-500">500</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">

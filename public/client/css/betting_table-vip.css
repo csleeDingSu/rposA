@@ -63,6 +63,32 @@
 
 .button-bet {
 	cursor: pointer;
+	font-size: 0;
+}
+
+.button-bet-1 {
+	background:url(/client/images/vip/1.png) no-repeat;
+	background-size: contain;
+}
+
+.button-bet-10 {
+	background:url(/client/images/vip/10.png) no-repeat;
+	background-size: contain;
+}
+
+.button-bet-50 {
+	background:url(/client/images/vip/50.png) no-repeat;
+	background-size: contain;
+}
+
+.button-bet-100 {
+	background:url(/client/images/vip/100.png) no-repeat;
+	background-size: contain;
+}
+
+.button-bet-500 {
+	background:url(/client/images/vip/500.png) no-repeat;
+	background-size: contain;
 }
 
 .button-bet-clear {
