@@ -28,11 +28,11 @@ class History extends Model
 		
 		if ($type == 'buyproduct')
 		{
-			$result = $result->whereNotIn('type', 'basicpackage');
+			$result = $result->whereNotIn('type', ['basicpackage']);
 		}
 		elseif($type == 'basicpackage')
 		{
-			$result = $result->whereNotIn('type', 'buyproduct');
+			$result = $result->whereNotIn('type', ['buyproduct']);
 		}
 		$result = $result->where('member_id', $memberid)->get();
 		return $result;		
