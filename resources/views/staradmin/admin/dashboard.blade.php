@@ -399,7 +399,7 @@
 	
 	var reguser = new Array();
 	var labels  = new Array();
-		
+	var perfix = "{{ config('app.REDIS_PERFIX') }}";
 	var member_label  = '@lang("dingsu.member")';
 	
 	var register_date = '@lang("dingsu.register_date")';
