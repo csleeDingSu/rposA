@@ -172,10 +172,9 @@
   margin-top: 0.1rem;
   background: url('/client/images/wheel/next.png') no-repeat;
   background-size: contain;
+  background-position: center right;
   width: 0.59rem;
   height: 0.9rem;
-  right: 0rem;
-  position: absolute;
 }
 
 .btn-trigger {
