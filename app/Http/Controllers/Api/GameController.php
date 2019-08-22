@@ -1862,9 +1862,22 @@ class GameController extends Controller
 		
 		if ($status == 'win') 			
 		{
-			$reward = $betamt;
+			$reward = 0;
 			
-			$r_status = 1;
+			//$se_game  = \App\Game::where('id',$gameid)->first();
+			
+			$se_game  = \App\Game::gamesetting($gameid);
+			
+			if (!empty($se_game->win_ratio))
+			{	
+				if ($se_game->win_ratio < 1)
+				{
+					$se_game->win_ratio = 1;
+				}				
+				$reward = $betamt * $se_game->win_ratio;
+				
+				$reward = $reward - $betamt;
+			}
 			
 			//Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP	
 			
