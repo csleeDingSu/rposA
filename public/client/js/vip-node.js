@@ -21,6 +21,8 @@ var g_w_ratio = 2;
 var show_default = true;
 var g_betting_history_total = 0;
 var play_count = 0;
+var bet_count = 0;
+var update_spanAcuPointAndBalance = true;
 
 $(function () {
 
@@ -58,17 +60,17 @@ $(function () {
 });
 
 function updateResult(records){
-    var bet_count = $('#hidbetting_count').val();
+
+    var str_result = '单数';
+
+    var length = Object.keys(records).length;
+    var maxCount = 20;
+    bet_count = length;
 
     if(bet_count > 0 && (!jQuery.isEmptyObject(records[0]))){
         last_bet = records[0].bet;
         $('#hidLastBet').val(last_bet);
     }
-    
-    var str_result = '单数';
-
-    var length = Object.keys(records).length;
-    var maxCount = 20;
 
     if(length < maxCount){
         maxCount = parseInt(length);
@@ -86,6 +88,11 @@ function updateResult(records){
         $('.results-body').find('#result-' + counter).html(item.result + '<div>'+ str_result +'</div>');
 
     });
+
+    if(bet_count == 0 && g_vip_point > 0) {
+        $('.speech-bubble-chips').show();
+        $('.speech-bubble-clear').show();
+    }
 }
 
 function updateHistory(records){
@@ -163,7 +170,9 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(point);
-            $('.spanAcuPointAndBalance').html(get2Decimal(point));
+            if (update_spanAcuPointAndBalance) {
+                $('.spanAcuPointAndBalance').html(get2Decimal(point));    
+            }
         }
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
@@ -476,8 +485,9 @@ function resetGame() {
     $('.button-bet-clear').unbind('click');
     $('.button-bet-all').unbind('click');
     $(".span-bet").unbind('focus');
-    $('.small-border').removeClass('fast-rotate');
+    $('.small-border').removeClass('medium-rotate');
     $('.span-bet').val(0);
+    $('.speech-bubble-clear').hide();
     previous_bet = 0;
 
     $('.shan span').hide();
@@ -571,12 +581,13 @@ function closeModal() {
 function closeWinModal() {
 
     $('.close-win-modal').click(function(event){
-        
+        // console.log(g_vip_point);
+        // console.log(g_previous_point);
         if (g_vip_point > g_previous_point) {
             musicPlay(1);  
-            console.log('play coin mp3');
+            // console.log('play coin mp3');
 
-            setTimeout(function(){
+           setTimeout(function(){
                 var decimal_places = 2;
                 var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
 
@@ -627,6 +638,30 @@ function bindSpinningButton() {
             $('.spinning').css('visibility', 'hidden');
         }, 3000);
     });
+
+    $('.btn-trigger').click(function( event ){
+        $('.spinning').html('转盘转动中，请等待结果。');
+        $('.spinning').css('visibility', 'visible');
+        setTimeout(function(){ 
+            $('.spinning').css('visibility', 'hidden');
+        }, 3000);
+    });
+
+    $('.button-bet').click(function( event ){
+        $('.spinning').html('转盘转动中，请等待结果。');
+        $('.spinning').css('visibility', 'visible');
+        setTimeout(function(){ 
+            $('.spinning').css('visibility', 'hidden');
+        }, 3000);
+    });
+
+    $('.button-bet-clear').click(function( event ){
+        $('.spinning').html('转盘转动中，请等待结果。');
+        $('.spinning').css('visibility', 'visible');
+        setTimeout(function(){ 
+            $('.spinning').css('visibility', 'hidden');
+        }, 3000);
+    });
 }
 
 function bindBetButton(){
@@ -664,6 +699,8 @@ function bindBetButton(){
     });
 
     $('.button-bet').click(function(){
+
+        $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
             // window.top.location.href = "/member";
@@ -738,6 +775,7 @@ function bindBetButton(){
     });
 
     $('.button-bet-clear').click(function(){
+        $('.speech-bubble-clear').hide();
         $('.span-bet').val(0);
         showPayout();
         previous_bet = 0;
@@ -799,6 +837,39 @@ function bindBetButton(){
 
         showPayout();
     });
+
+     var user_id = $('#hidUserId').val();
+
+    if(user_id == 0){
+
+        $('.btn-redeemcash').click(function() {
+            $('#modal-no-login').modal('show');
+        });
+            
+    } else {
+        if (g_betting_history_total > 0) {
+            if ($('#isIOS').val() == 'true') {
+                document.getElementById("btn-redeemcash").addEventListener("click", function(evt) {
+                    var a = document.createElement('a');
+                    a.setAttribute("href", $('#topupurl').val());
+                    a.setAttribute("target", "_blank");
+                    var dispatch = document.createEvent("HTMLEvents");
+                    dispatch.initEvent("click", true, true);
+                    a.dispatchEvent(dispatch);
+                }, false);
+            }else{
+
+                document.getElementById("btn-redeemcash").addEventListener('tap',function(){
+                    plus.runtime.openURL($('#topupurl').val());
+                });
+
+            }
+        } else {
+            $('.btn-redeemcash').click(function() {
+                $('#modal-isnewbie').modal('show');
+            });
+        }
+    }   
 }
 
 function showPayout(){
@@ -982,6 +1053,7 @@ function bindTriggerButton(){
             // $( '#nonloginmodal' ).modal( 'show' );
             $( '#modal-no-login' ).modal( 'show' );
         }else {
+            update_spanAcuPointAndBalance = false;
 
             if (g_vip_point < 1) {
                 $( '#modal-isnewbie' ).modal( 'show' );
@@ -1269,18 +1341,6 @@ function showLoseModal(){
     //$('.modal-progress-bar').attr("src", image);
     $('#lose-modal .modal-instruction').html(instruction);
     
-    $('.highlight-link').click(function(){
-        $('#game-rules').modal();
-    });
-
-    $('.btn-rules-close').click(function(){
-        $('#game-rules').modal('hide');
-    });
-
-    $('.btn-rules-timer').click(function(){
-        $('#game-rules').modal('hide');
-    });
-
 }
 
 function startTimer(duration, timer, freeze_time) {
@@ -1291,8 +1351,8 @@ function startTimer(duration, timer, freeze_time) {
         var trigger_time = freeze_time - 1;
         var id = $('#hidUserId').val();
         var level = parseInt($('#hidLevel').val());
-        $('.small-border').addClass('fast-rotate');
-        g_previous_point = parseInt($('.spanAcuPoint').html());
+        $('.small-border').addClass('medium-rotate');
+        g_previous_point = getNumeric($('.spanAcuPoint').html());
 
         $.ajax({
             type: 'POST',
@@ -1309,7 +1369,7 @@ function startTimer(duration, timer, freeze_time) {
             },
             success: function(data) {
                 console.log(data);
-                $('.small-border').removeClass('fast-rotate');
+                $('.small-border').removeClass('medium-rotate');
                 $('#result').val(data.game_result);
                 if(data.status == 'win'){
                     show_win = true;
@@ -1344,7 +1404,7 @@ function triggerResult(){
         'pAngle': 0,//指针图片中的指针角度(x轴正值为0度，顺时针旋转 默认0)
         'type': 'w',//旋转指针还是转盘('p'指针 'w'转盘 默认'p')
         'fluctuate': 0.5,//停止位置距角度配置中点的偏移波动范围(0-1 默认0.8)
-        'rotateNum': 12,//转多少圈(默认12)
+        'rotateNum': 6,//转多少圈(默认12)
         'duration': freeze_time * 1000,//转一次的持续时间(默认5000)
         'click': function () {
             if(1==1){}
@@ -1456,28 +1516,6 @@ function changbar(number){
     let i=number;
     bar.removeClass();
     bar.addClass('barBox barBox-'+i);
-}
-
-function showGameRules( event ){
-    event.stopImmediatePropagation();
-    $('.button-card').off('click', showGameRules);
-
-    var bet_count = $('#hidbetting_count').val();
-
-    $( ".txtTimer" ).removeClass('hide');
-    $('#game-rules').modal({backdrop: 'static', keyboard: false});
-
-    var game_name = $('#game-name').val();
-    $( ".span-read" ).html('返回幸运转盘');
-
-    $('.btn-rules-close').click(function(){
-        $('#game-rules').modal('hide');
-        bindBetButton();
-    });
-
-    $('.btn-rules-timer').click(function(){
-        $('#game-rules').modal('hide');
-    });
 }
 
 //load audio - start

@@ -7,7 +7,24 @@
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/client/css/member_vip.css') }}" />
 
+	
 <style>
+	/* Paste this css to your style sheet file or under head tag */
+    /* This only works with JavaScript, 
+    if it's not present, don't show loader */
+    .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .loading {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url('/client/images/preloader.gif') center no-repeat;
+        background-color: rgba(255, 255, 255, 1);
+        background-size: 30px 30px;
+    }
 </style>
 @endsection
 
@@ -16,7 +33,7 @@
 @endsection
 
 @section('content')
-
+<div class="loading" id="loading"></div>
 <div class="full-height no-header">
 	<div class="container">
 		<div class="member-box">
@@ -28,8 +45,8 @@
 				</div>
 				<div class="col-xs-6 member-wrapper">
 					<div class="button-setting">
-						<img class="icon-setting" src="{{ asset('/client/images/profile-vip/icon-edit.png') }}" alt="{{ trans('dingsu.setting') }}" />
-						{{ trans('dingsu.setting') }}
+						<img class="icon-setting" src="{{ asset('/client/images/profile-vip/icon-edit.png') }}" alt="明细" />
+						<span>明细</span>
 					</div>
 				</div>
 				<div style="clear: both;"></div>
@@ -45,12 +62,10 @@
 				  	</div>
 				  <br/>
 					<div class="topup-redeem">
-					  	<div class="button-topup">
-					  		<a href="{{$wbp}}https://j.youzan.com/tIigBi">
+						  	<div class="button-topup" id="button-topup">
 						  		<img class="icon-topup" src="{{ asset('/client/images/profile-vip/icon-topup.png') }}" alt="{{ trans('dingsu.topup') }}" />
 						  		{{ trans('dingsu.topup') }}
-						  	</a>
-					  	</div>
+						  	</div>
 					  	<div class="button-redeem redeembtn">
 							<img class="icon-redeemtion" src="{{ asset('/client/images/profile-vip/icon-redeem.png') }}" alt="{{ trans('dingsu.redeemtion') }}" />
 					  		{{ trans('dingsu.redeemtion') }}
@@ -146,6 +161,7 @@
 						{{ trans('dingsu.logout') }}
 					</div>					
 				</li>
+
 			</ul>
 		 </div>
 		<!-- end member listing -->
@@ -294,13 +310,52 @@
 	<script src="{{ asset('/client/js/public.js') }}" ></script>
 	<script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
 	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
+	<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
 	<script type="text/javascript">
+
+		document.onreadystatechange = function () {
+          var state = document.readyState
+          if (state == 'interactive') {
+          } else if (state == 'complete') {
+            setTimeout(function(){
+                document.getElementById('interactive');
+                document.getElementById('loading').style.visibility="hidden";
+            },100);
+          }
+        }
+
 		$(document).ready(function () {
 			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
 			var current_point = getNumeric("<?php Print($wallet->current_point);?>");
 			var acupoint = getNumeric("<?php Print($wallet->current_life_acupoint);?>");
 			var usedpoint = getNumeric("<?php Print($usedpoint);?>");
             var previous_point = Cookies.get('previous_point');
+            var wbp = "{{$wbp['wbp']}}";
+            var platform = "{{$wbp['platform']}}";
+            var browser = "{{$wbp['browser']}}";
+            var topupurl = decodeEntities("{{env('TOPUP_URL','#')}}");
+            	
+        	if (platform == 'iOS') {
+				document.getElementById("button-topup").addEventListener("click", function(evt) {
+				    var a = document.createElement('a');
+				    a.setAttribute("href", topupurl);
+				    a.setAttribute("target", "_blank");
+				    var dispatch = document.createEvent("HTMLEvents");
+				    dispatch.initEvent("click", true, true);
+				    a.dispatchEvent(dispatch);
+				}, false);      		
+
+        	} else {
+
+        		document.getElementById("button-topup").addEventListener('tap',function(){
+					plus.runtime.openURL(topupurl);
+				})
+
+        	}
+
             if(previous_point !== undefined && previous_point > 0){
                 previous_point = (getNumeric(previous_point));
 
@@ -320,12 +375,6 @@
             $('.wabao-acupoint').html(acupoint);
 
             $('.wabao-usedpoint').html(usedpoint);
-
-   //          $('.button-topup').click(function(){
-			// 	// window.location.href = "https://j.youzan.com/tIigBi"; //"/purchasepoint";
-			// 	// rel="external" target="_blank"
-			// 	window.open("https://j.youzan.com/tIigBi", '_system');
-			// });
 
 			$('.round').click(function(){
 				window.location.href = "/round";
@@ -352,7 +401,8 @@
 			});
 
 			$('.button-setting').click(function(){
-				window.location.href = "/edit-setting";
+				// window.location.href = "/edit-setting";
+				window.location.href = "/summary";
 			});
 
 			var clipboard = new ClipboardJS('.cutBtn', {
@@ -398,6 +448,12 @@
 	  	// return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
 	  	return parseFloat(value).toFixed(2);
 	  }
+
+	  function decodeEntities(encodedString) {
+	  var textArea = document.createElement('textarea');
+	  textArea.innerHTML = encodedString;
+	  return textArea.value;
+	}
 
 	</script>
 @endsection

@@ -167,6 +167,7 @@ class Wallet extends Model
 	
 	public static function update_basic_wallet($memberid,$life = 0,$point = 0,$category = 'PNT',$type = 'credit', $notes = FALSE)
 	{
+		$history      = '';
 		$newpoint     = '';
 		$newlife      = '';
 		$action_sym   = '-1';
@@ -248,6 +249,7 @@ class Wallet extends Model
 	
 	public static function update_vip_wallet($memberid,$life = 0,$point = 0,$category = 'VIP',$type = 'credit', $notes = FALSE)
 	{
+		$history      = '';
 		$newpoint     = '';
 		$newlife      = '';
 		$action_sym   = '-1';
@@ -321,7 +323,7 @@ class Wallet extends Model
 				$history = self::add_ledger_history($history);
 			}
 			event(new \App\Events\EventWalletUpdate($memberid));
-			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint];		
+			return ['success'=>true,'life'=>$newlife,'point'=>$newpoint,'refid'=>$history];		
 		}
 		return ['success'=>false,'message'=>'unknown record'];
 	}

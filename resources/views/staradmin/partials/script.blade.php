@@ -1,7 +1,9 @@
 	
 <script type="text/javascript">	
-	var url  = "{{ env('APP_URL')}}";		
-	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+	var url    = "{{ env('APP_URL')}}";		
+	var port   = "{{ env('REDIS_CLI_PORT'), '3000' }}";
+	
+	var prefix = "{{ config('app.REDIS_PREFIX') }}";
 	
 	$(document).ready(function () {
         socketIOConnectionUpdate('<span class="text-info">@lang("dingsu.requesting_token")</span>');
@@ -50,6 +52,8 @@
             socket.on('connect', function () {
                 socketIOConnectionUpdate('<span class="text-info">@lang("dingsu.connected_authenticating")</span>')
                 console.log('Token: '+result.token);
+				console.log('prefix: '+prefix);
+				
 				socket.emit('authenticate', {token: result.token});
             });
 

@@ -639,9 +639,13 @@ function populateHistoryData(records, token) {
 
     if(current_page == 1 && last_page == 1 && html === '') {
         html = '<div class="row-full">' + 
-                    '<div class="col-xs-12">' + 
-                        '<div class="empty">你还没兑换红包<br><a href="/arcade" class="share-link">去拿红包></a></div>' + 
-                    '</div>' + 
+                    '<div class="col-xs-12">'; 
+                    if (this_vip_app) {
+                        html += '<div class="empty">你还没兑换奖品<br><a href="/arcade" class="share-link">去换奖品></a></div>';
+                    } else {
+                        html += '<div class="empty">你还没兑换红包<br><a href="/arcade" class="share-link">去拿红包></a></div>';
+                    }
+        html +=    '</div>' + 
                 '</div>';
     }
 
@@ -929,9 +933,15 @@ function getVirtualCardDetails(id, token){
             $.each(records, function(i, item) {
                 console.log(item.card_num);
 
-                html += '<div class="card-wrapper">卡号： <span id="number-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_num + '</span> <span id="copynumber-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copynumber">复制</span>' +
-                        '<br />密码：<span id="code-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_pass + '</span> <span id="copycode-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copycode">复制</span></div>' +
+                if (item.card_pass == '#' || item.card_pass == '') {
+                    html += '<div class="card-wrapper">卡号： <span id="number-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_num + '</span> <span id="copynumber-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copynumber">复制</span>' +
+                        '<br />淘口令: <span id="code-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + reload_pass + '</span> <span id="copycode-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copycode">复制</span></div>' +
                         '<br/>';
+                } else {
+                    html += '<div class="card-wrapper">卡号： <span id="number-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_num + '</span> <span id="copynumber-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copynumber">复制</span>' +
+                        '<br />密码：<span id="code-buyproduct-v-' + item.order_id + '-' + item.id + '" class="numbers">' + item.card_pass + '</span> <span id="copycode-buyproduct-v-' + item.order_id + '-' + item.id + '" class="copycode">复制</span></div>' +
+                        '<br/>';    
+                }
 
                 // Copy card number
                 var _clipboard_cardno = new ClipboardJS('#copynumber-buyproduct-v-' + item.order_id + '-' + item.id, {
@@ -966,10 +976,15 @@ function getVirtualCardDetails(id, token){
                 _clipboard_code.on('error', function (e) {
                     $('#copycode-buyproduct-v-' + item.order_id + '-' + item.id).addClass('copy-success').html('成功');
                 });
-            });
 
-            html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
-                                '</div>';
+                if (item.card_pass == '#' || item.card_pass == '') {
+                    html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选电商卡›选京东E卡›选面额输入卡›等待回收</div>' +
+                                    '</div>';
+                }else{
+                    html += '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
+                                    '</div>';
+                }
+            });
 
             $('.redeem-card-detail-' + id).html(html);
         }

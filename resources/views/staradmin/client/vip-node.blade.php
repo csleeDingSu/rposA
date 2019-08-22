@@ -45,14 +45,7 @@
 							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						@if (isset(Auth::Guard('member')->user()->id))
-							<a href="{{$wbp}}{{env('TOPUP_URL','#')}}">
-						@else
-							<a href="#" onClick="$('#modal-no-login').modal('show');">
-						@endif						
-							<img class="btn-calculate-vip btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
-						</a>
-											
+						<img class="btn-calculate-vip btn-redeemcash" id="btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -63,7 +56,7 @@
 					<!-- <a href="/arcade"> -->
 						<!--div class="btn-vip"></div-->
 						<!-- <div class="btn-rules-vip">返回普通场</div> -->
-						<div class="btn-rules-vip"><img src="{{ asset('/client/images/wheel/money.png') }}" />玩法介绍</div>
+						<div class="btn-rules-vip"></div>
 					<!-- </a> -->
 					<div style="clear:both"></div>
 				</div>
@@ -94,7 +87,8 @@
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
-			<input id='justlogin' type="hidden" value="{{Session::get('justlogin')}}" />			
+			<input id="topupurl" type="hidden" value="{{env('TOPUP_URL','#')}}" />
+			<input id="isIOS" type="hidden" value="false" />	
 	  	</div>
 
 	</div>
@@ -333,31 +327,33 @@
 	      <input type="hidden" class="span-bet" value="0" />
 	      	<div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div class="button-bet">1</div>
+		        	<div class="speech-bubble-chips">可多次点击</div>
+		        	<div class="button-bet button-bet-1">1</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div class="button-bet">10</div>
+		        	<div class="button-bet button-bet-10">10</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div class="button-bet">50</div>
+		        	<div class="button-bet button-bet-50">50</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">		        	
-		        	<div class="button-bet">100</div>
+		        	<div class="button-bet button-bet-100">100</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
 		        <div class="bet-box">
-		        	<div class="button-bet">500</div>
+		        	<div class="button-bet button-bet-500">500</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
-		        <div class="bet-box">		        	
+		        <div class="bet-box">
+		        	<div class="speech-bubble-clear">可清除重选</div>		        	
 		        	<div class="button-bet-clear"></div>
 		        </div>
 		    </div>
@@ -785,29 +781,30 @@
 
 <!--  end -->
 
+<!-- Start Reset Life Start -->
 
-<!-- VIP Modal -->
-
-	<div class="modal fade col-md-12" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content vip-background">
+	<div class="modal fade col-md-12" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
 				<div class="modal-body">				
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<div class="modal-card vip-modal-card">
-								<div class="vip-card">
-									<div class="vip-card-title">
-										<img src="{{ asset('/client/images/vip/left_deco.png') }}" width="18px" height="13px" /> 会员特权 <img src="{{ asset('/client/images/vip/right_deco.png') }}" width="18px" height="13px" />
-									</div>
-									<div class="vip-card-desc">
-										<ul>
-											<li><span class="vip-highlight">赠送1200金币，</span>可结算红包。</li>
-											<li><span class="vip-highlight">无上限封顶，</span>想赚多少都行。</li>
-											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
-										</ul>
-									</div>
-									<a href="/membership"><div class="btn-vip-submit">99元开通会员</div></a>
-								</div>								
+							<div class="modal-card">
+								<img src="{{ asset('/client/images/vip/icon-notification.png') }}" class="img-notification" />
+								<div class="modal-notification-title">
+									您充值 <span class="span-topup">500</span> 金币已到账
+								</div>
+								<div class="modal-notification-content">
+									充值前余额 <span class="span-before">500.31</span> 金币<br />
+									充值后余额 <span class="span-after">1000.31</span>金币
+								</div>
+
+								<div class="modal-notification-button">
+									知道了
+								</div>
+								<div class="modal-notification-info">
+								到账时间：2019年8月18日18点05分	
+								</div>											
 							</div>
 						</div>
 					</div>							
@@ -817,6 +814,8 @@
 	</div>
 
 <!--  end -->
+
+
 
 <!-- Start Win -->
 
@@ -896,66 +895,6 @@
 	</div>
 <!--  end -->
 
-<!-- Game Rules starts -->
-	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg close-modal" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-title">
-								  倍增式玩法说明
-								</div>
-								<div class="instructions">
-									第1局10积分，如果猜错了怎么办？<br/>
-									第2局就投30积分，如果第2局猜对，就能得到30积分，扣掉第1局亏的10积分，最终还赚20积分。<br />
-									如果第2局还猜错，第3局就投70积分。 。 。<br />
-									1200游戏积分能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
-									如果猜对就返回从10积分开始。
-								</div>
-								<div class="close-modal modal-warning-button">
-									知道了
-								</div>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!-- New - Top right corner Game Rules starts -->
-	<div class="modal fade col-md-12" id="top-corner-game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg close-modal" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-title">
-								  玩法说明
-								</div>
-								<div class="instructions">
-									<p>
-									默认拥有1200游戏积分用来抽奖，赚到的积分会换成红包，10积分兑换1元红包。</p>
-									<p>
-									这是自助的抽奖转盘，先选单数或双数再按抽奖，抽中就有积分奖励，抽错就扣除积分。</p>
-									<p>
-									1200积分被分成6次，按倍增式玩法，只要6次之内猜对，就能一直赚红包。</p>
-								</div>
-								<div class="close-modal modal-warning-button">
-									知道了
-								</div>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-<!-- New - Top right corner Game Rules starts -->
-
 <!-- customer service modal -->
 <div class="modal fade col-md-12" id="modal-sure-win" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -995,9 +934,9 @@
 							<div class="instructions2">您有<span class="yourPoint">0</span>金币，还差<span class="pointStillNeed">120</span>金币</div>
 							<div class="instructions3">1元等于1金币， 充值一次永久使用</div>
 
-							<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
-								<div class="btn-purchase-point">立刻充值</div>
-							</a>
+							<!-- <a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}"> -->
+								<div class="btn-purchase-point" id="btn-purchase-point">立刻充值</div>
+							<!-- </a> -->
 
 						</div>
 						<div class="vip-title">
@@ -1112,10 +1051,10 @@
 	</table>
 	</div>
 
-	<div class="btn-calculate-vip formButtonWrapper">
-		<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
+	<div class="btn-calculate-vip formButtonWrapper" id="btn-calculate-vip">
+		<!-- <a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}"> -->
 			<div class="formButton">充值金币</div>
-		</a>
+		<!-- </a> -->
 	</div>
 </div>
 
@@ -1126,7 +1065,7 @@
 			<img class="newbie-bg" src="{{ asset('/client/images/newbie-bg.png') }}">
 			<div class="introduction-bg">
 				<p class="title">
-				倍增投入，抽中机率高达98%
+					采用<span class="txt-bold">倍增式投币法</span>，68金币可投币5次，每5次内中1次即可无限抽，中奖率高达96.84%，大量金币等你抽。
 				</p>
 				<div class="introduction-bet">
 	                <div class="circle">1<br><span class="txt">起步</span></div>
@@ -1139,17 +1078,14 @@
 	                <div class="line-connect"></div>
 	                <div class="circle">38<br><span class="txt">加倍</span></div>
 	            </div>
-	            <br>
-				<div class="instructions1"><p>68金币分5次抽奖，从1起步，不中下局加倍3，不中下局加倍8，不中下局加倍18，不中最后加倍38.</p></div>
-				<div class="instructions2"><p>利用倍增原理，5次内抽中概率超高！ <u>点击详情></u></p></div>
 			</div>
-			<a  href="{{$wbp}}{{env('TOPUP_URL','#')}}">
-				<div class="btn-topup">立即充值</div>
+			<a  href="#" onclick="show_openform();">
+				<div class="btn-topup">点击了解详情</div>
 			</a>
-			<div class="btn-close-bg">
-				<a href="#" onClick="$('#modal-isnewbie').modal('hide');">
-					<img class="btn-close" src="{{ asset('/client/images/newbie_close.png') }}">
-				</a>
+			<div class="btn-close-bg" id="btn-go-topup">
+				<!-- <a href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}"> -->
+					无需了解 去充值金币 >
+				<!-- </a> -->
 			</div>
 		</div>	
 	</div>
@@ -1170,6 +1106,62 @@
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/public.js') }}" ></script>
 	<script src="{{ asset('/client/js/slide.js') }}"></script>
+	<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+
+    <script type="text/javascript">
+		var wbp = "{{$wbp['wbp']}}";
+        var platform = "{{$wbp['platform']}}";
+        var browser = "{{$wbp['browser']}}";
+        var topupurl = $('#topupurl').val();
+
+        if (platform == 'iOS') {
+        	$('#isIOS').val('true');
+			document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false); 
+
+			document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false); 
+
+			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false);      		
+
+    	} else {
+    		$('#isIOS').val('false');
+    		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
+
+			document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
+
+			document.getElementById("btn-go-topup").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
+
+    	}
+	</script>
 
 	<script type="text/javascript">
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
@@ -1188,7 +1180,6 @@
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
-
 			var user_id = $('#hidUserId').val();
 
 			$('.reload').click(function(){
@@ -1212,13 +1203,7 @@
 				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
-
-			$('#viewgamerules').on('click', showGameRules);
 			
-			$('.btn-vip-modal').click( function() {
-		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
-		    });
-
 		    $('.button-info').click( function() {
 		        $('#modal-sure-win').modal();
 		    });
@@ -1241,16 +1226,19 @@
 	              $(".openForm").slideUp(150);
 	            });
 	          });
-            
-        	// $(".btn-calculate-vip").click(() => {
-        	// 	if (user_id > 0) {
-	        //     	$('#modal-isnewbie').modal('show');
-	        //     	// window.location.href = "{{$wbp}}{{env('TOPUP_URL','#')}}";
-	        //     } else {
-	        //     	$('#modal-no-login').modal('show');
-	        //     }
-         //    });
+        	
 		});
+
+		function show_openform() { 
+			$('#modal-isnewbie').modal('hide');
+            being.wrapShow();
+            $(".openForm").slideDown(150);
+            $(".wrapBox ").click(function (e) {
+              being.wrapHide();
+              $(".openForm").slideUp(150);
+            });
+		}
+
 
 	</script>
 

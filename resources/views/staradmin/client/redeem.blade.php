@@ -35,7 +35,7 @@
 		<input type="hidden" id="this_vip_app" value="{{ env('THISVIPAPP','false') }}" />
 
 		<div class="card">
-			<img src="{{ asset('/client/images/redeem-background.jpg') }}" alt="redeem background">
+			<img class="redeem-background" src="{{ asset('/client/images/redeem-background.jpg') }}" alt="redeem background">
 			<div class="summary-table">
 				<div class="nav-top">
 					<div class="col-xs-2 nav-left">
@@ -59,7 +59,10 @@
 						<a href="/share">邀请好友送场次，抽红包，去邀请 ></a>
 					</div>
 				@else
-					<div class="label-coin"><span class="wabao-coin"></span>金币</div>
+					<div class="label-coin">
+						<img class="icon-newcoin"src="{{ asset('/client/images/coin.png') }}" />
+						<span class="wabao-coin"></span>
+					</div>
 				@endif
 			</div>
 		</div>

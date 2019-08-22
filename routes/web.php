@@ -30,6 +30,11 @@ Route::get('new-open-draw/{drawid?}', function ($drawid) {
 	dd( 'draw open to all connected members' );
 } );
 
+Route::get('generate-dashboard-report', function () {
+	Artisan::call('generate:dashboardreport', []);
+	dd( 'result generated' );
+} );
+
 Route::get('generateresult/{drawid}', function ($drawid) {
 	Artisan::call('generate:br', ['drawid' => $drawid]);
 	dd( 'result generated' );

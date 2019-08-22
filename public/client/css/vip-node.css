@@ -1,3 +1,15 @@
+.loading {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(/client/images/preloader.gif) center no-repeat;
+    background-color: rgba(255, 255, 255, 1);
+    background-size: 30px 30px;
+}
+
 .card-flex .cardBody {
     background-color: #8c35d8;
 }
@@ -577,10 +589,6 @@
     padding: 0.08rem 0.08rem 0 0;
 }
 
-.modal.in .modal-dialog {
-    margin: -2rem 0 0 0;
-}
-
 #modal-no-login {
 	background-color: rgba(0, 0, 0, 0.5) !important;
 }
@@ -590,57 +598,51 @@
 }
 
 .newbie-bg {
-	background-size: cover;
+	background-size: contain;
     padding: 0 0.8rem 0 0.8rem;
     text-align: center;
     position: relative;
     width: 100%;
-    margin: 2rem 0 0 0;
+    height: 100%;
+    /*margin: 2rem 0 0 0;*/
 }
 
 #modal-isnewbie .introduction-bg {
     background-color: #fff;
-    padding: 0.1rem 0.1rem 0.25rem 0.1rem;
-    border-radius: 10px;
-    margin: -4.65rem 1.2rem 0.25rem 1.2rem;
+    padding: 0.25rem 0.2rem 0 0.2rem;
+    border-radius: 0.2rem;
+    margin: -5.3rem 1.2rem 0.25rem 1.2rem;
     position: relative;
+    height: 3rem;
 }
 
 
 #modal-isnewbie .title {
     color: #683bc5;
-    font-size: 0.3rem;
-    text-align: center;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: 0.26rem;
+    line-height: 0.4rem;
     padding: 0.15rem;
-}
-
-#modal-isnewbie .instructions1 {
-	color: #888888;
-    padding: 0 0.2rem 0 0.2rem;
-    font-size: 0.2rem;
-    line-height: 20px;
     text-align: left;
-    margin: 0.55rem 0 0 0;
 }
 
-#modal-isnewbie .instructions2 {
-	color: #ef8717;
-    padding: 0 0.2rem 0 0.2rem;
-    font-size: 0.2rem;
-    line-height: 20px;
+#modal-isnewbie .title .txt-bold {
+	float: none;
+    font-weight: 700;
+    color: #683bc5;
+    padding: 0;
+    font-size: 0.26rem;
+    line-height: 0.4rem;
     text-align: left;
 }
 
 #modal-isnewbie .btn-topup {
-	border-radius: 10px;
+	border-radius: 0.2rem;
     background-color: #fca703;
-    padding: 0.15rem;
+    padding: 0.1rem 0.15rem 0.15rem 0.15rem;
     color: #fff;
     text-align: center;
     font-size: 0.3rem;
-    margin: 0.35rem 1.2rem 0.85rem 1.2rem;
+    margin: 0.4rem 1.2rem -0.08rem 1.2rem;
     position: relative;
 }
 
@@ -648,16 +650,21 @@
    	cursor: pointer;
     text-align: center;
     padding: 0;
-    margin: 0;
-    height: 50px;
+    margin-top: 0.45rem;
+    font-size: 0.3rem;
     position: relative;
+    color: #fff;
+}
+
+#modal-isnewbie .btn-close-bg a {
+	color: #fff;
 }
 
 #modal-isnewbie .btn-close {
 	cursor: pointer;
     padding: 0;
-    height: 33px;
-    width: 33px;
+    height: 0.8rem;
+    width: 0.8rem;
     margin: 0;
 }
 
@@ -665,42 +672,105 @@
     color: #6939da;
     background-color: #fff;
     border: 1px solid #d2bdf0;
-    height: 0.7rem;
+    height: 0.8rem;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    width: 0.7rem;
+    width: 0.8rem;
     text-align: center;
-    padding: 0.12rem 0 0 0;
+    padding: 0.15rem 0 0 0;
     font-size: 0.35rem;
-    line-height: 12px;
+    line-height: 0.24rem;
     float: left;
 }
 
 #modal-isnewbie .circle .txt{
-    font-size: 10px;
+    font-size: 0.2rem;
     color: #b193f6;
 }
 
 
 #modal-isnewbie .line-connect {
     border: 1px solid #d2bdf0;
-    height: 1px;
-    width: 5px;
+    height: 0.02rem;
+    width: 0.1rem;
     padding: 0;
     float: left;
     background-color: #d2bdf0;
-    margin-top: 22px;
+    margin-top: 0.4rem;
 }
 
 #modal-isnewbie .introduction-bet{
-    margin-left: 0.45rem;
+    margin-left: 0.1rem;
 }
 
 #modal-isnewbie {
 	background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
-#modal-isnewbie .modal.in .modal-dialog {
+#modal-isnewbie .modal-dialog {
+	width: 100%;
     margin: 0 0 0 0;
 }
+
+.speech-bubble-chips, .speech-bubble-clear{
+	position: absolute;
+	background: #ffffff;
+	border-radius: .4em;
+	color: #a657fa;
+	width: 1.5rem;
+	font-size: 0.24rem;
+	margin-top: -0.7rem;
+	padding: 0.07rem 0 0.1rem 0;
+	display: none;
+}
+
+.speech-bubble-chips:after  {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 40%;
+	width: 0;
+	height: 0;
+	border: 0.2rem solid transparent;
+	border-top-color: #ffffff;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -0.1rem;
+	margin-bottom: -0.15rem;
+}
+
+.speech-bubble-clear{
+	margin-left: -0.4rem;
+}
+
+.speech-bubble-clear:after  {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 70%;
+	width: 0;
+	height: 0;
+	border: 0.2rem solid transparent;
+	border-top-color: #ffffff;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -0.1rem;
+	margin-bottom: -0.15rem;
+}
+
+.modal.fade .modal-dialog {
+  transform: translate3d(0, -10%, 0);
+}
+
+.modal.in .modal-dialog {
+  transform: translate3d(0, 0, 0);
+}
+
+/* .fade {
+   -webkit-transition: opacity 1s linear;
+      -moz-transition: opacity 1s linear;
+       -ms-transition: opacity 1s linear;
+        -o-transition: opacity 1s linear;
+           transition: opacity 1s linear;
+ }*/

@@ -5,7 +5,7 @@ if( !Request::is('download-app') ) {
 	<div class="navBox">
 		<dl class="dbox">
 			<dd class="dbox1">
-				<a href="{{ url('home') }}" class="footer-icon">
+				<a href="{{ url('vip') }}" class="footer-icon">
 					@if(Request::is('vip'))
 						<img src="{{ asset('/client/images/profile-vip/icon-earn-point-active.png') }}" width="25" height="25" />
 						<p class="active">抽奖换购</p>

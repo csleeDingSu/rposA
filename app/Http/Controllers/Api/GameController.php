@@ -96,13 +96,16 @@ class GameController extends Controller
 				return $this->game_setting($request);
 			break;
 			case '103':
-				$vip      = $request->vip;	
+				$vip       = $request->vip;	
 				
-				$setting =  Game::gamesetting($gameid);
+				$setting   =  Game::gamesetting($gameid);
+				
+				$setting   =  Game::gamesetting($gameid);
+				$playcount = \App\PlayCount::where( 'member_id' , $memberid)->where( 'game_id' , $gameid)->sum('play_count');				
 				
 				$bettinghistory   = Game::get_betting_history_grouped($gameid, $memberid, $vip);
 
-				$result = ['setting'=>$setting,'bettinghistory' => $bettinghistory];
+				$result = ['setting'=>$setting,'playcount' => $playcount,'bettinghistory' => $bettinghistory];
 
 				return response()->json(['success' => true,'requested_time'=>$now,'response_time'=>now(),  'record' => $result]);
 			break;
@@ -516,6 +519,7 @@ class GameController extends Controller
 		{
 			$result_time = $this->processgametime( $now,$out );
 			
+
 			if ($result_time)
 			{
 				
@@ -1366,9 +1370,11 @@ class GameController extends Controller
 		$res->save();
 		
 		//Play count update - 29/05/2019
-		$playcount = \App\PlayCount::firstOrNew(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
-		$playcount->increment('play_count', 1);
-		$playcount->save();
+		//Fixed multiple row updates - 14/08/2019
+		$playcount = \App\PlayCount::firstOrCreate(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);		
+		if (!$playcount->wasRecentlyCreated) {			
+			$playcount->increment('play_count', 1);
+		}
 		//End
 		
 		$firstwin = \App\Product::IsFirstWin($memberid,$status);
@@ -1509,9 +1515,11 @@ class GameController extends Controller
 		$res->save();
 		
 		//Play count update - 29/05/2019
-		$playcount = \App\PlayCount::firstOrNew(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
-		$playcount->increment('play_count', 1);
-		$playcount->save();
+		//Fixed multiple row updates - 14/08/2019
+		$playcount = \App\PlayCount::firstOrCreate(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);		
+		if (!$playcount->wasRecentlyCreated) {			
+			$playcount->increment('play_count', 1);
+		}
 		//End
 		
 		$firstwin = \App\Product::IsFirstWin($memberid,$status);
@@ -1636,15 +1644,21 @@ class GameController extends Controller
 		
 		if ($status == 'win') 			
 		{
-			$reward = $betamt;
+			$reward = 0;
 			
 			//$se_game  = \App\Game::where('id',$gameid)->first();
 			
 			$se_game  = \App\Game::gamesetting($gameid);
 			
 			if (!empty($se_game->win_ratio))
-			{
+			{	
+				if ($se_game->win_ratio < 1)
+				{
+					$se_game->win_ratio = 1;
+				}				
 				$reward = $betamt * $se_game->win_ratio;
+				
+				$reward = $reward - $betamt;
 			}
 						
 			$r_status = 1;
@@ -1663,10 +1677,16 @@ class GameController extends Controller
 		
 		$res->save();
 		
+		$queries = \DB::enableQueryLog();
+		
 		//Play count update - 29/05/2019
-		$playcount = \App\PlayCount::firstOrNew(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
-		$playcount->increment('play_count', 1);
-		$playcount->save();
+		//Fixed multiple row updates - 14/08/2019
+		$playcount = \App\PlayCount::firstOrCreate(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
+		
+		if (!$playcount->wasRecentlyCreated) {			
+			$playcount->increment('play_count', 1);
+		}
+		
 		//End
 		$firstwin = '';
 		//$firstwin = \App\Product::IsFirstWin($memberid,$status);
@@ -1842,9 +1862,22 @@ class GameController extends Controller
 		
 		if ($status == 'win') 			
 		{
-			$reward = $betamt;
+			$reward = 0;
 			
-			$r_status = 1;
+			//$se_game  = \App\Game::where('id',$gameid)->first();
+			
+			$se_game  = \App\Game::gamesetting($gameid);
+			
+			if (!empty($se_game->win_ratio))
+			{	
+				if ($se_game->win_ratio < 1)
+				{
+					$se_game->win_ratio = 1;
+				}				
+				$reward = $betamt * $se_game->win_ratio;
+				
+				$reward = $reward - $betamt;
+			}
 			
 			//Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP	
 			
@@ -1875,9 +1908,11 @@ class GameController extends Controller
 		$res->save();
 		
 		//Play count update - 29/05/2019
-		$playcount = \App\PlayCount::firstOrNew(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);
-		$playcount->increment('play_count', 1);
-		$playcount->save();
+		//Fixed multiple row updates - 14/08/2019
+		$playcount = \App\PlayCount::firstOrCreate(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);		
+		if (!$playcount->wasRecentlyCreated) {			
+			$playcount->increment('play_count', 1);
+		}
 		//End
 		$firstwin = '';
 		//$firstwin = \App\Product::IsFirstWin($memberid,$status);

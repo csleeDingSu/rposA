@@ -9,6 +9,9 @@
     document.addEventListener("contextmenu", function(e){
       e.preventDefault();
     }, false);
+
+
+
     document.addEventListener("keydown", function(e) {
     //document.onkeydown = function(e) {
       // "I" key
@@ -73,6 +76,10 @@
 		@section('top-javascript')
 
 		<script type="text/javascript">
+		document.addEventListener('gesturestart', function (event){    
+	    	event.preventDefault();
+		}, false);
+
 		    //这里是微信和qq遮罩提示层
 		    function isPIA(){
 		        var u = navigator.userAgent, app = navigator.appVersion;

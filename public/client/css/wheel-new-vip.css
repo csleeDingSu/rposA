@@ -156,6 +156,7 @@
 
 .flickity-prev-next-button {
 	border-radius: 0px;
+	float: left;
 }
 
 .flickity-prev-next-button.previous {
@@ -172,9 +173,9 @@
   margin-top: 0.25rem;
   background: url('/client/images/wheel/next.png') no-repeat;
   background-size: contain;
+  background-position: center right; 
   width: 0.59rem;
   height: 0.9rem;
-  right: 0rem;
 }
 
 .btn-trigger {
@@ -456,7 +457,7 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 }
 
 .medium-rotate {
-    -webkit-animation: circle 1s infinite linear;
+    -webkit-animation: circle 0.4s infinite linear;
 }
 
 .fast-rotate {

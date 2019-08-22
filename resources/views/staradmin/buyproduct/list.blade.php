@@ -121,7 +121,7 @@ function openmodel() {
 		$('#formadd')[0].reset();
 		$('#mode').val('create');
 		$( '#validation-errors' ).html( '' );
-		$('#package_type').attr("disabled", false);
+		$('#type').attr("disabled", false);
 		$('.imga, .imgdiv').hide();
 		$( '#openaddmodel' ).modal( 'show' );
 	}
@@ -249,6 +249,7 @@ $('#formadd').on('submit', function(event){
 								$('#point_to_redeem').val(data.point_to_redeem);								
 								$('#price').val(data.price);
 								$('#status').val(data.status);
+								$('#type').val(data.type);
 								$('#picture_url').val(data.picture_url);
 								$('#description').val(data.description);
 								$('#available_quantity').val(data.available_quantity);
@@ -263,6 +264,8 @@ $('#formadd').on('submit', function(event){
 								if (data.picture_url)	{ 
 									$('.imga, .imgdiv').show();									
 								}
+								
+								$('#type').attr("disabled", true);
 								
 								$("#savebtn").html('@lang("dingsu.update")');								
 								$('#openaddmodel').modal('show');

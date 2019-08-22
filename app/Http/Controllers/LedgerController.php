@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Wallet;
 use Carbon\Carbon;
-
+use App\Notification;
 
 
 class LedgerController extends BaseController
@@ -113,7 +113,22 @@ class LedgerController extends BaseController
 		{
 			$record = Wallet::update_basic_wallet($memberid, 0,$data['apoint'],'ACP','credit',$data['tnotes']);
 			$error  = FALSE;
-			if ($record['success']) $result['point'] = $record['point'];
+			if ($record['success']) 
+			{
+				$result['point'] = $record['point'];
+				$refid = $record['refid'];
+				
+				$notification = new Notification();
+				$notification->member_id       = $memberid;
+				$notification->title           = 'Ledger Update';
+				$notification->notifiable_type = 'LEBUP';
+				$notification->notifiable_id   = $refid;
+				$notification->save();
+				
+				$notification = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+				$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
+				event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$ndata ));
+			}
 		}
 		
 		if ($data['viplife'] >= 1) 
@@ -127,7 +142,20 @@ class LedgerController extends BaseController
 		{
 			$record = Wallet::update_vip_wallet($memberid, 0,$data['vapoint'],'AVP','credit',$data['tnotes']);
 			$error  = FALSE;
-			if ($record['success']) $result['vippoint'] = $record['point'];
+			if ($record['success']) {
+				$result['vippoint'] = $record['point'];
+				$refid = $record['refid'];				
+				$notification = new Notification();
+				$notification->member_id       = $memberid;
+				$notification->title           = 'Ledger Update';
+				$notification->notifiable_type = 'LEVUP';
+				$notification->notifiable_id   = $refid;
+				$notification->save();
+				
+				$notification = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+				$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
+				event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$ndata ));
+			}
 		}
 		
 		if ($error) 

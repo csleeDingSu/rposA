@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<div style="width: 100%;display: flex;justify-content: ;">
+		<div class="mui-btn mui-btn-blue" style="margin:50px auto;width: 300px;" id="openURL">点击唤醒浏览器打开链接</div>
+	</div>
+</body>
+<script>
+	document.getElementById("openURL").addEventListener('tap',function(){
+		//
+		plus.runtime.openURL("https://www.baidu.com");
+	})
+</script>
+</html>
