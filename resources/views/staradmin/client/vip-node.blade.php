@@ -1195,6 +1195,7 @@
         	
 		});
 
+		
 		function show_openform() { 
 			$('#modal-isnewbie').modal('hide');
             being.wrapShow();
