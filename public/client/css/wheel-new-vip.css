@@ -175,6 +175,7 @@
   margin-top: 0.25rem;
   background: url('/client/images/wheel/next.png') no-repeat;
   background-size: 0.59rem 0.9rem;
+  background-position: center right; 
   width: 0.59rem;
   height: 0.9rem;
   right: 0;
