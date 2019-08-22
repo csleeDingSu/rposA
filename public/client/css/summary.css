@@ -109,6 +109,7 @@ html, body {
 
 .new_poins {
 	color: #333;
+	font-size: 0.3rem;
 }
 
 .row-full {
@@ -120,4 +121,15 @@ html, body {
     background-color: #f3f3f3;
     padding-bottom: 50px;
     color: #666;
+}
+
+.new_item {
+    text-align: left;
+    color: #333333;
+    font-size: 0.3rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 5.7rem;
 }

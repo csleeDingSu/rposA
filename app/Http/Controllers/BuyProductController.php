@@ -538,9 +538,12 @@ class BuyProductController extends BaseController
 			$now = Carbon::now();
 			$data = ['redeem_state'=>0,'confirmed_at'=>$now,'reject_notes'=>$request->reason];		
 			
-			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RBP','credit', 'redeem product rejected,point refund to customer');
+			$wallet = Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RBP','credit', 'redeem product rejected,point refund to customer');
 			
 			BuyProduct::update_redeemed($record->id, $data);
+			
+			$refdata = [ 'id'=>$record->id, 'refid'=>$wallet['refid'], 'type'=>'buyproduct' ];
+			Wallet::add_ledger_ref($refdata);
 			
 			return response()->json(['success' => true, 'message' => 'success']);
 		}

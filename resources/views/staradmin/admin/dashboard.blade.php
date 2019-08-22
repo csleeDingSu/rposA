@@ -399,7 +399,7 @@
 	
 	var reguser = new Array();
 	var labels  = new Array();
-	//var perfix = "{{ config('app.REDIS_PREFIX') }}";
+	//var prefix = "{{ config('app.REDIS_PREFIX') }}";
 	var member_label  = '@lang("dingsu.member")';
 	
 	var register_date = '@lang("dingsu.register_date")';
@@ -425,7 +425,7 @@
     @parent
 	
 	
-	socket.on(perfix+"test-channel" + ":App\\Events\\EventDynamicChannel" , function(data){
+	socket.on(prefix+"test-channel" + ":App\\Events\\EventDynamicChannel" , function(data){
 				console.log('members activedraw');
 				console.log(data);
 			  });
@@ -444,7 +444,7 @@
 					}
 			 });
 		*/	
-	socket.on(perfix+"dashboard-basicplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
+	socket.on(prefix+"dashboard-basicplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var r = result.data;
 		if (r.type == 'reset')
 		{
@@ -460,7 +460,7 @@
 		}
 	 });
 	
-	socket.on(perfix+"master-reset" + ":App\\Events\\EventDashboardChannel", function(result) {
+	socket.on(prefix+"master-reset" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var r = result.data;
 		if (r.type == 'reset')
 		{
@@ -470,7 +470,7 @@
 	});
 		
 	
-	socket.on(perfix+"dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
+	socket.on(prefix+"dashboard-vipplayer" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var r = result.data;
 		if (r.type == 'reset')
 		{
@@ -488,7 +488,7 @@
 	
 	var countdown;
 	
-	socket.on(perfix+"dashboard-info" + ":App\\Events\\EventDashboardChannel", function(result) {
+	socket.on(prefix+"dashboard-info" + ":App\\Events\\EventDashboardChannel", function(result) {
 		var data = result.data;
 		console.log(data);
 		$('.pending_wechat').html(data.pending_wechat);
