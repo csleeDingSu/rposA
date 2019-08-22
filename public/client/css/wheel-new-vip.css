@@ -184,7 +184,10 @@
   fill: transparent;
   display: block;
   right: 0;
+  float: right;
   position: relative;
+  border: 1px solid red;
+  width: 1rem;
 }
 
 .btn-trigger {
