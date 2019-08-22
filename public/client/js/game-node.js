@@ -762,11 +762,11 @@ function showPayout(){
                 $( '.DB_G_hand_2' ).hide();
                 $( '.DB_G_hand_3' ).show();
                 if(selected == 'odd'){
-                    $('.span-odd').removeClass('lose').addClass('ready').html('+'+bet_amount);
-                    $('.span-even').addClass('ready lose').html('-'+bet_amount);
+                    $('.span-odd').removeClass('lose').addClass('ready').html(bet_amount + '元红包');
+                    $('.span-even').addClass('ready lose').html('谢谢参与');
                 } else {
-                    $('.span-odd').addClass('ready lose').html('-'+bet_amount);
-                    $('.span-even').removeClass('lose').addClass('ready').html('+'+bet_amount);
+                    $('.span-odd').addClass('ready lose').html('谢谢参与');
+                    $('.span-even').removeClass('lose').addClass('ready').html(bet_amount + '元红包');
                 }
             } else {
                 //$('.middle-label').html('选择金币');
