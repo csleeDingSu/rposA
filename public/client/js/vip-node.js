@@ -581,12 +581,13 @@ function closeModal() {
 function closeWinModal() {
 
     $('.close-win-modal').click(function(event){
-        
+        // console.log(g_vip_point);
+        // console.log(g_previous_point);
         if (g_vip_point > g_previous_point) {
             musicPlay(1);  
-            console.log('play coin mp3');
+            // console.log('play coin mp3');
 
-            setTimeout(function(){
+           setTimeout(function(){
                 var decimal_places = 2;
                 var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
 
@@ -698,6 +699,7 @@ function bindBetButton(){
     });
 
     $('.button-bet').click(function(){
+
         $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
@@ -1350,7 +1352,7 @@ function startTimer(duration, timer, freeze_time) {
         var id = $('#hidUserId').val();
         var level = parseInt($('#hidLevel').val());
         $('.small-border').addClass('medium-rotate');
-        g_previous_point = parseInt($('.spanAcuPoint').html());
+        g_previous_point = getNumeric($('.spanAcuPoint').html());
 
         $.ajax({
             type: 'POST',
