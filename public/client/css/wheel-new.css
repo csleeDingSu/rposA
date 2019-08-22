@@ -175,6 +175,7 @@
   width: 0.59rem;
   height: 0.9rem;
   right: 0rem;
+  position: absolute;
 }
 
 .btn-trigger {
