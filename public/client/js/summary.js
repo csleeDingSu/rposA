@@ -64,6 +64,7 @@ function getSummary(token) {
             var str_type = '';
             var str_points = '';
             var cls_negative = '';
+            var cls_item = '';
 
             var t = value.created_at.split(/[- :]/);
             var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
@@ -93,12 +94,14 @@ function getSummary(token) {
                     str_type = '兑奖-' + value.title;
                     str_points = '-' + getNumeric(value.debit) + '元';
                     cls_negative = 'new_poins';
+                    cls_item = 'new_item';
                 break
 
                 case 'APACP':
                     str_type = '充值金币';
                     str_points = '+' + getNumeric(value.credit) + '元';
                     cls_negative = 'new_poins';
+                    cls_item = 'new_item';
                 break
             }
 
@@ -111,7 +114,7 @@ function getSummary(token) {
 
             summary +=   '<div class="row">' +
                             '<div class="col-xs-8 column-1">' +
-                                '<div class="item">'+ str_type +'</div>' +
+                                '<div class="item ' + cls_item +'">'+ str_type +'</div>' +
                                 '<div class="date">' + str_date + '</div>' +
                             '</div>' +
                             '<div class="col-xs-4 column-2">' +
