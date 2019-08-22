@@ -126,8 +126,8 @@ class LedgerController extends BaseController
 				$notification->save();
 				
 				$notification = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
-				$data         = ['count'=>$notification->count(), 'records' => $notification];				
-				event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$data ));
+				$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
+				event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$ndata ));
 			}
 		}
 		
@@ -153,8 +153,8 @@ class LedgerController extends BaseController
 				$notification->save();
 				
 				$notification = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
-				$data         = ['count'=>$notification->count(), 'records' => $notification];				
-				event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$data ));
+				$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
+				event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$ndata ));
 			}
 		}
 		
