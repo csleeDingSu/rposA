@@ -148,6 +148,7 @@
 
 .flickity-button {
   background: transparent;
+  border: 1px solid blue;
 }
 
 .flickity-button-icon {
@@ -157,6 +158,7 @@
 .flickity-prev-next-button {
 	border-radius: 0px;
 	float: left;
+	border: 1px solid black;
 }
 
 .flickity-prev-next-button.previous {
@@ -178,6 +180,7 @@
   right: 0;
   position: absolute;
   left: auto;
+  border: 1px solid green;
 }
 
 .flickity-prev-next-button.next .flickity-button-icon {
@@ -187,7 +190,7 @@
   float: right;
   position: relative;
   border: 1px solid red;
-  width: 1rem;
+  width: 0.5rem;
 }
 
 .btn-trigger {
