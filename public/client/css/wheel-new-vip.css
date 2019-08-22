@@ -174,23 +174,13 @@
 .flickity-prev-next-button.next {
   margin-top: 0.25rem;
   background: url('/client/images/wheel/next.png') no-repeat;
-  background-size: contain;
+  background-size: 0.59rem 0.9rem;
   width: 0.59rem;
   height: 0.9rem;
   right: 0;
   position: absolute;
   left: auto;
   border: 1px solid green;
-}
-
-.flickity-prev-next-button.next .flickity-button-icon {
-  fill: transparent;
-  display: block;
-  right: 0;
-  float: right;
-  position: relative;
-  border: 1px solid red;
-  width: 0.5rem;
 }
 
 .btn-trigger {
