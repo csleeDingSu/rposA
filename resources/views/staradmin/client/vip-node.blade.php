@@ -782,37 +782,6 @@
 <!--  end -->
 
 
-<!-- VIP Modal -->
-
-	<div class="modal fade col-md-12" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content vip-background">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card vip-modal-card">
-								<div class="vip-card">
-									<div class="vip-card-title">
-										<img src="{{ asset('/client/images/vip/left_deco.png') }}" width="18px" height="13px" /> 会员特权 <img src="{{ asset('/client/images/vip/right_deco.png') }}" width="18px" height="13px" />
-									</div>
-									<div class="vip-card-desc">
-										<ul>
-											<li><span class="vip-highlight">赠送1200金币，</span>可结算红包。</li>
-											<li><span class="vip-highlight">无上限封顶，</span>想赚多少都行。</li>
-											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
-										</ul>
-									</div>
-									<a href="/membership"><div class="btn-vip-submit">99元开通会员</div></a>
-								</div>								
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
 
 <!-- Start Win -->
 
@@ -891,66 +860,6 @@
 		</div>
 	</div>
 <!--  end -->
-
-<!-- Game Rules starts -->
-	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg close-modal" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-title">
-								  倍增式玩法说明
-								</div>
-								<div class="instructions">
-									第1局10积分，如果猜错了怎么办？<br/>
-									第2局就投30积分，如果第2局猜对，就能得到30积分，扣掉第1局亏的10积分，最终还赚20积分。<br />
-									如果第2局还猜错，第3局就投70积分。 。 。<br />
-									1200游戏积分能做6次倍增，这是猜单双的游戏，6次之内猜对的概率是99%。<br />
-									如果猜对就返回从10积分开始。
-								</div>
-								<div class="close-modal modal-warning-button">
-									知道了
-								</div>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!-- New - Top right corner Game Rules starts -->
-	<div class="modal fade col-md-12" id="top-corner-game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg close-modal" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-title">
-								  玩法说明
-								</div>
-								<div class="instructions">
-									<p>
-									默认拥有1200游戏积分用来抽奖，赚到的积分会换成红包，10积分兑换1元红包。</p>
-									<p>
-									这是自助的抽奖转盘，先选单数或双数再按抽奖，抽中就有积分奖励，抽错就扣除积分。</p>
-									<p>
-									1200积分被分成6次，按倍增式玩法，只要6次之内猜对，就能一直赚红包。</p>
-								</div>
-								<div class="close-modal modal-warning-button">
-									知道了
-								</div>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-<!-- New - Top right corner Game Rules starts -->
 
 <!-- customer service modal -->
 <div class="modal fade col-md-12" id="modal-sure-win" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
@@ -1260,13 +1169,7 @@
 				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
-
-			$('#viewgamerules').on('click', showGameRules);
 			
-			$('.btn-vip-modal').click( function() {
-		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
-		    });
-
 		    $('.button-info').click( function() {
 		        $('#modal-sure-win').modal();
 		    });
