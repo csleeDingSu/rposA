@@ -124,6 +124,10 @@ class LedgerController extends BaseController
 				$notification->notifiable_type = 'LEBUP';
 				$notification->notifiable_id   = $refid;
 				$notification->save();
+				
+				$notification = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+				$data         = ['count'=>$notification->count(), 'records' => $notification];				
+				event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$data ));
 			}
 		}
 		
@@ -147,6 +151,10 @@ class LedgerController extends BaseController
 				$notification->notifiable_type = 'LEVUP';
 				$notification->notifiable_id   = $refid;
 				$notification->save();
+				
+				$notification = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+				$data         = ['count'=>$notification->count(), 'records' => $notification];				
+				event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$data ));
 			}
 		}
 		
