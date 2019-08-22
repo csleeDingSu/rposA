@@ -704,6 +704,11 @@ body{
 	color: #333333;
 }
 
+.modal-notification-title {
+	color: #7b7b7b;
+	font-size: 0.4rem;
+}
+
 .modal-message-content, .modal-lose-content {
 	color: #979797;
 	font-size: 13px;
@@ -750,6 +755,13 @@ body{
 	background: #f6f6f6;
 	border-radius: 6px;
 	margin-top: 20px;
+}
+
+.modal-notification-content {
+	color: #d0d0d0;
+	font-size: 0.3rem;
+	padding: 0.3rem 0 0.4rem 0;
+	line-height: 0.4rem;
 }
 
 .vegan-list {
@@ -1043,6 +1055,13 @@ body{
 	margin-bottom: 15px;
 }
 
+.img-notification {
+	width: 1.35rem;
+	height: 1.35rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.2rem;
+}
+
 .modal-message-button, .modal-warning-button, .modal-manual-button, 
 .modal-confirm-button, .modal-invite-button, .modal-redeem-button {
 	background: #ff6868;
@@ -1084,6 +1103,35 @@ body{
 	margin-right: 0;
 	font-size: 20px;
 	padding: 8px;
+}
+
+.modal-notification-button {
+	background: #f6cf88;
+	color: #fff;
+	font-size: 0.36rem;
+	border-radius: 0.5rem;
+	padding: 0.2rem;
+	width: 70%;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.modal-notification-info {
+	color: #d0d0d0;
+	font-size: 0.2rem;
+	padding-top: 0.3rem;
+}
+
+.span-topup {
+	color: #f0b13c;
+}
+
+.span-before, .span-after {
+	color: #7b7b7b;
+}
+
+#modal-notification .modal-full-height {
+	padding-bottom: 0;
 }
 
 @media only screen and (max-width: 360px) {

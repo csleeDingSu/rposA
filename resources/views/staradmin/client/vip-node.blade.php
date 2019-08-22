@@ -781,6 +781,40 @@
 
 <!--  end -->
 
+<!-- Start Reset Life Start -->
+
+	<div class="modal fade col-md-12" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<img src="{{ asset('/client/images/vip/icon-notification.png') }}" class="img-notification" />
+								<div class="modal-notification-title">
+									您充值 <span class="span-topup">500</span> 金币已到账
+								</div>
+								<div class="modal-notification-content">
+									充值前余额 <span class="span-before">500.31</span> 金币<br />
+									充值后余额 <span class="span-after">1000.31</span>金币
+								</div>
+
+								<div class="modal-notification-button">
+									知道了
+								</div>
+								<div class="modal-notification-info">
+								到账时间：2019年8月18日18点05分	
+								</div>											
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--  end -->
+
 
 
 <!-- Start Win -->
@@ -1195,7 +1229,6 @@
         	
 		});
 
-		
 		function show_openform() { 
 			$('#modal-isnewbie').modal('hide');
             being.wrapShow();
