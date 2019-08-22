@@ -90,15 +90,22 @@ function getSummary(token) {
                     cls_negative = 'negative';
                 break;
 
-                case 'DPRBP':
+                case 'DPRBP': //redeem / buy product
                     str_type = '兑奖-' + value.title;
                     str_points = '-' + getNumeric(value.debit) + '元';
                     cls_negative = 'new_poins';
                     cls_item = 'new_item';
                 break
 
-                case 'APACP':
+                case 'APACP': //top up
                     str_type = '充值金币';
+                    str_points = '+' + getNumeric(value.credit) + '元';
+                    cls_negative = 'new_poins';
+                    cls_item = 'new_item';
+                break
+
+                case 'APRBP': //refund
+                    str_type = '退还金币-' + value.reject_notes;
                     str_points = '+' + getNumeric(value.credit) + '元';
                     cls_negative = 'new_poins';
                     cls_item = 'new_item';
