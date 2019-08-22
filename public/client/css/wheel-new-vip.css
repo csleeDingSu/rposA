@@ -457,7 +457,7 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 }
 
 .medium-rotate {
-    -webkit-animation: circle 0.5s infinite linear;
+    -webkit-animation: circle 0.4s infinite linear;
 }
 
 .fast-rotate {
