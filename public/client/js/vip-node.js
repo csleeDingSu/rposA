@@ -22,6 +22,7 @@ var show_default = true;
 var g_betting_history_total = 0;
 var play_count = 0;
 var bet_count = 0;
+var update_spanAcuPointAndBalance = true;
 
 $(function () {
 
@@ -169,7 +170,9 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(point);
-            $('.spanAcuPointAndBalance').html(get2Decimal(point));
+            if (update_spanAcuPointAndBalance) {
+                $('.spanAcuPointAndBalance').html(get2Decimal(point));    
+            }
         }
         $('.packet-acupoint').html(acupoint);
         $('.packet-acupoint-to-win').html(15 - acupoint);
@@ -634,6 +637,30 @@ function bindSpinningButton() {
             $('.spinning').css('visibility', 'hidden');
         }, 3000);
     });
+
+    $('.btn-trigger').click(function( event ){
+        $('.spinning').html('转盘转动中，请等待结果。');
+        $('.spinning').css('visibility', 'visible');
+        setTimeout(function(){ 
+            $('.spinning').css('visibility', 'hidden');
+        }, 3000);
+    });
+
+    $('.button-bet').click(function( event ){
+        $('.spinning').html('转盘转动中，请等待结果。');
+        $('.spinning').css('visibility', 'visible');
+        setTimeout(function(){ 
+            $('.spinning').css('visibility', 'hidden');
+        }, 3000);
+    });
+
+    $('.button-bet-clear').click(function( event ){
+        $('.spinning').html('转盘转动中，请等待结果。');
+        $('.spinning').css('visibility', 'visible');
+        setTimeout(function(){ 
+            $('.spinning').css('visibility', 'hidden');
+        }, 3000);
+    });
 }
 
 function bindBetButton(){
@@ -1024,6 +1051,7 @@ function bindTriggerButton(){
             // $( '#nonloginmodal' ).modal( 'show' );
             $( '#modal-no-login' ).modal( 'show' );
         }else {
+            update_spanAcuPointAndBalance = false;
 
             if (g_vip_point < 1) {
                 $( '#modal-isnewbie' ).modal( 'show' );
