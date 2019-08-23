@@ -22,7 +22,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="heading-{{ $faq->id }}">
                 <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $faq->id }}" aria-expanded="true" aria-controls="collapse{{ $faq->id }}">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $faq->id }}" aria-expanded="true" aria-controls="collapse{{ $faq->id }}" id="btncollapse{{ $faq->id }}">
                         <i class="more-less glyphicon glyphicon-menu-right"></i>
                         <div class="faq-title">{{ $faq->title }}</div>
                     </a>
@@ -46,8 +46,9 @@
 
 @section('footer-javascript')
 	@parent
+	<script type="text/javascript">
+    var faqid = "{{$faqid}}";
 
-	<script type="text/javascript">		
 		function toggleIcon(e) {
 		    $(e.target)
 		        .prev('.panel-heading')
@@ -56,5 +57,12 @@
 		}
 		$('.panel-group').on('hidden.bs.collapse', toggleIcon);
 		$('.panel-group').on('shown.bs.collapse', toggleIcon);
+
+        if (faqid > 0) {
+            $(document).ready(function(){
+              $('#btncollapse' + faqid).trigger('click');
+            });    
+        }
+        
 	</script>
 @endsection

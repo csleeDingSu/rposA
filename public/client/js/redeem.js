@@ -535,38 +535,20 @@ function populateHistoryData(records, token) {
 
                 html += '</div>';
                 
-            } else {
+            } else if (item.type == 'product'){
 
-                if(item.pin_status == 4) { // Pending
-                    txt_status = '等待发放';
-                    cls_status = 'pending';
-                } else if (item.pin_status == 2) { // Confirmed
-                    txt_status = '已发放';
-                    cls_status = 'confirmed';
-                } else {
-                    txt_status = '被拒绝';
-                    cls_status = 'rejected';
-                }
-
-                html += '<div class="row row-new">' +
-                            '<div class="redeem-info">' +
-                                '<div class="redeem-time">兑换时间:'+ str_date +'</div>' +
-                                '<div class="redeem-status '+cls_status+'">'+txt_status+'</div>' +
-                            '</div>' +
-                            '<div class="product-info"><div class="product-img"><img src="'+item.picurl+'" alt="'+item.product_name+'"></div>' +
-                            '<div class="product-detail">' +
-                                '<div class="product-name">'+item.product_name+'</div>' +
-                                '<div class="product-desc">可兑换支付宝现金</div>' +
-                            '</div>' +
-                            '<div class="redeem-result">' +
-                                '<div class="redeem-quantity">X1</div>';
+                html += '<div class="row product-row">' +
+                        '   <div class="product-bg">' +
+                        '       <div class="product-title">' + item.product_name + '<a href="/faq/4"><div class="product-how-to-redeem"></div></a></div>';
+                            
                 if (item.pin_status == 2) {
-                    html += '     <div class="redeem-action"  data-toggle="collapse" data-target="#content-' + item.type + item.id + '">点击查看</div>' +
-                            '</div>' +
-                            '<div id="content-' + item.type + item.id + '" class="collapse">' +
-                                '<div class="card-wrapper">卡号： <span id="number' + item.type + item.id + '" class="numbers">' + item.code + '</span> <span id="copynumber' + item.type + item.id + '" class="copynumber">复制</span><br />密码：<span id="code' + item.type + item.id + '" class="numbers">' + item.passcode + '</span> <span id="copycode' + item.type + item.id + '" class="copycode">复制</span><br />淘口令：<span id="code_hash' + item.type + item.id + '" class="numbers">' + reload_pass +'</span> <span id="copycode_hash' + item.type + item.id + '" class="copycode_hash">复制</span></div>' +
-                                '<div class="instruction">兑换红包方法：复制上面淘口令›打开淘宝APP›进入后点立即回收›选游戏卡›选骏网一卡通›选面额输入卡号和密码›3分钟红包到账。</div>' +
-                            '</div></div>' +
+                html += '       <div class="product-content">' +
+                        '           <div class="r"><div class="c1">卡号</div><div id="number' + item.type + item.id + '" class="c2">： ' + item.code + '</div> <div id="copynumber' + item.type + item.id + '" class="copynumber c3">点击复制</div></div>' +
+                        '           <div class="r"><div class="c1">密码</div><div id="code' + item.type + item.id + '" class="c2">： ' + item.passcode + '</div> <div id="copycode' + item.type + item.id + '" class="copycode c3">点击复制</div></div>' +
+                        '           <divclass="r" ><div class="c1">淘口令</div><div id="code_hash' + item.type + item.id + '" class="c2">： ' + reload_pass +'</div> <div id="copycode_hash' + item.type + item.id + '" class="copycode_hash c3">点击复制</div></div>' +
+                        '       </div>'+
+                        '   </div>'+
+                        '   <div class="product-redeem-time">发放时间:'+ str_date +'</div>' +
                         '</div>';
 
                     //copy code_hash
@@ -577,15 +559,15 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_code_hash.on('success', function (e) {
-                        $('.copynumber').removeClass('copy-success').html('复制');
-                        $('.copycode').removeClass('copy-success').html('复制');
-                        $('.copycode_hash').removeClass('copy-success').html('复制');
-                        $('#copycode_hash' + item.type + item.id).addClass('copy-success').html('成功');                                                
+                        $('.copynumber').removeClass('copy-success-new').html('点击复制');
+                        $('.copycode').removeClass('copy-success-new').html('点击复制');
+                        $('.copycode_hash').removeClass('copy-success-new').html('点击复制');
+                        $('#copycode_hash' + item.type + item.id).addClass('copy-success-new').html('复制成功');                                                
                     });
 
                     clipboard_code_hash.on('error', function (e) {
                         // $('#copynumber' + item.id).addClass('copy-fail').html('失败');
-                        $('#copycode_hash' + item.type + item.id).addClass('copy-success').html('成功');
+                        $('#copycode_hash' + item.type + item.id).addClass('copy-success-new').html('复制成功');
                     });
 
                     // Copy card number
@@ -596,15 +578,14 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_cardno.on('success', function (e) {
-                        $('.copynumber').removeClass('copy-success').html('复制');
-                        $('.copycode').removeClass('copy-success').html('复制');
-                        $('.copycode_hash').removeClass('copy-success').html('复制');
-                        $('#copynumber' + item.type + item.id).addClass('copy-success').html('成功');                                                
+                        $('.copycode').removeClass('copy-success-new').html('点击复制');
+                        $('.copycode_hash').removeClass('copy-success-new').html('点击复制');
+                        $('#copynumber' + item.type + item.id).addClass('copy-success-new').html('复制成功');                                                
                     });
 
                     clipboard_cardno.on('error', function (e) {
                         // $('#copynumber' + item.id).addClass('copy-fail').html('失败');
-                        $('#copynumber' + item.type + item.id).addClass('copy-success').html('成功');
+                        $('#copynumber' + item.type + item.id).addClass('copy-success-new').html('复制成功');
                     });
 
                     // Copy passcode
@@ -615,21 +596,21 @@ function populateHistoryData(records, token) {
                     });
 
                     clipboard_code.on('success', function (e) {
-                        $('.copynumber').removeClass('copy-success').html('复制');
-                        $('.copycode').removeClass('copy-success').html('复制');
-                        $('.copycode_hash').removeClass('copy-success').html('复制');
-                        $('#copycode' + item.type + item.id).addClass('copy-success').html('成功');
+                        $('.copynumber').removeClass('copy-success-new').html('点击复制');
+                        $('.copycode').removeClass('copy-success-new').html('点击复制');
+                        $('.copycode_hash').removeClass('copy-success-new').html('点击复制');
+                        $('#copycode' + item.type + item.id).addClass('copy-success-new').html('复制成功');
                     });
 
                     clipboard_code.on('error', function (e) {
                         // $('#copycode' + item.id).addClass('copy-fail').html('失败');
-                        $('#copycode' + item.type + item.id).addClass('copy-success').html('成功');
+                        $('#copycode' + item.type + item.id).addClass('copy-success-new').html('复制成功');
                     });
 
                 } else {
-                    html += '       </div>' +
-                                '</div>' +
-                            '</div>';
+                
+                html += '   </div>' +
+                        '</div>';
                 }
             }
 
@@ -648,6 +629,7 @@ function populateHistoryData(records, token) {
         html +=    '</div>' + 
                 '</div>';
     }
+   
 
     return html;
 
