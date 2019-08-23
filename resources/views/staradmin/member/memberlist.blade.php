@@ -329,6 +329,27 @@
 		</div>
 	</div>
 <!-- Modal Ends -->
+
+
+<!--Member play Modal starts -->
+	<div class="modal fade" id="memberplaylist" tabindex="-1" role="dialog" aria-labelledby="childlist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">@lang('dingsu.member') @lang('dingsu.play') @lang('dingsu.list') </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>				
+				</div>
+				<div class="modal-body" id="memberplayajaxlist">
+					
+				</div>				
+			</div>
+		</div>
+	</div>
+<!-- Modal Ends -->
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
 
@@ -611,6 +632,35 @@ function confirm_Delete(id)	{
 	
 
 	$(function() {
+		
+		$(".datalist").on("click",".ShowRecentPlay", function() {
+			var id    = $(this).data('id');		
+			
+			swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.updating_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )			
+
+			$.ajax({
+				url: "{{route('played_member_details')}}",
+				data: {_method: 'get', _token :"{{ csrf_token() }}",id:id},
+			}).done(function (data) {
+				$('#memberplayajaxlist').html(data);
+				swal.close();
+				$('#memberplaylist').modal('show');
+			}).fail(function () {
+				alert('child list could not be loaded.');
+				swal.close();
+			});					
+						
+		});
 		
 		$(".datalist").on("click",".ShowChildMembers", function() {
 			var id    = $(this).data('id');
