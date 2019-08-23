@@ -1550,13 +1550,13 @@ textarea {
 .product-content .c1{
 	float:left;/*fix for  buggy browsers*/
     display:table-column;
-    width:15%;
+    width:20%;
 }
 
 .product-content .c2{
 	float:left;/*fix for  buggy browsers*/
     display:table-column;
-    width:60%;
+    width:55%;
 }
 
 .product-content .c3{
