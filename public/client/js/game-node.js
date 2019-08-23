@@ -204,7 +204,7 @@ try {
 
         if(usedlife == 0){
 
-            countDownLife();
+            //countDownLife();
 
         } else {
             
