@@ -62,8 +62,9 @@ class MemberController extends BaseController
 	
 	public function member_list(Request $request)
 	{
-		$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent','wechat_notes','totalcount','current_life', 'current_point', 'vip_life', 'vip_point','referred_by', 'profile_pic','usedlife','is_purged_gamelife','current_balance']);		
+		//$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent','wechat_notes','totalcount','current_life', 'current_point', 'vip_life', 'vip_point','referred_by', 'profile_pic','usedlife','is_purged_gamelife','current_balance']);
 		
+		$result = \App\ViewMember::with('parentuser');
 		$input = array();
 		
 		parse_str($request->_data, $input);
