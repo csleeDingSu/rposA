@@ -2059,11 +2059,11 @@ if it's not present, don't show loader */
 }
 
 #win-modal .packet-info {
-	font-size: 11px;
+	font-size: 16px;
 	font-weight: 500;
 	color: #999;
 	text-align: left;
-	line-height: 18px;
+	line-height: 24px;
 	padding-left: 50px;
 	height: 110px; 
 }
