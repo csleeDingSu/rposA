@@ -543,9 +543,9 @@ function populateHistoryData(records, token) {
                             
                 if (item.pin_status == 2) {
                 html += '       <div class="product-content">' +
-                        '           <div class="r"><div class="c1">卡号</div><div id="number' + item.type + item.id + '" class="c2">： ' + item.code + '</div> <div id="copynumber' + item.type + item.id + '" class="copynumber c3">点击复制</div></div>' +
-                        '           <div class="r"><div class="c1">密码</div><div id="code' + item.type + item.id + '" class="c2">： ' + item.passcode + '</div> <div id="copycode' + item.type + item.id + '" class="copycode c3">点击复制</div></div>' +
-                        '           <divclass="r" ><div class="c1">淘口令</div><div id="code_hash' + item.type + item.id + '" class="c2">： ' + reload_pass +'</div> <div id="copycode_hash' + item.type + item.id + '" class="copycode_hash c3">点击复制</div></div>' +
+                        '           <div class="r"><div class="c1">卡号&nbsp;:</div><div id="number' + item.type + item.id + '" class="c2">' + item.code + '</div> <div id="copynumber' + item.type + item.id + '" class="copynumber c3">点击复制</div></div>' +
+                        '           <div class="r"><div class="c1">密码&nbsp;:</div><div id="code' + item.type + item.id + '" class="c2">' + item.passcode + '</div> <div id="copycode' + item.type + item.id + '" class="copycode c3">点击复制</div></div>' +
+                        '           <divclass="r" ><div class="c1">淘口令:</div><div id="code_hash' + item.type + item.id + '" class="c2">' + reload_pass +'</div> <div id="copycode_hash' + item.type + item.id + '" class="copycode_hash c3">点击复制</div></div>' +
                         '       </div>'+
                         '   </div>'+
                         '   <div class="product-redeem-time">发放时间:'+ str_date +'</div>' +
