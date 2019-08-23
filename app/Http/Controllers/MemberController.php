@@ -478,6 +478,17 @@ class MemberController extends BaseController
 		return view('client.member', $data);
 	}
 	
+	public function played_details (Request $request)
+	{		
+		$result =  \DB::table('report_played_member');
+				
+		$result = $result->where('game_id', 102 )->where('member_id', $request->id ) ;	
+		
+		$result =  $result->orderby('id','DESC')->limit(20)->get();
+			
+		return view('member.playajaxlist', ['result' => $result])->render(); 
+	}
+	
 	public function today_transaction()
 	{
 		

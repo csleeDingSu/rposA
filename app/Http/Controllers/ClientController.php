@@ -468,11 +468,12 @@ class ClientController extends BaseController
 				
 				\Log::debug(json_encode(['wechat_login' => 'verified and redirect to game'], true));
 				
-				if (empty($goto)) {
-					return redirect('/arcade');				
-				} else {
-					return redirect("/$goto");				
-				}
+				// if (empty($goto)) {
+				// 	return redirect('/arcade');				
+				// } else {
+				// 	return redirect("/$goto");				
+				// }
+				return redirect("/$goto");
 				
 			}
 			\Log::warning(json_encode(['unauthorised_wechat_login' => 'expired OTP'], true));

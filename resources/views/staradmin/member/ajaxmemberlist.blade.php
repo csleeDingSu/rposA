@@ -17,6 +17,7 @@
 							<th>@lang('dingsu.referred_count')</th>	
 							<th>@lang('dingsu.used_life')</th>		
 							<th>@lang('dingsu.life')</th>
+							<th>@lang('dingsu.current_balance') </th>
 							<th>@lang('dingsu.current_point') </th>
 							<th>@lang('dingsu.wechat_status')</th>
 							<th>@lang('dingsu.status')</th>
@@ -48,6 +49,9 @@
 							<td id="">	{{ $list->usedlife + $list->is_purged_gamelife }}</td>
 							<td id="cl_{{ $list->id }}">
 								{{ $list->current_life }}
+							</td>
+							<td id="cb_{{ $list->id }}">
+								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->current_balance }}</h6>
 							</td>
 							<td id="cp_{{ $list->id }}">
 								{{ $list->current_point }}
