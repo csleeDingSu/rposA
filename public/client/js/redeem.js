@@ -535,7 +535,7 @@ function populateHistoryData(records, token) {
 
                 html += '</div>';
                 
-            } else if (item.type == 'product'){
+            } else if (item.type == 'product'  && this_vip_app == false){
 
                 html += '<div class="row product-row">' +
                         '   <div class="product-bg">' +
@@ -545,30 +545,10 @@ function populateHistoryData(records, token) {
                 html += '       <div class="product-content">' +
                         '           <div class="r"><div class="c1">卡号&nbsp;:</div><div id="number' + item.type + item.id + '" class="c2">' + item.code + '</div> <div id="copynumber' + item.type + item.id + '" class="copynumber c3">点击复制</div></div>' +
                         '           <div class="r"><div class="c1">密码&nbsp;:</div><div id="code' + item.type + item.id + '" class="c2">' + item.passcode + '</div> <div id="copycode' + item.type + item.id + '" class="copycode c3">点击复制</div></div>' +
-                        '           <divclass="r" ><div class="c1">淘口令:</div><div id="code_hash' + item.type + item.id + '" class="c2">' + reload_pass +'</div> <div id="copycode_hash' + item.type + item.id + '" class="copycode_hash c3">点击复制</div></div>' +
                         '       </div>'+
                         '   </div>'+
                         '   <div class="product-redeem-time">发放时间:'+ str_date +'</div>' +
                         '</div>';
-
-                    //copy code_hash
-                    var clipboard_code_hash = new ClipboardJS('#copycode_hash' + item.type + item.id, {
-                        target: function () {
-                            return document.querySelector('#code_hash' + item.type + item.id);
-                        }
-                    });
-
-                    clipboard_code_hash.on('success', function (e) {
-                        $('.copynumber').removeClass('copy-success-new').html('点击复制');
-                        $('.copycode').removeClass('copy-success-new').html('点击复制');
-                        $('.copycode_hash').removeClass('copy-success-new').html('点击复制');
-                        $('#copycode_hash' + item.type + item.id).addClass('copy-success-new').html('复制成功');                                                
-                    });
-
-                    clipboard_code_hash.on('error', function (e) {
-                        // $('#copynumber' + item.id).addClass('copy-fail').html('失败');
-                        $('#copycode_hash' + item.type + item.id).addClass('copy-success-new').html('复制成功');
-                    });
 
                     // Copy card number
                     var clipboard_cardno = new ClipboardJS('#copynumber' + item.type + item.id, {
@@ -579,7 +559,6 @@ function populateHistoryData(records, token) {
 
                     clipboard_cardno.on('success', function (e) {
                         $('.copycode').removeClass('copy-success-new').html('点击复制');
-                        $('.copycode_hash').removeClass('copy-success-new').html('点击复制');
                         $('#copynumber' + item.type + item.id).addClass('copy-success-new').html('复制成功');                                                
                     });
 
@@ -598,7 +577,6 @@ function populateHistoryData(records, token) {
                     clipboard_code.on('success', function (e) {
                         $('.copynumber').removeClass('copy-success-new').html('点击复制');
                         $('.copycode').removeClass('copy-success-new').html('点击复制');
-                        $('.copycode_hash').removeClass('copy-success-new').html('点击复制');
                         $('#copycode' + item.type + item.id).addClass('copy-success-new').html('复制成功');
                     });
 

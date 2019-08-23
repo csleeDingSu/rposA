@@ -22,7 +22,6 @@ var show_default = true;
 var g_betting_history_total = 0;
 var play_count = 0;
 var bet_count = 0;
-var update_spanAcuPointAndBalance = true;
 
 $(function () {
 
@@ -170,7 +169,8 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(point);
-            if (update_spanAcuPointAndBalance) {
+            if ($('.spanAcuPointAndBalance').html() <= 0) {
+                console.log($('.spanAcuPointAndBalance').html());
                 $('.spanAcuPointAndBalance').html(get2Decimal(point));    
             }
         }
@@ -495,7 +495,8 @@ function resetGame() {
     previous_bet = 0;
 
     $('.shan span').hide();
-    $('.shan div').removeClass('clicked-vip');
+    $('.shan div').removeClass('clicked-vip');    
+    $('.btn-trigger').unbind('click');
     startGame();
 }
 
@@ -559,9 +560,9 @@ function checkSelection() {
         $('.btn-minus').unbind('click');
         $('.button-bet-clear').unbind('click');
         $('.button-bet-all').unbind('click');
-
-        bindSpinningButton();
+        
         startTimer(5, 5, 1);
+        bindSpinningButton();
     }
 }
 
@@ -1014,7 +1015,6 @@ function bindTriggerButton(){
         if(user_id == 0){
             $( '#modal-no-login' ).modal( 'show' );
         }else {
-            update_spanAcuPointAndBalance = false;
 
             if (g_vip_point < 1) {
                 $( '#modal-isnewbie' ).modal( 'show' );
