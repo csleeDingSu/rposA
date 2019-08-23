@@ -628,6 +628,8 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 
 	Route::get('/buyproduct/render-card', 'BuyProductController@render_card_detail')->name('render_card_detail');
+	
+	Route::get('/member/played-details', 'MemberController@played_details')->name('played_member_details');
 
 } );
 //END
