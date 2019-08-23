@@ -1505,3 +1505,80 @@ textarea {
 	margin-top: -0.35rem;
 }
 /*vip product - end*/
+
+
+/*reload card*/
+.product-bg {
+	background: url(/client/images/redeem/EEEbs.png) no-repeat;
+    background-size: contain;
+    padding: 0.06rem 0.1rem 0.1rem 0.1rem;
+    position: relative;
+    margin: 0.1rem 0.2rem 0.1rem 0.2rem;
+    height: 135px;
+}
+
+.product-how-to-redeem {
+	background: url(/client/images/redeem/czjcc.png) no-repeat;
+    width: 100px;
+    height: 25px;
+    background-size: contain;
+    cursor: pointer;
+    text-align: center;
+    margin: 0.01rem 0 0 0;
+    float: right;
+}
+
+.product-row {
+	background-color: transparent;
+	margin: 0 10px -15px 10px;
+}
+
+.product-content {
+	font-size: 0.3rem;
+    padding: 0.22rem 0.1rem 0 0.1rem;
+    line-height: 0.5rem;
+    color: #717171;
+    display:  table;
+    width:100%;
+}
+
+.product-content .r {
+	display:table-row;
+    width:auto;
+}
+
+.product-content .c1{
+	float:left;/*fix for  buggy browsers*/
+    display:table-column;
+    width:15%;
+}
+
+.product-content .c2{
+	float:left;/*fix for  buggy browsers*/
+    display:table-column;
+    width:60%;
+}
+
+.product-content .c3{
+	float: left;
+    display: table-column;
+    width: 25%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #6382dd;
+    color: #fff;
+    margin: 0 0 0.05rem 0;
+}
+
+.product-redeem-time {
+	text-align: center;
+    padding: 0;
+    color: #b5b5b5;
+    font-size: 0.25rem;
+}
+
+.copy-success-new {
+	/*color: #47bc46;*/
+	background-color: #83c553 !important;
+}
+/*reload-card end*/

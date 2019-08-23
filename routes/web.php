@@ -114,12 +114,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	
 	Route::get( '/vip', 'ClientController@member_access_vip_node' )->name( 'client.vip' );
 
-	Route::get( '/faq', function () {
-
-		$faqs = DB::table( 'faq' )->select( 'id', 'title', 'content' )->orderBy( 'id', 'desc' )->get();
-		
-		return view( 'client/faq', compact( 'faqs' ) );
-	} );
+	Route::any( '/faq/{id?}', 'FaqController@index' )->name( 'client.faq' );
 
 	Route::any( '/tips', 'ClientController@tips' )->name( 'client.tips' );
 	
