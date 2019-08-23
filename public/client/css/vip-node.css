@@ -7,7 +7,7 @@
     z-index: 9999;
     background: url(/client/images/preloader.gif) center no-repeat;
     background-color: rgba(255, 255, 255, 1);
-    background-size: 30px 30px;
+    background-size: 32px 32px;
 }
 
 .card-flex .cardBody {
