@@ -45,9 +45,9 @@
 								{{ $list->wechat_name ?? $list->username }}</td>
 							<td>
 								@if($list->parentuser)
-									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+									<img class="profile-img-circle" src="{{ $list->parentuser->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
 								
-									{{ $list->wechat_name ?? $list->username }}
+									{{ $list->parentuser->wechat_name ?? $list->parentuser->username }}
 								@endif
 							</td>
 							
