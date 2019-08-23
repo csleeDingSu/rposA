@@ -3,7 +3,7 @@
 @section('title', '常见问题')
 
 @section('left-menu')
-    <a href="/profile" class="back">
+    <a href="javascript:history.back()" class="back">
         <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
     </a>
 @endsection
