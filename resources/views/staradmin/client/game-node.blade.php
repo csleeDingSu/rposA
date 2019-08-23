@@ -870,11 +870,8 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info">前5局猜错<span class="highlight">亏损57元</span><br />第6局猜对<span class="highlight-green">奖励63元</span><br />最终奖励6元，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
-								<div class="instructions">
-									您已赢到6元，还差9元可兑换
-								</div>
+								<div class="packet-value">15元红包</div>
+								<div class="packet-info">本局抽中<span class="highlight-green">15元红包</span><br />前4局没抽中<span class="highlight">亏损12元</span><br /><span class="highlight-red">最终赚了5元</span></div>
 								<div class="close-win-modal modal-redeem-button btn-red-packet">
 									确认领取
 								</div>
