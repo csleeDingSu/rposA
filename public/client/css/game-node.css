@@ -2049,10 +2049,13 @@ if it's not present, don't show loader */
 }
 
 #win-modal .packet-value {
-	font-size: 60px;
-	color: #ff414b;
+	font-size: 30px;
+	color: #f65d7a;
 	font-weight: 500;
 	height: 95px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #win-modal .packet-info {
@@ -2062,6 +2065,7 @@ if it's not present, don't show loader */
 	text-align: left;
 	line-height: 18px;
 	padding-left: 50px;
+	height: 110px; 
 }
 
 #win-modal .packet-sign {
@@ -2118,6 +2122,7 @@ if it's not present, don't show loader */
 }
 
 #win-modal .btn-red-packet {
+	margin-top: 10px;
   background: url('/client/images/btn-red-packet.png') no-repeat top center;
   font-size: 18px;
   color: #b95d0c;
