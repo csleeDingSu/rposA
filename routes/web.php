@@ -87,6 +87,11 @@ Route::get('locale/{locale}', function ($locale) {
 	return redirect()->back();
 } );
 
+//wechat - redirect to profile page
+	Route::get( '/goprofile', 'ClientController@member_access_profile' )->name( 'client.access_profile' );
+//wechat - redirect to redeem page
+Route::get( '/goredeem', 'ClientController@member_access_redeem' )->name( 'client.access_redeem' );
+
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
@@ -106,11 +111,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/arcade_old', 'ClientController@member_access_game' )->name( 'client.arcade' );
 	//switched to new game screen
 	Route::get( '/arcade/{id?}', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
-	//wechat - redirect to profile page
-	Route::get( '/goprofile', 'ClientController@member_access_profile' )->name( 'client.access_profile' );
-	//wechat - redirect to redeem page
-	Route::get( '/goredeem', 'ClientController@member_access_redeem' )->name( 'client.access_redeem' );
-
+	
 	Route::get( '/vip', 'ClientController@member_access_vip_node' )->name( 'client.vip' );
 
 	Route::get( '/faq', function () {

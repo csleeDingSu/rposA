@@ -308,7 +308,7 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 
 .g6 .shan span.ready {
 	width: 100%;
-	font-size: 0.35rem;
+	/*font-size: 0.35rem;*/
 	color: #fbbc00;
 	display: block;
 }
