@@ -323,7 +323,7 @@ body {
     position:fixed;
     z-index:9999;
     background:url("/client/images/preloader.gif") no-repeat center center rgba(255,255,255,0.25);
-    background-size: 62px 62px;
+    background-size: 32px 32px;
 }
 
 #preload{
@@ -332,6 +332,6 @@ body {
     position:fixed;
     z-index:9999;
     background:url("/client/images/preloader.gif") no-repeat center center rgba(255,255,255,1);
-    background-size: 62px 62px;
+    background-size: 32px 32px;
 
 }
