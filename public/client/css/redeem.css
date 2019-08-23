@@ -158,14 +158,15 @@ html, body {
 
 .column-2, .column-5 {
 	padding-right: 5px;
-	padding-left: 10px;
+	padding-left: 0;
 	text-align: left;
 	/*padding-top: 5px;*/
 }
 
 .column-3, .column-6 {
-	padding-right: 5px;
-	padding-left: 0px;
+	/*padding-right: 5px;
+	padding-left: 0px;*/
+	padding: 0 0 0 0;
 }
 
 .column-4 {
@@ -209,22 +210,23 @@ html, body {
 }
 
 .img-voucher {
-	width: 90px;
+	/*width: 90px;*/
 	/*height: 80px;*/
+	height: 1.5rem;
 }
 
 .btn-redeem {
 	color: white;
-	font-size: 20px;
-	border-radius: 40px;
-	width: 75px;
-	height: 75px;
-	padding-top: 22px;
-	padding-left: 16px;
-	cursor: pointer;
-	background-image: linear-gradient(#ffc549, #ff8e29);
-	border: none;
-	margin: 0px auto;
+    font-size: 0.38rem;
+    border-radius: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding-top: 0.46rem;
+    cursor: pointer;
+    background-image: linear-gradient(#ffc549, #ff8e29);
+    border: none;
+    margin: 0px auto;
+    text-align: center;
 }
 
 .btn-cannot-redeem {
@@ -235,7 +237,7 @@ html, body {
 	font-size: 15px;
 	/*font-weight: bold;*/
 	color: #555;
-	min-height: 50px;
+	min-height: 1.1rem;
 }
 
 .description-history {
@@ -262,7 +264,8 @@ html, body {
 
 .remaining {
 	font-size: 11px;
-	color: #aaa;
+    color: #aaa;
+    padding: 0.1rem 0 0 0;
 }
 
 .balance {
@@ -312,12 +315,12 @@ html, body {
 	    width: 100%;
 	    margin-top: -150px;
 	}
-
+/*
 	.column-2 {
     	margin-left: 10px;
     	padding-right: 0px;
     	width: 160px;
-    }
+    }*/
 
     .product-detail {
 	    width: 4rem;
@@ -331,11 +334,11 @@ html, body {
 	    margin-top: -145px;
 	}
 
-    .column-2 {
+/*    .column-2 {
     	margin-left: 10px;
     	padding-right: 0px;
     	width: 140px;
-    }
+    }*/
 
 	.column-4 {
     	padding-right: 0px;
@@ -353,7 +356,7 @@ html, body {
 		font-size: 11px;
 	}
 
-
+/*
     .btn-redeem {
 		font-size: 20px;
 		border-radius: 35px;
@@ -361,11 +364,11 @@ html, body {
 		height: 70px;
 		padding-top: 20px;
 		padding-left: 16px;
-	}
+	}*/
 
 	.description {
-		font-size: 0.25rem;
-		min-height: 45px;
+		/*font-size: 0.25rem;*/
+		/*min-height: 45px;*/
 	}
 
 	.description-history {
@@ -380,7 +383,7 @@ html, body {
 
 	.balance, .instruction, .remaining {
 		font-size: 10px;
-		padding-top: 4px;
+		/*padding: 18px 0 0 0;*/
 	}
 
 	.product-detail {
@@ -600,12 +603,12 @@ html, body {
 }
 
 .modal-img-voucher {
-	text-align:center;
-	margin: 10px auto 0px auto;
-	background-color: #fff;
+	text-align: center;
+    margin: 10px auto 0px auto;
+    /* background-color: #fff; */
     padding: 4px;
-    width: 90px;
-    height: 90px;
+    /* width: 90px; */
+    /* height: 90px; */
 }
 
 .btn_submit, .btn_submit:active, .btn_submit:hover, .btn_submit:focus {
@@ -1511,10 +1514,10 @@ textarea {
 .product-bg {
 	background: url(/client/images/redeem/EEEbs.png) no-repeat;
     background-size: contain;
-    padding: 0.06rem 0.1rem 0.1rem 0.1rem;
+    padding: 0.06rem 0.1rem 0 0.1rem;
     position: relative;
-    margin: 0.1rem 0.2rem 0.1rem 0.2rem;
-    height: 135px;
+    margin: 0.1rem 0.2rem 0 0.2rem;
+    height: 2.45rem;
 }
 
 .product-how-to-redeem {
@@ -1524,7 +1527,7 @@ textarea {
     background-size: contain;
     cursor: pointer;
     text-align: center;
-    margin: 0.01rem 0 0 0;
+    margin: 0.03rem 0 0 0;
     float: right;
 }
 
@@ -1535,7 +1538,7 @@ textarea {
 
 .product-content {
 	font-size: 0.3rem;
-    padding: 0.15rem 0.1rem 0 0.1rem;
+    padding: 0.3rem 0.1rem 0 0.1rem;
     line-height: 0.5rem;
     color: #717171;
     display:  table;
@@ -1550,13 +1553,16 @@ textarea {
 .product-content .c1{
 	float:left;/*fix for  buggy browsers*/
     display:table-column;
-    width:20%;
+    width:15%;
+    font-size: 0.32rem;
+    font-weight: 600;
 }
 
 .product-content .c2{
 	float:left;/*fix for  buggy browsers*/
     display:table-column;
-    width:55%;
+    width:60%;
+    font-size: 0.32rem;
 }
 
 .product-content .c3{
@@ -1567,12 +1573,12 @@ textarea {
     border-radius: 10px;
     background-color: #6382dd;
     color: #fff;
-    margin: 0 0 0.03rem 0;
+    margin: 0 0 0.15rem 0;
 }
 
 .product-redeem-time {
 	text-align: center;
-    padding: 0;
+    padding: 0 0 0.1rem 0;
     color: #b5b5b5;
     font-size: 0.25rem;
 }
