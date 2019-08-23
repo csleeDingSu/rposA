@@ -268,6 +268,7 @@ class weixinController extends BaseController
             if (!empty($res->success) && ($res->success == true)) {
                 
                 $url = "http://" . $domain . $res->url;
+                \Log::info(json_encode(['accessToWabao url' => $url], true));  
                 //return $url;
                 return redirect()->to($url);
             }

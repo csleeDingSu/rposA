@@ -431,7 +431,7 @@ class ClientController extends BaseController
 	
 	public function wechat_otp_login($otp = FALSE, $goto = null) {		
 			
-		$url	= '';
+		$url	= '/profile';
 		
 		\Log::warning(json_encode(['otp' => $otp, 'goto' => $goto], true));
 
@@ -471,7 +471,7 @@ class ClientController extends BaseController
 				if (empty($goto)) {
 					return redirect('/arcade');				
 				} else {
-					return redirect($goto);				
+					return redirect("/$goto");				
 				}
 				
 			}
