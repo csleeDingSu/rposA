@@ -43,18 +43,24 @@
 								<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
 								
 								{{ $list->wechat_name ?? $list->username }}</td>
-							<td> {{ $list->parent }}</td>
+							<td>
+								@if($list->parentuser)
+									<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
+								
+									{{ $list->wechat_name ?? $list->username }}
+								@endif
+							</td>
 							
 							<td><h6 class="ShowChildMembers text-info font-weight-semibold ml-2" data-id="{{ $list->id }}" data-count="{{ $list->totalcount }}" >{{ $list->totalcount }}</h6> </td>
 							<td id="">	{{ $list->usedlife + $list->is_purged_gamelife }}</td>
 							<td id="cl_{{ $list->id }}">
-								{{ $list->current_life }}
+								{{ $list->current_life ?? 0 }}
 							</td>
 							<td id="cb_{{ $list->id }}">
-								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->current_balance }}</h6>
+								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->current_balance ?? 0 }}</h6>
 							</td>
 							<td id="cp_{{ $list->id }}">
-								{{ $list->current_point }}
+								{{ $list->current_point ?? 0 }}
 							</td>
 							<td onClick="OpenWechatVerification('{{ $list->id }}','{{ $list->wechat_notes }}')" class="show_wechat_verification_{{ $list->id }}">
 								@if($list->wechat_verification_status == 0)
