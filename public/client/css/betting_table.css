@@ -246,4 +246,5 @@
 	z-index: 100;
 	background:url(/client/images/vip/btn-bet-active.png) no-repeat;
     background-size: contain;
+    font-weight: 600;
 }
