@@ -1145,11 +1145,23 @@
 		}
 	//scroll pagination - end
 		
-
+		//betting animate number
+		function anp(e, n){
+			//var n=Math.round(Math.random()*10);
+			var $i=$("<b>").text("+"+n);
+			var x=e.pageX,y=e.pageY;
+			$i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
+			$("body").append($i);
+			$i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
+				$i.remove();
+			});
+			e.stopPropagation();
+		}
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game-node.js') }}"></script>
+
 @endsection
 
 <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>

@@ -227,7 +227,7 @@ try {
             if($( this ).attr('data-level') < level){
                 $( this ).addClass( "button-bet-inactive" );
                 $( this ).unbind( "click" );
-                $( this ).find('.bet_status').html('失败');
+                $( this ).find('.bet_status').html('亏损');
 
             } else if($( this ).attr('data-level') == level){
                 $( this ).next().addClass('circle-border').show();
@@ -240,14 +240,16 @@ try {
                 else
                     $( this ).find('.bet_status').html('加倍');
 
-                $( ".circle-border" ).click(function(){
+                $( ".circle-border" ).click(function(e){
 
                     if(g_life == 0){
                         $('#reset-life-share').modal();
                     } else {
-
+                        var n = (level == 1) ? 1 : (level == 2) ? 3 : (level == 3) ? 7 : (level == 4) ? 15 : (level == 5) ? 31 : (level == 6) ? 63 : 0;
+                        anp(e, n);
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
+                        $( this ).prev().find('.bet_status').html('已投');
                         $( this ).next().hide();
                         $( '.DB_G_hand_2' ).show();
 
