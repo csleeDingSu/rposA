@@ -622,10 +622,10 @@ function closeWinModal() {
             
         }
         
-        setTimeout(function(){
-            $('.spanAcuPointAndBalance').html(get2Decimal(g_vip_point));
-            $('.spanAcuPoint').html(g_vip_point);
-        }, 2300);
+        // setTimeout(function(){
+        //     $('.spanAcuPointAndBalance').html(get2Decimal(g_vip_point));
+        //     $('.spanAcuPoint').html(g_vip_point);
+        // }, 2300);
 
         $(this).off('click');
         event.stopImmediatePropagation();
