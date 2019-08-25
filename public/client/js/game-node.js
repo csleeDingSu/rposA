@@ -245,34 +245,6 @@ try {
                     if(g_life == 0){
                         $('#reset-life-share').modal();
                     } else { 
-                        var suggestion_bet = 1;
-                        switch (level){
-
-                            default:
-                            case 1:
-                               anp(e, 1);
-                            break;
-
-                            case 2:
-                                anp(e, 3);
-                            break;
-
-                            case 3:
-                                anp(e, 7);
-                            break;
-
-                            case 4:
-                                anp(e, 15);
-                            break;
-
-                            case 5:
-                                anp(e, 31);
-                            break;
-
-                            case 6:
-                                anp(e, 63);
-                            break;
-                        }                       
                         
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
@@ -852,6 +824,35 @@ function showPayout(){
                     success: function(data) {
                     }
                 });
+
+                var suggestion_bet = 1;
+                switch (level){
+
+                    default:
+                    case 1:
+                       anp(e, 1);
+                    break;
+
+                    case 2:
+                        anp(e, 3);
+                    break;
+
+                    case 3:
+                        anp(e, 7);
+                    break;
+
+                    case 4:
+                        anp(e, 15);
+                    break;
+
+                    case 5:
+                        anp(e, 31);
+                    break;
+
+                    case 6:
+                        anp(e, 63);
+                    break;
+                }        
 
             }
 
