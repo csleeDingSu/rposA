@@ -201,34 +201,7 @@ try {
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
-        var suggestion_bet = 1;
-        switch (level){
-            default:
-            case 1:
-                suggestion_bet = 1;
-            break;
-
-            case 2:
-                suggestion_bet = 3;
-            break;
-
-            case 3:
-                suggestion_bet = 7;
-            break;
-
-            case 4:
-                suggestion_bet = 15;
-            break;
-
-            case 5:
-                suggestion_bet = 31;
-            break;
-
-            case 6:
-                suggestion_bet = 63;
-            break;
-        }
-
+        
         if(usedlife == 0){
 
             //countDownLife();
@@ -271,8 +244,36 @@ try {
 
                     if(g_life == 0){
                         $('#reset-life-share').modal();
-                    } else {                        
-                        anp(e, suggestion_bet);
+                    } else { 
+                        var suggestion_bet = 1;
+                        switch (level){
+
+                            default:
+                            case 1:
+                               anp(e, 1);
+                            break;
+
+                            case 2:
+                                anp(e, 3);
+                            break;
+
+                            case 3:
+                                anp(e, 7);
+                            break;
+
+                            case 4:
+                                anp(e, 15);
+                            break;
+
+                            case 5:
+                                anp(e, 31);
+                            break;
+
+                            case 6:
+                                anp(e, 63);
+                            break;
+                        }                       
+                        
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
@@ -295,6 +296,34 @@ try {
                 });
             } else {
                 $( this ).find('.bet_status').html('加倍');
+                var suggestion_bet = 1;
+                switch (level){
+
+                    default:
+                    case 1:
+                        suggestion_bet = 1;
+                    break;
+
+                    case 2:
+                        suggestion_bet = 3;
+                    break;
+
+                    case 3:
+                        suggestion_bet = 7;
+                    break;
+
+                    case 4:
+                        suggestion_bet = 15;
+                    break;
+
+                    case 5:
+                        suggestion_bet = 31;
+                    break;
+
+                    case 6:
+                        suggestion_bet = 63;
+                    break;
+                }
 
                 $( this ).click(function(){
 
