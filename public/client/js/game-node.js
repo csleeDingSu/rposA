@@ -249,6 +249,7 @@ try {
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
+                        $( this ).prev().add(anp(e, level));
                         $( this ).next().hide();
                         $( '.DB_G_hand_2' ).show();
 
@@ -824,21 +825,6 @@ function showPayout(){
                     success: function(data) {
                     }
                 });
-
-                if (level == 1) {
-                    anp(e, 1);
-                }else if (level == 2) {
-                    anp(e, 3);
-                }else if (level == 3) {
-                    anp(e, 7);
-                }else if (level == 4) {
-                    anp(e, 15);
-                }else if (level == 5) {
-                    anp(e, 31);
-                }else if (level == 6) {
-                    anp(e, 63);
-                }
-
             }
 
             //$('.payout-info').removeClass("hide");
@@ -1575,4 +1561,18 @@ function checkFirstLifePurgeStatus(){
             window.top.location.href = "/arcade";
         }
     });
+}
+
+//betting animate number
+function anp(e, n){
+    console.log(n);
+    //var n=Math.round(Math.random()*10);
+    var $i=$("<b>").text("+"+n);
+    var x=e.pageX,y=e.pageY;
+    $i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
+    $("body").append($i);
+    $i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
+        $i.remove();
+    });
+    e.stopPropagation();
 }
