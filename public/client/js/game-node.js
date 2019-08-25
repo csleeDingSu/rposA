@@ -201,6 +201,33 @@ try {
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
+        var suggestion_bet = 1;
+        switch (level){
+            default:
+            case 1:
+                suggestion_bet = 1;
+            break;
+
+            case 2:
+                suggestion_bet = 3;
+            break;
+
+            case 3:
+                suggestion_bet = 7;
+            break;
+
+            case 4:
+                suggestion_bet = 15;
+            break;
+
+            case 5:
+                suggestion_bet = 31;
+            break;
+
+            case 6:
+                suggestion_bet = 63;
+            break;
+        }
 
         if(usedlife == 0){
 
@@ -244,9 +271,8 @@ try {
 
                     if(g_life == 0){
                         $('#reset-life-share').modal();
-                    } else {
-                        var n = (level == 1) ? 1 : (level == 2) ? 3 : (level == 3) ? 7 : (level == 4) ? 15 : (level == 5) ? 31 : (level == 6) ? 63 : 0;
-                        anp(e, n);
+                    } else {                        
+                        anp(e, suggestion_bet);
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
@@ -269,34 +295,6 @@ try {
                 });
             } else {
                 $( this ).find('.bet_status').html('加倍');
-                var suggestion_bet = 1;
-                switch (level){
-
-                    default:
-                    case 1:
-                        suggestion_bet = 1;
-                    break;
-
-                    case 2:
-                        suggestion_bet = 3;
-                    break;
-
-                    case 3:
-                        suggestion_bet = 7;
-                    break;
-
-                    case 4:
-                        suggestion_bet = 15;
-                    break;
-
-                    case 5:
-                        suggestion_bet = 31;
-                    break;
-
-                    case 6:
-                        suggestion_bet = 63;
-                    break;
-                }
 
                 $( this ).click(function(){
 
