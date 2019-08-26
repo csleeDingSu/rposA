@@ -249,6 +249,7 @@ try {
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
+                        $( this ).find('.clicked-button-bet').remove(anp(e, level));
                         $( this ).find('.clicked-button-bet').add(anp(e, level));
                         $( this ).next().hide();
                         $( '.DB_G_hand_2' ).show();
