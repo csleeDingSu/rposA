@@ -1580,7 +1580,7 @@ function anp(e, lv, bet){
         // $i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
         //     $i.remove();
         // });
-        $i.animate({top:"0rem",left:"3.1rem",opacity:0},1500,function(){
+        $i.animate({top:"0rem",left:"3.1rem",opacity:0,"font-size":"1.4em"},1500,function(){
             $i.remove();
         });
         e.stopPropagation();    
