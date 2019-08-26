@@ -264,7 +264,7 @@ try {
                 $( this ).unbind( "click" );
 
                 if(level == 1)
-                    $( this ).find('.bet_status').html('起步');
+                    $( this ).find('.bet_status').html('投币');
                 else
                     $( this ).find('.bet_status').html('加倍');
 
@@ -301,7 +301,7 @@ try {
                 $( this ).click(function(){
 
                     if (g_life > 0) {
-                       var betwarningmsg = '第'+level+'局请选起步'+ suggestion_bet +'元'; //'选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”';
+                       var betwarningmsg = '第'+level+'局请选投币'+ suggestion_bet +'元'; //'选错提示“按倍增式投法：第'+level+'局请投'+ suggestion_bet +'元”';
                         if (level > 1) {
                             betwarningmsg = '第'+level+'局加倍X'+ suggestion_bet;
                         }
