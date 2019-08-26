@@ -201,7 +201,35 @@ try {
         var balance = $('#hidBalance').val();
         var payout_info = '';
         var acupoint = parseInt($('.spanAcuPoint').html());
-        
+        var suggestion_bet = 1;
+        switch (level){
+
+            default:
+            case 1:
+                suggestion_bet = 1;
+            break;
+
+            case 2:
+                suggestion_bet = 3;
+            break;
+
+            case 3:
+                suggestion_bet = 7;
+            break;
+
+            case 4:
+                suggestion_bet = 15;
+            break;
+
+            case 5:
+                suggestion_bet = 31;
+            break;
+
+            case 6:
+                suggestion_bet = 63;
+            break;
+        }
+
         if(usedlife == 0){
 
             //countDownLife();
@@ -249,8 +277,7 @@ try {
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
-                        $( this ).find('.clicked-button-bet').remove(anp(e, level));
-                        $( this ).find('.clicked-button-bet').add(anp(e, level));
+                        $( this ).prev().add(anp(e, level, suggestion_bet));
                         $( this ).next().hide();
                         $( '.DB_G_hand_2' ).show();
 
@@ -270,34 +297,6 @@ try {
                 });
             } else {
                 $( this ).find('.bet_status').html('加倍');
-                var suggestion_bet = 1;
-                switch (level){
-
-                    default:
-                    case 1:
-                        suggestion_bet = 1;
-                    break;
-
-                    case 2:
-                        suggestion_bet = 3;
-                    break;
-
-                    case 3:
-                        suggestion_bet = 7;
-                    break;
-
-                    case 4:
-                        suggestion_bet = 15;
-                    break;
-
-                    case 5:
-                        suggestion_bet = 31;
-                    break;
-
-                    case 6:
-                        suggestion_bet = 63;
-                    break;
-                }
 
                 $( this ).click(function(){
 
@@ -1565,17 +1564,20 @@ function checkFirstLifePurgeStatus(){
 }
 
 //betting animate number
-function anp(e, lv){
-    console.log(lv);
-    // e.stopImmediatePropagation();
-    //var n=Math.round(Math.random()*10);
-    var n = (lv == 1) ? 1 : ((lv == 2) ? 3 : ((lv == 3) ? 7 : ((lv == 4) ? 15 : ((lv == 5) ? 31 : ((lv == 6) ? 63 : lv)))));
-    var $i=$("<b>").text("+"+n);
-    var x=e.pageX,y=e.pageY;
-    $i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
-    $("body").append($i);
-    $i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
-        $i.remove();
-    });
-    e.stopPropagation();
+function anp(e, lv, bet){
+    // console.log(lv);
+    // console.log($('#hidLevel').val());
+    if ($('#hidLevel').val() == lv) {
+        //var n=Math.round(Math.random()*10);
+        // var n = (lv == 1) ? 1 : ((lv == 2) ? 3 : ((lv == 3) ? 7 : ((lv == 4) ? 15 : ((lv == 5) ? 31 : ((lv == 6) ? 63 : lv)))));
+        var n=bet;
+        var $i=$("<b>").text("+"+n);
+        var x=e.pageX,y=e.pageY;
+        $i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
+        $("body").append($i);
+        $i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
+            $i.remove();
+        });
+        e.stopPropagation();    
+    }    
 }
