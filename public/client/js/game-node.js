@@ -1571,7 +1571,7 @@ function anp(e, lv, bet){
         //var n=Math.round(Math.random()*10);
         // var n = (lv == 1) ? 1 : ((lv == 2) ? 3 : ((lv == 3) ? 7 : ((lv == 4) ? 15 : ((lv == 5) ? 31 : ((lv == 6) ? 63 : lv)))));
         var n=bet;
-        var $i=$("<b>").text("+"+n);
+        var $i=$("<b>").text("成功投币+"+n);
         var x=e.pageX,y=e.pageY;
         $i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
         $("body").append($i);
