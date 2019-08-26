@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>首页</title>
+  <link rel="stylesheet" type="text/css" href="css/public.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+  <script src="js/lrz.mobile.min.js"></script>
+
+  <script type="text/javascript" src="js/being.js"></script>
+</head>
+
+<body>
+
+  <section class="card">
+    <section class="card-header">
+      <a class="returnIcon"><img src="images/retrunIcon.png"><span>返回</span></a>
+      <h2>晒单评价</h2>
+    </section>
+    <div class="card-body">
+
+      <div class="textBox">
+        <label class="area">
+          <textarea class="txt" rows="10" placeholder="亲！抽中奖品的心情不错吧！快点跟大家分享下你的喜悦吧！沾沾你的好运气哦！"></textarea>
+        </label>
+        <div class="imgBox">
+          <ul class="imgList">
+            <!-- <li>
+              <img src="images/demo2.png">
+              <a class="delBtn"><img src="images/crossIcon.png"></a>
+            </li>
+            <li>
+              <img src="images/demo3.png">
+              <a class="delBtn"><img src="images/crossIcon.png"></a>
+            </li>
+            <li>
+              <img src="images/demo2.png">
+              <a class="delBtn"><img src="images/crossIcon.png"></a>
+            </li>
+            <li>
+              <img src="images/demo4.png">
+              <a class="delBtn"><img src="images/crossIcon.png"></a>
+            </li> -->
+            <li class="upBox">
+              <input type="file">
+              <a class="upBtn">
+                <img src="images/cameraIcon.png"> <span>上传图片</span></a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <button class="sendBtn">发布</button>
+
+
+    </div>
+  </section>
+
+  <div class="showBox">
+    <div class="tickBox">
+      <div class="inBox">
+        <div class="txtBox">
+          <img src="images/tickicon.png">
+          <p>晒单成功</p>
+        </div>
+        <div class="btnBox">
+          <a>首页抽奖</a>
+          <a>查看晒单</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+
+      //发送
+      $('.sendBtn').click(function () {
+        if ($('.txt').val() == "") {
+          alert('评论不能为空');
+        } else {
+          $('.showBox').fadeIn(150);
+        }
+      });
+
+      //文本
+      $(".txt").bind("input propertychange", function (event) {
+        let that = $(this);
+        console.log(that.val());
+        if (that.val() == "") {
+          $('.sendBtn').removeClass('on');
+        } else {
+          $('.sendBtn').addClass('on');
+        }
+      });
+
+      //图片上传
+
+      $('.upBox input').change(function () {
+        let that=$(this);
+        let obj = this;
+        lrz(obj.files[0], {
+          width: 800,
+          height: 600,
+          before: function () {
+            console.log('压缩开始');
+          },
+          fail: function (err) {
+            console.error(err);
+          },
+          always: function () {
+            console.log('压缩结束');
+          },
+          done: function (results) {
+            // 你需要的数据都在这里，可以以字符串的形式传送base64给服务端转存为图片。
+            var data = results.base64;
+            
+            let imgUrl = "<li>";
+            imgUrl += '<img src="'+data+'">';
+            imgUrl += '<a class="delBtn"><img src="images/crossIcon.png"></a>';
+            imgUrl += ' </li>';
+
+            that.parent('li').before(imgUrl);
+            $('.upBtn span').html(($('.imgList li').length-1)+'/6');
+
+          }
+        });
+      });
+      //图片删除
+      $('.imgList').on('click','.delBtn',function(){
+        let that=$(this).parent('li');
+        let index=that.index();
+        $('.imgList li').eq(index).remove();
+        let acount=$('.imgList li').length-1>0?$('.imgList li').length-1:0;
+        $('.upBtn span').html(acount+'/6');
+      });
+
+    })</script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
