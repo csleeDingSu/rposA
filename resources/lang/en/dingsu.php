@@ -696,6 +696,7 @@ return [
 	'monthly_new_registration'=>'New registration',
 	'register_date'=>'Register date',
 	'connection_failed'=>'connection failed',
+	'current_balance' => 'Current balance',
 	
 
 ];
