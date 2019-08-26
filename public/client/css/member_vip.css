@@ -335,6 +335,18 @@ html, body {
 	margin-top: 0px;
 }
 
+.icon-blog {
+	background: url('/client/images/icon-blog.png') no-repeat;
+	width: 44px;
+	height: 44px;
+	transform: scale(0.55); 
+	-webkit-transform: scale(0.55);
+	-webkit-transform-origin:left top;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+}
+
 .icon-round {
 	background: url('/client/images/icon-round.png') no-repeat;
 	width: 44px;

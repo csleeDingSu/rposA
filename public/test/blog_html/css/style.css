@@ -1,0 +1,366 @@
+.card {
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    -moz-flex-flow: column;
+}
+
+.card-header {
+    height: 1rem;
+    line-height: 1rem;
+    position: relative;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.card-header h2 {
+    text-align: center;
+    font-size: .36rem;
+}
+
+.returnIcon {
+    position: absolute;
+    height: 100%;
+    padding: 0 .3rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    transition: all .2s;
+    z-index: 1;
+}
+
+.returnIcon:active {
+    /* background: rgba(0,0,0,0.1); */
+}
+
+.returnIcon img {
+    width: .2rem;
+    margin-right: .1rem;
+}
+
+.returnIcon span {
+    font-size: .36rem
+}
+
+.card-body {
+    flex: 1;
+    -moz-flex: 1;
+    -webkit-flex: 1;
+}
+
+.scrollBox {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.listBox {
+    padding: 0 .24rem;
+    padding-bottom: .25rem;
+    border-bottom: .012rem solid #f3f3f3;
+    margin-bottom: .15rem;
+}
+
+.userBox {
+    padding: .18rem 0 .15rem 0;
+}
+
+.userBox .username {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+}
+
+.username h2 {
+    font-size: .32rem;
+    color: #333;
+    line-height: .44rem
+}
+
+.username span {
+    font-size: .22rem;
+    color: #b6b6b6;
+}
+
+.userBox .address {
+    font-size: .22rem;
+    color: #b6b6b6;
+    padding: .05rem 0 0;
+    line-height: 1.6em;
+}
+
+.listBox .txtBox {
+    text-align: justify;
+    font-size: .28rem;
+    color: #333;
+    line-height: 1.6em;
+    margin-bottom: .1rem;
+}
+
+.listBox .imgBox {
+    display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+}
+
+.listBox .imgBox li {
+    width: calc(33.333% - .06rem);
+    height: 2.27rem;
+    margin-bottom: .10rem;
+    font-size: 0;
+    text-align: center;
+    line-height: 2.27rem;
+    background: #f3f3f3;
+}
+
+.listBox .imgBox li:nth-of-type(3n-1) {
+    margin: 0 .09rem;
+}
+
+.listBox .imgBox li img {
+    max-width: 100%;
+    max-height: 2.27rem;
+}
+
+.lastPage {
+    text-align: center;
+    font-size: .24rem;
+    line-height: .64rem;
+    color: #666;
+}
+
+.textBox {
+    padding: 0 .24rem;
+    margin-bottom: .24rem;
+    border-bottom: .012rem solid #f3f3f3;
+}
+
+.sendBtn {
+    width: calc( 100% - .3rem);
+    border: none;
+    display: block;
+    margin: 0 .15rem;
+    margin-bottom: .24rem;
+    transition: all .2s;
+    font-size: .36rem;
+    color: #fff;
+    background: #d2d2d2;
+    border-radius: .44rem;
+    line-height: .88rem;
+}
+
+.sendBtn.on {
+    transition: all .2s;
+    background: linear-gradient(to right, #ff9d9d, #ff6666);
+}
+
+.area {
+    display: block;
+    padding-top: .2rem;
+    ;
+}
+
+.area textarea {
+    font-size: .28rem;
+    line-height: 1.6em;
+    color: #333;
+    width: 100%;
+    border: none;
+    resize: none;
+}
+
+.area textarea::placeholder {
+    color: #c0c0c0;
+}
+
+.area textarea::-webkit-input-placeholder {
+    color: #c0c0c0;
+}
+
+.area textarea::-moz-input-placeholder {
+    color: #c0c0c0;
+}
+
+.textBox .imgBox {}
+
+.textBox .imgBox ul {
+    display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+}
+
+.textBox .imgBox li {
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-bottom: .2rem;
+    line-height: 2.2rem;
+    text-align: center;
+    font-size: 0;
+    position: relative;
+    font-size: 0;
+    background: #f3f3f3;
+}
+
+.textBox .imgBox li:nth-of-type(3n-1) {
+    margin: 0 .21rem;
+}
+
+.textBox .imgBox li img {
+    max-width: 2.2rem;
+    max-height: 2.2rem;
+}
+
+.textBox .imgBox li a.delBtn {
+    position: absolute;
+    line-height: 0;
+    display: block;
+    width: .4rem;
+    height: .4rem;
+    z-index: 2;
+    top: -.15rem;
+    right: -.15rem;
+}
+
+.textBox .imgBox li a.delBtn img {
+    width: 100%;
+    height: 100%;
+}
+
+.textBox .imgBox li.upBox {
+    border: .012rem solid #d5d5d5;
+    box-sizing: border-box;
+    background: none;
+}
+
+.textBox .imgBox li.upBox input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.textBox .imgBox li.upBox a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.textBox .imgBox li.upBox a img {
+    width: .73rem;
+    margin-top: .25rem;
+}
+
+.textBox .imgBox li.upBox a span {
+    font-size: .26rem;
+    color: #d6d6d6;
+    line-height: 1.8em;
+}
+
+.showBox {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.showBox .tickBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    align-items: center;
+}
+
+.showBox .inBox {
+    margin: 0 1rem;
+    width: calc(100% - 1rem);
+    background: #fff;
+    border-radius: .1rem;
+}
+
+.showBox .inBox .txtBox {
+    text-align: center;
+    padding: .64rem 0;
+}
+
+.showBox .inBox .txtBox img {
+    width: 1.2rem;
+}
+
+.showBox .inBox .txtBox p {
+    font-size: .36rem;
+    color: #ff7777;
+    line-height: 1rem;
+    margin-bottom: .32rem;
+}
+
+.showBox .inBox .btnBox {
+    border-top: .012rem solid #e2e2e2;
+    font-size: 0;
+}
+
+.showBox .inBox .btnBox a {
+    display: inline-block;
+    width: calc(50% - .06rem);
+    text-align: center;
+    line-height: .86rem;
+    font-size: .32rem;
+    border-left: .012rem solid #e2e2e2;
+}
+
+.showBox .inBox .btnBox a:first-child {
+    border: none;
+}
+
+.showBox .inBox .btnBox a:nth-of-type(2) {
+    color: #4babfc;
+}
+
+.slideImg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .8);
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideImg.dn{
+    display: none;
+}
+
+.slideImg .inBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slideImg .inBox  img{ max-width: 100%; max-height: 100%;}
