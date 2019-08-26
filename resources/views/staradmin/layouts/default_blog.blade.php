@@ -151,8 +151,13 @@
 		@show
     </head>
     <body>
-        @yield('content')
-		
+    	<section class="cardFull card-flex">
+			<div class="cardBody">
+		        @yield('content')
+		    </div>
+			
+		</section>
+
 		@section('footer-javascript')
 			<script type="text/javascript" src="{{ asset('/client/blog/js/swiper.min.js') }}"></script>
 		    <script type="text/javascript" src="{{ asset('/client/blog/js/jquery-1.9.1.js') }}"></script>

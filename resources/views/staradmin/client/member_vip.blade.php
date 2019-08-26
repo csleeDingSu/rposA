@@ -119,6 +119,17 @@
 					</div>
 				</li>
 
+				<!-- 晒单评价 -->
+				<li class="list-group-item">
+					<div class="blogbtn">
+						<div class="icon-wrapper">
+							<div class="icon-blog"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						晒单评价
+					</div>
+				</li>
+
 				<!-- 挖宝记录 -->
 				<li class="list-group-item">
 					<div class="allhistory">
@@ -398,6 +409,10 @@
 
 			$('.redeemhistorybtn').click(function(){
 				window.location.href = "/redeem/history";
+			});
+
+			$('.blogbtn').click(function(){
+				window.location.href = "/blog/createform";
 			});
 
 			$('.button-setting').click(function(){
