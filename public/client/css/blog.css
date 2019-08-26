@@ -1,0 +1,6 @@
+.card-header h2{
+    height: 1rem;
+    line-height: 1rem !important;
+    position: relative;
+    border-bottom: 1px solid #f3f3f3;
+}
