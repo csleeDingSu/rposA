@@ -197,7 +197,7 @@
 			  });
 			
 			socket.on(prefix+$('#auth_id').val() + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
-				console.log('members activedraw');
+				console.log('topup');
 				console.log(data);
 			  });
 
