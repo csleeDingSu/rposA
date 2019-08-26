@@ -1566,6 +1566,7 @@ function checkFirstLifePurgeStatus(){
 //betting animate number
 function anp(e, lv){
     console.log(lv);
+    e.stopImmediatePropagation();
     //var n=Math.round(Math.random()*10);
     var n = (lv == 1) ? 1 : ((lv == 2) ? 3 : ((lv == 3) ? 7 : ((lv == 4) ? 15 : ((lv == 5) ? 31 : ((lv == 6) ? 63 : lv)))));
     var $i=$("<b>").text("+"+n);
@@ -1575,5 +1576,5 @@ function anp(e, lv){
     $i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
         $i.remove();
     });
-e.stopImmediatePropagation();
+// e.stopPropagation();
 }
