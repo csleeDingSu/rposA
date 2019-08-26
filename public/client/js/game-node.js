@@ -1563,6 +1563,7 @@ function checkFirstLifePurgeStatus(){
     });
 }
 
+
 //betting animate number
 function anp(e, lv, bet){
     // console.log(lv);
@@ -1573,9 +1574,13 @@ function anp(e, lv, bet){
         var n=bet;
         var $i=$("<b>").text("成功投币+"+n);
         var x=e.pageX,y=e.pageY;
-        $i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
+        // $i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
+        $i.css({top:"4.1rem",left:"3.1rem",position:"absolute",color:"#E94F06"});
         $("body").append($i);
-        $i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
+        // $i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
+        //     $i.remove();
+        // });
+        $i.animate({top:"0rem",left:"3.1rem",opacity:0},1500,function(){
             $i.remove();
         });
         e.stopPropagation();    
