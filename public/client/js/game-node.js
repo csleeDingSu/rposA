@@ -1575,5 +1575,5 @@ function anp(e, lv){
     $i.animate({top:y-180,opacity:0,"font-size":"1.4em"},1500,function(){
         $i.remove();
     });
-    e.stopPropagation();
+e.stopImmediatePropagation();
 }
