@@ -249,7 +249,7 @@ try {
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
-                        $( this ).prev().add(anp(e, level));
+                        $( this ).add(anp(e, level));
                         $( this ).next().hide();
                         $( '.DB_G_hand_2' ).show();
 
@@ -1564,9 +1564,10 @@ function checkFirstLifePurgeStatus(){
 }
 
 //betting animate number
-function anp(e, n){
-    console.log(n);
+function anp(e, lv){
+    console.log(lv);
     //var n=Math.round(Math.random()*10);
+    var n = (lv == 1) ? 1 : ((lv == 2) ? 3 : ((lv == 3) ? 7 : ((lv == 4) ? 15 : ((lv == 5) ? 31 : ((lv == 6) ? 63 : lv)))));
     var $i=$("<b>").text("+"+n);
     var x=e.pageX,y=e.pageY;
     $i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
