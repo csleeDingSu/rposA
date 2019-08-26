@@ -40,12 +40,13 @@
 			<div class="box">
 				<div class="btn-calculate">
 					<div class="balance-banner">
-						<img class="icon-newcoin" src="{{ asset('/client/images/coin.png') }}" />
+						<div class="icon-red">1</div>
+						<div class="icon-newcoin"></div>
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0.00</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
-						<img class="btn-calculate-vip btn-redeemcash" id="btn-redeemcash" src="{{ asset('/client/images/btn-topup.png') }}" />
+						<div class="btn-calculate-vip btn-redeemcash" id="btn-redeemcash"></div>
 					</div>
 				</div>
 				<div class="speech-bubble-point">已赚了50金币大约可换5元</div>
@@ -803,7 +804,7 @@
 									知道了
 								</div>
 								<div class="modal-notification-info">
-								到账时间：2019年8月18日18点05分	
+								到账时间：<span class="span-updated">2019年8月18日18点05分</span>
 								</div>											
 							</div>
 						</div>
@@ -1166,6 +1167,7 @@
 	<script type="text/javascript">
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+    	var prefix = "{{ env('REDIS_PREFIX'), '' }}";
 
     (function() {
 			    var ev = new $.Event('remove'),

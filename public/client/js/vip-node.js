@@ -270,6 +270,11 @@ try {
     }
 }
 
+function socketIOConnectionUpdate(err)
+{
+    console.log(err);
+}
+
 function getToken(){
     var username = $('#hidUsername').val();
     var session = $('#hidSession').val();
@@ -285,6 +290,123 @@ function getToken(){
             } else {
                 $(".reload").show();
             }      
+        });
+
+        socketIOConnectionUpdate('Requesting JWT Token from Laravel');
+
+        $.ajax({
+            url: '/token'
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            htm = '<p class="text-warning">Unauthorized.</p>';
+            socketIOConnectionUpdate( htm);
+        })
+        .done(function (result, textStatus, jqXHR) {
+
+            socketIOConnectionUpdate('Response from Laravel');
+
+            var c_url = url + ':' + port;
+            
+            console.log('connecting URL: '+c_url);
+            
+            //Output have userid , token and username 
+            
+            var socket = new io.connect(c_url, {
+                'reconnection': true,
+                'reconnectionDelay': 1000, //1 sec
+                'reconnectionDelayMax' : 5000,
+                'reconnectionAttempts': 2,
+                'transports': ['websocket'],
+                'timeout' : 10000, //1 min
+                'force new connection' : true,
+                 query: 'token='+result.token
+            });
+
+            /* 
+            connect with socket io
+            */
+            socket.on('connect', function () {
+                socketIOConnectionUpdate('Connected to SocketIO, Authenticating')
+                console.log('Token: '+result.token);
+                socket.emit('authenticate', {token: result.token});
+            });
+
+            /* 
+            If token authenticated successfully then here will get message 
+            */
+            socket.on('authenticated', function () {
+                htm = '<p class="text-success">Authenticated.</p>';
+                socketIOConnectionUpdate(htm);
+            });
+
+            /* 
+            If token unauthorized then here will get message 
+            */
+            socket.on('unauthorized', function (data) {
+                socketIOConnectionUpdate('Unauthorized, error msg: ' + data.message);
+            });
+
+            /* 
+            If disconnect socketio then here will get message 
+            */
+            socket.on('disconnect', function () {
+                console.log('disconnect--');
+                htm = '<p class="text-danger">Disconnected.</p>';
+                socketIOConnectionUpdate(htm);
+            });
+
+            socket.on(prefix+$('#hidUserId').val() + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
+                console.log('get topup notifications');
+                var notifications = data.data;
+                console.log(notifications);
+
+                var notifications_count = 0;
+                if(notifications.count > 9){
+                    notifications_count = 'N';
+                } else {
+                    notifications_count = notifications.count;
+                }
+
+                $('.icon-red').html(notifications_count).show();
+
+                var records = notifications.records;
+                console.log(records[0].ledger);
+                $('.spanAcuPointAndBalance').html(records[0].ledger.balance_after);
+                g_vip_point = records[0].ledger.balance_after;
+
+                $('.icon-newcoin').click(function(){
+                    $('.span-topup').html(parseInt(records[0].ledger.credit));
+                    $('.span-before').html(records[0].ledger.balance_before);
+                    $('.span-after').html(records[0].ledger.balance_after);
+                    
+
+                    var updated_at = records[0].ledger.updated_at.split(" ");//dateTime[0] = date, dateTime[1] = time
+                    var date = updated_at[0].split("-");
+                    var time = updated_at[1].split(":");
+                    $('.span-updated').html(date[0]+'年'+date[1]+'月'+date[2]+'日'+time[0]+'点'+time[1]+'分');
+
+                    $('#modal-notification').modal();
+
+                    $('.icon-red').html(notifications_count).hide();
+                    $( this ).unbind( "click" );
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "/api/notification-mark-all-read?memberid=" + $('#hidUserId').val(),
+                        dataType: "json",
+                        error: function (error) { console.log(error.responseText) },
+                        success: function(data) {
+                            console.log('read');
+                        }
+                    });
+
+                });
+
+                $('.modal-notification-button').click(function(){
+                    $('#modal-notification').modal('hide');
+                });
+            });
+            
         });
     } else {
         //non-logged in user
@@ -687,11 +809,6 @@ function bindBetButton(){
                 $('.span-bet').val(final_bet);
                 previous_bet = final_bet;
             } else {
-                // $('.spinning').html('金币不足 请充值');
-                //  $('.spinning').css('visibility', 'visible');
-                // setTimeout(function(){ 
-                //     $('.spinning').css('visibility', 'hidden');
-                // }, 3000);
                 $( '#modal-isnewbie' ).modal( 'show' );
                 $('.span-bet').val(getNumeric(g_vip_point));
                 previous_bet = g_vip_point;
@@ -707,9 +824,6 @@ function bindBetButton(){
         $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
-            // window.top.location.href = "/member";
-            // $( '#login-intropopup' ).modal( 'show' );
-            // $( '#nonloginmodal' ).modal( 'show' );
             $( '#modal-no-login' ).modal( 'show' );
         } else {
 
@@ -750,11 +864,6 @@ function bindBetButton(){
             $('.span-bet').val(final_bet);
             previous_bet = final_bet;
         } else {
-            // $('.spinning').html('金币不足 请充值');
-            //  $('.spinning').css('visibility', 'visible');
-            // setTimeout(function(){ 
-            //     $('.spinning').css('visibility', 'hidden');
-            // }, 3000);
             $( '#modal-isnewbie' ).modal( 'show' );
             $('.span-bet').val(getNumeric(g_vip_point));
             previous_bet = g_vip_point;
@@ -817,19 +926,6 @@ function bindBetButton(){
         if(isNaN(balance)){
             return false;
         }
-
-        //console.log(user_id +":" + balance + ":" + life );
-        // if(user_id > 0 && life > 0){
-
-
-        //     if(consecutive_lose == 'yes'){
-        //         bindResetLifeButton();
-        //         $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
-        //     }
-
-        // } else if(user_id > 0 && life == 0){
-        //         $('#reset-life-share').modal();
-        // }
 
         $('.radio-primary').not(this).find('.radio').removeClass('clicked');
         $('.radio-primary').not(this).find('.bet-container').hide();
@@ -1026,67 +1122,6 @@ function bindTriggerButton(){
         
     });
 }
-
-/*
-function bindResetLifeButton(){
-    $( '.btn-reset-life' ).click( function( event ){
-        $(this).off('click');
-        event.stopImmediatePropagation();
-
-        var user_id = $('#hidUserId').val();
-        var previous_point = $('.packet-point').html();
-
-        // add points from additional life.
-        if(user_id > 0){
-            $.ajax({
-                type: 'POST',
-                url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 103, 'life': 'yes' },
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { console.log(error.responseText) },
-                success: function(data) {
-                    if(data.success){
-                        Cookies.set('previous_point', previous_point);
-                        // window.parent.location.href = "/redeem";
-                        window.parent.location.href = "/profile";
-                    }
-                }
-            });
-        }
-    });
-
-    $( '.btn-reset-life-continue' ).click( function( event ){
-        $(this).off('click');
-        event.stopImmediatePropagation();
-
-        var user_id = $('#hidUserId').val();
-
-        // add points from additional life.
-        if(user_id > 0){
-            $.ajax({
-                type: 'POST',
-                url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 103, 'life': 'yes' },
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { console.log(error.responseText) },
-                success: function(data) {
-                    if(data.success){
-                        $('#reset-life-max').modal('hide');
-                        $('#reset-life-lose').modal('hide');
-                        resetGame();
-                    }
-                }
-            });
-        }
-    });
-}
-*/
 
 function showProgressBar(bol_show){}
 

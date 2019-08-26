@@ -298,24 +298,39 @@ body{
 }
 
 .btn-calculate {
-	width: 1.5rem;
-	height: 0.39rem;
+	width: 3.18rem;
+	height: 0.72rem;
 }
 
 .balance-banner {
-	background: rgba(0,0,0,0.3);
-	width: 4rem;
-	height: 0.72rem;
+	background: url('/client/images/vip/info-bar.png') no-repeat;
+	background-size: contain;
+    width: 100%;
+    height: 100%;
 	float: left;
 	position: relative;
-	/*margin-left: 10px;*/
 	color: #fff;
-	/*font-size: 40px;*/
 	cursor: pointer;
-	border-radius: 0.4rem;
 	margin-left: 0.2rem;
 	display: flex;
 	align-items: center;
+}
+
+.icon-red {
+	background: url('/client/images/vip/icon-red.png') no-repeat;
+	background-size: contain;
+    width: 0.4rem;
+    height: 0.4rem;
+	float: left;
+	position: absolute;
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+	font-size: 0.2rem;
+	padding-top: 0.05rem;
+	margin-top: -0.5rem;
+	margin-left: -0.15rem;
+	display: none;
 }
 
 .btn-vip {
@@ -439,6 +454,7 @@ body{
 .spanAcuPointAndBalance{
 	padding-top: 0.02rem;
 	font-size: 0.35rem;
+	color: #fff171;
 }
 
 .btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {
@@ -2262,13 +2278,14 @@ if it's not present, don't show loader */
 .btn-redeemcash {
 	position: relative;
 	float: right;
-	width: 1.3rem;
+	width: 0.8rem;
+	height: 0.8rem;
 }
 
 .icon-newcoin {
 	position: relative;
-	width: 0.5rem;
-	margin-left: 0.1rem;
+	width: 1rem;
+	height: 1rem;
 }
 
 .spanAcuPoint2 {
