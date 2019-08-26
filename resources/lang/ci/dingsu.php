@@ -653,4 +653,9 @@ return [
 	'rank_to_first' => '最前',
 	'used_life'=>'已使用的命',
 	'used_point' => '使用金币',
+	'show_all'=>'显示全部',
+	'monthly_new_registration'=>'新注册',
+	'register_date'=>'日期',
+	'connection_failed'=>'连接失败',
+
 ];
