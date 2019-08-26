@@ -249,7 +249,7 @@ try {
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
-                        $( this ).add(anp(e, level));
+                        $( this ).prev().add(anp(e, level));
                         $( this ).next().hide();
                         $( '.DB_G_hand_2' ).show();
 
