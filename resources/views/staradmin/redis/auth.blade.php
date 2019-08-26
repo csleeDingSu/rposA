@@ -25,6 +25,8 @@
 	var url  = "{{ env('APP_URL'), 'http://boge56.com' }}";		
 	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
 	
+	var prefix = "{{ env('REDIS_PREFIX'), 'BOG' }}";
+	
 	$(document).ready(function () {
         socketIOConnectionUpdate('Requesting JWT Token from Laravel');
 
@@ -109,13 +111,13 @@
                 $('#name').html(data);
             });
 			//On user logout
-			socket.on('userlogout-' +$('#auth_id').val(), function (data) {
+			socket.on(prefix+'userlogout-' +$('#auth_id').val(), function (data) {
                 console.log('user-logout');
 				socketIOConnectionUpdate('user-logout');	
             });
 			
 			//on page load game setting Script
-			socket.on("loadsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
+			socket.on(prefix+"loadsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
 				console.log('load user game setting-on page load');
 
 				console.log(data);
@@ -123,7 +125,7 @@
 			 });
 			
 			//init setting Script
-			socket.on("initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
+			socket.on(prefix+"initsetting-" + $('#auth_id').val() + ":App\\Events\\EventGameSetting", function(data){
 				console.log('user-initsetting');
 
 				console.log(data);
@@ -131,52 +133,52 @@
 			 });
 
 			//No betting
-			socket.on("no-betting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
+			socket.on(prefix+"no-betting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
 				console.log('call no-betting');
 				console.log(data);
 			 });
 
 			//No betting vip
-			socket.on("no-vipbetting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
+			socket.on(prefix+"no-vipbetting-user-" + $('#auth_id').val() + ":App\\Events\\EventNoBetting" , function(data){
 				console.log('call no-vip-betting');
 				console.log(data);
 			  });
 
 			//betting
-			socket.on("userbetting-" + $('#auth_id').val() + ":App\\Events\\EventBetting" , function(data){
+			socket.on(prefix+"userbetting-" + $('#auth_id').val() + ":App\\Events\\EventBetting" , function(data){
 				console.log('call userbetting');
 				console.log(data);
 			  });
 
 			//betting vip
-			socket.on("uservipbetting-" + $('#auth_id').val() + ":App\\Events\\EventVIPBetting" , function(data){
+			socket.on(prefix+"uservipbetting-" + $('#auth_id').val() + ":App\\Events\\EventVIPBetting" , function(data){
 				console.log('call uservipbetting');
 				console.log(data);
 			  });
 
 			//betting history 
-			socket.on("bettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventBettingHistory", function(data){
+			socket.on(prefix+"bettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventBettingHistory", function(data){
 				console.log('members recent bettinghistory');
 				console.log(data);
 
 			  });
 
 			//betting VIP history -- new --
-			socket.on("vipbettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventVipBettingHistory", function(data){
+			socket.on(prefix+"vipbettinghistory-" + $('#auth_id').val() + ":App\\Events\\EventVipBettingHistory", function(data){
 				console.log('members recent Vip bettinghistory');
 				console.log(data);
 
 			 });
 
 			//wallet changes -- new --
-			socket.on("wallet-" + $('#auth_id').val() + ":App\\Events\\EventWalletUpdate", function(data){
+			socket.on(prefix+"wallet-" + $('#auth_id').val() + ":App\\Events\\EventWalletUpdate", function(data){
 				console.log('member wallet details');
 				console.log(data);
 
 			  });
 
 			//betting history on Event Load - no use
-			socket.on("bettinghistory" + ":App\\Events\\EventBettingHistory" , function(data){
+			socket.on(prefix+"bettinghistory" + ":App\\Events\\EventBettingHistory" , function(data){
 				console.log('members recent bettinghistory');
 				console.log(data);
 			  });
@@ -184,12 +186,17 @@
 			//below functions are still on development		 			
 
 			//Trigger on Event Load
-			socket.on("new-betting" + ":App\\Events\\NewBettingStatus" , function(data){
+			socket.on(prefix+"new-betting" + ":App\\Events\\NewBettingStatus" , function(data){
 				console.log('call betting status update');
 				console.log(data);
 			  });
 			
-			socket.on("activedraw" + ":App\\Events\\EventDynamicChannel" , function(data){
+			socket.on(prefix+"activedraw" + ":App\\Events\\EventDynamicChannel" , function(data){
+				console.log('members activedraw');
+				console.log(data);
+			  });
+			
+			socket.on(prefix+$('#auth_id').val() + "topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
 				console.log('members activedraw');
 				console.log(data);
 			  });
