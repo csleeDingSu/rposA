@@ -355,7 +355,8 @@ function getToken(){
                 socketIOConnectionUpdate(htm);
             });
 
-            socket.on(prefix+$('#hidUserId').val() + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
+            socket.on(prefix+ id + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
+                $('.icon-newcoin').unbind('click');
                 getNotification(data.data);
             });
             
@@ -372,12 +373,13 @@ function getToken(){
 
 function getNotification(data){
     console.log('get topup notifications');
+    console.log(data);
     var notifications = data;
-    console.log(notifications);
 
     var notifications_count = notifications.count;
 
     if(notifications_count == 0){
+        $('.icon-red').html(notifications_count).hide();
         return false;
     } else if (notifications_count > 9){
         notifications_count = 'N';
@@ -386,7 +388,6 @@ function getNotification(data){
     $('.icon-red').html(notifications_count).show();
 
     var records = notifications.records;
-    console.log(records[0].ledger);
     $('.spanAcuPointAndBalance').html(records[0].ledger.balance_after);
     g_vip_point = records[0].ledger.balance_after;
 
@@ -403,15 +404,24 @@ function getNotification(data){
 
         $('#modal-notification').modal();
 
-        $('.icon-red').html(notifications_count).hide();
+        
         $( this ).unbind( "click" );
 
         $.ajax({
             type: 'POST',
-            url: "/api/notification-mark-all-read?memberid=" + $('#hidUserId').val(),
+            url: "/api/notification-mark-as-read?id="+ records[0].id+"&memberid=" + $('#hidUserId').val(),
             dataType: "json",
             error: function (error) { console.log(error.responseText) },
-            success: function(data) {
+            success: function() {
+                var new_data = data;
+                new_data.records.shift();
+                new_data.count = new_data.records.length;
+                console.log(new_data.count);
+                if(new_data.count > 0){
+                    getNotification(new_data);
+                } else {
+                    $('.icon-red').html(notifications_count).hide();
+                }
             }
         });
 
