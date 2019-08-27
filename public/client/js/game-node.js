@@ -1110,7 +1110,7 @@ function showWinModal(){
         break;
 
         case 2:
-            info = '本局抽中<span class="highlight-green">3金币</span><br />前1局没抽中<span class="highlight">亏损1元</span><br /><span class="highlight-red">最终赚2金币=兑换2元。</span>';
+            info = '本局抽中<span class="highlight-green">3金币</span><br />前1局没抽中<span class="highlight">亏损1金币</span><br /><span class="highlight-red">最终赚2金币=兑换2元。</span>';
             image = '/client/images/progress-bar/30.png';
             html += '+3金币';
             remain = 15 - (g_previous_point) - 2;
@@ -1118,7 +1118,7 @@ function showWinModal(){
         break;
 
         case 3:
-            info = '本局抽中<span class="highlight-green">7金币</span><br />前2局没抽中<span class="highlight">亏损4元</span><br /><span class="highlight-red">最终赚3金币=兑换3元。</span>';
+            info = '本局抽中<span class="highlight-green">7金币</span><br />前2局没抽中<span class="highlight">亏损4金币</span><br /><span class="highlight-red">最终赚3金币=兑换3元。</span>';
             image = '/client/images/progress-bar/70.png';
             html += '+7金币';
             remain = 15 - (g_previous_point) - 3;
@@ -1126,7 +1126,7 @@ function showWinModal(){
         break;
 
         case 4:
-            info = '本局抽中<span class="highlight-green">15金币</span><br />前3局没抽中<span class="highlight">亏损11元</span><br /><span class="highlight-red">最终赚4金币=兑换4元。</span>';
+            info = '本局抽中<span class="highlight-green">15金币</span><br />前3局没抽中<span class="highlight">亏损11金币</span><br /><span class="highlight-red">最终赚4金币=兑换4元。</span>';
             image = '/client/images/progress-bar/150.png';
             html += '+15金币';
             remain = 15 - (g_previous_point) - 4;
@@ -1134,7 +1134,7 @@ function showWinModal(){
         break;
 
         case 5:
-            info = '本局抽中<span class="highlight-green">31金币</span><br />前4局没抽中<span class="highlight">亏损26元</span><br /><span class="highlight-red">最终赚5金币=兑换5元。</span>';
+            info = '本局抽中<span class="highlight-green">31金币</span><br />前4局没抽中<span class="highlight">亏损26金币</span><br /><span class="highlight-red">最终赚5金币=兑换5元。</span>';
             image = '/client/images/progress-bar/310.png';
             html += '+31金币';
             remain = 15 - (g_previous_point) - 5;
@@ -1142,7 +1142,7 @@ function showWinModal(){
         break;
 
         case 6:
-            info = '本局抽中<span class="highlight-green">63金币</span><br />前5局没抽中<span class="highlight">亏损57元</span><br /><span class="highlight-red">最终赚6金币=兑换6元。</span>';
+            info = '本局抽中<span class="highlight-green">63金币</span><br />前5局没抽中<span class="highlight">亏损57金币</span><br /><span class="highlight-red">最终赚6金币=兑换6元。</span>';
             image = '/client/images/progress-bar/630.png';
             html += '+63金币';
             remain = 15 - (g_previous_point) - 6;
