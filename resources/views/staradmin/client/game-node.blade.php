@@ -93,6 +93,7 @@
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
+			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '6')}}" />
 	  	</div>
 
 	</div>
