@@ -269,6 +269,7 @@
 					<div class="div-life">还剩<span class="span-life">15</span>次抽奖</div>
 					<div class="div-time"></div>
 				</div>
+				<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
 		    </div>
 		</div>
 
