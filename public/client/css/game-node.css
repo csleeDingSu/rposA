@@ -2158,7 +2158,7 @@ if it's not present, don't show loader */
 }
 
 #reset-life-max .modal-content {
-  background: url('/client/images/packet.png') no-repeat;
+  background: url('/client/images/packet-reset-life.png') no-repeat;
   background-size: contain;
   color: white;
   text-align: center;
