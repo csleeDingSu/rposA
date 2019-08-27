@@ -2148,7 +2148,7 @@ if it's not present, don't show loader */
     width: 260px;
     margin: 0 auto;
     font-size: 16px;
-    margin-top: 80px;
+    margin-top: 75px;
 }
 
 #reset-life-max .packet-value {
@@ -2188,10 +2188,10 @@ if it's not present, don't show loader */
 #reset-life-max .instructions {
   font-size: 16px;
   font-weight: 500;
-  color: #fac03c;
+  color: #a32921;
   text-align: center;
   line-height: 28px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 10px auto;
 }
 
 #reset-life-max .highlight {
@@ -2207,7 +2207,7 @@ if it's not present, don't show loader */
   font-size: 18px;
   color: #c33234;
   background-size: contain;
-  height: 76px;
+  height: 92px;
   padding-top: 16px;
   cursor: pointer;
   text-align: center;
