@@ -356,55 +356,7 @@ function getToken(){
             });
 
             socket.on(prefix+$('#hidUserId').val() + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
-                console.log('get topup notifications');
-                var notifications = data.data;
-                console.log(notifications);
-
-                var notifications_count = 0;
-                if(notifications.count > 9){
-                    notifications_count = 'N';
-                } else {
-                    notifications_count = notifications.count;
-                }
-
-                $('.icon-red').html(notifications_count).show();
-
-                var records = notifications.records;
-                console.log(records[0].ledger);
-                $('.spanAcuPointAndBalance').html(records[0].ledger.balance_after);
-                g_vip_point = records[0].ledger.balance_after;
-
-                $('.icon-newcoin').click(function(){
-                    $('.span-topup').html(parseInt(records[0].ledger.credit));
-                    $('.span-before').html(records[0].ledger.balance_before);
-                    $('.span-after').html(records[0].ledger.balance_after);
-                    
-
-                    var updated_at = records[0].ledger.updated_at.split(" ");//dateTime[0] = date, dateTime[1] = time
-                    var date = updated_at[0].split("-");
-                    var time = updated_at[1].split(":");
-                    $('.span-updated').html(date[0]+'年'+date[1]+'月'+date[2]+'日'+time[0]+'点'+time[1]+'分');
-
-                    $('#modal-notification').modal();
-
-                    $('.icon-red').html(notifications_count).hide();
-                    $( this ).unbind( "click" );
-
-                    $.ajax({
-                        type: 'POST',
-                        url: "/api/notification-mark-all-read?memberid=" + $('#hidUserId').val(),
-                        dataType: "json",
-                        error: function (error) { console.log(error.responseText) },
-                        success: function(data) {
-                            console.log('read');
-                        }
-                    });
-
-                });
-
-                $('.modal-notification-button').click(function(){
-                    $('#modal-notification').modal('hide');
-                });
+                getNotification(data.data);
             });
             
         });
@@ -416,6 +368,59 @@ function getToken(){
         $(".loading").fadeOut("slow");
     }
     
+}
+
+function getNotification(data){
+    console.log('get topup notifications');
+    var notifications = data;
+    console.log(notifications);
+
+    var notifications_count = notifications.count;
+
+    if(notifications_count == 0){
+        return false;
+    } else if (notifications_count > 9){
+        notifications_count = 'N';
+    }
+
+    $('.icon-red').html(notifications_count).show();
+
+    var records = notifications.records;
+    console.log(records[0].ledger);
+    $('.spanAcuPointAndBalance').html(records[0].ledger.balance_after);
+    g_vip_point = records[0].ledger.balance_after;
+
+    $('.icon-newcoin').click(function(){
+        $('.span-topup').html(parseInt(records[0].ledger.credit));
+        $('.span-before').html(records[0].ledger.balance_before);
+        $('.span-after').html(records[0].ledger.balance_after);
+        
+
+        var updated_at = records[0].ledger.updated_at.split(" ");//dateTime[0] = date, dateTime[1] = time
+        var date = updated_at[0].split("-");
+        var time = updated_at[1].split(":");
+        $('.span-updated').html(date[0]+'年'+date[1]+'月'+date[2]+'日'+time[0]+'点'+time[1]+'分');
+
+        $('#modal-notification').modal();
+
+        $('.icon-red').html(notifications_count).hide();
+        $( this ).unbind( "click" );
+
+        $.ajax({
+            type: 'POST',
+            url: "/api/notification-mark-all-read?memberid=" + $('#hidUserId').val(),
+            dataType: "json",
+            error: function (error) { console.log(error.responseText) },
+            success: function(data) {
+            }
+        });
+
+    });
+
+    $('.modal-notification-button').click(function(){
+        $('#modal-notification').modal('hide');
+    });
+
 }
 
 function getProduct(){
@@ -595,6 +600,17 @@ function startGame() {
             console.log(wallet_records);
 
             initUser(wallet_records);
+        }
+    });
+
+    $.ajax({
+        type: 'GET',
+        url: "/api/get-notifications?memberid=" + id,
+        dataType: "json",
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            console.log(data);
+            getNotification(data);
         }
     });
 }
