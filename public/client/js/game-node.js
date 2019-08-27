@@ -18,6 +18,7 @@ var last_bet = null;
 var g_life = 0;
 var consecutive_lose = null;
 var usedlife = 0;
+var max_acupoint = 6;
 
 $(function () {
 
@@ -37,6 +38,7 @@ $(function () {
 
     var wechat_status = $('#hidWechatId').val();
     var wechat_name = $('#hidWechatName').val();
+    var max_acupoint = $('#hidMaxAcupoint').val();
 
     if(wechat_status == 0 && wechat_name != null) {
 
@@ -146,7 +148,6 @@ function initUser(records){
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
         var play_count = parseInt(records.play_count);
-        var max_acupoint = 15;
         //g_current_point = parseInt(records.balance) + parseInt(records.acupoint);
 
         if(life == 0){
@@ -675,7 +676,7 @@ function bindBetButton(){
                 $('#reset-life-share').modal();
         }
 
-        if (user_id > 0 && acupoint >= 15) {
+        if (user_id > 0 && acupoint >= max_acupoint) {
             bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
         }
@@ -842,6 +843,10 @@ function bindCalculateButton(){
         } else {
             $('#reset-life-share').modal();
         }
+    });
+
+    $('.rule').click(function() {
+        $('#game-rules').modal();
     });
 }
 
@@ -1505,6 +1510,7 @@ function countDownLife(){
     if (distance > 0) {
         $('.first-life').show();
         $('.span-life').html(15-g_current_point);
+        $('.banner-rules').hide();
     }
     
     // Update the count down every 1 second
@@ -1530,6 +1536,7 @@ function countDownLife(){
         clearInterval(x);
         $('.first-life').hide();
         checkFirstLifePurgeStatus();
+        $('banner-rules').show();
       }
     }, 1000);
 }

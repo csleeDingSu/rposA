@@ -14,7 +14,7 @@
                                 <div class="line">
                                     <h3>
                                     	<span class="voucher-price">领券减{{number_format($v->voucher_price, 2) + 0}}元</span>
-                                    	<span class="draw-price">抽奖补贴15元</span>
+                                    	<span class="draw-price">抽奖补贴12元</span>
                                     </h3>
                                 </div>
                                 <div class="line">
@@ -46,7 +46,7 @@
                                 <div class="line">
                                     <h3>
                                     	<span class="voucher-price">领券减{{number_format($v->voucher_price,2) + 0}}元</span>
-                                    	<span class="draw-price">抽奖补贴15元</span>
+                                    	<span class="draw-price">抽奖补贴12元</span>
                                     </h3>
                                 </div>
                                 <div class="line">

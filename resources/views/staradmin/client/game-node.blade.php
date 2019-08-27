@@ -56,7 +56,7 @@
 						<div class="btn-redeemcash">抽奖规则</div>
 					</div>
 				</div>
-				<div class="speech-bubble-point">满15元即可领取</div>
+				<div class="speech-bubble-point">满6元即可领取</div>
 				<div class="profile-pic">
 					<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
 				</div>
@@ -93,6 +93,7 @@
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
+			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '6')}}" />
 	  	</div>
 
 	</div>
@@ -269,6 +270,7 @@
 					<div class="div-life">还剩<span class="span-life">15</span>次抽奖</div>
 					<div class="div-time"></div>
 				</div>
+				<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
 		    </div>
 		</div>
 
@@ -537,16 +539,15 @@
 	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 	<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-				<div class="packet-title">恭喜您!</div>
 				<div class="modal-body">
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-value">赢得15元红包</div>	
+								<div class="packet-value">6元补贴到手</div>	
 								<div class="instructions">
-									您已结算红包：<div class="packet-point">&nbsp;</div>元
+									每次抽奖最多可获的6元
 								</div>
-								<div class="modal-confirm-button btn-reset-life btn-red-packet">确认结算</div>
+								<div class="modal-confirm-button btn-reset-life btn-red-packet">点击结算去兑换</div>
 							</div>
 						</div>
 					</div>							

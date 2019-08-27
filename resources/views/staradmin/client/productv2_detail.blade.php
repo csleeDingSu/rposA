@@ -58,7 +58,7 @@
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="draw-price">
-                		<span class="cur">￥<span class="price">15</span>
+                		<span class="cur">￥<span class="price">12</span>
                 		<div class="txt">抽奖补贴</div>
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
@@ -102,7 +102,7 @@
 								  抽奖补贴说明
 								</div>
 								<div class="instructions">
-									<p>抽奖补贴由挖宝官方提供，新用户能免费获得1场次免费抽奖，通过抽奖可获得15元红包。</p>
+									<p>抽奖补贴由挖宝官方提供，新用户能免费获得2场次免费抽奖，通过抽奖可获得12元红包。</p>
 									<p>&nbsp;</p>
 									<p>用户可通过邀请好友，获得更多抽奖场次，从而获得更多购物红包。
 									</p>
