@@ -39,8 +39,8 @@
 		<div class="grid-container">
 			<div class="box">
 				<div class="btn-calculate">
+					<div class="icon-red">1</div>
 					<div class="balance-banner">
-						<div class="icon-red">1</div>
 						<div class="icon-newcoin"></div>
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0.00</span>

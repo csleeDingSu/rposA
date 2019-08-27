@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\blog;
 use App\buy_product_redeemed;
+use App\v_blog_buy_product_records;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,18 +43,18 @@ class BlogController extends Controller
     public function create(Request $request)
     {
         $member_id = Auth::guard('member')->user()->id;
-        $detail = \App\RedeemedProduct::with('shipping_detail')->where('member_id', $member_id)->latest()->first();
+        $detail = v_blog_buy_product_records::where('member_id', $member_id)->first();
         
         if (empty($detail->shipping_detail->contact_number)) {
             $phone = Auth::guard('member')->user()->phone;
-            $address = "empty address";
+            $address = null;
         } else {
             $phone = $detail->shipping_detail->contact_number;
             $address = $detail->shipping_detail->address;
         }
 
         $content = $request->input('content');
-        $uploads = $request->input('uploads');
+        $uploads = is_array($request->input('uploads')) ? json_encode($request->input('uploads')) : $request->input('uploads');
         
         $arr = ['member_id' => $member_id, 'phone' => $phone, 'address' => $address, 'content' => $content, 'uploads' => $uploads];
         $data = $arr;

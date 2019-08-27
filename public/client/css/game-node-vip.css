@@ -321,16 +321,17 @@ body{
 	background-size: contain;
     width: 0.4rem;
     height: 0.4rem;
-	float: left;
 	position: absolute;
 	color: #fff;
 	cursor: pointer;
 	text-align: center;
 	font-size: 0.2rem;
 	padding-top: 0.05rem;
-	margin-top: -0.5rem;
-	margin-left: -0.15rem;
+	margin-top: -0.05rem;
+	margin-left: 0.1rem;
+	z-index: 100;
 	display: none;
+
 }
 
 .btn-vip {
