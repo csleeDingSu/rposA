@@ -45,12 +45,12 @@ class BlogController extends Controller
         $member_id = Auth::guard('member')->user()->id;
         $detail = v_blog_buy_product_records::where('member_id', $member_id)->first();
         
-        if (empty($detail->shipping_detail->contact_number)) {
+        if (empty($detail->contact_number)) {
             $phone = Auth::guard('member')->user()->phone;
             $address = null;
         } else {
-            $phone = $detail->shipping_detail->contact_number;
-            $address = $detail->shipping_detail->address;
+            $phone = $detail->contact_number;
+            $address = $detail->address;
         }
 
         $content = $request->input('content');
