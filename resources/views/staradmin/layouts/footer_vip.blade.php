@@ -18,7 +18,7 @@ if( !Request::is('download-app') ) {
 
 			<dd class="dbox1">
 				<a href="/blog" class="footer-icon">
-					@if(Request::is('blog'))
+					@if(Request::is('blog', 'blog/*'))
 						<img src="{{ asset('/client/images/profile-vip/icon-blog-active.png') }}" width="25" height="25" />
 						<p class="active">用户晒单</p>
 					@else
@@ -30,7 +30,7 @@ if( !Request::is('download-app') ) {
 
 			<dd class="dbox1">
 				<a href="/profile" class="footer-icon">
-					@if(!Request::is('vip') && !Request::is('blog'))
+					@if(!Request::is('vip', 'blog', 'blog/*'))
 						<img src="{{ asset('/client/images/profile-vip/icon-profile-active.png') }}" width="25" height="25" />
 						<p class="active">个人中心</p>
 					@else

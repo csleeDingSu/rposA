@@ -1,9 +1,12 @@
-@extends('layouts.default_blog')
+@extends('layouts.default')
 
 @section('title', '晒单评论')
 
 @section('top-css')
     @parent
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/public.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/swiper.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" />  
     <link rel="stylesheet" href="{{ asset('/client/css/blog.css') }}" />
     <style>
         /* Paste this css to your style sheet file or under head tag */
@@ -90,6 +93,7 @@
 
 @section('footer-javascript')
     @parent
+    <script type="text/javascript" src="{{ asset('/client/blog/js/swiper.min.js') }}"></script>
     <script type="text/javascript">
 
       document.onreadystatechange = function () {
