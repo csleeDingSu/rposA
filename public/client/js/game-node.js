@@ -675,7 +675,7 @@ function bindBetButton(){
                 $('#reset-life-share').modal();
         }
 
-        if (user_id > 0 && acupoint >= var max_acupoint) {
+        if (user_id > 0 && acupoint >= max_acupoint) {
             bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
         }
