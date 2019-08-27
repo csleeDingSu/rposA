@@ -843,6 +843,10 @@ function bindCalculateButton(){
             $('#reset-life-share').modal();
         }
     });
+
+    $('.rule').click(function() {
+        $('#game-rules').modal();
+    });
 }
 
 function bindTriggerButton(){
@@ -1505,6 +1509,7 @@ function countDownLife(){
     if (distance > 0) {
         $('.first-life').show();
         $('.span-life').html(15-g_current_point);
+        $('.banner-rules').hide();
     }
     
     // Update the count down every 1 second
@@ -1530,6 +1535,7 @@ function countDownLife(){
         clearInterval(x);
         $('.first-life').hide();
         checkFirstLifePurgeStatus();
+        $('banner-rules').show();
       }
     }, 1000);
 }
