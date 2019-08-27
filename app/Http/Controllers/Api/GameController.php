@@ -599,13 +599,20 @@ class GameController extends Controller
 
 			if ($wallet) 
 			{	
+				$max_po = \Config::get('app.coin_max');
+				
+				
+				
 				if ($gamelevel->position != 1) 
 				{
-					return response()->json(['success' => false, 'record' => '', 'message' => 'reset first.cannt redeem.level must be one']); 
+					if ($wallet->acupoint< $max_po)
+					{
+						return response()->json(['success' => false, 'record' => '', 'message' => 'reset first.cannt redeem.level must be one']); 
+					}
 				}
 				if ($wallet->life >= 1) 
 				{
-					$max_po = \Config::get('app.coin_max');
+					
 					
 					if ($close != 'yes') {
 						
