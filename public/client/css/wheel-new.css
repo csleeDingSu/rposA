@@ -468,3 +468,8 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
     padding-top: 0.22rem;
     position: absolute;
 }
+
+.miniicon {
+	width: 0.29rem;
+	height: 0.29rem;
+}
