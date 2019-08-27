@@ -765,11 +765,11 @@ function showPayout(){
                 $( '.DB_G_hand_2' ).hide();
                 $( '.DB_G_hand_3' ).show();
                 if(selected == 'odd'){
-                    $('.span-odd').removeClass('lose').addClass('ready').html('<img src="/client/images/wheel/miniicon.png" class="miniicon" />' + bet_amount + '元红包');
+                    $('.span-odd').removeClass('lose').addClass('ready').html('<img src="/client/images/wheel/miniicon.png" class="miniicon" />' + bet_amount + '金币');
                     $('.span-even').addClass('ready lose').html('谢谢参与');
                 } else {
                     $('.span-odd').addClass('ready lose').html('谢谢参与');
-                    $('.span-even').removeClass('lose').addClass('ready').html('<img src="/client/images/wheel/miniicon.png" class="miniicon" />' + bet_amount + '元红包');
+                    $('.span-even').removeClass('lose').addClass('ready').html('<img src="/client/images/wheel/miniicon.png" class="miniicon" />' + bet_amount + '金币');
                 }
             } else {
                 //$('.middle-label').html('选择金币');
@@ -1102,49 +1102,49 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            info = '本局抽中<span class="highlight-green">1元红包</span><br /><span class="highlight-red">最终赚了1元</span>';
+            info = '本局抽中<span class="highlight-green">1金币</span><br /><span class="highlight-red">最终赚1金币=兑换1元。</span>';
             image = '/client/images/progress-bar/10.png';
-            html += '1元红包';
+            html += '+1金币';
             remain = 15 - (g_previous_point) - 1;
             instructions = '你已赚到' + (g_previous_point + 1) + '元，';
         break;
 
         case 2:
-            info = '本局抽中<span class="highlight-green">3元红包</span><br />前1局没抽中<span class="highlight">亏损1元</span><br /><span class="highlight-red">最终赚了2元</span>';
+            info = '本局抽中<span class="highlight-green">3金币</span><br />前1局没抽中<span class="highlight">亏损1元</span><br /><span class="highlight-red">最终赚2金币=兑换2元。</span>';
             image = '/client/images/progress-bar/30.png';
-            html += '3元红包';
+            html += '+3金币';
             remain = 15 - (g_previous_point) - 2;
             instructions = '你已赚到' + (g_previous_point + 2) + '元，';   
         break;
 
         case 3:
-            info = '本局抽中<span class="highlight-green">7元红包</span><br />前2局没抽中<span class="highlight">亏损4元</span><br /><span class="highlight-red">最终赚了3元</span>';
+            info = '本局抽中<span class="highlight-green">7金币</span><br />前2局没抽中<span class="highlight">亏损4元</span><br /><span class="highlight-red">最终赚3金币=兑换3元。</span>';
             image = '/client/images/progress-bar/70.png';
-            html += '7元红包';
+            html += '+7金币';
             remain = 15 - (g_previous_point) - 3;
             instructions = '你已赚到' + (g_previous_point + 3) + '元，';
         break;
 
         case 4:
-            info = '本局抽中<span class="highlight-green">15元红包</span><br />前3局没抽中<span class="highlight">亏损11元</span><br /><span class="highlight-red">最终赚了4元</span>';
+            info = '本局抽中<span class="highlight-green">15金币</span><br />前3局没抽中<span class="highlight">亏损11元</span><br /><span class="highlight-red">最终赚4金币=兑换4元。</span>';
             image = '/client/images/progress-bar/150.png';
-            html += '15元红包';
+            html += '+15金币';
             remain = 15 - (g_previous_point) - 4;
             instructions = '你已赚到' + (g_previous_point + 4) + '元，';
         break;
 
         case 5:
-            info = '本局抽中<span class="highlight-green">31元红包</span><br />前4局没抽中<span class="highlight">亏损26元</span><br /><span class="highlight-red">最终赚了5元</span>';
+            info = '本局抽中<span class="highlight-green">31金币</span><br />前4局没抽中<span class="highlight">亏损26元</span><br /><span class="highlight-red">最终赚5金币=兑换5元。</span>';
             image = '/client/images/progress-bar/310.png';
-            html += '31元红包';
+            html += '+31金币';
             remain = 15 - (g_previous_point) - 5;
             instructions = '你已赚到' + (g_previous_point + 5) + '元，';
         break;
 
         case 6:
-            info = '本局抽中<span class="highlight-green">63元红包</span><br />前5局没抽中<span class="highlight">亏损57元</span><br /><span class="highlight-red">最终赚了6元</span>';
+            info = '本局抽中<span class="highlight-green">63金币</span><br />前5局没抽中<span class="highlight">亏损57元</span><br /><span class="highlight-red">最终赚6金币=兑换6元。</span>';
             image = '/client/images/progress-bar/630.png';
-            html += '63元红包';
+            html += '+63金币';
             remain = 15 - (g_previous_point) - 6;
             instructions = '你已赚到' + (g_previous_point + 6) + '元，';
         break;
