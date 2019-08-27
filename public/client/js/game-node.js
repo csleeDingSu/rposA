@@ -18,6 +18,7 @@ var last_bet = null;
 var g_life = 0;
 var consecutive_lose = null;
 var usedlife = 0;
+var max_acupoint = 6;
 
 $(function () {
 
@@ -146,7 +147,6 @@ function initUser(records){
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
         var play_count = parseInt(records.play_count);
-        var max_acupoint = 15;
         //g_current_point = parseInt(records.balance) + parseInt(records.acupoint);
 
         if(life == 0){
@@ -675,7 +675,7 @@ function bindBetButton(){
                 $('#reset-life-share').modal();
         }
 
-        if (user_id > 0 && acupoint >= 15) {
+        if (user_id > 0 && acupoint >= var max_acupoint) {
             bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
         }
