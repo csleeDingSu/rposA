@@ -1,9 +1,12 @@
-@extends('layouts.default_blog')
+@extends('layouts.default')
 
 @section('title', '晒单评价')
 
 @section('top-css')
     @parent
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/public.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/swiper.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/blog_create.css') }}" />
     
     <style>
