@@ -4,3 +4,7 @@
     position: relative;
     border-bottom: 1px solid #f3f3f3;
 }
+
+.txt {
+    font-weight: 500;
+}
