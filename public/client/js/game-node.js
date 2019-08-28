@@ -276,7 +276,7 @@ try {
                     if(g_life == 0){
                         $('#reset-life-share').modal();
                     } else { 
-                        musicPlay(1);
+                        musicPlay(1, level);
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
@@ -600,12 +600,12 @@ function closeModal() {
 function closeWinModal() {
 
     $('.close-win-modal').click(function(event){
-        console.log(g_current_point);
-        console.log(g_previous_point);
+        // console.log(g_current_point);
+        // console.log(g_previous_point);
         
         if (g_current_point > g_previous_point) {
             musicPlay(2);  
-            console.log('play coin mp3');  
+            // console.log('play coin mp3');  
 
             $('.speech-bubble-point').css('display', 'block');
             setTimeout(function(){ 
@@ -1454,13 +1454,13 @@ audioElement.setAttribute('src', '/client/audio/coin.mp3');
 var audioElement_win = document.createElement('audio');
 audioElement_win.setAttribute('src', '/client/audio/angpao.wav');
 
-function musicPlay(music) {    
+function musicPlay(music, lv = null) {    
 
     //solve ios autoload issue
     // document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
 
     // function musicInBrowserHandler(music) {
-        if (music == 1) {  
+        if ((music == 1) && ($('#hidLevel').val() == lv)) {  
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
             audioElement.play();
             
