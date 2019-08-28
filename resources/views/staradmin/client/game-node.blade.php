@@ -53,7 +53,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="speech-bubble-point">满6元即可领取</div>
+				<div class="speech-bubble-point">满{{env('coin_max', '6')}}元即可领取</div>
 			</div>
 
 			<div class="box">

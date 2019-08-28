@@ -105,7 +105,7 @@
 							<div class="icon-wheel"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						轮盘抽奖
+						抽奖补贴
 						<div class="game-life-count">剩余<span class="game-life"></span>次</div>
 					</div>
 				</li>

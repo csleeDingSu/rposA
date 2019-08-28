@@ -601,7 +601,7 @@ function closeWinModal() {
         
         if (g_current_point > g_previous_point) {
             musicPlay(1);  
-            // console.log('play coin mp3');  
+            console.log('play coin mp3');  
 
             $('.speech-bubble-point').css('display', 'block');
             setTimeout(function(){ 
@@ -609,8 +609,8 @@ function closeWinModal() {
             }, 5000);
         } 
 
-         if(g_current_point > 15){
-             g_current_point = 15;
+         if(g_current_point > max_acupoint){
+             g_current_point = max_acupoint;
          }
         
         $('.spanAcuPointAndBalance').html(g_current_point);
