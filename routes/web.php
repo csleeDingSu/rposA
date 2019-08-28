@@ -630,6 +630,12 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get('/buyproduct/render-card', 'BuyProductController@render_card_detail')->name('render_card_detail');
 	
 	Route::get('/member/played-details', 'MemberController@played_details')->name('played_member_details');
+	
+	
+	Route::get( 'admin/get-env-file', 'AdminController@get_env' )->name( 'get_env_file' );
+	Route::post( 'admin/add-env-record', 'AdminController@add_env_record' )->name( 'add_env_record' );
+	Route::any( 'admin/edit-env-record', 'AdminController@edit_env_record' )->name( 'edit_env_record' );
+	Route::delete( 'admin/delete-env-record', 'AdminController@delete_env_record' )->name( 'delete_env_record' );
 
 } );
 //END
