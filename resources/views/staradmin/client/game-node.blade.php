@@ -45,29 +45,30 @@
 	<!-- information table -->
 	<div class="information-table">
 		<div class="grid-container">
-			<div class="box">
-				
+			<div class="box">				
 				<div class="btn-calculate">
 					<div class="balance-banner">
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0</span>元
-							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
+							<span class="spanAcuPointAndBalance">0</span>元补贴
 						</div>
-						<div class="btn-redeemcash">抽奖规则</div>
 					</div>
 				</div>
 				<div class="speech-bubble-point">满6元即可领取</div>
-				<div class="profile-pic">
-					<img class="profile-img-circle" src="{{ Auth::Guard('member')->user()->profile_pic ?? '/client/images/avatar.png' }}"> &nbsp;
-				</div>
+			</div>
+
+			<div class="box">
+				<a href="/profile">
+					<div class="btn-life">
+						剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+					</div>
+				</a>
 			</div>
 
 			<div class="box" id="btn-vip-wrapper">
 				<a href="/profile">
-					<div class="btn-life">
-						<img class="icon-wheel-corner" src="{{ asset('/client/images/wheel/icon-wheel-corner.png') }}" />剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}场<img class="icon-arrow-next" src="{{ asset('/client/images/wheel/icon-arrow-next.png') }}" />
+					<div class="btn-profile">
+						个人中心
 					</div>
-					<div style="clear:both"></div>
 				</a>
 			</div>
 			
