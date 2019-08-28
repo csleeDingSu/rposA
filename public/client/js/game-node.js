@@ -19,6 +19,7 @@ var g_life = 0;
 var consecutive_lose = null;
 var usedlife = 0;
 var max_acupoint = 6;
+var g_cookies_point = 0;
 
 $(function () {
 
@@ -145,6 +146,7 @@ function initUser(records){
         var life = records.life;
         g_life = life;
         var point = parseInt(records.point);
+        g_cookies_point = point;
         var acupoint =  parseInt(records.acupoint);
         g_current_point = parseInt(records.acupoint);
         var play_count = parseInt(records.play_count);
@@ -201,7 +203,7 @@ try {
         var life = $("#nTxt").val();
         var balance = $('#hidBalance').val();
         var payout_info = '';
-        var acupoint = parseInt($('.spanAcuPoint').html());
+        var acupoint = parseInt($('.spanAcuPointAndBalance').html());
         var suggestion_bet = 1;
         switch (level){
 
@@ -274,7 +276,7 @@ try {
                     if(g_life == 0){
                         $('#reset-life-share').modal();
                     } else { 
-                        
+                        musicPlay(1, level);
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
                         $( this ).prev().addClass('clicked-button-bet');
                         $( this ).prev().find('.bet_status').html('已投');
@@ -536,7 +538,7 @@ function setBalance() {
         var bet_amount = parseInt($('#hidBet').val());
         var total_balance = parseInt($('#hidTotalBalance').val());
         var balance = parseInt($('#hidBalance').val());
-        var acupoint = parseInt($('.spanAcuPoint').html());
+        var acupoint = parseInt($('.spanAcuPointAndBalance').html());
 
         var newbalance = balance - bet_amount;
         var newtotalbalance = total_balance - bet_amount;
@@ -598,9 +600,11 @@ function closeModal() {
 function closeWinModal() {
 
     $('.close-win-modal').click(function(event){
+        // console.log(g_current_point);
+        // console.log(g_previous_point);
         
         if (g_current_point > g_previous_point) {
-            musicPlay(1);  
+            musicPlay(2);  
             // console.log('play coin mp3');  
 
             $('.speech-bubble-point').css('display', 'block');
@@ -609,8 +613,8 @@ function closeWinModal() {
             }, 5000);
         } 
 
-         if(g_current_point > 15){
-             g_current_point = 15;
+         if(g_current_point > max_acupoint){
+             g_current_point = max_acupoint;
          }
         
         $('.spanAcuPointAndBalance').html(g_current_point);
@@ -641,7 +645,7 @@ function bindBetButton(){
 
         var balance = parseInt($('#hidBalance').val());
         var life = $("#nTxt").val();
-        var acupoint = parseInt($('.spanAcuPoint').html());
+        var acupoint = parseInt($('.spanAcuPointAndBalance').html());
         var draw_id = $('#draw_id').val();
         var consecutive_lose = $('#hidConsecutiveLose').val();
 
@@ -850,7 +854,7 @@ function bindResetLifeButton(){
         event.stopImmediatePropagation();
 
         var user_id = $('#hidUserId').val();
-        var previous_point = $('.packet-point').html();
+        var previous_point = g_cookies_point;
 
         // add points from additional life.
         if(user_id > 0){
@@ -1256,7 +1260,7 @@ function startTimer(duration, timer, freeze_time) {
         var id = $('#hidUserId').val();
         var level = parseInt($('#hidLevel').val());
         $('.small-border').addClass('fast-rotate');
-        g_previous_point = parseInt($('.spanAcuPoint').html());
+        g_previous_point = parseInt($('.spanAcuPointAndBalance').html());
 
         $.ajax({
             type: 'POST',
@@ -1447,22 +1451,22 @@ function showGameRules( event ){
 //load audio - start
 var audioElement = document.createElement('audio');
 audioElement.setAttribute('src', '/client/audio/coin.mp3');
-// var audioElement_win = document.createElement('audio');
-// audioElement_win.setAttribute('src', '/client/audio/win.mp3');
+var audioElement_win = document.createElement('audio');
+audioElement_win.setAttribute('src', '/client/audio/angpao.wav');
 
-function musicPlay(music) {    
+function musicPlay(music, lv = null) {    
 
     //solve ios autoload issue
     // document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
 
     // function musicInBrowserHandler(music) {
-        if (music == 1) {  
+        if ((music == 1) && ($('#hidLevel').val() == lv)) {  
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
             audioElement.play();
             
         } else if (music == 2) {
-            // audioElement.setAttribute('src', '/client/audio/win.mp3');
-            // audioElement_win.play();
+            // audioElement.setAttribute('src', '/client/audio/angpao.wav');
+            audioElement_win.play();
         } else if (music == 22) {
             // audioElement_win.pause();
         } else {        
