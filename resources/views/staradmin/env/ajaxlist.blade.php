@@ -1,12 +1,6 @@
 <div class="row">
 	@if($result)
-	<form id="editable-form" class="editable-form">
-		<div class="form-group row">
-			<label class="col-6 col-lg-4 col-form-label">Simple text field</label>
-			<div class="col-6 col-lg-8">
-				<a href="#" id="username" data-type="text" data-pk="1">awesome</a>
-			</div>
-		</div>
+	<form id="editable-form" class="editable-form">	
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
