@@ -31,21 +31,12 @@ class AdminController extends BaseController
 	protected $hidden = ['password', 'password_hash', 'age', 'created_at'];
 	
 	public function get_env(Request $request)
-	{
-		$record  = DotenvEditor::getContent(); //raw content
-		
-		$record  = DotenvEditor::getLines();
-		
-		$record  = DotenvEditor::getKeys(); // Get all keys
-		
-		$data['protec']  = config('dotenv-editor.protected_key'); 
-		
+	{	
+		$record  = DotenvEditor::getKeys(); // Get all keys		
+		$data['protec']  = config('dotenv-editor.protected_key'); 		
 		$data['page']    = 'env.list';
 		$data['result']  = $record;
 		return view('main', $data);
-		
-		
-		dd($record);
 	}
 	
 	public function add_env_record(Request $request)
@@ -63,8 +54,7 @@ class AdminController extends BaseController
 		if (Arr::exists($keys, $request->name))
 		{
 			return response()->json(['success' => false,'errors'=>[ 'name'=>trans('dingu.key_exists') ] ],422);
-		}
-		
+		}		
 		$file = DotenvEditor::setKey($request->name, $request->env_value, $request->comment); 
 		$file = DotenvEditor::save();
 		$render = '<tr class=""><td>new</td>
@@ -75,30 +65,20 @@ class AdminController extends BaseController
 	
 	public function edit_env_record(Request $request)
 	{			
-		//return response()->json(['success' => true]);
-		$keys  = DotenvEditor::getKeys(); // Get all keys
-		
+		$keys  = DotenvEditor::getKeys(); 		
 		if (!Arr::exists($keys, $request->name))
 		{
 			return response()->json(['success' => false,'errors'=>[ 'name'=>trans('dingu.unknown_key') ] ],422);
-		}
-		
+		}		
 		$file = DotenvEditor::setKey($request->name, $request->value); 
 		$file = DotenvEditor::save();
 		return response()->json(['success' => true]);
-		$render = '<tr class=""><td>new</td>
-								<td>'.$request->name.'</td>
-								<td>'.$request->env_value.'</td> </tr>';
-		return response()->json(['success' => true,'record'=>$render]);
 	}
-	
-	
 	
 	public function delete_env_record(Request $request)
 	{
 		$keys = config('dotenv-editor.protected_key');
-		$keys = array_flip($keys);
-		
+		$keys = array_flip($keys);		
 		if (Arr::exists($keys, $request->name))
 		{
 			return response()->json(['success' => false,'errors'=>[ 'name'=>trans('dingu.cannot_delete_protected_key') ] ],422);

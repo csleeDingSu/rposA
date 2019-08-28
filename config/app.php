@@ -178,7 +178,7 @@ return [
 
 		Barryvdh\Cors\ServiceProvider::class,
   
-
+		Jackiedo\DotenvEditor\DotenvEditorServiceProvider::class,
     ],
 
     /*
@@ -233,7 +233,7 @@ return [
 		
 		
 		'Agent' => Jenssegers\Agent\Facades\Agent::class,
-
+		'DotenvEditor' => Jackiedo\DotenvEditor\Facades\DotenvEditor::class,
     ],
 	
 	
