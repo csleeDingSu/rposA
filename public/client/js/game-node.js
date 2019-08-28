@@ -376,24 +376,6 @@ try {
                     var btn_rectangle = $("input[value='"+ selected +"']").parent();
                     btn_rectangle.addClass('clicked');
                     showPayout();
-
-                    // $.ajax({
-                    //     type: 'GET',
-                    //     url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id
-                    //     + "&drawid=0" 
-                    //     + "&bet="+ selected 
-                    //     +"&betamt=" + bet_amount,
-                    //     dataType: "json",
-                    //     beforeSend: function( xhr ) {
-                    //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                    //     },
-                    //     error: function (error) { 
-                    //         console.log(error.responseText); 
-                    //         $(".reload").show();
-                    //     },
-                    //     success: function(data) {
-                    //     }
-                    // });
                 }
             }
         }); // ajax get-game-result-temp
@@ -401,8 +383,9 @@ try {
     }
     catch(err) {
       console.log(err.message);
-      alert('下注失败');
-      $(".reload").show();
+      // alert('下注失败');
+    alert(err.message);
+    $(".reload").show();
     }
 }
 
@@ -419,6 +402,8 @@ function getToken(){
                 token = data.access_token;
                 startGame();            
             } else {
+                console.log(err.message);
+                alert(err.message);
                 $(".reload").show();
             }      
         });
@@ -442,7 +427,11 @@ function resetTimer(){
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error.responseText) },
+        error: function (error) { 
+            console.log(error);
+            alert(error.message);
+            $(".reload").show();
+        },
         success: function(data) {
             var duration = data.record.duration;
             var timer = data.record.remaining_time;
@@ -467,7 +456,11 @@ function startGame() {
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error) },
+        error: function (error) { 
+            console.log(error);
+            alert(error.message);
+            $(".reload").show();
+        },
         success: function(data) {
             //console.log(data);
             usedlife = data.record.usedlife;
@@ -495,7 +488,11 @@ function startGame() {
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error) },
+        error: function (error) {
+            console.log(error);
+            alert(error.message);
+            $(".reload").show();
+        },
         success: function(data) {
             var wallet_records = data.record;
 
@@ -732,23 +729,6 @@ function showPayout(){
             $('.instruction').css('visibility', 'visible');
             $('.payout-info').addClass("hide");
 
-            
-            // $.ajax({
-            //     type: 'GET',
-            //     url: "/api/update-game-result-temp?gameid=102&gametype=1&memberid="+ user_id 
-            //     + "&bet=&betamt=&drawid=0",
-            //     dataType: "json",
-            //     beforeSend: function( xhr ) {
-            //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            //     },
-            //     error: function (error) { 
-            //         console.log(error.responseText);
-            //         // window.top.location.href = "/arcade";
-            //     },
-            //     success: function(data) {
-            //     }
-            // });
-
         } else {
             
 
@@ -822,6 +802,9 @@ function showPayout(){
                     error: function (error) {
                         console.log('memberid: ' + user_id + ', 下注失败'); 
                         console.log(error.responseText);
+                        console.log(error);
+                        alert(error.message);
+                        $(".reload").show();
                     },
                     success: function(data) {
                     }
@@ -879,7 +862,12 @@ function bindResetLifeButton(){
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
                 },
-                error: function (error) { console.log(error.responseText) },
+                error: function (error) { 
+                    console.log(error.responseText) 
+                    console.log(error);
+                    alert(error.message);
+                    window.parent.location.href = "/profile";
+                },
                 success: function(data) {
                     if(data.success){
                         Cookies.set('previous_point', previous_point);
@@ -907,7 +895,12 @@ function bindResetLifeButton(){
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
                 },
-                error: function (error) { console.log(error.responseText) },
+                error: function (error) { 
+                    console.log(error.responseText)
+                    console.log(error);
+                    alert(error.message);
+                    $(".reload").show();
+                },
                 success: function(data) {
                     if(data.success){
                         $('#reset-life-max').modal('hide');
@@ -1273,10 +1266,10 @@ function startTimer(duration, timer, freeze_time) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
             },
             error: function (error) { 
-                console.log(error); 
-                alert('等待网络');
-                // $(".reload").show();
-                window.top.location.href = "/arcade";
+                console.log(error);
+                alert(error.message);
+                $(".reload").show();
+                // window.top.location.href = "/arcade";
             },
             success: function(data) {
                 $('.small-border').removeClass('fast-rotate');
@@ -1295,9 +1288,10 @@ function startTimer(duration, timer, freeze_time) {
 
     }
     catch(err) {
-      console.log(err.message);
-      alert('下注失败');
-      $(".reload").show();
+      // alert('下注失败');
+      console.log(err);
+       alert(err.message);
+    $(".reload").show();
     }
 }
 
