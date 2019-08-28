@@ -346,23 +346,24 @@
 <!-- customer service modal -->
 <div class="modal fade col-md-12" id="csModal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-title">
-			<h1><img src="{{ asset('/client/images/weixin.png') }}" width="30" height="29" /> 请加客服微信</h1>
-		</div>
 		<div class="modal-content modal-wechat">
 			<div class="modal-body">
 				<div class="modal-row">
 					<div class="wrapper modal-full-height">
 						<div class="modal-card">
+							<div class="title">
+								请加客服微信
+							</div>
 							<div class="instructions">
-								客服微信在线时间：<span class="highlight">早上9点~晚上9点</span>
+								通过审核才能领取红包
 							</div>
 						</div>
 						<div class="row imgdiv">								
 							<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
 						</div>
 						<div class="row">								
-							<div class="bottom">长按识别二维码</div>
+							<div class="bottom">长按扫一扫</div>
+							<span class="highlight">客服上班时间:早上9点-晚上9点</span>
 						</div>						
 					</div>
 				</div>
