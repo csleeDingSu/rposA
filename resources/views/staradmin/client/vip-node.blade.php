@@ -459,40 +459,6 @@
 <!-- Steps Modal Ends -->
 
 <!-- Start Reset Life Max -->
-	<div class="modal fade col-md-12" id="reset-life-max_bk" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<img src="{{ asset('/client/images/vip/icon-win.png') }}" class="img-wabao" />
-								<div class="modal-message-title">
-									恭喜获得150金币
-								</div>
-								<div class="modal-message-content">
-									每次最多可获得150金币<br />
-									您当前已经封顶
-								</div>
-								<div class="modal-message-balance">
-									您当前总金币：<div class="packet-point">&nbsp;</div>
-								</div>
-								<div class="modal-confirm-button btn-reset-life btn-red-packet">
-									确认结算
-								</div>
-								<!--a href="/share">
-								<div class="modal-invite-button">
-									分享好友获挖宝机会
-								</div>
-								</a-->										
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 	<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
@@ -543,73 +509,6 @@
 
 <!--  end -->
 
-<!-- Start Reset Life Play -->
-
-	<div class="modal fade col-md-12" id="reset-life-play_bk" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-warning-title">
-									您拥有<span class="spanAcuPoint">0</span>金币
-								</div>
-								<div class="speech-balloon">
-								  <div class="arrow top right"></div>
-								  您有<span class="spanAcuPoint">0</span>金币未结算 需满150才能结算
-								</div>
-								<div class="modal-content-wrapper">
-									<div class="modal-warning-content">
-										<div class="col-xs-4 voucher-wrapper">
-											<div class="voucher-value"><span class="voucher-yuan">￥</span>30</div>
-											<div class="voucher-label">购物补助金</div>
-										</div>
-										<div class="col-xs-8">
-											<div class="voucher-description">30元购物补助金</div>
-											<div class="voucher-instruction">需要300金币兑换</div>
-										</div>
-									</div>
-								</div>
-								<div class="modal-content-wrapper">
-									<div class="modal-warning-content">
-										<div class="col-xs-4 voucher-wrapper">
-											<div class="voucher-value"><span class="voucher-yuan">￥</span>50</div>
-											<div class="voucher-label">购物补助金</div>
-										</div>
-										<div class="col-xs-8">
-											<div class="voucher-description">50元购物补助金</div>
-											<div class="voucher-instruction">需要500金币兑换</div>
-										</div>
-									</div>
-								</div>
-								<div class="modal-content-wrapper">
-									<div class="modal-warning-content">
-										<div class="col-xs-4 voucher-wrapper">
-											<div class="voucher-value"><span class="voucher-yuan">￥</span>100</div>
-											<div class="voucher-label">购物补助金</div>
-										</div>
-										<div class="col-xs-8">
-											<div class="voucher-description">100元购物补助金</div>
-											<div class="voucher-instruction">需要1000金币兑换</div>
-										</div>
-									</div>
-								</div>
-								<div style="clear: both"></div>
-
-								<div class="close-modal modal-warning-button">
-									返回{{env('game_name', '幸运转盘')}}
-								</div>												
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
-
 <!-- Start Reset Life Share -->
 
 	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
@@ -648,45 +547,6 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="modal fade col-md-12" id="reset-life-share-bk" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="share-logo-wrapper">
-                	<img class="share-logo" src="{{ asset('/client/images/no-life.png') }}" width="77" height="77" />
-                </div>
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card share-card">
-								<div class="modal-share-title">
-									您的次数已用完
-								</div>
-								<div class="modal-invite-content">
-									<h1 class="modal-invite-title">您有以下选择</h1>
-									<ol class="vegan-list">
-										<li>Q币购买次数，首次购买仅需<span class="_1st_basic_topup">6Q币/次</span>，之后购买10Q币/次，每天限购5次。</li>
-										<li>邀请好友加入，邀请1个获得{{env('sharetofriend_youwillget', '1')}}次机会</li>
-									</ol>
-								</div>
-								<a href="/purchase" class="link-button">
-									<div class="modal-share-button">
-										我要购买
-									</div>
-								</a>
-								<a href="/share" class="link-button">
-									<div class="modal-vip-button">
-										邀请好友
-									</div>
-								</a>													
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
 <!--  end -->
 
 <!-- Start Reset Life Bet -->
