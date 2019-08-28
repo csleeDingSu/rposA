@@ -605,6 +605,59 @@ class ClientController extends BaseController
 
 		return view('client/download_app',compact('devices', 'isMacDevices', 'title_customize'));
 	}
+
+	public function member_access_game_ranking(Request $request)
+	{
+		//isVIP APP
+		$this->vp = new VIPApp();
+		if ($this->vp->isVIPApp()) {
+			return redirect('/vip');
+		}
+
+		$vouchers = \DB::table('voucher_category')
+			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
+			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
+			->groupBy('vouchers.id')
+			->orderby('vouchers.created_at', 'DESC')
+			->orderby('vouchers.id','DESC')
+			->paginate(6);
+		
+		if ($request->ajax()) {
+			$view = view('client.productv2',compact('vouchers'))->render();
+            return response()->json(['html'=>$view]);
+        }
+
+		if (!Auth::Guard('member')->check())
+		{
+			
+			$member_mainledger = null;
+			$firstwin 		   = null;
+
+			//weixin_verify
+			$this->wx = new WX();
+			if ($this->wx->isWeiXin()) {
+            	$request = new Request;
+            	$request->merge(['goto' => 'arcade_ranking']); 
+	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
+	        } else {
+				return view('client/game-ranking',compact('vouchers','member_mainledger','firstwin'));
+	        }
+			
+		} else {
+
+			$member_id = Auth::guard('member')->user()->id;
+        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();			
+			if($request->session()->get('firstwin') == 'no'){
+				$firstwin = null;
+			} else {
+				$firstwin = \App\Product::IsFirstWin($member_id);
+			}
+
+			return view('client/game-ranking', compact('vouchers','member_mainledger','firstwin'));
+
+		}
+
+	}
 	
 	
 }
