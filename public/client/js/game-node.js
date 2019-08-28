@@ -589,9 +589,7 @@ function closeModal() {
     $('.close-modal').click(function(){
         $('#reset-life-play').modal('hide');
         $('#reset-life-lose').modal('hide');
-         $('#top-corner-game-rules').modal('hide');
         $('#game-rules').modal('hide'); 
-        $('#vip-modal').modal('hide'); 
     });
 }
 
