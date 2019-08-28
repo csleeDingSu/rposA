@@ -697,6 +697,7 @@ return [
 	'register_date'=>'Register date',
 	'connection_failed'=>'connection failed',
 	'current_balance' => 'Current balance',
-	
+	'editor' => 'editor',
+	'env' => 'ENV',
 
 ];

@@ -25,6 +25,7 @@
             background-color: rgba(255, 255, 255, 1);
             background-size: 32px 32px;
         }
+        .isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
     </style>
 @endsection
 
@@ -45,27 +46,18 @@
     </section>
     <div class="card-body over">        
         <div class="scrollBox ">
+          <div class="infinite-scroll">
+            <ul class="list-2">               
+                @include('client.blog_list')
+            </ul>
+            {{ $blog->links() }}
+            
             @if (!empty($blog))
-                @foreach($blog as $b)
-                    <div class="listBox">
-                      <div class="userBox">
-                        <div class="username">
-                          <h2>{{substr($b->phone, 0, 3)}}****{{substr($b->phone, 7, strlen($b->phone))}}</h2><span>{{date('Y.m.d h:i:s A', strtotime($b->updated_at))}}</span>
-                        </div>
-                        <div class="address">{{$b->address}}</div>
-                      </div>
-                      <div class="txtBox">{{$b->content}}</div>
-                      <ul class="imgBox">
-                        @if (!empty($b->uploads) && (!empty(json_decode($b->uploads))))
-                            @foreach(json_decode($b->uploads) as $photo)
-                                <li><img src="{{ $photo }}"></li>
-                            @endforeach  
-                        @endif
-                      </ul>
-                    </div>
-                @endforeach 
+              <p class="isnext">下拉显示更多...</p>
+            @else
+              <div class="lastPage">暂无更多...</div>
             @endif
-                <div class="lastPage">暂无更多...</div>    
+          </div>      
         </div>
         
     </div>
@@ -88,11 +80,10 @@
       </div>
     </div>
   </div>
-
 @endsection
 
 @section('footer-javascript')
-    @parent
+    @parent  
     <script type="text/javascript" src="{{ asset('/client/blog/js/swiper.min.js') }}"></script>
     <script type="text/javascript">
 
@@ -106,6 +97,54 @@
             },100);
           }
         }
+
+      $(document).ready(function () {
+          //execute scroll pagination
+          being.scrollBottom('.card', () => {   
+          page++;
+          console.log(page);
+          var max_page = parseInt($('#max_page').val());
+          console.log(max_page);
+          if(page > max_page) {
+            $('#page').val(page);
+            $(".isnext").html("@lang('dingsu.end_of_result')");
+            $('.isnext').css('padding-bottom', '50px');
+
+          }else{
+            console.log('getPost' + page);
+            getPosts(page);
+          } 
+        }); 
+
+        //scroll pagination - start
+          $('ul.pagination').hide();
+          
+          var page=1;
+
+          function getPosts(page){
+            console.log('--' + page);
+            $.ajax({
+              type: "GET",
+              url: window.location+"/?page"+page, 
+              data: { page: page },
+              beforeSend: function(){ 
+              },
+              complete: function(){ 
+                $('#loading').remove
+              },
+              success: function(responce) { 
+                $('.list-2').append(responce.html);
+                // console.log(responce);
+                // if (responce.html == null || responce.html = '') {
+                //  $(".isnext").html('');  
+                // }
+              }
+             });
+          }
+        //scroll pagination - end     
+      });
+
+      
         
         var swiper = new Swiper(".swiper-container", {
           autoHeight: window.innerHeight,

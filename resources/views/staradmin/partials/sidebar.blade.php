@@ -254,6 +254,9 @@
 						<a class="nav-link" href="/admin/settings">@lang('dingsu.settings')</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link" href="/admin/get-env-file">@lang('dingsu.env') @lang('dingsu.editor')</a>
+					</li>					
+					<li class="nav-item">
 						<a class="nav-link" href="/admin/banner">@lang('dingsu.banner')</a>
 					</li>
 					<li class="nav-item">

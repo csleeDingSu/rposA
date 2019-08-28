@@ -29,10 +29,15 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {        
-        $data['blog'] = blog::select('*')->whereNull('deleted_at')->orderBy('updated_at','desc')->get();
-        return view('client/blog', $data);
+        $blog = blog::select('*')->whereNull('deleted_at')->orderBy('updated_at','desc')->paginate(3);
+        if ($request->ajax()) {
+            $view = view('client.blog_list',compact('blog'))->render();
+            return response()->json(['html'=>$view]);
+            // return view('client/game-node', compact('vouchers'));
+        }
+        return view('client.blog', compact('blog'));
     }
 
     public function createform()
