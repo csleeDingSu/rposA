@@ -466,8 +466,6 @@ html, body {
 
 .modal-wechat {
     margin-top: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
 }
 
 .modal-title {
@@ -802,4 +800,32 @@ html, body {
 .cs-working-hour {
 	font-size: 14px;
 	color: #888888;
+}
+
+#csModal .modal-wechat .title {
+   color: #52b402;
+    font-size: 0.5rem;
+    padding: 0.2rem 0 0 0;
+}
+
+#csModal .modal-wechat .instructions{
+	margin: 0;
+    font-size: 0.3rem;
+    padding: 0.1rem;
+    color: #000;
+}
+
+#csModal .modal-wechat .imgdiv {
+	width: 3.5rem;
+	padding: 0.2rem;
+}
+
+#csModal .modal-wechat .bottom{
+	font-size: 0.5rem;
+    color: #aaa;
+    padding: 0.1rem;
+}
+
+#csModal .modal-wechat .highlight{
+    color: #aaa;
 }
