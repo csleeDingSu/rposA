@@ -259,7 +259,7 @@ body{
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto  1.5rem;
+  grid-template-columns: auto 2.3rem 1.5rem;
   height: 0.9rem;
 }
 
@@ -288,17 +288,17 @@ body{
 }
 
 .balance-banner {
-	background: rgba(0,0,0,0.3);
-    width: 3.55rem;
-    height: 0.72rem;
+	background: url('/client/images/btn-wallet.png') no-repeat;
+    width: 2.54rem;
+    height: 0.84rem;
     float: left;
     /*z-index: 100;*/
     position: relative;
-    color: #fff;
+    color: #858585;
     cursor: pointer;
-    border-radius: 0.4rem;
     margin-left: 0.1rem;
     font-size: 0.2rem;
+    background-size: contain;
 }
 
 .btn-vip {
@@ -389,18 +389,35 @@ body{
 }
 
 .btn-life {
-	width: 2.6rem;
-    height: 1rem;
+	width: 2.14rem;
+    height: 0.66rem;
     cursor: pointer;
-    padding-top: 0.08rem;
-    background: url(/client/images/wheel/life-balance.png) no-repeat top center;
+    padding-top: 0.07rem;
+    padding-left: 0.07rem;
+    background: url(/client/images/btn-life.png) no-repeat top center;
     background-size: contain;
     text-align: center;
-    color: #fefeec;
-    font-size: 0.45rem;
+    color: #c77e97;
+    font-size: 0.3rem;
+    float: left;
+    margin-top: 0.15rem;
+    margin-right: 0rem;
+}
+
+.btn-profile {
+	width: 1.48rem;
+    height: 0.66rem;
+    cursor: pointer;
+    padding-top: 0.07rem;
+    padding-left: 0.07rem;
+    background: url(/client/images/btn-profile.png) no-repeat top center;
+    background-size: contain;
+    text-align: center;
+    color: #c77e97;
+    font-size: 0.3rem;
     float: right;
-    margin-top: -0.07rem;
-    margin-right: -0.05rem;
+    margin-top: 0.15rem;
+    margin-right: 0rem;
 }
 
 .btn-rules-normal {
@@ -427,7 +444,8 @@ body{
 }
 
 .spanAcuPointAndBalance{
-	font-size: 0.45rem;
+	font-size: 0.35rem;
+	color: #ff2626;
 }
 
 .btn-redeem:link, .btn-redeem:visited, .btn-redeem:hover, .btn-redeem:active {
@@ -2239,11 +2257,11 @@ if it's not present, don't show loader */
 
 .spanAcuPoint2 {
 	position: absolute;
-    margin-top: 0.02rem;
+    margin-top: 0.17rem;
     text-align: center;
     width: 1.8rem;
-    margin-left: 0.45rem;
-    font-size: 0.45rem;
+    margin-left: 0.7rem;
+    font-size: 0.35rem;
 }
 
 .caption_bet {
