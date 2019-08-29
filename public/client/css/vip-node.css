@@ -20,28 +20,6 @@
 	float: right;
 }
 
-.btn-info-vip-wrapper {
-	width: 100px;
-	height: 40px;
-	margin-top: -3px;
-	float: right;
-}
-
-.btn-info-vip {
-	text-decoration: underline;
-	font-size: 14px;
-	color: #ffc600;
-	cursor: pointer;
-	padding-right: 0;
-	font-weight: 700;
-}
-
-.strikethrough span:before,
-.strikethrough span:after {
-  border-bottom: none;
-  width: 0;
-}
-
 #win-modal .modal-content {
   background: url('/client/images/vip/win-modal-bg.png') no-repeat;
   background-size: contain;
@@ -61,48 +39,6 @@
 	padding-top: 2rem;
 	font-size: 0.34rem;
 	color: #ff6067;
-}
-
-#modal-sure-win .modal-title {
-    background: #e9bb3e;
-    color: white;
-    text-align: center;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    padding: 10px;
-    font-size: 21px;
-    font-weight: 500;
-    border: none;
-	box-shadow: none;
-}
-
-#modal-sure-win .modal-content {
-    border: none;
-	box-shadow: none;
-}
-
-#modal-sure-win .modal-redeem-button {
-	background: #e9bb3e;
-	margin-left: 10%;
-	margin-right: 10%;
-}
-
-#modal-sure-win .instructions {
-	font-size: 12px;
-	color: #666;
-	text-align: left;
-	padding-bottom: 30px;
-	padding-top: 10px;
-}
-
-#modal-sure-win .highlight {
-	color: #fc8c29;
-}
-
-.sure-win-title {
-	color: #666;
-	font-size: 20px;
-	margin: 10px 0;
 }
 
 #wheel_banner img {
@@ -255,132 +191,6 @@
 	color: #ffa800;
 }
 
-#modal-check-vip-status .modal-dialog {
-	width: 350px;
-}
-
-#modal-check-vip-status .modal-title {
-    background: #f9f1e4;
-    color: #e5a054;
-    text-align: center;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    padding: 10px;
-    font-size: 30px;
-    font-weight: 500;
-    border: none;
-	box-shadow: none;
-	width: 100%;
-}
-
-#modal-check-vip-status .modal-content {
-    border: none;
-	box-shadow: none;
-	background: #f9f1e4;
-	margin-top: -5px;
-	width: 100%;
-}
-
-#modal-check-vip-status .modal-card {
-	background-color: #fff;
-	border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    padding: 20px;
-    line-height: 30px;
-    width: 100%;
-
-}
-
-#modal-check-vip-status .btn-purchase-point {
-
-    background-image: url("/client/images/vip/topup-bg.png");
-    background-size: cover;
-    display: inline-block;
-    border: none;
-    padding: 10px; 
-    width: 260px; 
-    height: 60px; 
-    cursor: pointer;
-    color: #fff;
-    font-size: 18px;
-    margin-top:20px;
-
-}
-
-#modal-check-vip-status .instructions {
-	font-size: 12px;
-	color: #666;
-	text-align: left;
-	padding-bottom: 30px;
-	padding-top: 10px;
-}
-
-#modal-check-vip-status .instructions2 {
-	color: #8c7c7c;
-	font-size: 18px;
-	/*margin: 10px 0;*/
-}
-
-#modal-check-vip-status .instructions3 {
-	color: #d28f44;
-	background-color: #f9f1e4;
-	font-size: 12px;
-	text-align: center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    margin: 10px 12%;
-}
-
-#modal-check-vip-status .vip-title {	
-    font-size: 19px;
-    color: #807562;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-#modal-check-vip-status .vip-desc {
-    font-size: 14px;
-    color: #8c7c7c;
-    text-align: left;
-    padding-left: 20%;
-    line-height: 25px;
-
-}
-
-#modal-check-vip-status .yourPoint {
-	color: #37322d;
-	font-weight: bold;
-}
-
-#modal-check-vip-status .pointStillNeed {
-	color: #ee7931;
-	font-weight: bold;
-}
-
-@media only screen and (max-width: 360px) {
-	#modal-check-vip-status .modal-dialog {
-		width: 320px;
-	}
-
-	#modal-check-vip-status .instructions3 {
-	    margin: 5% 5%;
-	}
-
-	#modal-check-vip-status .btn-purchase-point {
-		margin-left: -5%;
-	}
-
-	#modal-check-vip-status .vip-desc {
-		padding-left: 18%;
-	}
-
-}
-
 .insufficient-point {
 	color: #fff;
     font-size: 16px;
@@ -399,50 +209,6 @@
 .flickity-enabled.is-draggable {
 	margin-top: -5px !important;
  }
-
-.firstlogin-bg {
-	background: url(/client/images/firstlogin-bg.png) no-repeat;
-    background-size: cover;
-    position: relative;
-    padding: 0;
-    /*height: 9rem;*/
-    margin: -3rem 0 0 0;
-    line-height: 0.45rem;
-}
-
-#modal-first-login .modal-title {
-    color: #ff6067;
-    background: transparent;
-    padding: 2.3rem 0 0 0;
-    width: 5rem;
-    font-size: 0.9rem;
-}
-
-#modal-first-login .instructions1 {
-    color: #aaaaaa;
-    padding: 0 0.7rem 0 0.7rem;
-    width: 6rem;
-    font-size: 0.26rem;
-}
-
-#modal-first-login .instructions2 {
-    color: #7a7a7a;
-    padding: 0 0.7rem 0 0.7rem;
-    width: 6rem;
-    font-size: 0.26rem;
-}
-
-.btn-how-to-play {
-	background: #ff6067;
-    color: white;
-    font-size: 0.3rem;
-    border-radius: 1rem;
-    height: 0.7rem;
-    padding: 0.12rem 0.1rem 0.1rem 0.1rem;
-    margin: 0.2rem 0.8rem 0.5rem 0.8rem;
-    cursor: pointer;
-    text-align: center;
-}
 
 .nologin-bg {
 	background: url(/client/images/nologin-bg2.png) no-repeat;
@@ -523,13 +289,6 @@
 	font-weight: 700;
 }
 
-.formTableTitle{
-	color: #333;
-	font-size: 0.26rem;
-	text-align: center;
-	padding: 0.3rem 0 0.2rem 0;
-}
-
 .formTable {
   border-collapse: collapse;
   width: 100%;
@@ -582,11 +341,6 @@
 	height: 0.28rem;
 	position: absolute;
 	margin-top: -0.2rem;
-}
-
-.cust-star {
-    font-size: 0.25rem;
-    padding: 0.08rem 0.08rem 0 0;
 }
 
 #modal-no-login {
@@ -766,11 +520,3 @@
 .modal.in .modal-dialog {
   transform: translate3d(0, 0, 0);
 }
-
-/* .fade {
-   -webkit-transition: opacity 1s linear;
-      -moz-transition: opacity 1s linear;
-       -ms-transition: opacity 1s linear;
-        -o-transition: opacity 1s linear;
-           transition: opacity 1s linear;
- }*/

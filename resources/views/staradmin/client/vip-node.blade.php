@@ -54,17 +54,9 @@
 			
 			<div class="box" id="btn-vip-wrapper">
 				<div class="btn-rules-wrapper btn-vip-wrapper">
-					<!-- <a href="/arcade"> -->
-						<!--div class="btn-vip"></div-->
-						<!-- <div class="btn-rules-vip">返回普通场</div> -->
 						<div class="btn-rules-vip"></div>
-					<!-- </a> -->
 					<div style="clear:both"></div>
 				</div>
-				<!--div class="btn-rules-wrapper btn-info-vip-wrapper">
-						<div class="btn-info-vip">99%稳赢玩法</div>
-					<div style="clear:both"></div>
-				</div-->
 			</div>
 
 			<input id="result" type="hidden" value="6">
@@ -95,8 +87,6 @@
 	</div>
 
 	<!-- end information table -->
-
-	<!--h2 class="strikethrough"><span>已抽奖<div class="span-play-count">0</div>次</span></h2-->
 
 	<!-- swiper iframe -->
 	<div class="swiper-container">
