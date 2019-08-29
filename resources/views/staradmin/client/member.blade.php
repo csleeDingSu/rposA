@@ -448,18 +448,21 @@
 
 				$('.redeembtn').click(function(){
 					$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
-					$('#new-verify-wechat').modal();
+					// $('#new-verify-wechat').modal();
+					$('#csModal').modal();
 				});
 				$('.redeemhistorybtn').click(function(){
 					$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
-					$('#new-verify-wechat').modal();
+					// $('#new-verify-wechat').modal();
+					$('#csModal').modal();
 				});
 
 			}
 
 			$('.unverify').click(function(){
 				$('.cutBtnCS2').removeClass('cutBtnCS2-success').html('复制微信号');;
-				$('#new-verify-wechat').modal();
+				// $('#new-verify-wechat').modal();
+					$('#csModal').modal();
 			});
 
 			var clipboard = new ClipboardJS('.cutBtn', {
