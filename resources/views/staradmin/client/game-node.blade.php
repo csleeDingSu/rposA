@@ -761,11 +761,6 @@
 
 			var user_id = $('#hidUserId').val();
 
-			$('.profile-pic').click(function(){
-				window.location.href = '/profile';
-			});
-
-
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
 			});
@@ -787,9 +782,6 @@
 				//$('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
-
-
-			$('#viewgamerules').on('click', showGameRules);
 
 			if (user_id <= 0) {
 				openmodel();

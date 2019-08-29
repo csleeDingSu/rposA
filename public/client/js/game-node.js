@@ -168,8 +168,6 @@ function initUser(records){
             $('.spanAcuPoint').html(acupoint);
             $('.spanAcuPointAndBalance').html(g_current_point);
         }
-        $('.packet-acupoint').html(acupoint);
-        $('.packet-acupoint-to-win').html(15 - acupoint);
         $('#hidBalance').val(balance);
         $("#nTxt").val(life);
         $(".spanLife").html(life);
@@ -1424,28 +1422,6 @@ function changbar(number){
     bar.addClass('barBox barBox-'+i);
 }
 
-function showGameRules( event ){
-    event.stopImmediatePropagation();
-    $('.button-card').off('click', showGameRules);
-
-    var bet_count = $('#hidbetting_count').val();
-
-    $( ".txtTimer" ).removeClass('hide');
-    $('#game-rules').modal({backdrop: 'static', keyboard: false});
-
-    var game_name = $('#game-name').val();
-    $( ".span-read" ).html('返回幸运转盘');
-
-    $('.btn-rules-close').click(function(){
-        $('#game-rules').modal('hide');
-        bindBetButton();
-    });
-
-    $('.btn-rules-timer').click(function(){
-        $('#game-rules').modal('hide');
-    });
-}
-
 //load audio - start
 var audioElement = document.createElement('audio');
 audioElement.setAttribute('src', '/client/audio/coin.mp3');
@@ -1454,10 +1430,6 @@ audioElement_win.setAttribute('src', '/client/audio/angpao.wav');
 
 function musicPlay(music, lv = null) {    
 
-    //solve ios autoload issue
-    // document.body.addEventListener('touchstart', musicInBrowserHandler(music)); 
-
-    // function musicInBrowserHandler(music) {
         if ((music == 1) && ($('#hidLevel').val() == lv)) {  
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
             audioElement.play();
@@ -1471,22 +1443,6 @@ function musicPlay(music, lv = null) {
             //do nothing
             // audioElement.setAttribute('src', '/client/audio/coin.mp3');              
         }
-
-        // console.log(music);
-        // if (music == 22) {
-        //     console.log('pause');
-        //     audioElement.pause();
-        // } else {
-        //     console.log('play');
-        //     audioElement.play();    
-        // }
-        
-        // document.body.removeEventListener('touchstart', musicInBrowserHandler(music));
-    // }    
-
-    // document.getElementById('music_win').play();
-    // alert("test!");
-
 }
 //load audio - end
 
