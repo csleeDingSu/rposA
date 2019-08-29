@@ -362,7 +362,7 @@
 							<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
 						</div>
 						<div class="row">								
-							<div class="bottom">长按扫一扫</div>
+							<div class="bottom">长按图片识别二维码</div>
 							<span class="highlight">客服上班时间:早上9点-晚上9点</span>
 						</div>						
 					</div>
