@@ -538,9 +538,8 @@ function populateHistoryData(records, token) {
             } else if (item.type == 'product'  && this_vip_app == false){
 
                 html += '<div class="row product-row">' +
-                        '   <div class="product-bg">' +
-                        '       <div class="product-title">' + item.product_name + '<a href="/faq/4"><div class="product-how-to-redeem"></div></a></div>';
-                            
+                        '   <div class="product-bg"><div class="hbao"></div>' +
+                        '       <div class="product-title">' + item.product_name + '<a href="/faq/4"><div class="gifhome"></div><div class="product-how-to-redeem">点击我<span class="highlight">看充值教程</span></div></a></div>';
                 if (item.pin_status == 2) {
                 html += '       <div class="product-content">' +
                         '           <div class="r"><div class="c1">卡号&nbsp;:</div><div id="number' + item.type + item.id + '" class="c2">' + item.code + '</div> <div id="copynumber' + item.type + item.id + '" class="copynumber c3">点击复制</div></div>' +
