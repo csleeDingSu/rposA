@@ -49,7 +49,7 @@
 				  	</div> 元
 				  	<div class="redeembtn">
 				  	<!-- <a href="/redeem"> -->
-					  	<div class="button-redeem">兑换红包</div>
+					  	<div class="button-redeem">申请提现</div>
 					<!-- </a> -->
 					</div>
 				  </div>
@@ -117,7 +117,7 @@
 						<div class="icon-wrapper">
 							<div class="icon-redeem"></div>
 						</div>
-						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>兑换红包
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>申请提现
 					</div>
 				</li>				
 
@@ -352,10 +352,10 @@
 					<div class="wrapper modal-full-height">
 						<div class="modal-card">
 							<div class="title">
-								请加客服微信
+								请加人工客服微信
 							</div>
 							<div class="instructions">
-								通过审核才能领取红包
+								审核发放红包
 							</div>
 						</div>
 						<div class="row imgdiv">								
