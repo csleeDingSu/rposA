@@ -51,6 +51,11 @@
                 @include('client.blog_list')
             </ul>
             {{ $blog->links() }}
+			  
+			  
+			  <input type="hidden" id="page" value="1" />
+			 <input type="hidden" id="max_page" value="{{$blog->lastPage()}}" />
+			  
             
             @if (!empty($blog))
               <p class="isnext">下拉显示更多...</p>
