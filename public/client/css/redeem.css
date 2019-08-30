@@ -1512,23 +1512,42 @@ textarea {
 
 /*reload card*/
 .product-bg {
-	background: url(/client/images/redeem/EEEbs.png) no-repeat;
+	background: url(/client/images/redeem/bj.gif) no-repeat;
     background-size: contain;
     padding: 0.06rem 0.1rem 0 0.1rem;
     position: relative;
     margin: 0.1rem 0.2rem 0 0.2rem;
     height: 2.45rem;
+    color: #717171;
+}
+
+.product-title {
+	font-size: 0.28rem;
+    margin: 0.14rem 0.1rem;
+}
+
+.product-title a{
+	float: right;
+	width: 2.6rem;
+	margin:0 0.15rem;
+}
+
+.product-title .highlight{
+	color: #fc5959;
+}
+
+.gifhome {
+	background: url(/client/images/redeem/gifhome_24x24.gif) no-repeat;
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+    margin: 0.08rem;
 }
 
 .product-how-to-redeem {
-	background: url(/client/images/redeem/czjcc.png) no-repeat;
-    width: 100px;
-    height: 25px;
-    background-size: contain;
     cursor: pointer;
-    text-align: center;
-    margin: 0.03rem 0 0 0;
-    float: right;
+    text-align: right;
+    margin: -0.37rem 0 0 0;
 }
 
 .product-row {
@@ -1537,12 +1556,12 @@ textarea {
 }
 
 .product-content {
-	font-size: 0.3rem;
-    padding: 0.3rem 0.1rem 0 0.1rem;
+	font-size: 0.28rem;
+    padding: 0.3rem;
     line-height: 0.5rem;
     color: #717171;
-    display:  table;
-    width:100%;
+    display: table;
+    width: 100%;
 }
 
 .product-content .r {
@@ -1554,7 +1573,7 @@ textarea {
 	float:left;/*fix for  buggy browsers*/
     display:table-column;
     width:15%;
-    font-size: 0.32rem;
+    font-size: 0.28rem;
     font-weight: 600;
 }
 
@@ -1562,7 +1581,7 @@ textarea {
 	float:left;/*fix for  buggy browsers*/
     display:table-column;
     width:60%;
-    font-size: 0.32rem;
+    font-size: 0.28rem;
 }
 
 .product-content .c3{
@@ -1588,3 +1607,12 @@ textarea {
 	background-color: #83c553 !important;
 }
 /*reload-card end*/
+
+.hbao {
+	background: url(/client/images/redeem/hbao.png) no-repeat;
+    background-size: contain;
+    height: 0.35rem;
+    width: 0.35rem;
+    float: left;
+    margin: 0.15rem 0.1rem 0.15rem 0.2rem;
+}
