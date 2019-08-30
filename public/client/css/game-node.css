@@ -853,6 +853,19 @@ body{
   border: none;
 }
 
+#reset-life-share .modal-redeem-button {
+  background: url('/client/images/btn-invite2.png') no-repeat top center;
+  font-size: 18px;
+  color: #fff;
+  background-size: contain;
+  height: 58px;
+  padding-top: 12px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+  border: none;
+}
+
 #reset-life-share .modal-full-height {
 	padding: 0;
 }

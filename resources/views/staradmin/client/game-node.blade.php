@@ -550,6 +550,11 @@
 											邀请好友
 										</div>
 									</a>
+									<a href="/redeem" class="link-button">
+										<div class="modal-redeem-button">
+											余额提现
+										</div>
+									</a>
 								</div>
 								
 								<!-- <div class="span-purchase">嫌邀请好友麻烦？直接购买！</div>
@@ -752,6 +757,8 @@
     	var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
+
+			$('#reset-life-share').modal();
 
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
