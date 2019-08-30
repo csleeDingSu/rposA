@@ -603,10 +603,10 @@ function closeWinModal() {
             musicPlay(2);  
             // console.log('play coin mp3');  
 
-            $('.speech-bubble-point').css('display', 'block');
-            setTimeout(function(){ 
-                $('.speech-bubble-point').css('display', 'none');
-            }, 5000);
+            // $('.speech-bubble-point').css('display', 'block');
+            // setTimeout(function(){ 
+            //     $('.speech-bubble-point').css('display', 'none');
+            // }, 5000);
         } 
 
          if(g_current_point > max_acupoint){
@@ -828,7 +828,7 @@ function bindCalculateButton(){
         }
     });
 
-    $('.rule').click(function() {
+    $('.banner-rules').click(function() {
         $('#game-rules').modal();
     });
 }

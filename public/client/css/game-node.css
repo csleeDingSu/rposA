@@ -1193,11 +1193,22 @@ if it's not present, don't show loader */
     background-repeat: no-repeat;
     background-size: 100% auto;
     font-size: 0.25rem;
-    width: 2rem;
+    width: 1.5rem;
     height: 0.5rem;
-    padding: 0.08rem 0 0 0;
+    padding: 0.1rem 0 0 0;
     margin: 0.3rem 0 0 0.6rem;
-    display: none;
+    /*display: none;*/
+    display: block;
+    z-index: 6;
+}
+
+a {
+	text-decoration: none;
+	color: snow;
+}
+
+.banmmer-rules {
+	z-index: 7;
 }
 
 .span-play-count {

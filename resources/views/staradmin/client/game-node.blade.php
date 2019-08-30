@@ -53,7 +53,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="speech-bubble-point">满{{env('coin_max', '6')}}元即可领取</div>
+				<a href="#" onclick="closecss('speech-bubble-point');">
+					<div class="speech-bubble-point">满{{env('coin_max', '6')}}元提现</div>
+				</a>
 			</div>
 
 			<div class="box">
@@ -271,7 +273,6 @@
 					<div class="div-life">还剩<span class="span-life">15</span>次抽奖</div>
 					<div class="div-time"></div>
 				</div>
-				<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
 		    </div>
 		</div>
 
@@ -430,8 +431,9 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
-	
 
+	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
+	
 	
 </div>
 {{-- @include('client.product') --}}
@@ -835,11 +837,20 @@
 			 });
 		}
 	//scroll pagination - end
+
+	function closecss(cssname) {
+		var name = '.' + cssname;
+		$('' +name + '').css('display', 'none');
+
+	}
 		
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game-node.js') }}"></script>
+	}
+	}
+	}
 
 @endsection
 
