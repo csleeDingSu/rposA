@@ -1711,10 +1711,15 @@ class GameController extends Controller
 			$gamelevel = $data['gamelevel'];
 			$position  = $gamelevel->position;
 			//if using first life consecutive_lose then make user win on the 6'th level				
-			if (empty($IsFirstLife) && $position === 6)
+			if (empty($IsFirstLife) && $position === 3)
 			{
 				//if need to add any functions can add into result_condition
 				return $this->result_condition('conditionally_win', $memberid, $data);
+			}
+			
+			if ($IsFirstLife == 1 && $position === 5)
+			{
+				return $this->result_condition('forcetowin', $memberid, $data);
 			}
 		}		
 		return $this->result_condition('auto', $memberid, $data);		
