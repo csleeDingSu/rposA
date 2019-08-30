@@ -100,20 +100,20 @@
 
       $(document).ready(function () {
           //execute scroll pagination
-          being.scrollBottom('.card', () => {   
-          page++;
-          console.log(page);
-          var max_page = parseInt($('#max_page').val());
-          console.log(max_page);
-          if(page > max_page) {
-            $('#page').val(page);
-            $(".isnext").html("@lang('dingsu.end_of_result')");
-            $('.isnext').css('padding-bottom', '50px');
+          being.scrollBottom('.scrollBox','.list-2', () => {   
+			  page++;
+			  console.log(page);
+			  var max_page = parseInt($('#max_page').val());
+			  console.log(max_page);
+			  if(page > max_page) {
+				$('#page').val(page);
+				$(".isnext").html("@lang('dingsu.end_of_result')");
+				$('.isnext').css('padding-bottom', '50px');
 
-          }else{
-            console.log('getPost' + page);
-            getPosts(page);
-          } 
+			  }else{
+				console.log('getPost' + page);
+				getPosts(page);
+			  } 
         }); 
 
         //scroll pagination - start
