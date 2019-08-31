@@ -303,7 +303,6 @@ try {
                 });
 
                 $( ".DB_G_hand_1" ).click(function(){
-                    // $(".circle-border").css('display').trigger("click");
                     $('.circle-border[style*="display: block"]').trigger("click");
                 });
                 
@@ -858,6 +857,10 @@ function bindTriggerButton(){
                 $('#reset-life-share').modal();    
             }
         }
+    });
+
+    $( ".DB_G_hand_3" ).click(function(){
+        $('.btn-trigger').trigger("click");
     });
 }
 
