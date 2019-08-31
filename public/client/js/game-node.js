@@ -301,6 +301,11 @@ try {
                         showPayout();
                     }
                 });
+
+                $( ".DB_G_hand_1" ).click(function(){
+                    // $(".circle-border").css('display').trigger("click");
+                    $('.circle-border[style*="display: block"]').trigger("click");
+                });
                 
             } else {
                 $( this ).find('.bet_status').html('加倍');
