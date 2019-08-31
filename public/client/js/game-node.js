@@ -303,7 +303,8 @@ try {
                 });
 
                 $( ".DB_G_hand_1" ).click(function(){
-                    $(".circle-border").trigger("click");
+                    // $(".circle-border").css('display').trigger("click");
+                    $('.circle-border[style*="display: block"]').trigger("click");
                 });
                 
             } else {
