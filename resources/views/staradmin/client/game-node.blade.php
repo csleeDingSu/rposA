@@ -757,9 +757,7 @@
     	var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
-
-			$('#reset-life-share').modal();
-
+			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var bet_count = $('#hidbetting_count').val();

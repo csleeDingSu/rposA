@@ -20,6 +20,7 @@ var consecutive_lose = null;
 var usedlife = 0;
 var max_acupoint = 6;
 var g_cookies_point = 0;
+var user_id = 0;
 
 $(function () {
 
@@ -176,7 +177,9 @@ function initUser(records){
         setBalance();
 
         if(life == 0){
-            $('#reset-life-share').modal();
+            if (user_id > 0) {
+                $('#reset-life-share').modal();    
+            }
         } else if (user_id > 0 && acupoint >= max_acupoint) {
             bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
@@ -272,7 +275,9 @@ try {
                 $( ".circle-border" ).click(function(e){
 
                     if(g_life == 0){
-                        $('#reset-life-share').modal();
+                        if (user_id > 0) {
+                            $('#reset-life-share').modal();    
+                        }
                     } else { 
                         musicPlay(1, level);
                         $( this ).removeClass('circle-border').addClass('clicked-circle');
@@ -312,7 +317,9 @@ try {
                             $('.spinning').css('visibility', 'hidden');
                         }, 3000);    
                     } else {
-                        $('#reset-life-share').modal();
+                        if (user_id > 0) {
+                            $('#reset-life-share').modal();    
+                        }
                     }
                 });
             }
@@ -824,7 +831,9 @@ function bindCalculateButton(){
             //$('#reset-life-play').modal({backdrop: 'static', keyboard: false});
             $('#game-rules').modal();
         } else {
-            $('#reset-life-share').modal();
+            if (user_id > 0) {
+                $('#reset-life-share').modal();    
+            }
         }
     });
 
@@ -839,7 +848,9 @@ function bindTriggerButton(){
             event.stopImmediatePropagation();
             checkSelection();
         } else {
-            $('#reset-life-share').modal();
+           if (user_id > 0) {
+                $('#reset-life-share').modal();    
+            }
         }
     });
 }
