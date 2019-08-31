@@ -790,15 +790,24 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
+			$('.banner-rules').click(function() {
+		        $('#game-rules').modal();
+		    });
+
 			if (user_id <= 0) {
 				openmodel();
-			}
+				
+				$('.barWrapper').click( function() {
+	            	openmodel();
+	            });
 
-			if (life == 0) {
-                $('.button-card').click( function() {
-                    $('#reset-life-share').modal();
-                });
-            }
+			} else {
+				if (life == 0 && user_id > 0) {
+	                $('.button-card').click( function() {
+	                    $('#reset-life-share').modal();
+	                });
+	            }
+			}
 
             //execute scroll pagination
             being.scrollBottom('.cardBody', '.box', () => {		
