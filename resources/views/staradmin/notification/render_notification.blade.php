@@ -5,7 +5,7 @@
 	<td scope="row">{{$loop->iteration}}</td>
 	<td>{{$list->created_at}}</td>
 	<td>{{$list->read_at ?? '-'}}</td>
-	<td>{{$list->member_id}}</td>
+	<td>{{$list->member->phone ?? '-'}}</td>
 	<td>{{$list->title}}</td>
 	<td>
 		@if($list->is_read == 0)
