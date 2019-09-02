@@ -10,7 +10,7 @@ class Package extends Model
     use SoftDeletes;
 	
 	protected $fillable = [
-        'package_name',
+        'package_name','seq'
     ];
 	
 	protected $softDelete = true;

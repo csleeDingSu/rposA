@@ -11,7 +11,7 @@ class BuyProduct extends Model
     use SoftDeletes;
 	
 	protected $fillable = [
-        'name','point_to_redeem','price','status','created_at','picture_url','description','available_quantity','discount_price','type'
+        'name','point_to_redeem','price','status','created_at','picture_url','description','available_quantity','discount_price','type','seq'
 
     ];
 	
