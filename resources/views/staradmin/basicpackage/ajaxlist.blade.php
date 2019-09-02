@@ -10,6 +10,7 @@
 							<tr>
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
+								<th>@lang('dingsu.seq')</th>
 								<th>@lang('dingsu.name')</th>								
 								<th>@lang('dingsu.vip_price')</th>
 								<th>@lang('dingsu.life')</th>
@@ -22,6 +23,7 @@
 							<tr id="tr_{{ $list->id }}">
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
+								<td>{{ $list->seq }}</td>
 								<td>{{ $list->package_name }}</td>
 								<td>{{ $list->package_price }}</td>
 								<td>{{ $list->package_life }}</td>
