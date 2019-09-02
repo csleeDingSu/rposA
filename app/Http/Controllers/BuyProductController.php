@@ -292,7 +292,8 @@ class BuyProductController extends BaseController
 		
 		$row  = '<tr id=tr_'.$package->id.'>';
 		$row .= "<td>$package->id</td>";
-		$row .= "<td>$package->created_at</td>";		
+		$row .= "<td>$package->created_at</td>";	
+		$row .= "<td>$package->seq</td>";
 		$row .= "<td>$package->type</td>";	
 		$row .= "<td><img class='img-sm rounded-circle' src='$package->picture_url' alt='image'></td>";			
 		$row .= '<td>'.$package->name.'</td>';
