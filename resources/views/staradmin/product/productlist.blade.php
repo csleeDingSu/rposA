@@ -11,6 +11,7 @@
 						<tr>
 							<th>@lang('dingsu.id')</th>
 							<th>@lang('dingsu.create_Date')</th>
+							<th>@lang('dingsu.seq')</th>
 							<th>@lang('dingsu.product') @lang('dingsu.name')</th>							
 							<th>@lang('dingsu.available_quantity')</th>
 							<th>@lang('dingsu.reserved_quantity')</th>
@@ -24,6 +25,7 @@
 						<tr id="tr_{{ $list->id }}">
 							<td>{{ $list->id }}</td>
 							<td>{{ $list->created_at }}</td>
+							<td>{{ $list->seq }}</td>
 							<td>{{ $list->product_name }}</td>
 							
 							<td>
