@@ -176,7 +176,7 @@ class MemberController extends BaseController
             ]
         );
 		//$data = ['membership' => $request->membership,'firstname' => $request->firstname,'lastname' => $request->lastname,'email' => $request->email,'member_status' => $request->status,'wechat_name' => $request->wechat_name,'wechat_verification_status' => $request->wechat_verification_status,'phone' => $request->phone];
-		$data = ['membership' => $request->membership,'email' => $request->email,'member_status' => $request->status,'wechat_name' => $request->wechat_name,'phone' => $request->phone];
+		$data = ['membership' => $request->membership,'email' => $request->email,'member_status' => $request->status,'wechat_name' => $request->wechat_name,'phone' => $request->phone,'wechat_id' => $request->wechat_id];
 		
 		Member::update_member($id, $data);
 		//print_r();
