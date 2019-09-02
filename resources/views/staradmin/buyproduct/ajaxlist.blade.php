@@ -10,6 +10,7 @@
 							<tr>
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
+								<th>@lang('dingsu.seq')</th>
 								<th>@lang('dingsu.type')</th>
 								<th>@lang('dingsu.image')</th>		
 								<th>@lang('dingsu.name')</th>								
@@ -27,6 +28,7 @@
 							<tr id="tr_{{ $list->id }}">
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
+								<td>{{ $list->seq }}</td>
 								<td>									
 									@switch($list->type)
 										@case('1')
