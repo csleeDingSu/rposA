@@ -199,7 +199,7 @@ class ProductController extends BaseController
         );	
 		$now = Carbon::now();
 		$product_display_name = unique_numeric_random('product', 'product_display_id', 4);
-		$data = ['product_name' => $request->product_name,'product_display_id' => $product_display_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description];
+		$data = ['product_name' => $request->product_name,'product_display_id' => $product_display_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description,'seq' => $request->seq];
 		
 		Product::save_product($data);
 		
@@ -233,7 +233,7 @@ class ProductController extends BaseController
             ]
         );	
 		$now = Carbon::now();
-		$data = ['product_name' => $request->product_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description];
+		$data = ['product_name' => $request->product_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description,'seq' => $request->seq];
 		
 		Product::update_product($id, $data);
 		
