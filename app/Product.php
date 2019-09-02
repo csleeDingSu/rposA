@@ -90,7 +90,7 @@ class Product extends Model
 	
 	public static function get_product_view_list($limit = 100)
 	{
-		$result =  DB::table('view_product')->paginate($limit);
+		$result =  DB::table('view_product')->orderByRaw('-seq desc')->paginate($limit);
 		
 		return $result;
 	}
