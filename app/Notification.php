@@ -32,4 +32,9 @@ class Notification extends Model
         return $this->belongsTo(History::class, 'notifiable_id', 'id');
     }
 	
+	public function member()
+    {
+        return $this->belongsTo(\App\Member::class, 'member_id', 'id');
+    }
+	
 }
