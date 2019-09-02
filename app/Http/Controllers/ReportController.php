@@ -601,7 +601,7 @@ class ReportController extends BaseController
 	
 	public function notifications_list (Request $request)
 	{				
-		$result =  \App\Notification::select('*');
+		$result =  \App\Notification::select('*')->with('member');
 		$input  = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
