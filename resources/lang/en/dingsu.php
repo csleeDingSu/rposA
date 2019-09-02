@@ -699,5 +699,8 @@ return [
 	'current_balance' => 'Current balance',
 	'editor' => 'editor',
 	'env' => 'ENV',
+	'wechat_id' => 'wechat id',
+	'read' => 'read',
+	'unread' => 'unread',
 
 ];

@@ -100,6 +100,17 @@
 						
 					</div>
 					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="seq" class="col-sm-3 col-form-label">@lang('dingsu.seq') </label>
+								<div class="col-sm-9">
+									<input id="seq" name="seq" class="form-control" type="text" value="{{ old('seq')}}"  maxlength="3">
+								</div>
+							</div>
+						</div>
+					</div>
+					
 					
 					
 				</div>

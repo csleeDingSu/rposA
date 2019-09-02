@@ -82,7 +82,18 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="col-md-6">
+						<div class="form-group row">
+							<label for="seq" class="col-sm-3 col-form-label">@lang('dingsu.seq')</label>
+							<div class="col-sm-9">
+								<input id="seq" name="seq" class="form-control" type="text"  value="{{ old('seq')}}">
+							</div>
+						</div>
+					</div>
 				</div>
+				
+				
 
 
 				<button type="submit" class="btn btn-success mr-2">@lang('dingsu.submit')</button>

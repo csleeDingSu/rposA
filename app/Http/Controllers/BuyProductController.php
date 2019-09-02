@@ -53,8 +53,9 @@ class BuyProductController extends BaseController
 				if ($input['s_type'] != '' )
 					$result = $result->where('type','=',$input['s_type']);
 			}
-		}		
-		$result         =  $result->orderby('created_at','DESC')->paginate(30);
+		}	
+		$result         =  $result ->orderByRaw('-seq desc')->paginate(30);
+		//$result         =  $result->orderby('created_at','DESC')->paginate(30);
 		
 		if ($request->ajax()) {
             return view('buyproduct.ajaxlist', ['result' => $result])->render();  
@@ -291,7 +292,8 @@ class BuyProductController extends BaseController
 		
 		$row  = '<tr id=tr_'.$package->id.'>';
 		$row .= "<td>$package->id</td>";
-		$row .= "<td>$package->created_at</td>";		
+		$row .= "<td>$package->created_at</td>";	
+		$row .= "<td>$package->seq</td>";
 		$row .= "<td>$package->type</td>";	
 		$row .= "<td><img class='img-sm rounded-circle' src='$package->picture_url' alt='image'></td>";			
 		$row .= '<td>'.$package->name.'</td>';

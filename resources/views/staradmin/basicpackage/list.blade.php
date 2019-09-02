@@ -240,7 +240,7 @@ function openmodel() {
 								$('#package_freepoint').val(data.package_freepoint);
 								$('#package_life').val(data.package_life);
 								$('#package_type').val(data.package_type);
-								
+								$('#seq').val(data.seq);
 								$('#package_type').attr("disabled", true);
 								$('#hidden_void').val(id);
 								

@@ -48,8 +48,9 @@ class BasicPackageController extends BaseController
 				if ($input['s_status'] != '' )
 					$result = $result->where('package_status','=',$input['s_status']);
 			}
-		}		
-		$result         =  $result->orderby('created_at','DESC')->paginate(30);
+		}	
+		$result         =  $result ->orderByRaw('-seq desc')->paginate(30);
+		//$result         =  $result->orderby('created_at','DESC')->paginate(30);
 				
 		$data['page']   = 'basicpackage.list'; 	
 				
@@ -80,7 +81,8 @@ class BasicPackageController extends BaseController
 		
 		$now = Carbon::now();
 		$data = ['package_name' => $input['package_name'],'package_discount_price' => $input['package_discount_price'],'package_status' => $input['status'],'package_price' => $input['price'],'updated_at' => $now,'package_picurl' => $input['package_pic_url'],'package_description' => $input['package_description'], 'package_life' => $input['package_life'],
-				 'package_freepoint' => $input['package_freepoint'] ];
+				 'package_freepoint' => $input['package_freepoint'] , 'seq' => $input['seq']
+				];
 		 
 		BasicPackage::update_package($id,$data);
 		$row = $this->render_basicpackage($id);
@@ -122,7 +124,8 @@ class BasicPackageController extends BaseController
 				 'package_description' => $input['package_description'],
 				 'package_life' => $input['package_life'],
 				 'package_freepoint' => $input['package_freepoint'] ,
-				 'package_type' => 1 
+				 'package_type' => 1 ,
+				 'seq' => $input['seq']  
 				];
 		 
 		$id = BasicPackage::save_package($data);
@@ -164,7 +167,8 @@ class BasicPackageController extends BaseController
 		$package = BasicPackage::get_package($id);
 		$row  = '<tr id=tr_'.$package->id.'>';
 		$row .= "<td>$package->id</td>";
-		$row .= "<td>$package->created_at</td>";			
+		$row .= "<td>$package->created_at</td>";		
+		$row .= "<td>$package->seq</td>";	
 		$row .= '<td>'.$package->package_name.'</td>';
 		$row .= '<td>'.$package->package_price.'</td>';
 		$row .= '<td>'.$package->package_life.'</td>';

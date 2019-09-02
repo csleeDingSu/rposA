@@ -35,6 +35,22 @@
                   </div>
                 </div>
               </div>
+						   
+						   <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="status" class="col-sm-3 col-form-label">@lang('dingsu.status')</label>
+                          <div class="col-sm-9">
+                            <select id="status" name="status" class="form-control">
+                              <option {{old('status',$member->member_status)=="0"? 'selected':''}}  value="0" >@lang('dingsu.active')</option>
+                              <option {{old('status',$member->member_status)=="1"? 'selected':''}} value="1">@lang('dingsu.inactive')</option>
+								              <option {{old('status',$member->member_status)=="2"? 'selected':''}} value="2">@lang('dingsu.suspended')</option>
+                            </select>
+							  
+							  
+							 
+                          </div>
+                        </div>
+                      </div>
 					  </div>
                    
                     
@@ -86,18 +102,13 @@
 					  
 					  <div class="row">
 						
-                      <div class="col-md-6">
+                      
+						  
+						  <div class="col-md-6">
                         <div class="form-group row">
-                          <label for="status" class="col-sm-3 col-form-label">@lang('dingsu.status')</label>
+                          <label for="wechat_id" class="col-sm-3 col-form-label">@lang('dingsu.wechat_id')</label>
                           <div class="col-sm-9">
-                            <select id="status" name="status" class="form-control">
-                              <option {{old('status',$member->member_status)=="0"? 'selected':''}}  value="0" >@lang('dingsu.active')</option>
-                              <option {{old('status',$member->member_status)=="1"? 'selected':''}} value="1">@lang('dingsu.inactive')</option>
-								              <option {{old('status',$member->member_status)=="2"? 'selected':''}} value="2">@lang('dingsu.suspended')</option>
-                            </select>
-							  
-							  
-							 
+                            <input id="wechat_id" name="wechat_id" class="form-control" type="text"  value="{{ old('wechat_id', $member->wechat_id) }}">
                           </div>
                         </div>
                       </div>

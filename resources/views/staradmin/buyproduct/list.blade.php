@@ -255,7 +255,7 @@ $('#formadd').on('submit', function(event){
 								$('#available_quantity').val(data.available_quantity);
 								$('#discount_price').val(data.discount_price);
 								$('#hidden_void').val(id);
-								
+								$('#seq').val(data.seq);
 								var appUrl =data.picture_url;
 								
 								$('.imga').data("id", id);

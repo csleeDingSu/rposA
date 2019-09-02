@@ -279,6 +279,9 @@
 		
 			<div class="collapse" id="uireport">
 				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/notification/list">@lang('dingsu.notification') @lang('dingsu.list')</a>
+					</li>
 					<!-- <li class="nav-item">
 						<a class="nav-link" href="/report/redeem_life">@lang('dingsu.redeem_life')</a>
 					</li> 
