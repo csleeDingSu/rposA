@@ -172,7 +172,7 @@ class MemberController extends BaseController
             [
 				'email' => 'required|email|unique:members,email,'.$id,
 				//'wechat_name' => 'nullable|unique:members,wechat_name,'.$id,
-				'phone' => 'nullable|min:7|max:12|unique:members,phone,'.$id,
+				'phone' => 'nullable|min:4|max:12|unique:members,phone,'.$id,
             ]
         );
 		//$data = ['membership' => $request->membership,'firstname' => $request->firstname,'lastname' => $request->lastname,'email' => $request->email,'member_status' => $request->status,'wechat_name' => $request->wechat_name,'wechat_verification_status' => $request->wechat_verification_status,'phone' => $request->phone];
