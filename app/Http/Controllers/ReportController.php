@@ -599,7 +599,7 @@ class ReportController extends BaseController
 	}
 	
 	
-	public function notificationlist (Request $request)
+	public function notifications_list (Request $request)
 	{				
 		$result =  \App\Notification::get();
 		$input  = array();		

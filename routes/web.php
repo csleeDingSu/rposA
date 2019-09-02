@@ -1,4 +1,4 @@
-<?php
+no<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -638,6 +638,9 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::post( 'admin/add-env-record', 'AdminController@add_env_record' )->name( 'add_env_record' );
 	Route::any( 'admin/edit-env-record', 'AdminController@edit_env_record' )->name( 'edit_env_record' );
 	Route::delete( 'admin/delete-env-record', 'AdminController@delete_env_record' )->name( 'delete_env_record' );
+	
+	
+	Route::get('/notification/list', 'ReportController@notifications_list')->name('notifications_list');
 
 } );
 //END
