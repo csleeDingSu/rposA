@@ -167,7 +167,8 @@ class BasicPackageController extends BaseController
 		$package = BasicPackage::get_package($id);
 		$row  = '<tr id=tr_'.$package->id.'>';
 		$row .= "<td>$package->id</td>";
-		$row .= "<td>$package->created_at</td>";			
+		$row .= "<td>$package->created_at</td>";		
+		$row .= "<td>$package->seq</td>";	
 		$row .= '<td>'.$package->package_name.'</td>';
 		$row .= '<td>'.$package->package_price.'</td>';
 		$row .= '<td>'.$package->package_life.'</td>';
