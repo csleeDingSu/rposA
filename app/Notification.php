@@ -37,4 +37,10 @@ class Notification extends Model
         return $this->belongsTo(\App\Member::class, 'member_id', 'id');
     }
 	
+	public function scopewithMember($query,$phone = FALSE)
+    {
+        return $query->with('member')->where('phone', $phone);
+    }
+	
+	
 }
