@@ -700,5 +700,7 @@ return [
 	'editor' => 'editor',
 	'env' => 'ENV',
 	'wechat_id' => 'wechat id',
+	'read' => 'read',
+	'unread' => 'unread',
 
 ];
