@@ -53,8 +53,9 @@ class BuyProductController extends BaseController
 				if ($input['s_type'] != '' )
 					$result = $result->where('type','=',$input['s_type']);
 			}
-		}		
-		$result         =  $result->orderby('created_at','DESC')->paginate(30);
+		}	
+		$result         =  $result ->orderByRaw('-seq desc')->paginate(30);
+		//$result         =  $result->orderby('created_at','DESC')->paginate(30);
 		
 		if ($request->ajax()) {
             return view('buyproduct.ajaxlist', ['result' => $result])->render();  
