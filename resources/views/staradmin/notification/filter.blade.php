@@ -8,16 +8,9 @@
 					<div class="form-group row">
 
 						<div class="col">
-							<label for="s_uuid">@lang('lang.uuid')</label>
+							<label for="s_member">@lang('lang.member')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_uuid" id="s_uuid" placeholder="@lang('lang.uuid')">
-							</div>
-						</div>
-
-						<div class="col">
-							<label for="s_name">@lang('lang.name')</label>
-							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_name" id="s_name" placeholder="@lang('lang.name')">
+								<input type="text" class="form-control typeahead tt-input" name="s_member" id="s_member" placeholder="@lang('lang.member')">
 							</div>
 						</div>
 
@@ -26,9 +19,9 @@
 							<div id="bloodhound">
 								<select id="s_status" name="s_status" class="form-control">
 									<option value="" selected>@lang('lang.default_select')</option>
-									@foreach($statuses as $val)
-									<option value="{{$val->id}}">{{trans('lang.' . $val->name )}}</option>
-									@endforeach
+									<option value="0" >@lang('lang.unread')</option>
+									<option value="1" >@lang('lang.read')</option>
+									
 								</select>
 							</div>
 						</div>
