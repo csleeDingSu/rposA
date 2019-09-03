@@ -180,12 +180,6 @@ class ClientController extends BaseController
 		
 		//\Log::debug(json_encode(['useragent' => $ua], true)); 
 		
-		//isVIP APP
-		$this->vp = new VIPApp();
-		if ($this->vp->isVIPApp()) {
-			return redirect('/vip');
-		}
-
 		$betting_count = 0;
 
 		// $setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();

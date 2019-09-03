@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\VIPApp;
 use App\Http\Controllers\Controller;
+use Auth;
+use Carbon\ Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
-use Auth;
-use Session;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Larashop\Notifications\ResetPassword as ResetPasswordNotification;
-use Carbon\ Carbon;
+use Session;
 use Validator;
 class MemberLoginController extends Controller
 {
@@ -201,16 +202,24 @@ class MemberLoginController extends Controller
         if ($this->attemptLogin($request)) {
 			
             //route to main screen
-			$url = "/cs/" . env('voucher_featured_id','220');
-			$rou = Session::get('re_route');
+			// $url = "/cs/" . env('voucher_featured_id','220');
+			// $rou = Session::get('re_route');
 			
-			if ($rou == 'yes')
-			{
-                //route to game
-				$url = "/arcade";
-				Session::forget('re_route');
-				//Session::flush();
-			}
+			// if ($rou == 'yes')
+			// {
+   //              //route to game
+			// 	$url = "/arcade";
+			// 	Session::forget('re_route');
+			// 	//Session::flush();
+			// }
+
+            //isVIP APP
+            $this->vp = new VIPApp();
+            if ($this->vp->isVIPApp()) {
+               $url = "/vip";
+            } else {
+                $url = "/arcade";
+            }
 			
             return response()->json(['success' => true, 'url' => $url, 'message' => $this->sendLoginResponse($request)]);
         }
