@@ -673,5 +673,6 @@ return [
 	'created_at' => '创建日期',
 	'read_at' => '读取日期',
 	'value' => '值',
+	'second_level_introduce_life' => '二级分享给朋友获得挖宝机会',
 
 ];
