@@ -11,9 +11,9 @@
 								<th>#</th>										
 								<th>@lang('dingsu.played_time')</th>
 								<th>@lang('dingsu.drawid')</th>
-								<th>@lang('dingsu.gameid')</th>
-								<th>@lang('dingsu.game_result')</th>
+								<th>@lang('dingsu.gameid')</th>								
 								<th>@lang('dingsu.play_result')</th>
+								<th>@lang('dingsu.game_result')</th>
 								<th>@lang('dingsu.play_status')</th>
 								<th>@lang('dingsu.bet_amount')</th>
 								<th>@lang('dingsu.reward')</th>
