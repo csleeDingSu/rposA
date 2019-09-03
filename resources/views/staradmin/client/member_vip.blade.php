@@ -98,8 +98,20 @@
 		<!-- member listing -->
 		<div class="listing-table">
 			<ul class="list-group">
-				<!-- 兑换奖品 -->
+				<!-- 轮盘抽奖 -->
 				<li class="list-group-item first-item">
+					<div class="gamebtn">
+						<div class="icon-wrapper">
+							<div class="icon-wheel"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						我的场次
+						<div class="game-life-count">剩余<span class="game-life"></span>次</div>
+					</div>
+				</li>
+
+				<!-- 兑换奖品 -->
+				<li class="list-group-item">
 					<div class="redeembtn">
 						<div class="icon-wrapper">
 							<div class="icon-redeem"></div>
@@ -386,6 +398,12 @@
             $('.wabao-acupoint').html(acupoint);
 
             $('.wabao-usedpoint').html(usedpoint);
+
+            $('.game-life').html("<?php Print($member->current_life);?>");
+
+            $('.gamebtn').click(function(){
+				window.location.href = "/arcade";
+			});
 
 			$('.round').click(function(){
 				window.location.href = "/round";

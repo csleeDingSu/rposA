@@ -95,7 +95,13 @@ Route::get( '/goredeem', 'ClientController@member_access_redeem' )->name( 'clien
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
-	Route::get( '/', 'ClientController@member_access_game_node' )->name( 'home' );
+	Route::get( '/', function() {
+		//isVIP APP
+		if (env('THISVIPAPP', false) == true) {
+			return redirect('/vip');
+		}
+
+	})->name( 'home' );
 	
 	$this->get( '/home', 'Api\VoucherController@index' )->name( 'api.vlist' ); //cs20181003 - temp fix redirect to /home
 
@@ -145,7 +151,9 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::any( '/download-app', 'ClientController@download_app' )->name( 'client.download_app' );
 
 	Route::any( '/blog', 'BlogController@index' )->name( 'client.blog' );
-
+	Route::get( '/blog/my-redeem', function () {
+		return view( 'client/my_redeem');
+	} );
 	Route::any( '/blog/createform', 'BlogController@createform' )->name( 'client.blog.createform' );
 	Route::any( '/blog/create', 'BlogController@create' )->name( 'client.blog.create' );	
 } );

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
-use \App\helpers\WeiXin as WX;
+use App\Helpers\VIPApp;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\weixinController;
 use App\Mail\SendMail;
@@ -12,11 +12,11 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Khsing\WechatAgent\WechatAgent;
 use Mail;
 use Session;
 use Validator;
-
-use Khsing\WechatAgent\WechatAgent;
+use \App\helpers\WeiXin as WX;
 
 
 class MemberRegisterController extends Controller
@@ -448,7 +448,16 @@ class MemberRegisterController extends Controller
 			//Session::flush();
 		}
 		*/
-		$url = "/arcade";
+		// $url = "/arcade";
+
+		 //isVIP APP
+        $this->vp = new VIPApp();
+        if ($this->vp->isVIPApp()) {
+           $url = "/vip";
+        } else {
+            $url = "/arcade";
+        }
+        
 		return response()->json(['success' => true, 'url' => $url]);
 	}
 	
