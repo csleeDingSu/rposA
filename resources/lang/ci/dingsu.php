@@ -672,5 +672,6 @@ return [
 	'notification' => '通告',
 	'created_at' => '创建日期',
 	'read_at' => '读取日期',
+	'value' => '值',
 
 ];
