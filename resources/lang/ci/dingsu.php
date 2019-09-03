@@ -664,4 +664,13 @@ return [
 	'play_result'=>'用户选择',
 	'play_status'=>'结果',
 
+	'editor' => '编辑',
+	'env' => 'ENV',
+	'wechat_id' => '微信ID',
+	'read' => '已读',
+	'unread' => '未读',
+	'notification' => '通告',
+	'created_at' => '创建日期',
+	'read_at' => '读取日期',
+
 ];

@@ -702,5 +702,7 @@ return [
 	'wechat_id' => 'wechat id',
 	'read' => 'read',
 	'unread' => 'unread',
+	'notification' => 'Notification',
+	'read_at' => 'Read at',
 
 ];
