@@ -598,28 +598,27 @@ class ReportController extends BaseController
 		
 	}
 	
-	
 	public function notifications_list (Request $request)
-	{				
-		$result =  \App\Notification::select('*')->with('member');
+	{	
 		$input  = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
-		
-		if (!empty($request->s_member)) {
-			$result = $result->withMember($request->s_member) ;				
-		}
-		if (isset($input['s_status'])) {
-			if ($input['s_status'] != '' )
-				$result = $result->where('is_read','=',$input['s_status']);
-		}
-		
-		
-		$result =  $result->paginate(30);
 				
+		$result = \App\Notification::whereHas('member', function($q) use($input)
+		{
+			//filters
+			if (!empty($input['s_member'])) {
+				$q->where('phone','LIKE', "%{$input['s_member']}%") ;
+			}			
+			if (isset($input['s_status'])) {
+				if ($input['s_status'] != '' )
+					$q->where('is_read',$input['s_status']);
+			}
+		})->latest()->paginate(30);
+								
 		$data['page']    = 'notification.list'; 	
 				
-		$data['result'] = $result; 
+		$data['result']  = $result; 
 				
 		if ($request->ajax()) {
             return view('notification.ajaxlist', ['result' => $result])->render();  
