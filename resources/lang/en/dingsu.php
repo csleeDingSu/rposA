@@ -706,5 +706,7 @@ return [
 	'read_at' => 'Read at',
 	'value' => 'Value',
 	'second_level_introduce_life' => 'Second level introducer life bonus',
+	'detail' => 'Detail',
+	'ledger' => 'Ledger',
 
 ];
