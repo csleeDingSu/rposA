@@ -99,6 +99,8 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		//isVIP APP
 		if (env('THISVIPAPP', false) == true) {
 			return redirect('/vip');
+		} else {
+			return redirect('/arcade');
 		}
 
 	})->name( 'home' );
