@@ -704,5 +704,6 @@ return [
 	'unread' => 'unread',
 	'notification' => 'Notification',
 	'read_at' => 'Read at',
+	'value' => 'Value',
 
 ];

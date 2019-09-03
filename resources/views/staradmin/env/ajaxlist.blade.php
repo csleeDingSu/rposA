@@ -4,7 +4,7 @@
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title">@lang('dingsu.product') @lang('dingsu.list')</h4>
+					<h4 class="card-title">@lang('dingsu.env') @lang('dingsu.list')</h4>
 					<div class="table-responsive">
 						<table class="table table-hover listtable" id="listtable">
 							<thead>
