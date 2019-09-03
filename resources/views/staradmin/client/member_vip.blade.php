@@ -430,7 +430,7 @@
 			});
 
 			$('.blogbtn').click(function(){
-				window.location.href = "/blog/createform";
+				window.location.href = "/blog/my-redeem";
 			});
 
 			$('.button-setting').click(function(){

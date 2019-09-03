@@ -674,5 +674,11 @@ return [
 	'read_at' => '读取日期',
 	'value' => '值',
 	'second_level_introduce_life' => '二级分享给朋友获得挖宝机会',
+	'detail' => '详细',
+	'drawid' => '开奖ID',
+	'spent' => '花费',
+	'ledger' => '帐户',
+	'played_member'=>'玩游戏记录',
+	'buy_product'=>'买产品账户记录',
 
 ];
