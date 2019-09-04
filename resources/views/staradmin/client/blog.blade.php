@@ -25,7 +25,14 @@
             background-color: rgba(255, 255, 255, 1);
             background-size: 32px 32px;
         }
-        .isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
+       
+       .reveal-modal {
+          /*position: relative;*/
+          margin: 0 auto;
+          top: 25%;
+      }
+
+      .isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
     </style>
 @endsection
 
@@ -39,35 +46,25 @@
 
 @section('content')
 <div class="loading" id="loading"></div>
+
 <section class="card">
     <section class="card-header">
       <a class="returnIcon" href="/profile"><img src="{{ asset('/client/blog/images/retrunIcon.png') }}"><span>返回</span></a>
       <h2>用户晒单</h2>
     </section>
-    <div class="card-body over">        
-        <div class="scrollBox ">
-          <div class="infinite-scroll">
-            <ul class="list-2">               
-                @include('client.blog_list')
-            </ul>
-            {{ $blog->links() }}
-			  
-			  
-			  <input type="hidden" id="page" value="1" />
-			 <input type="hidden" id="max_page" value="{{$blog->lastPage()}}" />
-			  
-            
-            @if (!empty($blog))
-              <p class="isnext">下拉显示更多...</p>
-            @else
-              <div class="lastPage">暂无更多...</div>
-            @endif
-          </div>      
+    <div class="card-body over"> 
+        <div class="cardBody">
+          <div class="box">
+            <div class="infinite-scroll">
+              <ul class="list-2">               
+                  @include('client.blog_list')
+              </ul>
+              {{ $blog->links() }}
+            </div>
+          </div>
         </div>
-        
     </div>
   </section>
-
 
   <div class="slideImg dn">
     <div class="swiper-container">
@@ -89,6 +86,7 @@
 
 @section('footer-javascript')
     @parent  
+    <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/client/blog/js/swiper.min.js') }}"></script>
     <script type="text/javascript">
 
@@ -104,50 +102,47 @@
         }
 
       $(document).ready(function () {
-          //execute scroll pagination
-          being.scrollBottom('.scrollBox','.list-2', () => {   
-			  page++;
-			  console.log(page);
-			  var max_page = parseInt($('#max_page').val());
-			  console.log(max_page);
-			  if(page > max_page) {
-				$('#page').val(page);
-				$(".isnext").html("@lang('dingsu.end_of_result')");
-				$('.isnext').css('padding-bottom', '50px');
+           //execute scroll pagination
+            being.scrollBottom('.cardBody', '.box', () => {   
 
-			  }else{
-				console.log('getPost' + page);
-				getPosts(page);
-			  } 
-        }); 
+            page++;
+            var max_page = parseInt($('#max_page').val());
+            if(page > max_page) {
+              $('#page').val(page);
+              $(".isnext").html("@lang('dingsu.end_of_result')");
+              $('.isnext').css('padding-bottom', '50px');
 
-        //scroll pagination - start
-          $('ul.pagination').hide();
-          
-          var page=1;
-
-          function getPosts(page){
-            console.log('--' + page);
-            $.ajax({
-              type: "GET",
-              url: window.location+"/?page"+page, 
-              data: { page: page },
-              beforeSend: function(){ 
-              },
-              complete: function(){ 
-                $('#loading').remove
-              },
-              success: function(responce) { 
-                $('.list-2').append(responce.html);
-                // console.log(responce);
-                // if (responce.html == null || responce.html = '') {
-                //  $(".isnext").html('');  
-                // }
-              }
-             });
-          }
-        //scroll pagination - end     
+            }else{
+              getPosts(page);
+            } 
+          });
       });
+
+      //scroll pagination - start
+        $('ul.pagination').hide();
+        
+        var page=1;
+
+        function getPosts(page){
+          $.ajax({
+            type: "GET",
+            url: window.location+"/?page"+page, 
+            data: { page: page },
+            beforeSend: function(){ 
+            },
+            complete: function(){ 
+              $('#loading').remove
+            },
+            success: function(responce) { 
+              $('.list-2').append(responce.html);
+              console.log(responce);
+              // if (responce.html == null || responce.html = '') {
+              //  $(".isnext").html('');  
+              // }
+            }
+           });
+        }
+      //scroll pagination - end
 
       
         
