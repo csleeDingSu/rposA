@@ -1332,7 +1332,7 @@ textarea {
 }
 
 .row-new {
-	margin: 10px 0px 10px 0px;
+	margin: 0px 0px 10px 0px;
 	padding: 0;
 }
 
@@ -1493,7 +1493,6 @@ textarea {
 
 .redeem-info {
 	margin: 0;
-	border: none;
 }
 
 .redeem-remaining {
@@ -1636,4 +1635,9 @@ textarea {
     text-align: center;
     padding: 5px 10px;
     float: right;
+    letter-spacing: 2px;
+}
+
+#redeem-history {
+	border-top: 1px solid #e1e1e1;
 }
