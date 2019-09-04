@@ -11,7 +11,7 @@
           <ul class="imgBox">
             @if (!empty($b->uploads) && (!empty(json_decode($b->uploads))))
                 @foreach(json_decode($b->uploads) as $photo)
-                    <li><img src="{{ $photo }}"></li>
+                    <li><a href="#" onclick="viewPhoto('{{ $photo }}');"><img src="{{ $photo }}"></a></li>
                 @endforeach  
             @endif
           </ul>
