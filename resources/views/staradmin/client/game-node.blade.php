@@ -862,10 +862,7 @@
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game-node.js') }}"></script>
-	}
-	}
-	}
-
+	
 @endsection
 
 <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
