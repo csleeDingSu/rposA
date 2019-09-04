@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/productv2.css') }}" />
+    
 
     <style>
     	
@@ -52,7 +54,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="speech-bubble-point">满6元即可领取</div>
+				<a href="#" onclick="closecss('speech-bubble-point');">
+					<div class="speech-bubble-point">满{{env('coin_max', '6')}}元提现</div>
+				</a>
 			</div>
 
 			<div class="box">
@@ -269,7 +273,6 @@
 					<div class="div-life">还剩<span class="span-life">15</span>次抽奖</div>
 					<div class="div-time"></div>
 				</div>
-				<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
 		    </div>
 		</div>
 
@@ -428,10 +431,30 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
-	
 
+	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
+	
 	
 </div>
+
+<div class="ranking-note-top">
+	<div class="description">
+			邀请1个好友可获得1次抽奖补贴，而你的好友能获得2次新人抽奖补贴，你的好友每邀请1个好友，你还可以获得1次抽奖补贴，邀请越多，抽奖补贴越多。
+	</div>
+	<div class="highlight">每次抽奖补贴有98.43%概率获得6元。</div>
+</div>
+<div class="ranking-note-bottom">
+	<div class="total-point-left">
+		<p>你累计获得补贴（元）</p>
+		<p class="my-earning-point">0.00</p>
+	</div>
+	<div class = "total-point-right">
+		<p>成功邀请好友</p>
+		<p class="my-invitation-count">0</p>
+	</div>
+</div>
+
+
 <div class="ranking">
 	<div class="full-width-tabs">
         <ul class="nav nav-pills">
@@ -466,6 +489,7 @@
             </div>
         </div>
 </div>
+
 </div></div>
 <!-- go back to top -->
 	<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
@@ -543,33 +567,6 @@
 	</div>
 <!--  end -->
 
-	<!-- new -->
-	<div class="modal fade col-md-12" id="reset-life-play" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg close-modal" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-title">
-								  兑换说明
-								</div>
-								<div class="instructions">
-									每局满15元结算兑换红包<br>
-									您已赢到<span class="packet-acupoint">10</span>元，还差<span class="packet-acupoint-to-win">5</span>元兑换
-								</div>
-								<div class="close-modal modal-warning-button">
-									知道了
-								</div>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
 
 <!-- Start Reset Life Share -->
 
@@ -595,6 +592,11 @@
 											邀请好友
 										</div>
 									</a>
+									<a href="/profile" class="link-button">
+										<div class="modal-redeem-button">
+											余额提现
+										</div>
+									</a>
 								</div>
 								
 								<!-- <div class="span-purchase">嫌邀请好友麻烦？直接购买！</div>
@@ -610,36 +612,6 @@
 			</div>
 		</div>
 	</div>
-
-<!-- Start Reset Life Bet -->
-
-	<div class="modal fade col-md-12" id="reset-life-bet" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<img src="{{ asset('/client/images/warning.jpg') }}" class="img-warning" />
-								<div class="modal-warning-title">
-									当前不能结算
-								</div>
-								<div class="modal-warning-content">
-									你猜的游戏正在进行中
-								</div>
-
-								<div class="close-modal modal-warning-button">
-									继续游戏
-								</div>												
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
 
 <!-- Start Reset Life Lose -->
 
@@ -704,42 +676,6 @@
 
 <!--  end -->
 
-
-<!-- VIP Modal -->
-	<div class="modal fade col-md-12" id="vip-modal" tabindex="-1" role="dialog" aria-labelledby="vip-label" aria-hidden="true">
-		<div class="modal-dialog modal-sm close-modal" role="document">
-			<div class="modal-content vip-background">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card vip-modal-card">
-								<div class="vip-card">
-									<div class="vip-card-title">
-										<img src="{{ asset('/client/images/vip/left_deco.png') }}" width="18px" height="13px" /> 会员特权 <img src="{{ asset('/client/images/vip/right_deco.png') }}" width="18px" height="13px" />
-									</div>
-									<div class="vip-card-desc">
-										<ul>
-											<li><span class="vip-highlight">无上限封顶，</span>想赢多少都行。</li>
-											<li><span class="vip-highlight">自由试玩法，</span>自选金额不受限。</li>
-											<li><span class="vip-highlight">每场送120元，</span>作为抽奖本金。</li>
-											<li><span class="vip-highlight">无需邀请人，</span>直接玩不麻烦。</li>
-										</ul>
-									</div>
-									<!-- <a href="/membership/buy/vip"><div class="btn-vip-submit">120元开通会员</div></a> -->
-									<div class="close-modal modal-warning-button">
-										知道了
-									</div>
-								</div>								
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!--  end -->
-
 <!-- Start Win -->
 
 	<div class="modal fade col-md-12" id="win-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
@@ -793,32 +729,6 @@
 
 <!--  end -->
 
-<!-- Start Win -->
-	<div class="modal fade col-md-12" id="red-packet-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="packet-title">恭喜您猜对了</div>
-				<div class="modal-body" style="padding:10px !important;">
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">							
-							<div class="modal-card">
-								<div class="packet-value"><span class="packet-sign">+</span>6<span class="packet-currency">元</span></div>
-								<div class="packet-info">前5局猜错<span class="highlight">亏损57元</span><br />第6局猜对<span class="highlight-green">奖励63元</span><br />最终奖励6元，<span class="highlight-red">赢到了6元</span><br />满15元可兑换红包</div>
-								<div class="instructions">
-									您已赢到6元，还差9元可兑换
-								</div>
-								<a href="/member/login/register">
-									<div class="btn-red-packet">确认领取</div>
-								</a>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-<!--  end -->
-
 <!-- Game Rules starts -->
 	<div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg close-modal" role="document">
@@ -863,37 +773,6 @@
 		</div>
 	</div>
 
-<!-- New - Top right corner Game Rules starts -->
-	<div class="modal fade col-md-12" id="top-corner-game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg close-modal" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-title">
-								  玩法说明
-								</div>
-								<div class="instructions">
-									<p>
-									默认拥有120游戏元用来抽奖，赚到的元会换成红包，1元兑换1元红包。</p>
-									<p>
-									这是自助的抽奖转盘，先选单数或双数再按抽奖，抽中就有元奖励，抽错就扣除元。</p>
-									<p>
-									12元被分成6次，按倍增式玩法，只要6次之内猜对，就能一直赚红包。</p>
-								</div>
-								<div class="close-modal modal-warning-button">
-									知道了
-								</div>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-<!-- New - Top right corner Game Rules starts -->
-
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -915,15 +794,11 @@
     	var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
-
+			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
+
 			var user_id = $('#hidUserId').val();
-
-			$('.profile-pic').click(function(){
-				window.location.href = '/profile';
-			});
-
 
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
@@ -947,38 +822,80 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
-			$('#viewgamerules').on('click', showGameRules);
-
-			$('.btn-vip-modal .btn-rules-vip').html('如何获得红包').addClass('btn-rules-normal');
-
-			// $('.btn-vip-modal').on('click', showGameRules);
-
-			$('.btn-vip-modal').click( function() {
-		        $('#top-corner-game-rules').modal({backdrop: 'static', keyboard: false});
+			$('.banner-rules').click(function() {
+		        $('#game-rules').modal();
 		    });
-
-		 	// $('.btn-vip-modal').click( function() {
-		  //       $('#vip-modal').modal({backdrop: 'static', keyboard: false});
-		  //   });
 
 			if (user_id <= 0) {
 				openmodel();
+				
+				$('.barWrapper').click( function() {
+	            	openmodel();
+	            });
+
+			} else {
+				if (life == 0 && user_id > 0) {
+	                $('.button-card').click( function() {
+	                    $('#reset-life-share').modal();
+	                });
+	            }
 			}
 
-			if (life == 0) {
-                $('.button-card').click( function() {
-                    $('#reset-life-share').modal();
-                });
-            }
+            //execute scroll pagination
+            being.scrollBottom('.cardBody', '.box', () => {		
+
+				page++;
+				var max_page = parseInt($('#max_page').val());
+				if(page > max_page) {
+					$('#page').val(page);
+					$(".isnext").html("@lang('dingsu.end_of_result')");
+					$('.isnext').css('padding-bottom', '50px');
+
+				}else{
+					getPosts(page);
+				}	
+			});
 
 		});
-	
+
+	//scroll pagination - start
+		$('ul.pagination').hide();
+		
+		var page=1;
+
+		function getPosts(page){
+			$.ajax({
+				type: "GET",
+				url: window.location+"/?page"+page, 
+				data: { page: page },
+				beforeSend: function(){ 
+				},
+				complete: function(){ 
+				  $('#loading').remove
+				},
+				success: function(responce) { 
+					$('.list-2').append(responce.html);
+					console.log(responce);
+					// if (responce.html == null || responce.html = '') {
+					// 	$(".isnext").html('');	
+					// }
+				}
+			 });
+		}
+	//scroll pagination - end
+
+	function closecss(cssname) {
+		var name = '.' + cssname;
+		$('' +name + '').css('display', 'none');
+
+	}
+		
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<!-- <script src="{{ asset('/client/js/game-node.js') }}"></script> -->
+	<script src="{{ asset('/client/js/game-node.js') }}"></script>
 	<script src="{{ asset('/client/js/game-ranking.js') }}"></script>
-
+	
 @endsection
 
 <link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
