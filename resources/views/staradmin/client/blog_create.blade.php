@@ -117,6 +117,91 @@
           }
         }
 
+        $(function () {
+
+          //发送
+          $('.sendBtn').click(function () {
+            if ($('.txt').val() == "") {
+              alert('评论不能为空');
+            } else {
+                document.getElementById('loading').style.visibility="visible";
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/blog/create",
+                    data: { 'content': $('.txt').val(), 'uploads': gUpload },
+                    dataType: "json",
+                    // beforeSend: function( xhr ) {
+                    //     xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                    // },
+                    error: function (error) { 
+                        document.getElementById('loading').style.visibility="hidden";
+                        console.log(error.responseText) },
+                    success: function(data) {
+                        document.getElementById('loading').style.visibility="hidden";
+                        if(data.success){
+                            $('.showBox').fadeIn(150);
+                        }
+                    }
+                });
+            }
+          });
+
+          //文本
+          $(".txt").bind("input propertychange", function (event) {
+            let that = $(this);
+            console.log(that.val());
+            if (that.val() == "") {
+              $('.sendBtn').removeClass('on');
+            } else {
+              $('.sendBtn').addClass('on');
+            }
+          });
+
+          //图片上传
+
+          $('.upBox input').change(function () {
+            let that=$(this);
+            let obj = this;
+            lrz(obj.files[0], {
+              width: 800,
+              height: 600,
+              before: function () {
+                console.log('压缩开始');
+              },
+              fail: function (err) {
+                console.error(err);
+              },
+              always: function () {
+                console.log('压缩结束');
+              },
+              done: function (results) {
+                // 你需要的数据都在这里，可以以字符串的形式传送base64给服务端转存为图片。
+                var data = results.base64;
+                gUpload.push(data);
+
+                let imgUrl = "<li>";
+                imgUrl += '<img src="'+data+'">';
+                var crossIcon = "{{ asset('/client/blog/images/crossIcon.png') }}";
+                imgUrl += '<a class="delBtn"><img src="'+crossIcon+'"></a>';
+                imgUrl += ' </li>';
+
+                that.parent('li').before(imgUrl);
+                $('.upBtn span').html(($('.imgList li').length-1)+'/6');
+
+              }
+            });
+          });
+          //图片删除
+          $('.imgList').on('click','.delBtn',function(){
+            let that=$(this).parent('li');
+            let index=that.index();
+            $('.imgList li').eq(index).remove();
+            let acount=$('.imgList li').length-1>0?$('.imgList li').length-1:0;
+            $('.upBtn span').html(acount+'/6');
+          });
+
+        })
     </script>
 
 @endsection
