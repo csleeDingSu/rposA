@@ -4,3 +4,11 @@
     position: relative;
     border-bottom: 1px solid #f3f3f3;
 }
+
+.view-pic{
+	width: 6rem;
+    height: auto;
+    padding: 0;
+    margin: 0;
+
+}
