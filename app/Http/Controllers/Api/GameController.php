@@ -1120,7 +1120,7 @@ class GameController extends Controller
 					{
 						$draw = \App\Draw::latest()->first();
 						$gbt = member_game_bet_temp::where('id', $res->id)->update(['bet' => $request->betto,'betamt' => $request->betamt,'drawid'=>$draw->id]);
-						$message = "temparory member $request->memberid bet $request->betamt";
+						$message = "temporary member $request->memberid bet $request->betamt";
 					}
 					else
 					{
