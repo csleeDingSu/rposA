@@ -602,25 +602,7 @@ class ClientController extends BaseController
 
 	public function member_access_game_ranking(Request $request)
 	{
-		//isVIP APP
-		$this->vp = new VIPApp();
-		if ($this->vp->isVIPApp()) {
-			return redirect('/vip');
-		}
-
-		$vouchers = \DB::table('voucher_category')
-			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
-			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
-			->groupBy('vouchers.id')
-			->orderby('vouchers.created_at', 'DESC')
-			->orderby('vouchers.id','DESC')
-			->paginate(6);
-		
-		if ($request->ajax()) {
-			$view = view('client.productv2',compact('vouchers'))->render();
-            return response()->json(['html'=>$view]);
-        }
-
+	
 		if (!Auth::Guard('member')->check())
 		{
 			
@@ -634,7 +616,7 @@ class ClientController extends BaseController
             	$request->merge(['goto' => 'arcade_ranking']); 
 	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
 	        } else {
-				return view('client/game-ranking',compact('vouchers','member_mainledger','firstwin'));
+				return view('client/game-ranking',compact('member_mainledger','firstwin'));
 	        }
 			
 		} else {
@@ -647,7 +629,7 @@ class ClientController extends BaseController
 				$firstwin = \App\Product::IsFirstWin($member_id);
 			}
 
-			return view('client/game-ranking', compact('vouchers','member_mainledger','firstwin'));
+			return view('client/game-ranking', compact('member_mainledger','firstwin'));
 
 		}
 

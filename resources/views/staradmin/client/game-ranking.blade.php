@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/productv2.css') }}" />
-    
 
     <style>
     	
@@ -433,17 +432,39 @@
 
 	
 </div>
-{{-- @include('client.product') --}}
-<div class="infinite-scroll">
-	<ul class="list-2">								
-			@include('client.productv2')
-	</ul>
-	{{ $vouchers->links() }}
-	
-	@if (!empty($vouchers))
-		<p class="isnext">下拉显示更多...</p>
-	@endif
+<div class="ranking">
+	<div class="full-width-tabs">
+        <ul class="nav nav-pills">
+            <li class="take-all-space-you-can active">
+                <a class="tab" data-toggle="tab" href="#general-ranking" data-status="general-ranking" id="general">
+                    <div class="lbl-general-ranking">总排名</div>
+                </a>                        
+            </li>              
+        
+            <li class="take-all-space-you-can">
+                <a class="tab" data-toggle="tab" href="#my-friend-ranking" data-status="my-friend-ranking" id ="my-friend">
+                    <div class="lbl-my-friend-ranking">好友排名</div>
+                </a>                        
+            </li>          
+        </ul>
+    </div>
+    <div class="tab-content">
+            <div id="general-ranking" class="tab-pane fade in active">
+                <div class="full-width-tabs">
+                    <div id="general-list" class="tab-content">
+                        <div id="default-tab" class="tab-pane fade in active"></div>
+                    </div>
+                </div>
+            </div>
 
+            <div id="my-friend-ranking" class="tab-pane fade">
+                <div class="full-width-tabs">
+                    <div id="my-friend-list" class="tab-content">
+                        <div id="my-friend-default-tab" class="tab-pane fade in active"></div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
 </div>
 </div></div>
 <!-- go back to top -->
@@ -950,52 +971,12 @@
                 });
             }
 
-            //execute scroll pagination
-            being.scrollBottom('.cardBody', '.box', () => {		
-
-				page++;
-				var max_page = parseInt($('#max_page').val());
-				if(page > max_page) {
-					$('#page').val(page);
-					$(".isnext").html("@lang('dingsu.end_of_result')");
-					$('.isnext').css('padding-bottom', '50px');
-
-				}else{
-					getPosts(page);
-				}	
-			});
-
 		});
-
-	//scroll pagination - start
-		$('ul.pagination').hide();
-		
-		var page=1;
-
-		function getPosts(page){
-			$.ajax({
-				type: "GET",
-				url: window.location+"/?page"+page, 
-				data: { page: page },
-				beforeSend: function(){ 
-				},
-				complete: function(){ 
-				  $('#loading').remove
-				},
-				success: function(responce) { 
-					$('.list-2').append(responce.html);
-					console.log(responce);
-					// if (responce.html == null || responce.html = '') {
-					// 	$(".isnext").html('');	
-					// }
-				}
-			 });
-		}
-	//scroll pagination - end
-		
+	
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
+	<!-- <script src="{{ asset('/client/js/game-node.js') }}"></script> -->
 	<script src="{{ asset('/client/js/game-ranking.js') }}"></script>
 
 @endsection
