@@ -66,22 +66,13 @@
     </div>
   </section>
 
-  <div class="slideImg dn">
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <!-- <div class="swiper-slide">
-          <div class="inBox"><img src="images/demo1.png"></div>
-        </div>
-        <div class="swiper-slide">
-          <div class="inBox"><img src="images/demo2.png"></div>
-        </div>
-        <div class="swiper-slide">
-          <div class="inBox"><img src="images/1231.jpg"></div>
-        </div> -->
-
-      </div>
+<!-- view photo Modal starts -->
+  <div class="modal fade col-md-12" id="view-photo" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <img src="" class="view-pic">
     </div>
   </div>
+<!-- view photo Modal Ends -->
 @endsection
 
 @section('footer-javascript')
@@ -144,33 +135,11 @@
         }
       //scroll pagination - end
 
-      
-        
-        var swiper = new Swiper(".swiper-container", {
-          autoHeight: window.innerHeight,
-          autoplay: false, //可选选项，自动滑动
-        });
+      function viewPhoto(photo) {
+        $('.view-pic').attr('src', photo);
+        $('#view-photo').modal();
+      }
 
-        $('.listBox .imgBox li').click(function () {
-          $('.slideImg').removeClass('dn');
-          let html = "";
-          let that = $(this);
-          $.each(that.parent().find('li'), function (index, res) {
-            img = $(res).find('img').attr('src');
-            html += ' <div class="swiper-slide">';
-            html += '<div class="inBox"><img src="' + img + '"></div>';
-            html += ' </div>';
-          });
-
-          swiper.appendSlide(html);
-
-        });
-
-        $('.slideImg').click(function (e) {
-          if($(e.target).find('.swiper-container').length>0){
-            $('.slideImg').addClass('dn');
-          };
-        });
     </script>
 
 @endsection
