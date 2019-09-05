@@ -1,6 +1,6 @@
 @section('top-css')
     @parent
-    <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-ranking-vip.css') }}" />
 
 @endsection
 
@@ -16,15 +16,12 @@
 </div>
 <div class="ranking-note-bottom">
 	<div class="total-point-left">
-		<p>你累计获得补贴（元）</p>
+		<p>你累计赚得金币</p>
 		<p class="my-earning-point">0.00</p>
 	</div>
 	<div class="total-point-right">
-		<p>成功邀请好友</p>
+		<p>已换购金币</p>
 		<p class="my-invitation-count">0</p>
-		<a href="/share">
-			<img class="icon-invite" src="{{ asset('/client/images/ranking/icon-invite.png') }}" />
-		</a>
 	</div>
 </div>
 <div class="ranking">
@@ -33,7 +30,7 @@
             <li class="take-all-space-you-can active">
                 <a class="tab" data-toggle="tab" href="#general-ranking" data-status="general-ranking" id="general">
                     <div class="lbl-general-ranking">
-                    	<img class="icon-trophy" src="{{ asset('/client/images/ranking/trophy-over.png') }}" />总排名
+                    	<img class="icon-trophy" src="{{ asset('/client/images/ranking/trophy-over.png') }}" />收益排名
                     </div>
                 </a>                        
             </li>              
@@ -41,13 +38,13 @@
             <li class="take-all-space-you-can">
                 <a class="tab" data-toggle="tab" href="#my-friend-ranking" data-status="my-friend-ranking" id ="my-friend">
                     <div class="lbl-my-friend-ranking">
-                    	<img class="icon-good-friends" src="{{ asset('/client/images/ranking/good-friends.png') }}" />好友排名                    	
+                    	<img class="icon-good-friends" src="{{ asset('/client/images/ranking/good-friends.png') }}" />换购名单                    	
                     </div>
                 </a>                        
             </li>          
         </ul>
     </div>
-    <div class="row tab-remark-1"><div class="col">排名数据实时更新</div></div>    	
+    <div class="row tab-remark-1"><div class="col">换购名单实时更新</div></div>    	
 	<div class="row tab-row-header">
 		<div class="col-1 tab-col-header">排名</div>
 		<div class="col-5 tab-col-header-name">名称</div>
@@ -135,6 +132,6 @@
 
 @section('footer-javascript')
 	@parent
-	<script src="{{ asset('/client/js/game-ranking.js') }}"></script>
+	<script src="{{ asset('/client/js/game-ranking-vip.js') }}"></script>
 	
 @endsection
