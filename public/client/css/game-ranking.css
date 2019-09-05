@@ -1,7 +1,18 @@
+.full-height {
+	height: 10.5rem;
+}
+
+.redeem-banner {
+    padding: 0.2rem;
+    text-align: center;
+    margin: 0;
+    height: auto;
+    width: auto;
+}
 
 .ranking-note-top {
 	border-radius: 20px 20px 0 0;
-    margin: 0.24rem 0.24rem 0 0.24rem;
+    margin: 0 0.24rem 0 0.24rem;
     padding: 0.35rem;
     background-color: #fff;
     color: #888;
@@ -32,8 +43,8 @@
 .ranking-note-bottom .total-point-left {
  text-align: center;
  color: #888;
- border-right:1px solid #e6e6e6;
  width: 50%;
+ border-right: 1px solid #e6e6e6;
 }
 
 .ranking-note-bottom .total-point-right {
@@ -57,25 +68,29 @@ font-size: 0.36rem;
 	color: #333	
 }
 
-
 /* Tabs */
 .full-width-tabs {
-    /*padding-top: 0.2rem;*/
+    padding: 0 0.2rem;
+    margin: 0;
 }
 
 .full-width-tabs > .nav-pills > .active > a {
     text-decoration: none;
     color: #606060 !important;
-    background-color: #fff !important;
     font-size: 0.32rem;
+    border-radius: 20px 20px 0 0;
+    background-color: #fff;
+    background: #fff;
 }
 .full-width-tabs > .nav-pills > li > a{
     border-radius:0;
     color:#fff;
     font-weight: 500;
-    background: #b73dfd;
     font-size: 0.32rem;
     padding: 0 0.2rem;
+    border-radius: 20px 20px 0 0;
+    background-color: #b73dfd;
+    background: #b73dfd;
 }
 
 .full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
@@ -91,7 +106,163 @@ font-size: 0.36rem;
     text-align: center;
 }
 
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+	background: #fff;
+	color: #606060;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a, .nav-pills>li.active>a {
+	background: #b73dfd;
+	color: #fff;
+}
+
 .take-all-space-you-can{
     width:100%;
 }
 /* End Tabs */
+
+.icon-trophy{
+	background-size: contain;
+    width: 0.5rem;
+    margin: 0 0 0.05rem;
+    padding: 0.02rem;
+}
+
+.icon-good-friends {
+	background-size: contain;
+    width: 0.5rem;
+    margin: 0 0 0.05rem;
+    padding: 0.02rem;
+}
+
+.lbl-general-ranking {
+	padding: 0.1rem;
+	font-size: 0.3rem;
+}
+
+.lbl-my-friend-ranking {
+	padding: 0.1rem;
+	font-size: 0.3rem;
+}
+
+.ranking .row {
+	color: #888;
+    font-size: 0.28rem;
+    margin: -0.02rem 0.2rem;
+    text-align: center;
+    background: #fff;
+    
+}
+
+.ranking .col {
+	
+}
+
+.ranking .tab-remark-1 {
+	font-size: 0.24rem;
+	color: #cbcbcb;
+	padding: 0.2rem;
+}
+
+.ranking .tab-row-header {
+	display: flex;
+	color: #888;
+	font-size: 0.24rem;
+	height: 0.8rem;
+    padding: 0.2rem;
+    background: #f2f3f4;
+    text-align: left;
+}
+
+.ranking .tab-col-header {
+    padding: 0.03rem 0 0 0.2rem !important;
+}
+
+.ranking .tab-col-header-name {
+    padding: 0.03rem 0 0 0.4rem !important;
+}
+
+.ranking .tab-content-my-ranking{
+	display: flex;
+	color: #b2b2b2;
+	font-size: 0.28rem;
+	/*height: 1rem;*/
+    padding: 0.2rem;
+    background: #fff;
+    text-align: left;
+}
+
+.ranking .row .col-1 {
+	flex: 10%;
+	padding: 0.03rem 0;
+}
+
+.ranking .row .col-2 {
+	flex: 20%;
+	padding: 0.03rem 0;
+}
+
+.ranking .row .col-3 {
+	flex: 30%;
+	padding: 0.03rem 0;
+}
+
+.ranking .row .col-6 {
+	flex: 60%;
+	padding: 0.03rem 0;
+}
+
+.ranking .row .col-4 {
+	flex: 40%;
+	padding: 0.03rem 0;
+}
+.ranking .row .col-5 {
+	flex: 50%;
+	padding: 0.03rem 0;
+}
+
+.ranking-number {
+	text-align: left;
+	padding-left: 0.2rem !important;
+}
+
+.ranking-name {
+	text-align: left;
+	/*padding-left: 0.2rem !important;*/
+}
+
+.ranking-point{
+	text-align: left;
+    padding: 0.05rem 0 0 0.8rem !important;
+    background: url(/client/images/ranking/icon-coin.png) no-repeat;
+    background-size: 0.35rem 0.35rem;
+    margin: 0 0 0 -1rem;
+    background-position: 0.4rem 0.08rem;
+}
+
+.tab-content {
+	background-color: #f2f3f4;
+    margin: 0 0.2rem;
+    padding-top: 0.16rem;
+    padding-bottom: 0.05rem;
+
+}
+
+.ranking .tab-content .tab-content-list{
+	display: flex;
+	color: #b2b2b2;
+	font-size: 0.28rem;
+	/*height: 1rem;*/
+    padding: 0.2rem;
+    background: #fff;
+    text-align: left;
+    margin: 0;
+}
+
+.tab-content-bottom {
+	padding: 0 0.2rem;
+    margin: -0.02rem 0.2rem 0.5rem 0.2rem;
+	border-radius: 0 0 20px 20px;
+	background-color: #fff;
+	height: 0.5rem;
+}
