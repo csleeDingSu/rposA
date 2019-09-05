@@ -10,9 +10,23 @@
 </div>
 <div class="ranking-note-top">
 	<div class="description">
-			邀请1个好友可获得1次抽奖补贴，而你的好友能获得2次新人抽奖补贴，你的好友每邀请1个好友，你还可以获得1次抽奖补贴，邀请越多，抽奖补贴越多。
+			自助抽奖换金币，奖品任你换不停
 	</div>
-	<div class="highlight">每次抽奖补贴有98.43%概率获得6元。</div>
+	<div class="note">
+		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-invite.png') }}" />
+		<span class="highlight">无限极抽奖，</span>
+		任你抽到爽
+	</div>
+	<div class="note">
+		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-invite.png') }}" />
+		<span class="highlight">卡券奖品，</span>
+		拿到手软
+	</div>
+	<div class="note">
+		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-invite.png') }}" />
+		<span class="highlight">100%随机，</span>
+		绝无作弊
+	</div>
 </div>
 <div class="ranking-note-bottom">
 	<div class="total-point-left">
@@ -44,84 +58,94 @@
             </li>          
         </ul>
     </div>
-    <div class="row tab-remark-1"><div class="col">换购名单实时更新</div></div>    	
-	<div class="row tab-row-header">
-		<div class="col-1 tab-col-header">排名</div>
-		<div class="col-5 tab-col-header-name">名称</div>
-		<div class="col-3 tab-col-header">总收益（元）</div>
-	</div>
-	<div class="row tab-content-my-ranking">
-		<div class="col-1 ranking-number">123</div>
-		<div class="col-5 ranking-name">super man 999</div>
-		<div class="col-3 ranking-point">100</div>
-	</div>
+    <div class="row tab-remark-1"><div class="col">换购名单实时更新</div></div>
     <div class="tab-content">
         <div id="general-ranking" class="tab-pane fade in active">
             <div id="general-list" class="tab-pane fade in active">
-            	<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-one" src="{{ asset('/client/images/ranking/1.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
+            	<div class="tab-content-list">
+            		<div class="line-1">
+						<span class="ranking-phone-number">122****2563</span>
+						<span class="ranking-date">2019-01-01 13:13</span>
+					</div>
+					<div class="line-2">
+						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
+					</div>
 				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-two" src="{{ asset('/client/images/ranking/2.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
+				<div class="tab-content-list">
+            		<div class="line-1">
+						<span class="ranking-phone-number">122****2563</span>
+						<span class="ranking-date">2019-01-01 13:13</span>
+					</div>
+					<div class="line-2">
+						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
+					</div>
 				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-three" src="{{ asset('/client/images/ranking/3.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
+				<div class="tab-content-list">
+            		<div class="line-1">
+						<span class="ranking-phone-number">122****2563</span>
+						<span class="ranking-date">2019-01-01 13:13</span>
+					</div>
+					<div class="line-2">
+						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
+					</div>
 				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">4</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">5</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">6</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
+				<div class="tab-content-list">
+            		<div class="line-1">
+						<span class="ranking-phone-number">122****2563</span>
+						<span class="ranking-date">2019-01-01 13:13</span>
+					</div>
+					<div class="line-2">
+						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
+					</div>
 				</div>
             </div>
         </div>
 
         <div id="my-friend-ranking" class="tab-pane fade">
 	        <div id="my-friend-list" class="tab-pane fade in active">
-	            <div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-one" src="{{ asset('/client/images/ranking/1.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">1000</div>
+	            <div class="tab-content-list">
+            		<div class="line-1">
+						<span class="ranking-phone-number">122****2563</span>
+						<span class="ranking-date">2019-01-01 13:13</span>
+					</div>
+					<div class="line-2">
+						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
+					</div>
 				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-two" src="{{ asset('/client/images/ranking/2.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">900</div>
+				<div class="tab-content-list">
+            		<div class="line-1">
+						<span class="ranking-phone-number">122****2563</span>
+						<span class="ranking-date">2019-01-01 13:13</span>
+					</div>
+					<div class="line-2">
+						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
+					</div>
 				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-three" src="{{ asset('/client/images/ranking/3.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">800</div>
+				<div class="tab-content-list">
+            		<div class="line-1">
+						<span class="ranking-phone-number">122****2563</span>
+						<span class="ranking-date">2019-01-01 13:13</span>
+					</div>
+					<div class="line-2">
+						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
+					</div>
 				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">4</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">103</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">5</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">102</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">6</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">101</div>
+				<div class="tab-content-list">
+            		<div class="line-1">
+						<span class="ranking-phone-number">122****2563</span>
+						<span class="ranking-date">2019-01-01 13:13</span>
+					</div>
+					<div class="line-2">
+						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
+					</div>
 				</div>
 	        </div>                    
         </div>

@@ -21,11 +21,17 @@
 }
 
 .ranking-note-top .description{
-	color: #888 !important;
+	color: #8d36d9 !important;
+    font-size: 0.3rem;
+}
+
+.ranking-note-top .note .icon-note{
+    background-size: contain;
+    width: 0.4rem;
 }
 
 .ranking-note-top .highlight{
-	color: #8d36d9 !important;
+    /*color: #8d36d9 !important;*/
 }
 
 .ranking-note-bottom {
@@ -53,26 +59,14 @@
 	width: 50%;
 }
 
-.ranking-note-bottom .total-point-right .icon-invite{
-    background-size: contain;
-    width: 0.8rem;
-    display: flex;
-    margin: -0.8rem 0 0 2.95rem;
-}
-
 .my-earning-point{
 	font-size: 0.36rem;
-	color: #333
-}
-
-.my-earning-point{
-	font-size: 0.36rem;
-	color: #333
+	color: #e48f00
 }
 
 .my-invitation-count {
 font-size: 0.36rem;
-	color: #333	
+	color: #000	
 }
 
 /* Tabs */
@@ -256,14 +250,44 @@ font-size: 0.36rem;
 }
 
 .ranking .tab-content .tab-content-list{
-	display: flex;
+	/*display: flex;*/
 	color: #b2b2b2;
 	font-size: 0.28rem;
-	/*height: 1rem;*/
+	height: 1.5rem;
     padding: 0.2rem;
     background: #fff;
-    text-align: left;
-    margin: 0;
+    /*text-align: left;*/
+    /*margin: 0;*/
+}
+
+.line-1, .line-2 {
+    height: 0.5rem;
+    padding: 0.1rem;
+}
+
+.ranking .tab-content .tab-content-list .ranking-phone-number{
+    float: left;
+    font-size: 0.3rem;
+    color: #606060;
+}
+
+.ranking .tab-content .tab-content-list .ranking-date{
+    float: right;
+}
+
+.ranking .tab-content .tab-content-list .ranking-product{
+    float: left;
+}
+
+.ranking .tab-content .tab-content-list .ranking-price{
+    float: right;
+    font-size: 0.3rem;
+    color: #606060;
+}
+
+.ranking .tab-content .tab-content-list .icon-coin-ranking{
+    background-size: contain;
+    width: 0.45rem
 }
 
 .tab-content-bottom {
