@@ -26,6 +26,34 @@ class Ledger extends Model
 		return $wallet;
 	}
 	
+	public static function create($userid,$gameid)
+	{
+		$ledger = self::ledger($userid,$gameid);
+		if (!$ledger)
+		{
+			$ledger = new ledger();
+			$ledger->member_id = $userid;
+			$ledger->game_id   = $gameid;
+			$ledger->save();		
+		}		
+		return $ledger->id;
+	}
+	
+	//reserve point
+	
+	public static function reserve($userid,$gameid,$point = 0,$category = 'PNT', $notes = FALSE)
+	{
+		if ($point<=0)
+		{
+			return ['success'=>false,'message'=>'credit value cannot accepted to proceed'];	
+		}
+		
+		$wallet     = self::ledger($userid,$gameid);
+		if ($wallet)
+		{
+		}
+	}
+	
 	public static function credit($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)
 	{
 		if ($credit<=0)
