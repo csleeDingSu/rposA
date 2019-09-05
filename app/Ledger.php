@@ -11,10 +11,20 @@ class Ledger extends Model
     protected $fillable = [
         'member_id','game_id','point','reserved_point','life','bonus_point','bonus_life','used_point','used_life',];
 	
-    protected $table = 'game_ledger';
+    protected $table = 'ledger';
 		
 	protected $table_history = 'game_ledger_history';
 	
+	/*
+	\App\Ledger::credit($memberid , $gameid, $amount , $category , $notes);
+	\App\Ledger::debit($memberid , $gameid, $amount , $category , $notes);
+	*/
+	
+	public static function ledger($userid,$gameid)
+	{
+		$wallet     = Ledger::where('member_id',$userid)->where('game_id',$gameid)->first();
+		return $wallet;
+	}
 	
 	public static function credit($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)
 	{
@@ -24,16 +34,17 @@ class Ledger extends Model
 		}		
 		$uuid       = '';
 		$newcredit  = '';		
-		$prefix     = 'C';
+		$prefix     = 'CP';
 		$action_sym = '1';
-		$wallet     = Ledger::where('user_id',$userid)->first();
+		//Get Ledger detail
+		$wallet     = self::ledger($userid,$gameid);
 		if ($wallet)
 		{
-			$balance_before = $wallet->balance;
-			$newcredit = $wallet->balance + ($credit * $action_sym);			
+			$balance_before = $wallet->point;
+			$newcredit = $wallet->point + ($credit * $action_sym);			
 			//Update Ledger Table			
 			$wallet->exists  = TRUE;
-			$wallet->balance = $newcredit;
+			$wallet->point = $newcredit;
 			$wallet->save();
 			
 			//Insert Ledger History			
@@ -47,10 +58,10 @@ class Ledger extends Model
 					 ,'ledger_type'    => $prefix.$category
 					 ,'notes'          => $notes
 					];
-			
+			//dd($wallet);
 			$uuid = History::add_ledger_history($data);
 			//fire Wallet event  
-			//event(new \App\Events\EventWalletUpdate($userid));
+			event(new \App\Events\EventLedger($userid, $wallet));
 			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
@@ -64,17 +75,17 @@ class Ledger extends Model
 		}		
 		$uuid       = '';
 		$newcredit  = '';		
-		$prefix     = 'D';
+		$prefix     = 'DP';
 		$action_sym = '-1';
-		$wallet     = Ledger::where('user_id',$userid)->first();
+		$wallet     = self::ledger($userid,$gameid);
 		if ($wallet)
 		{
-			$balance_before = $wallet->balance;
-			$newcredit      = $wallet->balance + ($debit * $action_sym);			
+			$balance_before = $wallet->point;
+			$newcredit      = $wallet->point + ($debit * $action_sym);			
 			//Update Ledger Table
 			
 			$wallet->exists  = TRUE;
-			$wallet->balance = $newcredit;
+			$wallet->point   = $newcredit;
 			$wallet->save();
 			
 			//Insert Ledger History
@@ -93,7 +104,7 @@ class Ledger extends Model
 			$uuid = History::add_ledger_history($data);
 			
 			//fire Wallet event  
-			//event(new \App\Events\EventWalletUpdate($userid));
+			event(new \App\Events\EventWalletUpdate($userid));
 			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
