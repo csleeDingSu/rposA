@@ -119,8 +119,6 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/arcade_old', 'ClientController@member_access_game' )->name( 'client.arcade' );
 	//switched to new game screen
 	Route::get( '/arcade/{id?}', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
-	//switched to new game screen - with ranking
-	Route::get( '/arcade_ranking', 'ClientController@member_access_game_ranking' )->name( 'client.arcade_ranking' );
 	
 	Route::get( '/vip', 'ClientController@member_access_vip_node' )->name( 'client.vip' );
 

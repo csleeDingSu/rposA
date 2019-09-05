@@ -33,6 +33,11 @@
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
+
+@if (env('THISVIPAPP', false))
+	@include('client.game-top-nav')
+@endif
+
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
@@ -367,7 +372,15 @@
 			  <div class="btn-trigger"></div>
 		</div>
 		<div style="clear: both;"></div>
+		<!-- end button wrapper -->
+	    </article>
+	   </section>
+	<!-- end progress bar -->
+</div>
 
+@if (env('THISVIPAPP', false))
+	@include('client.game-ranking-vip')
+@else
 		<div class="redeem-banner">
 			<img src="{{ asset('/client/images/vip/redeem-banner.png') }}" alt="share">
 		</div>
@@ -387,14 +400,8 @@
 				<br />
 			</div>
 		</div>
+@endif
 
-		<!-- end button wrapper -->
-	    </article>
-    </section>
-	<!-- end progress bar -->
-
-	
-</div>
 
 @endsection
 

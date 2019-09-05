@@ -599,41 +599,5 @@ class ClientController extends BaseController
 
 		return view('client/download_app',compact('devices', 'isMacDevices', 'title_customize'));
 	}
-
-	public function member_access_game_ranking(Request $request)
-	{
-	
-		if (!Auth::Guard('member')->check())
-		{
-			
-			$member_mainledger = null;
-			$firstwin 		   = null;
-
-			//weixin_verify
-			$this->wx = new WX();
-			if ($this->wx->isWeiXin()) {
-            	$request = new Request;
-            	$request->merge(['goto' => 'arcade_ranking']); 
-	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
-	        } else {
-				return view('client/game-ranking',compact('member_mainledger','firstwin'));
-	        }
-			
-		} else {
-
-			$member_id = Auth::guard('member')->user()->id;
-        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();			
-			if($request->session()->get('firstwin') == 'no'){
-				$firstwin = null;
-			} else {
-				$firstwin = \App\Product::IsFirstWin($member_id);
-			}
-
-			return view('client/game-ranking', compact('member_mainledger','firstwin'));
-
-		}
-
-	}
-	
 	
 }
