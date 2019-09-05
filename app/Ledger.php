@@ -104,7 +104,7 @@ class Ledger extends Model
 			$uuid = History::add_ledger_history($data);
 			
 			//fire Wallet event  
-			event(new \App\Events\EventWalletUpdate($userid));
+			event(new \App\Events\EventLedger($userid, $wallet));
 			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
