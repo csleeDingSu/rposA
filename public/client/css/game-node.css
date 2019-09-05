@@ -22,7 +22,7 @@ body{
     background-position: center top;
     background-attachment: scroll;
     background-color: #8c36d9;
-    height: 11.8rem;
+    height: 10.3rem;
 }
 
 .information-table {
@@ -1230,10 +1230,11 @@ a {
 }
 
 .redeem-banner {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-	margin-top: 0.7rem;
+	padding: 0.4rem 0.4rem 0 0.4rem;
+    text-align: center;
+    margin: 0;
+    height: auto;
+    width: auto;
 }
 
 .redeem-banner img {

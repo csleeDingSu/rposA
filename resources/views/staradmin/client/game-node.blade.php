@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
+    <!-- <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
@@ -38,8 +39,11 @@
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
-<div class="cardBody">
-			<div class="box">
+<div class="cardBody"><div class="box">
+
+@if (env('THISVIPAPP', false))
+	@include('client.game-top-nav')
+@endif
 
 <div class="full-height">
 	<!-- information table -->
@@ -424,30 +428,33 @@
 		</div>
 		<!-- end button wrapper -->
 		<div style="clear: both;"></div>
-
-		<div class="redeem-banner">
-			<img src="{{ asset('/client/images/wheel/banner-title.png') }}" alt="share">
-		</div>
+		
 	    </article>
     </section>
 	<!-- end progress bar -->
 
-	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
-	
+	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />	
 	
 </div>
-{{-- @include('client.product') --}}
-<div class="infinite-scroll">
-	<ul class="list-2">								
-			@include('client.productv2')
-	</ul>
-	{{ $vouchers->links() }}
-	
-	@if (!empty($vouchers))
-		<p class="isnext">下拉显示更多...</p>
-	@endif
 
-</div>
+@if (env('THISVIPAPP', false))
+	@include('client.game-ranking')
+@else
+	<div class="redeem-banner">
+		<img src="{{ asset('/client/images/wheel/banner-title.png') }}" alt="share">
+	</div>
+	<div class="infinite-scroll">
+		<ul class="list-2">								
+				@include('client.productv2')
+		</ul>
+		{{ $vouchers->links() }}
+		
+		@if (!empty($vouchers))
+			<p class="isnext">下拉显示更多...</p>
+		@endif
+
+	</div>
+@endif
 </div></div>
 <!-- go back to top -->
 	<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
@@ -862,10 +869,11 @@
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game-node.js') }}"></script>
+	<!-- <script src="{{ asset('/client/js/game-ranking.js') }}"></script> -->
 	
 @endsection
 
-<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
 
 	@include('client.intromodel')
 
