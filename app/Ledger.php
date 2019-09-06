@@ -32,7 +32,15 @@ class Ledger extends Model
 	reserve($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)		
 	*/	
 	
-	
+	public static function all_ledger($memberid)
+	{
+		$result = DB::table('mainledger')->select('play_count','current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
+			, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint end) as acupoint')
+			)->where('member_id', $memberid)->first();
+		$wallet = Ledger::where('member_id',$userid)->get();
+		
+		return ['mainledger'=>$result,'gameledger'=>$wallet];
+	}
 	public static function mainledger($memberid)
 	{
 		return $result = DB::table('mainledger')->select('play_count','current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
