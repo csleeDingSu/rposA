@@ -43,7 +43,7 @@ class Ledger extends Model
 		{
 			$wallet = $wallet->where('game_id',$gameid);
 		}		
-		$wallet = $wallet->first();
+		$wallet = $wallet->get();
 		return ['mainledger'=>$result,'gameledger'=>$wallet];
 	}
 	public static function mainledger($userid)
