@@ -15,11 +15,11 @@ class Ledger extends Model
 	protected $table_history = 'game_ledger_history';	
 	/*
 	//Add point
-	credit($memberid , $gameid, $amount , $category , $notes);
+	credit($userid , $gameid, $amount , $category , $notes);
 	//Debit point
-	debit($memberid , $gameid, $amount , $category , $notes);
+	debit($userid , $gameid, $amount , $category , $notes);
 	//Get Ledger
-	ledger($memberid , $gameid);
+	ledger($userid , $gameid);
 	//merge to main ledger
 	merge_to_main_ledger($userid,$gameid,$credit)
 	//merge bonus point
@@ -32,20 +32,25 @@ class Ledger extends Model
 	reserve($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)		
 	*/	
 	
-	public static function all_ledger($memberid)
+	public static function all_ledger($userid,$gameid = FALSE)
 	{
 		$result = DB::table('mainledger')->select('play_count','current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
 			, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint end) as acupoint')
-			)->where('member_id', $memberid)->first();
-		$wallet = Ledger::where('member_id',$userid)->get();
+			)->where('member_id', $userid)->first();
 		
+		$wallet = Ledger::where('member_id',$userid);		
+		if ($gameid)
+		{
+			$wallet = $wallet->where('game_id',$gameid);
+		}
+		$wallet = $wallet->get();
 		return ['mainledger'=>$result,'gameledger'=>$wallet];
 	}
-	public static function mainledger($memberid)
+	public static function mainledger($userid)
 	{
 		return $result = DB::table('mainledger')->select('play_count','current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
 			, DB::raw('(case when current_life_acupoint is null then 0 else current_life_acupoint end) as acupoint')
-			)->where('member_id', $memberid)->first();
+			)->where('member_id', $userid)->first();
 	}
 	public static function ledger($userid,$gameid)
 	{

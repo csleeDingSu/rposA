@@ -81,7 +81,7 @@ class GameController extends Controller
 		$gamehistory = $this->get_game_history($request->gameid);	
 		
 		$game_temp   = $this->get_update_game_temp($request);
-		$wallet      = Wallet::get_wallet_details($request->memberid);	
+		$wallet      = Ledger::all_ledger($request->memberid,$request->gameid);	
 		
 		$futureresult= Game::get_future_result($request->gameid, $now );
 		$setting     = \App\Admin::get_setting();
