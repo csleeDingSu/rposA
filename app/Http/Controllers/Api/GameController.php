@@ -518,10 +518,11 @@ class GameController extends Controller
 	
 	public function get_wallet_details(Request $request)
     {
-		$gameid   = $request->gameid;
+		$gameid     = $request->gameid;
 		$memberid   = $request->memberid;
+		$records    = Ledger::all_ledger($request->memberid,$request->gameid);	
+		//$records =  Wallet::get_wallet_details($memberid);
 		
-		$records =  Wallet::get_wallet_details($memberid);
 		return response()->json(['success' => true, 'record' => $records]); 
 	}
 	
