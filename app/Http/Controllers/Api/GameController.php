@@ -14,6 +14,10 @@ use App\member_game_bet_temp;
 
 use App\member_game_notification;
 use App\Package;
+
+use App\Ledger;
+
+
 class GameController extends Controller
 {
     
