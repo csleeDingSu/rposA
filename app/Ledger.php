@@ -44,7 +44,14 @@ class Ledger extends Model
 			$wallet = $wallet->where('game_id',$gameid);
 		}		
 		$wallet = $wallet->get();
-		return ['mainledger'=>$result,'gameledger'=>$wallet];
+		
+		$outwallet = array();
+		foreach ($wallet as $item)
+		{
+		  $outwallet[$item->id] = $item;
+		}
+		
+		return ['mainledger'=>$result,'gameledger'=>$outwallet];
 	}
 	public static function mainledger($userid)
 	{
