@@ -1283,34 +1283,32 @@ class GameController extends Controller
 		$res->deleted_at = $now;
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
-		$gametype = $res->gametype ;
-		
+		$gametype = $res->gametype ;		
 		
 		//check point 				
-		$play_status   = Wallet::get_wallet_details($memberid);
+		$ledger   = Ledger::ledger($memberid, $gameid);
 		
-		if ($play_status->point<1)
+		if ($ledger->point<1)
 		{
 			$res->save();
 			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
 		}		
-		if ($play_status->point< $betamt )
+		if ($ledger->point< $betamt )
 		{
 			$res->save();
 			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
 		}				
-		if ($play_status->life<1)
+		if ($ledger->life<1)
 		{
 			//$res->save();
 			//return response()->json(['success' => false,'message' => 'not enough life to play']);			
-		}
-					
+		}					
 		$input = [
              'gameid'    => $gameid,
 			 'memberid'  => $memberid,
 			 'bet'       => $bet,	
 			 'betamt'    => $betamt,
-              ];		
+              ];	
 			
 		$game_result = \App\Draw::select('result')->where('id',$res->id)->first();		
 		$gen_result  = check_odd_even($game_result);
@@ -1319,15 +1317,13 @@ class GameController extends Controller
 			//win change balance
 			$status = 'win';
 			$is_win = TRUE;				
-		}	
-				
+		}					
 		$now = Carbon::now()->toDateTimeString();	
 		$r_status = 2;		
 		if ($status == 'win') 			
 		{
 			$reward   = 0;			
-			$se_game  = \App\Game::gamesetting($gameid);
-			
+			$se_game  = \App\Game::gamesetting($gameid);			
 			if (!empty($se_game->win_ratio))
 			{	
 				if ($se_game->win_ratio < 1)
@@ -1338,12 +1334,12 @@ class GameController extends Controller
 				$reward = $reward - $betamt;
 			}						
 			$r_status = 1;			
-			Wallet::update_basic_wallet($memberid,0,$reward,'GBA','credit', '.reward for betting');	//GBV - Game Betting 104			
+			Ledger::credit($memberid,$gameid,$reward,'GBA', 'reward for betting'); //GBV - Game Betting 104			
 		}	
 		else
 		{
-			Wallet::update_basic_wallet($memberid,0,$betamt,'GBA','debit', '.deducted for betting');	//GBV - Game Betting 104
-		}				
+			Ledger::debit($memberid,$gameid,$betamt,'GBA', 'amount deducted for betting'); //GBV - Game Betting 104
+		}			
 
 		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'is_win'=>$is_win,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'reward' => $reward];
 		$records =  Game::add_play_history($insdata);				
@@ -1356,8 +1352,7 @@ class GameController extends Controller
 		}		
 		//End
 		$firstwin = '';
-		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
-		
+		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);		
 	}
 	
 	
