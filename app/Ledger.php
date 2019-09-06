@@ -84,7 +84,8 @@ class Ledger extends Model
 
 			//Insert Ledger History			
 			$data = [
-					 'member_id'       => $userid	 
+					 'member_id'       => $userid	
+					 ,'account_id'     => $wallet->id
 					 ,'game_id'        => $gameid
 					 ,'credit'         => $credit
 					 ,'debit'          => 0
@@ -137,7 +138,8 @@ class Ledger extends Model
 			
 			//Insert Ledger History			
 			$data = [
-					 'member_id'       => $userid	 
+					 'member_id'       => $userid	
+					 ,'account_id'     => $wallet->id
 					 ,'game_id'        => $gameid
 					 ,'credit'         => $resered
 					 ,'debit'          => 0
@@ -188,7 +190,8 @@ class Ledger extends Model
 			
 			//Insert Ledger History			
 			$data = [
-					 'member_id'       => $userid	 
+					 'member_id'       => $userid	
+					 ,'account_id'     => $wallet->id
 					 ,'game_id'        => $gameid
 					 ,'credit'         => $resered
 					 ,'debit'          => 0
@@ -228,7 +231,8 @@ class Ledger extends Model
 			
 			//Insert Ledger History			
 			$data = [
-					 'member_id'       => $userid	 
+					 'member_id'       => $userid	
+					 ,'account_id'     => $wallet->id
 					 ,'game_id'        => $gameid
 					 ,'credit'         => $credit
 					 ,'debit'          => 0
@@ -272,7 +276,8 @@ class Ledger extends Model
 			
 			//Insert Ledger History			
 			$data = [
-					 'member_id'       => $userid	 
+					 'member_id'       => $userid
+					 ,'account_id'     => $wallet->id
 					 ,'game_id'        => $gameid
 					 ,'credit'         => $credit
 					 ,'debit'          => 0
@@ -313,6 +318,7 @@ class Ledger extends Model
 			//Insert Ledger History			
 			$data = [
 					 'member_id'       => $userid	 
+					 ,'account_id'     => $wallet->id
 					 ,'game_id'        => $gameid
 					 ,'credit'         => $credit
 					 ,'debit'          => 0
@@ -352,7 +358,8 @@ class Ledger extends Model
 			$wallet->save();			
 			//Insert Ledger History			
 			$data = [
-					 'member_id'       => $userid	 
+					 'member_id'       => $userid
+					 ,'account_id'     => $wallet->id
 					 ,'game_id'        => $gameid
 					 ,'credit'         => 0
 					 ,'debit'          => $debit
