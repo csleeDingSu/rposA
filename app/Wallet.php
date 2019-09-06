@@ -1,8 +1,9 @@
 <?php
 namespace App;
-use Illuminate\Database\Eloquent\Model;
-use DB;
+use App\Ledger;
 use Carbon\Carbon;
+use DB;
+use Illuminate\Database\Eloquent\Model;
 class Wallet extends Model
 {   
     protected $fillable = [
@@ -52,12 +53,16 @@ class Wallet extends Model
 		return $result;
 	}
 	
-	public static function get_wallet_details_all($memberid)
+	public static function get_wallet_details_all($memberid, $isApp = false)
 	{		
 		$result = [];
 		if (!empty($memberid))
-		{			
-			return $result = DB::table('mainledger')->where('member_id', $memberid)->latest()->first();
+		{
+			if ($isApp) {
+				return $result = Ledger::all_ledger($memberid);				
+			} else {
+				return $result = DB::table('mainledger')->where('member_id', $memberid)->latest()->first();	
+			}			
 		}
 		return $result;
 	}

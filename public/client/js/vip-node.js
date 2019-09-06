@@ -22,6 +22,7 @@ var show_default = true;
 var g_betting_history_total = 0;
 var play_count = 0;
 var bet_count = 0;
+var gameid = 103;
 
 $(function () {
 
@@ -144,6 +145,8 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
         var balance = getNumeric(records.point);
+        console.log('balance ' + balance);
+        console.log(records);
         var life = records.life;
         var point = getNumeric(records.point);
         var acupoint =  getNumeric(records.acupoint);
@@ -599,16 +602,26 @@ function startGame() {
 
     $.ajax({
         type: 'POST',
-        url: "/api/wallet-detail?gameid=103&memberid=" + id, 
+        url: "/api/wallet-detail?gameid=" + gameid + "&memberid=" + id, 
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            var wallet_records = data.record;
-            console.log(wallet_records);
-
+            var wallet_records = '';
+            if (data.record.gameledger == '' && data.record.mainledger == '') {
+                wallet_records = data.record;
+            } else if (jQuery.isArray(data.record.gameledger)) {
+                if (data.record.gameledger[gameid] == '' || typeof data.record.gameledger[gameid] === 'undefined') {
+                    wallet_records = data.record.gameledger[0];
+                } else {
+                    wallet_records = data.record.gameledger[gameid];
+                }
+            } else {
+                wallet_records = data.record.mainledger;
+            }
+            
             initUser(wallet_records);
         }
     });

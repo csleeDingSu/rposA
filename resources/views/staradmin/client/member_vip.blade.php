@@ -33,6 +33,7 @@
 @endsection
 
 @section('content')
+{{-- dd($wallet['gameledger']['102']) --}}
 <div class="loading" id="loading"></div>
 <div class="full-height no-header">
 	<div class="container">
@@ -98,36 +99,71 @@
 		<!-- member listing -->
 		<div class="listing-table">
 			<ul class="list-group">
-				<!-- 轮盘抽奖 -->
+				<!-- 购物补贴 -->
 				<li class="list-group-item first-item">
+					<div class="redeembtn">
+						<div class="icon-wrapper">
+							<div class="icon-redeem"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						购物补贴
+						<div class="game-life-count">&yen;<span class="normal-game-balance"></span></div>
+					</div>
+				</li>
+
+				<!-- 轮盘抽奖 -->
+				<li class="list-group-item">
 					<div class="gamebtn">
 						<div class="icon-wrapper">
 							<div class="icon-wheel"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
-						我的场次
-						<div class="game-life-count">剩余<span class="game-life"></span>次</div>
+						剩余次数
+						<div class="game-life-count"><span class="game-life"></span>次</div>
+					</div>
+				</li>
+
+				<!-- 邀请记录 -->
+				<li class="list-group-item">
+					<div class="invitation_list">
+						<div class="icon-wrapper">
+							<div class="icon-add-friend"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						邀请好友
+						<div class="game-life-count"><span class="invite-friend"></span>人</div>
 					</div>
 				</li>
 
 				<!-- 兑换奖品 -->
-				<li class="list-group-item">
+				<!-- <li class="list-group-item">
 					<div class="redeembtn">
 						<div class="icon-wrapper">
 							<div class="icon-redeem"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>兑换奖品
 					</div>
-				</li>				
+				</li> -->				
 
 				<!-- 我的奖品 -->
-				<li class="list-group-item">
+				<!-- <li class="list-group-item">
 					<div class="redeemhistorybtn">
 						<div class="icon-wrapper">
 							<div class="icon-play"></div>
 						</div>
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						我的奖品
+					</div>
+				</li> -->
+
+				<!-- 下单奖励 -->
+				<li class="list-group-item">
+					<div class="btn-receipt">
+						<div class="icon-wrapper">
+							<div class="icon-play-history"></div>
+						</div>
+						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
+						下单奖励
 					</div>
 				</li>
 
@@ -143,7 +179,7 @@
 				</li>
 
 				<!-- 挖宝记录 -->
-				<li class="list-group-item">
+				<!-- <li class="list-group-item">
 					<div class="allhistory">
 						<div class="icon-wrapper">
 							<div class="icon-play-history"></div>
@@ -151,7 +187,7 @@
 						<div class="glyphicon glyphicon-menu-right" aria-hidden="true"></div>
 						转盘记录
 					</div>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 
@@ -352,14 +388,18 @@
 
 		$(document).ready(function () {
 			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
-			var current_point = getNumeric("<?php Print($wallet->current_point);?>");
-			var acupoint = getNumeric("<?php Print($wallet->current_life_acupoint);?>");
+			var normal_game_point = getNumeric("<?php Print($wallet['gameledger']['102']->point);?>");
+			var current_point = getNumeric("<?php Print($wallet['gameledger']['103']->point);?>");
 			var usedpoint = getNumeric("<?php Print($usedpoint);?>");
             var previous_point = Cookies.get('previous_point');
             var wbp = "{{$wbp['wbp']}}";
             var platform = "{{$wbp['platform']}}";
             var browser = "{{$wbp['browser']}}";
             var topupurl = decodeEntities("{{env('TOPUP_URL','#')}}");
+            var game_life = "<?php Print($wallet['gameledger']['102']->life);?>";
+            game_life = game_life > 0 ? game_life : 0;
+
+            $('.normal-game-balance').html(normal_game_point);
             	
         	if (platform == 'iOS') {
 				document.getElementById("button-topup").addEventListener("click", function(evt) {
@@ -395,11 +435,9 @@
                 $('.wabao-coin').html((current_point));
             }
 
-            $('.wabao-acupoint').html(acupoint);
-
             $('.wabao-usedpoint').html(usedpoint);
 
-            $('.game-life').html("<?php Print($member->current_life);?>");
+            $('.game-life').html(game_life);
 
             $('.gamebtn').click(function(){
 				window.location.href = "/arcade";
@@ -436,6 +474,11 @@
 			$('.button-setting').click(function(){
 				// window.location.href = "/edit-setting";
 				window.location.href = "/summary";
+			});
+
+			$('.btn-receipt').click(function(){
+				// window.location.href = "/edit-setting";
+				window.location.href = "/receipt";
 			});
 
 			var clipboard = new ClipboardJS('.cutBtn', {

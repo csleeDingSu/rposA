@@ -155,7 +155,9 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/my_redeem');
 	} );
 	Route::any( '/blog/createform', 'BlogController@createform' )->name( 'client.blog.createform' );
-	Route::any( '/blog/create', 'BlogController@create' )->name( 'client.blog.create' );	
+	Route::any( '/blog/create', 'BlogController@create' )->name( 'client.blog.create' );
+
+	Route::any( '/receipt', 'ReceiptController@index' )->name( 'client.receipt' );	
 } );
 
 //Member routes with member guard
@@ -186,11 +188,22 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	} );
 
 	Route::get( '/redeem', function () {
-		return view( 'client/redeem');
+		//isVIP APP
+		if (env('THISVIPAPP', false) == true) {
+			return view( 'client/redeem_v2');
+		} else {
+			return view( 'client/redeem');
+		}
+		
 	} );
 
 	Route::get( '/redeem/{slug}', function ($slug = '') {
-		return view( 'client/redeem', compact('slug'));
+		if (env('THISVIPAPP', false) == true) {
+			return view( 'client/redeem_v2', compact('slug'));
+		} else {
+			return view( 'client/redeem', compact('slug'));
+		}
+		
 	} );
 
 	Route::get( '/validate', function () {
