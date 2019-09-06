@@ -5,7 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\History;
 
-
 class Ledger extends Model
 {   
     protected $fillable = [
@@ -13,13 +12,25 @@ class Ledger extends Model
 	
     protected $table = 'ledger';
 		
-	protected $table_history = 'game_ledger_history';
-	
+	protected $table_history = 'game_ledger_history';	
 	/*
-	\App\Ledger::credit($memberid , $gameid, $amount , $category , $notes);
-	\App\Ledger::debit($memberid , $gameid, $amount , $category , $notes);
-	*/
-	
+	//Add point
+	credit($memberid , $gameid, $amount , $category , $notes);
+	//Debit point
+	debit($memberid , $gameid, $amount , $category , $notes);
+	//Get Ledger
+	ledger($memberid , $gameid);
+	//merge to main ledger
+	merge_to_main_ledger($userid,$gameid,$credit)
+	//merge bonus point
+	merge_bonus_point($userid,$gameid,$point ,$category, $notes)
+	//merge reserved point
+	merge_reserved_point($userid,$gameid,$point = 0,$category, $notes)
+	//add bonus point
+	bonus($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)
+	//add reserve point
+	reserve($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)		
+	*/	
 	public static function ledger($userid,$gameid)
 	{
 		$wallet     = Ledger::where('member_id',$userid)->where('game_id',$gameid)->first();		
@@ -234,6 +245,7 @@ class Ledger extends Model
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
 	}
+	
 	//reserve point	
 	public static function reserve($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)
 	{
@@ -318,10 +330,11 @@ class Ledger extends Model
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
 	}
 	
-	public static function debit($userid,$debit = 0,$category = 'M', $notes = FALSE)
+	public static function debit($userid,$gameid,$debit = 0,$category = '', $notes = FALSE)
 	{
 		if ($debit<=0)
 		{
+			die('error');
 			return ['success'=>false,'message'=>'debit value cannot accepted to proceed'];	
 		}		
 		$uuid       = '';
@@ -333,14 +346,11 @@ class Ledger extends Model
 		{
 			$balance_before = $wallet->point;
 			$newcredit      = $wallet->point + ($debit * $action_sym);			
-			//Update Ledger Table
-			
+			//Update Ledger Table			
 			$wallet->exists  = TRUE;
 			$wallet->point   = $newcredit;
-			$wallet->save();
-			
-			//Insert Ledger History
-			
+			$wallet->save();			
+			//Insert Ledger History			
 			$data = [
 					 'member_id'       => $userid	 
 					 ,'game_id'        => $gameid
@@ -350,10 +360,8 @@ class Ledger extends Model
 					 ,'balance_after'  => $newcredit
 					 ,'ledger_type'    => $prefix.$category
 					 ,'notes'          => $notes
-					];
-			
-			$uuid = History::add_ledger_history($data);
-			
+					];			
+			$uuid = History::add_ledger_history($data);			
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
 			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
