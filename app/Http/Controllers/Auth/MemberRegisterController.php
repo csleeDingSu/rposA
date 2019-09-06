@@ -259,7 +259,8 @@ class MemberRegisterController extends Controller
 			Members::where('id', $id)
 				->update(['current_life' => $setting->game_default_life]);
 			
-			
+			//create Game Ledgers
+			\App\Ledger::intiateledger($id);
 			
 			//Send Welcome Mail			
 					
