@@ -32,6 +32,28 @@ class Ledger extends Model
 	reserve($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)		
 	*/	
 	
+	
+	//use only at registration 
+	public static function intiateledger($userid,$point = 0)
+	{		
+		$result = \DB::table('games')->get();
+		
+		foreach ($result as $item)
+		{
+		  	$data['member_id'] = $userid;
+			$data['game_id']   = $item->id;
+			
+			$ledger = Ledger::firstOrCreate($data);
+			
+			if ($ledger->wasRecentlyCreated)
+			{
+				$ledger->point = $point;
+				$ledger->save();
+			}
+			$data = [];
+		}		
+	}
+	
 	public static function all_ledger($userid,$gameid = FALSE)
 	{
 		$result = \DB::table('mainledger')->select('play_count','current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
