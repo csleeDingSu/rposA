@@ -48,7 +48,7 @@ class Ledger extends Model
 		$outwallet = array();
 		foreach ($wallet as $item)
 		{
-		  $outwallet[$item->id] = $item;
+		  $outwallet[$item->game_id] = $item;
 		}
 		
 		return ['mainledger'=>$result,'gameledger'=>$outwallet];
