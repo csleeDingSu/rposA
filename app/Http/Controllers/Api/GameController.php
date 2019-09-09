@@ -735,7 +735,7 @@ class GameController extends Controller
 					 ,'debit'          => $crd_debit
 					 ,'balance_before' => $crd_bal_before
 					 ,'balance_after'  => $crd_bal_after
-					 ,'ledger_type'    => 'RPNT'
+					 ,'ledger_type'    => 'CRPNT'
 					];
 					
 					$uuid = \App\History::add_ledger_history($data);
