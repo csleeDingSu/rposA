@@ -21,7 +21,7 @@
 							<tr id="tr_{{ $list->id }}">
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
-								<td>{{ $list->seq }}</td>
+								<td id="ss_{{$list->id}}">{{ $list->seq }}</td>
 								<td id="st_{{$list->id}}">{{ $list->title }}</td>
 								<td id="sc_{{$list->id}}">{{ $list->content }}</td>
 								<td>

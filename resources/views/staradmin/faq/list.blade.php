@@ -38,6 +38,18 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
+								<label for="seq" class="col-sm-3 col-form-label">@lang('dingsu.seq') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<input id="seq" name="seq" class="form-control" type="text" autofocus value="{{ old('seq')}}">
+								</div>
+							</div>
+						</div>
+						
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
 								<label for="code" class="col-sm-3 col-form-label">@lang('dingsu.content')  <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<textarea class="form-control" name="content" id="content" placeholder="{{ old('content')}}">{{ old('content')}}</textarea>
@@ -104,6 +116,8 @@
 								$('#mode').val('edit');
 								$('#title').val(data.title);
 								$('#content').val(data.content);
+								$('#seq').val(data.seq);
+								
 								$('#hidden_void').val(id);
 								
 								$("#savebtn").html('@lang("dingsu.update")');
@@ -171,6 +185,7 @@
 						var id = $('#hidden_void').val();
 						$('#st_'+id).html(data.title);
 						$('#sc_'+id).html(data.content);
+						$('#ss_'+id).html(data.seq);
 						
 					}
 					else
