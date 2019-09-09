@@ -1368,7 +1368,8 @@ class GameController extends Controller
 				
 		if(!$res)
 		{
-			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting') ]);
+			$previous_bet =  member_game_result::where('game_id',$gameid)->where('member_id',$memberid)->latest()->first();
+			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting'),'previous_bet ' => $previous_bet ]);
 		}
 		$res->status     = 1;
 		$res->deleted_at = $now;
@@ -1964,7 +1965,8 @@ class GameController extends Controller
 		
 		if(!$res)
 		{
-			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting')]);
+			$previous_bet =  member_game_result::where('game_id',$gameid)->where('member_id',$memberid)->latest()->first();
+			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting'),'previous_bet ' => $previous_bet ]);
 		}
 		$res->status     = 1;
 		$res->deleted_at = $now;	
