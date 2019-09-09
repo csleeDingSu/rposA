@@ -710,7 +710,7 @@ class GameController extends Controller
 					 ,'ledger_type'    => 'RBAL'
 					];
 					
-					$uuid = History::add_ledger_history($data);
+					$uuid = \App\History::add_ledger_history($data);
 
 					//update point in history table
 					$data = [
@@ -724,7 +724,7 @@ class GameController extends Controller
 					 ,'ledger_type'    => 'RPNT'
 					];
 					
-					$uuid = History::add_ledger_history($data);
+					$uuid = \App\History::add_ledger_history($data);
 
 					//update redeem point in history table
 					$data = [
@@ -738,7 +738,7 @@ class GameController extends Controller
 					 ,'ledger_type'    => 'RPNT'
 					];
 					
-					$uuid = History::add_ledger_history($data);
+					$uuid = \App\History::add_ledger_history($data);
 
 					
 
