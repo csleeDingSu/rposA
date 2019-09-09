@@ -521,11 +521,13 @@ WHERE
 		$input = [
 					'title'   => $dbi['title'], 			 
 					'content' => $dbi['content'],
+					'seq'     => $dbi['seq'],
 			  	 ];
 		
 		$validator = Validator::make($input, [
 			'title'   => 'required|unique:faq,title',
 			'content' => 'required',
+			'seq'     => 'nullable|numeric|min:1|max:99|unique:faq,seq',
 		]);
  
 		
@@ -537,7 +539,7 @@ WHERE
 		
 		
 		$now = Carbon::now();
-		$data = ['title' => $input['title'],'content' => $input['content'],'created_at' => $now];
+		$data = ['seq' => $input['seq'],'title' => $input['title'],'content' => $input['content'],'created_at' => $now];
 		
 		$id = Admin::create_faq($data);
 		
@@ -545,7 +547,8 @@ WHERE
 		$faq  = Admin::get_faq($id);
 		$row  = '<tr id=tr_'.$faq->id.'>';
 		$row .= "<td>$faq->id</td>";
-		$row .= "<td>$now</td>";			
+		$row .= "<td>$now</td>";
+		$row .= '<td>'.$faq->seq.'</td>';			
 		$row .= '<td>'.$faq->title.'</td>';
 		$row .= '<td>'.$faq->content.'</td>';
 		$row .= '<td><a href="javascript:void(0)" data-id="'.$faq->id.'"  class="editfaq btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>';
@@ -563,16 +566,18 @@ WHERE
 		$input = [
 					'title' => $data['title'], 
 					'content'   => $data['content'],
+					'seq'     => $dbi['seq'],
 			  	 ];
 		$validator = Validator::make($input, [
 			 'title' => 'required|unique:faq,title,'.$id,
       		 'content'  => 'required',
+      		 'seq'     => 'nullable|numeric|min:1|max:99|unique:faq,seq',
 		]);
 		if ($validator->fails()) {
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		$insdata = ['title' => $data['title'],
+		$insdata = ['seq' => $data['seq'],'title' => $data['title'],
 				 'content' => $data['content'],];		
 		
 		$res = Admin::update_faq($id,$insdata);		
@@ -592,7 +597,7 @@ WHERE
             ]
         );
 		
-		$data = ['title' => $request->title,
+		$data = ['seq' => $request->seq,'title' => $request->title,
 				 'content' => $request->faq_content,];		
 		
 		$res = Admin::update_faq($id,$data);		

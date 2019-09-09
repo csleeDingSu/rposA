@@ -10,6 +10,7 @@
 							<tr>
 								<th>@lang('dingsu.id')</th>
 								<th>@lang('dingsu.create_Date')</th>
+								<th>@lang('dingsu.seq')</th>
 								<th>@lang('dingsu.title')</th>
 								<th>@lang('dingsu.content')</th>
 								<th class="">@lang('dingsu.action')</th>
@@ -20,6 +21,7 @@
 							<tr id="tr_{{ $list->id }}">
 								<td>{{ $list->id }}</td>
 								<td>{{ $list->created_at }}</td>
+								<td>{{ $list->seq }}</td>
 								<td id="st_{{$list->id}}">{{ $list->title }}</td>
 								<td id="sc_{{$list->id}}">{{ $list->content }}</td>
 								<td>
