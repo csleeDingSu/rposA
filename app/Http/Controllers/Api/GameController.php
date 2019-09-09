@@ -779,10 +779,45 @@ class GameController extends Controller
 							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below '.$max_po.' point']); 
 						}
 					}
+
+					$notes = '';
+					$balance_after = $wallet->acpoint  + $debit ;
+					if ($debit < $wallet->acupoint)
+					{
+						if ($wallet->acupoint > 15)
+						{
+							$purgedpoint = $wallet->acupoint - $debit ;
+							$notes .= $purgedpoint.' points Purged. ';
+						}
+						$notes .= 'Acpoint: '.$debit.' Redeemed';
+					}
+
+					$balance_before = $wallet->point;
+					$balance_after = $wallet->point + $debit;
+					///update ledger
+					$wallet->acupoint = 0;
+					$wallet->point    = $balance_after;
+					$wallet->save();
+
+					//update balance in history table
+
+					$data = [
+					 'member_id'       => $memberid	
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $debit
+					 ,'debit'          => 0
+					 ,'balance_before' => $balance_before
+					 ,'balance_after'  => $balance_after
+					 ,'ledger_type'    => 'APPNT'
+					 ,'notes'          => $notes
+					];
+					
+					$uuid = \App\History::add_ledger_history($data);
 					
 					
 					
-					Wallet::update_ledger($memberid,'acpoint',$debit,$category = 'PNT',$notes = FALSE);
+					//Wallet::update_ledger($memberid,'acpoint',$debit,$category = 'PNT',$notes = FALSE);
 					
 					return response()->json(['success' => true]); 
 					
