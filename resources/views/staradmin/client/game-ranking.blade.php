@@ -6,7 +6,7 @@
 
 <!-- ranking start-->
 <div class="redeem-banner">
-	<img src="{{ asset('/client/images/wheel/banner-title-ranking.png') }}" alt="share">
+	<img src="{{ asset('/client/images/ranking/banner-title-ranking.png') }}" alt="share">
 </div>
 <div class="ranking-note-top">
 	<div class="description">

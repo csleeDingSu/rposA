@@ -6,7 +6,7 @@
 
 <!-- ranking start-->
 <div class="redeem-banner">
-	<img src="{{ asset('/client/images/wheel/banner-title-ranking.png') }}" alt="share">
+	<img src="{{ asset('/client/images/ranking/banner-title-ranking-vip.png') }}" alt="share">
 </div>
 <div class="ranking-note-top">
 	<div class="description">
@@ -44,7 +44,7 @@
             <li class="take-all-space-you-can active">
                 <a class="tab" data-toggle="tab" href="#general-ranking" data-status="general-ranking" id="general">
                     <div class="lbl-general-ranking">
-                    	<img class="icon-trophy" src="{{ asset('/client/images/ranking/trophy-over.png') }}" />收益排名
+                    	<img class="icon-trophy" src="{{ asset('/client/images/ranking/trophy-over.png') }}" />总排名
                     </div>
                 </a>                        
             </li>              
@@ -68,7 +68,7 @@
 						<span class="ranking-date">2019-01-01 13:13</span>
 					</div>
 					<div class="line-2">
-						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
 						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
 					</div>
 				</div>
@@ -78,7 +78,7 @@
 						<span class="ranking-date">2019-01-01 13:13</span>
 					</div>
 					<div class="line-2">
-						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
 						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 						<span class="ranking-date">2019-01-01 13:13</span>
 					</div>
 					<div class="line-2">
-						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
 						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
 					</div>
 				</div>
@@ -98,7 +98,7 @@
 						<span class="ranking-date">2019-01-01 13:13</span>
 					</div>
 					<div class="line-2">
-						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
 						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
 					</div>
 				</div>
@@ -113,7 +113,7 @@
 						<span class="ranking-date">2019-01-01 13:13</span>
 					</div>
 					<div class="line-2">
-						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
 						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
 					</div>
 				</div>
@@ -133,7 +133,7 @@
 						<span class="ranking-date">2019-01-01 13:13</span>
 					</div>
 					<div class="line-2">
-						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
 						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
 					</div>
 				</div>
@@ -143,7 +143,7 @@
 						<span class="ranking-date">2019-01-01 13:13</span>
 					</div>
 					<div class="line-2">
-						<span class="ranking-product"><span class="highlight">换购</span> Beats EP </span>
+						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
 						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
 					</div>
 				</div>
