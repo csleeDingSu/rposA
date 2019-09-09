@@ -606,7 +606,8 @@ class GameController extends Controller
 
 		if ($life == 'yes')
 		{
-			$wallet = Wallet::get_wallet_details($memberid);
+			//$wallet = Wallet::get_wallet_details($memberid);
+			$wallet = Ledger::ledger($memberid, $gameid);
 			
 			$gamelevel = Game::get_member_current_level($gameid, $memberid);
 			
@@ -689,11 +690,64 @@ class GameController extends Controller
 					$crd_bal_after			= $crd_bal_before+$wallet->acupoint;
 					$crd_current_bal		= $crd_bal_after;
 
+					///update ledger
+					$wallet->balance  = $current_balance;
+					$wallet->life     = $current_life;
+					$wallet->acupoint = $current_life_acupoint;
+					$wallet->acupoint = $current_point;
+					$wallet->save();
 
-					Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
-					Wallet::life_redeem_post_ledgerhistory_pnt($memberid,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);
-					Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
-					Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
+					//update balance in history table
+
+					$data = [
+					 'member_id'       => $memberid	
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $credit_bal
+					 ,'debit'          => $debit_bal
+					 ,'balance_before' => $balance_before
+					 ,'balance_after'  => $balance_after
+					 ,'ledger_type'    => 'RBAL'
+					];
+					
+					$uuid = History::add_ledger_history($data);
+
+					//update point in history table
+					$data = [
+					 'member_id'       => $memberid	
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $credit
+					 ,'debit'          => $debit
+					 ,'balance_before' => $award_bal_before
+					 ,'balance_after'  => $award_bal_after
+					 ,'ledger_type'    => 'RPNT'
+					];
+					
+					$uuid = History::add_ledger_history($data);
+
+					//update redeem point in history table
+					$data = [
+					 'member_id'       => $memberid	
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $crd_credit
+					 ,'debit'          => $crd_debit
+					 ,'balance_before' => $crd_bal_before
+					 ,'balance_after'  => $crd_bal_after
+					 ,'ledger_type'    => 'RPNT'
+					];
+					
+					$uuid = History::add_ledger_history($data);
+
+					
+
+
+
+					//Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
+					//Wallet::life_redeem_post_ledgerhistory_pnt($memberid,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);
+					//Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
+					//Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
 
 					//Reset latest member game level
 					Game::reset_member_game_level($memberid , $gameid);					
