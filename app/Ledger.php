@@ -30,9 +30,7 @@ class Ledger extends Model
 	bonus($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)
 	//add reserve point
 	reserve($userid,$gameid,$credit = 0,$category = 'PNT', $notes = FALSE)		
-	*/	
-	
-	
+	*/
 	//use only at registration 
 	public static function intiateledger($userid,$point = 0)
 	{		
@@ -54,6 +52,19 @@ class Ledger extends Model
 		}		
 	}
 	
+	public static function findorcreate($userid,$gameid,$point = 0)
+	{
+		//Ledger::firstOrCreate(['name' => $request->name]);
+		
+			$ledger = new ledger();
+			$ledger->member_id = $userid;
+			$ledger->game_id   = $gameid;
+			$ledger->point     = $point;
+			$ledger->save();		
+		//}		
+		return $ledger;
+	}
+	
 	public static function all_ledger($userid,$gameid = FALSE)
 	{
 		$result = \DB::table('mainledger')->select('play_count','current_balance as balance','current_point as point', 'current_level as level', 'current_life as life','current_betting as bet','vip_life','vip_point'
@@ -63,9 +74,10 @@ class Ledger extends Model
 		$wallet = Ledger::where('member_id',$userid);		
 		if ($gameid)
 		{
-			$wallet = $wallet->where('game_id',$gameid);
-		}		
+			//$wallet = $wallet->where('game_id',$gameid);
+		}
 		$wallet = $wallet->get();
+		
 		
 		$outwallet = array();
 		foreach ($wallet as $item)
@@ -73,7 +85,7 @@ class Ledger extends Model
 		  $outwallet[$item->game_id] = $item;
 		}
 		
-		return ['mainledger'=>$result,'gameledger'=>$outwallet];
+		return ['gameledger'=>$outwallet,'mainledger'=>[]];
 	}
 	public static function mainledger($userid)
 	{
@@ -91,7 +103,7 @@ class Ledger extends Model
 		return $wallet;
 	}
 	
-	public static function create($userid,$gameid)
+	public static function create($userid,$gameid,$point = 0)
 	{
 		//$ledger = self::ledger($userid,$gameid);
 		//if (!$ledger)
@@ -99,6 +111,7 @@ class Ledger extends Model
 			$ledger = new ledger();
 			$ledger->member_id = $userid;
 			$ledger->game_id   = $gameid;
+			$ledger->point     = $point;
 			$ledger->save();		
 		//}		
 		return $ledger;
@@ -424,6 +437,98 @@ class Ledger extends Model
 			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
+	}
+	
+	public static function game_ledger_update($userid,$gameid,$status,$level)
+	{
+		$ledger     = self::ledger($userid,$gameid);
+		if($status=="win")
+		{
+			$ledger->balance  = 120;
+			$bal_be = $ledger->acupoint;
+			$ledger->acupoint = $ledger->acupoint + $level->point_reward;
+			$ledger->played   = $ledger->played + 1;
+			
+			$data = [
+				 'member_id'       => $userid
+				 ,'account_id'     => $ledger->id
+				 ,'game_id'        => $gameid
+				 ,'credit'         => $level->point_reward
+				 ,'debit'          => 0
+				 ,'balance_before' => $bal_be
+				 ,'balance_after'  => $ledger->acupoint
+				 ,'ledger_type'    => 'ABAL'
+				];
+			
+		}
+		if($status=="lose")
+		{			
+			$debit = $ledger->balance - (is_null($level->bet_amount) ? 0 : $level->bet_amount);	
+			$ledger->balance = $debit;				
+			$data = [
+				 'member_id'       => $userid
+				 ,'account_id'     => $ledger->id
+				 ,'game_id'        => $gameid
+				 ,'credit'         => 0
+				 ,'debit'          => $level->bet_amount
+				 ,'balance_before' => $ledger->balance
+				 ,'balance_after'  => $debit
+				 ,'ledger_type'    => 'DBAL'
+				];
+			
+			
+			
+		}
+		
+		
+		$ledger->played   = $ledger->played + 1;
+		$ledger->save();
+		
+		
+					
+		$uuid = History::add_ledger_history($data);		
+		
+		return ['status'=>$status,'ledger'=>$ledger ];	
+	}
+	
+	
+	public static function playable_status($userid,$gameid,$gamelevel)
+	{
+		$playablestatus    = false;
+		$redeempointstatus = false;
+		
+		$acpoint = \Config::get('app.coin_max') ;
+		
+		if (empty($acpoint)) $acpoint = 15;
+		
+		$ledger     = self::ledger($userid,$gameid);
+		
+		$game_levels = \DB::table('game_levels')->where('id', $gamelevel)->get()->first();
+		$current_balance = isset($ledger->balance) ? $ledger->balance : 0;
+		$bet_amount = isset($game_levels->bet_amount) ? $game_levels->bet_amount : 0;
+		$current_life_acupoint= isset($ledger->acupoint) ? $ledger->acupoint : 0;
+		
+		if ($ledger->life >=1)
+		{
+			if($current_balance>=$bet_amount && $current_life_acupoint<$acpoint){
+				$playablestatus = true;
+				$redeempointstatus = false;
+			}else if($current_life_acupoint>=$acpoint){
+				$redeempointstatus = true;
+				$playablestatus = false;
+			}else{
+				$playablestatus = false;
+				$redeempointstatus = false;
+			}
+		}
+		$point = $ledger->point;
+		if ($ledger->point < $game_levels->bet_amount)
+		{
+			$point = 0;
+		}
+		
+
+		return ['playablestatus' => $playablestatus, 'redeempointstatus' => $redeempointstatus, 'life' => $ledger->life, 'point' => $point];
 	}
 	
 	
