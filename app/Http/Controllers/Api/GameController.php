@@ -694,7 +694,7 @@ class GameController extends Controller
 					$wallet->balance  = $current_balance;
 					$wallet->life     = $current_life;
 					$wallet->acupoint = $current_life_acupoint;
-					$wallet->acupoint = $current_point;
+					$wallet->point    = $current_point;
 					$wallet->save();
 
 					//update balance in history table
