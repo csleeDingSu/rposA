@@ -566,7 +566,7 @@ WHERE
 		$input = [
 					'title' => $data['title'], 
 					'content'   => $data['content'],
-					'seq'     => $dbi['seq'],
+					'seq'     => $data['seq'],
 			  	 ];
 		$validator = Validator::make($input, [
 			 'title' => 'required|unique:faq,title,'.$id,
