@@ -31,6 +31,8 @@
 							<input type="hidden" name="show_wechat_status_{{ $list->id }}" id="show_wechat_status_{{ $list->id }}" value="{{ $list->wechat_verification_status }}">
 							
 							<input type="hidden" name="show_wechat_name_{{ $list->id }}" id="show_wechat_name_{{ $list->id }}" value="{{ $list->wechat_name }}">
+
+							<input type="hidden" name="show_wechat_id_{{ $list->id }}" id="show_wechat_id_{{ $list->id }}" value="{{ $list->wechat_id }}">
 							
 							<input type="hidden" name="show_status_{{ $list->id }}" id="show_status_{{ $list->id }}" value="{{ $list->member_status }}">
 							

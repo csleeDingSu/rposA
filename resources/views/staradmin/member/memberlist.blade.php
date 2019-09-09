@@ -24,7 +24,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
-								<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.wechat') @lang('dingsu.name') <span class="text-danger">*</span></label>
+								<label for="model_wechat_name" class="col-sm-3 col-form-label">@lang('dingsu.wechat') @lang('dingsu.name') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="model_wechat_name" id="model_wechat_name" value="">
 								</div>
@@ -34,7 +34,17 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
-								<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
+								<label for="model_wechat_id" class="col-sm-3 col-form-label">@lang('dingsu.wechat') @lang('dingsu.id') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="model_wechat_id" id="model_wechat_id" value="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
+								<label for="model_wechat_status" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="model_wechat_status" id="model_wechat_status">
 										<option value="0">@lang('dingsu.verified')</option>
@@ -360,12 +370,14 @@
 	{
 		var wename = $("#show_wechat_name_"+id).val();		
 		var status = $("#show_wechat_status_"+id).val();
+		var wechat_id = $("#show_wechat_id_"+id).val();
 		
 		$('#hidden_void').val(id);
 		$('#notes').val(notes);
 		$('#validation-errors').html('');
 		$("#model_wechat_status").val(status);		
 		$("#model_wechat_name").val(wename);		
+		$("#model_wechat_id").val(wechat_id);	
 		$('#editwechatstatusmode').modal('show');
 	}
 	
@@ -578,7 +590,10 @@
 					$(".show_wechat_verification_"+id).html(result.badge);
 					
 					$("#show_wechat_name_"+id).val(result.wechat_name);		
-					$("#show_wechat_status_"+id).val(result.wechat_status);	
+					$("#show_wechat_status_"+id).val(result.wechat_status);
+
+					$("#show_wechat_id_"+id).val(result.wechat_id);
+					$(".show_wechat_id_"+id).val(result.wechat_id);	
 				}
 			},
 			error: function ( xhr, ajaxOptions, thrownError ) {
