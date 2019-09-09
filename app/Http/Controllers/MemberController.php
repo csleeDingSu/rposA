@@ -242,9 +242,10 @@ class MemberController extends BaseController
 			$dbi[$val['name']] = $val['value'];		
 		}
 		
-		$id     = $dbi['hidden_void'];
-		$status = $dbi['model_wechat_status'];
-		$wechat = $dbi['model_wechat_name'];
+		$id       = $dbi['hidden_void'];
+		$status   = $dbi['model_wechat_status'];
+		$wechat   = $dbi['model_wechat_name'];
+		$wechatid = $dbi['model_wechat_id'];
 		
 		$record = Member::find($id);
 		if ($record)
@@ -253,6 +254,7 @@ class MemberController extends BaseController
 			
 			$input = [
 				 'wechat_name'   => $wechat,
+				 'wechat_id'     => $wechatid,
 				 'notes'         => $dbi['notes']
 				  ];			
 			
@@ -270,7 +272,7 @@ class MemberController extends BaseController
 			}	
 			else
 			{
-				$data = ['wechat_name'=> $wechat,'wechat_verification_status'=>$status,'wechat_notes'=>$dbi['notes']];
+				$data = ['wechat_id'=> $wechatid,'wechat_name'=> $wechat,'wechat_verification_status'=>$status,'wechat_notes'=>$dbi['notes']];
 				$res = Member::update_member($record->id,$data);
 			}	
 			
@@ -292,7 +294,7 @@ class MemberController extends BaseController
 					
 			}
 			
-			return response()->json(['success' => true,'wechat_name'=>$wechat,'wechat_status'=>$status,'badge'=>$badge]);
+			return response()->json(['success' => true,'wechat_id'=>$wechatid,'wechat_name'=>$wechat,'wechat_status'=>$status,'badge'=>$badge]);
 		}		
 		return response()->json(['success' => false]);
 	}
