@@ -2520,8 +2520,10 @@ class GameController extends Controller
 			$ranks = $ranks->where('game_id',$request->gameid);
 		}
 				
-		$ranks  = $ranks->where('ledger_type' , 'LIKE' ,'AP%')
-					 	->orwhere('ledger_type' , 'CRPNT')
+		$ranks  = $ranks->where(function($query) {
+							$query->where('ledger_type' , 'LIKE' ,'AP%');
+							$query->orWhere('ledger_type' , 'CRPNT');
+						})
 						->join('members', 'members.id', '=', \App\History::getTableName().'.member_id')
 						->groupby('member_id','game_id')
 						->orderBy('rank','ASC')
@@ -2557,8 +2559,11 @@ class GameController extends Controller
 			$fr_ranks = $fr_ranks->where('game_id',$request->gameid);
 		}
 
-		$fr_ranks  = $fr_ranks->where('ledger_type' , 'LIKE' ,'AP%')
-						->orwhere('ledger_type' , 'CRPNT')						
+		$fr_ranks  = $fr_ranks
+						->where(function($query) {
+										$query->where('ledger_type' , 'LIKE' ,'AP%');
+										$query->orWhere('ledger_type' , 'CRPNT');
+									})					
 						->groupby('member_id','game_id')
 						->orderBy('rank','ASC')
 						->join('members', 'members.id', '=', \App\History::getTableName().'.member_id')
