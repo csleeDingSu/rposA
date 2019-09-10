@@ -1,0 +1,22 @@
+.card-header h2{
+    height: 1rem;
+    line-height: 1rem !important;
+    position: relative;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.step-img {
+	width: 7rem;
+    padding: 0 1rem 0.2rem 1rem;
+}
+
+.step-title {
+	padding: 0.2rem;
+    font-size: 0.3rem;
+    color: #3d3d3d;
+}
+
+.step-title .step-number {
+	color: #108ee9;
+}
+

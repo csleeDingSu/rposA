@@ -41,5 +41,10 @@ class ReceiptController extends Controller
         return view('client.receipt', compact('receipt'));
     }
 
+    public function showGuide()
+    {
+        return view('client.receipt_guide');
+    }
+
    
 }
