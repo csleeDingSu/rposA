@@ -79,6 +79,7 @@ class RankGenerator extends Command
 			$newrank = 1;
 			foreach ($ranks->chunk(200) as $records)
 			{
+				dd($records);
 				foreach ($records as $row)
 				{
 					$this->line('-- update ranks for member : '.$row->member_id);
