@@ -2529,7 +2529,7 @@ class GameController extends Controller
 		{
 			$rows = $rows->limit(20)->get();
 		}	
-		return response()->json(['success' => true, 'record' => $records]); 
+		return response()->json(['success' => true, 'record' => $rows]); 
 	}
 	
 	
