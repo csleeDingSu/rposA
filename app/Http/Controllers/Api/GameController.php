@@ -2508,7 +2508,7 @@ class GameController extends Controller
 		return response()->json(['success' => true, 'record' => $records]); 
 	}
 	
-	public function list_user_by_earned_point(Request $request)
+	public function old_list_user_by_earned_point(Request $request)
     {
 				
 		//Global Ranks
@@ -2580,7 +2580,53 @@ class GameController extends Controller
 	}
 	
 	
-	
+	public function list_user_by_earned_point(Request $request)
+    {
+		
+		//Global Ranks
+		$ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone')		
+					->where('game_id',$request->gameid)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->limit(30)
+					->orderby('rank','ASC')
+					->get();
+		//End global rank
+		
+		//Current User rank
+		
+		$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone')		
+					->where('game_id',$request->gameid)
+					->where('member_id',$request->memberid)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->first();
+		$row->first();
+		
+		//dd($row);
+		//End
+		
+		//Friends rank
+		$fr_ranks = [];
+		
+		\DB::connection()->enableQueryLog();
+		$fr_ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone')
+			->where('game_id',$request->gameid)
+		    ->whereIn('member_id', function($query) use ($request) {
+							$query->select('id')
+							->from('members')
+							->where('referred_by', $request->memberid);
+						})
+			->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+			->orderby('rank','ASC')
+			->get();
+		//End
+		$queries = \DB::getQueryLog();		
+		
+		//dd($queries);
+		
+		
+		
+		return response()->json(['success' => true, 'my_rank' => $row, 'friends_rank' => $fr_ranks , 'global_ranks' => $ranks]); 
+	}
 	
 
 }
