@@ -142,6 +142,9 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
+        
+        records = records.gameledger['103'];
+
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
         var balance = getNumeric(records.point);
@@ -609,19 +612,7 @@ function startGame() {
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            var wallet_records = '';
-            if (data.record.gameledger == '' && data.record.mainledger == '') {
-                wallet_records = data.record;
-            } else if (jQuery.isArray(data.record.gameledger)) {
-                if (data.record.gameledger[gameid] == '' || typeof data.record.gameledger[gameid] === 'undefined') {
-                    wallet_records = data.record.gameledger[0];
-                } else {
-                    wallet_records = data.record.gameledger[gameid];
-                }
-            } else {
-                wallet_records = data.record.mainledger;
-            }
-            
+            var wallet_records = data.record;
             initUser(wallet_records);
         }
     });

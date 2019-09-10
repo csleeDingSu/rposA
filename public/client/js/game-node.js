@@ -143,6 +143,11 @@ function initUser(records){
         $('.wallet-point').html(0);
         $('.packet-point').html(0);
     } else {
+        
+        records = records.gameledger['102'];
+        console.log(records);
+        console.log(records.life);
+
         var balance = parseInt(records.balance);
         var life = records.life;
         g_life = life;
@@ -173,6 +178,8 @@ function initUser(records){
         $("#nTxt").val(life);
         $(".spanLife").html(life);
         $(".span-play-count").html(play_count);
+
+        $('.btn-life').html('剩'+life+'次');
 
         setBalance();
 
@@ -462,6 +469,25 @@ function startGame() {
     var id = $('#hidUserId').val();
 
     $.ajax({
+        type: 'POST',
+        url: "/api/wallet-detail?gameid=102&memberid=" + id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error.message);
+            $(".reload").show();
+        },
+        success: function(data) {
+            var wallet_records = data.record;
+
+            initUser(wallet_records);
+        }
+    });
+
+    $.ajax({
         type: 'GET',
         url: "/api/game-setting?gameid=102&memberid=" + id, 
         dataType: "json",
@@ -493,24 +519,6 @@ function startGame() {
         }
     });
 
-    $.ajax({
-        type: 'POST',
-        url: "/api/wallet-detail?gameid=102&memberid=" + id, 
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) {
-            console.log(error);
-            alert(error.message);
-            $(".reload").show();
-        },
-        success: function(data) {
-            var wallet_records = data.record;
-
-            initUser(wallet_records);
-        }
-    });
 }
 
 function resetGame() {

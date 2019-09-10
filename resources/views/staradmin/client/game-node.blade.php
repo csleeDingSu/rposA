@@ -761,7 +761,7 @@
 	<script type="text/javascript">
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
-    	var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
+    	// var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
 			
@@ -809,11 +809,11 @@
 	            });
 
 			} else {
-				if (life == 0 && user_id > 0) {
-	                $('.button-card').click( function() {
-	                    $('#reset-life-share').modal();
-	                });
-	            }
+				// if (life == 0 && user_id > 0) {
+	   //              $('.button-card').click( function() {
+	   //                  $('#reset-life-share').modal();
+	   //              });
+	   //          }
 			}
 
             //execute scroll pagination
