@@ -2507,5 +2507,33 @@ class GameController extends Controller
 		$records = Game::today_play_statistics($request->memberid,$request->gameid);
 		return response()->json(['success' => true, 'record' => $records]); 
 	}
+	
+	public function list_user_by_earned_point(Request $request)
+    {
+		$rows = \DB::table('a_ranking_view')->orderby('credit','DESC');
+		
+		if ($request->filled('gameid')) 
+		{
+			$rows = $rows->where('game_id',$request->gameid);
+		}
+		if ($request->filled('memberid')) 
+		{
+			$rows = $rows->where('member_id',$request->memberid);
+		}
+		
+		if ($request->filled('paginate')) 
+		{
+			$rows =  $rows->paginate(20);
+		}
+		else
+		{
+			$rows = $rows->limit(20)->get();
+		}	
+		return response()->json(['success' => true, 'record' => $records]); 
+	}
+	
+	
+	
+	
 
 }
