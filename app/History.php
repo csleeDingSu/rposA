@@ -17,7 +17,13 @@ class History extends Model
 		$history->uuid = $uuid = unique_numeric_random((new static)->getTable(), 'uuid', 15);			
 		$history->save();
 		return $uuid;
-	}	
+	}
+	
+	
+	public static function getTableName()
+    {
+        return with(new static)->getTable();
+    }
 }
 
 
