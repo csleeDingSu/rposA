@@ -2510,26 +2510,68 @@ class GameController extends Controller
 	
 	public function list_user_by_earned_point(Request $request)
     {
-		$rows = \DB::table('a_ranking_view')->orderby('credit','DESC');
+				
+		//Global Ranks
+		$select = \DB::raw("@i := coalesce(@i + 1, 1) rank, sum(credit) as credit, member_id, game_id,phone,wechat_name,username");
+		$ranks  = \App\History::select($select);
 		
 		if ($request->filled('gameid')) 
 		{
-			$rows = $rows->where('game_id',$request->gameid);
+			$ranks = $ranks->where('game_id',$request->gameid);
 		}
-		if ($request->filled('memberid')) 
-		{
-			$rows = $rows->where('member_id',$request->memberid);
-		}
+				
+		$ranks  = $ranks->where('ledger_type' , 'LIKE' ,'AP%')
+					 	->orwhere('ledger_type' , 'CRPNT')
+						->join('members', 'members.id', '=', \App\History::getTableName().'.member_id')
+						->groupby('member_id','game_id')
+						->orderBy('rank','ASC')
+						->limit(30)
+						->get();
+		//End global rank
 		
-		if ($request->filled('paginate')) 
+		//Current User rank
+		
+		$select = \DB::raw("(SELECT COUNT(*) FROM a_rank_view WHERE game_id = 102) AS rank, member_id, game_id,credit,debit");
+		$row    = \DB::table('a_rank_view');
+		$row    = $row->select($select);
+		if ($request->filled('gameid')) 
 		{
-			$rows =  $rows->paginate(30);
+			$row = $row->where('game_id',$request->gameid);
 		}
-		else
+		$row = $row->where('member_id',$request->memberid);
+		
+		$row    = $row->first();
+		
+		//dd($row);
+		//End
+		
+		//Friends rank
+		$fr_ranks = [];
+		
+		
+		$select = \DB::raw("@j := coalesce(@j + 1, 1) rank, sum(credit) as credit, member_id, game_id,phone,wechat_name,username");
+		$fr_ranks  = \App\History::select($select);
+
+		if ($request->filled('gameid')) 
 		{
-			$rows = $rows->limit(30)->get();
-		}	
-		return response()->json(['success' => true, 'record' => $rows]); 
+			$fr_ranks = $fr_ranks->where('game_id',$request->gameid);
+		}
+
+		$fr_ranks  = $fr_ranks->where('ledger_type' , 'LIKE' ,'AP%')
+						->orwhere('ledger_type' , 'CRPNT')						
+						->groupby('member_id','game_id')
+						->orderBy('rank','ASC')
+						->join('members', 'members.id', '=', \App\History::getTableName().'.member_id')
+						->whereIn('member_id', function($query) use ($request) {
+							$query->select('id')
+							->from('members')
+							->where('referred_by', $request->memberid);
+						})
+						->limit(30)
+						->get();
+		//End
+		
+		return response()->json(['success' => true, 'my_rank' => $row, 'friends_rank' => $fr_ranks , 'global_ranks' => $ranks]); 
 	}
 	
 	
