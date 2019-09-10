@@ -2523,11 +2523,11 @@ class GameController extends Controller
 		
 		if ($request->filled('paginate')) 
 		{
-			$rows =  $rows->paginate(20);
+			$rows =  $rows->paginate(30);
 		}
 		else
 		{
-			$rows = $rows->limit(20)->get();
+			$rows = $rows->limit(30)->get();
 		}	
 		return response()->json(['success' => true, 'record' => $rows]); 
 	}
