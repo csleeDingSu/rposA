@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Draw;
-class GenerateResult extends Command
+class BatchData extends Command
 {
     /**
      * The name and signature of the console command.
