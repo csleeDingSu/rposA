@@ -4,8 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Carbon\Carbon;
-use App\Draw;
-class BatchData extends Command
+class Batch extends Command
 {
     /**
      * The name and signature of the console command.
