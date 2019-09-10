@@ -2584,7 +2584,7 @@ class GameController extends Controller
     {
 		
 		//Global Ranks
-		$ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone')		
+		$ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
 					->where('game_id',$request->gameid)
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
 					->limit(30)
@@ -2594,7 +2594,7 @@ class GameController extends Controller
 		
 		//Current User rank
 		
-		$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone')		
+		$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
 					->where('game_id',$request->gameid)
 					->where('member_id',$request->memberid)
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
@@ -2608,7 +2608,7 @@ class GameController extends Controller
 		$fr_ranks = [];
 		
 		\DB::connection()->enableQueryLog();
-		$fr_ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone')
+		$fr_ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')
 			->where('game_id',$request->gameid)
 		    ->whereIn('member_id', function($query) use ($request) {
 							$query->select('id')
