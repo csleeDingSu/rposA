@@ -81,7 +81,7 @@ class RankGenerator extends Command
 			{
 				foreach ($records as $row)
 				{
-					$this->line('-- update ranks for game : '.$game->id);
+					$this->line('-- update ranks for member : '.$row->member_id);
 					$rank = \App\Rank::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
 					$rank->rank   = $newrank;
 					$rank->credit = $row->credit;
