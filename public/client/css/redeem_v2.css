@@ -1616,3 +1616,87 @@ textarea {
     float: left;
     margin: 0.15rem 0.1rem 0.15rem 0.2rem;
 }
+
+#viewvouchermode_convert_coint .modal-dialog{
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    display: block;
+}
+#viewvouchermode_convert_coint .modal-dialog .modal-content{
+	width: 100%;
+    border-radius: 0;
+    background: #fff;
+}
+
+#viewvouchermode_convert_coint .header {
+	height: auto;
+	color: #333;
+	font-size: 0.3rem;
+}
+
+#viewvouchermode_convert_coint .header .title{
+	float: left;
+	padding: 0;
+}
+
+#viewvouchermode_convert_coint .header .balance{
+	float: right;
+	color: #b3b3b3;
+	font-size: 0.28rem;
+}
+
+#viewvouchermode_convert_coint .header .balance .balance-value{
+	color: #ffa414;
+	font-size: 0.28rem;
+	font-weight: 500;
+}
+
+#viewvouchermode_convert_coint .content{
+	display: inline-flex;
+	margin: 0;
+	padding: 0;
+}
+
+#viewvouchermode_convert_coint .content-amount{
+    background: #f8f8f8;
+    text-align: center;
+    padding: 0.2rem 0.1rem;
+    font-size: 0.3rem;
+    color: #7e7e7e;
+    border-radius: 10px;
+    margin: 0 0.1rem;
+    height: 1.3rem;
+    width: 2.1rem;
+    cursor: pointer;
+}
+
+#viewvouchermode_convert_coint .active, .content-amount:hover {
+  background-color: #ffa414;
+  color: #fff;
+}
+
+#viewvouchermode_convert_coint .content-amount .icon-coin-small {
+	width: 0.55rem;
+    padding: 0.1rem;
+    margin: -0.06rem 0 0 -0.1rem;
+}
+
+#viewvouchermode_convert_coint .content-amount .content-price {
+	font-size: 0.26rem;
+	display: inline-block;
+}
+
+#viewvouchermode_convert_coint .btn_confirm {
+	color: #fff;
+    font-size: 0.36rem;
+    background: #ffa414;
+    border-radius: 100px;
+    margin: 0.2rem;
+    padding: 0.2rem;
+    width: 90%;
+}
+

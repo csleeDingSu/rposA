@@ -388,15 +388,15 @@
 
 		$(document).ready(function () {
 			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
-			var normal_game_point = getNumeric("<?php Print($wallet['gameledger']['102']->point);?>");
-			var current_point = getNumeric("<?php Print($wallet['gameledger']['103']->point);?>");
+			var normal_game_point = getNumeric("<?php Print(empty($wallet['gameledger']['102']->point) ? 0 : $wallet['gameledger']['102']->point);?>");
+			var current_point = getNumeric("<?php Print(empty($wallet['gameledger']['103']->point) ? 0 : $wallet['gameledger']['103']->point);?>");
 			var usedpoint = getNumeric("<?php Print($usedpoint);?>");
             var previous_point = Cookies.get('previous_point');
             var wbp = "{{$wbp['wbp']}}";
             var platform = "{{$wbp['platform']}}";
             var browser = "{{$wbp['browser']}}";
             var topupurl = decodeEntities("{{env('TOPUP_URL','#')}}");
-            var game_life = "<?php Print($wallet['gameledger']['102']->life);?>";
+            var game_life = "<?php Print(empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life);?>";
             game_life = game_life > 0 ? game_life : 0;
 
             $('.normal-game-balance').html(normal_game_point);

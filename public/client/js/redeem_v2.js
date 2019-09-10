@@ -1122,7 +1122,7 @@ function getConvertCointInfo(softpinCount, token, current_point) {
 
     html += '<div class="row">' +
             '<div class="col-xs-3 column-1">' +
-                '<img class="img-voucher" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
+                '<img class="img-voucher" src="/client/images/normal-point-to-vip-point/icon-coin-big.png" alt="兑换挖宝币">' +
             '</div>' +
             '<div class="col-xs-6 column-2">' +
                 '<div class="description">挖宝币<div class="description-info">用于高级抽奖兑换奖品</div></div>' +
@@ -1139,27 +1139,64 @@ function getConvertCointInfo(softpinCount, token, current_point) {
                             '<div class="modal-content">' +
                                 '<div class="modal-body">' +
                                     '<div class="modal-row">' +
-                                        '<div class="modal-img-voucher">' +
-                                            '<img src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币" class="img-voucher" />' +
-                                        '</div>' +
 
                                         '<div class="wrapper modal-full-height">' +
-                                            '<div class="modal-card">' +
-                                                '<div class="modal-center">' +
-                                                    '兑换本产品需要消耗:' +
+                                            '<div class="row header">' +
+                                                '<div class="title">' +
+                                                    '兑换挖宝币' +
+                                                '</div>' +
+                                                '<div class="balance">' +
+                                                    '可兑换红包 <span class="balance-value">' + getNumeric(current_point) + '</span>元' +
                                                 '</div>' +
                                             '</div>' +
-
-                                            '<div class="modal-card">' +
-                                                    '<div class="wabao-price">123</div>' +
+                                            '<div class="row content">' +
+                                                '<a href="#" onclick="selectContentAmountValue(120);">' +
+                                                '<div class="content-amount" id="120">' +
+                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
+                                                    '120' +
+                                                    '<span class="content-price">售价 12 元</span>' +
+                                                '</div>' +
+                                                '</a>' +
+                                                '<a href="#" onclick="selectContentAmountValue(240);">' +
+                                                '<div class="content-amount" id="240">' +
+                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
+                                                    '240' +
+                                                    '<span class="content-price">售价 24 元</span>' +
+                                                '</div>' +
+                                                '</a>' +
+                                                '<a href="#" onclick="selectContentAmountValue(360);">' +
+                                                '<div class="content-amount" id="360">' +
+                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
+                                                    '360' +
+                                                    '<span class="content-price">售价 36 元</span>' +
+                                                '</div>' +
+                                                '</a>' +
                                             '</div>' +
-
-                                            '<div class="modal-card">' +
-                                                '<div class="wabao-balance">您当前拥有 '+ getNumeric(current_point) +' ' + txt_coin + '</div>' +
+                                            '<div class="row content">' +
+                                                '<a href="#" onclick="selectContentAmountValue(480);">' +
+                                                '<div class="content-amount" id="480">' +
+                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
+                                                    '480' +
+                                                    '<span class="content-price">售价 48 元</span>' +
+                                                '</div>' +
+                                                '</a>' +
+                                                '<a href="#" onclick="selectContentAmountValue(720);">' +
+                                                '<div class="content-amount" id="720">' +
+                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
+                                                    '720' +
+                                                    '<span class="content-price">售价 72 元</span>' +
+                                                '</div>' +
+                                                '</a>' +
+                                                '<a href="#" onclick="selectContentAmountValue(1440);">' +
+                                                '<div class="content-amount" id="1440">' +
+                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
+                                                    '1440' +
+                                                    '<span class="content-price">售价 144 元</span>' +
+                                                '</div>' +
                                             '</div>';
 
                                     htmlmodel += '<div>' +
-                                                '<a href="#" class="btn btn_cancel" data-dismiss="modal">暂不能兑换</a>' +
+                                                '<a href="#" class="btn btn_confirm">确认兑换</a>' +
                                                 '</div>';
                                                     
 
@@ -1171,6 +1208,8 @@ function getConvertCointInfo(softpinCount, token, current_point) {
                     '</div>' + 
                     '<!-- Modal Ends -->';
 
+    htmlmodel += '<input id="hidSelectedContentAmountValue" type="hidden" value="">'; 
+
     $('#newProduct').html(html);
     $( ".cardFull" ).after(htmlmodel);
 
@@ -1178,8 +1217,14 @@ function getConvertCointInfo(softpinCount, token, current_point) {
         $('#viewvouchermode_convert_coint').modal('show');
     });
 
-
-    $('.btn-close-card').click(function() {
-        $('#card-no-modal').modal('hide');
+    $('.btn_confirm').click(function() {        
+        var selected = $('#hidSelectedContentAmountValue').val();
+        alert(selected);
     });
+}
+
+function selectContentAmountValue(value) {
+    $('.content-amount').removeClass('active');
+    $('#' + value).addClass('active');
+    $('#hidSelectedContentAmountValue').val(value);
 }
