@@ -150,7 +150,7 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/get-summary', 'MemberController@get_summary')->name('get_summary');
 	
 	
-	Route::any('point-earned', 'GameController@list_user_by_earned_point')->name('list_user_by_earned_point');
+	Route::any('/point-earned', 'GameController@list_user_by_earned_point')->name('list_user_by_earned_point');
 	
 	
 });
