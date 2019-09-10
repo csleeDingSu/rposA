@@ -61,71 +61,11 @@
     <div class="tab-content">
         <div id="general-ranking" class="tab-pane fade in active">
             <div id="general-list" class="tab-pane fade in active">
-            	<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-one" src="{{ asset('/client/images/ranking/1.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-two" src="{{ asset('/client/images/ranking/2.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-three" src="{{ asset('/client/images/ranking/3.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">4</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">5</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">6</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">100</div>
-				</div>
             </div>
         </div>
 
         <div id="my-friend-ranking" class="tab-pane fade">
 	        <div id="my-friend-list" class="tab-pane fade in active">
-	            <div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-one" src="{{ asset('/client/images/ranking/1.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">1000</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-two" src="{{ asset('/client/images/ranking/2.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">900</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number"><img class="icon-three" src="{{ asset('/client/images/ranking/3.png') }}" /></div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">800</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">4</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">103</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">5</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">102</div>
-				</div>
-				<div class="row tab-content-list">
-					<div class="col-1 ranking-number">6</div>
-					<div class="col-5 ranking-name">super man 999</div>
-					<div class="col-3 ranking-point">101</div>
-				</div>
 	        </div>                    
         </div>
     </div>

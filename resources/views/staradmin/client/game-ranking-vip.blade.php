@@ -61,47 +61,17 @@
     <div class="row tab-remark-1"><div class="col">换购名单实时更新</div></div>
     <div class="tab-content">
         <div id="general-ranking" class="tab-pane fade in active">
+        	<div class="row tab-row-header">
+				<div class="col-1 tab-col-header">排名</div>
+				<div class="col-5 tab-col-header-name">名称</div>
+				<div class="col-3 tab-col-header">总收益（元）</div>
+			</div>
+			<div class="row tab-content-my-ranking">
+				<div class="col-1 ranking-number">123</div>
+				<div class="col-5 ranking-name">super man 999</div>
+				<div class="col-3 ranking-point">100</div>
+			</div>
             <div id="general-list" class="tab-pane fade in active">
-            	<div class="tab-content-list">
-            		<div class="line-1">
-						<span class="ranking-phone-number">122****2563</span>
-						<span class="ranking-date">2019-01-01 13:13</span>
-					</div>
-					<div class="line-2">
-						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
-						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
-					</div>
-				</div>
-				<div class="tab-content-list">
-            		<div class="line-1">
-						<span class="ranking-phone-number">122****2563</span>
-						<span class="ranking-date">2019-01-01 13:13</span>
-					</div>
-					<div class="line-2">
-						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
-						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
-					</div>
-				</div>
-				<div class="tab-content-list">
-            		<div class="line-1">
-						<span class="ranking-phone-number">122****2563</span>
-						<span class="ranking-date">2019-01-01 13:13</span>
-					</div>
-					<div class="line-2">
-						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
-						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
-					</div>
-				</div>
-				<div class="tab-content-list">
-            		<div class="line-1">
-						<span class="ranking-phone-number">122****2563</span>
-						<span class="ranking-date">2019-01-01 13:13</span>
-					</div>
-					<div class="line-2">
-						<!-- <span class="ranking-product"><span class="highlight">换购</span> Beats EP </span> -->
-						<span class="ranking-price"><img class="icon-coin-ranking" src="{{ asset('/client/images/ranking/icon-coin.png') }}" />800</span>
-					</div>
-				</div>
             </div>
         </div>
 
