@@ -264,7 +264,7 @@ class MemberRegisterController extends Controller
 			\App\Ledger::intiateledger($id);
 			
 			//add welcome bonus life
-			\App\Ledger::life($id,102,'debit',$setting->game_default_life,'WBL', '');
+			\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
 			
 			//Send Welcome Mail			
 					
