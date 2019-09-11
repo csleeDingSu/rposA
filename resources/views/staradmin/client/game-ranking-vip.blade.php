@@ -13,17 +13,17 @@
 			自助抽奖换金币，奖品任你换不停
 	</div>
 	<div class="note">
-		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-invite.png') }}" />
+		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-draw.png') }}" />
 		<span class="highlight">无限极抽奖，</span>
 		任你抽到爽
 	</div>
 	<div class="note">
-		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-invite.png') }}" />
+		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-reward.png') }}" />
 		<span class="highlight">卡券奖品，</span>
 		拿到手软
 	</div>
 	<div class="note">
-		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-invite.png') }}" />
+		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-random.png') }}" />
 		<span class="highlight">100%随机，</span>
 		绝无作弊
 	</div>

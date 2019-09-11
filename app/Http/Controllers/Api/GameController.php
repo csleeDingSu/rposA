@@ -2599,7 +2599,7 @@ class GameController extends Controller
 					->where('member_id',$request->memberid)
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
 					->first();
-		$row->first();
+		// $row->first();
 		
 		//dd($row);
 		//End
