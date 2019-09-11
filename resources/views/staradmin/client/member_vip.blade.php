@@ -1,6 +1,6 @@
 @extends('layouts.default_app')
 
-@section('title', '')
+@section('title', '个人中心')
 
 @section('top-css')
     @parent

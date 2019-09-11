@@ -2,9 +2,9 @@
   <dl class="bar">
     <dd>
 	@if(Request::is('main') && Request::is('main/*'))
-  		<a class="on" href="#">
+  		<a class="on" href="main">
   	@else
-  		<a href="#">
+  		<a href="main">
   	@endif
         <span class="icon bar-1"></span>
         <h2>首页</h2>
@@ -12,9 +12,9 @@
     </dd>
     <dd>
 	@if(Request::is('shop') || Request::is('shop/*'))
-  		<a class="on" href="#">
+  		<a class="on" href="shop">
   	@else
-  		<a href="#">
+  		<a href="shop">
   	@endif
         <span class="icon bar-2"></span>
         <h2>商城</h2>
