@@ -145,6 +145,7 @@
     <body>
     	<div class="loading" id="loading"></div>
     	<section class="card">
+    	@section('top-navbar')
 			<div class="card-header">
 		      <div class="pageHeader rel">
 		        @yield('left-menu')
@@ -152,6 +153,7 @@
 		        @yield('right-menu')
 		      </div>
 		    </div>
+		@show
 
 		    <div class="card-body over ">
 		      <div class="scrolly">
