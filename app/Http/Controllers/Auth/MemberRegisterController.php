@@ -256,11 +256,15 @@ class MemberRegisterController extends Controller
 				]);
 			
 			//update members table
+			/*
 			Members::where('id', $id)
 				->update(['current_life' => $setting->game_default_life]);
-			
+			*/
 			//create Game Ledgers
 			\App\Ledger::intiateledger($id);
+			
+			//add welcome bonus life
+			\App\Ledger::life($id,102,'debit',$setting->game_default_life,'WBL', '');
 			
 			//Send Welcome Mail			
 					
