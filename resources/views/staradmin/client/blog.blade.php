@@ -1,31 +1,11 @@
-@extends('layouts.default')
-
-@section('title', '晒单评论')
+@extends('layouts.default_app')
 
 @section('top-css')
-    @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/public.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/swiper.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" />  
-    <link rel="stylesheet" href="{{ asset('/client/css/blog.css') }}" />
+    @parent  
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css') }}" />    
     <style>
-        /* Paste this css to your style sheet file or under head tag */
-        /* This only works with JavaScript, 
-        if it's not present, don't show loader */
-        .no-js #loader { display: none;  }
-        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
-        .loading {
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background: url('/client/images/preloader.gif') center no-repeat;
-            background-color: rgba(255, 255, 255, 1);
-            background-size: 32px 32px;
-        }
-       
+         
        .reveal-modal {
           /*position: relative;*/
           margin: 0 auto;
@@ -36,35 +16,34 @@
     </style>
 @endsection
 
-@section('top-navbar')
-@endsection
-
 @section('top-javascript')
     @parent
     
 @endsection
 
-@section('content')
-<div class="loading" id="loading"></div>
+<!-- top nav -->
+@section('left-menu')
+  <a class="returnBtn" href="javascript:goBack();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+@endsection
 
-<section class="card">
-    <section class="card-header">
-      <a class="returnIcon" href="/profile"><img src="{{ asset('/client/blog/images/retrunIcon.png') }}"><span>返回</span></a>
-      <h2>用户晒单</h2>
-    </section>
-    <div class="card-body over"> 
-        <div class="cardBody">
-          <div class="box">
-            <div class="infinite-scroll">
-              <ul class="list-2">               
-                  @include('client.blog_list')
-              </ul>
-              {{ $blog->links() }}
-            </div>
-          </div>
-        </div>
+@section('title', '晒单评论')
+
+@section('right-menu')
+@endsection
+
+
+@section('content')
+
+<div class="cardBody">
+  <div class="box">
+    <div class="infinite-scroll">
+      <ul class="list-2">               
+          @include('client.blog_list')
+      </ul>
+      {{ $blog->links() }}
     </div>
-  </section>
+  </div>
+</div>
 
 <!-- view photo Modal starts -->
   <div class="modal fade col-md-12" id="view-photo" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
@@ -79,18 +58,8 @@
     @parent  
     <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/client/blog/js/swiper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
     <script type="text/javascript">
-
-      document.onreadystatechange = function () {
-          var state = document.readyState
-          if (state == 'interactive') {
-          } else if (state == 'complete') {
-            setTimeout(function(){
-                document.getElementById('interactive');
-                document.getElementById('loading').style.visibility="hidden";
-            },100);
-          }
-        }
 
       $(document).ready(function () {
            //execute scroll pagination

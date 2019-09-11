@@ -5,10 +5,14 @@
     border-bottom: 1px solid #f3f3f3;
 }
 
+.modal-dialog {
+    margin: 3rem 0.5rem;
+}
+
 .view-pic{
-	width: 6rem;
+	width: 100%;
     height: auto;
-    padding: 0;
+    padding: 0.1rem;
     margin: 0;
 
 }

@@ -161,6 +161,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::any( '/receipt/guide', 'ReceiptController@showGuide' )->name( 'client.receipt.showGuide' );
 
 	Route::any( '/shop', 'ShareProductController@shop' )->name( 'client.shop' );	
+	Route::any( '/main', 'ShareProductController@newMainPage' )->name( 'client.newMainPage' );	
 } );
 
 //Member routes with member guard
