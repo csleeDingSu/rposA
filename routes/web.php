@@ -727,3 +727,6 @@ Route::any( '/weixin/showqrcode/{openid}', 'weixinController@weixin_showqrcode' 
 Route::any( '/weixin/qrcode/{type}/{scene}', 'weixinController@weixin_qrcode' )->name( 'weixin.qrcode' );
 Route::any( '/weixin/createwxa/qrcode', 'weixinController@weixin_createwxaqrcode' )->name( 'weixin.createwxa.qrcode' );
 
+Route::any( '/tabao', 'tabaoApiController@index' )->name( 'tabao' );
+Route::any( '/tabao/test', 'tabaoApiController@test' )->name( 'tabao.test' );
+
