@@ -1,5 +1,68 @@
-.redeem-banner img {
-	width: 100%;
+body {
+    background: #8c35d8;
+}
+
+.shop-banner {
+	background: url(/clientapp/images/shop/banner.png) no-repeat;
+    background-size: contain;
+    height: 3.5rem;
+}
+
+.header-line{
+	padding: 0.2rem 0;
+	height: 1rem;
+}
+
+.shop-left-menu {
+	border-radius: 100px;
+    font-size: 0.3rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 2.5rem;
+    float: left;
+    text-align: center;
+    margin: 0 0 0 0.2rem;
+}
+
+.shop-left-menu img {
+	height: 0.45rem;
+    margin: 0.055rem 0 0 -1.155rem;
+    position: absolute;
+}
+
+.shop-balance {
+	color: #fff;
+    font-size: 0.3rem;
+    padding: 0.08rem 0.08rem 0.08rem 0.1rem;
+    margin: 0 0 0 0.3rem;
+    text-align: center;
+}
+
+.shop-right-menu {
+	float: right;
+}
+
+.shop-right-menu img {
+	height: 0.6rem;
+}
+
+.shop-notification {
+	background-color: rgba(0, 0, 0, 0.4);
+    padding: 0.15rem;
+    border-radius: 100px;
+    color: #e0bcff;
+    font-size: 0.22rem;
+    margin: 2rem 0.4rem 0 0.4rem;
+    text-align: center;
+}
+
+.shop-notification .highlight{
+	color: #efae74;
+	font-size: 0.22rem;
+}
+
+.redeem-prize-wrapper {
+	padding: 0.4rem;
 }
 
 .redeem-prize .col-xs-6 {
@@ -74,13 +137,15 @@
 }
 
 .redeem-button {
-	background:url(/client/images/vip/redeem-button.png) no-repeat;
-	width: 1.02rem;
-	height: 0.44rem;
-	background-size: contain;
-	font-size: 0.24rem;
-	padding-top: 0.04rem;
-	cursor: pointer;
+	background: url(/client/images/vip/redeem-button.png) no-repeat;
+    width: 1.02rem;
+    height: 0.44rem;
+    background-size: contain;
+    font-size: 0.24rem;
+    padding-top: 0.04rem;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
 }
 
 .redeem-details {
@@ -128,4 +193,107 @@
 
 .info-highlight {
 	color: #ffa800;
+}
+
+#modal-insufficient-point .modal-dialog{
+    margin-top: 6rem;
+}
+
+#modal-insufficient-point .insufficient-point{
+	border-radius: 5px;
+	text-align: center;
+	padding: 0.2rem;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+
+}
+
+#modal-no-login .modal-dialog{
+	margin-top: 3rem;
+    padding: 0 0.55rem;
+}
+
+#modal-no-login .instructions {
+    color: #fff;
+    font-size: 0.3rem;
+    text-align: left;
+    line-height: 0.45rem;
+    padding: 0.02rem 0 0.2rem 1.05rem;
+    margin: 0;
+}
+
+#modal-no-login .highlight {
+	color: #fff71d;	
+}
+
+#modal-no-login {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#modal-no-login .nologin-bg {
+    background: url(/client/images/nologin-bg2.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    padding: 3.7rem 0.3rem 0.6rem 0.3rem;
+    height: 7.5rem;
+    width: 5.5rem;
+}
+
+#modal-no-login .btn-login {
+    background: transparent;
+    cursor: pointer;
+    text-align: center;
+    padding: 0;
+    height: 1.5rem;
+}
+
+#redeem-rules .modal-dialog{
+    margin-top: 3.5rem;
+}
+
+#redeem-rules .modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    padding: 0.4rem;
+}
+
+#redeem-rules .modal-title {
+	background: white;
+    color: #5b5b5b;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 0;
+    font-weight: 500;
+    font-size: 0.5rem;
+    width: 100% !important;
+    height: 5% !important;
+}
+
+#redeem-rules .instructions {
+    font-size: 0.26rem;
+    font-weight: 500;
+    color: #999;
+    padding: 0.2rem 0.2rem 0.6rem 0.2rem;
+    letter-spacing: 0.5px;
+    line-height: 0.5rem;
+}
+
+#redeem-rules .modal-close-btn {
+    background: #fcac12;
+    color: white;
+    border-radius: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
 }

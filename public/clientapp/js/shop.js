@@ -1,8 +1,10 @@
+
 $(function () {
     getProduct();
 });
 
 function getProduct(){
+    
     $.getJSON( "/api/get-product-list", function( data ) {
         // console.log(data);
 
@@ -51,6 +53,7 @@ function getProduct(){
 
         $('.redeem-prize-wrapper').html(html);
         $('.redeem-button').click(function(){
+            var g_vip_point = $('.shop-balance').html();
 
             var user_id = $('#hidUserId').val();
             if(user_id == 0){
@@ -58,14 +61,18 @@ function getProduct(){
                 // $( '#login-intropopup' ).modal( 'show' );
                 // $( '#nonloginmodal' ).modal( 'show' );
                 $( '#modal-no-login' ).modal( 'show' );
+                $('.btn-login').click(function(){
+                    window.top.location.href = "/profile";
+                });
+
             } else {
 
                 $( "#hid_package_id" ).val($(this).attr('rel'));
                 // console.log($(this).attr('rel'));
                 var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
-                // console.log(price);
-                // console.log(g_vip_point);
-                // console.log(getNumeric(price) > getNumeric(g_vip_point));
+                console.log(price);
+                console.log(g_vip_point);
+                console.log(getNumeric(price) > getNumeric(g_vip_point));
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
                     // console.log(1);
                     $('#modal-insufficient-point').modal();
@@ -82,7 +89,7 @@ function getProduct(){
         });
 
         $('.redeem-img').click(function(){
-
+            var g_vip_point = $('.shop-balance').html();
             var user_id = $('#hidUserId').val();
             if(user_id == 0){
                 // window.top.location.href = "/member";
@@ -108,3 +115,9 @@ function getProduct(){
         });
     });
 }
+
+function getNumeric(value) {
+    return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
+    // console.log(parseFloat(value).toFixed(2));
+    // return parseFloat(value).toFixed(2);
+  }
