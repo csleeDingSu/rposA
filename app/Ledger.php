@@ -403,7 +403,6 @@ class Ledger extends Model
 	{
 		if ($debit<=0)
 		{
-			die('error');
 			return ['success'=>false,'message'=>'debit value cannot accepted to proceed'];	
 		}		
 		$uuid       = '';
@@ -428,6 +427,57 @@ class Ledger extends Model
 					 ,'debit'          => $debit
 					 ,'balance_before' => $balance_before
 					 ,'balance_after'  => $newcredit
+					 ,'ledger_type'    => $prefix.$category
+					 ,'notes'          => $notes
+					];			
+			$uuid = History::add_ledger_history($data);			
+			//fire Wallet event  
+			event(new \App\Events\EventLedger($userid, $wallet));
+			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+		}		
+		return ['success'=>false,'message'=>'unknown ledger / user'];			
+	}
+	
+	public static function life($userid,$gameid,$type = 'debit',$life = 0,$category = '', $notes = FALSE)
+	{
+		if ($life<=0)
+		{
+			return ['success'=>false,'message'=>'value cannot accepted to proceed'];	
+		}
+		$newlife      = '';
+		$action_sym   = '-1';
+		$action_type  = 'DEBITED';
+		$debit        = $life ; 
+		$credit       = '';
+		$prefix       = 'DL';
+		if ($type == 'credit')
+		{
+			$action_sym  = '1';
+			$action_type = 'CREDITED';
+			$credit      = $life;
+			$debit       = '' ; 
+			$prefix      = 'AL';
+		}
+		
+		$uuid       = '';
+		$wallet     = self::ledger($userid,$gameid);
+		if ($wallet)
+		{
+			$balance_before = $wallet->life;
+			$newlife      = $wallet->life + ($life * $action_sym);			
+			//Update Ledger Table			
+			$wallet->exists  = TRUE;
+			$wallet->life   = $newlife;
+			$wallet->save();			
+			//Insert Ledger History			
+			$data = [
+					 'member_id'       => $userid
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $credit
+					 ,'debit'          => $debit
+					 ,'balance_before' => $balance_before
+					 ,'balance_after'  => $newlife
 					 ,'ledger_type'    => $prefix.$category
 					 ,'notes'          => $notes
 					];			
