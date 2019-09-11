@@ -73,6 +73,8 @@
 		@endif
 
 		@section('top-css')
+			<link href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/public.css')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/swiper.min.css')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css')}}" />
@@ -164,6 +166,8 @@
   		</section>
 
 		@section('footer-javascript')
+			<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 			@if(env('THISVIPAPP','false'))
 				<script language="javascript" src="https://api2.pop800.com/800.js?n=569521&t=3&l=cn"></script><div style="display:none;"><a href="https://www.pop800.com">在线客服</a></div>
 			@endif
