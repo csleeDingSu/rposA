@@ -676,7 +676,7 @@ body{
 	font-weight: 400;
 	color: #999;
 	padding:10px;
-	/*text-align: center;*/
+	text-align: left;
 	letter-spacing: 0.5px;
 	line-height: 0.4rem;
 }
@@ -936,6 +936,7 @@ if it's not present, don't show loader */
     text-align: center;
     background-color: rgba(0, 0, 0, 0.6);
     margin-top:30px;
+    z-index: 3;
 }
 
 /* Wechat Modal */
@@ -1213,6 +1214,7 @@ if it's not present, don't show loader */
     /*display: none;*/
     display: block;
     z-index: 6;
+    text-align: center;
 }
 
 a {

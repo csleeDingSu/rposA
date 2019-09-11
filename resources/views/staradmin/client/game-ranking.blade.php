@@ -1,9 +1,9 @@
 @section('top-css')
     @parent
     <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" />
-
+    
 @endsection
-
+<div class="bgColor">
 <!-- ranking start-->
 <div class="redeem-banner">
 	<img src="{{ asset('/client/images/ranking/banner-title-ranking.png') }}" alt="share">
@@ -72,7 +72,7 @@
     <div class="tab-content-bottom"></div>
 </div>
 <!-- ranking end-->
-
+</div>
 @section('footer-javascript')
 	@parent
 	<script src="{{ asset('/client/js/game-ranking.js') }}"></script>

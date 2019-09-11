@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default_app')
 
 @section('title', '幸运转盘')
 
@@ -33,7 +33,9 @@
 @endsection
 
 @section('content')
+@if (!env('THISVIPAPP', false))
 <a name="top"></a>
+@endif
 
 <div class="loading"></div>
 <div class="reload">
@@ -456,9 +458,12 @@
 	</div>
 @endif
 </div></div>
+
+@if (!env('THISVIPAPP', false))
 <!-- go back to top -->
 	<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
-	
+@endif
+
 @endsection
 
 @section('footer-javascript')
@@ -869,7 +874,7 @@
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game-node.js') }}"></script>
-	<!-- <script src="{{ asset('/client/js/game-ranking.js') }}"></script> -->
+	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 	
 @endsection
 

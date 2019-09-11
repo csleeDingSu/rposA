@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default_app')
 
 @section('title', '幸运转盘')
 
@@ -693,6 +693,7 @@
     <script src="{{ asset('/client/js/public.js') }}" ></script>
 	<script src="{{ asset('/client/js/slide.js') }}"></script>
 	<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
     </script>

@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/game-ranking-vip.css') }}" />
 
 @endsection
-
+<div class="bgColor">
 <!-- ranking start-->
 <div class="redeem-banner">
 	<img src="{{ asset('/client/images/ranking/banner-title-ranking-vip.png') }}" alt="share">
@@ -123,7 +123,7 @@
     <div class="tab-content-bottom"></div>
 </div>
 <!-- ranking end-->
-
+</div>
 @section('footer-javascript')
 	@parent
 	<script src="{{ asset('/client/js/game-ranking-vip.js') }}"></script>
