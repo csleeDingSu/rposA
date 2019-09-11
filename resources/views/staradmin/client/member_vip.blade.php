@@ -94,7 +94,22 @@
             var game_life = "<?php Print(empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life);?>";
             game_life = game_life > 0 ? game_life : 0;
 
-            $('#103_point').html(current_point);
+            if(previous_point !== undefined && previous_point > 0){
+                previous_point = (getNumeric(previous_point));
+
+                $('#103_point')
+                  .prop('number', previous_point)
+                  .animateNumber(
+                    {
+                      number: (current_point)
+                    },
+                    1000
+                  );
+                Cookies.remove('previous_point');
+            } else {
+                $('#103_point').html((current_point));
+            }
+
             $('#102_point').html('¥' + normal_game_point);
             $('#game_life').html(game_life);
 
