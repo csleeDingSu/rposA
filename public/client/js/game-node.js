@@ -153,8 +153,8 @@ function initUser(records){
         g_life = life;
         var point = parseInt(records.point);
         g_cookies_point = point;
-        var acupoint =  parseInt(records.acupoint);
-        g_current_point = parseInt(records.acupoint);
+        var acupoint =  parseInt((records.acupoint == null) ? 0 : records.acupoint);
+        g_current_point = parseInt((records.acupoint == null) ? 0 : records.acupoint);
         var play_count = parseInt(records.play_count);
         //g_current_point = parseInt(records.balance) + parseInt(records.acupoint);
 

@@ -169,8 +169,8 @@
                             $('#validation-errors').append('<div class="alert alert-success isa_success">'+sdf+'</div');
                             
                             url = data.url;
-                            // $(location).attr("href", url);
-                            being.showMsg('.loginMsg');
+                            $(location).attr("href", url);
+                            // being.showMsg('.loginMsg');
                         }
                     else 
                         {
