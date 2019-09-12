@@ -95,7 +95,7 @@ class ClientController extends BaseController
 
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
-		$data['wallet']          = \App\Ledger::ledger($member,'');
+		$data['wallet']          = \App\Ledger::all_ledger($member,'');
 		$data['yesterdaypoint']  = \App\History::get_point($member,103,Carbon::yesterday()->toDateString());
 		$data['overallpoint']    = \App\History::get_point($member,103);
 		
