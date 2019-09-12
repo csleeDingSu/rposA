@@ -1153,21 +1153,21 @@ function getConvertCointInfo(softpinCount, token, current_point) {
                                                 '</div>' +
                                             '</div>' +
                                             '<div class="row content">' +
-                                                '<a href="#" onclick="selectContentAmountValue(120);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(120, 12);">' +
                                                 '<div class="content-amount" id="120">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '120' +
                                                     '<span class="content-price">售价 12 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(240);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(240, 24);">' +
                                                 '<div class="content-amount" id="240">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '240' +
                                                     '<span class="content-price">售价 24 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(360);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(360, 36);">' +
                                                 '<div class="content-amount" id="360">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '360' +
@@ -1176,21 +1176,21 @@ function getConvertCointInfo(softpinCount, token, current_point) {
                                                 '</a>' +
                                             '</div>' +
                                             '<div class="row content">' +
-                                                '<a href="#" onclick="selectContentAmountValue(480);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(480, 48);">' +
                                                 '<div class="content-amount" id="480">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '480' +
                                                     '<span class="content-price">售价 48 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(720);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(720, 72);">' +
                                                 '<div class="content-amount" id="720">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '720' +
                                                     '<span class="content-price">售价 72 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(1440);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(1440, 144);">' +
                                                 '<div class="content-amount" id="1440">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '1440' +
@@ -1211,7 +1211,8 @@ function getConvertCointInfo(softpinCount, token, current_point) {
                     '</div>' + 
                     '<!-- Modal Ends -->';
 
-    htmlmodel += '<input id="hidSelectedContentAmountValue" type="hidden" value="">'; 
+    htmlmodel += '<input id="hidSelectedContentAmountValue" type="hidden" value="">';
+    htmlmodel += '<input id="hidSelectedContentConvertedAmountValue" type="hidden" value="">'; 
 
     $('#newProduct').html(html);
     $( ".cardFull" ).after(htmlmodel);
@@ -1221,15 +1222,46 @@ function getConvertCointInfo(softpinCount, token, current_point) {
     });
 
     $('.btn_confirm').click(function() {        
-        var selected = $('#hidSelectedContentAmountValue').val();
-        alert(selected);
+        var frompoint = $('#hidSelectedContentAmountValue').val();
+        var topoint = $('#hidSelectedContentConvertedAmountValue').val();
+        $.ajax({
+            type: 'POST',
+            url: "/api/merge-point",
+            data: { 'memberid': member_id, 'fromgameid': '102', 'point' : frompoint, 'togameid' : '103', 'topoint' : topoint},
+            dataType: "json",
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
+            error: function (error) { console.log(error.responseText) },
+            success: function(data) {
+                if(data.success) {
+
+                    // $('#merge-point-modal').modal();
+                    // setTimeout(function(){ 
+                    //     $('.modal').modal('hide') // closes all active pop ups.
+                    //     $('.modal-backdrop').remove() // removes the grey overlay.
+                    // }, 3000); 
+                    alert('兑换成功');
+                    window.location.href = "/profile";
+                    
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
     });
 }
 
-function selectContentAmountValue(value) {
-    $('.content-amount').removeClass('active');
-    $('#' + value).addClass('active');
-    $('#hidSelectedContentAmountValue').val(value);
+function selectContentAmountValue(from_value, to_value) {
+    if (wallet_point > from_value) {
+        $('.content-amount').removeClass('active');
+        $('#' + from_value).addClass('active');
+        $('#hidSelectedContentAmountValue').val(from_value);
+        $('#hidSelectedContentConvertedAmountValue').val(to_value);
+    } else {
+        alert('挖宝币不住');
+    }
+    
 }
 
 function getWallet(token, id) {

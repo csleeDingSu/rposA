@@ -19,6 +19,9 @@
 <!-- top nav end-->
 
 @section('content')
+<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
+<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+
   <div class="rewDetail">
     <h2>购物返回分&nbsp;抽奖拿红包</h2>
     <h3><span>1200积分=1场次，系统自动兑换</span></h3>
@@ -30,7 +33,7 @@
     <div class="formBox fix">
       <h4><span>淘宝订单号</span><a href="/receipt/guide">查看教程</a></h4>
       <label>
-        <input type="text" placeholder="复制淘宝订单号 粘贴提交">
+        <input type="text" placeholder="复制淘宝订单号 粘贴提交" id="receipt">
       </label>
       <a class="sendBtn">确认提交</a>
     </div>
@@ -39,7 +42,7 @@
   <dl class="coinExchange">
     <dd>
       <p>你已累计积分</p>
-      <span>1200</span>
+      <span class="wallet_point">1200</span>
     </dd>
     <dt>
       <img src="{{ asset('clientapp/images/echange.png') }}">
@@ -55,7 +58,7 @@
   <hr class="h20F3">
 
   <div class="orderRwdList">
-    <ul>
+    <ul class="data-list">
       <li>
         <h2><span>订单号&nbsp;25653562df5s3235</span>
           <font color="#a144ff">正在处理</font>
@@ -109,6 +112,7 @@
 
 @section('footer-javascript')
     @parent
+    <script src="{{ asset('/clientapp/js/receipt.js') }}"></script>
     <script type="text/javascript">
       $('.cionAbout').click(function() {
         $('#game-rules').modal();

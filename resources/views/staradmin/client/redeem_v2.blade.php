@@ -357,6 +357,22 @@
 	</div>
 <!-- Steps Modal Ends -->
 
+<!-- merge point Modal starts -->
+<div class="modal fade col-lg-12" id="merge-point-modal" tabindex="-1" style="z-index: 9999">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content vip-using-content">
+            <div class="modal-body">
+                <div class="modal-row">
+                        <div class="using-description">
+                        	兑换成功
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--merge point Modal Ends -->
+
     @parent
     <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
