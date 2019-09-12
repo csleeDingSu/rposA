@@ -116,6 +116,43 @@ class Ledger extends Model
 		//}		
 		return $ledger;
 	}
+	
+	public static function merge_ledger_point($userid,$from_gameid,$to_gameid, $point = 0)
+	{
+		$ledger  = self::ledger($userid,$from_gameid);		
+		if ($point <= 0)
+		{
+			return ['success'=>false,'message'=>'point cannot accepted to proceed'];	
+		}		
+		if ($point > $ledger->point)
+		{
+			return ['success'=>false,'message'=>'point cannot accepted to proceed'];	
+		}
+		$newpoint = $ledger->point - $point;		
+		//Insert Ledger History			
+		$data = [
+				 'member_id'       => $userid	
+				 ,'account_id'     => $ledger->id
+				 ,'game_id'        => $from_gameid
+				 ,'credit'         => 0
+				 ,'debit'          => $point
+				 ,'balance_before' => $ledger->point
+				 ,'balance_after'  => $newpoint
+				 ,'ledger_type'    => 'DPMLP'
+				 ,'notes'          => $point.' point merged to gameledger '.$to_gameid
+				];
+		
+		//update ledger 
+		$result = self::credit($userid,$to_gameid,$point,'MLP');
+		if ($result['success'] == true)
+		{
+			$ledger->point = $newpoint;
+			$ledger->save();
+			$uuid = History::add_ledger_history($data);
+			return ['success'=>true,'message'=>'success'];			
+		}		
+		return ['success'=>false,'message'=>'ledger not updated'];		
+	}
 		
 	public static function merge_to_main_ledger($userid,$gameid,$credit = 0)
 	{
