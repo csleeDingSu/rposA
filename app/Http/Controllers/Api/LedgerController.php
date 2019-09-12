@@ -129,7 +129,7 @@ class LedgerController extends Controller
 	
 	public function merge_point(Request $request)
 	{
-		return $wallet = Ledger::merge_ledger_point($request->memberid,$request->fromgameid,$request->togameid, $request->point);
+		return $wallet = Ledger::merge_ledger_point($request->memberid,$request->fromgameid,$request->togameid, $request->point,$request->topoint);
 	}
 	
 	
