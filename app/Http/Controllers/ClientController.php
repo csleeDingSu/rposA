@@ -113,19 +113,20 @@ class ClientController extends BaseController
 		$intro_count         = Member::get_introducer_count($member);
 		$sc_child            = Member::get_second_level_child_count($member);
 		
-		if ($intro_count)
+		$icount = 0;
+		if (!empty($intro_count->count))
 		{
-			$intro_count = $intro_count->count;
+			$icount = $intro_count->count;
 		}
 		
 		$scount = 0;
 		
 		if (!empty($sc_child['count']))
 		{
-			$sc_child = $sc_child['count'];
+			$scount = $sc_child['count'];
 		}
 		
-		$data['total_intro'] = 	$intro_count + $sc_child ;
+		$data['total_intro'] = 	$icount + $scount ;
 
 		if ($this->vp->isVIPApp()) {
 						
