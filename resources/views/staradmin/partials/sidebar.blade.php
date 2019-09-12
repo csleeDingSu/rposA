@@ -273,6 +273,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/admin/cron-list">@lang('dingsu.cron') @lang('dingsu.list')</a>
 					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/tabao-cron">@lang('dingsu.tabao_cron') @lang('dingsu.tabao_cron')</a>
+					</li>
 				</ul>
 			</div>
 		</li>
