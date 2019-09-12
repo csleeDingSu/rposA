@@ -1386,7 +1386,7 @@ class GameController extends Controller
 		
 		if ($play_status['point']<1)
 		{
-			return ['success' => false, 'message' =>  trans('dingsu.not_enough_point') ];			
+			//return ['success' => false, 'message' =>  trans('dingsu.not_enough_point') ];			
 		}
 		
 		if ($play_status['life']<1)
