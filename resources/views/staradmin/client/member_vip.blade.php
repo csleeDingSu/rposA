@@ -48,7 +48,7 @@
       </a>
       <a class="inBox" href="invitation_list">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-invite.png') }}"><span>邀请好友</span></p>
-        <p><i class="bYellow">120</i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
+        <p><i class="bYellow">{{$total_intro ?? '0'}}</i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
       <a class="inBox" href="receipt">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-history.png') }}"><span>下单奖励</span></p>
