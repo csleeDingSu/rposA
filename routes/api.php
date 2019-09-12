@@ -151,7 +151,7 @@ Route::group(['namespace' => 'Api'],function()
 	
 	
 	Route::any('/point-earned', 'GameController@list_user_by_earned_point')->name('list_user_by_earned_point');
-	
+	Route::post('/merge-point', 'LedgerController@merge_point')->name('merge_point');
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
