@@ -136,9 +136,7 @@ class tabaoApiController extends BaseController
 
         curl_close($ch);
 
-
-
-        var_dump($output);
+        return $output;
         
     }
 

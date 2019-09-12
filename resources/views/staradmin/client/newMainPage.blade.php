@@ -197,5 +197,6 @@
 
 @section('footer-javascript')
     @parent  
+    <script src="{{ asset('/clientapp/js/newMainPage.js') }}"></script>
 
 @endsection
