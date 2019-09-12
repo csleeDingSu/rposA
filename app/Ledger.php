@@ -526,6 +526,58 @@ class Ledger extends Model
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
 	}
 	
+	
+	public static function balance($userid,$gameid,$type = 'debit',$balance = 0,$category = '', $notes = FALSE)
+	{
+		if ($balance<=0)
+		{
+			return ['success'=>false,'message'=>'value cannot accepted to proceed'];	
+		}
+		$newbalance      = '';
+		$action_sym   = '-1';
+		$action_type  = 'DEBITED';
+		$debit        = $balance ; 
+		$credit       = '';
+		$prefix       = 'DB';
+		if ($type == 'credit')
+		{
+			$action_sym  = '1';
+			$action_type = 'CREDITED';
+			$credit      = $balance;
+			$debit       = '' ; 
+			$prefix      = 'AB';
+		}
+		
+		$uuid       = '';
+		$wallet     = self::ledger($userid,$gameid);
+		if ($wallet)
+		{
+			$balance_before = $wallet->balance;
+			$newbalance      = $wallet->balance + ($balance * $action_sym);			
+			//Update Ledger Table			
+			$wallet->exists  = TRUE;
+			$wallet->balance   = $newbalance;
+			$wallet->save();			
+			//Insert Ledger History			
+			$data = [
+					 'member_id'       => $userid
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $credit
+					 ,'debit'          => $debit
+					 ,'balance_before' => $balance_before
+					 ,'balance_after'  => $newbalance
+					 ,'ledger_type'    => $prefix.$category
+					 ,'notes'          => $notes
+					];			
+			$uuid = History::add_ledger_history($data);			
+			//fire Wallet event  
+			event(new \App\Events\EventLedger($userid, $wallet));
+			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+		}		
+		return ['success'=>false,'message'=>'unknown ledger / user'];			
+	}
+	
 	public static function game_ledger_update($userid,$gameid,$status,$level)
 	{
 		$ledger     = self::ledger($userid,$gameid);
