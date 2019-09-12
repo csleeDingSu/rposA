@@ -106,14 +106,24 @@ class ClientController extends BaseController
 			$usedpoint = $usedpoint->whereIn('credit_type',['DPRBP']);
 		}				
 		
-		$data['usedpoint']  = $usedpoint->sum('point');		
-		$data['page']       = 'client.member'; 
-		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get();
+		$data['usedpoint']   = $usedpoint->sum('point');		
+		$data['page']        = 'client.member'; 
+		$data['vip_status']  = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get();
 		
-		$data['intro_count'] = Member::get_introducer_count($member);
-		$data['sc_child']    = Member::get_second_level_child_count($member);
+		$intro_count         = Member::get_introducer_count($member);
+		$sc_child            = Member::get_second_level_child_count($member);
 		
-			
+		if ($intro_count)
+		{
+			$intro_count = $intro_count->count;
+		}
+		
+		if ($sc_child)
+		{
+			$sc_child = $sc_child['count'];
+		}
+		
+		$data['total_intro'] = 	$intro_count + $sc_child ;
 
 		if ($this->vp->isVIPApp()) {
 						
