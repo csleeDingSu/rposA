@@ -741,4 +741,7 @@ Route::any( '/weixin/createwxa/qrcode', 'weixinController@weixin_createwxaqrcode
 
 Route::any( '/tabao', 'tabaoApiController@index' )->name( 'tabao' );
 Route::any( '/tabao/test', 'tabaoApiController@test' )->name( 'tabao.test' );
+Route::any( '/tabao/get-goods-list', 'tabaoApiController@getGoodsList' )->name( 'tabao.getGoodsList' );
+
+
 
