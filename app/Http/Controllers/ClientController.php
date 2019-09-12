@@ -95,7 +95,11 @@ class ClientController extends BaseController
 
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
-		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		$data['wallet']          = \App\Ledger::ledger($member,'');
+		$data['yesterdaypoint']  = \App\History::get_point($member,103,Carbon::yesterday()->toDateString());
+		$data['overallpoint']    = \App\History::get_point($member,103);
+		
+		//$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
 		$usedpoint         = \DB::table('view_usedpoint')->where('member_id',$member);
 		
 		if ($this->vp->isVIPApp()) {

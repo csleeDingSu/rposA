@@ -8,7 +8,12 @@ class History extends Model
     protected $fillable = [        'member_id','game_id','account_id','debit','credit','notes','balance_before','balance_after','ledger_type','uuid',
     ];	
 			
-    protected $table = 'ledger_history_new';	
+    protected $table = 'ledger_history_new';
+	
+	public static function getTableName()
+    {
+        return with(new static)->getTable();
+    }
 	
 	public static function add_ledger_history($data)
 	{
@@ -19,11 +24,23 @@ class History extends Model
 		return $uuid;
 	}
 	
-	
-	public static function getTableName()
+	public static function get_point($memberid , $gameid = FALSE, $date = FALSE)
     {
-        return with(new static)->getTable();
+		$result = \DB::table('a_point_by_date')->where('member_id' , $memberid);
+		if ($gameid)
+		{
+			$result = $result->where('game_id' , $gameid);
+		}		
+		if ($date)
+		{			
+			$result = $result->where('point_date',$date);
+		}
+		
+		$result = $result->sum('credit');
+		return $result;
     }
+	
+	
 }
 
 
