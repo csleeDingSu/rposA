@@ -67,11 +67,22 @@ class MemberLoginController extends Controller
         
         //isVIP APP         
         if (env('THISVIPAPP', false)) {
-            return view('auth.login_vip',$data);    
+            // return view('auth.login_vip',$data);
+            return view('auth.login_vip_new',$data);        
         } else {
             return view('auth.login',$data);    
         }
 	}
+
+    public function showLoginFormApp()
+    {
+        if (Auth::Guard('member')->check()){
+            return redirect('/');
+        } else {
+            return view('auth/login_vip_new');
+        }
+        
+    }
 	
 	/**
      * Check either username or email.

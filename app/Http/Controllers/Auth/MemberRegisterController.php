@@ -119,9 +119,31 @@ class MemberRegisterController extends Controller
 		
 		//return view('client/register',$data);
 		// return view('common/register',$data);
-		return view('auth.login', $data);
+		// return view('auth.login', $data);
+		return view('auth.register_vip_new',$data);        
 	}
-    
+
+	public function showRegisterFormApp($ref = FALSE)
+	{
+
+		$data = [];
+				
+		if (!empty($ref))
+		{
+			Session::forget('refcode');
+
+			$data['ref']  = Members::CheckReferral($ref);
+			
+			$data['refcode'] = $ref;
+
+			if (!empty($data['ref'])) {
+				session(['refcode' => $ref]);	
+			}
+			
+		}
+		
+		return view('auth.register_vip_new', $data);
+	}    
     
     public function showAuthForm($ref = FALSE, Request $request)
 	{
@@ -157,7 +179,8 @@ class MemberRegisterController extends Controller
         } else {
         	//isVIP APP        	
 			if (env('THISVIPAPP', false)) {
-				return view('auth.login_vip',$data);    
+				//return view('auth.login_vip',$data);    
+				return view('auth.login_vip_new',$data);    
 			} else {
 				return view('auth.login',$data);    
 			}            

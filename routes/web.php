@@ -307,8 +307,6 @@ Route::group( [ 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function (
 		return view( 'client/vwechat' );
 		// return File::get(public_path() . '/vwechat/index.html');
 	} );
-	
-	
 
 } );
 
@@ -317,6 +315,10 @@ Route::group( [  'middleware' => [ 'guest' ] ], function () {
 } );
 
 $this->get( 'login', 'Auth\MemberLoginController@showLoginForm' )->name( 'login' );
+
+$this->get( 'app-login', 'Auth\MemberLoginController@showLoginFormApp' )->name( 'app.login' );
+
+$this->get( 'app-register/{token?}', 'Auth\MemberRegisterController@showRegisterFormApp' )->name( 'app.register' );
 //Auth Routes END
 
 
