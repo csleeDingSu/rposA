@@ -71,25 +71,30 @@ function AssignSubmitReceipt(token) {
         var receipt = $('#receipt').val();
         var memberid = $('#hidUserId').val();
 
-        $.ajax({
-            type: 'POST',
-            url: "/api/add-receipt",
-            data: { 'memberid': memberid, 'receipt': receipt},
-            dataType: "json",
-            beforeSend: function( xhr ) {
-                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            },
-            error: function (error) { console.log(error.responseText) },
-            success: function(data) {
-                if(data.success) {
-                    
-                    alert('提交成功');
-                    window.location.href = "/receipt";
-                    
-                } else {
-                    alert(data.message);
+        if (receipt == '') {
+            alert('请填写订单号');
+        } else {
+
+            $.ajax({
+                type: 'POST',
+                url: "/api/add-receipt",
+                data: { 'memberid': memberid, 'receipt': receipt},
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                },
+                error: function (error) { console.log(error.responseText) },
+                success: function(data) {
+                    if(data.success) {
+                        
+                        alert('提交成功');
+                       getReceiptList(token)
+                        
+                    } else {
+                        alert(data.message);
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 }
