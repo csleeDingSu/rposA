@@ -270,14 +270,14 @@ class MemberRegisterController extends Controller
 			//Get Setting Life 
 			$setting = \App\Admin::get_setting();
 			
-			
+			/*
 			$wallet = \App\Wallet::create([
 					'current_life'    => $setting->game_default_life,
 					'member_id'       => $id,
 					'current_balance' => env('initial_balance',1200),
 					'balance_before'  => env('initial_balance',1200)
 				]);
-			
+			*/
 			//update members table
 			/*
 			Members::where('id', $id)
@@ -288,6 +288,10 @@ class MemberRegisterController extends Controller
 			
 			//add welcome bonus life
 			\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
+			
+			$balance = env('initial_balance',1200);
+			\App\Ledger::balance($id,102,'credit',$balance,'WBB', '');
+			
 			
 			//Send Welcome Mail			
 					
