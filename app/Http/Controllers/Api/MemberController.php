@@ -234,6 +234,36 @@ class MemberController extends Controller
 		return response()->json(['success' => false,'message' =>['Unknown user']]);
 	}	
 		
+	public function list_receipt(Request $request)
+	{
+		$receipt = \App\Receipt::where('member_id', $request->memberid);	
+		
+		if ($request->receipt)
+		{
+			$receipt = $receipt->where('receipt', $request->receipt);
+		}
+		$receipt = $receipt->get();
+		
+		return response()->json(['success' => true, 'records'=>$receipt]); 
+	}
 	
+	public function add_receipt(Request $request)
+	{
+		$validator = $this->validate($request, 
+            [
+                'memberid' => 'required|exists:members,id',
+				'receipt'  => 'required',
+            ]
+        );
+				
+		$receipt = \App\Receipt::where('member_id', $request->memberid)->where('receipt', $request->receipt)->first();		
+		if ($receipt)
+		{
+			return response()->json(['success' => false,'message' => 'receipt already exist']);
+		}		
+		$receipt = \App\Receipt::create(['member_id' => $request->memberid , 'receipt' => $request->receipt ]);
+		
+		return response()->json(['success' => true, 'refid'=>$receipt->id]);
+	}
 	
 }
