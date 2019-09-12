@@ -118,7 +118,9 @@ class ClientController extends BaseController
 			$intro_count = $intro_count->count;
 		}
 		
-		if ($sc_child)
+		$scount = 0;
+		
+		if (!empty($sc_child['count']))
 		{
 			$sc_child = $sc_child['count'];
 		}
