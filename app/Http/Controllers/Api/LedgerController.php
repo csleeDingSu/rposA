@@ -9,6 +9,7 @@ use App\Members as Member;
 use Validator;
 use Carbon\Carbon;
 use App\Wallet;
+use App\Ledger;
 class LedgerController extends Controller
 {
 	public function get_notifications(Request $request)
@@ -125,5 +126,11 @@ class LedgerController extends Controller
 		return ['success' => true , 'records'=>$result , 'status_reference'=>$status]; 
 		return $result;
 	}
+	
+	public function merge_point(Request $request)
+	{
+		return $wallet = Ledger::merge_ledger_point($request->memberid,$request->fromgameid,$request->togameid, $request->point);
+	}
+	
 	
 }
