@@ -5,7 +5,7 @@ use Carbon\Carbon;
 
 class Receipt extends Model
 {   
-    protected $fillable = [ 'member_id','receipt','uuid'    ];	
+    protected $fillable = [ 'member_id','receipt','uuid' ,'status'   ];	
 			
     protected $table = 'receipt';	
 	
