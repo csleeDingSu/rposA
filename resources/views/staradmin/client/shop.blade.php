@@ -85,7 +85,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var user_id = "<?php Print(isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0);?>";
-            var wechat_status = "<?php Print($member->wechat_verification_status);?>";
+            var wechat_status = "<?php Print(isset($member->wechat_verification_status) ? $member->wechat_verification_status : 0);?>";
             var normal_game_point = getNumeric("<?php Print(empty($wallet['gameledger']['102']->point) ? 0 : $wallet['gameledger']['102']->point);?>");
             var current_point = getNumeric("<?php Print(empty($wallet['gameledger']['103']->point) ? 0 : $wallet['gameledger']['103']->point);?>");
             var usedpoint = getNumeric("<?php Print(empty($wallet['gameledger']['102']->used_point) ? 0 : $wallet['gameledger']['102']->used_point);?>");

@@ -196,9 +196,17 @@ class ShareProductController extends BaseController
 	{
 		$this->vp = new VIPApp();
 
-        $member = Auth::guard('member')->user()->id	;
-		$data['member']    = Member::get_member($member);
-		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+        if (Auth::Guard('member')->check())
+		{
+			$member = Auth::guard('member')->user()->id	;
+			$data['member']    = Member::get_member($member);
+			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		} else {
+			$member = null;
+			$data['member'] = null;
+			$data['wallet'] = null;	
+		}
 
 		return view('client/shop', $data);
 		
@@ -207,10 +215,17 @@ class ShareProductController extends BaseController
 	public function newMainPage(Request $request)
 	{
 		$this->vp = new VIPApp();
+		if (Auth::Guard('member')->check())
+		{
+			$member = Auth::guard('member')->user()->id	;
+			$data['member']    = Member::get_member($member);
+			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
 
-        $member = Auth::guard('member')->user()->id	;
-		$data['member']    = Member::get_member($member);
-		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		} else {
+			$member = null;
+			$data['member'] = null;
+			$data['wallet'] = null;	
+		}
 
 		return view('client/newMainPage', $data);
 		
