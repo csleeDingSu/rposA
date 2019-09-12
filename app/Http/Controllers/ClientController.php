@@ -108,7 +108,12 @@ class ClientController extends BaseController
 		
 		$data['usedpoint']  = $usedpoint->sum('point');		
 		$data['page']       = 'client.member'; 
-		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
+		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get();
+		
+		$data['intro_count'] = Member::get_introducer_count($member);
+		$data['sc_child']    = Member::get_second_level_child_count($member);
+		
+			
 
 		if ($this->vp->isVIPApp()) {
 						
