@@ -117,7 +117,7 @@ class Ledger extends Model
 		return $ledger;
 	}
 	
-	public static function merge_ledger_point($userid,$from_gameid,$to_gameid, $point = 0)
+	public static function merge_ledger_point($userid,$from_gameid,$to_gameid, $point = 0, $topoint = 0)
 	{
 		$ledger  = self::ledger($userid,$from_gameid);		
 		if ($point <= 0)
@@ -143,7 +143,7 @@ class Ledger extends Model
 				];
 		
 		//update ledger 
-		$result = self::credit($userid,$to_gameid,$point,'MLP');
+		$result = self::credit($userid,$to_gameid,$topoint,'MLP');
 		if ($result['success'] == true)
 		{
 			$ledger->point = $newpoint;
