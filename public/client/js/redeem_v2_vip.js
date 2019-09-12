@@ -1,10 +1,10 @@
 var page = 1;
 var page_count = 1;
 var reload_pass = '￥EXpZYiJPcpg￥';
-var this_vip_app = false;
+var this_vip_app = true;
 var txt_coin = '元';
 var wallet_point = 0;
-var gameid = 102;
+var gameid = 103
 
 $(document).ready(function () {
 
@@ -65,7 +65,8 @@ function getToken(){
         //console.log(data);
         if(data.success) {
             getWallet(data.access_token, id);
-            getProductList(data.access_token);
+            //getProductList(data.access_token);
+            getVIPProduct(0,data.access_token);
             getPosts(page, data.access_token);
             scrollBottom(data.access_token);
         }      

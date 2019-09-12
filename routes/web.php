@@ -210,6 +210,13 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		
 	} );
 
+	Route::get( '/redeem-vip', function () {
+		return view( 'client/redeem_v2_vip');		
+	} );
+	Route::get( '/redeem-vip/{slug}', function ($slug = '') {
+		return view( 'client/redeem_v2_vip', compact('slug'));		
+	} );
+
 	Route::get( '/validate', function () {
 		return view( 'client/validate' );
 	} );

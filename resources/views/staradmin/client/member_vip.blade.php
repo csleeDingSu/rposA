@@ -24,12 +24,12 @@
         <a class="gobtn" href="vip">去高级抽奖&nbsp;<b class="fhei">&gt;</b></a>
         <p class="userTitle"><img src="{{ asset('clientapp/images/user-coin.png') }}"><span>我的挖宝币</span></p>
         <h2 class="userMoney" id='103_point'></h2>
-        <p class="userTotal"><span>昨日收益&nbsp;&nbsp;<b>+35.22</b></span><span>累计收益&nbsp;&nbsp;<b>+258.88</b></span>
+        <p class="userTotal"><span>昨日收益&nbsp;&nbsp;<b>+0</b></span><span>累计收益&nbsp;&nbsp;<b>+0</b></span>
         </p>
       </div>
       <div class="sMain">
         <a><img src="{{ asset('clientapp/images/user-1.png') }}"><span>充值</span></a>
-        <a href="redeem"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>兑奖</span></a>
+        <a href="redeem-vip"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>兑奖</span></a>
         <a href="summary"><img src="{{ asset('clientapp/images/user-3.png') }}"><span>明细</span></a>
         <a><img src="{{ asset('clientapp/images/user-4.png') }}"><span>专卖</span></a>
       </div>
@@ -86,13 +86,13 @@
 			var normal_game_point = getNumeric("<?php Print(empty($wallet['gameledger']['102']->point) ? 0 : $wallet['gameledger']['102']->point);?>");
 			var current_point = getNumeric("<?php Print(empty($wallet['gameledger']['103']->point) ? 0 : $wallet['gameledger']['103']->point);?>");
 			var usedpoint = getNumeric("<?php Print(empty($wallet['gameledger']['102']->used_point) ? 0 : $wallet['gameledger']['102']->used_point);?>");
-            var previous_point = Cookies.get('previous_point');
-            var wbp = "{{$wbp['wbp']}}";
-            var platform = "{{$wbp['platform']}}";
-            var browser = "{{$wbp['browser']}}";
-            var topupurl = decodeEntities("{{env('TOPUP_URL','#')}}");
-            var game_life = "<?php Print(empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life);?>";
-            game_life = game_life > 0 ? game_life : 0;
+      var previous_point = Cookies.get('previous_point');
+      var wbp = "{{$wbp['wbp']}}";
+      var platform = "{{$wbp['platform']}}";
+      var browser = "{{$wbp['browser']}}";
+      var topupurl = decodeEntities("{{env('TOPUP_URL','#')}}");
+      var game_life = "<?php Print(empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life);?>";
+            game_life = game_life > 0 ? game_life : 0;            
 
             if(previous_point !== undefined && previous_point > 0){
                 previous_point = (getNumeric(previous_point));
@@ -110,8 +110,13 @@
                 $('#103_point').html((current_point));
             }
 
+var yesterdaypoint = "{{$yesterdaypoint}}";
+var overallpoint = "{{$overallpoint}}";
+console.log(yesterdaypoint);
+console.log(overallpoint);
             $('#102_point').html('¥' + normal_game_point);
             $('#game_life').html(game_life);
+            $('.userTotal').html("<span>昨日收益&nbsp;&nbsp;<b>+" + getNumeric(yesterdaypoint) + "</b></span><span>累计收益&nbsp;&nbsp;<b>+" + getNumeric(overallpoint) + "</b></span>");
 
 		});
 
