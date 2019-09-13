@@ -1188,5 +1188,70 @@ WHERE
 		$record    =  view('receipt.render_data', ['result' => $record])->render();						
 		return $record;
     }
+		
+	public function receipt_get_to_module(Request $request)
+    {
+		$table = '';
+		switch($request->module)
+		{
+			case 'buyproduct':
+				$table = 'view_buy_product_user_list';		
+			break;
+			case 'product':
+				$table = 'redeemed';	
+			break;
+			case 'basicpackage':				
+				$table = 'view_basic_package_user_list';		
+			break;
+			case 'package':
+				$table = 'vip_redeemed';		
+			break;
+		}
+		
+		if (!$table)
+		{
+			return response()->json(['success' => false,'message'=>'unknown module']); 
+		}
+		
+		$result  =  \DB::table($table)->where('id', $request->id)->first();	
+		$record  =  view('receipt.render_update', ['result' => $result , 'id'=>$request->id , 'module'=>$request->module ])->render();						
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$record]); 
+	}
+	
+	public function receipt_update_to_module(Request $request)
+    {
+		$table = '';
+		if (!$request->receipt)
+		{
+			return response()->json(['success' => false,'message'=>'no receipt to update']); 
+		}
+		switch($request->module)
+		{
+			case 'buyproduct':
+				$table =  'buy_product_redeemed';		
+			break;
+			case 'product':
+				$table =  'redeemed';		
+			break;
+			case 'basicpackage':
+				$table =  'basic_redeemed';		
+			break;	
+			case 'package':
+				$table =  'vip_redeemed';		
+			break;					
+		}
+		
+		if (!$table)
+		{
+			return response()->json(['success' => false,'message'=>'unknown module']); 
+		}
+		
+		\DB::table($table)
+            	->where('id', $request->id)
+            	->update(['receipt'=>$request->receipt]);
+		
+		$record = $this->receipt_get_to_module($request);
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$request->receipt]); 
+	}
 	
 }
