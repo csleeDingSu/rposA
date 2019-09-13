@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Helpers\VIPApp;
+use App\Http\Controllers\tabaoApiController;
 use App\Members as Member;
 use App\Shareproduct;
 use App\Voucher;
@@ -229,6 +230,13 @@ class ShareProductController extends BaseController
 
 		return view('client/newMainPage', $data);
 		
+	}
+
+	public function tabaoSearch($search = null)
+	{
+		$data['search'] = $search;
+		return view('client/newSearchPage', $data);
+
 	}
 
 }

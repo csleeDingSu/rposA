@@ -57,3 +57,17 @@ function getFromTabao(){
 function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
   }
+
+  function goSearch() {
+    var search = $('#search').val();
+    if (search == '') {
+
+      alert('请输入产品');
+
+    }else{
+
+      window.location.href = "/main/search/" + search;      
+
+    }
+
+  }

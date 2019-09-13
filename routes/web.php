@@ -162,6 +162,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 
 	Route::any( '/shop', 'ShareProductController@shop' )->name( 'client.shop' );	
 	Route::any( '/main', 'ShareProductController@newMainPage' )->name( 'client.newMainPage' );	
+	Route::any( '/main/search/{search?}', 'ShareProductController@tabaoSearch' )->name( 'client.tabao.search' );	
 } );
 
 //Member routes with member guard
@@ -747,6 +748,8 @@ Route::any( '/weixin/createwxa/qrcode', 'weixinController@weixin_createwxaqrcode
 Route::any( '/tabao', 'tabaoApiController@index' )->name( 'tabao' );
 Route::any( '/tabao/test', 'tabaoApiController@test' )->name( 'tabao.test' );
 Route::any( '/tabao/get-goods-list', 'tabaoApiController@getGoodsList' )->name( 'tabao.getGoodsList' );
+Route::any( '/tabao/list-super-goods', 'tabaoApiController@getListSuperGoods' )->name( 'tabao.getListSuperGoods' );
+
 
 
 

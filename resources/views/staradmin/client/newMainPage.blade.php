@@ -9,7 +9,7 @@
     
 @endsection
 
-@section('title', '晒单评论')
+@section('title', '首页')
 
 @section('top-navbar')    
 @endsection
@@ -21,9 +21,9 @@
           <div class="searchBox">
             <img src="{{ asset('/clientapp/images/searchIcon.png') }}">
             <label>
-              <input type="text" placeholder="复制淘宝商品标题 粘贴搜索">
+              <input type="text" placeholder="复制淘宝商品标题 粘贴搜索" id="search">
             </label>
-            <a>查券</a>
+            <a href="javascript:goSearch();">查券</a>
           </div>
         </div>
         <ul class="about">

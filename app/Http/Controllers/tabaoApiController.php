@@ -12,7 +12,9 @@ class tabaoApiController extends BaseController
     public function __construct() {
 
         //
-       
+       $this->appKey = env('TABAO_APPKEY', '5d6a770f7f9cc');//应用的key
+       $this->appSecret = env('TABAO_APPSECRET', 'c7fa184a5c92e9a93dc3b0f54d7088bc');//应用的Secret
+
     }
 
     /**
@@ -93,27 +95,42 @@ class tabaoApiController extends BaseController
         return $sign;
     }
 
+    function getCurl($url) {
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        curl_setopt($ch,CURLOPT_TIMEOUT,10);
+
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+
+        $output = curl_exec($ch);
+
+        curl_close($ch);
+
+        return $output;
+        // return json_encode($output, true);
+    }
+
     public function test()
     {
         //接口地址
 
         $host = 'https://openapi.dataoke.com/api/goods/get-goods-list';
-
-        $appKey = '5d6a770f7f9cc';//应用的key
-
-        $appSecret = 'c7fa184a5c92e9a93dc3b0f54d7088bc';//应用的Secret
-
+        
         //默认必传参数
-
         $data = [
 
-            'appKey' => $appKey,
+            'appKey' => $this->appKey,
 
             'version' => '1',
         ];
 
         //加密的参数
-        $data['sign'] = $this->makeSign($data,$appSecret);
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
 
         //拼接请求地址
         $url = $host .'?'. http_build_query($data);
@@ -121,48 +138,27 @@ class tabaoApiController extends BaseController
         // var_dump($url);
         
         //执行请求获取数据
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        curl_setopt($ch,CURLOPT_TIMEOUT,10);
-
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-
-        $output = curl_exec($ch);
-
-        curl_close($ch);
-
-        return $output;
-
-        // return json_encode($output, true);
+        return $this->getCurl($url);
         
     }
 
-    public function getGoodsList()
+    public function getGoodsList(Request $request)
     {
         //接口地址
 
         $host = 'https://openapi.dataoke.com/api/goods/get-goods-list';
 
-        $appKey = '5d6a770f7f9cc';//应用的key
-
-        $appSecret = 'c7fa184a5c92e9a93dc3b0f54d7088bc';//应用的Secret
-
         //默认必传参数
 
         $data = [
 
-            'appKey' => $appKey,
+            'appKey' => $this->appKey,
 
             'version' => '1',
         ];
 
         //加密的参数
-        $data['sign'] = $this->makeSign($data,$appSecret);
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
 
         //拼接请求地址
         $url = $host .'?'. http_build_query($data);
@@ -171,23 +167,35 @@ class tabaoApiController extends BaseController
         
         //执行请求获取数据
 
-        $ch = curl_init();
+        return json_decode($this->getCurl($url),true);
+        
+    }
 
-        curl_setopt($ch, CURLOPT_URL, $url);
+    public function getListSuperGoods(Request $request)
+    {
+        $host = "https://openapi.dataoke.com/api/goods/list-super-goods";
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //默认必传参数
+        $data = [
 
-        curl_setopt($ch,CURLOPT_TIMEOUT,10);
+            'appKey' => $this->appKey,
+            'version' => 'v1.2.0',
+            'type' => 0,
+            'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
+            'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
+            'keyWords' => $request->input('search'),
+            // 'tmall' => 0,
+            // 'haitao' => 0,
+            'sort' => 'total_sales',
+        ];
 
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+        //加密的参数
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
 
-        $output = curl_exec($ch);
-
-        curl_close($ch);
-
-        return $output;
-
-        // return json_encode($output, true);
+        //拼接请求地址
+        $url = $host .'?'. http_build_query($data);
+        
+        return json_decode($this->getCurl($url),true);
         
     }
 
