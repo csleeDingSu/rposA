@@ -228,6 +228,13 @@
 		</li> -->
 		
 		<li class="nav-item">
+			<a class="nav-link" href="/receipt/list">
+              <i class="menu-icon  icon-note text-primary"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.receipt')</span>
+            </a>
+		</li>
+		
+		<li class="nav-item">
 			<a class="nav-link" href="/admin/faq">
               <i class="menu-icon  icon-note text-primary"></i>
               <span class="menu-title text-capitalize"> @lang('dingsu.faq')</span>

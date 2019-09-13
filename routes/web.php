@@ -675,6 +675,11 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	
 	Route::get('/notification/list', 'ReportController@notifications_list')->name('notifications_list');
+	
+	
+	Route::post( 'receipt/update', 'AdminController@receipt_update' )->name( 'receipt_update' );
+	Route::get( 'receipt/get', 'AdminController@receipt_get' )->name( 'receipt_get' );
+	Route::get( 'receipt/list', 'AdminController@receipt_list' )->name( 'receipt_list' );
 
 } );
 //END
