@@ -8,7 +8,7 @@
 
 <!-- top nav -->
 @section('left-menu')
-  <a class="returnBtn" href="javascript:goBack();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
 @section('title', '下单奖励')
@@ -42,7 +42,7 @@
   <dl class="coinExchange">
     <dd>
       <p>你已累计积分</p>
-      <span class="wallet_point">1200</span>
+      <span class="wallet_point">0.00</span>
     </dd>
     <dt>
       <img src="{{ asset('clientapp/images/echange.png') }}">
@@ -59,30 +59,6 @@
 
   <div class="orderRwdList">
     <ul class="data-list">
-      <li>
-        <h2><span>订单号&nbsp;25653562df5s3235</span>
-          <font color="#a144ff">正在处理</font>
-        </h2>
-        <p><span>2019-01-01 20:30</span></p>
-      </li>
-      <li>
-        <h2><span>订单号&nbsp;25653562df5s3235</span>
-          <font color="#1dc901">奖励到账</font>
-        </h2>
-        <p><span>2019-01-01 20:30</span><font color="#ff6161">+260</font></p>
-      </li>
-      <li>
-        <h2><span>订单号&nbsp;25653562df5s3235</span>
-          <font color="#ff6161">奖励失效</font>
-        </h2>
-        <p><span>2019-01-01 20:30</span></p>
-      </li>
-      <li>
-        <h2><span>订单号&nbsp;25653562df5s3235</span>
-          <font color="#ff6161">订单号无效</font>
-        </h2>
-        <p><span>2019-01-01 20:30</span></p>
-      </li>
     </ul>
   </div>
 

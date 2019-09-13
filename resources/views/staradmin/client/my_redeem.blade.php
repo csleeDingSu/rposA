@@ -9,7 +9,7 @@
 
 <!-- top nav -->
 @section('left-menu')
-  <a class="returnBtn" href="javascript:goBack();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
 @section('title', '晒单评价')

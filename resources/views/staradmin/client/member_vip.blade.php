@@ -21,16 +21,16 @@
         <a class="set"><img src="{{ asset('clientapp/images/user-set.png') }}"></a>
       </div>
       <div class="userDetail rel">
-        <a class="gobtn" href="vip">去高级抽奖&nbsp;<b class="fhei">&gt;</b></a>
+        <a class="gobtn" href="/vip">去高级抽奖&nbsp;<b class="fhei">&gt;</b></a>
         <p class="userTitle"><img src="{{ asset('clientapp/images/user-coin.png') }}"><span>我的挖宝币</span></p>
         <h2 class="userMoney" id='103_point'></h2>
         <p class="userTotal"><span>昨日收益&nbsp;&nbsp;<b>+0</b></span><span>累计收益&nbsp;&nbsp;<b>+0</b></span>
         </p>
       </div>
       <div class="sMain">
-        <a><img src="{{ asset('clientapp/images/user-1.png') }}"><span>充值</span></a>
-        <a href="redeem-vip"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>兑奖</span></a>
-        <a href="summary"><img src="{{ asset('clientapp/images/user-3.png') }}"><span>明细</span></a>
+        <a href="{{env('TOPUP_URL','#')}}"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>充值</span></a>
+        <a href="/redeem-vip"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>兑奖</span></a>
+        <a href="/summary"><img src="{{ asset('clientapp/images/user-3.png') }}"><span>明细</span></a>
         <a><img src="{{ asset('clientapp/images/user-4.png') }}"><span>专卖</span></a>
       </div>
 

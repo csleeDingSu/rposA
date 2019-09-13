@@ -1,5 +1,5 @@
 var wallet_point =0;
-var gameid = 103;
+var gameid = 102;
 $(document).ready(function () {
     getToken();     
 });
@@ -56,11 +56,26 @@ function getReceiptList(token, id) {
             records = data.records;
             $.each(records, function(i, item) {          
             html += '<li>' +
-                        '<h2><span>订单号&nbsp;'+item.receipt+'</span>' +
-                          '<font color="#a144ff">奖励到账</font>' +
-                        '</h2>' +
-                        '<p><span>'+item.updated_at+'</span><font color="#ff6161">+260</font></p>' +
+                        '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
+                        if (item.status == 1) {
+            html +=         '<font color="#a144ff">正在处理</font>';                
+                        }else if (item.status == 2) {
+            html +=         '<font color="#a144ff">奖励到账</font>';                
+                        }else if (item.status == 3) {
+            html +=         '<font color="#ff6161">奖励失效</font>';                
+                        }else {
+            html +=         '<font color="#ff6161">订单号无效</font>';                
+                        }            
+            html +=     '</h2>';
+
+                        if (item.status == 2) {
+            html +=         '<p><span>'+item.updated_at+'</span><font color="#ff6161">+'+item.amount+'</font></p>';           
+                        }else {
+            html +=         '<p><span>'+item.updated_at+'</span></p>';              
+                        }
+
                       '</li>';
+        
             });
 
             $('.data-list').html(html);

@@ -1,12 +1,38 @@
-@extends('layouts.default')
+@php
+    if (env('THISVIPAPP','false')) {
+        $default = 'layouts.default_app';
+    } else {
+        $default = 'layouts.default';
+    }
+@endphp
 
-@section('title', '常见问题')
+@extends($default)
 
-@section('left-menu')
-    <a href="javascript:history.back()" class="back">
-        <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
-    </a>
-@endsection
+@if(env('THISVIPAPP','false'))
+    <!-- top nav -->
+    @section('left-menu')
+      <a class="returnBtn" href="javascript:goBack();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+    @endsection
+
+    @section('title', '常见问题')
+
+    @section('right-menu')
+    @endsection
+    <!-- top nav end-->
+
+@else
+    @section('title', '常见问题')
+
+    @section('left-menu')
+        <a href="javascript:history.back()" class="back">
+            <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
+        </a>
+    @endsection
+
+    @section('top-navbar')
+    @endsection
+@endif
+
 
 @section('top-css')
     @parent
@@ -14,7 +40,12 @@
 @endsection
 
 @section('content')
-<div class="container demo">
+
+@if(env('THISVIPAPP','false'))
+    <div>
+@else
+    <div class="container demo">
+@endif
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 

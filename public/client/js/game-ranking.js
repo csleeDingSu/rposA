@@ -1,3 +1,5 @@
+var gameid = 102;
+
 $(document).ready(function () {
 	$('#general').click(function() {
 	    $('.icon-trophy').attr("src", '/client/images/ranking/trophy-over.png');
@@ -15,7 +17,7 @@ $(document).ready(function () {
 function getRanking() {
 	$.ajax({
         type: 'GET',
-        url: "/api/point-earned?gameid=102",
+        url: "/api/point-earned?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
