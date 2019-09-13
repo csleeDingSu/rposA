@@ -5,7 +5,7 @@ use Carbon\Carbon;
 
 class Receipt extends Model
 {   
-    protected $fillable = [ 'member_id','receipt','uuid' ,'status'   ];	
+    protected $fillable = [ 'member_id','receipt','uuid'    ];	
 			
     protected $table = 'receipt';	
 	
@@ -13,6 +13,18 @@ class Receipt extends Model
     {
         return with(new static)->getTable();
     }
+	
+	
+	public function reason()
+    {
+        return $this->belongsTo(\App\Reason::class, 'reason_id' , 'id');
+    }
+		
+	public function member()
+    {
+        return $this->belongsTo(\App\Member::class, 'member_id' , 'id');
+    }
+	
 }
 
 
