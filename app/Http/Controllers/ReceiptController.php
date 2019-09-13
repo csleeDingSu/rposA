@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\blog;
-use App\buy_product_redeemed;
-use App\v_blog_buy_product_records;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+use Carbon\ Carbon;
+use DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 class ReceiptController extends Controller
 {
@@ -17,11 +19,12 @@ class ReceiptController extends Controller
      */
     public function __construct()
     {
+        // dd(Auth::guard('member')->check());
         // $this->middleware('auth');
-        if (!Auth::Guard('member')->check())
-        {
-            return redirect('/');
-        }   
+        // if (!Auth::Guard('member')->check())
+        // {
+        //     return redirect('/');
+        // }   
     }
 
     /**
@@ -30,15 +33,12 @@ class ReceiptController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {        
-        $receipt = blog::select('*')->whereNull('deleted_at')->orderBy('updated_at','desc')->paginate(3);
-        // dd($receipt);
-        if ($request->ajax()) {
-            $view = view('client.receipt_list',compact('receipt'))->render();
-            return response()->json(['html'=>$view]);
-            // return view('client/game-node', compact('vouchers'));
+    {   
+        if (Auth::guard('member')->check()) {
+            return view('client.receipt');
+        } else {
+            return redirect('/');
         }
-        return view('client.receipt', compact('receipt'));
     }
 
     public function showGuide()

@@ -1,12 +1,31 @@
-@extends('layouts.default')
+@php
+    if (env('THISVIPAPP','false')) {
+        $default = 'layouts.default_app';
+    } else {
+        $default = 'layouts.default';
+    }
+@endphp
 
-@section('title', '邀请记录')
+@extends($default)
 
-@section('left-menu')
-    <a href="/profile" class="back">
-        <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
-    </a>
-@endsection
+@if(env('THISVIPAPP','false'))
+    <!-- top nav -->
+    @section('left-menu')
+      <a class="returnBtn" href="javascript:goBack();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+    @endsection
+
+    @section('title', '邀请记录')
+
+    @section('right-menu')
+    @endsection
+    <!-- top nav end-->
+
+@else
+    @section('title', '邀请记录')
+    @section('top-navbar')
+    @endsection
+@endif
+
 
 @section('top-css')
     @parent

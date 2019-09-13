@@ -1,5 +1,5 @@
 var wallet_point =0;
-
+var gameid = 103;
 $(document).ready(function () {
     getToken();     
 });
@@ -13,7 +13,7 @@ function getToken(){
         if(data.success) {
             token = data.access_token;
             getWallet(data.access_token, id);
-            getReceiptList(data.access_token);
+            getReceiptList(data.access_token, id);
             AssignSubmitReceipt(data.access_token);            
         }      
     });
@@ -22,7 +22,7 @@ function getToken(){
 function getWallet(token, id) {
     $.ajax({
         type: 'POST',
-        url: "/api/wallet-detail?gameid=103&memberid=" + id, 
+        url: "/api/wallet-detail?gameid="+gameid+"&memberid=" + id, 
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -40,26 +40,28 @@ function getWallet(token, id) {
     });
 }
 
-function getReceiptList(token) {
-    var member_id = $('#hidUserId').val();
+function getReceiptList(token, id) {
     var html = '';
 
     $.ajax({
         type: 'GET',
-        url: "/api/list-receipt", 
+        url: "/api/list-receipt?memberid=" + id, 
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            console.log(data);           
+            console.log(data); 
+            records = data.records;
+            $.each(records, function(i, item) {          
             html += '<li>' +
-                        '<h2><span>订单号&nbsp;25653562df5s3235</span>' +
-                          '<font color="#a144ff">正在处理</font>' +
+                        '<h2><span>订单号&nbsp;'+item.receipt+'</span>' +
+                          '<font color="#a144ff">奖励到账</font>' +
                         '</h2>' +
-                        '<p><span>2019-01-01 20:30</span></p>' +
+                        '<p><span>'+item.updated_at+'</span><font color="#ff6161">+260</font></p>' +
                       '</li>';
+            });
 
             $('.data-list').html(html);
         } // end success
@@ -88,7 +90,7 @@ function AssignSubmitReceipt(token) {
                     if(data.success) {
                         
                         alert('提交成功');
-                       getReceiptList(token)
+                       getReceiptList(token, memberid);
                         
                     } else {
                         alert(data.message);
