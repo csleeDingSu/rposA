@@ -46,8 +46,15 @@ class RankGenerator extends Command
 		
 		$this->info('-- done');
 		
-		//mysql data seek pointer not reset to 0 so to fix that we pass the dynamic variibale 
+		//mysql data seek pointer not reset to 0 so to fix that we pass the dynamic variibale
+		//Fixed on 12/09/2019 set @i = 0
 		$arr = ['0'=>'i','1'=>'j','2'=>'k','3'=>'l','4'=>'m','5'=>'n','6'=>'p','7'=>'q',];
+		
+		$this->line('-- truncate old records');
+		
+		\App\Rank::query()->truncate();
+
+		$this->info('-- done');
 		
 		foreach ($games as $key=>$game)
 		{
