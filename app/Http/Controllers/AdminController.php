@@ -1130,21 +1130,22 @@ WHERE
 		$input = array();		
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);		
-		$result = \App\Receipt::whereHas('member', function($q) use($input) {
-					if (!empty($input['s_member'])) {
-						$q->where('phone','LIKE', "%{$input['s_member']}%")->orwhere('wechat_name' , 'LIKE', "%{$input['s_member']}%") ;
-					}
-				})
-				->whereHas('reason', function($q) use($input) {
-					if (!empty($input['reason_id']))  
-						$query->where('id', $input['reason_id']) ;
-				});
-		
-		if (!empty($input['s_receipt'])) { 
-			$result = $result->where('receipt','LIKE', "%{$input['s_receipt']}%") ;
-		}
-		if (!empty($input['s_status'])) { 
-			$result = $result->where('status',$input['s_status']) ;
+		$result = \App\Receipt::with('member','reason');
+										 
+		if ($input)
+		{
+			if (!empty($input['s_receipt'])) { 
+				$result = $result->where('receipt','LIKE', "%{$input['s_receipt']}%") ;
+			}
+			if (!empty($input['s_status'])) { 
+				$result = $result->where('status',$input['s_status']) ;
+			}
+			if (!empty($input['s_member'])) {
+				$result = $result->where('members.phone','LIKE', "%{$input['s_member']}%")->orwhere('wechat_name' , 'LIKE', "%{$input['s_member']}%") ;
+			}
+			if (!empty($input['reason_id']))  {
+					$result = $result->where('id', $input['reason_id']) ;
+			}
 		}
 		
 		$result =  $result->orderby('id','DESC')->paginate(30);				
