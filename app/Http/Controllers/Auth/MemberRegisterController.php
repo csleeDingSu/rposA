@@ -270,14 +270,14 @@ class MemberRegisterController extends Controller
 			//Get Setting Life 
 			$setting = \App\Admin::get_setting();
 			
-			/*
+			
 			$wallet = \App\Wallet::create([
-					'current_life'    => $setting->game_default_life,
+					'current_life'    => 0,
 					'member_id'       => $id,
-					'current_balance' => env('initial_balance',1200),
-					'balance_before'  => env('initial_balance',1200)
+					'current_balance' => 0,
+					'balance_before'  => 0
 				]);
-			*/
+			
 			//update members table
 			/*
 			Members::where('id', $id)
