@@ -681,6 +681,9 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::post( 'receipt/update', 'AdminController@receipt_update' )->name( 'receipt_update' );
 	Route::get( 'receipt/get', 'AdminController@receipt_get' )->name( 'receipt_get' );
 	Route::get( 'receipt/list', 'AdminController@receipt_list' )->name( 'receipt_list' );
+	
+	Route::get( 'receipt/get-receipt-module', 'AdminController@receipt_get_to_module' )->name( 'receipt_get_to_module' );
+	Route::post( 'receipt/update-module', 'AdminController@receipt_update_to_module' )->name( 'receipt_update_to_module' );
 
 } );
 //END
