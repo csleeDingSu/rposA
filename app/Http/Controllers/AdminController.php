@@ -1125,6 +1125,67 @@ WHERE
 		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$input]);
 	}
 	
+	public function receipt_list (Request $request)
+	{
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);		
+		$result = \App\Receipt::whereHas('member', function($q) use($input) {
+					if (!empty($input['s_member'])) {
+						$q->where('phone','LIKE', "%{$input['s_member']}%")->orwhere('wechat_name' , 'LIKE', "%{$input['s_member']}%") ;
+					}
+				})
+				->whereHas('reason', function($q) use($input) {
+					if (!empty($input['reason_id']))  
+						$query->where('id', $input['reason_id']) ;
+				});
+		
+		if (!empty($input['s_receipt'])) { 
+			$result = $result->where('receipt','LIKE', "%{$input['s_receipt']}%") ;
+		}
+		if (!empty($input['s_status'])) { 
+			$result = $result->where('status',$input['s_status']) ;
+		}
+		
+		$result =  $result->orderby('id','DESC')->paginate(30);				
+		 				
+		if ($request->ajax()) {
+            return view('receipt.ajaxlist', ['result' => $result])->render();  
+        }
+		$data['page']    = 'receipt.list'; 				
+		$data['result']  = $result;		
+		return view('main', $data);	
+	}
 	
+	public function receipt_get(Request $request)
+    {
+    	$record    = \App\Receipt::where('id',$request->id)->first();	
+		$reason    = \DB::table('receipt_reason')->get();
+		$record    =  view('receipt.render_edit', ['result' => $record , 'id'=>$record->id , 'reason'=>$reason]) ->render();
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$record]);	
+    }
+	
+	public function receipt_update(Request $request)
+    {
+    	$record    = \App\Receipt::where('id',$request->id)->first(); 		
+		if ($record->status != 1)
+		{
+			return response()->json(['success' => false, 'errors' => trans('lang.record_already_settled') ]); 
+		}		
+		$record->status     = $request->status;	
+		$record->amount     = $request->amount;	
+		$record->reason_id  = $request->reason_id;	
+		$record->remark     = $request->remark;			
+		$record->save();
+		$row = $this->render_receiptdata($request->id);
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$row]);
+    }
+	
+	public function render_receiptdata($id)
+    {
+    	$record    = \App\Receipt::with('reason')->where('id',$id)->get();		
+		$record    =  view('receipt.render_data', ['result' => $record])->render();						
+		return $record;
+    }
 	
 }
