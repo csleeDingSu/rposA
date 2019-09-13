@@ -708,5 +708,18 @@ return [
 	'second_level_introduce_life' => 'Second level introducer life bonus',
 	'detail' => 'Detail',
 	'ledger' => 'Ledger',
+	'receipt'=>'receipt',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	''=>'',
+	
+	
+	
+	
 
 ];
