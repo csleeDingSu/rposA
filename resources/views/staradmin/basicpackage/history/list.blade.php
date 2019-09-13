@@ -8,6 +8,7 @@
 </section>
 
 <section class="model">
+	@include('receipt.model')
 </section>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css" />
