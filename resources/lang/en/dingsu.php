@@ -712,7 +712,7 @@ return [
 	'successful'=>'successful',
 	'unsuccessful'=>'unsuccessful',
 	'reason'=>'reason',
-	''=>'',
+	'amount'=>'amount',
 	''=>'',
 	''=>'',
 	''=>'',
