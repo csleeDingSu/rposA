@@ -126,9 +126,9 @@ class ClientController extends BaseController
 			$scount = $sc_child['count'];
 		}
 		
-		print_r($intro_count);
-		print_r($sc_child);
-		dd('s');
+		//print_r($intro_count);
+		//print_r($sc_child);
+		//dd('s');
 		
 		$data['total_intro'] = 	$icount + $scount ;
 
