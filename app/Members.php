@@ -127,7 +127,7 @@ class Members extends Model
 	
 	public static function get_introducer_count($id)
 	{
-		$result = DB::table('view_member_introduce_count')->where('memberid', $id)->get();
+		$result = DB::table('view_member_introduce_count')->where('memberid', $id)->first();
 		
 		return $result;
 	}
