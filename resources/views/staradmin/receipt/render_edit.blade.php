@@ -29,7 +29,8 @@
 									<select id="status" name="status" class="form-control">
 										<option @if (1 == $result->status)) selected="selected" @endif  value="1">@lang('dingsu.inprogress')</option>
 										<option @if (2 == $result->status)) selected="selected" @endif value="2">@lang('dingsu.successful')</option>
-										<option @if (3 == $result->status)) selected="selected" @endif value="3">@lang('dingsu.unsuccessful')</option>										
+										<option @if (3 == $result->status)) selected="selected" @endif value="3">@lang('dingsu.unsuccessful') @lang('dingsu.notqualified')</option>
+										<option @if (4 == $result->status)) selected="selected" @endif value="3">@lang('dingsu.unsuccessful') @lang('dingsu.invalidreceipt')</option>
 									</select>
 									
 								</div>

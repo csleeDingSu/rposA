@@ -15,7 +15,9 @@
 		@elseif ($list->status == 2)
 		<label class="badge badge-success">@lang('dingsu.successful')</label> 
 		@elseif ($list->status == 3)
-		<label class="badge badge-danger">@lang('dingsu.unsuccessful')</label> 
+		<label class="badge badge-danger">@lang('dingsu.unsuccessful') @lang('dingsu.notqualified')</label> 
+		@elseif ($list->status == 4)
+		<label class="badge badge-danger">@lang('dingsu.unsuccessful') @lang('dingsu.invalidreceipt')</label> 
 		@endif
 	</td>
 	
