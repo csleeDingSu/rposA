@@ -85,7 +85,7 @@ class Ledger extends Model
 		  $outwallet[$item->game_id] = $item;
 		}
 		
-		return ['gameledger'=>$outwallet,'mainledger'=>[]];
+		return ['gameledger'=>$outwallet,'mainledger'=>$result];
 	}
 	public static function mainledger($userid)
 	{
