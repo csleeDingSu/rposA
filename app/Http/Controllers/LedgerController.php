@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Wallet;
 use Carbon\Carbon;
 use App\Notification;
-
+use App\Ledger;
 
 class LedgerController extends BaseController
 {
@@ -173,5 +173,34 @@ class LedgerController extends BaseController
 	}
 	
 	
+	public function get_gameledger (Request $request)
+	{		
+		$id     = $request->id;
+		$record = Ledger::all_ledger($id);		
+		$result =  view('member.render_update', ['result' => $record['gameledger'] , 'id'=>$id])->render();	
+		return response()->json(['success' => true,'id'=>$id , 'record'=>$result]);
+	}
+	
+	public function update_gameledger (Request $request)
+	{
+		$userid = $request->id;		
+		foreach($request->point as $key => $point)
+		{
+			if ($point>0)
+			{
+				$ledger = Ledger::find($key);
+				Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+			}
+		}		
+		foreach($request->life as $key => $life)
+		{
+			if ($life>0)
+			{
+				$ledger = Ledger::find($key);					
+				Ledger::life($userid,$ledger->game_id,'credit',$life,'PAA', 'admin adjust point');
+			}
+		}
+		return response()->json(['success' => true]);
+	}
 	
 }
