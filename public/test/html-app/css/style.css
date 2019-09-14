@@ -353,17 +353,23 @@ dd a.on h2, dd a:active h2 {
     border-radius: .05rem;
 }
 
+.listBox .inBox .txtBox{
+    display: flex; display: -webkit-flex;display: -moz-flex;
+    flex-direction: column;
+}
+
+
 .listBox .inBox .name {
     font-size: .26rem;
     font-weight: bold;
     color: #333;
-    line-height: 1.6em;
+    line-height: 1.4em;
     margin-bottom: .1rem;
 }
 
 .listBox .typeBox {
     font-size: 0;
-    min-height: .78rem;
+    flex:1;
 }
 
 .listBox .typeBox span {
@@ -373,7 +379,7 @@ dd a.on h2, dd a:active h2 {
     border-radius: .05rem;
     line-height: .28rem;
     margin-right: .1rem;
-    margin-bottom: .14rem;
+    margin-bottom: .1rem;
 }
 
 .listBox .moneyBox {
