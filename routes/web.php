@@ -684,6 +684,10 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	Route::get( 'receipt/get-receipt-module', 'AdminController@receipt_get_to_module' )->name( 'receipt_get_to_module' );
 	Route::post( 'receipt/update-module', 'AdminController@receipt_update_to_module' )->name( 'receipt_update_to_module' );
+	
+	Route::get( 'receipt/get-gameledger', 'LedgerController@get_gameledger' )->name( 'get_gameledger' );
+	Route::post( 'receipt/update-gameledger', 'LedgerController@update_gameledger' )->name( 'update_gameledger' );
+	
 
 } );
 //END
