@@ -19,7 +19,13 @@ function getFromTabao(){
             // console.log(data);
             // console.log(JSON.parse(data).data.list);
             var records = JSON.parse(data).data.list;
+            var newPrice = 0; 
+            var sales = 0;
             $.each(records, function(i, item) {
+              newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
+              newPrice = (newPrice > 0) ? newPrice : 0;
+              sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
+
               html += '<div class="inBox">' +
               '<div class="imgBox">' +
                 '<img src="'+item.mainPic+'">' +
@@ -33,10 +39,10 @@ function getFromTabao(){
                 '</div>' +
                 '<div class="moneyBox">' +
                   '<p class="icon">¥</p>' +
-                  '<p class="nowTxt">'+ getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12)) +'</p>' +
+                  '<p class="nowTxt">'+ newPrice +'</p>' +
                   '<p class="oldTxt">'+item.originalPrice+'</p>' +
                   '<a href="'+item.couponLink+'" class="btn">' +
-                    '<p>热销'+ parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1) +'万</p>' +
+                    '<p>热销'+ sales +'万</p>' +
                     '<div class="inTxt">' +
                       '<img src="/clientapp/images/shapeIcon.png">' +
                       '<span>去领券</span>' +
