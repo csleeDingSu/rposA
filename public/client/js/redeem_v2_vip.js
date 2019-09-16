@@ -220,7 +220,7 @@ function getProductList(token) {
                 });
 
                 $('#softpin').html(html);
-                $( ".cardFull" ).after( htmlmodel);
+                $( ".card-summary" ).after( htmlmodel);
 
                 var wechat_status = $('#hidWechatId').val();
 
@@ -848,7 +848,7 @@ function getNewProductList(softpinCount, token) {
                 });
 
                 $('#newProduct').html(html);
-                $( ".cardFull" ).after(htmlmodel);
+                $( ".card-summary" ).after(htmlmodel);
 
                 $.each(records, function(i, item) {
                     $('.openeditmodel_' + i).click(function() {
@@ -1095,7 +1095,7 @@ function getVIPProduct(softpinCount, token){
         });
 
         $('.vipProduct').html(html);
-        $( ".cardFull" ).after(htmlmodel);
+        $( ".card-summary" ).after(htmlmodel);
 
         $.each(data.records, function(i, item) {
             $('.openeditmodel_' + item.id).click(function() {
@@ -1215,7 +1215,7 @@ function getConvertCointInfo(softpinCount, token, current_point) {
     htmlmodel += '<input id="hidSelectedContentAmountValue" type="hidden" value="">'; 
 
     $('#newProduct').html(html);
-    $( ".cardFull" ).after(htmlmodel);
+    $( ".card-summary" ).after(htmlmodel);
 
     $('.openeditmodel_convert_coint').click(function() {
         $('#viewvouchermode_convert_coint').modal('show');
