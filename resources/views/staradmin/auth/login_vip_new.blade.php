@@ -1,88 +1,83 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.default_app')
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <title>登录</title>
-  <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/public.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/swiper.min.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css') }}" />
-  <script type="text/javascript" src="{{ asset('clientapp/js/swiper.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('clientapp/js/jquery-1.9.1.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('clientapp/js/being.js') }}"></script>
+@section('top-css')
+    @parent
+    <style type="text/css">
+      .isa_info,
+      .isa_success,
+      .isa_warning,
+      .isa_error {
+          margin: 10px 0px;
+          padding: 12px;
+      }
+      
+      .isa_info {
+          color: #00529B;
+          background-color: #BDE5F8;
+          margin: 0.1rem 0;
+          padding: 0.1rem;
+          border-radius: 5px;
+      }
+      
+      .isa_success {
+          color: #4F8A10;
+          background-color: #DFF2BF;
+          margin: 0.1rem 0;
+          padding: 0.1rem;
+          border-radius: 5px;
+      }
+      
+      .isa_warning {
+          color: #9F6000;
+          background-color: #FEEFB3;
+          margin: 0.1rem 0;
+          padding: 0.1rem;
+          border-radius: 5px;
+      }
+      
+      .isa_error {
+          color: #D8000C;
+          background-color: #FFD2D2;
+          margin: 0.1rem 0;
+          padding: 0.1rem;
+          border-radius: 5px;
+      }
+      
+      .isa_info i,
+      .isa_success i,
+      .isa_warning i,
+      .isa_error i {
+          margin: 10px 22px;
+          font-size: 2em;
+          vertical-align: middle;
+      }
 
-  <style type="text/css">
-    <style>
-        .isa_info,
-        .isa_success,
-        .isa_warning,
-        .isa_error {
-            margin: 10px 0px;
-            padding: 12px;
-        }
-        
-        .isa_info {
-            color: #00529B;
-            background-color: #BDE5F8;
-            margin: 0.1rem 0;
-            padding: 0.1rem;
-            border-radius: 5px;
-        }
-        
-        .isa_success {
-            color: #4F8A10;
-            background-color: #DFF2BF;
-            margin: 0.1rem 0;
-            padding: 0.1rem;
-            border-radius: 5px;
-        }
-        
-        .isa_warning {
-            color: #9F6000;
-            background-color: #FEEFB3;
-            margin: 0.1rem 0;
-            padding: 0.1rem;
-            border-radius: 5px;
-        }
-        
-        .isa_error {
-            color: #D8000C;
-            background-color: #FFD2D2;
-            margin: 0.1rem 0;
-            padding: 0.1rem;
-            border-radius: 5px;
-        }
-        
-        .isa_info i,
-        .isa_success i,
-        .isa_warning i,
-        .isa_error i {
-            margin: 10px 22px;
-            font-size: 2em;
-            vertical-align: middle;
-        }
-
-        #loginvalidation-errors {
-          position: absolute;
-          z-index: 2;
-          width: 50%;
-          margin: 0.1rem;
-        }
-
+      #loginvalidation-errors {
+        position: absolute;
+        z-index: 2;
+        width: 50%;
+        margin: 0.1rem;
+      }
     </style>
-  </style>
-</head>
+@endsection
 
-<body>
+@section('top-javascript')
+    @parent
+    
+@endsection
+
+<!-- top nav -->
+@section('left-menu')
+  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+@endsection
+
+@section('title', '用户登录')
+
+@section('right-menu')
+@endsection
+
+@section('content')
 <div class="" id="loginvalidation-errors"></div>
-  <section class="card">
-    <div class="card-body over">
       <div class="loginBox rel">
         <img src="{{ asset('clientapp/images/loginBg.png') }}" width="100%">        
         <div class="form">
@@ -94,7 +89,7 @@
                 <input type="tel" placeholder="输入注册手机号码" id="authusername">
               </label>
             </dd>
-            <dt>密码</dt>
+            <dt>登录密码</dt>
             <dd>
               <img src="{{ asset('clientapp/images/lockIcon.png') }}">
               <label>
@@ -109,9 +104,6 @@
 
         </div>
       </div>
-    </div>
-
-  </section>
 
 
   <!-- <div class="card-shade"></div> -->
@@ -123,8 +115,10 @@
       <a class="downBtn gdt">下载APP 登录领取</a>
     </div>
   </div>
+@endsection
 
-
+@section('footer-javascript')
+    @parent
   <script>
     $(function () {
       // $('.login').click(function () {
@@ -139,10 +133,7 @@
 
       });
     });
-  </script>
-
-            <script>
-
+    
             $( '#dologin' ).click( function (e) {
                 jQuery.ajax({
                 type:"POST",
@@ -199,7 +190,4 @@
             } );
 
         </script>
-
-</body>
-
-</html>
+@endsection

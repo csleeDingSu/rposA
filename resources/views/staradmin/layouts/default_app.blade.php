@@ -78,10 +78,7 @@
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/public.css')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/swiper.min.css')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css')}}" />
-			<script type="text/javascript" src="{{ asset('clientapp/js/swiper.min.js')}}"></script>
-			<script type="text/javascript" src="{{ asset('clientapp/js/jquery-1.9.1.js')}}"></script>
-			<script type="text/javascript" src="{{ asset('clientapp/js/being.js')}}"></script>
-
+			
 			<style>
 		        /* Paste this css to your style sheet file or under head tag */
 		        /* This only works with JavaScript, 
@@ -111,6 +108,9 @@
 		@show
 		
 		@section('top-javascript')
+		<script type="text/javascript" src="{{ asset('clientapp/js/swiper.min.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('clientapp/js/jquery-1.9.1.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('clientapp/js/being.js')}}"></script>
 
 		<script type="text/javascript">
 		//这个统计代码。
