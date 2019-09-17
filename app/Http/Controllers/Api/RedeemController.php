@@ -121,4 +121,62 @@ class RedeemController extends Controller
 		
 		return response()->json(['success' => false, 'message' => 'unknown type/ package deleted']);
 	}
+	
+	
+	public function redeem_vip(Request $request)
+    {
+		$memberid  = $request->memberid;
+		$passcode  = $request->passcode;
+		
+		$input = [
+			 'memberid'  => $memberid,
+			 'passcode'  => $passcode,
+			  ];
+		$validator = Validator::make($input, 
+			[
+				'memberid'  => 'required',
+				'passcode'  => 'required'
+			]
+		);
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+				
+		$package   = Package::get_redeem_package_passcode($passcode, $memberid );
+		
+		if ($package)
+		{
+			$cpackage = Package::get_current_package($memberid);	
+		
+			if ($cpackage)
+			{
+				return response()->json(['success' => false, 'message' => 'user already entitled with VIP']);
+			}
+			
+			if ($passcode === $package->passcode)
+			{
+				$ledger = Ledger::ledgerbyid($package->ledger_id);
+				
+				Ledger::credit($memberid,$ledger->game_id,$package->package_point,'RV');
+				
+				
+				Ledger::life($memberid,$ledger->game_id,'credit',$package->package_life,'RV');
+					
+					
+			//	Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'RV');
+			
+				
+				$now = Carbon::now();
+				$data = ['redeem_state'=>3,'redeemed_at'=>$now];
+						
+				Package::update_vip($package->id, $data);
+				
+				return response()->json(['success' => true, 'message' => '']);
+			}
+			return response()->json(['success' => false, 'message' => 'wrong redeem code']);
+		}
+		
+		return response()->json(['success' => false, 'message' => 'unknown vip package / user not authorise to use this package']);
+	}
 }
