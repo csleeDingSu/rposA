@@ -417,7 +417,7 @@ class Ledger extends Model
 		}		
 		$uuid       = '';
 		$newcredit  = '';		
-		$prefix     = 'CP';
+		$prefix     = 'AP';
 		$action_sym = '1';
 		//Get Ledger detail
 		$wallet     = self::ledger($userid,$gameid);
