@@ -25,14 +25,17 @@ class RedeemController extends Controller
 		
 		$input = [
 			 'memberid'  => $request->memberid,
-			 'packageid' => $request->packageid,			
+			 'packageid' => $request->packageid,	
+			 'gameid'    => $request->gameid,	
 			  ];
 		$validator = Validator::make($input, 
 			[
-				'memberid' => 'required',
-				'packageid' => 'required'
+				'memberid'  => 'required',
+				'packageid' => 'required',
+				'gameid'    => 'required'
 			]
 		);
+	   
 		if ($validator->fails()) {
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
