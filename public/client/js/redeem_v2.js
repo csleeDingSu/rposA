@@ -140,7 +140,7 @@ function getProductList(token) {
                         reserved_quantity = 0;
                     }
 
-                    if (item.min_point > getNumeric(data.current_point)){
+                    if (item.min_point > getNumeric(wallet_point)){
                         cannot_redeem = true;
                         cls_cannot_redeem = 'btn-cannot-redeem';
                     }

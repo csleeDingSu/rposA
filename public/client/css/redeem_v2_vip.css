@@ -642,6 +642,7 @@ html, body {
 .empty {
 	/*font-size: 12px;*/
 	/*color: #ff8624;*/
+	text-align: center;
 }
 
 /* Modal Row */
