@@ -142,6 +142,7 @@
 
 @endsection
 
+@section('footer-javascript')
 <!-- Modal starts -->
 <div class="modal fade col-lg-12" id="card-no-modal" tabindex="-1" style="z-index: 9999">
     <div class="modal-dialog modal-sm" role="document">
@@ -257,7 +258,6 @@
 	</div>
 <!-- Steps Modal Ends -->
 
-@section('footer-javascript')
     @parent
     <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
