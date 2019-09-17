@@ -329,7 +329,7 @@ class RedeemController extends Controller
 		}
 		
 		//check package
-		$package   = BuyProduct::get_view_product($packageid);
+		$package   = \App\BuyProduct::get_view_product($packageid);
 		
 		if (!$package) return response()->json(['success' => false, 'message' => trans('dingsu.unknown_package')]);
 
@@ -379,7 +379,7 @@ class RedeemController extends Controller
 							,'ledger_history_id'      => $wallet['uuid']
 					
 						];
-				$id = BuyProduct::save_redeemed($data);
+				$id = \App\BuyProduct::save_redeemed($data);
 				
 				
 				
@@ -435,7 +435,7 @@ class RedeemController extends Controller
 							,'quantity'      => $request->quantity
 							,'ledger_history_id'      => $wallet['uuid']
 						];
-				$id = BuyProduct::save_redeemed($data);
+				$id = \App\BuyProduct::save_redeemed($data);
 				
 				
 				
