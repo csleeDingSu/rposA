@@ -77,6 +77,11 @@
 @endsection
 
 @section('content')
+
+@if(!empty($refcode) and !isset($ref->id))
+<div class="isa_error">@lang('dingsu.unknow_referral_code')</div>
+@endif
+
 <div class="" id="validation-errors"></div>
       <div class="loginBox rel">
         <img src="{{ asset('clientapp/images/loginBg.png') }}" width="100%">
@@ -98,12 +103,18 @@
                 <input name="confirmpassword" id="confirmpassword" name="confirmpassword" type="hidden">
               </label>
             </dd>
+            @if((!empty($refcode) and isset($ref->id)) || !empty(Session::get('refcode')))
+            <dt>注册码</dt>
+            <dd><input name="refcode" id="refcode" type="text" value="{{ Session::get('refcode')}}" readonly  style="color: lightgrey; width: 32%; border: 0;">
+            </dd>
+            @endif
           </dl>
           <button class="login" id="doregi">下一步</button>
           <h2>已有账号，<a href="/app-login">
               <font color="#7c48e4">登录</font>
             </a></h2>
         </div>
+
         </form>
       </div>
 
