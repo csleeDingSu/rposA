@@ -103,12 +103,12 @@ class Ledger extends Model
 		return $wallet;
 	}
 	
-	public static function ledgerbyid($id, $memberid = FALSE, $gameid = FALSE)
+	public static function ledgerbyid($id, $userid = FALSE, $gameid = FALSE)
 	{
-		$wallet     = Ledger::where('id',$userid)->where('game_id',$gameid);		
-		if ($memberid)
+		$wallet     = Ledger::where('id',$id);		
+		if ($userid)
 		{
-			$wallet = $wallet->where('member_id',$memberid)   ;
+			$wallet = $wallet->where('member_id',$userid)   ;
 		}	
 		if ($gameid)
 		{
