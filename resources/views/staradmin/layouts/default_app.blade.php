@@ -161,7 +161,7 @@
 		      </div>
 		    </div>
 
-		@if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register'))
+		@if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register'))
 			@include('layouts/footer_app')
 		@endif
 

@@ -245,7 +245,6 @@ class ClientController extends BaseController
 		
         // $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
 
-
 		if (!Auth::Guard('member')->check())
 		{
 			
@@ -259,7 +258,8 @@ class ClientController extends BaseController
 	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
 	        } else {
 	            $data['betting_count'] = 0;
-				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin'));
+	            $total_intro = 0;
+				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro'));
 	        }
 			
 		} else {
@@ -275,7 +275,14 @@ class ClientController extends BaseController
 			}
 
 			$data['betting_count'] = member_game_result::where("member_id", $member_id)->get()->count();
-			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin'));
+
+			 //referral friends
+			$intro_count         = Member::get_introducer_count($member_id);
+			$sc_child            = Member::get_second_level_child_count($member_id);
+			
+			$total_intro = 	(!empty($intro_count->count) ? $intro_count->count : 0) + (!empty($sc_child['count']) ? $sc_child['count'] : 0) ;
+
+			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro'));
 
 		}
 

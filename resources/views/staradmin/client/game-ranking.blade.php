@@ -21,8 +21,8 @@
 	</div>
 	<div class="total-point-right">
 		<p>成功邀请好友</p>
-		<p class="my-invitation-count">0</p>
-		<a href="/share">
+		<p class="my-invitation-count">{{ $total_intro }}</p>
+		<a href="/invitation_list">
 			<img class="icon-invite" src="{{ asset('/client/images/ranking/icon-invite.png') }}" />
 		</a>
 	</div>
