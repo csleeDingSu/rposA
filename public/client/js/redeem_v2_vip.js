@@ -65,10 +65,6 @@ function getToken(){
         //console.log(data);
         if(data.success) {
             getWallet(data.access_token, id);
-            //getProductList(data.access_token);
-            getVIPProduct(0,data.access_token);
-            getPosts(page, data.access_token);
-            scrollBottom(data.access_token);
         }      
     });
 }
@@ -1250,6 +1246,11 @@ function getWallet(token, id) {
             // console.log(data);
             wallet_point = data.record.gameledger[gameid].point;
             $('.wabao-coin').html(wallet_point);
+
+            //getProductList(data.access_token);
+            getVIPProduct(0,token);
+            getPosts(page, token);
+            scrollBottom(token);
         }
     });
 }
