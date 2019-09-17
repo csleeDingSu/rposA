@@ -6,7 +6,8 @@
 
 @section('top-javascript')
     @parent
-    
+    <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
+
 @endsection
 
 @section('title', '首页')
@@ -15,7 +16,8 @@
 @endsection
 
 @section('content')
-
+<div class="box">
+        <input id="hidPageId" type="hidden" value="" />
         <div class="logo rel">
           <img src="{{ asset('/clientapp/images/logo.png') }}" width="100%">
           <div class="searchBox">
@@ -68,6 +70,7 @@
           
         </div>
         <hr class="h36">
+</div>
 @endsection
 
 @section('footer-javascript')

@@ -154,8 +154,16 @@ class tabaoApiController extends BaseController
 
             'appKey' => $this->appKey,
 
-            'version' => '1',
+            'version' => 'v1.1.0',
+            
+            'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
+
+            'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
+
+            'sort' => 'total_sales',
         ];
+
+        // return $data;
 
         //加密的参数
         $data['sign'] = $this->makeSign($data,$this->appSecret);
