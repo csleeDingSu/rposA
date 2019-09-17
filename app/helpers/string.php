@@ -124,4 +124,22 @@ function get_uni_key($ln)
         return $random;
     }
 
+function searchForState($id, $array) 
+{
+	$st = [];
+	foreach ($array as $key => $val) 
+	{
+		if ($val->prefix === $id) {
+			$st[] =  $val->state;
+	   }
+	}
 
+	$id = substr($id, 0, 2);
+
+	foreach ($array as $key => $val) {
+		if ($val->prefix === $id) {
+			$st[] =  $val->state;
+		}
+	}	
+	return $st;
+}
