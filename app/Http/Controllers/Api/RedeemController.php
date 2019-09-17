@@ -364,7 +364,7 @@ class RedeemController extends Controller
 			case '1':
 				
 				//$wallet  = Wallet::update_basic_wallet($memberid,0,$required_point,'RBP','debit', 'reserved for buy product');	
-				$wallet  = Ledger::debit($memberid,$gameid,$required_point,'RBP', ' reserved for buy product');
+				$result  = Ledger::debit($memberid,$gameid,$required_point,'RBP', ' reserved for buy product');
 				
 				//card type
 				$data =  [
@@ -376,7 +376,8 @@ class RedeemController extends Controller
 							,'used_point'    => $required_point
 							,'quantity'      => $request->quantity
 							,'ref_note'      => $request->ref_note
-							,'ledger_history_id'      => $wallet['uuid']
+							,'ledger_id'     => $wallet->id
+							,'ledger_history_id'      => $result['uuid']
 					
 						];
 				$id = \App\BuyProduct::save_redeemed($data);
@@ -401,6 +402,7 @@ class RedeemController extends Controller
 						 'address'        => $request->address,
 						 'receiver_name'  => $request->receiver_name,	
 						 'contact_number'  => $request->contact_number,	
+
 						 'city'           => $request->city,	
 						 'zip'            => $request->zip,	
 						];				
@@ -422,7 +424,7 @@ class RedeemController extends Controller
 				}
 				
 				//$wallet  = Wallet::update_basic_wallet($memberid,0,$required_point,'RBP','debit', 'reserved for buy product');	
-				$wallet  = Ledger::debit($memberid,$gameid,$required_point,'RBP', ' reserved for buy product');				
+				$result  = Ledger::debit($memberid,$gameid,$required_point,'RBP', ' reserved for buy product');				
 				//product
 				$data =  [
 							'product_id'     => $package->id
@@ -433,7 +435,8 @@ class RedeemController extends Controller
 							,'used_point'    => $required_point
 							,'ref_note'      => $request->ref_note
 							,'quantity'      => $request->quantity
-							,'ledger_history_id'      => $wallet['uuid']
+							,'ledger_id'     => $wallet->id
+							,'ledger_history_id'      => $result['uuid']
 						];
 				$id = \App\BuyProduct::save_redeemed($data);
 				
