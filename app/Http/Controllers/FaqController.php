@@ -23,7 +23,7 @@ class FaqController extends BaseController
      */
     public function index($faqid = null, Request $request)
     {
-        $faqs = \DB::table( 'faq' )->select( 'id', 'title', 'content' )->orderBy( 'id', 'desc' )->get();
+        $faqs = \DB::table( 'faq' )->select( 'id', 'title', 'content' )->orderBy( 'seq', 'desc' )->get();
         return view( 'client/faq', compact( 'faqs', 'faqid') );
     }
 

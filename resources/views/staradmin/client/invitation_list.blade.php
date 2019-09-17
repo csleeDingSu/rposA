@@ -34,7 +34,7 @@
 
 @section('top-javascript')
     @parent
-    <script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
+    <!-- <script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script> -->
     <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 @endsection
 
