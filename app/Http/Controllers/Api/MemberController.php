@@ -242,7 +242,7 @@ class MemberController extends Controller
 		{
 			$receipt = $receipt->where('receipt', $request->receipt);
 		}
-		$receipt = $receipt->get();
+		$receipt = $receipt->latest()->get();
 		
 		return response()->json(['success' => true, 'records'=>$receipt]); 
 	}
