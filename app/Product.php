@@ -173,7 +173,7 @@ class Product extends Model
 		{
 			$result = $result->where('available_quantity', '>=', 1);
 		}
-		$result = $result->paginate(50);
+		$result = $result->orderByRaw('-seq desc')->paginate(50);
 		
 		return $result;
 	}
