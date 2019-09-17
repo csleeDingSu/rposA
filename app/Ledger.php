@@ -160,7 +160,7 @@ class Ledger extends Model
 		$wallet     = \App\Wallet::get_wallet_details_all($userid);
 		$uuid       = '';
 		$newcredit  = '';		
-		$prefix     = 'MGM';
+		$prefix     = 'DPMGM';
 		$action_sym = '-1';	
 		if ($ledger->point <= 0)
 		{
