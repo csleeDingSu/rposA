@@ -245,4 +245,44 @@ class RedeemController extends Controller
 		
 		return response()->json(['success' => false, 'message' => 'insufficient point/pin not available']);
 	}
+	
+	public function vip_redeem_condition(Request $request)
+    {		
+		$reset    = null;		
+		$memberid = $request->memberid;	
+		$gameid   = $request->gameid;	
+		
+		$package      = Package::get_current_package($memberid,'all');
+		
+		if (!$package) 
+		{				
+			return response()->json(['success' => false,  'message' => 'no active vip subscriptions']); 
+		}
+		$wallet       = Ledger::ledger($memberid, $gameid);
+		$redeemcount  = Package::get_redeemed_package_count($memberid);
+		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
+		
+		//Rules are based on redeem_condition table
+		
+		$verifyrule   = \App\Admin::check_redeem_condition($redeemcount);
+		
+		
+		//echo 'rc-';print_r($redeemcount);
+		//echo 'rr-';print_r($redeemreward);
+		//echo 'ru-';print_r($verifyrule);
+		
+		//return error message if user have vip life & didnt match the redeem criteria,
+		if ($verifyrule){
+			if ($redeemreward < $verifyrule->minimum_point)
+			{
+				if ($wallet->life >= 1 )
+				{ 
+					return response()->json(['success' => false, 'message' => '你必须赢得'.$verifyrule->minimum_point.'积分','min_point'=>$verifyrule->minimum_point,'vip_point'=>$wallet->point,'win_point'=>$redeemreward,'redeem_count'=>$redeemcount]); 
+				}
+			}
+		}
+		
+		return response()->json(['success' => 'true','message' => 'eligible to withdraw','vip_point'=>$wallet->point,'wabao_point'=>$wallet->point,'redeem_point'=>$wallet->point]);  
+		
+	}
 }
