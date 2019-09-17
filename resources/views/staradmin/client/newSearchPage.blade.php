@@ -17,6 +17,7 @@
   <script type="text/javascript" src="{{ asset('/clientapp/js/jquery-1.9.1.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/being.js') }}"></script>
   <script src="{{ asset('/clientapp/js/newSearchPage.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
   <script type="text/javascript">
     document.onreadystatechange = function () {
               var state = document.readyState
@@ -53,7 +54,7 @@
 <body>
 <div class="loading" id="loading"></div>
 <section class="card">
-
+    <input id="hidPageId" type="hidden" value="" />
     <div class="card-header">
       <div class="topSearch">
         <a class="return" href="javascript:history.back();"><img src="{{ asset('/clientapp/images/leftIcon.png') }}"></a>
@@ -71,31 +72,6 @@
     <div class="card-body over ">
       <div class="scrolly">
           <div class="listBox">
-          <div class="inBox">
-            <div class="imgBox">
-              <img src="{{ asset('/clientapp/images/demoImg.png') }}">
-            </div>
-            <div class="txtBox flex1">
-              <h2 class="name">【第二件0元】海底捞牛油火锅底料</h2>
-              <div class="typeBox">
-                <span class="type-red">20元</span>
-                <span class="type-sred">奖励100积分</span>
-                <span class="type-blue">抽奖补贴12元</span>
-              </div>
-              <div class="moneyBox">
-                <p class="icon">¥</p>
-                <p class="nowTxt">3.0</p>
-                <p class="oldTxt">35.00</p>
-                <a href="#" class="btn">
-                  <p>热销1.7万</p>
-                  <div class="inTxt">
-                    <img src="{{ asset('/clientapp/images/shapeIcon.png') }}">
-                    <span>去领券</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

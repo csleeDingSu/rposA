@@ -1,11 +1,22 @@
+var totalNum = 0;
+var pageId = 1;
+var pageSize = 50;
 
   $(document).ready(function () {
     if ($('#search').val() != "") {
-      goSearch();       
+      console.log('777');
+      goSearch(pageId);       
     }
+
+    //execute scroll pagination
+    being.scrollBottom('.scrolly', '.listBox', () => {   
+      pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val();
+      console.log('dasdsa - ' + pageId)
+      goSearch(pageId);
+    }); 
 });
 
-  function goSearch() {
+  function goSearch(pageId) {
     var search = $('#search').val();
 
       var html = '';
@@ -14,7 +25,7 @@
         document.getElementById('loading').style.visibility="visible";
         $.ajax({
             type: 'GET',
-            url: "/tabao/list-super-goods?search=" + search, 
+            url: "/tabao/list-super-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
             contentType: "application/json; charset=utf-8",
             dataType: "text",
             error: function (error) {
@@ -28,38 +39,22 @@
                 // console.log(JSON.parse(data).data.list);
                 if ((JSON.parse(data).data.list == '') || (typeof JSON.parse(data).data.list === 'undefined')){
 
-                  html += '<div class="inBox">'+
-                          '<div class="imgBox">'+
-                            '<img src="/clientapp/images/demoImg.png">'+
-                          '</div>'+
-                          '<div class="txtBox flex1">'+
-                            '<h2 class="name">【第二件0元】海底捞牛油火锅底料</h2>'+
-                            '<div class="typeBox">'+
-                              '<span class="type-red">20元</span>'+
-                              '<span class="type-sred">奖励100积分</span>'+
-                              '<span class="type-blue">抽奖补贴12元</span>'+
-                            '</div>'+
-                            '<div class="moneyBox">'+
-                              '<p class="icon">¥</p>'+
-                              '<p class="nowTxt">3.0</p>'+
-                              '<p class="oldTxt">35.00</p>'+
-                              '<a href="#" class="btn">'+
-                                '<p>热销1.7万</p>'+
-                                '<div class="inTxt">'+
-                                  '<img src="/clientapp/images/shapeIcon.png">'+
-                                  '<span>去领券</span>'+
-                                '</div>'+
-                              '</a>'+
-                            '</div>'+
-                          '</div>'+ 
-                        '</div>';
+                  html += '';
 
                 } else {
 
                   var records = JSON.parse(data).data.list;
                   var newPrice = 0; 
                   var sales = 0;
-                  
+                  totalNum = JSON.parse(data).data.totalNum;
+                  // $('#hidPageId').val(JSON.parse(data).data.pageId);
+                  // $('#hidPageId').val(Number(JSON.parse(data).data.pageId) + 1);
+
+                  // pageId = $('#hidPageId').val();
+                  pageId++;
+                  $('#hidPageId').val(pageId);
+                  console.log(pageId);
+
                     $.each(records, function(i, item) {
 
                       newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
@@ -94,7 +89,7 @@
                     });
                 }                
             
-              $('.listBox').html(html); 
+              $('.listBox').append(html); 
 
             }
         });  
