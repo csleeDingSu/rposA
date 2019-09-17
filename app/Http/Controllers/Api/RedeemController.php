@@ -182,4 +182,67 @@ class RedeemController extends Controller
 		
 		return response()->json(['success' => false, 'message' => 'unknown vip package / user not authorise to use this package']);
 	}
+	
+	
+	public function request_redeem(Request $request)
+    {
+		$memberid  = $request->memberid;
+		$productid = $request->productid;		
+		$gameid    = $request->gameid;		
+		
+		
+		$input = [
+			 'memberid'  => $request->memberid,
+			 'productid' => $request->productid,			
+			 'gameid'    => $request->gameid,			
+			  ];
+		$validator = Validator::make($input, 
+			[
+				'memberid'  => 'required',
+				'productid' => 'required',
+				'gameid'    => 'required'
+			]
+		);
+		
+		
+		if ($validator->fails()) {
+			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
+		}
+		
+		$ledger    = Ledger::ledger($memberid, $gameid);
+		
+		$product   = Product::get_available_pin($productid,$ledger->point);
+		
+		$setting   = \App\Admin::get_setting();
+		
+		
+		if ($product)
+		{
+			$now = Carbon::now();
+			
+			//$pin_status = 4;
+			
+			$data = ['member_id'=>$memberid, 'request_at'=>$now,'used_point'=>$product->min_point];
+			
+			$data['pin_status'] = 4;
+			
+			if($setting->auto_product_redeem =='Y')
+			{
+				$data['pin_status']  = 2;
+				//$data['redeemed_at'] = $now;
+				$data['confirmed_at'] = $now;
+			}			
+			
+			$wallet = Ledger::debit($memberid,$gameid,$product->min_point,'RPO', $product->min_point.' Point used for buy product');
+
+			Product::update_pin($product->id, $data);
+			
+			$refdata = [ 'id'=>$product->id, 'refid'=>$wallet['uuid'], 'type'=>'product' ];
+			Wallet::add_ledger_ref($refdata);
+			
+			return response()->json(['success' => true, 'message' => 'success']);
+		}
+		
+		return response()->json(['success' => false, 'message' => 'insufficient point/pin not available']);
+	}
 }
