@@ -92,7 +92,7 @@ class ProductController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		//$wallet    = Wallet::get_wallet_details($memberid);
+		//$wallet    = Wallet::get_wallet_9details($memberid);
 		
 		$product   = Product::get_available_pin($productid,$wallet->point);
 		
@@ -188,7 +188,7 @@ class ProductController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		//$wallet    = Wallet::get_wallet_details($memberid);
+		//$wallet    = Wallet::get_wallet_9details($memberid);
 		
 		
 		//$basic_count = \DB::table('basic_redeem')->where('member_id',$request->memberid)->count();
@@ -333,7 +333,7 @@ class ProductController extends Controller
 		{				
 			return response()->json(['success' => false,  'message' => 'no active vip subscriptions']); 
 		}
-		//$wallet       = Wallet::get_wallet_details_all($memberid);
+		//$wallet       = Wallet::get_wallet_9details_all($memberid);
 		$redeemcount  = Package::get_redeemed_package_count($memberid);
 		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
 		
