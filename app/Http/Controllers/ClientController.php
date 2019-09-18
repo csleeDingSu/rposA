@@ -296,40 +296,21 @@ class ClientController extends BaseController
 
 	public function member_access_vip_node()
 	{	
-
-		// if (!Auth::Guard('member')->check())
-		// {
-		// 	$msg = trans('dingsu.please_login');
-		// 	\Session::flash('success',$msg);
-
-		// 	return redirect('/nlogin');
-
-		// } else {
-
-			// $member = Auth::guard('member')->user()->id	;
-			// $data['member'] = Member::get_member($member);
-
-			// if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0) {
-
-			// 	return view('client/vip-node');
-
-			// } else {
-
-			// 	return redirect('/arcade');
-			// }
-
 		if (env('THISVIPAPP', false) == false) {			
 			return redirect('/arcade');
-		}
-					
-		$wbp = $this->set_payment_browser();
+		} else {
 
-		$member = Auth::guard('member')->user()->id;
-		$usedpoint = \App\Game::earned_points($member , 103);
+			$wbp = $this->set_payment_browser();
+			$usedpoint = 0;
+
+			if (Auth::Guard('member')->check()) {
+				$member = Auth::guard('member')->user()->id;
+				$usedpoint = \App\Game::earned_points($member , 103);
+			}
+
+			return view( 'client/vip-node', compact( 'wbp', 'usedpoint') );
+		}
 		
-		return view( 'client/vip-node', compact( 'wbp', 'usedpoint') );
-		
-		// }
 	}
 	
 	public function member_update_wechatname(Request $request)
