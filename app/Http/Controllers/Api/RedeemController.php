@@ -75,7 +75,7 @@ class RedeemController extends Controller
 					
 					$wallet = Wallet::update_basic_wallet($memberid,0,$package->min_point, 'BVP','debit', $package->min_point.' Point reserved for VIP package');
 					
-					$data['ledger_history_id'] = $wallet;
+					$data['ledger_history_id'] = $wallet['uuid'];
 					
 					$id     = Package::save_vip_package($data);	
 					
@@ -240,7 +240,7 @@ class RedeemController extends Controller
 			$wallet = Ledger::debit($memberid,$gameid,$product->min_point,'RPO', $product->min_point.' Point used for buy product');
 			
 			$data['ledger_id']         = $ledger->id;
-			$data['ledger_history_id'] = $wallet;
+			$data['ledger_history_id'] = $wallet['uuid'];
 
 			Product::update_pin($product->id, $data);
 			
