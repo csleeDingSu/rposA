@@ -32,7 +32,6 @@ class EventLedger implements ShouldBroadcast
 	public function broadcastWith()
 	{
 		return [ 'data' => $this->data ];
-		return [ 'data' => \App\Ledger::get_wallet_details($this->id) ];
 	}	
 	
 }
