@@ -1,4 +1,5 @@
 var token = '';
+var gameid=103;
 
 $(document).ready(function () {
 
@@ -124,7 +125,8 @@ function purchase() {
             'receiver_name': receiver_name, 
             'contact_number': contact_number,
             'city': city, 
-            'zip': ''
+            'zip': '',
+            'gameid': gameid
         },
         dataType: "json",
         error: function (error) { console.log(error.responseText) },
