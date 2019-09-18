@@ -31,7 +31,7 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {        
-        $blog = blog::select('*')->whereNull('deleted_at')->orderBy('updated_at','desc')->paginate(20);
+        $blog = blog::select('*')->whereNull('deleted_at')->orderBy('updated_at','desc')->paginate(5);
         if ($request->ajax()) {
             $view = view('client.blog_list',compact('blog'))->render();
             return response()->json(['html'=>$view]);

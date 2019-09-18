@@ -62,7 +62,7 @@
 
       $(document).ready(function () {
            //execute scroll pagination
-            being.scrollBottom('.scrolly', () => {
+            being.scrollBottom('.scrolly', '.cardBody', () => {
 
             page++;
 
