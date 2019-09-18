@@ -44,14 +44,14 @@ class LedgerController extends Controller
 	public function get_wallet_detail(Request $request)
 	{
 		$memberid = $request->memberid;
-		$wallet   = Wallet::get_wallet_details($memberid);
+		$wallet   = Ledger::all_ledger($memberid);
 		return $wallet;
 	}
     
 	public function get_wallet_detail_all(Request $request)
 	{
 		$memberid = $request->memberid;
-		$wallet   = Wallet::get_wallet_details_all($memberid);
+		$wallet   = Ledger::all_ledger($memberid);
 		return $wallet;
 	}
 	
