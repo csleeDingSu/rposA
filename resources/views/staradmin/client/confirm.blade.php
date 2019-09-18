@@ -39,7 +39,10 @@
 @section('content')
 <input type="hidden" id="hid_wallet_point" name="hid_wallet_point" value="{{$wallet->point}}">
 
+@if(!env('THISVIPAPP','false'))
 <div class="container">
+@endif
+
 	<div class="image_wrapper">
 		<img src="{{ asset('/client/images/buy/divider.png') }}" />
 	</div>
@@ -118,8 +121,9 @@
 
     </div><!-- panel-group -->
     
-    
+@if(!env('THISVIPAPP','false'))
 </div><!-- container -->
+@endif
 
 @endsection
 

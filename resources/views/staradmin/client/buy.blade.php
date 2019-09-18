@@ -37,7 +37,11 @@
 @endsection
 
 @section('content')
+
+@if(!env('THISVIPAPP','false'))
 <div class="container">
+@endif
+
 	<div class="image_wrapper">
 		<img src="{{ asset('/client/images/buy/divider.png') }}" />
 	</div>
@@ -69,8 +73,9 @@
         </div><!-- panel-group -->
     </form>
     
-    
+@if(!env('THISVIPAPP','false'))
 </div><!-- container -->
+@endif
 
 <!-- field validate modal -->
 <div class="modal fade col-md-12" id="modal-validate" tabindex="-1">
