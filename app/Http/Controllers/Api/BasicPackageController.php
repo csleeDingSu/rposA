@@ -25,8 +25,11 @@ class BasicPackageController extends Controller
 		return response()->json(['success' => true,  'records' => $result,'purchase_data'=>$data]);
 	}
 	
+	//no use
 	public function request_package_upgrade(Request $request)
     {
+		return response()->json(['success' => false, 'message' => 'deprecated']);
+		
 		$memberid  = $request->memberid;
 		
 		$packageid = $request->packageid;	
@@ -51,7 +54,7 @@ class BasicPackageController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		} 
 		
-		$wallet    = Wallet::get_wallet_details($memberid);
+		//$wallet    = Wallet::get_wallet_9details($memberid);
 		
 		$package   = Package::get_package($packageid);
 		
