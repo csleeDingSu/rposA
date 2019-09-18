@@ -44,7 +44,7 @@ function getRanking() {
             if(status){
 
                 // my_rank
-                if (my_rank != '') {
+                if (!jQuery.isEmptyObject(my_rank)) {
                     my_member_id = my_rank.member_id;
                     
                     _phone = 'xxxxx';

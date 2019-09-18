@@ -620,7 +620,7 @@ function redeem(token, product_id){
     $.ajax({
         type: 'POST',
         url: "/api/request-redeem",
-        data: { 'memberid': member_id, 'productid': product_id },
+        data: { 'memberid': member_id, 'productid': product_id, 'gameid': gameid},
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
