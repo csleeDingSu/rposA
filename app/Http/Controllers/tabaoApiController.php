@@ -188,13 +188,13 @@ class tabaoApiController extends BaseController
 
             'appKey' => $this->appKey,
             'version' => 'v1.2.0',
-            'type' => 0,
+            'type' => 2,
             'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
             'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
             'keyWords' => $request->input('search'),
             // 'tmall' => 0,
             // 'haitao' => 0,
-            'sort' => 'total_sales',
+            // 'sort' => '_asc', //'total_sales',
         ];
 
         //加密的参数
