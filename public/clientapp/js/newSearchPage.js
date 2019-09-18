@@ -18,6 +18,13 @@ var pageSize = 50;
 
   function goSearch(pageId) {
     var search = $('#search').val();
+    if (pageId == 'undefined' || pageId == undefined) {
+      pageId = 1;
+    }
+
+    console.log(search);
+    console.log(pageSize);
+    console.log(pageId);
 
       var html = '';
 
@@ -35,9 +42,11 @@ var pageSize = 50;
             },
             success: function(data) {
                 document.getElementById('loading').style.visibility="hidden";
-                // console.log(data);
+                // alert(data == '');
+                // alert(jQuery.isEmptyObject(JSON.parse(data)));
+                 // console.log(data);
                 // console.log(JSON.parse(data).data.list);
-                if ((JSON.parse(data).data.list == '') || (typeof JSON.parse(data).data.list === 'undefined')){
+                if ((data == '') || (jQuery.isEmptyObject(JSON.parse(data))) || (JSON.parse(data).data.list == undefined) || (JSON.parse(data).data.list == '') || (typeof JSON.parse(data).data.list === 'undefined')){
 
                   html += '';
 
@@ -51,10 +60,7 @@ var pageSize = 50;
                   // $('#hidPageId').val(Number(JSON.parse(data).data.pageId) + 1);
 
                   // pageId = $('#hidPageId').val();
-                  pageId++;
-                  $('#hidPageId').val(pageId);
-                  console.log(pageId);
-
+                 
                     $.each(records, function(i, item) {
 
                       newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
@@ -89,7 +95,18 @@ var pageSize = 50;
                     });
                 }                
             
-              $('.listBox').append(html); 
+              if (pageId == 1) {
+
+                $('.listBox').html(html); 
+              } else {
+                $('.listBox').append(html); 
+              }
+
+               pageId++;
+              $('#hidPageId').val(pageId);
+              console.log(pageId);
+              // console.log($('#hidPageId').val());
+
 
             }
         });  
