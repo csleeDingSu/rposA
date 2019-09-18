@@ -31,7 +31,7 @@ class EventNotification implements ShouldBroadcast
 	
 	public function broadcastWith()
 	{
-		//return [ 'data' => \App\Wallet::get_wallet_details($this->id) ];
+		
 	}	
 	
 }
