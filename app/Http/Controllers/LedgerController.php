@@ -62,7 +62,7 @@ class LedgerController extends BaseController
 	public function get_wallet (Request $request)
 	{
 		$id     = $request->input('id');
-		$record = Wallet::get_wallet_details($id);
+		$record = \App\Ledger::all_ledger($id);
 		return response()->json(['success' => true, 'record' => $record]);
 	}
 	
