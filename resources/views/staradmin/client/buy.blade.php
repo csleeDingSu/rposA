@@ -1,12 +1,35 @@
-@extends('layouts.default')
+@php
+    if (env('THISVIPAPP','false')) {
+        $default = 'layouts.default_app';
+    } else {
+        $default = 'layouts.default';
+    }
+@endphp
 
-@section('title', '添加收货地址')
+@extends($default)
 
-@section('left-menu')
-    <a href="javascript:history.back()" class="back">
-        <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true">返回</div>
-    </a>
-@endsection
+@if(env('THISVIPAPP','false'))
+    <!-- top nav -->
+    @section('left-menu')
+      <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+    @endsection
+
+    @section('title', '添加收货地址')
+
+    @section('right-menu')
+    @endsection
+    <!-- top nav end-->
+
+@else
+    @section('title', '添加收货地址')
+
+    @section('left-menu')
+        <a href="javascript:history.back()" class="back">
+            <div class="icon-back glyphicon glyphicon-menu-left" aria-hidden="true">返回</div>
+        </a>
+    @endsection
+
+@endif
 
 @section('top-css')
     @parent
