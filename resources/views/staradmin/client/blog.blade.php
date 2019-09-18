@@ -33,7 +33,6 @@
 
 
 @section('content')
-
 <div class="cardBody">
   <div class="box">
     <div class="infinite-scroll">
@@ -44,7 +43,9 @@
     </div>
   </div>
 </div>
+@endsection
 
+@section('footer-javascript')
 <!-- view photo Modal starts -->
   <div class="modal fade col-md-12" id="view-photo" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -52,9 +53,7 @@
     </div>
   </div>
 <!-- view photo Modal Ends -->
-@endsection
 
-@section('footer-javascript')
     @parent  
     <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/client/blog/js/swiper.min.js') }}"></script>
@@ -63,9 +62,11 @@
 
       $(document).ready(function () {
            //execute scroll pagination
-            being.scrollBottom('.cardBody', '.box', () => {   
+            being.scrollBottom('.scrolly', () => {
 
             page++;
+
+            console.log(page);
             var max_page = parseInt($('#max_page').val());
             if(page > max_page) {
               $('#page').val(page);
@@ -95,7 +96,7 @@
             },
             success: function(responce) { 
               $('.list-2').append(responce.html);
-              console.log(responce);
+              // console.log(responce);
               // if (responce.html == null || responce.html = '') {
               //  $(".isnext").html('');  
               // }
