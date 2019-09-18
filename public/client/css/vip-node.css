@@ -525,3 +525,10 @@
 .modal.in .modal-dialog {
   transform: translate3d(0, 0, 0);
 }
+
+.closeForm {
+	float: right;
+    padding: 0.1rem;
+    color: red;
+    margin: -1rem 0 0 0;
+}

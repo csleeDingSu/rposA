@@ -568,6 +568,7 @@
 <div class="openForm">
 	<div class="formWrapper">
 	<div class="formTitle">玩法介绍</div>
+	<div class="closeForm">x 关闭</div>
 	<div class="formBody">
 		这是自助式抽奖，需自选单双和投入金币，投1金币可抽1.96金币，50%中奖率，使用倍增投币法能让中奖率提高到98%,<span class="highlight1">倍增投币法说明：</span><br />
 		✗第一次投入1金币，没抽中。<br />
@@ -811,6 +812,11 @@
 	            });
 	          });
         	
+	        	$('.closeForm').click(function() {
+	            	console.log('dsad');
+		            $(".openForm").hide();
+		            console.log('dsad');
+	            });
 		});
 
 		function show_openform() { 
