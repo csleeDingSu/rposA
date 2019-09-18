@@ -638,7 +638,8 @@ class BuyProductController extends BaseController
 		$id = $request->hid_package_id;
 		$record = BuyProduct::get_product($id);	
 		$member = Auth::guard('member')->user()->id	;		
-		$wallet = Ledger::all_ledger($member);
+		$l = Ledger::all_ledger($member);
+		$wallet = $l['gameledger']['103'];
 		return view( 'client/confirm', ['request' => $request, 'record' => $record, 'wallet' => $wallet]);
 	}
 
@@ -647,7 +648,9 @@ class BuyProductController extends BaseController
 		$record = BuyProduct::get_product($id);
 		if($record->type == 1){
 			$member = Auth::guard('member')->user()->id	;		
-			$wallet = Ledger::all_ledger($member);
+			$l = Ledger::all_ledger($member);
+			$wallet = $l['gameledger']['103'];
+
 			return view( 'client/confirm', ['request' => $request, 'record' => $record, 'wallet' => $wallet]);
 		} else {
 			return view( 'client/buy', ['request' => $request]);

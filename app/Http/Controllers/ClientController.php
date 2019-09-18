@@ -288,7 +288,7 @@ class ClientController extends BaseController
 			
 			$total_intro = 	(!empty($intro_count->count) ? $intro_count->count : 0) + (!empty($sc_child['count']) ? $sc_child['count'] : 0) ;
 
-			$usedpoint = \App\Game::earned_points($member , 102);
+			$usedpoint = \App\Game::earned_points($member_id , 102);
 
 			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'usedpoint'));
 
@@ -326,6 +326,7 @@ class ClientController extends BaseController
 					
 		$wbp = $this->set_payment_browser();
 
+		$member = Auth::guard('member')->user()->id;
 		$usedpoint = \App\Game::earned_points($member , 103);
 		
 		return view( 'client/vip-node', compact( 'wbp', 'usedpoint') );
