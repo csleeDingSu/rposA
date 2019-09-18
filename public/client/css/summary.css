@@ -13,6 +13,7 @@ html, body {
 
 #summary {
 	margin-top: 0.2rem;
+	text-align: center;
 }
 
 .row {
@@ -132,4 +133,8 @@ html, body {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 5.7rem;
+}
+
+.share-link {
+	color: red;
 }

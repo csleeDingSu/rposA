@@ -264,7 +264,8 @@ class ClientController extends BaseController
 	        } else {
 	            $data['betting_count'] = 0;
 	            $total_intro = 0;
-				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro'));
+	            $usedpoint = 0;
+				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro', 'usedpoint'));
 	        }
 			
 		} else {
@@ -287,7 +288,9 @@ class ClientController extends BaseController
 			
 			$total_intro = 	(!empty($intro_count->count) ? $intro_count->count : 0) + (!empty($sc_child['count']) ? $sc_child['count'] : 0) ;
 
-			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro'));
+			$usedpoint = \App\Game::earned_points($member , 102);
+
+			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'usedpoint'));
 
 		}
 
@@ -322,8 +325,10 @@ class ClientController extends BaseController
 		}
 					
 		$wbp = $this->set_payment_browser();
+
+		$usedpoint = \App\Game::earned_points($member , 103);
 		
-		return view( 'client/vip-node', compact( 'wbp' ) );
+		return view( 'client/vip-node', compact( 'wbp', 'usedpoint') );
 		
 		// }
 	}

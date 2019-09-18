@@ -1,7 +1,10 @@
 var token = '';
 var gameid=103;
+var is_app = true;
 
 $(document).ready(function () {
+
+    is_app = $('#hid_THISVIPAPP').val();
 
     $('.back').click(function(){
         $( "#frm_buy" ).submit();
@@ -133,9 +136,13 @@ function purchase() {
         success: function(data) {
             console.log(data);
             if(data.success) {
-                // $('.error').hide();
-                //$('#modal-successful').modal();
-                window.top.location.href = "/redeem/history";
+                
+                if (is_app) {
+                    window.top.location.href = "/redeem-vip/history";
+                } else {
+                    window.top.location.href = "/redeem/history";    
+                }
+                
             } else {
                 // $('.error').html(data.message);
                 // $('.error').show();

@@ -31,7 +31,7 @@
 <div class="ranking-note-bottom">
 	<div class="total-point-left">
 		<p>你累计赚得金币</p>
-		<p class="my-earning-point">0.00</p>
+		<p class="my-earning-point">{{$usedpoint}}</p>
 	</div>
 	<div class="total-point-right">
 		<p>已换购金币</p>

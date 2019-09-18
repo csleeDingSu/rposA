@@ -38,6 +38,7 @@
 
 @section('content')
 <input type="hidden" id="hid_wallet_point" name="hid_wallet_point" value="{{$wallet->point}}">
+<input type="hidden" id="hid_THISVIPAPP" name="hid_THISVIPAPP" value="{{env('THISVIPAPP','false')}}">
 
 @if(!env('THISVIPAPP','false'))
 <div class="container">

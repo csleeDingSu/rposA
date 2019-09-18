@@ -17,7 +17,7 @@
 <div class="ranking-note-bottom">
 	<div class="total-point-left">
 		<p>你累计获得补贴（元）</p>
-		<p class="my-earning-point">0.00</p>
+		<p class="my-earning-point">{{$usedpoint}}</p>
 	</div>
 	<div class="total-point-right">
 		<p>成功邀请好友</p>
