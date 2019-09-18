@@ -787,6 +787,12 @@ class Game extends Model
 		//dd(DB::getQueryLog());
 		return $result;
 	}
+	
+	
+	public static function earned_points($memberid,$gameid)
+	{		
+		return \DB::table('a_view_used_point')->where('member_id',$memberid)->where('game_id',$gameid)->sum('point');
+	}
 }
 
 
