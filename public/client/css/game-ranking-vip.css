@@ -257,7 +257,7 @@ font-size: 0.36rem;
 }
 
 .ranking .tab-content .tab-content-list{
-    /*display: flex;*/
+    display: flex;
     color: #b2b2b2;
     font-size: 0.28rem;
     height: 1.5rem;
