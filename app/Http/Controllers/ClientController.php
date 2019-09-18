@@ -100,13 +100,15 @@ class ClientController extends BaseController
 		$data['overallpoint']    = \App\History::get_point($member,103);
 		
 		//$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		/*
 		$usedpoint         = \DB::table('view_usedpoint')->where('member_id',$member);
 		
 		if ($this->vp->isVIPApp()) {
 			$usedpoint = $usedpoint->whereIn('credit_type',['DPRBP']);
 		}				
 		
-		$data['usedpoint']   = $usedpoint->sum('point');		
+		$data['usedpoint']   = $usedpoint->sum('point');
+		*/
 		$data['page']        = 'client.member'; 
 		$data['vip_status']  = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get();
 		
@@ -136,8 +138,11 @@ class ClientController extends BaseController
 						
 			$data['wbp'] = $this->set_payment_browser();
 			
+			$data['usedpoint'] = \App\Game::earned_points($member , 103);
+			
 			return view('client/member_vip', $data);
 		} else {
+			$data['usedpoint'] = \App\Game::earned_points($member , 102);
 			return view('client/member', $data);
 		}
 		
