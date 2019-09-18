@@ -138,11 +138,9 @@ class ClientController extends BaseController
 						
 			$data['wbp'] = $this->set_payment_browser();
 			
-			$data['usedpoint'] = \App\Game::earned_points($member , 103);
-			
 			return view('client/member_vip', $data);
 		} else {
-			$data['usedpoint'] = \App\Game::earned_points($member , 102);
+			
 			return view('client/member', $data);
 		}
 		

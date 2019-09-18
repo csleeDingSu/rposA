@@ -112,7 +112,7 @@
 		<script type="text/javascript" src="{{ asset('clientapp/js/jquery-1.9.1.js')}}"></script>
 		<script type="text/javascript" src="{{ asset('clientapp/js/being.js')}}"></script>
 
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 		//这个统计代码。
 		var hmt = hmt || [];
 		(function() {
@@ -121,7 +121,7 @@
 		  var s = document.getElementsByTagName("script")[0]; 
 		  s.parentNode.insertBefore(hm, s);
 		})();
-		</script>
+		</script> -->
 
 		@if(env('THISVIPAPP',false))
 		  <script>
