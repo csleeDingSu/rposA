@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>搜索</title>
+  <link rel="stylesheet" type="text/css" href="css/public.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="js/being.js"></script>
+</head>
+
+<body>
+
+  <section class="card">
+
+
+    <div class="card-header">
+      <div class="topSearch">
+        <a class="return"><img src="images/leftIcon.png"></a>
+        <div class="insearch">
+            <div id = '#tickt'> </div>
+          <label>
+            <input type="text" placeholder="复制淘宝商品标题 粘贴搜索">
+          </label>
+          <a class="closeBtn dn"><img src="images/closeIcon.png"></a>
+          <a class="searchBtn">搜索</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body over ">
+      <div class="scrolly">
+        <div class="listBox">
+          <div class="inBox">
+            <div class="imgBox">
+              <img src="images/demoImg.png">
+            </div>
+            <div class="txtBox flex1">
+              <h2 class="name">【第二件0元】海底捞牛油火锅底料</h2>
+              <div class="typeBox">
+                <span class="type-red">20元</span>
+                <span class="type-sred">奖励100积分</span>
+                <span class="type-blue">抽奖补贴12元</span>
+              </div>
+              <div class="moneyBox">
+                <p class="icon">¥</p>
+                <p class="nowTxt">3.0</p>
+                <p class="oldTxt">35.00</p>
+                <p class="num">热销1.7万</p>
+              </div>
+            </div>
+          </div>
+          <div class="inBox">
+            <div class="imgBox">
+              <img src="images/demoImg.png">
+            </div>
+            <div class="txtBox flex1">
+              <h2 class="name">【第二件0元】海底捞牛油火锅底料</h2>
+              <div class="typeBox">
+                <span class="type-red">20元</span>
+                <span class="type-sred">奖励100积分</span>
+                <span class="type-blue">抽奖补贴12元</span>
+              </div>
+              <div class="moneyBox">
+                <p class="icon">¥</p>
+                <p class="nowTxt">3.0</p>
+                <p class="oldTxt">35.00</p>
+                <p class="num">热销1.7万</p>
+              </div>
+            </div>
+          </div>
+          <div class="inBox">
+            <div class="imgBox">
+              <img src="images/demoImg.png">
+            </div>
+            <div class="txtBox flex1">
+              <h2 class="name">【第二件0元】海底捞牛油火锅底料</h2>
+              <div class="typeBox">
+                <span class="type-red">20元</span>
+                <span class="type-sred">奖励100积分</span>
+                <span class="type-blue">抽奖补贴12元</span>
+              </div>
+              <div class="moneyBox">
+                <p class="icon">¥</p>
+                <p class="nowTxt">3.0</p>
+                <p class="oldTxt">35.00</p>
+                <p class="num">热销1.7万</p>
+              </div>
+            </div>
+          </div>
+          <div class="inBox">
+            <div class="imgBox">
+              <img src="images/demoImg.png">
+            </div>
+            <div class="txtBox flex1">
+              <h2 class="name">【第二件0元】海底捞牛油火锅底料</h2>
+              <div class="typeBox">
+                <span class="type-red">20元</span>
+                <span class="type-sred">奖励100积分</span>
+                <span class="type-blue">抽奖补贴12元</span>
+              </div>
+              <div class="moneyBox">
+                <p class="icon">¥</p>
+                <p class="nowTxt">3.0</p>
+                <p class="oldTxt">35.00</p>
+                <p class="num">热销1.7万</p>
+              </div>
+            </div>
+          </div>
+          <div class="inBox">
+            <div class="imgBox">
+              <img src="images/demoImg.png">
+            </div>
+            <div class="txtBox flex1">
+              <h2 class="name">【第二件0元】海底捞牛油火锅底料</h2>
+              <div class="typeBox">
+                <span class="type-red">20元</span>
+                <span class="type-sred">奖励100积分</span>
+                <span class="type-blue">抽奖补贴12元</span>
+              </div>
+              <div class="moneyBox">
+                <p class="icon">¥</p>
+                <p class="nowTxt">3.0</p>
+                <p class="oldTxt">35.00</p>
+                <p class="num">热销1.7万</p>
+              </div>
+            </div>
+          </div>
+          <div class="lastHint">下拉显示更多产品...</div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <script>
+
+    $(function () {
+
+
+      $('.insearch input').on('input propertychange ', function () {
+        let that = $(this);
+        console.log(that.val());
+        if (that.val() == "") {
+          $('a.closeBtn').hide(0);
+        } else {
+          $('a.closeBtn').show(0);
+        }
+      });
+      $('a.closeBtn').click(function () {
+        $('.insearch input').val('');
+        $(this).hide(0);
+      });
+
+
+
+
+
+    });
+
+
+
+
+  </script>
+
+
+
+
+
+
+</body>
+
+</html>

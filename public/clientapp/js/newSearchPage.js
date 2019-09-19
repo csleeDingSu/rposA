@@ -66,6 +66,8 @@ var pageSize = 50;
                       newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
                       newPrice = (newPrice > 0) ? newPrice : 0;
                       sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
+                      console.log(item.couponLink + 'dsad' + i);
+                      // return item.couponLink;
 
                       html += '<div class="inBox">' +
                                 '<div class="imgBox">' +

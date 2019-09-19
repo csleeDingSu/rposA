@@ -44,7 +44,9 @@ function getFromTabao(pageId){
 
             html += '<div class="inBox">' +
             '<div class="imgBox">' +
-              '<img src="'+item.mainPic+'">' +
+              '<a href="'+item.couponLink+'">' +
+                '<img src="'+item.mainPic+'">' +
+              '</a>' +
             '</div>' +
             '<div class="txtBox flex1">' +
               '<h2 class="name">'+item.title+'</h2>' +
