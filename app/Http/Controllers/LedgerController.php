@@ -189,7 +189,7 @@ class LedgerController extends BaseController
 			if ($point>0)
 			{
 				$ledger = Ledger::find($key);
-				Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				$result = Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
 			}
 		}		
 		foreach($request->life as $key => $life)
@@ -197,7 +197,7 @@ class LedgerController extends BaseController
 			if ($life>0)
 			{
 				$ledger = Ledger::find($key);					
-				Ledger::life($userid,$ledger->game_id,'credit',$life,'PAA', 'admin adjust point');
+				$result = Ledger::life($userid,$ledger->game_id,'credit',$life,'PAA', 'admin adjust point');
 			}
 		}
 		return response()->json(['success' => true]);
