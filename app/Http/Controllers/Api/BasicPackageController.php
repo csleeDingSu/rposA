@@ -54,7 +54,6 @@ class BasicPackageController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		} 
 		
-		//$wallet    = Wallet::get_wallet_9details($memberid);
 		
 		$package   = Package::get_package($packageid);
 		
