@@ -18,7 +18,11 @@
     <div class="userBox fix">
       <div class="userName">
         <h2>HI,{{ substr($member->phone,0,3) }}*****{{ substr($member->phone, -4) }}</h2>
-        <a class="set"><img src="{{ asset('clientapp/images/user-set.png') }}"></a>
+        @if(!empty($member) && $member->wechat_verification_status == 0)   <!-- wechat verified -->    
+          <a class="set on"><img src="{{ asset('clientapp/images/ation_1.png') }}"><span>已认证</span></a>
+        @else
+          <a class="set"><img src="{{ asset('clientapp/images/ation_1.png') }}"><span>去认证</span></a>
+        @endif
       </div>
       <div class="userDetail rel">
         <a class="gobtn" href="/vip">去高级抽奖&nbsp;<b class="fhei">&gt;</b></a>

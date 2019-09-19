@@ -93,13 +93,7 @@ var pageSize = 50;
                                     '<p class="icon">¥</p>' +
                                     '<p class="nowTxt">'+ newPrice +'</p>' +
                                     '<p class="oldTxt">'+item.originalPrice+'</p>' +
-                                    '<a href="'+item.couponLink+'" class="btn">' +
-                                      '<p>热销'+ sales +'万</p>' +
-                                      '<div class="inTxt">' +
-                                        '<img src="/clientapp/images/shapeIcon.png">' +
-                                        '<span>去领券</span>' +
-                                      '</div>' +
-                                    '</a>' +
+                                    '<p class="num">热销'+ sales +'万</p>' +
                                   '</div>' +
                                 '</div>' +
                               '</div>';
@@ -171,13 +165,7 @@ function getFromTabao(pageId){
                 '<p class="icon">¥</p>' +
                 '<p class="nowTxt">'+ newPrice +'</p>' +
                 '<p class="oldTxt">'+oldPrice+'</p>' +
-                '<a href="'+item.couponLink+'" class="btn">' +
-                  '<p>热销'+ sales +'万</p>' +
-                  '<div class="inTxt">' +
-                    '<img src="/clientapp/images/shapeIcon.png">' +
-                    '<span>去领券</span>' +
-                  '</div>' +
-                '</a>' +
+                '<p class="num">热销'+ sales +'万</p>' +
               '</div>' +
             '</div>' +
           '</div>';
