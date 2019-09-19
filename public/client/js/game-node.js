@@ -58,7 +58,7 @@ $(function () {
         console.log(user_id <= 0 && is_app);
         if (user_id <= 0 && is_app) {
             $('.bet-box').click(function() {
-                alert('need to login');                    
+                $('#modal-no-login').modal();                   
             });
         }
 
@@ -681,7 +681,7 @@ function bindBetButton(){
         if(user_id == 0){
             // window.top.location.href = "/member";
             if (is_app) {
-                alert('need to login');
+                $('#modal-no-login').modal();
             } else {
                 $( '#login-intropopup' ).modal( 'show' );    
             }
@@ -881,7 +881,7 @@ function bindTriggerButton(){
                 $('#reset-life-share').modal();    
             } else {
                 if (is_app) {
-                    alert('need to login');                    
+                    $('#modal-no-login').modal();                    
                 }
             }
         }

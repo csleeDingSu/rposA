@@ -469,6 +469,21 @@
 
 @section('footer-javascript')
 
+<!-- haven't login start modal -->
+	<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<a href="/nlogin">
+				<div class="nologin-bg">
+					<div class="instructions"><span class="highlight">无限制抽奖</span> 任你抽到爽</div>
+					<div class="instructions"><span class="highlight">卡券奖品</span> 拿到手软</div>
+					<div class="instructions"><span class="highlight">100%随机</span> 绝无作弊</div>			
+					<div class="btn-login"></div>
+				</div>		
+			</a>
+		</div>
+	</div>
+	<!-- haven't login modal Ends-->
+
 <!-- Steps Modal starts -->
 	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: #666666;">
 		<div class="modal-dialog modal-lg" role="document">
