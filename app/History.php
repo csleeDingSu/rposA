@@ -21,7 +21,7 @@ class History extends Model
 		$history->fill($data);
 		$history->uuid = $uuid = unique_numeric_random((new static)->getTable(), 'uuid', 15);			
 		$history->save();
-		return $uuid;
+		return $history;
 	}
 	
 	public static function get_point($memberid , $gameid = FALSE, $date = FALSE)

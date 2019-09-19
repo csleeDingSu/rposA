@@ -163,8 +163,8 @@ class Ledger extends Model
 		{
 			$ledger->point = $newpoint;
 			$ledger->save();
-			$uuid = History::add_ledger_history($data);
-			return ['success'=>true,'message'=>'success'];			
+			$history = History::add_ledger_history($data);
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];
 		}		
 		return ['success'=>false,'message'=>'ledger not updated'];		
 	}
@@ -209,10 +209,10 @@ class Ledger extends Model
 					 ,'ledger_type'    => $prefix
 					 ,'notes'          => $credit.' point merged to mainledger'
 					];
-			$uuid = History::add_ledger_history($data);
+			$history = History::add_ledger_history($data);
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $ledger));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];
 		}
 		return ['success'=>false,'message'=>'cannot merge'];
 		
@@ -263,10 +263,11 @@ class Ledger extends Model
 					 ,'ledger_type'    => $prefix.$category
 					 ,'notes'          => $notes
 					];
-			$uuid = History::add_ledger_history($data);
+			$history = History::add_ledger_history($data);
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];	
+				
 		}
 	}
 	
@@ -315,10 +316,11 @@ class Ledger extends Model
 					 ,'ledger_type'    => $prefix.$category
 					 ,'notes'          => $notes
 					];
-			$uuid = History::add_ledger_history($data);
+			$history = History::add_ledger_history($data);
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];	
+				
 		}
 	}
 	
@@ -357,10 +359,11 @@ class Ledger extends Model
 					 ,'notes'          => $notes
 					];
 			//dd($wallet);
-			$uuid = History::add_ledger_history($data);
+			$history = History::add_ledger_history($data);
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];	
+				
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
 	}
@@ -402,10 +405,11 @@ class Ledger extends Model
 					 ,'notes'          => $notes
 					];
 			//dd($wallet);
-			$uuid = History::add_ledger_history($data);
+			$history = History::add_ledger_history($data);
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];	
+				
 		}
 	}
 	
@@ -443,10 +447,11 @@ class Ledger extends Model
 					 ,'notes'          => $notes
 					];
 			//dd($wallet);
-			$uuid = History::add_ledger_history($data);
+			$history = History::add_ledger_history($data);
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];	
+				
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
 	}
@@ -482,10 +487,11 @@ class Ledger extends Model
 					 ,'ledger_type'    => $prefix.$category
 					 ,'notes'          => $notes
 					];			
-			$uuid = History::add_ledger_history($data);			
+			$history = History::add_ledger_history($data);			
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];	
+				
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
 	}
@@ -533,10 +539,11 @@ class Ledger extends Model
 					 ,'ledger_type'    => $prefix.$category
 					 ,'notes'          => $notes
 					];			
-			$uuid = History::add_ledger_history($data);			
+			$history = History::add_ledger_history($data);			
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];	
+				
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
 	}
@@ -585,10 +592,11 @@ class Ledger extends Model
 					 ,'ledger_type'    => $prefix.$category
 					 ,'notes'          => $notes
 					];			
-			$uuid = History::add_ledger_history($data);			
+			$history = History::add_ledger_history($data);			
 			//fire Wallet event  
 			event(new \App\Events\EventLedger($userid, $wallet));
-			return ['success'=>true,'uuid'=>$uuid,'message'=>'success'];	
+			return ['success'=>true,'uuid'=>$history->uuid,'id'=>$history->id,'message'=>'success'];	
+				
 		}		
 		return ['success'=>false,'message'=>'unknown ledger / user'];			
 	}
