@@ -87,7 +87,9 @@ class MainController extends BaseController
 	public function preShare(Request $request)
 	{
 		if (Auth::Guard('member')->check()) {
-			return view('client/pre_share');	
+			$member_id = Auth::guard('member')->user()->id;
+			$earnedpoint = \App\Game::earned_points($member_id , 102);
+			return view('client/pre_share', compact('earnedpoint'));	
 		} else {
 			return redirect('/login');
 		}
