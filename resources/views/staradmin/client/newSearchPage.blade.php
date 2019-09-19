@@ -63,7 +63,7 @@
             <input type="text" placeholder="复制淘宝商品标题 粘贴搜索" id="search" value="{{$search}}">
           </label>
           <a class="closeBtn dn"><img src="{{ asset('/clientapp/images/closeIcon.png') }}"></a>
-          <a class="searchBtn" href="javascript:goSearch();">搜索</a>
+          <a class="searchBtn" href="javascript:goSearch(1);">搜索</a>
         </div>
 
 
