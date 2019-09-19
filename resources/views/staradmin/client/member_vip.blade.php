@@ -42,19 +42,19 @@
     </div>
 
     <div class="userMainList">
-      <a class="inBox" href="redeem">
+      <a class="inBox" href="/redeem">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-hb.png') }}"><span>购物补贴</span></p>
         <p><i class="bRed" id="102_point"></i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
-      <a class="inBox" href="arcade">
+      <a class="inBox" href="/arcade">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-cs.png') }}"><span>剩余次数</span></p>
         <p><i class="bBlub" id="game_life"></i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
-      <a class="inBox" href="invitation_list">
+      <a class="inBox" href="/pre-share">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-invite.png') }}"><span>邀请好友</span></p>
         <p><i class="bYellow">{{$total_intro ?? '0'}}</i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
-      <a class="inBox" href="receipt">
+      <a class="inBox" href="/receipt">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-history.png') }}"><span>下单奖励</span></p>
         <p><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
@@ -65,11 +65,11 @@
     </div>
 
     <div class="userMainList">
-      <a class="inBox" href="faq">
+      <a class="inBox" href="/faq">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-faq.png') }}"><span>常见问题</span></p>
         <p><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
-      <a class="inBox" href="logout">
+      <a class="inBox" href="/logout">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-logout.png') }}"><span>退出</span></p>
         <p><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>

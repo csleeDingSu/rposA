@@ -50,7 +50,7 @@ function getFromTabao(pageId){
             
             html += '<div class="inBox">' +
             '<div class="imgBox">' +
-              '<a href="taobao://item.taobao.com">' +
+              '<a href="https://t.asczwa.com/taobao?backurl=' + item.itemLink + '">' + 
                 '<img src="'+item.mainPic+'">' +
               '</a>' +
             '</div>' +

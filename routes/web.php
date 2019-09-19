@@ -163,6 +163,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::any( '/shop', 'MainController@shop' )->name( 'client.shop' );	
 	Route::any( '/main', 'MainController@newMainPage' )->name( 'client.newMainPage' );	
 	Route::any( '/main/search/{search?}', 'MainController@tabaoSearch' )->name( 'client.tabao.search' );	
+	Route::any( '/pre-share', 'MainController@preShare' )->name( 'client.preShare' );	
 } );
 
 //Member routes with member guard

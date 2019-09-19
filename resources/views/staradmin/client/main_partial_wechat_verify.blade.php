@@ -151,7 +151,7 @@
     </ul>
 
   </div>
-  <a class="goShare" href="share.html"></a>
+  <a class="goShare" href="/pre-share"></a>
 </div>
 
 

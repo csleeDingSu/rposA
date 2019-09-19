@@ -81,4 +81,9 @@ class MainController extends BaseController
 
 	}
 
+	public function preShare(Request $request)
+	{
+		return view('client/pre_share');
+	}
+
 }
