@@ -54,7 +54,7 @@ function getFromTabao(pageId){
             
             html += '<div class="inBox">' +
             '<div class="imgBox">' +
-              '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '">' + 
+              '<a href="https://t.asczwa.com/taobao?backurl=https://uland.taobao.com/coupon/edetail?e=Sl7CZu%2BjTD8GQASttHIRqddlmysF55yxMBcpyuLai3Nhpq6VrhAdaLv8aC%2Flmph0AlMIspZpkdMYCQC%2FUZXJ8DEhJpUUrcnYK95Rc8uqBd5wO9XRdFenWHY9x3IctcCWLspxGy3zBjY8IeN8lvhRA2lzrR4%2BfrcbDkTV1xxm6pfAfTZczEC3a%2Bib2QyKSVw%2F417roa%2FvOLA%3D&traceId=0bb049c515688810151592733e&union_lens=lensId:0b013a8d_0b4f_16d4898798b_3f51&xId=R5DAtHFdLpPmGGwuyxqTTIElWkqByrzzd4szbjCP7fAEc064ho1JBumLnWixHQGwE4zCJZ6kswSrmPWOhWEefu&activityId=760755084e3c4617b40694749f5e5acb">' + 
                 '<img src="'+item.mainPic+'">' +
               '</a>' +
             '</div>' +
