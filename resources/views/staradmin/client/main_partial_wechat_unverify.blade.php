@@ -29,6 +29,7 @@
       <p>热销1.7万件</p>
     </a>
   </div>
+  <a class="goShare" href="/arcade"></a>
 </div>
 
 

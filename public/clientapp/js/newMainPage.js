@@ -7,6 +7,10 @@ $(document).ready(function () {
   $('#btn-search').click(function() {
     goSearch();
   });
+
+  $('#search').click(function() {
+    goSearch();
+  });
   
   getFromTabao(pageId);
 
@@ -50,7 +54,7 @@ function getFromTabao(pageId){
             
             html += '<div class="inBox">' +
             '<div class="imgBox">' +
-              '<a href="https://t.asczwa.com/taobao?backurl=' + item.itemLink + '">' + 
+              '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '">' + 
                 '<img src="'+item.mainPic+'">' +
               '</a>' +
             '</div>' +
