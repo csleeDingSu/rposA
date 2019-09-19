@@ -705,50 +705,61 @@
         var browser = "{{$wbp['browser']}}";
         var topupurl = $('#topupurl').val();
 
-        if (platform == 'iOS') {
-        	$('#isIOS').val('true');
-			document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
-			    var a = document.createElement('a');
-			    a.setAttribute("href", topupurl);
-			    a.setAttribute("target", "_blank");
-			    var dispatch = document.createEvent("HTMLEvents");
-			    dispatch.initEvent("click", true, true);
-			    a.dispatchEvent(dispatch);
-			}, false); 
+   //      if (platform == 'iOS') {
+   //      	$('#isIOS').val('true');
+			// document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
+			//     var a = document.createElement('a');
+			//     a.setAttribute("href", topupurl);
+			//     a.setAttribute("target", "_blank");
+			//     var dispatch = document.createEvent("HTMLEvents");
+			//     dispatch.initEvent("click", true, true);
+			//     a.dispatchEvent(dispatch);
+			// }, false); 
 
-			document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
-			    var a = document.createElement('a');
-			    a.setAttribute("href", topupurl);
-			    a.setAttribute("target", "_blank");
-			    var dispatch = document.createEvent("HTMLEvents");
-			    dispatch.initEvent("click", true, true);
-			    a.dispatchEvent(dispatch);
-			}, false); 
+			// document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
+			//     var a = document.createElement('a');
+			//     a.setAttribute("href", topupurl);
+			//     a.setAttribute("target", "_blank");
+			//     var dispatch = document.createEvent("HTMLEvents");
+			//     dispatch.initEvent("click", true, true);
+			//     a.dispatchEvent(dispatch);
+			// }, false); 
 
-			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
-			    var a = document.createElement('a');
-			    a.setAttribute("href", topupurl);
-			    a.setAttribute("target", "_blank");
-			    var dispatch = document.createEvent("HTMLEvents");
-			    dispatch.initEvent("click", true, true);
-			    a.dispatchEvent(dispatch);
-			}, false);      		
+			// document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+			//     var a = document.createElement('a');
+			//     a.setAttribute("href", topupurl);
+			//     a.setAttribute("target", "_blank");
+			//     var dispatch = document.createEvent("HTMLEvents");
+			//     dispatch.initEvent("click", true, true);
+			//     a.dispatchEvent(dispatch);
+			// }, false);      		
 
-    	} else {
-    		$('#isIOS').val('false');
-    		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
-				plus.runtime.openURL(topupurl);
-			});
+   //  	} else {
+   //  		$('#isIOS').val('false');
+   //  		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
+			// 	plus.runtime.openURL(topupurl);
+			// });
 
-			document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
-				plus.runtime.openURL(topupurl);
-			});
+			// document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+			// 	plus.runtime.openURL(topupurl);
+			// });
 
-			document.getElementById("btn-go-topup").addEventListener('tap',function(){
-				plus.runtime.openURL(topupurl);
-			});
+			// document.getElementById("btn-go-topup").addEventListener('tap',function(){
+			// 	plus.runtime.openURL(topupurl);
+			// });
 
-    	}
+   //  	}
+
+    	$('#btn-purchase-point').click(function(){
+			window.location.href = topupurl;
+		});
+		$('#btn-calculate-vip').click(function(){
+			window.location.href = topupurl;
+		});
+		$('#btn-go-topup').click(function(){
+			window.location.href = topupurl;
+		});
+
 	</script>
 
 	<script type="text/javascript">
@@ -794,12 +805,16 @@
 			});
 			
             $(".btn-rules-vip").click(() => {  
+
                 being.wrapShow();
                 $(".openForm").slideDown(150);
                 $(".wrapBox ").click(function (e) {
                   being.wrapHide();
                   $(".openForm").slideUp(150);
                 });
+                $('.openForm').modal();
+                $('.modal-backdrop').css("z-index", "3");
+
               });
 
             $(".instructions2").click(() => {  
@@ -812,11 +827,12 @@
 	            });
 	          });
         	
-	        	$('.closeForm').click(function() {
-	            	console.log('dsad');
-		            $(".openForm").hide();
-		            console.log('dsad');
-	            });
+        	$('.closeForm').click(function() {
+	            $(".openForm").hide();
+	            $('.modal').modal('hide')
+	            // $('.modal-backdrop').remove() // removes the grey overlay.
+	            $('.modal-backdrop').css("z-index", "-1");
+            });
 		});
 
 		function show_openform() { 

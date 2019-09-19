@@ -600,7 +600,7 @@ function populateHistoryData(records, token) {
         html = '<div class="row-full">' + 
                     '<div class="col-xs-12">'; 
                     if (this_vip_app) {
-                        html += '<div class="empty">你还没兑换奖品<br><a href="/arcade" class="share-link">去换奖品></a></div>';
+                        html += '<div class="empty">你还没兑换奖品<br><a href="/shop" class="share-link">去换奖品></a></div>';
                     } else {
                         html += '<div class="empty">你还没兑换红包<br><a href="/arcade" class="share-link">去拿红包></a></div>';
                     }

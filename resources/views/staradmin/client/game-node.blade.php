@@ -71,14 +71,6 @@
 					</div>
 				</a>
 			</div>
-
-			<div class="box" id="btn-vip-wrapper">
-				<a href="/profile">
-					<div class="btn-profile">
-						个人中心
-					</div>
-				</a>
-			</div>
 			
 			<input id="nTxt" class="nTxt" type="hidden" value="">
 			<input id="result" type="hidden" value="6">

@@ -100,7 +100,7 @@ body{
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto 2.3rem 1.5rem;
+  grid-template-columns: auto auto;
   height: 0.9rem;
 }
 
@@ -146,9 +146,9 @@ body{
     text-align: center;
     color: #c77e97;
     font-size: 0.3rem;
-    float: left;
+    float: right;
     margin-top: 0.15rem;
-    margin-right: 0rem;
+    margin-right: 0.3rem;
 }
 
 .btn-profile {

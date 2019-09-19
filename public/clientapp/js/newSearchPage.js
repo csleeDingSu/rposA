@@ -4,16 +4,25 @@ var pageSize = 50;
 
   $(document).ready(function () {
     if ($('#search').val() != "") {
-      console.log('777');
+      console.log('1');
       goSearch(pageId);       
+    } else {
+      getFromTabao(pageId);
     }
 
     //execute scroll pagination
     being.scrollBottom('.scrolly', '.listBox', () => {   
       pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val();
-      console.log('dasdsa - ' + pageId)
-      goSearch(pageId);
-    }); 
+      console.log('scrollBottom - ' + pageId)
+        if ($('#search').val() != "") {
+          console.log('2');
+          goSearch(pageId);
+        } else {
+          getFromTabao(pageId);
+        }
+      
+    });
+
 });
 
   function goSearch(pageId) {
@@ -118,6 +127,75 @@ var pageSize = 50;
       }
 
     }
+
+function getFromTabao(pageId){
+  var html = '';
+  $.ajax({
+      type: 'GET',
+      url: "/tabao/get-goods-list?pageSize=" + pageSize + "&pageId=" + pageId, 
+      contentType: "application/json; charset=utf-8",
+      dataType: "text",
+      error: function (error) {
+          console.log(error);
+          alert(error.responseText);
+          $(".reload").show();
+      },
+      success: function(data) {
+          // console.log(data);
+          // console.log(JSON.parse(data).data.list);
+          var records = JSON.parse(data).data.list;
+          var newPrice = 0; 
+          var sales = 0;
+          totalNum = JSON.parse(data).data.totalNum;
+          
+          $.each(records, function(i, item) {
+            oldPrice = parseFloat(item.originalPrice).toFixed(2);
+            newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
+            newPrice = (newPrice > 0) ? newPrice : 0;
+            sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
+
+            html += '<div class="inBox">' +
+            '<div class="imgBox">' +
+              '<a href="'+item.couponLink+'">' +
+                '<img src="'+item.mainPic+'">' +
+              '</a>' +
+            '</div>' +
+            '<div class="txtBox flex1">' +
+              '<h2 class="name">'+item.title+'</h2>' +
+              '<div class="typeBox">' +
+                '<span class="type-red">'+item.couponPrice+'元券</span>' +
+                '<span class="type-sred">奖励100积分</span>' +
+                '<span class="type-blue">抽奖补贴12元</span>' +
+              '</div>' +
+              '<div class="moneyBox">' +
+                '<p class="icon">¥</p>' +
+                '<p class="nowTxt">'+ newPrice +'</p>' +
+                '<p class="oldTxt">'+oldPrice+'</p>' +
+                '<a href="'+item.couponLink+'" class="btn">' +
+                  '<p>热销'+ sales +'万</p>' +
+                  '<div class="inTxt">' +
+                    '<img src="/clientapp/images/shapeIcon.png">' +
+                    '<span>去领券</span>' +
+                  '</div>' +
+                '</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        });
+
+        if (pageId == 1) {
+          $('.listBox').html(html); 
+        } else {
+          $('.listBox').append(html); 
+        }
+
+        $('#hidPageId').val(JSON.parse(data).data.pageId);
+        pageId = $('#hidPageId').val();
+        console.log(pageId);
+          
+      }
+  });
+}
 
   function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
