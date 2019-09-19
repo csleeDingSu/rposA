@@ -14,6 +14,7 @@ use App\Shareproduct;
 use App\Voucher;
 use App\Wallet;
 use App\member_game_bet_temp_log;
+use App\view_buy_product_user_list;
 use App\vouchers_yhq;
 use Auth;
 use Carbon\Carbon;
@@ -42,13 +43,15 @@ class MainController extends BaseController
         if (Auth::Guard('member')->check())
 		{
 			$member = Auth::guard('member')->user()->id	;
-			$data['member']    = Member::get_member($member);
-			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+			$data['member'] = Member::get_member($member);
+			$data['wallet'] = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+			$data['buy'] = view_buy_product_user_list::select('*')->orderBy('updated_at', 'DESC')->skip(0)->take(1)->get();
 
 		} else {
 			$member = null;
 			$data['member'] = null;
 			$data['wallet'] = null;	
+			$data['buy'] = null;	
 		}
 
 		return view('client/shop', $data);
@@ -89,6 +92,14 @@ class MainController extends BaseController
 			return redirect('/login');
 		}
 		
+	}
+
+	public function getProductForHighlight(Request $request)
+	{
+		$from = empty($request->input('from')) ? 0 : $request->input('from');
+		$to = empty($request->input('to')) ? 1 : $request->input('to');
+		$data = view_buy_product_user_list::select('*')->orderBy('updated_at', 'DESC')->skip($from)->take($to)->get();
+		return response()->json(['success' => true, 'data' => $data]); 
 	}
 
 }

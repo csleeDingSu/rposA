@@ -160,7 +160,8 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::any( '/receipt', 'ReceiptController@index' )->name( 'client.receipt' );
 	Route::any( '/receipt/guide', 'ReceiptController@showGuide' )->name( 'client.receipt.showGuide' );
 
-	Route::any( '/shop', 'MainController@shop' )->name( 'client.shop' );	
+	Route::any( '/shop', 'MainController@shop' )->name( 'client.shop' );
+	Route::any( '/shop/api/getProductForHighlight', 'MainController@getProductForHighlight' )->name( 'client.getBuyProductHistory' );	
 	Route::any( '/main', 'MainController@newMainPage' )->name( 'client.newMainPage' );	
 	Route::any( '/main/search/{search?}', 'MainController@tabaoSearch' )->name( 'client.tabao.search' );	
 	Route::any( '/pre-share', 'MainController@preShare' )->name( 'client.preShare' );	

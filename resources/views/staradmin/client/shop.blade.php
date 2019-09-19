@@ -22,7 +22,14 @@
             <a class="shop-right-menu" href="javascript:openModal('redeem-rules');"><img src="{{ asset('/clientapp/images/shop/icon-redeem-rules.png') }}"></a>
         </div>
         <div class="shop-notification">
-            <span class="highlight">158*****2686</span> 换购 iPhone X 256G 深黑色全网通苹果智能手机...
+            @if (!empty($buy))
+              @foreach($buy as $b)
+                <span class="highlight">{{ substr($b->phone,0,3) }}*****{{ substr($b->phone, -4) }} </span>{{$b->package_name}}...
+              
+              @endforeach
+            @else
+              <span class="highlight">158*****2686</span> 换购 iPhone X 256G 深黑色全网通苹果智能手机...
+            @endif
         </div>
       </div>
     </div>
@@ -97,12 +104,12 @@
                   $('.modal').modal('hide');
                   $('.modal-backdrop').remove();
               });
-
         });
 
         function openModal(id) {
             $('#' + id).modal();
         }
+
 
     </script>
 

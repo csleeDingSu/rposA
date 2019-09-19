@@ -7,7 +7,7 @@
   <div class="total">
   </div>
   <div class="list2">
-    <ul>
+    <ul class="list-data">
       <li>
         <span>
           <font color="#b168ff">152****2582</font>
@@ -165,6 +165,37 @@
     <script>
 
     $(function () {
+
+      var html = '';
+
+      $.ajax({
+            type: "GET",
+            url: "/shop/api/getProductForHighlight?from=0&to=1000",
+            dataType: "json",
+            error: function (error) { console.log(error) },
+            success: function(data) {
+                console.log(data.data[0]);
+                d = data.data;
+                $.each(d, function(i, item) {
+                  html += '<li>' +
+                            '<span>' +
+                              '<font color="#b168ff">152****2582</font>' +
+                            '</span>' +
+                            '<span>' +
+                              '<font color="#5d5d5d">邀请2个好友</font>' +
+                            '</span>' +
+                            '<span>' +
+                              '<font color="#ff5662">领到24元奖励红包</font>' +
+                            '</span>' +
+                            '<span>' +
+                              '<font color="#ccc">刚刚</font>' +
+                            '</span>' +
+                          '</li>';
+                });
+
+                $('.list-data').append(html);
+            }
+        });
 
 
       let ob = $('.list2 ul');

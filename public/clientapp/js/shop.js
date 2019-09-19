@@ -1,6 +1,8 @@
-
+var from = 0;
+var to = 1;
 $(function () {
     getProduct();
+    getHighlight();
 });
 
 function getProduct(){
@@ -121,3 +123,30 @@ function getNumeric(value) {
     // console.log(parseFloat(value).toFixed(2));
     // return parseFloat(value).toFixed(2);
   }
+
+function getHighlight() {
+    var txt = null;
+    setInterval(function () {
+      $.ajax({
+            type: "GET",
+            url: "/shop/api/getProductForHighlight?from=" + from + "&to=" + to,
+            dataType: "json",
+            error: function (error) { console.log(error) },
+            success: function(data) {
+                console.log(data.data[0]);
+                d = data.data[0];
+                if (typeof d === "undefined") {
+                    from = 0;
+                    to = 1;
+                } else {
+                    txt = '<span class="highlight">' + d.phone.substring(0,3) + '*****' + d.phone.substring(d.phone.length - 4) + '</span> ' + d.package_name+ '...';
+                    $('.shop-notification').html(txt);
+                    from++;
+                    to++;
+                    $('.shop-notification').html(txt);    
+                }
+                
+            }
+        });
+    }, 8000);
+}
