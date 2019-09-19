@@ -196,7 +196,7 @@ class LedgerController extends BaseController
 				$notification->member_id       = $memberid;
 				$notification->title           = 'Ledger Update';
 				$notification->notifiable_type = 'LEDUP';
-				$notification->notifiable_id   = $result['uuid'];
+				$notification->notifiable_id   = $result->id;
 				$notification->save();
 				
 				
@@ -214,7 +214,7 @@ class LedgerController extends BaseController
 				$notification->member_id       = $memberid;
 				$notification->title           = 'Ledger Update';
 				$notification->notifiable_type = 'LELUP';
-				$notification->notifiable_id   = $result['uuid'];
+				$notification->notifiable_id   = $result->id;
 				$notification->save();
 				
 				$is_save = 'yes';

@@ -40,7 +40,6 @@ class RedeemController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		//$wallet    = Wallet::get_wallet_details($memberid);
 		$ledger    = Ledger::ledger($memberid, $gameid);
 		
 		//$basic_count = \DB::table('basic_redeem')->where('member_id',$request->memberid)->count();
@@ -73,9 +72,9 @@ class RedeemController extends Controller
 					
 					$data = ['package_id'=>$package->id,'created_at'=>$now,'updated_at'=>$now,'member_id'=>$memberid,'redeem_state'=>2,'request_at'=>$now,'used_point'=>$package->min_point,'package_life'=>$package->package_life,'package_point'=>$package->package_freepoint,'confirmed_at'=>$now,'passcode'=>$passcode,'ledger_id'=>$ledger->id,'ledger_id'=>$ledger->id];
 					
-					$wallet = Wallet::update_basic_wallet($memberid,0,$package->min_point, 'BVP','debit', $package->min_point.' Point reserved for VIP package');
+					$wallet = Ledger::credit($memberid,$game_id,$package->min_point,'BVP',$package->min_point.' Point reserved for VIP package');
 					
-					$data['ledger_history_id'] = $wallet['uuid'];
+					$data['ledger_history_id'] = $wallet->id;
 					
 					$id     = Package::save_vip_package($data);	
 					
@@ -165,17 +164,13 @@ class RedeemController extends Controller
 			{
 				$ledger = Ledger::ledgerbyid($package->ledger_id);
 				
-				Ledger::credit($memberid,$ledger->game_id,$package->package_point,'RV');
+				$history = Ledger::credit($memberid,$ledger->game_id,$package->package_point,'RV');
 				
 				
 				Ledger::life($memberid,$ledger->game_id,'credit',$package->package_life,'RV');
 					
-					
-			//	Wallet::update_vip_wallet($memberid,$package->package_life,$package->package_point,'RV');
-			
-				
-				$now = Carbon::now();
-				$data = ['redeem_state'=>3,'redeemed_at'=>$now];
+				$now  = Carbon::now();
+				$data = ['redeem_state'=>3,'redeemed_at'=>$now, 'ledger_id'=> $ledger->id, 'ledger_history_id'=>$history->id ];
 						
 				Package::update_vip($package->id, $data);
 				
@@ -240,7 +235,7 @@ class RedeemController extends Controller
 			$wallet = Ledger::debit($memberid,$gameid,$product->min_point,'RPO', $product->min_point.' Point used for buy product');
 			
 			$data['ledger_id']         = $ledger->id;
-			$data['ledger_history_id'] = $wallet['uuid'];
+			$data['ledger_history_id'] = $wallet->id;
 
 			Product::update_pin($product->id, $data);
 			
@@ -346,7 +341,6 @@ class RedeemController extends Controller
 		}
 		
 		//check point
-		//$wallet      = Wallet::get_wallet_details($memberid);
 		$wallet       = Ledger::ledger($memberid, $gameid);
 		
 		$required_point = $package->point_to_redeem * $quantity;
@@ -363,7 +357,6 @@ class RedeemController extends Controller
 		{ 			
 			case '1':
 				
-				//$wallet  = Wallet::update_basic_wallet($memberid,0,$required_point,'RBP','debit', 'reserved for buy product');	
 				$result  = Ledger::debit($memberid,$gameid,$required_point,'RBP', ' reserved for buy product');
 				
 				//card type
@@ -377,7 +370,7 @@ class RedeemController extends Controller
 							,'quantity'      => $request->quantity
 							,'ref_note'      => $request->ref_note
 							,'ledger_id'     => $wallet->id
-							,'ledger_history_id'      => $result['uuid']
+							,'ledger_history_id'      => $result->id
 					
 						];
 				$id = \App\BuyProduct::save_redeemed($data);
@@ -423,7 +416,6 @@ class RedeemController extends Controller
 					return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 				}
 				
-				//$wallet  = Wallet::update_basic_wallet($memberid,0,$required_point,'RBP','debit', 'reserved for buy product');	
 				$result  = Ledger::debit($memberid,$gameid,$required_point,'RBP', ' reserved for buy product');				
 				//product
 				$data =  [
@@ -436,7 +428,7 @@ class RedeemController extends Controller
 							,'ref_note'      => $request->ref_note
 							,'quantity'      => $request->quantity
 							,'ledger_id'     => $wallet->id
-							,'ledger_history_id'      => $result['uuid']
+							,'ledger_history_id'      => $result->id
 						];
 				$id = \App\BuyProduct::save_redeemed($data);
 				
