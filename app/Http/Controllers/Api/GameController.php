@@ -513,12 +513,7 @@ class GameController extends Controller
 			{	
 				$max_po = \Config::get('app.coin_max');
 				
-				$IsFirstLife = Game::IsFirstLife($memberid);
 				
-				if ($IsFirstLife < 1)
-				{
-					$max_po = 15;
-				}
 				
 				
 				if ($gamelevel->position != 1) 
