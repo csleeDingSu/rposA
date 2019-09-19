@@ -680,7 +680,7 @@ class GameController extends Controller
 					$balance_after = $wallet->acpoint  + $debit ;
 					if ($debit < $wallet->acupoint)
 					{
-						if ($wallet->acupoint > 15)
+						if ($wallet->acupoint > $max_po)
 						{
 							$purgedpoint = $wallet->acupoint - $debit ;
 							$notes .= $purgedpoint.' points Purged. ';
