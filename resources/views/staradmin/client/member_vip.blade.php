@@ -19,7 +19,7 @@
       <div class="userName">
         <h2>HI,{{ substr($member->phone,0,3) }}*****{{ substr($member->phone, -4) }}</h2>
         @if(!empty($member) && $member->wechat_verification_status == 0)   <!-- wechat verified -->    
-          <a class="set on"><img src="{{ asset('clientapp/images/ation_1.png') }}"><span>已认证</span></a>
+          <a class="set on"><img src="{{ asset('clientapp/images/ation_2.png') }}"><span>已认证</span></a>
         @else
           <a class="set"><img src="{{ asset('clientapp/images/ation_1.png') }}"><span>去认证</span></a>
         @endif

@@ -21,6 +21,7 @@ var usedlife = 0;
 var max_acupoint = 6;
 var g_cookies_point = 0;
 var user_id = 0;
+var is_app = false;
 
 $(function () {
 
@@ -41,6 +42,7 @@ $(function () {
     var wechat_status = $('#hidWechatId').val();
     var wechat_name = $('#hidWechatName').val();
     var max_acupoint = $('#hidMaxAcupoint').val();
+    is_app = $('#hidIsApp').val();
 
     if(wechat_status == 0 && wechat_name != null) {
 

@@ -1,4 +1,12 @@
-@extends('layouts.default_app')
+@php
+    if (env('THISVIPAPP','false')) {
+        $default = 'layouts.default_app';
+    } else {
+        $default = 'layouts.default';
+    }
+@endphp
+
+@extends($default)
 
 @section('title', '幸运转盘')
 
@@ -95,6 +103,7 @@
 			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
 			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '6')}}" />
+			<input id='hidIsApp' type="hidden" value="{{env('THISVIPAPP','false')}}" />
 	  	</div>
 
 	</div>
@@ -765,6 +774,7 @@
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var bet_count = $('#hidbetting_count').val();
+			var is_app = $('#hidIsApp').val();
 			
 			if(bet_count == 0){
 				$('.selection').show();
@@ -798,7 +808,7 @@
 		        $('#game-rules').modal();
 		    });
 
-			if (user_id <= 0) {
+			if (user_id <= 0 && is_app == false) {
 				openmodel();
 				
 				$('.barWrapper').click( function() {
@@ -870,7 +880,9 @@
 	
 @endsection
 
+@if (!env('THISVIPAPP', false))
 	<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
 
 	@include('client.intromodel')
+@endif
 
