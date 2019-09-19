@@ -2,6 +2,17 @@ var totalNum = 0;
 var pageId = 1;
 var pageSize = 50;
 
+document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'interactive') {
+  } else if (state == 'complete') {
+    setTimeout(function(){
+        document.getElementById('interactive');
+        document.getElementById('loading').style.visibility="hidden";
+    },100);
+  }
+}
+
   $(document).ready(function () {
     if ($('#search').val() != "") {
       console.log('1');

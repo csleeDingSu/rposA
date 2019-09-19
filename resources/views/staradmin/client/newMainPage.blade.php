@@ -2,6 +2,8 @@
 
 @section('top-css')
     @parent  
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/newMainPage.css') }}" />
+    
 @endsection
 
 @section('top-javascript')

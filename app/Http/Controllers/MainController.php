@@ -83,7 +83,12 @@ class MainController extends BaseController
 
 	public function preShare(Request $request)
 	{
-		return view('client/pre_share');
+		if (Auth::Guard('member')->check()) {
+			return view('client/pre_share');	
+		} else {
+			return redirect('/login');
+		}
+		
 	}
 
 }

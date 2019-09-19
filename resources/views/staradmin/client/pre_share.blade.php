@@ -18,6 +18,14 @@
 <!-- top nav end-->
 
 @section('content')
+<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
+<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
+<input type="hidden" id="page" value="1" />
+<input type="hidden" id="max_page" value="1" />
+<input type="hidden" id="page_nextlvl" value="1" />
+<input type="hidden" id="max_page_nextlvl" value="1" />
+
     <div class="shareBox fix">
         <img src="{{ asset('/clientapp/images/shareImg.png') }}" class="big">
         <div class="txtBox">
@@ -50,8 +58,8 @@
             <a class="tab-my-list on">我的邀请</a>
             <a class="tab-friend-list">好友邀请</a>
           </div>
-          <div class="list my-list">
-            <ul>
+          <div class="list">
+            <ul class="my-list">
               <li>
                 <div class="line-1">
                   <h2>112****8090</h2>
@@ -121,9 +129,7 @@
                 </div>
               </li>
             </ul>
-          </div>
-          <div class="list friend-list">
-            <ul>
+            <ul class="friend-list">
               <li>
                 <div class="line-1">
                   <h2>112****8887</h2>
@@ -203,34 +209,7 @@
 
 @section('footer-javascript')
     @parent
-    <!-- <script src="{{ asset('/clientapp/js/pre_share.js') }}"></script> -->
-
-    <script type="text/javascript">
-
-      $(document).ready(function () {
-
-        $('.tab-my-list').addClass('on');
-        $('.tab-friend-list').removeClass('on');
-        $('.my-list').css({'display': 'block'});
-        $('.friend-list').css({'display': 'none'});
-
-        $('.tab-my-list').click(function() {
-          $('.tab-my-list').addClass('on');
-          $('.tab-friend-list').removeClass('on');
-          $('.my-list').css({'display': 'block'});
-          $('.friend-list').css({'display': 'none'});
-        });
-
-        $('.tab-friend-list').click(function() {
-          $('.tab-my-list').removeClass('on');
-          $('.tab-friend-list').addClass('on');
-          $('.my-list').css({'display': 'none'});
-          $('.friend-list').css({'display': 'block'});
-        });
-
-      });
-      
-      
-    </script>
+    <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
+    <script src="{{ asset('/clientapp/js/pre_share.js') }}"></script>
 
 @endsection

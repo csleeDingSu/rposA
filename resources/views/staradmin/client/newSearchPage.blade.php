@@ -13,43 +13,13 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/public.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/swiper.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/style.css') }}" />
+  <link rel="stylesheet" href="{{ asset('/clientapp/css/newMainPage.css') }}" />
   <script type="text/javascript" src="{{ asset('/clientapp/js/swiper.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/jquery-1.9.1.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/being.js') }}"></script>
   <script src="{{ asset('/clientapp/js/newSearchPage.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-  <script type="text/javascript">
-    document.onreadystatechange = function () {
-              var state = document.readyState
-              if (state == 'interactive') {
-              } else if (state == 'complete') {
-                setTimeout(function(){
-                    document.getElementById('interactive');
-                    document.getElementById('loading').style.visibility="hidden";
-                },100);
-              }
-            }
-
-  </script>
-  <style>
-            /* Paste this css to your style sheet file or under head tag */
-            /* This only works with JavaScript, 
-            if it's not present, don't show loader */
-            .no-js #loader { display: none;  }
-            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
-            .loading {
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 9999;
-                background: url('/client/images/preloader.gif') center no-repeat;
-                background-color: rgba(255, 255, 255, 1);
-                background-size: 32px 32px;
-            }
-        </style>
-</head>
+  </head>
 
 <body>
 <div class="loading" id="loading"></div>
