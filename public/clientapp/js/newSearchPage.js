@@ -80,7 +80,9 @@ var pageSize = 50;
 
                       html += '<div class="inBox">' +
                                 '<div class="imgBox">' +
+                                  '<a href="taobao://item.taobao.com">' +
                                   '<img src="'+item.mainPic+'">' +
+                                  '</a>'+
                                 '</div>' +
                                 '<div class="txtBox flex1">' +
                                   '<h2 class="name">'+item.title+'</h2>' +
@@ -150,7 +152,7 @@ function getFromTabao(pageId){
 
             html += '<div class="inBox">' +
             '<div class="imgBox">' +
-              '<a href="'+item.couponLink+'">' +
+              '<a href="taobao://item.taobao.com">' +
                 '<img src="'+item.mainPic+'">' +
               '</a>' +
             '</div>' +

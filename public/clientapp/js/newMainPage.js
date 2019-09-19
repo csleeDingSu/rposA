@@ -3,6 +3,10 @@ var pageId = 1;
 var pageSize = 50;
 
 $(document).ready(function () {
+
+  $('#btn-search').click(function() {
+    goSearch();
+  });
   
   getFromTabao(pageId);
 
@@ -46,7 +50,7 @@ function getFromTabao(pageId){
             
             html += '<div class="inBox">' +
             '<div class="imgBox">' +
-              '<a href="'+item.couponLink+'">' +
+              '<a href="taobao://item.taobao.com">' +
                 '<img src="'+item.mainPic+'">' +
               '</a>' +
             '</div>' +

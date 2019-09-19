@@ -21,11 +21,12 @@
         <div class="logo rel">
           <img src="{{ asset('/clientapp/images/logo.png') }}" width="100%">
           <div class="searchBox">
+            <img class="tipsImg" src="{{ asset('/clientapp/images/searchTips.png') }}">
             <img src="{{ asset('/clientapp/images/searchIcon.png') }}">
             <label>
               <input type="text" placeholder="复制淘宝商品标题 粘贴搜索" id="search">
             </label>
-            <a href="javascript:goSearch();">查券</a>
+            <div class="sBtn" id="btn-search">查券</div>
           </div>
         </div>
         @if(!empty($member) && $member->wechat_verification_status == 0)   <!-- wechat verified -->    

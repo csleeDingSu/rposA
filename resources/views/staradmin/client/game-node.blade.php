@@ -808,19 +808,14 @@
 		        $('#game-rules').modal();
 		    });
 
-			if (user_id <= 0 && is_app == false) {
-				openmodel();
+			if ((user_id <= 0) && (is_app == false)) {
 				
+				openmodel();
+			
 				$('.barWrapper').click( function() {
 	            	openmodel();
 	            });
-
-			} else {
-				// if (life == 0 && user_id > 0) {
-	   //              $('.button-card').click( function() {
-	   //                  $('#reset-life-share').modal();
-	   //              });
-	   //          }
+	            	
 			}
 
             //execute scroll pagination

@@ -53,7 +53,17 @@ $(function () {
             //resetTimer();
         });
 
+        console.log(is_app);
+        console.log(user_id);
+        console.log(user_id <= 0 && is_app);
+        if (user_id <= 0 && is_app) {
+            $('.bet-box').click(function() {
+                alert('need to login');                    
+            });
+        }
+
     } else {
+
         $(".loading").fadeOut("slow");
         return false;
     }
@@ -670,7 +680,11 @@ function bindBetButton(){
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
             // window.top.location.href = "/member";
-            $( '#login-intropopup' ).modal( 'show' );
+            if (is_app) {
+                alert('need to login');
+            } else {
+                $( '#login-intropopup' ).modal( 'show' );    
+            }
         }
 
         if(isNaN(balance)){
@@ -865,6 +879,10 @@ function bindTriggerButton(){
         } else {
            if (user_id > 0) {
                 $('#reset-life-share').modal();    
+            } else {
+                if (is_app) {
+                    alert('need to login');                    
+                }
             }
         }
     });

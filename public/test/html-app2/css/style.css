@@ -197,7 +197,7 @@ dd a.on h2, dd a:active h2 {
     margin-right: .15rem;
 }
 
-.searchBox span, .searchBox a {
+.searchBox .sBtn, .searchBox a {
     display: block;
     font-size: .32rem;
     font-weight: bold;
@@ -212,24 +212,28 @@ dd a.on h2, dd a:active h2 {
     z-index: 1;
 }
 
-.searchBox span img {
+.searchBox .tipsImg {
     position: absolute;
     margin: 0;
     width: 2.05rem;
     height: .52rem;
+    z-index: 2;
     right: 0;
-    bottom: .65rem;
+    top:-60%;
     animation: heart 1.3s ease-in-out 0s infinite alternate;
+    -webkit-animation: heart 1.3s ease-in-out 0s infinite alternate;
+    -moz-animation: heart 1.3s ease-in-out 0s infinite alternate;
 }
 
 @keyframes heart {
     from {
-        bottom: .65rem;
+        top:-60%;
     }
     to {
-        bottom: .75rem;
+        top:-80%;
     }
 }
+
 
 
 .searchBox input {
