@@ -859,7 +859,7 @@ class GameController extends Controller
         return response()->json(['success' => true, 'record' => $record ]);
 	}
 	
-	
+	//no use
 	public function vip_life_redemption(Request $request)
     {		
 		$reset    = null;		
