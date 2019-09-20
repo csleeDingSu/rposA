@@ -268,7 +268,7 @@ class MemberController extends Controller
 	
 	public function invitation_list (Request $request) {
 		
-		$invitation_list = \DB::table( 'view_members' )->select( '*' )->whereNotNull('referred_by');
+		$invitation_list = \DB::table( 'view_members' )->select( 'id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','referred_by','introducer_bonus_life','wechat_name','profile_pic' )->whereNotNull('referred_by');
 		
 		if ($request->member_id)
 		{
