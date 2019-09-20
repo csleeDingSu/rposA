@@ -68,7 +68,7 @@ function getFromTabao(pageId){
               '<div class="moneyBox">' +
                 '<p class="icon">¥</p>' +
                 '<p class="nowTxt">'+ newPrice +'</p>' +
-                '<p class="oldTxt">'+oldPrice+'</p>' +
+                '<p class="oldTxt"><em class="fs">¥</em>'+oldPrice+'</p>' +
                 '<p class="num">热销'+ sales +'万</p>' +
               '</div>' +
             '</div>' +

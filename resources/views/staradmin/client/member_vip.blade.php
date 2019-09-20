@@ -142,7 +142,7 @@
             var overallpoint = "{{$overallpoint}}";
             console.log(yesterdaypoint);
             console.log(overallpoint);
-            $('#102_point').html('¥' + normal_game_point);
+            $('#102_point').html('<em class="fs">¥</em>' + normal_game_point);
             $('#game_life').html(game_life);
             $('.userTotal').html("<span>昨日收益&nbsp;&nbsp;<b>+" + getNumeric(yesterdaypoint) + "</b></span><span>累计收益&nbsp;&nbsp;<b>+" + getNumeric(overallpoint) + "</b></span>");
 

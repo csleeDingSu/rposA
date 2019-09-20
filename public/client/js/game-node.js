@@ -55,14 +55,27 @@ $(function () {
             //resetTimer();
         });
 
-        console.log(is_app);
-        console.log(user_id);
-        console.log(user_id <= 0 && is_app);
-        if (user_id <= 0 && is_app) {
-            $('.bet-box').click(function() {
-                $('#modal-no-login').modal();                   
-            });
+        var user_id = $('#hidUserId').val();
+        if (user_id <= 0) {
+            if (is_app) {
+                $('.bet-box').click(function() {
+                    $('#modal-no-login').modal();                   
+                });
+
+                $('.btn-withdraw').click(function() {
+                    $('#modal-no-login').modal();
+                });
+
+                $('.btn-life').click(function() {
+                    $('#modal-no-login').modal();
+                });
+            } else {
+                $('.btn-withdraw').click(function() {
+                    openmodel();    
+                });
+            }
         }
+
 
     } else {
 
@@ -1636,6 +1649,64 @@ function bindButton () {
                     }
                 }
             });
+        } else {
+            if (is_app) {
+                $('#modal-no-login').modal(); 
+            }else{
+                openmodel();    
+            }
         }
     });
+
+     $('.btn-withdraw').click(function() {
+        var win_coin_max = Number($('#hidMaxAcupoint').val());
+        var win_coin_min = Number($('#hidMinAcupoint').val());
+        var _point = Number($('.spanAcuPointAndBalance').html());
+        var user_id = $('#hidUserId').val();
+        if ((user_id <= 0)) {
+            console.log(user_id);
+            if (is_app) {
+                $('#modal-no-login').modal(); 
+            }else{
+                openmodel();    
+            }            
+        } else {
+            if (g_life <= 0) {
+                $('#reset-life-share').modal(); 
+             } else {
+                if (_point < win_coin_min) {
+                    $('.withdraw-value').html(_point);
+                    $('#modal-withdraw-insufficient').modal();
+                // } else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
+                } else if ((_point >= win_coin_min) && ((_point == 6) || (_point == 10))) {
+                    $('.withdraw-value').html(_point);
+                    $('#modal-withdraw').modal();
+
+                } else if (_point >= win_coin_max) {
+                    $('#reset-life-max').modal();
+                } else {
+                    $('.withdraw-value').html(_point);
+                    $('#modal-withdraw-insufficient').modal();
+                }
+            }
+        }
+    }); 
+
+    $('.btn-life').click(function () {
+        var user_id = $('#hidUserId').val();
+        if ((user_id <= 0)) {
+            if (is_app) {
+                $('#modal-no-login').modal(); 
+            }else{
+                openmodel();    
+            }            
+        } else {
+            if (g_life <= 0) {
+                $('#reset-life-share').modal(); 
+             } else {
+                window.top.location.href = "/profile";
+             }
+        }
+
+    });    
 }

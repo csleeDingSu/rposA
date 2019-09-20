@@ -105,7 +105,7 @@ document.onreadystatechange = function () {
                                   '<div class="moneyBox">' +
                                     '<p class="icon">¥</p>' +
                                     '<p class="nowTxt">'+ newPrice +'</p>' +
-                                    '<p class="oldTxt">'+item.originalPrice+'</p>' +
+                                    '<p class="oldTxt"><em class="fs">¥</em>'+item.originalPrice+'</p>' +
                                     '<p class="num">热销'+ sales +'万</p>' +
                                   '</div>' +
                                 '</div>' +
@@ -177,7 +177,7 @@ function getFromTabao(pageId){
               '<div class="moneyBox">' +
                 '<p class="icon">¥</p>' +
                 '<p class="nowTxt">'+ newPrice +'</p>' +
-                '<p class="oldTxt">'+oldPrice+'</p>' +
+                '<p class="oldTxt"><em class="fs">¥</em>'+oldPrice+'</p>' +
                 '<p class="num">热销'+ sales +'万</p>' +
               '</div>' +
             '</div>' +

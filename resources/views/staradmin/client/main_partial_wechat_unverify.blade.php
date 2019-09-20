@@ -15,17 +15,17 @@
   <div class="list">
     <a href="#">
       <span><img src="{{ asset('/clientapp/images/demoImg2.png') }}"></span>
-      <h2>¥ 3.0</h2>
+      <h2><em>¥</em> 3.0</h2>
       <p>热销1.7万件</p>
     </a>
     <a href="#">
       <span><img src="{{ asset('/clientapp/images/demoImg2.png') }}"></span>
-      <h2>¥ 3.0</h2>
+      <h2><em>¥</em> 3.0</h2>
       <p>热销1.7万件</p>
     </a>
     <a href="#">
       <span><img src="{{ asset('/clientapp/images/demoImg2.png') }}"></span>
-      <h2>¥ 3.0</h2>
+      <h2><em>¥</em> 3.0</h2>
       <p>热销1.7万件</p>
     </a>
   </div>

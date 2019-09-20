@@ -315,6 +315,9 @@ dd a.on h2, dd a:active h2 {
     color: #333;
     line-height: .4rem;
 }
+.ztBox .list h2 em{
+    font-family: '宋体'
+}
 
 .ztBox .list p {
     font-size: .2rem;
@@ -511,6 +514,7 @@ dd a.on h2, dd a:active h2 {
     font-size: .26rem;
     margin-right: .05rem;
     color: #fe002f;
+    font-family: '黑体'
 }
 
 .listBox .moneyBox .nowTxt {

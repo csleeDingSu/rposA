@@ -74,20 +74,17 @@
 			</div>
 
 			@if (env('THISVIPAPP', false))
-			<div class="box">
-				<a href="/profile">
+				<div class="box">
 					<div class="btn-life">
 						剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
 					</div>
-				</a>
-			</div>
+				</div>
 			@else
-
-			<div class="box" id="btn-vip-wrapper">
+				<div class="box" id="btn-vip-wrapper">
 					<div class="btn-profile">
 						规则说明
 					</div>
-			</div>
+				</div>
 			@endif
 			
 			<input id="nTxt" class="nTxt" type="hidden" value="">
@@ -827,7 +824,7 @@
 										每次抽中后返回1元从新开始，又有5次加倍的机会，不停循环抽红包。
 									</p>
 									<p>&nbsp;</p>
-									<p># 每场最多可抽6元封顶</p>
+									<p># 每场最多可抽12元封顶</p>
 									<p># 邀请好友可获得更多抽奖场次</p>
 									<p># 抽奖概率由系统随机产生</p>
 								</div>
@@ -937,33 +934,7 @@
 				$('.modal').modal('hide');
 				$('.modal-backdrop').remove();
 			});
-
-			$('.btn-withdraw').click(function() {
-				var _point = Number($('.spanAcuPointAndBalance').html());
-				if ((user_id <= 0)) {
-					if (is_app) {
-						$('#modal-no-login').modal(); 
-					}else{
-						openmodel();	
-					}
-					
-				} else {
-					if (_point < win_coin_min) {
-						$('.withdraw-value').html(_point);
-						$('#modal-withdraw-insufficient').modal();
-					// } else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
-					} else if ((_point >= win_coin_min) && ((_point == 6) || (_point == 10))) {
-						$('.withdraw-value').html(_point);
-						$('#modal-withdraw').modal();
-
-					} else if (_point >= win_coin_max) {
-						$('#reset-life-max').modal();
-					} else {
-						$('.withdraw-value').html(_point);
-						$('#modal-withdraw-insufficient').modal();
-					}
-				}
-			});			
+		
 
             //execute scroll pagination
             being.scrollBottom('.cardBody', '.box', () => {		

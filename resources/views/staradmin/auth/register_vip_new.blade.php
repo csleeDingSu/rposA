@@ -104,9 +104,10 @@
               </label>
             </dd>
             @if((!empty($refcode) and isset($ref->id)) || !empty(Session::get('refcode')))
-            <dt>注册码</dt>
-            <dd><input name="refcode" id="refcode" type="text" value="{{ Session::get('refcode')}}" readonly  style="color: lightgrey; width: 32%; border: 0;">
-            </dd>
+              <div style="text-align: center; margin-top: -0.2rem;">
+                <span style="color: lightgrey;">注册码 : </span>
+                <input name="refcode" id="refcode" type="text" value="{{ Session::get('refcode')}}" readonly  style="color: lightgrey; width: 32%; border: 0;">
+              </div>
             @endif
           </dl>
           <button class="login" id="doregi">下一步</button>
@@ -168,13 +169,19 @@
                 },
                 success:function(data) {
                     if (data.success == true) 
-                        {                       
+                        {   
+                            var refcode = "{{ Session::get('refcode')}}";     
                             var sdf = '@lang("dingsu.member_registration_success_message")';
                             $('#validation-errors').append('<div class="alert alert-success isa_success">'+sdf+'</div');
                             
                             url = data.url;
-                            $(location).attr("href", url);
-                            // being.showMsg('.loginMsg');
+
+                            console.log(refcode);
+                            if (refcode != '') {
+                              being.showMsg('.loginMsg');
+                            } else {
+                              $(location).attr("href", url);  
+                            } 
                         }
                     else 
                         {
