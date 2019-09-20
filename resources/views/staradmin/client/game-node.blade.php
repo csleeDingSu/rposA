@@ -446,7 +446,10 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
-	
+	@if (env('THISVIPAPP', false))
+	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />	
+	@endif
+
 </div>
 
 @if (env('THISVIPAPP', false))
@@ -912,9 +915,9 @@
 			});
 
 
-			// $('.banner-rules').click(function() {
-		 //        $('#game-rules').modal();
-		 //    });
+			$('.banner-rules').click(function() {
+		        $('#game-rules').modal();
+		    });
 
 		    $('.btn-profile').click(function() {
 		        $('#game-rules').modal();
