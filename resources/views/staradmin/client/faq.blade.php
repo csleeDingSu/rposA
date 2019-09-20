@@ -8,6 +8,11 @@
 
 @extends($default)
 
+@section('top-css')
+    @parent
+    <link rel="stylesheet" href="{{ asset('/client/css/faq.css') }}" />
+@endsection
+
 @if(env('THISVIPAPP','false'))
     <!-- top nav -->
     @section('left-menu')
@@ -32,12 +37,6 @@
     @section('top-navbar')
     @endsection
 @endif
-
-
-@section('top-css')
-    @parent
-	<link rel="stylesheet" href="{{ asset('/client/css/faq.css') }}" />
-@endsection
 
 @section('content')
 

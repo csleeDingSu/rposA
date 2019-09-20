@@ -73,12 +73,10 @@
 				</a>
 			</div>
 
-			<div class="box">
-				<a href="/profile">
-					<div class="btn-life">
-						剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+			<div class="box" id="btn-vip-wrapper">
+					<div class="btn-profile">
+						规则说明
 					</div>
-				</a>
 			</div>
 			
 			<input id="nTxt" class="nTxt" type="hidden" value="">
@@ -437,8 +435,6 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
-
-	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />	
 	
 </div>
 
@@ -865,9 +861,14 @@
 			var is_app = $('#hidIsApp').val();
 			var win_coin_max = Number($('#hidMaxAcupoint').val());
 			var win_coin_min = Number($('#hidMinAcupoint').val());
-
+			var _point = Number($('.spanAcuPointAndBalance').html());
+			
 			if(bet_count == 0){
 				$('.selection').show();
+			}
+
+			if ((_point > 0) && (_point < win_coin_min)) {
+				$('#modal-withdraw-insufficient').modal();
 			}
 
 			var user_id = $('#hidUserId').val();
@@ -899,7 +900,12 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
-			$('.banner-rules').click(function() {
+
+			// $('.banner-rules').click(function() {
+		 //        $('#game-rules').modal();
+		 //    });
+
+		    $('.btn-profile').click(function() {
 		        $('#game-rules').modal();
 		    });
 

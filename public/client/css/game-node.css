@@ -1433,7 +1433,7 @@ a {
 	width: 100%;
 }
 
-#modal-withdraw .modal-warning-button, #game-rules .modal-warning-button {
+#modal-withdraw .modal-warning-button,{
 	background: transparent;	
 	color: #fcac12;
 	border-radius: 25px;
