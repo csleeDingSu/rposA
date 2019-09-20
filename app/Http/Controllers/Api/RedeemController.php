@@ -74,14 +74,9 @@ class RedeemController extends Controller
 					
 					$wallet = Ledger::credit($memberid,$game_id,$package->min_point,'BVP',$package->min_point.' Point reserved for VIP package');
 					
-					$data['ledger_history_id'] = $wallet->id;
+					$data['ledger_history_id'] = $wallet['id'];
 					
 					$id     = Package::save_vip_package($data);	
-					
-					
-			
-					
-					
 
 					return response()->json(['success' => true, 'message' => 'success','refid'=>$id]);
 				}
@@ -170,7 +165,7 @@ class RedeemController extends Controller
 				Ledger::life($memberid,$ledger->game_id,'credit',$package->package_life,'RV');
 					
 				$now  = Carbon::now();
-				$data = ['redeem_state'=>3,'redeemed_at'=>$now, 'ledger_id'=> $ledger->id, 'ledger_history_id'=>$history->id ];
+				$data = ['redeem_state'=>3,'redeemed_at'=>$now, 'ledger_id'=> $ledger->id, 'ledger_history_id'=>$history['id'] ];
 						
 				Package::update_vip($package->id, $data);
 				
@@ -235,7 +230,7 @@ class RedeemController extends Controller
 			$wallet = Ledger::debit($memberid,$gameid,$product->min_point,'RPO', $product->min_point.' Point used for buy product');
 			
 			$data['ledger_id']         = $ledger->id;
-			$data['ledger_history_id'] = $wallet->id;
+			$data['ledger_history_id'] = $wallet['id'];
 
 			Product::update_pin($product->id, $data);
 			
@@ -370,7 +365,7 @@ class RedeemController extends Controller
 							,'quantity'      => $request->quantity
 							,'ref_note'      => $request->ref_note
 							,'ledger_id'     => $wallet->id
-							,'ledger_history_id'      => $result->id
+							,'ledger_history_id'      => $result['id']
 					
 						];
 				$id = \App\BuyProduct::save_redeemed($data);
@@ -428,7 +423,7 @@ class RedeemController extends Controller
 							,'ref_note'      => $request->ref_note
 							,'quantity'      => $request->quantity
 							,'ledger_id'     => $wallet->id
-							,'ledger_history_id'      => $result->id
+							,'ledger_history_id'      => $result['id']
 						];
 				$id = \App\BuyProduct::save_redeemed($data);
 				
