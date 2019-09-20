@@ -270,12 +270,25 @@ class MemberController extends Controller
 		
 		$invitation_list = \DB::table( 'view_members' )->select( 'id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','referred_by','introducer_bonus_life','wechat_name','profile_pic' )->whereNotNull('referred_by');
 		
+		if ($request->offset < 0)
+		{
+			$request->offset = 0;
+		}
+		
+		if ($request->limit < 0)
+		{
+			$request->limit = 10;
+		}
+		
 		if ($request->member_id)
 		{
 			$invitation_list  = $invitation_list->where('referred_by', $member_id);
 		}
 
-		$invitation_list  = $invitation_list->orderBy( 'id', 'desc' )->get();
+		$invitation_list      = $invitation_list->orderBy( 'id', 'desc' )
+									->offset($request->offset)
+									->limit($request->limit)
+									->get();
 
 		return response()->json(['success' => true, 'records'=>$invitation_list]);
 
