@@ -513,6 +513,8 @@ class GameController extends Controller
 			{	
 				$max_po = \Config::get('app.coin_max');
 				
+				$min_po = \Config::get('app.coin_min');
+				
 				
 				
 				
