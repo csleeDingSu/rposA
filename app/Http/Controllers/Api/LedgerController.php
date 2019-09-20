@@ -145,7 +145,7 @@ class LedgerController extends Controller
 		
 		$ledger = Ledger::ledger($request->memberid , $gameid);
 		
-		if ($ledger->balance < $camout->bonus_point_to_life)
+		if ($ledger->bonus_point < $camout->bonus_point_to_life)
 		{
 			return ['success' => false, 'message' => 'you dont have enough bonus point to redeem '];
 		}		
