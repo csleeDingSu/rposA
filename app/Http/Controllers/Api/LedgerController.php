@@ -132,5 +132,30 @@ class LedgerController extends Controller
 		return $wallet = Ledger::merge_ledger_point($request->memberid,$request->fromgameid,$request->togameid, $request->point,$request->topoint);
 	}
 	
+	public function convertbonustolife(Request $request)
+	{
+		$gameid = 102;
+		
+		$camout = \DB::table('games')->where('id' , 102)->first();
+		
+		if ($camout->bonus_point_to_life < 1)
+		{
+			return ['success' => false, 'message' => 'its not configured '];
+		}
+		
+		$ledger = Ledger::ledger($request->memberid , $gameid);
+		
+		if ($ledger->balance < $camout->bonus_point_to_life)
+		{
+			return ['success' => false, 'message' => 'you dont have enough bonus point to redeem '];
+		}		
+		
+		$debit = Ledger::debit($request->memberid,$gameid,$camout->bonus_point_to_life,'RBL', 'bonus point redeemd for life');
+		
+		$life  = life($request->memberid,$gameid,'credit',1,$category = 'RBL', 'bonus life for bonus point');
+		
+		return ['success' => true ]; 
+	}
+	
 	
 }
