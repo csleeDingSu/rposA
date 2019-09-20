@@ -268,7 +268,7 @@ class MemberController extends Controller
 	
 	public function invitation_list (Request $request) {
 		
-		$invitation_list = DB::table( 'view_members' )->select( '*' );
+		$invitation_list = \DB::table( 'view_members' )->select( '*' );
 		
 		if ($request->member_id)
 		{
