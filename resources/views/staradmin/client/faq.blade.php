@@ -33,9 +33,6 @@
             <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
         </a>
     @endsection
-
-    @section('top-navbar')
-    @endsection
 @endif
 
 @section('content')

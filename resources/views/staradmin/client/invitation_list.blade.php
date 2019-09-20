@@ -22,7 +22,11 @@
 
 @else
     @section('title', '邀请记录')
-    @section('top-navbar')
+
+    @section('left-menu')
+        <a href="javascript:history.back()" class="back">
+            <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
+        </a>
     @endsection
 @endif
 
