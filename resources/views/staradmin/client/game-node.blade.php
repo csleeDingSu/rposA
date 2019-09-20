@@ -588,7 +588,7 @@
 									</p>
 								</div>
 								<div class="btn-go-withdraw">
-									提现{{env('coin_min', '6')}}元 结束抽奖
+									提现<span class="withdraw-value"></span>元 结束抽奖
 								</div>
 								<div class="close-modal modal-warning-button">
 									继续抽奖 抽{{env('coin_max', '12')}}元
@@ -932,13 +932,17 @@
 					if (_point < win_coin_min) {
 						$('.withdraw-value').html(_point);
 						$('#modal-withdraw-insufficient').modal();
-					} else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
-
+					// } else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
+					} else if ((_point >= win_coin_min) && ((_point == 6) || (_point == 10))) {
+						$('.withdraw-value').html(_point);
 						$('#modal-withdraw').modal();
 
-					} else {
+					} else if (_point >= win_coin_max) {
 						$('#reset-life-max').modal();
-					}	
+					} else {
+						$('.withdraw-value').html(_point);
+						$('#modal-withdraw-insufficient').modal();
+					}
 				}
 			});			
 
