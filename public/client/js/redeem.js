@@ -3,6 +3,8 @@ var page_count = 1;
 var reload_pass = '￥EXpZYiJPcpg￥';
 var this_vip_app = false;
 var txt_coin = '元';
+var gameid = 102;
+var wallet_point = 0;
 
 $(document).ready(function () {
 
@@ -62,9 +64,7 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getProductList(data.access_token);
-            getPosts(page, data.access_token);
-            scrollBottom(data.access_token);
+            getWallet(data.access_token, id);
         }      
     });
 }
@@ -82,7 +82,7 @@ function getProductList(token) {
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
-            var current_point = getNumeric(data.current_point);
+            var current_point = getNumeric(wallet_point); //getNumeric(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
                 previous_point = (getNumeric(previous_point));
@@ -137,7 +137,7 @@ function getProductList(token) {
                         reserved_quantity = 0;
                     }
 
-                    if (item.min_point > getNumeric(data.current_point)){
+                    if (item.min_point > getNumeric(wallet_point)){
                         cannot_redeem = true;
                         cls_cannot_redeem = 'btn-cannot-redeem';
                     }
@@ -187,12 +187,12 @@ function getProductList(token) {
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(data.current_point) +' ' + txt_coin + '</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(wallet_point) +' ' + txt_coin + '</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    if ((available_quantity > 0) && item.min_point <= getNumeric(data.current_point)) {
+                                                    if ((available_quantity > 0) && item.min_point <= getNumeric(wallet_point)) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
@@ -619,7 +619,7 @@ function redeem(token, product_id){
     $.ajax({
         type: 'POST',
         url: "/api/request-redeem",
-        data: { 'memberid': member_id, 'productid': product_id },
+        data: { 'memberid': member_id, 'productid': product_id, 'gameid': gameid },
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -1111,3 +1111,28 @@ function getVIPProduct(softpinCount, token){
 function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
   }
+
+function getWallet(token, id) {
+    $.ajax({
+        type: 'POST',
+        url: "/api/wallet-detail?gameid=103&memberid=" + id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error.message);
+            $(".reload").show();
+        },
+        success: function(data) {
+            // console.log(data);
+            wallet_point = data.record.gameledger[gameid].point;
+            console.log(wallet_point);
+            $('.wabao-coin').html(wallet_point);
+            getProductList(token);
+            getPosts(page, token);
+            scrollBottom(token);
+        }
+    });
+}

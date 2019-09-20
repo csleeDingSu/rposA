@@ -55,7 +55,7 @@ class BlogController extends Controller
             $address = null;
         } else {
             $phone = $detail->contact_number;
-            $address = $detail->address;
+            $address = $detail->city . ' ' . $detail->address;
         }
 
         $content = $request->input('content');

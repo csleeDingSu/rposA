@@ -16,7 +16,6 @@
 @endsection
 
 @section('content')
-
 <div class="full-height no-header">
 	<div class="container">
 		<div class="member-box">
@@ -381,9 +380,10 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
-			var current_point = getNumeric("<?php Print($wallet->current_point);?>");
-			var acupoint = getNumeric("<?php Print($wallet->current_life_acupoint);?>");
-			var usedpoint = getNumeric("<?php Print($usedpoint);?>");
+			var current_point = getNumeric("<?php Print(empty($wallet['gameledger']['102']->point) ? 0 : $wallet['gameledger']['102']->point);?>");
+			var acupoint = getNumeric("<?php Print(empty($wallet['gameledger']['102']->acupoint) ? 0 : $wallet['gameledger']['102']->acupoint);?>");
+			var usedpoint = getNumeric("<?php Print(empty($wallet['gameledger']['102']->used_point) ? 0 : $wallet['gameledger']['102']->used_point);?>");
+			var current_life = "<?php Print(empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life);?>";
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined && previous_point > 0){
                 previous_point = (getNumeric(previous_point));
@@ -405,7 +405,7 @@
 
             $('.wabao-usedpoint').html(usedpoint);
 
-            $('.game-life').html("<?php Print($member->current_life);?>");
+            $('.game-life').html(current_life);
 
             $('.gamebtn').click(function(){
 					window.location.href = "/arcade";

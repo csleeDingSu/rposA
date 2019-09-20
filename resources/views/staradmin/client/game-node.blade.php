@@ -65,19 +65,18 @@
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0</span>元补贴
 						</div>
+						<div class="btn-withdraw"></div>
 					</div>
 				</div>
 				<a href="#" onclick="closecss('speech-bubble-point');">
-					<div class="speech-bubble-point">满{{env('coin_max', '6')}}元提现</div>
+					<div class="speech-bubble-point">满{{env('coin_min', '6')}}元提现 最高{{env('coin_max', '12')}}元</div>
 				</a>
 			</div>
 
-			<div class="box">
-				<a href="/profile">
-					<div class="btn-life">
-						剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+			<div class="box" id="btn-vip-wrapper">
+					<div class="btn-profile">
+						规则说明
 					</div>
-				</a>
 			</div>
 			
 			<input id="nTxt" class="nTxt" type="hidden" value="">
@@ -102,7 +101,8 @@
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
-			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '6')}}" />
+			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '12')}}" />
+			<input id='hidMinAcupoint' type="hidden" value="{{env('coin_min', '6')}}" />
 			<input id='hidIsApp' type="hidden" value="{{env('THISVIPAPP','false')}}" />
 	  	</div>
 
@@ -435,8 +435,6 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
-
-	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />	
 	
 </div>
 
@@ -483,6 +481,14 @@
 		</div>
 	</div>
 	<!-- haven't login modal Ends-->
+
+<!-- newbie start modal -->
+	<div class="modal fade col-md-12" id="modal-newbie" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+				<div class="newbie-bg"></div>
+		</div>
+	</div>
+	<!-- newbie modal Ends-->
 
 <!-- Steps Modal starts -->
 	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: #666666;">
@@ -532,6 +538,69 @@
 	</div>
 <!-- Steps Modal Ends -->
 
+	<div class="modal fade col-md-12" id="modal-withdraw-insufficient" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-title">
+								  
+								</div>
+								<div class="instructions">
+									<p>
+										<span class="highlight-header">你已经抽到<span class="withdraw-value">0</span>元红包</span>
+									</p>
+									<p>
+										最高可抽<span class="highlight-coin-max">{{env('coin_max', '12')}}</span>元
+									</p>
+								</div>
+								<div class="close-modal modal-warning-button">
+									继续抽奖
+								</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade col-md-12" id="modal-withdraw" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-title">
+								  
+								</div>
+								<div class="instructions">
+									<p>
+										<span class="highlight-header">你已经抽到{{env('coin_min', '6')}}元</span>
+									</p>
+									<p>
+										满{{env('coin_min', '6')}}元可提现，最高可抽{{env('coin_max', '12')}}元
+										<br>
+										提现则结束本次抽奖
+									</p>
+								</div>
+								<div class="btn-go-withdraw">
+									提现{{env('coin_min', '6')}}元 结束抽奖
+								</div>
+								<div class="close-modal modal-warning-button">
+									继续抽奖 抽{{env('coin_max', '12')}}元
+								</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 	<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
@@ -539,11 +608,11 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-value">6元补贴到手</div>	
+								<div class="packet-value">{{env('coin_max', '12')}}元补贴到手</div>	
 								<div class="instructions">
-									每次抽奖最多可获的6元
+									抽奖已达上限，{{env('coin_max', '12')}}元红包已抽完
 								</div>
-								<div class="modal-confirm-button btn-reset-life btn-red-packet">点击结算去兑换</div>
+								<div class="modal-confirm-button btn-reset-life btn-red-packet">申请提现</div>
 							</div>
 						</div>
 					</div>							
@@ -790,15 +859,27 @@
 			var wechat_name = $('#hidWechatName').val();
 			var bet_count = $('#hidbetting_count').val();
 			var is_app = $('#hidIsApp').val();
+			var win_coin_max = Number($('#hidMaxAcupoint').val());
+			var win_coin_min = Number($('#hidMinAcupoint').val());
+			var _point = Number($('.spanAcuPointAndBalance').html());
 			
 			if(bet_count == 0){
 				$('.selection').show();
+			}
+
+			if ((_point > 0) && (_point < win_coin_min)) {
+				$('#modal-withdraw-insufficient').modal();
 			}
 
 			var user_id = $('#hidUserId').val();
 
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
+			});
+
+			$('.close-modal').click(function () {
+				$('.modal').modal('hide');
+				$('.modal-backdrop').remove();
 			});
 			
 			if(wechat_status > 0) {
@@ -819,7 +900,12 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
-			$('.banner-rules').click(function() {
+
+			// $('.banner-rules').click(function() {
+		 //        $('#game-rules').modal();
+		 //    });
+
+		    $('.btn-profile').click(function() {
 		        $('#game-rules').modal();
 		    });
 
@@ -832,6 +918,26 @@
 	            });
 	            	
 			}
+
+			$('.newbie-bg').click(function() {
+				$('.modal').modal('hide');
+				$('.modal-backdrop').remove();
+			});
+
+			$('.btn-withdraw').click(function() {
+				var _point = Number($('.spanAcuPointAndBalance').html());
+					
+				if (_point < win_coin_min) {
+					$('.withdraw-value').html(_point);
+					$('#modal-withdraw-insufficient').modal();
+				} else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
+
+					$('#modal-withdraw').modal();
+
+				} else {
+					$('#reset-life-max').modal();
+				}
+			});			
 
             //execute scroll pagination
             being.scrollBottom('.cardBody', '.box', () => {		

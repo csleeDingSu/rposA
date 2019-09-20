@@ -18,7 +18,8 @@ var last_bet = null;
 var g_life = 0;
 var consecutive_lose = null;
 var usedlife = 0;
-var max_acupoint = 6;
+var max_acupoint = 12;
+var min_acupoint = 6;
 var g_cookies_point = 0;
 var user_id = 0;
 var is_app = false;
@@ -42,6 +43,7 @@ $(function () {
     var wechat_status = $('#hidWechatId').val();
     var wechat_name = $('#hidWechatName').val();
     var max_acupoint = $('#hidMaxAcupoint').val();
+    var min_acupoint = $('#hidMinAcupoint').val();
     is_app = $('#hidIsApp').val();
 
     if(wechat_status == 0 && wechat_name != null) {
@@ -202,6 +204,8 @@ function initUser(records){
         } else if (user_id > 0 && acupoint >= max_acupoint) {
             bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
+        } else {
+            bindButton();
         }
     }
 }
@@ -528,6 +532,10 @@ function startGame() {
             updateResult(betting_records);
             show_win = false;
             show_lose = false;
+
+            if (betting_records.length <= 0) { //is newbie or not
+                $('#modal-newbie').modal();    
+            }
         }
     });
 
@@ -893,6 +901,7 @@ function bindTriggerButton(){
 }
 
 function bindResetLifeButton(){
+
     $( '.btn-reset-life' ).click( function( event ){
         $(this).off('click');
         event.stopImmediatePropagation();
@@ -961,6 +970,7 @@ function bindResetLifeButton(){
             });
         }
     });
+
 }
 
 function showContent(level) {
@@ -1592,4 +1602,40 @@ function anp(e, lv, bet){
         });
         e.stopPropagation();    
     }    
+}
+
+function bindButton () {
+     $( '.btn-go-withdraw' ).click( function( event ){
+        $(this).off('click');
+        event.stopImmediatePropagation();
+
+        var user_id = $('#hidUserId').val();
+        var previous_point = g_cookies_point;
+
+        // add points from additional life.
+        if(user_id > 0){
+            $.ajax({
+                type: 'POST',
+                url: "/api/resetlife",
+                data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                },
+                error: function (error) { 
+                    console.log(error.responseText) 
+                    console.log(error);
+                    alert(error.message);
+                    window.parent.location.href = "/redeem";
+                },
+                success: function(data) {
+                    if(data.success){
+                        Cookies.set('previous_point', previous_point);
+                        window.parent.location.href = "/redeem";
+                        // window.parent.location.href = "/profile";
+                    }
+                }
+            });
+        }
+    });
 }

@@ -111,13 +111,13 @@ body{
 }
 
 .btn-calculate {
-	width: 1.5rem;
+	width: 2rem;
 	height: 0.39rem;
 }
 
 .balance-banner {
-	background: url('/client/images/btn-wallet.png') no-repeat;
-    width: 2.54rem;
+	background: url('/clientapp/images/game-node/btn-wallet.png') no-repeat;
+    width: 3rem;
     height: 0.84rem;
     float: left;
     /*z-index: 100;*/
@@ -1188,8 +1188,8 @@ if it's not present, don't show loader */
     margin-top: 0.16rem;
     text-align: center;
     width: 1.8rem;
-    margin-left: 0.7rem;
-    font-size: 0.35rem;
+    margin-left: 0.55rem;
+    font-size: 0.25rem;
 }
 
 .caption_bet {
@@ -1203,15 +1203,15 @@ if it's not present, don't show loader */
 
 .speech-bubble-point {
 	position: absolute;
-    background-image: url(/client/images/tishi.png);
+    background-image: url(/clientapp/images/game-node/tishi.png);
     background-repeat: no-repeat;
     background-size: 100% auto;
     font-size: 0.25rem;
-    width: 1.5rem;
+    width: 2.5rem;
     height: 0.5rem;
-    padding: 0.1rem 0 0 0;
+    padding: 0.12rem 0;
     margin: 0.3rem 0 0 0.6rem;
-    /*display: none;*/
+    /* display: none; */
     display: block;
     z-index: 6;
     text-align: center;
@@ -1295,3 +1295,173 @@ a {
     height: 7.5rem;
     width: 5.5rem;
 }
+
+#modal-newbie .newbie-bg {
+	background: url(/clientapp/images/game-node/newbie_bg.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    padding: 3.7rem 0.3rem 0.6rem 0.3rem;
+    height: 7.5rem;
+    width: 5.5rem;
+}
+
+.btn-withdraw {
+	background: url(/clientapp/images/game-node/icon-withdraw.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    padding: 0.35rem;
+    float: right;
+    margin: 0.215rem 0.2rem;
+}
+
+/* modal-withdraw-insufficient */
+#modal-withdraw-insufficient .modal-title {
+	background: white;
+	color: red;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding:0;
+	font-weight: 500;
+	font-size: 26px;
+	/*width: 100% !important;*/
+	/*height: 5% !important;*/
+}
+
+#modal-withdraw-insufficient .modal-content {
+  background-color: white;
+  color: #959595;
+  text-align: center;
+  
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  padding: 10px;
+  border: none;
+}
+
+#modal-withdraw-insufficient .instructions {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #999;
+	padding:0.3rem;
+	text-align: center;
+	letter-spacing: 0.5px;
+	line-height: 0.6rem;
+}
+
+#modal-withdraw-insufficient .modal-body {
+	padding: 0 !important;
+}
+
+#modal-withdraw-insufficient .modal-card {
+	width: 100%;
+}
+
+#modal-withdraw-insufficient .modal-warning-button, #game-rules .modal-warning-button {
+	background: #fcac12;
+	color: white;
+	border-radius: 25px;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 10px;
+}
+
+#modal-withdraw-insufficient .highlight-header {
+	color: red;
+	text-align: center;
+	padding:0;
+	font-weight: 500;
+	font-size: 26px;
+}
+
+#modal-withdraw-insufficient .highlight-coin-max {
+	color: red;
+}
+
+/* End modal-withdraw-insufficient */
+
+/* modal-withdraw */
+#modal-withdraw .modal-title {
+	background: white;
+	color: red;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding:0;
+	font-weight: 500;
+	font-size: 26px;
+	/*width: 100% !important;*/
+	/*height: 5% !important;*/
+}
+
+#modal-withdraw .modal-content {
+  background-color: white;
+  color: #959595;
+  text-align: center;
+  
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  padding: 10px;
+  border: none;
+}
+
+#modal-withdraw .instructions {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #999;
+	padding:0.3rem;
+	text-align: center;
+	letter-spacing: 0.5px;
+	line-height: 0.4rem;
+}
+
+#modal-withdraw .modal-body {
+	padding: 0 !important;
+}
+
+#modal-withdraw .modal-card {
+	width: 100%;
+}
+
+#modal-withdraw .modal-warning-button,{
+	background: transparent;	
+	color: #fcac12;
+	border-radius: 25px;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 10px;
+	border: 1px solid #fcac12;
+}
+
+#modal-withdraw .highlight-header {
+	color: red;
+	text-align: center;
+	padding:0;
+	font-weight: 500;
+	font-size: 26px;
+	line-height: 0.6rem;
+}
+
+#modal-withdraw .highlight-coin-max {
+	color: red;
+}
+
+#modal-withdraw .btn-go-withdraw {
+	background: #fcac12;
+	color: white;
+	border-radius: 25px;
+	padding: 10px;
+	margin:5% 10%;
+}
+
+/* End modal-withdraw */
