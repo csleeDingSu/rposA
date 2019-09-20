@@ -152,7 +152,7 @@ class LedgerController extends Controller
 		
 		$debit = Ledger::debit($request->memberid,$gameid,$camout->bonus_point_to_life,'RBL', 'bonus point redeemd for life');
 		
-		$life  = life($request->memberid,$gameid,'credit',1,$category = 'RBL', 'bonus life for bonus point');
+		$life  = Ledger::life($request->memberid,$gameid,'credit',1,$category = 'RBL', 'bonus life for bonus point');
 		
 		return ['success' => true ]; 
 	}
