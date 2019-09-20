@@ -1172,12 +1172,24 @@ WHERE
 		if ($record->status != 1)
 		{
 			return response()->json(['success' => false, 'errors' => trans('lang.record_already_settled') ]); 
-		}		
+		}	
+		$camout = 10;
+		$credit = $request->amount *  $camout;
+			
 		$record->status     = $request->status;	
 		$record->amount     = $request->amount;	
+		$record->reward     = $camout;	
 		$record->reason_id  = $request->reason_id;	
 		$record->remark     = $request->remark;			
+		
+		
+		$ledger = \App\Ledger::ledger($record->member_id , 102);
+		
+		$result = \App\Ledger::bonus($record->member_id,102,$credit,'', '');
+		
+		$record->ledger_history_id     = $result['id'];	
 		$record->save();
+		
 		$row = $this->render_receiptdata($request->id);
 		return response()->json(['success' => true,'id'=>$request->id,'record'=>$row]);
     }
