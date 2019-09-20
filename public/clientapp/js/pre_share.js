@@ -213,17 +213,17 @@ function populateInvitationData(records, token, _status = null) {
             });
 
             if(current_page == 1 && last_page == 1 && html === '') {
-                html = '<li>' +
-                        '<div class="line-1">' +
-                          '<h2>112****8887</h2>' +
-                          '<span>' +
-                            '<font color="#fe5c5c">认证失败</font>' +
-                          '</span>' +
-                        '</div>' +
-                        '<div class="line-2">' +
-                          '<p>2019-02-02 16:05</p>' +
-                        '</div>' +
-                      '</li>';
+                // html = '<li>' +
+                //         '<div class="line-1">' +
+                //           '<h2>112****8887</h2>' +
+                //           '<span>' +
+                //             '<font color="#fe5c5c">认证失败</font>' +
+                //           '</span>' +
+                //         '</div>' +
+                //         '<div class="line-2">' +
+                //           '<p>2019-02-02 16:05</p>' +
+                //         '</div>' +
+                //       '</li>';
             }
 
             return html;
