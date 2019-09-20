@@ -1173,8 +1173,9 @@ WHERE
 		{
 			return response()->json(['success' => false, 'errors' => trans('lang.record_already_settled') ]); 
 		}	
+		$camout = \DB::table('games')->where('id' , 102)->first();
 		
-		$camout = \Config::get('app.reward_ratio');
+		$camout = $camout->reward_ratio;
 		$credit = $request->amount *  $camout;
 			
 		$record->status     = $request->status;	
@@ -1185,9 +1186,12 @@ WHERE
 		
 		if ($record->status == 2)
 		{
-			$ledger = \App\Ledger::ledger($record->member_id , 102);		
-			$result = \App\Ledger::bonus($record->member_id,102,$credit,'', '');
-			$record->ledger_history_id     = $result['id'];	
+			$ledger = \App\Ledger::ledger($record->member_id , 102);
+			if ($credit > 0)
+			{
+				$result = \App\Ledger::bonus($record->member_id,102,$credit,'', '');
+				$record->ledger_history_id     = $result['id'];	
+			}			
 		}
 				
 		$record->save();
