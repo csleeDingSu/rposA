@@ -304,6 +304,12 @@ class MemberRegisterController extends Controller
 			$user->active_session = Session::getId();
 			$user->save();
 			
+			
+			if ($referred_by)
+			{
+				event(new \App\Events\EventDynamicChannel('newuserwithreferral','', $user));
+			}
+			
 			// return response()->json(['success' => true]);
 			return $this->getGameOrDefaultRoute();
 					
