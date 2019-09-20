@@ -926,16 +926,19 @@
 
 			$('.btn-withdraw').click(function() {
 				var _point = Number($('.spanAcuPointAndBalance').html());
-					
-				if (_point < win_coin_min) {
-					$('.withdraw-value').html(_point);
-					$('#modal-withdraw-insufficient').modal();
-				} else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
-
-					$('#modal-withdraw').modal();
-
+				if ((user_id <= 0)) {
+					openmodel();
 				} else {
-					$('#reset-life-max').modal();
+					if (_point < win_coin_min) {
+						$('.withdraw-value').html(_point);
+						$('#modal-withdraw-insufficient').modal();
+					} else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
+
+						$('#modal-withdraw').modal();
+
+					} else {
+						$('#reset-life-max').modal();
+					}	
 				}
 			});			
 
