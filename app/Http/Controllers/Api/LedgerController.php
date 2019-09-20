@@ -150,7 +150,8 @@ class LedgerController extends Controller
 			return ['success' => false, 'message' => 'you dont have enough bonus point to redeem '];
 		}		
 		
-		$debit = Ledger::debit($request->memberid,$gameid,$camout->bonus_point_to_life,'RBL', 'bonus point redeemd for life');
+		$debit = Ledger::updateledger('debit','bonus_point',$request->memberid,$gameid,$camout->bonus_point_to_life,'BRBL', 'bonus point redeemd for life');
+		
 		
 		$life  = Ledger::life($request->memberid,$gameid,'credit',1,$category = 'RBL', 'bonus life for bonus point');
 		
