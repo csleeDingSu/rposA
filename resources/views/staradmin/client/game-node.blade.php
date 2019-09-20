@@ -73,11 +73,22 @@
 				</a>
 			</div>
 
+			@if (env('THISVIPAPP', false))
+			<div class="box">
+				<a href="/profile">
+					<div class="btn-life">
+						剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+					</div>
+				</a>
+			</div>
+			@else
+
 			<div class="box" id="btn-vip-wrapper">
 					<div class="btn-profile">
 						规则说明
 					</div>
 			</div>
+			@endif
 			
 			<input id="nTxt" class="nTxt" type="hidden" value="">
 			<input id="result" type="hidden" value="6">
@@ -927,7 +938,12 @@
 			$('.btn-withdraw').click(function() {
 				var _point = Number($('.spanAcuPointAndBalance').html());
 				if ((user_id <= 0)) {
-					openmodel();
+					if (is_app) {
+						$('#modal-no-login').modal(); 
+					}else{
+						openmodel();	
+					}
+					
 				} else {
 					if (_point < win_coin_min) {
 						$('.withdraw-value').html(_point);
