@@ -167,6 +167,9 @@ Route::group(['namespace' => 'Api'],function()
 	Route::post('/convert-bonuspoint', 'LedgerController@convertbonustolife')->name('convertbonustolife');
 	
 	
+	Route::any('/invitation-list', 'MemberController@invitation_list')->name('invitation_list');
+	
+	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
 Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilogin');
