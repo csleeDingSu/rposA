@@ -248,5 +248,7 @@ return [
 	'wabao666_domain' => env('wabao666_domain'),
 	
 	'REDIS_PREFIX' => env('REDIS_PREFIX', 'C'),
+	'reward_ratio' => env('reward_ratio', 10),
+	
 	
 ];

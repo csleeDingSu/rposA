@@ -1173,7 +1173,8 @@ WHERE
 		{
 			return response()->json(['success' => false, 'errors' => trans('lang.record_already_settled') ]); 
 		}	
-		$camout = 10;
+		
+		$camout = \Config::get('app.reward_ratio');
 		$credit = $request->amount *  $camout;
 			
 		$record->status     = $request->status;	
