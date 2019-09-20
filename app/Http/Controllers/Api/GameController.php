@@ -519,8 +519,8 @@ class GameController extends Controller
 								
 				if ($gamelevel->position != 1) 
 				{
-					if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
-					//if ($wallet->acupoint< $max_po)
+					//if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
+					if ($wallet->acupoint< $min_po)
 					{
 						return response()->json(['success' => false, 'record' => '', 'message' => 'reset first.cannt redeem.level must be one']); 
 					}
@@ -531,8 +531,8 @@ class GameController extends Controller
 					
 					if ($close != 'yes') {
 						
-						if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
-						//if ($wallet->acupoint < $max_po) 
+						//if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
+						if ($wallet->acupoint< $min_po) 
 						{
 							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.']); 
 						}
@@ -673,10 +673,10 @@ class GameController extends Controller
 					
 					if ($close != 'yes') {
 						
-						if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
-						//if ($wallet->acupoint < $max_po) 
+						//if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
+						if ($wallet->acupoint< $min_po) 
 						{
-							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below '.$max_po.' point']); 
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below '.$min_po.' point']); 
 						}
 					}
 
