@@ -4,11 +4,8 @@
 
 @section('top-css')
     @parent
-	<style>
-		body {
-			background: #f2f2f2;
-		}
-	</style>
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/member_vip.css') }}" />
+	
 @endsection
 
 @section('top-navbar')
@@ -21,7 +18,7 @@
         @if(!empty($member) && $member->wechat_verification_status == 0)   <!-- wechat verified -->    
           <a class="set on"><img src="{{ asset('clientapp/images/ation_2.png') }}"><span>已认证</span></a>
         @else
-          <a class="set"><img src="{{ asset('clientapp/images/ation_1.png') }}"><span>去认证</span></a>
+          <a class="set unverify"><img src="{{ asset('clientapp/images/ation_1.png') }}"><span>去认证</span></a>
         @endif
       </div>
       <div class="userDetail rel">
@@ -80,6 +77,33 @@
 @endsection
 
 @section('footer-javascript')
+<!-- wechat verify Modal starts -->
+  <div class="modal fade col-md-12" id="wechat-verification-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">        
+          <div class="modal-row">
+            <div class="wrapper modal-full-height">
+              <div class="modal-card">
+                <img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+                <div class="wechat-instructions">
+                  你的账号还未通过微信认证，<br />
+                  不能兑换红包，请先认证。
+                </div>                
+              </div>
+              <div>
+                <a href="/validate">
+                  <img src="{{ asset('/client/images/btn-verify.png') }}" width="154" height="44" alt="Verify" />
+                </a>
+              </div>
+            </div>
+          </div>              
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- wechat verify Modal Ends -->
+
 	@parent
 	<script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
 	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
@@ -114,13 +138,18 @@
                 $('#103_point').html((current_point));
             }
 
-var yesterdaypoint = "{{$yesterdaypoint}}";
-var overallpoint = "{{$overallpoint}}";
-console.log(yesterdaypoint);
-console.log(overallpoint);
+            var yesterdaypoint = "{{$yesterdaypoint}}";
+            var overallpoint = "{{$overallpoint}}";
+            console.log(yesterdaypoint);
+            console.log(overallpoint);
             $('#102_point').html('¥' + normal_game_point);
             $('#game_life').html(game_life);
             $('.userTotal').html("<span>昨日收益&nbsp;&nbsp;<b>+" + getNumeric(yesterdaypoint) + "</b></span><span>累计收益&nbsp;&nbsp;<b>+" + getNumeric(overallpoint) + "</b></span>");
+
+
+            $('.unverify').click(function(){
+                $('#wechat-verification-modal').modal();
+            });
 
 		});
 

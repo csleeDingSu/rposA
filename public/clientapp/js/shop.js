@@ -148,5 +148,5 @@ function getHighlight() {
                 
             }
         });
-    }, 8000);
+    }, 3000);
 }
