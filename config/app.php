@@ -242,6 +242,7 @@ return [
 	'banner_url' => public_path("ad\banner"),
 	'shareurl' => 'wabao666.com/share_product/',
 	
+	'coin_min' => env('coin_min', 6),
 	'coin_max' => env('coin_max', 15),
 	'paginate' => 15,
 	'wabao666_domain' => env('wabao666_domain'),
