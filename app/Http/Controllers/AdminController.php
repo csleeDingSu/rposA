@@ -1182,12 +1182,13 @@ WHERE
 		$record->reason_id  = $request->reason_id;	
 		$record->remark     = $request->remark;			
 		
-		
-		$ledger = \App\Ledger::ledger($record->member_id , 102);
-		
-		$result = \App\Ledger::bonus($record->member_id,102,$credit,'', '');
-		
-		$record->ledger_history_id     = $result['id'];	
+		if ($record->status == 2)
+		{
+			$ledger = \App\Ledger::ledger($record->member_id , 102);		
+			$result = \App\Ledger::bonus($record->member_id,102,$credit,'', '');
+			$record->ledger_history_id     = $result['id'];	
+		}
+				
 		$record->save();
 		
 		$row = $this->render_receiptdata($request->id);
