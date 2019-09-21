@@ -330,7 +330,10 @@ class ProductController extends BaseController
 		$row .= '<td>'.$softpin->product_name.'</td>';
 		$row .= '<td>'.$softpin->code.'</td>';
 		$row .= "<td><label class='badge badge-warning'>".trans('dingsu.active')."</label></td>";
-		$row .= '<td><a href="javascript:void(0)" onClick="confirm_Delete('.$softpin->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a></td>';
+		$row .= '<td><a href="javascript:void(0)" backorder class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-plus  "></i></a>
+		
+		<a href="javascript:void(0)" onClick="confirm_Delete('.$softpin->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a>
+		</td>';
 		$row .= '</tr>';
 		
 		return response()->json(['success' => true, 'message' => trans('dingsu.softpin_update_success_message'),'record'=>$row]);
