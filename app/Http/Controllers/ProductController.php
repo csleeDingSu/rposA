@@ -444,7 +444,9 @@ class ProductController extends BaseController
 		{
 			$now = Carbon::now();
 			$data = ['pin_status'=>3,'confirmed_at'=>$now];						
-			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', 'redeem rejected,point refund to customer');			
+			\App\Ledger::credit($record->member_id,102,$record->used_point,'RFN', 'redeem rejected,point refund to customer');
+			
+			
 			
 			Product::update_pin($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
@@ -809,7 +811,7 @@ class ProductController extends BaseController
 				$message = $request->note;
 			}
 						
-			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', $message);
+			\App\Ledger::credit($record->member_id,102,$record->used_point,'RFN', $message );
 			
 			Package::update_vip($record->id, $data);
 			
