@@ -93,6 +93,93 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
 
 <script language="javascript">
+	$('#formedit').on('submit', function(event){
+		event.preventDefault();
+		$('#validation-errors').remove();
+		show_wait('update');				
+		var formData = new FormData();		
+		$.ajax( {
+				url: "{{route('store_softpin_backorder')}}",
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				type: 'POST', 
+				data:new FormData(this),
+				cache : false, 
+				processData: false,
+				success: function ( result ) {
+					console.log('imhere');
+					if ( result.success == true ) {
+						swal.close();
+						$( '#openbackordermodel' ).modal( 'hide' );			
+						var data = result.record;
+						swal({ icon: "success",  type: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.update_success_msg")', confirmButtonText: '@lang("dingsu.okay")'});						
+						$('#tr_' + result.id).replaceWith(data);
+					} else {						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+					}
+										
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal.close();	
+					$.each( xhr.responseJSON.errors, function ( key, value ) {
+						$( '#validation-errors' ).append( '<div class="alert alert-danger">' + value + '</div' );
+					} );	
+				}
+			} );
+		
+	});
+	
+	$(".datalist").on("click",".backorder", function(){
+			var id=$(this).data('id');
+			$('.inputTxtError').remove();
+			swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.fetching_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+			$.ajax( {
+				url: "{{route('softpin_backorder')}}",
+				type: 'get',
+				dataType: "json",
+				data: {
+					_method: 'get',
+					_token: "{{ csrf_token() }}",
+					id:  id,
+				},
+				success: function ( result ) {
+					if ( result.success == true ) {
+						swal.close();
+						var data = result.record;
+						
+						if (data != null)
+							{
+								$('.renderdata').html(data);						
+								
+								$('#openbackordermodel').modal('show');
+							}
+						else 
+							{
+								swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+							}
+						
+					} else {						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+					}
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+				}
+			} );
+		});
+	
 	function openmodel() {
 		$( '#openeditmodel' ).modal( 'show' );
 	}
