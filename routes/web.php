@@ -690,7 +690,9 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get( 'receipt/get-gameledger', 'LedgerController@get_gameledger' )->name( 'get_gameledger' );
 	Route::post( 'receipt/update-gameledger', 'LedgerController@update_gameledger' )->name( 'update_gameledger' );
 	
-
+	Route::get( '/softpin/backorder', 'ProductController@softpin_backorder' )->name( 'softpin_backorder' );		
+	Route::post('/softpin/confirm-backorder', 'ProductController@confirm_softpin_backorder')->name('store_softpin_backorder');
+	
 } );
 //END
 
