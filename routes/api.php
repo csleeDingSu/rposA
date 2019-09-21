@@ -169,6 +169,9 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::any('/invitation-list', 'MemberController@invitation_list')->name('invitation_list');
 	
+	Route::get('/used-point', 'GameController@usedpoint')->name('usedpoint');
+	
+	
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );

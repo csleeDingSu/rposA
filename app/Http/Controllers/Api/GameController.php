@@ -1804,5 +1804,12 @@ class GameController extends Controller
 		return response()->json(['success' => true, 'my_rank' => $row, 'friends_rank' => $fr_ranks , 'global_ranks' => $ranks]); 
 	}
 	
+	
+	public function usedpoint(Request $request)
+    {
+		$point = \DB::table('a_view_used_point')->where('member_id',$request->memberidd)->where('game_id',$request->gameid)-sum('point');
+		return response()->json(['success' => true, 'point' => $point]); 
+	}
+	
 
 }
