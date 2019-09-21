@@ -38,6 +38,9 @@
 								</td>
 								<td>
 									@if($list->pin_status == 0 )
+									
+									<a href="javascript:void(0)" class="backorder btn btn-icons btn-rounded btn-outline-info btn-inverse-info" data-id="{{ $list->id }}"><i class=" icon-plus  "></i></a> 
+									
 									<a href="javascript:void(0)" onClick="confirm_Delete({{ $list->id }});return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a> 
 									@endif
 								</td>

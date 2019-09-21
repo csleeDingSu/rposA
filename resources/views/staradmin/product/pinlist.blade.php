@@ -12,6 +12,10 @@
 	@include('product.pin_ajaxlist')
 </section>
 
+<section class="models text-capitalize modellist">
+	@include('product.model')
+</section>
+
 <!-- Modal starts -->
 <form class="form-sample" name="formupdatevoucher" id="formupdatevoucher" action="" method="post" autocomplete="on">
 	<div class="modal fade" id="openeditmodel" tabindex="-1" role="dialog" aria-labelledby="openeditmodellabel" aria-hidden="true">
