@@ -33,7 +33,7 @@
         <h2>抽奖</h2>
       </a></dt>
     <dd>
-    @if(Request::is('blog') || Request::is('blog/*'))
+    @if((Request::is('blog') || Request::is('blog/*')) && (!Request::is('blog/my-redeem')))
   		<a class="on" href="/blog">
   	@else
   		<a href="/blog">
@@ -42,7 +42,7 @@
         <h2>晒单</h2>
       </a></dd>
     <dd>
-    @if(Request::is('profile') || Request::is('profile/*'))
+    @if((Request::is('profile') || Request::is('profile/*')) || (Request::is('blog/my-redeem')))
   		<a class="on" href="/profile">
   	@else
   		<a href="/profile">

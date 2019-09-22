@@ -46,6 +46,10 @@
     </div>
     <!-- insufficient point modal Ends -->
 
+@endsection
+
+@section('footer-javascript')
+    
     <!-- haven't login start modal -->
     <div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -83,10 +87,7 @@
           </div>
         </div>
       </div>
-
-@endsection
-
-@section('footer-javascript')
+      
     @parent
     <script src="{{ asset('/clientapp/js/shop.js') }}"></script>
     <script type="text/javascript">

@@ -34,5 +34,5 @@
 
 
 <div class="banner">
-  <a><img src="{{ asset('/clientapp/images/banner.png') }}" width="100%"></a>
+  <a href="/vip"><img src="{{ asset('/clientapp/images/banner.png') }}" width="100%"></a>
 </div>          

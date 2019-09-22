@@ -156,7 +156,7 @@
 
 
 <div class="banner">
-  <a href="/redeem-vip"><img src="{{ asset('/clientapp/images/banner.png') }}" width="100%"></a>
+  <a href="/vip"><img src="{{ asset('/clientapp/images/banner.png') }}" width="100%"></a>
 </div>
 
 

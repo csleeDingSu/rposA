@@ -137,11 +137,11 @@ class Ledger extends Model
 		$ledger  = self::ledger($userid,$from_gameid);		
 		if ($point <= 0)
 		{
-			return ['success'=>false,'message'=>'point cannot accepted to proceed'];	
+			return ['success'=>false,'message'=>trans('dingsu.pls_choose_point')];	
 		}		
 		if ($point > $ledger->point)
 		{
-			return ['success'=>false,'message'=>'point cannot accepted to proceed'];	
+			return ['success'=>false,'message'=>trans('dingsu.invalid_point')];	
 		}
 		$newpoint = $ledger->point - $point;		
 		//Insert Ledger History			
@@ -230,11 +230,11 @@ class Ledger extends Model
 		{
 			if ($wallet->bonus_point <= 0)
 			{
-				return ['success'=>false,'message'=>'reserved point cannot accepted to proceed'];	
+				return ['success'=>false,'message'=>trans('dingsu.reserved_point_is_empty')];	
 			}
 			if($wallet->bonus_point < $point )
 			{
-				return ['success'=>false,'message'=>'reserved point not in the range'];	
+				return ['success'=>false,'message'=>trans('dingsu.invalid_reserved_point')];	
 			}
 			//if point 0 then it will merge all reserved point to point
 			$resered = $wallet->bonus_point;

@@ -45,7 +45,7 @@ class MainController extends BaseController
 			$member = Auth::guard('member')->user()->id	;
 			$data['member'] = Member::get_member($member);
 			$data['wallet'] = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
-			$data['buy'] = view_buy_product_user_list::select('*')->orderBy('updated_at', 'DESC')->skip(0)->take(1)->get();
+			$data['buy'] = view_buy_product_user_list::select('*')->groupby('product_id','member_id','updated_at')->orderBy('updated_at', 'DESC')->skip(0)->take(1)->get();
 
 		} else {
 			$member = null;
@@ -100,7 +100,7 @@ class MainController extends BaseController
 	{
 		$from = empty($request->input('from')) ? 0 : $request->input('from');
 		$to = empty($request->input('to')) ? 1 : $request->input('to');
-		$data = view_buy_product_user_list::select('*')->orderBy('updated_at', 'DESC')->skip($from)->take($to)->get();
+		$data = view_buy_product_user_list::select('*')->groupby('product_id','member_id','updated_at')->orderBy('updated_at', 'DESC')->skip($from)->take($to)->get();
 		return response()->json(['success' => true, 'data' => $data]); 
 	}
 

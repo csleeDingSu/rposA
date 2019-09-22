@@ -1235,7 +1235,10 @@ function getConvertCointInfo(softpinCount, token, current_point) {
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
             },
-            error: function (error) { console.log(error.responseText) },
+            error: function (error) { 
+                console.log(error.responseText); 
+                alert(error.responseText);
+            },
             success: function(data) {
                 if(data.success) {
 
@@ -1262,7 +1265,7 @@ function selectContentAmountValue(from_value, to_value) {
         $('#hidSelectedContentAmountValue').val(from_value);
         $('#hidSelectedContentConvertedAmountValue').val(to_value);
     } else {
-        alert('挖宝币不住');
+        alert('兑换红包 金额不足');
     }
     
 }
