@@ -60,8 +60,16 @@
           </div>
           <div class="list">
             <ul class="my-list">
+              <div class="no-record">
+                <img src="{{ asset('/clientapp/images/no-record/invitation.png') }}">
+                <div>暂无邀请记录</div>
+              </div>
             </ul>
             <ul class="friend-list">
+              <div class="no-record">
+                <img src="{{ asset('/clientapp/images/no-record/invitation.png') }}">
+                <div>暂无邀请记录</div>
+              </div>
             </ul>
           </div>
           <hr style=" height: 1.68rem;">

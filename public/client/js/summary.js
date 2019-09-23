@@ -49,11 +49,10 @@ function getSummary(token) {
     $('#summary').html('');
 
      if(length === 0){
-        var summary =   '<div class="row-full">' +
-                            '<div class="col-xs-12">' +
-                                '<div class="empty">你还没兑换奖品<br><a href="/arcade" class="share-link">去换奖品></a></div>' +
-                            '</div>' +
-                        '</div>';
+        var summary =   '<div class="no-record">' +
+                            '<img src="/clientapp/images/no-record/summary.png">' +
+                            '<div>暂无明细</div>' +
+                          '</div>';
 
         $('#summary').append(summary);
 

@@ -48,7 +48,12 @@
 		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 		<input type="hidden" id="this_vip_app" value="{{ env('THISVIPAPP','false') }}" />
-		<div id="summary"></div>
+		<div id="summary">
+			<div class="no-record">
+                <img src="{{ asset('/clientapp/images/no-record/summary.png') }}">
+                <div>暂无明细</div>
+              </div>
+		</div>
         <div id="pagination"></div>
 
 @if(!env('THISVIPAPP','false'))

@@ -14,7 +14,7 @@
       <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
     @endsection
 
-    @section('title', '兑换奖品')
+    @section('title', '购物补贴')
 
     @section('right-menu')
     @endsection
@@ -107,7 +107,7 @@
 			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">
 			
 			@if(env('THISVIPAPP','false'))
-				我的奖品
+				我的兑换
 			 @else
 				我的红包
 			@endif

@@ -597,15 +597,14 @@ function populateHistoryData(records, token) {
     }
 
     if(current_page == 1 && last_page == 1 && html === '') {
-        html = '<div class="row-full">' + 
-                    '<div class="col-xs-12">'; 
+        html = '<div class="no-record">' +
+                    '<img src="/clientapp/images/no-record/redeem.png">' ;
                     if (this_vip_app) {
                         html += '<div class="empty">你还没兑换奖品<br><a href="/arcade" class="share-link">去换奖品></a></div>';
                     } else {
                         html += '<div class="empty">你还没兑换红包<br><a href="/arcade" class="share-link">去拿红包></a></div>';
                     }
-        html +=    '</div>' + 
-                '</div>';
+        html += '</div>';
     }
    
 

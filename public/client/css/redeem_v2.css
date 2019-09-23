@@ -1701,3 +1701,15 @@ textarea {
     width: 90%;
 }
 
+.no-record {
+	text-align: center;
+	color: #999;
+	font-size: 0.3rem;
+	padding: 0.5rem;
+}
+
+.no-record img{
+	/*width: 70%;*/
+	/*height: 50%;*/
+	padding: 0.5rem;
+}

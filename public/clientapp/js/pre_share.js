@@ -88,10 +88,12 @@ function getPosts(page, token){
             var html = populateInvitationData(records, token, 'my');
             my_lvl_total = data.result.total;
 
-            if(current_page == 1){
-                $('.my-list').html(html);
-            } else {
-                $('.my-list').append(html);
+            if (html != '') {
+                if(current_page == 1){
+                    $('.my-list').html(html);
+                } else {
+                    $('.my-list').append(html);
+                }
             }
 
             page++;
@@ -121,10 +123,12 @@ function getPosts_NextLvl(page_nextlvl, token){
             var records = data.result;
             var html = populateInvitationData(records, token, 'friend');
 
-            if(current_page == 1){
-                $('.friend-list').html(html);
-            } else {
-                $('.friend-list').append(html);
+            if (html != '') {
+                if(current_page == 1){
+                    $('.friend-list').html(html);
+                } else {
+                    $('.friend-list').append(html);
+                }
             }
 
             page_nextlvl++;
