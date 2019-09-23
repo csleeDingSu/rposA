@@ -71,6 +71,7 @@
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
                 		@php ($newPrice = ((float)$data['actualPrice'] - (float)$data['couponPrice'] - 12) )
+                		@php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
                 		<span class="new-cur">￥<span class="price">{{number_format($newPrice) + 0}}</span></span>
                 		<div class="txt">到手价</div>
                 	</div>	

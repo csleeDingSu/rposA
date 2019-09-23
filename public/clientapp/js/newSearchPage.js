@@ -86,6 +86,8 @@ document.onreadystatechange = function () {
                       newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
                       newPrice = (newPrice > 0) ? newPrice : 0;
                       sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
+                      reward = parseInt(newPrice * 10);
+                      reward = (reward <= 0) ? '100' : reward;
                       console.log(item.couponLink + 'dsad' + i);
                       // return item.couponLink;
 
@@ -100,7 +102,7 @@ document.onreadystatechange = function () {
                                   '<h2 class="name">'+item.title+'</h2>' +
                                   '<div class="typeBox">' +
                                     '<span class="type-red">'+item.couponPrice+'元</span>' +
-                                    '<span class="type-sred">奖励100积分</span>' +
+                                    '<span class="type-sred">奖励'+reward+'积分</span>' +
                                     '<span class="type-blue">抽奖补贴12元</span>' +
                                   '</div>' +
                                   '<div class="moneyBox">' +

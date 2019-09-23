@@ -51,7 +51,9 @@ function getFromTabao(pageId){
             newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
             newPrice = (newPrice > 0) ? newPrice : 0;
             sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
-            
+            reward = parseInt(newPrice * 10);
+            reward = (reward <= 0) ? '100' : reward;
+
             html += '<div class="inBox">' +
             '<div class="imgBox">' +
               // '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '" rel="external nofollow">' +
@@ -63,7 +65,7 @@ function getFromTabao(pageId){
               '<h2 class="name">'+item.title+'</h2>' +
               '<div class="typeBox">' +
                 '<span class="type-red">'+item.couponPrice+'元券</span>' +
-                '<span class="type-sred">奖励100积分</span>' +
+                '<span class="type-sred">奖励'+reward+'积分</span>' +
                 '<span class="type-blue">抽奖补贴12元</span>' +
               '</div>' +
               '<div class="moneyBox">' +
