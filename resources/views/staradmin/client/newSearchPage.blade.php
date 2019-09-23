@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/public.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/swiper.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/style.css') }}" />
-  <link rel="stylesheet" href="{{ asset('/clientapp/css/newMainPage.css') }}" />
+  <link rel="stylesheet" href="{{ asset('/clientapp/css/newSearchPage.css') }}" />
   <script type="text/javascript" src="{{ asset('/clientapp/js/swiper.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/jquery-1.9.1.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/being.js') }}"></script>
@@ -42,7 +42,18 @@
     <div class="card-body over ">
       <div class="scrolly">
           <div class="listBox">
-        </div>
+            <div class="div-instruction">
+              <ul class="instruction-list">
+                <li>
+                  <div class="instruction-background">
+                    <img src="{{ asset('/client/images/search/copy.png') }}" />
+                  </div>
+                </li>
+                <li>打开手机淘宝/天猫，长按商品标题“拷贝”</li>
+                <li>粘贴搜索框，查找优惠卷</li>
+              </ul>
+            </div>
+          </div>
       </div>
     </div>
 

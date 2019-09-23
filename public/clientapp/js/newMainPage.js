@@ -87,7 +87,7 @@ function getNumeric(value) {
 
 function goSearch() {
   
-  var search = $('#search').val();
+  var search = ''; //$('#search').val();
   
   window.location.href = "/main/search/" + search;      
 

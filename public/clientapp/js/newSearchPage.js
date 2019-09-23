@@ -18,7 +18,7 @@ document.onreadystatechange = function () {
       console.log('1');
       goSearch(pageId);       
     } else {
-      getFromTabao(pageId);
+      //getFromTabao(pageId);
     }
 
     //execute scroll pagination

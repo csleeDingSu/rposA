@@ -22,3 +22,25 @@ if it's not present, don't show loader */
     display: -webkit-box;
     -webkit-box-orient: vertical;
   }
+
+  .instruction-list {
+    padding: 0.24rem;
+  }
+
+  .instruction-list li {
+    color: #666;
+    font-size: 0.26rem;
+    padding-bottom: 0.2rem;
+    text-align: center;
+  }
+
+  .instruction-background {
+    text-align: center;
+    margin: 0 0.45rem;
+}
+
+.instruction-background img {
+    margin: 2% auto;
+    width: 50%;
+    height: 50%;
+    }

@@ -42,7 +42,8 @@
         <h2>晒单</h2>
       </a></dd>
     <dd>
-    @if((Request::is('profile') || Request::is('profile/*')) || (Request::is('blog/my-redeem')))
+      
+    @if((Request::is('profile') || Request::is('profile/*')) || (Request::is('blog/my-redeem') || Request::is('pre-share')))
   		<a class="on" href="/profile">
   	@else
   		<a href="/profile">
