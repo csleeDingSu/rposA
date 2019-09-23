@@ -75,10 +75,9 @@ class MainController extends BaseController
 		
 		$total_redeem =  \App\Game::get_total_redeem();
 		
+		$total_redeem = (int) $total_redeem;
+		
 		$data['total_redeem']  = array_map('intval', str_split($total_redeem));
-		
-		
-		dd($data['total_redeem']);
 
 		return view('client/newMainPage', $data);
 		

@@ -6,6 +6,7 @@
 <div class="ztBox">
   <div class="total">
     <span>今日已领取</span>
+	 
 	  @foreach($total_redeem as $tr)
 	  	<i>{{$tr ?? '0'}}</i>
 	  @endforeach
