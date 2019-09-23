@@ -84,7 +84,10 @@
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						@else
-						<a href="tabao://{{urlencode($data['couponLink'])}}"> 
+						@php ($_url = $data['couponLink'])
+						@php ($_url = (str_replace('https://','',$_url)))
+						@php ($_url = (str_replace('http://','',$_url)))
+						<a href="tabao://{{$_url}}"> 
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						@endif
