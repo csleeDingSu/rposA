@@ -1464,4 +1464,15 @@ a {
 	margin:5% 10%;
 }
 
+#modal-withdraw .modal-warning-button {
+	background: #fff;
+	color: #fcac12;
+	padding: 10px;
+	border-radius: 25px;
+	padding: 10px;
+	margin:5% 10%;
+	border: 1px solid;
+
+}
+
 /* End modal-withdraw */
