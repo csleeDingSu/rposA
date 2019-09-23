@@ -664,7 +664,12 @@ class GameController extends Controller
 					//Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
 
 					//Reset latest member game level
-					Game::reset_member_game_level($memberid , $gameid);					
+					Game::reset_member_game_level($memberid , $gameid);	
+					
+					$total_redeem = Game::get_total_redeem();
+					
+					event(new \App\Events\EventDynamicChannel('redeem-point','',$total_redeem ));
+					
 
 					return response()->json(['success' => true,  'Acupoint' => $wallet->acupoint]); 
 					//return response()->json(['success' => true]); 
@@ -729,7 +734,9 @@ class GameController extends Controller
 					
 					$uuid = \App\History::add_ledger_history($data);
 					
+					$total_redeem = Game::get_total_redeem();
 					
+					event(new \App\Events\EventDynamicChannel('redeem-point','',$total_redeem ));
 					
 					return response()->json(['success' => true]); 
 					
