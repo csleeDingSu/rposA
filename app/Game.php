@@ -793,6 +793,14 @@ class Game extends Model
 	{		
 		return \DB::table('a_view_used_point')->where('member_id',$memberid)->where('game_id',$gameid)->sum('point');
 	}
+	
+	public static function get_total_redeem()
+	{		
+		return \App\History::where('ledger_type','CRPNT')->sum('credit');
+	}
+	
+	
+	
 }
 
 
