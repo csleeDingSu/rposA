@@ -93,11 +93,10 @@ function getRanking() {
                 });
 
                 if (global_rank_html == '') {
-                	global_rank_html += '<div class="row tab-content-list">' +
-								'<div class="col-1 ranking-number">' + global_rank_num + '</div>' +
-								'<div class="col-5 ranking-name">superman</div>' +
-								'<div class="col-3 ranking-point">999</div>' +
-							'</div>';
+                	global_rank_html += '<div class="no-record">' +
+                                            '<img src="/clientapp/images/no-record/blog.png">' +
+                                            '<div>暂无记录</div>' +
+                                        '</div>';
                 }
 
                 $('#general-list').html(global_rank_html);
@@ -131,11 +130,10 @@ function getRanking() {
                 });
 
                 if (friends_rank_html == '') {
-                	friends_rank_html += '<div class="row tab-content-list">' +
-								'<div class="col-1 ranking-number">' + friends_rank_num + '</div>' +
-								'<div class="col-5 ranking-name">superman</div>' +
-								'<div class="col-3 ranking-point">999</div>' +
-							'</div>';
+                	friends_rank_html += '<div class="no-record">' +
+                                            '<img src="/clientapp/images/no-record/blog.png">' +
+                                            '<div>暂无邀请记录</div>' +
+                                        '</div>';
                 }
 
                 $('#my-friend-list').html(friends_rank_html);

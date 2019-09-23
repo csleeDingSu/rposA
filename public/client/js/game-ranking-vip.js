@@ -40,6 +40,27 @@ function getRanking() {
         	var _phone = 'xxxxx';
 
             if(status){
+
+                // my_rank
+                if (!jQuery.isEmptyObject(my_rank)) {
+                    my_member_id = my_rank.member_id;
+                    
+                    _phone = 'xxxxx';
+                    if (my_rank.phone != '' && my_rank.phone != null) {
+                        console.log(my_rank.phone);
+                        _phone = my_rank.phone.substring(0,3) + '*****' + my_rank.phone.slice(-4);
+                    }
+                    my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
+                                    '<div class="col-5 ranking-name">'+_phone+'</div>' +
+                                    '<div class="col-3 ranking-point">'+my_rank.credit+'</div>';
+                    
+                }else {
+                    my_rank_html += '<div class="col-1 ranking-number">--</div>' +
+                                    '<div class="col-5 ranking-name">'+_phone+'</div>' +
+                                    '<div class="col-3 ranking-point">0</div>';
+                }
+                $('.tab-content-my-ranking').html(my_rank_html);
+
             	i = 0;
                 $.each(global_rank, function(i, item) {
                 	if ((i + 1) == 1) {
@@ -65,11 +86,10 @@ function getRanking() {
                 });
 
                 if (global_rank_html == '') {
-                	global_rank_html += '<div class="row tab-content-list">' +
-								'<div class="col-1 ranking-number">' + global_rank_num + '</div>' +
-								'<div class="col-5 ranking-name">superman</div>' +
-								'<div class="col-3 ranking-point">999</div>' +
-							'</div>';
+                	global_rank_html += '<div class="no-record">' +
+                                            '<img src="/clientapp/images/no-record/blog.png">' +
+                                            '<div>暂无记录</div>' +
+                                        '</div>';
                 }
 
                 $('#general-list').html(global_rank_html);
@@ -99,11 +119,10 @@ function getRanking() {
                 });
 
                 if (friends_rank_html == '') {
-                	friends_rank_html += '<div class="row tab-content-list">' +
-								'<div class="col-1 ranking-number">' + friends_rank_num + '</div>' +
-								'<div class="col-5 ranking-name">superman</div>' +
-								'<div class="col-3 ranking-point">999</div>' +
-							'</div>';
+                	friends_rank_html += '<div class="no-record">' +
+                                            '<img src="/clientapp/images/no-record/blog.png">' +
+                                            '<div>暂无邀请记录</div>' +
+                                        '</div>';
                 }
 
                 $('#my-friend-list').html(friends_rank_html);
