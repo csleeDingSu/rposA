@@ -25,6 +25,7 @@ $(document).ready(function () {
 
 function getFromTabao(pageId){
   var html = '';
+  var highlight_list_html ='';
   $.ajax({
       type: 'GET',
       url: "/tabao/get-goods-list?pageSize=" + pageSize + "&pageId=" + pageId, 
@@ -41,11 +42,7 @@ function getFromTabao(pageId){
           var records = JSON.parse(data).data.list;
           var newPrice = 0; 
           var sales = 0;
-          totalNum = JSON.parse(data).data.totalNum;
-          $('#hidPageId').val(JSON.parse(data).data.pageId);
-          pageId = $('#hidPageId').val();
-          console.log(pageId);
-
+         
           $.each(records, function(i, item) {
             oldPrice = parseFloat(item.originalPrice).toFixed(2);
             newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
@@ -78,9 +75,29 @@ function getFromTabao(pageId){
               '</div>' +
             '</div>' +
           '</div>';
+
+          if (i <= 2) {
+            highlight_list_html +='<a href="/main/product/detail' + _param +'">' +
+                                    '<span><img src="'+item.mainPic+'"></span>' +
+                                    '<h2><em>¥</em> '+ newPrice +'</h2>' +
+                                    '<p>热销'+sales+'万件</p>' +
+                                  '</a>';
+          }
+
         });
 
           $('.listBox').append(html);
+
+          if (pageId == 1) {
+            console.log(highlight_list_html);
+            $('.highlight-list').html(highlight_list_html);
+          }
+
+          totalNum = JSON.parse(data).data.totalNum;
+        $('#hidPageId').val(JSON.parse(data).data.pageId);
+        pageId = $('#hidPageId').val();
+        // console.log(pageId);
+
           
       }
   });

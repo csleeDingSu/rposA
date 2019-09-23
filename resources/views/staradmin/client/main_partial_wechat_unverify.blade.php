@@ -12,7 +12,7 @@
     <i>2</i>
     <span>元</span>
   </div>
-  <div class="list">
+  <div class="list highlight-list">
     <a href="#">
       <span><img src="{{ asset('/clientapp/images/demoImg2.png') }}"></span>
       <h2><em>¥</em> 3.0</h2>
