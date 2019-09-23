@@ -104,4 +104,17 @@ class MainController extends BaseController
 		return response()->json(['success' => true, 'data' => $data]); 
 	}
 
+	public function tabaoProductDetail(Request $request)
+	{
+		$data[] = null;
+
+		$this->tabao = new tabaoApiController();
+		$res = $this->tabao->getGoodsDetails($request);
+		if (!empty($res['data'])) {
+			$data['data'] = $res['data'];
+		}
+
+		return view('client/tabao_product_detail', $data);
+	}
+
 }

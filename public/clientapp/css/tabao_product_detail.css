@@ -1,0 +1,386 @@
+	.footer {
+	    position: fixed;
+	    bottom: 0;
+	    width: 100%;
+
+	    display: flex;
+	    justify-content: space-between;
+	    text-align: justify;
+	}
+
+	.infinite-scroll {
+		background: white;
+	}
+
+	.infinite-scroll .imgBox {
+	  margin: 0 auto;
+	  font-size: 0;
+	  display: inline-block;
+	  margin-bottom: 0.1rem;
+	}
+
+	.infinite-scroll .imgBox img {
+		width: 100%; 
+	    height: 100%; 
+	    object-fit: contain;
+	}
+
+	.infinite-scroll h2 {
+	    margin: 0 0.2rem 0 0.2rem;
+		font-size: 5vw;
+		font-weight: 500;
+		color: #666666;
+		line-height: 0.6rem;
+		padding-bottom: 5px;
+	}
+
+	.infinite-scroll h3 {		
+	    margin: 0 0.2rem 0 0.2rem;
+		font-size: 4vw;
+		color: #bebebe;
+		line-height: 0.6rem;
+		padding-bottom: 10px;
+	}
+
+	.infinite-scroll .normal-price {
+		margin: 0 0.2rem 0 0.2rem;
+	    color: grey;
+	    font-size: 5vw;
+	    width: 1.3rem;
+	    position: absolute;
+	    text-align: right;
+	}
+
+	.infinite-scroll .normal-price .cur{
+		font-size: 3.5vw;
+	}
+
+	.infinite-scroll .normal-price .price {
+	    font-size: 6vw;
+	}
+
+	.infinite-scroll .normal-price .txt{
+		font-size: 3vw;
+	    margin-top: -0.2rem;
+        padding: 0.05rem 0 0 0;
+	}
+
+	.infinite-scroll .normal-price-icon-minus {
+		margin-left: 1.7rem;
+	    position: absolute;
+	    height: 20px;
+	    margin-top: 0.2rem;
+	}
+
+	.infinite-scroll .voucher-price-icon-minus {
+		position: absolute;
+		margin-left: 3.45rem;
+		height: 20px;
+	    margin-top: 0.2rem;
+	}
+
+	.infinite-scroll .new-price-icon-equal {
+		position: absolute;
+		margin-left: 5.25rem;
+	    height: 20px;
+	    margin-top: 0.2rem;
+	}
+
+	.infinite-scroll .voucher-price {
+	    margin: 0 0.2rem 0 0.2rem;
+	    color: #8c36d9;
+	    font-size: 4vw;
+	    position: absolute;
+	    border: 1px dashed #8c36d9;
+	    border-radius: 5px;
+	    margin-left: 2.1rem;
+	    text-align: center;
+	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
+	    width: 1.15rem;
+	}
+
+	.infinite-scroll .voucher-price .cur{
+		font-size: 3.5vw;
+	}
+
+	.infinite-scroll .voucher-price .price {
+	    font-size: 5vw;
+	}
+
+	.infinite-scroll .voucher-price .txt{
+		font-size: 3vw;
+        margin-top: -0.1rem;
+
+	}
+
+	.infinite-scroll .draw-price {
+		margin: 0 0.2rem 0 0.2rem;
+	    color: red;
+	    font-size: 4vw;
+	    position: absolute;
+	    border: 1px dashed red;
+	    border-radius: 5px;
+	    margin-left: 3.82rem;
+	    text-align: center;
+	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
+	    width: 1.15rem;
+	}
+
+	.infinite-scroll .draw-price .cur{
+		font-size: 3.5vw;
+	}
+
+	.infinite-scroll .draw-price .price {
+	    font-size: 5vw;
+	}
+
+	.infinite-scroll .draw-price .txt{
+		font-size: 3vw;
+	    margin-top: -0.1rem;
+	}
+
+	.infinite-scroll .new-price {
+		margin: -0.2rem 0.2rem 0 0.2rem;
+	    color: red;
+	    font-size: 8vw;
+	    width: 1.7rem;
+	    position: absolute;
+	    margin-left: 5.1rem;
+	    text-align: right;
+	}
+
+	.infinite-scroll .new-price .new-cur{
+		font-size: 4vw;
+	}
+
+	.infinite-scroll .new-price .price {
+	    font-size: 8vw;
+	}
+
+	.infinite-scroll .new-price .txt{
+		font-size: 3vw; 
+	    margin-top: -0.1rem;
+	}
+
+	.caption_redeem_angpao {
+	 /*position: relative !important;*/
+	 /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
+	 /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
+	 padding-left: 3.6rem !important;
+	}
+
+	.caption_redeem_angpao img {
+		width: 1.6rem !important;
+    	height: 0.55rem !important;
+	}
+
+	.caption_redeem_angpao span {
+	 padding-top: 0.07rem !important;
+	 width: 1.65rem !important;
+	}
+
+	.btn-product-details {
+	  width: 100%;  
+	}
+
+	#button-wrapper {
+		margin-top:-1rem !important;
+		width: 100% !important;
+	}
+
+	#btn-copy {
+		padding-left: 0 !important;
+    	text-align: center;
+    	width: 3.76rem;
+    	margin-top: 0.97rem;
+    	font-size: 5vw;
+	}
+
+	#btn-voucher {
+	    padding-left: 0.5rem !important;
+	    text-align: center;
+	    width: 3.76rem;
+	    margin-top: 0.97rem;
+	    margin-left: 3.76rem;
+	    font-size: 5vw;
+	    color: #fff;
+	}
+
+	.product-detail-btn-bg {
+		/*max-width: 100%;*/
+    	/*max-height: 100%;*/
+	    height: 0.91rem;
+	}
+
+	.header_pr {
+	    left: 0;
+	    width: 100%;
+	    top: 0;
+	    zoom: 1;
+
+	    -webkit-transform: translateY(0) translateX(0);
+	    transform: translateY(0) translateX(0);
+	    -webkit-transform: 0;
+	    -moz-transform: 0;
+	    -ms-transform: 0;
+	    transform: 0;
+	    position: fixed;
+	    z-index: 160;
+	    border-bottom: solid 1px #ddd;
+
+	}
+
+	.header_goods {
+	    background: 0 0;
+	    border-bottom: 0;
+	    padding:10px;
+	}
+	.icon_header {
+	    width: 100%;
+	    line-height: 45px;
+	    position: relative;
+	}
+	.icon_header, .icon_header>a {
+	    z-index: 5;
+	    height: 45px;
+	    zoom: 1;
+	}
+
+	.header_goods .icon_header>a {
+	    display: inline-block;
+	    height: 50px;
+	    color: #fff;
+	    width: 50px;
+	    line-height: 30px;
+	    background: rgba(0,0,0,.3);
+	    border-radius: 100px;
+	    top: 7px;
+	    left: 7px;
+	}
+	.icon-zuojiantou:before {
+	    content: "<";
+	}
+	.fa-angle-left {
+	  color: white;
+	  padding:10px;
+	  padding-left:16px;
+	}
+
+	.inner_span_copy1 {
+		font-size: 0.35rem !important;
+	}
+
+	/* Modal Box */
+	.modal {
+	  text-align: center;
+	  padding: 0!important;
+	}
+
+	.modal:before {
+	  content: '';
+	  display: inline-block;
+	  height: 100%;
+	  vertical-align: middle;
+	  margin-right: -4px;
+	}
+
+	.modal-dialog {
+	  display: inline-block;
+	  text-align: left;
+	  vertical-align: middle;
+	}
+
+	.modal-content, .modal-title {
+		background: white;
+		width: 320px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.modal-full-height {
+		text-align:center;
+		margin: 0 auto;
+	}
+
+	.modal-wechat {
+		margin-top: 0 !important;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	.modal-title {
+	
+	    padding: 10px;
+	    font-weight: 700;
+	    font-size: 20px;
+	    width: 200px;
+	}
+
+	.modal-title h1 {
+		font-size: 20px;
+		margin-bottom: 10px;
+		margin-top: 5px;
+		font-weight: 700;
+	}
+
+	.modal-card {
+		width: 100%;
+		margin: 0 auto;
+		font-size: 16px;
+	}
+
+	.modal-packet-wrapper {
+		width: 360px;
+		height: 390px;
+		margin: 0 auto;
+	}
+
+	.modal-packet {
+		width: 730px;
+		height: 830px;
+		font-size: 16px;
+		margin: 0 auto;
+		background-image: url("/client/images/packet.png");
+		background-color: transparent;
+		background-repeat: no-repeat;
+		transform: scale(0.5); 
+		-webkit-transform: scale(0.5);
+		-webkit-transform-origin:left top;
+	}
+
+	#draw-rules .modal-title {	
+	    font-size: 24px;
+	}
+
+	#draw-rules .instructions {
+		
+		margin-top: 5px;
+		margin-bottom: 10px;
+		font-size: 14px;
+		font-weight: 400;
+		color: #999;
+		padding:10px;
+		text-align: left;
+		letter-spacing: 0.5px;
+		line-height: 0.4rem;
+
+	}
+
+	#draw-rules .modal-go-button {
+		background-color: #ff504a; 
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff504a));	
+		color: white;
+		border-radius: 100px;
+		margin-left: 15%;
+		margin-right: 15%;
+		padding:10px;
+		font-size: 20px
+	}
+
+	#draw-rules .modal-body {
+		padding: 15px;
+	}
+
+	.line-price {
+		padding: 0.2rem 0 0 0;
+	}

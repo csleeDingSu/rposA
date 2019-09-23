@@ -207,5 +207,28 @@ class tabaoApiController extends BaseController
         
     }
 
+    public function getGoodsDetails(Request $request)
+    {
+        $host = "https://openapi.dataoke.com/api/goods/get-goods-details";
+
+        //默认必传参数
+        $data = [
+
+            'appKey' => $this->appKey,
+            'version' => 'v1.1.0',
+            'id' => empty($request->input('id')) ? 1 : $request->input('id'),
+            'goodsId' => empty($request->input('goodsId')) ? 1 : $request->input('goodsId')
+        ];
+
+        //加密的参数
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
+
+        //拼接请求地址
+        $url = $host .'?'. http_build_query($data);
+        
+        return json_decode($this->getCurl($url),true);
+        
+    }
+
 
 }

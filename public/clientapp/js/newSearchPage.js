@@ -29,7 +29,7 @@ document.onreadystatechange = function () {
           console.log('2');
           goSearch(pageId);
         } else {
-          getFromTabao(pageId);
+          // getFromTabao(pageId);
         }
       
     });
@@ -91,7 +91,8 @@ document.onreadystatechange = function () {
 
                       html += '<div class="inBox">' +
                                 '<div class="imgBox">' +
-                                  '<a href="https://t.asczwa.com/taobao?backurl=' + item.itemLink + '">' + 
+                                  // '<a href="https://t.asczwa.com/taobao?backurl=' + item.itemLink + '">' +
+                                  '<a href="/main/product/detail?id=' + item.id + '&goodsId='+ item.goodsId +'">' +  
                                   '<img src="'+item.mainPic+'">' +
                                   '</a>'+
                                 '</div>' +

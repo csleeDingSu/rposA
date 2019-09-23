@@ -54,7 +54,8 @@ function getFromTabao(pageId){
             
             html += '<div class="inBox">' +
             '<div class="imgBox">' +
-              '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '" rel="external nofollow">' + 
+              // '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '" rel="external nofollow">' +
+              '<a href="/main/product/detail?id=' + item.id + '&goodsId='+ item.goodsId +'">' + 
                 '<img src="'+item.mainPic+'">' +
               '</a>' +
             '</div>' +

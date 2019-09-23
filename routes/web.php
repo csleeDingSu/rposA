@@ -164,7 +164,8 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::any( '/shop/api/getProductForHighlight', 'MainController@getProductForHighlight' )->name( 'client.getBuyProductHistory' );	
 	Route::any( '/main', 'MainController@newMainPage' )->name( 'client.newMainPage' );	
 	Route::any( '/main/search/{search?}', 'MainController@tabaoSearch' )->name( 'client.tabao.search' );	
-	Route::any( '/pre-share', 'MainController@preShare' )->name( 'client.preShare' );	
+	Route::any( '/pre-share', 'MainController@preShare' )->name( 'client.preShare' );
+	Route::any( '/main/product/detail', 'MainController@tabaoProductDetail' )->name( 'client.tabao.ProductDetail' );	
 } );
 
 //Member routes with member guard
@@ -760,6 +761,7 @@ Route::any( '/tabao', 'tabaoApiController@index' )->name( 'tabao' );
 Route::any( '/tabao/test', 'tabaoApiController@test' )->name( 'tabao.test' );
 Route::any( '/tabao/get-goods-list', 'tabaoApiController@getGoodsList' )->name( 'tabao.getGoodsList' );
 Route::any( '/tabao/list-super-goods', 'tabaoApiController@getListSuperGoods' )->name( 'tabao.getListSuperGoods' );
+Route::any( '/tabao/get-goods-details', 'tabaoApiController@getGoodsDetails' )->name( 'tabao.getGoodsDetails' );
 
 
 
