@@ -73,7 +73,9 @@ class MainController extends BaseController
 			$data['wallet'] = null;	
 		}
 		
-		$data['total_redeem'] =  \App\Game::get_total_redeem();
+		$total_redeem =  \App\Game::get_total_redeem();
+		
+		$data['total_redeem']  = array_map('intval', str_split($total_redeem));
 
 		return view('client/newMainPage', $data);
 		
