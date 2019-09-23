@@ -1701,12 +1701,13 @@ function bindButton () {
                 openmodel();    
             }            
         } else {
-            if (g_life <= 0) {
-                // $('#reset-life-share').modal();
-                window.top.location.href = "/pre-share"; 
-             } else {
-                window.top.location.href = "/profile";
-             }
+            window.top.location.href = "/pre-share"; 
+            // if (g_life <= 0) {
+            //     // $('#reset-life-share').modal();
+            //     window.top.location.href = "/pre-share"; 
+            //  } else {
+            //     window.top.location.href = "/profile";
+            //  }
         }
 
     });    
