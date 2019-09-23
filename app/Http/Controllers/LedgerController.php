@@ -193,12 +193,11 @@ class LedgerController extends BaseController
 				$result = Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
 				
 				$notification = new Notification();
-				$notification->member_id       = $memberid;
+				$notification->member_id       = $userid;
 				$notification->title           = 'Ledger Update';
 				$notification->notifiable_type = 'LEDUP';
-				$notification->notifiable_id   = $result->id;
-				$notification->save();
-				
+				$notification->notifiable_id   = $result['id'];
+				$notification->save();				
 				
 				$is_save = 'yes';
 			}
@@ -211,10 +210,10 @@ class LedgerController extends BaseController
 				$result = Ledger::life($userid,$ledger->game_id,'credit',$life,'LAA', 'admin adjust point');
 				
 				$notification = new Notification();
-				$notification->member_id       = $memberid;
+				$notification->member_id       = $userid;
 				$notification->title           = 'Ledger Update';
 				$notification->notifiable_type = 'LELUP';
-				$notification->notifiable_id   = $result->id;
+				$notification->notifiable_id   = $result['id'];
 				$notification->save();
 				
 				$is_save = 'yes';
@@ -223,9 +222,9 @@ class LedgerController extends BaseController
 		
 		if ($is_save)
 		{
-			$notification = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+			$notification = \App\Notification::with('ledger')->where('member_id',$userid)->where('is_read',0)->orderby('created_at','DESC')->get();		
 			$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
-			event(new \App\Events\EventDynamicChannel($memberid.'-'.'topup-notification','',$ndata ));
+			event(new \App\Events\EventDynamicChannel($userid.'-'.'topup-notification','',$ndata ));
 		}
 		
 		return response()->json(['success' => true]);
