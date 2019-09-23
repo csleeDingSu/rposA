@@ -505,10 +505,24 @@ class GameController extends Controller
 				
 		$min_po = \Config::get('app.coin_min');
 		
+		$wallet = Ledger::ledger($memberid, $gameid);
+		
+		$arr1   = ['6','7','8','9'];
+		$arr2   = ['10','11'];
+		
+		if (in_array($wallet->acupoint, $arr1))
+		{
+			$wallet->acupoint = 6;
+		}
+		else if (in_array($wallet->acupoint, $arr2))
+		{
+			$wallet->acupoint = 10;
+		}
+		
 
 		if ($life == 'yes')
 		{
-			$wallet = Ledger::ledger($memberid, $gameid);
+			
 			
 			$gamelevel = Game::get_member_current_level($gameid, $memberid);
 			
