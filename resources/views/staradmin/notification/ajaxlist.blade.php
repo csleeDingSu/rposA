@@ -12,8 +12,10 @@
 								<th>@lang('dingsu.created_at')</th>
 								<th>@lang('dingsu.read_at')</th>
 								<th>@lang('dingsu.member')</th>
-								<th>@lang('dingsu.title')</th>
+								<th>@lang('dingsu.credit_type')</th>
+								<th>@lang('dingsu.amount') / @lang('dingsu.life')</th>
 								<th>@lang('dingsu.status')</th>
+								<th>@lang('dingsu.notes')</th>
 							</tr>
 						</thead>
 						<tbody>
