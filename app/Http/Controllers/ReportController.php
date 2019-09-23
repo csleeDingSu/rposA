@@ -604,7 +604,7 @@ class ReportController extends BaseController
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
 				
-		$result = \App\Notification::whereHas('member', function($q) use($input)
+		$result = \App\Notification::with('ledger')->whereHas('member', function($q) use($input)
 		{
 			//filters
 			if (!empty($input['s_member'])) {
