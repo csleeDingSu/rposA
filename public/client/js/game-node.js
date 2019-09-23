@@ -1678,8 +1678,12 @@ function bindButton () {
                     $('.withdraw-value').html(_point);
                     $('#modal-withdraw-insufficient').modal();
                 // } else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
-                } else if ((_point >= win_coin_min) && ((_point == 6) || (_point == 10))) {
-                    $('.withdraw-value').html(_point);
+                } else if ((_point >= win_coin_min) && (_point < 10)) {
+                    $('.withdraw-value').html(6);
+                    $('#modal-withdraw').modal();
+
+                } else if ((_point >= win_coin_min) && (_point >= 10)) {
+                    $('.withdraw-value').html(10);
                     $('#modal-withdraw').modal();
 
                 } else if (_point >= win_coin_max) {
