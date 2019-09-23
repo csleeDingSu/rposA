@@ -6,10 +6,11 @@
 <div class="ztBox">
   <div class="total">
     <span>今日已领取</span>
+	  <span class="total_redeem" id="total_redeem">
 	  @foreach($total_redeem as $tr)
 	  	<i>{{$tr ?? '0'}}</i>
 	  @endforeach
-    
+    </span>
     <span>元</span>
   </div>
   <div class="list highlight-list">
