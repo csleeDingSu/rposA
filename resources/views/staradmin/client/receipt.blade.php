@@ -62,7 +62,11 @@
     </ul>
   </div>
 
-  <!-- Game Rules starts -->
+@endsection
+
+@section('footer-javascript')
+
+<!-- Game Rules starts -->
   <div class="modal fade col-md-12" id="game-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
     <div class="modal-dialog modal-lg close-modal" role="document">
       <div class="modal-content">
@@ -84,9 +88,7 @@
       </div>
     </div>
   </div>
-@endsection
-
-@section('footer-javascript')
+  
     @parent
     <script src="{{ asset('/clientapp/js/receipt.js') }}"></script>
     <script type="text/javascript">

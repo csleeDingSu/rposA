@@ -108,11 +108,15 @@ class MainController extends BaseController
 	{
 		$data[] = null;
 
-		$this->tabao = new tabaoApiController();
-		$res = $this->tabao->getGoodsDetails($request);
-		if (!empty($res['data'])) {
-			$data['data'] = $res['data'];
-		}
+		// $this->tabao = new tabaoApiController();
+		// $res = $this->tabao->getGoodsDetails($request);
+		// if (!empty($res['data'])) {
+		// 	$data['data'] = $res['data'];
+		// }
+
+		$data['data'] = ['id' => $request->id,'goodsId' => $request->goodsId,'mainPic' => $request->mainPic, 'title' => $request->title, 'monthSales' => $request->monthSales,'originalPrice' => $request->originalPrice,'couponPrice' => $request->couponPrice,'voucher_pass' => null];
+
+		// dd($data);
 
 		return view('client/tabao_product_detail', $data);
 	}

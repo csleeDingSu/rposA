@@ -143,7 +143,7 @@
 		margin: -0.2rem 0.2rem 0 0.2rem;
 	    color: red;
 	    font-size: 8vw;
-	    width: 1.7rem;
+	    /*width: 1.7rem;*/
 	    position: absolute;
 	    margin-left: 5.1rem;
 	    text-align: right;
@@ -151,6 +151,7 @@
 
 	.infinite-scroll .new-price .new-cur{
 		font-size: 4vw;
+		padding-left: 0.5rem;
 	}
 
 	.infinite-scroll .new-price .price {

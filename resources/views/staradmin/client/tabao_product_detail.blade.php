@@ -55,7 +55,7 @@
 						<img src="{{ asset('/client/images/productv2_detail_caption.png') }}" />
 					</div>
 					<div class="normal-price">
-						<span class="cur">￥<span class="price">{{number_format(empty($data['actualPrice']) ? 99 : $data['actualPrice'], 2) + 0}}</span></span>
+						<span class="cur">￥<span class="price">{{number_format(empty($data['originalPrice']) ? 99 : $data['originalPrice'], 2) + 0}}</span></span>
 						<div class="txt">原价</div>
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
@@ -70,9 +70,9 @@
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
-                		@php ($newPrice = ((float)$data['actualPrice'] - (float)$data['couponPrice'] - 12) )
+                		@php ($newPrice = ($data['originalPrice'] - $data['couponPrice'] - 12) )
                 		@php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
-                		<span class="new-cur">￥<span class="price">{{number_format($newPrice) + 0}}</span></span>
+                		<span class="new-cur">￥<span class="price">{{$newPrice + 0}}</span></span>
                 		<div class="txt">到手价</div>
                 	</div>	
 				</div>

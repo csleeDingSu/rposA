@@ -220,6 +220,8 @@ class tabaoApiController extends BaseController
             'goodsId' => empty($request->input('goodsId')) ? 1 : $request->input('goodsId')
         ];
 
+        // dd($data);
+
         //加密的参数
         $data['sign'] = $this->makeSign($data,$this->appSecret);
 
