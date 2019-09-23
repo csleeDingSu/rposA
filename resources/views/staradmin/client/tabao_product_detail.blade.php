@@ -79,9 +79,15 @@
 			</li>
 			<li class="dbox footer">
 					<div id="button-wrapper">
+						@if (empty($data['couponLink']))
 						<a class="copyBtn"> 
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
+						@else
+						<a href="{{$data['couponLink']}}"> 
+							<div id="btn-copy" class="btn-copy">领取优惠券</div>
+						</a>
+						@endif
 						<a href="/arcade">
 							<div id="btn-voucher" class="btn-voucher">马上抽奖</div>
 						</a>

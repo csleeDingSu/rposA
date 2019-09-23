@@ -53,7 +53,7 @@ function getFromTabao(pageId){
             sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
             reward = parseInt(newPrice * 10);
             reward = (reward <= 0) ? '100' : reward;
-            _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&voucher_pass=';
+            _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
             // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
 
             html += '<div class="inBox">' +
