@@ -38,17 +38,16 @@
 
     <hr class="h36">
 
-    <!-- insufficient point modal -->
+@endsection
+
+@section('footer-javascript')
+  <!-- insufficient point modal -->
     <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="insufficient-point">金币不足 请充值</div>                  
         </div>
     </div>
     <!-- insufficient point modal Ends -->
-
-@endsection
-
-@section('footer-javascript')
     
     <!-- haven't login start modal -->
     <div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
