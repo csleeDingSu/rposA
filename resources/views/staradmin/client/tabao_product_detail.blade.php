@@ -84,7 +84,7 @@
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						@else
-						<a href="https://link.zhihu.com/?target={{$data['couponLink']}}"> 
+						<a href="https://link.zhihu.com/?target={{urlencode($data['couponLink'])}}"> 
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						@endif
