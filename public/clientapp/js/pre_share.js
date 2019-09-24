@@ -7,6 +7,7 @@ var my_lvl_total = 0;
 var next_lvl_total = 0;
 
 var token = $('#hidSession').val();
+var earned_play_times = 0;
 
 $(function () {
 
@@ -45,7 +46,7 @@ function getToken(){
         if(data.success) {
             token = data.access_token
             getPosts(page, data.access_token);
-            // getPosts_NextLvl(page, data.access_token);
+            getPosts_NextLvl(page, data.access_token);
             // scrollBottom(data.access_token);
         }     
     });
@@ -116,7 +117,7 @@ function getPosts_NextLvl(page_nextlvl, token){
         },
         error: function (error) { console.log(error) },
         success: function(data) {
-            //console.log(data);
+            // console.log(data);
             var current_page = parseInt(data.result.current_page);
             var last_page = parseInt(data.result.last_page);
             $('#max_page_nextlvl').val(last_page);
@@ -146,14 +147,15 @@ function populateInvitationData(records, token, _status = null) {
             var result = records.data;
             var html = '';
 
-            if (_status = 'my') {
+            if (_status == 'my') {
                 if(page_count != page && current_page == page){
                     return false;
                 }
 
-                console.log(page_count + ":" + current_page);
+                // console.log(page_count + ":" + current_page);
                 page_count++;    
             } else {
+                // console.log(page_count_nextlvl != page_nextlvl && current_page == page_nextlvl);
                 if(page_count_nextlvl != page_nextlvl && current_page == page_nextlvl){
                     return false;
                 }
@@ -172,43 +174,21 @@ function populateInvitationData(records, token, _status = null) {
                                 ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
                 
                 if(item.wechat_verification_status == 0){
-                    var str_status = "认证成功";
-                    var str_additional = "+1";
-                    var str_class = "verified";                    
-                    
-                    if (item.introducer_bonus_life > 0) {
-                        str_additional = "+" + parseFloat(item.introducer_bonus_life).toFixed(1);
-                    } 
+                    var str_status = '<font color="#333333">认证成功</font>';
+                    earned_play_times++;
 
                 } else if (item.wechat_verification_status == 1) {
-                    var str_status = "未微信认证";
-                    var str_additional = "";
-                    var str_class = "pending";
+                    var str_status = '<font color="#5c86fe">未微信认证</font>';
 
                 } else {
-                    var str_status = "认证失败";
-                    var str_additional = "";
-                    var str_class = "fail";
+                    var str_status = '<font color="#fe5c5c">认证失败</font>';
                 }
-
-                //set default
-                // if (_status == 'default') {
-                //     var str_class = "";
-                //     var str_class_additional = "default_additional";
-                // } else {
-                    var str_class_additional = "additional";
-                // }
-           
-                var _photo = !(item.profile_pic == null) ? item.profile_pic :"/client/images/avatar.png";      
-                var _wechatname = !(item.wechat_name == null) ? item.wechat_name : "";      
-                
+               var _phone = (item.phone === null) ? '*****' : (item.phone.substring(0,3) + '*****' + item.phone.slice(-4));
 
                 html += '<li>' +
                         '<div class="line-1">' +
-                          '<h2>112****8090</h2>' +
-                          '<span>' +
-                            '<font color="#5c86fe">'+str_status+'</font>' +
-                          '</span>' +
+                          '<h2>'+_phone+'</h2>' +
+                          '<span>' + str_status + '</span>' +
                         '</div>' +
                         '<div class="line-2">' +
                           '<p>'+str_date+'</p>' +
@@ -229,6 +209,8 @@ function populateInvitationData(records, token, _status = null) {
                 //         '</div>' +
                 //       '</li>';
             }
+
+            $('.earned_play_times').html(earned_play_times);
 
             return html;
 

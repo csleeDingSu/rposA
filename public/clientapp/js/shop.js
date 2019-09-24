@@ -139,7 +139,7 @@ function getHighlight() {
                     from = 0;
                     to = 1;
                 } else {
-                    txt = '<span class="highlight">' + d.phone.substring(0,3) + '*****' + d.phone.substring(d.phone.length - 4) + '</span> ' + d.package_name+ '...';
+                    txt = '<span class="highlight">' + d.phone.substring(0,3) + '*****' + d.phone.substring(d.phone.length - 4) + '</span> 换购 ' + d.package_name+ '...';
                     $('.shop-notification').html(txt);
                     from++;
                     to++;

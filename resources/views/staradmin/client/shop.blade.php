@@ -24,7 +24,7 @@
         <div class="shop-notification">
             @if (!empty($buy))
               @foreach($buy as $b)
-                <span class="highlight">{{ substr($b->phone,0,3) }}*****{{ substr($b->phone, -4) }} </span>{{$b->package_name}}...
+                <span class="highlight">{{ substr($b->phone,0,3) }}*****{{ substr($b->phone, -4) }} </span> 换购 {{$b->package_name}}...
               
               @endforeach
             @else

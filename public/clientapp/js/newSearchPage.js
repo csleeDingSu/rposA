@@ -42,9 +42,9 @@ document.onreadystatechange = function () {
       pageId = 1;
     }
 
-    console.log(search);
-    console.log(pageSize);
-    console.log(pageId);
+    // console.log(search);
+    // console.log(pageSize);
+    // console.log(pageId);
 
       var html = '';
 
@@ -64,15 +64,35 @@ document.onreadystatechange = function () {
                 document.getElementById('loading').style.visibility="hidden";
                 // alert(data == '');
                 // alert(jQuery.isEmptyObject(JSON.parse(data)));
-                 // console.log(data);
-                // console.log(JSON.parse(data).data.list);
-                if ((data == '') || (jQuery.isEmptyObject(JSON.parse(data))) || (JSON.parse(data).data.list == undefined) || (JSON.parse(data).data.list == '') || (typeof JSON.parse(data).data.list === 'undefined')){
+                 console.log(data);
+                // console.log(JSON.parse(data));
+                // console.log(JSON.parse(data).data);
+                // console.log(JSON.parse(data).data === "undefined");
+                // console.log(JSON.parse(data).data);
+                // console.log(JSON.parse(data));
+                if (data.length <= 0) {
 
-                  html += '';
+                  html += '<div class="no-record">' +
+                            '<img src="/clientapp/images/no-record/search.png">' +
+                            '<div>无搜索商品，请尝试其他关键字</div>' +
+                          '</div>';
+
+                  $('.listBox').html(html);
+                  return false; 
+                }
+
+                _data = JSON.parse(data);
+                // console.log(_data);
+                console.log(_data.code);
+                if (_data.code != 0){
+
+                  html += '<div class="no-record">' +
+                            '<img src="/clientapp/images/no-record/search.png">' +
+                            '<div>无搜索商品，请尝试其他关键字</div>' +
+                          '</div>';
 
                 } else {
-
-                  var records = JSON.parse(data).data.list;
+                  var records = _data.data.list;
                   var newPrice = 0; 
                   var sales = 0;
                   totalNum = JSON.parse(data).data.totalNum;
@@ -88,7 +108,7 @@ document.onreadystatechange = function () {
                       sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
                       reward = parseInt(newPrice * 10);
                       reward = (reward <= 0) ? '100' : reward;
-                      _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
+                      _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +item.originalPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
             
                       console.log(item.couponLink + 'dsad' + i);
                       // return item.couponLink;
