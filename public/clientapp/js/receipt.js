@@ -1,5 +1,9 @@
 var wallet_point =0;
 var gameid = 102;
+var earned_point = Number(0);
+var earned_play_times = Number(0);
+var default_exchange_point = Number(1200);
+
 $(document).ready(function () {
     getToken();     
 });
@@ -12,7 +16,7 @@ function getToken(){
         //console.log(data);
         if(data.success) {
             token = data.access_token;
-            getWallet(data.access_token, id);
+            // getWallet(data.access_token, id);
             getReceiptList(data.access_token, id);
             AssignSubmitReceipt(data.access_token);            
         }      
@@ -60,7 +64,9 @@ function getReceiptList(token, id) {
                         if (item.status == 1) {
             html +=         '<font color="#a144ff">正在处理</font>';                
                         }else if (item.status == 2) {
-            html +=         '<font color="#a144ff">奖励到账</font>';                
+            html +=         '<font color="#a144ff">奖励到账</font>';
+                            earned_point = earned_point + Number(item.amount * 10);
+
                         }else if (item.status == 3) {
             html +=         '<font color="#ff6161">奖励失效</font>';                
                         }else {
@@ -79,6 +85,11 @@ function getReceiptList(token, id) {
             });
 
             $('.data-list').html(html);
+            $('.earned_point').html(earned_point);
+            earned_play_times = parseInt(earned_point / default_exchange_point);
+            earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
+            $('.earned_play_times').html(earned_play_times);
+            
         } // end success
     }); // end $.ajax
 }

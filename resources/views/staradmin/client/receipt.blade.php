@@ -42,7 +42,7 @@
   <dl class="coinExchange">
     <dd>
       <p>你已累计积分</p>
-      <span class="wallet_point">0.00</span>
+      <span class="earned_point">0.00</span>
     </dd>
     <dt>
       <img src="{{ asset('clientapp/images/echange.png') }}">
@@ -50,7 +50,7 @@
     <dd>
       <p>自动兑换场次</p>
       <span>
-        <font color="#000">1</font>
+        <font color="#000" class="earned_play_times">0</font>
       </span>
     </dd>
   </dl>
