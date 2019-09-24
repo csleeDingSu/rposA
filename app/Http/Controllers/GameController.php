@@ -864,8 +864,6 @@ public function add_setting()
     {
 	}
 	
-	public function decideresult($gameid = false)
-    {
-	}
+	
 	
 }
