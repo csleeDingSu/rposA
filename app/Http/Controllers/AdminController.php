@@ -1168,14 +1168,16 @@ WHERE
 	
 	public function receipt_update(Request $request)
     {
-    	$record    = \App\Receipt::where('id',$request->id)->first(); 		
+    	$gameid  = 102;
+		
+		$record  = \App\Receipt::where('id',$request->id)->first(); 		
 		if ($record->status != 1)
 		{
 			return response()->json(['success' => false, 'errors' => trans('lang.record_already_settled') ]); 
 		}	
-		$camout = \DB::table('games')->where('id' , 102)->first();
+		$game = \DB::table('games')->where('id' , $gameid)->first();
 		
-		$camout = $camout->reward_ratio;
+		$camout = $game->reward_ratio;
 		$credit = $request->amount *  $camout;
 			
 		$record->status     = $request->status;	
@@ -1186,16 +1188,31 @@ WHERE
 		
 		if ($record->status == 2)
 		{
-			$ledger = \App\Ledger::ledger($record->member_id , 102);
+			$ledger = \App\Ledger::ledger($record->member_id , $gameid);
 			if ($credit > 0)
 			{
-				$result = \App\Ledger::bonus($record->member_id,102,$credit,'', '');
+				$result = \App\Ledger::bonus($record->member_id,$gameid,$credit,'', '');
 				$record->ledger_history_id     = $result['id'];	
+			}
+			
+			//auto calculate reward point and life
+			$i = $game->bonus_point_to_life;
+			
+			if ($i>=1)
+			{
+				$ledger = \App\Ledger::ledger($record->member_id , $gameid);
+				$bonus  = $ledger->bonus_point;
+				while($i <= $bonus) 
+				{
+					$bonus = $bonus - $i;					
+					$debit = \App\Ledger::updateledger('debit','bonus_point',$record->member_id,$gameid,$game->bonus_point_to_life,'BRBL', 'bonus point redeemd for life');
+					
+					$life  = \App\Ledger::life($record->member_id,$gameid,'credit',1,$category = 'RBL', 'bonus life for bonus point');					
+				}
 			}			
 		}
 				
-		$record->save();
-		
+		$record->save();		
 		$row = $this->render_receiptdata($request->id);
 		return response()->json(['success' => true,'id'=>$request->id,'record'=>$row]);
     }
