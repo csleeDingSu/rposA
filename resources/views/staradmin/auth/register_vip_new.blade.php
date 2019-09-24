@@ -58,6 +58,10 @@
           width: 50%;
           margin: 0.1rem;
         }
+
+        .loginMsg{
+          background-color: rgba(0, 0, 0, 0.5);
+        }
     </style>
 @endsection
 
@@ -66,22 +70,10 @@
     
 @endsection
 
-@if((!empty($refcode) and isset($ref->id)) || !empty(Session::get('refcode')))
-  @section('title', '首页')
+@section('title', '用户注册')
 
-  @section('top-navbar')    
-  @endsection
-@else
-  <!-- top nav -->
-  @section('left-menu')
-    <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
-  @endsection
-
-  @section('title', '用户注册')
-
-  @section('right-menu')
-  @endsection
-@endif
+@section('top-navbar')    
+@endsection
 
 @section('content')
 

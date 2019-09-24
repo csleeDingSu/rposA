@@ -377,6 +377,7 @@ border-radius: 20px;
          margin-bottom: 0.4rem;
          margin-top: 1rem;
          line-height: 2;
+         height: 15%;
 }
 h1 {
   text-align: center;color: #FFF;font-size: 0.35rem;

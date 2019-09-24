@@ -650,7 +650,7 @@
 								</div>
 								<div class="modal-invite-content">
 									<h1 class="modal-invite-title">邀请好友送场次</h1>
-									邀请<span class="highlight-peach">1个</span>好友送<span class="highlight-peach">1次</span>抽奖补贴(可抽6元)<br/>
+									邀请<span class="highlight-peach">1个</span>好友送<span class="highlight-peach">1次</span>抽奖补贴(可抽{{env('coin_max',12)}}元)<br/>
 									好友邀请<span class="highlight-peach">1个</span>，你再获<span class="highlight-peach">1次抽奖补贴</span>。
 									<a href="/share" class="link-button">
 										<div class="modal-vip-button">

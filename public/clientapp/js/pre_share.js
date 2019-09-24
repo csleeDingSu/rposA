@@ -175,21 +175,21 @@ function populateInvitationData(records, token, _status = null) {
                                 ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
                 
                 if(item.wechat_verification_status == 0){
-                    var str_status = '<font color="#333333">认证成功</font>';
+                    var str_status = '<font color="#fe5c5c">认证成功</font>';
                     earned_play_times++;
 
                 } else if (item.wechat_verification_status == 1) {
                     var str_status = '<font color="#5c86fe">未微信认证</font>';
 
                 } else {
-                    var str_status = '<font color="#fe5c5c">认证失败</font>';
+                    var str_status = '<font color="#333333">认证失败</font>';
                 }
                var _phone = (item.phone === null) ? '*****' : (item.phone.substring(0,3) + '*****' + item.phone.slice(-4));
 
                 html += '<li>' +
                         '<div class="line-1">' +
                           '<h2>'+_phone+'</h2>' +
-                          '<span>' + str_status + '</span>' +
+                          '<span style="font-size: 0.28rem;">' + str_status + '</span>' +
                         '</div>' +
                         '<div class="line-2">' +
                           '<p>'+str_date+'</p>' +

@@ -66,14 +66,9 @@
     
 @endsection
 
-<!-- top nav -->
-@section('left-menu')
-  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
-@endsection
-
 @section('title', '用户登录')
 
-@section('right-menu')
+@section('top-navbar')    
 @endsection
 
 @section('content')

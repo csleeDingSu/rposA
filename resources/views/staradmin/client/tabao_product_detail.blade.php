@@ -87,7 +87,8 @@
 						@php ($_url = $data['couponLink'])
 						{{-- @php ($_url = (str_replace('https://','tabao://',$_url))) --}}
 						{{-- @php ($_url = (str_replace('http://','tabao://',$_url))) --}}
-						<a href="taobao://item.taobao.com/item.htm?id={{$data['goodsId']}}"> 
+						<!-- <a href="taobao://item.taobao.com/item.htm?id={{$data['goodsId']}}">  -->
+						<a href="https://t.asczwa.com/taobao?backurl={{urlencode($_url)}}">
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						@endif
