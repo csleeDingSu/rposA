@@ -14,6 +14,8 @@ use Illuminate\Validation\ValidationException;
 use Larashop\Notifications\ResetPassword as ResetPasswordNotification;
 use Session;
 use Validator;
+use Jenssegers\Agent\Agent;
+
 class MemberLoginController extends Controller
 {
    
@@ -68,6 +70,9 @@ class MemberLoginController extends Controller
         //isVIP APP         
         if (env('THISVIPAPP', false)) {
             // return view('auth.login_vip',$data);
+            $agent = new Agent();
+			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+
             return view('auth.login_vip_new',$data);        
         } else {
             return view('auth.login',$data);    
@@ -79,7 +84,10 @@ class MemberLoginController extends Controller
         if (Auth::Guard('member')->check()){
             return redirect('/');
         } else {
-            return view('auth/login_vip_new');
+        	$agent = new Agent();
+			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+
+            return view('auth/login_vip_new', $data);
         }
         
     }

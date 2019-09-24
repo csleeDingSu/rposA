@@ -66,10 +66,23 @@
     
 @endsection
 
-@section('title', '用户登录')
+@if($RunInApp)
+  <!-- top nav -->
+  @section('left-menu')
+    <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  @endsection
 
-@section('top-navbar')    
-@endsection
+  @section('title', '用户登录')
+
+  @section('right-menu')
+  @endsection
+@else
+  @section('title', '用户登录')
+
+  @section('top-navbar')    
+  @endsection
+
+@endif
 
 @section('content')
 <div class="" id="loginvalidation-errors"></div>

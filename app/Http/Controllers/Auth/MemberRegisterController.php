@@ -17,7 +17,7 @@ use Mail;
 use Session;
 use Validator;
 use \App\helpers\WeiXin as WX;
-
+use Jenssegers\Agent\Agent;
 
 class MemberRegisterController extends Controller
 {
@@ -99,8 +99,7 @@ class MemberRegisterController extends Controller
 	public function showRegisterForm($ref = FALSE)
 	{
 
-		$data = [];
-		
+		$data = [];		
 		
 		if (!empty($ref))
 		{
@@ -116,10 +115,9 @@ class MemberRegisterController extends Controller
 			
 		}
 		
-		
-		//return view('client/register',$data);
-		// return view('common/register',$data);
-		// return view('auth.login', $data);
+		$agent = new Agent();
+		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+
 		return view('auth.register_vip_new',$data);        
 	}
 
@@ -142,6 +140,9 @@ class MemberRegisterController extends Controller
 			
 		}
 		
+		$agent = new Agent();
+		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+
 		return view('auth.register_vip_new', $data);
 	}    
     
