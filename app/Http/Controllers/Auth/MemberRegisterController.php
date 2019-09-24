@@ -181,6 +181,9 @@ class MemberRegisterController extends Controller
         	//isVIP APP        	
 			if (env('THISVIPAPP', false)) {
 				//return view('auth.login_vip',$data);    
+				$agent = new Agent();
+				$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+
 				return view('auth.login_vip_new',$data);    
 			} else {
 				return view('auth.login',$data);    
