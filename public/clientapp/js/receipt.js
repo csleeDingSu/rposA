@@ -84,12 +84,13 @@ function getReceiptList(token, id) {
         
             });
 
-            $('.data-list').html(html);
-            $('.earned_point').html(earned_point);
-            earned_play_times = parseInt(earned_point / default_exchange_point);
-            earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
-            $('.earned_play_times').html(earned_play_times);
-            
+            if (html != '') {
+                $('.data-list').html(html);
+                $('.earned_point').html(earned_point);
+                earned_play_times = parseInt(earned_point / default_exchange_point);
+                earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
+                $('.earned_play_times').html(earned_play_times);    
+            }            
         } // end success
     }); // end $.ajax
 }

@@ -60,7 +60,7 @@
   <div class="orderRwdList">
     <ul class="data-list">
       <div class="no-record">
-        <img src="{{ asset('/clientapp/images/no-record/blog.png') }}">
+        <img src="{{ asset('/clientapp/images/no-record/search.png') }}">
         <div>暂无淘宝订单记录</div>
       </div>
     </ul>
