@@ -301,6 +301,7 @@ class MemberController extends BaseController
 	
 	public function add_life ($record)
 	{
+		$gameid = 102;
 		if ($record->referred_by)
 		{
 			if (empty($record->introducer_life))
