@@ -589,7 +589,7 @@
 								</div>
 								<div class="instructions">
 									<p>
-										<span class="highlight-header">您已抽到<span class="withdraw-value">0</span>元</span>
+										<span class="highlight-header">您已抽到<span class="drawn">0</span>元</span>
 									</p>
 									<p>
 										满{{env('coin_min', '6')}}元可提现，最高可抽{{env('coin_max', '12')}}元
