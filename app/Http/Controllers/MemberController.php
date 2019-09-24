@@ -307,7 +307,7 @@ class MemberController extends BaseController
 			{
 				//$life   = \Config::get('app.introducer_life');
 				$life   = Member::get_introducer_life();
-				$wallet = Wallet::update_ledger_life($record->referred_by, $life->introduce_life,'LILE',' Introducer bonus life.Introduced user :'.$record->username);
+				$ledger = \App\Ledger::life($record->referred_by,$gameid,'credit',$life->introduce_life,'LILE', ' Introducer bonus life.Introduced user :'.$record->username);
 				
 				if ($wallet['success'])
 				{
@@ -328,7 +328,7 @@ class MemberController extends BaseController
 							$new_bonus_life       = $bonuslife + $intro_bonus_life;
 							if ($new_bonus_life == $life->second_level_introduce_life)
 							{
-								Wallet::update_ledger_life($second_level_record->id, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');
+								$ledger = \App\Ledger::life($second_level_record->id,$gameid,'credit',$life->second_level_introduce_life,'LILE', ' Introducer second level bonus life.');
 								$second_level_record->bonus_life = 0;
 							}
 							else
