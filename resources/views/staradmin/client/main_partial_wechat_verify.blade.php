@@ -144,6 +144,7 @@
         <span>
           <font color="#ff5662">领到144元奖励红包</font>
         </span>
+          <font color="#ccc">刚刚</font>
         <span>
       <li>
         <span>
