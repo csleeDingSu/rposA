@@ -170,16 +170,19 @@
 
       $.ajax({
             type: "GET",
-            url: "/shop/api/getProductForHighlight?from=0&to=1000",
+            url: "/api/invitation-list?limit=50&offset=0",
             dataType: "json",
             error: function (error) { console.log(error) },
             success: function(data) {
-                console.log(data.data[0]);
-                d = data.data;
+                // console.log(data);
+                d = data.records;
                 $.each(d, function(i, item) {
+                  _date = '刚刚'; //item.created_at;
+                  // console.log(item.phone);
+                  _phone = (item.phone === null) ? '*****' : (item.phone.substring(0,3) + '*****' + item.phone.slice(-4));
                   html += '<li>' +
                             '<span>' +
-                              '<font color="#b168ff">152****2582</font>' +
+                              '<font color="#b168ff">'+_phone+'</font>' +
                             '</span>' +
                             '<span>' +
                               '<font color="#5d5d5d">邀请2个好友</font>' +
@@ -188,12 +191,13 @@
                               '<font color="#ff5662">领到24元奖励红包</font>' +
                             '</span>' +
                             '<span>' +
-                              '<font color="#ccc">刚刚</font>' +
+                              '<font color="#ccc">'+_date+'</font>' +
                             '</span>' +
                           '</li>';
                 });
 
-                $('.list-data').append(html);
+                $('.list-data').html(html);
+                // $('.list-data').append(html);
             }
         });
 

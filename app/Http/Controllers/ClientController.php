@@ -302,13 +302,16 @@ class ClientController extends BaseController
 
 			$wbp = $this->set_payment_browser();
 			$usedpoint = 0;
+			$earnpoint = 0;
 
 			if (Auth::Guard('member')->check()) {
+				$gameid = 103;
 				$member = Auth::guard('member')->user()->id;
-				$usedpoint = \App\Game::earned_points($member , 103);
+				$earnpoint = \App\Game::earned_points($member , $gameid);
+				$usedpoint = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
 			}
 
-			return view( 'client/vip-node', compact( 'wbp', 'usedpoint') );
+			return view( 'client/vip-node', compact( 'wbp', 'usedpoint', 'earnpoint') );
 		}
 		
 	}
