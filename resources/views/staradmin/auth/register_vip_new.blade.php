@@ -148,6 +148,8 @@
             <script>
 
                 $(function () {
+                  
+
       // $('.login').click(function () {
       //   being.showMsg('.loginMsg');
       // });
@@ -182,7 +184,8 @@
                 },
                 success:function(data) {
                     if (data.success == true) 
-                        {   
+                        { 
+                            var _runinapp = "{{ $RunInApp }}";   
                             var refcode = "{{ Session::get('refcode')}}";     
                             var sdf = '@lang("dingsu.member_registration_success_message")';
                             $('#validation-errors').append('<div class="alert alert-success isa_success">'+sdf+'</div');
@@ -190,7 +193,7 @@
                             url = data.url;
 
                             console.log(refcode);
-                            if (refcode != '') {
+                            if (refcode != '' || _runinapp == false) {
                               being.showMsg('.loginMsg');
                             } else {
                               $(location).attr("href", url);  
