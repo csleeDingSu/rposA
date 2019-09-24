@@ -45,7 +45,7 @@
               <font color='#814de5' class="earned_play_times">10</font>次
             </span></p>
           <p><img src="{{ asset('/clientapp/images/sIcon2.png') }}"><i>抽得红包</i><span>
-              <font color='#ff4848'>{{number_format($earnedpoint, 2, '.', ',')}}</font>元
+              <font color='#ff4848'>{{number_format($point_used, 2, '.', ',')}}</font>元
             </span></p>
         </div>
 

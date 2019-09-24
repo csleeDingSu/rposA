@@ -94,8 +94,9 @@ class MainController extends BaseController
 	{
 		if (Auth::Guard('member')->check()) {
 			$member_id = Auth::guard('member')->user()->id;
-			$earnedpoint = \App\Game::earned_points($member_id , 102);
-			return view('client/pre_share', compact('earnedpoint'));	
+			$point_used = \App\Game::earned_points($member_id , 102);
+			$point_all = \App\History::get_point($member_id,102);
+			return view('client/pre_share', compact('point_used','point_all'));	
 		} else {
 			return redirect('/login');
 		}
