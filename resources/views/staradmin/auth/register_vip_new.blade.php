@@ -66,15 +66,22 @@
     
 @endsection
 
-<!-- top nav -->
-@section('left-menu')
-  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
-@endsection
+@if((!empty($refcode) and isset($ref->id)) || !empty(Session::get('refcode')))
+  @section('title', '首页')
 
-@section('title', '用户注册')
+  @section('top-navbar')    
+  @endsection
+@else
+  <!-- top nav -->
+  @section('left-menu')
+    <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  @endsection
 
-@section('right-menu')
-@endsection
+  @section('title', '用户注册')
+
+  @section('right-menu')
+  @endsection
+@endif
 
 @section('content')
 
@@ -119,6 +126,9 @@
         </form>
       </div>
 
+ @endsection
+
+@section('footer-javascript')
 <!-- <div class="card-shade"></div> -->
   <div class="loginMsg">
     <div class="inBox">
@@ -128,9 +138,7 @@
       <a class="downBtn gdt" href="/download-app">下载APP 登录领取</a>
     </div>
   </div>
- @endsection
 
-@section('footer-javascript')
     @parent
             <script>
 
