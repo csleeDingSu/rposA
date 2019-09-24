@@ -268,7 +268,7 @@ class MemberController extends Controller
 	
 	public function invitation_list (Request $request) {
 		
-		$invitation_list = \DB::table( 'view_members' )->select( 'id','username','firstname','created_at','phone','introducer_life','wechat_verification_status','referred_by','introducer_bonus_life','wechat_name','profile_pic' )->whereNotNull('referred_by');
+		$invitation_list = \App\ViewMember::select( 'id','created_at','updated_at','firstname','phone','username','wechat_name','profile_pic','wechat_verification_status','referred_by','totalcount' )->where('totalcount','>',0);
 		
 		if ($request->offset < 0)
 		{
@@ -284,14 +284,12 @@ class MemberController extends Controller
 		{
 			$invitation_list  = $invitation_list->where('referred_by', $member_id);
 		}
-
 		$invitation_list      = $invitation_list->orderBy( 'id', 'desc' )
 									->offset($request->offset)
 									->limit($request->limit)
 									->get();
 
 		return response()->json(['success' => true, 'records'=>$invitation_list]);
-
 	}
 	
 }
