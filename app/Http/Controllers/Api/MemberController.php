@@ -270,12 +270,12 @@ class MemberController extends Controller
 		
 		$invitation_list = \App\ViewMember::select( 'id','created_at','updated_at','firstname','phone','username','wechat_name','profile_pic','wechat_verification_status','referred_by','totalcount' )->where('totalcount','>',0);
 		
-		if ($request->offset < 0)
+		if (!$request->offset)
 		{
 			$request->offset = 0;
 		}
 		
-		if ($request->limit < 0)
+		if (!$request->limit)
 		{
 			$request->limit = 10;
 		}
