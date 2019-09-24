@@ -1828,7 +1828,7 @@ class GameController extends Controller
 	
 	public function usedpoint(Request $request)
     {
-		$row   = \DB::table('a_view_used_point')->where('member_id',$request->memberid)->where('game_id',$request->gameid)->sum('point');
+		$point   = \DB::table('a_view_used_point')->where('member_id',$request->memberid)->where('game_id',$request->gameid)->sum('point');
 		
 		return response()->json(['success' => true, 'point' => $point]); 
 	}
