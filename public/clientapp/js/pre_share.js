@@ -8,6 +8,7 @@ var next_lvl_total = 0;
 
 var token = $('#hidSession').val();
 var earned_play_times = 0;
+var earned_point = 0;
 
 $(function () {
 
@@ -211,6 +212,8 @@ function populateInvitationData(records, token, _status = null) {
             }
 
             $('.earned_play_times').html(earned_play_times);
+            earned_point = earned_play_times * 12;
+            $('.earned_point').html(earned_point);
 
             return html;
 

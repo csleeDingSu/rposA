@@ -42,10 +42,10 @@
 
         <div class="sMain">
           <p><img src="{{ asset('/clientapp/images/sIcon.png') }}"><i>奖励次数</i><span>
-              <font color='#814de5' class="earned_play_times">10</font>次
+              <font color='#814de5' class="earned_play_times">0</font>次
             </span></p>
           <p><img src="{{ asset('/clientapp/images/sIcon2.png') }}"><i>抽得红包</i><span>
-              <font color='#ff4848'>{{number_format($point_used, 2, '.', ',')}}</font>元
+              <font color='#ff4848' class="earned_point">0</font>元
             </span></p>
         </div>
 

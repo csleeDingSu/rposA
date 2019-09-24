@@ -177,18 +177,35 @@
                 // console.log(data);
                 d = data.records;
                 $.each(d, function(i, item) {
-                  _date = '刚刚'; //item.created_at;
                   // console.log(item.phone);
-                  _phone = (item.phone === null) ? '*****' : (item.phone.substring(0,3) + '*****' + item.phone.slice(-4));
+                  var _phone = (item.phone === null) ? '*****' : (item.phone.substring(0,3) + '*****' + item.phone.slice(-4));
+                  var _invite = item.totalcount;
+                  var _gain = _invite * 12;
+
+                  var requested_time = item.created_at;
+                  var today = new Date();
+                  var Christmas = new Date(requested_time);
+                  var diffMs = (today - Christmas); // milliseconds between now & Christmas
+                  var diffDays = Math.floor(diffMs / 86400000); // days
+                  var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+                  var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+
+                  var _date = '刚刚';
+                  if(diffMins > 0 && diffMins < 60){
+                      _date = diffMins + "分钟";
+                  }else if (diffMins >= 60){
+                      _date = diffHrs + "小时"
+                  }
+
                   html += '<li>' +
                             '<span>' +
                               '<font color="#b168ff">'+_phone+'</font>' +
                             '</span>' +
                             '<span>' +
-                              '<font color="#5d5d5d">邀请2个好友</font>' +
+                              '<font color="#5d5d5d">邀请'+_invite+'个好友</font>' +
                             '</span>' +
                             '<span>' +
-                              '<font color="#ff5662">领到24元奖励红包</font>' +
+                              '<font color="#ff5662">领到'+_gain+'元奖励红包</font>' +
                             '</span>' +
                             '<span>' +
                               '<font color="#ccc">'+_date+'</font>' +
