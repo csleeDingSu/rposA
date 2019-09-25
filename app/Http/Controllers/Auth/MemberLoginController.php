@@ -95,7 +95,7 @@ class MemberLoginController extends Controller
 			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
 			if (empty($data['RunInApp'])) {
 				// $data['RunInApp'] = $agent->isSafari();
-				$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
+				$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == true) ? true : false;	
 			}
 
             return view('auth/login_vip_new', $data);
