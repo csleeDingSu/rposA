@@ -41,8 +41,8 @@ if it's not present, don't show loader */
 
 .instruction-background img {
     margin: 2% auto;
-    width: 50%;
-    height: 50%;
+    width: 90%;
+    /*height: 50%;*/
     }
 
 .no-record {
