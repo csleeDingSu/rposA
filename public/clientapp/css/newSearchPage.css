@@ -57,3 +57,16 @@ if it's not present, don't show loader */
     /*height: 50%;*/
     padding: 0.5rem;
 }
+
+ em {
+    font-family: '黑体' !important;
+ }
+
+.listBox .inBox .imgBox {
+    width: 2.6rem !important;
+    height: 2.6rem !important;
+}
+
+.listBox .typeBox {
+   padding-top: 0.1rem;
+}

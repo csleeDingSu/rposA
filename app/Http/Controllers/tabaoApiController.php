@@ -265,6 +265,37 @@ class tabaoApiController extends BaseController
         
     }
 
+    public function getDtkSearchGoods(Request $request)
+    {
+        $host = "https://openapi.dataoke.com/api/goods/get-dtk-search-goods";
+
+        //默认必传参数
+        $data = [
+
+            'appKey' => $this->appKey,
+            'version' => 'v2.1.0',
+            'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
+            'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
+            'keyWords' => $request->input('search'),
+            // 'tmall' => 0,
+            // 'haitao' => 0,
+            // 'sort' => '_asc', //'total_sales',
+        ];
+
+        // dd($data);
+
+        //加密的参数
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
+
+        //拼接请求地址
+        $url = $host .'?'. http_build_query($data);
+        
+        // dd($this->getCurl($url));
+        return json_decode($this->getCurl($url),true);
+        
+    }
+
+
 
 
 }

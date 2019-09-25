@@ -52,7 +52,7 @@ document.onreadystatechange = function () {
         document.getElementById('loading').style.visibility="visible";
         $.ajax({
             type: 'GET',
-            url: "/tabao/list-super-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
+            url: "/tabao/get-dtk-search-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
             contentType: "application/json; charset=utf-8",
             dataType: "text",
             error: function (error) {
