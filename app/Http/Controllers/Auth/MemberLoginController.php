@@ -74,13 +74,16 @@ class MemberLoginController extends Controller
             // var_dump($agent->isSafari());
             // dd($agent);
 
-			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
-			if (empty($data['RunInApp'])) {
-				// $data['RunInApp'] = $agent->isSafari();
-				$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
-			}
+			// $data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+			// if (empty($data['RunInApp'])) {
+			// 	// $data['RunInApp'] = $agent->isSafari();
+			// 	$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
+			// }
 
-            return view('auth.login_vip_new',$data);        
+			$data['RunInApp'] = false;
+
+            return view('auth.login_new',$data);  
+            // return view('auth.login_vip_new',$data);        
         } else {
             return view('auth.login',$data);    
         }
@@ -91,14 +94,17 @@ class MemberLoginController extends Controller
         if (Auth::Guard('member')->check()){
             return redirect('/');
         } else {
-        	$agent = new Agent();
-			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
-			if (empty($data['RunInApp'])) {
-				// $data['RunInApp'] = $agent->isSafari();
-				$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == true) ? true : false;	
-			}
+   //      	$agent = new Agent();
+			// $data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+			// if (empty($data['RunInApp'])) {
+			// 	// $data['RunInApp'] = $agent->isSafari();
+			// 	$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == true) ? true : false;	
+			// }
 
-            return view('auth/login_vip_new', $data);
+			$data['RunInApp'] = false;
+
+            return view('auth/login_new', $data);
+            // return view('auth/login_vip_new', $data);
         }
         
     }

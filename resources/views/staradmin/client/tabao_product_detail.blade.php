@@ -20,6 +20,7 @@
 @endsection
 
 @section('content')
+<input id="hidgoodsId" type="hidden" value="{{$data['goodsId']}}" />
 
 	<div class="infinite-scroll" id="product">
 		<div class="header_pr header_goods ">
@@ -79,7 +80,7 @@
 			</li>
 			<li class="dbox footer">
 					<div id="button-wrapper">
-						@if (empty($data['couponLink']))
+						@if (!empty($data['couponLink']))
 						<a class="copyBtn"> 
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
@@ -142,9 +143,10 @@
 	<script>
 		
 		$(document).ready(function(){
-			
+			gettpwd();
 			var clipboard = new ClipboardJS('.copyBtn', {
 				target: function () {
+					gettpwd();
 					return document.querySelector('#cut');
 				}
 		        
@@ -177,6 +179,28 @@
 	    	});
 	    	
 		})
+
+		function gettpwd() {
+			var _goodsId = $('#hidgoodsId').val();
+
+			$.ajax({
+		      type: 'GET',
+		      url: "/tabao/get-privilege-link?goodsId=" + _goodsId, 
+		      contentType: "application/json; charset=utf-8",
+		      dataType: "text",
+		      error: function (error) {
+		          console.log(error);
+		          alert(error.responseText);
+		          $(".reload").show();
+		      },
+		      success: function(data) {
+		          // console.log(data);
+		          console.log(JSON.parse(data));
+		          // var records = JSON.parse(data).data.list;
+		          // $('#cut').val('dasd');		          
+		      }
+		  });
+		}
 		
 	</script>
 @endsection
