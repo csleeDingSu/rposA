@@ -722,8 +722,7 @@ return [
 	'invalid_point' => 'Invalid point. Cannot proceed',
 	'reserved_point_is_empty' => 'Reserved point is empty. Cannot proceed',
 	'invalid_reserved_point' => 'Reserved point not in the range',
-
-	
+	'receipt_exist' => 'receipt already exist',
 	
 	
 

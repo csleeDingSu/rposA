@@ -685,5 +685,6 @@ return [
 	'invalid_point' => '无效挖宝币。 无法继续',
 	'reserved_point_is_empty' => '无效宝币数量。 无法继续',
 	'invalid_reserved_point' => '换挖宝币数量不在范围内',
+	'receipt_exist' => '订单号已经存在',
 
 ];

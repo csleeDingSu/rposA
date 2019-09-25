@@ -5,3 +5,16 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
   }
+
+ em {
+ 	font-family: '黑体' !important;
+ }
+
+.listBox .inBox .imgBox {
+	width: 2.6rem !important;
+    height: 2.6rem !important;
+}
+
+.listBox .typeBox {
+   padding-top: 0.1rem;
+}

@@ -133,6 +133,10 @@ dd a.on h2, dd a:active h2 {
     color: #fe3f69
 }
 
+dt a.on h2, dt a:active h2 {
+    color: #8c36d9
+}
+
 .bar dt span {
     position: absolute;
     border-radius: 50%;

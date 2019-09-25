@@ -259,7 +259,7 @@ class MemberController extends Controller
 		$receipt = \App\Receipt::where('member_id', $request->memberid)->where('receipt', $request->receipt)->first();		
 		if ($receipt)
 		{
-			return response()->json(['success' => false,'message' => 'receipt already exist']);
+			return response()->json(['success' => false,'message' => trans('auth.receipt_exist')]);
 		}		
 		$receipt = \App\Receipt::create(['member_id' => $request->memberid , 'receipt' => $request->receipt ]);
 		

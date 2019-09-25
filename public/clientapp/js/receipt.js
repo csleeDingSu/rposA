@@ -117,6 +117,7 @@ function AssignSubmitReceipt(token) {
                     if(data.success) {
                         
                         alert('提交成功');
+                        $('#receipt').val('');
                        getReceiptList(token, memberid);
                         
                     } else {

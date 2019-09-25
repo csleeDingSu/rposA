@@ -1672,7 +1672,8 @@ function bindButton () {
             }            
         } else {
             if (g_life <= 0) {
-                $('#reset-life-share').modal(); 
+                // $('#reset-life-share').modal();
+                window.top.location.href = "/pre-share";  
              } else {
                 if (_point < win_coin_min) {
                     $('.withdraw-value').html(_point);
