@@ -71,7 +71,14 @@ class MemberLoginController extends Controller
         if (env('THISVIPAPP', false)) {
             // return view('auth.login_vip',$data);
             $agent = new Agent();
+            // var_dump($agent->isSafari());
+            // dd($agent);
+
 			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+			if (empty($data['RunInApp'])) {
+				// $data['RunInApp'] = $agent->isSafari();
+				$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
+			}
 
             return view('auth.login_vip_new',$data);        
         } else {
@@ -86,6 +93,10 @@ class MemberLoginController extends Controller
         } else {
         	$agent = new Agent();
 			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+			if (empty($data['RunInApp'])) {
+				// $data['RunInApp'] = $agent->isSafari();
+				$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
+			}
 
             return view('auth/login_vip_new', $data);
         }

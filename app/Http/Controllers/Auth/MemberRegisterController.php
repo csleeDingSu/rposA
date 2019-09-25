@@ -117,6 +117,10 @@ class MemberRegisterController extends Controller
 		
 		$agent = new Agent();
 		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+		if (empty($data['RunInApp'])) {
+			// $data['RunInApp'] = $agent->isSafari();
+			$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
+		}
 
 		return view('auth.register_vip_new',$data);        
 	}
@@ -142,6 +146,10 @@ class MemberRegisterController extends Controller
 		
 		$agent = new Agent();
 		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+		if (empty($data['RunInApp'])) {
+			// $data['RunInApp'] = $agent->isSafari();
+			$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
+		}
 
 		return view('auth.register_vip_new', $data);
 	}    
@@ -183,6 +191,10 @@ class MemberRegisterController extends Controller
 				//return view('auth.login_vip',$data);    
 				$agent = new Agent();
 				$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
+				if (empty($data['RunInApp'])) {
+					// $data['RunInApp'] = $agent->isSafari();
+					$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
+				}
 
 				return view('auth.login_vip_new',$data);    
 			} else {
