@@ -81,16 +81,17 @@
 			</li>
 			<li class="dbox footer">
 					<div id="button-wrapper">
-						@if (!empty($data['couponLink']))
+						@if (empty($data['couponLink']))
 						<a class="copyBtn"> 
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						@else
 						@php ($_url = $data['couponLink'])
-						{{-- @php ($_url = (str_replace('https://','tabao://',$_url))) --}}
-						{{-- @php ($_url = (str_replace('http://','tabao://',$_url))) --}}
-						<a href="taobao://item.taobao.com/item.htm?id={{$data['goodsId']}}"> 
-						<!-- <a href="https://t.asczwa.com/taobao?backurl={{urlencode($_url)}}"> -->
+						@php ($_url = (str_replace('https://','taobao://',$_url)))
+						@php ($_url = (str_replace('http://','taobao://',$_url)))
+						<a href="{{$_url}}">
+						<!-- <a href="taobao://item.taobao.com/item.htm?id={{$data['goodsId']}}">  -->
+						<!-- <a href="https://t.asczwa.com/taobao?backurl={{$_url}}"> -->
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
 						</a>
 						@endif

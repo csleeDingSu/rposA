@@ -1,7 +1,7 @@
 var totalNum = 0;
 var pageId = 1;
 var pageSize_init = 10;
-var pageSize = 50;
+var pageSize = 10;
 var priceLowerLimit = 12;
 var priceUpperLimit = 50;
 
