@@ -179,6 +179,8 @@ return [
 		Barryvdh\Cors\ServiceProvider::class,
   
 		Jackiedo\DotenvEditor\DotenvEditorServiceProvider::class,
+		
+		Jenssegers\Agent\AgentServiceProvider::class,
     ],
 
     /*
