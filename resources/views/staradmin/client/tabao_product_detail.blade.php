@@ -99,7 +99,7 @@
 						</a>
 					</div>
 				
-				<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher"></span></h4>
+				<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">￥tzFkYnKYZ2R￥</span></h4>
 
 				<img class="product-detail-btn-bg" src="{{ asset('/client/images/product-detail-btn-bg.jpg') }}" />
 			</li>
@@ -144,7 +144,6 @@
 	<script>
 		
 		$(document).ready(function(){
-			gettpwd();
 			var clipboard = new ClipboardJS('.copyBtn', {
 				target: function () {
 					gettpwd();
@@ -158,7 +157,7 @@
 				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
 				$('#btn-copy').css('margin-top', '0.95rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
-				window.location.href = 'taobao://';
+				window.location.href = 'taobao://' + $('#cut').html();
 			});
 
 			clipboard.on('error', function (e) {
@@ -186,29 +185,29 @@
 		function gettpwd() {
 			var _goodsId = $('#hidgoodsId').val();
 			var _hidcouponLink = $('#hidcouponLink').val();
-$('#cut').html(_hidcouponLink);
-console.log($('#cut').html());
+// $('#cut').html(_hidcouponLink);
+// console.log($('#cut').html());
 
-			// console.log(_goodsId);
-			// console.log(_hidcouponLink);
+			console.log(_goodsId);
+			console.log(_hidcouponLink);
 
-			// $.ajax({
-		 //      type: 'GET',
-		 //      url: "/tabao/get-privilege-link?goodsId=" + _goodsId, 
-		 //      contentType: "application/json; charset=utf-8",
-		 //      dataType: "text",
-		 //      error: function (error) {
-		 //          console.log(error);
-		 //          alert(error.responseText);
-		 //          $(".reload").show();
-		 //      },
-		 //      success: function(data) {
-		 //          // console.log(data);
-		 //          console.log(JSON.parse(data));
-		 //          // var records = JSON.parse(data).data.list;
-		 //          // $('#cut').val('dasd');		          
-		 //      }
-		 //  });
+			$.ajax({
+		      type: 'GET',
+		      url: "/tabao/get-privilege-link?goodsId=" + _goodsId, 
+		      contentType: "application/json; charset=utf-8",
+		      dataType: "text",
+		      error: function (error) {
+		          console.log(error);
+		          alert(error.responseText);
+		          $(".reload").show();
+		      },
+		      success: function(data) {
+		          console.log(data);
+		          console.log(JSON.parse(data).data.tpwd);
+		          $('#cut').html(JSON.parse(data).data.tpwd);	  
+		          window.location.href = 'taobao://';        
+		      }
+		  });
 
 		}
 		

@@ -245,10 +245,10 @@ class tabaoApiController extends BaseController
         $data = [
 
             'appKey' => $this->appKey,
-            'version' => empty($request->input('version')) ? 'v1.0.2' : $request->input('version'),            
+            'version' => empty($request->input('version')) ? 'v1.0.5' : $request->input('version'),            
             'goodsId' => empty($request->input('goodsId')) ? 1 : $request->input('goodsId'),
-            'couponId' => empty($request->input('couponId')) ? '' : $request->input('couponId'),                        
-            // 'pid' => empty($request->input('pid')) ? '' : $request->input('pid'),
+            // 'couponId' => empty($request->input('couponId')) ? '' : $request->input('couponId'),                        
+            'pid' => empty($request->input('pid')) ? 'mm_52334040_17254600_62936115' : $request->input('pid'),
             // 'channelId' => empty($request->input('channelId')) ? '' : $request->input('channelId'),
         ];
 
