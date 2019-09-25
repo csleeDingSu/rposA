@@ -245,11 +245,11 @@ class tabaoApiController extends BaseController
         $data = [
 
             'appKey' => $this->appKey,
-            'version' => 'v1.1.0',            
+            'version' => empty($request->input('version')) ? 'v1.0.2' : $request->input('version'),            
             'goodsId' => empty($request->input('goodsId')) ? 1 : $request->input('goodsId'),
-            // 'couponId' => empty($request->input('couponId')) ? null : $request->input('couponId'),
-            // 'pid' => empty($request->input('pid')) ? null : $request->input('pid'),
-            // 'channelId' => empty($request->input('channelId')) ? null : $request->input('channelId'),
+            'couponId' => empty($request->input('couponId')) ? '' : $request->input('couponId'),                        
+            // 'pid' => empty($request->input('pid')) ? '' : $request->input('pid'),
+            // 'channelId' => empty($request->input('channelId')) ? '' : $request->input('channelId'),
         ];
 
         // dd($data);
@@ -260,6 +260,7 @@ class tabaoApiController extends BaseController
         //拼接请求地址
         $url = $host .'?'. http_build_query($data);
         
+        // dd($this->getCurl($url));
         return json_decode($this->getCurl($url),true);
         
     }

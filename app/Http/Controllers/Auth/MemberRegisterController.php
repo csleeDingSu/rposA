@@ -115,17 +115,15 @@ class MemberRegisterController extends Controller
 			
 		}
 		
-		// $agent = new Agent();
-		// $data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
-		// if (empty($data['RunInApp'])) {
-		// 	// $data['RunInApp'] = $agent->isSafari();
-		// 	$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
-		// }
-
-		$data['RunInApp'] = false;
-
-		return view('auth.register_new',$data); 
-		// return view('auth.register_vip_new',$data);        
+		$agent = new Agent();
+		if ($agent->isAndroidOS()) {
+    		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+    	} else {
+    		$data['RunInApp'] = true;
+    	}
+    	
+		// return view('auth.register_new',$data); 
+		return view('auth.register_vip_new',$data);        
 	}
 
 	public function showRegisterFormApp($ref = FALSE)
@@ -147,16 +145,15 @@ class MemberRegisterController extends Controller
 			
 		}
 		
-		// $agent = new Agent();
-		// $data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
-		// if (empty($data['RunInApp'])) {
-		// 	// $data['RunInApp'] = $agent->isSafari();
-		// 	$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
-		// }
+		$agent = new Agent();
+		if ($agent->isAndroidOS()) {
+    		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+    	} else {
+    		$data['RunInApp'] = true;
+    	}
 
-		$data['RunInApp'] = false;
-		return view('auth.register_new', $data);
-		// return view('auth.register_vip_new',$data); 
+		// return view('auth.register_new', $data);
+		return view('auth.register_vip_new',$data); 
 	}    
     
     public function showAuthForm($ref = FALSE, Request $request)
@@ -195,17 +192,15 @@ class MemberRegisterController extends Controller
 			if (env('THISVIPAPP', false)) {
 				//return view('auth.login_vip',$data);    
 				
-				// $agent = new Agent();
-				// $data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
-				// if (empty($data['RunInApp'])) {
-				// 	// $data['RunInApp'] = $agent->isSafari();
-				// 	$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
-				// }
+				$agent = new Agent();
+				if ($agent->isAndroidOS()) {
+	        		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+	        	} else {
+	        		$data['RunInApp'] = true;
+	        	}
 
-				$data['RunInApp'] = false;
-
-				return view('auth.login_new',$data); 
-				// return view('auth.login_vip_new',$data);    
+				// return view('auth.login_new',$data); 
+				return view('auth.login_vip_new',$data);    
 			} else {
 				return view('auth.login',$data);    
 			}            
