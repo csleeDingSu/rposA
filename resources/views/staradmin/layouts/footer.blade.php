@@ -67,3 +67,13 @@ if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
 		@php
 } 
 @endphp
+		
+		
+		@if( Agent::is('OS X') )		
+			<style>
+			.cardFoot
+				{
+					margin-bottom: 150px !important;
+				}		
+			</style>
+		@endif

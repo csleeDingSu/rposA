@@ -53,3 +53,12 @@
       </a></dd>
   </dl>
 </div>
+	  
+	  @if( Agent::is('OS X') )		
+			<style>
+			.cardFoot
+				{
+					margin-bottom: 150px !important;
+				}		
+			</style>
+		@endif
