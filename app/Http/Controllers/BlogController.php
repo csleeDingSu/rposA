@@ -50,14 +50,16 @@ class BlogController extends Controller
         $member_id = Auth::guard('member')->user()->id;
         $detail = v_blog_buy_product_records::where('member_id', $member_id)->first();
         
-        if (empty($detail->contact_number)) {
-            $phone = Auth::guard('member')->user()->phone;
-            $address = null;
-        } else {
-            $phone = $detail->contact_number;
-            $address = $detail->city . ' ' . $detail->address;
-        }
+        // if (empty($detail->contact_number)) {
+        //     $phone = Auth::guard('member')->user()->phone;
+        //     $address = null;
+        // } else {
+        //     $phone = $detail->contact_number;
+        //     $address = $detail->city . ' ' . $detail->address;
+        // }
 
+        $phone = Auth::guard('member')->user()->phone;
+        $address = (!empty($detail->city) ? $detail->city . ' ' : '') . (!empty($detail->address) ? $detail->address: '');
         $content = $request->input('content');
         $uploads = is_array($request->input('uploads')) ? json_encode($request->input('uploads')) : $request->input('uploads');
         
