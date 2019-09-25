@@ -210,8 +210,12 @@ class LoginController extends Controller
 		// $request->session()->forget(['refcode']);
 		Session::forget('refcode');
 
-		return redirect('/');
-        
+		$isApp = env('THISVIPAPP', false);
+		if ($isApp) {
+			return redirect('/app-login');
+		} else {
+			return redirect('/');	
+		}        
     }
 	
 }

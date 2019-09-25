@@ -1,6 +1,9 @@
 var totalNum = 0;
 var pageId = 1;
+var pageSize_init = 10;
 var pageSize = 50;
+var priceLowerLimit = 12;
+var priceUpperLimit = 50;
 
 $(document).ready(function () {
 
@@ -26,9 +29,11 @@ $(document).ready(function () {
 function getFromTabao(pageId){
   var html = '';
   var highlight_list_html ='';
+  var _pageSize = (pageId == 1) ? pageSize_init : pageSize;
+  
   $.ajax({
       type: 'GET',
-      url: "/tabao/get-goods-list?pageSize=" + pageSize + "&pageId=" + pageId, 
+      url: "/tabao/get-goods-list?pageSize=" + _pageSize + "&pageId=" + pageId + "&priceLowerLimit=" + priceLowerLimit+ "&priceUpperLimit=" + priceUpperLimit, 
       contentType: "application/json; charset=utf-8",
       dataType: "text",
       error: function (error) {

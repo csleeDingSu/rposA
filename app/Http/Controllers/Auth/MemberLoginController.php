@@ -74,12 +74,13 @@ class MemberLoginController extends Controller
             // var_dump($agent->isSafari());
             // dd($agent);
 
-			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
-			if (empty($data['RunInApp'])) {
-				// $data['RunInApp'] = $agent->isSafari();
-				$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false) ? true : false;	
-			}
-
+        	if ($agent->isAndroidOS()) {
+        		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+        	} else {
+        		$data['RunInApp'] = true;
+        	}
+			
+            // return view('auth.login_new',$data);  
             return view('auth.login_vip_new',$data);        
         } else {
             return view('auth.login',$data);    
@@ -92,12 +93,14 @@ class MemberLoginController extends Controller
             return redirect('/');
         } else {
         	$agent = new Agent();
-			$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;
-			if (empty($data['RunInApp'])) {
-				// $data['RunInApp'] = $agent->isSafari();
-				$data['RunInApp'] = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == true) ? true : false;	
-			}
+			
+			if ($agent->isAndroidOS()) {
+        		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+        	} else {
+        		$data['RunInApp'] = true;
+        	}
 
+            // return view('auth/login_new', $data);
             return view('auth/login_vip_new', $data);
         }
         

@@ -161,6 +161,11 @@ class tabaoApiController extends BaseController
             'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
 
             'sort' => 'total_sales',
+
+            'priceLowerLimit' => empty($request->input('priceLowerLimit')) ? 12 : $request->input('priceLowerLimit'),
+
+            'priceUpperLimit' => empty($request->input('priceUpperLimit')) ? 9999 : $request->input('priceUpperLimit'),
+
         ];
 
         // return $data;
@@ -231,6 +236,35 @@ class tabaoApiController extends BaseController
         return json_decode($this->getCurl($url),true);
         
     }
+
+    public function getPrivilegeLink(Request $request)
+    {
+        $host = "https://openapi.dataoke.com/api/tb-service/get-privilege-link";
+
+        //默认必传参数
+        $data = [
+
+            'appKey' => $this->appKey,
+            'version' => empty($request->input('version')) ? 'v1.0.2' : $request->input('version'),            
+            'goodsId' => empty($request->input('goodsId')) ? 1 : $request->input('goodsId'),
+            'couponId' => empty($request->input('couponId')) ? '' : $request->input('couponId'),                        
+            // 'pid' => empty($request->input('pid')) ? '' : $request->input('pid'),
+            // 'channelId' => empty($request->input('channelId')) ? '' : $request->input('channelId'),
+        ];
+
+        // dd($data);
+
+        //加密的参数
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
+
+        //拼接请求地址
+        $url = $host .'?'. http_build_query($data);
+        
+        // dd($this->getCurl($url));
+        return json_decode($this->getCurl($url),true);
+        
+    }
+
 
 
 }
