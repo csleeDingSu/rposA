@@ -506,6 +506,7 @@ class GameController extends Controller
 		$min_po = \Config::get('app.coin_min');
 		
 		$wallet = Ledger::ledger($memberid, $gameid);
+		/*
 		
 		$arr1   = ['6','7','8','9'];
 		$arr2   = ['10','11'];
@@ -518,7 +519,7 @@ class GameController extends Controller
 		{
 			$wallet->acupoint = 10;
 		}
-		
+		*/
 
 		if ($life == 'yes')
 		{
