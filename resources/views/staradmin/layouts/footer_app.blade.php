@@ -58,7 +58,7 @@
 			<style>
 			.card-bar
 				{
-					margin-bottom: 15px !important;
+					margin-bottom: 3px !important;
 					position: fixed;
 					  left: 0;
 					  bottom: 0;
