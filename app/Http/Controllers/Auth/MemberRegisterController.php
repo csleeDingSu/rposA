@@ -154,7 +154,7 @@ class MemberRegisterController extends Controller
 
 		// return view('auth.register_new', $data);
 		return view('auth.register_vip_new',$data); 
-	}    
+	}
     
     public function showAuthForm($ref = FALSE, Request $request)
 	{

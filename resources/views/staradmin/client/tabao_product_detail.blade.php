@@ -158,7 +158,7 @@
 
 			clipboard.on('success', function (e) {
 				console.log(e);
-				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
 				$('#btn-copy').css('margin-top', '0.95rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 				window.location.href = 'taobao://';
@@ -166,7 +166,7 @@
 
 			clipboard.on('error', function (e) {
 				console.log(e);
-				$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+				// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
 				$('#btn-copy').css('margin-top', '0.95rem');
 				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 				window.location.href = 'taobao://';
@@ -190,10 +190,10 @@
 			var _goodsId = $('#hidgoodsId').val();
 			var _hidcouponLink = $('#hidcouponLink').val();
 
-			console.log(_goodsId);
-			console.log(_hidcouponLink);
+			// console.log(_goodsId);
+			// console.log(_hidcouponLink);
 
-			$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+			// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
           $('#btn-copy').css('margin-top', '0.95rem');
           $('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取优惠券</p><p class='inner_span_copy2'>处理中</p>");
 
@@ -206,17 +206,25 @@
 		          console.log(error);
 		          alert(error.responseText);
 		          $(".reload").show();
+		          $('#btn-copy').css('margin-top','0.97rem');
+          		$('#btn-copy').html("领取优惠券");
 		      },
 		      success: function(data) {
-		          console.log(data);
-		          console.log(JSON.parse(data).data.tpwd);
-		          console.log(JSON.parse(data).data.couponClickUrl);
-		          // $('#cut').html(JSON.parse(data).data.tpwd);	  
-		          _url = JSON.parse(data).data.couponClickUrl;
-		          _url = _url.replace('https://','taobao://');
-		          _url = _url.replace('http://','taobao://');
-		          console.log(_url);
-		          window.location.href = _url;        
+		          // console.log(data);
+		          $('#btn-copy').css('margin-top','0.97rem');
+	          		$('#btn-copy').html("领取优惠券");
+
+		          if (data.length > 0 && JSON.parse(data).code == 0) {
+		          	
+		          		// console.log(JSON.parse(data).data.tpwd);
+			          // console.log(JSON.parse(data).data.couponClickUrl);
+			          // $('#cut').html(JSON.parse(data).data.tpwd);	  
+			          _url = JSON.parse(data).data.couponClickUrl;
+			          _url = _url.replace('https://','taobao://');
+			          _url = _url.replace('http://','taobao://');
+			          // console.log(_url);
+			          window.location.href = _url;
+		          }       
 		      }
 		  });
 

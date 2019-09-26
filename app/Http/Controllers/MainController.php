@@ -10,6 +10,7 @@ use App;
 use App\Helpers\VIPApp;
 use App\Http\Controllers\tabaoApiController;
 use App\Members as Member;
+use App\Members;
 use App\Shareproduct;
 use App\Voucher;
 use App\Wallet;
@@ -27,7 +28,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use session;
+use Session;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MainController extends BaseController
 {
@@ -133,6 +135,51 @@ class MainController extends BaseController
 		// dd($data);
 
 		return view('client/tabao_product_detail', $data);
+	}
+
+	public function showLoginFormExternal()
+    {
+    	if (Auth::Guard('member')->check()) {
+	    	$this->forcelogout();
+	    }
+    	$data['RunInApp'] = false;
+        return view('auth/login_external', $data);
+        
+    }
+
+    public function showRegisterFormExternal($ref = FALSE)
+	{
+		if (Auth::Guard('member')->check()) {
+			$this->forcelogout();
+		}
+
+		$data = [];
+				
+		if (!empty($ref))
+		{
+			Session::forget('refcode');
+
+			$data['ref']  = Members::CheckReferral($ref);
+			
+			$data['refcode'] = $ref;
+
+			if (!empty($data['ref'])) {
+				session(['refcode' => $ref]);	
+			}
+			
+		}
+		$data['RunInApp'] = false;
+
+		return view('auth.register_external', $data);
+	}  
+
+	public function forcelogout()
+	{
+		// $user = Auth::guard('member')->user();
+		Auth::logout();
+		// $this->guard()->logout();
+		// $request->session()->flush();		
+		// $request->session()->regenerate();		
 	}
 
 }

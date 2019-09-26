@@ -70,23 +70,10 @@
     
 @endsection
 
-@if($RunInApp)
-  <!-- top nav -->
-  @section('left-menu')
-    <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
-  @endsection
+@section('title', '用户登录')
 
-  @section('title', '用户登录')
-
-  @section('right-menu')
-  @endsection
-@else
-  @section('title', '用户登录')
-
-  @section('top-navbar')    
-  @endsection
-
-@endif
+@section('top-navbar')    
+@endsection
 
 @section('content')
 <div class="" id="loginvalidation-errors"></div>
@@ -110,7 +97,7 @@
             </dd>
           </dl>
           <button class="login" id="dologin">登录</button>
-          <h2>没有账号，<a href="/app-register">
+          <h2>没有账号，<a href="/external/register">
               <font color="#7c48e4">注册</font>
             </a></h2>
 
@@ -171,11 +158,11 @@
                             
                             //url = "/cs/{{env('voucher_featured_id','220')}}";
 							             url = data.url;
-                           if (_runinapp) {
-                            $(location).attr("href", url);
-                           }else {
+                           // if (_runinapp) {
+                           //  $(location).attr("href", url);
+                           // }else {
                             being.showMsg('.loginMsg');
-                           }
+                           // }
                             
                         }
                     else 

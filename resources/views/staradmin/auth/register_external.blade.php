@@ -70,23 +70,10 @@
     
 @endsection
 
-@if($RunInApp)
-  <!-- top nav -->
-  @section('left-menu')
-    <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
-  @endsection
+@section('title', '用户注册')
 
-  @section('title', '用户注册')
-
-  @section('right-menu')
-  @endsection
-@else
-  @section('title', '用户注册')
-
-  @section('top-navbar')    
-  @endsection
-
-@endif
+@section('top-navbar')    
+@endsection
 
 @section('content')
 
@@ -123,7 +110,7 @@
             @endif
           </dl>
           <button class="login" id="doregi">下一步</button>
-          <h2>已有账号，<a href="/app-login">
+          <h2>已有账号，<a href="/external/login">
               <font color="#7c48e4">登录</font>
             </a></h2>
         </div>
@@ -191,13 +178,9 @@
                             $('#validation-errors').append('<div class="alert alert-success isa_success">'+sdf+'</div');
                             
                             url = data.url;
-
                             console.log(refcode);
-                            if (refcode != '' || _runinapp == false) {
-                              being.showMsg('.loginMsg');
-                            } else {
-                              $(location).attr("href", url);  
-                            } 
+                            being.showMsg('.loginMsg');
+                            
                         }
                     else 
                         {

@@ -92,6 +92,9 @@ Route::get('locale/{locale}', function ($locale) {
 //wechat - redirect to redeem page
 Route::get( '/goredeem', 'ClientController@member_access_redeem' )->name( 'client.access_redeem' );
 
+$this->get( '/external/login', 'MainController@showLoginFormExternal' )->name( 'external.login' );
+$this->get( '/external/register{token?}', 'MainController@showRegisterFormExternal' )->name( 'external.register' );
+
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
@@ -324,8 +327,6 @@ $this->get( 'app-login', 'Auth\MemberLoginController@showLoginFormApp' )->name( 
 
 $this->get( 'app-register/{token?}', 'Auth\MemberRegisterController@showRegisterFormApp' )->name( 'app.register' );
 //Auth Routes END
-
-
 
 //Admin
 Route::group( [ 'middleware' => 'auth:admin' ], function () {
