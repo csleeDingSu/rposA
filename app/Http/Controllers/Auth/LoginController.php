@@ -210,6 +210,10 @@ class LoginController extends Controller
 		// $request->session()->forget(['refcode']);
 		Session::forget('refcode');
 
+		if (!empty($request->external)) {
+			return redirect('/external/' . $request->external);
+		}
+
 		$isApp = env('THISVIPAPP', false);
 		if ($isApp) {
 			return redirect('/app-login');

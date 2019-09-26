@@ -140,7 +140,7 @@ class MainController extends BaseController
 	public function showLoginFormExternal()
     {
     	if (Auth::Guard('member')->check()) {
-	    	$this->forcelogout();
+	    	return redirect('/logout?external=login');
 	    }
     	$data['RunInApp'] = false;
         return view('auth/login_external', $data);
@@ -150,7 +150,7 @@ class MainController extends BaseController
     public function showRegisterFormExternal($ref = FALSE)
 	{
 		if (Auth::Guard('member')->check()) {
-			$this->forcelogout();
+			return redirect('/logout?external=register');
 		}
 
 		$data = [];
@@ -172,14 +172,5 @@ class MainController extends BaseController
 
 		return view('auth.register_external', $data);
 	}  
-
-	public function forcelogout()
-	{
-		// $user = Auth::guard('member')->user();
-		Auth::logout();
-		// $this->guard()->logout();
-		// $request->session()->flush();		
-		// $request->session()->regenerate();		
-	}
 
 }
