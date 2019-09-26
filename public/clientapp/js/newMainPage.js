@@ -7,7 +7,9 @@ var priceUpperLimit = 50;
 
 $(document).ready(function () {
 
-  getFromTabao(pageId);
+  pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val(); 
+
+  // getFromTabao(pageId);
 
   $('#btn-search').click(function() {
     goSearch();
@@ -68,7 +70,7 @@ function getFromTabao(pageId){
             highlight_list_html +='<a href="/main/product/detail' + _param +'">' +
                                     '<span><img src="'+item.mainPic+'"></span>' +
                                     '<h2><em>¥</em> '+ newPrice +'</h2>' +
-                                    '<p>热销'+sales+'万件</p>' +
+                                    '<p>热销'+sales+'</p>' +
                                   '</a>';
           } else {
 
