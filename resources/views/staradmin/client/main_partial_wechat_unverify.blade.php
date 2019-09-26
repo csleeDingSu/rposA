@@ -18,9 +18,12 @@
       @php ($i = 0)
       @foreach($product['list'] as $p)
         @php ($i++)
+        @php ($oldPrice = number_format((float)$p['originalPrice'], 2, '.', ''))
         @php ($newPrice = $p['originalPrice'] - $p['couponPrice'] - 12)
         @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
         @php ($sales = ($p['monthSales'] >= 1000) ? number_format(((float)$p['monthSales'] / 10000), 2, '.', '') . '万' : $p['monthSales'] . '件')
+        @php ($reward = (int)($newPrice * 10))
+        @php ($reward = ($reward <= 0) ? '100' : $reward)
         @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&voucher_pass=")
 
         <a href="/main/product/detail{{$_param}}">
