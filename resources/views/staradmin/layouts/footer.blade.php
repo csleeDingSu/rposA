@@ -73,7 +73,7 @@ if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
 			<style>
 			.cardFoot
 				{
-					margin-bottom: 150px !important;
+					margin-bottom: 15px !important;
 				}		
 			</style>
 		@endif
