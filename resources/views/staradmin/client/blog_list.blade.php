@@ -3,7 +3,7 @@
         <div class="listBox">
           <div class="userBox">
             <div class="username">
-              <h2>{{substr($b->phone, 0, 3)}}****{{substr($b->phone, 7, strlen($b->phone))}}</h2><span>{{date('Y.m.d h:i:s A', strtotime($b->updated_at))}}</span>
+              <h2>{{substr($b->phone, 0, 3)}}****{{substr($b->phone, 7, strlen($b->phone))}}</h2><span>{{date('Y.m.d H:i:s', strtotime($b->updated_at))}}</span>
             </div>
             <div class="address">{{$b->address}}</div>
           </div>

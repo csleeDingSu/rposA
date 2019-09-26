@@ -89,7 +89,7 @@
 						@php ($_url = $data['couponLink'])
 						@php ($_url = (str_replace('https://','taobao://',$_url)))
 						@php ($_url = (str_replace('http://','taobao://',$_url)))
-						<a href="{{$_url}}">
+						<a id="btn-couponlink">
 						<!-- <a href="taobao://item.taobao.com/item.htm?id={{$data['goodsId']}}">  -->
 						<!-- <a href="https://t.asczwa.com/taobao?backurl={{$_url}}"> -->
 							<div id="btn-copy" class="btn-copy">领取优惠券</div>
@@ -145,12 +145,15 @@
 	<script>
 		
 		$(document).ready(function(){
+
+			$('#btn-couponlink').click(function () {
+				gettpwd();
+			});
+
 			var clipboard = new ClipboardJS('.copyBtn', {
 				target: function () {
-					gettpwd();
 					return document.querySelector('#cut');
 				}
-		        
 			});
 
 			clipboard.on('success', function (e) {
@@ -186,11 +189,13 @@
 		function gettpwd() {
 			var _goodsId = $('#hidgoodsId').val();
 			var _hidcouponLink = $('#hidcouponLink').val();
-// $('#cut').html(_hidcouponLink);
-// console.log($('#cut').html());
 
 			console.log(_goodsId);
 			console.log(_hidcouponLink);
+
+			$('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
+          $('#btn-copy').css('margin-top', '0.95rem');
+          $('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取优惠券</p><p class='inner_span_copy2'>处理中</p>");
 
 			$.ajax({
 		      type: 'GET',
@@ -205,8 +210,13 @@
 		      success: function(data) {
 		          console.log(data);
 		          console.log(JSON.parse(data).data.tpwd);
-		          $('#cut').html(JSON.parse(data).data.tpwd);	  
-		          window.location.href = 'taobao://';        
+		          console.log(JSON.parse(data).data.couponClickUrl);
+		          // $('#cut').html(JSON.parse(data).data.tpwd);	  
+		          _url = JSON.parse(data).data.couponClickUrl;
+		          _url = _url.replace('https://','taobao://');
+		          _url = _url.replace('http://','taobao://');
+		          console.log(_url);
+		          window.location.href = _url;        
 		      }
 		  });
 

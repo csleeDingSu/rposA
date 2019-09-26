@@ -7,6 +7,8 @@ var priceUpperLimit = 50;
 
 $(document).ready(function () {
 
+  getFromTabao(pageId);
+
   $('#btn-search').click(function() {
     goSearch();
   });
@@ -14,8 +16,6 @@ $(document).ready(function () {
   $('#search').click(function() {
     goSearch();
   });
-  
-  getFromTabao(pageId);
 
   //execute scroll pagination
   being.scrollBottom('.scrolly', '.box', () => {   
@@ -42,8 +42,13 @@ function getFromTabao(pageId){
           $(".reload").show();
       },
       success: function(data) {
-          // console.log(data);
-          // console.log(JSON.parse(data).data.list);
+          // console.log(_data);
+          // console.log(_data.code);
+          if (data.length <= 0 || JSON.parse(data).code != 0) {
+            console.log(JSON.parse(data));
+            getFromTabao(pageId);
+          };
+
           var records = JSON.parse(data).data.list;
           var newPrice = 0; 
           var sales = 0;
@@ -52,7 +57,7 @@ function getFromTabao(pageId){
             oldPrice = parseFloat(item.originalPrice).toFixed(2);
             newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
             newPrice = (newPrice > 0) ? newPrice : 0;
-            sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
+            sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
             reward = parseInt(newPrice * 10);
             reward = (reward <= 0) ? '100' : reward;
             _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
@@ -84,7 +89,7 @@ function getFromTabao(pageId){
                           '<p class="icon">¥</p>' +
                           '<p class="nowTxt">'+ newPrice +'</p>' +
                           '<p class="oldTxt"><em class="fs">¥</em>'+oldPrice+'</p>' +
-                          '<p class="num">热销'+ sales +'万</p>' +
+                          '<p class="num">热销'+ sales +'</p>' +
                         '</div>' +
                       '</div>' +
                     '</div>';

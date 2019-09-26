@@ -38,7 +38,6 @@
         @endif
         <h2 class="listTitle">超值爆款产品</h2>
         <div class="listBox">
-          
         </div>
         <hr class="h36">
 </div>

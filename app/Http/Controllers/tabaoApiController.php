@@ -160,11 +160,11 @@ class tabaoApiController extends BaseController
 
             'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
 
-            'sort' => 'total_sales',
+            'sort' => 2,
 
             'priceLowerLimit' => empty($request->input('priceLowerLimit')) ? 12 : $request->input('priceLowerLimit'),
 
-            'priceUpperLimit' => empty($request->input('priceUpperLimit')) ? 9999 : $request->input('priceUpperLimit'),
+            'priceUpperLimit' => empty($request->input('priceUpperLimit')) ? 99999 : $request->input('priceUpperLimit'),
 
         ];
 
@@ -295,7 +295,83 @@ class tabaoApiController extends BaseController
         
     }
 
+    public function getCollectionList(Request $request)
+    {
+        $host = "https://openapi.dataoke.com/api/goods/get-collection-list";
 
+        //默认必传参数
+        $data = [
 
+            'appKey' => $this->appKey,
+            'version' => 'v1.0.1',
+            'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
+            'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
+            'sort' => 2,
+        ];
 
+        // dd($data);
+
+        //加密的参数
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
+
+        //拼接请求地址
+        $url = $host .'?'. http_build_query($data);
+        
+        // dd($this->getCurl($url));
+        return json_decode($this->getCurl($url),true);
+        
+    }
+
+    public function getCollectionListWithDetail(Request $request)
+    {
+        $result['list'] = [];
+
+        $list = $this->getCollectionList($request);
+
+        if (!empty($list['data']['list'])) {
+            foreach($list['data']['list'] as $p) {
+
+                $request->merge(['id' => $p['id']]);
+                $request->merge(['goodsId' => $p['goodsId']]);
+                $details = $this->getGoodsDetails($request);
+                if (!empty($details['data']['list'])) {
+                    array_push($result['list'],$details['data']['list']);    
+                }
+            }
+        }
+
+        if (!empty($result['list'])) {
+            array_replace($list['data']['list'],$result['list']);
+        }
+
+        return $list;
+        
+    }
+
+    public function getOwnerGoods(Request $request)
+    {
+        $host = "https://openapi.dataoke.com/api/goods/get-owner-goods";
+
+        //默认必传参数
+        $data = [
+
+            'appKey' => $this->appKey,
+            'version' => 'v1.0.1',
+            'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
+            'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
+            'sort' => 2,
+        ];
+
+        // dd($data);
+
+        //加密的参数
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
+
+        //拼接请求地址
+        $url = $host .'?'. http_build_query($data);
+        
+        // dd($this->getCurl($url));
+        return json_decode($this->getCurl($url),true);
+        
+    }
 }

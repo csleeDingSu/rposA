@@ -105,7 +105,7 @@ document.onreadystatechange = function () {
 
                       newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
                       newPrice = (newPrice > 0) ? newPrice : 0;
-                      sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
+                      sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
                       reward = parseInt(newPrice * 10);
                       reward = (reward <= 0) ? '100' : reward;
                       _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +item.originalPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';

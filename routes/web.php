@@ -763,7 +763,11 @@ Route::any( '/tabao/get-goods-list', 'tabaoApiController@getGoodsList' )->name( 
 Route::any( '/tabao/list-super-goods', 'tabaoApiController@getListSuperGoods' )->name( 'tabao.getListSuperGoods' );
 Route::any( '/tabao/get-goods-details', 'tabaoApiController@getGoodsDetails' )->name( 'tabao.getGoodsDetails' );
 Route::any( '/tabao/get-privilege-link', 'tabaoApiController@getPrivilegeLink' )->name( 'tabao.getPrivilegeLink' );
-Route::any( '/tabao/get-dtk-search-goods', 'tabaoApiController@getDtkSearchGoods' )->name( 'tabao.getDtkSearchGoods' );
+Route::any( '/tabao/get-dtk-search-goods', 'tabaoApiController@getDtkSearchGoods' )->name('tabao.getDtkSearchGoods');
+Route::any( '/tabao/get-collection-list', 'tabaoApiController@getCollectionList' )->name('tabao.getCollectionList');
+Route::any( '/tabao/get-collection-list-with-detail', 'tabaoApiController@getCollectionListWithDetail' )->name('tabao.getCollectionListWithDetail');
+Route::any( '/tabao/get-owner-goods', 'tabaoApiController@getOwnerGoods' )->name('tabao.getOwnerGoods');
+
 
 
 
