@@ -56,9 +56,9 @@
 	  
 	  @if( Agent::is('OS X') )		
 			<style>
-			.cardFoot
+			.card-bar
 				{
-					margin-bottom: 150px !important;
+					margin-bottom: 15px !important;
 				}		
 			</style>
 		@endif
