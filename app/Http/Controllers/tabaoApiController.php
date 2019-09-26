@@ -304,7 +304,7 @@ class tabaoApiController extends BaseController
 
             'appKey' => $this->appKey,
             'version' => 'v1.0.1',
-            'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
+            'pageSize' => empty($request->input('pageSize')) ? 1 : $request->input('pageSize'),
             'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
             // 'cid' => "1,2,3,4,5,6,7,8,9,10,11,12,13,14",
             // 'cid' => '6',
@@ -331,7 +331,7 @@ class tabaoApiController extends BaseController
         $result['list'] = [];
 
         $list = $this->getCollectionList($request);
-        var_dump($list);
+        // var_dump($list);
 
         if (!empty($list['data']['list'])) {
             foreach($list['data']['list'] as $p) {
@@ -339,9 +339,10 @@ class tabaoApiController extends BaseController
                 $request->merge(['id' => $p['id']]);
                 $request->merge(['goodsId' => $p['goodsId']]);
                 $details = $this->getGoodsDetails($request);
-                var_dump($details);
-                if (!empty($details['data']['list'])) {
-                    array_push($result['list'],$details['data']['list']);    
+                // var_dump($details['data']);
+                // dd($details['data']['list']);
+                if (!empty($details['data'])) {
+                    array_push($result['list'],$details['data']);    
                 }
             }
         }
