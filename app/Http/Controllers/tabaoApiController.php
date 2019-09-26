@@ -304,7 +304,7 @@ class tabaoApiController extends BaseController
 
             'appKey' => $this->appKey,
             'version' => 'v1.0.1',
-            'pageSize' => empty($request->input('pageSize')) ? 100 : $request->input('pageSize'),
+            'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
             'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
             // 'cid' => "1,2,3,4,5,6,7,8,9,10,11,12,13,14",
             // 'cid' => '6',
