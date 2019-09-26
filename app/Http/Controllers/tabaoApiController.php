@@ -328,31 +328,27 @@ class tabaoApiController extends BaseController
 
     public function getCollectionListWithDetail(Request $request)
     {
-        $result['list'] = [];
+        $result = array();
+        $newList = null;
 
         $list = $this->getCollectionList($request);
-        // var_dump($list);
-
+        
         if (!empty($list['data']['list'])) {
             foreach($list['data']['list'] as $p) {
-
                 $request->merge(['id' => $p['id']]);
                 $request->merge(['goodsId' => $p['goodsId']]);
                 $details = $this->getGoodsDetails($request);
-                // var_dump($details['data']);
-                // dd($details['data']['list']);
                 if (!empty($details['data'])) {
-                    array_push($result['list'],$details['data']);    
+                    array_push($result,$details['data']);                    
                 }
             }
         }
 
-        if (!empty($result['list'])) {
-            array_replace($list['data']['list'],$result['list']);
+        if (!empty($result)) {
+            $newList = ['time' => $list['time'], 'code' => $list['code'], 'msg' => $list['msg'], 'data' => ['list' => $result, 'totalNum' => $list['data']['totalNum'], 'pageId' => $list['data']['pageId']]];
         }
 
-        return $list;
-        
+        return $newList;
     }
 
     public function getOwnerGoods(Request $request)
