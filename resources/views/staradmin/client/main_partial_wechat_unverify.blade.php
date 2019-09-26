@@ -29,8 +29,8 @@
           <p>热销{{$sales}}</p>
         </a>    
 
-        @if ($i == 2)
-          @php (break)
+        @if ($i == 3)
+          @break
         @endif
       @endforeach
     @else
