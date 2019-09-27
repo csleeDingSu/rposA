@@ -266,6 +266,8 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get( '/edit-setting', function () {
 		return view( 'client/edit_setting');
 	} );
+	
+	Route::any( '/youzan', 'PaymentController@index' )->name( 'client.payment.index' );
 
 } );
 
