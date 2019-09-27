@@ -22,6 +22,7 @@
 @section('content')
 <input id="hidgoodsId" type="hidden" value="{{$data['goodsId']}}" />
 <input id="hidcouponLink" type="hidden" value="{{$data['couponLink']}}" />
+<input id="hidusedpoint" type="hidden" value="{{$usedpoint}}" />
 
 	<div class="infinite-scroll" id="product">
 		<div class="header_pr header_goods ">
@@ -30,30 +31,33 @@
         	</header>	
         </div>
 
+        @php ($photourl = empty($data['mainPic']) ? null : $data['mainPic'])
+		@php ($photourl = str_replace('_310x310.jpg', '', $photourl))
+		@php ($photourl = str_replace('_160x160.jpg', '', $photourl))
+		@php ($newPrice = ($data['originalPrice'] - $data['couponPrice'] - 12) )
+        @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
+
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
-					@php ($photourl = empty($data['mainPic']) ? null : $data['mainPic'])
-
-					@php ($photourl = str_replace('_310x310.jpg', '', $photourl))
-
-					@php ($photourl = str_replace('_160x160.jpg', '', $photourl))
-
 					<img src="{{$photourl}}">
 				</a>
-			</li>
+			</li>			    		
 			<li class="dbox">
 				<div class="dbox1">
-					<span>
-						<h2>{{$data['title']}}</h2>
+					<h2>{{$data['title']}}</h2>
+					<div class="line-reward">
+						<div class="reward-txt">下单后</div>
+						<div class="reward">返{{$newPrice * 10}}积分</div>
+						<div class="btn-reward">怎么返?</div>
 						<h3>热销{{$data['monthSales']}}件</h3>
-					</span>							
+					</div>							
 				</div>
 			</li>
 			<li class="dbox">
 				<div class="dbox1 line-price">
 					<div class="caption_redeem_angpao">
-						<span>如何补贴</span>
+						<span class="input-txt">如何补贴</span>
 						<img src="{{ asset('/client/images/productv2_detail_caption.png') }}" />
 					</div>
 					<div class="normal-price">
@@ -72,13 +76,22 @@
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
                 	<div class="new-price">
-                		@php ($newPrice = ($data['originalPrice'] - $data['couponPrice'] - 12) )
-                		@php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
                 		<span class="new-cur">￥<span class="price">{{$newPrice + 0}}</span></span>
                 		<div class="txt">到手价</div>
                 	</div>	
 				</div>
 			</li>
+
+			<li class="dbox reward-bg">		
+				<div class="dbox1 reward-desc">
+					<div class="title">奖励补贴说明</div>
+					<ul>
+						<li>抽奖补贴由挖宝官方提供，新用户能免费获得1场次免费抽奖，通过抽奖可获得12元红包。</li>
+						<li>用户可通过邀请好友，获得更多抽奖场次，从而获得更多购物红包。</li>
+					</ul>				
+				</div>
+			</li>
+			
 			<li class="dbox footer">
 					<div id="button-wrapper">
 						@if (empty($data['couponLink']))
@@ -140,11 +153,87 @@
 		</div>
 	</div>
 
+	<!-- reward rules starts -->
+	<div class="modal fade col-md-12" id="reward-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-title">
+								  奖励积分说明
+								</div>
+								<div class="instructions">
+									<p>积分是奖励给通过平台领券去淘宝下单的用户，积分可兑换抽奖场次。</p>
+									<p>1200积分兑换1场次，抽最高12元红包，系统自动兑换。
+									</p>
+								</div>
+								<div class="modal-close-btn">
+									知道了
+								</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- go invite friend starts -->
+	<div class="modal fade col-md-12" id="invite-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-title">
+								  邀请好友抽红包
+								</div>
+								<div class="instructions">
+									<p>邀请1个好友可获得1次抽奖补贴，你的好友能获得1次新人抽奖补贴。你的好友每邀请1个好友，你还可以获得1次抽奖补贴，邀请越多，抽奖补贴越多。</p>
+								</div>
+								<div class="modal-go-invite">
+									去邀请
+								</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
 	@parent
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script>
 		
 		$(document).ready(function(){
+			var usedpoint = $('#hidusedpoint').val();
+			if (usedpoint > 0) {
+				$('.input-txt').html('邀请奖励');
+				$('.caption_redeem_angpao').click( function() {
+		        	$('#invite-modal').modal();
+		    	});
+		    	$('.modal-go-invite').click(function() {
+		    		window.location.href = '/share';
+		    	});
+			} else {
+				$('.input-txt').html('如何补贴');
+				$('.caption_redeem_angpao').click( function() {
+		        	$('#draw-rules').modal();
+		    	});
+			}
+
+			$('.btn-reward').click(function() {
+				$('#reward-rules').modal();
+			});
+
+			$('.modal-close-btn').click( function() {
+	        	$('.modal').modal('hide');
+				$('.modal-backdrop').remove(); 
+	    	});
 
 			$('#btn-couponlink').click(function () {
 				gettpwd();
@@ -173,10 +262,6 @@
 			});
 
 			$('.draw-price').click( function() {
-	        	$('#draw-rules').modal();
-	    	});
-
-	    	$('.caption_redeem_angpao').click( function() {
 	        	$('#draw-rules').modal();
 	    	});
 

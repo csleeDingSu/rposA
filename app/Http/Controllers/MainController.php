@@ -136,9 +136,15 @@ class MainController extends BaseController
 		// 	$data['data'] = $res['data'];
 		// }
 
+
 		$data['data'] = ['id' => $request->id,'goodsId' => $request->goodsId,'mainPic' => $request->mainPic, 'title' => $request->title, 'monthSales' => $request->monthSales,'originalPrice' => $request->originalPrice,'couponPrice' => $request->couponPrice, 'couponLink' => $request->couponLink, 'voucher_pass' => null];
 
-		// dd($data);
+		$data['usedpoint'] = 0;
+		if (Auth::Guard('member')->check()) {
+			$gameid = 102;
+			$member_id = Auth::guard('member')->user()->id;
+			$data['usedpoint'] = \DB::table('a_view_used_point')->where('member_id',$member_id)->where('game_id',$gameid)->sum('point');
+		}
 
 		return view('client/tabao_product_detail', $data);
 	}

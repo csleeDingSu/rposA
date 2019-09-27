@@ -384,4 +384,156 @@
 
 	.line-price {
 		padding: 0.2rem 0 0 0;
+		position: relative;
+		height: 1.5rem;
+		margin-top:0.4rem;
 	}
+
+	.line-reward{
+		display: inline-block;
+		margin: 0 0.2rem;
+		padding-bottom: 0.1rem;
+		width: 100%;
+	}
+
+	.line-reward .reward-txt{
+		display: inline-block;
+	    font-size: 4vw;
+	    color: #bebebe;
+	    line-height: 0.3rem;
+	}
+
+	.line-reward .reward{
+		display: inline-block;
+	    width: auto;
+	    color: red;
+	    font-size: 3.5vw;
+	    margin: 0 auto;
+	    background-image: url(/clientapp/images/product/reward-bg.png);
+	    background-color: transparent;
+	    background-repeat: no-repeat;
+	    background-size: contain;
+	    padding: 0.02rem 0.1rem;
+	    text-align: center;
+	    line-height: 0.3rem;
+	}
+
+	.line-reward .btn-reward {
+		display: inline-block;
+	    border-radius: 20px;
+	    background-color: #f4f1f1;
+	    font-size: 3.5vw;
+	    color: #bebebe;
+	    padding: 0.02rem 0.2rem;
+	    width: auto;
+	    text-align: center;
+	    line-height: 0.3rem;
+	}
+
+	.line-reward h3{
+		display: inline-block;
+	    float: right;
+	    padding: 0 0.2rem;
+	    line-height: 0.3rem;
+	}
+
+	.reward-bg {
+		background-color: #eeeeee;
+	    height: auto;
+	    padding: 0.2rem 0 0 0;
+	}
+
+	.reward-desc {
+		background-color: #fff;
+    	padding: 0.2rem 0.2rem 1.2rem 0.2rem;
+	}
+
+	.reward-desc .title{
+		padding: 0;
+	    font-size: 4vw;
+	    font-weight: 500;
+	    color: #666666;
+	}
+
+	.reward-desc ul {
+		padding: 0 0.3rem;
+	}
+
+	.reward-desc ul>li{
+	    list-style-type: initial;
+	    font-size: 3vw;
+	    color: #bebebe;
+	    line-height: 0.4rem;
+	}
+
+	.dbox1 {
+		padding-top: 0.2rem;
+	}
+
+#reward-rules .modal-title {	
+	    font-size: 24px;
+	}
+
+	#reward-rules .instructions {
+		
+		margin-top: 5px;
+		margin-bottom: 10px;
+		font-size: 14px;
+		font-weight: 400;
+		color: #999;
+		padding:10px;
+		text-align: left;
+		letter-spacing: 0.5px;
+		line-height: 0.5rem;
+
+	}
+
+	#reward-rules .modal-close-btn {
+		background-color: #ff504a; 
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff504a));	
+		color: white;
+		border-radius: 100px;
+		margin-left: 15%;
+		margin-right: 15%;
+		padding:10px;
+		font-size: 20px
+	}
+
+	#reward-rules .modal-body {
+		padding: 15px;
+	}
+
+	#invite-modal .modal-title {	
+	    font-size: 24px;
+	}
+
+	#invite-modal .instructions {
+		
+		margin-top: 5px;
+		margin-bottom: 10px;
+		font-size: 14px;
+		font-weight: 400;
+		color: #999;
+		padding:10px;
+		text-align: left;
+		letter-spacing: 0.5px;
+		line-height: 0.5rem;
+
+	}
+
+	#invite-modal .modal-go-invite {
+		background-color: #ff504a; 
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff504a));	
+		color: white;
+		border-radius: 100px;
+		margin-left: 15%;
+		margin-right: 15%;
+		padding:10px;
+		font-size: 20px
+	}
+
+	#invite-modal .modal-body {
+		padding: 15px;
+	}
+
+	

@@ -10,9 +10,9 @@
 </div>
 <div class="ranking-note-top">
 	<div class="description">
-			邀请1个好友可获得1次抽奖补贴，而你的好友能获得2次新人抽奖补贴，你的好友每邀请1个好友，你还可以获得1次抽奖补贴，邀请越多，抽奖补贴越多。
+			邀请1个好友可获得1次抽奖补贴，而你的好友能获得1次新人抽奖补贴，你的好友每邀请1个好友，你还可以获得1次抽奖补贴，邀请越多，抽奖补贴越多。
 	</div>
-	<div class="highlight">每次抽奖补贴有98.43%概率获得6元。</div>
+	<div class="highlight">每次抽奖补贴有98.43%概率获得12元。</div>
 </div>
 <div class="ranking-note-bottom">
 	<div class="total-point-left">

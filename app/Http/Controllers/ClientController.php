@@ -281,8 +281,8 @@ class ClientController extends BaseController
 			$data['betting_count'] = member_game_result::where("member_id", $member_id)->get()->count();
 
 			 //referral friends
-			$intro_count         = Member::get_introducer_count($member_id);
-			$sc_child            = Member::get_second_level_child_count($member_id);
+			$intro_count         = Member::get_introducer_count($member_id, 0);
+			$sc_child            = 0; //Member::get_second_level_child_count($member_id);
 			
 			$total_intro = 	(!empty($intro_count->count) ? $intro_count->count : 0) + (!empty($sc_child['count']) ? $sc_child['count'] : 0) ;
 
