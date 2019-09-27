@@ -74,9 +74,11 @@
 			</div>
 
 			@if (env('THISVIPAPP', false))
-				<div class="box">
-					<div class="btn-life">
-						剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+				<div id="flex-right-menu">
+					<div class="box">
+						<div class="btn-life">
+							剩0次
+						</div>
 					</div>
 				</div>
 			@else
@@ -112,6 +114,7 @@
 			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '12')}}" />
 			<input id='hidMinAcupoint' type="hidden" value="{{env('coin_min', '6')}}" />
 			<input id='hidIsApp' type="hidden" value="{{env('THISVIPAPP','false')}}" />
+			<input id='hidLife' type="hidden" value="" />
 	  	</div>
 
 	</div>

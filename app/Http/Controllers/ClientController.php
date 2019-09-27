@@ -270,8 +270,11 @@ class ClientController extends BaseController
 
 			$member_id = Auth::guard('member')->user()->id;
 
-        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();
-			
+        	// $member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();
+			// $wallet    = Wallet::get_wallet_details_all($member, env('THISVIPAPP',false));
+			// $member_mainledger = $wallet['gameledger']['102'];
+			$member_mainledger = null;
+
 			if($request->session()->get('firstwin') == 'no'){
 				$firstwin = null;
 			} else {

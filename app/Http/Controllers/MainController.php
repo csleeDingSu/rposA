@@ -68,11 +68,13 @@ class MainController extends BaseController
 			$member = Auth::guard('member')->user()->id	;
 			$data['member']    = Member::get_member($member);
 			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+			$data['game_102_usedpoint'] = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',102)->sum('point');
 
 		} else {
 			$member = null;
 			$data['member'] = null;
 			$data['wallet'] = null;	
+			$data['game_102_usedpoint'] = 0;
 		}
 		
 		$total_redeem =  \App\Game::get_total_redeem();

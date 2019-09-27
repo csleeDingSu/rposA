@@ -1476,3 +1476,13 @@ a {
 }
 
 /* End modal-withdraw */
+
+.btn-go-shop {
+	width: 2.2rem;
+    height: 0.8rem;
+    cursor: pointer;
+    background: url(/clientapp/images/game-node/go-shop.png) no-repeat top center;
+    background-size: contain;
+    float: right;
+    margin-top: 0.15rem;
+}

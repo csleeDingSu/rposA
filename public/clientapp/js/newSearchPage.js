@@ -72,10 +72,16 @@ document.onreadystatechange = function () {
                 // console.log(JSON.parse(data));
                 if (data.length <= 0) {
 
-                  html += '<div class="no-record">' +
-                            '<img src="/clientapp/images/no-record/search.png">' +
-                            '<div>无搜索商品，请尝试其他关键字</div>' +
-                          '</div>';
+                  html += '<ul class="no-connection-list">' +
+                            '<li>' +
+                              '<div class="no-connection-background">' +
+                                '<img src="/clientapp/images/no-connection/no-internet.png" />' +
+                              '</div>' +
+                            '</li>' +
+                            '<li class="line1">网络竟然崩溃了</li>' +
+                            '<li class="line2">别紧张，重新刷新试试</li>' +
+                            '<div class="btn-refresh">重新刷新</div>' +
+                          '</ul>';
 
                   $('.listBox').html(html);
                   return false; 
@@ -86,10 +92,23 @@ document.onreadystatechange = function () {
                 console.log(_data.code);
                 if (_data.code != 0){
 
-                  html += '<div class="no-record">' +
-                            '<img src="/clientapp/images/no-record/search.png">' +
-                            '<div>无搜索商品，请尝试其他关键字</div>' +
-                          '</div>';
+                  // html += '<div class="no-record">' +
+                  //           '<img src="/clientapp/images/no-record/search.png">' +
+                  //           '<div>无搜索商品，请尝试其他关键字</div>' +
+                  //         '</div>';
+                  html += '<ul class="no-connection-list">' +
+                            '<li>' +
+                              '<div class="no-connection-background">' +
+                                '<img src="/clientapp/images/no-connection/no-internet.png" />' +
+                              '</div>' +
+                            '</li>' +
+                            '<li class="line1">网络竟然崩溃了</li>' +
+                            '<li class="line2">别紧张，重新刷新试试</li>' +
+                            '<div class="btn-refresh">重新刷新</div>' +
+                          '</ul>';
+                  $('.btn-refresh').click(function() {
+                    goSearch(1);
+                  });
 
                 } else {
                   var records = _data.data.list;

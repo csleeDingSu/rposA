@@ -70,3 +70,45 @@ if it's not present, don't show loader */
 .listBox .typeBox {
    padding-top: 0.1rem;
 }
+
+.no-connection-list {
+    padding: 0.24rem;
+  }
+
+  .no-connection-list li {
+    color: #666;
+    font-size: 0.26rem;
+    padding-bottom: 0.2rem;
+    text-align: center;
+  }
+
+  .no-connection-background {
+    text-align: center;
+    margin: 0 0.45rem;
+}
+
+.no-connection-background img {
+    margin: 2% auto;
+    width: 90%;
+    /*height: 50%;*/
+    }
+
+.no-connection-list .line1 {
+    color: #333;
+    font-size: 0.36rem;
+}
+
+.no-connection-list .line2 {
+    color: #ccc;
+    font-size: 0.28rem;
+}
+
+.no-connection-list .btn-refresh {
+    background-color: #ff466f;
+    font-size: 0.32rem;
+    border-radius: 5px;
+    color: #fff;
+    padding: 0.2rem;
+    text-align: center;
+    margin: 0 2rem;
+}

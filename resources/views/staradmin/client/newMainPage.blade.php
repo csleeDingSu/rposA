@@ -18,9 +18,12 @@
 @endsection
 
 @section('content')
+
 <div class="box">
         <input id="hidPageId" type="hidden" value="{{empty($pageId) ? '' : $pageId}}" />
         <input id="hidweChatVerificationStatus" type="hidden" value="{{empty($member->wechat_verification_status) ? '' : $member->wechat_verification_status}}" />
+        <input id="hidgame102UsedPoint" type="hidden" value="{{$game_102_usedpoint}}" />
+        <input id="hidgame102Life" type="hidden" value="{{empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life}}" />
         <div class="logo rel">
           <img src="{{ asset('/clientapp/images/logo.png') }}" width="100%">
           <div class="searchBox" id="search">
@@ -32,19 +35,16 @@
             <div class="sBtn" id="btn-search">查券</div>
           </div>
         </div>
-        @if(!empty($member) && $member->wechat_verification_status == 0)   <!-- wechat verified -->    
+        @if(!empty($member) && $member->wechat_verification_status == 0 && $game_102_usedpoint > 0)   <!-- wechat verified && old user-->    
           @include('/client/main_partial_wechat_verify')
         @else
-          @include('/client/main_partial_wechat_unverify')
+          @include('/client/main_partial_wechat_unverify') <!-- wechat not verify && new user -->
         @endif
+        <a name="p"></a>
         <h2 class="listTitle">超值爆款产品</h2>
         <div class="listBox">
           @if(!empty($product))
-            @php ($i = 0)
-            @php ($start = (!empty($member) && $member->wechat_verification_status == 0) ? 1 : 4)
             @foreach($product['list'] as $p)
-              @php ($i++)
-              @if ($i >= $start)
                 @php ($oldPrice = number_format((float)$p['originalPrice'], 2, '.', ''))
                 @php ($newPrice = $p['originalPrice'] - $p['couponPrice'] - 12)
                 @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
@@ -52,7 +52,6 @@
                 @php ($reward = (int)($newPrice * 10))
                 @php ($reward = ($reward <= 0) ? '100' : $reward)
                 @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&voucher_pass=")
-                
                 
                 <div class="inBox">
                   <div class="imgBox">
@@ -65,7 +64,16 @@
                     <div class="typeBox">
                       <span class="type-red">{{$p['couponPrice']}}元券</span>
                       <span class="type-sred">奖励 {{$reward}} 积分</span>
-                      <span class="type-blue">抽奖补贴12元</span>
+                    @if ($game_102_usedpoint > 0)
+                      @php ($life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
+                      @if ($life > 0) 
+                      <span class="type-blue">抽奖补贴{{$life * 12}}元</span>
+                      @else
+                      <span class="type-blue">邀请补贴12元</span>
+                      @endif
+                    @else
+                      <span class="type-blue">新人补贴12元</span>
+                    @endif
                     </div>
                     <div class="moneyBox">
                       <p class="icon">¥</p>
@@ -75,9 +83,8 @@
                     </div>
                   </div>
                 </div>
-            @endif
           @endforeach 
-          @endif
+        @endif
       
         </div>
         <hr class="h36">

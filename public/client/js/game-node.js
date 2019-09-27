@@ -207,13 +207,20 @@ function initUser(records){
         $(".span-play-count").html(play_count);
 
         $('.btn-life').html('剩'+life+'次');
-
+        
         setBalance();
 
         if(life == 0){
             if (user_id > 0) {
                 $('#reset-life-share').modal();    
             }
+            html = '<div class="box" id="btn-vip-wrapper">' +
+                    '<div class="btn-go-shop"></div>' +
+                    '</div>';
+            $('#flex-right-menu').html(html);
+            $('.btn-go-shop').click(function() {
+                window.top.location.href = "/main#p";
+            });
         } else if (user_id > 0 && acupoint >= max_acupoint) {
             bindResetLifeButton();
             $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
