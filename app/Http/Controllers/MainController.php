@@ -82,12 +82,17 @@ class MainController extends BaseController
 		$data['total_redeem']  = array_map('intval', str_split($total_redeem));
 
 		$this->tabao = new tabaoApiController();
-		$res = $this->tabao->getCollectionListWithDetail($request);
-		if (!empty($res['data'])) {
-			$data['product'] = $res['data'];
-			$data['pageId'] = $res['data']['pageId'];
-		}
-
+		// $res = $this->tabao->getCollectionListWithDetail($request);
+		// if (!empty($res['data'])) {
+		// 	$data['product'] = $res['data'];
+		// 	$data['pageId'] = $res['data']['pageId'];
+		// }
+		$res = $this->tabao->getTaobaoCollection(1);
+		if (!empty($res)) {
+ 			$data['product'] = $res['data'];
+ 			$data['pageId'] = $res['data']['pageId'];	
+ 		}
+		
 		return view('client/newMainPage', $data);
 		
 	}

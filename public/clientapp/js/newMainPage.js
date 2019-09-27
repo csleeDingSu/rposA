@@ -36,7 +36,8 @@ function getFromTabao(pageId){
   $.ajax({
       type: 'GET',
       // url: "/tabao/get-goods-list?pageSize=" + _pageSize + "&pageId=" + pageId + "&priceLowerLimit=" + priceLowerLimit+ "&priceUpperLimit=" + priceUpperLimit, 
-      url: "/tabao/get-collection-list-with-detail?pageSize=" + _pageSize + "&pageId=" + pageId,
+      // url: "/tabao/get-collection-list-with-detail?pageSize=" + _pageSize + "&pageId=" + pageId,
+      url: "/tabao/get-taobao-collection/" + pageId,
       contentType: "application/json; charset=utf-8",
       dataType: "text",
       error: function (error) {
@@ -45,7 +46,7 @@ function getFromTabao(pageId){
           $(".reload").show();
       },
       success: function(data) {
-          // console.log(_data);
+          console.log(data);
           // console.log(_data.code);
           if (data.length <= 0 || JSON.parse(data).code != 0) {
             console.log(JSON.parse(data));
@@ -111,7 +112,7 @@ function getFromTabao(pageId){
           totalNum = JSON.parse(data).data.totalNum;
         $('#hidPageId').val(JSON.parse(data).data.pageId);
         pageId = $('#hidPageId').val();
-        // console.log(pageId);
+        console.log(pageId);
 
           
       }

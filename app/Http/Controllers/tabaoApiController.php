@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\taobao_collection_list;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -349,6 +350,59 @@ class tabaoApiController extends BaseController
         }
 
         return $newList;
+    }
+
+    public function storeAllCollectionList()
+    {
+        //initial
+        $request = new Request;
+        $totalNum = 0;
+        $totalPg = 0;
+        $pageSize = 10;
+        $pageId = 1;
+        $page_num = 1;
+        $request->merge(['pageSize' => $pageSize]);
+        $request->merge(['pageId' => $pageId]);
+        $list = $this->getCollectionListWithDetail($request);
+        if (!empty($list['data']['list'])) {
+            //store 1st pg data
+            $filter = ['page_num' => $page_num];
+            $array = ['page_num' => $page_num, 'content' => json_encode($list, true)];
+            taobao_collection_list::updateOrCreate($filter, $array)->id;
+
+            $totalNum = $list['data']['totalNum'];
+            $pageId = $list['data']['pageId'];
+            $totalPg = ceil($totalNum / 10);
+            for ($page_num = 2; $page_num <= $totalPg; $page_num++) { //loop started with 2nd - skip initial
+                $request->merge(['pageSize' => $pageSize]);
+                $request->merge(['pageId' => $pageId]);
+                $_list = $this->getCollectionListWithDetail($request);
+                //store data
+                if (!empty($_list['data']['list'])) {
+                    $filter = ['page_num' => $page_num];
+                    $array = ['page_num' => $page_num, 'content' => json_encode($_list, true)];
+                    taobao_collection_list::updateOrCreate($filter, $array)->id;
+                }
+            }
+        }
+
+        return ['totalNum' => $totalNum, 'totalPg' => $totalPg];
+    }
+
+    public function getTaobaoCollection($page_num = null)
+    {
+        $_content = null;
+        $next_pg = 0;
+        $res = taobao_collection_list::select('content')->where('page_num',$page_num)->first();        
+        if (!empty($res->content)) {
+            $next_pg = $page_num + 1;
+            $_content = json_decode($res->content,true);
+            //replace pageId to get next pg
+            $_content['data']['pageId'] = $next_pg;   
+        }
+
+        return $_content;
+
     }
 
     public function getOwnerGoods(Request $request)

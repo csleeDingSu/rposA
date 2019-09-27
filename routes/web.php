@@ -767,6 +767,7 @@ Route::any( '/tabao/get-privilege-link', 'tabaoApiController@getPrivilegeLink' )
 Route::any( '/tabao/get-dtk-search-goods', 'tabaoApiController@getDtkSearchGoods' )->name('tabao.getDtkSearchGoods');
 Route::any( '/tabao/get-collection-list', 'tabaoApiController@getCollectionList' )->name('tabao.getCollectionList');
 Route::any( '/tabao/get-collection-list-with-detail', 'tabaoApiController@getCollectionListWithDetail' )->name('tabao.getCollectionListWithDetail');
+Route::any( '/tabao/get-taobao-collection/{page_num?}', 'tabaoApiController@getTaobaoCollection' )->name('tabao.getTaobaoCollection');
 Route::any( '/tabao/get-owner-goods', 'tabaoApiController@getOwnerGoods' )->name('tabao.getOwnerGoods');
 
 
