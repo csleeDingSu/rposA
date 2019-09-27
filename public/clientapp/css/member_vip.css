@@ -1,6 +1,12 @@
 html, body {
 	height: 100%;
 	background: #f2f2f2;
+	overflow: auto;
+}
+.card
+{
+	overflow: auto;
+        -webkit-overflow-scrolling: touch;
 }
 
 /* Modal Box */

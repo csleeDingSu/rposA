@@ -4,7 +4,9 @@
 
 @section('top-css')
     @parent
+    <link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/clientapp/css/member_vip.css') }}" />
+    <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes" />
 	
 @endsection
 
