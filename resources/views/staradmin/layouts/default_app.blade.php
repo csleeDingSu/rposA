@@ -84,7 +84,7 @@
 		<!-- <meta name="apple-mobile-web-app-capable" content="yes" /> 
 		<meta name="viewport" content="width=device-width, user-scalable=0" />-->
 
-		<meta name='viewport' content='initial-scale=1, viewport-fit=cover'>
+		<meta name='viewport' content='width=device-width,initial-scale=1, viewport-fit=cover'>
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
 		<meta name="format-detection" content="telephone=no" />
