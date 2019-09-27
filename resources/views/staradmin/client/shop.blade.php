@@ -18,8 +18,16 @@
     <div class="card-header">
       <div class="pageHeader rel shop-banner">
         <div class="header-line">
-            <a><div class="shop-left-menu"><img src="{{ asset('/clientapp/images/shop/coin.png') }}"><div class="shop-balance">99999.99</div></div></a>
-            <a class="shop-right-menu" href="javascript:openModal('redeem-rules');"><img src="{{ asset('/clientapp/images/shop/icon-redeem-rules.png') }}"></a>
+            
+              <div class="shop-left-menu">
+                <img class="clscoin" src="{{ asset('/clientapp/images/shop/coin.png') }}">
+                <div class="shop-balance">99999.99</div>
+                <a href="javascript:openModal('faq-coinsource');">
+                  <img class="clsquestion" src="{{ asset('/clientapp/images/shop/question-icon.png') }}">
+                </a>
+              </div>
+            
+            <a class="shop-right-menu" href="/vip"><img src="{{ asset('/clientapp/images/shop/icon-redeem-rules.png') }}"></a>
         </div>
         <div class="shop-notification">
             @if (!empty($buy))
@@ -78,6 +86,34 @@
                 <p>
                   挑选换购产品，兑换成功后，平台发货，每次换购完会自动扣除等值金币。
                 </p>
+              </div>
+              <div class="modal-close-btn">
+                知道了
+              </div>        
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- question starts -->
+      <div class="modal fade col-md-12" id="faq-coinsource" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+        <div class="modal-dialog modal-lg close-modal" role="document">
+          <div class="modal-content">
+              <div class="modal-title">
+                金币来源
+              </div>
+              <div class="instructions">
+                <ul>
+                  <li>
+                    通过高级抽奖专场，抽奖赚得金币。
+                  </li>
+                  <li>
+                    通过普通抽奖获得购物补贴红包，红包可兑换挖宝币。
+                  </li>
+                  <li>
+                    兑奖奖品自动扣除等值金币。
+                  </li>
+                </ul>
               </div>
               <div class="modal-close-btn">
                 知道了
