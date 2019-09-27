@@ -386,7 +386,7 @@ class tabaoApiController extends BaseController
             }
         }
 
-        return ['totalNum' => $totalNum, 'totalPg' => $totalPg];
+        return ("totalNum: $totalNum, totalPg: $totalPg");
     }
 
     public function getTaobaoCollection($page_num = null)

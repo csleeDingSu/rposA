@@ -20,6 +20,7 @@
 @section('content')
 <div class="box">
         <input id="hidPageId" type="hidden" value="{{empty($pageId) ? '' : $pageId}}" />
+        <input id="hidweChatVerificationStatus" type="hidden" value="{{empty($member->wechat_verification_status) ? '' : $member->wechat_verification_status}}" />
         <div class="logo rel">
           <img src="{{ asset('/clientapp/images/logo.png') }}" width="100%">
           <div class="searchBox" id="search">
@@ -40,9 +41,10 @@
         <div class="listBox">
           @if(!empty($product))
             @php ($i = 0)
+            @php ($start = (!empty($member) && $member->wechat_verification_status == 0) ? 1 : 4)
             @foreach($product['list'] as $p)
               @php ($i++)
-              @if ($i > 3)
+              @if ($i >= $start)
                 @php ($oldPrice = number_format((float)$p['originalPrice'], 2, '.', ''))
                 @php ($newPrice = $p['originalPrice'] - $p['couponPrice'] - 12)
                 @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)

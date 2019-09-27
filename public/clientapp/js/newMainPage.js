@@ -4,10 +4,12 @@ var pageSize_init = 10;
 var pageSize = 10;
 var priceLowerLimit = 12;
 var priceUpperLimit = 50;
+var weChatVerificationStatus = '';
 
 $(document).ready(function () {
 
   pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val(); 
+  weChatVerificationStatus = $('#hidweChatVerificationStatus').val(); 
 
   // getFromTabao(pageId);
 
@@ -67,39 +69,18 @@ function getFromTabao(pageId){
             _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
             // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
 
-          if ((i <= 2) && (pageId == 1)) {
-            highlight_list_html +='<a href="/main/product/detail' + _param +'">' +
-                                    '<span><img src="'+item.mainPic+'"></span>' +
-                                    '<h2><em>¥</em> '+ newPrice +'</h2>' +
-                                    '<p>热销'+sales+'</p>' +
-                                  '</a>';
-          } else {
+            if (weChatVerificationStatus == '0') {
+              html += populateData(item);              
+            } else {
+              if ((i <= 2) && (pageId == 1)) {
 
-            html += '<div class="inBox">' +
-                      '<div class="imgBox">' +
-                        // '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '" rel="external nofollow">' +
-                        '<a href="/main/product/detail' + _param +'">' + 
-                          '<img src="'+item.mainPic+'">' +
-                        '</a>' +
-                      '</div>' +
-                      '<div class="txtBox flex1">' +
-                        '<h2 class="name">'+item.title+'</h2>' +
-                        '<div class="typeBox">' +
-                          '<span class="type-red">'+item.couponPrice+'元券</span>' +
-                          '<span class="type-sred">奖励'+reward+'积分</span>' +
-                          '<span class="type-blue">抽奖补贴12元</span>' +
-                        '</div>' +
-                        '<div class="moneyBox">' +
-                          '<p class="icon">¥</p>' +
-                          '<p class="nowTxt">'+ newPrice +'</p>' +
-                          '<p class="oldTxt"><em class="fs">¥</em>'+oldPrice+'</p>' +
-                          '<p class="num">热销'+ sales +'</p>' +
-                        '</div>' +
-                      '</div>' +
-                    '</div>';
+                  highlight_list_html += populateHighlightData(item);
+              } else {
 
-          }
+                html += populateData(item);
 
+              }
+            }
         });
 
           $('.listBox').append(html);
@@ -129,5 +110,59 @@ function goSearch() {
   
   window.location.href = "/main/search/" + search;      
 
+}
+
+function populateData(item) {
+  oldPrice = parseFloat(item.originalPrice).toFixed(2);
+  newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
+  newPrice = (newPrice > 0) ? newPrice : 0;
+  sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
+  reward = parseInt(newPrice * 10);
+  reward = (reward <= 0) ? '100' : reward;
+  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
+  // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
+
+  html = '<div class="inBox">' +
+        '<div class="imgBox">' +
+          // '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '" rel="external nofollow">' +
+          '<a href="/main/product/detail' + _param +'">' + 
+            '<img src="'+item.mainPic+'">' +
+          '</a>' +
+        '</div>' +
+        '<div class="txtBox flex1">' +
+          '<h2 class="name">'+item.title+'</h2>' +
+          '<div class="typeBox">' +
+            '<span class="type-red">'+item.couponPrice+'元券</span>' +
+            '<span class="type-sred">奖励'+reward+'积分</span>' +
+            '<span class="type-blue">抽奖补贴12元</span>' +
+          '</div>' +
+          '<div class="moneyBox">' +
+            '<p class="icon">¥</p>' +
+            '<p class="nowTxt">'+ newPrice +'</p>' +
+            '<p class="oldTxt"><em class="fs">¥</em>'+oldPrice+'</p>' +
+            '<p class="num">热销'+ sales +'</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+  return html;
+
+}
+
+function populateHighlightData(item) {
+  oldPrice = parseFloat(item.originalPrice).toFixed(2);
+  newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
+  newPrice = (newPrice > 0) ? newPrice : 0;
+  sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
+  reward = parseInt(newPrice * 10);
+  reward = (reward <= 0) ? '100' : reward;
+  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
+  // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
+  html ='<a href="/main/product/detail' + _param +'">' +
+          '<span><img src="'+item.mainPic+'"></span>' +
+          '<h2><em>¥</em> '+ newPrice +'</h2>' +
+          '<p>热销'+sales+'</p>' +
+        '</a>';
+  return html;
 }
 
