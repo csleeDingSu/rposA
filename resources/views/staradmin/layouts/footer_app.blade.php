@@ -54,16 +54,20 @@
   </dl>
 </div>
 	  
-	  @if( Agent::is('OS X') )		
-			<style>
-			.card-bar
-				{
-					margin-bottom: 3px !important;
-					position: fixed;
-					  left: 0;
-					  bottom: 0;
-					  width: 100%
-	  
-				}		
-			</style>
-		@endif
+	  @if( Agent::is('OS X') )   
+      <style>
+      .card-bar
+        {
+          margin-bottom: 0px !important;
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          padding-bottom: env(safe-area-inset-bottom);
+          position: sticky; 
+          position: -webkit-sticky;
+          position: -moz-sticky;
+          position: -o-sticky;
+        }   
+      </style>
+    @endif

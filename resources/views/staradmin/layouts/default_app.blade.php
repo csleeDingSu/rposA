@@ -81,8 +81,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 		<!-- <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /> -->
-		<!-- <meta name="apple-mobile-web-app-capable" content="yes" /> -->
-		<meta name="viewport" content="width=device-width, user-scalable=0" />
+		<!-- <meta name="apple-mobile-web-app-capable" content="yes" /> 
+		<meta name="viewport" content="width=device-width, user-scalable=0" />-->
+
+		<meta name='viewport' content='initial-scale=1, viewport-fit=cover'>
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
 		<meta name="format-detection" content="telephone=no" />
@@ -185,7 +187,7 @@
 		      </div>
 		    </div>
 
-		@if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*'))
+		@if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') )
 			@include('layouts/footer_app')
 		@endif
 
