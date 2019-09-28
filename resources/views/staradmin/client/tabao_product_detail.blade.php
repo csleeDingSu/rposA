@@ -13,7 +13,24 @@
 
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/clientapp/css/tabao_product_detail.css') }}" />
-		
+	
+	@if( Agent::is('OS X') )   
+      <style>
+      .footer
+        {
+          position: fixed;
+		    bottom: 0;
+		    width: 100%;
+		    display: flex;
+		    justify-content: space-between;
+		    text-align: justify;
+		    background-image: url(/client/images/product-detail-btn-bg.jpg);
+		    height: 1.1rem;
+		    background-size: contain;
+		    background-repeat: round;
+        }   
+      </style>
+    @endif
 @endsection
 
 @section('top-navbar')    
@@ -81,7 +98,6 @@
                 	</div>	
 				</div>
 			</li>
-
 			<li class="dbox reward-bg">		
 				<div class="dbox1 reward-desc">
 					<div class="title">奖励补贴说明</div>
@@ -91,7 +107,6 @@
 					</ul>				
 				</div>
 			</li>
-			
 			<li class="dbox footer">
 					<div id="button-wrapper">
 						@if (empty($data['couponLink']))
@@ -117,6 +132,7 @@
 
 				<img class="product-detail-btn-bg" src="{{ asset('/client/images/product-detail-btn-bg.jpg') }}" />
 			</li>
+			
 			
 		</ul>
 	</div>

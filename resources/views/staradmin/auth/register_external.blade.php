@@ -41,6 +41,11 @@
           margin: 0.1rem 0;
           padding: 0.1rem;
           border-radius: 5px;
+
+          position: absolute;
+          z-index: 4;
+          width: 50%;
+          /*margin: 0.1rem;*/
       }
       
       .isa_info i,
