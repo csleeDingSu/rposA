@@ -62,7 +62,7 @@ class History extends Model
 	
 	public function ledger()
     {
-        return $this->belongsTo(Ledger::class, 'ledger_id', 'id');
+        return $this->belongsTo(Ledger::class, 'account_id', 'id');
     }
 	
 }
