@@ -38,7 +38,7 @@
 								<td>{{ $list->debit }}</td>
 								<td>{{ $list->balance_before }}</td>
 								<td>{{ $list->balance_after }}</td>
-								<td>@lang('dingsu.'.$list->credit_type)</td>
+								<td>{{$list->ledger_type}} - @lang('dingsu.'.$list->ledger_type)</td>
 								<td>{{ $list->notes }}</td>
 							</tr>
 							@endforeach
