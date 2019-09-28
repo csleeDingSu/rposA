@@ -310,7 +310,7 @@ class ClientController extends BaseController
 			if (Auth::Guard('member')->check()) {
 				$gameid = 103;
 				$member = Auth::guard('member')->user()->id;
-				$earnpoint = \App\Game::earned_points($member , $gameid);
+				$earnpoint = \DB::table('a_view_earned_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
 				$usedpoint = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
 			}
 
