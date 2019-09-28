@@ -58,8 +58,25 @@ document.onreadystatechange = function () {
             error: function (error) {
                 console.log(error);
                 // alert(error.responseText);
-                alert('请重新刷新');
-                $(".reload").show();
+                // alert('请重新刷新');
+                // $(".reload").show();
+                html += '<ul class="no-connection-list">' +
+                            '<li>' +
+                              '<div class="no-connection-background">' +
+                                '<img src="/clientapp/images/no-connection/no-internet.png" />' +
+                              '</div>' +
+                            '</li>' +
+                            '<li class="line1">网络竟然崩溃了</li>' +
+                            '<li class="line2">别紧张，重新刷新试试</li>' +
+                            '<div class="btn-refresh">重新刷新</div>' +
+                          '</ul>';
+                  
+                  $('.btn-refresh').click(function() {
+                    goSearch(1);
+                  });
+
+                  $('.listBox').html(html);
+                  return false; 
             },
             success: function(data) {
 
