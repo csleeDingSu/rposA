@@ -384,6 +384,9 @@ class tabaoApiController extends BaseController
                     taobao_collection_list::updateOrCreate($filter, $array)->id;
                 }
             }
+
+            //remove old records
+            taobao_collection_list::where('page_num', '>', $totalPg)->delete(); 
         }
 
         return ("totalNum: $totalNum, totalPg: $totalPg");
