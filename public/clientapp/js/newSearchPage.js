@@ -76,7 +76,7 @@ document.onreadystatechange = function () {
                   });
 
                   $('.listBox').html(html);
-                  // return false; 
+                  $(".reload").show();
             },
             success: function(data) {
 
