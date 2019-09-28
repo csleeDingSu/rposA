@@ -57,31 +57,28 @@ document.onreadystatechange = function () {
             dataType: "text",
             error: function (error) {
                 console.log(error);
-                alert(error.responseText);
+                // alert(error.responseText);
+                alert('请重新刷新');
                 $(".reload").show();
             },
             success: function(data) {
+
                 document.getElementById('loading').style.visibility="hidden";
                 // alert(data == '');
                 // alert(jQuery.isEmptyObject(JSON.parse(data)));
-                 console.log(data);
+                 // console.log(data);
                 // console.log(JSON.parse(data));
                 // console.log(JSON.parse(data).data);
                 // console.log(JSON.parse(data).data === "undefined");
                 // console.log(JSON.parse(data).data);
                 // console.log(JSON.parse(data));
                 if (data.length <= 0) {
+                  console.log('124');
 
-                  html += '<ul class="no-connection-list">' +
-                            '<li>' +
-                              '<div class="no-connection-background">' +
-                                '<img src="/clientapp/images/no-connection/no-internet.png" />' +
-                              '</div>' +
-                            '</li>' +
-                            '<li class="line1">网络竟然崩溃了</li>' +
-                            '<li class="line2">别紧张，重新刷新试试</li>' +
-                            '<div class="btn-refresh">重新刷新</div>' +
-                          '</ul>';
+                  html += '<div class="no-record">' +
+                            '<img src="/clientapp/images/no-record/search.png">' +
+                            '<div>无搜索商品，请尝试其他关键字</div>' +
+                          '</div>';
 
                   $('.listBox').html(html);
                   return false; 
@@ -92,23 +89,23 @@ document.onreadystatechange = function () {
                 console.log(_data.code);
                 if (_data.code != 0){
 
-                  // html += '<div class="no-record">' +
-                  //           '<img src="/clientapp/images/no-record/search.png">' +
-                  //           '<div>无搜索商品，请尝试其他关键字</div>' +
-                  //         '</div>';
-                  html += '<ul class="no-connection-list">' +
-                            '<li>' +
-                              '<div class="no-connection-background">' +
-                                '<img src="/clientapp/images/no-connection/no-internet.png" />' +
-                              '</div>' +
-                            '</li>' +
-                            '<li class="line1">网络竟然崩溃了</li>' +
-                            '<li class="line2">别紧张，重新刷新试试</li>' +
-                            '<div class="btn-refresh">重新刷新</div>' +
-                          '</ul>';
-                  $('.btn-refresh').click(function() {
-                    goSearch(1);
-                  });
+                  html += '<div class="no-record">' +
+                            '<img src="/clientapp/images/no-record/search.png">' +
+                            '<div>无搜索商品，请尝试其他关键字</div>' +
+                          '</div>';
+                  // html += '<ul class="no-connection-list">' +
+                  //           '<li>' +
+                  //             '<div class="no-connection-background">' +
+                  //               '<img src="/clientapp/images/no-connection/no-internet.png" />' +
+                  //             '</div>' +
+                  //           '</li>' +
+                  //           '<li class="line1">网络竟然崩溃了</li>' +
+                  //           '<li class="line2">别紧张，重新刷新试试</li>' +
+                  //           '<div class="btn-refresh">重新刷新</div>' +
+                  //         '</ul>';
+                  // $('.btn-refresh').click(function() {
+                  //   goSearch(1);
+                  // });
 
                 } else {
                   var records = _data.data.list;
@@ -129,7 +126,7 @@ document.onreadystatechange = function () {
                       reward = (reward <= 0) ? '100' : reward;
                       _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +item.originalPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
             
-                      console.log(item.couponLink + 'dsad' + i);
+                      // console.log(item.couponLink + 'dsad' + i);
                       // return item.couponLink;
 
                       html += '<div class="inBox">' +

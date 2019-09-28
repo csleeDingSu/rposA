@@ -64,6 +64,11 @@ class Handler extends ExceptionHandler
 			$retval = parent::render($request, $exception);
 		}
 
+		if ($exception instanceof \Illuminate\Database\QueryException) {
+	        // return response()->json(['errors' => ['Database unavailable']], 503);
+	        return redirect()->guest(route('display.error.database'));
+	    }
+	    
 		return $retval;
 		return parent::render($request, $exception);
     }

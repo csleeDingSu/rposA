@@ -94,7 +94,12 @@ Route::get( '/goredeem', 'ClientController@member_access_redeem' )->name( 'clien
 
 $this->get( '/external/login', 'MainController@showLoginFormExternal' )->name( 'external.login' );
 $this->get( '/external/register/{token?}', 'MainController@showRegisterFormExternal' )->name( 'external.register' );
-
+$this->get( 'display-error-screen/connection', function () {
+	return view( 'errors/connection' );
+})->name( 'display.error.connection' );
+$this->get( 'display-error-screen/database', function () {
+	return view( 'errors/database' );
+})->name( 'display.error.database' );
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
