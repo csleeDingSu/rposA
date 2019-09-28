@@ -625,6 +625,50 @@ class ReportController extends BaseController
         }					
 		return view('main', $data);	
 	}
+
+
+
+	public function ledger_report_new (Request $request)
+	{
+				
+		//$result =  \App\History::with('ledger','member');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		$order_by = 'DESC';
+
+		$result = \App\History::whereHas('member', function($q) use($input) {
+					if (!empty($input['s_username'])) {
+						$q->where('username','LIKE', "%{$input['s_username']}%") ;
+					}	
+					if (!empty($input['s_phone'])) { 
+						$q->where('phone','LIKE', "%{$input['s_phone']}%") ;
+					}
+					if (!empty($input['s_wechat_name'])) {
+						$q->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+					}
+				})
+				->whereHas('ledger', function($q) use($input) {
+					if (!empty($input['s_game']))  
+						$q->where('game_id', $input['s_game']) ;
+				});
+		
+			if (!empty($input['order_by'])) {
+				$order_by = $input['order_by'] ;				
+			}
+			
+		$result   =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
+				
+		$data['page']   = 'reports.ledger_new.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.ledger_new.ajaxlist', ['result' => $result])->render();  
+        }	
+		$data['type_list']   = \App\LedgerType::where('status',1)->get();
+		return view('main', $data);	
+	}
 	
 	
 }
