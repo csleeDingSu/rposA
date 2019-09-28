@@ -54,7 +54,16 @@ class History extends Model
 		$result = $result->where('member_id', $memberid)->orderby('created_at','DESC')->get();
 		return $result;		
 	}
+
+	public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id', 'id');
+    }
 	
+	public function ledger()
+    {
+        return $this->belongsTo(Ledger::class, 'ledger_id', 'id');
+    }
 	
 }
 
