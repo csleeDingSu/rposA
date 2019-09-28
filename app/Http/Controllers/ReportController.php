@@ -651,7 +651,7 @@ class ReportController extends BaseController
 				->whereHas('ledger', function($q) use($input) {
 					if (!empty($input['s_game']))  
 						$q->where('game_id', $input['s_game']) ;
-					if ($input['s_type'] != '' )
+					if (!empty($input['s_type'] ) )
 						$q->where('ledger_type','=',$input['s_type']);
 				});
 		
