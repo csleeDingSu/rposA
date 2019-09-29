@@ -977,14 +977,14 @@ function bindBetButton(){
 
     if(user_id == 0){
 
-        $('.btn-redeemcash').click(function() {
+        $('#btn-redeemcash').click(function() {
             $('#modal-no-login').modal('show');
         });
             
     } else {
         if (g_betting_history_total > 0) {
             if ($('#isIOS').val() == 'true') {
-                alert(11);
+                // alert(11);
                 document.getElementById("btn-redeemcash").addEventListener("click", function(evt) {
                     var a = document.createElement('a');
                     a.setAttribute("href", $('#topupurl').val());
@@ -993,25 +993,30 @@ function bindBetButton(){
                     dispatch.initEvent("click", true, true);
                     a.dispatchEvent(dispatch);
                 }, false);
-            }else if ($('#isIOS').val() == 'AndroidOS-'){
-                alert(22);
+            }else if ($('#isIOS').val() == 'AndroidOS'){
+                // alert(22);
 
-                document.getElementById("btn-redeemcash").addEventListener('tap',function(){
-                    plus.runtime.openURL($('#topupurl').val());
+                // document.getElementById("btn-redeemcash").addEventListener('tap',function(){
+                //     plus.runtime.openURL($('#topupurl').val());
+                // });
+
+                var urlStr = encodeURI($('#topupurl').val());
+                $('#btn-redeemcash').click(function() {
+                    plus.runtime.openURL(urlStr);
                 });
 
             } else {
 
-                alert(33);
+                // alert(33);
                 // window.location.href = $('#topupurl').val();
-                $('.btn-redeemcash').click(function() {
+                $('#btn-redeemcash').click(function() {
                     window.open($('#topupurl').val(), '_blank'); 
                 });
 
             }
             
         } else {
-            $('.btn-redeemcash').click(function() {
+            $('#btn-redeemcash').click(function() {
                 $('#modal-isnewbie').modal('show');
             });
         }

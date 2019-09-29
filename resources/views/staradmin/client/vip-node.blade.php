@@ -815,16 +815,24 @@
    //  		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
 			// 	plus.runtime.openURL(topupurl);
 			// });
+			var urlStr = encodeURI($('#topupurl').val());
+            $('#btn-calculate-vip').click(function() {
+                plus.runtime.openURL(urlStr);
+            });
 
-			document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
-				alert(2);
-				plus.runtime.openURL(topupurl);
-			});
+			// document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+			// 	// alert(2);
+			// 	plus.runtime.openURL(topupurl);
+			// });
 
-			document.getElementById("btn-go-topup").addEventListener('tap',function(){
-				alert(222);
-				plus.runtime.openURL(topupurl);
-			});
+			$('#btn-go-topup').click(function() {
+                plus.runtime.openURL(urlStr);
+            });
+
+			// document.getElementById("btn-go-topup").addEventListener('tap',function(){
+			// 	// alert(222);
+			// 	plus.runtime.openURL(topupurl);
+			// });
 
     	} else {
 
@@ -832,12 +840,12 @@
 			// 	window.location.href = topupurl;
 			// });
 			$('#btn-calculate-vip').click(function(){
-				alert(3);
+				// alert(3);
 				// window.location.href = topupurl;
 				window.open(topupurl, '_blank'); 
 			});
 			$('#btn-go-topup').click(function(){
-				alert(333);
+				// alert(333);
 				// window.location.href = topupurl;
 				window.open(topupurl, '_blank'); 
 			});

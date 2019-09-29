@@ -10,6 +10,14 @@
 	
 @endsection
 
+@section('top-javascript')
+@parent
+<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+      <script type="text/javascript" charset="utf-8">
+          mui.init();
+      </script>
+@endsection
+
 @section('top-navbar')
 @endsection
 
@@ -165,9 +173,14 @@
 
         } else if (platform == 'AndroidOS') {
           console.log(platform);
-            document.getElementById("btn-go-topup").addEventListener('tap',function(){
-              console.log(platform);
-              plus.runtime.openURL(topupurl);
+            // document.getElementById("btn-go-topup").addEventListener('tap',function(){
+            //   console.log(platform);
+            //   plus.runtime.openURL(topupurl);
+            // });
+
+            var urlStr = encodeURI($('#topupurl').val());
+            $('#btn-go-topup').click(function() {
+                plus.runtime.openURL(urlStr);
             });
 
         } else {
