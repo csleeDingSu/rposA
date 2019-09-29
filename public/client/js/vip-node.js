@@ -1000,7 +1000,14 @@ function bindBetButton(){
 
             // }
             $('.btn-redeemcash').click(function() {
-                window.location.href = $('#topupurl').val();
+                alert('btn-redeemcash');
+                // window.location.href = $('#topupurl').val();
+                var a = document.createElement('a');
+                a.setAttribute("href", topupurl);
+                a.setAttribute("target", "_blank");
+                var dispatch = document.createEvent("HTMLEvents");
+                dispatch.initEvent("click", true, true);
+                a.dispatchEvent(dispatch);
             });
             
         } else {
