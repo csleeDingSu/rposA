@@ -423,8 +423,8 @@ body{
 	border-bottom-left-radius: 0.4rem;
 	float: right;
 	margin-top: -0.02rem;
-	margin-right: -0.05rem;
-	display: flex;
+	/*margin-right: -0.05rem;*/
+	/*display: flex;*/
 	align-items: center;
 	justify-content: center;
 }

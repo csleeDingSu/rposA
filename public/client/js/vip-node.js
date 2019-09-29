@@ -249,7 +249,7 @@ try {
             },
             error: function (error) { 
                 console.log(error);
-                $(".reload").show();
+                // $(".reload2").show();
             },
             success: function(data) {
 
@@ -272,7 +272,7 @@ try {
         setTimeout(function(){ 
             $('.spinning').css('visibility', 'hidden');
         }, 3000);
-      $(".reload").show();
+      $(".reload2").show();
     }
 }
 
@@ -294,7 +294,7 @@ function getToken(){
                 token = data.access_token;
                 startGame();       
             } else {
-                $(".reload").show();
+                $(".reload2").show();
             }      
         });
 
@@ -417,7 +417,10 @@ function getNotification(data){
             type: 'POST',
             url: "/api/notification-mark-as-read?id="+ records[0].id+"&memberid=" + $('#hidUserId').val(),
             dataType: "json",
-            error: function (error) { console.log(error.responseText) },
+            error: function (error) { 
+                console.log(error.responseText);
+                $(".reload2").show();
+            },
             success: function() {
                 var new_data = data;
                 new_data.records.shift();
@@ -556,7 +559,9 @@ function resetTimer(){
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error.responseText) },
+        error: function (error) { 
+            console.log(error.responseText) 
+        },
         success: function(data) {
             var duration = data.record.duration;
             var timer = data.record.remaining_time;
@@ -581,7 +586,9 @@ function startGame() {
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error) },
+        error: function (error) { 
+            console.log(error); 
+        },
         success: function(data) {
             console.log(data);
             game_records = data.record.setting;
@@ -1116,6 +1123,7 @@ function showPayout(){
                             $('.spinning').css('visibility', 'hidden');
                         }, 3000);
                         resetGame();
+                        $(".reload2").show();
                     },
                     success: function(data) {
                     }
@@ -1239,7 +1247,8 @@ function startTimer(duration, timer, freeze_time) {
                 setTimeout(function(){ 
                     $('.spinning').css('visibility', 'hidden');
                 }, 3000);
-                window.top.location.href = "/arcade";
+                // window.top.location.href = "/arcade";
+                $(".reload2").show();
             },
             success: function(data) {
                 console.log(data);

@@ -23,7 +23,8 @@ function getRanking() {
         },
         error: function (error) { 
             console.log(error);
-            $(".reload").show();
+            // $(".reload").show();
+            // $(".reload2").show();
         },
         success: function(data) {
         	var status = data.success;

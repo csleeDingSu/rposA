@@ -420,7 +420,8 @@ try {
             },
             error: function (error) { 
                 console.log(error);
-                $(".reload").show();
+                console.log(1);
+                $(".reload2").show();
             },
             success: function(data) {
 
@@ -440,7 +441,8 @@ try {
       console.log(err.message);
       // alert('下注失败');
     alert(err.message);
-    $(".reload").show();
+    console.log(2);
+    $(".reload2").show();
     }
 }
 
@@ -459,7 +461,8 @@ function getToken(){
             } else {
                 console.log(err.message);
                 alert(err.message);
-                $(".reload").show();
+                console.log(3);
+                $(".reload2").show();
             }      
         });
     } else {
@@ -485,7 +488,8 @@ function resetTimer(){
         error: function (error) { 
             console.log(error);
             alert(error.message);
-            $(".reload").show();
+            console.log(4);
+            $(".reload2").show();
         },
         success: function(data) {
             var duration = data.record.duration;
@@ -514,7 +518,8 @@ function startGame() {
         error: function (error) {
             console.log(error);
             alert(error.message);
-            $(".reload").show();
+            console.log(5);
+            $(".reload2").show();
         },
         success: function(data) {
             var wallet_records = data.record;
@@ -533,7 +538,8 @@ function startGame() {
         error: function (error) { 
             console.log(error);
             alert(error.message);
-            $(".reload").show();
+            console.log(6);
+            $(".reload2").show();
         },
         success: function(data) {
             //console.log(data);
@@ -867,8 +873,9 @@ function showPayout(){
                         console.log('memberid: ' + user_id + ', 下注失败'); 
                         console.log(error.responseText);
                         console.log(error);
-                        alert(error.message);
-                        $(".reload").show();
+                        // alert(error.message);
+                        console.log(7);
+                        $(".reload2").show();
                     },
                     success: function(data) {
                     }
@@ -976,7 +983,8 @@ function bindResetLifeButton(){
                     console.log(error.responseText)
                     console.log(error);
                     alert(error.message);
-                    $(".reload").show();
+                    console.log(8);
+                    $(".reload2").show();
                 },
                 success: function(data) {
                     if(data.success){
@@ -1346,7 +1354,8 @@ function startTimer(duration, timer, freeze_time) {
             error: function (error) { 
                 console.log(error);
                 alert(error.message);
-                $(".reload").show();
+                console.log(9);
+                $(".reload2").show();
                 // window.top.location.href = "/arcade";
             },
             success: function(data) {
@@ -1369,7 +1378,8 @@ function startTimer(duration, timer, freeze_time) {
       // alert('下注失败');
       console.log(err);
        alert(err.message);
-    $(".reload").show();
+       console.log(10);
+    $(".reload2").show();
     }
 }
 

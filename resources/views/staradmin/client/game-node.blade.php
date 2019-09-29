@@ -34,6 +34,59 @@
 
 		.isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
 
+		.reload2 {
+		display: none;
+		background-color: #fff;
+		position: fixed;
+	    left: 0px;
+	    top: 0px;
+	    width: 100%;
+	    height: 100%;
+	    z-index: 9999;
+	}
+
+	.no-connection-list {
+      font-size: 0.3rem;
+    padding: 0.24rem;
+    margin-top:2rem;
+    }
+
+    .no-connection-list li {
+    color: #666;
+    font-size: 0.26rem;
+    padding-bottom: 0.2rem;
+    text-align: center;
+  }
+
+  .no-connection-background {
+	}
+
+	.no-connection-background img {
+	    width: 70%;
+	    }
+
+	.no-connection-list .line1 {
+	    color: #333;
+	    font-size: 0.36rem;
+	    padding: 0.1rem;
+	}
+
+	.no-connection-list .line2 {
+	    color: #ccc;
+	    font-size: 0.28rem;
+	    padding:0.1rem;
+	}
+
+	.no-connection-list .btn-refresh {
+	    background-color: #ff466f;
+	    font-size: 0.32rem;
+	    border-radius: 0.1rem;
+	    color: #fff;
+	    padding: 0.2rem;
+	    text-align: center;
+	    margin: 0.1rem 2rem;
+	}
+
     </style>
 @endsection
     	
@@ -49,6 +102,20 @@
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
+
+<div class="reload2">
+	<ul class="no-connection-list">
+      <li>
+        <div class="no-connection-background">
+            <img src="/clientapp/images/no-connection/no-internet.png" />
+        </div>
+      </li>
+      <li class="line1">网络竟然崩溃了</li>
+      <li class="line2">别紧张，重新刷新试试</li>
+      <div class="btn-refresh" onclick="javascript:history.back();">重新刷新</div>
+  </ul>
+</div>
+
 <div class="cardBody"><div class="box">
 
 @if (env('THISVIPAPP', false))
