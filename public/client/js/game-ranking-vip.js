@@ -122,7 +122,7 @@ function getRanking() {
                 if (friends_rank_html == '') {
                 	friends_rank_html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/blog.png">' +
-                                            '<div>暂无邀请记录</div>' +
+                                            '<div>暂无换购记录</div>' +
                                         '</div>';
                 }
 

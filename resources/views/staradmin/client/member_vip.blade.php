@@ -31,7 +31,7 @@
         </p>
       </div>
       <div class="sMain">
-        <a href="{{env('TOPUP_URL','#')}}"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>充值</span></a>
+        <a id="btn-go-topup"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>充值</span></a>
         <a href="/redeem-vip"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>兑奖</span></a>
         <a href="/summary"><img src="{{ asset('clientapp/images/user-3.png') }}"><span>明细</span></a>
         <a><img src="{{ asset('clientapp/images/user-4.png') }}"><span>专卖</span></a>
@@ -152,6 +152,30 @@
             $('.unverify').click(function(){
                 $('#wechat-verification-modal').modal();
             });
+
+        if (platform == 'iOS') {          
+          document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+              var a = document.createElement('a');
+              a.setAttribute("href", topupurl);
+              a.setAttribute("target", "_blank");
+              var dispatch = document.createEvent("HTMLEvents");
+              dispatch.initEvent("click", true, true);
+              a.dispatchEvent(dispatch);
+          }, false);          
+
+        } else if (platform == 'AndroidOS') {
+          console.log(platform);
+            document.getElementById("btn-go-topup").addEventListener('tap',function(){
+              console.log(platform);
+              plus.runtime.openURL(topupurl);
+            });
+
+        } else {
+            
+          $('#btn-go-topup').click(function(){
+            window.location.href = topupurl;
+          });
+        }
 
 		});
 

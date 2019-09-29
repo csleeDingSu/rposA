@@ -767,60 +767,62 @@
         var browser = "{{$wbp['browser']}}";
         var topupurl = $('#topupurl').val();
 
-   //      if (platform == 'iOS') {
-   //      	$('#isIOS').val('true');
-			// document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
-			//     var a = document.createElement('a');
-			//     a.setAttribute("href", topupurl);
-			//     a.setAttribute("target", "_blank");
-			//     var dispatch = document.createEvent("HTMLEvents");
-			//     dispatch.initEvent("click", true, true);
-			//     a.dispatchEvent(dispatch);
-			// }, false); 
+        if (platform == 'iOS') {
+        	$('#isIOS').val('true');
+			document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false); 
 
-			// document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
-			//     var a = document.createElement('a');
-			//     a.setAttribute("href", topupurl);
-			//     a.setAttribute("target", "_blank");
-			//     var dispatch = document.createEvent("HTMLEvents");
-			//     dispatch.initEvent("click", true, true);
-			//     a.dispatchEvent(dispatch);
-			// }, false); 
+			document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false); 
 
-			// document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
-			//     var a = document.createElement('a');
-			//     a.setAttribute("href", topupurl);
-			//     a.setAttribute("target", "_blank");
-			//     var dispatch = document.createEvent("HTMLEvents");
-			//     dispatch.initEvent("click", true, true);
-			//     a.dispatchEvent(dispatch);
-			// }, false);      		
+			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+			    var a = document.createElement('a');
+			    a.setAttribute("href", topupurl);
+			    a.setAttribute("target", "_blank");
+			    var dispatch = document.createEvent("HTMLEvents");
+			    dispatch.initEvent("click", true, true);
+			    a.dispatchEvent(dispatch);
+			}, false);      		
 
-   //  	} else {
-   //  		$('#isIOS').val('false');
-   //  		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
-			// 	plus.runtime.openURL(topupurl);
-			// });
+    	} else if (platform == 'AndroidOS') {
+    		$('#isIOS').val('false');
+    		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
 
-			// document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
-			// 	plus.runtime.openURL(topupurl);
-			// });
+			document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
 
-			// document.getElementById("btn-go-topup").addEventListener('tap',function(){
-			// 	plus.runtime.openURL(topupurl);
-			// });
+			document.getElementById("btn-go-topup").addEventListener('tap',function(){
+				plus.runtime.openURL(topupurl);
+			});
 
-   //  	}
+    	} else {
 
-    	$('#btn-purchase-point').click(function(){
-			window.location.href = topupurl;
-		});
-		$('#btn-calculate-vip').click(function(){
-			window.location.href = topupurl;
-		});
-		$('#btn-go-topup').click(function(){
-			window.location.href = topupurl;
-		});
+    		$('#btn-purchase-point').click(function(){
+				window.location.href = topupurl;
+			});
+			$('#btn-calculate-vip').click(function(){
+				window.location.href = topupurl;
+			});
+			$('#btn-go-topup').click(function(){
+				window.location.href = topupurl;
+			});
+
+    	}    	
 
 	</script>
 
