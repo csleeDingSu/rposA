@@ -983,32 +983,32 @@ function bindBetButton(){
             
     } else {
         if (g_betting_history_total > 0) {
-            // if ($('#isIOS').val() == 'true') {
-            //     document.getElementById("btn-redeemcash").addEventListener("click", function(evt) {
-            //         var a = document.createElement('a');
-            //         a.setAttribute("href", $('#topupurl').val());
-            //         a.setAttribute("target", "_blank");
-            //         var dispatch = document.createEvent("HTMLEvents");
-            //         dispatch.initEvent("click", true, true);
-            //         a.dispatchEvent(dispatch);
-            //     }, false);
-            // }else{
+            if ($('#isIOS').val() == 'true') {
+                alert(11);
+                document.getElementById("btn-redeemcash").addEventListener("click", function(evt) {
+                    var a = document.createElement('a');
+                    a.setAttribute("href", $('#topupurl').val());
+                    a.setAttribute("target", "_blank");
+                    var dispatch = document.createEvent("HTMLEvents");
+                    dispatch.initEvent("click", true, true);
+                    a.dispatchEvent(dispatch);
+                }, false);
+            }else if ($('#isIOS').val() == 'AndroidOS-'){
+                alert(22);
 
-            //     document.getElementById("btn-redeemcash").addEventListener('tap',function(){
-            //         plus.runtime.openURL($('#topupurl').val());
-            //     });
+                document.getElementById("btn-redeemcash").addEventListener('tap',function(){
+                    plus.runtime.openURL($('#topupurl').val());
+                });
 
-            // }
-            $('.btn-redeemcash').click(function() {
-                alert('btn-redeemcash');
+            } else {
+
+                alert(33);
                 // window.location.href = $('#topupurl').val();
-                var a = document.createElement('a');
-                a.setAttribute("href", topupurl);
-                a.setAttribute("target", "_blank");
-                var dispatch = document.createEvent("HTMLEvents");
-                dispatch.initEvent("click", true, true);
-                a.dispatchEvent(dispatch);
-            });
+                $('.btn-redeemcash').click(function() {
+                    window.open($('#topupurl').val(), '_blank'); 
+                });
+
+            }
             
         } else {
             $('.btn-redeemcash').click(function() {

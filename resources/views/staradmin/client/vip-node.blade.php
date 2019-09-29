@@ -77,7 +77,14 @@
 
     </style>
 @endsection
-    	
+@section('top-javascript')
+@parent
+<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+	    <script type="text/javascript" charset="utf-8">
+	      	mui.init();
+	    </script>
+@endsection
+
 @section('top-navbar')
 @endsection
 
@@ -755,11 +762,9 @@
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/public.js') }}" ></script>
 	<script src="{{ asset('/client/js/slide.js') }}"></script>
-	<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+	
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
+
 
     <script type="text/javascript">
 		var wbp = "{{$wbp['wbp']}}";
@@ -769,7 +774,12 @@
 
         console.log(platform);
 
-        if (platform == 'iOS' || platform == 'AndroidOS') {
+        mui.plusReady(function(){
+		             // 在这里调用plus api
+		             alert('ready');
+		});
+
+        if (platform == 'iOS') {
         	$('#isIOS').val('true');
 			// document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
 			//     var a = document.createElement('a');
@@ -791,6 +801,7 @@
 			}, false); 
 
 			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+				alert(111);
 			    var a = document.createElement('a');
 			    a.setAttribute("href", topupurl);
 			    a.setAttribute("target", "_blank");
@@ -799,20 +810,21 @@
 			    a.dispatchEvent(dispatch);
 			}, false);      		
 
-   //  	} else if (platform == 'AndroidOS') {
-   //  		$('#isIOS').val('false');
-   // //  		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
-			// // 	plus.runtime.openURL(topupurl);
-			// // });
-
-			// document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
-			// 	alert(2);
+    	} else if (platform == 'AndroidOS') {
+    		$('#isIOS').val('AndroidOS');
+   //  		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
 			// 	plus.runtime.openURL(topupurl);
 			// });
 
-			// document.getElementById("btn-go-topup").addEventListener('tap',function(){
-			// 	plus.runtime.openURL(topupurl);
-			// });
+			document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+				alert(2);
+				plus.runtime.openURL(topupurl);
+			});
+
+			document.getElementById("btn-go-topup").addEventListener('tap',function(){
+				alert(222);
+				plus.runtime.openURL(topupurl);
+			});
 
     	} else {
 
@@ -821,10 +833,13 @@
 			// });
 			$('#btn-calculate-vip').click(function(){
 				alert(3);
-				window.location.href = topupurl;
+				// window.location.href = topupurl;
+				window.open(topupurl, '_blank'); 
 			});
 			$('#btn-go-topup').click(function(){
-				window.location.href = topupurl;
+				alert(333);
+				// window.location.href = topupurl;
+				window.open(topupurl, '_blank'); 
 			});
 
     	}    	
