@@ -31,8 +31,8 @@ body {
 }
 
 .shop-left-menu .clsquestion {
-    height: 0.6rem;
-    margin: -0.6rem 0 0 0.65rem;
+    height: 0.55rem;
+    margin: -0.56rem 0 0 0.65rem;
     position: absolute;
 }
 
@@ -60,7 +60,9 @@ body {
     font-size: 0.22rem;
     margin: 2rem 0.4rem 0 0.4rem;
     text-align: center;
+}
 
+.txt-ellipsis {
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
@@ -345,7 +347,8 @@ body {
     font-size: 0.26rem;
     font-weight: 500;
     color: #999;
-    padding: 0.2rem 0.4rem 0.6rem 0.4rem;
+    /*padding: 0.2rem 0.4rem 0.6rem 0.4rem;*/
+    padding: 0.2rem;
     letter-spacing: 0.5px;
     line-height: 0.5rem;
 }

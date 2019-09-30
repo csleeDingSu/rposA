@@ -30,14 +30,16 @@
             <a class="shop-right-menu" href="/vip"><img src="{{ asset('/clientapp/images/shop/icon-redeem-rules.png') }}"></a>
         </div>
         <div class="shop-notification">
+          <div class="txt-ellipsis">
             @if (!empty($buy))
               @foreach($buy as $b)
-                <span class="highlight">{{ substr($b->phone,0,3) }}*****{{ substr($b->phone, -4) }} </span> 换购 {{$b->package_name}}...
+                <span class="highlight">{{ substr($b->phone,0,3) }}*****{{ substr($b->phone, -4) }} </span> 换购 {{$b->package_name}}
               
               @endforeach
             @else
-              <span class="highlight">158*****2686</span> 换购 iPhone X 256G 深黑色全网通苹果智能手机...
+              <span class="highlight">158*****2686</span> 换购 iPhone X 256G 深黑色全网通苹果智能手机
             @endif
+          </div>
         </div>
       </div>
     </div>
@@ -103,17 +105,15 @@
                 金币来源
               </div>
               <div class="instructions">
-                <ul>
-                  <li>
+                <p>
                     通过高级抽奖专场，抽奖赚得金币。
-                  </li>
-                  <li>
+                  </p>
+                  <p>
                     通过普通抽奖获得购物补贴红包，红包可兑换挖宝币。
-                  </li>
-                  <li>
+                  </p>
+                  <p>
                     兑奖奖品自动扣除等值金币。
-                  </li>
-                </ul>
+                  </p>
               </div>
               <div class="modal-close-btn">
                 知道了

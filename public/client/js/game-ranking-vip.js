@@ -88,7 +88,7 @@ function getRanking() {
 
                 if (global_rank_html == '') {
                 	global_rank_html += '<div class="no-record">' +
-                                            '<img src="/clientapp/images/no-record/blog.png">' +
+                                            '<img src="/clientapp/images/no-record/invitation.png">' +
                                             '<div>暂无记录</div>' +
                                         '</div>';
                 }
@@ -121,7 +121,7 @@ function getRanking() {
 
                 if (friends_rank_html == '') {
                 	friends_rank_html += '<div class="no-record">' +
-                                            '<img src="/clientapp/images/no-record/blog.png">' +
+                                            '<img src="/clientapp/images/no-record/invitation.png">' +
                                             '<div>暂无换购记录</div>' +
                                         '</div>';
                 }
