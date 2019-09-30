@@ -92,7 +92,7 @@
 
   // iPhone X Detection
   if (iOS && screen.width == 1125 && screen.height === 2436) {
-    $('.card-bar').css({"margin-bottom":"3px"});
+    $('.card-bar').css({"margin-bottom":"5px"});alert();
   }
 })();
 
