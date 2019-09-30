@@ -908,6 +908,7 @@ function bindCalculateButton(){
 
 function bindTriggerButton(){
     $('.btn-trigger').click(function( event ){
+        user_id = $('#hidUserId').val();
         if (g_life > 0) {
             event.stopImmediatePropagation();
             checkSelection();
