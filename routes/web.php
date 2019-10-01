@@ -100,6 +100,9 @@ $this->get( 'display-error-screen/connection', function () {
 $this->get( 'display-error-screen/database', function () {
 	return view( 'errors/database' );
 })->name( 'display.error.database' );
+
+Route::any( '/youzan', 'PaymentController@index' )->name( 'client.payment.index' );
+
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
@@ -272,8 +275,6 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/edit_setting');
 	} );
 	
-	Route::any( '/youzan', 'PaymentController@index' )->name( 'client.payment.index' );
-
 } );
 
 //Member routes end
