@@ -717,6 +717,7 @@ function checkSelection() {
         $('.btn-trigger').unbind('click');
 
         $('.button-bet').unbind('click');
+        $('.button-bet').unbind('touchstart');
         $('.btn-add').unbind('click');
         $('.btn-minus').unbind('click');
         $('.button-bet-clear').unbind('click');
