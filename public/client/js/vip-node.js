@@ -642,7 +642,9 @@ function resetGame() {
     $('.payout-info').addClass('hide');
     $('.spinning').css('visibility', 'hidden');
     $('.radio-primary').unbind('click');
+    $('.radio-primary').unbind('touchstart');    
     $('.button-bet').unbind('click');
+    $('.button-bet').unbind('touchstart');    
     $('.btn-minus').unbind('click');
     $('.btn-add').unbind('click');
     $('.button-bet-clear').unbind('click');
@@ -854,8 +856,8 @@ function bindBetButton(){
         });
     });
 
-    $('.button-bet').on('click touchstart', function(event){
-event.stopImmediatePropagation();
+    $('.button-bet').on('touchstart', function(event){
+// event.stopImmediatePropagation();
         $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
@@ -935,7 +937,7 @@ event.stopImmediatePropagation();
         previous_bet = g_vip_point;
     });
 
-    $('.radio-primary').click(function( event ){
+    $('.radio-primary').on('touchstart', function(event){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
@@ -1003,7 +1005,7 @@ event.stopImmediatePropagation();
                 var urlStr = encodeURI($('#topupurl').val());
                 $('#btn-redeemcash').click(function() {
                     plus.runtime.openURL(urlStr);
-                });
+                });                
 
             } else {
 
