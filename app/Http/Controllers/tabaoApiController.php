@@ -434,4 +434,32 @@ class tabaoApiController extends BaseController
         return json_decode($this->getCurl($url),true);
         
     }
+
+    public function getTbService(Request $request)
+    {
+        $host = "https://openapi.dataoke.com/api/tb-service/get-tb-service";
+
+        //默认必传参数
+        $data = [
+
+            'appKey' => $this->appKey,
+            'version' => 'v1.0.1',
+            'pageNo' => empty($request->input('pageNo')) ? 1 : $request->input('pageNo'),
+            'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
+            'keyWords' => $request->input('search'),
+            // 'sort' => '_asc', //'total_sales',            
+        ];
+
+        // dd($data);
+
+        //加密的参数
+        $data['sign'] = $this->makeSign($data,$this->appSecret);
+
+        //拼接请求地址
+        $url = $host .'?'. http_build_query($data);
+        
+        // dd($this->getCurl($url));
+        return json_decode($this->getCurl($url),true);
+        
+    }
 }

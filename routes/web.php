@@ -777,6 +777,7 @@ Route::any( '/tabao/get-collection-list', 'tabaoApiController@getCollectionList'
 Route::any( '/tabao/get-collection-list-with-detail', 'tabaoApiController@getCollectionListWithDetail' )->name('tabao.getCollectionListWithDetail');
 Route::any( '/tabao/get-taobao-collection/{page_num?}', 'tabaoApiController@getTaobaoCollection' )->name('tabao.getTaobaoCollection');
 Route::any( '/tabao/get-owner-goods', 'tabaoApiController@getOwnerGoods' )->name('tabao.getOwnerGoods');
+Route::any( '/tabao/get-tb-service', 'tabaoApiController@getTbService' )->name('tabao.getTbService');
 
 
 

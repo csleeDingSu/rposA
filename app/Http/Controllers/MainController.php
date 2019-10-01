@@ -138,7 +138,6 @@ class MainController extends BaseController
 		// 	$data['data'] = $res['data'];
 		// }
 
-
 		$data['data'] = ['id' => $request->id,'goodsId' => $request->goodsId,'mainPic' => $request->mainPic, 'title' => $request->title, 'monthSales' => $request->monthSales,'originalPrice' => $request->originalPrice,'couponPrice' => $request->couponPrice, 'couponLink' => $request->couponLink, 'voucher_pass' => null];
 
 		$data['usedpoint'] = 0;

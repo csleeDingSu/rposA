@@ -52,7 +52,9 @@ document.onreadystatechange = function () {
         document.getElementById('loading').style.visibility="visible";
         $.ajax({
             type: 'GET',
-            url: "/tabao/get-dtk-search-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
+            // url: "/tabao/list-super-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
+            // url: "/tabao/get-dtk-search-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
+            url: "/tabao/get-tb-service?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
             contentType: "application/json; charset=utf-8",
             dataType: "text",
             error: function (error) {
@@ -125,7 +127,9 @@ document.onreadystatechange = function () {
                   // });
 
                 } else {
-                  var records = _data.data.list;
+
+                  var records = (typeof _data.data.list == 'undefined') ? _data.data : _data.data.list;
+                  // console.log(records);
                   var newPrice = 0; 
                   var sales = 0;
                   totalNum = JSON.parse(data).data.totalNum;
@@ -135,13 +139,21 @@ document.onreadystatechange = function () {
                   // pageId = $('#hidPageId').val();
                  
                     $.each(records, function(i, item) {
+                      originalPrice = (typeof item.originalPrice == 'undefined') ? item.reserve_price : item.originalPrice;
+                      couponPrice = (typeof item.couponPrice == 'undefined') ? item.coupon_amount : item.couponPrice;
+                      monthSales = (typeof item.monthSales == 'undefined') ? item.tk_total_sales : item.monthSales;
+                      goodsId = (typeof item.goodsId == 'undefined') ? item.item_id : item.goodsId;
+                      mainPic = (typeof item.mainPic == 'undefined') ? item.pict_url : item.mainPic;
+                      title = item.title;
+                      couponLink = (typeof item.couponLink == 'undefined') ? item.coupon_id : item.couponLink;
+                      id = (typeof item.id == 'undefined') ? item.item_id : item.id;
 
-                      newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
+                      newPrice = getNumeric(Number(originalPrice) - Number(couponPrice) - Number(12));
                       newPrice = (newPrice > 0) ? newPrice : 0;
-                      sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
+                      sales = (Number(monthSales) >= 1000) ? parseFloat(Number(monthSales) / 10000).toFixed(1) + '万' : Number(monthSales) + '件';
                       reward = parseInt(newPrice * 10);
                       reward = (reward <= 0) ? '100' : reward;
-                      _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +item.originalPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
+                      _param = '?id=' + item.id + '&goodsId='+ goodsId +'&mainPic='+mainPic+'&title='+title+'&monthSales=' + monthSales +'&originalPrice=' +originalPrice+'&couponPrice=' +couponPrice + '&couponLink=' + encodeURIComponent(couponLink) + '&voucher_pass=';
             
                       // console.log(item.couponLink + 'dsad' + i);
                       // return item.couponLink;
@@ -150,20 +162,20 @@ document.onreadystatechange = function () {
                                 '<div class="imgBox">' +
                                   // '<a href="https://t.asczwa.com/taobao?backurl=' + item.itemLink + '">' +
                                   '<a href="/main/product/detail' + _param +'">' +  
-                                  '<img src="'+item.mainPic+'">' +
+                                  '<img src="'+mainPic+'">' +
                                   '</a>'+
                                 '</div>' +
                                 '<div class="txtBox flex1">' +
-                                  '<h2 class="name">'+item.title+'</h2>' +
+                                  '<h2 class="name">'+title+'</h2>' +
                                   '<div class="typeBox">' +
-                                    '<span class="type-red">'+item.couponPrice+'元</span>' +
+                                    '<span class="type-red">'+couponPrice+'元</span>' +
                                     '<span class="type-sred">奖励'+reward+'积分</span>' +
                                     '<span class="type-blue">抽奖补贴12元</span>' +
                                   '</div>' +
                                   '<div class="moneyBox">' +
                                     '<p class="icon">¥</p>' +
                                     '<p class="nowTxt">'+ newPrice +'</p>' +
-                                    '<p class="oldTxt"><em class="fs">¥</em>'+item.originalPrice+'</p>' +
+                                    '<p class="oldTxt"><em class="fs">¥</em>'+originalPrice+'</p>' +
                                     '<p class="num">热销'+ sales +'万</p>' +
                                   '</div>' +
                                 '</div>' +
