@@ -1,6 +1,6 @@
 var totalNum = 0;
 var pageId = 1;
-var pageSize = 50;
+var pageSize = 10;
 
 document.onreadystatechange = function () {
   var state = document.readyState
@@ -54,7 +54,7 @@ document.onreadystatechange = function () {
             type: 'GET',
             // url: "/tabao/list-super-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
             // url: "/tabao/get-dtk-search-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
-            url: "/tabao/get-tb-service?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
+            url: "/tabao/get-tb-service?search=" + search + "&pageSize=" + pageSize + "&pageNo=" + pageId, 
             contentType: "application/json; charset=utf-8",
             dataType: "text",
             error: function (error) {
@@ -81,6 +81,8 @@ document.onreadystatechange = function () {
                   $(".reload").show();
             },
             success: function(data) {
+
+              var _pageId = null;
 
                 document.getElementById('loading').style.visibility="hidden";
                 // alert(data == '');
@@ -133,6 +135,7 @@ document.onreadystatechange = function () {
                   var newPrice = 0; 
                   var sales = 0;
                   totalNum = JSON.parse(data).data.totalNum;
+                  _pageId = JSON.parse(data).data.pageId;
                   // $('#hidPageId').val(JSON.parse(data).data.pageId);
                   // $('#hidPageId').val(Number(JSON.parse(data).data.pageId) + 1);
 
@@ -141,6 +144,7 @@ document.onreadystatechange = function () {
                     $.each(records, function(i, item) {
                       originalPrice = (typeof item.originalPrice == 'undefined') ? item.zk_final_price : item.originalPrice;
                       couponPrice = (typeof item.couponPrice == 'undefined') ? item.coupon_amount : item.couponPrice;
+                      couponPrice = Number(couponPrice) > 0 ? couponPrice : 0;
                       monthSales = (typeof item.monthSales == 'undefined') ? item.tk_total_sales : item.monthSales;
                       goodsId = (typeof item.goodsId == 'undefined') ? item.item_id : item.goodsId;
                       mainPic = (typeof item.mainPic == 'undefined') ? item.pict_url : item.mainPic;
@@ -176,7 +180,7 @@ document.onreadystatechange = function () {
                                     '<p class="icon">¥</p>' +
                                     '<p class="nowTxt">'+ newPrice +'</p>' +
                                     '<p class="oldTxt"><em class="fs">¥</em>'+originalPrice+'</p>' +
-                                    '<p class="num">热销'+ sales +'万</p>' +
+                                    '<p class="num">热销'+ sales +'</p>' +
                                   '</div>' +
                                 '</div>' +
                               '</div>';
@@ -191,6 +195,7 @@ document.onreadystatechange = function () {
               }
 
                pageId++;
+               pageId = (typeof _pageId == 'undefined') ? pageId: _pageId;
               $('#hidPageId').val(pageId);
               console.log(pageId);
               // console.log($('#hidPageId').val());

@@ -112,7 +112,7 @@
       </li>
       <li class="line1">网络竟然崩溃了</li>
       <li class="line2">别紧张，重新刷新试试</li>
-      <div class="btn-refresh" onclick="javascript:history.back();">重新刷新</div>
+      <div class="btn-refresh" onclick="javascript:location.reload();">重新刷新</div>
   </ul>
 </div>
 
