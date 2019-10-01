@@ -27,10 +27,10 @@
 								<label for="status" class="col-sm-3 col-form-label">@lang('dingsu.status') </label>
 								<div class="col-sm-9">
 									<select id="status" name="status" class="form-control">
-										<option @if (1 == $result->status)) selected="selected" @endif  value="1">@lang('dingsu.inprogress')</option>
-										<option @if (2 == $result->status)) selected="selected" @endif value="2">@lang('dingsu.successful')</option>
-										<option @if (3 == $result->status)) selected="selected" @endif value="3">@lang('dingsu.unsuccessful') @lang('dingsu.notqualified')</option>
-										<option @if (4 == $result->status)) selected="selected" @endif value="4">@lang('dingsu.unsuccessful') @lang('dingsu.invalidreceipt')</option>
+										<option @if (1 == $result->status)) selected="selected" @endif  value="1">@lang('dingsu.receipt_pending')</option>
+										<option @if (2 == $result->status)) selected="selected" @endif value="2">@lang('dingsu.receipt_successful')</option>
+										<option @if (3 == $result->status)) selected="selected" @endif value="3">@lang('dingsu.receipt_unsuccessful_notqualified')</option>
+										<option @if (4 == $result->status)) selected="selected" @endif value="4">@lang('dingsu.receipt_unsuccessful_invalidreceipt')</option>
 									</select>
 									
 								</div>
