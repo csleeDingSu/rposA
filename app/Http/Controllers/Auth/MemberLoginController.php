@@ -249,7 +249,7 @@ class MemberLoginController extends Controller
             //isVIP APP
             $this->vp = new VIPApp();
             if ($this->vp->isVIPApp()) {
-               $url = "/vip";
+               $url = "/main";
             } else {
                 $url = "/arcade";
             }
