@@ -72,7 +72,7 @@
 		  
 		.footer_mb
 		{
-		  height: 1.1rem;
+		  height: 1.2rem;
 		}
       </style>
     @endif
