@@ -72,7 +72,7 @@
 		  
 		.footer_mb
 		{
-		  margin-bottom: 3px !important;
+		  height: 1.1rem;
 		}
       </style>
     @endif
@@ -96,7 +96,8 @@
   };
 
   // iPhone X Detection
-  if (iOS && screen.width == 1125 && screen.height === 2436) {
+	// && screen.width == 1125 && screen.height === 2436
+  if (iOS) {
     $(".card-bar").addClass("footer_mb");
   }
 })();
