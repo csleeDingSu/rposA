@@ -58,6 +58,7 @@ function getReceiptList(token, id) {
         success: function(data) {
             console.log(data); 
             records = data.records;
+            earned_point = 0;
             $.each(records, function(i, item) {          
             html += '<li>' +
                         '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
