@@ -139,7 +139,7 @@ document.onreadystatechange = function () {
                   // pageId = $('#hidPageId').val();
                  
                     $.each(records, function(i, item) {
-                      originalPrice = (typeof item.originalPrice == 'undefined') ? item.reserve_price : item.originalPrice;
+                      originalPrice = (typeof item.originalPrice == 'undefined') ? item.zk_final_price : item.originalPrice;
                       couponPrice = (typeof item.couponPrice == 'undefined') ? item.coupon_amount : item.couponPrice;
                       monthSales = (typeof item.monthSales == 'undefined') ? item.tk_total_sales : item.monthSales;
                       goodsId = (typeof item.goodsId == 'undefined') ? item.item_id : item.goodsId;
