@@ -714,6 +714,7 @@ function checkSelection() {
         //$('.middle-label').html('正在抽奖');
         $('.DB_G_hand').hide();
         $('.radio-primary').unbind('click');
+        $('.radio-primary').unbind('touchstart');
         $('.btn-trigger').unbind('click');
 
         $('.button-bet').unbind('click');
