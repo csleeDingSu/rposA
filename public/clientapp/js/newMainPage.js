@@ -52,7 +52,7 @@ function getFromTabao(pageId){
       success: function(data) {
           // console.log(data);
           // console.log(_data.code);
-          if (data.length <= 0 || JSON.parse(data).code != 0) {
+          if ((typeof JSON.parse(data) == 'undefined') || data.length <= 0 || JSON.parse(data).code != 0) {
             console.log(JSON.parse(data));
             getFromTabao(pageId);
           };
