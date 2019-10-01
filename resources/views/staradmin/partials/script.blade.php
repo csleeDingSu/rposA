@@ -154,21 +154,21 @@ function topFunction() {
 	
 	function show_wait(type)
 	{
-		var stext = '@lang("lang.fetching_data")..';
+		var stext = '@lang("dingsu.fetching_data")..';
 		if (type =='update')
 		{
-			var stext = '@lang("lang.updating_data")..';
+			var stext = '@lang("dingsu.updating_data")..';
 		}
 		else if (type =='fetch')
 		{
-			var stext = '@lang("lang.fetching_data")..';
+			var stext = '@lang("dingsu.fetching_data")..';
 		}
 		else if (type =='delete')
 		{
-			var stext = '@lang("lang.delete_data")..';
+			var stext = '@lang("dingsu.delete_data")..';
 		}
 		swal( {
-				title: '@lang("lang.please_wait")',
+				title: '@lang("dingsu.please_wait")',
 				text: stext,
 				allowOutsideClick: false,
 				closeOnEsc: false,
