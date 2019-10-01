@@ -69,11 +69,16 @@
           position: -moz-sticky;
           position: -o-sticky;
         }   
+		  
+		.footer_mb
+		{
+		  margin-bottom: 3px !important;
+		}
       </style>
     @endif
 
 
-    <script type="javascript">
+<script type="text/javascript">
     	
 (function(){
 
@@ -92,7 +97,7 @@
 
   // iPhone X Detection
   if (iOS && screen.width == 1125 && screen.height === 2436) {
-    $('.card-bar').css({"margin-bottom":"5px"});alert();
+    $(".card-bar").addClass("footer_mb");
   }
 })();
 
