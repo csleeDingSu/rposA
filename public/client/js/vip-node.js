@@ -854,8 +854,8 @@ function bindBetButton(){
         });
     });
 
-    $('.button-bet').click(function(){
-
+    $('.button-bet').on('click touchstart', function(event){
+event.stopImmediatePropagation();
         $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
