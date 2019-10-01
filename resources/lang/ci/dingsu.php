@@ -704,7 +704,7 @@ return [
 	'successful' => '成功',
 	'unsuccessful'=>'失败',
 	'receipt_pending' => '待处理',
-	'receipt_inprogress' => '正在处理'，
+	'receipt_inprogress' => '正在处理',
 	'receipt_successful'=>'成功领取',
 	'receipt_unsuccessful_notqualified'=>'奖励失效',
 	'receipt_unsuccessful_invalidreceipt' => '订单号无效',

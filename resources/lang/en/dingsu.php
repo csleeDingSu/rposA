@@ -713,7 +713,7 @@ return [
 	'successful'=>'successful',
 	'unsuccessful'=>'unsuccessful',
 	'receipt_pending' => 'pending',
-	'receipt_inprogress' => 'in progress'，
+	'receipt_inprogress' => 'in progress',
 	'receipt_successful'=>'successful',
 	'receipt_unsuccessful_notqualified'=>'fail: not qualified',
 	'receipt_unsuccessful_invalidreceipt' => 'fail: invalid receipt',
