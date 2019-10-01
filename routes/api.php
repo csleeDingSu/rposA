@@ -171,7 +171,7 @@ Route::group(['namespace' => 'Api'],function()
 	
 	Route::get('/used-point', 'GameController@usedpoint')->name('usedpoint');
 	
-	
+	Route::get('/game-used-point', 'GameController@usedpoint_103')->name('used_point');
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
