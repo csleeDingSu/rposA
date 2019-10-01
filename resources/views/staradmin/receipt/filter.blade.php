@@ -26,10 +26,10 @@
 
 								<select id="s_status" name="s_status" class="form-control">
 									<option value="" selected>@lang('dingsu.default_select')</option>
-									<option value="1">@lang('dingsu.inprogress')</option>
-									<option value="2">@lang('dingsu.successful')</option>
-									<option value="3">@lang('dingsu.unsuccessful') @lang('dingsu.notqualified')</option>
-									<option value="4">@lang('dingsu.unsuccessful') @lang('dingsu.invalidreceipt')</option>
+									<option value="1">@lang('dingsu.receipt_pending')</option>
+									<option value="2">@lang('dingsu.receipt_successful')</option>
+									<option value="3">@lang('dingsu.receipt_unsuccessful_notqualified')</option>
+									<option value="4">@lang('dingsu.receipt_unsuccessful_invalidreceipt')</option>
 								</select>
 
 

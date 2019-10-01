@@ -11,7 +11,7 @@
 								<th>#</th>
 								<th>@lang('dingsu.created_at')</th>
 								<th>@lang('dingsu.member')</th>
-								<th>@lang('dingsu.receipt')</th>
+								<th>@lang('dingsu.receipt_no')</th>
 								<th>@lang('dingsu.amount')</th>
 								<th>@lang('dingsu.reward')</th>
 								<th>@lang('dingsu.status')</th>

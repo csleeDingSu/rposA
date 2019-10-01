@@ -13,13 +13,13 @@
 	<td>
 		@if($list->status == 1)
 		
-		<label class="badge badge-info">@lang('dingsu.inprogress')</label> 
+		<label class="badge badge-info">@lang('dingsu.receipt_pending')</label> 
 		@elseif ($list->status == 2)
-		<label class="badge badge-success">@lang('dingsu.successful')</label> 
+		<label class="badge badge-success">@lang('dingsu.receipt_successful')</label> 
 		@elseif ($list->status == 3)
-		<label class="badge badge-danger">@lang('dingsu.unsuccessful') @lang('dingsu.notqualified')</label> 
+		<label class="badge badge-danger">@lang('dingsu.receipt_unsuccessful_notqualified')</label> 
 		@elseif ($list->status == 4)
-		<label class="badge badge-danger">@lang('dingsu.unsuccessful') @lang('dingsu.invalidreceipt')</label> 
+		<label class="badge badge-danger">@lang('dingsu.receipt_unsuccessful_invalidreceipt')</label> 
 		@endif
 	</td>
 	
