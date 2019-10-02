@@ -705,7 +705,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 
 	Route::get('/setting/tabao', 'AdminController@show_tabao_cron' );
-	Route::post('/setting/updatetabao', 'AdminController@update_tabao_cron' )->name('update_tabao_cron');
+	Route::any('/setting/updatetabao', 'AdminController@update_tabao_cron' )->name('update_tabao_cron');
 	
 } );
 //END
