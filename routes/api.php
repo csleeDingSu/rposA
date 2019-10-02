@@ -159,6 +159,9 @@ Route::group(['namespace' => 'Api'],function()
 	
 	
 	Route::any('/point-earned', 'GameController@list_user_by_earned_point')->name('list_user_by_earned_point');
+	Route::any('/global-rank', 'GameController@global_rank')->name('global_rank');
+	Route::any('/friends-rank', 'GameController@friends_rank')->name('friends_rank');
+
 	Route::post('/merge-point', 'LedgerController@merge_point')->name('merge_point');
 	
 	Route::post('/add-receipt', 'MemberController@add_receipt')->name('add_receipt');

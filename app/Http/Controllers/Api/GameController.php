@@ -1777,36 +1777,22 @@ class GameController extends Controller
 	}
 	
 	
-	
-	public function list_user_by_earned_point(Request $request)
+	public function global_rank(Request $request)
     {
-		
-		//Global Ranks
+    	//Global Ranks
 		$ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
 					->where('game_id',$request->gameid)
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
-					->limit(30)
 					->orderby('rank','ASC')
-					->get();
+					->paginate(30);
 		//End global rank
-		
-		//Current User rank
-		
-		$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
-					->where('game_id',$request->gameid)
-					->where('member_id',$request->memberid)
-					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
-					->first();
-		// $row->first();
-		
-		//dd($row);
-		//End
-		
-		//Friends rank
-		$fr_ranks = [];
-		
-		\DB::connection()->enableQueryLog();
-		$fr_ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')
+
+	return response()->json(['success' => true, 'global_ranks' => $ranks]); 					
+    }
+
+    public function friends_rank(Request $request)
+    {
+    	$fr_ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')
 			->where('game_id',$request->gameid)
 		    ->whereIn('member_id', function($query) use ($request) {
 							$query->select('id')
@@ -1815,15 +1801,22 @@ class GameController extends Controller
 						})
 			->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
 			->orderby('rank','ASC')
-			->get();
-		//End
-		$queries = \DB::getQueryLog();		
+			->paginate(30);
+
+			return response()->json(['success' => true, 'friends_rank' => $fr_ranks ]); 
+    }
+
+	public function list_user_by_earned_point(Request $request)
+    {		
+		//Current User rank
 		
-		//dd($queries);
+		$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+					->where('game_id',$request->gameid)
+					->where('member_id',$request->memberid)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->first();
 		
-		
-		
-		return response()->json(['success' => true, 'my_rank' => $row, 'friends_rank' => $fr_ranks , 'global_ranks' => $ranks]); 
+		return response()->json(['success' => true, 'my_rank' => $row]); 
 	}
 	
 	
@@ -1836,7 +1829,7 @@ class GameController extends Controller
 	
 	public function usedpoint_103(Request $request)
     {
-		$point   = \DB::table('a_view_used_point_list')->where('game_id',103)->groupby('member_id')->paginate(2);
+		$point   = \DB::table('a_view_used_point_list')->where('game_id',103)->groupby('member_id')->paginate(30);
 		
 		return response()->json(['success' => true, 'point' => $point]);
 	}
