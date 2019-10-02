@@ -1829,7 +1829,9 @@ class GameController extends Controller
 	
 	public function usedpoint_103(Request $request)
     {
-		$point   = \DB::table('a_view_used_point_list')->where('game_id',103)->groupby('member_id')->paginate(30);
+		//$point   = \DB::table('a_view_used_point_list')->where('game_id',103)->groupby('member_id')->paginate(30);
+
+		$point   = \DB::table('a_view_used_point_list')->selectRaw('*, sum(debit) as point')->where('game_id',103)->groupby('member_id')->paginate(30);
 		
 		return response()->json(['success' => true, 'point' => $point]);
 	}
