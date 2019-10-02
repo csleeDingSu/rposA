@@ -4,15 +4,7 @@
                 <div class="card">
                   <div class="card-header header-sm d-flex justify-content-between align-items-center">
                     <h4 class="card-title">@lang('dingsu.tabao_cron')</h4>
-                    <div class="dropdown">
-                      <button class="btn btn-transparent icon-btn dropdown-toggle arrow-disabled pr-0" type="button" id="dropdownMenuIconButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="mdi mdi-dots-vertical"></i>
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
-                        <a class="dropdown-item" href="#">Today</a>
-                        <a class="dropdown-item" href="#">Yesterday</a>
-                      </div>
-                    </div>
+                    
                   </div>
                   <div class="card-body no-gutter">
                     
