@@ -400,7 +400,7 @@ function getNotification(data){
     g_vip_point = records[0].ledger.balance_after;
 
     $('.icon-newcoin').click(function(){
-        $('.span-topup').html(parseInt(records[0].ledger.credit));
+        $('.span-topup').html(records[0].ledger.credit);
         $('.span-before').html(records[0].ledger.balance_before);
         $('.span-after').html(records[0].ledger.balance_after);
         
