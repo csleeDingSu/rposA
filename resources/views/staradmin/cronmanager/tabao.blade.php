@@ -4,15 +4,7 @@
                 <div class="card">
                   <div class="card-header header-sm d-flex justify-content-between align-items-center">
                     <h4 class="card-title">@lang('dingsu.tabao_cron')</h4>
-                    <div class="dropdown">
-                      <button class="btn btn-transparent icon-btn dropdown-toggle arrow-disabled pr-0" type="button" id="dropdownMenuIconButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="mdi mdi-dots-vertical"></i>
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
-                        <a class="dropdown-item" href="#">Today</a>
-                        <a class="dropdown-item" href="#">Yesterday</a>
-                      </div>
-                    </div>
+                    
                   </div>
                   <div class="card-body no-gutter">
                     
@@ -71,7 +63,7 @@
     @parent
 	
 	
-     socket.on(perfix+"-tabao-cron" + ":App\\Events\\EventDynamicChannel", function(result) {
+     socket.on(prefix+"-tabao-cron" + ":App\\Events\\EventDynamicChannel", function(result) {
 		var record = result.data;
 		 
 		console.log(JSON.stringify(result))
@@ -96,47 +88,24 @@
 		 
 		$('#cronaction').html(cronaction);
 		$('#cronstatuslabel').html(cronstatuslabel);
-		 
-		 
-		 //cronstatuslabel
-		 
 		
 	 });
 @endsection
 	
 	
 	
-$("#render_cron").on("click",".runcron", function(){
-	
+$("#render_cron").on("click",".runcron", function(){	
 	
 	var cronstatuslabel = '<h1 class="text-primary ">'+"@lang('dingsu.initiating')"+'</h1>';
 	$('#cronaction').html('');
 	$('#cronstatuslabel').html(cronstatuslabel);
-	
+	console.log('here1');	
 	var id     = $(this).data('id');
-	var status = $(this).data('status');	
-	/*
-	var xhr = $.ajax({
-    type: "POST",
-	url: "{{route('update_tabao_cron')}}",
-    data: {
-			_method: 'post',
-			_token: "{{ csrf_token() }}",
-			id:  id,
-			status:  status,
-		},
-    success: function(msg){
-       alert( "Data Saved: " + msg );
-    }
-});
+	var status = $(this).data('status');
 
-//kill the request
-xhr.abort()
-	*/
+	console.log('here2');	
 	
-	
-	
-			var xhr = $.ajax( {
+			$.ajax( {
 				url: "{{route('update_tabao_cron')}}",
 				type: 'get',
 				dataType: "json",
@@ -147,26 +116,15 @@ xhr.abort()
 					status:  status,
 				},
 				success: function ( result ) {
-					swal.close();
+					
 					console.log('success');
 				},
 				error: function ( xhr, ajaxOptions, thrownError ) {
 					xhr.abort(); 
 					console.log('abort');
-					//swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
 				},
 				timeout: 3000 // sets timeout to 3 seconds
 			} );
-	
-	if (xhr)
-		{
-		//xhr.abort();
-		}
-	
-			//xhr.abort();
-			
-			
-	
 });
 	
 

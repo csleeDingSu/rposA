@@ -52,7 +52,7 @@ class Testrun extends Command
 		
 		for($i=1;$i<=15;$i++)
 		{
-			//\DB::table('test')->insert(['notes'=>$i,'created_at'=>now()]);
+			\DB::table('test')->insert(['notes'=>$i,'created_at'=>now()]);
 			$this->comment('insert data');
 			sleep(2);
 		}
