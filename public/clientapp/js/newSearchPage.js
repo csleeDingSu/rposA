@@ -1,24 +1,11 @@
 var totalNum = 0;
 var pageId = 1;
-var pageSize = 10;
-
-document.onreadystatechange = function () {
-  var state = document.readyState
-  if (state == 'interactive') {
-  } else if (state == 'complete') {
-    setTimeout(function(){
-        document.getElementById('interactive');
-        document.getElementById('loading').style.visibility="hidden";
-    },100);
-  }
-}
+var pageSize = 20;
 
   $(document).ready(function () {
     if ($('#search').val() != "") {
       console.log('1');
       goSearch(pageId);       
-    } else {
-      //getFromTabao(pageId);
     }
 
     //execute scroll pagination
@@ -28,10 +15,7 @@ document.onreadystatechange = function () {
         if ($('#search').val() != "") {
           console.log('2');
           goSearch(pageId);
-        } else {
-          // getFromTabao(pageId);
-        }
-      
+        }      
     });
 
 });
@@ -49,7 +33,10 @@ document.onreadystatechange = function () {
       var html = '';
 
       if (search != "") {
-        document.getElementById('loading').style.visibility="visible";
+        if (pageId == 1) {
+          document.getElementById('loading').style.visibility="visible";  
+        }
+        
         $.ajax({
             type: 'GET',
             // url: "/tabao/list-super-goods?search=" + search + "&pageSize=" + pageSize + "&pageId=" + pageId, 
@@ -58,6 +45,7 @@ document.onreadystatechange = function () {
             contentType: "application/json; charset=utf-8",
             dataType: "text",
             error: function (error) {
+              document.getElementById('loading').style.visibility="hidden";
                 console.log(error);
                 // alert(error.responseText);
                 // alert('请重新刷新');
@@ -114,19 +102,6 @@ document.onreadystatechange = function () {
                             '<img src="/clientapp/images/no-record/search.png">' +
                             '<div>无搜索商品，请尝试其他关键字</div>' +
                           '</div>';
-                  // html += '<ul class="no-connection-list">' +
-                  //           '<li>' +
-                  //             '<div class="no-connection-background">' +
-                  //               '<img src="/clientapp/images/no-connection/no-internet.png" />' +
-                  //             '</div>' +
-                  //           '</li>' +
-                  //           '<li class="line1">网络竟然崩溃了</li>' +
-                  //           '<li class="line2">别紧张，重新刷新试试</li>' +
-                  //           '<div class="btn-refresh">重新刷新</div>' +
-                  //         '</ul>';
-                  // $('.btn-refresh').click(function() {
-                  //   goSearch(1);
-                  // });
 
                 } else {
 
@@ -210,68 +185,6 @@ document.onreadystatechange = function () {
 
     }
 
-function getFromTabao(pageId){
-  var html = '';
-  $.ajax({
-      type: 'GET',
-      url: "/tabao/get-goods-list?pageSize=" + pageSize + "&pageId=" + pageId, 
-      contentType: "application/json; charset=utf-8",
-      dataType: "text",
-      error: function (error) {
-          console.log(error);
-          alert(error.responseText);
-          $(".reload").show();
-      },
-      success: function(data) {
-          // console.log(data);
-          // console.log(JSON.parse(data).data.list);
-          var records = JSON.parse(data).data.list;
-          var newPrice = 0; 
-          var sales = 0;
-          totalNum = JSON.parse(data).data.totalNum;
-          
-          $.each(records, function(i, item) {
-            oldPrice = parseFloat(item.originalPrice).toFixed(2);
-            newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
-            newPrice = (newPrice > 0) ? newPrice : 0;
-            sales = parseFloat(Number(item.couponTotalNum) / 10000).toFixed(1);
-
-            html += '<div class="inBox">' +
-            '<div class="imgBox">' +
-              '<a href="https://t.asczwa.com/taobao?backurl=' + item.itemLink + '">' + 
-                '<img src="'+item.mainPic+'">' +
-              '</a>' +
-            '</div>' +
-            '<div class="txtBox flex1">' +
-              '<h2 class="name">'+item.title+'</h2>' +
-              '<div class="typeBox">' +
-                '<span class="type-red">'+item.couponPrice+'元券</span>' +
-                '<span class="type-sred">奖励100积分</span>' +
-                '<span class="type-blue">抽奖补贴12元</span>' +
-              '</div>' +
-              '<div class="moneyBox">' +
-                '<p class="icon">¥</p>' +
-                '<p class="nowTxt">'+ newPrice +'</p>' +
-                '<p class="oldTxt"><em class="fs">¥</em>'+oldPrice+'</p>' +
-                '<p class="num">热销'+ sales +'万</p>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-        });
-
-        if (pageId == 1) {
-          $('.listBox').html(html); 
-        } else {
-          $('.listBox').append(html); 
-        }
-
-        $('#hidPageId').val(JSON.parse(data).data.pageId);
-        pageId = $('#hidPageId').val();
-        console.log(pageId);
-          
-      }
-  });
-}
 
   function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));

@@ -22,7 +22,7 @@
   </head>
 
 <body>
-<div class="loading" id="loading"></div>
+
 <section class="card">
     <input id="hidPageId" type="hidden" value="" />
     <div class="card-header">
@@ -35,12 +35,11 @@
           <a class="closeBtn dn"><img src="{{ asset('/clientapp/images/closeIcon.png') }}"></a>
           <a class="searchBtn" href="javascript:goSearch(1);">搜索</a>
         </div>
-
-
       </div>
     </div>
     <div class="card-body over ">
       <div class="scrolly">
+        <div class="loading" id="loading"></div>
           <div class="listBox">
             <div class="div-instruction">
               <ul class="instruction-list">
@@ -61,6 +60,16 @@
   </section>
 
 <script>
+    document.onreadystatechange = function () {
+    var state = document.readyState
+    if (state == 'interactive') {
+    } else if (state == 'complete') {
+      setTimeout(function(){
+          document.getElementById('interactive');
+          document.getElementById('loading').style.visibility="hidden";
+      },100);
+    }
+  }
 
     $(function () {
       if ($(".insearch input").val() != "") {
