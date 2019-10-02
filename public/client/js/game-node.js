@@ -965,7 +965,13 @@ function bindResetLifeButton(){
                     }
                 });
             } else {
-                $('#csModal').modal();
+                $('.modal').modal('hide');
+                $('.modal-backdrop').remove(); 
+                if (is_app) {
+                    $('#wechat-verification-modal').modal();    
+                } else {
+                    $('#csModal').modal();    
+                }
             }
             
         }
@@ -1676,7 +1682,13 @@ function bindButton () {
                     }
                 });
             } else {
-                $('#csModal').modal();
+                $('.modal').modal('hide');
+                $('.modal-backdrop').remove(); 
+                if (is_app) {
+                    $('#wechat-verification-modal').modal();    
+                } else {
+                    $('#csModal').modal();    
+                }                
             }
         } else {
             if (is_app) {
