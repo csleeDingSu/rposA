@@ -11,10 +11,12 @@ $(document).ready(function () {
 	    $('.icon-good-friends').attr("src", '/client/images/ranking/good-friends-over.png');
 	});
 
-	getRanking();
+	getMyRanking();
+    getGlobalRanking();
+    getFriendRanking();
 });
 
-function getRanking() {
+function getMyRanking() {
 	$.ajax({
         type: 'GET',
         url: "/api/point-earned?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
@@ -28,14 +30,8 @@ function getRanking() {
         },
         success: function(data) {
         	var status = data.success;
-        	var friends_rank = data.friends_rank;
-        	var global_rank = data.global_ranks;
         	var my_rank = data.my_rank;
-        	var friends_rank_html = '';
-        	var global_rank_html = '';
         	var my_rank_html = '';
-        	var friends_rank_num = 0;
-        	var global_rank_num = 0;
         	var my_rank_num = 0;
         	var i =0;
         	var _phone = 'xxxxx';
@@ -63,6 +59,34 @@ function getRanking() {
                 }
                 $('#my-ranking').html(my_rank_html);
                 
+            }
+        }
+    }); 
+}
+
+function getGlobalRanking() {
+    $.ajax({
+        type: 'GET',
+        url: "/api/global-rank?gameid=" + gameid,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { 
+            console.log(error);
+            $(".reload").show();
+        },
+        success: function(data) {
+            var status = data.success;
+            var global_rank = data.global_ranks.data;
+            var global_rank_html = '';
+            var global_rank_num = 0;
+            var i =0;
+            var _phone = 'xxxxx';
+            var my_member_id = 0;
+
+            if(status){
+
                 // global_rank
                 i = 0;
                 $.each(global_rank, function(i, item) {
@@ -89,11 +113,11 @@ function getRanking() {
                                     '<div class="col-3 ranking-point">' + item.credit + '</div>' +
                                 '</div>';
                     }
-                	
+                    
                 });
 
                 if (global_rank_html == '') {
-                	global_rank_html += '<div class="no-record">' +
+                    global_rank_html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/blog.png">' +
                                             '<div>暂无记录</div>' +
                                         '</div>';
@@ -101,36 +125,64 @@ function getRanking() {
 
                 $('#general-list').html(global_rank_html);
 
+            }
+        }
+    }); 
+}
+
+function getFriendRanking() {
+    $.ajax({
+        type: 'GET',
+        url: "/api/friends-rank?gameid=" + gameid + "&memberid" + $('#hidUserId').val(),
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) { 
+            console.log(error);
+            $(".reload").show();
+        },
+        success: function(data) {
+            var status = data.success;
+            var friends_rank = data.friends_rank.data;
+            var friends_rank_html = '';
+            var friends_rank_num = 0;
+            var i =0;
+            var _phone = 'xxxxx';
+            var my_member_id = 0;
+
+            if(status){
+
                 // friends_rank
                 i = 0;
                 $.each(friends_rank, function(i, item) {
 
                     if (my_member_id != item.member_id) {
-                    	if ((i + 1) == 1) {
-                    		friends_rank_num = '<img class="icon-one" src="/client/images/ranking/1.png" />';
-                    	}else if ((i + 1) == 2) {
-                    		friends_rank_num = '<img class="icon-one" src="/client/images/ranking/2.png" />';
-                    	}else if ((i + 1) == 3) {
-                    		friends_rank_num = '<img class="icon-one" src="/client/images/ranking/3.png" />';
-                    	}else {
-                    		friends_rank_num = (i + 1);
-                    	}
+                        if ((i + 1) == 1) {
+                            friends_rank_num = '<img class="icon-one" src="/client/images/ranking/1.png" />';
+                        }else if ((i + 1) == 2) {
+                            friends_rank_num = '<img class="icon-one" src="/client/images/ranking/2.png" />';
+                        }else if ((i + 1) == 3) {
+                            friends_rank_num = '<img class="icon-one" src="/client/images/ranking/3.png" />';
+                        }else {
+                            friends_rank_num = (i + 1);
+                        }
 
-                    	_phone = 'xxxxx';
-                    	if (item.phone != '' && item.phone != null) {
-                    		_phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
-                    	}
+                        _phone = 'xxxxx';
+                        if (item.phone != '' && item.phone != null) {
+                            _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
+                        }
 
-                    	friends_rank_html += '<div class="row tab-content-list">' +
-    								'<div class="col-1 ranking-number">' + friends_rank_num + '</div>' +
-    								'<div class="col-5 ranking-name">' + _phone + '</div>' +
-    								'<div class="col-3 ranking-point">' + item.credit + '</div>' +
-    							'</div>';
+                        friends_rank_html += '<div class="row tab-content-list">' +
+                                    '<div class="col-1 ranking-number">' + friends_rank_num + '</div>' +
+                                    '<div class="col-5 ranking-name">' + _phone + '</div>' +
+                                    '<div class="col-3 ranking-point">' + item.credit + '</div>' +
+                                '</div>';
                     }
                 });
 
                 if (friends_rank_html == '') {
-                	friends_rank_html += '<div class="no-record">' +
+                    friends_rank_html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/blog.png">' +
                                             '<div>暂无邀请记录</div>' +
                                         '</div>';
