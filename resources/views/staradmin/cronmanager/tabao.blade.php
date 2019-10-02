@@ -96,18 +96,13 @@
 		 
 		$('#cronaction').html(cronaction);
 		$('#cronstatuslabel').html(cronstatuslabel);
-		 
-		 
-		 //cronstatuslabel
-		 
 		
 	 });
 @endsection
 	
 	
 	
-$("#render_cron").on("click",".runcron", function(){
-	
+$("#render_cron").on("click",".runcron", function(){	
 	
 	var cronstatuslabel = '<h1 class="text-primary ">'+"@lang('dingsu.initiating')"+'</h1>';
 	$('#cronaction').html('');
@@ -115,26 +110,6 @@ $("#render_cron").on("click",".runcron", function(){
 	
 	var id     = $(this).data('id');
 	var status = $(this).data('status');	
-	/*
-	var xhr = $.ajax({
-    type: "POST",
-	url: "{{route('update_tabao_cron')}}",
-    data: {
-			_method: 'post',
-			_token: "{{ csrf_token() }}",
-			id:  id,
-			status:  status,
-		},
-    success: function(msg){
-       alert( "Data Saved: " + msg );
-    }
-});
-
-//kill the request
-xhr.abort()
-	*/
-	
-	
 	
 			var xhr = $.ajax( {
 				url: "{{route('update_tabao_cron')}}",
@@ -147,26 +122,15 @@ xhr.abort()
 					status:  status,
 				},
 				success: function ( result ) {
-					swal.close();
+					
 					console.log('success');
 				},
 				error: function ( xhr, ajaxOptions, thrownError ) {
 					xhr.abort(); 
 					console.log('abort');
-					//swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
 				},
 				timeout: 3000 // sets timeout to 3 seconds
 			} );
-	
-	if (xhr)
-		{
-		//xhr.abort();
-		}
-	
-			//xhr.abort();
-			
-			
-	
 });
 	
 
