@@ -275,7 +275,7 @@
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="/admin/tabao-cron">@lang('dingsu.tabao_cron') @lang('dingsu.tabao_cron')</a>
+						<a class="nav-link" href="/setting/tabao">@lang('dingsu.tabao_cron')</a>
 					</li>
 				</ul>
 			</div>
