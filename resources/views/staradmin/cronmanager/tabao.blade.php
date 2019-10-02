@@ -99,11 +99,13 @@ $("#render_cron").on("click",".runcron", function(){
 	var cronstatuslabel = '<h1 class="text-primary ">'+"@lang('dingsu.initiating')"+'</h1>';
 	$('#cronaction').html('');
 	$('#cronstatuslabel').html(cronstatuslabel);
-	
+	console.log('here1');	
 	var id     = $(this).data('id');
-	var status = $(this).data('status');	
+	var status = $(this).data('status');
+
+	console.log('here2');	
 	
-			var xhr = $.ajax( {
+			$.ajax( {
 				url: "{{route('update_tabao_cron')}}",
 				type: 'get',
 				dataType: "json",
