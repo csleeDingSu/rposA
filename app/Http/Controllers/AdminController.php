@@ -1184,7 +1184,8 @@ WHERE
 		$record->amount     = $request->amount;	
 		$record->reward     = $camout;	
 		$record->reason_id  = $request->reason_id;	
-		$record->remark     = $request->remark;			
+		$record->remark     = $request->remark;	
+		$record->reward     = $credit;		
 		
 		if ($record->status == 2)
 		{
