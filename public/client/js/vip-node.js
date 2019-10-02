@@ -628,7 +628,7 @@ function startGame() {
 
     $.ajax({
         type: 'GET',
-        url: "/api/get-notifications?memberid=" + id,
+        url: "/api/get-notifications?memberid=" + id + "&gameid=" + gameid,
         dataType: "json",
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
