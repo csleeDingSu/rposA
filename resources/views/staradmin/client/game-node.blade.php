@@ -171,7 +171,7 @@
 			<input id="hidLastBet" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<input id="hidCreatedAt" type="hidden" value="{{isset(Auth::Guard('member')->user()->created_at) ? Auth::Guard('member')->user()->created_at : 0}}" />
-			<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
+			<input id="hidWechatStatus" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
 			<input id="hidWechatId" type="hidden" value="0" />
 			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
@@ -913,6 +913,36 @@
 		</div>
 	</div>
 
+<!-- customer service modal -->
+<div class="modal fade col-md-12" id="csModal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content modal-wechat">
+			<div class="modal-body">
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<div class="title">
+								请加人工客服微信
+							</div>
+							<div class="instructions">
+								审核发放红包
+							</div>
+						</div>
+						<div class="row imgdiv">								
+							<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
+						</div>
+						<div class="row">								
+							<div class="bottom">长按图片识别二维码</div>
+							<span class="highlight">客服上班时间:早上9点-晚上9点</span>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- customer service modal Ends -->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -934,7 +964,6 @@
     	// var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
-			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var bet_count = $('#hidbetting_count').val();

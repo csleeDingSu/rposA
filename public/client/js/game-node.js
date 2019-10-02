@@ -703,6 +703,7 @@ function bindSpinningButton() {
 function bindBetButton(){
 
     $('.radio-primary').click(function( event ){
+        
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
@@ -725,7 +726,7 @@ function bindBetButton(){
             return false;
         }
 
-        //console.log(user_id +":" + balance + ":" + life );
+        console.log(user_id +":" + balance + ":" + life );
         if(user_id > 0 && life > 0){
 
             if(balance < 63) {
@@ -934,33 +935,39 @@ function bindResetLifeButton(){
         $(this).off('click');
         event.stopImmediatePropagation();
 
+        var wechat_status = $('#hidWechatStatus').val();
         var user_id = $('#hidUserId').val();
         var previous_point = g_cookies_point;
 
         // add points from additional life.
         if(user_id > 0){
-            $.ajax({
-                type: 'POST',
-                url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { 
-                    console.log(error.responseText) 
-                    console.log(error);
-                    alert(error.message);
-                    window.parent.location.href = "/profile";
-                },
-                success: function(data) {
-                    if(data.success){
-                        Cookies.set('previous_point', previous_point);
-                        window.parent.location.href = "/redeem";
-                        // window.parent.location.href = "/profile";
+            if (wechat_status == 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/resetlife",
+                    data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
+                    dataType: "json",
+                    beforeSend: function( xhr ) {
+                        xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                    },
+                    error: function (error) { 
+                        console.log(error.responseText) 
+                        console.log(error);
+                        alert(error.message);
+                        window.parent.location.href = "/profile";
+                    },
+                    success: function(data) {
+                        if(data.success){
+                            Cookies.set('previous_point', previous_point);
+                            window.parent.location.href = "/redeem";
+                            // window.parent.location.href = "/profile";
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                $('#csModal').modal();
+            }
+            
         }
     });
 
@@ -1639,34 +1646,38 @@ function bindButton () {
      $( '.btn-go-withdraw' ).click( function( event ){
         $(this).off('click');
         event.stopImmediatePropagation();
-
+        var wechat_status = $('#hidWechatStatus').val();
         var user_id = $('#hidUserId').val();
         var previous_point = g_cookies_point;
 
         // add points from additional life.
         if(user_id > 0){
-            $.ajax({
-                type: 'POST',
-                url: "/api/resetlife",
-                data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { 
-                    console.log(error.responseText) 
-                    console.log(error);
-                    alert(error.message);
-                    window.parent.location.href = "/redeem";
-                },
-                success: function(data) {
-                    if(data.success){
-                        Cookies.set('previous_point', previous_point);
+            if (wechat_status == 0) {                 
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/resetlife",
+                    data: { 'memberid': user_id, 'gameid': 102, 'life': 'yes' },
+                    dataType: "json",
+                    beforeSend: function( xhr ) {
+                        xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                    },
+                    error: function (error) { 
+                        console.log(error.responseText) 
+                        console.log(error);
+                        alert(error.message);
                         window.parent.location.href = "/redeem";
-                        // window.parent.location.href = "/profile";
+                    },
+                    success: function(data) {
+                        if(data.success){
+                            Cookies.set('previous_point', previous_point);
+                            window.parent.location.href = "/redeem";
+                            // window.parent.location.href = "/profile";
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                $('#csModal').modal();
+            }
         } else {
             if (is_app) {
                 $('#modal-no-login').modal(); 
