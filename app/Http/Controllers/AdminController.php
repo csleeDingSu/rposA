@@ -1288,5 +1288,37 @@ WHERE
 		$record = $this->receipt_get_to_module($request);
 		return response()->json(['success' => true,'id'=>$request->id,'record'=>$request->receipt]); 
 	}
+
+	public function show_tabao_cron(Request $request)
+    {
+		$id = 9;
+		$record = \DB::table('cron_manager')->where('id',$id)->first();		
+		$data['page']    = 'cronmanager.tabao'; 				
+		$data['record']  = $record;		
+		return view('main', $data);	
+	}
+	
+	public function update_tabao_cron(Request $request)
+    {
+		$id     = 9;
+		$data   = [];
+		$record = \DB::table('cron_manager')->where('id',$id)->first();
+		
+		if ($record->status != 2)
+		{				
+			switch ($request->status)
+			{
+				case 'start':
+					\Artisan::queue('run:gc', [						
+					]);					
+					return response()->json(['success' => true, 'record' => $data,
+											]);					
+				break;
+				case 'stop':
+				break;					
+			}			
+			return response()->json(['success' => true, 'record' => $data]);
+		}
+	}
 	
 }
