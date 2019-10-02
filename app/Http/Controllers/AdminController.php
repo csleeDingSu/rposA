@@ -1309,8 +1309,9 @@ WHERE
 			switch ($request->status)
 			{
 				case 'start':
-					\Artisan::queue('run:gc', [						
-					]);					
+					//\Artisan::queue('run:gc', []);
+					\Artisan::queue('command:GetTaobaoCollectionList', [	]);					
+
 					return response()->json(['success' => true, 'record' => $data,
 											]);					
 				break;

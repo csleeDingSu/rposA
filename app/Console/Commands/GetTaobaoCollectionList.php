@@ -42,7 +42,11 @@ class GetTaobaoCollectionList extends Command
      */
     public function handle()
     {
-    	try {
+    	$dd = \App\CronManager::where('id' , 9)->first();
+        $dd->status = 2;
+        $dd->save();
+        event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
+        try {
         
 			$this->comment('---Start:'.Carbon::now()->toDateTimeString().'---');
             \Log::info("This a command GetTaobaoCollectionList");
@@ -52,12 +56,22 @@ class GetTaobaoCollectionList extends Command
 
             $this->comment($res);
             $this->comment('---End:'.Carbon::now()->toDateTimeString().'---');
+
+            $dd->status = 3;
+            $dd->save();
+            event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
+
             return $res;
         } 
         catch (\Exception $e) 
         { 
             $data='console GetTaobaoCollectionList: ' . (string) $e;
             \Log::error($data);
+            $dd->status = 3;
+            $dd->save();
+            event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
+
+
 
         }
 
