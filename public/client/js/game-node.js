@@ -203,6 +203,7 @@ function initUser(records){
         }
         $('#hidBalance').val(balance);
         $("#nTxt").val(life);
+        $(".nTxt").html(life);
         $(".spanLife").html(life);
         $(".span-play-count").html(play_count);
 

@@ -943,6 +943,33 @@
 </div>
 <!-- customer service modal Ends -->
 
+<!-- wechat verify Modal starts -->
+  <div class="modal fade col-md-12" id="wechat-verification-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">        
+          <div class="modal-row">
+            <div class="wrapper modal-full-height">
+              <div class="modal-card">
+                <img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+                <div class="wechat-instructions">
+                  你的账号还未通过微信认证，<br />
+                  不能兑换红包，请先认证。
+                </div>                
+              </div>
+              <div>
+                <a href="/validate">
+                  <img src="{{ asset('/client/images/btn-verify.png') }}" width="154" height="44" alt="Verify" />
+                </a>
+              </div>
+            </div>
+          </div>              
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- wechat verify Modal Ends -->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -964,6 +991,7 @@
     	// var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
+			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var bet_count = $('#hidbetting_count').val();
