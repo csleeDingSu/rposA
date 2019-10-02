@@ -262,6 +262,8 @@ class MemberController extends Controller
 			return response()->json(['success' => false,'message' => trans('auth.receipt_exist')]);
 		}		
 		$receipt = \App\Receipt::create(['member_id' => $request->memberid , 'receipt' => $request->receipt ]);
+
+		event(new \App\Events\EventDynamicChannel('new-receipt','',$receipt ));
 		
 		return response()->json(['success' => true, 'refid'=>$receipt->id]);
 	}
