@@ -23,6 +23,7 @@ var g_betting_history_total = 0;
 var play_count = 0;
 var bet_count = 0;
 var gameid = 103;
+var g_bet_amount = 0;
 
 $(function () {
 
@@ -197,6 +198,7 @@ try {
     trigger = false;
 
         var bet_amount = 0;
+        g_bet_amount = bet_amount;
         var duration = 10;
         var timer = 10;
         var freeze_time = 1;
@@ -394,7 +396,7 @@ function getNotification(data){
     $('.icon-red').html(notifications_count).show();
 
     var records = notifications.records;
-    $('.spanAcuPointAndBalance').html(records[0].ledger.balance_after);
+    $('.spanAcuPointAndBalance').html(get2Decimal(Number(records[0].ledger.balance_after) - Number(g_bet_amount)));
     g_vip_point = records[0].ledger.balance_after;
 
     $('.icon-newcoin').click(function(){
@@ -1061,6 +1063,7 @@ function showPayout(){
             $('.even-payout').html(bet_amount);
 
             $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(g_vip_point - bet_amount)));
+            g_bet_amount = bet_amount;
 
             if(bet_amount > 0){
 
