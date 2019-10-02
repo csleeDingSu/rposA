@@ -1651,7 +1651,6 @@ function anp(e, lv, bet){
 
 function bindButton () {
      $( '.btn-go-withdraw' ).click( function( event ){
-        $(this).off('click');
         event.stopImmediatePropagation();
         var wechat_status = $('#hidWechatStatus').val();
         var user_id = $('#hidUserId').val();
@@ -1659,7 +1658,8 @@ function bindButton () {
 
         // add points from additional life.
         if(user_id > 0){
-            if (wechat_status == 0) {                 
+            if (wechat_status == 0) {   
+            $(this).off('click');              
                 $.ajax({
                     type: 'POST',
                     url: "/api/resetlife",
