@@ -392,8 +392,9 @@ class ClientController extends BaseController
 		$member_id = Auth::guard('member')->user()->id;
 
 		$invitation_list = DB::table( 'view_members' )->where('referred_by', $member_id)->select( '*' )->orderBy( 'id', 'desc' )->get();
+		$wallet          = \App\Ledger::ledger($member_id,'102');
 
-		return view( 'client/invitation_list', compact( 'invitation_list' ) );
+		return view( 'client/invitation_list', compact( 'invitation_list','wallet' ) );
 
 	}
 

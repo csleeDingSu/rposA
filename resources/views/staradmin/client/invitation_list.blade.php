@@ -38,11 +38,12 @@
 
 @section('top-javascript')
     @parent
-    <!-- <script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script> -->
+    <script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 @endsection
 
 @section('content')
+
 <div class="full-height">
     <div class="container">
         <input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
@@ -50,6 +51,7 @@
         <input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
         <input type="hidden" id="page" value="1" />
         <input type="hidden" id="max_page" value="1" />
+        <input type="hidden" id="hidWallet" value="{{empty($wallet) ? null : $wallet}}" />
         <div class="information-table">
             <div class="col-xs-12">
                 <div class="image-wrapper">
@@ -182,10 +184,8 @@
     <!-- add next lvl invitation -->
     <script>        
         $(document).ready(function(){            
-            // document.getElementById('my-lvl-invitation').style.display = "none";
-            // document.getElementById('next-lvl-invitation').style.display = "none";
-            // document.getElementById('invitation').style.display = "none";
-            // document.getElementById('invitation_next_lvl').style.display = "none";
+            // console.log("{{empty($wallet) ? 0 : $wallet->life}}");
+            $('.nTxt').html("{{empty($wallet) ? 0 : $wallet->life}}");
         })
         
     </script>

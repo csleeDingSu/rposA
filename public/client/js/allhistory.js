@@ -1,6 +1,7 @@
 var type = 'normal';
 var page = 1;
 var page_count = 1;
+var gameid = 102;
 
 $(function () {
     getToken();    
@@ -14,6 +15,7 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
+            getWallet(data.access_token, id);
             getPosts(page, data.access_token, type);
             scrollBottom(data.access_token);
         }     
@@ -218,4 +220,27 @@ function showBettingHistory(response) {
     }
 
     return history;
+}
+
+function getWallet(token, id) {
+    $.ajax({
+        type: 'POST',
+        url: "/api/wallet-detail?gameid=" + gameid + "&memberid=" + id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error.message);
+            $(".reload").show();
+        },
+        success: function(data) {
+            // console.log(data);
+            wallet_point = data.record.gameledger[gameid].point;
+            wallet_life = data.record.gameledger[gameid].life;
+            console.log(wallet_point);
+            $('.nTxt').html(wallet_life);
+        }
+    });
 }

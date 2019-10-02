@@ -1114,7 +1114,7 @@ function getNumeric(value) {
 function getWallet(token, id) {
     $.ajax({
         type: 'POST',
-        url: "/api/wallet-detail?gameid=103&memberid=" + id, 
+        url: "/api/wallet-detail?gameid=" +gameid + "&memberid=" + id, 
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -1127,8 +1127,10 @@ function getWallet(token, id) {
         success: function(data) {
             // console.log(data);
             wallet_point = data.record.gameledger[gameid].point;
+            wallet_life = data.record.gameledger[gameid].life;
             console.log(wallet_point);
             $('.wabao-coin').html(wallet_point);
+            $('.nTxt').html(wallet_life);
             getProductList(token);
             getPosts(page, token);
             scrollBottom(token);
