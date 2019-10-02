@@ -406,6 +406,7 @@
             $('.wabao-usedpoint').html(usedpoint);
 
             $('.game-life').html(current_life);
+            $('.nTxt').html(current_life);            
 
             $('.gamebtn').click(function(){
 					window.location.href = "/arcade";
