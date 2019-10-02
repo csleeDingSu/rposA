@@ -396,7 +396,7 @@ function getNotification(data){
     $('.icon-red').html(notifications_count).show();
 
     var records = notifications.records;
-    $('.spanAcuPointAndBalance').html(get2Decimal(Number(records[0].ledger.balance_after) - Number(g_bet_amount)));
+    $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(records[0].ledger.balance_after) - getNumeric(g_bet_amount)));
     g_vip_point = records[0].ledger.balance_after;
 
     $('.icon-newcoin').click(function(){
