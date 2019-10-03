@@ -18,3 +18,8 @@
 .listBox .typeBox {
    padding-top: 0.1rem;
 }
+
+.searchBox input {
+    font-weight: 500;
+    margin-top: 0.1rem;
+ }

@@ -129,34 +129,34 @@
         $('#view-photo').modal();
       }
 
-//swiper
+      //swiper
        var swiper = new Swiper(".swiper-container", {
-      autoHeight: window.innerHeight,
-      autoplay: false, //可选选项，自动滑动
-      spaceBetween: 5,
-      centeredSlides: true,
-    });
-
-    $('.listBox .imgBox li').click(function () {
-      $('.slideImg').removeClass('dn');
-      let html = "";
-      let that = $(this);
-      $.each(that.parent().find('li'), function (index, res) {
-        img = $(res).find('img').attr('src');
-        html += ' <div class="swiper-slide">';
-        html += '<div class="inBox"><img src="' + img + '"></div>';
-        html += ' </div>';
+        autoHeight: window.innerHeight,
+        autoplay: false, //可选选项，自动滑动
+        spaceBetween: 5,
+        centeredSlides: true,
       });
-      swiper.removeAllSlides();
-      swiper.appendSlide(html);
 
-    });
+      $('.listBox .imgBox li').click(function () {
+        $('.slideImg').removeClass('dn');
+        let html = "";
+        let that = $(this);
+        $.each(that.parent().find('li'), function (index, res) {
+          img = $(res).find('img').attr('src');
+          html += ' <div class="swiper-slide">';
+          html += '<div class="inBox"><img src="' + img + '"></div>';
+          html += ' </div>';
+        });
+        swiper.removeAllSlides();
+        swiper.appendSlide(html);
 
-    $('.slideImg').click(function (e) {
-      if($(e.target).find('.swiper-container').length>0){
-        $('.slideImg').addClass('dn');
-      };
-    });
+      });
+
+      $('.slideImg').click(function (e) {
+        if($(e.target).find('.swiper-container').length>0){
+          $('.slideImg').addClass('dn');
+        };
+      });
 
     </script>
 

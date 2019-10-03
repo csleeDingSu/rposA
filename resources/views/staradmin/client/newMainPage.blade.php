@@ -24,22 +24,50 @@
         <input id="hidweChatVerificationStatus" type="hidden" value="{{empty($member->wechat_verification_status) ? '' : $member->wechat_verification_status}}" />
         <input id="hidgame102UsedPoint" type="hidden" value="{{$game_102_usedpoint}}" />
         <input id="hidgame102Life" type="hidden" value="{{empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life}}" />
-        <div class="logo rel">
-          <img src="{{ asset('/clientapp/images/logo.png') }}" width="100%">
+        @if(!empty($member) && $member->wechat_verification_status == 0 && $game_102_usedpoint > 0)   <!-- wechat verified && old user-->    
+        <div class="logo rel logo3-1">
+        @else
+           <!-- wechat not verify && new user -->
+        <div class="logo rel logo3">
+        @endif
           <div class="searchBox" id="search">
             <img class="tipsImg" src="{{ asset('/clientapp/images/searchTips.png') }}">
             <img src="{{ asset('/clientapp/images/searchIcon.png') }}">
             <label>
-              <input type="text" placeholder="复制淘宝商品标题 粘贴搜索" disabled="true">
+              <input type="text" placeholder="复制淘宝商品标题 粘贴搜索" disabled />
             </label>
             <div class="sBtn" id="btn-search">查券</div>
           </div>
+
+          <ul class="about">
+            <li>① 复制淘宝商品标题</li>
+            <li>② 粘贴找券</li>
+            <li>③ 领券购买有奖励</li>
+          </ul>
+        </div>       
+
+        <div class="navBox-3">
+          <a><img src="{{ asset('/clientapp/images/index3-nav.png') }}">
+            <p>查券教程</p>
+          </a>
+          <a><img src="{{ asset('/clientapp/images/index3-nav2.png') }}">
+            <p> 邀请赚钱</p>
+          </a>
+          <a><img src="{{ asset('/clientapp/images/index3-nav3.png') }}">
+            <p>下单奖励</p>
+          </a>
+          <a><img src="{{ asset('/clientapp/images/index3-nav4.png') }}">
+            <p>金币换购</p>
+          </a>
+          <a><img src="{{ asset('/clientapp/images/index3-nav5.png') }}">
+            <p>在线客服</p>
+          </a>
         </div>
-        @if(!empty($member) && $member->wechat_verification_status == 0 && $game_102_usedpoint > 0)   <!-- wechat verified && old user-->    
-          @include('/client/main_partial_wechat_verify')
-        @else
-          @include('/client/main_partial_wechat_unverify') <!-- wechat not verify && new user -->
-        @endif
+
+        <div class="banner">
+          <a><img src="{{ asset('/clientapp/images/banner3.png') }}" width="100%" /></a>
+        </div>
+
         <a name="p"></a>
         <h2 class="listTitle">超值爆款产品</h2>
         <div class="listBox">

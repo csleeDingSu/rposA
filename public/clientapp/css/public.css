@@ -219,3 +219,4 @@ input[type=tel]{
 }
 
 hr{ border:none; margin: 0; padding: 0;}
+.borderBottom{ border-bottom: .02rem solid #f3f3f3;}
