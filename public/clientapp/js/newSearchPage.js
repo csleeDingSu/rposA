@@ -115,17 +115,7 @@ var life = 0;
                   var sales = 0;
                   totalNum = JSON.parse(data).data.totalNum;
                   _pageId = JSON.parse(data).data.pageId;
-                  // $('#hidPageId').val(JSON.parse(data).data.pageId);
-                  // $('#hidPageId').val(Number(JSON.parse(data).data.pageId) + 1);
-
-                  // pageId = $('#hidPageId').val();
-
-                  if (usedpoint > 0) {
-                    _rewardtxt = (life > 0) ? '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + Number(life) * 12 + '</span></p>' : '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>';
-                  } else {
-                    _rewardtxt = '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>';
-                  }
-                 
+                  
                     $.each(records, function(i, item) {
                       originalPrice = (typeof item.originalPrice == 'undefined') ? item.zk_final_price : item.originalPrice;
                       couponPrice = (typeof item.couponPrice == 'undefined') ? item.coupon_amount : item.couponPrice;
@@ -137,12 +127,17 @@ var life = 0;
                       couponLink = (typeof item.couponLink == 'undefined') ? item.coupon_id : item.couponLink;
                       id = (typeof item.id == 'undefined') ? item.item_id : item.id;
 
+                      promoPrice = getNumeric(Number(originalPrice) - Number(couponPrice));
+                      promoPrice = (promoPrice > 0) ? promoPrice : 0;
                       newPrice = getNumeric(Number(originalPrice) - Number(couponPrice) - Number(12));
                       newPrice = (newPrice > 0) ? newPrice : 0;
                       sales = (Number(monthSales) >= 1000) ? parseFloat(Number(monthSales) / 10000).toFixed(1) + '万' : Number(monthSales) + '件';
-                      reward = parseInt(newPrice * 10);
+                      commissionRate = item.commission_rate.substring(0,2);
+                      commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
+                      reward = parseInt(Number(newPrice) * Number(commissionRate));
                       reward = (reward <= 0) ? '100' : reward;
                       _param = '?id=' + item.id + '&goodsId='+ goodsId +'&mainPic='+mainPic+'&title='+title+'&monthSales=' + monthSales +'&originalPrice=' +originalPrice+'&couponPrice=' +couponPrice + '&couponLink=' + encodeURIComponent(couponLink) + '&voucher_pass=';
+                      _rewardtxt = '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + newPrice + '</span></p>';
             
                       // console.log(item.couponLink + 'dsad' + i);
                       // return item.couponLink;
@@ -161,7 +156,7 @@ var life = 0;
                                     '<span class="type-red">'+couponPrice+'元</span>' +
                                     '<span class="type-sred">奖励'+reward+'积分</span>' +
                                   '</div>' +
-                                  '<p class="newTxt">券后价格<em>¥</em>' + newPrice + '</p>' +
+                                  '<p class="newTxt">券后价格<em>¥</em>' + promoPrice + '</p>' +
                                   '<div class="moneyBox">' +
                                     _rewardtxt +
                                     '<p class="num">热销'+ sales +'</p>' +

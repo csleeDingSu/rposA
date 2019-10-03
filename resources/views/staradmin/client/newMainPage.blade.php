@@ -92,10 +92,14 @@
           @if(!empty($product))
             @foreach($product['list'] as $p)
                 @php ($oldPrice = number_format((float)$p['originalPrice'], 2, '.', ''))
+                @php ($promoPrice = $p['originalPrice'] - $p['couponPrice'])
+                @php ($promoPrice = ($promoPrice > 0) ? $promoPrice : 0)
                 @php ($newPrice = $p['originalPrice'] - $p['couponPrice'] - 12)
                 @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
                 @php ($sales = ($p['monthSales'] >= 1000) ? number_format(((float)$p['monthSales'] / 10000), 2, '.', '') . '万' : $p['monthSales'] . '件')
-                @php ($reward = (int)($newPrice * 10))
+                @php ($commissionRate = $p['commissionRate'])
+                @php ($commissionRate = ($commissionRate > 0) ? $commissionRate : 0)
+                @php ($reward = (int)($newPrice * $commissionRate))
                 @php ($reward = ($reward <= 0) ? '100' : $reward)
                 @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&voucher_pass=")
                 
@@ -112,18 +116,9 @@
                       <span class="type-red">{{$p['couponPrice']}}元券</span>
                       <span class="type-sred">奖励 {{$reward}} 积分</span>
                     </div>
-                    <p class='newTxt'>券后价格<em>¥</em>{{$newPrice}}</p>
+                    <p class='newTxt'>券后价格<em>¥</em>{{$promoPrice}}</p>
                     <div class="moneyBox">                        
-                        @if ($game_102_usedpoint > 0)
-                          @php ($life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
-                          @if ($life > 0) 
-                          <p class="txt-red">补贴价格<em>¥</em><span class="num-reward">{{$life * 12}}</span></p>
-                          @else
-                          <p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>
-                          @endif
-                        @else
-                          <p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>
-                        @endif
+                      <p class="txt-red">补贴价格<em>¥</em><span class="num-reward">{{$newPrice}}</span></p>
                       <p class="num">热销{{$sales}}</p>
                     </div>
                   </div>

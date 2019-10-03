@@ -101,10 +101,14 @@ function goSearch() {
 
 function populateData(item) {
   oldPrice = parseFloat(item.originalPrice).toFixed(2);
+  promoPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice));
+  promoPrice = (promoPrice > 0) ? promoPrice : 0;
   newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
   newPrice = (newPrice > 0) ? newPrice : 0;
   sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
-  reward = parseInt(newPrice * 10);
+  commissionRate = item.commissionRate;
+  commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
+  reward = parseInt(Number(newPrice) * Numer(commissionRate));
   reward = (reward <= 0) ? '100' : reward;
   _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
   // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
@@ -123,19 +127,10 @@ function populateData(item) {
             '<span class="type-red">'+item.couponPrice+'元券</span>' +
             '<span class="type-sred">奖励'+reward+'积分</span>' +
           '</div>' +
-          '<p class="newTxt">券后价格<em>¥</em>' + newPrice + '</p>' +
-          '<div class="moneyBox">';
-            if (isNewBie) {
-  html +=      '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>';
-            } else {
-              if (life > 0) {
-  // html +=      '<span class="type-blue">抽奖补贴' + (Number(life) * 12) + '元</span>';
-  html +='<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + (Number(life) * 12) + '</span></p>';
-              } else {
-  html +=      '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>';
-              }  
-            }
-  html += '<p class="num">热销'+ sales +'</p>' +
+          '<p class="newTxt">券后价格<em>¥</em>' + promoPrice + '</p>' +
+          '<div class="moneyBox">' +
+          '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + newPrice + '</span></p>' +
+          '<p class="num">热销'+ sales +'</p>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -143,21 +138,3 @@ function populateData(item) {
   return html;
 
 }
-
-function populateHighlightData(item) {
-  oldPrice = parseFloat(item.originalPrice).toFixed(2);
-  newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
-  newPrice = (newPrice > 0) ? newPrice : 0;
-  sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
-  reward = parseInt(newPrice * 10);
-  reward = (reward <= 0) ? '100' : reward;
-  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
-  // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
-  html ='<a href="/main/product/detail' + _param +'">' +
-          '<span><img src="'+item.mainPic+'"></span>' +
-          '<h2><em>¥</em> '+ newPrice +'</h2>' +
-          '<p>热销'+sales+'</p>' +
-        '</a>';
-  return html;
-}
-
