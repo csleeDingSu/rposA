@@ -25,7 +25,7 @@
         <input id="hidgame102UsedPoint" type="hidden" value="{{$game_102_usedpoint}}" />
         <input id="hidgame102Life" type="hidden" value="{{empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life}}" />
         @if(!empty($member) && $member->wechat_verification_status == 0 && $game_102_usedpoint > 0)   <!-- wechat verified && old user-->    
-        <div class="logo rel logo3-1">
+        <div class="logo rel logo3-c1">
           <div class="searchBox" id="search">
             <img class="tipsImg" src="{{ asset('/clientapp/images/searchTips.png') }}">
             <img src="{{ asset('/clientapp/images/searchIcon.png') }}">
@@ -40,7 +40,7 @@
             <li>② 粘贴找券</li>
             <li>③ 领券购买有奖励</li>
           </ul>
-          <a class="goShare" href="/pre-share"></a>         
+          <a class="goShare-c" href="/pre-share"></a>         
         </div>
         @else
            <!-- wechat not verify && new user -->
@@ -59,7 +59,7 @@
             <li>② 粘贴找券</li>
             <li>③ 领券购买有奖励</li>
           </ul>
-          <a class="goShare" href="/arcade"></a>          
+          <a class="goShare-c" href="/arcade"></a>          
         </div>
         @endif 
 

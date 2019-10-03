@@ -25,7 +25,7 @@
     margin-top: 0.1rem;
  }
 
- .goShare {
+ .goShare-c {
     display: block;
     margin: 0 auto;
     width: 100%;
@@ -57,7 +57,7 @@
 	font-size: 0.4rem;
 }
 
-.logo3-1 {
+.logo3-c1 {
   background: url(../images/index3-img1.png) left top no-repeat;
   background-size: 100% auto;
   padding-top: 1.45rem;
@@ -67,7 +67,7 @@
   
 }
 
-.logo3-1 .searchBox {
+.logo3-c1 .searchBox {
   position: relative;
   margin-bottom: 0;
   bottom: 0;
@@ -75,6 +75,6 @@
   width: calc(100% - 0.48rem);
 }
 
-.logo3-1 .about li {
+.logo3-c1 .about li {
   color: #fff;
 }
