@@ -601,6 +601,9 @@
 								<div class="modal-instruction">这局亏了50元，继续加油哦</div>
 								<div class="close-win-modal modal-redeem-button">
 									再抽一次
+								</div>
+								<div class="btn-view-game-rules">
+									了解倍投 更容易中
 								</div>												
 							</div>
 						</div>
@@ -869,7 +872,7 @@
 			})();
 
 		$(document).ready(function () {
-
+			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var user_id = $('#hidUserId').val();
@@ -924,6 +927,12 @@
 	            $('.modal').modal('hide')
 	            // $('.modal-backdrop').remove() // removes the grey overlay.
 	            $('.modal-backdrop').css("z-index", "-1");
+            });
+
+            $('.btn-view-game-rules').click(function() {
+            	$('.modal').modal('hide');
+				$('.modal-backdrop').remove(); 
+            	$('.btn-rules-vip').trigger("click");
             });
 		});
 

@@ -532,3 +532,35 @@
     color: red;
     margin: -1rem 0 0 0;
 }
+
+#lose-modal .modal-instruction {
+    color: #888;
+    font-size: 0.28rem;
+    text-align: center;
+    margin: 0rem auto 0.3rem auto;
+}
+#lose-modal .modal-win-title {
+    font-size: 0.46rem;
+    color: #ff6067;
+    font-weight: 500;
+    padding-top: 3rem;
+    }
+    
+#lose-modal .modal-redeem-button {
+	background: #ffae00;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 0.3rem;
+    padding: 0.16rem;
+}
+
+.btn-view-game-rules {
+	border-radius: 30px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #ffae00;
+    border: 1px solid #ffae00;
+    font-size: 0.3rem;
+    padding: 0.16rem;
+    margin: 2% 5%;
+}
