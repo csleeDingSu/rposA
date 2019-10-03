@@ -58,6 +58,7 @@ if it's not present, don't show loader */
 
  em {
     font-family: '黑体' !important;
+    padding: 0 0.05rem;
  }
 
 .listBox .inBox .imgBox {
@@ -109,4 +110,29 @@ if it's not present, don't show loader */
     padding: 0.2rem;
     text-align: center;
     margin: 0 2rem;
+}
+
+.type-price {
+    color: #bebebe;
+    font-size: 0.26rem !important;
+    padding: 0 !important;
+}
+
+.newTxt {
+  font-size: 0.22rem;
+  color: #bebebe;
+  line-height: 1em;
+  margin-right: 0.12rem;
+}
+
+.listBox .moneyBox .txt-red {
+  font-size: 0.22rem;
+  /*margin-right: 0.05rem;*/
+  color: #fe002f;
+  /*font-family: "黑体";*/
+  flex:1;
+}
+
+.listBox .moneyBox .txt-red .num-reward {
+    font-size: 0.4rem;
 }

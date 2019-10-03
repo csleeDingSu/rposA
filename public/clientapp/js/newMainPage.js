@@ -119,25 +119,23 @@ function populateData(item) {
         '<div class="txtBox flex1">' +
           '<h2 class="name">'+item.title+'</h2>' +
           '<div class="typeBox">' +
+            '<span class="type-price">淘宝<em>¥</em>' + oldPrice + '</span>' +
             '<span class="type-red">'+item.couponPrice+'元券</span>' +
-            '<span class="type-sred">奖励'+reward+'积分</span>';
-
+            '<span class="type-sred">奖励'+reward+'积分</span>' +
+          '</div>' +
+          '<p class="newTxt">券后价格<em>¥</em>' + newPrice + '</p>' +
+          '<div class="moneyBox">';
             if (isNewBie) {
-  html +=      '<span class="type-blue">新人补贴12元</span>';
+  html +=      '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>';
             } else {
               if (life > 0) {
-  html +=      '<span class="type-blue">抽奖补贴' + (Number(life) * 12) + '元</span>';
+  // html +=      '<span class="type-blue">抽奖补贴' + (Number(life) * 12) + '元</span>';
+  html +='<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + (Number(life) * 12) + '</span></p>';
               } else {
-  html +=      '<span class="type-blue">邀请补贴12元</span>';
+  html +=      '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>';
               }  
             }
-            
-  html +=  '</div>' +
-          '<div class="moneyBox">' +
-            '<p class="icon">¥</p>' +
-            '<p class="nowTxt">'+ newPrice +'</p>' +
-            '<p class="oldTxt"><em class="fs">¥</em>'+oldPrice+'</p>' +
-            '<p class="num">热销'+ sales +'</p>' +
+  html += '<p class="num">热销'+ sales +'</p>' +
           '</div>' +
         '</div>' +
       '</div>';

@@ -108,23 +108,22 @@
                   <div class="txtBox flex1">
                     <h2 class="name">{{$p['title']}}</h2>
                     <div class="typeBox">
+                      <span class="type-price">淘宝<em>¥</em>{{$oldPrice}}</span>
                       <span class="type-red">{{$p['couponPrice']}}元券</span>
                       <span class="type-sred">奖励 {{$reward}} 积分</span>
-                    @if ($game_102_usedpoint > 0)
-                      @php ($life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
-                      @if ($life > 0) 
-                      <span class="type-blue">抽奖补贴{{$life * 12}}元</span>
-                      @else
-                      <span class="type-blue">邀请补贴12元</span>
-                      @endif
-                    @else
-                      <span class="type-blue">新人补贴12元</span>
-                    @endif
                     </div>
-                    <div class="moneyBox">
-                      <p class="icon">¥</p>
-                      <p class="nowTxt">{{$newPrice}}</p>
-                      <p class="oldTxt"><em class="fs">¥</em>{{$oldPrice}}</p>
+                    <p class='newTxt'>券后价格<em>¥</em>{{$newPrice}}</p>
+                    <div class="moneyBox">                        
+                        @if ($game_102_usedpoint > 0)
+                          @php ($life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
+                          @if ($life > 0) 
+                          <p class="txt-red">补贴价格<em>¥</em><span class="num-reward">{{$life * 12}}</span></p>
+                          @else
+                          <p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>
+                          @endif
+                        @else
+                          <p class="txt-red">补贴价格<em>¥</em><span class="num-reward">12</span></p>
+                        @endif
                       <p class="num">热销{{$sales}}</p>
                     </div>
                   </div>

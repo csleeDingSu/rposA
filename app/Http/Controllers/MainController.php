@@ -101,6 +101,21 @@ class MainController extends BaseController
 
 	public function tabaoSearch($search = null)
 	{
+		$this->vp = new VIPApp();
+		if (Auth::Guard('member')->check())
+		{
+			$member = Auth::guard('member')->user()->id	;
+			$data['member']    = Member::get_member($member);
+			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+			$data['game_102_usedpoint'] = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',102)->sum('point');
+
+		} else {
+			$member = null;
+			$data['member'] = null;
+			$data['wallet'] = null;	
+			$data['game_102_usedpoint'] = 0;
+		}
+		
 		$data['search'] = $search;
 		return view('client/newSearchPage', $data);
 

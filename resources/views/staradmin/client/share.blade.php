@@ -270,8 +270,8 @@ border-radius: 20px;
       <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 33%">    
        <span class="head2">分享到微信的方法</span>
      </div>     
-     <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 16%">    
-       <span class="head3">按住广告图3秒 > 分享图片 > 微信好友</span>
+     <div class="row justify-content-center headrow" style="margin-top: 10px; text-align: center">    
+       <span class="head3">长按图片 > 储存图片 > 分享给好友</span>
      </div>
     
     
@@ -418,7 +418,7 @@ h1:after {
     background-size:contain;
     background-repeat:no-repeat;
     background-color: #FF6d7d;
-    /*height: 12.4rem;*/
+    height: 15rem;
   }
   
   .small-img

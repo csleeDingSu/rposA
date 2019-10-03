@@ -8,6 +8,7 @@
 
  em {
  	font-family: '黑体' !important;
+ 	padding: 0 0.05rem;
  }
 
 .listBox .inBox .imgBox {
@@ -29,4 +30,51 @@
     margin: 0 auto;
     width: 100%;
     height: 60%;
+}
+
+.type-price {
+	color: #bebebe;
+	font-size: 0.26rem !important;
+    padding: 0 !important;
+}
+
+.newTxt {
+  font-size: 0.22rem;
+  color: #bebebe;
+  line-height: 1em;
+  margin-right: 0.12rem;
+}
+
+.listBox .moneyBox .txt-red {
+  font-size: 0.22rem;
+  /*margin-right: 0.05rem;*/
+  color: #fe002f;
+  /*font-family: "黑体";*/
+  flex:1;
+}
+
+.listBox .moneyBox .txt-red .num-reward {
+	font-size: 0.4rem;
+}
+
+.logo3-1 {
+  background: url(../images/index3-img1.png) left top no-repeat;
+  background-size: 100% auto;
+  padding-top: 1.45rem;
+  box-sizing: border-box;
+  height: 5.9rem;
+  margin-bottom: 0;
+  
+}
+
+.logo3-1 .searchBox {
+  position: relative;
+  margin-bottom: 0;
+  bottom: 0;
+  box-shadow: none;
+  width: calc(100% - 0.48rem);
+}
+
+.logo3-1 .about li {
+  color: #fff;
 }

@@ -25,6 +25,9 @@
 
 <section class="card">
     <input id="hidPageId" type="hidden" value="" />
+    <input id="hidgame_102_usedpoint" type="hidden" value="{{empty($game_102_usedpoint) ? 0 : $game_102_usedpoint}}" />
+    <input id="hidlife" type="hidden" value="{{empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life}}" />
+    
     <div class="card-header">
       <div class="topSearch">
         <a class="return" href="javascript:history.back();"><img src="{{ asset('/clientapp/images/leftIcon.png') }}"></a>
