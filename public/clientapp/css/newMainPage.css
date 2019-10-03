@@ -45,7 +45,7 @@
   margin-right: 0.12rem;
 }
 
-.listBox .moneyBox .txt-red {
+.txt-red {
   font-size: 0.22rem;
   /*margin-right: 0.05rem;*/
   color: #fe002f;
@@ -53,7 +53,7 @@
   flex:1;
 }
 
-.listBox .moneyBox .txt-red .num-reward {
+.num-reward {
 	font-size: 0.4rem;
 }
 

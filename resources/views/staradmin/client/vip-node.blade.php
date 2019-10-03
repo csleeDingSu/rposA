@@ -896,7 +896,6 @@
 			})();
 
 		$(document).ready(function () {
-			$('#modal-insufficient-point').modal();
 			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
