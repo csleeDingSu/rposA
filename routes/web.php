@@ -176,7 +176,11 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::any( '/main', 'MainController@newMainPage' )->name( 'client.newMainPage' );	
 	Route::any( '/main/search/{search?}', 'MainController@tabaoSearch' )->name( 'client.tabao.search' );	
 	Route::any( '/pre-share', 'MainController@preShare' )->name( 'client.preShare' );
-	Route::any( '/main/product/detail', 'MainController@tabaoProductDetail' )->name( 'client.tabao.ProductDetail' );	
+	Route::any( '/main/product/detail', 'MainController@tabaoProductDetail' )->name( 'client.tabao.ProductDetail' );
+	Route::get( '/guide/redeem', function () {
+		return view( 'client/quan');
+	} );
+		
 } );
 
 //Member routes with member guard

@@ -37,7 +37,7 @@ class ReceiptController extends Controller
         if (Auth::guard('member')->check()) {
             return view('client.receipt');
         } else {
-            return redirect('/');
+            return redirect('/login');
         }
     }
 

@@ -185,13 +185,14 @@
 		      <div class="scrolly">
 		        @yield('content')
 		      </div>
-		    </div>
+		    </div>		
 
-		@if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm'))
+		@if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips'))
+
 			@include('layouts/footer_app')
 		@endif
-
-  		</section>
+		
+		</section>
 
 		@section('footer-javascript')
 			<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -212,6 +213,25 @@
 		            },100);
 		          }
 		        }
+			  
+			  
+			  resize = () => {
+				  var o = $(document)
+				  
+				  dH = o.height()
+				  $(".card-bar").css({
+					top: dH - $(".card-bar").height()
+				  })
+				}
+
+				$(window).resize(() => {
+				  resize()
+				})
+
+				resize()
+				
+				
+				
 
 		    </script>
 

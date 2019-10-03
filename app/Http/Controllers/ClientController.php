@@ -92,6 +92,9 @@ class ClientController extends BaseController
 	{
 		//isVIP APP
 		$this->vp = new VIPApp();
+		
+		\Log::debug(json_encode(['agent' => $_SERVER['HTTP_USER_AGENT']], true));
+
 
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
@@ -382,8 +385,9 @@ class ClientController extends BaseController
 	public function tips()
 	{
 
-		$tips =  tips::whereNull('deleted_at')->orderBy('seq')->get();
-		return view( 'client/tips', compact( 'tips' ) );
+		// $tips =  tips::whereNull('deleted_at')->orderBy('seq')->get();
+		// return view( 'client/tips', compact( 'tips' ) );
+		return view( 'client/cjiang' );
 
 	}
 
