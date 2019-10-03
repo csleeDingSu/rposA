@@ -871,6 +871,8 @@ function bindBetButton(){
             if (g_vip_point < 1) {
                 // $( '#modal-isnewbie' ).modal( 'show' );
                 $('#modal-insufficient-point-new').modal();
+                console.log('111');
+                return false;
             } else {
 
                 var add_bet = parseInt($(this).html());
@@ -889,6 +891,7 @@ function bindBetButton(){
                     $('.span-bet').val(getNumeric(g_vip_point));
                     previous_bet = g_vip_point;
                     $('#modal-insufficient-point-new').modal();
+                    console.log('222');
                 }
                 showPayout();
 
@@ -964,6 +967,7 @@ function bindBetButton(){
         if (g_vip_point < 1) {
             // $( '#modal-isnewbie' ).modal( 'show' );
             $('#modal-insufficient-point-new').modal();
+            console.log('333');
             return false;
         }
 
@@ -1176,6 +1180,7 @@ function bindTriggerButton(){
             if (g_vip_point < 1) {
                 // $( '#modal-isnewbie' ).modal( 'show' );
                 $('#modal-insufficient-point-new').modal();
+                console.log('444');
             } else {            
                 event.stopImmediatePropagation();
                 checkSelection();

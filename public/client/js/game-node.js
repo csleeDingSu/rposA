@@ -40,7 +40,7 @@ $(function () {
         //resetTimer();
     });
 
-    var wechat_status = $('#hidWechatId').val();
+    var wechat_status = 0; //$('#hidWechatStatus').val(); //ignore wechat status verification
     var wechat_name = $('#hidWechatName').val();
     var max_acupoint = $('#hidMaxAcupoint').val();
     var min_acupoint = $('#hidMinAcupoint').val();
@@ -936,7 +936,7 @@ function bindResetLifeButton(){
         $(this).off('click');
         event.stopImmediatePropagation();
 
-        var wechat_status = $('#hidWechatStatus').val();
+        var wechat_status = 0; //$('#hidWechatStatus').val(); //ignore wechat status verification
         var user_id = $('#hidUserId').val();
         var previous_point = g_cookies_point;
 
@@ -1652,7 +1652,7 @@ function anp(e, lv, bet){
 function bindButton () {
      $( '.btn-go-withdraw' ).click( function( event ){
         event.stopImmediatePropagation();
-        var wechat_status = $('#hidWechatStatus').val();
+        var wechat_status = 0; //$('#hidWechatStatus').val(); //ignore wechat status verification
         var user_id = $('#hidUserId').val();
         var previous_point = g_cookies_point;
 
