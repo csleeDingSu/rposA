@@ -633,7 +633,7 @@
 									<p>
 										<span class="highlight-header">您已抽到<span class="withdraw-value">0</span>元</span>
 									</p>
-									<p>满6元、10元提现，最高抽<span class="highlight-coin-max">{{env('coin_max', '12')}}</span>元
+									<p>满6元提现，最高抽<span class="highlight-coin-max">{{env('coin_max', '12')}}</span>元
 									</p>
 								</div>
 								<div class="close-modal modal-warning-button">
@@ -668,9 +668,9 @@
 									</p>
 								</div>
 								<div class="btn-go-withdraw">
-									提现<span class="withdraw-value"></span>元 结束抽奖
+									马上结算 结束抽奖
 								</div>
-								<div class="close-modal modal-warning-button">
+								<div class="close-modal modal-warning-butto	n">
 									继续抽奖 抽{{env('coin_max', '12')}}元
 								</div>
 							</div>
