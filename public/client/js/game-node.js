@@ -152,7 +152,7 @@ function updateHistory(records){
 
         }
 
-        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ _bet_amount +'金币，' + strwinloss + '，' + strsign + _bet_amount +'金币';
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ _bet_amount +'挖宝币，' + strwinloss + '，' + strsign + _bet_amount +'挖宝币';
 
         $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
         $('.history-body').find('#row-' + counter).find('.history').html(history);
@@ -640,11 +640,11 @@ function checkSelection() {
         }
     } else {
         //$('.middle-label').html('选择金币');
-        $('.span-odd').html('请选金币').show();
-        $('.span-even').html('请选金币').show();
+        $('.span-odd').html('请选挖宝币').show();
+        $('.span-even').html('请选挖宝币').show();
         $('.shan div').addClass('clicked');
 
-        $('.spinning').html('请选择金币');
+        $('.spinning').html('请选择挖宝币');
         $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
             $('.spinning').css('visibility', 'hidden');
@@ -817,18 +817,18 @@ function showPayout(){
                 $( '.DB_G_hand_2' ).hide();
                 $( '.DB_G_hand_3' ).show();
                 if(selected == 'odd'){
-                    $('.span-odd').removeClass('lose').addClass('ready').html('<img src="/client/images/wheel/miniicon.png" class="miniicon" />' + bet_amount + '金币');
+                    $('.span-odd').removeClass('lose').addClass('ready').html('<img src="/client/images/wheel/miniicon.png" class="miniicon" />' + bet_amount + '挖宝币');
                     $('.span-even').addClass('ready lose').html('谢谢参与');
                 } else {
                     $('.span-odd').addClass('ready lose').html('谢谢参与');
-                    $('.span-even').removeClass('lose').addClass('ready').html('<img src="/client/images/wheel/miniicon.png" class="miniicon" />' + bet_amount + '金币');
+                    $('.span-even').removeClass('lose').addClass('ready').html('<img src="/client/images/wheel/miniicon.png" class="miniicon" />' + bet_amount + '挖宝币');
                 }
             } else {
                 //$('.middle-label').html('选择金币');
                 $( '.DB_G_hand_2' ).hide();
                 $( '.DB_G_hand_3' ).hide();
-                $('.span-odd').removeClass('ready lose').html('请选金币').show();
-                $('.span-even').removeClass('ready lose').html('请选金币').show();
+                $('.span-odd').removeClass('ready lose').html('请选挖宝币').show();
+                $('.span-even').removeClass('ready lose').html('请选挖宝币').show();
                 $('.shan div').addClass('clicked');
 
             }
@@ -1023,27 +1023,27 @@ function showContent(level) {
 
         default:
         case 1:
-            content = '这局请投1金币';
+            content = '这局请投1挖宝币';
         break;
 
         case 2:
-            content = '上局亏了1金币，这局请投3金币';
+            content = '上局亏了1挖宝币，这局请投3挖宝币';
         break;
 
         case 3:
-            content = '上局亏了3金币，这局请投7金币';
+            content = '上局亏了3挖宝币，这局请投7挖宝币';
         break;
 
         case 4:
-            content = '上局亏了7金币，这局请投15金币';
+            content = '上局亏了7挖宝币，这局请投15挖宝币';
         break;
 
         case 5:
-            content = '上局亏了15金币，这局请投31金币';
+            content = '上局亏了15挖宝币，这局请投31挖宝币';
         break;
 
         case 6:
-            content = '上局亏了31金币，这局请投63金币';
+            content = '上局亏了31挖宝币，这局请投63挖宝币';
         break;
     }
 
@@ -1196,49 +1196,49 @@ function showWinModal(){
     switch (level) {
 
         case 1:
-            info = '本局抽中<span class="highlight-green">1金币</span><br /><span class="highlight-red">最终赚1金币=兑换1元。</span>';
+            info = '本局抽中<span class="highlight-green">1挖宝币</span><br /><span class="highlight-red">最终赚1挖宝币=兑换1元。</span>';
             image = '/client/images/progress-bar/10.png';
-            html += '+1金币';
+            html += '+1挖宝币';
             remain = 15 - (g_previous_point) - 1;
             instructions = '你已赚到' + (g_previous_point + 1) + '元，';
         break;
 
         case 2:
-            info = '本局抽中<span class="highlight-green">3金币</span><br />前1局没抽中<span class="highlight">亏损1金币</span><br /><span class="highlight-red">最终赚2金币=兑换2元。</span>';
+            info = '本局抽中<span class="highlight-green">3挖宝币</span><br />前1局没抽中<span class="highlight">亏损1挖宝币</span><br /><span class="highlight-red">最终赚2挖宝币=兑换2元。</span>';
             image = '/client/images/progress-bar/30.png';
-            html += '+3金币';
+            html += '+3挖宝币';
             remain = 15 - (g_previous_point) - 2;
             instructions = '你已赚到' + (g_previous_point + 2) + '元，';   
         break;
 
         case 3:
-            info = '本局抽中<span class="highlight-green">7金币</span><br />前2局没抽中<span class="highlight">亏损4金币</span><br /><span class="highlight-red">最终赚3金币=兑换3元。</span>';
+            info = '本局抽中<span class="highlight-green">7挖宝币</span><br />前2局没抽中<span class="highlight">亏损4挖宝币</span><br /><span class="highlight-red">最终赚3挖宝币=兑换3元。</span>';
             image = '/client/images/progress-bar/70.png';
-            html += '+7金币';
+            html += '+7挖宝币';
             remain = 15 - (g_previous_point) - 3;
             instructions = '你已赚到' + (g_previous_point + 3) + '元，';
         break;
 
         case 4:
-            info = '本局抽中<span class="highlight-green">15金币</span><br />前3局没抽中<span class="highlight">亏损11金币</span><br /><span class="highlight-red">最终赚4金币=兑换4元。</span>';
+            info = '本局抽中<span class="highlight-green">15挖宝币</span><br />前3局没抽中<span class="highlight">亏损11挖宝币</span><br /><span class="highlight-red">最终赚4挖宝币=兑换4元。</span>';
             image = '/client/images/progress-bar/150.png';
-            html += '+15金币';
+            html += '+15挖宝币';
             remain = 15 - (g_previous_point) - 4;
             instructions = '你已赚到' + (g_previous_point + 4) + '元，';
         break;
 
         case 5:
-            info = '本局抽中<span class="highlight-green">31金币</span><br />前4局没抽中<span class="highlight">亏损26金币</span><br /><span class="highlight-red">最终赚5金币=兑换5元。</span>';
+            info = '本局抽中<span class="highlight-green">31挖宝币</span><br />前4局没抽中<span class="highlight">亏损26挖宝币</span><br /><span class="highlight-red">最终赚5挖宝币=兑换5元。</span>';
             image = '/client/images/progress-bar/310.png';
-            html += '+31金币';
+            html += '+31挖宝币';
             remain = 15 - (g_previous_point) - 5;
             instructions = '你已赚到' + (g_previous_point + 5) + '元，';
         break;
 
         case 6:
-            info = '本局抽中<span class="highlight-green">63金币</span><br />前5局没抽中<span class="highlight">亏损57金币</span><br /><span class="highlight-red">最终赚6金币=兑换6元。</span>';
+            info = '本局抽中<span class="highlight-green">63挖宝币</span><br />前5局没抽中<span class="highlight">亏损57挖宝币</span><br /><span class="highlight-red">最终赚6挖宝币=兑换6元。</span>';
             image = '/client/images/progress-bar/630.png';
-            html += '+63金币';
+            html += '+63挖宝币';
             remain = 15 - (g_previous_point) - 6;
             instructions = '你已赚到' + (g_previous_point + 6) + '元，';
         break;
@@ -1284,7 +1284,7 @@ function showLoseModal(){
         case 1:
             // instruction = '前1局猜错，<span class="highlight-green">总亏损1元</span>，根据倍增式玩法，第2局<span class="highlight-orange">将押注3元</span>，如猜对能获得3元奖励，减去亏损的1还能赚2元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             // instruction = '前1局猜错，<span class="highlight-grey">总亏损1元</span>，根据倍增式玩法，第2局将<span class="highlight-green">押注3元</span>，猜对能获得3元奖励，减去亏损的1还能赚2元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
-            instruction = '前1局没抽中，<span class="highlight-grey">总亏损1金币</span>，第2局将<span class="highlight-green">加倍✕3</span>，抽中得3金币，减去亏损的1金币还能赚2金币。';
+            instruction = '前1局没抽中，<span class="highlight-grey">总亏损1挖宝币</span>，第2局将<span class="highlight-green">加倍✕3</span>，抽中得3挖宝币，减去亏损的1挖宝币还能赚2挖宝币。';
             image = '/client/images/progress-bar/lose_10.png';
             html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励加倍</div>'; 
             result_info = '5次内猜对奖励加倍';
@@ -1293,7 +1293,7 @@ function showLoseModal(){
         case 2:
             // instruction = '前2局猜错，<span class="highlight-green">总亏损4元</span>，根据倍增式玩法，第3局<span class="highlight-orange">将押注7元</span>，如猜对能获得7元奖励，减去亏损的40还能赚3元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             // instruction = '前2局猜错，<span class="highlight-grey">总亏损4元</span>，根据倍增式玩法，第3局将<span class="highlight-green">押注7元</span>，猜对能获得7元奖励，减去亏损的40还能赚3元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
-            instruction = '前2局没抽中，<span class="highlight-grey">总亏损4金币</span>，第3局将<span class="highlight-green">加倍✕7</span>，抽中得7金币，减去亏损的4金币还能赚3金币。';
+            instruction = '前2局没抽中，<span class="highlight-grey">总亏损4挖宝币</span>，第3局将<span class="highlight-green">加倍✕7</span>，抽中得7挖宝币，减去亏损的4挖宝币还能赚3挖宝币。';
             image = '/client/images/progress-bar/lose_30.png';
             html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励加倍</div>'; 
             result_info = '4次内猜对奖励加倍';
@@ -1302,7 +1302,7 @@ function showLoseModal(){
         case 3:
             // instruction = '前3局猜错，<span class="highlight-green">总亏损11元</span>，根据倍增式玩法，第4局<span class="highlight-orange">将押注15元</span>，如猜对能获得15元奖励，减去亏损的11还能赚4元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             // instruction = '前3局猜错，<span class="highlight-grey">总亏损11元</span>，根据倍增式玩法，第4局将<span class="highlight-green">押注15元</span>，猜对能获得15元奖励，减去亏损的11还能赚4元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
-            instruction = '前3局没抽中，<span class="highlight-grey">总亏损11金币</span>，第4局将<span class="highlight-green">加倍✕15</span>，抽中得15金币，减去亏损的11金币还能赚4金币。';
+            instruction = '前3局没抽中，<span class="highlight-grey">总亏损11金币</span>，第4局将<span class="highlight-green">加倍✕15</span>，抽中得15金币，减去亏损的11挖宝币还能赚4金币。';
             image = '/client/images/progress-bar/lose_70.png';
             html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励加倍</div>'; 
             result_info = '3次内猜对奖励加倍';
@@ -1311,7 +1311,7 @@ function showLoseModal(){
         case 4:
             // instruction = '前4局猜错，<span class="highlight-green">总亏损26元</span>，根据倍增式玩法，第5局<span class="highlight-orange">将押注31元</span>，如猜对能获得31元奖励，减去亏损的260还能赚5元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             // instruction = '前4局猜错，<span class="highlight-grey">总亏损26元</span>，根据倍增式玩法，第5局将<span class="highlight-green">押注31元</span>，猜对能获得31元奖励，减去亏损的260还能赚5元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
-            instruction = '前4局没抽中，<span class="highlight-grey">总亏损26金币</span>，第5局将<span class="highlight-green">加倍✕31</span>，抽中得31金币，减去亏损的26金币还能赚5金币。';
+            instruction = '前4局没抽中，<span class="highlight-grey">总亏损26金币</span>，第5局将<span class="highlight-green">加倍✕31</span>，抽中得31金币，减去亏损的26挖宝币还能赚5金币。';
             image = '/client/images/progress-bar/lose_150.png';
             html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励加倍</div>'; 
             result_info = '2次内猜对奖励加倍';
@@ -1320,7 +1320,7 @@ function showLoseModal(){
         case 5:
             // instruction = '前5局猜错，<span class="highlight-green">总亏损57元</span>，根据倍增式玩法，第6局<span class="highlight-orange">将押注63元</span>，如猜对能获得63元奖励，减去亏损的57还能赚6元。<br />赚到的元自动成为金币，可兑换红包！<br /><div class="highlight-link">>查看倍增式玩法说明<</div>';
             // instruction = '前5局猜错，<span class="highlight-grey">总亏损57元</span>，根据倍增式玩法，第6局将<span class="highlight-green">押注63元</span>，猜对能获得63元奖励，减去亏损的57还能赚6元。<br /><span class="highlight-red">赚到的元可兑换红包，1元兑换1元。</span>';
-            instruction = '前5局没抽中，<span class="highlight-grey">总亏损57金币</span>，第6局将<span class="highlight-green">加倍✕63</span>，抽中得63金币，减去亏损的57金币还能赚6金币。';
+            instruction = '前5局没抽中，<span class="highlight-grey">总亏损57挖宝币</span>，第6局将<span class="highlight-green">加倍✕63</span>，抽中得63挖宝币，减去亏损的57挖宝币还能赚6挖宝币。';
             image = '/client/images/progress-bar/lose_310.png';
             html += '<div class="modal-win-title">差点抽中...再来一次...</div><div class="modal-result">下局奖励加倍</div>'; 
             result_info = '1次内猜对奖励加倍';

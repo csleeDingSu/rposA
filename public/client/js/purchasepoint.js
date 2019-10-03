@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 function getPackagePurchasePoint() {
     var id = $('#hidUserId').val();
-    var records = [{"id":1,"package_name":"10金币","package_price":"10.00"},{"id":2,"package_name":"20金币","package_price":"20.00"},{"id":3,"package_name":"50金币","package_price":"50.00"},{"id":4,"package_name":"100金币","package_price":"100.00"},{"id":5,"package_name":"200金币","package_price":"200.00"},{"id":6,"package_name":"500金币","package_price":"500.00"},{"id":7,"package_name":"1000金币","package_price":"1000.00"},{"id":8,"package_name":"2000金币","package_price":"2000.00"},{"id":9,"package_name":"其他数额","package_price":""}];
+    var records = [{"id":1,"package_name":"10挖宝币","package_price":"10.00"},{"id":2,"package_name":"20挖宝币","package_price":"20.00"},{"id":3,"package_name":"50挖宝币","package_price":"50.00"},{"id":4,"package_name":"100挖宝币","package_price":"100.00"},{"id":5,"package_name":"200挖宝币","package_price":"200.00"},{"id":6,"package_name":"500挖宝币","package_price":"500.00"},{"id":7,"package_name":"1000挖宝币","package_price":"1000.00"},{"id":8,"package_name":"2000挖宝币","package_price":"2000.00"},{"id":9,"package_name":"其他数额","package_price":""}];
     var html = '';
     var price = 0;
    

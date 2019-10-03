@@ -125,7 +125,7 @@ function updateHistory(records){
             strbet = "双数";
         }
 
-        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ bet_amt +'金币，' + strwinloss + '，' + strsign + loseOrReward +'金币';
+        history =  '选择<span class="'+ className + '">' + strbet + '</span>，投'+ bet_amt +'挖宝币' + strwinloss + '，' + strsign + loseOrReward +'挖宝币';
 
         $('.history-body').find('#row-' + counter).find('.history-number').html(length+'局');
         $('.history-body').find('#row-' + counter).find('.history').html(history);
@@ -462,7 +462,7 @@ function getProduct(){
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
@@ -478,7 +478,7 @@ function getProduct(){
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
@@ -701,7 +701,7 @@ function checkSelection() {
     var selected = $('div.clicked').find('input:radio').val();
 
     if (parseInt($('.span-bet').val()) == 0) {
-        $('.spinning').html('请投入竞猜金币<br />再点击“开始抽奖”进行抽奖');
+        $('.spinning').html('请投入竞猜挖宝币<br />再点击“开始抽奖”进行抽奖');
          $('.spinning').css('visibility', 'visible');
         setTimeout(function(){ 
             $('.spinning').css('visibility', 'hidden');
@@ -869,7 +869,8 @@ function bindBetButton(){
         } else {
 
             if (g_vip_point < 1) {
-                $( '#modal-isnewbie' ).modal( 'show' );
+                // $( '#modal-isnewbie' ).modal( 'show' );
+                $('#modal-insufficient-point-new').modal();
             } else {
 
                 var add_bet = parseInt($(this).html());
@@ -880,13 +881,14 @@ function bindBetButton(){
                     $('.span-bet').val(final_bet);
                     previous_bet = final_bet;
                 } else {
-                    $('.spinning').html('金币不足 请充值');
-                     $('.spinning').css('visibility', 'visible');
-                    setTimeout(function(){ 
-                        $('.spinning').css('visibility', 'hidden');
-                    }, 3000);
+                    // $('.spinning').html('金币不足 请充值');
+                    //  $('.spinning').css('visibility', 'visible');
+                    // setTimeout(function(){ 
+                    //     $('.spinning').css('visibility', 'hidden');
+                    // }, 3000);
                     $('.span-bet').val(getNumeric(g_vip_point));
                     previous_bet = g_vip_point;
+                    $('#modal-insufficient-point-new').modal();
                 }
                 showPayout();
 
@@ -960,7 +962,8 @@ function bindBetButton(){
         }
 
         if (g_vip_point < 1) {
-            $( '#modal-isnewbie' ).modal( 'show' );
+            // $( '#modal-isnewbie' ).modal( 'show' );
+            $('#modal-insufficient-point-new').modal();
             return false;
         }
 
@@ -1097,8 +1100,8 @@ function showPayout(){
 
             } else {
                 //$('.middle-label').html('选择金币');
-                $('.span-odd').removeClass('ready-vip lose-vip').html('请选金币').css('display', 'inline-block');
-                $('.span-even').removeClass('ready-vip lose-vip').html('请选金币').css('display', 'inline-block');
+                $('.span-odd').removeClass('ready-vip lose-vip').html('请选挖宝币').css('display', 'inline-block');
+                $('.span-even').removeClass('ready-vip lose-vip').html('请选挖宝币').css('display', 'inline-block');
                 $('.shan div').addClass('clicked-vip');
             }
 
@@ -1171,7 +1174,8 @@ function bindTriggerButton(){
         }else {
 
             if (g_vip_point < 1) {
-                $( '#modal-isnewbie' ).modal( 'show' );
+                // $( '#modal-isnewbie' ).modal( 'show' );
+                $('#modal-insufficient-point-new').modal();
             } else {            
                 event.stopImmediatePropagation();
                 checkSelection();
@@ -1193,7 +1197,7 @@ function showWinModal(){
     var bet_amount = getNumeric(getNumeric($('.span-bet').val()) * g_w_ratio);
     g_previous_point = getNumeric($('.spanAcuPointAndBalance').html());
     g_vip_point = getNumeric(g_previous_point + bet_amount);
-    var instructions = '您已抽中'+ g_vip_point +'金币';
+    var instructions = '您已抽中'+ g_vip_point +'挖宝币';
     html += bet_amount;
 
     if(remain < 0){
@@ -1234,7 +1238,7 @@ function showLoseModal(){
     var balance = getNumeric($('#hidBalance').val());
     var bet_amount = getNumeric($('.span-bet').val());
     var newbalance = getNumeric(balance - bet_amount);
-    var instruction = '这局亏损'+ bet_amount +'金币，继续加油哦';
+    var instruction = '这局亏损'+ bet_amount +'挖宝币，继续加油哦';
 
     //$('.modal-progress-bar').attr("src", image);
     $('#lose-modal .modal-instruction').html(instruction);

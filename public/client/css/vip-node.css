@@ -564,3 +564,44 @@
     padding: 0.16rem;
     margin: 2% 5%;
 }
+
+#modal-insufficient-point-new img {
+    width: 1.2rem;
+    padding-top: 0.2rem;
+}
+
+#modal-insufficient-point-new .title {
+    font-size: 0.4rem;
+    color: #000;
+    font-weight: 500;
+    padding: 0.1rem;
+}
+
+#modal-insufficient-point-new .instruction {
+    color: #888;
+    font-size: 0.26rem;
+    text-align: left;
+    margin: 0rem auto 0.4rem auto;
+    line-height: 0.5rem;
+}
+
+#modal-insufficient-point-new .btn-go-arcade {
+	border-radius: 30px;
+    cursor: pointer;
+    background: #ffae00;
+    font-size: 0.3rem;
+    padding: 0.16rem;
+    margin: 5% 5%;
+    color: #fff;
+}
+
+#modal-insufficient-point-new .btn-go-topup {
+	border-radius: 30px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #ffae00;
+    border: 1px solid #ffae00;
+    font-size: 0.3rem;
+    padding: 0.16rem;
+    margin: 2% 5%;
+}

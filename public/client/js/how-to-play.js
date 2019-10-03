@@ -24,7 +24,7 @@ function getProduct(){
                             '</div>' +
                             '<div class="redeem-product">'+ item.name +'</div>' +
                             '<div class="redeem-details">' +
-                                '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' 金币</div>' +
+                                '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' 挖宝币</div>' +
                             '</div>' +
                         '</div>' +
                         '</div>' +

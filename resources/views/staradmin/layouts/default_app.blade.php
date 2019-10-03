@@ -136,7 +136,6 @@
 		@section('top-javascript')
 		<script type="text/javascript" src="{{ asset('clientapp/js/swiper.min.js')}}"></script>
 		<script type="text/javascript" src="{{ asset('clientapp/js/jquery-1.9.1.js')}}"></script>
-		<script type="text/javascript" src="{{ asset('clientapp/js/nativeShare.js')}}"></script>
 		<script type="text/javascript" src="{{ asset('clientapp/js/being.js')}}"></script>
 
 		<!-- <script type="text/javascript">

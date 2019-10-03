@@ -9,7 +9,7 @@ $(document).ready(function () {
     this_vip_app = $('#this_vip_app').val();
 
     if (this_vip_app == true) {
-        txt_coin = "金币";
+        txt_coin = "挖宝币";
     }
 
     getToken();  

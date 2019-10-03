@@ -11,7 +11,7 @@ $(document).ready(function () {
     // this_vip_app = $('#this_vip_app').val();
 
     if (this_vip_app == true) {
-        txt_coin = "金币";
+        txt_coin = "挖宝币";
     }
 
     reload_pass = $('#reload_pass').val();
@@ -1010,7 +1010,7 @@ function getVIPProduct(softpinCount, token){
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-remaining">已兑换 '+ total_used +' 张</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="' + cls_redeem_btn + ' openeditmodel_'+ item.id + '">兑换</div>' +
                                     '</div>' +
@@ -1027,7 +1027,7 @@ function getVIPProduct(softpinCount, token){
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-remaining">已兑换 '+ total_used +' 张</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="' + cls_redeem_btn + ' openeditmodel_'+ item.id + '">兑换</div>' +
                                     '</div>' +

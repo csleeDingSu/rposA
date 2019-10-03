@@ -629,10 +629,10 @@
 				<div class="modal-row">
 					<div class="wrapper modal-full-height">
 						<div class="modal-card">
-							<img src="/client/images/vip/label_suggestion.png" />
+							<img src="{{ asset('/clientapp/images/game-node/icon-insuficient-coin.png') }}" />
 							<div class="title">挖宝币不足</div>
 							<div class="instruction">通过普通场抽奖可以兑换挖宝币，或者直接充值挖宝币。</div>
-							<div class="btn-go-game">
+							<div class="btn-go-arcade">
 								去普通抽奖
 							</div>
 							<div class="btn-go-topup">
@@ -877,7 +877,15 @@
 				window.open(topupurl, '_blank'); 
 			});
 
-    	}    	
+    	}
+
+    	$('.btn-go-arcade').click(function() {
+    		window.location.href = '/arcade';
+    	});
+
+    	$('.btn-go-topup').click(function() {
+    		$('#btn-go-topup').trigger("click");
+    	});    	
 
 	</script>
 
@@ -896,7 +904,6 @@
 			})();
 
 		$(document).ready(function () {
-			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var user_id = $('#hidUserId').val();

@@ -82,7 +82,7 @@ $(document).ready(function () {
         var total =  quantity * price;
         var wallet_point = parseFloat($('#hid_wallet_point').val()).toFixed(2);
         if (total > wallet_point) {
-            $('.btn-confirm').html('金币不足');    
+            $('.btn-confirm').html('挖宝币不足');    
         } else {
             $('.btn-confirm').html('确认兑换');    
         }
