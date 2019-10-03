@@ -9,70 +9,36 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>首页</title>
+  <title>搜索</title>
   <link rel="stylesheet" type="text/css" href="css/public.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-  <script type="text/javascript" src="js/nativeShare.js"></script>
   <script type="text/javascript" src="js/being.js"></script>
 </head>
 
 <body>
 
   <section class="card">
+
+
+    <div class="card-header">
+      <div class="topSearch">
+        <a class="return"><img src="images/leftIcon.png"></a>
+        <div class="insearch">
+            <div id = '#tickt'> </div>
+          <label>
+            <input type="text" placeholder="复制淘宝商品标题 粘贴搜索">
+          </label>
+          <a class="closeBtn dn"><img src="images/closeIcon.png"></a>
+          <a class="searchBtn">搜索</a>
+        </div>
+      </div>
+    </div>
+
     <div class="card-body over ">
       <div class="scrolly">
-          <div class="logo rel">
-              <img src="images/logo.png" width="100%">
-              <a class="searchBox" href="list.html">
-                  <img class="tipsImg" src="images/searchTips.png">
-                <img src="images/searchIcon.png">
-                <label>
-                  <input type="text" placeholder="复制淘宝商品标题 粘贴搜索" disabled>
-                </label>
-                <div class="sBtn">查券</div>
-              </a>
-            </div>
-            <ul class="about">
-                <li>①淘宝复制标题</li>
-                <li>②搜索领券下单</li>
-                <li>③领取奖励红包</li>
-        </ul>
-        <div class="ztBox">
-          <div class="total">
-            <span>今日已领取</span>
-            <i>2</i>
-            <i>2</i>
-            <i>2</i>
-            <i>2</i>
-            <span>元</span>
-          </div>
-          <div class="list">
-            <a href="#">
-              <span><img src="images/demoImg2.png"></span>
-              <h2><em>¥</em> 3.0</h2>
-              <p>热销1.7万件</p>
-            </a>
-            <a href="#">
-              <span><img src="images/demoImg2.png"></span>
-              <h2><em>¥</em> 3.0</h2>
-              <p>热销1.7万件</p>
-            </a>
-            <a href="#">
-              <span><img src="images/demoImg2.png"></span>
-              <h2><em>¥</em> 3.0</h2>
-              <p>热销1.7万件</p>
-            </a>
-          </div>
-        </div>
-
-
-        <div class="banner">
-          <a><img src="images/banner2.png" width="100%"></a>
-        </div>
-        <h2 class="listTitle">超值爆款产品</h2>
         <div class="listBox">
-          <a class="inBox" href="taobao://item.taobao.com">
+          <div class="inBox">
             <div class="imgBox">
               <img src="images/demoImg.png">
             </div>
@@ -90,7 +56,7 @@
                 <p class="num">热销1.7万</p>
               </div>
             </div>
-          </a>
+          </div>
           <div class="inBox">
             <div class="imgBox">
               <img src="images/demoImg.png">
@@ -169,41 +135,42 @@
           </div>
           <div class="lastHint">下拉显示更多产品...</div>
         </div>
-        <hr class="h36">
       </div>
 
     </div>
-    <div class="card-bar">
-      <dl class="bar">
-        <dd>
-          <a class="on" href="#">
-            <span class="icon bar-1"></span>
-            <h2>首页</h2>
-          </a>
-        </dd>
-        <dd><a href="#">
-            <span class="icon bar-2"></span>
-            <h2>商城</h2>
-          </a></dd>
-        <dt><a href="#">
-            <span class="icon bar-center">
-              <img src="images/bar-m.png">
-            </span>
-            <h2>抽奖</h2>
-          </a></dt>
-        <dd><a href="#">
-            <span class="icon bar-3"></span>
-            <h2>晒单</h2>
-          </a></dd>
-        <dd><a href="user.html">
-            <span class="icon bar-4"></span>
-            <h2>我的</h2>
-          </a></dd>
-      </dl>
-    </div>
+
   </section>
 
 
+  <script>
+
+    $(function () {
+
+
+      $('.insearch input').on('input propertychange ', function () {
+        let that = $(this);
+        console.log(that.val());
+        if (that.val() == "") {
+          $('a.closeBtn').hide(0);
+        } else {
+          $('a.closeBtn').show(0);
+        }
+      });
+      $('a.closeBtn').click(function () {
+        $('.insearch input').val('');
+        $(this).hide(0);
+      });
+
+
+
+
+
+    });
+
+
+
+
+  </script>
 
 
 

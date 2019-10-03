@@ -621,6 +621,30 @@
 		<div class="insufficient-point">金币不足 请充值</div>					
 	</div>
 </div>
+
+<div class="modal fade col-md-12" id="modal-insufficient-point-new" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">				
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<img src="/client/images/vip/label_suggestion.png" />
+							<div class="title">挖宝币不足</div>
+							<div class="instruction">通过普通场抽奖可以兑换挖宝币，或者直接充值挖宝币。</div>
+							<div class="btn-go-game">
+								去普通抽奖
+							</div>
+							<div class="btn-go-topup">
+								充值挖宝币
+							</div>												
+						</div>
+					</div>
+				</div>							
+			</div>
+		</div>	
+	</div>
+</div>
 <!-- insufficient point modal Ends -->
 
 <!-- haven't login start modal -->
@@ -794,7 +818,7 @@
 			// }, false); 
 
 			document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
-				alert(1);
+				// alert(1);
 			    var a = document.createElement('a');
 			    a.setAttribute("href", topupurl);
 			    a.setAttribute("target", "_blank");
@@ -804,7 +828,7 @@
 			}, false); 
 
 			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
-				alert(111);
+				// alert(111);
 			    var a = document.createElement('a');
 			    a.setAttribute("href", topupurl);
 			    a.setAttribute("target", "_blank");
@@ -872,6 +896,7 @@
 			})();
 
 		$(document).ready(function () {
+			$('#modal-insufficient-point').modal();
 			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();

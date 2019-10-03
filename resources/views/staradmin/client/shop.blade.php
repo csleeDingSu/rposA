@@ -16,9 +16,7 @@
     <input id="hidUserId" type="hidden" value="" />
     
     <div class="card-header">
-      <div class="pageHeader rel shop-banner">
-        <div class="header-line">
-            
+        <div class="header-line">            
               <div class="shop-left-menu">
                 <img class="clscoin" src="{{ asset('/clientapp/images/shop/coin.png') }}">
                 <div class="shop-balance">99999.99</div>
@@ -26,9 +24,9 @@
                   <img class="clsquestion" src="{{ asset('/clientapp/images/shop/question-icon.png') }}">
                 </a>
               </div>
-            
             <a class="shop-right-menu" href="/vip"><img src="{{ asset('/clientapp/images/shop/icon-redeem-rules.png') }}"></a>
         </div>
+        <div class="shop-banner"></div>
         <div class="shop-notification">
           <div class="txt-ellipsis">
             @if (!empty($buy))
@@ -41,7 +39,6 @@
             @endif
           </div>
         </div>
-      </div>
     </div>
 
     <div class="redeem-prize-wrapper"></div>

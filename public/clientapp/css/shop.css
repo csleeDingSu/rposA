@@ -3,9 +3,10 @@ body {
 }
 
 .shop-banner {
-	background: url(/clientapp/images/shop/banner.png) no-repeat;
+    background: url(/clientapp/images/shop/banner.png) no-repeat;
     background-size: contain;
-    height: 3.5rem;
+    padding: 1rem;
+    margin: 0.1rem 0.4rem;
 }
 
 .header-line{
@@ -58,7 +59,7 @@ body {
     border-radius: 100px;
     color: #e0bcff;
     font-size: 0.22rem;
-    margin: 2rem 0.4rem 0 0.4rem;
+    margin: 0rem 0.4rem 0 0.4rem;
     text-align: center;
 }
 
