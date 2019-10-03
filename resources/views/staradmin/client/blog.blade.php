@@ -3,7 +3,8 @@
 @section('top-css')
     @parent  
     <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css') }}" />    
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/test/blog_html/css/swiper.min.css') }}" />    
     <style>
          
        .reveal-modal {
@@ -18,6 +19,7 @@
 
 @section('top-javascript')
     @parent
+    <script type="text/javascript" src="{{ asset('/test/blog_html/js/swiper.min.js') }}"></script>
     
 @endsection
 
@@ -44,6 +46,23 @@
   </div>
 </div>
 @endsection
+
+<div class="slideImg dn">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- <div class="swiper-slide">
+          <div class="inBox"><img src="images/demo1.png"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="inBox"><img src="images/demo2.png"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="inBox"><img src="images/1231.jpg"></div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
 
 @section('footer-javascript')
 <!-- view photo Modal starts -->
@@ -109,6 +128,35 @@
         $('.view-pic').attr('src', photo);
         $('#view-photo').modal();
       }
+
+//swiper
+       var swiper = new Swiper(".swiper-container", {
+      autoHeight: window.innerHeight,
+      autoplay: false, //可选选项，自动滑动
+      spaceBetween: 5,
+      centeredSlides: true,
+    });
+
+    $('.listBox .imgBox li').click(function () {
+      $('.slideImg').removeClass('dn');
+      let html = "";
+      let that = $(this);
+      $.each(that.parent().find('li'), function (index, res) {
+        img = $(res).find('img').attr('src');
+        html += ' <div class="swiper-slide">';
+        html += '<div class="inBox"><img src="' + img + '"></div>';
+        html += ' </div>';
+      });
+      swiper.removeAllSlides();
+      swiper.appendSlide(html);
+
+    });
+
+    $('.slideImg').click(function (e) {
+      if($(e.target).find('.swiper-container').length>0){
+        $('.slideImg').addClass('dn');
+      };
+    });
 
     </script>
 
