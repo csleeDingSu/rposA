@@ -53,8 +53,8 @@
       </a></dd>
   </dl>
 </div>
-	  
-	  @if( Agent::is('OS X') )   
+   
+    @if( Agent::is('OS X') ) 
       <style>
       .card-bar
         {
@@ -69,11 +69,35 @@
           position: -moz-sticky;
           position: -o-sticky;
         }   
-		  
-		.footer_mb
-		{
-		  height: 1.2rem;
-		}
+        
+        /*iphone X*/
+        @media only screen  
+          and (device-width : 375px) 
+          and (device-height : 812px) 
+          and (-webkit-device-pixel-ratio : 3) {
+            .footer_mb
+            {
+              height: 1.2rem;
+
+            }
+          }
+
+          /*iPhone 7/8*/ 
+          @media only screen 
+            and (device-width : 375px) 
+            and (device-height : 667px) 
+            and (-webkit-device-pixel-ratio : 2) {
+              /*do nothing*/
+            }
+
+          /*iPhone 6+/6s+/7+/8+*/
+          @media only screen 
+            and (device-width : 414px) 
+            and (device-height : 736px) 
+            and (-webkit-device-pixel-ratio : 3) {
+              /*do nothing*/
+            }
+
       </style>
     @endif
 
