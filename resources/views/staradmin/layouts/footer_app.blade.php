@@ -77,7 +77,7 @@
           and (-webkit-device-pixel-ratio : 3) {
             .footer_mb
             {
-              height: 1.2rem;
+              height: 1.28rem;
 
             }
           }
