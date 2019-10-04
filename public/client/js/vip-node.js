@@ -1484,12 +1484,16 @@ function lockWheel() {
 }
 
 function isLock() {
-    res = true;
-    if (g_betting_history_total > 0) {
-        res = false;
-    } else {
-        res = (g_vip_point > 0) ? false : true; 
+    var id = $('#hidUserId').val();
+    res = false;
+    if (id > 0) {// login
+        if (g_betting_history_total > 0) {
+            res = false;
+        } else {
+            res = (g_vip_point > 0) ? false : true; 
+        }    
     }
+    
     console.log(g_betting_history_total);
     console.log(g_vip_point);
     console.log(res);
