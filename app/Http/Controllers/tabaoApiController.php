@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\taobao_collection_list;
+use App\taobao_collection_vouchers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -389,6 +390,9 @@ class tabaoApiController extends BaseController
             taobao_collection_list::where('page_num', '>', $totalPg)->delete(); 
         }
 
+        //store into voucher table
+        $this->storeAllCollectionIntoVouchers();
+
         return ("totalNum: $totalNum, totalPg: $totalPg");
     }
 
@@ -461,5 +465,45 @@ class tabaoApiController extends BaseController
         // dd($this->getCurl($url));
         return json_decode($this->getCurl($url),true);
         
+    }
+
+    public function storeAllCollectionIntoVouchers()
+    {
+        $data = taobao_collection_list::select('*')->get();
+
+        $filter = [];
+        $array = [];
+        $i = 0;
+
+        foreach ($data as $d) {
+            if (!empty(json_decode($d->content)->data->list)) {
+                $_data = json_decode($d->content)->data->list;
+                foreach ($_data as $k => $v) {
+                    foreach ($v as $tv => $cv) {
+                        if ($tv == 'id') { //filter pid
+                            $filter = array_merge($filter, ['pid' => $cv]);
+                            $array = array_merge($array, ['pid' => $cv]);
+                        } else {
+                            if ($tv == 'goodsId') { //filter goodsId
+                                $filter = array_merge($filter, [$tv => $cv]);
+                            }
+
+                            if ($tv == 'subcid') { // encode json format
+                                $cv = json_encode($cv);      
+                            }
+
+                            $array = array_merge($array, [$tv => $cv]);
+                            
+                        }
+                    }
+
+                    taobao_collection_vouchers::updateOrCreate($filter,$array)->id;
+                    $i++;
+                    
+                }
+            }
+        }
+
+        return ['success' => true, 'total' => $i];
     }
 }
