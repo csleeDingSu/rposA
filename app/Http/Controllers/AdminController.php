@@ -1324,5 +1324,53 @@ WHERE
 			return response()->json(['success' => true, 'record' => $data]);
 		}
 	}
+
+
+	public function tabao_list (Request $request)
+	{
+		
+		$result =  \App\TabaoProduct::select('*');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_title'])) {
+				$result = $result->where('title','LIKE', "%{$input['s_title']}%") ;				
+			}
+			if (!empty($input['s_content'])) {
+				$result = $result->where('content','LIKE', "%{$input['s_content']}%") ;				
+			}
+		}		
+		$result =  $result->latest()->paginate(30);
+				
+		$data['page']    = 'tabao.tabaoproduct'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('tabao.ajaxlist', ['result' => $result])->render();  
+        }	
+
+        $id = $request->id;
+		$record = \DB::table('cron_manager')->where('id',9)->first();
+		 				
+		$data['record']  = $record;		
+
+
+		return view('main', $data);	
+	}
+	
+	//in tabao api controller
+	public function render_product($id)
+    {
+      $data = taobao_collection_vouchers::where('id',$data);
+      event(new \App\Events\EventDynamicChannel('add-tabao-product', '' ,$data ));
+      $data = view('tabao.render_product', ['result' => $data])->render(); 
+      
+      return TRUE; 
+    }
 	
 }
