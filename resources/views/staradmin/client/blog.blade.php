@@ -14,6 +14,7 @@
       }
 
       .isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
+
     </style>
 @endsection
 
@@ -46,11 +47,16 @@
 @endsection
 
 <div class="slideImg dn">
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-      </div>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
     </div>
+     <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
+</div>
 
 @section('footer-javascript')
 <!-- view photo Modal starts -->
@@ -121,14 +127,28 @@
       }
 
       function initSwiper() {
+
           //swiper
          var swiper = new Swiper(".swiper-container", {
           autoHeight: window.innerHeight,
-          autoplay: false, //可选选项，自动滑动
-          spaceBetween: 100,
-          centeredSlides: true,
-          observer: true,
-          observeParents: true,
+          // autoplay: false, //可选选项，自动滑动
+          // centeredSlides: true,
+          // observer: true,
+          // observeParents: true,
+
+          // slidesPerView: 3,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          spaceBetween: 30,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          freeMode: true,
+          zoom: true,
+
         });
 
         $('.listBox3 .imgBox li').click(function () {
