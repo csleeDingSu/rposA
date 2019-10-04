@@ -1366,7 +1366,7 @@ WHERE
 	//in tabao api controller
 	public function render_product($id)
     {
-      $data = taobao_collection_vouchers::where('id',$data);
+      $data = taobao_collection_vouchers::where('id',$id)->get();
       event(new \App\Events\EventDynamicChannel('add-tabao-product', '' ,$data ));
       $data = view('tabao.render_product', ['result' => $data])->render(); 
       
