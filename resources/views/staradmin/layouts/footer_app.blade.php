@@ -111,13 +111,13 @@
   var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
   // Get the device pixel ratio
-  var ratio = window.devicePixelRatio || 1;
+  // var ratio = window.devicePixelRatio || 1;
 
   // Define the users device screen dimensions
-  var screen = {
-    width : window.screen.width * ratio,
-    height : window.screen.height * ratio
-  };
+  // var screen = {
+  //   width : window.screen.width * ratio,
+  //   height : window.screen.height * ratio
+  // };
 
   // iPhone X Detection
 	// && screen.width == 1125 && screen.height === 2436

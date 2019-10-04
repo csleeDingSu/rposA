@@ -71,10 +71,6 @@
   	return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
   }
 
-  function goBack() {
-  	window.history.back();
-  }
-
 </script>
 
 @endif
@@ -165,6 +161,25 @@
 		}  
 		</script>
 		@endif
+
+		<script type="text/javascript">
+		  function historyBackWFallback(fallbackUrl) {
+		      fallbackUrl = fallbackUrl || '/';
+		      var prevPage = window.location.href;
+
+		      window.history.go(-1);
+
+		      setTimeout(function(){ 
+		          if (window.location.href == prevPage) {
+		              window.location.href = fallbackUrl; 
+		          }
+		      }, 500);
+		  }
+
+		  function goBack() {
+		  	window.history.back();
+		  }
+		</script>
 
 		@show
     </head>

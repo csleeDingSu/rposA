@@ -1,6 +1,6 @@
 @if (!empty($blog))
     @foreach($blog as $b)
-        <div class="listBox">
+        <div class="listBox3">
           <div class="userBox">
             <div class="username">
               <h2>{{substr($b->phone, 0, 3)}}****{{substr($b->phone, 7, strlen($b->phone))}}</h2><span>{{date('Y.m.d H:i:s', strtotime($b->updated_at))}}</span>
@@ -16,6 +16,9 @@
                 @endforeach  
             @endif
           </ul>
-        </div>
-    @endforeach 
+        </div>        
+    @endforeach
+
 @endif
+
+

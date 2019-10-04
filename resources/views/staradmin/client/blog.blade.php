@@ -25,7 +25,7 @@
 
 <!-- top nav -->
 @section('left-menu')
-  <a class="returnBtn" href="javascript:goBack();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  <a class="returnBtn" href="javascript:historyBackWFallback('/profile');"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
 @section('title', '晒单评论')
@@ -36,13 +36,11 @@
 
 @section('content')
 <div class="cardBody">
-  <div class="box">
-    <div class="infinite-scroll">
-      <ul class="list-2">               
-          @include('client.blog_list')
-      </ul>
-      {{ $blog->links() }}
-    </div>
+  <div class="infinite-scroll">
+    <ul class="list-2">               
+        @include('client.blog_list')
+    </ul>
+    {{ $blog->links() }}
   </div>
 </div>
 @endsection
@@ -50,16 +48,6 @@
 <div class="slideImg dn">
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <!-- <div class="swiper-slide">
-          <div class="inBox"><img src="images/demo1.png"></div>
-        </div>
-        <div class="swiper-slide">
-          <div class="inBox"><img src="images/demo2.png"></div>
-        </div>
-        <div class="swiper-slide">
-          <div class="inBox"><img src="images/1231.jpg"></div>
-        </div> -->
-
       </div>
     </div>
   </div>
@@ -80,6 +68,8 @@
     <script type="text/javascript">
 
       $(document).ready(function () {
+            initSwiper();
+           
            //execute scroll pagination
             being.scrollBottom('.scrolly', '.cardBody', () => {
 
@@ -119,6 +109,7 @@
               // if (responce.html == null || responce.html = '') {
               //  $(".isnext").html('');  
               // }
+              initSwiper();
             }
            });
         }
@@ -129,34 +120,41 @@
         $('#view-photo').modal();
       }
 
-      //swiper
-       var swiper = new Swiper(".swiper-container", {
-        autoHeight: window.innerHeight,
-        autoplay: false, //可选选项，自动滑动
-        spaceBetween: 5,
-        centeredSlides: true,
-      });
-
-      $('.listBox .imgBox li').click(function () {
-        $('.slideImg').removeClass('dn');
-        let html = "";
-        let that = $(this);
-        $.each(that.parent().find('li'), function (index, res) {
-          img = $(res).find('img').attr('src');
-          html += ' <div class="swiper-slide">';
-          html += '<div class="inBox"><img src="' + img + '"></div>';
-          html += ' </div>';
+      function initSwiper() {
+          //swiper
+         var swiper = new Swiper(".swiper-container", {
+          autoHeight: window.innerHeight,
+          autoplay: false, //可选选项，自动滑动
+          spaceBetween: 100,
+          centeredSlides: true,
+          observer: true,
+          observeParents: true,
         });
-        swiper.removeAllSlides();
-        swiper.appendSlide(html);
 
-      });
+        $('.listBox3 .imgBox li').click(function () {
+          $('.slideImg').removeClass('dn');
+          let html = "";
+          let that = $(this);
+          $.each(that.parent().find('li'), function (index, res) {
+            img = $(res).find('img').attr('src');
+            html += ' <div class="swiper-slide">';
+            html += '<div class="inBox"><img src="' + img + '"></div>';
+            html += ' </div>';
+          });
+          swiper.removeAllSlides();
+          swiper.appendSlide(html);
+          // swiper.update();
+          // console.log(swiper.activeIndex);
+          // swiper.slideTo(swiper.activeIndex, 10, false);
 
-      $('.slideImg').click(function (e) {
-        if($(e.target).find('.swiper-container').length>0){
-          $('.slideImg').addClass('dn');
-        };
-      });
+        });
+
+        $('.slideImg').click(function (e) {
+          if($(e.target).find('.swiper-container').length>0){
+            $('.slideImg').addClass('dn');
+          };
+        });
+      }
 
     </script>
 

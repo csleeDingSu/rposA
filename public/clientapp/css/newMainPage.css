@@ -17,7 +17,7 @@
 }
 
 .listBox .typeBox {
-   padding-top: 0.1rem;
+   padding-top: 0.02rem;
 }
 
 .searchBox input {
@@ -36,6 +36,7 @@
 	color: #bebebe;
 	font-size: 0.26rem !important;
     padding: 0 !important;
+    vertical-align: middle;
 }
 
 .newTxt {
@@ -56,6 +57,10 @@
 .num-reward {
 	font-size: 0.4rem;
 }
+
+.num {
+    height: 0.4rem;
+ }
 
 .logo3-c1 {
   background: url(../images/index3-img1.png) left top no-repeat;

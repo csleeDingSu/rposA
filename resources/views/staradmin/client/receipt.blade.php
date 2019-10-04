@@ -6,9 +6,13 @@
 
 @endsection
 
+@section('top-javascript')
+@parent
+@endsection
+
 <!-- top nav -->
 @section('left-menu')
-  <a class="returnBtn" href="/profile"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  <a class="returnBtn" href="javascript:historyBackWFallback('/profile');"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
 @section('title', '下单奖励')
@@ -23,7 +27,7 @@
 <input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 
   <div class="rewDetail">
-    <h2>购物返回分&nbsp;抽奖拿红包</h2>
+    <h2>购物返积分&nbsp;抽奖拿红包</h2>
     <h3><span>1200积分=1场次，系统自动兑换</span></h3>
     <ul class="rewIn">
       <li>①平台领券淘宝下单</li>
