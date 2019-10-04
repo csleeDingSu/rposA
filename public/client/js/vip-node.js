@@ -54,6 +54,9 @@ $(function () {
             //resetTimer();
         });
 
+        //lock wheel
+        lockWheel();
+
     } else {
         $(".loading").fadeOut("slow");
         return false;
@@ -608,7 +611,7 @@ function startGame() {
             updateResult(betting_records);
             show_win = false;
             show_lose = false;
-            // get_today_profit();
+            
         }
     });
 
@@ -647,8 +650,6 @@ function resetGame() {
     $('.radio-primary').unbind('touchstart');    
     $('.button-bet').unbind('click');
     $('.button-bet').unbind('touchstart');    
-    $('.btn-minus').unbind('click');
-    $('.btn-add').unbind('click');
     $('.button-bet-clear').unbind('click');
     $('.button-bet-all').unbind('click');
     $(".span-bet").unbind('focus');
@@ -721,8 +722,6 @@ function checkSelection() {
 
         $('.button-bet').unbind('click');
         $('.button-bet').unbind('touchstart');
-        $('.btn-add').unbind('click');
-        $('.btn-minus').unbind('click');
         $('.button-bet-clear').unbind('click');
         $('.button-bet-all').unbind('click');
         
@@ -850,7 +849,12 @@ function bindBetButton(){
                 $('.span-bet').val(final_bet);
                 previous_bet = final_bet;
             } else {
-                $( '#modal-isnewbie' ).modal( 'show' );
+                if (isLock()) {
+                    $('#modal-unlock').modal();
+                } else {
+                    $( '#modal-isnewbie' ).modal( 'show' );    
+                }
+                
                 $('.span-bet').val(getNumeric(g_vip_point));
                 previous_bet = g_vip_point;
             }
@@ -866,11 +870,17 @@ function bindBetButton(){
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
             $( '#modal-no-login' ).modal( 'show' );
+            return false;
         } else {
 
             if (g_vip_point < 1) {
                 // $( '#modal-isnewbie' ).modal( 'show' );
-                $('#modal-insufficient-point-new').modal();
+                if (isLock()) {
+                    $('#modal-unlock').modal();
+                } else {
+                    $('#modal-insufficient-point-new').modal();
+                }
+                
                 console.log('111');
                 return false;
             } else {
@@ -896,38 +906,6 @@ function bindBetButton(){
                 showPayout();
 
             }
-
-        }
-
-    });
-
-    $('.btn-add').click(function(){
-        var add_bet = 1;
-        var initial_bet = parseInt($('.span-bet').val());
-        var final_bet = add_bet + initial_bet;
-
-        if(final_bet <= g_vip_point){
-            $('.span-bet').val(final_bet);
-            previous_bet = final_bet;
-        } else {
-            $( '#modal-isnewbie' ).modal( 'show' );
-            $('.span-bet').val(getNumeric(g_vip_point));
-            previous_bet = g_vip_point;
-        }
-        showPayout();
-
-    });
-
-    $('.btn-minus').click(function(){
-        var minus_bet = 1;
-        var initial_bet = parseInt($('.span-bet').val());
-        var final_bet = initial_bet - minus_bet;
-
-        if(final_bet >= 0){
-            $('.span-bet').val(final_bet);
-            showPayout();
-            previous_bet = final_bet;
-        } else {
 
         }
 
@@ -966,7 +944,11 @@ function bindBetButton(){
 
         if (g_vip_point < 1) {
             // $( '#modal-isnewbie' ).modal( 'show' );
-            $('#modal-insufficient-point-new').modal();
+            if (isLock()) {
+                $('#modal-unlock').modal();
+            } else {
+                $('#modal-insufficient-point-new').modal();
+            }
             console.log('333');
             return false;
         }
@@ -990,15 +972,16 @@ function bindBetButton(){
 
     if(user_id == 0){
 
-        $('#btn-redeemcash').click(function() {
+        $('#btn-redeemcash').on('touchstart', function() {
             $('#modal-no-login').modal('show');
+            return false;
         });
             
     } else {
         if (g_betting_history_total > 0) {
             if ($('#isIOS').val() == 'true') {
                 // alert(11);
-                document.getElementById("btn-redeemcash").addEventListener("click", function(evt) {
+                document.getElementById("btn-redeemcash").addEventListener("touchstart", function(evt) {
                     var a = document.createElement('a');
                     a.setAttribute("href", $('#topupurl').val());
                     a.setAttribute("target", "_blank");
@@ -1014,7 +997,7 @@ function bindBetButton(){
                 // });
 
                 var urlStr = encodeURI($('#topupurl').val());
-                $('#btn-redeemcash').click(function() {
+                $('#btn-redeemcash').on('touchstart', function() {
                     plus.runtime.openURL(urlStr);
                 });                
 
@@ -1022,15 +1005,16 @@ function bindBetButton(){
 
                 // alert(33);
                 // window.location.href = $('#topupurl').val();
-                $('#btn-redeemcash').click(function() {
+                $('#btn-redeemcash').on('touchstart', function() {
                     window.open($('#topupurl').val(), '_blank'); 
                 });
 
             }
             
         } else {
-            $('#btn-redeemcash').click(function() {
-                $('#modal-isnewbie').modal('show');
+            $('#btn-redeemcash').on('touchstart', function() {
+                $('#modal-unlock').modal('show');
+                return false;
             });
         }
     }   
@@ -1163,11 +1147,11 @@ function showPayout(){
 }
 
 function bindCalculateButton(){
-    $('.btn-calculate-vip').click(function( event ){
+    // $('.btn-calculate-vip').click(function( event ){
         
-        event.stopImmediatePropagation();
+    //     event.stopImmediatePropagation();
 
-    });
+    // });
 }
 
 function bindTriggerButton(){
@@ -1179,7 +1163,11 @@ function bindTriggerButton(){
 
             if (g_vip_point < 1) {
                 // $( '#modal-isnewbie' ).modal( 'show' );
-                $('#modal-insufficient-point-new').modal();
+                if (isLock()) {
+                    $('#modal-unlock').modal();
+                } else {
+                    $('#modal-insufficient-point-new').modal();
+                }
                 console.log('444');
             } else {            
                 event.stopImmediatePropagation();
@@ -1485,4 +1473,25 @@ function get2Decimal(value) {
     // return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
     // console.log(parseFloat(value).toFixed(2));
     return parseFloat(value).toFixed(2);
+}
+
+function lockWheel() {
+    if (isLock()) {
+        _img = '<img src="/clientapp/images/vip-node/wheel-newbie.png">';
+        $('#wheel_banner').html(_img);
+        $('#wheel_container').css('visibility', 'hidden');
+    }
+}
+
+function isLock() {
+    res = true;
+    if (g_betting_history_total > 0) {
+        res = false;
+    } else {
+        res = (g_vip_point > 0) ? false : true; 
+    }
+    console.log(g_betting_history_total);
+    console.log(g_vip_point);
+    console.log(res);
+    return res;
 }

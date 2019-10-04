@@ -156,6 +156,8 @@
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
 			<input id="topupurl" type="hidden" value="{{env('TOPUP_URL','#')}}" />
 			<input id="isIOS" type="hidden" value="false" />	
+			<input id="hidEarnPoint" type="hidden" value="{{empty($earnpoint) ? 0 : $earnpoint}}" />	
+			<input id="hidUsedPoint" type="hidden" value="{{empty($usedpoint) ? 0 : $usedpoint}}" />	
 	  	</div>
 
 	</div>
@@ -614,6 +616,13 @@
 	</div>
 
 <!--  end -->
+
+<!-- unlock modal -->
+<div class="modal fade col-md-12" id="modal-unlock" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="txt">请先解锁高级抽奖</div>					
+	</div>
+</div>
 
 <!-- insufficient point modal -->
 <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
