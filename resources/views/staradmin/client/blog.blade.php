@@ -18,7 +18,7 @@
 
 @section('top-javascript')
     @parent
-    <script type="text/javascript" src="{{ asset('/test/blog_html/js/swiper.min.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('/test/blog_html/js/swiper.min.js') }}"></script> -->
     
 @endsection
 

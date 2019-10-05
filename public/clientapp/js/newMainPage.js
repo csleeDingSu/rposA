@@ -7,6 +7,7 @@ var priceUpperLimit = 50;
 var weChatVerificationStatus = '';
 var isNewBie = true;
 var life = 0;
+var currentPageId = 1;
 
 $(document).ready(function () {
 
@@ -26,9 +27,12 @@ $(document).ready(function () {
   //execute scroll pagination
   being.scrollBottom('.scrolly', '.box', () => {   
     pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val();
-    console.log('pageId - ' + pageId)
+    console.log('pageId - ' + pageId);
+    console.log('currentPageId - ' + currentPageId);
     // alert('页 - ' + pageId);
-    getFromTabao(pageId);
+    if (Number(pageId) > Number(currentPageId)) {
+      getFromTabao(pageId);  
+    }
   }); 
 
 });
@@ -37,7 +41,7 @@ function getFromTabao(pageId){
   var html = '';
   var highlight_list_html ='';
   var _pageSize = (pageId == 1) ? pageSize_init : pageSize;
-  
+  currentPageId = pageId;
   $.ajax({
       type: 'GET',
       // url: "/tabao/get-goods-list?pageSize=" + _pageSize + "&pageId=" + pageId + "&priceLowerLimit=" + priceLowerLimit+ "&priceUpperLimit=" + priceUpperLimit, 
@@ -80,7 +84,8 @@ function getFromTabao(pageId){
 
         totalNum = JSON.parse(data).data.totalNum;
         $('#hidPageId').val(JSON.parse(data).data.pageId);
-        pageId = $('#hidPageId').val();
+        currentPageId = pageId; //keep current page
+        pageId = $('#hidPageId').val(); //next page
         console.log(pageId);
 
           
