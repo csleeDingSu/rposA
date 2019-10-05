@@ -4,6 +4,22 @@
     @parent  
     <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css') }}" />
     <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/client/images/preloader.gif') center no-repeat;
+            background-color: rgba(255, 255, 255, 1);
+            background-size: 32px 32px;
+        }
          
        .reveal-modal {
           /*position: relative;*/
@@ -34,6 +50,7 @@
 
 
 @section('content')
+<div class="loading2" id="loading2"></div>
 <div class="cardBody">
   <div class="infinite-scroll">
     <ul class="list-2">               
@@ -67,13 +84,11 @@
 
     @parent  
     <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/client/blog/js/swiper.min.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('/client/blog/js/swiper.min.js') }}"></script> -->
     <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
     <script type="text/javascript">
 
-      $(document).ready(function () {
-            initSwiper();
-           
+      $(document).ready(function () {           
            //execute scroll pagination
             being.scrollBottom('.scrolly', '.cardBody', () => {
 
@@ -124,6 +139,8 @@
         $('#view-photo').modal();
       }
 
+      initSwiper();
+
       function initSwiper() {
 
           //swiper
@@ -173,6 +190,19 @@
           };
         });
       }
+
+      document.onreadystatechange = function () {
+          var state = document.readyState
+          if (state == 'interactive') {
+          } else if (state == 'complete') {
+            setTimeout(function(){
+                document.getElementById('interactive');
+                document.getElementById('loading').style.visibility="hidden";
+                $('.loading').css('display', 'initial');
+                document.getElementById('loading2').style.visibility="hidden";
+            },100);
+          }
+        }
 
     </script>
 
