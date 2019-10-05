@@ -482,7 +482,7 @@ function getProduct(){
         html += '</form>';
 
         $('.redeem-prize-wrapper').html(html);
-        $('.redeem-button').on('touchstart', function(){
+        $('.redeem-button').on('modal-unlock', function(){
 
             var user_id = $('#hidUserId').val();
             if(user_id == 0){
@@ -616,9 +616,9 @@ function resetGame() {
     $('.payout-info').addClass('hide');
     $('.spinning').css('visibility', 'hidden');
     $('.radio-primary').unbind('click');
-    $('.radio-primary').unbind('touchstart');    
+    $('.radio-primary').unbind('touchend');    
     $('.button-bet').unbind('click');
-    $('.button-bet').unbind('touchstart');    
+    $('.button-bet').unbind('touchend');    
     $('.button-bet-clear').unbind('click');
     $('.button-bet-all').unbind('click');
     $(".span-bet").unbind('focus');
@@ -686,11 +686,11 @@ function checkSelection() {
         //$('.middle-label').html('正在抽奖');
         $('.DB_G_hand').hide();
         $('.radio-primary').unbind('click');
-        $('.radio-primary').unbind('touchstart');
+        $('.radio-primary').unbind('touchend');
         $('.btn-trigger').unbind('click');
 
         $('.button-bet').unbind('click');
-        $('.button-bet').unbind('touchstart');
+        $('.button-bet').unbind('touchend');
         $('.button-bet-clear').unbind('click');
         $('.button-bet-all').unbind('click');
         
@@ -833,7 +833,7 @@ function bindBetButton(){
         });
     });
 
-    $('.button-bet').on('touchstart', function(event){
+    $('.button-bet').on('touchend', function(event){
 // event.stopImmediatePropagation();
         $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
@@ -893,7 +893,7 @@ function bindBetButton(){
         previous_bet = g_vip_point;
     });
 
-    $('.radio-primary').on('touchstart', function(event){
+    $('.radio-primary').on('touchend', function(event){
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
@@ -941,7 +941,7 @@ function bindBetButton(){
 
     if(user_id == 0){
 
-        $('#btn-redeemcash').on('touchstart', function() {
+        $('#btn-redeemcash').on('touchend', function() {
             $('#modal-no-login').modal('show');
             return false;
         });
@@ -950,7 +950,7 @@ function bindBetButton(){
         if (g_betting_history_total > 0) {
             if ($('#isIOS').val() == 'true') {
                 // alert(11);
-                document.getElementById("btn-redeemcash").addEventListener("touchstart", function(evt) {
+                document.getElementById("btn-redeemcash").addEventListener("touchend", function(evt) {
                     var a = document.createElement('a');
                     a.setAttribute("href", $('#topupurl').val());
                     a.setAttribute("target", "_blank");
@@ -966,7 +966,7 @@ function bindBetButton(){
                 // });
 
                 var urlStr = encodeURI($('#topupurl').val());
-                $('#btn-redeemcash').on('touchstart', function() {
+                $('#btn-redeemcash').on('touchend', function() {
                     plus.runtime.openURL(urlStr);
                 });                
 
@@ -974,14 +974,14 @@ function bindBetButton(){
 
                 // alert(33);
                 // window.location.href = $('#topupurl').val();
-                $('#btn-redeemcash').on('touchstart', function() {
+                $('#btn-redeemcash').on('touchend', function() {
                     window.open($('#topupurl').val(), '_blank'); 
                 });
 
             }
             
         } else {
-            $('#btn-redeemcash').on('touchstart', function() {
+            $('#btn-redeemcash').on('touchend', function() {
                 $('#modal-unlock').modal('show');
                 return false;
             });
