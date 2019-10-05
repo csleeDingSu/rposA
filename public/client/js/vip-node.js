@@ -482,7 +482,7 @@ function getProduct(){
         html += '</form>';
 
         $('.redeem-prize-wrapper').html(html);
-        $('.redeem-button').on('modal-unlock', function(){
+        $('.redeem-button').on('touchend', function(){
 
             var user_id = $('#hidUserId').val();
             if(user_id == 0){
