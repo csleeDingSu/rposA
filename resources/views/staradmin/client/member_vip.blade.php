@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-    <div class="userBox fix">
+    <div class="userViews fix">
       <div class="userName">
         <h2>HI,{{ substr($member->phone,0,3) }}*****{{ substr($member->phone, -4) }}</h2>
         @if(!empty($member) && $member->wechat_verification_status == 0)   <!-- wechat verified -->    
