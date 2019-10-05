@@ -504,8 +504,7 @@ function getProduct(){
                     $('#modal-insufficient-point').modal();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
-                    }, 3000);  
-                    return false;              
+                    }, 3000);            
                 } else {
                     // console.log(2);
                     $( "#frm_buy" ).submit();    
