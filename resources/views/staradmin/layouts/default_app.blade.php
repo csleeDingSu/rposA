@@ -99,7 +99,7 @@
 
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/public.css')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/swiper.min.css')}}" />
-			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css')}}" />
+			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css?version=1.0.0')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/default_app.css')}}" />
 		@show
 		
