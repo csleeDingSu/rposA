@@ -666,13 +666,13 @@ span.type-blue {
   padding-right: 0.38rem;
 }
 
-.userBox {
+.userViews {
   background: #fff;
   margin-bottom: 0.2rem;
   padding: 0 0.24rem;
 }
 
-.userBox .userName {
+.userViews .userName {
   height: 1.1rem;
   display: flex;
   display: -webkit-flex;
@@ -681,34 +681,34 @@ span.type-blue {
   align-items: center;
 }
 
-.userBox .userName h2 {
+.userViews .userName h2 {
   font-size: 0.48rem;
   font-weight: bold;
   color: #333;
 }
 
-.userBox .userName a.set {
+.userViews .userName a.set {
   font-size: 0;
 }
 
-.userBox .userName a.set img {
+.userViews .userName a.set img {
   width: 0.52rem;
   height: 0.52rem;
   vertical-align: middle;
   margin-right: 0.1rem;
 }
 
-.userBox .userName a.set span {
+.userViews .userName a.set span {
   font-size: 0.26rem;
   color: #afafaf;
   vertical-align: middle;
 }
 
-.userBox .userName a.set.on span {
+.userViews .userName a.set.on span {
   color: #6ac940;
 }
 
-.userBox .userDetail {
+.userViews .userDetail {
   background: url(../images/userBg.png) center center no-repeat;
   background-size: 100% 100%;
   border-radius: 0.15rem;
@@ -717,7 +717,7 @@ span.type-blue {
   padding: 0.2rem 0 0.2rem 0.35rem;
 }
 
-.userBox .userDetail .userTitle {
+.userViews .userDetail .userTitle {
   font-size: 0.26rem;
   display: flex;
   padding-top: 0.15rem;
@@ -725,35 +725,35 @@ span.type-blue {
   align-items: center;
 }
 
-.userBox .userDetail .userTitle img {
+.userViews .userDetail .userTitle img {
   width: 0.38rem;
   height: 0.38rem;
   margin-right: 0.08rem;
 }
 
-.userBox .userDetail .userTitle span {
+.userViews .userDetail .userTitle span {
   font-size: 0.26rem;
   color: #fff;
 }
 
-.userBox .userDetail .userMoney {
+.userViews .userDetail .userMoney {
   line-height: 1rem;
   font-size: 0.52rem;
   color: #fff;
   font-weight: bold;
 }
 
-.userBox .userDetail .userTotal {
+.userViews .userDetail .userTotal {
   font-size: 0.26rem;
   color: #fff;
   margin-bottom: 0.2rem;
 }
 
-.userBox .userDetail .userTotal span {
+.userViews .userDetail .userTotal span {
   margin-right: 0.44rem;
 }
 
-.userBox .gobtn {
+.userViews .gobtn {
   position: absolute;
   right: 0;
   top: 0.42rem;
@@ -767,7 +767,7 @@ span.type-blue {
   border-radius: 0.58rem 0 0 0.58rem;
 }
 
-.userBox .sMain {
+.userViews .sMain {
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
@@ -776,7 +776,7 @@ span.type-blue {
   padding: 0.1rem 0;
 }
 
-.userBox .sMain a {
+.userViews .sMain a {
   flex: 1;
   display: flex;
   display: -webkit-flex;
@@ -786,11 +786,11 @@ span.type-blue {
   justify-content: center;
 }
 
-.userBox .sMain a img {
+.userViews .sMain a img {
   width: 0.68rem;
 }
 
-.userBox .sMain a span {
+.userViews .sMain a span {
   font-size: 0.26rem;
   color: #888;
   line-height: 1.8em;
