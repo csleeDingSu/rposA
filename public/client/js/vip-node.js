@@ -494,20 +494,22 @@ function getProduct(){
             } else {
 
                 $( "#hid_package_id" ).val($(this).attr('rel'));
-                // console.log($(this).attr('rel'));
+                console.log($(this).attr('rel'));
                 var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
-                // console.log(price);
-                // console.log(g_vip_point);
-                // console.log(getNumeric(price) > getNumeric(g_vip_point));
+                console.log(price);
+                console.log(g_vip_point);
+                console.log(getNumeric(price) > getNumeric(g_vip_point));
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
-                    // console.log(1);
+                    console.log(1);
                     $('#modal-insufficient-point').modal();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
-                    }, 3000);            
+                    }, 3000);   
+                    return false;         
                 } else {
-                    // console.log(2);
-                    $( "#frm_buy" ).submit();    
+                    console.log(2);
+                    $( "#frm_buy" ).submit(); 
+                    return false;   
                 }
 
             }
@@ -575,26 +577,27 @@ function startGame() {
             show_win = false;
             show_lose = false;
 
-            //lock wheel
-            lockWheel();
-            
+            //get wallet
+            $.ajax({
+                type: 'POST',
+                url: "/api/wallet-detail?gameid=" + gameid + "&memberid=" + id, 
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                },
+                error: function (error) { console.log(error) },
+                success: function(data) {
+                    var wallet_records = data.record;
+                    initUser(wallet_records);
+
+                    //lock wheel
+                    lockWheel();
+                }
+            });
+
         }
     });
-
-    $.ajax({
-        type: 'POST',
-        url: "/api/wallet-detail?gameid=" + gameid + "&memberid=" + id, 
-        dataType: "json",
-        beforeSend: function( xhr ) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + token);
-        },
-        error: function (error) { console.log(error) },
-        success: function(data) {
-            var wallet_records = data.record;
-            initUser(wallet_records);
-        }
-    });
-
+    
     $.ajax({
         type: 'GET',
         url: "/api/get-notifications?memberid=" + id + "&gameid=" + gameid,
@@ -1443,9 +1446,9 @@ function get2Decimal(value) {
 
 function lockWheel() {
     if (isLock()) {
-        _img = '<img src="/clientapp/images/vip-node/wheel-newbie.png">';
-        $('#wheel_banner').html(_img);
-        $('#wheel_container').css('visibility', 'hidden');
+        _img = '<div id="wheel_banner"><img src="/clientapp/images/vip-node/wheel-newbie.png"></div>';
+        $('.frame-wrapper').html(_img);
+        // $('#wheel_container').css('visibility', 'hidden');
     }
 }
 
