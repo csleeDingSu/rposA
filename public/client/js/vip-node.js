@@ -54,9 +54,6 @@ $(function () {
             //resetTimer();
         });
 
-        //lock wheel
-        lockWheel();
-
     } else {
         $(".loading").fadeOut("slow");
         return false;
@@ -578,6 +575,9 @@ function startGame() {
             updateResult(betting_records);
             show_win = false;
             show_lose = false;
+
+            //lock wheel
+            lockWheel();
             
         }
     });
