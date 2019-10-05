@@ -51,8 +51,8 @@ function getFromTabao(pageId){
       dataType: "text",
       error: function (error) {
           console.log(error);
-          alert(error.responseText);
-          $(".reload").show();
+          // alert(error.responseText);
+          // $(".reload").show();
       },
       success: function(data) {
           // console.log(data);
