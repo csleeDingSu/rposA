@@ -507,7 +507,8 @@ dd a:active h2 {
   border-radius: 0.05rem;
   line-height: 0.36rem;
   margin-right: 0.1rem;
-  margin-bottom: 0.1rem;
+  margin-top: .02rem;
+  margin-bottom: 0.08rem;
 }
 
 .listBox .moneyBox {
@@ -582,18 +583,18 @@ dd a:active h2 {
 span.type-red {
   background: #ff6d88;
   color: #fff;
-  border: 0.012rem solid #ff6d88;
+  border: 0.0125rem solid #ff6d88;
 }
 
 span.type-sred {
   background: #fff7f8;
   color: #f95976;
-  border: 0.012rem solid #ff6d88;
+  border: 0.0125rem solid #ff6d88;
 }
 
 span.type-blue {
   background: #fbf8ff;
-  border: 0.012rem solid #b469ff;
+  border: 0.0125rem solid #b469ff;
   color: #ab59ff;
 }
 
