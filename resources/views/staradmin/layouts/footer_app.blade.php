@@ -53,7 +53,9 @@
       </a></dd>
   </dl>
 </div>
-   
+
+<!-- <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/footer.css')}}" /> -->
+
     @if( Agent::is('OS X') ) 
       <style>
       .card-bar

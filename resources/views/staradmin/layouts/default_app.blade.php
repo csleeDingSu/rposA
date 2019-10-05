@@ -100,39 +100,14 @@
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/public.css')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/swiper.min.css')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css')}}" />
-			
-			<style>
-		        /* Paste this css to your style sheet file or under head tag */
-		        /* This only works with JavaScript, 
-		        if it's not present, don't show loader */
-		        .no-js #loader { display: none;  }
-		        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
-		        .loading {
-		            position: fixed;
-		            left: 0px;
-		            top: 0px;
-		            width: 100%;
-		            height: 100%;
-		            z-index: 9999;
-		            background: url('/client/images/preloader.gif') center no-repeat;
-		            background-color: rgba(255, 255, 255, 1);
-		            background-size: 32px 32px;
-		        }
-		       
-		       .reveal-modal {
-		          /*position: relative;*/
-		          margin: 0 auto;
-		          top: 25%;
-		      }
-
-		    </style>
-	
+			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/default_app.css')}}" />
 		@show
 		
 		@section('top-javascript')
 		<script type="text/javascript" src="{{ asset('clientapp/js/swiper.min.js')}}"></script>
 		<script type="text/javascript" src="{{ asset('clientapp/js/jquery-1.9.1.js')}}"></script>
 		<script type="text/javascript" src="{{ asset('clientapp/js/being.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('clientapp/js/default_app.js')}}"></script>
 
 		<!-- <script type="text/javascript">
 		//这个统计代码。
@@ -149,42 +124,22 @@
 		  <script>
 		  	// alert('yes. i am in.');
 		    if(('standalone' in window.navigator)&&window.navigator.standalone){  
-		    var noddy,remotes=false;  
-		    document.addEventListener('click',function(event){  
-		            noddy=event.target;  
-		            while(noddy.nodeName!=='A'&&noddy.nodeName!=='HTML') noddy=noddy.parentNode;  
-		            if('href' in noddy&&noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){  
-		                    event.preventDefault();  
-		                    document.location.href=noddy.href;  
-		            }  
-		    },false);  
-		}  
-		</script>
+			    var noddy,remotes=false;  
+			    document.addEventListener('click',function(event){  
+			            noddy=event.target;  
+			            while(noddy.nodeName!=='A'&&noddy.nodeName!=='HTML') noddy=noddy.parentNode;  
+			            if('href' in noddy&&noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){  
+			                    event.preventDefault();  
+			                    document.location.href=noddy.href;  
+			            }  
+			    },false);  
+			}  
+			</script>
 		@endif
-
-		<script type="text/javascript">
-		  function historyBackWFallback(fallbackUrl) {
-		      fallbackUrl = fallbackUrl || '/';
-		      var prevPage = window.location.href;
-
-		      window.history.go(-1);
-
-		      setTimeout(function(){ 
-		          if (window.location.href == prevPage) {
-		              window.location.href = fallbackUrl; 
-		          }
-		      }, 500);
-		  }
-
-		  function goBack() {
-		  	window.history.back();
-		  }
-		</script>
 
 		@show
     </head>
     <body>
-    	<div class="loading" id="loading"></div>
     	<section class="card">
     	@section('top-navbar')
 			<div class="card-header">
@@ -196,13 +151,15 @@
 		    </div>
 		@show
 
-		    <div class="card-body over ">
-		      <div class="scrolly">
-		        @yield('content')
-		      </div>
-		    </div>		
+		<div class="card-body over ">
+	    	@yield('game-top-nav')
+	    	<div class="loading" id="loading"></div>
+	    	<div class="scrolly">
+	    		@yield('content')
+	    	</div>
+	    </div>
 
-		@if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips'))
+	    @if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips'))
 
 			@include('layouts/footer_app')
 		@endif
@@ -225,10 +182,10 @@
 		            setTimeout(function(){
 		                document.getElementById('interactive');
 		                document.getElementById('loading').style.visibility="hidden";
+		                $('.loading').css('display', 'initial');
 		            },100);
 		          }
 		        }
-			  
 			  
 			  resize = () => {
 				  var o = $(document)

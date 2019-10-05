@@ -25,6 +25,23 @@
     
 
     <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/client/images/preloader.gif') center no-repeat;
+            background-color: rgba(255, 255, 255, 1);
+            background-size: 32px 32px;
+        }
+       
     	
     	.reveal-modal {
 		    /*position: relative;*/
@@ -93,12 +110,18 @@
 @section('top-navbar')
 @endsection
 
+@section('game-top-nav')
+	@if (env('THISVIPAPP', false))
+		@include('client.game-top-nav')
+	@endif
+@endsection
+
 @section('content')
 @if (!env('THISVIPAPP', false))
 <a name="top"></a>
 @endif
 
-<div class="loading"></div>
+<div class="loading2" id="loading2"></div>
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
@@ -117,11 +140,6 @@
 </div>
 
 <div class="cardBody"><div class="box">
-
-@if (env('THISVIPAPP', false))
-	@include('client.game-top-nav')
-@endif
-
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
@@ -986,6 +1004,17 @@
 	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
 
 	<script type="text/javascript">
+		document.onreadystatechange = function () {
+          var state = document.readyState
+          if (state == 'interactive') {
+          } else if (state == 'complete') {
+            setTimeout(function(){
+                document.getElementById('interactive');
+                document.getElementById('loading2').style.visibility="hidden";
+            },100);
+          }
+        }
+
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
     	// var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";

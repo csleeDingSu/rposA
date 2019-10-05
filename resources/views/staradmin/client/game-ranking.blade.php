@@ -3,6 +3,12 @@
     <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" />
     
 @endsection
+@section('top-javascript')
+	@parent
+	<script src="{{ asset('/client/js/game-ranking.js') }}"></script>
+	
+@endsection
+
 <div class="bgColor">
 <!-- ranking start-->
 <div class="redeem-banner">
@@ -70,8 +76,3 @@
 </div>
 <!-- ranking end-->
 </div>
-@section('footer-javascript')
-	@parent
-	<script src="{{ asset('/client/js/game-ranking.js') }}"></script>
-	
-@endsection

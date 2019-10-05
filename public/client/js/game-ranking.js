@@ -26,7 +26,7 @@ function getMyRanking() {
         },
         error: function (error) { 
             console.log(error);
-            $(".reload").show();
+            // $(".reload").show();
         },
         success: function(data) {
         	var status = data.success;
@@ -45,7 +45,7 @@ function getMyRanking() {
                     
                     _phone = 'xxxxx';
                     if (my_rank.phone != '' && my_rank.phone != null) {
-                        console.log(my_rank.phone);
+                        // console.log(my_rank.phone);
                         _phone = my_rank.phone.substring(0,3) + '*****' + my_rank.phone.slice(-4);
                     }
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
@@ -74,7 +74,7 @@ function getGlobalRanking() {
         },
         error: function (error) { 
             console.log(error);
-            $(".reload").show();
+            // $(".reload").show();
         },
         success: function(data) {
             var status = data.success;
@@ -103,7 +103,7 @@ function getGlobalRanking() {
 
                         _phone = 'xxxxx';
                         if (item.phone != '' && item.phone != null) {
-                            console.log(item.phone);
+                            // console.log(item.phone);
                             _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
                         }
 
@@ -140,7 +140,7 @@ function getFriendRanking() {
         },
         error: function (error) { 
             console.log(error);
-            $(".reload").show();
+            // $(".reload").show();
         },
         success: function(data) {
             var status = data.success;

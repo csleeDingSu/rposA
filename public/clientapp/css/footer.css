@@ -1,0 +1,127 @@
+.card-bar {
+  background: #fafafa;
+  border-top: 0.012rem solid #f1f1f1;
+}
+
+.bar {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  height: 0.98rem;
+}
+
+.bar dd {
+  flex: 1;
+  -moz-flex: 1;
+  -webkit-flex: 1;
+}
+
+.bar h2 {
+  font-size: 0.2rem;
+  color: #a8a8a8;
+  text-align: center;
+}
+
+.bar dd .icon {
+  display: block;
+  margin: 0.1rem auto;
+  height: 0.44rem;
+  width: 0.44rem;
+}
+
+.bar dt .icon {
+  width: 0.92rem;
+  height: 0.92rem;
+  display: block;
+  padding: 0rem;
+}
+
+.bar dt {
+  position: relative;
+  flex: 1;
+  -moz-flex: 1;
+  -webkit-flex: 1;
+}
+
+.icon.bar-1 {
+  background: url(../images/bar-1.png) center center no-repeat;
+  background-size: 0.44rem auto;
+}
+
+.icon.bar-2 {
+  background: url(../images/bar-2.png) center center no-repeat;
+  background-size: 0.44rem auto;
+}
+
+.icon.bar-3 {
+  background: url(../images/bar-3.png) center center no-repeat;
+  background-size: 0.44rem auto;
+}
+
+.icon.bar-4 {
+  background: url(../images/bar-4.png) center center no-repeat;
+  background-size: 0.44rem auto;
+}
+
+dd a.on .icon.bar-1,
+dd a:active .icon.bar-1 {
+  background: url(../images/bar-1a.png) center center no-repeat;
+  background-size: 0.44rem auto;
+}
+
+dd a.on .icon.bar-2,
+dd a:active .icon.bar-2 {
+  background: url(../images/bar-2a.png) center center no-repeat;
+  background-size: 0.44rem auto;
+}
+
+dd a.on .icon.bar-3,
+dd a:active .icon.bar-3 {
+  background: url(../images/bar-3a.png) center center no-repeat;
+  background-size: 0.44rem auto;
+}
+
+dd a.on .icon.bar-4,
+dd a:active .icon.bar-4 {
+  background: url(../images/bar-4a.png) center center no-repeat;
+  background-size: 0.44rem auto;
+}
+
+dd a.on h2,
+dd a:active h2 {
+  color: #fe3f69;
+}
+
+.bar dt span {
+  position: absolute;
+  border-radius: 50%;
+  top: -0.36rem;
+  left: 50%;
+  margin-left: -0.46rem;
+  border: 0.012rem solid #f1f1f1;
+  text-align: center;
+  font-size: 0;
+  background: #fafafa;
+}
+
+.bar dt img {
+  width: 0.91rem;
+  position: relative;
+  z-index: 2;
+}
+
+.bar dt span::before {
+  content: "";
+  display: block;
+  height: 0.6rem;
+  width: 0.96rem;
+  background: #fafafa;
+  position: absolute;
+  top: 0.345rem;
+  left: -0.012rem;
+  z-index: 1;
+}
+
+.bar dt h2 {
+  margin-top: 0.64rem;
+}

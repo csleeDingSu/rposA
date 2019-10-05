@@ -2,9 +2,7 @@
 
 @section('top-css')
     @parent  
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/test/blog_html/css/swiper.min.css') }}" />    
     <style>
          
        .reveal-modal {
