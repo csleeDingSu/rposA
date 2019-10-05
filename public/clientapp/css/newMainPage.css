@@ -17,8 +17,10 @@
 }
 
 .listBox .typeBox {
-   padding-top: 0.02rem;
+   padding-top: 0.04rem;
 }
+
+
 
 .searchBox input {
     font-weight: 500;
@@ -36,7 +38,7 @@
 	color: #bebebe;
 	font-size: 0.26rem !important;
     padding: 0 !important;
-    vertical-align: middle;
+    border:.012rem solid transparent;
 }
 
 .newTxt {
