@@ -27,7 +27,7 @@ $(document).ready(function () {
   being.scrollBottom('.scrolly', '.box', () => {   
     pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val();
     console.log('pageId - ' + pageId)
-    alert('页 - ' + pageId);
+    // alert('页 - ' + pageId);
     getFromTabao(pageId);
   }); 
 
