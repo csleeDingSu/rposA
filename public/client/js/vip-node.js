@@ -448,7 +448,7 @@ function getNotification(data){
 }
 
 function getProduct(){
-    $.getJSON( "/api/get-product-list", function( data ) {
+    $.getJSON( "/api/get-product-list?limit=6", function( data ) {
         // console.log(data);
 
         var html = '<form id="frm_buy" method="post" action="/buy">' +
@@ -457,35 +457,25 @@ function getProduct(){
         $.each(data.records, function(i, item) {
             
             if(i % 2 === 0){
-                html += '<div class="redeem-prize">' + 
+                html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
                             '<div class="left-box">' +
                             '<div class="prize-box">' +
                                 '<div class="image-wrapper">' +
                                     '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
-                                '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
-                                    '<div class="redeem-button-wrapper">' +
-                                        '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
-                                    '</div>' +
-                                '</div>' +
+                                '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
                             '</div>' +
                         '</div>';
             } else {
-                html += '<div class="redeem-prize">' + 
+                html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
                             '<div class="right-box">' +
                             '<div class="prize-box">' +
                                 '<div class="image-wrapper">' +
                                     '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
-                                '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
-                                    '<div class="redeem-button-wrapper">' +
-                                        '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
-                                    '</div>' +
-                                '</div>' +
+                                '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
                             '</div>' +
                         '</div>';
             }
@@ -495,7 +485,7 @@ function getProduct(){
         html += '</form>';
 
         $('.redeem-prize-wrapper').html(html);
-        $('.redeem-button').click(function(){
+        $('.redeem-button').on('touchstart', function(){
 
             var user_id = $('#hidUserId').val();
             if(user_id == 0){
@@ -503,6 +493,7 @@ function getProduct(){
                 // $( '#login-intropopup' ).modal( 'show' );
                 // $( '#nonloginmodal' ).modal( 'show' );
                 $( '#modal-no-login' ).modal( 'show' );
+                return false;
             } else {
 
                 $( "#hid_package_id" ).val($(this).attr('rel'));
@@ -516,7 +507,8 @@ function getProduct(){
                     $('#modal-insufficient-point').modal();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
-                    }, 3000);                
+                    }, 3000);  
+                    return false;              
                 } else {
                     // console.log(2);
                     $( "#frm_buy" ).submit();    
@@ -526,31 +518,6 @@ function getProduct(){
             
         });
 
-        $('.redeem-img').click(function(){
-
-            var user_id = $('#hidUserId').val();
-            if(user_id == 0){
-                // window.top.location.href = "/member";
-                // $( '#login-intropopup' ).modal( 'show' );
-                // $( '#nonloginmodal' ).modal( 'show' );
-                $( '#modal-no-login' ).modal( 'show' );
-            } else {
-
-                $( "#hid_package_id" ).val($(this).attr('rel'));
-                console.log($(this).attr('rel'));
-                var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
-                if (getNumeric(price) > getNumeric(g_vip_point)) {
-                    $('#modal-insufficient-point').modal();
-                    setTimeout(function(){ 
-                        $('#modal-insufficient-point').modal('hide');
-                    }, 3000);                
-                } else {
-                    $( "#frm_buy" ).submit();    
-                }
-
-            }
-            
-        });
     });
 }
 

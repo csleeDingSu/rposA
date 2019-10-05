@@ -332,3 +332,17 @@ font-size: 0.36rem;
     /*height: 50%;*/
     padding: 0.5rem;
 }
+
+.redeem-more {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.15rem;
+    border-radius: 100px;
+    color: #ffe7ce;
+    font-size: 0.3rem;
+    margin: 0.2rem 1.2rem 0.5rem 1.2rem;
+    text-align: center;
+}
+
+.redeem-more a{
+    color: #ffe7ce;
+}

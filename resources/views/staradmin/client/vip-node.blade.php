@@ -79,6 +79,7 @@
 @endsection
 @section('top-javascript')
 @parent
+<script src="{{ asset('/client/js/jquery.wheel.js') }}"></script>
 <script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
 	    <script type="text/javascript" charset="utf-8">
 	      	mui.init();
@@ -449,30 +450,7 @@
 	<!-- end progress bar -->
 </div>
 
-@if (env('THISVIPAPP', false))
-	@include('client.game-ranking-vip')
-@else
-		<div class="redeem-banner">
-			<img src="{{ asset('/client/images/vip/redeem-banner.png') }}" alt="share">
-		</div>
-
-		<div class="redeem-prize-wrapper"></div>
-		<div style="clear: both"></div>
-
-		<div class="redeem-info">
-			<div class="info-box">
-				<div class="info-title">
-					<img src="{{ asset('/client/images/vip/decoration.png') }}" />换购规则<img src="{{ asset('/client/images/vip/decoration.png') }}" />
-				</div>
-				<hr />
-				关于金币：<span class="info-highlight">金币是用来换购产品使用，通过幸运转盘游戏获得，1金币等于1元。</span><br />
-				<br />
-				如何换购：<span class="info-highlight">进入礼品专区，挑选换购产品，下单后平台发货，每次换购完会自动扣除等值金币。</span>
-				<br />
-			</div>
-		</div>
-@endif
-
+@include('client.game-ranking-vip')
 
 @endsection
 
@@ -792,7 +770,7 @@
 	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/jquery.rotate.min.js') }}"></script>
-    <script src="{{ asset('/client/js/jquery.wheel.js') }}"></script>
+    
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
     <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>

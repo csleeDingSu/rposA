@@ -3,41 +3,24 @@
     <link rel="stylesheet" href="{{ asset('/client/css/game-ranking-vip.css') }}" />
 
 @endsection
+
+<div style="clear: both"></div>
+
 <div class="bgColor">
-<!-- ranking start-->
+
 <div class="redeem-banner">
-	<img src="{{ asset('/client/images/ranking/banner-title-ranking-vip.png') }}" alt="share">
+	<img src="{{ asset('/clientapp/images/vip-node/redeem-banner.png') }}" alt="精选奖品">
 </div>
-<div class="ranking-note-top">
-	<div class="description">
-			自助抽奖换金币，奖品任你换不停
-	</div>
-	<div class="note">
-		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-draw.png') }}" />
-		<span class="highlight">无限极抽奖，</span>
-		任你抽到爽
-	</div>
-	<div class="note">
-		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-reward.png') }}" />
-		<span class="highlight">卡券奖品，</span>
-		拿到手软
-	</div>
-	<div class="note">
-		<img class="icon-note" src="{{ asset('/client/images/ranking/icon-random.png') }}" />
-		<span class="highlight">100%随机，</span>
-		绝无作弊
-	</div>
+
+<!-- redeem price start-->
+<div class="redeem-prize-wrapper"></div>
+<div style="clear: both"></div>
+
+<div class="redeem-more">
+	<a href="/shop">更多兑换奖品，点击进入商城 ></a>
 </div>
-<div class="ranking-note-bottom">
-	<div class="total-point-left">
-		<p>你累计赚得金币</p>
-		<p class="my-earning-point">{{$earnpoint}}</p>
-	</div>
-	<div class="total-point-right">
-		<p>已换购金币</p>
-		<p class="my-invitation-count">{{$usedpoint}}</p>
-	</div>
-</div>
+
+<!-- ranking start-->
 <div class="ranking">
 	<div class="full-width-tabs">
         <ul class="nav nav-pills">

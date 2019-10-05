@@ -41,9 +41,14 @@ class BuyProduct extends Model
 	}
 	
 	
-	public static function list_available_redeem_package($point)
+	public static function list_available_redeem_package($point, $limit = null)
 	{		
-		$result = DB::table('view_buy_product')->where('status', '=', 1);
+		if (empty($limit)) {
+			$result = DB::table('view_buy_product')->where('status', '=', 1);	
+		} else {
+			$result = DB::table('view_buy_product')->where('status', '=', 1)->take($limit);
+		}
+		
 		
 		if (!empty($point))
 		{

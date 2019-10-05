@@ -54,7 +54,7 @@
 }
 
 .redeem-banner {
-	padding: 0.4rem 0.4rem 0 0.4rem;
+	padding: 0.5rem 0.4rem 0.3rem 0.4rem;
     text-align: center;
     margin: 0;
     height: auto;
@@ -78,6 +78,8 @@
 	padding-bottom: 10px;
 	position: relative;
 	display: table;
+	padding-left: 0.3rem;
+
 }
 
 .right-box {
@@ -87,24 +89,26 @@
 	padding-bottom: 10px;
 	position: relative;
 	display: table;
+	padding-right: 0.3rem;
 }
 
 .prize-box {
-	background: url('/client/images/vip/gift-box.png') no-repeat;
+	background: url('/clientapp/images/vip-node/cpbg.png') no-repeat;
 	background-size:100% 100%;  
 	content: '';
 	position: relative;
 	display: table-cell;
+	padding: 0;
 }
 
 .prize-box .image-wrapper {
-	width: 2.6rem;
-	height: 2.6rem;
-	margin: 0 auto;
+	width: 1.5rem;
+    height: 1.5rem;
+    float: left;
+    padding: 0.2rem;
 }
 
 .prize-box .image-wrapper img {
-	margin: 0.3rem auto;
 	width: 100%;
 	height: 100%;
 }
@@ -112,21 +116,21 @@
 .redeem-product {
 	font-size: 0.24rem;
 	color: #e1d3ed;
-	margin-top: 0.4rem;
 	text-align: left;
-	padding: 0.3rem 0.2rem 0.1rem 0.3rem;
-	height: 1rem;
+
 	overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    margin: 0.2rem 0.2rem 0 0;
 }
 
 .redeem-price {
 	font-size: 0.34rem;
 	color: #ffae00;
-	float: left;
 	text-align: left;
-	width: 60%;
-	display: block;
-	padding-left: 0.3rem;
 }
 
 .redeem-currency {
@@ -136,16 +140,6 @@
 .redeem-button-wrapper {
 	width: 40%;
 	float: left;
-}
-
-.redeem-button {
-	background:url(/client/images/vip/redeem-button.png) no-repeat;
-	width: 1.02rem;
-	height: 0.44rem;
-	background-size: contain;
-	font-size: 0.24rem;
-	padding-top: 0.04rem;
-	cursor: pointer;
 }
 
 .redeem-details {
