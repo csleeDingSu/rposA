@@ -26,7 +26,8 @@ $(document).ready(function () {
   //execute scroll pagination
   being.scrollBottom('.scrolly', '.box', () => {   
     pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val();
-    console.log('dasdsa - ' + pageId)
+    console.log('pageId - ' + pageId)
+    alert('页 - ' + pageId);
     getFromTabao(pageId);
   }); 
 
