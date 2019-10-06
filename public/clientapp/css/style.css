@@ -583,18 +583,18 @@ dd a:active h2 {
 span.type-red {
   background: #ff6d88;
   color: #fff;
-  border: 0.0125rem solid #ff6d88;
+  border: 1px solid #ff6d88;
 }
 
 span.type-sred {
   background: #fff7f8;
   color: #f95976;
-  border: 0.0125rem solid #ff6d88;
+  border: 1px solid #ff6d88;
 }
 
 span.type-blue {
   background: #fbf8ff;
-  border: 0.0125rem solid #b469ff;
+  border: 1px solid #b469ff;
   color: #ab59ff;
 }
 
