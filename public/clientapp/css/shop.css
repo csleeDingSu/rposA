@@ -23,6 +23,7 @@ body {
     float: left;
     text-align: center;
     margin: 0 0 0 0.2rem;
+    position: relative;
 }
 
 .shop-left-menu .clscoin {
