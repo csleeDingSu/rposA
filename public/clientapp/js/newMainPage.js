@@ -87,8 +87,10 @@ function getFromTabao(pageId){
         currentPageId = pageId; //keep current page
         pageId = $('#hidPageId').val(); //next page
         console.log(pageId);
-
-          
+        if (html == '') {
+          $('.lastHint').html('');  
+        }
+        
       }
   });
 }

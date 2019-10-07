@@ -127,6 +127,7 @@
         @endif
       
         </div>
+        <div class="lastHint">下拉显示更多产品...</div>
         <hr class="h36">
 </div>
 @endsection
