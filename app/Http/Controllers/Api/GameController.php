@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
 use App\Game;
-use Validator;
-use Carbon\Carbon;
-use App\Wallet;
-use App\member_game_result;
-use App\member_game_bet_temp;
-
-use App\member_game_notification;
-use App\Package;
-
+use App\Helpers\Logs;
+use App\Http\Controllers\Controller;
 use App\Ledger;
+use App\Package;
+use App\Wallet;
+use App\member_game_bet_temp;
+use App\member_game_notification;
+use App\member_game_result;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Validator;
 
 
 class GameController extends Controller
@@ -1292,7 +1290,8 @@ class GameController extends Controller
 		if(!$res)
 		{
 			$previous_bet =  member_game_result::where('game_id',$gameid)->where('member_id',$memberid)->latest()->first();
-			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting'),'previous_bet ' => $previous_bet ]);
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting'),'previous_bet ' => $previous_bet ]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}
 		$res->status     = 1;
 		$res->deleted_at = $now;
@@ -1314,16 +1313,19 @@ class GameController extends Controller
 		
 		if ($play_status['life']<1)
 		{
-			return response()->json(['success' => false,'message' => trans('dingsu.not_enough_life')]);
+			$_res = response()->json(['success' => false,'message' => trans('dingsu.not_enough_life')]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 			
 		}
 		if (empty($is_playable)&&empty($is_redeemable))// 0
 		{
-			return response()->json(['success' => false, 'message' => trans('dingsu.not_enough_balance')]);
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.not_enough_balance')]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 			
 		}elseif (empty($is_playable)&&!empty($is_redeemable))//1
 		{
-			return response()->json(['success' => false, 'message' => trans('dingsu.exceeded_coin_limit')]);
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.exceeded_coin_limit')]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}
 				
 					
@@ -1469,7 +1471,8 @@ class GameController extends Controller
 		{
 			//add last betting detail
 			$previous_bet =  member_game_result::where('game_id',$gameid)->where('member_id',$memberid)->latest()->first();
-			return response()->json(['success' => false, 'message' => "no betting",'previous_bet ' => $previous_bet ]);
+			$_res = response()->json(['success' => false, 'message' => "no betting",'previous_bet ' => $previous_bet ]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}			
 		$res->status     = 1;
 		$res->deleted_at = $now;
@@ -1483,12 +1486,14 @@ class GameController extends Controller
 		if ($ledger->point<1)
 		{
 			$res->save();
-			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
+			$_res = ['success' => false, 'message' => trans('dingsu.not_enough_point')];	
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);	
 		}		
 		if ($ledger->point< $betamt )
 		{
 			$res->save();
-			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
+			$_res = ['success' => false, 'message' => trans('dingsu.not_enough_point')];	
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);	
 		}				
 		if ($ledger->life<1)
 		{
@@ -1545,6 +1550,7 @@ class GameController extends Controller
 		//End
 		$firstwin = '';
 		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);		
+		
 	}
 	
 	
@@ -1568,7 +1574,8 @@ class GameController extends Controller
 		if(!$res)
 		{
 			$previous_bet =  member_game_result::where('game_id',$gameid)->where('member_id',$memberid)->latest()->first();
-			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting'),'previous_bet ' => $previous_bet ]);
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting'),'previous_bet ' => $previous_bet ]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}
 		$res->status     = 1;
 		$res->deleted_at = $now;	
@@ -1583,7 +1590,8 @@ class GameController extends Controller
 		if ($eligible_to_play['eligible_to_enter'] != 'true')
 		{
 			$res->save();
-			return response()->json(['success' => false, 'message' => trans('dingsu.not_eligible_to_play_vip')]);
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.not_eligible_to_play_vip')]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}		
 		
 		//check point 				
@@ -1592,12 +1600,14 @@ class GameController extends Controller
 		if ($ledger->point<1)
 		{
 			$res->save();
-			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
+			$_res = ['success' => false, 'message' => trans('dingsu.not_enough_point')];	
+			return Logs::log($_res, 'warning');		
 		}		
 		if ($ledger->point< $betamt )
 		{
 			$res->save();
-			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
+			$_res = ['success' => false, 'message' => trans('dingsu.not_enough_point')];		
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}				
 		if ($ledger->life<1)
 		{

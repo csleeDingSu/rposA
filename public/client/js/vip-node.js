@@ -24,6 +24,8 @@ var play_count = 0;
 var bet_count = 0;
 var gameid = 103;
 var g_bet_amount = 0;
+var max_retry = 3;
+var nretry = 0;
 
 $(function () {
 
@@ -293,10 +295,20 @@ function getToken(){
         $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
             //console.log(data);
             if(data.success) {
+                nretry = 0;
                 token = data.access_token;
                 startGame();       
             } else {
-                $(".reload2").show();
+                // $(".reload2").show();
+                nretry++;
+                if (nretry < max_retry) {
+                    for (i = nretry; i <= max_retry; i++) {
+                      getToken();
+                    }    
+                } else {
+                    console.log('retry exist');
+                    $(".reload2").show();
+                }
             }      
         });
 
@@ -1236,17 +1248,31 @@ function startTimer(duration, timer, freeze_time) {
                 $(".reload2").show();
             },
             success: function(data) {
+                _success = data.success;
                 console.log(data);
-                $('.small-border').removeClass('medium-rotate');
-                $('#result').val(data.game_result);
-                if(data.status == 'win'){
-                    show_win = true;
-                    showWinModal();
-                } else if(data.status == 'lose') {
-                    show_lose = true;
-                    showLoseModal();
+                if (_success) {
+                    nretry = 0;
+                    $('.small-border').removeClass('medium-rotate');
+                    $('#result').val(data.game_result);
+                    if(data.status == 'win'){
+                        show_win = true;
+                        showWinModal();
+                    } else if(data.status == 'lose') {
+                        show_lose = true;
+                        showLoseModal();
+                    }
+                    triggerResult();
+                } else {
+                    nretry++;
+                    if (nretry < max_retry) {
+                        for (i = nretry; i <= max_retry; i++) {
+                          startTimer(duration, timer, freeze_time);
+                        }    
+                    } else {
+                        console.log('retry exist');
+                        $(".reload2").show();
+                    }
                 }
-                triggerResult();
             },
             timeout: 10000 // sets timeout to 10 seconds
         });

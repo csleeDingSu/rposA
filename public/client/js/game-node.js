@@ -23,6 +23,8 @@ var min_acupoint = 6;
 var g_cookies_point = 0;
 var user_id = 0;
 var is_app = false;
+var max_retry = 3;
+var nretry = 0;
 
 $(function () {
 
@@ -457,13 +459,23 @@ function getToken(){
         $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
             //console.log(data);
             if(data.success) {
+                nretry = 0;
                 token = data.access_token;
                 startGame();            
             } else {
                 console.log(err.message);
-                alert(err.message);
+                // alert(err.message);
                 console.log(3);
-                $(".reload2").show();
+                // $(".reload2").show();
+                nretry++;
+                if (nretry < max_retry) {
+                    for (i = nretry; i <= max_retry; i++) {
+                      getToken();
+                    }    
+                } else {
+                    console.log('retry exist');
+                    $(".reload2").show();
+                }
             }      
         });
     } else {
@@ -1374,16 +1386,30 @@ function startTimer(duration, timer, freeze_time) {
                 // window.top.location.href = "/arcade";
             },
             success: function(data) {
-                $('.small-border').removeClass('fast-rotate');
-                $('#result').val(data.game_result);
-                if(data.status == 'win'){
-                    show_win = true;
-                    showWinModal();
-                } else if(data.status == 'lose' && level < 6) {
-                    show_lose = true;
-                    showLoseModal();
+                _success = data.success;
+                if (_success) {
+                    nretry = 0;
+                    $('.small-border').removeClass('fast-rotate');
+                    $('#result').val(data.game_result);
+                    if(data.status == 'win'){
+                        show_win = true;
+                        showWinModal();
+                    } else if(data.status == 'lose' && level < 6) {
+                        show_lose = true;
+                        showLoseModal();
+                    }
+                    triggerResult();
+                } else {
+                    nretry++;
+                    if (nretry < max_retry) {
+                        for (i = nretry; i <= max_retry; i++) {
+                          startTimer(duration, timer, freeze_time);
+                        }    
+                    } else {
+                        console.log('retry exist');
+                        $(".reload2").show();
+                    }
                 }
-                triggerResult();
             },
             timeout: 10000 // sets timeout to 10 seconds
         });
