@@ -114,7 +114,7 @@
                     <div class="typeBox">
                       <span class="type-price">淘宝<em>¥</em>{{$oldPrice}}</span>
                       <span class="type-red">{{$p['couponPrice']}}元券</span>
-                      <span class="type-sred">奖励 {{$reward}} 积分</span>
+                      <span class="type-sred">返{{$reward}}积分</span>
                     </div>
                     <p class='newTxt'>券后价格<em>¥</em>{{$promoPrice}}</p>
                     <div class="moneyBox">                        
