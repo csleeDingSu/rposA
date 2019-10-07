@@ -494,7 +494,7 @@ function getProduct(){
         html += '</form>';
 
         $('.redeem-prize-wrapper').html(html);
-        $('.redeem-button').on('touchend', function(){
+        $('.redeem-button').on('click', function(){
 
             var user_id = $('#hidUserId').val();
             if(user_id == 0){
@@ -831,7 +831,7 @@ function bindBetButton(){
                 previous_bet = final_bet;
             } else {
                 if (isLock()) {
-                    $('#modal-unlock').modal();
+                    showUnLockModal();
                 } else {
                     $( '#modal-isnewbie' ).modal( 'show' );    
                 }
@@ -857,7 +857,7 @@ function bindBetButton(){
             if (g_vip_point < 1) {
                 // $( '#modal-isnewbie' ).modal( 'show' );
                 if (isLock()) {
-                    $('#modal-unlock').modal();
+                    showUnLockModal();
                 } else {
                     $('#modal-insufficient-point-new').modal();
                 }
@@ -926,7 +926,7 @@ function bindBetButton(){
         if (g_vip_point < 1) {
             // $( '#modal-isnewbie' ).modal( 'show' );
             if (isLock()) {
-                $('#modal-unlock').modal();
+                showUnLockModal();
             } else {
                 $('#modal-insufficient-point-new').modal();
             }
@@ -994,7 +994,7 @@ function bindBetButton(){
             
         } else {
             $('#btn-redeemcash').on('touchend', function() {
-                $('#modal-unlock').modal('show');
+                showUnLockModal();
                 return false;
             });
         }
@@ -1145,7 +1145,7 @@ function bindTriggerButton(){
             if (g_vip_point < 1) {
                 // $( '#modal-isnewbie' ).modal( 'show' );
                 if (isLock()) {
-                    $('#modal-unlock').modal();
+                    showUnLockModal();
                 } else {
                     $('#modal-insufficient-point-new').modal();
                 }
@@ -1493,4 +1493,12 @@ function isLock() {
     console.log(g_vip_point);
     console.log(res);
     return res;
+}
+
+function showUnLockModal() {
+    $('#modal-unlock').modal();
+    setTimeout(function(){ 
+        $('.modal').modal('hide');
+        $('.modal-backdrop').remove(); 
+    }, 3000);
 }

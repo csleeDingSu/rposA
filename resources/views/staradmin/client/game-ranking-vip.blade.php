@@ -41,7 +41,7 @@
             </li>          
         </ul>
     </div>
-    <div class="row tab-remark-1"><div class="col">换购名单实时更新</div></div>
+    <div class="row tab-remark-1"><div class="col">排名名单实时更新</div></div>
     <div class="tab-content">
         <div id="general-ranking" class="tab-pane fade in active">
         	<div class="row tab-row-header">
