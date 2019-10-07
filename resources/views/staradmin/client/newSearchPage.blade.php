@@ -57,6 +57,7 @@
               
             </div>
           </div>
+          <div class="lastHint">下拉显示更多产品...</div>
       </div>
     </div>
 

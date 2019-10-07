@@ -4,6 +4,7 @@ var pageSize = 20;
 var usedpoint = 0;
 var life = 0;
   $(document).ready(function () {
+    $('.lastHint').css('visibility', 'hidden');
     usedpoint = $('#hidgame_102_usedpoint').val();
     life = $('#hidlife').val();
     
@@ -70,6 +71,7 @@ var life = 0;
                   });
 
                   $('.listBox').html(html);
+                  $('.lastHint').css('visibility', 'hidden');
                   $(".reload").show();
             },
             success: function(data) {
@@ -95,6 +97,7 @@ var life = 0;
                           '</div>';
 
                     $('.listBox').html(html);  
+                    $('.lastHint').css('visibility', 'hidden');
                   }
                   
                   return false; 
@@ -112,6 +115,7 @@ var life = 0;
                             '<div>无搜索商品，请尝试其他关键字</div>' +
                           '</div>';
                         }
+                    $('.lastHint').css('visibility', 'hidden');
 
                 } else {
 
@@ -170,10 +174,12 @@ var life = 0;
                                 '</div>' +
                               '</div>';
                     });
+
+                    $('.lastHint').css('visibility', 'visible');
+
                 }                
             
               if (pageId == 1) {
-
                 $('.listBox').html(html); 
               } else {
                 $('.listBox').append(html); 
