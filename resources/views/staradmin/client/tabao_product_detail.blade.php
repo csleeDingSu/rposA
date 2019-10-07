@@ -65,7 +65,7 @@
 					<h2>{{$data['title']}}</h2>
 					<div class="line-reward">
 						<div class="reward-txt">下单后</div>
-						<div class="reward">返{{$newPrice * 10}}积分</div>
+						<div class="reward">返{{$newPrice * $data['commissionRate']}}积分</div>
 						<div class="btn-reward">怎么返?</div>
 						<h3>热销{{$data['monthSales']}}件</h3>
 					</div>							

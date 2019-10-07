@@ -118,7 +118,7 @@ function populateData(item) {
   commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
   reward = parseInt(Number(newPrice) * Number(commissionRate));
   reward = (reward <= 0) ? '100' : reward;
-  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=';
+  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=';
   // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
 
   html = '<div class="inBox">' +
