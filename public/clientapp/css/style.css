@@ -506,7 +506,7 @@ dd a:active h2 {
   padding: 0 0.1rem;
   border-radius: 0.05rem;
   line-height: 0.36rem;
-  margin-right: 0.1rem;
+  margin-right: 0.08rem;
   margin-top: .02rem;
   margin-bottom: 0.08rem;
 }
@@ -1067,6 +1067,7 @@ span.type-blue {
   height: 100%;
   overflow-y: auto;
   background: #5d21c3;
+  -webkit-overflow-scrolling: touch;
 }
 
 .loginBox .form {

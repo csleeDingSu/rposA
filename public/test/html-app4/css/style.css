@@ -1066,6 +1066,7 @@ span.type-blue {
   height: 100%;
   overflow-y: auto;
   background: #5d21c3;
+  -webkit-overflow-scrolling: touch;
 }
 
 .loginBox .form {
