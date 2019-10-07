@@ -503,7 +503,7 @@ dd a:active h2 {
 .listBox .typeBox span {
   display: inline-block;
   font-size: 0.2rem;
-  padding: 0 0.1rem;
+  padding: 0 .041rem;
   border-radius: 0.05rem;
   line-height: 0.36rem;
   margin-right: 0.1rem;
