@@ -88,12 +88,15 @@ var life = 0;
                 if (data.length <= 0) {
                   console.log('124');
 
-                  html += '<div class="no-record">' +
+                  if (pageId <= 1) {
+                    html += '<div class="no-record">' +
                             '<img src="/clientapp/images/no-record/search.png">' +
                             '<div>无搜索商品，请尝试其他关键字</div>' +
                           '</div>';
 
-                  $('.listBox').html(html);
+                    $('.listBox').html(html);  
+                  }
+                  
                   return false; 
                 }
 
@@ -102,10 +105,13 @@ var life = 0;
                 console.log(_data.code);
                 if (_data.code != 0){
 
-                  html += '<div class="no-record">' +
+                  if (pageId <= 1) {
+
+                    html += '<div class="no-record">' +
                             '<img src="/clientapp/images/no-record/search.png">' +
                             '<div>无搜索商品，请尝试其他关键字</div>' +
                           '</div>';
+                        }
 
                 } else {
 
