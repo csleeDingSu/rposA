@@ -74,7 +74,12 @@ function getGlobalRanking() {
         },
         error: function (error) { 
             console.log(error);
-            // $(".reload").show();
+            global_rank_html = '<div class="no-record">' +
+                                    '<img src="/clientapp/images/no-record/blog.png">' +
+                                    '<div>暂无记录</div>' +
+                                '</div>';
+
+            $('#general-list').html(global_rank_html);
         },
         success: function(data) {
             var status = data.success;
@@ -140,7 +145,13 @@ function getFriendRanking() {
         },
         error: function (error) { 
             console.log(error);
-            // $(".reload").show();
+            friends_rank_html = '<div class="no-record">' +
+                                    '<img src="/clientapp/images/no-record/blog.png">' +
+                                    '<div>暂无邀请记录</div>' +
+                                '</div>';
+        
+            $('#my-friend-list').html(friends_rank_html);
+
         },
         success: function(data) {
             var status = data.success;

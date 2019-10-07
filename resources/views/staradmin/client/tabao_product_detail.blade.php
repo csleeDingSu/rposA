@@ -40,6 +40,7 @@
 <input id="hidgoodsId" type="hidden" value="{{$data['goodsId']}}" />
 <input id="hidcouponLink" type="hidden" value="{{$data['couponLink']}}" />
 <input id="hidusedpoint" type="hidden" value="{{$usedpoint}}" />
+<input id="hidlife" type="hidden" value="{{empty($data['life']) ? 0 : $data['life']}}" />
 
 	<div class="infinite-scroll" id="product">
 		<div class="header_pr header_goods ">
@@ -53,7 +54,8 @@
 		@php ($photourl = str_replace('_160x160.jpg', '', $photourl))
 		@php ($newPrice = ($data['originalPrice'] - $data['couponPrice'] - 12) )
         @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
-
+        @php ($life = empty($data['life']) ? 0 : $data['life'])
+        
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
@@ -153,11 +155,12 @@
 								  抽奖补贴说明
 								</div>
 								<div class="instructions">
-									<p>抽奖补贴由挖宝官方提供，新用户能免费获得2场次免费抽奖，通过抽奖可获得12元红包。</p>
-									<p>&nbsp;</p>
-									<p>用户可通过邀请好友，获得更多抽奖场次，从而获得更多购物红包。
-									</p>
+									<p>抽奖补贴由挖宝提供，每1次抽奖有98.43%概率获得12元红包，红包可提现，抽奖次数来源说明：</p>
+									<p>①新用户注册送1次抽奖。</p>
+									<p>②邀请好友注册并认证，可获得1次抽奖，好友邀请别人，你也可以获得1次抽奖。</p>
+									<p>③领券下单返积分，1200积分兑换1次抽奖。</p>
 								</div>
+								<div class="txt-life">你当前拥有 <span class="mylife">{{$life}}</span> 次抽奖机会</div>
 								<div class="modal-go-button">
 									马上抽奖
 								</div>
@@ -227,6 +230,7 @@
 		
 		$(document).ready(function(){
 			var usedpoint = $('#hidusedpoint').val();
+			var life = $('#hidlife').val();
 			if (usedpoint > 0) {
 				$('.input-txt').html('邀请奖励');
 				$('.caption_redeem_angpao').click( function() {
@@ -281,9 +285,18 @@
 	        	$('#draw-rules').modal();
 	    	});
 
-	    	$('.modal-go-button').click( function() {
-	        	window.location.href = '/arcade';
-	    	});
+			if (life <= 0) {
+				$('.modal-go-button').html('邀请好友');
+				$('.modal-go-button').click( function() {
+		        	window.location.href = '/pre-share';
+		    	});
+			} else {
+				$('.modal-go-button').html('马上抽奖');
+				$('.modal-go-button').click( function() {
+		        	window.location.href = '/arcade';
+		    	});	
+			}
+	    	
 	    	
 		})
 

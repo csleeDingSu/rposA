@@ -90,6 +90,7 @@
         <h2 class="listTitle">超值爆款产品</h2>
         <div class="listBox">
           @if(!empty($product))
+            @php ($_life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
             @foreach($product['list'] as $p)
                 @php ($oldPrice = $p['originalPrice'])
                 @php ($promoPrice = $p['originalPrice'] - $p['couponPrice'])
@@ -101,7 +102,7 @@
                 @php ($commissionRate = ($commissionRate > 0) ? $commissionRate : 0)
                 @php ($reward = (int)($newPrice * $commissionRate))
                 @php ($reward = ($reward <= 0) ? '100' : $reward)
-                @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&voucher_pass=")
+                @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $_life)
                 
                 <div class="inBox">
                   <div class="imgBox">

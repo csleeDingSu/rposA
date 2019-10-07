@@ -153,7 +153,7 @@ class MainController extends BaseController
 		// 	$data['data'] = $res['data'];
 		// }
 
-		$data['data'] = ['id' => $request->id,'goodsId' => $request->goodsId,'mainPic' => $request->mainPic, 'title' => $request->title, 'monthSales' => $request->monthSales,'originalPrice' => $request->originalPrice,'couponPrice' => $request->couponPrice, 'couponLink' => $request->couponLink, 'commissionRate' => $request->commissionRate, 'voucher_pass' => null];
+		$data['data'] = ['id' => $request->id,'goodsId' => $request->goodsId,'mainPic' => $request->mainPic, 'title' => $request->title, 'monthSales' => $request->monthSales,'originalPrice' => $request->originalPrice,'couponPrice' => $request->couponPrice, 'couponLink' => $request->couponLink, 'commissionRate' => $request->commissionRate, 'voucher_pass' => null, 'life' => $request->life];
 
 		$data['usedpoint'] = 0;
 		if (Auth::Guard('member')->check()) {

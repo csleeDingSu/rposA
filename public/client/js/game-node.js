@@ -443,7 +443,7 @@ try {
     catch(err) {
       console.log(err.message);
       // alert('下注失败');
-    alert(err.message);
+    // alert(err.message);
     console.log(2);
     $(".reload2").show();
     }
@@ -500,9 +500,10 @@ function resetTimer(){
         },
         error: function (error) { 
             console.log(error);
-            alert(error.message);
+            // alert(error.message);
             console.log(4);
-            $(".reload2").show();
+            // $(".reload2").show();
+            resetTimer();
         },
         success: function(data) {
             var duration = data.record.duration;
@@ -532,7 +533,8 @@ function startGame() {
             console.log(error);
             alert(error.message);
             console.log(5);
-            $(".reload2").show();
+            // $(".reload2").show();
+            startGame();
         },
         success: function(data) {
             var wallet_records = data.record;
@@ -550,9 +552,10 @@ function startGame() {
         },
         error: function (error) { 
             console.log(error);
-            alert(error.message);
+            // alert(error.message);
             console.log(6);
-            $(".reload2").show();
+            // $(".reload2").show();
+            startGame();
         },
         success: function(data) {
             //console.log(data);
@@ -889,7 +892,8 @@ function showPayout(){
                         console.log(error);
                         // alert(error.message);
                         console.log(7);
-                        $(".reload2").show();
+                        // $(".reload2").show();
+                        showPayout();
                     },
                     success: function(data) {
                     }
@@ -966,7 +970,7 @@ function bindResetLifeButton(){
                     error: function (error) { 
                         console.log(error.responseText) 
                         console.log(error);
-                        alert(error.message);
+                        // alert(error.message);
                         window.parent.location.href = "/profile";
                     },
                     success: function(data) {
@@ -1009,7 +1013,7 @@ function bindResetLifeButton(){
                 error: function (error) { 
                     console.log(error.responseText)
                     console.log(error);
-                    alert(error.message);
+                    // alert(error.message);
                     console.log(8);
                     $(".reload2").show();
                 },
@@ -1380,10 +1384,11 @@ function startTimer(duration, timer, freeze_time) {
             },
             error: function (error) { 
                 console.log(error);
-                alert(error.message);
+                // alert(error.message);
                 console.log(9);
-                $(".reload2").show();
+                // $(".reload2").show();
                 // window.top.location.href = "/arcade";
+                startTimer(duration, timer, freeze_time);
             },
             success: function(data) {
                 _success = data.success;
@@ -1418,7 +1423,7 @@ function startTimer(duration, timer, freeze_time) {
     catch(err) {
       // alert('下注失败');
       console.log(err);
-       alert(err.message);
+       // alert(err.message);
        console.log(10);
     $(".reload2").show();
     }
@@ -1697,7 +1702,7 @@ function bindButton () {
                     error: function (error) { 
                         console.log(error.responseText) 
                         console.log(error);
-                        alert(error.message);
+                        // alert(error.message);
                         window.parent.location.href = "/redeem";
                     },
                     success: function(data) {
