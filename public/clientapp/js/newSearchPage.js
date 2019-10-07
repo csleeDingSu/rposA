@@ -117,7 +117,7 @@ var life = 0;
                   _pageId = JSON.parse(data).data.pageId;
                   
                     $.each(records, function(i, item) {
-                      originalPrice = (typeof item.originalPrice == 'undefined') ? item.zk_final_price : item.originalPrice;
+                      originalPrice = getNumeric((typeof item.originalPrice == 'undefined') ? item.zk_final_price : item.originalPrice);
                       couponPrice = (typeof item.couponPrice == 'undefined') ? item.coupon_amount : item.couponPrice;
                       couponPrice = Number(couponPrice) > 0 ? couponPrice : 0;
                       monthSales = (typeof item.monthSales == 'undefined') ? item.tk_total_sales : item.monthSales;

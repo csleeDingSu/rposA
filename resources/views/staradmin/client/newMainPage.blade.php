@@ -91,7 +91,7 @@
         <div class="listBox">
           @if(!empty($product))
             @foreach($product['list'] as $p)
-                @php ($oldPrice = number_format((float)$p['originalPrice'], 2, '.', ''))
+                @php ($oldPrice = $p['originalPrice'])
                 @php ($promoPrice = $p['originalPrice'] - $p['couponPrice'])
                 @php ($promoPrice = ($promoPrice > 0) ? $promoPrice : 0)
                 @php ($newPrice = $p['originalPrice'] - $p['couponPrice'] - 12)

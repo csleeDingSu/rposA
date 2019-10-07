@@ -106,7 +106,7 @@ function goSearch() {
 }
 
 function populateData(item) {
-  oldPrice = parseFloat(item.originalPrice).toFixed(2);
+  oldPrice = getNumeric(item.originalPrice);
   promoPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice));
   promoPrice = (promoPrice > 0) ? promoPrice : 0;
   newPrice = getNumeric(Number(item.originalPrice) - Number(item.couponPrice) - Number(12));
