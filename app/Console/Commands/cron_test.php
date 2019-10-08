@@ -4,9 +4,6 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Console\option;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 class crontest extends Command
 {
@@ -45,27 +42,17 @@ class crontest extends Command
         $dd->status = 2;
         $dd->save();
         event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
-        try {
+        sleep(5);
         
-			
+        $dd->status = 3;
+        $dd->save();
+        event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
 
-            $dd->status = 3;
-            $dd->save();
-            event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
+        sleep(1);
+        $dd->status = 1;
+        $dd->save();
+        event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
 
-            return $res;
-        } 
-        catch (\Exception $e) 
-        { 
-            //$data='console GetTaobaoCollectionList: ' . (string) $e;
-          //  \Log::error($data);
-            $dd->status = 3;
-            $dd->save();
-            event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
-
-
-
-        }
 
     }
 
