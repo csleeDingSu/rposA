@@ -1510,4 +1510,10 @@ function showHowToUnLock() {
         $('.modal').modal('hide');
         $('.modal-backdrop').remove();
     });
+    $('.btn-go-topup').click(function() {
+        $('#btn-go-topup').trigger("click");
+    });
+    $('.btn-go-redeem').click(function() {
+        window.location.href = '/redeem';
+    }); 
 }
