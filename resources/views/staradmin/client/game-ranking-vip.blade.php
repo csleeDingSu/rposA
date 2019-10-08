@@ -33,8 +33,8 @@
             </li>              
         
             <li class="take-all-space-you-can">
-                <a class="tab" data-toggle="tab" href="#my-friend-ranking" data-status="my-friend-ranking" id ="my-friend">
-                    <div class="lbl-my-friend-ranking">
+                <a class="tab" data-toggle="tab" href="#buy-product-ranking" data-status="buy-product-ranking" id ="buy-product">
+                    <div class="lbl-buy-product-ranking">
                     	<img class="icon-good-friends" src="{{ asset('/client/images/ranking/good-friends.png') }}" />换购名单                    	
                     </div>
                 </a>                        
@@ -58,8 +58,8 @@
             </div>
         </div>
 
-        <div id="my-friend-ranking" class="tab-pane fade">
-	        <div id="my-friend-list" class="tab-pane fade in active">
+        <div id="buy-product-ranking" class="tab-pane fade">
+	        <div id="buy-product-list" class="tab-pane fade in active">
 	            <div class="tab-content-list">
             		<div class="line-1">
 						<span class="ranking-phone-number">122****2563</span>

@@ -265,8 +265,8 @@ class ClientController extends BaseController
 	        } else {
 	            $data['betting_count'] = 0;
 	            $total_intro = 0;
-	            $usedpoint = 0;
-				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro', 'usedpoint'));
+	            $earnedpoint = 0;
+				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro', 'earnedpoint'));
 	        }
 			
 		} else {
@@ -292,9 +292,15 @@ class ClientController extends BaseController
 			
 			$total_intro = 	(!empty($intro_count->count) ? $intro_count->count : 0) + (!empty($sc_child['count']) ? $sc_child['count'] : 0) ;
 
-			$usedpoint = \App\Game::earned_points($member_id , 102);
+			$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+					->where('game_id',102)
+					->where('member_id',$member_id)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->first();
 
-			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'usedpoint'));
+			$earnedpoint = empty($row) ? 0 : $row->credit;
+
+			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'earnedpoint'));
 
 		}
 

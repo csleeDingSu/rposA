@@ -51,13 +51,15 @@ function getMyRanking() {
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
                                     '<div class="col-3 ranking-point">'+my_rank.credit+'</div>';
-                    
+                
+                    $('#my-ranking').html(my_rank_html);    
                 }else {
-                    my_rank_html += '<div class="col-1 ranking-number">--</div>' +
-                                    '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                                    '<div class="col-3 ranking-point">0</div>';
+                    // my_rank_html += '<div class="col-1 ranking-number">--</div>' +
+                                    // '<div class="col-5 ranking-name">'+_phone+'</div>' +
+                                    // '<div class="col-3 ranking-point">0</div>';
+                    $('#my-ranking').html('');
                 }
-                $('#my-ranking').html(my_rank_html);
+                
                 
             }
         }
@@ -138,7 +140,7 @@ function getGlobalRanking() {
 function getFriendRanking() {
     $.ajax({
         type: 'GET',
-        url: "/api/friends-rank?gameid=" + gameid + "&memberid" + $('#hidUserId').val(),
+        url: "/api/friends-rank?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);

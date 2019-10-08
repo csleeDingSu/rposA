@@ -5,7 +5,7 @@ $(document).ready(function () {
 	    $('.icon-good-friends').attr("src", '/client/images/ranking/good-friends.png');
 	});
 
-	$('#my-friend').click(function() {
+	$('#buy-product').click(function() {
 	    $('.icon-trophy').attr("src", '/client/images/ranking/trophy.png');
 	    $('.icon-good-friends').attr("src", '/client/images/ranking/good-friends-over.png');
 	});
@@ -49,13 +49,15 @@ function getMyEarnedPoint() {
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
                                     '<div class="col-3 ranking-point">'+my_rank.credit+'</div>';
-                    
+                
+                    $('.tab-content-my-ranking').html(my_rank_html);    
                 }else {
-                    my_rank_html += '<div class="col-1 ranking-number">--</div>' +
-                                    '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                                    '<div class="col-3 ranking-point">0</div>';
+                    // my_rank_html += '<div class="col-1 ranking-number">--</div>' +
+                    //                 '<div class="col-5 ranking-name">'+_phone+'</div>' +
+                    //                 '<div class="col-3 ranking-point">0</div>';
+                    $('.tab-content-my-ranking').css('display', 'none');
                 }
-                $('.tab-content-my-ranking').html(my_rank_html);
+                
 
             }
         }
@@ -171,6 +173,7 @@ function getGameUsedPoint() {
                                 '<div class="col-5 ranking-name">' + _phone + '</div>' +
                                 '<div class="col-3 ranking-point">' + item.point + '</div>' +
                             '</div>';
+                    
                 });
 
                 if (_html == '') {
@@ -180,7 +183,7 @@ function getGameUsedPoint() {
                                         '</div>';
                 }
 
-                $('#my-friend-list').html(_html);
+                $('#buy-product-list').html(_html);
 
             }
         }

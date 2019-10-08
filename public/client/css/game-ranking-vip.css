@@ -147,7 +147,7 @@ font-size: 0.36rem;
 	font-size: 0.3rem;
 }
 
-.lbl-my-friend-ranking {
+.lbl-buy-product-ranking {
 	padding: 0.1rem;
 	font-size: 0.3rem;
 }
@@ -176,7 +176,7 @@ font-size: 0.36rem;
 	color: #888;
 	font-size: 0.24rem;
 	height: 0.55rem;
-    /*padding: 0.2rem;*/
+    padding: 0.1rem;
     background: #f2f3f4;
     text-align: left;
 }
@@ -267,6 +267,10 @@ font-size: 0.36rem;
     /*margin: 0;*/
 }
 
+#general-list {
+   position: relative;
+}
+
 #general-list .tab-content-list{
 	display: flex;
 	color: #b2b2b2;
@@ -277,6 +281,22 @@ font-size: 0.36rem;
     text-align: left;
     margin: 0;
 }
+
+#buy-product-list {
+   position: relative;
+}
+
+#buy-product-list .tab-content-list{
+    display: flex;
+    color: #b2b2b2;
+    font-size: 0.28rem;
+    height: 1rem;
+    padding: 0.2rem;
+    background: #fff;
+    text-align: left;
+    margin: 0;
+}
+
 
 .line-1, .line-2 {
     height: 0.5rem;
