@@ -87,7 +87,7 @@
     @parent
 
    
-    socket.on(perfix+"add-tabao-product" + ":App\\Events\\EventDynamicChannel", function(result) {
+    socket.on(prefix+"add-tabao-product" + ":App\\Events\\EventDynamicChannel", function(result) {
       console.log('dataaa-'+JSON.stringify(result));
       var record = result.data;
       
@@ -95,7 +95,7 @@
     });
 	
 	
-    socket.on(perfix+"-tabao-cron" + ":App\\Events\\EventDynamicChannel", function(result) {
+    socket.on(prefix+"-tabao-cron" + ":App\\Events\\EventDynamicChannel", function(result) {
 		var record = result.data;
 		 
 		//console.log(JSON.stringify(result))
