@@ -16,7 +16,7 @@ class crontest extends Command
      *
      * @var string
      */
-    protected $signature = 'c:g';
+    protected $signature = 'run:tg';
 
     /**
      * The console command description.
