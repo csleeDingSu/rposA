@@ -17,7 +17,7 @@
                       </div>
                       <div class="wrapper ml-4  pl-4">
                         <h6 class="mb-0 text-muted">commissionRate</h6>
-                        <div class="d-flex align-items-center">
+                        <div class="float-right">
                           <h4 class="font-weight-medium mb-0">{{$list->commissionRate}}</h4>
                         </div>
                       </div>
@@ -26,13 +26,13 @@
                     <div class="d-flex flex-row">
                       <div class="wrapper">
                         <h6 class="mb-0 text-muted">commissionRate</h6>
-                        <div class="d-flex align-items-center">
+                        <div class="">
                           <h4 class="font-weight-medium mb-0">{{$list->commissionRate}}</h4>
                         </div>
                       </div>
                       <div class="wrapper ml-4  pl-4 float-right">
                         <h6 class="mb-0 text-muted">monthSales</h6>
-                        <div class="d-flex align-items-center">
+                        <div class="float-right">
                           <h4 class="font-weight-medium mb-0 text-right">{{$list->monthSales}}</h4>
                         </div>
                       </div>
