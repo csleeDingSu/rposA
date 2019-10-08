@@ -469,7 +469,7 @@ class tabaoApiController extends BaseController
 
     public function storeAllCollectionIntoVouchers()
     {
-        $data = taobao_collection_list::select('*')->get();
+        $data = taobao_collection_list::select('*')->orderBy('id','desc')->get();
 
         $filter = [];
         $array = [];
