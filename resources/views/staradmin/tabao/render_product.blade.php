@@ -46,7 +46,7 @@
                       
                       <p class="mb-0">
 
-                <button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-inverse-info openeditmodel  ">@lang('dingsu.edit')</button>&nbsp;
+               
                 <button type="button" data-id="{{$list->id}}" onclick="return Gototop({{$list->id}})" id="moveproduct_{{$list->id}}" class="btn btn-inverse-warning gototop ">@lang('dingsu.change')</button>
                       </p>
                       
