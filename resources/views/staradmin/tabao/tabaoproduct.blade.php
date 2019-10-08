@@ -86,9 +86,7 @@
 @section('socket')
     @parent
 
-    var perfix = 'RR';
-    var perfix = 'RR';
-
+   
     socket.on(perfix+"add-tabao-product" + ":App\\Events\\EventDynamicChannel", function(result) {
       console.log('dataaa-'+JSON.stringify(result));
       var record = result.data;
