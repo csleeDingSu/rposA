@@ -1363,11 +1363,11 @@ WHERE
 	//in tabao api controller
 	public function render_product($id)
     {
-      $data = \App\taobao_collection_vouchers::where('id',$id)->get();
-      $data = view('tabao.render_product', ['result' => $data])->render(); 
-      event(new \App\Events\EventDynamicChannel('add-tabao-product', '' ,$data ));      
+     // $data = \App\taobao_collection_vouchers::where('id',$id)->get();
+     // $data = view('tabao.render_product', ['result' => $data])->render(); 
+     // event(new \App\Events\EventDynamicChannel('add-tabao-product', '' ,$data ));      
       
-      return TRUE; 
+     // return TRUE; 
     }
 
 

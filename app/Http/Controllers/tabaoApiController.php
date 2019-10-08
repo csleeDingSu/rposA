@@ -497,7 +497,8 @@ class tabaoApiController extends BaseController
                         }
                     }
 
-                    taobao_collection_vouchers::updateOrCreate($filter,$array)->id;
+                    $id = taobao_collection_vouchers::updateOrCreate($filter,$array)->id;
+                    $render_data = $this->render_product($id);
                     $i++;
                     
                 }
@@ -505,5 +506,13 @@ class tabaoApiController extends BaseController
         }
 
         return ['success' => true, 'total' => $i];
+    }
+
+    public function render_product($id)
+    {
+      $data = taobao_collection_vouchers::where('id',$id)->get();      
+      $data = view('tabao.render_product', ['result' => $data])->render(); 
+      event(new \App\Events\EventDynamicChannel('add-tabao-product', '' ,$data ));
+      return TRUE; 
     }
 }
