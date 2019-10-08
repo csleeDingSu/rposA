@@ -1472,7 +1472,8 @@ function get2Decimal(value) {
 
 function lockWheel() {
     if (isLock()) {
-        _img = '<div id="wheel_banner"><img src="/clientapp/images/vip-node/wheel-newbie.png"></div>';
+        _img = '<a href="javascript:showHowToUnLock();"><div id="btn-how-to-unlock">&nbsp;</div></a>';
+        _img += '<div id="wheel_banner"><img src="/clientapp/images/vip-node/wheel-newbie.png"></div>';
         $('.frame-wrapper').html(_img);
         // $('#wheel_container').css('visibility', 'hidden');
     }
@@ -1501,4 +1502,12 @@ function showUnLockModal() {
         $('.modal').modal('hide');
         $('.modal-backdrop').remove(); 
     }, 3000);
+}
+
+function showHowToUnLock() {
+    $('#modal-how-to-unlock').modal();
+    $('.btn-close').on('click', function() {
+        $('.modal').modal('hide');
+        $('.modal-backdrop').remove();
+    });
 }

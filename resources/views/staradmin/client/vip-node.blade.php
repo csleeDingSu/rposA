@@ -781,6 +781,44 @@
 </div>
 <!-- is newbie modal Ends-->
 
+<!-- how to unlock modal -->
+<div class="modal fade col-md-12" id="modal-how-to-unlock" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">				
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<img class="btn-close" src="{{ asset('/clientapp/images/vip-node/icon-close.png') }}" />
+							<div class="instruction">
+								<ul class="star">
+									<li>
+										高级抽奖和普通抽奖类似，不同的是高级抽奖需投入挖宝币才能抽奖，<span class="highlight">无需邀请好友，无限抽无上限，挖宝币可兑换奖品。</span>
+										<br>
+									</li>
+									<li>
+										解锁高级抽奖需要<span class="highlight">680挖宝币</span>，通过<span class="highlight">普通抽奖可兑换或微店购买。</span>
+										<br>
+									</li>
+									<li>
+										新用户请认真查看新用户必读，掌握方法才避免损失。
+									</li>
+								</ul>
+							</div>
+							<div class="btn-go-topup">
+								充值挖宝币
+							</div>
+							<div class="btn-go-redeem">
+								兑换挖宝币
+							</div>												
+						</div>
+					</div>
+				</div>							
+			</div>
+		</div>	
+	</div>
+</div>
+<!-- insufficient point modal Ends -->
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>

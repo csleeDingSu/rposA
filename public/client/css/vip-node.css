@@ -599,3 +599,104 @@
     line-height: 0.5rem;
     margin-top: -2rem;
 }
+
+#btn-how-to-unlock {
+    color: #fff;
+    position: fixed;
+    margin: 4.3rem 0 0 2.8rem;
+    z-index: 999;
+    width: 2.5rem;
+    height: 0.8rem;
+}
+
+#modal-how-to-unlock .modal-content {
+  background: url('/clientapp/images/vip-node/banner-how-to-unlock.png') no-repeat;
+    background-size: contain;
+    color: white;
+    text-align: center;
+    position: relative;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#modal-how-to-unlock .modal-body {
+    width: 320px;
+}
+
+#modal-how-to-unlock .modal-card {
+    width: 95%;
+}
+
+#modal-how-to-unlock .instruction {
+    color: #888;
+    font-size: 14px;
+    text-align: left;
+    margin: 90px auto auto auto;
+    line-height: 30px;
+    padding: 10px 0 0 0;
+}
+
+#modal-how-to-unlock .instruction .highlight {
+    color: #fa677d;
+}
+
+#modal-how-to-unlock .btn-go-topup {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 15px;
+    color: #fff;
+    background: url(/clientapp/images/vip-node/btn-top-up-bg.png) no-repeat;
+    background-size: cover;
+    text-align: center;
+    height: 60px;
+    position: relative;
+}
+
+#modal-how-to-unlock .btn-go-redeem {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 15px;
+    color: #fff;
+    background: url('/clientapp/images/vip-node/btn-redeem-bg.png') no-repeat;
+    background-size: cover;
+    text-align: center;
+    height: 60px;
+    position: relative;
+
+}
+
+#modal-how-to-unlock .btn-close {
+    position: fixed;
+    width: 18%;
+    margin: -120px 120px;
+    padding: 15px;
+}
+
+#modal-how-to-unlock .star {
+    list-style: none;
+    padding-left: 0;
+}
+#modal-how-to-unlock .star li {
+    position: relative;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+#modal-how-to-unlock .star li:before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-image: url('/clientapp/images/vip-node/icon-star.png');
+    background-size: cover;
+    background-position: center;
+    left: 0;
+    top: 7px;
+    /*transform: translateY(-50%);*/
+}
