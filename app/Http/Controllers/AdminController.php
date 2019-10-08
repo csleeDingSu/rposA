@@ -1329,10 +1329,10 @@ WHERE
 	public function tabao_list (Request $request)
 	{
 		
-		$result =  \App\TabaoProduct::select('*');
-		$input = array();		
+		$result = \App\TabaoProduct::select('*');
+		$input  = [];		
 		parse_str($request->_data, $input);
-		$input = array_map('trim', $input);
+		$input  = array_map('trim', $input);
 		
     	if ($input) 
 		{
@@ -1340,18 +1340,15 @@ WHERE
 			if (!empty($input['s_title'])) {
 				$result = $result->where('title','LIKE', "%{$input['s_title']}%") ;				
 			}
-			if (!empty($input['s_content'])) {
-				$result = $result->where('content','LIKE', "%{$input['s_content']}%") ;				
-			}
 		}		
-		$result =  $result->latest()->paginate(30);
+		$result =  $result->latest('updated_at')->paginate(2);
 				
 		$data['page']    = 'tabao.tabaoproduct'; 	
 				
-		$data['result'] = $result; 
+		$data['result']  = $result; 
 				
 		if ($request->ajax()) {
-            return view('tabao.ajaxlist', ['result' => $result])->render();  
+            return view('tabao.ajax_product', ['result' => $result])->render();  
         }	
 
         $id = $request->id;
@@ -1366,11 +1363,19 @@ WHERE
 	//in tabao api controller
 	public function render_product($id)
     {
-      $data = taobao_collection_vouchers::where('id',$id)->get();
-      event(new \App\Events\EventDynamicChannel('add-tabao-product', '' ,$data ));
+      $data = \App\taobao_collection_vouchers::where('id',$id)->get();
       $data = view('tabao.render_product', ['result' => $data])->render(); 
+      event(new \App\Events\EventDynamicChannel('add-tabao-product', '' ,$data ));      
       
       return TRUE; 
+    }
+
+
+	public function tabao_changeorder(Request $request)
+    {
+    	$data = \App\taobao_collection_vouchers::where('id',$request->id)->first();
+    	$data->touch();
+		return response()->json(['success' => true,]);
     }
 	
 }

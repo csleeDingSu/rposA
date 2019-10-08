@@ -1,17 +1,59 @@
      
             
     @foreach($result as $list)
-    <div class="col-md-4 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex flex-row align-items-top">
-            
-            <div class="ml-3">
-              <h6 class="text-facebook">{{$list->title}}</h6>
-              <p class="mt-2 text-muted card-text">{{$list->dtitle}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="col-md-3 stretch-card" id="product_{{$list->id}}">
+                <div class="card">
+                  <img class="card-img-top" src="{{$list->mainPic}}" alt="product images">
+                  <div class="card-body pb-0">
+                    <p class="text-muted">{{$list->title}}</p>
+
+
+                    <div class="d-flex flex-row">
+                      <div class="wrapper">
+                        <h6 class="mb-0 text-muted">actualPrice</h6>
+                        <div class="d-flex align-items-center">
+                          <h4 class="font-weight-medium mb-0">{{$list->actualPrice}}</h4>
+                        </div>
+                      </div>
+                      <div class="wrapper ml-4  pl-4">
+                        <h6 class="mb-0 text-muted">commissionRate</h6>
+                        <div class="d-flex align-items-center">
+                          <h4 class="font-weight-medium mb-0">{{$list->commissionRate}}</h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row">
+                      <div class="wrapper">
+                        <h6 class="mb-0 text-muted">commissionRate</h6>
+                        <div class="d-flex align-items-center">
+                          <h4 class="font-weight-medium mb-0">{{$list->commissionRate}}</h4>
+                        </div>
+                      </div>
+                      <div class="wrapper ml-4  pl-4 float-right">
+                        <h6 class="mb-0 text-muted">monthSales</h6>
+                        <div class="d-flex align-items-center">
+                          <h4 class="font-weight-medium mb-0 text-right">{{$list->monthSales}}</h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between text-muted mt-1">
+                      <p class="mb-0">End {{$list->activityEndTime}}</p>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between text-muted border-top py-3 mt-3">
+                      
+                      <p class="mb-0">
+
+                <button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-inverse-info openeditmodel  ">@lang('dingsu.edit')</button>&nbsp;
+                <button type="button" data-id="{{$list->id}}" onclick="return Gototop({{$list->id}})" id="moveproduct_{{$list->id}}" class="btn btn-inverse-warning gototop ">@lang('dingsu.change')</button>
+                      </p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
     @endforeach
+

@@ -1,3 +1,8 @@
+<section id="filter">
+  
+@include('tabao.filter')
+</section>
+
 <div class="d-flex align-items-center py-3 px-4 col-md-6" id="render_cron">
                       
                       <div class="d-flex align-items-end">
@@ -44,17 +49,11 @@
                     </div>
 
  
-<div class="row" id="tabaolist">
+<div class="row datalist" id="tabaolist">
 
+          @include('tabao.ajax_product')
 
-      @if(!$result->isEmpty())       
-            
-      @include('tabao.render_product')
-   {!! $result->render() !!}
-
-
-   @endif
-
+      
 
   </div>
 
@@ -63,7 +62,19 @@
 
 
 
+<style type="text/css">
+  
+.card .card-body
+{
+  /*padding: 3px 0px 0px 10px !important;*/
+}
+.card
+{
+  width: 20% !important;
+}
 
+
+</style>
 
 
 
@@ -79,7 +90,7 @@
     var perfix = 'RR';
 
     socket.on(perfix+"add-tabao-product" + ":App\\Events\\EventDynamicChannel", function(result) {
-      console.log('dataaa'+JSON.stringify(record));
+      console.log('dataaa-'+JSON.stringify(result));
       var record = result.data;
       
       $( "#tabaolist" ).append( record );
@@ -119,7 +130,37 @@
 	 });
 @endsection
 	
-	
+  function Gototop(id) {
+//$("#render_cron").on("click",".gototop", function(){	
+
+  $("#moveproduct_"+id).html('@lang("dingsu.please_wait")');
+  
+  //var id     = $(this).data('id');
+  $.ajax( {
+        url: "{{route('tabao_changeorder')}}",
+        type: 'get',
+        dataType: "json",
+        data: {
+          _method: 'post',
+          _token: "{{ csrf_token() }}",
+          id:  id,
+        },
+        success: function ( result ) {
+          //swal.close();
+          console.log('success');
+         var ss = $("#product_"+id).wrap('<p/>').parent().html();
+        
+         $("#product_"+id).remove();
+         $("#tabaolist").prepend(ss);
+         $("#moveproduct_"+id).html('@lang("dingsu.change")');
+        },
+        error: function ( xhr, ajaxOptions, thrownError ) {
+          swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+        },        
+      } );
+
+}
+//);
 	
 $("#render_cron").on("click",".runcron", function(){
 	
@@ -184,5 +225,61 @@ xhr.abort()
 	
 });
 	
+$( function () {
 
+
+		$( ".filter" ).on( "click", ".search", function ( e ) {
+			e.preventDefault();
+			getdatalist( '' );
+
+		} );
+
+		$( ".filter" ).on( "click", "#reset_search", function ( e ) {
+			e.preventDefault();
+			$( '#searchform' )[ 0 ].reset();
+			getdatalist( '' );
+		} );
+
+
+		$( 'body' ).on( 'click', '.pagination a', function ( e ) {
+			e.preventDefault();
+			var url = $( this ).attr( 'href' );
+			getdatalist( url );
+
+		} );
+
+		function getdatalist( url ) {
+			if ( !url ) {
+				var url = "{{route('tips.list')}}";
+			}
+			window.history.pushState( "", "", url );
+
+			swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: '@lang("dingsu.updating_data")..',
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+
+			$.ajax( {
+				url: url,
+				data: {
+					_method: 'get',
+					_token: "{{ csrf_token() }}",
+					_data: $( "#searchform" ).serialize()
+				},
+			} ).done( function ( data ) {
+				$( '.datalist' ).html( data );
+				swal.close();
+			} ).fail( function () {
+				alert( 'datalist could not be loaded.' );
+				swal.close();
+			} );
+		}
+	} );
 </script>
