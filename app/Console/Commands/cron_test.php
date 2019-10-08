@@ -12,7 +12,7 @@ class crontest extends Command
      *
      * @var string
      */
-    protected $signature = 'run:tao';
+    protected $signature = 'tn:tao';
 
     /**
      * The console command description.
