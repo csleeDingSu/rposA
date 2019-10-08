@@ -91,7 +91,7 @@
       console.log('dataaa-'+JSON.stringify(result));
       var record = result.data;
       
-      $( "#tabaolist" ).append( record );
+      $( "#tabaolist" ).prepend( record );
     });
 	
 	
