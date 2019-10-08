@@ -89,7 +89,8 @@ class MainController extends BaseController
 		// 	$data['product'] = $res['data'];
 		// 	$data['pageId'] = $res['data']['pageId'];
 		// }
-		$res = $this->tabao->getTaobaoCollection(1);
+		// $res = $this->tabao->getTaobaoCollection(1);
+		$res = $this->tabao->getTaobaoCollectionVouchers(1);
 		if (!empty($res)) {
  			$data['product'] = $res['data'];
  			$data['pageId'] = $res['data']['pageId'];	
