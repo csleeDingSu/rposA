@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\tabaoApiController;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Console\option;
@@ -16,14 +15,14 @@ class crontest extends Command
      *
      * @var string
      */
-    protected $signature = 'run:tg';
+    protected $signature = 'run:tao';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'get taobao collection list';
+    protected $description = 'drunt';
 
     /**
      * Create a new command instance.
