@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Domo</title>
+</head>
+<style>
+
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Domo_btn↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+.domo_btn{
+	width:100px;
+	height:40px;
+	line-height:40px;
+	font-size:14px;
+	color:#fff;
+	cursor:pointer;
+	position:relative;
+	top:10px;
+	z-index:10;
+	margin-bottom:10px;
+}
+.bg-1{
+	background-color:#f44336;
+}
+.bg-2{
+	background-color:#f44336;
+}
+.bg-3{
+	background-color:#f44336;
+}
+.bg-4{
+	background-color:#f44336;
+}
+
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Domo_1↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+.domo_1{
+	<!-- display:none; -->
+}
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓添加框↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+/*遮罩*/
+#zhezhao{
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:rgba(0,0,0,0.1);
+}
+/*添加*/
+#yiqi-addWind{
+	position:relative;
+	top:100px;
+	left:10%;
+	max-width:500px;
+	width:80%;
+	background-color:#f5f5f5;
+	box-shadow: 1px 1px 10px #acacac;
+}
+.yiqi-addWind-head{
+	width:100%;
+	height:40px;
+	background-color:#fff;
+	border-bottom:1px solid #ccc;
+	margin-bottom:10px;
+}
+.yiqi-addWind-head p{
+	line-height:40px;
+	color:#6b6b6b;
+	font-size:17px;
+	font-weight:bold;
+}
+.yiqi-addWind-content{
+	width:90%;
+	margin:0 auto;
+}
+.yiqi-addWind-content input{
+	width:100%;
+	height:40px;
+	text-indent:20px;
+	border: 1px solid #ccc;
+	margin-bottom:10px;
+}
+.yiqi-addWind-content-btn input{
+	text-indent:0;
+	color:#fff;
+	border:none;
+	cursor:pointer;
+}
+.yiqi-addWind-content-btn input:nth-child(1){
+	background-color:#1976d2;
+}
+.yiqi-addWind-content-btn input:nth-child(2){
+	background-color:#f44336;
+}
+
+/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑添加框↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓听写框↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+.yiqi-dictationWind{
+	width:300px;
+	height:100px;
+	background-color:#fff;
+	position:fixed;
+	top:20%;
+	left:10%;
+}
+
+/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑听写框↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+
+
+/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Domo_1↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+
+
+
+</style>
+<script type="text/javascript" src="../js/jQuery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.domo_btn').click(function(){
+		var leng = $('.domo_btn').index(this);
+		$('.domo_1:eq('+leng+')').toggle();
+	});
+});
+</script>
+<body>
+	<div class="domo_btn bg-1" align="center">添加窗口</div>
+	<div class="domo_btn bg-2" align="center">听写播放</div>
+		<div class="domo_1" style="display:none;">
+			<div id="zhezhao"></div>
+			<div id="yiqi-addWind">
+				<div class="yiqi-addWind-head" align="center">
+					<p>添加</p>
+				</div>
+				<div class="yiqi-addWind-content">
+					<input type="text" placeholder="认证名称">
+					<input type="text" placeholder="认证图标">
+					<input type="text" placeholder="认证颜色">
+					<div class="yiqi-addWind-content-btn">
+						<input type="button" value="确定">
+						<input type="button" value="取消">
+					</div> 
+				</div>
+			</div>
+		</div>
+		<div class="domo_1">
+			<div id="zhezhao"></div>
+			<div class="yiqi-dictationWind">
+				
+			</div>
+		</div>
+	
+</body>
+</html>
