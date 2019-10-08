@@ -710,6 +710,9 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 	Route::get('/setting/tabao', 'AdminController@show_tabao_cron' );
 	Route::any('/setting/updatetabao', 'AdminController@update_tabao_cron' )->name('update_tabao_cron');
+
+	Route::get( 'tabao/list', 'AdminController@tabao_list' )->name( 'tabao_list' );
+	Route::any( 'tabao/change-order', 'AdminController@tabao_changeorder' )->name( 'tabao_changeorder' );
 	
 } );
 //END
