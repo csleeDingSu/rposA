@@ -1,7 +1,7 @@
      
             
     @foreach($result as $list)
-    <div class="col-md-3 stretch-card" id="product_{{$list->id}}">
+    <div class="col-md-3 stretch-card mt-3" id="product_{{$list->id}}">
                 <div class="card">
                   <img class="card-img-top" src="{{$list->mainPic}}" alt="product images">
                   <div class="card-body pb-0">
