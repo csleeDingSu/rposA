@@ -14,8 +14,8 @@ $hello=dtcxsql('pengyou_user','Id',$User);
 <?php
 
 				$shenhesql='select * from pengyou_shezhi';
-				$zxshenhe=mysql_query($shenhesql);
-				$hqshenhe=mysql_fetch_assoc($zxshenhe);
+				$zxshenhe=mysqli_query($shenhesql);
+				$hqshenhe=mysqli_fetch_assoc($zxshenhe);
 				$shenhe=$hqshenhe['shenhe'];
 				@$title=htmlspecialchars($hqshenhe['title']);
 				@$url=htmlspecialchars($hqshenhe['url']);

@@ -16,7 +16,7 @@ if (!isset($user) || empty($user) ||
 	$pass!==$okpass
    ){
 	$raoguojs="insert into pengyou_feifa(ip,time,content) value('$ip','$time','绕过前端提交注册数据')";
-			mysql_query($raoguojs);
+			mysqli_query($raoguojs);
 	echo '<meta charset="utf-8">';
 	echo '<link href="style/yiqi.css" rel="stylesheet" />';
 	echo '<script type="text/JavaScript" src="js/yiqi.js"></script>';
@@ -26,13 +26,13 @@ if (!isset($user) || empty($user) ||
 	 echo '</script>';
 }else{
 		$sql="select * from pengyou_user where username ='$user'";
-		$zxsql=mysql_query($sql);
-		$hqsql=mysql_fetch_assoc($zxsql);
+		$zxsql=mysqli_query($sql);
+		$hqsql=mysqli_fetch_assoc($zxsql);
 		if($hqsql>0){
 			 echo '{"success":false,"msg":"账号已存在"}'; 
 		}else{
 		$regsql="insert into pengyou_user(username,password,email,zcip,zctime) values('$user','$pass','$email','$ip','$time') ";
-		if(mysql_query($regsql)){
+		if(mysqli_query($regsql)){
 			echo '{"success":true,"msg":"注册成功"}';
 		}
 			 

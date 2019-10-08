@@ -17,7 +17,7 @@ if($quanxian==1){
 	!empty($color)|| isset($color)){
 		
 					$sql="insert into pengyou_renzheng(name,icon,color) values('$name','$icon','$color')";
-					$zxxgsql=mysql_query($sql);
+					$zxxgsql=mysqli_query($sql);
 					if($zxxgsql){
 						echo '{"success":true,"msg":"添加成功"}';
 						

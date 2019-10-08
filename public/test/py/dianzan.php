@@ -20,11 +20,11 @@ if($pengyou_name!=""){
 }
 if(!empty($Id)){
 	$cxsql="select * from pengyou_zan where weiyibiaoshi = '$Id' and username = '$pengyou_user'";
-	$zxcxsql=mysql_query($cxsql);
-	$hqcxsql=mysql_fetch_assoc($zxcxsql);
+	$zxcxsql=mysqli_query($cxsql);
+	$hqcxsql=mysqli_fetch_assoc($zxcxsql);
 	if($hqcxsql<1){
 			$zansql="insert into pengyou_zan(ip,weiyibiaoshi,time,username) values('$ip','$Id','$time','$pengyou_user')";
-			$zxsql=mysql_query($zansql);
+			$zxsql=mysqli_query($zansql);
 		if($zxsql){
 			echo '{"success":true,"msg":"点赞成功！","name":"'.$name.'"}';
 		}else{
@@ -32,11 +32,11 @@ if(!empty($Id)){
 		}
 	}else{
 		$sql="delete from pengyou_zan where weiyibiaoshi=$Id and username='$pengyou_user'";
-		$zxsql=mysql_query($sql);
+		$zxsql=mysqli_query($sql);
 		$cxhqsql="select * from pengyou_zan where weiyibiaoshi = '$Id'";
-		$cxzxhqsql=mysql_query($cxhqsql);
+		$cxzxhqsql=mysqli_query($cxhqsql);
 		$sz=array();
-		while($hqxsql=mysql_fetch_assoc($cxzxhqsql)){
+		while($hqxsql=mysqli_fetch_assoc($cxzxhqsql)){
 			$dzName=$hqxsql['username'];
 			@$dzname=dtcxsql('pengyou_user','username',"$dzName");
 			if($dzname['name']){

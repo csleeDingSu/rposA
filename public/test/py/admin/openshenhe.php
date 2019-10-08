@@ -10,18 +10,18 @@ session_start();
 $quanxian = quanxian($pengyou_user);
 if($quanxian==1){
 	$cxsql="select * from pengyou_shezhi";
-	$zxcxsql=mysql_query($cxsql);
-	$hqcxsql=mysql_fetch_assoc($zxcxsql);
+	$zxcxsql=mysqli_query($cxsql);
+	$hqcxsql=mysqli_fetch_assoc($zxcxsql);
 	if($hqcxsql['shenhe']==1){
 		$cripsql="update pengyou_shezhi set shenhe=0";
-			if(mysql_query($cripsql)){
+			if(mysqli_query($cripsql)){
 				echo '{"success":true,"msg":"设置成功"}';
 			}else{
 				echo '{"success":true,"msg":"设置失败"}';
 			}
 	}else{
 		$cripsql="update pengyou_shezhi set shenhe=1";
-			if(mysql_query($cripsql)){
+			if(mysqli_query($cripsql)){
 				echo '{"success":true,"msg":"设置成功"}';
 			}else{
 				echo '{"success":true,"msg":"设置失败"}';
@@ -30,7 +30,7 @@ if($quanxian==1){
 	
 }else{
 	$raoguojs="insert into pengyou_feifa(ip,time,content) value('$ip','$time','没有权限设置审核')";
-			mysql_query($raoguojs);
+			mysqli_query($raoguojs);
 	echo '<meta charset="utf-8">';
 	echo '<link href="../style/yiqi.css" rel="stylesheet" />';
 	echo '<script type="text/JavaScript" src="../js/yiqi.js"></script>';

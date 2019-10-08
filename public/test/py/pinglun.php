@@ -22,7 +22,7 @@ if($hello['guanli']==3){
 	}
 		$Id=$hello['Id'];
 	$plsql="insert into pengyou_pinglun(name,content,time,ip,weiyibiaoshi,username) values('$name','$content','$time','$ip','$touser','$pengyou_user') ";
-	$zxsql=mysql_query($plsql);
+	$zxsql=mysqli_query($plsql);
 	if($zxsql){
 		echo '{"success":true,"msg":"评论成功！","name":"'.$name.'","content":"'.$content.'","user":"'.$pengyou_user.'","Id":"'.$Id.'"}';
 	}else{

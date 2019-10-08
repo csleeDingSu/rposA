@@ -15,7 +15,7 @@ if($quanxian==1){
 		
 		if(strlen($_POST["pass"]) > 5 ){
 					$xgsql="update pengyou_user set password='$pass' where Id='$Id'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 					if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 						

@@ -19,7 +19,7 @@ if($quanxian==1){
 	!empty($color)|| isset($color)){
 		
 					$xgsql="update pengyou_renzheng set name='$name',icon='$icon',color='$color' where Id='$Id'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 					if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 						

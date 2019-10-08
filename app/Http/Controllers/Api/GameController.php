@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Game;
-use App\Helpers\Logs;
+use App\helpers\Logs;
 use App\Http\Controllers\Controller;
 use App\Ledger;
 use App\Package;

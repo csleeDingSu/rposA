@@ -1,14 +1,14 @@
 <?php
 	function dtcxsql($table,$ziduan,$neirong){//单条查询
 		@$sql1='select * from '.$table.' where '.$ziduan.'="'.$neirong.'"';
-		@$zxsql1=mysql_query($sql1);
-		@$hqsql1=mysql_fetch_assoc($zxsql1);	
+		@$zxsql1=mysqli_query($sql1);
+		@$hqsql1=mysqli_fetch_assoc($zxsql1);	
 		return($hqsql1);
 	}
 	function xhcxsql($table,$ziduan,$neirong,$huoqu){//循环查询
 		@$sql1='select * from '.$table.' where '.$ziduan.'="'.$neirong.'"';
-		@$zxsql1=mysql_query($sql1);
-		while (@$hqsql1=mysql_fetch_assoc($zxsql1)){
+		@$zxsql1=mysqli_query($sql1);
+		while (@$hqsql1=mysqli_fetch_assoc($zxsql1)){
 			return($hqsql1[$huoqu]);
 		}
 	}
@@ -40,13 +40,13 @@ if(getenv('HTTP_CLIENT_IP')) {
 	
 function quanxian($user){
 		$sql1="select * from pengyou_user where username='$user'";
-		$zxsql1=mysql_query($sql1);
-		$hqsql1=mysql_fetch_assoc($zxsql1);
+		$zxsql1=mysqli_query($sql1);
+		$hqsql1=mysqli_fetch_assoc($zxsql1);
 		return($hqsql1['guanli']);
 }
 function raoguo(){
 	@$raoguojs="insert into pengyou_feifa(ip,time,content) value('$ip','$time','绕过前端提交数据')";
-			mysql_query($raoguojs);
+			mysqli_query($raoguojs);
 	echo '<meta charset="utf-8">';
 	echo '<link href="style/yiqi.css" rel="stylesheet" />';
 	echo '<script type="text/JavaScript" src="js/yiqi.js"></script>';

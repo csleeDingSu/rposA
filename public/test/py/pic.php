@@ -18,7 +18,7 @@ if($hello['guanli']==3){
 	$imgcs=1;	
 	$hqtype='';
 			$pinglunsql="insert into pengyou_content(username,content,time) values('$pengyou_user','$wznr','$time') ";
-			$zxplsql=mysql_query($pinglunsql);
+			$zxplsql=mysqli_query($pinglunsql);
 			$crId=mysql_insert_id();
 			if($zxplsql){
 				tishi(2,"发布成功",1000,'index.php');
@@ -46,7 +46,7 @@ if($hello['guanli']==3){
 			@$sql="update pengyou_content set $images ='$zxname' where id =$crId";
 			//$str .= ','.$upload_path.time().$name[$k];
 		  // echo '{"success":true,"msg":"上传成功！","img","'.$zxname.'"}';
-			mysql_query($sql);
+			mysqli_query($sql);
 			$imgcs++;
 		}else{
 			echo 'failed';
@@ -60,7 +60,7 @@ if($hello['guanli']==3){
 	$imgcs=1;	
 	$hqtype='';
 			$pinglunsql="insert into pengyou_content(username,content,time) values('匿名','$wznr','$time') ";
-			$zxplsql=mysql_query($pinglunsql);
+			$zxplsql=mysqli_query($pinglunsql);
 			$crId=mysql_insert_id();
 			if($zxplsql){
 				tishi(2,"发布成功",1000,'index.php');
@@ -88,7 +88,7 @@ if($hello['guanli']==3){
 			@$sql="update pengyou_content set $images ='$zxname' where id =$crId";
 			//$str .= ','.$upload_path.time().$name[$k];
 		  // echo '{"success":true,"msg":"上传成功！","img","'.$zxname.'"}';
-			mysql_query($sql);
+			mysqli_query($sql);
 			$imgcs++;
 		}else{
 			echo 'failed';

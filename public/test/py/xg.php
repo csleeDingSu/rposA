@@ -15,12 +15,12 @@ if($pengyou_user){
 		
 			if($newpass==$okpass){
 				$cxsql="select * from pengyou_user where username='$pengyou_user'";
-				$zxsql=mysql_query($cxsql);
+				$zxsql=mysqli_query($cxsql);
 				$hqsz=mysql_fetch_array($zxsql);
 				$ypass=$hqsz['password'];
 				if($pass==$ypass){
 					$xgsql="update pengyou_user set password='$newpass' where username='$pengyou_user'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 					if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 						

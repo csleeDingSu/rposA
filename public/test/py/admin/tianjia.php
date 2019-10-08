@@ -23,7 +23,7 @@
 				!isset($title) || empty($title)
 				){
 				$raoguojs="insert into yiqi_feifa(ip,time,content) value('$ip','$time','绕过前端添加子栏目数据')";
-				mysql_query($raoguojs);
+				mysqli_query($raoguojs);
 				echo '<meta charset="utf-8">';
 				echo '<link href="./sj/yiqi.css" rel="stylesheet" />';
 				echo '<script type="text/JavaScript" src="../js/yiqi.js"></script>';
@@ -34,7 +34,7 @@
 			}else{
 
 				$sql="insert into daohang(leibie,url,ico,title,content,paixu) values($xuanzhe,'$url','$ico','$title','$content',$paixu)";
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				if($zxsql){
 					echo '{"success":true,"msg":"添加成功"}';
 				}else{
@@ -46,7 +46,7 @@
 		}else{
 			if (!isset($title) || empty($title)){
 				$raoguojs="insert into yiqi_feifa(ip,time,content) value('$ip','$time','绕过前端添加主栏目数据')";
-				mysql_query($raoguojs);
+				mysqli_query($raoguojs);
 				echo '<meta charset="utf-8">';
 				echo '<link href="./sj/yiqi.css" rel="stylesheet" />';
 				echo '<script type="text/JavaScript" src="../js/yiqi.js"></script>';
@@ -56,7 +56,7 @@
 				echo '</script>';
 			}else{
 				$sql="insert into leibie(title,xuhao) values('$title',$paixu)";
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				if($zxsql){
 					echo '{"success":true,"msg":"添加成功"}';
 				}else{

@@ -13,7 +13,7 @@ if(!empty($user)|| isset($user)){
 	if($xingbie){
 			if($xingbie==1){
 				$xgsql="update pengyou_user set xinbie='$xingbie' where username='$user'";
-							$zxxgsql=mysql_query($xgsql);
+							$zxxgsql=mysqli_query($xgsql);
 							if($zxxgsql){
 								echo '{"success":true,"msg":"修改成功"}';
 
@@ -22,7 +22,7 @@ if(!empty($user)|| isset($user)){
 							}
 			}else{
 				$xgsql="update pengyou_user set xinbie=0 where username='$user'";
-							$zxxgsql=mysql_query($xgsql);
+							$zxxgsql=mysqli_query($xgsql);
 							if($zxxgsql){
 								echo '{"success":true,"msg":"修改成功"}';
 						}else{
@@ -32,7 +32,7 @@ if(!empty($user)|| isset($user)){
 		}
 	if($Id==0){
 		$xgsql="update pengyou_user set name='$neirong' where username='$user'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 					if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 						
@@ -44,7 +44,7 @@ if(!empty($user)|| isset($user)){
 		if(is_numeric($neirong)){
 			if($neirong<100 && $neirong>0){
 			$xgsql="update pengyou_user set age='$neirong' where username='$user'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 				if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 						
@@ -64,7 +64,7 @@ if(!empty($user)|| isset($user)){
 				echo '{"success":false,"msg":"请填写正常的联系方式"}';
 			}else{
 			$xgsql="update pengyou_user set qq='$neirong' where username='$user'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 				if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 				}else{
@@ -80,7 +80,7 @@ if(!empty($user)|| isset($user)){
 				echo '{"success":false,"msg":"请填写正常的联系方式"}';
 			}else{
 			$xgsql="update pengyou_user set phone='$neirong' where username='$user'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 				if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 				}else{
@@ -93,7 +93,7 @@ if(!empty($user)|| isset($user)){
 	}elseif($Id==5){
 		if($neirong){
 			$xgsql="update pengyou_user set email='$neirong' where username='$user'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 				if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 				}else{

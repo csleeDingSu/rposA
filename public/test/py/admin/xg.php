@@ -14,12 +14,12 @@ $newpass=md5($_POST["newpass"]);
 			if($newpass==$okpass){
 				@$user=$_SESSION['user'];
 				$cxsql="select * from yiqi_user where username='$user'";
-				$zxsql=mysql_query($cxsql);
+				$zxsql=mysqli_query($cxsql);
 				$hqsz=mysql_fetch_array($zxsql);
 				$ypass=$hqsz['password'];
 				if($pass==$ypass){
 					$xgsql="update yiqi_user set password='$newpass' where username='$user'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 					if($zxxgsql){
 						echo '{"success":true,"msg":"修改成功"}';
 						

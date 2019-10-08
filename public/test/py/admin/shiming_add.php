@@ -15,8 +15,8 @@ session_start();
 //传过来的添加vip的值  获取用户vip的值 如果等于0直接更新 如果不等于0 转换成数组 追加vip的值再更新
 if($renzheng==100){
 	$xgsql="update pengyou_user set vip=0 where Id='$xgId'";
-	$zxxgsql=mysql_query($xgsql);
-	mysql_query($zxxgsql);
+	$zxxgsql=mysqli_query($xgsql);
+	mysqli_query($zxxgsql);
 	if($zxxgsql){
 		echo '{"success":true,"msg":"修改成功"}';
 	}else{
@@ -32,7 +32,7 @@ if($renzheng==100){
 				$uservip[]=$renzheng;
 				$addvip=json_encode($uservip);
 				$xgsql="update pengyou_user set vip='$addvip' where Id='$xgId'";
-				$zxxgsql=mysql_query($xgsql);
+				$zxxgsql=mysqli_query($xgsql);
 				echo '{"success":true,"msg":"添加成功"}';
 			}
 		}else{
@@ -41,13 +41,13 @@ if($renzheng==100){
 				}else{
 					$addvip=json_encode(array($uservip,$renzheng));
 					$xgsql="update pengyou_user set vip='$addvip' where Id='$xgId'";
-					$zxxgsql=mysql_query($xgsql);
+					$zxxgsql=mysqli_query($xgsql);
 					echo '{"success":true,"msg":"添加成功"}';
 				}
 		}
 	}else{
 				$xgsql="update pengyou_user set vip='$renzheng' where Id='$xgId'";
-				$zxxgsql=mysql_query($xgsql);
+				$zxxgsql=mysqli_query($xgsql);
 				echo '{"success":true,"msg":"添加成功"}';
 	}
 }

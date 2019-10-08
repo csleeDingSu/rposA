@@ -27,7 +27,7 @@
 			}else{
 				if($pluser==$pengyou_user){
 					$sql="delete from pengyou_pinglun where Id=$plid";
-						$zxsql=mysql_query($sql);
+						$zxsql=mysqli_query($sql);
 						if($zxsql){
 							echo '{"success":true,"msg":"删除成功"}';
 						}else{
@@ -36,7 +36,7 @@
 			
 				}elseif($centuser==$pengyou_user){
 					$sql="delete from pengyou_pinglun where Id=$plid";
-						$zxsql=mysql_query($sql);
+						$zxsql=mysqli_query($sql);
 						if($zxsql){
 							echo '{"success":true,"msg":"删除成功"}';
 						}else{

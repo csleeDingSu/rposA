@@ -16,19 +16,19 @@ if (!isset($Id) || empty($Id) ||
 	$quanxian=$hello['finallyvip'];
 	if($quanxian==1){
 		$sql="select * from pengyou_user where Id = '$Id'";
-		$zxsql=mysql_query($sql);
-		$hqsql=mysql_fetch_assoc($zxsql);
+		$zxsql=mysqli_query($sql);
+		$hqsql=mysqli_fetch_assoc($zxsql);
 		$guanli = $hqsql['guanli'];
 		if($guanli==1){
 			@$cripsql="update pengyou_user set guanli=0 where Id = '$Id'";
-			if(mysql_query($cripsql)){
+			if(mysqli_query($cripsql)){
 				echo '{"success":true,"msg":"取消管理成功"}';
 			}else{
 				echo '{"success":false,"msg":"取消管理失败"}';
 			}
 		}elseif($guanli!==0){
 			@$cripsql="update pengyou_user set guanli=1 where Id = '$Id'";
-			if(mysql_query($cripsql)){
+			if(mysqli_query($cripsql)){
 				echo '{"success":true,"msg":"设置成功"}';
 			}else{
 				echo '{"success":false,"msg":"设置失败"}';

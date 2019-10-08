@@ -17,7 +17,7 @@
 			@$paixu=intval($_POST['paixu']);
 			@$title=addslashes($_POST['title']);
 			$sql="update leibie set xuhao=$paixu,title='".$title."' where Id=$lmid";
-			$zxsql=mysql_query($sql);
+			$zxsql=mysqli_query($sql);
 			if($zxsql){
 			
 				echo '{"success":true,"msg":"保存成功"}';
@@ -32,7 +32,7 @@
 			@$title=addslashes($_POST['title']);
 			@$content=addslashes($_POST['content']);
 			$sql="update daohang set paixu=$paixu,url='".$url."',ico='".$ico."',title='".$title."',content='".$content."' where Id=$lmzid";
-			$zxsql=mysql_query($sql);
+			$zxsql=mysqli_query($sql);
 			if($zxsql){
 			
 				echo '{"success":true,"msg":"保存成功"}';

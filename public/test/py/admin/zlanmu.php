@@ -23,8 +23,8 @@ require_once("../conn/conn.php");
 		header('Location:login.php');
 	}else{
 		$sql1="select * from yiqi_user where username='$user'";
-		$zxsql1=mysql_query($sql1);
-		$hqsql1=mysql_fetch_assoc($zxsql1);
+		$zxsql1=mysqli_query($sql1);
+		$hqsql1=mysqli_fetch_assoc($zxsql1);
 		$biaoshi=$hqsql1['Id'];
 	}
 ?>
@@ -44,7 +44,7 @@ require_once("../conn/conn.php");
 				}else{
 					$sql="select * from yuanfen_content where biaoshi=$biaoshi ORDER BY time desc limit $page,20";
 				}
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				$i=0;
 				echo "<div class=\"lanmu-content\" id=\"daohang-buttom-0\">";
 						echo "<div class=\"lanmu-head\" align=\"center\" onClick=\"daohangss(0)\"><h1>管理</h1></div>";
@@ -62,12 +62,12 @@ require_once("../conn/conn.php");
 						echo "<td width=\"20%\">操作</td>";
 						echo "</tr>";
 						if($hqsql1['vip']==1){
-							while($hqsql=mysql_fetch_assoc($zxsql)){
+							while($hqsql=mysqli_fetch_assoc($zxsql)){
 								@$lmid=$hqsql['Id'];
 								@$xbiaoshi=$hqsql['biaoshi'];
 								$sql2="select * from yiqi_user where Id=$xbiaoshi";
-								$zxsql2=mysql_query($sql2);
-								$hqsql2=mysql_fetch_assoc($zxsql2);
+								$zxsql2=mysqli_query($sql2);
+								$hqsql2=mysqli_fetch_assoc($zxsql2);
 								@$username=$hqsql2['username'];
 								if($username==""){
 									$username="空";
@@ -88,7 +88,7 @@ require_once("../conn/conn.php");
 							echo "</tr>";
 							}
 						}else{
-							while($hqsql=mysql_fetch_assoc($zxsql)){
+							while($hqsql=mysqli_fetch_assoc($zxsql)){
 									@$myname=htmlentities($hqsql['myname']);
 									@$youname=htmlentities($hqsql['youname']);
 									@$cxtime=htmlentities($hqsql['time']);
@@ -118,7 +118,7 @@ require_once("../conn/conn.php");
 							$page_sql="select count(*) from yuanfen_content where biaoshi=$biaoshi";
 						}
 							
-							$pagejg_sql=mysql_fetch_array(mysql_query($page_sql));
+							$pagejg_sql=mysql_fetch_array(mysqli_query($page_sql));
 							$zpage=ceil($pagejg_sql[0]/$pageYi);//总页数
 							if($zpage!=0){
 								if($getpage>$zpage){

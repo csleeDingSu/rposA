@@ -19,7 +19,7 @@
 		if($quanxian==1){
 			if(@$lmid){
 				$sql="delete from pengyou_content where Id=$lmid";
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				if($zxsql){
 					echo '{"success":true,"msg":"删除成功"}';
 				}else{
@@ -28,7 +28,7 @@
 
 			}elseif($userid){
 				$sql="delete from pengyou_user where Id=$userid";
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				if($zxsql){
 					echo '{"success":true,"msg":"删除成功"}';
 				}else{
@@ -37,7 +37,7 @@
 			}
 			if($shimingid){
 				$sql="delete from pengyou_shiming where Id=$shimingid";
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				if($zxsql){
 					echo '{"success":true,"msg":"删除成功"}';
 				}else{

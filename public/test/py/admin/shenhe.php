@@ -15,16 +15,16 @@ if (!isset($Id) || empty($Id) ||
 	@$quanxian=quanxian($user);
 	if($quanxian==1){
 		$sql="select * from pengyou_content where Id = '$Id'";
-		$zxsql=mysql_query($sql);
-		$hqsql=mysql_fetch_assoc($zxsql);
+		$zxsql=mysqli_query($sql);
+		$hqsql=mysqli_fetch_assoc($zxsql);
 		$Shenhe = $hqsql['shenhe'];
 		if($Shenhe==1){
 			@$cripsql="update pengyou_content set shenhe=0 where Id = '$Id'";
-			mysql_query($cripsql);
+			mysqli_query($cripsql);
 			echo '{"success":true,"msg":"取消审核成功"}';
 		}elseif($Shenhe==0){
 			@$cripsql="update pengyou_content set shenhe=1 where Id = '$Id'";
-			mysql_query($cripsql);
+			mysqli_query($cripsql);
 			echo '{"success":true,"msg":"审核成功"}';
 		}
 	}else{

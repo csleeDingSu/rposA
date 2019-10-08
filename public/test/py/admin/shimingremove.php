@@ -17,7 +17,7 @@
 		if($quanxian==1){
 			if(@$id){
 				$sql="delete from pengyou_renzheng where Id=$id";
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				if($zxsql){
 					echo '{"success":true,"msg":"删除成功"}';
 				}else{

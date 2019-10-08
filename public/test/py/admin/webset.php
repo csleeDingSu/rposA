@@ -24,8 +24,8 @@
 	<?php
 	if($quanxian==1){
 		$sql1="select * from pengyou_shezhi";
-		$zxsql1=mysql_query($sql1);
-		$hqsql1=mysql_fetch_assoc($zxsql1);
+		$zxsql1=mysqli_query($sql1);
+		$hqsql1=mysqli_fetch_assoc($zxsql1);
 		@$title=$hqsql1['title'];
 		@$url=$hqsql1['url'];
 		@$bg=$hqsql1['bg'];

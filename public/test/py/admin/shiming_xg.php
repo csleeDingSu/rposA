@@ -18,14 +18,14 @@ if(@$hello['guanli']==1){
 	if(!empty($pengyou_user)|| isset($pengyou_user)){
 		if($renzheng){
 					$xgsql="update pengyou_user set vip='$renzheng' where Id='$xgId'";
-								$zxxgsql=mysql_query($xgsql);
+								$zxxgsql=mysqli_query($xgsql);
 			if($renzheng==100){
 				$gxsql="update pengyou_shiming set shenhe=0 where Id='$Id'";
 			}else{
 				$gxsql="update pengyou_shiming set shenhe=1 where Id='$Id'";
 			}
 					
-								mysql_query($gxsql);
+								mysqli_query($gxsql);
 								if($zxxgsql){
 									echo '{"success":true,"msg":"修改成功"}';
 							}else{

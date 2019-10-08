@@ -1,14 +1,17 @@
 <?php
+global $HTTP_SERVER_VARS;
+$HTTP_SERVER_VARS = $_SERVER;
+
 	function dtcxsql($table,$ziduan,$neirong){//单条查询
 		@$sql1='select * from '.$table.' where '.$ziduan.'="'.$neirong.'"';
-		@$zxsql1=mysql_query($sql1);
-		@$hqsql1=mysql_fetch_assoc($zxsql1);	
+		@$zxsql1=mysqli_query($sql1);
+		@$hqsql1=mysqli_fetch_assoc($zxsql1);	
 		return($hqsql1);
 	}
 	function xhcxsql($table,$ziduan,$neirong,$huoqu){//循环查询
 		@$sql1='select * from '.$table.' where '.$ziduan.'="'.$neirong.'"';
-		@$zxsql1=mysql_query($sql1);
-		while (@$hqsql1=mysql_fetch_assoc($zxsql1)){
+		@$zxsql1=mysqli_query($sql1);
+		while (@$hqsql1=mysqli_fetch_assoc($zxsql1)){
 			return($hqsql1[$huoqu]);
 		}
 	}
@@ -41,8 +44,8 @@ if(getenv('HTTP_CLIENT_IP')) {
 				if(is_array($vip)){
 					for($i=0;$i<count($vip);$i++){
 						@$sql1='select * from pengyou_renzheng where Id ='.$vip[$i].'';
-						@$zxsql1=mysql_query($sql1);
-						while(@$hqsql1=mysql_fetch_assoc($zxsql1)){
+						@$zxsql1=mysqli_query($sql1);
+						while(@$hqsql1=mysqli_fetch_assoc($zxsql1)){
 							@$vipname=$hqsql1['name'];
 							@$vipicon=$hqsql1['icon'];
 							@$vipcolor=$hqsql1['color'];
@@ -54,8 +57,8 @@ if(getenv('HTTP_CLIENT_IP')) {
 						echo '</div>';
 				}else{
 					@$sql1='select * from pengyou_renzheng where Id ='.$vip.'';
-					@$zxsql1=mysql_query($sql1);
-					while(@$hqsql1=mysql_fetch_assoc($zxsql1)){
+					@$zxsql1=mysqli_query($sql1);
+					while(@$hqsql1=mysqli_fetch_assoc($zxsql1)){
 						@$vipname=$hqsql1['name'];
 						@$vipicon=$hqsql1['icon'];
 						@$vipcolor=$hqsql1['color'];
@@ -83,13 +86,13 @@ function cxvip($vip){
 }
 function quanxian($user){
 		$sql1="select * from pengyou_user where username='$user'";
-		$zxsql1=mysql_query($sql1);
-		$hqsql1=mysql_fetch_assoc($zxsql1);
+		$zxsql1=mysqli_query($sql1);
+		$hqsql1=mysqli_fetch_assoc($zxsql1);
 		return($hqsql1['guanli']);
 }
 function raoguo(){
 	@$raoguojs="insert into pengyou_feifa(ip,time,content) value('$ip','$time','绕过前端提交数据')";
-			mysql_query($raoguojs);
+			mysqli_query($raoguojs);
 	echo '<meta charset="utf-8">';
 	echo '<link href="style/yiqi.css" rel="stylesheet" />';
 	echo '<script type="text/JavaScript" src="js/yiqi.js"></script>';
@@ -103,8 +106,8 @@ function htvip($vip){
 				if(is_array($vip)){
 					for($i=0;$i<count($vip);$i++){
 						@$sql1='select * from pengyou_renzheng where Id ='.$vip[$i].'';
-						@$zxsql1=mysql_query($sql1);
-						while(@$hqsql1=mysql_fetch_assoc($zxsql1)){
+						@$zxsql1=mysqli_query($sql1);
+						while(@$hqsql1=mysqli_fetch_assoc($zxsql1)){
 							@$vipname=$hqsql1['name'];
 							@$vipicon=$hqsql1['icon'];
 							@$vipcolor=$hqsql1['color'];
@@ -114,8 +117,8 @@ function htvip($vip){
 					}
 				}else{
 					@$sql1='select * from pengyou_renzheng where Id ='.$vip.'';
-					@$zxsql1=mysql_query($sql1);
-					while(@$hqsql1=mysql_fetch_assoc($zxsql1)){
+					@$zxsql1=mysqli_query($sql1);
+					while(@$hqsql1=mysqli_fetch_assoc($zxsql1)){
 						@$vipname=$hqsql1['name'];
 						@$vipicon=$hqsql1['icon'];
 						@$vipcolor=$hqsql1['color'];

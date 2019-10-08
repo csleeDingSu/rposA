@@ -10,9 +10,9 @@ $jspage=10;
 @$pengyou_user=$_SESSION['pengyou_user'];
 if($pengyou_user){
 	$sql='select * from pengyou_content ORDER BY time desc limit '.$kspage.','.$jspage.'';
-	$zxsql=mysql_query($sql);
+	$zxsql=mysqli_query($sql);
 	$pcont=array();
-	while($cxsql=mysql_fetch_assoc($zxsql)){
+	while($cxsql=mysqli_fetch_assoc($zxsql)){
 		$zcont=array();
 		$username=$cxsql['username'];
 		@$images_1=$cxsql['images_1'];
@@ -53,8 +53,8 @@ if($pengyou_user){
 			$photo[]=$images_9;
 		}
 		$sql1='select * from pengyou_user where username= "'.$username.'"';
-		$zxsql1=mysql_query($sql1);
-		$hqsql1=mysql_fetch_assoc($zxsql1);
+		$zxsql1=mysqli_query($sql1);
+		$hqsql1=mysqli_fetch_assoc($zxsql1);
 		$name='';
 		$vip='';
 		$fbtime=$cxsql['time'];
@@ -73,14 +73,14 @@ if($pengyou_user){
 			$vip="v2.png";
 		};
 		@$sql2='select * from pengyou_zan where weiyibiaoshi="'.$weiyibiaoshi.'" ORDER BY time asc';
-							@$zxsql2=mysql_query($sql2);
+							@$zxsql2=mysqli_query($sql2);
 							$zanName=array();
-							while (@$hqsql2=mysql_fetch_assoc($zxsql2)){
+							while (@$hqsql2=mysqli_fetch_assoc($zxsql2)){
 								if(!empty($hqsql2)){
 									$zanuser=$hqsql2['username'];
 									@$sql3='select * from pengyou_user where username="'.$zanuser.'"';
-									@$zxsql3=mysql_query($sql3);
-									while (@$hqsql3=mysql_fetch_assoc($zxsql3)){
+									@$zxsql3=mysqli_query($sql3);
+									while (@$hqsql3=mysqli_fetch_assoc($zxsql3)){
 										@$zanname=$hqsql3['name'];
 										if(empty($zanname)){
 											$zanname=$zanuser;
@@ -96,13 +96,13 @@ if($pengyou_user){
 		
 		$zpinglun=array();
 		$sql4='select * from pengyou_pinglun where weiyibiaoshi='.$weiyibiaoshi.' ORDER BY time asc';
-						$zxsql4=mysql_query($sql4);
-						while(@$hqsql4=mysql_fetch_assoc($zxsql4)){
+						$zxsql4=mysqli_query($sql4);
+						while(@$hqsql4=mysqli_fetch_assoc($zxsql4)){
 							$pinglun=array();
 									$pinglunuser=$hqsql4['username'];
 									@$sql5='select * from pengyou_user where username="'.$pinglunuser.'"';
-									@$zxsql5=mysql_query($sql5);
-									while (@$hqsql5=mysql_fetch_assoc($zxsql5)){
+									@$zxsql5=mysqli_query($sql5);
+									while (@$hqsql5=mysqli_fetch_assoc($zxsql5)){
 										@$pinglunname=$hqsql5['name'];
 										if(empty($pinglunname)){
 											$pinglunname=$zanuser;

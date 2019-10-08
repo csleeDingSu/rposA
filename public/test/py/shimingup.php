@@ -18,7 +18,7 @@ if($hello['guanli']==3){
 	$imgcs=1;	
 	$hqtype='';
 			$pinglunsql="insert into pengyou_shiming(username,content,time) values('$pengyou_user','$wznr','$time') ";
-			$zxplsql=mysql_query($pinglunsql);
+			$zxplsql=mysqli_query($pinglunsql);
 			$crId=mysql_insert_id();
 			if($zxplsql){
 				tishi(2,"提交成功，等待审核",1000,'index.php');
@@ -46,7 +46,7 @@ if($hello['guanli']==3){
 			@$sql="update pengyou_shiming set $images ='$zxname' where id =$crId";
 			//$str .= ','.$upload_path.time().$name[$k];
 		  // echo '{"success":true,"msg":"上传成功！","img","'.$zxname.'"}';
-			mysql_query($sql);
+			mysqli_query($sql);
 			$imgcs++;
 		}else{
 			echo 'failed';

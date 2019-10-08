@@ -31,8 +31,8 @@ require_once("../conn/function.php");
 		header('Location:login.php');
 	}else{
 		$sql1="select * from pengyou_user where username='$user'";
-		$zxsql1=mysql_query($sql1);
-		$hqsql1=mysql_fetch_assoc($zxsql1);
+		$zxsql1=mysqli_query($sql1);
+		$hqsql1=mysqli_fetch_assoc($zxsql1);
 		$biaoshi=$hqsql1['Id'];
 	}
 	@$saixuan=intval($_GET['sx']);
@@ -52,7 +52,7 @@ require_once("../conn/function.php");
 					
 				$sql="select * from pengyou_renzheng";	
 					
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				$i=0;
 				echo "<div class=\"lanmu-content\" id=\"daohang-buttom-0\">";
 						echo "<div class=\"lanmu-head\" align=\"center\" onClick=\"daohangss(0)\"><h1>管理</h1></div>";
@@ -65,7 +65,7 @@ require_once("../conn/function.php");
 						echo "<td width=\"40%\">背景颜色</td>";
 						echo "<td width=\"20%\">操作</td>";
 						echo "</tr>";
-							while($hqsql=mysql_fetch_assoc($zxsql)){
+							while($hqsql=mysqli_fetch_assoc($zxsql)){
 								@$lmid=$hqsql['Id'];
 								@$username=htmlentities($hqsql['name']);
 								@$icon=htmlentities($hqsql['icon']);

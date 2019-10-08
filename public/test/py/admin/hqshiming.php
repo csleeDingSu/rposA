@@ -17,8 +17,8 @@ if (!isset($Id) || empty($Id) ||
 					$fhvip=array();
 					$fhdtvip=array();
 					@$sql1='select * from pengyou_renzheng';
-							@$zxsql1=mysql_query($sql1);
-							while(@$hqsql1=mysql_fetch_assoc($zxsql1)){
+							@$zxsql1=mysqli_query($sql1);
+							while(@$hqsql1=mysqli_fetch_assoc($zxsql1)){
 								@$vipname=$hqsql1['name'];
 								@$vipid=$hqsql1['Id'];
 								$fhdtvip['Id']=$vipid;

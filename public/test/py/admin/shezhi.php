@@ -20,7 +20,7 @@ if (!isset($title) || empty($title) ||
 		
 }else{
 	$cripsql="update pengyou_shezhi set title='$title',url='$url',bg='$bg',qq='$qq'";
-			if(mysql_query($cripsql)){
+			if(mysqli_query($cripsql)){
 				echo '{"success":true,"msg":"设置成功"}';
 			}else{
 				echo '{"success":true,"msg":"设置失败"}';
@@ -29,7 +29,7 @@ if (!isset($title) || empty($title) ||
 }
 }else{
 	$raoguojs="insert into pengyou_feifa(ip,time,content) value('$ip','$time','没有权限设置审核')";
-			mysql_query($raoguojs);
+			mysqli_query($raoguojs);
 	echo '<meta charset="utf-8">';
 	echo '<link href="../style/yiqi.css" rel="stylesheet" />';
 	echo '<script type="text/JavaScript" src="../js/yiqi.js"></script>';

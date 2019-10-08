@@ -6,7 +6,7 @@ session_start();
 // 允许上传的图片后缀
 if(empty($pengyou_user)){
 	$raoguojs="insert into pengyou_feifa(ip,time,content) value('$ip','$time','绕过前端提交数据')";
-			mysql_query($raoguojs);
+			mysqli_query($raoguojs);
 	echo '<meta charset="utf-8">';
 	echo '<link href="style/yiqi.css" rel="stylesheet" />';
 	echo '<script type="text/JavaScript" src="js/yiqi.js"></script>';
@@ -62,7 +62,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
 			move_uploaded_file($_FILES["file"]["tmp_name"], "images/touxiang/" . $newPath);
 			//echo "文件存储在: " . "images/touxiang/" . $newPath;
 			@$sql="update pengyou_user set touxiang ='$newPath' where username ='$pengyou_user'";
-			mysql_query($sql);
+			mysqli_query($sql);
 			$_SESSION['pengyou_tximg']=$newPath;
 			echo '<meta charset="utf-8">';
 			echo '<link href="style/yiqi.css" rel="stylesheet" />';

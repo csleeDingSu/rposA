@@ -16,7 +16,7 @@
 	{
 		
 		$cxpassword="select * from pengyou_user where openid='$openId'";
-		@$cx=mysql_query($cxpassword);
+		@$cx=mysqli_query($cxpassword);
 		@$row=mysql_fetch_array($cx);
 		
 		if(empty($row))
@@ -34,14 +34,14 @@
 				{
 					$sjusername=shuiji();
 					$cxuser="select * from pengyou_user where username='$sjusername'";
-					@$cx1=mysql_query($cxuser);
+					@$cx1=mysqli_query($cxuser);
 					@$row1=mysql_fetch_array($cx1);
 					if(empty($row1)){
 						@$openId=addslashes($_GET['id']);
 						$pass=md5("123456");
 						$regsql="insert into pengyou_user(username,password,openid,xinbie,zcip,zctime) values('$sjusername','$pass','$openId','$xinbie','$ip','$time') ";
 						print_r($regsql);
-						  if(mysql_query($regsql)){
+						  if(mysqli_query($regsql)){
 							$_SESSION['pengyou_user']=$sjusername;
 							$_SESSION['pengyou_tximg']="morentouxiang.png";
 							header("location:http://zhijiaoqiang.com/index.php");
@@ -52,13 +52,13 @@
 				};
 				$sjusername=addslashes($qqname);
 				$cxuser="select * from pengyou_user where username='$sjusername'";
-				@$cx1=mysql_query($cxuser);
+				@$cx1=mysqli_query($cxuser);
 				@$row1=mysql_fetch_array($cx1);
 				if(empty($row1)){
 					$pass=md5('123456');
 					$regsql="insert into pengyou_user(username,password,openid,xinbie,zcip,zctime) values('$sjusername','$pass','$openId','$xinbie','$ip','$time') ";
 					print_r($regsql);
-					  if(mysql_query($regsql)){
+					  if(mysqli_query($regsql)){
 						$_SESSION['pengyou_user']=$sjusername;
 						$_SESSION['pengyou_tximg']="morentouxiang.png";
 						header("location:http://zhijiaoqiang.com/index.php");

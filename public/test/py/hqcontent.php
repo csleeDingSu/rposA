@@ -14,8 +14,8 @@ if($hello['guanli']==3){
 	echo '{"success":false,"msg":"你的账号被禁止使用,如有疑问联系管理员"}'; 
 }else{
 				$shenhesql='select * from pengyou_shezhi';
-				$zxshenhe=mysql_query($shenhesql);
-				$hqshenhe=mysql_fetch_assoc($zxshenhe);
+				$zxshenhe=mysqli_query($shenhesql);
+				$hqshenhe=mysqli_fetch_assoc($zxshenhe);
 				$shenhe=$hqshenhe['shenhe'];
 				if($shenhe==1){
 					$sql='select * from pengyou_content where shenhe=1 and zhiding=0 ORDER BY time desc limit '.$kspage.','.$jspage.'';
@@ -24,9 +24,9 @@ if($hello['guanli']==3){
 					$sql='select * from pengyou_content order by if(zhiding=1 and zhidingtime>"'.date('Y-m-d H:i').'",0,1),time desc limit '.$kspage.','.$jspage.'';
 				}
 					
-						$zxsql=mysql_query($sql);
+						$zxsql=mysqli_query($sql);
 					$z=$jspage;
-					while($hqsql=mysql_fetch_assoc($zxsql)){
+					while($hqsql=mysqli_fetch_assoc($zxsql)){
 						//print_r($hqsql);
 						$username=$hqsql['username'];
 						$content=$hqsql['content'];
@@ -124,14 +124,14 @@ if($hello['guanli']==3){
 						echo '<div class="pengyou-shuoshuo-right-pinglun" id="sspinglun'.$z.'">';
 						
 							@$sql2='select * from pengyou_zan where weiyibiaoshi="'.$weiyibiaoshi.'" ORDER BY time asc';
-							@$zxsql2=mysql_query($sql2);
+							@$zxsql2=mysqli_query($sql2);
 							$zanName=array();
-							while (@$hqsql2=mysql_fetch_assoc($zxsql2)){
+							while (@$hqsql2=mysqli_fetch_assoc($zxsql2)){
 								if(!empty($hqsql2)){
 									$zanuser=$hqsql2['username'];
 									@$sql3='select * from pengyou_user where username="'.$zanuser.'"';
-									@$zxsql3=mysql_query($sql3);
-									while (@$hqsql3=mysql_fetch_assoc($zxsql3)){
+									@$zxsql3=mysqli_query($sql3);
+									while (@$hqsql3=mysqli_fetch_assoc($zxsql3)){
 										@$zanname=$hqsql3['name'];
 										@$zanId=$hqsql3['Id'];
 										if(empty($zanname)){
@@ -162,8 +162,8 @@ if($hello['guanli']==3){
 									}
 						
 						$sql4='select * from pengyou_pinglun where weiyibiaoshi='.$weiyibiaoshi.' ORDER BY time asc';
-						$zxsql4=mysql_query($sql4);
-						while(@$hqsql4=mysql_fetch_assoc($zxsql4)){
+						$zxsql4=mysqli_query($sql4);
+						while(@$hqsql4=mysqli_fetch_assoc($zxsql4)){
 							$hqname1=$hqsql4['name'];
 							$hqusername1=$hqsql4['username'];
 							$hqcontent=$hqsql4['content'];

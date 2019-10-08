@@ -26,9 +26,9 @@ require_once("../conn/conn.php");
 			<div id="lanmu-content">
 			<?php 
 			/*	$sql="select * from leibie ORDER BY xuhao";
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				$i=0;
-				while($hqsql=mysql_fetch_assoc($zxsql)){
+				while($hqsql=mysqli_fetch_assoc($zxsql)){
 						$dtitle=htmlentities($hqsql['title']);
 						$xuhao=$hqsql['xuhao'];
 						echo "<div class=\"lanmu-content\" id=\"daohang-buttom-$i\">";
@@ -48,9 +48,9 @@ require_once("../conn/conn.php");
 						echo "</tr>";
 						$leibie=$hqsql['Id'];
 						$sql2="select * from daohang where leibie=$leibie ORDER BY paixu";
-						$zxsql2=mysql_query($sql2);
+						$zxsql2=mysqli_query($sql2);
 				
-					while($hqsql2=mysql_fetch_assoc($zxsql2)){
+					while($hqsql2=mysqli_fetch_assoc($zxsql2)){
 								$url=htmlentities($hqsql2['url']);
 								$ico=htmlentities($hqsql2['ico']);
 								$title=htmlentities($hqsql2['title']);

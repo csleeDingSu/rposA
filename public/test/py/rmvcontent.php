@@ -12,7 +12,7 @@ session_start();
 if(!empty($Id)|| isset($Id)){
 	if($ssid==$user){
 			$sql="delete from pengyou_content where Id=$Id";
-				$zxsql=mysql_query($sql);
+				$zxsql=mysqli_query($sql);
 				if($zxsql){
 					echo '{"success":true,"msg":"删除成功"}';
 				}else{
@@ -20,7 +20,7 @@ if(!empty($Id)|| isset($Id)){
 				}
 	}else{
 		$raoguojs="insert into pengyou_feifa(ip,time,content) value('$ip','$time','绕过前端提交删除数据')";
-			mysql_query($raoguojs);
+			mysqli_query($raoguojs);
 	echo '<meta charset="utf-8">';
 	echo '<link href="style/yiqi.css" rel="stylesheet" />';
 	echo '<script type="text/JavaScript" src="js/yiqi.js"></script>';
@@ -34,7 +34,7 @@ if(!empty($Id)|| isset($Id)){
 	
 }else{
 	$raoguojs="insert into pengyou_feifa(ip,time,content) value('$ip','$time','绕过前端提交删除数据')";
-			mysql_query($raoguojs);
+			mysqli_query($raoguojs);
 	echo '<meta charset="utf-8">';
 	echo '<link href="style/yiqi.css" rel="stylesheet" />';
 	echo '<script type="text/JavaScript" src="js/yiqi.js"></script>';
