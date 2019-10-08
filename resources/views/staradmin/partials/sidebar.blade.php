@@ -88,6 +88,13 @@
             </a>
 		</li>
 
+		<li class="nav-item">
+			<a class="nav-link" href="/tabao/list">
+			<i class="menu-icon icon-game-controller  text-info"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.tabao') @lang('dingsu.list')</span>
+            </a>
+		</li>
+
 
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#voucher" aria-expanded="false" aria-controls="voucher">
