@@ -1,4 +1,4 @@
-<section id="filter">
+<section id="filter" class="filter">
   
 @include('tabao.filter')
 </section>
