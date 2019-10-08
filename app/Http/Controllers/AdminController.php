@@ -1341,7 +1341,7 @@ WHERE
 				$result = $result->where('title','LIKE', "%{$input['s_title']}%") ;				
 			}
 		}		
-		$result =  $result->latest('updated_at')->paginate(2);
+		$result =  $result->latest('updated_at')->paginate(30);
 				
 		$data['page']    = 'tabao.tabaoproduct'; 	
 				
