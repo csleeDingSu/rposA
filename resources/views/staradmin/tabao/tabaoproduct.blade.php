@@ -250,7 +250,7 @@ $( function () {
 
 		function getdatalist( url ) {
 			if ( !url ) {
-				var url = "{{route('tips.list')}}";
+				var url = "{{route('tabao_list')}}";
 			}
 			window.history.pushState( "", "", url );
 
