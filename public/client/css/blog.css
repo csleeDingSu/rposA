@@ -16,3 +16,20 @@
     margin: 0;
 
 }
+
+._content {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+._content img{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0)
+}
+
+.listBox3 .imgBox li {
+    height: 2rem;
+    padding: 0.1rem;
+}

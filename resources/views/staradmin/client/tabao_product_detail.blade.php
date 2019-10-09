@@ -59,7 +59,7 @@
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
-					<img src="{{$photourl}}">
+					<img class="lazy" src="{{$photourl}}">
 				</a>
 			</li>			    		
 			<li class="dbox">

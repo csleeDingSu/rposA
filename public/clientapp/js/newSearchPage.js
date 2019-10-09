@@ -158,8 +158,8 @@ var life = 0;
                       html += '<div class="inBox">' +
                                 '<div class="imgBox">' +
                                   // '<a href="https://t.asczwa.com/taobao?backurl=' + item.itemLink + '">' +
-                                  '<a href="/main/product/detail' + _param +'">' +  
-                                  '<img src="'+mainPic+'">' +
+                                  '<a target="_self" href="/main/product/detail' + _param +'">' +  
+                                  '<img class="lazy" src="'+mainPic+'_320x320.jpg">' +
                                   '</a>'+
                                 '</div>' +
                                 '<div class="txtBox flex1">' +

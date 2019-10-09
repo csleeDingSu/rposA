@@ -13,7 +13,11 @@
                 @foreach(json_decode($b->uploads) as $photo)
                     <!-- <li><a href="#" onclick="viewPhoto('{{ $photo }}');"><img src="{{ $photo }}"></a></li> -->
                     <li>
-                      <img class="lazy" src="{{ $photo }}">
+                      <div class="_container">
+                        <div class="_content">
+                        <img class="lazy" src="{{ $photo }}">
+                        </div>
+                      </div>
                     </li>
                 @endforeach  
             @endif

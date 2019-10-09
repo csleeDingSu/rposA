@@ -107,7 +107,7 @@
                 <div class="inBox">
                   <div class="imgBox">
                     <a href="/main/product/detail{{$_param}}"> 
-                      <img src="{{$p['mainPic']}}">
+                      <img src="{{$p['mainPic']}}_320x320.jpg">
                     </a>
                   </div>
                   <div class="txtBox flex1">
