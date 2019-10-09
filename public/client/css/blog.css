@@ -16,20 +16,69 @@
     margin: 0;
 
 }
+._container {
+	padding: 0.2rem;
+}
 
 ._content {
     width: 100%;
     text-align: center;
     overflow: hidden;
+    position: relative;
 }
 
 ._content img{
     position: relative;
     left: 50%;
-    transform: translate(-50%,0)
+    transform: translate(-50%,0);
+    max-width: none !important;
+    max-height: 2rem !important;
+    padding: 0.1rem 1rem;
+}
+
+._content2 {
+    /*width: 100%;*/
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+}
+
+._content2 img{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+    max-width: none !important;
+    max-height: 1rem !important;
+    padding: 0.05rem;
+}
+
+.pos3 {
+    margin: 0;
+}
+
+.pos4 {
+    margin: 0 1rem;
+}
+
+.pos5 {
+    margin: 1rem 0;
+}
+
+.pos6 {
+    margin: 1rem;
 }
 
 .listBox3 .imgBox li {
-    height: 2rem;
-    padding: 0.1rem;
+    position: relative;
+    margin: 0;
+    text-align: center;
+    align-content: center;
+}
+
+.slideImg .inBox {
+	/*max-height: 4rem;*/
+}
+
+.slideImg .inBox img {
+    padding: 1rem;
 }
