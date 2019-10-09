@@ -2,7 +2,7 @@
 
 @section('top-css')
     @parent  
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css?version=1.0.0') }}" />
     <style>
         /* Paste this css to your style sheet file or under head tag */
         /* This only works with JavaScript, 
