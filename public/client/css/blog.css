@@ -82,3 +82,7 @@
 .slideImg .inBox img {
     padding: 1rem;
 }
+
+.hide {
+	display: none;
+}

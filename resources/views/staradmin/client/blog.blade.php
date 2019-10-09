@@ -170,9 +170,6 @@
           $('.slideImg').removeClass('dn');
           let html = "";
           let that = $(this);
-
-          swiper.removeAllSlides();
-          swiper.update();
           
           $.each(that.parent().find('li'), function (index, res) {
             img = $(res).find('img').attr('src');
@@ -180,7 +177,9 @@
             html += '<div class="inBox"><img src="' + img + '"></div>';
             html += ' </div>';
           });          
+          swiper.removeAllSlides();
           swiper.appendSlide(html);
+          swiper.update();
           
           // console.log(swiper.activeIndex);
           // swiper.slideTo(swiper.activeIndex, 10, false);
