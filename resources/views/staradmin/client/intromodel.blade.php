@@ -1,5 +1,5 @@
-<div id="preload"></div>
-<div id="load"></div>
+<!-- <div id="preload"></div> -->
+<!-- <div id="load"></div> -->
 <div id="contents">
 <!-- show not yet login modal -->
 <div class="modal fade col-md-12 intropopup" name="nonloginmodal" id="nonloginmodal" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
@@ -147,17 +147,20 @@
 	   		document.onreadystatechange = function () {
 			  var state = document.readyState
 			  if (state == 'interactive') {
-			  	$( ".intro-container" ).addClass( "hidespan" );
+			  	// $( ".intro-container" ).addClass( "hidespan" );
 			  	document.getElementById('contents').style.visibility="hidden";
-			  	document.getElementById('load').style.visibility="hidden";
+			  	// document.getElementById('load').style.visibility="hidden";
 			  } else if (state == 'complete') {
 			  	setTimeout(function(){
-			  		document.getElementById('interactive');
-			        document.getElementById('preload').style.visibility="hidden";
-			        document.getElementById('load').style.visibility="visible";
+			  		// document.getElementById('interactive');
+			        // document.getElementById('preload').style.visibility="hidden";
+			        // document.getElementById('load').style.visibility="visible";
+			        // document.getElementById('load').style.visibility="hidden";
+			        $( ".intro-container" ).addClass( "showspan" );
 			        setTimeout(function(){
-			        	document.getElementById('load').style.visibility="hidden";
-				        document.getElementById('contents').style.visibility="visible";
+			        	// document.getElementById('load'
+			        		// document.getElementById('load').style.visibility="visible";).style.visibility="hidden";
+				        // document.getElementById('contents').style.visibility="visible";
 				        $( ".intro-container" ).addClass( "showspan" );
 				    },900);
 			    },100);
