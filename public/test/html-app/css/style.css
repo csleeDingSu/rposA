@@ -1,0 +1,1064 @@
+.card {
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    -moz-flex-flow: column;
+}
+
+.returnIcon {
+    position: absolute;
+    height: 100%;
+    padding: 0 .3rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    transition: all .2s;
+    z-index: 1;
+}
+
+.returnIcon:active {
+    /* background: rgba(0,0,0,0.1); */
+}
+
+.returnIcon img {
+    width: .2rem;
+    margin-right: .1rem;
+}
+
+.returnIcon span {
+    font-size: .36rem
+}
+
+.card-body {
+    flex: 1;
+    -moz-flex: 1;
+    -webkit-flex: 1;
+}
+
+.card-bar {
+    background: #fafafa;
+    border-top: .012rem solid #f1f1f1;
+}
+
+.bar {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    height: .98rem;
+}
+
+.bar dd {
+    flex: 1;
+    -moz-flex: 1;
+    -webkit-flex: 1;
+}
+
+.bar h2 {
+    font-size: .2rem;
+    color: #a8a8a8;
+    text-align: center;
+}
+
+.bar dd .icon {
+    display: block;
+    margin: .1rem auto;
+    height: .44rem;
+    width: .44rem;
+}
+
+.bar dt .icon {
+    width: .92rem;
+    height: .92rem;
+    display: block;
+    padding: 0rem;
+}
+
+.bar dt {
+    position: relative;
+    flex: 1;
+    -moz-flex: 1;
+    -webkit-flex: 1;
+}
+
+.icon.bar-1 {
+    background: url(../images/bar-1.png) center center no-repeat;
+    background-size: .44rem auto;
+}
+
+.icon.bar-2 {
+    background: url(../images/bar-2.png) center center no-repeat;
+    background-size: .44rem auto;
+}
+
+.icon.bar-3 {
+    background: url(../images/bar-3.png) center center no-repeat;
+    background-size: .44rem auto;
+}
+
+.icon.bar-4 {
+    background: url(../images/bar-4.png) center center no-repeat;
+    background-size: .44rem auto;
+}
+
+dd a.on .icon.bar-1, dd a:active .icon.bar-1 {
+    background: url(../images/bar-1a.png) center center no-repeat;
+    background-size: .44rem auto;
+}
+
+dd a.on .icon.bar-2, dd a:active .icon.bar-2 {
+    background: url(../images/bar-2a.png) center center no-repeat;
+    background-size: .44rem auto;
+}
+
+dd a.on .icon.bar-3, dd a:active .icon.bar-3 {
+    background: url(../images/bar-3a.png) center center no-repeat;
+    background-size: .44rem auto;
+}
+
+dd a.on .icon.bar-4, dd a:active .icon.bar-4 {
+    background: url(../images/bar-4a.png) center center no-repeat;
+    background-size: .44rem auto;
+}
+
+dd a.on h2, dd a:active h2 {
+    color: #fe3f69
+}
+
+.bar dt span {
+    position: absolute;
+    border-radius: 50%;
+    top: -.36rem;
+    left: 50%;
+    margin-left: -.46rem;
+    border: .012rem solid #f1f1f1;
+    text-align: center;
+    font-size: 0;
+    background: #fafafa;
+}
+
+.bar dt img {
+    width: .91rem;
+    position: relative;
+    z-index: 2;
+}
+
+.bar dt span::before {
+    content: '';
+    display: block;
+    height: .6rem;
+    width: .96rem;
+    background: #fafafa;
+    position: absolute;
+    top: .32rem;
+    left: -.012rem;
+    z-index: 1;
+}
+
+.bar dt h2 {
+    margin-top: .64rem;
+}
+
+.searchBox {
+    position: absolute;
+    z-index: 1;
+    left: .24rem;
+    right: .24rem;
+    background: #fff;
+    border-radius: .2rem;
+    height: .82rem;
+    box-shadow: 0 0 .2rem rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    padding: 0 .1rem;
+    bottom: -.42rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBox img {
+    width: .44rem;
+    height: .44rem;
+    margin: 0 .15rem
+}
+
+.searchBox label {
+    flex: 1;
+    margin-right: .15rem;
+}
+
+.searchBox a {
+    display: block;
+    font-size: .32rem;
+    font-weight: bold;
+    color: #fff;
+    background: #ffb525;
+    border-radius: .1rem;
+    height: .64rem;
+    width: 1.18rem;
+    text-align: center;
+    line-height: .64rem;
+}
+
+.searchBox input {
+    font-size: .3rem;
+    color: #ccc;
+    line-height: .64rem;
+    border: none;
+    width: 100%;
+}
+
+.searchBox input::placeholder, .searchBox input::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+.logo {
+    margin-bottom: .42rem;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 .24rem;
+}
+
+.about li {
+    font-size: .24rem;
+    color: #999;
+    text-align: center;
+    line-height: .7rem;
+    flex: 1;
+}
+
+.ztBox {
+    background: url(../images/ztbg.png) center center no-repeat;
+    background-size: 100% 100%;
+    width: 7.02rem;
+    height: 3.97rem;
+    margin: 0 auto;
+    margin-bottom: .24rem;
+}
+
+.total {
+    padding: 0 .24rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: .78rem;
+    font-size: .26rem;
+    color: #ad5f69;
+}
+
+.total span {
+    margin: 0 .05rem;
+}
+
+.total i {
+    background: url(../images/numbg.png) center center no-repeat;
+    background-size: 100%;
+    width: .29rem;
+    height: .35rem;
+    line-height: .35rem;
+    font-size: .28rem;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 .03rem;
+    border-radius: .05rem;
+}
+
+.ztBox .list {
+    padding: 0 .24rem;
+    display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    align-items: center;
+}
+
+.ztBox .list a {
+    display: inline-block;
+    width: 2.08rem;
+    box-sizing: border-box;
+    text-align: center;
+    padding: .09rem;
+}
+
+.ztBox .list a img {
+    width: 1.28rem;
+    height: 1.28rem;
+}
+
+.ztBox .list a:nth-of-type(3n-1) {
+    margin: 0 .15rem;
+}
+
+.ztBox .list h2 {
+    font-size: .28rem;
+    color: #333;
+    line-height: .4rem;
+}
+
+.ztBox .list p {
+    font-size: .2rem;
+    color: #aaa;
+    line-height: 1em;
+}
+
+.banner {
+    padding: 0 .24rem;
+    margin-bottom: .24rem;
+}
+
+.listTitle {
+    font-size: .34rem;
+    font-weight: bold;
+    color: #333;
+    padding: 0 .24rem;
+    line-height: 1em;
+    margin-bottom: .24rem;
+}
+
+.listBox {
+    padding: 0 .24rem;
+}
+
+.listBox .inBox {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    align-content: center;
+    margin-top: .24rem;
+}
+
+.listBox .inBox .imgBox {
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-right: .24rem;
+}
+
+.listBox .inBox .imgBox img {
+    width: 100%;
+    height: 100%;
+    border-radius: .05rem;
+}
+
+.listBox .inBox .txtBox{
+    display: flex; display: -webkit-flex;display: -moz-flex;
+    flex-direction: column;
+}
+
+
+.listBox .inBox .name {
+    font-size: .26rem;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.4em;
+    margin-bottom: .1rem;
+}
+
+.listBox .typeBox {
+    font-size: 0;
+    flex:1;
+}
+
+.listBox .typeBox span {
+    display: inline-block;
+    font-size: .2rem;
+    padding: 0 .1rem;
+    border-radius: .05rem;
+    line-height: .28rem;
+    margin-right: .1rem;
+    margin-bottom: .1rem;
+}
+
+.listBox .moneyBox {
+    display: flex;
+    align-items: center;
+}
+
+.listBox .moneyBox .icon {
+    font-size: .36rem;
+    margin-right: .05rem;
+    color: #fe002f;
+}
+
+.listBox .moneyBox .nowTxt {
+    font-size: .42rem;
+    color: #fe002f;
+    margin-right: .12rem;
+}
+
+.listBox .moneyBox .oldTxt {
+    flex: 1;
+    font-size: .22rem;
+    color: #ccc;
+    text-decoration: line-through;
+}
+
+.listBox .moneyBox .btn {
+    display: block;
+    width: 1.58rem;
+    text-align: center;
+}
+
+.listBox .moneyBox .btn p {
+    font-size: .22rem;
+    background: #fff1f5;
+    color: #ff3b5f;
+    height: .44rem;
+    line-height: .44rem;
+    border-radius: .05rem .05rem 0 0;
+}
+
+.listBox .moneyBox .btn .inTxt {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff3b5f;
+    height: .46rem;
+    border-radius: 0 0 .05rem .05rem;
+}
+
+.listBox .moneyBox .btn .inTxt img {
+    width: .24rem;
+    background: #ff3b5f;
+}
+
+.listBox .moneyBox .btn .inTxt span {
+    font-size: .24rem;
+    color: #fff;
+    line-height: 1em;
+}
+
+span.type-red {
+    background: #ff6d88;
+    color: #fff;
+    border: .012rem solid #ff6d88;
+}
+
+span.type-sred {
+    background: #fff7f8;
+    color: #f95976;
+    border: .012rem solid #ff6d88;
+}
+
+span.type-blue {
+    background: #fbf8ff;
+    border: .012rem solid #b469ff;
+    color: #ab59ff;
+}
+
+.lastHint {
+    font-size: .24rem;
+    color: #999;
+    line-height: .74rem;
+    text-align: center;
+}
+
+.topSearch {
+    height: 1.38rem;
+    background: #ff557b;
+    box-sizing: border-box;
+    padding: .33rem 0;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topSearch .insearch {
+    flex: 1;
+    margin-right: .2rem;
+    background: #fff;
+    border-radius: .36rem;
+    height: .72rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    align-items: center;
+}
+
+.topSearch a.return {
+    padding: 0 .2rem 0 .22rem;
+}
+
+.topSearch a.return img {
+    width: .44rem;
+}
+
+.topSearch .insearch label {
+    flex: 1;
+    padding-left: .38rem;
+}
+
+.topSearch .insearch input {
+    width: 100%;
+    font-size: .28rem;
+    color: #333;
+    line-height: 2em;
+    border: none;
+}
+
+.topSearch .insearch input::placeholder, .topSearch .insearch input::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+.topSearch .insearch .closeBtn img {
+    width: .44rem;
+    padding: 0 .12rem;
+    margin-right: .12rem;
+}
+
+.topSearch .insearch a.searchBtn {
+    font-size: .34rem;
+    color: #ff557b;
+    padding-right: .38rem;
+}
+
+.userBox {
+    background: #fff;
+    margin-bottom: .2rem;
+    padding: 0 .24rem;
+}
+
+.userBox .userName {
+    height: 1.1rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userBox .userName h2 {
+    font-size: .48rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.userBox .userName a.set img {
+    width: .52rem;
+    height: .52rem;
+}
+
+.userBox .userDetail {
+    background: url(../images/userBg.png) center center no-repeat;
+    background-size: 100% 100%;
+    border-radius: .15rem;
+    box-shadow: 0 0 .1rem rgba(0, 0, 0, 0.2);
+    margin-bottom: .24rem;
+    padding: .2rem 0 .2rem .35rem;
+}
+
+.userBox .userDetail .userTitle {
+    font-size: .26rem;
+    display: flex;
+    padding-top: .15rem;
+    height: .5rem;
+    ;
+    align-items: center;
+}
+
+.userBox .userDetail .userTitle img {
+    width: .38rem;
+    height: .38rem;
+    margin-right: .08rem;
+}
+
+.userBox .userDetail .userTitle span {
+    font-size: .26rem;
+    color: #fff;
+}
+
+.userBox .userDetail .userMoney {
+    line-height: 1rem;
+    font-size: .52rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.userBox .userDetail .userTotal {
+    font-size: .26rem;
+    color: #fff;
+    margin-bottom: .2rem;
+}
+
+.userBox .userDetail .userTotal span {
+    margin-right: .44rem;
+}
+
+.userBox .gobtn {
+    position: absolute;
+    right: 0;
+    top: .42rem;
+    background: url(../images/user-btnBg.png) center center no-repeat;
+    background-size: 100% 100%;
+    line-height: .58rem;
+    display: block;
+    font-size: .26rem;
+    color: #fff32f;
+    padding: 0 .16rem 0 .24rem;
+    border-radius: .58rem 0 0 .58rem;
+}
+
+.userBox .sMain {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    height: 1.6rem;
+    box-sizing: border-box;
+    padding: .1rem 0;
+}
+
+.userBox .sMain a {
+    flex: 1;
+    display: flex;
+    display: -webkit-flex;
+    display: -mzo-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.userBox .sMain a img {
+    width: .68rem;
+}
+
+.userBox .sMain a span {
+    font-size: .26rem;
+    color: #888;
+    line-height: 1.8em;
+}
+
+.userMainList {
+    background: #fff;
+    margin-bottom: .24rem;
+}
+
+.userMainList .inBox {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    border-top: .015rem solid #f2f2f2;
+    height: .98rem;
+    justify-content: space-between;
+    padding: 0 .24rem;
+    align-items: center;
+}
+
+.userMainList .inBox p {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    align-items: center;
+}
+
+.userMainList .inBox .tIcon {
+    width: .44rem;
+    margin-right: .18rem;
+}
+
+.userMainList .inBox span {
+    font-size: .3rem;
+    color: #333;
+}
+
+.userMainList .nIcon {
+    width: .32rem;
+    margin-left: .2rem;
+}
+
+.userMainList i {
+    font-size: .22rem;
+    padding: 0 .12rem;
+    border-radius: .32rem;
+    font-weight: bold;
+    color: #fff;
+    line-height: .32rem;
+    display: block;
+}
+
+.userMainList i.bRed {
+    background: #ff7878;
+}
+
+.userMainList i.bBlub {
+    background: #c286ff
+}
+
+.userMainList i.bYellow {
+    background: #f6dc62
+}
+
+.pageHeader {
+    height: 1rem;
+    background: #fff;
+}
+
+.pageHeader h2 {
+    font-size: .36rem;
+    color: #333;
+    line-height: 1rem;
+    text-align: center;
+}
+
+.pageHeader a.returnBtn {
+    font-size: 0;
+    line-height: 1rem;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 1rem;
+    padding-left: .1rem;
+}
+
+.pageHeader a.returnBtn img {
+    width: .44rem;
+    vertical-align: middle;
+}
+
+.pageHeader a.returnBtn span {
+    font-size: .32rem;
+    color: #999;
+    vertical-align: middle;
+}
+
+.pageHeader a.cionAbout {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    font-size: .32rem;
+    color: #bc59ff;
+    line-height: 1rem;
+    padding: 0 .24rem;
+}
+
+.rewDetail {
+    padding: .24rem;
+    background: -webkit-linear-gradient(#9e18fc, #bf5bff);
+    background: -o-linear-gradient(#9e18fc, #bf5bff);
+    background: -moz-linear-gradient(#9e18fc, #bf5bff);
+    background: linear-gradient(#9e18fc, #bf5bff);
+}
+
+.rewDetail h2 {
+    font-size: .58rem;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.13rem;
+}
+
+.rewDetail h3 {
+    text-align: center;
+}
+
+.rewDetail h3 span {
+    display: inline-block;
+    font-size: .24rem;
+    color: #a62bfd;
+    background: rgba(255, 255, 255, .8);
+    line-height: .5rem;
+    border-radius: .5rem;
+    padding: 0 .2rem;
+    margin-bottom: .1rem;
+}
+
+.rewDetail .rewIn {
+    display: flex;
+    height: .88rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.rewDetail .rewIn li {
+    flex: 1;
+    font-size: .22rem;
+    color: #fff;
+    text-align: center;
+}
+
+.rewDetail .formBox {
+    background: #fff;
+    border-radius: .1rem;
+    padding: 0 .32rem;
+}
+
+.rewDetail .formBox h4 {
+    font-size: .32rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.02rem;
+}
+
+.rewDetail .formBox h4 a {
+    color: #fe8212;
+}
+
+.rewDetail .formBox label {
+    display: block;
+    margin-bottom: .2rem;
+}
+
+.rewDetail .formBox input {
+    font-size: .32rem;
+    border-radius: .1rem;
+    border: none;
+    color: #666;
+    text-align: center;
+    width: 100%;
+    line-height: .88rem;
+    background: #f3f3f3;
+}
+
+.rewDetail .formBox input::placeholder, .rewDetail .formBox input::-webkit-input-placeholder {
+    color: #999;
+}
+
+.rewDetail .sendBtn {
+    font-size: .36rem;
+    display: block;
+    height: .88rem;
+    color: #fff;
+    background: #aa56ff;
+    text-align: center;
+    line-height: .88rem;
+    border-radius: .1rem;
+    margin-bottom: .36rem;
+}
+
+.coinExchange {
+    background: #fff;
+    height: 1.16rem;
+    padding: 0 .8rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+}
+
+.coinExchange dd {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    flex: 1;
+}
+
+.coinExchange dt {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coinExchange dt img {
+    width: .58rem;
+}
+
+.coinExchange p {
+    font-size: .24rem;
+    color: #888;
+    line-height: 1.6em;
+}
+
+.coinExchange span {
+    font-size: .36rem;
+    color: #fe8212
+}
+
+.orderRwdList li {
+    padding: .15rem .24rem;
+    border-bottom: .012rem solid #ececec;
+}
+
+.orderRwdList li h2 {
+    display: flex;
+    font-size: .3rem;
+    line-height: 1.8em;
+    color: #333;
+    justify-content: space-between;
+}
+
+.orderRwdList li p {
+    display: flex;
+    font-size: .24rem;
+    line-height: 1.6em;
+    color: #ccc;
+    justify-content: space-between;
+}
+
+.loginBox {
+    height: 100%;
+    overflow-y: auto;
+    background: #5d21c3;
+}
+
+.loginBox .form {
+    position: absolute;
+    top: 5.05rem;
+    left: .6rem;
+    right: .6rem;
+    height: 6.1rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    flex-flow: column;
+    justify-content: center;
+    padding: 0 .54rem;
+}
+
+.loginBox .form dt {
+    font-size: .34rem;
+    color: #666;
+    line-height: .64rem;
+}
+
+.loginBox .form dd {
+    margin-bottom: .34rem;
+    height: .64rem;
+    border-bottom: .012rem solid #ececec;
+    display: flex;
+    align-items: center;
+    display: -webkit-flex;
+    display: -moz-flex;
+}
+
+.loginBox .form dd img {
+    width: .32rem;
+    margin-right: .08rem;
+}
+
+.loginBox .form dd label {
+    flex: 1;
+}
+
+.loginBox .form dd input {
+    font-size: .28rem;
+    color: #999;
+    border: none;
+    height: 2em;
+    width: 100%;
+}
+
+.loginBox .form dd input::placeholder, .loginBox .form dd input::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+.loginBox .form dl {
+    margin-bottom: .15rem;
+}
+
+.loginBox .form button {
+    font-size: .32rem;
+    color: #fff;
+    height: .84rem;
+    text-align: center;
+    line-height: .84rem;
+    border: none;
+    border-radius: .84rem;
+    background: -webkit-linear-gradient(left, #e0a3f2, #7c48e4);
+    /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #e0a3f2, #7c48e4);
+    /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #e0a3f2, #7c48e4);
+    /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #e0a3f2, #7c48e4);
+    /* 标准的语法 */
+    margin-bottom: .4rem;
+}
+
+.loginBox .form h2 {
+    text-align: center;
+    font-size: .32rem;
+    color: #666;
+}
+
+.gdt {
+    background: -webkit-linear-gradient(left, #e0a3f2, #7c48e4);
+    /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #e0a3f2, #7c48e4);
+    /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #e0a3f2, #7c48e4);
+    /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #e0a3f2, #7c48e4);
+    /* 标准的语法 */
+}
+
+.loginMsg {
+    transform: scale(0);
+    transition: all .2s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginMsg.on {
+    transform: scale(1);
+}
+
+.loginMsg .inBox {
+    width: 5.4rem;
+    height: 4.68rem;
+    background: #fff;
+    border-radius: .1rem;
+    text-align: center;
+}
+
+.loginMsg .inBox img {
+    width: 1.7rem;
+    margin-top: .4rem;
+}
+
+.loginMsg .inBox h2 {
+    font-size: .4rem;
+    line-height: 1.2em;
+    color: #333;
+}
+
+.loginMsg .inBox p {
+    font-size: .28rem;
+    color: #999;
+    line-height: 2em;
+    margin-bottom: .56rem;
+}
+
+.loginMsg .inBox a {
+    display: block;
+    margin: 0 .7rem;
+    font-size: .34rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: .8rem;
+    border-radius: .8rem;
+    color: #fff;
+}

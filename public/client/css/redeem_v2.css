@@ -1,0 +1,1715 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.fade {
+	cursor: pointer;
+}
+
+.container {
+	width: 500px;
+	background-color: #f3f3f3;
+}
+
+.product-detail {
+	float: left;
+	font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    /*width: 4rem;*/
+
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+		width: 100%;
+		padding: 0;
+
+	}
+
+	.product-detail {
+	    width: 4.3rem;
+	}
+}
+
+html, body {
+	height: 100%;
+	background-color: #f3f3f3;
+}
+
+.card-summary {
+	width: 100%;
+    height: 2rem;
+    margin: 0 auto;
+	font-size: 16px;
+	background: #fff;
+}
+
+.redeem-background {
+    width: 100%;
+    height: 100%;
+}
+
+.summary-table {
+    color: white;
+    z-index: 10;
+    /*position: relative;*/
+    text-align: center;
+    /*width: 470px;*/
+    margin: 0 auto;
+    margin-top: -150px;
+    text-align: center;
+    height: 3rem;
+
+}
+
+.left {
+	text-align: left;
+}
+
+.label-coin {
+	font-size: 0.29rem;
+	/*padding: 10px;*/
+	padding-top: 10px;
+}
+
+.label-desc {
+	color: #fee04d;
+	font-size: 0.2rem;
+	/*padding: 15px 0 5px 0;*/
+}
+
+.icon-coin-wrapper {
+	height: 5px;
+	width: 22px;
+	float: left;
+	padding-top: 0;
+}
+
+.right {
+	float: right;
+}
+
+.icon-coin {
+	background: url('/client/images/game.png') no-repeat -1674px -715px;
+	width: 82px;
+	height: 82px;
+	transform: scale(0.28); 
+	-webkit-transform: scale(0.28);
+	-webkit-transform-origin:left top;
+	float: left;
+	z-index: 100;
+	position: relative;
+}
+
+/* Tabs */
+.full-width-tabs > .nav-pills > .active > a,
+.full-width-tabs > .nav-pills > .active > a:hover,
+.full-width-tabs > .nav-pills > li > a:hover {
+	text-decoration: none;
+	border-bottom: 2px solid #fc5959;
+    color: #fc5959 !important;
+    background-color: #ffffff !important;
+}
+.full-width-tabs > .nav-pills > li > a{
+    border-radius:0px;
+    color:#8d8d8d;
+    font-weight: 500;
+    background: #ffffff;
+    font-size: 16px;
+}
+
+.full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.full-width-tabs > ul.nav.nav-pills > li, .modal-row > ul.nav.nav-pills > li{
+	float: none;
+	display: table-cell;
+
+}
+.full-width-tabs > ul.nav.nav-pills > li > a, .modal-row > ul.nav.nav-pills > li > a{
+	text-align: center;
+	padding-top: 0.15rem;
+}
+
+.take-all-space-you-can{
+	width:100%;
+	height: 20px;
+}
+/* End Tabs */
+
+/* Redeem List Content */
+.tab-content {
+	padding-bottom: 20px;
+}
+
+.row {
+	width: auto !important;
+	margin: 10px 10px 0px 10px;
+	padding: 10px 0px 10px 0px;
+	background-color: #ffffff;
+	text-align: left;
+}
+
+.column-1, .column-4 {
+	padding-right: 5px;
+	padding-left: 10px;
+}
+
+.column-2, .column-5 {
+	padding-right: 5px;
+	padding-left: 0;
+	text-align: left;
+	/*padding-top: 5px;*/
+}
+
+.column-3, .column-6 {
+	/*padding-right: 5px;
+	padding-left: 0px;*/
+	padding: 0 0 0 0;
+}
+
+.column-4 {
+	padding-top: 10px;
+}
+
+.horizontal {
+	top: 5px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 10px;
+	border-bottom: 1px solid #f2f2f2;
+	clear: both;
+	display: block;	
+}
+
+.insufficient {
+	color: #ff7070;
+	font-size: 12px;
+	padding-left: 10px;
+	padding-right: 0;
+}
+
+.btn-insufficient-wrapper {
+	padding: 0;
+}
+
+.btn-insufficient {
+	background: #ff7070;
+	color: white;
+	font-size: 12px;
+	border-radius: 5px;
+	width: 70px;
+	height: 24px;
+	padding: 5px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 12px;
+	margin: 0 auto;
+}
+
+.img-voucher {
+	/*width: 90px;*/
+	/*height: 80px;*/
+	height: 1.5rem;
+}
+
+.btn-redeem {
+	color: white;
+    font-size: 0.38rem;
+    border-radius: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding-top: 0.46rem;
+    cursor: pointer;
+    background-image: linear-gradient(#ffc549, #ff8e29);
+    border: none;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.btn-cannot-redeem {
+	background: #dadada;
+}
+
+.description, .description-history {
+	font-size: 15px;
+	/*font-weight: bold;*/
+	color: #555;
+	min-height: 1.1rem;
+}
+
+.description-history {
+	min-height: 30px;
+}
+
+.description-info {
+	color: #fc5959;
+	font-size: 11px;
+}
+
+.note {
+	font-size: 12px;
+	color: #ff8624;
+	padding-bottom: 3px;
+}
+
+.w-coin {
+	font-size: 20px;
+	color: #ff8624;
+	margin-left: 25px;
+	margin-top: -3px;
+}
+
+.remaining {
+	font-size: 11px;
+    color: #aaa;
+    padding: 0.1rem 0 0 0;
+}
+
+.balance {
+	font-size: 12px;
+	color: #ff8624;
+}
+
+.card-wrapper {
+	text-align: left;
+	padding-left: 20px;
+	color: #797a7a;
+	font-weight: 600;
+}
+
+.instruction {
+	font-size: 12px;
+	color: #afb1b1;
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+	/*.summary-table {
+	    width: 100%;
+	    margin-top: -165px;
+	}*/
+
+	.label-coin {
+		font-size: 0.36rem;
+		/*padding: 10px;*/
+	}
+
+	.label-desc {
+		font-size: 0.28rem;
+		/*padding: 15px 0 5px 0;*/
+	}
+
+	.card-summary {
+	    height: 3rem;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+
+	/*.summary-table {
+	    width: 100%;
+	    margin-top: -150px;
+	}*/
+/*
+	.column-2 {
+    	margin-left: 10px;
+    	padding-right: 0px;
+    	width: 160px;
+    }*/
+
+    .product-detail {
+	    width: 4rem;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+
+	/*.summary-table {
+	    width: 100%;
+	    margin-top: -145px;
+	}*/
+
+/*    .column-2 {
+    	margin-left: 10px;
+    	padding-right: 0px;
+    	width: 140px;
+    }*/
+
+	.column-4 {
+    	padding-right: 0px;
+		padding-left: 0px;
+    }
+
+    .column-5 {
+    	padding-right: 0px;
+    	width: 180px;
+    }
+
+    .insufficient {
+		width: 230px;
+		padding-right: 0;
+		font-size: 11px;
+	}
+
+/*
+    .btn-redeem {
+		font-size: 20px;
+		border-radius: 35px;
+		width: 70px;
+		height: 70px;
+		padding-top: 20px;
+		padding-left: 16px;
+	}*/
+
+	.description {
+		/*font-size: 0.25rem;*/
+		/*min-height: 45px;*/
+	}
+
+	.description-history {
+		font-size: 0.25rem;
+		min-height: 25px;
+	}
+
+	.note {
+		font-size: 10px;
+		padding-bottom: 6px;
+	}
+
+	.balance, .instruction, .remaining {
+		font-size: 10px;
+		/*padding: 18px 0 0 0;*/
+	}
+
+	.product-detail {
+	    width: 3.8rem;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	.insufficient {
+		width: 220px;
+		padding-right: 0;
+		font-size: 11px;
+	}
+
+	.product-detail {
+	    width: 3.3rem;
+	}
+}
+/* End Redeem List Content */
+
+/* Redeem History Content */
+.history-row {
+	height: 75px;
+	color: #cccccc;
+	font-size: 14px;
+	padding-top: 10px;
+	border-bottom: 1px solid #e3e3e3;
+	background: #ffffff;
+}
+
+.history-row:first-child {
+	margin-top: 10px;
+}
+
+.btn-card, .btn-card-vip {
+	background: #01a7f1;
+	color: white;
+	font-size: 14px;
+	border-radius: 20px;
+	width: 80px;
+	height: 30px;
+	padding-top: 5px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.btn-card-vip {
+	background: #ff9314;
+}
+
+.btn-pending, .btn-pending-vip, .btn-vip {
+	color: #01a7f1;
+	font-size: 14px;
+	border-radius: 20px;
+	width: 80px;
+	height: 30px;
+	padding-top: 5px;
+	margin-top: 10px;
+	border: 1px solid #01a7f1;
+	cursor: pointer;
+}
+
+.btn-pending-vip, .btn-vip {
+	color: #ff9314;
+	border: 1px solid #ff9314;
+}
+
+.btn-vip {
+	font-size: 12px;
+	width: 100px;
+	height: 20px;
+	padding-top: 0px;
+	margin-top: 0px;
+	background: #ffffff;
+}
+
+.btn-used-wrapper {
+	height: 60px;
+	width: 80px;
+}
+
+.btn-used {
+	float: right;
+}
+
+.collapse, .collapsing {
+	background: #f4f7f9;
+    color: #333333;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+    z-index: 100;
+    margin-top: 25px;
+    border-top: 1px solid #e3e3e3;
+    width: 100%;
+}
+
+.collapse:after, .collapse:before {
+    content:"";
+    position:absolute;
+    left:100%; /* horizontal position */
+    border-width: 0em 1em 1em 0em; /* the angle of the pipe */
+    border-style: solid;
+    border-color: white transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+	height: 0;
+	
+}
+
+.collapse:after {
+	top:-1.4em; /* vertical position */
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #f4f7f9;
+	border-width: 10px;
+	margin-left: -50px;
+}
+
+.collapse:before {
+	top:-1.7em; /* vertical position */
+	border-color: rgba(227, 227, 227, 0);
+	border-bottom-color: #e3e3e3;
+	border-width: 12px;
+	margin-left: -52px;
+}
+
+.numbers {
+	color: #464646;
+}
+
+.codes-vip {
+	color: #ff9314;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+@media only screen and (max-width: 360px) {
+	.collapse, .collapsing {
+		font-size: 12px;
+	}
+
+	.collapse:after {
+		top:-1.3em; /* vertical position */
+		border-width: 8px;
+	}
+
+	.collapse:before {
+		top:-1.7em; /* vertical position */
+		border-width: 10px;
+	}
+
+}
+/* End Redeem History Content */
+
+/* Modal Box */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-content {
+	background: #f8f8f8;
+}
+
+.modal-full-height {
+	text-align:center;
+	padding-bottom: 10px;
+	margin: 0 auto;
+}
+
+.modal-card {
+	width: 250px;
+	margin: 0 auto;
+	font-size: 16px;
+}
+
+.modal-center {
+	margin: 0 auto;
+	color: #6e6e6e;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+.modal-icon {
+	display: inline-block;
+	float: none;
+}
+
+.wabao-price {
+	color: #f3b747;
+	display: inline-block;
+	float: none;
+	font-size: 24px;
+}
+
+.wabao-balance {
+	color: #f8b01e;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.modal-img-voucher {
+	text-align: center;
+    margin: 10px auto 0px auto;
+    /* background-color: #fff; */
+    padding: 4px;
+    /* width: 90px; */
+    /* height: 90px; */
+}
+
+.btn_submit, .btn_submit:active, .btn_submit:hover, .btn_submit:focus {
+	background: #f67a00;
+	width: 240px;
+	border-radius: 30px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 30px;
+	font-size: 18px;
+}
+
+.btn_cancel, .btn_cancel:active, .btn_cancel:hover, .btn_cancel:focus {
+	background: #adadad;
+	width: 240px;
+	border-radius: 30px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 10px;
+	font-size: 18px;
+}
+
+.error {
+	font-size: 14px;
+	color: red;
+}
+/* End Modal box */
+
+.empty {
+	/*font-size: 12px;*/
+	/*color: #ff8624;*/
+	text-align: center;
+}
+
+/* Modal Row */
+.modal-sm-vip {
+	width: 320px;
+}
+
+.modal-row > .nav-pills > .active > a {
+	text-decoration: none;
+    color: #ff6f48 !important;
+    background-color: #ffffff !important;
+}
+.modal-row > .nav-pills > li > a{
+	border-radius:0px;
+    color:#333333;
+    font-weight: 500;
+    background: #f1f1f1;
+    font-size: 14px;
+    border-top: 1px solid #dadada;
+}
+
+.modal-row > .nav-pills > li:first-child > a {
+	border-top-left-radius: 5px;
+	border-left: 1px solid #dadada;
+	-webkit-background-clip: padding-box;
+}
+
+.modal-row > .nav-pills > li:last-child > a {
+	border-top-right-radius: 5px;
+	border-right: 1px solid #dadada;
+	-webkit-background-clip: padding-box;
+}
+
+.modal-row > .tab-content {
+	border: 1px solid #dadada;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding-bottom: 0px;
+	margin-bottom: 20px;
+}
+
+.vip-content {
+	background: #ffffff;
+}
+
+.vip-card-content {
+	background: #ffffff;
+}
+
+.vip-using-content {
+	background: #ffffff;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	width: 300px;
+}
+
+.enter-vip-content {
+	background: #252436;
+	text-align: center;
+	font-size: 16px;
+	width: 300px;
+}
+
+.vip-tab-pane {
+	padding: 8px;
+}
+
+.vip-tab-pane input {
+	background: transparent;
+    border: none;
+}
+
+hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.vip-label {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	color: #f5ca77;
+	font-size: 20px;
+}
+
+.vip-code {
+	border-radius: 6px;
+	background: #403e55;
+	color: #acabbf;
+	padding: 10px;
+	margin:20px;
+	-moz-box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+	-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+	box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+}
+
+.btn-enter-vip {
+	border-radius: 30px;
+	cursor: pointer;
+	background-image: linear-gradient(#f6c671, #fe9e29);
+	color: #333333;
+	padding: 10px;
+	margin: 30px 25px 10px 25px;
+}
+
+.modal-description {
+	color: #f48222;
+	font-size: 11px;
+}
+
+.card-no-description {
+	color: #f48930;
+	font-size: 12px;
+}
+
+.card-no-example {
+	font-size: 12px;
+}
+
+.vip-copy {
+	color: #666;
+	font-size: 12px;
+}
+
+.btn-submit-vip, .btn-submit-vip:active, .btn-submit-vip:hover, .btn-submit-vip:focus {
+	background-image: linear-gradient(#ffce4f, #ff8624);
+	width: 240px;
+	border-radius: 5px;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 30px;
+	border: none;
+}
+
+.copyvoucher {
+	background: #868686;
+	color: #fbff6a;
+	margin: 10px;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+.cutBtn, .cutBtn-success, .cutBtn-fail {
+	margin: 10px;
+	border-radius: 30px;
+	font-size: 20px;
+	color: #ff6f48;
+	padding: 6px;
+	background: #ffffff;
+	border: 1px solid #ff6f48;
+}
+
+.cutBtn {
+	cursor: pointer;
+}
+
+.cutBtn-success {
+	border: 1px solid #1ba908;
+	color: #1ba908;
+}
+
+.cutBtn-fail {
+	border: 1px solid #838383;
+	color: #838383;
+
+}
+
+textarea {
+  background: transparent;
+  resize: none;
+  border: 1px solid #dadada;
+  outline: none;
+  width: 270px;
+  height: 80px;
+  padding: 5px;
+  text-align: justify;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.textarea-link-wrapper {
+	width: 270px;
+	position: absolute;
+	margin-top: -30px;
+	padding: 5px;
+}
+.textarea-link {
+	position: relative;
+	float: right;
+	color: #99adfe;
+}
+
+.img-wrapper {
+	right: 5px;
+	position: absolute;
+	margin-top: -10px;
+}
+
+.btn-close-wrapper {
+	right: 5px;
+	position: absolute;
+	margin-top: -30px;
+}
+
+.btn-close-modal {
+	background: #4d4b5e;
+	color: #ffffff;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	text-align: center;
+	font-size: 16px;
+	padding: 10px;
+	width: 300px;
+}
+
+.using-description {
+	color: #333333;
+	font-size: 20px;
+	padding: 20px;
+	text-align: center;
+}
+
+@media only screen and (max-width: 360px) {
+
+	.modal-sm-vip {
+		width: 300px;
+	}
+	.modal-body {
+		padding: 10px;
+	}
+
+	.modal-description {
+		font-size: 10px;
+	}
+
+	.vip-tab-pane {
+		padding: 6px;
+	}
+
+	.textarea-link-wrapper {
+		width: 260px;
+	}
+
+	textarea {
+	  width: 260px;
+	  height: 80px;
+	  padding: 5px;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+
+	.modal-sm-vip {
+		width: 280px;
+	}
+	.modal-body {
+		padding: 8px;
+	}
+
+	.modal-description {
+		font-size: 10px;
+	}
+
+	.vip-tab-pane {
+		padding: 6px;
+	}
+
+	.textarea-link-wrapper {
+		width: 245px;
+	}
+
+	textarea {
+	  width: 245px;
+	  height: 80px;
+	  padding: 5px;
+	}
+
+	.product-detail {
+	    width: 3.3rem;
+	}
+}
+
+.bg-vip-copy {
+	background: #f8f5f1;
+    border-radius:10px;
+
+}
+
+/* Wechat Modal */
+#verify-steps .modal-content, .modal-title {
+	background: white;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#verify-steps .modal-full-height {
+	text-align:center;
+	margin: 0 auto;
+}
+
+#verify-steps .modal-wechat {
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#verify-steps .modal-title {
+	background: #4c89e2;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+}
+
+#verify-steps .modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-weight: 700;
+}
+
+#verify-steps .modal-card {
+	width: 250px;
+	margin: 0 auto;
+	font-size: 16px;
+}
+
+#verify-steps .copyvoucher {
+	border: 1px solid #dfdfdf;
+	background: #f7f7f7;
+	color: #51abff;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	padding: 6px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#verify-steps .cutBtn, #verify-steps .cutBtn-success, #verify-steps .cutBtn-fail {
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 5px;
+	font-size: 18px;
+	color: white;
+	padding: 6px;
+	background-color: #51acff;
+	background-image: none;
+	border: none;
+	text-align: center;
+}
+
+#verify-steps .cutBtn-success {
+	background: #1ba908;
+}
+
+#verify-steps .cutBtn-fail {
+	background: #838383;
+}
+
+#verify-steps .instructions, #verify-steps .instructions-dark {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #999;
+}
+
+#verify-steps .instructions-dark {
+	margin-bottom: 0px;
+}
+
+#verify-steps .btn-close {
+	color: #ffd200;
+	font-size: 16px;
+	margin-top: 10px;
+	display: block;
+	text-align: center;
+	width: 250px;
+
+}
+
+#verify-steps .btn-close a {
+	text-decoration: underline;
+	color: #f7ff22;
+}
+
+#verify-steps .body-title {
+	color: #51abff;
+	font-size: 18px;
+}
+
+#verify-steps .glyphicon {
+	font-size: 20px;
+	display: block;
+	float: left;
+	padding-left: 10px;
+}
+
+#verify-steps .left {
+	display: block;
+	padding-bottom: 3px;
+	float: left;
+	padding-left: 10px;
+}
+
+#verify-steps .modal-title {
+	background: url('/client/images/wechat-header.png') no-repeat;
+	background-size: contain;
+	color: white;
+	text-align: center;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding: 10px;
+	font-weight: 700;
+	width: 300px !important;
+	height: 255px;
+}
+
+#verify-steps .modal-title h1 {
+	font-size: 20px;
+	margin-bottom: 0px;
+	margin-top: 100px;
+	font-weight: 500;
+}
+
+#verify-steps .reward {
+	font-size: 16px;
+}
+
+#verify-steps .reward-amount {
+	font-size: 50px;
+	font-weight: 500;
+}
+
+#verify-steps .reward-instructions {
+	color: #f2ee10;
+	font-weight: 500;
+	font-size: 15px;
+}
+/* End Wechat Modal*/
+
+/* Wechat Verification Modal */
+#wechat-verification-modal .modal-content {
+	background: white;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#wechat-verification-modal .modal-full-height {
+	text-align:center;
+	margin: 0 auto;
+}
+
+#wechat-verification-modal .modal-card {
+	width: 280px;
+	margin: 0 auto;
+	font-size: 16px;
+}
+
+#wechat-verification-modal .copyvoucher {
+	border: 1px solid #dfdfdf;
+	background: #f7f7f7;
+	color: #51abff;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	padding: 6px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#wechat-verification-modal .cutBtn, #wechat-verification-modal .cutBtn-success, #wechat-verification-modal .cutBtn-fail {
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 5px;
+	font-size: 18px;
+	color: white;
+	padding: 6px;
+	background-color: #51acff;
+	background-image: none;
+	border: none;
+	text-align: center;
+}
+
+#wechat-verification-modal .cutBtn-success {
+	background: #1ba908;
+}
+
+#wechat-verification-modal .cutBtn-fail {
+	background: #838383;
+}
+
+#wechat-verification-modal .instructions {
+	margin-top: 5px;
+	padding: 10px 0;
+	font-size: 19px;
+	/*font-weight: 500;*/
+	color: #6f6f6f;
+}
+
+#wechat-verification-modal .btn-close {
+	color: #f39614;
+	font-size: 16px;
+	margin-top: 10px;
+	display: block;
+	text-align: center;
+	width: 250px;
+
+}
+
+#wechat-verification-modal .btn-close a {
+	text-decoration: underline;
+}
+
+#wechat-verification-modal .body-title {
+	color: #f99d1c;
+	font-size: 23px;
+	font-weight: 500;
+	padding-top: 15px;
+}
+
+/* End Wechat Verification Modal*/
+
+#redeem-pagination {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.isnext {
+	 text-align: center;
+	 font-size: .26rem;
+	 color: #999;
+	 line-height: 1.6em;
+	 padding: .15rem 0;
+}
+
+.copynumber, .copycode, .copycode_hash {
+	color: #2096f2;
+}
+
+.copy-success {
+	color: #47bc46;
+}
+
+.copy-fail {
+	color: #fe6262;
+}
+
+.wechat-instructions {
+	padding-top: 15px;
+	padding-bottom: 20px;
+	font-size: 17px;
+	color: #b2b2b2;
+}
+
+.menu-wrapper a {
+	text-align: right;
+	margin: 0;
+	color: #8d8d8d;
+	text-decoration: none;
+}
+
+.btn-invite {
+  background: url('/client/images/btn-invite-redeem.png') no-repeat top center;
+  font-size: 15px;
+  color: #cb7700;
+  background-size: contain;
+  height: 48px;
+  padding-top: 7px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+
+.link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
+	text-decoration: none;
+}
+
+.red_note {
+	color: red;
+    font-size: 10px;
+    padding-bottom: 15px;
+}
+
+.redeem-info {
+    font-size: 12px;
+    color: #999;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 10px;
+}
+
+.redeem-time {
+	width: 50%;
+    float: left;
+}
+
+.redeem-status {
+    text-align: right;
+}
+
+.product-info {
+    font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    float: left;
+    width: 100%;
+}
+
+.product-info::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.product-img img{
+	float: left;
+	width: 75px;
+	height: 75px;
+	padding: 10px;
+}
+
+.product-name {
+	padding-bottom: 10px;
+}
+
+.product-desc {
+	font-size: 12px;
+    color: #ff5e1e;
+}
+
+.redeem-result {
+	font-size: 13px;
+    color: #333;
+    text-align: right;
+    padding: 10px 0px 10px 10px;
+}
+
+.redeem-quantity {
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
+
+.redeem-action {
+    color: #fff;
+    font-size: 14px;
+    border-radius: 20px;
+    width: 80px;
+    height: 24px;
+    padding: 1px 3px 2px 3px;
+    border: 1px solid #01a7f1;
+    cursor: pointer;
+    background-color: #01a7f1;
+    float: right;
+    text-align: center;
+}
+
+.confirmed {
+	color: #01a7f1;
+}
+.pending {
+	color: #ff5e1e;
+}
+.rejected {
+	color: red;
+}
+
+.corrier-info {
+	font-size: 13px;
+    color: #999;
+    border-top: 1px solid #e2e2e2;
+    padding: 10px;
+}
+
+.tracking-num {
+	font-weight: bold;
+}
+
+.row-new {
+	margin: 10px 0px 10px 0px;
+	padding: 0;
+}
+
+.nav-top {
+	font-size: 18px;
+	padding: 5px;
+	height: 45px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.nav-left a{
+	color: #fff;
+	text-align: left;
+}
+
+.nav-right a{
+	color: #fff;
+	text-align: right;
+}
+
+.label-desc a{
+	color: #fee04d;
+}
+.label-desc a:hover{
+    color: #fee04d;
+}
+
+.wabao-coin {
+	font-size: 0.8rem;
+}
+
+.col-xs-2 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.row-full {
+	font-size: 20px;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    padding-bottom: 50px;
+    color: #666;
+}
+
+.share-link {
+    color: #ff4444;
+}
+
+/*vip product - start*/
+.vipProduct {
+	margin:0.2rem;
+}
+
+.redeem-prize .col-xs-6 {
+	padding: 0;
+}
+
+.left-box {
+	float: left;
+	width: 50%;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	position: relative;
+	display: table;
+}
+
+.right-box {
+	float: left;
+	width: 50%;
+	padding-left: 5px;
+	padding-bottom: 10px;
+	position: relative;
+	display: table;
+}
+
+.prize-box {
+	position: relative;
+    display: table-cell;
+    background-color: #fff;
+}
+
+.prize-box .image-wrapper {
+	width: 2.6rem;
+	height: 2.6rem;
+	margin: 0 auto;
+}
+
+.prize-box .image-wrapper img {
+	margin: 0.3rem auto;
+	width: 100%;
+	height: 100%;
+}
+
+.redeem-product {
+	font-size: 0.24rem;
+    color: #333333;
+    margin-top: 0.4rem;
+    text-align: left;
+    padding: 0.3rem 0.2rem 0.1rem 0.3rem;
+    height: 1rem;
+    overflow: hidden;
+}
+
+.redeem-price {
+	font-size: 0.34rem;
+    color: #ff4f4b;
+    float: left;
+    text-align: left;
+    width: 60%;
+    display: block;
+    padding-left: 0.3rem;
+}
+
+.redeem-currency {
+	font-size: 0.2rem;
+}
+
+.redeem-button-wrapper {
+	width: 40%;
+	float: left;
+}
+
+.redeem-button-enable {
+	background: url(/client/images/vip/redeem-button-enable.png) no-repeat;
+    width: 1.2rem;
+    height: 0.65rem;
+    background-size: contain;
+    font-size: 0.26rem;
+    padding-top: 0.09rem;
+    cursor: pointer;
+    color: #fff;
+}
+
+.redeem-button-disable {
+	background: url(/client/images/vip/redeem-button-disable.png) no-repeat;
+    width: 1.2rem;
+    height: 0.65rem;
+    background-size: contain;
+    font-size: 0.26rem;
+    padding-top: 0.09rem;
+    cursor: pointer;
+    color: #fff;
+}
+
+.redeem-details {
+	overflow: hidden;
+	margin-bottom: 0.2rem;
+	margin-top:0.1rem;
+}
+
+.redeem-details a {
+	color: white;
+}
+
+.redeem-info {
+	margin-bottom: 30px;
+}
+
+.redeem-remaining {
+	font-size: 0.2rem;
+	color: #b9b9b9;
+	text-align: left;
+	padding: 0 0 0 0.3rem;
+}
+
+.icon-newcoin {
+	width: 0.5rem;
+	height: 0.5rem;
+	margin-top: -0.35rem;
+}
+/*vip product - end*/
+
+
+/*reload card*/
+.product-bg {
+	background: url(/client/images/redeem/bj.gif) no-repeat;
+    background-size: contain;
+    padding: 0.06rem 0.1rem 0 0.1rem;
+    position: relative;
+    margin: 0.1rem 0.2rem 0 0.2rem;
+    height: 2.45rem;
+    color: #717171;
+}
+
+.product-title {
+	font-size: 0.28rem;
+    margin: 0.14rem 0.1rem;
+}
+
+.product-title a{
+	float: right;
+	width: 2.6rem;
+	margin:0 0.15rem;
+}
+
+.product-title .highlight{
+	color: #fc5959;
+}
+
+.gifhome {
+	background: url(/client/images/redeem/gifhome_24x24.gif) no-repeat;
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+    margin: 0.08rem;
+}
+
+.product-how-to-redeem {
+    cursor: pointer;
+    text-align: right;
+    margin: -0.37rem 0 0 0;
+}
+
+.product-row {
+	background-color: transparent;
+	margin: 0 10px -15px 10px;
+}
+
+.product-content {
+	font-size: 0.28rem;
+    padding: 0.3rem;
+    line-height: 0.5rem;
+    color: #717171;
+    display: table;
+    width: 100%;
+}
+
+.product-content .r {
+	display:table-row;
+    width:auto;
+}
+
+.product-content .c1{
+	float:left;/*fix for  buggy browsers*/
+    display:table-column;
+    width:15%;
+    font-size: 0.28rem;
+    font-weight: 600;
+}
+
+.product-content .c2{
+	float:left;/*fix for  buggy browsers*/
+    display:table-column;
+    width:60%;
+    font-size: 0.28rem;
+}
+
+.product-content .c3{
+	float: left;
+    display: table-column;
+    width: 25%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #6382dd;
+    color: #fff;
+    margin: 0 0 0.15rem 0;
+}
+
+.product-redeem-time {
+	text-align: center;
+    padding: 0 0 0.1rem 0;
+    color: #b5b5b5;
+    font-size: 0.25rem;
+}
+
+.copy-success-new {
+	/*color: #47bc46;*/
+	background-color: #83c553 !important;
+}
+/*reload-card end*/
+
+.hbao {
+	background: url(/client/images/redeem/hbao.png) no-repeat;
+    background-size: contain;
+    height: 0.35rem;
+    width: 0.35rem;
+    float: left;
+    margin: 0.15rem 0.1rem 0.15rem 0.2rem;
+}
+
+#viewvouchermode_convert_coint .modal-dialog{
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    display: block;
+}
+#viewvouchermode_convert_coint .modal-dialog .modal-content{
+	width: 100%;
+    border-radius: 0;
+    background: #fff;
+}
+
+#viewvouchermode_convert_coint .header {
+	height: auto;
+	color: #333;
+	font-size: 0.3rem;
+}
+
+#viewvouchermode_convert_coint .header .title{
+	float: left;
+	padding: 0;
+}
+
+#viewvouchermode_convert_coint .header .balance{
+	float: right;
+	color: #b3b3b3;
+	font-size: 0.28rem;
+}
+
+#viewvouchermode_convert_coint .header .balance .balance-value{
+	color: #ffa414;
+	font-size: 0.28rem;
+	font-weight: 500;
+}
+
+#viewvouchermode_convert_coint .content{
+	display: inline-flex;
+	margin: 0;
+	padding: 0;
+}
+
+#viewvouchermode_convert_coint .content-amount{
+    background: #f8f8f8;
+    text-align: center;
+    padding: 0.2rem 0.1rem;
+    font-size: 0.3rem;
+    color: #7e7e7e;
+    border-radius: 10px;
+    margin: 0 0.1rem;
+    height: 1.3rem;
+    width: 2.1rem;
+    cursor: pointer;
+}
+
+#viewvouchermode_convert_coint .active, .content-amount:hover {
+  background-color: #ffa414;
+  color: #fff;
+}
+
+#viewvouchermode_convert_coint .content-amount .icon-coin-small {
+	width: 0.55rem;
+    padding: 0.1rem;
+    margin: -0.06rem 0 0 -0.1rem;
+}
+
+#viewvouchermode_convert_coint .content-amount .content-price {
+	font-size: 0.26rem;
+	display: inline-block;
+}
+
+#viewvouchermode_convert_coint .btn_confirm {
+	color: #fff;
+    font-size: 0.36rem;
+    background: #ffa414;
+    border-radius: 100px;
+    margin: 0.2rem;
+    padding: 0.2rem;
+    width: 90%;
+}
+
+.no-record {
+	text-align: center;
+	color: #999;
+	font-size: 0.3rem;
+	padding: 0.5rem;
+}
+
+.no-record img{
+	/*width: 70%;*/
+	/*height: 50%;*/
+	padding: 0.5rem 0.5rem 0.1rem 0.5rem;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>注册</title>
+  <link rel="stylesheet" type="text/css" href="css/public.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="js/being.js"></script>
+</head>
+
+<body>
+
+  <section class="card">
+    <div class="card-body over">
+      <div class="loginBox rel">
+        <img src="images/loginBg.png" width="100%">
+        <div class="form">
+          <dl>
+            <dt>手机号码</dt>
+            <dd>
+              <img src="images/telIcon.png">
+              <label>
+                <input type="tel" placeholder="输入注册手机号码">
+              </label>
+            </dd>
+            <dt>密码</dt>
+            <dd>
+              <img src="images/lockIcon.png">
+              <label>
+                <input type="password" placeholder="输入登录密码">
+              </label>
+            </dd>
+          </dl>
+          <button class="login">下一步</button>
+          <h2>已有账号，<a href="login.html">
+              <font color="#7c48e4">登录</font>
+            </a></h2>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- <div class="card-shade"></div> -->
+  <div class="loginMsg">
+    <div class="inBox">
+      <img src="images/jiangbei.png">
+      <h2>恭喜你&nbsp;注册成功</h2>
+      <p>您有<font color="#f62f5b"><b>12元</b></font>奖励红包等待领取</p>
+      <a class="downBtn gdt">下载APP 登录领取</a>
+    </div>
+  </div>
+
+
+  <script>
+    $(function () {
+      $('.login').click(function () {
+        being.showMsg('.loginMsg');
+      });
+      $('.loginMsg').click(function (e) {
+        let a = $(e.target).find('.inBox').length;
+        console.log(a);
+        if(a>0){
+          being.hideMsg('.loginMsg');
+        }
+
+      });
+    });
+  </script>
+
+
+
+
+</body>
+
+</html>

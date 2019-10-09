@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
 use App\Game;
-use Validator;
-use Carbon\Carbon;
-use App\Wallet;
-use App\member_game_result;
-use App\member_game_bet_temp;
-
-use App\member_game_notification;
+use App\helpers\Logs;
+use App\Http\Controllers\Controller;
+use App\Ledger;
 use App\Package;
+use App\Wallet;
+use App\member_game_bet_temp;
+use App\member_game_notification;
+use App\member_game_result;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Validator;
+
+
 class GameController extends Controller
 {
     
@@ -77,7 +79,7 @@ class GameController extends Controller
 		$gamehistory = $this->get_game_history($request->gameid);	
 		
 		$game_temp   = $this->get_update_game_temp($request);
-		$wallet      = Wallet::get_wallet_details($request->memberid);	
+		$wallet      = Ledger::all_ledger($request->memberid,$request->gameid);	
 		
 		$futureresult= Game::get_future_result($request->gameid, $now );
 		$setting     = \App\Admin::get_setting();
@@ -109,6 +111,16 @@ class GameController extends Controller
 
 				return response()->json(['success' => true,'requested_time'=>$now,'response_time'=>now(),  'record' => $result]);
 			break;
+				
+			case '104':
+				$setting =  Game::gamesetting($gameid);
+				
+				$bettinghistory   = Game::get_betting_history_grouped($gameid, $memberid);
+
+				$result = ['setting'=>$setting,'bettinghistory' => $bettinghistory];
+
+				return response()->json(['success' => true,'requested_time'=>$now,'response_time'=>now(),  'record' => $result]);
+			break;			
 				
 		}
 		
@@ -154,109 +166,7 @@ class GameController extends Controller
 	}
 	
 	
-	public function play_vip_game($vipdata)
-    { 
-		$point        = 0;
-		$reward       = 0;
-		$glevel       = '';
-		$status       = 'lose';
-		$is_win       = null;
-		$player_level = 1;
-		$close        = null;
-		$memberid     = $vipdata['memberid'];
-		$gameid       = $vipdata['gameid'];
-		$level	      = $vipdata['gamelevel'];
-		$bet          = $vipdata['bet'];
-		$game_result  = $vipdata['game_result'];
-		$drawid       = $vipdata['drawid'];
-		
-		
-		$packageid = Package::get_current_package($memberid);
-		
-		
-		if (!$packageid) return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'No active vip subscriptions']);
-		
-		
-		//check playable status
-		$wallet = Wallet::get_wallet_details($memberid);
-		
-		if ($wallet->vip_life < 1) return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough life to play']);
-		
-		if ($wallet->vip_point < $level->bet_amount) return response()->json(['success' => false, 'game_result' => $game_result,'message' => 'not enough points to play']);
-		
-		//check game result
-		
-		/**
-		 * if player & histoy win the increse to 1
-		 * if player fail keep the value 
-		 **/		
-
-		$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $level,1);
-
-		$gamelevel    = $game_p_level['gamelevel'];
-		$player_level = $game_p_level['player_level'];
-
-		$gen_result  = check_odd_even($game_result);
-		if ($gen_result === $bet)
-		{
-			$status = 'win';
-			$is_win = TRUE;				
-		}	
-		
-		//update wallet
-		
-		if ($is_win) 
-		{
-			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP');
-			$reward = $level->point_reward;
-		}
-		else
-		{
-			
-			$wallet = Wallet::update_vip_wallet($memberid,$life = 0,$level->bet_amount,'VIP','debit');
-		}
-			
-		//update game history
-		if ($wallet)
-			{
-				//Update Memeber game play history		
-				$now     = Carbon::now()->toDateTimeString();
-					
-				$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'game_result'=>$status,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level, 'draw_id' => $drawid,'reward' => $reward,'package_id'=>$packageid->id];				
-				
-				$records =  Game::add_vip_play_history($insdata);
-			
-				if (!$is_win) 
-				{
-					$close  = Game::get_consecutive_lose($memberid, $gameid,'1');
-					//echo 	$close ;
-					if ($close == 'yes') {
-						Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');
-						Game::reset_member_game_level($memberid , $gameid,'1');			
-						$point = Wallet::merge_vip_wallet($memberid);									
-						Package::reset_current_package($packageid->id);
-					}
-				}
-                				
-				return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'mergepoint' => $point,'consecutive_loss'=>$close]); 
-			}
-	}
 	
-	public function new_update_game(Request $request)
-    {
-		//check game type 
-		
-		//get rules
-		
-		//play with rules
-		
-		//route to wallet update 
-		
-		//route to game play update
-		
-		//return statements
-		
-	}
 	
 	
 	/**
@@ -504,10 +414,10 @@ class GameController extends Controller
 	
 	public function get_wallet_details(Request $request)
     {
-		$gameid   = $request->gameid;
+		$gameid     = $request->gameid;
 		$memberid   = $request->memberid;
+		$records    = Ledger::all_ledger($request->memberid,$request->gameid);	
 		
-		$records =  Wallet::get_wallet_details($memberid);
 		return response()->json(['success' => true, 'record' => $records]); 
 	}
 	
@@ -588,10 +498,30 @@ class GameController extends Controller
 		if ($gameid == 102) {
 			$_bal = 120;  //temporary hardcoded... should refer to db.. configurable
 		}
+		
+		$max_po = \Config::get('app.coin_max');
+				
+		$min_po = \Config::get('app.coin_min');
+		
+		$wallet = Ledger::ledger($memberid, $gameid);
+		/*
+		
+		$arr1   = ['6','7','8','9'];
+		$arr2   = ['10','11'];
+		
+		if (in_array($wallet->acupoint, $arr1))
+		{
+			$wallet->acupoint = 6;
+		}
+		else if (in_array($wallet->acupoint, $arr2))
+		{
+			$wallet->acupoint = 10;
+		}
+		*/
 
 		if ($life == 'yes')
 		{
-			$wallet = Wallet::get_wallet_details($memberid);
+			
 			
 			$gamelevel = Game::get_member_current_level($gameid, $memberid);
 			
@@ -599,13 +529,11 @@ class GameController extends Controller
 
 			if ($wallet) 
 			{	
-				$max_po = \Config::get('app.coin_max');
-				
-				
-				
+								
 				if ($gamelevel->position != 1) 
 				{
-					if ($wallet->acupoint< $max_po)
+					//if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
+					if ($wallet->acupoint< $min_po)
 					{
 						return response()->json(['success' => false, 'record' => '', 'message' => 'reset first.cannt redeem.level must be one']); 
 					}
@@ -616,13 +544,14 @@ class GameController extends Controller
 					
 					if ($close != 'yes') {
 						
-						if ($wallet->acupoint < $max_po) 
+						//if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
+						if ($wallet->acupoint< $min_po) 
 						{
-							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below '.$max_po.' point']); 
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.']); 
 						}
 						
-						if($wallet->acupoint>$max_po){
-							$wallet->acupoint=$max_po;
+						if($wallet->acupoint > $max_po){
+							$wallet->acupoint = $max_po;
 						}
 
 					}else{
@@ -674,14 +603,72 @@ class GameController extends Controller
 					$crd_bal_after			= $crd_bal_before+$wallet->acupoint;
 					$crd_current_bal		= $crd_bal_after;
 
+					///update ledger
+					$wallet->balance  = $current_balance;
+					$wallet->life     = $current_life;
+					$wallet->acupoint = $current_life_acupoint;
+					$wallet->point    = $current_point;
+					$wallet->save();
 
-					Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
-					Wallet::life_redeem_post_ledgerhistory_pnt($memberid,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);
-					Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
-					Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
+					//update balance in history table
+
+					$data = [
+					 'member_id'       => $memberid	
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $credit_bal
+					 ,'debit'          => $debit_bal
+					 ,'balance_before' => $balance_before
+					 ,'balance_after'  => $balance_after
+					 ,'ledger_type'    => 'RBAL'
+					];
+					
+					$uuid = \App\History::add_ledger_history($data);
+
+					//update point in history table
+					$data = [
+					 'member_id'       => $memberid	
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $credit
+					 ,'debit'          => $debit
+					 ,'balance_before' => $award_bal_before
+					 ,'balance_after'  => $award_bal_after
+					 ,'ledger_type'    => 'RPNT'
+					];
+					
+					$uuid = \App\History::add_ledger_history($data);
+
+					//update redeem point in history table
+					$data = [
+					 'member_id'       => $memberid	
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $crd_credit
+					 ,'debit'          => $crd_debit
+					 ,'balance_before' => $crd_bal_before
+					 ,'balance_after'  => $crd_bal_after
+					 ,'ledger_type'    => 'CRPNT'
+					];
+					
+					$uuid = \App\History::add_ledger_history($data);
+
+					
+
+
+
+					//Wallet::life_redeem_post_ledgerhistory_bal($memberid,$credit_bal,$debit_bal,$balance_before,$balance_after,$current_balance);
+					//Wallet::life_redeem_post_ledgerhistory_pnt($memberid,$credit,$debit,$award_bal_before,$award_bal_after,$award_current_bal);
+					//Wallet::life_redeem_post_ledgerhistory_crd($memberid,$crd_credit,$crd_debit,$crd_bal_before,$crd_bal_after,$crd_current_bal);
+					//Wallet::life_redeem_update_mainledger($current_balance,$current_life,$memberid,$current_life_acupoint,$current_point);
 
 					//Reset latest member game level
-					Game::reset_member_game_level($memberid , $gameid);					
+					Game::reset_member_game_level($memberid , $gameid);	
+					
+					$total_redeem = Game::get_total_redeem();
+					
+					event(new \App\Events\EventDynamicChannel('redeem-point','',$total_redeem ));
+					
 
 					return response()->json(['success' => true,  'Acupoint' => $wallet->acupoint]); 
 					//return response()->json(['success' => true]); 
@@ -695,7 +682,6 @@ class GameController extends Controller
 					}
 					$credit        	= 0;
 					$debit        	= $wallet->acupoint; 
-					$max_po = \Config::get('app.coin_max');
 					
 					if ($debit >= $max_po )
 					{
@@ -705,15 +691,51 @@ class GameController extends Controller
 					
 					if ($close != 'yes') {
 						
-						if ($wallet->acupoint < $max_po) 
+						//if ( ($wallet->acupoint < $min_po  ) && ($wallet->acupoint > $max_po) )
+						if ($wallet->acupoint< $min_po) 
 						{
-							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below '.$max_po.' point']); 
+							return response()->json(['success' => false, 'error_code'=>'33','record' => '', 'message' => 'not enough point to redeem.cannot redeem below '.$min_po.' point']); 
 						}
 					}
+
+					$notes = '';
+					$balance_after = $wallet->acpoint  + $debit ;
+					if ($debit < $wallet->acupoint)
+					{
+						if ($wallet->acupoint > $max_po)
+						{
+							$purgedpoint = $wallet->acupoint - $debit ;
+							$notes .= $purgedpoint.' points Purged. ';
+						}
+						$notes .= 'Acpoint: '.$debit.' Redeemed';
+					}
+
+					$balance_before = $wallet->point;
+					$balance_after = $wallet->point + $debit;
+					///update ledger
+					$wallet->acupoint = 0;
+					$wallet->point    = $balance_after;
+					$wallet->save();
+
+					//update balance in history table
+
+					$data = [
+					 'member_id'       => $memberid	
+					 ,'account_id'     => $wallet->id
+					 ,'game_id'        => $gameid
+					 ,'credit'         => $debit
+					 ,'debit'          => 0
+					 ,'balance_before' => $balance_before
+					 ,'balance_after'  => $balance_after
+					 ,'ledger_type'    => 'APPNT'
+					 ,'notes'          => $notes
+					];
 					
+					$uuid = \App\History::add_ledger_history($data);
 					
+					$total_redeem = Game::get_total_redeem();
 					
-					Wallet::update_ledger($memberid,'acpoint',$debit,$category = 'PNT',$notes = FALSE);
+					event(new \App\Events\EventDynamicChannel('redeem-point','',$total_redeem ));
 					
 					return response()->json(['success' => true]); 
 					
@@ -861,7 +883,7 @@ class GameController extends Controller
         return response()->json(['success' => true, 'record' => $record ]);
 	}
 	
-	
+	//no use
 	public function vip_life_redemption(Request $request)
     {		
 		$reset    = null;		
@@ -956,6 +978,8 @@ class GameController extends Controller
 		return response()->json(['success' => true,'requested_time'=>$now,'response_time'=>now(),  'record' => $result]);
 	}
 	
+	//no use
+	/*
 	public function reserve_betting(Request $request)
     {
 		$now      = Carbon::now()->toDateTimeString();
@@ -1031,6 +1055,7 @@ class GameController extends Controller
 		
 		return response()->json(['success' => false, 'message' => "invalid bet request"]);
 	}
+	*/
 	
 	public function add_betting(Request $request)
     {
@@ -1099,7 +1124,37 @@ class GameController extends Controller
 					$message = "temparory member $request->memberid bet $request->betamt";					
 				}
 				return response()->json(['success' => true, 'message' => $message]);
-				break;	
+				break;
+				
+			case '104':
+				$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $request->gameid)->where('memberid', $request->memberid)->where('gametype', $type)->first();					
+				if($res)
+				{
+					//update
+					if ($request->betto)
+					{
+						$draw = \App\Draw::latest()->first();
+						$gbt = member_game_bet_temp::where('id', $res->id)->update(['bet' => $request->betto,'betamt' => $request->betamt,'drawid'=>$draw->id]);
+						$message = "temporary member $request->memberid bet $request->betamt";
+					}
+					else
+					{
+						member_game_bet_temp::where('id', $res->id)->delete();						
+						$message = "bet removed";
+					}					
+				}
+				else
+				{
+					$params  = ['gameid' => $request->gameid, 'memberid' => $request->memberid,'bet' =>$request->betto,'betamt'=>$request->betamt , 'gametype' => $type];
+					$gbt = member_game_bet_temp::Create($params);
+					
+					$draw = \App\Draw::latest()->first();
+					$gbt->drawid = $draw->id;
+					$gbt->save();
+					$message = "temparory member $request->memberid bet $request->betamt";					
+				}
+				return response()->json(['success' => true, 'message' => $message]);
+			break;
 				
 		}
 	}
@@ -1204,17 +1259,20 @@ class GameController extends Controller
 				return response()->json(['success' => false, 'message' => 'inactive game']);			
 			break;
 			case '102':												
-				return $this->betting_result($request);
+				return $this->betting_result_102($request);
 			break;
 			case '103':
 				return $this->betting_result_103($request);
-			break;					
+			break;	
+			case '104':
+				return $this->betting_result_104($request);
+			break;	
 		}
 	}
+
+
 	
-	
-	
-	public function betting_result(Request $request)
+	public function betting_result_102(Request $request)
     {
 		$now     = Carbon::now()->toDateTimeString();
 		$reward = 0;
@@ -1226,15 +1284,17 @@ class GameController extends Controller
 		$vip        = '';
 		$gameid     = $request->gameid;
 		$memberid   = $request->memberid;
-		
-		
-		
-		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();	
-		
+				
+		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();
+				
 		if(!$res)
 		{
-			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting') ]);
+			$previous_bet =  member_game_result::where('game_id',$gameid)->where('member_id',$memberid)->latest()->first();
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting'),'previous_bet ' => $previous_bet ]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}
+		$res->status     = 1;
+		$res->deleted_at = $now;
 		
 		//check point 
 		
@@ -1242,7 +1302,7 @@ class GameController extends Controller
 				
 		$levelid = $gamelevel->levelid;
 		
-		$play_status   = Wallet::playable_status($memberid,$gameid,$levelid);
+		$play_status   = Ledger::playable_status($memberid,$gameid,$levelid);
 		$is_playable   = $play_status['playablestatus'];	
 		$is_redeemable = $play_status['redeempointstatus'];
 		
@@ -1253,19 +1313,21 @@ class GameController extends Controller
 		
 		if ($play_status['life']<1)
 		{
-			return response()->json(['success' => false,'message' => trans('dingsu.not_enough_life')]);
+			$_res = response()->json(['success' => false,'message' => trans('dingsu.not_enough_life')]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 			
 		}
 		if (empty($is_playable)&&empty($is_redeemable))// 0
 		{
-			return response()->json(['success' => false, 'message' => trans('dingsu.not_enough_balance')]);
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.not_enough_balance')]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 			
 		}elseif (empty($is_playable)&&!empty($is_redeemable))//1
 		{
-			return response()->json(['success' => false, 'message' => trans('dingsu.exceeded_coin_limit')]);
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.exceeded_coin_limit')]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}
-		
-		
+				
 					
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
@@ -1284,7 +1346,6 @@ class GameController extends Controller
 		$gamelevel = Game::get_member_current_level($gameid, $memberid, $vip); 
 		
 		$data = ['player_level'=>$player_level, 'gamelevel'=>$gamelevel];
-		//$wallet = Wallet::get_wallet_details_all($memberid);
 		
 		$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $gamelevel);
 			
@@ -1353,20 +1414,23 @@ class GameController extends Controller
 		
 		///$status = 'lose';
 		
-		$wallet   = Wallet::new_game_wallet_update ($memberid,  $status, $level, $gameid);
+		$wallet   = Ledger::game_ledger_update ($memberid,  $gameid, $status, $level);
+		
+		$ledger   = $wallet['ledger'];
 		
 		$r_status = 2;
 		
 		if ($status == 'win') 			
 		{
-			$reward = $wallet['credit'];
+			$reward = $level->point_reward;
 			
 			$r_status = 1;
 			
-			if ($wallet['acupoint'] >= \Config::get('app.coin_max') ) $this->update_notification($memberid, $gameid,'0');
+			if ($ledger->acupoint >= \Config::get('app.coin_max') ) $this->update_notification($memberid, $gameid,'0');
 		}		
 
 		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level,'reward' => $reward];		
+
 
 		$filter = ['member_id'=>$memberid,'game_id'=>$gameid];		
 
@@ -1389,11 +1453,7 @@ class GameController extends Controller
 		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
 	}
 	
-	
-	
-	
-	
-	public function old_betting_result(Request $request)
+	public function betting_result_104(Request $request)
     {
 		$now     = Carbon::now()->toDateTimeString();
 		$reward = 0;
@@ -1404,135 +1464,96 @@ class GameController extends Controller
 		$type       = 1;
 		$vip        = '';
 		$gameid     = $request->gameid;
-		$memberid   = $request->memberid;
-		
-		
-		
-		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();	
-		
+		$memberid   = $request->memberid;				
+		$drawid     = $request->drawid;			
+		$res = member_game_bet_temp::whereNull('deleted_at')->where('drawid', $drawid)->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();			
 		if(!$res)
 		{
-			return response()->json(['success' => false, 'message' => "no betting"]);
-		}		
-					
+			//add last betting detail
+			$previous_bet =  member_game_result::where('game_id',$gameid)->where('member_id',$memberid)->latest()->first();
+			$_res = response()->json(['success' => false, 'message' => "no betting",'previous_bet ' => $previous_bet ]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
+		}			
+		$res->status     = 1;
+		$res->deleted_at = $now;
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
-		$gametype = $res->gametype ;
-	
+		$gametype = $res->gametype ;		
+		
+		//check point 				
+		$ledger   = Ledger::ledger($memberid, $gameid);
+		
+		if ($ledger->point<1)
+		{
+			$res->save();
+			$_res = ['success' => false, 'message' => trans('dingsu.not_enough_point')];	
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);	
+		}		
+		if ($ledger->point< $betamt )
+		{
+			$res->save();
+			$_res = ['success' => false, 'message' => trans('dingsu.not_enough_point')];	
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);	
+		}				
+		if ($ledger->life<1)
+		{
+			//$res->save();
+			//return response()->json(['success' => false,'message' => 'not enough life to play']);			
+		}					
 		$input = [
              'gameid'    => $gameid,
 			 'memberid'  => $memberid,
 			 'bet'       => $bet,	
 			 'betamt'    => $betamt,
-              ];
-		
-		
-		$player_level = 1;
-		
-		$gamelevel = Game::get_member_current_level($gameid, $memberid, $vip); 
-		
-		$data = ['player_level'=>$player_level, 'gamelevel'=>$gamelevel];
-		//$wallet = Wallet::get_wallet_details_all($memberid);
-		
-		$game_p_level = $this->get_player_level($gameid, $memberid, $player_level, $gamelevel);
+              ];	
 			
-		$gamelevel    = $game_p_level['gamelevel'];
-		$player_level = $game_p_level['player_level'];
-		
-		//print_r($game_p_level );die();
-
-		
-		
-		$gameresult   = $this->decide_result_condition($memberid, $data);
-			
-		if ($gameresult)
+		$game_result = \App\Draw::select('result')->where('id',$res->id)->first();		
+		$gen_result  = check_odd_even($game_result);
+		if ($gen_result === $bet)
 		{
-			$status = $gameresult->status;
-			$is_win = $gameresult->is_win;
-			
-			$arr_even = ['2','4','6'];
-			$arr_odd  = ['1','3','5'];
-			
-			if ($bet == 'even')
-			{
-				if($status === 'win')
-				{
-					$game_result = $arr_even [ array_rand($arr_even,1) ];
-				}
-				else
-				{
-					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
-				}
-			}
-			else
-			{
-				if($status === 'win')
-				{
-					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
-				}
-				else
-				{
-					$game_result = $arr_even [ array_rand($arr_even,1) ];
-				}				
-			}
-		}
-		else 
-		{				
-			$game_result = generate_random_number(1,6);	
-			
-			$gen_result  = check_odd_even($game_result);
-			//$gen_result  = 'evsn';
-			if ($gen_result === $bet)
-			{
-				//win change balance
-				$status = 'win';
-				$is_win = TRUE;				
-			}
-		}	
-		
-		
-
-		$level = \DB::table('game_levels')->where('id', $gamelevel)->get()->first();
-		//Update Memeber game play history		
-		$now     = Carbon::now()->toDateTimeString();		
-		
-		///$status = 'lose';
-		
-		$wallet   = Wallet::new_game_wallet_update ($memberid,  $status, $level);
-		
-		$r_status = 2;
-		
+			//win change balance
+			$status = 'win';
+			$is_win = TRUE;				
+		}					
+		$now = Carbon::now()->toDateTimeString();	
+		$r_status = 2;		
 		if ($status == 'win') 			
 		{
-			$reward = $level->point_reward;
-			
-			$r_status = 1;
-			
-			if ($wallet['acupoint'] >= \Config::get('app.coin_max') ) $this->update_notification($memberid, $gameid,'0');
-		}		
+			$reward   = 0;			
+			$se_game  = \App\Game::gamesetting($gameid);			
+			if (!empty($se_game->win_ratio))
+			{	
+				if ($se_game->win_ratio < 1)
+				{
+					$se_game->win_ratio = 1;
+				}				
+				$reward = $betamt * $se_game->win_ratio;				
+				$reward = $reward - $betamt;
+			}						
+			$r_status = 1;			
+			Ledger::credit($memberid,$gameid,$reward,'GBA', 'reward for betting'); //GBV - Game Betting 104			
+		}	
+		else
+		{
+			Ledger::debit($memberid,$gameid,$betamt,'GBA', 'amount deducted for betting'); //GBV - Game Betting 104
+		}			
 
-		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'game_level_id'=>$gamelevel,'is_win'=>$is_win,'bet_amount'=>$level->bet_amount,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'player_level'=>$player_level,'reward' => $reward];		
-
-		$filter = ['member_id'=>$memberid,'game_id'=>$gameid];		
-
-		$records =  Game::add_play_history($insdata,$filter);
-		
-		$res->status     = 1;
-		$res->deleted_at = $now;
-		$res->save();
-		
+		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'is_win'=>$is_win,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'reward' => $reward];
+		$records =  Game::add_play_history($insdata);				
+		$res->save();				
 		//Play count update - 29/05/2019
 		//Fixed multiple row updates - 14/08/2019
 		$playcount = \App\PlayCount::firstOrCreate(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);		
 		if (!$playcount->wasRecentlyCreated) {			
 			$playcount->increment('play_count', 1);
-		}
+		}		
 		//End
+		$firstwin = '';
+		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);		
 		
-		$firstwin = \App\Product::IsFirstWin($memberid,$status);
-
-		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
 	}
+	
+	
 	
 	
 	public function betting_result_103(Request $request)
@@ -1552,11 +1573,12 @@ class GameController extends Controller
 		
 		if(!$res)
 		{
-			return response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting')]);
+			$previous_bet =  member_game_result::where('game_id',$gameid)->where('member_id',$memberid)->latest()->first();
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.no_active_betting'),'previous_bet ' => $previous_bet ]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}
 		$res->status     = 1;
-		$res->deleted_at = $now;
-		
+		$res->deleted_at = $now;	
 		
 		$bet      = $res->bet;	
 		$betamt   = $res->betamt ;
@@ -1568,46 +1590,44 @@ class GameController extends Controller
 		if ($eligible_to_play['eligible_to_enter'] != 'true')
 		{
 			$res->save();
-			return response()->json(['success' => false, 'message' => trans('dingsu.not_eligible_to_play_vip')]);
-		}
-		
+			$_res = response()->json(['success' => false, 'message' => trans('dingsu.not_eligible_to_play_vip')]);
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
+		}		
 		
 		//check point 				
-		$play_status   = Wallet::get_wallet_details($memberid);
+		$ledger   = Ledger::ledger($memberid, $gameid);
 		
-		if ($play_status->point<1)
+		if ($ledger->point<1)
 		{
 			$res->save();
-			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
+			$_res = ['success' => false, 'message' => trans('dingsu.not_enough_point')];	
+			return Logs::log($_res, 'warning');		
 		}		
-		if ($play_status->point< $betamt )
+		if ($ledger->point< $betamt )
 		{
 			$res->save();
-			return ['success' => false, 'message' => trans('dingsu.not_enough_point')];			
+			$_res = ['success' => false, 'message' => trans('dingsu.not_enough_point')];		
+			return Logs::log(['data' => $_res,'type'=>'warning','memberid' => $memberid]);
 		}				
-		if ($play_status->life<1)
+		if ($ledger->life<1)
 		{
 			//$res->save();
 			//return response()->json(['success' => false,'message' => 'not enough life to play']);			
-		}
-					
+		}					
 		$input = [
              'gameid'    => $gameid,
 			 'memberid'  => $memberid,
 			 'bet'       => $bet,	
 			 'betamt'    => $betamt,
-              ];		
+              ];	
 			
-		$gameresult   = $this->decide_result_condition($memberid, '');
-			
+		$gameresult   = $this->decide_result_condition($memberid, '');			
 		if ($gameresult)
 		{
 			$status = $gameresult->status;
-			$is_win = $gameresult->is_win;
-			
+			$is_win = $gameresult->is_win;			
 			$arr_even = ['2','4','6'];
-			$arr_odd  = ['1','3','5'];
-			
+			$arr_odd  = ['1','3','5'];			
 			if ($bet == 'even')
 			{
 				if($status === 'win')
@@ -1645,46 +1665,37 @@ class GameController extends Controller
 			}
 		}	
 				
-		$now     = Carbon::now()->toDateTimeString();		
-		
-		$r_status = 2;
-		
+		$now      = Carbon::now()->toDateTimeString();
+		$r_status = 2;		
 		if ($status == 'win') 			
 		{
 			$reward = 0;
-			
-			//$se_game  = \App\Game::where('id',$gameid)->first();
-			
-			$se_game  = \App\Game::gamesetting($gameid);
-			
+			//$se_game  = \App\Game::where('id',$gameid)->first();			
+			$se_game  = \App\Game::gamesetting($gameid);			
 			if (!empty($se_game->win_ratio))
 			{	
 				if ($se_game->win_ratio < 1)
 				{
 					$se_game->win_ratio = 1;
 				}				
-				$reward = $betamt * $se_game->win_ratio;
-				
+				$reward = $betamt * $se_game->win_ratio;				
 				$reward = $reward - $betamt;
 			}
 						
 			$r_status = 1;
-			
-			Wallet::update_basic_wallet($memberid,0,$reward,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP			
+			//echo $memberid.'-'.$gameid.'-'.$reward.'-win';
+			Ledger::credit($memberid,$gameid,$reward,'GBV', 'reward for betting'); //GBV - Game Betting VIP			
 		}	
 		else
 		{
-			Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','debit', '.deducted for betting');	//GBV - Game Betting VIP
-		}				
-
+			Ledger::debit($memberid,$gameid,$betamt,'GBV', 'amount deducted for betting'); //GBV - Game Betting VIP
+		}	
 		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'is_win'=>$is_win,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'reward' => $reward];
 
 		$records =  Game::add_play_history($insdata);
 		
-		
-		$res->save();
-		
-		$queries = \DB::enableQueryLog();
+		$res->save();		
+		//$queries = \DB::enableQueryLog();
 		
 		//Play count update - 29/05/2019
 		//Fixed multiple row updates - 14/08/2019
@@ -1701,8 +1712,15 @@ class GameController extends Controller
 		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
 	}
 	
+	
+	
 	private function decide_result_condition($memberid, $data)
     {
+		if ($memberid == 17)
+		{
+			return $this->result_condition('forcetolose', $memberid, $data);	
+		}
+
 		$IsFirstLife = Game::IsFirstLife($memberid);
 		
 		if ($data) 
@@ -1760,182 +1778,73 @@ class GameController extends Controller
 	}
 	
 	
-	public function new_betting_result_103(Request $request)
-    {
-		$now     = Carbon::now()->toDateTimeString();
-		$reward = 0;
-		$glevel = '';
-		$status = 'lose';
-		$is_win = null;
-		$player_level = 1;	
-		$type       = 1;
-		$vip        = '';
-		$gameid     = $request->gameid;
-		$memberid   = $request->memberid;
-		
-		
-		
-		$res = member_game_bet_temp::whereNull('deleted_at')->where('gameid', $gameid)->where('memberid', $memberid)->where('gametype', $type)->first();	
-		
-		if(!$res)
-		{
-			return response()->json(['success' => false, 'message' => "no betting"]);
-		}	
-		$bet      = $res->bet;	
-		$betamt   = $res->betamt ;
-		$gametype = $res->gametype ;
-		
-		$packageid = Package::get_current_package($memberid);		
-		
-		if (!$packageid) return response()->json(['success' => false,'message' => 'No active vip subscriptions']);
-		
-		
-		//check point 
-				
-		$play_status   = Wallet::get_wallet_details($memberid);
-		
-		if ($play_status->vip_point<1)
-		{
-			return ['success' => false, 'message' => 'not enough point'];			
-		}
-		
-		if ($play_status->vip_point< $betamt )
-		{
-			return ['success' => false, 'message' => 'not enough point'];			
-		}
-				
-		if ($play_status->vip_life<1)
-		{
-			return response()->json(['success' => false,'message' => 'not enough life to play']);			
-		}
-		
-		
 	
-		$input = [
-             'gameid'    => $gameid,
-			 'memberid'  => $memberid,
-			 'bet'       => $bet,	
-			 'betamt'    => $betamt,
-              ];
-		
-			
-		$gameresult   = $this->decide_result_condition($memberid, '');
-			
-		if ($gameresult)
-		{
-			$status = $gameresult->status;
-			$is_win = $gameresult->is_win;
-			
-			$arr_even = ['2','4','6'];
-			$arr_odd  = ['1','3','5'];
-			
-			if ($bet == 'even')
-			{
-				if($status === 'win')
-				{
-					$game_result = $arr_even [ array_rand($arr_even,1) ];
-				}
-				else
-				{
-					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
-				}
-			}
-			else
-			{
-				if($status === 'win')
-				{
-					$game_result = $arr_odd [ array_rand($arr_odd,1) ];
-				}
-				else
-				{
-					$game_result = $arr_even [ array_rand($arr_even,1) ];
-				}				
-			}
-		}
-		else 
-		{				
-			$game_result = generate_random_number(1,6);	
-			
-			$gen_result  = check_odd_even($game_result);
-			//$gen_result  = 'evsn';
-			if ($gen_result === $bet)
-			{
-				//win change balance
-				$status = 'win';
-				$is_win = TRUE;				
-			}
-		}	
-		
-		//Update Memeber game play history		
-		$now     = Carbon::now()->toDateTimeString();
-		
-		
-		$r_status = 2;
-		
-		if ($status == 'win') 			
-		{
-			$reward = 0;
-			
-			//$se_game  = \App\Game::where('id',$gameid)->first();
-			
-			$se_game  = \App\Game::gamesetting($gameid);
-			
-			if (!empty($se_game->win_ratio))
-			{	
-				if ($se_game->win_ratio < 1)
-				{
-					$se_game->win_ratio = 1;
-				}				
-				$reward = $betamt * $se_game->win_ratio;
-				
-				$reward = $reward - $betamt;
-			}
-			
-			//Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');	//GBV - Game Betting VIP	
-			
-			Wallet::update_vip_wallet($memberid,0,$betamt,'GBV','credit', '.reward for betting');
-		}	
-		else
-		{
-			//Wallet::update_basic_wallet($memberid,0,$betamt,'GBV','debit', '.deducted for betting');	//GBV - Game Betting VIP
-			
-			$wallet = Wallet::update_vip_wallet($memberid,0,$betamt,'GBV','debit', '.deducted for betting');
-			//reset life if point 0
-			if ($wallet['point'] < 1)
-			{
-				Wallet::update_vip_wallet($memberid,1,0,'VIP','debit');		
-				
-				Package::reset_current_package($packageid->id);
-			}
-			
-		}
-				
-
-		$insdata = ['member_id'=>$memberid,'game_id'=>$gameid,'is_win'=>$is_win,'bet_amount'=>$betamt,'bet'=>$bet,'game_result'=>$game_result,'created_at'=>$now,'updated_at'=>$now,'reward' => $reward];
-
-		$records =  Game::add_play_history($insdata);
-		
-		$res->status     = 1;
-		$res->deleted_at = $now;
-		$res->save();
-		
-		//Play count update - 29/05/2019
-		//Fixed multiple row updates - 14/08/2019
-		$playcount = \App\PlayCount::firstOrCreate(['play_date' => Carbon::now()->toDateString(), 'member_id' => $memberid, 'game_id' => $gameid, 'result_status' => $r_status]);		
-		if (!$playcount->wasRecentlyCreated) {			
-			$playcount->increment('play_count', 1);
-		}
-		//End
-		$firstwin = '';
-		//$firstwin = \App\Product::IsFirstWin($memberid,$status);
-
-		return response()->json(['success' => true, 'status' => $status, 'game_result' => $game_result,'IsFirstLifeWin' => $firstwin]);
-	}
 	
 	public function today_play_statistics(Request $request)
     {
 		$records = Game::today_play_statistics($request->memberid,$request->gameid);
 		return response()->json(['success' => true, 'record' => $records]); 
 	}
+	
+	
+	public function global_rank(Request $request)
+    {
+    	//Global Ranks
+		$ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+					->where('game_id',$request->gameid)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->orderby('rank','ASC')
+					->paginate(30);
+		//End global rank
+
+	return response()->json(['success' => true, 'global_ranks' => $ranks]); 					
+    }
+
+    public function friends_rank(Request $request)
+    {
+    	$fr_ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')
+			->where('game_id',$request->gameid)
+		    ->whereIn('member_id', function($query) use ($request) {
+							$query->select('id')
+							->from('members')
+							->where('referred_by', $request->memberid);
+						})
+			->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+			->orderby('rank','ASC')
+			->paginate(30);
+
+			return response()->json(['success' => true, 'friends_rank' => $fr_ranks ]); 
+    }
+
+	public function list_user_by_earned_point(Request $request)
+    {		
+		//Current User rank
+		
+		$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+					->where('game_id',$request->gameid)
+					->where('member_id',$request->memberid)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->first();
+		
+		return response()->json(['success' => true, 'my_rank' => $row]); 
+	}
+	
+	
+	public function usedpoint(Request $request)
+    {
+		$point   = \DB::table('a_view_used_point')->where('member_id',$request->memberid)->where('game_id',$request->gameid)->sum('point');
+		
+		return response()->json(['success' => true, 'point' => $point]); 
+	}
+	
+	public function usedpoint_103(Request $request)
+    {
+		//$point   = \DB::table('a_view_used_point_list')->where('game_id',103)->groupby('member_id')->paginate(30);
+
+		$point   = \DB::table('a_view_used_point_list')->selectRaw('*, sum(debit) as point')->where('game_id',103)->groupby('member_id')->paginate(30);
+		
+		return response()->json(['success' => true, 'point' => $point]);
+	}
+	
 
 }

@@ -92,13 +92,24 @@ Route::get('locale/{locale}', function ($locale) {
 //wechat - redirect to redeem page
 Route::get( '/goredeem', 'ClientController@member_access_redeem' )->name( 'client.access_redeem' );
 
+$this->get( '/external/login', 'MainController@showLoginFormExternal' )->name( 'external.login' );
+$this->get( '/external/register/{token?}', 'MainController@showRegisterFormExternal' )->name( 'external.register' );
+$this->get( 'display-error-screen/connection', function () {
+	return view( 'errors/connection' );
+})->name( 'display.error.connection' );
+$this->get( 'display-error-screen/database', function () {
+	return view( 'errors/database' );
+})->name( 'display.error.database' );
+
+Route::any( '/youzan', 'PaymentController@index' )->name( 'client.payment.index' );
+
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
 	Route::get( '/', function() {
 		//isVIP APP
 		if (env('THISVIPAPP', false) == true) {
-			return redirect('/vip');
+			return redirect('/main');
 		} else {
 			return redirect('/arcade');
 		}
@@ -119,8 +130,6 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/arcade_old', 'ClientController@member_access_game' )->name( 'client.arcade' );
 	//switched to new game screen
 	Route::get( '/arcade/{id?}', 'ClientController@member_access_game_node' )->name( 'client.arcade_node' );
-	//switched to new game screen - with ranking
-	Route::get( '/arcade_ranking', 'ClientController@member_access_game_ranking' )->name( 'client.arcade_ranking' );
 	
 	Route::get( '/vip', 'ClientController@member_access_vip_node' )->name( 'client.vip' );
 
@@ -157,7 +166,21 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/my_redeem');
 	} );
 	Route::any( '/blog/createform', 'BlogController@createform' )->name( 'client.blog.createform' );
-	Route::any( '/blog/create', 'BlogController@create' )->name( 'client.blog.create' );	
+	Route::any( '/blog/create', 'BlogController@create' )->name( 'client.blog.create' );
+
+	Route::any( '/receipt', 'ReceiptController@index' )->name( 'client.receipt' );
+	Route::any( '/receipt/guide', 'ReceiptController@showGuide' )->name( 'client.receipt.showGuide' );
+
+	Route::any( '/shop', 'MainController@shop' )->name( 'client.shop' );
+	Route::any( '/shop/api/getProductForHighlight', 'MainController@getProductForHighlight' )->name( 'client.getBuyProductHistory' );	
+	Route::any( '/main', 'MainController@newMainPage' )->name( 'client.newMainPage' );	
+	Route::any( '/main/search/{search?}', 'MainController@tabaoSearch' )->name( 'client.tabao.search' );	
+	Route::any( '/pre-share', 'MainController@preShare' )->name( 'client.preShare' );
+	Route::any( '/main/product/detail', 'MainController@tabaoProductDetail' )->name( 'client.tabao.ProductDetail' );
+	Route::get( '/guide/redeem', function () {
+		return view( 'client/quan');
+	} );
+		
 } );
 
 //Member routes with member guard
@@ -188,11 +211,29 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	} );
 
 	Route::get( '/redeem', function () {
-		return view( 'client/redeem');
+		//isVIP APP
+		if (env('THISVIPAPP', false) == true) {
+			return view( 'client/redeem_v2');
+		} else {
+			return view( 'client/redeem');
+		}
+		
 	} );
 
 	Route::get( '/redeem/{slug}', function ($slug = '') {
-		return view( 'client/redeem', compact('slug'));
+		if (env('THISVIPAPP', false) == true) {
+			return view( 'client/redeem_v2', compact('slug'));
+		} else {
+			return view( 'client/redeem', compact('slug'));
+		}
+		
+	} );
+
+	Route::get( '/redeem-vip', function () {
+		return view( 'client/redeem_v2_vip');		
+	} );
+	Route::get( '/redeem-vip/{slug}', function ($slug = '') {
+		return view( 'client/redeem_v2_vip', compact('slug'));		
 	} );
 
 	Route::get( '/validate', function () {
@@ -237,7 +278,7 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get( '/edit-setting', function () {
 		return view( 'client/edit_setting');
 	} );
-
+	
 } );
 
 //Member routes end
@@ -285,8 +326,6 @@ Route::group( [ 'namespace' => 'Auth', 'middleware' => [ 'guest' ] ], function (
 		return view( 'client/vwechat' );
 		// return File::get(public_path() . '/vwechat/index.html');
 	} );
-	
-	
 
 } );
 
@@ -295,9 +334,11 @@ Route::group( [  'middleware' => [ 'guest' ] ], function () {
 } );
 
 $this->get( 'login', 'Auth\MemberLoginController@showLoginForm' )->name( 'login' );
+
+$this->get( 'app-login', 'Auth\MemberLoginController@showLoginFormApp' )->name( 'app.login' );
+
+$this->get( 'app-register/{token?}', 'Auth\MemberRegisterController@showRegisterFormApp' )->name( 'app.register' );
 //Auth Routes END
-
-
 
 //Admin
 Route::group( [ 'middleware' => 'auth:admin' ], function () {
@@ -535,7 +576,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	//reports
 	Route::get('/report/redeem_product', 'ReportController@redeem_product')->name('report.redeem.product');
-	Route::get('/report/point_report', 'ReportController@ledger_report')->name('report.point.report');
+	Route::get('/report/point_report', 'ReportController@ledger_report_new')->name('report.point.report');
 	Route::get('/report/redeem_life', 'ReportController@redeem_life')->name('report.redeem.life');
 	
 	
@@ -651,7 +692,28 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 	
 	Route::get('/notification/list', 'ReportController@notifications_list')->name('notifications_list');
+	
+	
+	Route::post( 'receipt/update', 'AdminController@receipt_update' )->name( 'receipt_update' );
+	Route::get( 'receipt/get', 'AdminController@receipt_get' )->name( 'receipt_get' );
+	Route::get( 'receipt/list', 'AdminController@receipt_list' )->name( 'receipt_list' );
+	
+	Route::get( 'receipt/get-receipt-module', 'AdminController@receipt_get_to_module' )->name( 'receipt_get_to_module' );
+	Route::post( 'receipt/update-module', 'AdminController@receipt_update_to_module' )->name( 'receipt_update_to_module' );
+	
+	Route::get( 'receipt/get-gameledger', 'LedgerController@get_gameledger' )->name( 'get_gameledger' );
+	Route::post( 'receipt/update-gameledger', 'LedgerController@update_gameledger' )->name( 'update_gameledger' );
+	
+	Route::get( '/softpin/backorder', 'ProductController@softpin_backorder' )->name( 'softpin_backorder' );		
+	Route::post('/softpin/confirm-backorder', 'ProductController@confirm_softpin_backorder')->name('store_softpin_backorder');
 
+
+	Route::get('/setting/tabao', 'AdminController@show_tabao_cron' );
+	Route::any('/setting/updatetabao', 'AdminController@update_tabao_cron' )->name('update_tabao_cron');
+
+	Route::get( 'tabao/list', 'AdminController@tabao_list' )->name( 'tabao_list' );
+	Route::any( 'tabao/change-order', 'AdminController@tabao_changeorder' )->name( 'tabao_changeorder' );
+	
 } );
 //END
 
@@ -714,4 +776,22 @@ Route::any( '/weixin/{domain?}', 'weixinController@weixin_verify' )->name( 'weix
 Route::any( '/weixin/showqrcode/{openid}', 'weixinController@weixin_showqrcode' )->name( 'weixin.showqrcode' );
 Route::any( '/weixin/qrcode/{type}/{scene}', 'weixinController@weixin_qrcode' )->name( 'weixin.qrcode' );
 Route::any( '/weixin/createwxa/qrcode', 'weixinController@weixin_createwxaqrcode' )->name( 'weixin.createwxa.qrcode' );
+
+Route::any( '/tabao', 'tabaoApiController@index' )->name( 'tabao' );
+Route::any( '/tabao/test', 'tabaoApiController@test' )->name( 'tabao.test' );
+Route::any( '/tabao/get-goods-list', 'tabaoApiController@getGoodsList' )->name( 'tabao.getGoodsList' );
+Route::any( '/tabao/list-super-goods', 'tabaoApiController@getListSuperGoods' )->name( 'tabao.getListSuperGoods' );
+Route::any( '/tabao/get-goods-details', 'tabaoApiController@getGoodsDetails' )->name( 'tabao.getGoodsDetails' );
+Route::any( '/tabao/get-privilege-link', 'tabaoApiController@getPrivilegeLink' )->name( 'tabao.getPrivilegeLink' );
+Route::any( '/tabao/get-dtk-search-goods', 'tabaoApiController@getDtkSearchGoods' )->name('tabao.getDtkSearchGoods');
+Route::any( '/tabao/get-collection-list', 'tabaoApiController@getCollectionList' )->name('tabao.getCollectionList');
+Route::any( '/tabao/get-collection-list-with-detail', 'tabaoApiController@getCollectionListWithDetail' )->name('tabao.getCollectionListWithDetail');
+Route::any( '/tabao/get-taobao-collection/{page_num?}', 'tabaoApiController@getTaobaoCollection' )->name('tabao.getTaobaoCollection');
+Route::any( '/tabao/get-owner-goods', 'tabaoApiController@getOwnerGoods' )->name('tabao.getOwnerGoods');
+Route::any( '/tabao/get-tb-service', 'tabaoApiController@getTbService' )->name('tabao.getTbService');
+Route::any( '/tabao/storeAllCollectionIntoVouchers', 'tabaoApiController@storeAllCollectionIntoVouchers' )->name('tabao.storeAllCollectionIntoVouchers');
+Route::any( '/tabao/get-taobao-collection-vouchers/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchers' )->name('tabao.getTaobaoCollectionVouchers');
+
+
+
 

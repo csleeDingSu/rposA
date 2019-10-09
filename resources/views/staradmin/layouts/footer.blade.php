@@ -1,5 +1,5 @@
 @php
-if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) and !Request::is('arcade') and !Request::is('product/*') ) { 
+if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT']))) { 
 @endphp
 <div class="cardFoot">
 	<div class="navBox">
@@ -35,7 +35,7 @@ if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) an
 								<p class="vip-life">VIP专场</p>
 							@else
 								<!-- <i class="nTxt">{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? ((Auth::Guard('member')->user()->wechat_verification_status == 0) ? Auth::Guard('member')->user()->current_life : 0) : 0}}</i> -->
-								<i class="nTxt">{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}</i>
+								<i class="nTxt">0</i>
 								<p>剩余次数</p>
 							@endif
 						</div>
@@ -67,3 +67,13 @@ if( !preg_match('/micromessenger/i', strtolower($_SERVER['HTTP_USER_AGENT'])) an
 		@php
 } 
 @endphp
+		
+		
+		@if( Agent::is('OS X') )		
+			<style>
+			.cardFoot
+				{
+					/*margin-bottom: 15px !important;*/
+				}		
+			</style>
+		@endif

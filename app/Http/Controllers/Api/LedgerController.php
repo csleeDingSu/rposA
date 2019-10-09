@@ -9,6 +9,7 @@ use App\Members as Member;
 use Validator;
 use Carbon\Carbon;
 use App\Wallet;
+use App\Ledger;
 class LedgerController extends Controller
 {
 	public function get_notifications(Request $request)
@@ -43,14 +44,14 @@ class LedgerController extends Controller
 	public function get_wallet_detail(Request $request)
 	{
 		$memberid = $request->memberid;
-		$wallet   = Wallet::get_wallet_details($memberid);
+		$wallet   = Ledger::all_ledger($memberid);
 		return $wallet;
 	}
     
 	public function get_wallet_detail_all(Request $request)
 	{
 		$memberid = $request->memberid;
-		$wallet   = Wallet::get_wallet_details_all($memberid);
+		$wallet   = Ledger::all_ledger($memberid);
 		return $wallet;
 	}
 	
@@ -125,5 +126,37 @@ class LedgerController extends Controller
 		return ['success' => true , 'records'=>$result , 'status_reference'=>$status]; 
 		return $result;
 	}
+	
+	public function merge_point(Request $request)
+	{
+		return $wallet = Ledger::merge_ledger_point($request->memberid,$request->fromgameid,$request->togameid, $request->point,$request->topoint);
+	}
+	
+	public function convertbonustolife(Request $request)
+	{
+		$gameid = 102;
+		
+		$camout = \DB::table('games')->where('id' , 102)->first();
+		
+		if ($camout->bonus_point_to_life < 1)
+		{
+			return ['success' => false, 'message' => 'its not configured '];
+		}
+		
+		$ledger = Ledger::ledger($request->memberid , $gameid);
+		
+		if ($ledger->bonus_point < $camout->bonus_point_to_life)
+		{
+			return ['success' => false, 'message' => 'you dont have enough bonus point to redeem '];
+		}		
+		
+		$debit = Ledger::updateledger('debit','bonus_point',$request->memberid,$gameid,$camout->bonus_point_to_life,'BRBL', 'bonus point redeemd for life');
+		
+		
+		$life  = Ledger::life($request->memberid,$gameid,'credit',1,$category = 'RBL', 'bonus life for bonus point');
+		
+		return ['success' => true ]; 
+	}
+	
 	
 }

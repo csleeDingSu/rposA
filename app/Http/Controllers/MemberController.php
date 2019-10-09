@@ -242,9 +242,10 @@ class MemberController extends BaseController
 			$dbi[$val['name']] = $val['value'];		
 		}
 		
-		$id     = $dbi['hidden_void'];
-		$status = $dbi['model_wechat_status'];
-		$wechat = $dbi['model_wechat_name'];
+		$id       = $dbi['hidden_void'];
+		$status   = $dbi['model_wechat_status'];
+		$wechat   = $dbi['model_wechat_name'];
+		$wechatid = $dbi['model_wechat_id'];
 		
 		$record = Member::find($id);
 		if ($record)
@@ -253,6 +254,7 @@ class MemberController extends BaseController
 			
 			$input = [
 				 'wechat_name'   => $wechat,
+				 'wechat_id'     => $wechatid,
 				 'notes'         => $dbi['notes']
 				  ];			
 			
@@ -270,7 +272,7 @@ class MemberController extends BaseController
 			}	
 			else
 			{
-				$data = ['wechat_name'=> $wechat,'wechat_verification_status'=>$status,'wechat_notes'=>$dbi['notes']];
+				$data = ['wechat_id'=> $wechatid,'wechat_name'=> $wechat,'wechat_verification_status'=>$status,'wechat_notes'=>$dbi['notes']];
 				$res = Member::update_member($record->id,$data);
 			}	
 			
@@ -292,20 +294,21 @@ class MemberController extends BaseController
 					
 			}
 			
-			return response()->json(['success' => true,'wechat_name'=>$wechat,'wechat_status'=>$status,'badge'=>$badge]);
+			return response()->json(['success' => true,'wechat_id'=>$wechatid,'wechat_name'=>$wechat,'wechat_status'=>$status,'badge'=>$badge]);
 		}		
 		return response()->json(['success' => false]);
 	}
 	
 	public function add_life ($record)
 	{
+		$gameid = 102;
 		if ($record->referred_by)
 		{
 			if (empty($record->introducer_life))
 			{
 				//$life   = \Config::get('app.introducer_life');
 				$life   = Member::get_introducer_life();
-				$wallet = Wallet::update_ledger_life($record->referred_by, $life->introduce_life,'LILE',' Introducer bonus life.Introduced user :'.$record->username);
+				$ledger = \App\Ledger::life($record->referred_by,$gameid,'credit',$life->introduce_life,'LILE', ' Introducer bonus life.Introduced user :'.$record->username);
 				
 				if ($wallet['success'])
 				{
@@ -326,7 +329,7 @@ class MemberController extends BaseController
 							$new_bonus_life       = $bonuslife + $intro_bonus_life;
 							if ($new_bonus_life == $life->second_level_introduce_life)
 							{
-								Wallet::update_ledger_life($second_level_record->id, $life->second_level_introduce_life,'LILE',' Introducer second level bonus life.');
+								$ledger = \App\Ledger::life($second_level_record->id,$gameid,'credit',$life->second_level_introduce_life,'LILE', ' Introducer second level bonus life.');
 								$second_level_record->bonus_life = 0;
 							}
 							else

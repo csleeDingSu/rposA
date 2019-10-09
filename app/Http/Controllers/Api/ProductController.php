@@ -30,24 +30,17 @@ class ProductController extends Controller
 	
 	public function list_product_by_point(Request $request)
     {
-		$member_id = $request->memberid;
+		$member_id = $request->memberid;		
 		
-		$wallet = Wallet::get_wallet_details($member_id);
-		
-		if ($wallet)
-		{
-			$result =  Product::list_available_redeem_product($wallet->point, 0);
-			$package =  Package::list_available_redeem_package($wallet->point);
-			
-			return response()->json(['success' => true, 'current_point'=>$wallet->point , 'records' => $result, 'packages' => $package]);
-		}
-		return response()->json(['success' => false, 'records' => '']);
+		$result    =  Product::list_available_redeem_product(0, 0);
+		$package   =  Package::list_available_redeem_package(0);
+
+		return response()->json(['success' => true, 'current_point'=>0 , 'records' => $result, 'packages' => $package]);
 	}
 	
 	public function redeem_request(Request $request)
     {
 		$member_id = $request->memberid;
-		$wallet = Wallet::get_wallet_details($member_id);
 		//check point
 	}
 	
@@ -77,9 +70,10 @@ class ProductController extends Controller
 		return response()->json(['success' => true, 'records' => $result, 'package' => $package]);
 	}
 	
-	
+	//no use
 	public function request_redeem(Request $request)
     {
+		return response()->json(['success' => false, 'message' => 'moved to another function']);
 		$memberid  = $request->memberid;
 		
 		$productid = $request->productid;		
@@ -98,7 +92,7 @@ class ProductController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		$wallet    = Wallet::get_wallet_details($memberid);
+		//$wallet    = Wallet::get_wallet_9details($memberid);
 		
 		$product   = Product::get_available_pin($productid,$wallet->point);
 		
@@ -172,6 +166,7 @@ class ProductController extends Controller
 	//package
 	public function request_vip(Request $request)
     {
+		return response()->json(['success' => false, 'message' => 'moved to another function']);
 		$memberid  = $request->memberid;
 		
 		$packageid = $request->packageid;	
@@ -193,7 +188,7 @@ class ProductController extends Controller
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		$wallet    = Wallet::get_wallet_details($memberid);
+		//$wallet    = Wallet::get_wallet_9details($memberid);
 		
 		
 		//$basic_count = \DB::table('basic_redeem')->where('member_id',$request->memberid)->count();
@@ -326,7 +321,7 @@ class ProductController extends Controller
 		return response()->json(['success' => false, 'message' => 'unknown vip package / user not authorise to use this package']);
 	}	
 	
-	
+	// no use
 	public function vip_redeem_condition(Request $request)
     {		
 		$reset    = null;		
@@ -338,7 +333,7 @@ class ProductController extends Controller
 		{				
 			return response()->json(['success' => false,  'message' => 'no active vip subscriptions']); 
 		}
-		$wallet       = Wallet::get_wallet_details_all($memberid);
+		//$wallet       = Wallet::get_wallet_9details_all($memberid);
 		$redeemcount  = Package::get_redeemed_package_count($memberid);
 		$redeemreward = Package::get_redeemed_package_reward($package->id,$memberid);
 		

@@ -30,7 +30,8 @@ class PaymentController extends BaseController
      */
     public function index()
     {
-        //
+        //in future may add any fucntion
+		return view( 'client/youzan' );
     }
 
     /**

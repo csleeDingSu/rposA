@@ -6,21 +6,19 @@
 
 namespace App\Http\Controllers;
 use App;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-use Illuminate\Database\Eloquent\Model;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
-use Auth;
-use App\Wallet;
-
-use Carbon\Carbon;
 use App\BuyProduct;
+use App\Ledger;
+use App\Wallet;
+use Auth;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class BuyProductController extends BaseController
@@ -640,7 +638,8 @@ class BuyProductController extends BaseController
 		$id = $request->hid_package_id;
 		$record = BuyProduct::get_product($id);	
 		$member = Auth::guard('member')->user()->id	;		
-		$wallet = Wallet::get_wallet_details($member);
+		$l = Ledger::all_ledger($member);
+		$wallet = $l['gameledger']['103'];
 		return view( 'client/confirm', ['request' => $request, 'record' => $record, 'wallet' => $wallet]);
 	}
 
@@ -649,7 +648,9 @@ class BuyProductController extends BaseController
 		$record = BuyProduct::get_product($id);
 		if($record->type == 1){
 			$member = Auth::guard('member')->user()->id	;		
-			$wallet = Wallet::get_wallet_details($member);
+			$l = Ledger::all_ledger($member);
+			$wallet = $l['gameledger']['103'];
+
 			return view( 'client/confirm', ['request' => $request, 'record' => $record, 'wallet' => $wallet]);
 		} else {
 			return view( 'client/buy', ['request' => $request]);

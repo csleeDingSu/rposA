@@ -1,12 +1,35 @@
-@extends('layouts.default')
+@php
+    if (env('THISVIPAPP','false')) {
+        $default = 'layouts.default_app';
+    } else {
+        $default = 'layouts.default';
+    }
+@endphp
 
-@section('title', '邀请记录')
+@extends($default)
 
-@section('left-menu')
-    <a href="/profile" class="back">
-        <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
-    </a>
-@endsection
+@if(env('THISVIPAPP','false'))
+    <!-- top nav -->
+    @section('left-menu')
+      <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+    @endsection
+
+    @section('title', '邀请记录')
+
+    @section('right-menu')
+    @endsection
+    <!-- top nav end-->
+
+@else
+    @section('title', '邀请记录')
+
+    @section('left-menu')
+        <a href="javascript:history.back()" class="back">
+            <img src="{{ asset('/client/images/back.png') }}" width="11" height="20" />&nbsp;返回
+        </a>
+    @endsection
+@endif
+
 
 @section('top-css')
     @parent
@@ -20,6 +43,7 @@
 @endsection
 
 @section('content')
+
 <div class="full-height">
     <div class="container">
         <input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
@@ -27,6 +51,7 @@
         <input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
         <input type="hidden" id="page" value="1" />
         <input type="hidden" id="max_page" value="1" />
+        <input type="hidden" id="hidWallet" value="{{empty($wallet) ? null : $wallet}}" />
         <div class="information-table">
             <div class="col-xs-12">
                 <div class="image-wrapper">
@@ -159,10 +184,8 @@
     <!-- add next lvl invitation -->
     <script>        
         $(document).ready(function(){            
-            // document.getElementById('my-lvl-invitation').style.display = "none";
-            // document.getElementById('next-lvl-invitation').style.display = "none";
-            // document.getElementById('invitation').style.display = "none";
-            // document.getElementById('invitation_next_lvl').style.display = "none";
+            // console.log("{{empty($wallet) ? 0 : $wallet->life}}");
+            $('.nTxt').html("{{empty($wallet) ? 0 : $wallet->life}}");
         })
         
     </script>

@@ -1,0 +1,370 @@
+.bgColor {
+    background: #8c36d9;
+    padding: 0 0 0.5rem 0;
+    margin: -0.01rem 0;
+}
+
+.full-height {
+	height: 10.5rem;
+}
+
+.redeem-banner {
+    padding: 0.2rem;
+    text-align: center;
+    margin: 0;
+    height: auto;
+    width: auto;
+}
+
+.ranking-note-top {
+	border-radius: 20px 20px 0 0;
+    margin: 0.4rem 0.24rem 0 0.24rem;
+    padding: 0.35rem;
+    background-color: #fff;
+    color: #888;
+    font-size: 0.26rem;
+    line-height: 0.45rem;
+}
+
+.ranking-note-top .description{
+	color: #8d36d9 !important;
+    font-size: 0.3rem;
+}
+
+.ranking-note-top .note .icon-note{
+    background-size: contain;
+    width: 0.4rem;
+}
+
+.ranking-note-top .highlight{
+    /*color: #8d36d9 !important;*/
+}
+
+.ranking-note-bottom {
+	border-radius: 0 0 20px 20px;
+    border-top: 1px solid #e6e6e6;
+    margin: 0 0.24rem 0.24rem 0.24rem;
+    padding: 0.2rem 0.2rem 0.3rem 0.2rem;
+    background-color: #fff;
+    color: #888;
+    font-size: 0.26rem;
+    line-height: 0.45rem;
+    display: flex;
+}
+
+.ranking-note-bottom .total-point-left {
+ text-align: center;
+ color: #888;
+ width: 50%;
+ border-right: 1px solid #e6e6e6;
+}
+
+.ranking-note-bottom .total-point-right {
+	text-align: center;
+	color: #888;
+	width: 50%;
+}
+
+.my-earning-point{
+	font-size: 0.36rem;
+	color: #e48f00
+}
+
+.my-invitation-count {
+font-size: 0.36rem;
+	color: #000	
+}
+
+/* Tabs */
+.full-width-tabs {
+    padding: 0 0.2rem;
+    margin: 0;
+}
+
+.full-width-tabs > .nav-pills > .active > a {
+    text-decoration: none;
+    color: #606060 !important;
+    font-size: 0.32rem;
+    border-radius: 20px 20px 0 0;
+    background-color: #fff;
+    background: #fff;
+}
+.full-width-tabs > .nav-pills > li > a{
+    border-radius:0;
+    color:#fff;
+    font-weight: 500;
+    font-size: 0.32rem;
+    padding: 0 0.2rem;
+    border-radius: 20px 20px 0 0;
+    background-color: #b73dfd;
+    background: #b73dfd;
+}
+
+.full-width-tabs > ul.nav.nav-pills, .modal-row > ul.nav.nav-pills {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.full-width-tabs > ul.nav.nav-pills > li, .modal-row > ul.nav.nav-pills > li{
+    float: none;
+    display: table-cell;
+}
+.full-width-tabs > ul.nav.nav-pills > li > a, .modal-row > ul.nav.nav-pills > li > a{
+    text-align: center;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+	background: #fff;
+	color: #606060;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a, .nav-pills>li.active>a {
+	background: #b73dfd;
+	color: #fff;
+}
+
+.take-all-space-you-can{
+    width:100%;
+}
+/* End Tabs */
+
+.icon-trophy{
+	background-size: contain;
+    width: 0.5rem;
+    margin: 0 0 0.05rem;
+    padding: 0.02rem;
+}
+
+.icon-good-friends {
+	background-size: contain;
+    width: 0.5rem;
+    margin: 0 0 0.05rem;
+    padding: 0.02rem;
+}
+
+.lbl-general-ranking {
+	padding: 0.1rem;
+	font-size: 0.3rem;
+}
+
+.lbl-buy-product-ranking {
+	padding: 0.1rem;
+	font-size: 0.3rem;
+}
+
+.ranking .row {
+	color: #888;
+    font-size: 0.28rem;
+    margin: -0.02rem 0.2rem;
+    text-align: center;
+    background: #fff;
+    
+}
+
+.ranking .col {
+	
+}
+
+.ranking .tab-remark-1 {
+	font-size: 0.24rem;
+	color: #cbcbcb;
+	padding: 0.2rem;
+}
+
+#general-ranking .tab-row-header {
+	display: flex;
+	color: #888;
+	font-size: 0.24rem;
+	height: 0.55rem;
+    padding: 0.1rem;
+    background: #f2f3f4;
+    text-align: left;
+}
+
+#general-ranking .tab-col-header {
+    padding: 0.03rem 0 0 0.2rem !important;
+}
+
+#general-ranking .tab-col-header-name {
+    padding: 0.03rem 0 0 0.4rem !important;
+}
+
+#general-ranking .tab-content-my-ranking{
+	display: flex;
+    color: #b2b2b2;
+    font-size: 0.28rem;
+    height: 0.8rem;
+    padding: 0.2rem;
+    background: #fff;
+    text-align: left;
+    margin: 0 0 0.1rem 0;
+    border-bottom-color: #f2f3f4;
+    border-bottom: 1px solid;
+}
+
+.ranking .row .col-1 {
+	flex: 10%;
+	padding: 0.03rem 0;
+}
+
+.ranking .row .col-2 {
+	flex: 20%;
+	padding: 0.03rem 0;
+}
+
+.ranking .row .col-3 {
+	flex: 30%;
+	padding: 0.03rem 0;
+}
+
+.ranking .row .col-6 {
+	flex: 60%;
+	padding: 0.03rem 0;
+}
+
+.ranking .row .col-4 {
+	flex: 40%;
+	padding: 0.03rem 0;
+}
+.ranking .row .col-5 {
+	flex: 50%;
+	padding: 0.03rem 0;
+}
+
+.ranking-number {
+    text-align: center;
+    padding-right: 0.3rem !important;
+}
+
+.ranking-name {
+	text-align: left;
+	/*padding-left: 0.2rem !important;*/
+}
+
+.ranking-point{
+	text-align: left;
+    padding: 0.05rem 0 0 0.8rem !important;
+    background: url(/client/images/ranking/icon-coin.png) no-repeat;
+    background-size: 0.35rem 0.35rem;
+    margin: 0 0 0 -1rem;
+    background-position: 0.4rem 0.08rem;
+}
+
+.tab-content {
+	background-color: #fff;
+    margin: 0 0.2rem;
+    padding-top: 0.16rem;
+    padding-bottom: 0.05rem;
+
+}
+
+.ranking .tab-content .tab-content-list{
+    display: flex;
+    color: #b2b2b2;
+    font-size: 0.28rem;
+    height: 1.5rem;
+    padding: 0.2rem;
+    background: #fff;
+    /*text-align: left;*/
+    /*margin: 0;*/
+}
+
+#general-list {
+   position: relative;
+}
+
+#general-list .tab-content-list{
+	display: flex;
+	color: #b2b2b2;
+	font-size: 0.28rem;
+	height: 1rem;
+    padding: 0.2rem;
+    background: #fff;
+    text-align: left;
+    margin: 0;
+}
+
+#buy-product-list {
+   position: relative;
+}
+
+#buy-product-list .tab-content-list{
+    display: flex;
+    color: #b2b2b2;
+    font-size: 0.28rem;
+    height: 1rem;
+    padding: 0.2rem;
+    background: #fff;
+    text-align: left;
+    margin: 0;
+}
+
+
+.line-1, .line-2 {
+    height: 0.5rem;
+    padding: 0.1rem;
+}
+
+.ranking .tab-content .tab-content-list .ranking-phone-number{
+    float: left;
+    font-size: 0.3rem;
+    color: #606060;
+}
+
+.ranking .tab-content .tab-content-list .ranking-date{
+    float: right;
+}
+
+.ranking .tab-content .tab-content-list .ranking-product{
+    float: left;
+}
+
+.ranking .tab-content .tab-content-list .ranking-price{
+    float: right;
+    font-size: 0.3rem;
+    color: #606060;
+}
+
+.ranking .tab-content .tab-content-list .icon-coin-ranking{
+    background-size: contain;
+    width: 0.45rem
+}
+
+.tab-content-bottom {
+	padding: 0 0.2rem;
+    margin: -0.02rem 0.2rem 0.5rem 0.2rem;
+	border-radius: 0 0 20px 20px;
+	background-color: #fff;
+	height: 0.5rem;
+}
+
+.icon-one, .icon-two, .icon-three {
+    width: 0.5rem;
+}
+
+.no-record {
+    text-align: center;
+    color: #999;
+    font-size: 0.3rem;
+    padding: 0.5rem;
+}
+
+.no-record img{
+    width: 70%;
+    /*height: 50%;*/
+    padding: 0.5rem;
+}
+
+.redeem-more {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.15rem;
+    border-radius: 100px;
+    color: #ffe7ce;
+    font-size: 0.3rem;
+    margin: 0.2rem 1.2rem 0.5rem 1.2rem;
+    text-align: center;
+}
+
+.redeem-more a{
+    color: #ffe7ce;
+}

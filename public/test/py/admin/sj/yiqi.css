@@ -1,0 +1,202 @@
+@keyframes tishik
+{
+	
+
+	0%{
+		transform: scale(0.6);
+	
+	}
+	10%{
+		transform: scale(0.6);	
+		transform: rotateY(45deg);
+	}
+	20%{
+		transform: scale(0.7)
+	}
+	50%{
+		transform: scale(1);
+	}
+	80%{
+		transform: scale(1);
+	}	
+	
+}
+/*提示框*/
+#zhezhao{
+	z-index: 0;
+	background-color: rgba(0,0,0,0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom:0;
+	right:0;
+	
+}
+#tishik{
+	position: absolute;
+	left: 650px;
+	top:400px;
+	background-color: #f5f5f5;
+	box-shadow: 1px 1px 10px rgba(0,0,0,.2);
+	border-radius: 5px;
+	animation: tishik 1s ease-in-out ;
+	animation-fill-mode: backwards;
+}
+.tsk-img{
+	width: 100%;
+	height: 80px;
+
+
+}
+.tsk-img img{
+	margin-top: 20px;
+	width: 50px;
+	height: 50px;
+
+}	
+#tsk-p{
+	color: rgba(0,0,0,0.5);
+	margin: 0 auto;
+	font-size: 20px;
+	margin-bottom: 20px;
+	padding: 0 10px;
+
+}
+#tishik input{
+	cursor: pointer;
+	height: 30px;
+	border-radius: 5px;
+	color: #FFFFFF;
+	margin: 10px;
+}
+.tskint{
+	cursor: pointer;
+	height: 30px;
+	border-radius: 5px;
+	color: #FFFFFF;
+	margin: 10px;
+	display: inline-block;
+	line-height: 30px;
+	padding: 0 15px;
+}
+.tskint-yl{
+	background-color: #2196F3;
+	border: 1px solid rgba(0,150,245,1.00);
+}
+.tskint-fz{
+	background-color: #39BF50;
+}
+.tskint-gb{
+	background-color:#E83033;
+}
+
+/*底部*/
+.yiqi-buttom{
+	position: fixed;
+	bottom: 0;
+	font-size: 13px;
+	width: 100%;
+	height: 50px;
+	background-color: #fff;
+	line-height: 50px;
+	color: #676767;
+}
+/*大按钮*/
+.yiqi-biginput{
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+}
+
+/*弹出表单提交*/
+#yiqi-tijiaok{
+	background-color: #f5f5f5;
+	box-shadow: 2px 2px 20px #ccc;
+	position: fixed;
+	top: 15%;
+	left: 35%;
+	transition: all 1s;
+}
+.yiqi-tijiaok-head{
+	width: 100%;
+	height: 60px;
+	background-color:#fff;
+}
+.yiqi-tijiaok-head P{
+	line-height: 60px;
+	color: #636363;
+	font-size: 20px;
+	margin-left: 30px;
+}
+.yiqi-tijiaok-input{
+	width: 500px;
+	margin: 0 auto;
+}
+.yiqi-tijiaok-input input{
+	width: 90%;
+	height: 40px;
+	margin: 10px;
+	text-indent: 10px;
+	font-size: 14px;
+}
+.yiqi-tijiaok-tj{
+	width: 100%;
+	height: 60px;
+}
+.yiqi-tijiaok-btn{
+	width: 90px;
+	height: 40px;
+	color: #fff;
+	font-size: 15px;
+	margin:0 10px;
+	line-height: 40px;
+	border-radius: 3px;
+	cursor: pointer;
+	display: inline-block;
+}
+.yiqi-tijiaok-yes{
+	background-color: #0D8CDD;
+}
+.yiqi-tijiaok-no{
+	background-color: #AA0104;
+}
+.yiqi-tijiaok-input select{
+	width: 90%;
+	height: 45px;
+	margin: 12px 0;
+	text-indent: 10px;
+	font-size: 15px;
+}
+.yiqi-page{
+	width: 100%;
+	margin: 0 auto;	
+}
+.yiqi-page a{
+	font-size: 15px;
+	cursor: pointer;
+	padding:8px 13px;
+	border:1px solid #2A2A2A;
+	margin-right: 15px;
+}
+.yiqi-page a:hover{
+	border:1px solid #45ACF7;
+}
+.yiqi-page input{
+	width: 40px;
+	height: 28px;
+	margin-right: 10px;
+}
+.yiqi-page input:last-child{
+	width: 50px;
+	background-color: #059CFC;
+	border: 1px solid #4F92C3;
+	text-align: center;
+	color: #FFFFFF;
+	
+}
+.yiqi-page input:last-child:hover{
+		background-color:#0654A7;
+		cursor:pointer;
+		
+}

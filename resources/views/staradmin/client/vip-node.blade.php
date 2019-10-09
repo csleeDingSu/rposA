@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default_app')
 
 @section('title', '幸运转盘')
 
@@ -15,6 +15,23 @@
 	<link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}">
 
     <style>
+
+    	/* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/client/images/preloader.gif') center no-repeat;
+            background-color: rgba(255, 255, 255, 1);
+            background-size: 32px 32px;
+        }
     	
     	.reveal-modal {
 		    /*position: relative;*/
@@ -22,17 +39,94 @@
 		    top: 25%;
 		}
 
+	.reload2 {
+		display: none;
+		background-color: #fff;
+		position: fixed;
+	    left: 0px;
+	    top: 0px;
+	    width: 100%;
+	    height: 100%;
+	    z-index: 9999;
+	}
+
+	.no-connection-list {
+      font-size: 0.3rem;
+    padding: 0.24rem;
+    margin-top:2rem;
+    }
+
+    .no-connection-list li {
+    color: #666;
+    font-size: 0.26rem;
+    padding-bottom: 0.2rem;
+    text-align: center;
+  }
+
+  .no-connection-background {
+	}
+
+	.no-connection-background img {
+	    width: 70%;
+	    }
+
+	.no-connection-list .line1 {
+	    color: #333;
+	    font-size: 0.36rem;
+	    padding: 0.1rem;
+	}
+
+	.no-connection-list .line2 {
+	    color: #ccc;
+	    font-size: 0.28rem;
+	    padding:0.1rem;
+	}
+
+	.no-connection-list .btn-refresh {
+	    background-color: #ff466f;
+	    font-size: 0.32rem;
+	    border-radius: 0.1rem;
+	    color: #fff;
+	    padding: 0.2rem;
+	    text-align: center;
+	    margin: 0.1rem 2rem;
+	}
+
     </style>
 @endsection
-    	
+@section('top-javascript')
+@parent
+<script src="{{ asset('/client/js/jquery.wheel.js') }}"></script>
+<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
+	    <script type="text/javascript" charset="utf-8">
+	      	mui.init();
+	    </script>
+@endsection
+
 @section('top-navbar')
 @endsection
 
+@section('game-top-nav')
+	@if (env('THISVIPAPP', false))
+		@include('client.game-top-nav')
+	@endif
+@endsection
+
 @section('content')
-<div class="loading"></div>
-<div class="reload">
-	<div class="center-content">加载失败，请安刷新</div>
+<div class="loading2" id="loading2"></div>
+<div class="reload2">
+	<ul class="no-connection-list">
+      <li>
+        <div class="no-connection-background">
+            <img src="/clientapp/images/no-connection/no-internet.png" />
+        </div>
+      </li>
+      <li class="line1">网络竟然崩溃了</li>
+      <li class="line2">别紧张，重新刷新试试</li>
+      <div class="btn-refresh" onclick="javascript:location.reload();">重新刷新</div>
+  </ul>
 </div>
+
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
@@ -82,6 +176,8 @@
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
 			<input id="topupurl" type="hidden" value="{{env('TOPUP_URL','#')}}" />
 			<input id="isIOS" type="hidden" value="false" />	
+			<input id="hidEarnPoint" type="hidden" value="{{empty($earnpoint) ? 0 : $earnpoint}}" />	
+			<input id="hidUsedPoint" type="hidden" value="{{empty($usedpoint) ? 0 : $usedpoint}}" />	
 	  	</div>
 
 	</div>
@@ -367,34 +463,13 @@
 			  <div class="btn-trigger"></div>
 		</div>
 		<div style="clear: both;"></div>
-
-		<div class="redeem-banner">
-			<img src="{{ asset('/client/images/vip/redeem-banner.png') }}" alt="share">
-		</div>
-
-		<div class="redeem-prize-wrapper"></div>
-		<div style="clear: both"></div>
-
-		<div class="redeem-info">
-			<div class="info-box">
-				<div class="info-title">
-					<img src="{{ asset('/client/images/vip/decoration.png') }}" />换购规则<img src="{{ asset('/client/images/vip/decoration.png') }}" />
-				</div>
-				<hr />
-				关于金币：<span class="info-highlight">金币是用来换购产品使用，通过幸运转盘游戏获得，1金币等于1元。</span><br />
-				<br />
-				如何换购：<span class="info-highlight">进入礼品专区，挑选换购产品，下单后平台发货，每次换购完会自动扣除等值金币。</span>
-				<br />
-			</div>
-		</div>
-
 		<!-- end button wrapper -->
 	    </article>
-    </section>
+	   </section>
 	<!-- end progress bar -->
-
-	
 </div>
+
+@include('client.game-ranking-vip')
 
 @endsection
 
@@ -525,6 +600,9 @@
 								<div class="modal-instruction">这局亏了50元，继续加油哦</div>
 								<div class="close-win-modal modal-redeem-button">
 									再抽一次
+								</div>
+								<div class="btn-view-game-rules">
+									了解倍投 更容易中
 								</div>												
 							</div>
 						</div>
@@ -536,10 +614,41 @@
 
 <!--  end -->
 
+<!-- unlock modal -->
+<div class="modal fade col-md-12" id="modal-unlock" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="txt">请先解锁高级抽奖</div>					
+	</div>
+</div>
+
 <!-- insufficient point modal -->
 <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
 	<div class="modal-dialog modal-lg">
 		<div class="insufficient-point">金币不足 请充值</div>					
+	</div>
+</div>
+
+<div class="modal fade col-md-12" id="modal-insufficient-point-new" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">				
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<img src="{{ asset('/clientapp/images/game-node/icon-insuficient-coin.png') }}" />
+							<div class="title">挖宝币不足</div>
+							<div class="instruction">通过普通场抽奖可以兑换挖宝币，或者直接充值挖宝币。</div>
+							<div class="btn-go-arcade">
+								去普通抽奖
+							</div>
+							<div class="btn-go-topup">
+								充值挖宝币
+							</div>												
+						</div>
+					</div>
+				</div>							
+			</div>
+		</div>	
 	</div>
 </div>
 <!-- insufficient point modal Ends -->
@@ -561,6 +670,7 @@
 <div class="openForm">
 	<div class="formWrapper">
 	<div class="formTitle">玩法介绍</div>
+	<div class="closeForm">x 关闭</div>
 	<div class="formBody">
 		这是自助式抽奖，需自选单双和投入金币，投1金币可抽1.96金币，50%中奖率，使用倍增投币法能让中奖率提高到98%,<span class="highlight1">倍增投币法说明：</span><br />
 		✗第一次投入1金币，没抽中。<br />
@@ -671,6 +781,44 @@
 </div>
 <!-- is newbie modal Ends-->
 
+<!-- how to unlock modal -->
+<div class="modal fade col-md-12" id="modal-how-to-unlock" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">				
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<img class="btn-close" src="{{ asset('/clientapp/images/vip-node/icon-close.png') }}" />
+							<div class="instruction">
+								<ul class="star">
+									<li>
+										高级抽奖和普通抽奖类似，不同的是高级抽奖需投入挖宝币才能抽奖，<span class="highlight">无需邀请好友，无限抽无上限，挖宝币可兑换奖品。</span>
+										<br>
+									</li>
+									<li>
+										解锁高级抽奖需要<span class="highlight">680挖宝币</span>，通过<span class="highlight">普通抽奖可兑换或微店购买。</span>
+										<br>
+									</li>
+									<li>
+										新用户请认真查看新用户必读，掌握方法才避免损失。
+									</li>
+								</ul>
+							</div>
+							<div class="btn-go-topup">
+								充值挖宝币
+							</div>
+							<div class="btn-go-redeem">
+								兑换挖宝币
+							</div>												
+						</div>
+					</div>
+				</div>							
+			</div>
+		</div>	
+	</div>
+</div>
+<!-- insufficient point modal Ends -->
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -679,35 +827,54 @@
 	<script src="{{ asset('/client//unpkg.com/flickity@2/dist/flickity.pkgd.min.js') }}"></script>
 	<script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
 	<script src="{{ asset('/client/js/jquery.rotate.min.js') }}"></script>
-    <script src="{{ asset('/client/js/jquery.wheel.js') }}"></script>
+    
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
     <script src="{{ asset('/client/js/ifvisible.js') }}"></script>
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/public.js') }}" ></script>
 	<script src="{{ asset('/client/js/slide.js') }}"></script>
-	<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
+	
+	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
+
 
     <script type="text/javascript">
+
+    	document.onreadystatechange = function () {
+          var state = document.readyState
+          if (state == 'interactive') {
+          } else if (state == 'complete') {
+            setTimeout(function(){
+                document.getElementById('interactive');
+                document.getElementById('loading2').style.visibility="hidden";
+            },100);
+          }
+        }
+        
 		var wbp = "{{$wbp['wbp']}}";
         var platform = "{{$wbp['platform']}}";
         var browser = "{{$wbp['browser']}}";
         var topupurl = $('#topupurl').val();
 
+        console.log(platform);
+
+        mui.plusReady(function(){
+		             // 在这里调用plus api
+		             alert('ready');
+		});
+
         if (platform == 'iOS') {
         	$('#isIOS').val('true');
-			document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
-			    var a = document.createElement('a');
-			    a.setAttribute("href", topupurl);
-			    a.setAttribute("target", "_blank");
-			    var dispatch = document.createEvent("HTMLEvents");
-			    dispatch.initEvent("click", true, true);
-			    a.dispatchEvent(dispatch);
-			}, false); 
+			// document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
+			//     var a = document.createElement('a');
+			//     a.setAttribute("href", topupurl);
+			//     a.setAttribute("target", "_blank");
+			//     var dispatch = document.createEvent("HTMLEvents");
+			//     dispatch.initEvent("click", true, true);
+			//     a.dispatchEvent(dispatch);
+			// }, false); 
 
 			document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
+				// alert(1);
 			    var a = document.createElement('a');
 			    a.setAttribute("href", topupurl);
 			    a.setAttribute("target", "_blank");
@@ -717,6 +884,7 @@
 			}, false); 
 
 			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+				// alert(111);
 			    var a = document.createElement('a');
 			    a.setAttribute("href", topupurl);
 			    a.setAttribute("target", "_blank");
@@ -725,21 +893,56 @@
 			    a.dispatchEvent(dispatch);
 			}, false);      		
 
+    	} else if (platform == 'AndroidOS') {
+    		$('#isIOS').val('AndroidOS');
+   //  		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
+			// 	plus.runtime.openURL(topupurl);
+			// });
+			var urlStr = encodeURI($('#topupurl').val());
+            $('#btn-calculate-vip').click(function() {
+                plus.runtime.openURL(urlStr);
+            });
+
+			// document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+			// 	// alert(2);
+			// 	plus.runtime.openURL(topupurl);
+			// });
+
+			$('#btn-go-topup').click(function() {
+                plus.runtime.openURL(urlStr);
+            });
+
+			// document.getElementById("btn-go-topup").addEventListener('tap',function(){
+			// 	// alert(222);
+			// 	plus.runtime.openURL(topupurl);
+			// });
+
     	} else {
-    		$('#isIOS').val('false');
-    		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
-				plus.runtime.openURL(topupurl);
-			});
 
-			document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
-				plus.runtime.openURL(topupurl);
+   //  		$('#btn-purchase-point').click(function(){
+			// 	window.location.href = topupurl;
+			// });
+			$('#btn-calculate-vip').click(function(){
+				// alert(3);
+				// window.location.href = topupurl;
+				window.open(topupurl, '_blank'); 
 			});
-
-			document.getElementById("btn-go-topup").addEventListener('tap',function(){
-				plus.runtime.openURL(topupurl);
+			$('#btn-go-topup').click(function(){
+				// alert(333);
+				// window.location.href = topupurl;
+				window.open(topupurl, '_blank'); 
 			});
 
     	}
+
+    	$('.btn-go-arcade').click(function() {
+    		window.location.href = '/arcade';
+    	});
+
+    	$('.btn-go-topup').click(function() {
+    		$('#btn-go-topup').trigger("click");
+    	});    	
+
 	</script>
 
 	<script type="text/javascript">
@@ -757,7 +960,6 @@
 			})();
 
 		$(document).ready(function () {
-
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var user_id = $('#hidUserId').val();
@@ -785,12 +987,16 @@
 			});
 			
             $(".btn-rules-vip").click(() => {  
+
                 being.wrapShow();
                 $(".openForm").slideDown(150);
                 $(".wrapBox ").click(function (e) {
                   being.wrapHide();
                   $(".openForm").slideUp(150);
                 });
+                $('.openForm').modal();
+                $('.modal-backdrop').css("z-index", "3");
+
               });
 
             $(".instructions2").click(() => {  
@@ -803,6 +1009,18 @@
 	            });
 	          });
         	
+        	$('.closeForm').click(function() {
+	            $(".openForm").hide();
+	            $('.modal').modal('hide')
+	            // $('.modal-backdrop').remove() // removes the grey overlay.
+	            $('.modal-backdrop').css("z-index", "-1");
+            });
+
+            $('.btn-view-game-rules').click(function() {
+            	$('.modal').modal('hide');
+				$('.modal-backdrop').remove(); 
+            	$('.btn-rules-vip').trigger("click");
+            });
 		});
 
 		function show_openform() { 

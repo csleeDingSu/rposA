@@ -1,17 +1,19 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
-use App\Support\Filterable;
 use Carbon\Carbon;
-
-
 
 class History extends Model
 {   
-    protected $fillable = [        'member_id','credit_type','current_balance','before_life','current_life','debit','credit','notes','balance_before','balance_after','ledger_type','uuid','before_vip_life','current_vip_life','before_vip_point','current_vip_point','ref_id','ref_type','','','',''
+    protected $fillable = [        'member_id','game_id','account_id','debit','credit','notes','balance_before','balance_after','ledger_type','uuid',
     ];	
+			
+    protected $table = 'ledger_history_new';
 	
-    protected $table = 'ledger_history';	
+	public static function getTableName()
+    {
+        return with(new static)->getTable();
+    }
 	
 	public static function add_ledger_history($data)
 	{
@@ -19,8 +21,24 @@ class History extends Model
 		$history->fill($data);
 		$history->uuid = $uuid = unique_numeric_random((new static)->getTable(), 'uuid', 15);			
 		$history->save();
-		return $uuid;
+		return $history;
 	}
+	
+	public static function get_point($memberid , $gameid = FALSE, $date = FALSE)
+    {
+		$result = \DB::table('a_point_by_date')->where('member_id' , $memberid);
+		if ($gameid)
+		{
+			$result = $result->where('game_id' , $gameid);
+		}		
+		if ($date)
+		{			
+			$result = $result->where('point_date',$date);
+		}
+		
+		$result = $result->sum('credit');
+		return $result;
+    }
 	
 	public static function get_summary($memberid,$type = 'buyproduct')
 	{
@@ -36,6 +54,17 @@ class History extends Model
 		$result = $result->where('member_id', $memberid)->orderby('created_at','DESC')->get();
 		return $result;		
 	}
+
+	public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id', 'id');
+    }
+	
+	public function ledger()
+    {
+        return $this->belongsTo(Ledger::class, 'account_id', 'id');
+    }
+	
 }
 
 

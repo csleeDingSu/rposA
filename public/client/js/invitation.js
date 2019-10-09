@@ -1,6 +1,8 @@
 var status = 'default';
 var page = 1;
 var page_count = 1;
+var my_lvl_total = 0;
+var next_lvl_total = 0;
 
 $(function () {
     getToken();    
@@ -14,8 +16,8 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getSummary(data.access_token);
             getPosts(page, data.access_token, status);
+            getSummary(data.access_token);
             scrollBottom(data.access_token);
 
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -55,7 +57,7 @@ function getSummary(token) {
             var total_fail = 0;
             var total_pending = 0;
             var total_successful = 0;
-            var next_lvl_total = 0;
+            // var next_lvl_total = 0;
             var next_lvl_result = data.slc_count_new;
             var next_lvl_total_fail = 0;
             var next_lvl_total_pending = 0;
@@ -95,11 +97,11 @@ function getSummary(token) {
 
             });
 
-            $('#total-invite').html(total + next_lvl_total);
+            $('#total-invite').html(my_lvl_total + next_lvl_total);
             $('#total-fail').html(total_fail);
             $('#total-successful').html(total_successful);
             $('#total-pending').html(total_pending);
-            $('#my-lvl-total-invitation').html('(' + total + ')');
+            $('#my-lvl-total-invitation').html('(' + my_lvl_total + ')');
             $('#next-lvl-total-invitation').html('(' + next_lvl_total + ')');
             $('#next-lvl-total-fail').html(next_lvl_total_fail);
             $('#next-lvl-total-successful').html(next_lvl_total_successful);
@@ -143,6 +145,7 @@ function getPosts(page, token, status){
             $('#max_page').val(last_page);
             var records = data.result;
             var html = populateInvitationData(records, token, status);
+            my_lvl_total = data.result.total;
 
             status = 'default';
 

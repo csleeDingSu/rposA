@@ -1,0 +1,371 @@
+body {
+    background: #8c35d8;
+}
+
+.shop-banner {
+    background: url(/clientapp/images/shop/banner.png) no-repeat;
+    background-size: contain;
+    padding: 1rem;
+    margin: 0.1rem 0.4rem;
+}
+
+.header-line{
+	padding: 0.2rem 0;
+	height: 1rem;
+}
+
+.shop-left-menu {
+	border-radius: 100px;
+    font-size: 0.3rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 2.5rem;
+    float: left;
+    text-align: center;
+    margin: 0 0 0 0.2rem;
+    position: relative;
+}
+
+.shop-left-menu .clscoin {
+	height: 0.45rem;
+    margin: 0.055rem 0 0 -1.155rem;
+    position: absolute;
+}
+
+.shop-left-menu .clsquestion {
+    height: 0.55rem;
+    margin: -0.56rem 0 0 0.65rem;
+    position: absolute;
+}
+
+.shop-balance {
+	color: #fff;
+    font-size: 0.3rem;
+    padding: 0.08rem 0.08rem 0.08rem 0.1rem;
+    margin: 0;
+    text-align: center;
+}
+
+.shop-right-menu {
+	float: right;
+}
+
+.shop-right-menu img {
+	height: 0.6rem;
+}
+
+.shop-notification {
+	background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.15rem;
+    border-radius: 100px;
+    color: #e0bcff;
+    font-size: 0.22rem;
+    margin: 0rem 0.4rem 0 0.4rem;
+    text-align: center;
+}
+
+.txt-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.shop-notification .highlight{
+	color: #efae74;
+	font-size: 0.22rem;
+}
+
+.redeem-prize-wrapper {
+	padding: 0.4rem;
+}
+
+.redeem-prize .col-xs-6 {
+	padding: 0;
+}
+
+.left-box {
+	float: left;
+	width: 50%;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	position: relative;
+	display: table;
+}
+
+.right-box {
+	float: left;
+	width: 50%;
+	padding-left: 5px;
+	padding-bottom: 10px;
+	position: relative;
+	display: table;
+}
+
+.prize-box {
+	background: url('/client/images/vip/gift-box.png') no-repeat;
+	background-size:100% 100%;  
+	content: '';
+	position: relative;
+	display: table-cell;
+}
+
+.prize-box .image-wrapper {
+	width: 2.6rem;
+	height: 2.6rem;
+	margin: 0 auto;
+}
+
+.prize-box .image-wrapper img {
+	margin: 0.3rem auto;
+	width: 100%;
+	height: 100%;
+}
+
+.redeem-product {
+	font-size: 0.24rem;
+	color: #e1d3ed;
+	margin-top: 0.4rem;
+	text-align: left;
+	padding: 0.3rem 0.2rem 0.1rem 0.3rem;
+	height: 1rem;
+	overflow: hidden;
+}
+
+.redeem-price {
+	font-size: 0.34rem;
+	color: #ffae00;
+	float: left;
+	text-align: left;
+	width: 60%;
+	display: block;
+	padding-left: 0.3rem;
+}
+
+.redeem-currency {
+	font-size: 0.2rem;
+}
+
+.redeem-button-wrapper {
+	width: 40%;
+	float: left;
+}
+
+.redeem-button {
+	background: url(/client/images/vip/redeem-button.png) no-repeat;
+    width: 1.02rem;
+    height: 0.44rem;
+    background-size: contain;
+    font-size: 0.24rem;
+    padding-top: 0.04rem;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+}
+
+.redeem-details {
+	overflow: hidden;
+	margin-bottom: 0.2rem;
+	margin-top:0.1rem;
+}
+
+.redeem-details a {
+	color: white;
+}
+
+.redeem-info {
+	margin-bottom: 30px;
+}
+
+.info-box {
+	background:url(/client/images/vip/redeem-info.png) left top no-repeat;
+	background-size:100% 100%;  
+	content: '';
+	position: relative;
+	display: table-cell;
+	padding: 0.1rem 0.15rem 0.22rem 0.15rem;
+	font-size: 0.28rem;
+	text-align: left;
+}
+
+.info-box hr {
+	border: none;
+	border-top: 1px dashed #cf98fd;
+	height: 1px;
+	width: 100%;
+}
+
+.info-title {
+	font-size: 0.38rem;
+	text-align: center;
+}
+
+.info-title img {
+	width: 0.38rem;
+	height: 0.38rem;
+	margin: 0 0.2rem;
+}
+
+.info-highlight {
+	color: #ffa800;
+}
+
+#modal-insufficient-point .modal-dialog{
+    margin-top: 6rem;
+}
+
+#modal-insufficient-point .insufficient-point{
+	border-radius: 5px;
+	text-align: center;
+	padding: 0.2rem;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+
+}
+
+#modal-no-login .modal-dialog{
+	margin-top: 3rem;
+    padding: 0 0.55rem;
+}
+
+#modal-no-login .instructions {
+    color: #fff;
+    font-size: 0.3rem;
+    text-align: left;
+    line-height: 0.45rem;
+    padding: 0.02rem 0 0.2rem 1.05rem;
+    margin: 0;
+}
+
+#modal-no-login .highlight {
+	color: #fff71d;	
+}
+
+#modal-no-login {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#modal-no-login .nologin-bg {
+    background: url(/client/images/nologin-bg2.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    padding: 3.7rem 0.3rem 0.6rem 0.3rem;
+    height: 7.5rem;
+    width: 5.5rem;
+}
+
+#modal-no-login .btn-login {
+    background: transparent;
+    cursor: pointer;
+    text-align: center;
+    padding: 0;
+    height: 1.5rem;
+}
+
+#redeem-rules .modal-dialog{
+    margin-top: 3.5rem;
+}
+
+#redeem-rules .modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    padding: 0.4rem;
+}
+
+#redeem-rules .modal-title {
+	background: white;
+    color: #5b5b5b;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 0;
+    font-weight: 500;
+    font-size: 0.5rem;
+    width: 100% !important;
+    height: 5% !important;
+}
+
+#redeem-rules .instructions {
+    font-size: 0.26rem;
+    font-weight: 500;
+    color: #999;
+    padding: 0.2rem 0.2rem 0.6rem 0.2rem;
+    letter-spacing: 0.5px;
+    line-height: 0.5rem;
+}
+
+#redeem-rules .modal-close-btn {
+    background: #fcac12;
+    color: white;
+    border-radius: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+#faq-coinsource .modal-dialog{
+    margin-top: 3.5rem;
+}
+
+#faq-coinsource .modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    padding: 0.4rem;
+}
+
+#faq-coinsource .modal-title {
+    background: white;
+    color: #5b5b5b;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 0;
+    font-weight: 500;
+    font-size: 0.5rem;
+    width: 100% !important;
+    height: 5% !important;
+}
+
+#faq-coinsource .instructions {
+    font-size: 0.26rem;
+    font-weight: 500;
+    color: #999;
+    /*padding: 0.2rem 0.4rem 0.6rem 0.4rem;*/
+    padding: 0.2rem;
+    letter-spacing: 0.5px;
+    line-height: 0.5rem;
+}
+#faq-coinsource .instructions ul>li{
+    list-style-type: initial;
+    font-size: 0.3rem;
+}
+
+#faq-coinsource .modal-close-btn {
+    background: #fcac12;
+    color: white;
+    border-radius: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}

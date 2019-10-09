@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>首页</title>
+  <link rel="stylesheet" type="text/css" href="css/public.css" />
+  <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script type="text/javascript" src="js/swiper.min.js"></script>
+  <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+
+  <script type="text/javascript" src="js/being.js"></script>
+</head>
+
+<body>
+
+  <section class="card">
+    <section class="card-header borderBottom">
+      <div class="pageHeader">
+          <a class="returnBtn"><img src="images/returnIcon.png"><span>返回</span></a>
+          <h2>用户晒单</h2>
+      </div>
+     
+  
+    </section>
+    <div class="card-body over">
+      <div class="scrollBox ">
+        <div class="listBox3">
+          <div class="userBox">
+            <div class="username">
+              <h2>132*******324234</h2><span>2018.08.20</span>
+            </div>
+            <div class="address">浙江省杭州市上城区88号</div>
+          </div>
+          <div class="txtBox">100金币抽中苹果X，真的是太新云了啊！今天刚收到这个产，好像的按时大大说哈康师傅</div>
+          <ul class="imgBox">
+            <li><img src="images/demo1.png"></li>
+            <li><img src="images/demo1.png"></li>
+            <li><img src="images/demo1.png"></li>
+            <li><img src="images/demo1.png"></li>
+            <li><img src="images/demo1.png"></li>
+            <li><img src="images/demo1.png"></li>
+          </ul>
+        </div>
+        <div class="listBox3">
+          <div class="userBox">
+            <div class="username">
+              <h2>132*******324234</h2><span>2018.08.20</span>
+            </div>
+            <div class="address">浙江省杭州市上城区88号</div>
+          </div>
+          <div class="txtBox">100金币抽中苹果X，真的是太新云了啊！今天刚收到这个产，好像的按时大大说哈康师傅</div>
+          <ul class="imgBox">
+            <li><img src="images/1231.jpg"></li>
+            <li><img src="images/demo1.png"></li>
+            <li><img src="images/111.png"></li>
+            <li><img src="images/demo1.png"></li>
+
+          </ul>
+        </div>
+        <div class="listBox3">
+          <div class="userBox">
+            <div class="username">
+              <h2>132*******324234</h2><span>2018.08.20</span>
+            </div>
+            <div class="address">浙江省杭州市上城区88号</div>
+          </div>
+          <div class="txtBox">100金币抽中苹果X，真的是太新云了啊！今天刚收到这个产，好像的按时大大说哈康师傅</div>
+          <ul class="imgBox">
+            <li><img src="images/demo1.png"></li>
+
+            <li><img src="images/demo1.png"></li>
+          </ul>
+        </div>
+        <div class="lastPage">暂无更多...</div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="slideImg dn">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- <div class="swiper-slide">
+          <div class="inBox"><img src="images/demo1.png"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="inBox"><img src="images/demo2.png"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="inBox"><img src="images/1231.jpg"></div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    var swiper = new Swiper(".swiper-container", {
+      autoHeight: window.innerHeight,
+      autoplay: false, //可选选项，自动滑动
+    });
+
+    $('.listBox3 .imgBox li').click(function () {
+      $('.slideImg').removeClass('dn');
+      let html = "";
+      let that = $(this);
+      $.each(that.parent().find('li'), function (index, res) {
+        img = $(res).find('img').attr('src');
+        html += ' <div class="swiper-slide">';
+        html += '<div class="inBox"><img src="' + img + '"></div>';
+        html += ' </div>';
+      });
+
+      swiper.appendSlide(html);
+
+    });
+
+    $('.slideImg').click(function (e) {
+      if($(e.target).find('.swiper-container').length>0){
+        $('.slideImg').addClass('dn');
+      };
+    });
+
+
+
+
+  </script>
+
+
+
+
+
+
+</body>
+
+</html>

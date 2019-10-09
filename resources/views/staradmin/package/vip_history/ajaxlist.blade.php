@@ -17,6 +17,8 @@
 								<th>@lang('dingsu.package') @lang('dingsu.price')</th>
 								<th>@lang('dingsu.point')</th>
 								<th>@lang('dingsu.status')</th>
+								<th>@lang('dingsu.receipt')</th>
+								<th>@lang('dingsu.action')</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -51,6 +53,13 @@
 									@else
 									<label class="badge badge-danger">@lang('dingsu.unknown') @lang('dingsu.status')</label> 
 									@endif
+								</td>
+								<td id="tdr_{{ $list->id }}">
+									{{ $list->receipt }}
+								</td>
+								
+								<td>
+									<button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-success editrow"> <i class="fa fa-pencil-alt"></i> </button>
 								</td>
 								
 							</tr>

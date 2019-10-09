@@ -32,6 +32,7 @@
 .big-border {
 	padding:0.4rem 0.2rem;
 	position: relative;
+	z-index:1;
 	margin: auto;
 	width:6rem;
 	height:6rem;
@@ -67,6 +68,7 @@
 	position: relative;
 	width:5.6rem;
 	height:5.6rem;
+	z-index:1;
 	box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.2);
 }
 
@@ -102,6 +104,7 @@
 	font-weight: 500;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #9f4ff4;
+	text-align: center;
 }
 
 .counter{

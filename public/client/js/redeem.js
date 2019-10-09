@@ -3,13 +3,15 @@ var page_count = 1;
 var reload_pass = '￥EXpZYiJPcpg￥';
 var this_vip_app = false;
 var txt_coin = '元';
+var gameid = 102;
+var wallet_point = 0;
 
 $(document).ready(function () {
 
     this_vip_app = $('#this_vip_app').val();
 
     if (this_vip_app == true) {
-        txt_coin = "金币";
+        txt_coin = "挖宝币";
     }
 
     reload_pass = $('#reload_pass').val();
@@ -62,9 +64,7 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getProductList(data.access_token);
-            getPosts(page, data.access_token);
-            scrollBottom(data.access_token);
+            getWallet(data.access_token, id);
         }      
     });
 }
@@ -82,7 +82,7 @@ function getProductList(token) {
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
-            var current_point = getNumeric(data.current_point);
+            var current_point = getNumeric(wallet_point); //getNumeric(data.current_point);
             var previous_point = Cookies.get('previous_point');
             if(previous_point !== undefined){
                 previous_point = (getNumeric(previous_point));
@@ -137,7 +137,7 @@ function getProductList(token) {
                         reserved_quantity = 0;
                     }
 
-                    if (item.min_point > getNumeric(data.current_point)){
+                    if (item.min_point > getNumeric(wallet_point)){
                         cannot_redeem = true;
                         cls_cannot_redeem = 'btn-cannot-redeem';
                     }
@@ -187,12 +187,12 @@ function getProductList(token) {
                                                     '</div>' +
 
                                                     '<div class="modal-card">' +
-                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(data.current_point) +' ' + txt_coin + '</div>' +
+                                                        '<div class="wabao-balance">您当前拥有 '+ getNumeric(wallet_point) +' ' + txt_coin + '</div>' +
                                                     '</div>' +
 
                                                     '<div id="error-'+ item.id + '" class="error"></div>';
 
-                                                    if ((available_quantity > 0) && item.min_point <= getNumeric(data.current_point)) {
+                                                    if ((available_quantity > 0) && item.min_point <= getNumeric(wallet_point)) {
 
                                                         htmlmodel += '<div id="redeem-'+ item.id +'" onClick="redeem(\''+ token +'\', \''+ item.id +'\');">' +
                                                         '<a class="btn btn_submit" >确定兑换</a>' +
@@ -596,15 +596,14 @@ function populateHistoryData(records, token) {
     }
 
     if(current_page == 1 && last_page == 1 && html === '') {
-        html = '<div class="row-full">' + 
-                    '<div class="col-xs-12">'; 
+        html = '<div class="no-record">' +
+                    '<img src="/clientapp/images/no-record/redeem.png">' ;
                     if (this_vip_app) {
                         html += '<div class="empty">你还没兑换奖品<br><a href="/arcade" class="share-link">去换奖品></a></div>';
                     } else {
                         html += '<div class="empty">你还没兑换红包<br><a href="/arcade" class="share-link">去拿红包></a></div>';
                     }
-        html +=    '</div>' + 
-                '</div>';
+        html += '</div>';
     }
    
 
@@ -619,7 +618,7 @@ function redeem(token, product_id){
     $.ajax({
         type: 'POST',
         url: "/api/request-redeem",
-        data: { 'memberid': member_id, 'productid': product_id },
+        data: { 'memberid': member_id, 'productid': product_id, 'gameid': gameid },
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -1010,7 +1009,7 @@ function getVIPProduct(softpinCount, token){
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-remaining">已兑换 '+ total_used +' 张</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="' + cls_redeem_btn + ' openeditmodel_'+ item.id + '">兑换</div>' +
                                     '</div>' +
@@ -1027,7 +1026,7 @@ function getVIPProduct(softpinCount, token){
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-remaining">已兑换 '+ total_used +' 张</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">金币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="' + cls_redeem_btn + ' openeditmodel_'+ item.id + '">兑换</div>' +
                                     '</div>' +
@@ -1111,3 +1110,30 @@ function getVIPProduct(softpinCount, token){
 function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
   }
+
+function getWallet(token, id) {
+    $.ajax({
+        type: 'POST',
+        url: "/api/wallet-detail?gameid=" +gameid + "&memberid=" + id, 
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error.message);
+            $(".reload").show();
+        },
+        success: function(data) {
+            // console.log(data);
+            wallet_point = data.record.gameledger[gameid].point;
+            wallet_life = data.record.gameledger[gameid].life;
+            console.log(wallet_point);
+            $('.wabao-coin').html(wallet_point);
+            $('.nTxt').html(wallet_life);
+            getProductList(token);
+            getPosts(page, token);
+            scrollBottom(token);
+        }
+    });
+}

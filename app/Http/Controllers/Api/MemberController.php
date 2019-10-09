@@ -234,6 +234,64 @@ class MemberController extends Controller
 		return response()->json(['success' => false,'message' =>['Unknown user']]);
 	}	
 		
+	public function list_receipt(Request $request)
+	{
+		$receipt = \App\Receipt::where('member_id', $request->memberid);	
+		
+		if ($request->receipt)
+		{
+			$receipt = $receipt->where('receipt', $request->receipt);
+		}
+		$receipt = $receipt->latest()->get();
+		
+		return response()->json(['success' => true, 'records'=>$receipt]); 
+	}
 	
+	public function add_receipt(Request $request)
+	{
+		$validator = $this->validate($request, 
+            [
+                'memberid' => 'required|exists:members,id',
+				'receipt'  => 'required',
+            ]
+        );
+				
+		$receipt = \App\Receipt::where('member_id', $request->memberid)->where('receipt', $request->receipt)->first();		
+		if ($receipt)
+		{
+			return response()->json(['success' => false,'message' => trans('auth.receipt_exist')]);
+		}		
+		$receipt = \App\Receipt::create(['member_id' => $request->memberid , 'receipt' => $request->receipt ]);
+
+		event(new \App\Events\EventDynamicChannel('new-receipt','',$receipt )); 
+		
+		return response()->json(['success' => true, 'refid'=>$receipt->id]);
+	}
+	
+	public function invitation_list (Request $request) {
+		
+		$invitation_list = \App\ViewMember::select( 'id','created_at','updated_at','firstname','phone','username','wechat_name','profile_pic','wechat_verification_status','referred_by','totalcount' )->where('totalcount','>',0);
+		
+		if (!$request->offset)
+		{
+			$request->offset = 0;
+		}
+		
+		if (!$request->limit)
+		{
+			$request->limit = 10;
+		}
+		
+		if ($request->member_id)
+		{
+			$invitation_list  = $invitation_list->where('referred_by', $member_id);
+		}
+		$invitation_list      = $invitation_list->orderBy( 'id', 'desc' )
+									->offset($request->offset)
+									->limit($request->limit)
+									->get();
+
+		return response()->json(['success' => true, 'records'=>$invitation_list]);
+	}
 	
 }

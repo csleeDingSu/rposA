@@ -33,8 +33,12 @@
 </div><?php
 
 $affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
+if (env('THISVIPAPP', false)) {
+  $url = env('APP_URL_share', 'http://wabao777.com') . '/external/register/' . $affiliate_id;
+} else {
+  $url = env('APP_URL_share', 'http://wabao777.com') . '/register/' . $affiliate_id;  
+}
 
-$url = env('APP_URL_share', 'http://wabao777.com') . '/vregister/' . $affiliate_id;
 
 include(app_path().'/Lib/qr/qrlib.php');
 
@@ -266,8 +270,8 @@ border-radius: 20px;
       <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 33%">    
        <span class="head2">分享到微信的方法</span>
      </div>     
-     <div class="row justify-content-center headrow" style="margin-top: 10px; padding-left: 16%">    
-       <span class="head3">按住广告图3秒 > 分享给好友 > 选择好友</span>
+     <div class="row justify-content-center headrow" style="margin-top: 10px; text-align: center">    
+       <span class="head3">长按图片 > 储存图片 > 分享给好友</span>
      </div>
     
     
@@ -377,6 +381,7 @@ border-radius: 20px;
          margin-bottom: 0.4rem;
          margin-top: 1rem;
          line-height: 2;
+         height: 15%;
 }
 h1 {
   text-align: center;color: #FFF;font-size: 0.35rem;
@@ -413,7 +418,7 @@ h1:after {
     background-size:contain;
     background-repeat:no-repeat;
     background-color: #FF6d7d;
-    /*height: 12.4rem;*/
+    height: 15rem;
   }
   
   .small-img

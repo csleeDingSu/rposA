@@ -1,0 +1,87 @@
+.listBox .inBox .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+ em {
+ 	font-family: '黑体' !important;
+ 	padding: 0 0.05rem;
+ }
+
+.listBox .inBox .imgBox {
+	width: 2.6rem !important;
+    height: 2.6rem !important;
+}
+
+.listBox .typeBox {
+   padding-top: 0.04rem;
+}
+
+
+
+.searchBox input {
+    font-weight: 500;
+    margin-top: 0.1rem;
+ }
+
+ .goShare-c {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 60%;
+}
+
+.type-price {
+	color: #bebebe;
+	font-size: 0.26rem !important;
+    padding: 0 !important;
+    border:.012rem solid transparent;
+}
+
+.newTxt {
+  font-size: 0.22rem;
+  color: #bebebe;
+  line-height: 1em;
+  margin-right: 0.12rem;
+}
+
+.txt-red {
+  font-size: 0.22rem;
+  /*margin-right: 0.05rem;*/
+  color: #fe002f;
+  /*font-family: "黑体";*/
+  flex:1;
+}
+
+.num-reward {
+	font-size: 0.4rem;
+}
+
+.num {
+    height: 0.4rem;
+ }
+
+.logo3-c1 {
+  background: url(../images/index3-img1.png) left top no-repeat;
+  background-size: 100% auto;
+  padding-top: 1.45rem;
+  box-sizing: border-box;
+  height: 5.9rem;
+  margin-bottom: 0;
+  
+}
+
+.logo3-c1 .searchBox {
+  position: relative;
+  margin-bottom: 0;
+  bottom: 0;
+  box-shadow: none;
+  width: calc(100% - 0.48rem);
+}
+
+.logo3-c1 .about li {
+  color: #fff;
+}

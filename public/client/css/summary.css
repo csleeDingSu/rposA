@@ -13,6 +13,7 @@ html, body {
 
 #summary {
 	margin-top: 0.2rem;
+	text-align: center;
 }
 
 .row {
@@ -132,4 +133,21 @@ html, body {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 5.7rem;
+}
+
+.share-link {
+	color: red;
+}
+
+.no-record {
+	text-align: center;
+	color: #999;
+	font-size: 0.3rem;
+	padding: 0.5rem;
+}
+
+.no-record img{
+	width: 70%;
+	/*height: 50%;*/
+	padding: 0.5rem;
 }

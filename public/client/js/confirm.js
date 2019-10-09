@@ -1,6 +1,10 @@
 var token = '';
+var gameid=103;
+var is_app = true;
 
 $(document).ready(function () {
+
+    is_app = $('#hid_THISVIPAPP').val();
 
     $('.back').click(function(){
         $( "#frm_buy" ).submit();
@@ -78,7 +82,7 @@ $(document).ready(function () {
         var total =  quantity * price;
         var wallet_point = parseFloat($('#hid_wallet_point').val()).toFixed(2);
         if (total > wallet_point) {
-            $('.btn-confirm').html('金币不足');    
+            $('.btn-confirm').html('挖宝币不足');    
         } else {
             $('.btn-confirm').html('确认兑换');    
         }
@@ -124,16 +128,21 @@ function purchase() {
             'receiver_name': receiver_name, 
             'contact_number': contact_number,
             'city': city, 
-            'zip': ''
+            'zip': '',
+            'gameid': gameid
         },
         dataType: "json",
         error: function (error) { console.log(error.responseText) },
         success: function(data) {
             console.log(data);
             if(data.success) {
-                // $('.error').hide();
-                //$('#modal-successful').modal();
-                window.top.location.href = "/redeem/history";
+                
+                if (is_app) {
+                    window.top.location.href = "/redeem-vip/history";
+                } else {
+                    window.top.location.href = "/redeem/history";    
+                }
+                
             } else {
                 // $('.error').html(data.message);
                 // $('.error').show();

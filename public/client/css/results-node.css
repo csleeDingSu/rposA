@@ -63,11 +63,13 @@ div.legend-row {
 .odd-box {
   color: #fb973f;
   border: 1px solid #fb973f;
+  text-align: center;
 }
 
 .even-box {
   color: #b77eff;
   border: 1px solid #b77eff;
+  text-align: center;
 }
 
 .chain {

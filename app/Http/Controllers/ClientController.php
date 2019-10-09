@@ -90,27 +90,60 @@ class ClientController extends BaseController
 	
 	public function member_profile()
 	{
+		//isVIP APP
+		$this->vp = new VIPApp();
+		
+		\Log::debug(json_encode(['agent' => $_SERVER['HTTP_USER_AGENT']], true));
+
+
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
-		$data['wallet']    = Wallet::get_wallet_details_all($member);
+		$data['wallet']          = \App\Ledger::all_ledger($member,'');
+		$data['yesterdaypoint']  = \App\History::get_point($member,103,Carbon::yesterday()->toDateString());
+		$data['overallpoint']    = \App\History::get_point($member,103);
+		
+		//$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		/*
 		$usedpoint         = \DB::table('view_usedpoint')->where('member_id',$member);
 		
-		$this->vp = new VIPApp();
 		if ($this->vp->isVIPApp()) {
 			$usedpoint = $usedpoint->whereIn('credit_type',['DPRBP']);
 		}				
-		$data['usedpoint']  = $usedpoint->sum('point');		
-		$data['page']       = 'client.member'; 
-		$data['vip_status'] = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get(); 
+		
+		$data['usedpoint']   = $usedpoint->sum('point');
+		*/
+		$data['page']        = 'client.member'; 
+		$data['vip_status']  = view_vip_status::where('member_id',$member)->whereNotIn('redeem_state', [0,4])->get();
+		
+		$intro_count         = Member::get_introducer_count($member);
+		$sc_child            = Member::get_second_level_child_count($member);
+		
+		$icount = 0;
+		if (!empty($intro_count->count))
+		{
+			$icount = $intro_count->count;
+		}
+		
+		$scount = 0;
+		
+		if (!empty($sc_child['count']))
+		{
+			$scount = $sc_child['count'];
+		}
+		
+		//print_r($intro_count);
+		//print_r($sc_child);
+		//dd('s');
+		
+		$data['total_intro'] = 	$icount + $scount ;
 
-		//isVIP APP
-		$this->vp = new VIPApp();
 		if ($this->vp->isVIPApp()) {
 						
 			$data['wbp'] = $this->set_payment_browser();
 			
 			return view('client/member_vip', $data);
 		} else {
+			
 			return view('client/member', $data);
 		}
 		
@@ -218,7 +251,6 @@ class ClientController extends BaseController
 		
         // $banner = \DB::table('banner')->where('is_status' ,'1')->get();	
 
-
 		if (!Auth::Guard('member')->check())
 		{
 			
@@ -232,15 +264,20 @@ class ClientController extends BaseController
 	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
 	        } else {
 	            $data['betting_count'] = 0;
-				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin'));
+	            $total_intro = 0;
+	            $earnedpoint = 0;
+				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro', 'earnedpoint'));
 	        }
 			
 		} else {
 
 			$member_id = Auth::guard('member')->user()->id;
 
-        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();
-			
+        	// $member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();
+			// $wallet    = Wallet::get_wallet_details_all($member, env('THISVIPAPP',false));
+			// $member_mainledger = $wallet['gameledger']['102'];
+			$member_mainledger = null;
+
 			if($request->session()->get('firstwin') == 'no'){
 				$firstwin = null;
 			} else {
@@ -248,7 +285,22 @@ class ClientController extends BaseController
 			}
 
 			$data['betting_count'] = member_game_result::where("member_id", $member_id)->get()->count();
-			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin'));
+
+			 //referral friends
+			$intro_count         = Member::get_introducer_count($member_id, 0);
+			$sc_child            = 0; //Member::get_second_level_child_count($member_id);
+			
+			$total_intro = 	(!empty($intro_count->count) ? $intro_count->count : 0) + (!empty($sc_child['count']) ? $sc_child['count'] : 0) ;
+
+			$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+					->where('game_id',102)
+					->where('member_id',$member_id)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->first();
+
+			$earnedpoint = empty($row) ? 0 : $row->credit;
+
+			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'earnedpoint'));
 
 		}
 
@@ -256,37 +308,24 @@ class ClientController extends BaseController
 
 	public function member_access_vip_node()
 	{	
-
-		// if (!Auth::Guard('member')->check())
-		// {
-		// 	$msg = trans('dingsu.please_login');
-		// 	\Session::flash('success',$msg);
-
-		// 	return redirect('/nlogin');
-
-		// } else {
-
-			// $member = Auth::guard('member')->user()->id	;
-			// $data['member'] = Member::get_member($member);
-
-			// if(isset(Auth::Guard('member')->user()->vip_life) and Auth::Guard('member')->user()->vip_life > 0) {
-
-			// 	return view('client/vip-node');
-
-			// } else {
-
-			// 	return redirect('/arcade');
-			// }
-
 		if (env('THISVIPAPP', false) == false) {			
 			return redirect('/arcade');
+		} else {
+
+			$wbp = $this->set_payment_browser();
+			$usedpoint = 0;
+			$earnpoint = 0;
+
+			if (Auth::Guard('member')->check()) {
+				$gameid = 103;
+				$member = Auth::guard('member')->user()->id;
+				$earnpoint = \DB::table('a_view_earned_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
+				$usedpoint = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
+			}
+
+			return view( 'client/vip-node', compact( 'wbp', 'usedpoint', 'earnpoint') );
 		}
-					
-		$wbp = $this->set_payment_browser();
 		
-		return view( 'client/vip-node', compact( 'wbp' ) );
-		
-		// }
 	}
 	
 	public function member_update_wechatname(Request $request)
@@ -352,8 +391,9 @@ class ClientController extends BaseController
 	public function tips()
 	{
 
-		$tips =  tips::whereNull('deleted_at')->orderBy('seq')->get();
-		return view( 'client/tips', compact( 'tips' ) );
+		// $tips =  tips::whereNull('deleted_at')->orderBy('seq')->get();
+		// return view( 'client/tips', compact( 'tips' ) );
+		return view( 'client/cjiang' );
 
 	}
 
@@ -362,8 +402,9 @@ class ClientController extends BaseController
 		$member_id = Auth::guard('member')->user()->id;
 
 		$invitation_list = DB::table( 'view_members' )->where('referred_by', $member_id)->select( '*' )->orderBy( 'id', 'desc' )->get();
+		$wallet          = \App\Ledger::ledger($member_id,'102');
 
-		return view( 'client/invitation_list', compact( 'invitation_list' ) );
+		return view( 'client/invitation_list', compact( 'invitation_list','wallet' ) );
 
 	}
 
@@ -599,59 +640,5 @@ class ClientController extends BaseController
 
 		return view('client/download_app',compact('devices', 'isMacDevices', 'title_customize'));
 	}
-
-	public function member_access_game_ranking(Request $request)
-	{
-		//isVIP APP
-		$this->vp = new VIPApp();
-		if ($this->vp->isVIPApp()) {
-			return redirect('/vip');
-		}
-
-		$vouchers = \DB::table('voucher_category')
-			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
-			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
-			->groupBy('vouchers.id')
-			->orderby('vouchers.created_at', 'DESC')
-			->orderby('vouchers.id','DESC')
-			->paginate(6);
-		
-		if ($request->ajax()) {
-			$view = view('client.productv2',compact('vouchers'))->render();
-            return response()->json(['html'=>$view]);
-        }
-
-		if (!Auth::Guard('member')->check())
-		{
-			
-			$member_mainledger = null;
-			$firstwin 		   = null;
-
-			//weixin_verify
-			$this->wx = new WX();
-			if ($this->wx->isWeiXin()) {
-            	$request = new Request;
-            	$request->merge(['goto' => 'arcade_ranking']); 
-	            return $this->wx->index($request,'snsapi_userinfo',env('wabao666_domain'));
-	        } else {
-				return view('client/game-ranking',compact('vouchers','member_mainledger','firstwin'));
-	        }
-			
-		} else {
-
-			$member_id = Auth::guard('member')->user()->id;
-        	$member_mainledger = \DB::table('mainledger')->where('member_id', $member_id)->select('*')->first();			
-			if($request->session()->get('firstwin') == 'no'){
-				$firstwin = null;
-			} else {
-				$firstwin = \App\Product::IsFirstWin($member_id);
-			}
-
-			return view('client/game-ranking', compact('vouchers','member_mainledger','firstwin'));
-
-		}
-
-	}
-	
 	
 }

@@ -14,6 +14,8 @@ use Illuminate\Validation\ValidationException;
 use Larashop\Notifications\ResetPassword as ResetPasswordNotification;
 use Session;
 use Validator;
+use Jenssegers\Agent\Agent;
+
 class MemberLoginController extends Controller
 {
    
@@ -67,11 +69,42 @@ class MemberLoginController extends Controller
         
         //isVIP APP         
         if (env('THISVIPAPP', false)) {
-            return view('auth.login_vip',$data);    
+            // return view('auth.login_vip',$data);
+            $agent = new Agent();
+            // var_dump($agent->isSafari());
+            // dd($agent);
+
+        	if ($agent->isAndroidOS()) {
+        		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+        	} else {
+        		$data['RunInApp'] = true;
+        	}
+			
+            // return view('auth.login_new',$data);  
+            return view('auth.login_vip_new',$data);        
         } else {
             return view('auth.login',$data);    
         }
 	}
+
+    public function showLoginFormApp()
+    {
+        if (Auth::Guard('member')->check()){
+            return redirect('/');
+        } else {
+        	$agent = new Agent();
+			
+			if ($agent->isAndroidOS()) {
+        		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+        	} else {
+        		$data['RunInApp'] = true;
+        	}
+
+            // return view('auth/login_new', $data);
+            return view('auth/login_vip_new', $data);
+        }
+        
+    }
 	
 	/**
      * Check either username or email.
@@ -216,7 +249,7 @@ class MemberLoginController extends Controller
             //isVIP APP
             $this->vp = new VIPApp();
             if ($this->vp->isVIPApp()) {
-               $url = "/vip";
+               $url = "/main";
             } else {
                 $url = "/arcade";
             }

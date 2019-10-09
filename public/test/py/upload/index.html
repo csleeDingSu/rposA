@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head><title>多个文件上传表单</title></head>
+<body>
+<style>
+    form{
+        margin: 20px;
+        padding: 10px;
+    }
+
+    #picInput>input{
+        display: block;
+        margin: 10px;
+    }
+   .file-upload {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #C5B7B7;
+      display: inline-block;
+      padding: 10px 10px;
+      border-radius: 3px;
+      margin-top: 10px;
+    }
+    .file-upload-input {
+      position: absolute;
+      width: 999px;
+      height: 999px;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+	.pengyou_upload_input{
+		
+	}
+	.pengyou_upload_input input{
+		width: 100px;
+		height: 100px;
+		background:url(../images/icon/insertimg.png) no-repeat center;
+		cursor: pointer;
+		border: none;
+	}
+</style>
+<form action="pic.php" method="post" enctype="multipart/form-data">
+    <div id="picInput">
+		<div class="pengyou_upload_input">
+			<input type="button" onClick="uploadbut()">
+		</div>
+        <input type="file" name='myfile[]' class="pengyou_upload_input" style='display:none' id="pengyou_upload_input">
+    </div>
+    <input id="addBtn" type="button" onclick="addPic1()" value="继续添加图片"><br/><br/>
+    <input type="submit" value="上传文件">
+</form>
+    <div class="file-upload">
+        <span class="file-upload-text">上传图片</span>
+        <input name="upfile" class="file-upload-input" id="id-pic-file" type="file" accept="image/jpg,image/jpeg,image/png">
+    </div>
+<script>
+    function addPic1(){
+        var addBtn =  document.getElementById('addBtn');
+        var input = document.createElement("input");
+        input.type = 'file';
+        input.name = 'myfile[]';
+        var picInut = document.getElementById('picInput');
+        picInut.appendChild(input);
+        if(picInut.children.length == 3){
+            addBtn.disabled = 'disabled';
+        }
+    }
+	var uploadbut = function(){
+		
+		document.getElementById("pengyou_upload_input").click(); 
+	}
+</script>
+</body>
+</html>

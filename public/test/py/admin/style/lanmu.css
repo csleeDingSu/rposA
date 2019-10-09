@@ -1,0 +1,375 @@
+@charset "utf-8";
+/* CSS Document */
+.box{
+		width: 60%;
+		margin: 0 auto;
+}
+@media screen and (max-width: 800px){
+	.box{
+		width: 100%;
+	}
+}
+@keyframes tishik
+{
+	
+
+	0%{
+		transform: scale(0.6);
+	
+	}
+	10%{
+		transform: scale(0.6);	
+		transform: rotateY(45deg);
+	}
+	20%{
+		transform: scale(0.7)
+	}
+	50%{
+		transform: scale(1);
+	}
+	80%{
+		transform: scale(1);
+	}	
+	
+}
+.head{
+	width: 100%;
+	height: 80px;
+	background-color:#fff;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	border-left: 8px inset #29F139;
+}
+.head span{
+	line-height: 80px;
+	color: #EF8A8C;
+	font-size: 15px;
+	margin-left: 50px;
+}
+.lanmu-deleteall{
+	padding: 15px;
+	background-color: #F0272B;
+	float: left;
+	margin-left: 30px;
+	margin-top: 15px;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 15px;
+	cursor: pointer;
+}
+.lanmu-deleteall:hover{
+	background-color:#C70307;
+}
+.lanmu-tianjia{
+	padding: 15px 30px;
+	background-color:#25A434;
+	float: left;
+	margin-left: 30px;
+	margin-top: 15px;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 15px;
+	cursor: pointer;
+}
+.lanmu-tianjia:hover{
+	background-color:#11881B;
+}
+.lanmu-content{
+	width: 100%;
+	background-color: #fff;
+	box-shadow: 2px 2px 10px #c5c5c5;
+	overflow-x: scroll;
+	margin-bottom: 30px;
+	transition: all .3s;
+}
+.lanmu-head{
+	width:100%;
+	height: 60px;
+	line-height: 60px;
+	border-bottom: 2px solid #f5f5f5;
+	position: relative;
+}
+.lanmu-head h1{
+	display: inline;
+	cursor: pointer;
+}
+.lanmu-head img{
+	width: 30px;
+	height: 30px;
+	display: inline;
+	cursor: pointer;
+	vertical-align:sub;
+}
+.lanmu-table table{
+	 border-collapse:collapse;
+		margin: 10px auto;
+		margin-bottom: 20px;
+}
+
+.lanmu-table table td{
+	border: 1px solid #D7D7D7;
+	height:50px; 
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+#table-input input{
+	width: 70px;
+	height: 30px;
+	border: none;
+	margin-right: 5px;
+	border-radius: 3px;
+	color: #fff;
+	cursor: pointer;
+}
+.bg-black{
+	background-color:#131313;
+}
+.bg-red{
+	background-color: #f44336;
+}
+.bg-blu{
+	background-color: #046ED1;
+}
+.bg-hui{
+	background-color:#707070;
+}
+.bg-sred{
+	background-color:#E8281A;
+}
+.bg-gre{
+	background-color:#25A434;
+}
+.bg-cred{
+	background-color:#f11616;
+}
+#table-input input:nth-child(2):hover{
+	background-color: #046ED1;
+}
+#table-input input:nth-child(1):hover{
+	background-color:#E8281A;
+}
+.lanmu-table table tr:not(:first-child){
+	font-size: 15px;
+	color: #232323;
+	padding: 10px;
+	text-indent: 10px;
+}
+.lanmu-table table tr:first-child{
+	font-size: 15px;
+	text-indent: 10px;
+	color: #171717;
+	font-weight: bold;
+}
+.lanmu-input input{
+	width: 80%;
+	height: 30px;
+	border: none;
+}
+.lanmu-input input:focus{
+	border: 1px solid #ccc;
+}
+.yiqi-xuanzhe input{
+	width: 20px;
+	height: 20px;
+}
+.lanmu-input-xuhao input{
+	width: 25px;
+	height: 25px;
+	display: inline;
+	position: absolute;
+	left: 41%;
+	top:25%;
+	border: none;
+	background-color: #ff9800;
+	text-align: center;
+	border-radius: 50%;
+	color: #fff;
+}
+.lanmu-input-title{
+	width: 80px;
+	height: 30px;
+	font-size: 18px;
+	font-weight: bold;
+	border: none;
+	color: #232323;
+}
+.lanmu-yulan{
+	padding: 10px;
+	background-color: #36A4E9;
+	display: inline-block;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.lanmu-yulan p{
+	color: #F7F7F7;
+}
+.htvipimg{
+	width: 20px;
+	height: 20px;
+}
+#yiqi-xgpass{
+	width: 300px;
+	background-color: #f5f5f5;
+	position: fixed;
+	top:30%;
+	left: 35%;
+	border-radius: 5px;
+	animation: tishik 1s ease-in-out ;
+	animation-fill-mode: backwards;
+	
+}
+.yiqi-xgpass-dingwei{
+	width:80%;
+	height: 50px;
+
+	margin-top: 10px;
+} 
+.yiqi-xgpass-head{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+}
+.yiqi-xgpass-head p{
+	color:#0F0F0F;
+	font-size: 14px;
+	font-weight: bold;
+}
+#yiqi-xgpass input{
+	width:90%;
+	height: 30px;
+	border: 1px solid #BFBFBF;
+	background: url(../../images/icon/pass1.png);
+	background-size: 25px 25px;/*小图标的大小*/
+	background-position: 5px;/*小图标在input的位置*/
+	background-repeat: no-repeat;/*背景小图标不重复*/
+	padding-left: 30px;/*设置input内边距*/
+	background-color: #fff;
+	text-indent: 5px;
+	}
+#yiqi-xgpass input:hover{
+	border: 1px solid #5389F8;
+}
+.yiqi-xgpass-bottom{
+	width: 100%;
+	height:40px;
+	border-radius: 0px 0px 5px 5px;
+	border-top: 1px solid #B0B0B0;
+}
+.yiqi-xgpass-bottom-left{
+	width: 50%;
+	height: 100%;
+	border-right: 1px solid #B4B4B4;
+	float: left;
+	line-height: 40px;
+	cursor: pointer;
+	box-sizing: border-box;
+	border-radius: 0px 0px 0px 5px; 
+}
+.yiqi-xgpass-bottom-left p{
+	font-size: 15px;
+	color: #1E1E1E;
+	font-weight: bold;
+}
+.yiqi-xgpass-bottom-right {
+	width: 50%;
+	height: 100%;
+	line-height: 40px;
+	cursor: pointer;
+	float: right;
+	border-radius: 0px 0px 5px 0px;
+}
+.yiqi-xgpass-bottom-right p{
+	font-size: 15px;
+	color:#24D722;
+	font-weight: bold;
+
+}
+.yiqi-xgpass-bottom-right:hover{
+	background-color: #2F95F4;
+}
+.yiqi-xgpass-bottom-right p:hover{
+	color: #F0F0F0;
+}
+.yiqi-xgpass-bottom-left:hover{
+	background-color: #F72D31;
+}
+.yiqi-xgpass-bottom-left p:hover{
+	color: #F0F0F0;
+}
+.lanmu-input img{
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+}
+#pengyou-fdimg {
+	position: fixed;
+	top: 150px;
+	width: 100%;
+	max-width: 500px;
+	height: 400px;
+	z-index: 2;
+	transition: .5s;
+	margin: 0 auto;
+}
+#pengyou-fdimg img{
+	position: fixed;
+	width: 90%;
+	max-height: 600px;
+	max-width: 500px;
+	transition: .5s;
+	z-index: 4;
+}
+#zhezhao2{
+	z-index: 1;
+	background-color: rgba(0,0,0,1);
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+/*添加*/
+#yiqi-addWind{
+	position:fixed;
+	max-width:500px;
+	width:80%;
+	background-color:#f5f5f5;
+	box-shadow: 1px 1px 10px #acacac;
+}
+.yiqi-addWind-head{
+	width:100%;
+	height:40px;
+	background-color:#fff;
+	border-bottom:1px solid #ccc;
+	margin-bottom:10px;
+}
+.yiqi-addWind-head p{
+	line-height:40px;
+	color:#6b6b6b;
+	font-size:17px;
+	font-weight:bold;
+}
+.yiqi-addWind-content{
+	width:90%;
+	margin:0 auto;
+}
+.yiqi-addWind-content input{
+	width:100%;
+	height:40px;
+	text-indent:20px;
+	border: 1px solid #ccc;
+	margin-bottom:10px;
+}
+.yiqi-addWind-content-btn input{
+	text-indent:0;
+	color:#fff;
+	border:none;
+	cursor:pointer;
+}
+.yiqi-addWind-content-btn input:nth-child(1){
+	background-color:#1976d2;
+}
+.yiqi-addWind-content-btn input:nth-child(2){
+	background-color:#f44336;
+}

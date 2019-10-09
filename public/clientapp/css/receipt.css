@@ -1,0 +1,64 @@
+#game-rules .modal-dialog{
+    margin-top: 4.2rem;
+}
+
+#game-rules .modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    padding: 0.3rem;
+    margin: 0.5rem;
+}
+
+#game-rules .modal-title {
+	background: white;
+    color: #5b5b5b;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 0;
+    font-weight: 500;
+    font-size: 0.5rem;
+    width: 100% !important;
+    height: 5% !important;
+}
+
+#game-rules .instructions {
+    font-size: 0.26rem;
+    font-weight: 500;
+    color: #999;
+    padding: 0.2rem;
+    letter-spacing: 0.5px;
+    line-height: 0.5rem;
+}
+
+#game-rules .modal-close-btn {
+    background: #fcac12;
+    color: white;
+    border-radius: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.no-record {
+    text-align: center;
+    color: #999;
+    font-size: 0.3rem;
+    padding: 0 0.5rem 1rem 0.5rem;
+}
+
+.no-record img{
+    width: 70%;
+    /*height: 50%;*/
+    padding: 0.5rem;
+}

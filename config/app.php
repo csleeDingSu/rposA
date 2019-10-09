@@ -179,6 +179,8 @@ return [
 		Barryvdh\Cors\ServiceProvider::class,
   
 		Jackiedo\DotenvEditor\DotenvEditorServiceProvider::class,
+		
+		Jenssegers\Agent\AgentServiceProvider::class,
     ],
 
     /*
@@ -242,10 +244,13 @@ return [
 	'banner_url' => public_path("ad\banner"),
 	'shareurl' => 'wabao666.com/share_product/',
 	
-	'coin_max' => env('coin_max', 15),
+	'coin_min' => env('coin_min', 6),
+	'coin_max' => env('coin_max', 12),
 	'paginate' => 15,
 	'wabao666_domain' => env('wabao666_domain'),
 	
 	'REDIS_PREFIX' => env('REDIS_PREFIX', 'C'),
+	'reward_ratio' => env('reward_ratio', 10),
+	
 	
 ];

@@ -8,6 +8,10 @@
 <section class="datalist">
 @include('member.ajaxmemberlist')
 </section>
+<section class="models text-capitalize modellist">
+	@include('member.model')
+</section>
+
 <!-- Wechat status Modal starts -->
 <form class="form-sample" name="formupdatewechatstatus" id="formupdatewechatstatus" action="" method="post" autocomplete="on">
 	<div class="modal fade" id="editwechatstatusmode" tabindex="-1" role="dialog" aria-labelledby="editwechatstatusmodelabel" aria-hidden="true">
@@ -24,7 +28,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
-								<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.wechat') @lang('dingsu.name') <span class="text-danger">*</span></label>
+								<label for="model_wechat_name" class="col-sm-3 col-form-label">@lang('dingsu.wechat') @lang('dingsu.name') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="model_wechat_name" id="model_wechat_name" value="">
 								</div>
@@ -34,7 +38,17 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
-								<label for="game_name" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
+								<label for="model_wechat_id" class="col-sm-3 col-form-label">@lang('dingsu.wechat') @lang('dingsu.id') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="model_wechat_id" id="model_wechat_id" value="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
+								<label for="model_wechat_status" class="col-sm-3 col-form-label">@lang('dingsu.category') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="model_wechat_status" id="model_wechat_status">
 										<option value="0">@lang('dingsu.verified')</option>
@@ -360,12 +374,14 @@
 	{
 		var wename = $("#show_wechat_name_"+id).val();		
 		var status = $("#show_wechat_status_"+id).val();
+		var wechat_id = $("#show_wechat_id_"+id).val();
 		
 		$('#hidden_void').val(id);
 		$('#notes').val(notes);
 		$('#validation-errors').html('');
 		$("#model_wechat_status").val(status);		
 		$("#model_wechat_name").val(wename);		
+		$("#model_wechat_id").val(wechat_id);	
 		$('#editwechatstatusmode').modal('show');
 	}
 	
@@ -578,7 +594,10 @@
 					$(".show_wechat_verification_"+id).html(result.badge);
 					
 					$("#show_wechat_name_"+id).val(result.wechat_name);		
-					$("#show_wechat_status_"+id).val(result.wechat_status);	
+					$("#show_wechat_status_"+id).val(result.wechat_status);
+
+					$("#show_wechat_id_"+id).val(result.wechat_id);
+					$(".show_wechat_id_"+id).val(result.wechat_id);	
 				}
 			},
 			error: function ( xhr, ajaxOptions, thrownError ) {
@@ -811,4 +830,78 @@ function confirm_Delete(id)	{
                 });
             }
         });	
+		
+		
+			$('#formedit').on('submit', function(event){
+		event.preventDefault();
+		$('.inputTxtError').remove();
+		show_wait('update');				
+		var formData = new FormData();		
+		$.ajax( {
+				url: "{{route('update_gameledger')}}",
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				type: 'POST', 
+				data:new FormData(this),
+				cache : false, 
+				processData: false,
+				success: function ( result ) {
+					console.log('imhere');
+					if ( result.success == true ) {
+						swal.close();
+						$( '#openmodel' ).modal( 'hide' );			
+						var data = result.record;
+						swal({ icon: "success",  type: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.update_success_msg")', confirmButtonText: '@lang("dingsu.okay")'});						
+						$('#tr_' + result.id).replaceWith(data);
+					} else {						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+					}
+										
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal.close();			
+					displayFieldErrors(xhr.responseJSON.errors,xhr.status);	
+				}
+			} );
+		
+	});
+//get receipt details	
+	$(".datalist").on("click",".editrow", function(){
+			var id=$(this).data('id');
+			$('.inputTxtError').remove();
+			show_wait('fetch');
+			
+			$.ajax( {
+				url: "{{route('get_gameledger')}}",
+				type: 'get',
+				dataType: "json",
+				data: {
+					_method: 'get',
+					_token: "{{ csrf_token() }}",
+					id:  id,
+				},
+				success: function ( result ) {
+					if ( result.success == true ) {
+						swal.close();
+						var data = result.record;						
+						if (data != null)
+							{
+								$('.renderdata').html(data);
+								$('#openmodel').modal('show');
+							}
+						else 
+							{
+								swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+							}						
+					} else {						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+					}
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+				}
+			} );
+		});	
 </script>

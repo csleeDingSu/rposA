@@ -36,10 +36,11 @@ class BuyProductController extends Controller
 	}
 	
 	public function list_package(Request $request)
-    {
+    {    	
 		$member_id = $request->memberid;
+		$limit = $request->limit;
 		
-		$result =  BuyProduct::list_available_redeem_package(0);
+		$result =  BuyProduct::list_available_redeem_package(0, $limit);
 		
 		$type = ['1'=>'virtual card','2'=>'Product'];
 		

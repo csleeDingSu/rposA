@@ -521,11 +521,13 @@ WHERE
 		$input = [
 					'title'   => $dbi['title'], 			 
 					'content' => $dbi['content'],
+					'seq'     => $dbi['seq'],
 			  	 ];
 		
 		$validator = Validator::make($input, [
 			'title'   => 'required|unique:faq,title',
 			'content' => 'required',
+			'seq'     => 'nullable|numeric|min:1|max:99|unique:faq,seq',
 		]);
  
 		
@@ -537,7 +539,7 @@ WHERE
 		
 		
 		$now = Carbon::now();
-		$data = ['title' => $input['title'],'content' => $input['content'],'created_at' => $now];
+		$data = ['seq' => $input['seq'],'title' => $input['title'],'content' => $input['content'],'created_at' => $now];
 		
 		$id = Admin::create_faq($data);
 		
@@ -545,7 +547,8 @@ WHERE
 		$faq  = Admin::get_faq($id);
 		$row  = '<tr id=tr_'.$faq->id.'>';
 		$row .= "<td>$faq->id</td>";
-		$row .= "<td>$now</td>";			
+		$row .= "<td>$now</td>";
+		$row .= '<td>'.$faq->seq.'</td>';			
 		$row .= '<td>'.$faq->title.'</td>';
 		$row .= '<td>'.$faq->content.'</td>';
 		$row .= '<td><a href="javascript:void(0)" data-id="'.$faq->id.'"  class="editfaq btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-pencil "></i></a>';
@@ -563,16 +566,18 @@ WHERE
 		$input = [
 					'title' => $data['title'], 
 					'content'   => $data['content'],
+					'seq'     => $data['seq'],
 			  	 ];
 		$validator = Validator::make($input, [
 			 'title' => 'required|unique:faq,title,'.$id,
       		 'content'  => 'required',
+      		 'seq'     => 'nullable|numeric|min:1|max:99|unique:faq,seq',
 		]);
 		if ($validator->fails()) {
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
 		
-		$insdata = ['title' => $data['title'],
+		$insdata = ['seq' => $data['seq'],'title' => $data['title'],
 				 'content' => $data['content'],];		
 		
 		$res = Admin::update_faq($id,$insdata);		
@@ -592,7 +597,7 @@ WHERE
             ]
         );
 		
-		$data = ['title' => $request->title,
+		$data = ['seq' => $request->seq,'title' => $request->title,
 				 'content' => $request->faq_content,];		
 		
 		$res = Admin::update_faq($id,$data);		
@@ -1120,6 +1125,257 @@ WHERE
 		return response()->json(['success' => true,'mode'=>'edit','dataval'=>$input]);
 	}
 	
+	public function receipt_list (Request $request)
+	{
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);		
+		$result = \App\Receipt::with('member','reason');
+										 
+		if ($input)
+		{
+			if (!empty($input['s_receipt'])) { 
+				$result = $result->where('receipt','LIKE', "%{$input['s_receipt']}%") ;
+			}
+			if (!empty($input['s_status'])) { 
+				$result = $result->where('status',$input['s_status']) ;
+			}
+			if (!empty($input['s_member'])) {
+				$result = $result->where('members.phone','LIKE', "%{$input['s_member']}%")->orwhere('wechat_name' , 'LIKE', "%{$input['s_member']}%") ;
+			}
+			if (!empty($input['reason_id']))  {
+					$result = $result->where('id', $input['reason_id']) ;
+			}
+		}
+		
+		$result =  $result->orderby('id','DESC')->paginate(30);				
+		 				
+		if ($request->ajax()) {
+            return view('receipt.ajaxlist', ['result' => $result])->render();  
+        }
+		$data['page']    = 'receipt.list'; 				
+		$data['result']  = $result;		
+		return view('main', $data);	
+	}
 	
+	public function receipt_get(Request $request)
+    {
+    	$record    = \App\Receipt::where('id',$request->id)->first();	
+		$reason    = \DB::table('receipt_reason')->get();
+		$record    =  view('receipt.render_edit', ['result' => $record , 'id'=>$record->id , 'reason'=>$reason]) ->render();
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$record]);	
+    }
+	
+	public function receipt_update(Request $request)
+    {
+    	$gameid  = 102;
+		
+		$record  = \App\Receipt::where('id',$request->id)->first(); 		
+		if ($record->status != 1)
+		{
+			return response()->json(['success' => false, 'errors' => trans('lang.record_already_settled') ]); 
+		}	
+		$game = \DB::table('games')->where('id' , $gameid)->first();
+		
+		$camout = $game->reward_ratio;
+		$credit = $request->amount *  $camout;
+			
+		$record->status     = $request->status;	
+		$record->amount     = $request->amount;	
+		$record->reward     = $camout;	
+		$record->reason_id  = $request->reason_id;	
+		$record->remark     = $request->remark;			
+		
+		if ($record->status == 2)
+		{
+			$ledger = \App\Ledger::ledger($record->member_id , $gameid);
+			if ($credit > 0)
+			{
+				$result = \App\Ledger::bonus($record->member_id,$gameid,$credit,'', '');
+				$record->ledger_history_id     = $result['id'];	
+			}
+			
+			//auto calculate reward point and life
+			$i = $game->bonus_point_to_life;
+			
+			if ($i>=1)
+			{
+				$ledger = \App\Ledger::ledger($record->member_id , $gameid);
+				$bonus  = $ledger->bonus_point;
+				while($i <= $bonus) 
+				{
+					$bonus = $bonus - $i;					
+					$debit = \App\Ledger::updateledger('debit','bonus_point',$record->member_id,$gameid,$game->bonus_point_to_life,'BRBL', 'bonus point redeemd for life');
+					
+					$life  = \App\Ledger::life($record->member_id,$gameid,'credit',1,$category = 'RBL', 'bonus life for bonus point');					
+				}
+			}			
+		}
+				
+		$record->save();		
+		$row = $this->render_receiptdata($request->id);
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$row]);
+    }
+	
+	public function render_receiptdata($id)
+    {
+    	$record    = \App\Receipt::with('reason')->where('id',$id)->get();
+    	if (!empty($record[0])	) {
+    		event(new \App\Events\EventDynamicChannel('receipt-updated','',$record[0] ));	
+    	}    	
+		$record    =  view('receipt.render_data', ['result' => $record])->render();						
+		return $record;
+    }
+		
+	public function receipt_get_to_module(Request $request)
+    {
+		$table = '';
+		switch($request->module)
+		{
+			case 'buyproduct':
+				$table = 'view_buy_product_user_list';		
+			break;
+			case 'product':
+				$table = 'redeemed';	
+			break;
+			case 'basicpackage':				
+				$table = 'view_basic_package_user_list';		
+			break;
+			case 'package':
+				$table = 'vip_redeemed';		
+			break;
+		}
+		
+		if (!$table)
+		{
+			return response()->json(['success' => false,'message'=>'unknown module']); 
+		}
+		
+		$result  =  \DB::table($table)->where('id', $request->id)->first();	
+		$record  =  view('receipt.render_update', ['result' => $result , 'id'=>$request->id , 'module'=>$request->module ])->render();						
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$record]); 
+	}
+	
+	public function receipt_update_to_module(Request $request)
+    {
+		$table = '';
+		if (!$request->receipt)
+		{
+			return response()->json(['success' => false,'message'=>'no receipt to update']); 
+		}
+		switch($request->module)
+		{
+			case 'buyproduct':
+				$table =  'buy_product_redeemed';		
+			break;
+			case 'product':
+				$table =  'redeemed';		
+			break;
+			case 'basicpackage':
+				$table =  'basic_redeemed';		
+			break;	
+			case 'package':
+				$table =  'vip_redeemed';		
+			break;					
+		}
+		
+		if (!$table)
+		{
+			return response()->json(['success' => false,'message'=>'unknown module']); 
+		}
+		
+		\DB::table($table)
+            	->where('id', $request->id)
+            	->update(['receipt'=>$request->receipt]);
+		
+		$record = $this->receipt_get_to_module($request);
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$request->receipt]); 
+	}
+
+	public function show_tabao_cron(Request $request)
+    {
+		$id = 9;
+		$record = \DB::table('cron_manager')->where('id',$id)->first();		
+		$data['page']    = 'cronmanager.tabao'; 				
+		$data['record']  = $record;		
+		return view('main', $data);	
+	}
+	
+	public function update_tabao_cron(Request $request)
+    {
+		$id     = 9;
+		$data   = [];
+		$record = \DB::table('cron_manager')->where('id',$id)->first();
+		
+		if ($record->status != 2)
+		{				
+			switch ($request->status)
+			{
+				case 'start':
+					//\Artisan::queue('run:gc', []);
+					\Artisan::queue('command:GetTaobaoCollectionList', [	]);					
+
+					return response()->json(['success' => true, 'record' => $data,
+											]);					
+				break;
+				case 'stop':
+				break;					
+			}			
+			return response()->json(['success' => true, 'record' => $data]);
+		}
+	}
+
+
+	public function tabao_list (Request $request)
+	{
+		
+		$result = \App\TabaoProduct::select('*');
+		$input  = [];		
+		parse_str($request->_data, $input);
+		$input  = array_map('trim', $input);
+		
+    	if ($input) 
+		{
+			//filter					
+			if (!empty($input['s_title'])) {
+				$result = $result->where('title','LIKE', "%{$input['s_title']}%") ;				
+			}
+		}		
+		$result =  $result->latest('updated_at')->paginate(30);
+				
+		$data['page']    = 'tabao.tabaoproduct'; 	
+				
+		$data['result']  = $result; 
+				
+		if ($request->ajax()) {
+            return view('tabao.ajax_product', ['result' => $result])->render();  
+        }	
+
+        $id = $request->id;
+		$record = \DB::table('cron_manager')->where('id',9)->first();
+		 				
+		$data['record']  = $record;		
+
+
+		return view('main', $data);	
+	}
+	
+	//in tabao api controller
+	public function render_product($id)
+    {
+     // $data = \App\taobao_collection_vouchers::where('id',$id)->get();
+     // $data = view('tabao.render_product', ['result' => $data])->render(); 
+     // event(new \App\Events\EventDynamicChannel('add-tabao-product', '' ,$data ));      
+      
+     // return TRUE; 
+    }
+
+
+	public function tabao_changeorder(Request $request)
+    {
+    	$data = \App\taobao_collection_vouchers::where('id',$request->id)->first();
+    	$data->touch();
+		return response()->json(['success' => true,]);
+    }
 	
 }

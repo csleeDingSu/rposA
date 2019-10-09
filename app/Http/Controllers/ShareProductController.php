@@ -7,11 +7,16 @@ namespace App\Http\Controllers;
 
 
 use App;
+use App\Helpers\VIPApp;
+use App\Http\Controllers\tabaoApiController;
+use App\Members as Member;
 use App\Shareproduct;
 use App\Voucher;
+use App\Wallet;
 use App\member_game_bet_temp_log;
 use App\vouchers_yhq;
 use Auth;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -186,6 +191,52 @@ class ShareProductController extends BaseController
 		$data['voucher'] = Voucher::where('id',$id)->select('*')->first();
 		return view('client/productv2_detail', $data);
 		
+	}
+
+	public function shop(Request $request)
+	{
+		$this->vp = new VIPApp();
+
+        if (Auth::Guard('member')->check())
+		{
+			$member = Auth::guard('member')->user()->id	;
+			$data['member']    = Member::get_member($member);
+			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		} else {
+			$member = null;
+			$data['member'] = null;
+			$data['wallet'] = null;	
+		}
+
+		return view('client/shop', $data);
+		
+	}
+
+	public function newMainPage(Request $request)
+	{
+		$this->vp = new VIPApp();
+		if (Auth::Guard('member')->check())
+		{
+			$member = Auth::guard('member')->user()->id	;
+			$data['member']    = Member::get_member($member);
+			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		} else {
+			$member = null;
+			$data['member'] = null;
+			$data['wallet'] = null;	
+		}
+
+		return view('client/newMainPage', $data);
+		
+	}
+
+	public function tabaoSearch($search = null)
+	{
+		$data['search'] = $search;
+		return view('client/newSearchPage', $data);
+
 	}
 
 }

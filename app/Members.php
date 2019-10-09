@@ -125,9 +125,14 @@ class Members extends Model
 		return $result;
 	}
 	
-	public static function get_introducer_count($id)
+	public static function get_introducer_count($id, $status = null)
 	{
-		$result = DB::table('view_member_introduce_count')->where('memberid', $id)->get();
+		if (empty($status)) {
+			$result = DB::table('view_member_introduce_count')->where('memberid', $id)->first();
+		} else {
+			$result = DB::table('view_member_introduce_count')->where('memberid', $id)->where('wechat_verification_status', $status)->first();
+		}
+		
 		
 		return $result;
 	}

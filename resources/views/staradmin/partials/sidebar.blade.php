@@ -88,6 +88,13 @@
             </a>
 		</li>
 
+		<li class="nav-item">
+			<a class="nav-link" href="/tabao/list">
+			<i class="menu-icon icon-game-controller  text-info"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.tabao') @lang('dingsu.list')</span>
+            </a>
+		</li>
+
 
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#voucher" aria-expanded="false" aria-controls="voucher">
@@ -228,6 +235,13 @@
 		</li> -->
 		
 		<li class="nav-item">
+			<a class="nav-link" href="/receipt/list">
+              <i class="menu-icon  icon-note text-primary"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.receipt')</span>
+            </a>
+		</li>
+		
+		<li class="nav-item">
 			<a class="nav-link" href="/admin/faq">
               <i class="menu-icon  icon-note text-primary"></i>
               <span class="menu-title text-capitalize"> @lang('dingsu.faq')</span>
@@ -265,6 +279,10 @@
 					
 					<li class="nav-item">
 						<a class="nav-link" href="/admin/cron-list">@lang('dingsu.cron') @lang('dingsu.list')</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/setting/tabao">@lang('dingsu.tabao_cron')</a>
 					</li>
 				</ul>
 			</div>

@@ -604,7 +604,7 @@ class ReportController extends BaseController
 		parse_str($request->_data, $input);
 		$input = array_map('trim', $input);
 				
-		$result = \App\Notification::whereHas('member', function($q) use($input)
+		$result = \App\Notification::with('ledger')->whereHas('member', function($q) use($input)
 		{
 			//filters
 			if (!empty($input['s_member'])) {
@@ -623,6 +623,52 @@ class ReportController extends BaseController
 		if ($request->ajax()) {
             return view('notification.ajaxlist', ['result' => $result])->render();  
         }					
+		return view('main', $data);	
+	}
+
+
+
+	public function ledger_report_new (Request $request)
+	{
+				
+		//$result =  \App\History::with('ledger','member');
+		$input = array();		
+		parse_str($request->_data, $input);
+		$input = array_map('trim', $input);
+		$order_by = 'DESC';
+
+		$result = \App\History::whereHas('member', function($q) use($input) {
+					if (!empty($input['s_username'])) {
+						$q->where('username','LIKE', "%{$input['s_username']}%") ;
+					}	
+					if (!empty($input['s_phone'])) { 
+						$q->where('phone','LIKE', "%{$input['s_phone']}%") ;
+					}
+					if (!empty($input['s_wechat_name'])) {
+						$q->where('wechat_name','LIKE', "%{$input['s_wechat_name']}%") ;				
+					}
+				})
+				->whereHas('ledger', function($q) use($input) {
+					if (!empty($input['s_game']))  
+						$q->where('game_id', $input['s_game']) ;
+					if (!empty($input['s_type'] ) )
+						$q->where('ledger_type','=',$input['s_type']);
+				});
+		
+			if (!empty($input['order_by'])) {
+				$order_by = $input['order_by'] ;				
+			}
+			
+		$result   =  $result->orderby('created_at',$order_by)->paginate(\Config::get('app.paginate'));
+				
+		$data['page']   = 'reports.ledger_new.list'; 	
+				
+		$data['result'] = $result; 
+				
+		if ($request->ajax()) {
+            return view('reports.ledger_new.ajaxlist', ['result' => $result])->render();  
+        }	
+		$data['type_list']   = \App\LedgerType::where('status',1)->get();
 		return view('main', $data);	
 	}
 	

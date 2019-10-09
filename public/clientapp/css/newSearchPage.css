@@ -1,0 +1,143 @@
+/* Paste this css to your style sheet file or under head tag */
+/* This only works with JavaScript, 
+if it's not present, don't show loader */
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.loading {
+    position: fixed;
+    width: 100%;
+    height: 60%;
+    z-index: 9999;
+    background: url(/client/images/preloader.gif) center no-repeat;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.listBox .inBox .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  .instruction-list {
+    padding: 0.24rem;
+  }
+
+  .instruction-list li {
+    color: #666;
+    font-size: 0.26rem;
+    padding-bottom: 0.2rem;
+    text-align: center;
+  }
+
+  .instruction-background {
+    text-align: center;
+    margin: 0 0.45rem;
+}
+
+.instruction-background img {
+    margin: 2% auto;
+    width: 90%;
+    /*height: 50%;*/
+    }
+
+.no-record {
+    text-align: center;
+    color: #999;
+    font-size: 0.3rem;
+    padding: 0.5rem;
+}
+
+.no-record img{
+    width: 70%;
+    /*height: 50%;*/
+    padding: 0.5rem;
+}
+
+ em {
+    font-family: '黑体' !important;
+    padding: 0 0.05rem;
+ }
+
+.listBox .inBox .imgBox {
+    width: 2.6rem !important;
+    height: 2.6rem !important;
+}
+
+.listBox .typeBox {
+   padding-top: 0.02rem;
+}
+
+.no-connection-list {
+    padding: 0.24rem;
+  }
+
+  .no-connection-list li {
+    color: #666;
+    font-size: 0.26rem;
+    padding-bottom: 0.2rem;
+    text-align: center;
+  }
+
+  .no-connection-background {
+    text-align: center;
+    margin: 0 0.45rem;
+}
+
+.no-connection-background img {
+    margin: 2% auto;
+    width: 90%;
+    /*height: 50%;*/
+    }
+
+.no-connection-list .line1 {
+    color: #333;
+    font-size: 0.36rem;
+}
+
+.no-connection-list .line2 {
+    color: #ccc;
+    font-size: 0.28rem;
+}
+
+.no-connection-list .btn-refresh {
+    background-color: #ff466f;
+    font-size: 0.32rem;
+    border-radius: 5px;
+    color: #fff;
+    padding: 0.2rem;
+    text-align: center;
+    margin: 0 2rem;
+}
+
+.type-price {
+    color: #bebebe;
+    font-size: 0.26rem !important;
+    padding: 0 !important;
+    vertical-align: middle;
+}
+
+.newTxt {
+  font-size: 0.22rem;
+  color: #bebebe;
+  line-height: 1em;
+  margin-right: 0.12rem;
+}
+
+.txt-red {
+  font-size: 0.22rem;
+  /*margin-right: 0.05rem;*/
+  color: #fe002f;
+  /*font-family: "黑体";*/
+  flex:1;
+}
+
+.num-reward {
+    font-size: 0.4rem;
+}
+
+.num {
+    height: 0.4rem;
+ }

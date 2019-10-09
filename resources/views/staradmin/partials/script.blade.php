@@ -150,4 +150,33 @@ function topFunction() {
 	$('html, body').animate({scrollTop:0}, 'slow');
 	
 }
+	
+	
+	function show_wait(type)
+	{
+		var stext = '@lang("dingsu.fetching_data")..';
+		if (type =='update')
+		{
+			var stext = '@lang("dingsu.updating_data")..';
+		}
+		else if (type =='fetch')
+		{
+			var stext = '@lang("dingsu.fetching_data")..';
+		}
+		else if (type =='delete')
+		{
+			var stext = '@lang("dingsu.delete_data")..';
+		}
+		swal( {
+				title: '@lang("dingsu.please_wait")',
+				text: stext,
+				allowOutsideClick: false,
+				closeOnEsc: false,
+				allowEnterKey: false,
+				buttons: false,
+				onOpen: () => {
+					swal.showLoading()
+				}
+			} )
+	}
 </script>

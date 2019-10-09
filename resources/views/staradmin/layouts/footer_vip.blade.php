@@ -50,3 +50,13 @@ if( !Request::is('download-app') ) {
 @php
 } 
 @endphp
+
+
+@if( Agent::is('OS X') )		
+			<style>
+			.cardFoot
+				{
+					margin-bottom: 15px !important;
+				}		
+			</style>
+		@endif

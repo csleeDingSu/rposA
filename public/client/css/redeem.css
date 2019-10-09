@@ -1616,3 +1616,16 @@ textarea {
     float: left;
     margin: 0.15rem 0.1rem 0.15rem 0.2rem;
 }
+
+.no-record {
+	text-align: center;
+	color: #999;
+	font-size: 0.3rem;
+	padding: 0.5rem;
+}
+
+.no-record img{
+	/*width: 70%;*/
+	/*height: 50%;*/
+	padding: 0.5rem 0.5rem 0.1rem 0.5rem;
+}

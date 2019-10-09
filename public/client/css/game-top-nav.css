@@ -1,0 +1,36 @@
+.loading {
+    /*position: inherit !important;*/
+}
+
+.top-nav-bg {
+	height: 0.9rem;
+    padding: 0.15rem 1.2rem;
+    font-size: 0.28rem;
+    text-align: center;
+    background: #fff;
+    display: flex;
+}
+
+.btn-game-normal {
+	flex: 50%;
+    padding: 0.1rem;
+    text-align: center;
+    background: #f2a3c3;
+    border-radius: 100px;
+    background-image: linear-gradient(to right, #f2a3c3 0%, #a05bcc 100%);
+    color: #fff;
+    font-size: 0.3rem;
+    z-index: 2;
+}
+
+.btn-game-vip {
+	flex: 50%;
+	padding: 0.1rem;
+	text-align: center;
+	background: #e7e7e7;
+	border-radius: 100px;
+	color: #666;
+	font-size: 0.3rem;
+	margin: 0 0 0 -0.6rem;
+	z-index: 1;
+}

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Wallet;
 use Carbon\Carbon;
 use App\Notification;
-
+use App\Ledger;
 
 class LedgerController extends BaseController
 {
@@ -62,7 +62,7 @@ class LedgerController extends BaseController
 	public function get_wallet (Request $request)
 	{
 		$id     = $request->input('id');
-		$record = Wallet::get_wallet_details($id);
+		$record = \App\Ledger::all_ledger($id);
 		return response()->json(['success' => true, 'record' => $record]);
 	}
 	
@@ -173,5 +173,61 @@ class LedgerController extends BaseController
 	}
 	
 	
+	public function get_gameledger (Request $request)
+	{		
+		$id     = $request->id;
+		$record = Ledger::all_ledger($id);		
+		$result =  view('member.render_update', ['result' => $record['gameledger'] , 'id'=>$id])->render();	
+		return response()->json(['success' => true,'id'=>$id , 'record'=>$result]);
+	}
+	
+	public function update_gameledger (Request $request)
+	{
+		$is_save = '';
+		$userid  = $request->id;		
+		foreach($request->point as $key => $point)
+		{
+			if ($point>0)
+			{
+				$ledger = Ledger::find($key);
+				$result = Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				
+				$notification = new Notification();
+				$notification->member_id       = $userid;
+				$notification->title           = 'Ledger Update';
+				$notification->notifiable_type = 'LEDUP';
+				$notification->notifiable_id   = $result['id'];
+				$notification->save();				
+				
+				$is_save = 'yes';
+			}
+		}		
+		foreach($request->life as $key => $life)
+		{
+			if ($life>0)
+			{
+				$ledger = Ledger::find($key);					
+				$result = Ledger::life($userid,$ledger->game_id,'credit',$life,'LAA', 'admin adjust point');
+				
+				$notification = new Notification();
+				$notification->member_id       = $userid;
+				$notification->title           = 'Ledger Update';
+				$notification->notifiable_type = 'LELUP';
+				$notification->notifiable_id   = $result['id'];
+				$notification->save();
+				
+				$is_save = 'yes';
+			}
+		}
+		
+		if ($is_save)
+		{
+			$notification = \App\Notification::with('ledger')->where('member_id',$userid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+			$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
+			event(new \App\Events\EventDynamicChannel($userid.'-'.'topup-notification','',$ndata ));
+		}
+		
+		return response()->json(['success' => true]);
+	}
 	
 }

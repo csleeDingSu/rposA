@@ -30,7 +30,7 @@ class EventWalletUpdate implements ShouldBroadcast
 	
 	public function broadcastWith()
 	{
-		return [ 'data' => \App\Wallet::get_wallet_details($this->id) ];
+		return [ 'data' => \App\Ledger::all_ledger($this->id) ];
 	}	
 	
 }

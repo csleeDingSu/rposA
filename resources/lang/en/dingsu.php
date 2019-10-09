@@ -709,4 +709,29 @@ return [
 	'detail' => 'Detail',
 	'ledger' => 'Ledger',
 
+	'receipt'=>'receipt',
+	'successful'=>'successful',
+	'unsuccessful'=>'unsuccessful',
+	'receipt_pending' => 'pending',
+	'receipt_inprogress' => 'in progress',
+	'receipt_successful'=>'successful',
+	'receipt_unsuccessful_notqualified'=>'fail: not qualified',
+	'receipt_unsuccessful_invalidreceipt' => 'fail: invalid receipt',
+	'receipt_no' => 'receipt no',
+	'reason'=>'reason',
+	'amount'=>'amount',
+	'remark'=>'remark',
+	''=>'',
+	''=>'',
+	''=>'',
+
+	'pls_choose_point' => 'Point is empty. Cannot proceed',
+	'invalid_point' => 'Invalid point. Cannot proceed',
+	'reserved_point_is_empty' => 'Reserved point is empty. Cannot proceed',
+	'invalid_reserved_point' => 'Reserved point not in the range',
+	'receipt_exist' => 'receipt already exist',
+	'initiating' => 'initiating',
+	'tabao_cron' => 'Tabao cron',
+	
+
 ];

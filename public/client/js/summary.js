@@ -49,11 +49,10 @@ function getSummary(token) {
     $('#summary').html('');
 
      if(length === 0){
-        var summary =   '<div class="row-full">' +
-                            '<div class="col-xs-12">' +
-                                '<div class="empty">你还没兑换奖品<br><a href="/arcade" class="share-link">去换奖品></a></div>' +
-                            '</div>' +
-                        '</div>';
+        var summary =   '<div class="no-record">' +
+                            '<img src="/clientapp/images/no-record/summary.png">' +
+                            '<div>暂无明细</div>' +
+                          '</div>';
 
         $('#summary').append(summary);
 
@@ -98,14 +97,14 @@ function getSummary(token) {
                 break
 
                 case 'APACP': //top up
-                    str_type = '充值金币';
+                    str_type = '充值挖宝币';
                     str_points = '+' + getNumeric(value.credit) + '元';
                     cls_negative = 'new_poins';
                     cls_item = 'new_item';
                 break
 
                 case 'APRBP': //refund
-                    str_type = '退还金币-' + value.reject_notes;
+                    str_type = '退还挖宝币-' + value.reject_notes;
                     str_points = '+' + getNumeric(value.credit) + '元';
                     cls_negative = 'new_poins';
                     cls_item = 'new_item';

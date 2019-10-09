@@ -1,52 +1,31 @@
-@extends('layouts.default')
-
-@section('title', '晒单评价')
+@extends('layouts.default_app')
 
 @section('top-css')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/public.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/swiper.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" /> -->
 	<link rel="stylesheet" href="{{ asset('/client/css/my_redeem.css') }}" />
 	<link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
-
-	<style>
-        /* Paste this css to your style sheet file or under head tag */
-        /* This only works with JavaScript, 
-        if it's not present, don't show loader */
-        .no-js #loader { display: none;  }
-        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
-        .loading {
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background: url('/client/images/preloader.gif') center no-repeat;
-            background-color: rgba(255, 255, 255, 1);
-            background-size: 32px 32px;
-        }
-    </style>
 @endsection
 
-@section('top-navbar')
+<!-- top nav -->
+@section('left-menu')
+  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+@endsection
+
+@section('title', '晒单评价')
+
+@section('right-menu')
 @endsection
     
 @section('top-javascript')
 	@parent
-	<script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
+	<!-- <script src="{{ asset('/client/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script> -->
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 	<script src="{{ asset('/client/blog/js/lrz.mobile.min.js')}}"></script>
 @endsection
 
 @section('content') 
-<div class="loading" id="loading"></div>
-<section class="card">
-    <section class="card-header">
-      <a class="returnIcon" href="javascript:history.back()"><img src="{{ asset('/client/blog/images/retrunIcon.png') }}"><span>返回</span></a>
-      <h2>晒单评价</h2>
-    </section>
+    
     <div class="card-body">
 			<!-- wabao coin info -->
 			<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
@@ -61,7 +40,6 @@
 			<div id="redeem-history"></div>
 			<p class="isnext">下拉显示更多...</p>
     </div>
-  </section>
 
 @endsection
 
@@ -74,16 +52,5 @@
     <script src="{{ asset('/client/js/my_redeem.js') }}"></script>
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
-
-    	document.onreadystatechange = function () {
-          var state = document.readyState
-          if (state == 'interactive') {
-          } else if (state == 'complete') {
-            setTimeout(function(){
-                document.getElementById('interactive');
-                document.getElementById('loading').style.visibility="hidden";
-            },100);
-          }
-        }
     </script>
 @endsection

@@ -1,4 +1,12 @@
-@extends('layouts.default')
+@php
+    if (env('THISVIPAPP','false')) {
+        $default = 'layouts.default_app';
+    } else {
+        $default = 'layouts.default';
+    }
+@endphp
+
+@extends($default)
 
 @section('title', '幸运转盘')
 
@@ -9,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
+    <!-- <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new.css') }}" />
@@ -16,6 +25,23 @@
     
 
     <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/client/images/preloader.gif') center no-repeat;
+            background-color: rgba(255, 255, 255, 1);
+            background-size: 32px 32px;
+        }
+       
     	
     	.reveal-modal {
 		    /*position: relative;*/
@@ -25,22 +51,95 @@
 
 		.isnext{ text-align: center;font-size: .26rem; color: #999; line-height: 1.6em; padding: .15rem 0; }
 
+		.reload2 {
+		display: none;
+		background-color: #fff;
+		position: fixed;
+	    left: 0px;
+	    top: 0px;
+	    width: 100%;
+	    height: 100%;
+	    z-index: 9999;
+	}
+
+	.no-connection-list {
+      font-size: 0.3rem;
+    padding: 0.24rem;
+    margin-top:2rem;
+    }
+
+    .no-connection-list li {
+    color: #666;
+    font-size: 0.26rem;
+    padding-bottom: 0.2rem;
+    text-align: center;
+  }
+
+  .no-connection-background {
+	}
+
+	.no-connection-background img {
+	    width: 70%;
+	    }
+
+	.no-connection-list .line1 {
+	    color: #333;
+	    font-size: 0.36rem;
+	    padding: 0.1rem;
+	}
+
+	.no-connection-list .line2 {
+	    color: #ccc;
+	    font-size: 0.28rem;
+	    padding:0.1rem;
+	}
+
+	.no-connection-list .btn-refresh {
+	    background-color: #ff466f;
+	    font-size: 0.32rem;
+	    border-radius: 0.1rem;
+	    color: #fff;
+	    padding: 0.2rem;
+	    text-align: center;
+	    margin: 0.1rem 2rem;
+	}
+
     </style>
 @endsection
     	
 @section('top-navbar')
 @endsection
 
-@section('content')
-<a name="top"></a>
+@section('game-top-nav')
+	@if (env('THISVIPAPP', false))
+		@include('client.game-top-nav')
+	@endif
+@endsection
 
-<div class="loading"></div>
+@section('content')
+@if (!env('THISVIPAPP', false))
+<a name="top"></a>
+@endif
+
+<div class="loading2" id="loading2"></div>
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
-<div class="cardBody">
-			<div class="box">
 
+<div class="reload2">
+	<ul class="no-connection-list">
+      <li>
+        <div class="no-connection-background">
+            <img src="/clientapp/images/no-connection/no-internet.png" />
+        </div>
+      </li>
+      <li class="line1">网络竟然崩溃了</li>
+      <li class="line2">别紧张，重新刷新试试</li>
+      <div class="btn-refresh" onclick="javascript:location.reload();">重新刷新</div>
+  </ul>
+</div>
+
+<div class="cardBody"><div class="box">
 <div class="full-height">
 	<!-- information table -->
 	<div class="information-table">
@@ -51,28 +150,29 @@
 						<div class="spanAcuPoint2">
 							<span class="spanAcuPointAndBalance">0</span>元补贴
 						</div>
+						<div class="btn-withdraw"></div>
 					</div>
 				</div>
 				<a href="#" onclick="closecss('speech-bubble-point');">
-					<div class="speech-bubble-point">满{{env('coin_max', '6')}}元提现</div>
+					<div class="speech-bubble-point">满{{env('coin_min', '6')}}元提现 最高{{env('coin_max', '12')}}元</div>
 				</a>
 			</div>
 
-			<div class="box">
-				<a href="/profile">
-					<div class="btn-life">
-						剩{{ isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}次
+			@if (env('THISVIPAPP', false))
+				<div id="flex-right-menu">
+					<div class="box">
+						<div class="btn-life">
+							剩0次
+						</div>
 					</div>
-				</a>
-			</div>
-
-			<div class="box" id="btn-vip-wrapper">
-				<a href="/profile">
+				</div>
+			@else
+				<div class="box" id="btn-vip-wrapper">
 					<div class="btn-profile">
-						个人中心
+						规则说明
 					</div>
-				</a>
-			</div>
+				</div>
+			@endif
 			
 			<input id="nTxt" class="nTxt" type="hidden" value="">
 			<input id="result" type="hidden" value="6">
@@ -89,14 +189,17 @@
 			<input id="hidLastBet" type="hidden" value="" />
 			<input id="hidUserId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}" />
 			<input id="hidCreatedAt" type="hidden" value="{{isset(Auth::Guard('member')->user()->created_at) ? Auth::Guard('member')->user()->created_at : 0}}" />
-			<!-- <input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" /> -->
+			<input id="hidWechatStatus" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
 			<input id="hidWechatId" type="hidden" value="0" />
 			<input id="hidWechatName" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_name) ? Auth::Guard('member')->user()->wechat_name : null}}" />
 			<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 			<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 			<input id='hidbetting_count' type="hidden" value="{{$betting_count}}" />
 			<input id='game_name' type="hidden" value="{{env('game_name', '幸运转盘')}}" />
-			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '6')}}" />
+			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '12')}}" />
+			<input id='hidMinAcupoint' type="hidden" value="{{env('coin_min', '6')}}" />
+			<input id='hidIsApp' type="hidden" value="{{env('THISVIPAPP','false')}}" />
+			<input id='hidLife' type="hidden" value="" />
 	  	</div>
 
 	</div>
@@ -424,37 +527,67 @@
 		</div>
 		<!-- end button wrapper -->
 		<div style="clear: both;"></div>
-
-		<div class="redeem-banner">
-			<img src="{{ asset('/client/images/wheel/banner-title.png') }}" alt="share">
-		</div>
+		
 	    </article>
     </section>
 	<!-- end progress bar -->
-
-	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
-	
-	
-</div>
-{{-- @include('client.product') --}}
-<div class="infinite-scroll">
-	<ul class="list-2">								
-			@include('client.productv2')
-	</ul>
-	{{ $vouchers->links() }}
-	
-	@if (!empty($vouchers))
-		<p class="isnext">下拉显示更多...</p>
+	@if (env('THISVIPAPP', false))
+	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />	
 	@endif
 
 </div>
+
+@if (env('THISVIPAPP', false))
+	@include('client.game-ranking')
+@else
+	<div class="redeem-banner">
+		<img src="{{ asset('/client/images/wheel/banner-title.png') }}" alt="share">
+	</div>
+	<div class="infinite-scroll">
+		<ul class="list-2">								
+				@include('client.productv2')
+		</ul>
+		{{ $vouchers->links() }}
+		
+		@if (!empty($vouchers))
+			<p class="isnext">下拉显示更多...</p>
+		@endif
+
+	</div>
+@endif
 </div></div>
+
+@if (!env('THISVIPAPP', false))
 <!-- go back to top -->
 	<a class="to-top" href="#top"><img src="{{ asset('/client/images/go-up.png') }}"/></a>
-	
+@endif
+
 @endsection
 
 @section('footer-javascript')
+
+<!-- haven't login start modal -->
+	<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<a href="/nlogin">
+				<div class="nologin-bg">
+					<div class="instructions"><span class="highlight">无限制抽奖</span> 任你抽到爽</div>
+					<div class="instructions"><span class="highlight">卡券奖品</span> 拿到手软</div>
+					<div class="instructions"><span class="highlight">100%随机</span> 绝无作弊</div>			
+					<div class="btn-login"></div>
+				</div>		
+			</a>
+		</div>
+	</div>
+	<!-- haven't login modal Ends-->
+
+<!-- newbie start modal -->
+	<div class="modal fade col-md-12" id="modal-newbie" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+				<div class="newbie-bg"></div>
+		</div>
+	</div>
+	<!-- newbie modal Ends-->
 
 <!-- Steps Modal starts -->
 	<div class="modal fade col-md-12" id="verify-steps" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: #666666;">
@@ -504,6 +637,68 @@
 	</div>
 <!-- Steps Modal Ends -->
 
+	<div class="modal fade col-md-12" id="modal-withdraw-insufficient" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-title">
+								  
+								</div>
+								<div class="instructions">
+									<p>
+										<span class="highlight-header">您已抽到<span class="withdraw-value">0</span>元</span>
+									</p>
+									<p>满6元提现，最高抽<span class="highlight-coin-max">{{env('coin_max', '12')}}</span>元
+									</p>
+								</div>
+								<div class="close-modal modal-warning-button">
+									继续抽奖
+								</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade col-md-12" id="modal-withdraw" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<div class="modal-title">
+								  
+								</div>
+								<div class="instructions">
+									<p>
+										<span class="highlight-header">您已抽到<span class="drawn">0</span>元</span>
+									</p>
+									<p>
+										满{{env('coin_min', '6')}}元可提现，最高可抽{{env('coin_max', '12')}}元
+										<br>
+										提现则结束本次抽奖
+									</p>
+								</div>
+								<div class="btn-go-withdraw">
+									马上结算 结束抽奖
+								</div>
+								<div class="close-modal modal-warning-butto	n">
+									继续抽奖 抽{{env('coin_max', '12')}}元
+								</div>
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 	<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
@@ -511,11 +706,11 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">							
 							<div class="modal-card">
-								<div class="packet-value">6元补贴到手</div>	
+								<div class="packet-value">{{env('coin_max', '12')}}元补贴到手</div>	
 								<div class="instructions">
-									每次抽奖最多可获的6元
+									抽奖已达上限，{{env('coin_max', '12')}}元红包已抽完
 								</div>
-								<div class="modal-confirm-button btn-reset-life btn-red-packet">点击结算去兑换</div>
+								<div class="modal-confirm-button btn-reset-life btn-red-packet">申请提现</div>
 							</div>
 						</div>
 					</div>							
@@ -543,7 +738,7 @@
 								</div>
 								<div class="modal-invite-content">
 									<h1 class="modal-invite-title">邀请好友送场次</h1>
-									邀请<span class="highlight-peach">1个</span>好友送<span class="highlight-peach">1次</span>抽奖补贴(可抽6元)<br/>
+									邀请<span class="highlight-peach">1个</span>好友送<span class="highlight-peach">1次</span>抽奖补贴(可抽{{env('coin_max',12)}}元)<br/>
 									好友邀请<span class="highlight-peach">1个</span>，你再获<span class="highlight-peach">1次抽奖补贴</span>。
 									<a href="/share" class="link-button">
 										<div class="modal-vip-button">
@@ -716,7 +911,7 @@
 										每次抽中后返回1元从新开始，又有5次加倍的机会，不停循环抽红包。
 									</p>
 									<p>&nbsp;</p>
-									<p># 每场最多可抽6元封顶</p>
+									<p># 每场最多可抽12元封顶</p>
 									<p># 邀请好友可获得更多抽奖场次</p>
 									<p># 抽奖概率由系统随机产生</p>
 								</div>
@@ -736,6 +931,63 @@
 		</div>
 	</div>
 
+<!-- customer service modal -->
+<div class="modal fade col-md-12" id="csModal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content modal-wechat">
+			<div class="modal-body">
+				<div class="modal-row">
+					<div class="wrapper modal-full-height">
+						<div class="modal-card">
+							<div class="title">
+								请加人工客服微信
+							</div>
+							<div class="instructions">
+								审核发放红包
+							</div>
+						</div>
+						<div class="row imgdiv">								
+							<img class="qrimg" src="{{ asset('/client/images/qr.jpg') }}" alt="qr image" />
+						</div>
+						<div class="row">								
+							<div class="bottom">长按图片识别二维码</div>
+							<span class="highlight">客服上班时间:早上9点-晚上9点</span>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- customer service modal Ends -->
+
+<!-- wechat verify Modal starts -->
+  <div class="modal fade col-md-12" id="wechat-verification-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">        
+          <div class="modal-row">
+            <div class="wrapper modal-full-height">
+              <div class="modal-card">
+                <img src="{{ asset('/client/images/avatar.png') }}" width="80" height="82" alt="avatar" />
+                <div class="wechat-instructions">
+                  你的账号还未通过微信认证，<br />
+                  不能兑换红包，请先认证。
+                </div>                
+              </div>
+              <div>
+                <a href="/validate">
+                  <img src="{{ asset('/client/images/btn-verify.png') }}" width="154" height="44" alt="Verify" />
+                </a>
+              </div>
+            </div>
+          </div>              
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- wechat verify Modal Ends -->
+
 	@parent
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
@@ -752,24 +1004,48 @@
 	<!-- <script src="{{ asset('/client/js/NoSleep.js') }}"></script> -->
 
 	<script type="text/javascript">
+		document.onreadystatechange = function () {
+          var state = document.readyState
+          if (state == 'interactive') {
+          } else if (state == 'complete') {
+            setTimeout(function(){
+                document.getElementById('interactive');
+                document.getElementById('loading2').style.visibility="hidden";
+            },100);
+          }
+        }
+
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
-    	var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
+    	// var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
 			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var bet_count = $('#hidbetting_count').val();
+			var is_app = $('#hidIsApp').val();
+			var win_coin_max = Number($('#hidMaxAcupoint').val());
+			var win_coin_min = Number($('#hidMinAcupoint').val());
+			var _point = Number($('.spanAcuPointAndBalance').html());
 			
 			if(bet_count == 0){
 				$('.selection').show();
+			}
+
+			if ((_point > 0) && (_point < win_coin_min)) {
+				$('#modal-withdraw-insufficient').modal();
 			}
 
 			var user_id = $('#hidUserId').val();
 
 			$('.reload').click(function(){
 				window.location.href = window.location.href;
+			});
+
+			$('.close-modal').click(function () {
+				$('.modal').modal('hide');
+				$('.modal-backdrop').remove();
 			});
 			
 			if(wechat_status > 0) {
@@ -790,24 +1066,30 @@
 				$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
 			});
 
+
 			$('.banner-rules').click(function() {
 		        $('#game-rules').modal();
 		    });
 
-			if (user_id <= 0) {
-				openmodel();
+		    $('.btn-profile').click(function() {
+		        $('#game-rules').modal();
+		    });
+
+			if ((user_id <= 0) && (is_app == false)) {
 				
+				openmodel();
+			
 				$('.barWrapper').click( function() {
 	            	openmodel();
 	            });
-
-			} else {
-				if (life == 0 && user_id > 0) {
-	                $('.button-card').click( function() {
-	                    $('#reset-life-share').modal();
-	                });
-	            }
+	            	
 			}
+
+			$('.newbie-bg').click(function() {
+				$('.modal').modal('hide');
+				$('.modal-backdrop').remove();
+			});
+		
 
             //execute scroll pagination
             being.scrollBottom('.cardBody', '.box', () => {		
@@ -862,10 +1144,13 @@
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
 	<script src="{{ asset('/client/js/game-node.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 	
 @endsection
 
-<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
+@if (!env('THISVIPAPP', false))
+	<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
 
 	@include('client.intromodel')
+@endif
 

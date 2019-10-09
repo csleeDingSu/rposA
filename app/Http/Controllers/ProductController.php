@@ -330,7 +330,10 @@ class ProductController extends BaseController
 		$row .= '<td>'.$softpin->product_name.'</td>';
 		$row .= '<td>'.$softpin->code.'</td>';
 		$row .= "<td><label class='badge badge-warning'>".trans('dingsu.active')."</label></td>";
-		$row .= '<td><a href="javascript:void(0)" onClick="confirm_Delete('.$softpin->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a></td>';
+		$row .= '<td><a href="javascript:void(0)" backorder class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info"><i class=" icon-plus  "></i></a>
+		
+		<a href="javascript:void(0)" onClick="confirm_Delete('.$softpin->id.');return false;" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger"><i class=" icon-trash  "></i></a>
+		</td>';
 		$row .= '</tr>';
 		
 		return response()->json(['success' => true, 'message' => trans('dingsu.softpin_update_success_message'),'record'=>$row]);
@@ -441,7 +444,9 @@ class ProductController extends BaseController
 		{
 			$now = Carbon::now();
 			$data = ['pin_status'=>3,'confirmed_at'=>$now];						
-			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', 'redeem rejected,point refund to customer');			
+			\App\Ledger::credit($record->member_id,102,$record->used_point,'RFN', 'redeem rejected,point refund to customer');
+			
+			
 			
 			Product::update_pin($record->id, $data);
 			return response()->json(['success' => true, 'message' => 'success']);
@@ -807,7 +812,7 @@ class ProductController extends BaseController
 				$message = $request->note;
 			}
 						
-			Wallet::update_basic_wallet($record->member_id, 0,$record->used_point, 'RFN','credit', $message);
+			\App\Ledger::credit($record->member_id,102,$record->used_point,'RFN', $message );
 			
 			Package::update_vip($record->id, $data);
 			
@@ -845,5 +850,56 @@ class ProductController extends BaseController
 		}
 		
 		return response()->json(['success' => false, 'message' => 'unknown record']);		
+	}
+	
+	
+	public function softpin_backorder(Request $request)
+    {
+		$row     = \DB::table('view_softpins')->where('id',$request->id)->first();		
+		$record  =  view('product.render_backorder', ['result' => $row])->render();
+		return response()->json(['success' => true,'record'=>$record]);		
+	}
+	
+	public function confirm_softpin_backorder(Request $request)
+	{
+		$insdata   = [];
+		
+		$validator = $this->validate($request, 
+			[
+				'id'    => 'required|exists:softpins,id',
+				'phone' => 'required|exists:members,phone',
+			]
+		);
+		
+		$member = \App\Members::where('phone',$request->phone)->first();
+		
+		$softpin = \DB::table('view_softpins')->where('id',$request->id)->first();
+		
+		if ($softpin->pin_status != 0)
+		{
+			return response()->json(['success' => false, 'errors' => ['phone'=>'cannot redeem softpin.'] ], 422);
+		}
+						
+		$ledger = \App\Ledger::ledger($member->id, 102);		
+		
+		if ($ledger->point < $softpin->min_point)
+		{
+			return response()->json(['success' => false, 'errors' => ['phone'=>'not enough point to redeem.'] ] , 422);
+		}
+		$now = Carbon::now();
+		
+		$wallet = \App\Ledger::debit($member->id,102,$softpin->min_point,'RPO', $softpin->min_point.' Point used for buy product');		
+		
+		$data = ['member_id'=>$member->id, 'request_at'=>$now,
+				 'used_point'=>$softpin->min_point,
+				 'pin_status'=>2,
+				 'confirmed_at'=>$now
+				,'ledger_history_id' => $wallet['id']
+				];		
+				
+		Product::update_pin($softpin->id, $data);	
+
+		return response()->json(['success' => true, 'message' => 'success']);		
+				
 	}
 }

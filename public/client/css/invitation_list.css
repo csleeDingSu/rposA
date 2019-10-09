@@ -318,3 +318,8 @@ html, body {
 .share-link {
     color: #ff4444;
 }
+
+.empty {
+    text-align: center;
+    font-size: 0.3rem;
+}

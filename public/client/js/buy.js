@@ -48,7 +48,7 @@ function getAddress(){
             error: function (error) { console.log(error.responseText) },
             success: function(data) {
                 if(data.success) {
-                    if(data.records !== undefined){
+                    if(data.records !== undefined && data.records != '' && data.records != null){
                         if($('#txt_name').val() === ''){
                             $('#txt_name').val(data.records.receiver_name);
                         }

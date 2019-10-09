@@ -17,7 +17,7 @@ use Mail;
 use Session;
 use Validator;
 use \App\helpers\WeiXin as WX;
-
+use Jenssegers\Agent\Agent;
 
 class MemberRegisterController extends Controller
 {
@@ -99,8 +99,7 @@ class MemberRegisterController extends Controller
 	public function showRegisterForm($ref = FALSE)
 	{
 
-		$data = [];
-		
+		$data = [];		
 		
 		if (!empty($ref))
 		{
@@ -116,12 +115,46 @@ class MemberRegisterController extends Controller
 			
 		}
 		
-		
-		//return view('client/register',$data);
-		// return view('common/register',$data);
-		return view('auth.login', $data);
+		$agent = new Agent();
+		if ($agent->isAndroidOS()) {
+    		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+    	} else {
+    		$data['RunInApp'] = true;
+    	}
+    	
+		// return view('auth.register_new',$data); 
+		return view('auth.register_vip_new',$data);        
 	}
-    
+
+	public function showRegisterFormApp($ref = FALSE)
+	{
+
+		$data = [];
+				
+		if (!empty($ref))
+		{
+			Session::forget('refcode');
+
+			$data['ref']  = Members::CheckReferral($ref);
+			
+			$data['refcode'] = $ref;
+
+			if (!empty($data['ref'])) {
+				session(['refcode' => $ref]);	
+			}
+			
+		}
+		
+		$agent = new Agent();
+		if ($agent->isAndroidOS()) {
+    		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+    	} else {
+    		$data['RunInApp'] = true;
+    	}
+
+		// return view('auth.register_new', $data);
+		return view('auth.register_vip_new',$data); 
+	}
     
     public function showAuthForm($ref = FALSE, Request $request)
 	{
@@ -157,7 +190,17 @@ class MemberRegisterController extends Controller
         } else {
         	//isVIP APP        	
 			if (env('THISVIPAPP', false)) {
-				return view('auth.login_vip',$data);    
+				//return view('auth.login_vip',$data);    
+				
+				$agent = new Agent();
+				if ($agent->isAndroidOS()) {
+	        		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+	        	} else {
+	        		$data['RunInApp'] = true;
+	        	}
+
+				// return view('auth.login_new',$data); 
+				return view('auth.login_vip_new',$data);    
 			} else {
 				return view('auth.login',$data);    
 			}            
@@ -249,16 +292,25 @@ class MemberRegisterController extends Controller
 			
 			
 			$wallet = \App\Wallet::create([
-					'current_life'    => $setting->game_default_life,
+					'current_life'    => 0,
 					'member_id'       => $id,
-					'current_balance' => env('initial_balance',1200),
-					'balance_before'  => env('initial_balance',1200)
+					'current_balance' => 0,
+					'balance_before'  => 0
 				]);
 			
 			//update members table
+			/*
 			Members::where('id', $id)
 				->update(['current_life' => $setting->game_default_life]);
+			*/
+			//create Game Ledgers
+			\App\Ledger::intiateledger($id);
 			
+			//add welcome bonus life
+			\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
+			
+			$balance = env('initial_balance',1200);
+			\App\Ledger::balance($id,102,'credit',$balance,'WBB', '');
 			
 			
 			//Send Welcome Mail			
@@ -271,6 +323,12 @@ class MemberRegisterController extends Controller
 			$user = Auth::guard('member')->user();
 			$user->active_session = Session::getId();
 			$user->save();
+			
+			
+			if ($referred_by)
+			{
+				event(new \App\Events\EventDynamicChannel('newuserwithreferral','', $user));
+			}
 			
 			// return response()->json(['success' => true]);
 			return $this->getGameOrDefaultRoute();
@@ -453,7 +511,7 @@ class MemberRegisterController extends Controller
 		 //isVIP APP
         $this->vp = new VIPApp();
         if ($this->vp->isVIPApp()) {
-           $url = "/vip";
+           $url = "/main";
         } else {
             $url = "/arcade";
         }
