@@ -100,7 +100,7 @@
                 @php ($sales = ($p['monthSales'] >= 1000) ? number_format(((float)$p['monthSales'] / 10000), 2, '.', '') . '万' : $p['monthSales'] . '件')
                 @php ($commissionRate = $p['commissionRate'])
                 @php ($commissionRate = ($commissionRate > 0) ? $commissionRate : 0)
-                @php ($reward = (int)($newPrice * $commissionRate))
+                @php ($reward = (int)($promoPrice * $commissionRate))
                 @php ($reward = ($reward <= 0) ? '100' : $reward)
                 @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $_life)
                 

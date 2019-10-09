@@ -147,7 +147,7 @@ var life = 0;
                       commissionRate = item.commission_rate;
                       commissionRate = (commissionRate.length >= 4) ? commissionRate.substring(0,2) : commissionRate.substring(0,1);
                       commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
-                      reward = parseInt(Number(newPrice) * Number(commissionRate));
+                      reward = parseInt(Number(promoPrice) * Number(commissionRate));
                       reward = (reward <= 0) ? '100' : reward;
                       _param = '?id=' + item.id + '&goodsId='+ goodsId +'&mainPic='+mainPic+'&title='+title+'&monthSales=' + monthSales +'&originalPrice=' +originalPrice+'&couponPrice=' +couponPrice + '&couponLink=' + encodeURIComponent(couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=&life=' + life;
                       _rewardtxt = '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + newPrice + '</span></p>';
