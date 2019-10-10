@@ -64,7 +64,7 @@ class MemberController extends BaseController
 	{
 		//$result =  DB::table('view_members')->select(['id', 'created_at','email','credit_balance','firstname','lastname', 'username','member_status','wechat_name','wechat_verification_status','parent','wechat_notes','totalcount','current_life', 'current_point', 'vip_life', 'vip_point','referred_by', 'profile_pic','usedlife','is_purged_gamelife','current_balance']);
 		
-		$result = \App\ViewMember::with('parentuser');
+		$result = \App\ViewMember::with('parentuser','ledger');
 		$input = array();
 		
 		parse_str($request->_data, $input);
@@ -96,6 +96,12 @@ class MemberController extends BaseController
 			}
 		}
 		$result =  $result->orderby('id','DESC')->paginate(30);
+
+		foreach ($result as $k=>$v)
+		{
+			$v->ledger = $v->ledger->keyBy('game_id');
+		}
+		
 		
 		$data['page'] = 'member.memberlist'; 
 				

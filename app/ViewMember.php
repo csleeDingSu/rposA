@@ -15,6 +15,11 @@ class ViewMember extends Model
 	{
 		return $this->belongsTo('App\Member','referred_by','id');
 	}
+
+	public function ledger()
+	{
+		return $this->hasMany('App\Ledger','member_id','id');
+	}
 }
 
 

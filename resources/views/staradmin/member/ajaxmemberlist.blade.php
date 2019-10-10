@@ -59,10 +59,10 @@
 								{{ $list->current_life ?? 0 }}
 							</td>
 							<td id="cb_{{ $list->id }}">
-								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->current_balance ?? 0 }}</h6>
+								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->ledger['102']->balance ?? 0 }}</h6>
 							</td>
 							<td id="cp_{{ $list->id }}">
-								{{ $list->current_point ?? 0 }}
+								{{ $list->ledger['103']->point  }}
 							</td>
 							<td onClick="OpenWechatVerification('{{ $list->id }}','{{ $list->wechat_notes }}')" class="show_wechat_verification_{{ $list->id }}">
 								@if($list->wechat_verification_status == 0)
