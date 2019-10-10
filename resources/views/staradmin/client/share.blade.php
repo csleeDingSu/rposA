@@ -22,7 +22,7 @@
   background: url('/client/images/preloader.gif') center no-repeat;
     background-color: rgba(0, 0, 0, 0);
   background-color: rgba(255, 255, 255, 0.9);
-  background-size: 62px 62px;
+  background-size: 32px 32px;
 }
 
 
