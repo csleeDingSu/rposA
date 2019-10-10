@@ -1036,5 +1036,5 @@
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<script src="{{ asset('/client/js/vip-node.js') }}"></script>
+	<script src="{{ asset('/client/js/vip-node.js?version=1.0.0') }}"></script>
 @endsection
