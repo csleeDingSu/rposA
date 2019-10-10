@@ -173,7 +173,7 @@
             clickable: true,
           },
           // freeMode: true,
-          zoom: true,
+          // zoom: true,
         });
 
         //add click
