@@ -67,7 +67,7 @@ if it's not present, don't show loader */
 }
 
 .listBox .typeBox {
-   padding-top: 0.02rem;
+   /*padding-top: 0.02rem;*/
 }
 
 .no-connection-list {
@@ -141,3 +141,11 @@ if it's not present, don't show loader */
 .num {
     height: 0.4rem;
  }
+
+span.type-red {
+  line-height: 0.3rem !important;
+}
+
+span.type-sred {
+  line-height: 0.3rem !important;
+}
