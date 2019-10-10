@@ -1,5 +1,6 @@
 @if (!empty($blog))
     @foreach($blog as $b)
+    <div class="_pg{{$page}}">
         <div class="listBox3">
           <div class="userBox">
             <div class="username">
@@ -58,7 +59,8 @@
               @endif
             @endif
           </ul>
-        </div>        
+        </div> 
+    </div>       
     @endforeach
 
 @endif

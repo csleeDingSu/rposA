@@ -51,6 +51,10 @@
 
 @section('content')
 <div class="loading2" id="loading2"></div>
+
+<input id="hidPg" type="hidden" value="">
+<input id="hidNextPg" type="hidden" value="">
+
 <div class="cardBody">
   <div class="infinite-scroll">
     <ul class="list-2">               
@@ -88,69 +92,76 @@
     <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
     <script type="text/javascript">
 
+      document.onreadystatechange = function () {
+        var state = document.readyState
+        if (state == 'interactive') {
+        } else if (state == 'complete') {
+          setTimeout(function(){
+              document.getElementById('interactive');
+              document.getElementById('loading').style.visibility="hidden";
+              $('.loading').css('display', 'initial');
+              document.getElementById('loading2').style.visibility="hidden";
+          },100);
+        }
+      }
+
+      var page=1;
+      $('#hidPg').val(page);
+      $('#hidNextPg').val(page + 1);
+
       $(document).ready(function () {           
-           //execute scroll pagination
-            being.scrollBottom('.scrolly', '.cardBody', () => {
+        //execute scroll pagination
+        being.scrollBottom('.scrolly', '.cardBody', () => {
+          page++;
+          console.log('new page ' + page);
+          var current_page = parseInt($('#hidPg').val());
+          console.log('current page ' + current_page);
+          var next_page = parseInt($('#hidNextPg').val());
+          console.log('next page ' + next_page);
+            
+          if(page == next_page) {
+            getPosts(page);
+          } else {
+            console.log('no page ' + page);
+          } 
 
-            page++;
-
-            console.log(page);
-            var max_page = parseInt($('#max_page').val());
-            if(page > max_page) {
-              $('#page').val(page);
-              $(".isnext").html("@lang('dingsu.end_of_result')");
-              $('.isnext').css('padding-bottom', '50px');
-
-            }else{
-              getPosts(page);
-            } 
-          });
+        });
       });
 
       //scroll pagination - start
-        $('ul.pagination').hide();
-        
-        var page=1;
+      $('ul.pagination').hide();
 
-        function getPosts(page){
-          $.ajax({
-            type: "GET",
-            url: window.location+"/?page"+page, 
-            data: { page: page },
-            beforeSend: function(){ 
-            },
-            complete: function(){ 
-              $('#loading').remove
-            },
-            success: function(responce) { 
-              $('.list-2').append(responce.html);
-              // console.log(responce);
-              // if (responce.html == null || responce.html = '') {
-              //  $(".isnext").html('');  
-              // }
-              initSwiper();
-            }
-           });
-        }
+      function getPosts(page){
+        $.ajax({
+          type: "GET",
+          url: window.location, 
+          data: { page: page },
+          beforeSend: function(){ 
+          },
+          complete: function(){ 
+            $('#loading').remove
+          },
+          success: function(responce) {
+            $('.list-2').append(responce.html);
+            initSwiper(page);
+            $('#hidPg').val(page);
+            $('#hidNextPg').val(page + 1);
+          }
+         });
+      }
       //scroll pagination - end
 
-      function viewPhoto(photo) {
-        $('.view-pic').attr('src', photo);
-        $('#view-photo').modal();
-      }
+      //swiper start
+      initSwiper(page);
 
-      initSwiper();
-
-      function initSwiper() {
-
-          //swiper
-         var swiper = new Swiper(".swiper-container", {
+      function initSwiper(page) {
+        //define swiper
+        var swiper = new Swiper(".swiper-container", {
           autoHeight: window.innerHeight,
           // autoplay: false, //可选选项，自动滑动
           // centeredSlides: true,
           // observer: true,
           // observeParents: true,
-
           // slidesPerView: 3,
           navigation: {
             nextEl: '.swiper-button-next',
@@ -163,10 +174,10 @@
           },
           // freeMode: true,
           zoom: true,
-
         });
 
-        $('.listBox3 .imgBox li').click(function () {
+        //add click
+        $('._pg' + page + ' .listBox3 .imgBox li').click(function () {
           $('.slideImg').removeClass('dn');
           let html = "";
           let that = $(this);
@@ -181,30 +192,16 @@
           swiper.appendSlide(html);
           swiper.update();
           
-          // console.log(swiper.activeIndex);
-          // swiper.slideTo(swiper.activeIndex, 10, false);
+          $('.slideImg').click(function (e) {
+            if($(e.target).find('.swiper-container').length>0){
+              $('.slideImg').addClass('dn');
+               swiper.removeAllSlides();
+            };
+          });
 
         });
 
-        $('.slideImg').click(function (e) {
-          if($(e.target).find('.swiper-container').length>0){
-            $('.slideImg').addClass('dn');
-          };
-        });
       }
-
-      document.onreadystatechange = function () {
-          var state = document.readyState
-          if (state == 'interactive') {
-          } else if (state == 'complete') {
-            setTimeout(function(){
-                document.getElementById('interactive');
-                document.getElementById('loading').style.visibility="hidden";
-                $('.loading').css('display', 'initial');
-                document.getElementById('loading2').style.visibility="hidden";
-            },100);
-          }
-        }
 
     </script>
 
