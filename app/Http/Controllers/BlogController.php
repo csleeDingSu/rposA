@@ -31,13 +31,14 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {        
+        $page = empty($request->page) ? 1 : $request->page;
         $blog = blog::select('*')->whereNull('deleted_at')->orderBy('updated_at','desc')->paginate(5);
         if ($request->ajax()) {
-            $view = view('client.blog_list',compact('blog'))->render();
+            $view = view('client.blog_list',compact('blog','page'))->render();
             return response()->json(['html'=>$view]);
             // return view('client/game-node', compact('vouchers'));
         }
-        return view('client.blog', compact('blog'));
+        return view('client.blog', compact('blog','page'));
     }
 
     public function createform()

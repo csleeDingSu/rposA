@@ -1149,21 +1149,21 @@ function getConvertCointInfo(softpinCount, token, current_point) {
                                                 '</div>' +
                                             '</div>' +
                                             '<div class="row content">' +
-                                                '<a href="#" onclick="selectContentAmountValue(120, 12);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(12, 120);">' +
                                                 '<div class="content-amount" id="120">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '120' +
                                                     '<span class="content-price">售价 12 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(240, 24);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(24, 240);">' +
                                                 '<div class="content-amount" id="240">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '240' +
                                                     '<span class="content-price">售价 24 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(360, 36);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(36, 360);">' +
                                                 '<div class="content-amount" id="360">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '360' +
@@ -1172,21 +1172,21 @@ function getConvertCointInfo(softpinCount, token, current_point) {
                                                 '</a>' +
                                             '</div>' +
                                             '<div class="row content">' +
-                                                '<a href="#" onclick="selectContentAmountValue(480, 48);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(48, 480);">' +
                                                 '<div class="content-amount" id="480">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '480' +
                                                     '<span class="content-price">售价 48 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(720, 72);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(72, 720);">' +
                                                 '<div class="content-amount" id="720">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '720' +
                                                     '<span class="content-price">售价 72 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(1440, 144);">' +
+                                                '<a href="#" onclick="selectContentAmountValue(144, 1440);">' +
                                                 '<div class="content-amount" id="1440">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
                                                     '1440' +

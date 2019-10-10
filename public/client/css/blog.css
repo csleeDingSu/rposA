@@ -86,3 +86,7 @@
 .hide {
 	display: none;
 }
+
+.swiper-pagination {
+	display: none !important;
+}
