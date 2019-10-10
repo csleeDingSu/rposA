@@ -26,6 +26,7 @@ var gameid = 103;
 var g_bet_amount = 0;
 var max_retry = 3;
 var nretry = 0;
+var touchmoved;
 
 $(function () {
 
@@ -846,6 +847,9 @@ function bindBetButton(){
     });
 
     $('.button-bet').on('touchend', function(event){
+        if (touchmoved) {
+            return false;
+        }
 // event.stopImmediatePropagation();
         $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
@@ -890,6 +894,10 @@ function bindBetButton(){
 
         }
 
+    }).on('touchmove', function(e){
+        touchmoved = true;
+    }).on('touchstart', function(){
+        touchmoved = false;
     });
 
     $('.button-bet-clear').click(function(){
@@ -906,6 +914,10 @@ function bindBetButton(){
     });
 
     $('.radio-primary').on('touchend', function(event){
+        if (touchmoved) {
+            return false;
+        }
+
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
@@ -947,6 +959,10 @@ function bindBetButton(){
         $(this).find('.radio').toggleClass('clicked');
 
         showPayout();
+    }).on('touchmove', function(e){
+        touchmoved = true;
+    }).on('touchstart', function(){
+        touchmoved = false;
     });
 
      var user_id = $('#hidUserId').val();
@@ -954,8 +970,16 @@ function bindBetButton(){
     if(user_id == 0){
 
         $('#btn-redeemcash').on('touchend', function() {
+            if (touchmoved) {
+                return false;
+            }
+
             $('#modal-no-login').modal('show');
             return false;
+        }).on('touchmove', function(e){
+            touchmoved = true;
+        }).on('touchstart', function(){
+            touchmoved = false;
         });
             
     } else {
