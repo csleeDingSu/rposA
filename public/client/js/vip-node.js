@@ -101,7 +101,7 @@ function updateResult(records){
 
 function updateHistory(records){
 
-    var length = Object.keys(records).length;
+    var length = g_betting_history_total;//Object.keys(records).length;
     var maxCount = 7;
 
     if(length < maxCount){
@@ -509,8 +509,8 @@ function getProduct(){
                 $( "#hid_package_id" ).val($(this).attr('rel'));
                 console.log($(this).attr('rel'));
                 var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
-                console.log(price);
-                console.log(g_vip_point);
+                // console.log(price);
+                // console.log(g_vip_point);
                 console.log(getNumeric(price) > getNumeric(g_vip_point));
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
                     console.log(1);
@@ -1514,9 +1514,9 @@ function isLock() {
         }    
     }
     
-    console.log(g_betting_history_total);
-    console.log(g_vip_point);
-    console.log(res);
+    // console.log(g_betting_history_total);
+    // console.log(g_vip_point);
+    // console.log(res);
     return res;
 }
 
