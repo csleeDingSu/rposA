@@ -56,7 +56,7 @@
 							<td><h6 class="ShowChildMembers text-info font-weight-semibold ml-2" data-id="{{ $list->id }}" data-count="{{ $list->totalcount }}" >{{ $list->totalcount }}</h6> </td>
 							<td id="">	{{ $list->usedlife + $list->is_purged_gamelife }}</td>
 							<td id="cl_{{ $list->id }}">
-								{{ $list->current_life ?? 0 }}
+								{{ $list->ledger['102']->life ?? '0'  }}
 							</td>
 							<td id="cb_{{ $list->id }}">
 								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->ledger['102']->balance ?? 0 }}</h6>
