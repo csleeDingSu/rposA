@@ -132,7 +132,7 @@
       <img src="{{ asset('clientapp/images/jiangbei.png') }}">
       <h2>恭喜你&nbsp;注册成功</h2>
       <p>您有<font color="#f62f5b"><b>12元</b></font>奖励红包等待领取</p>
-      <a class="downBtn gdt" href="/download-app">下载APP 登录领取</a>
+      <a class="downBtn gdt" href="{{env('DOWNLOAD_APP_URL','https://cixiapp.com/app.php/491')}}">下载APP 登录领取</a>
     </div>
   </div>
 

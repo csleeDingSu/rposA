@@ -643,6 +643,9 @@ function resetGame() {
     $('.shan span').hide();
     $('.shan div').removeClass('clicked-vip');    
     $('.btn-trigger').unbind('click');
+    g_previous_point = $('#hidBalance').val();
+    g_bet_amount = 0;
+    g_vip_point = $('#hidBalance').val();
     startGame();
 }
 
@@ -735,7 +738,7 @@ function closeWinModal() {
             musicPlay(1);  
             // console.log('play coin mp3');
 
-           setTimeout(function(){
+           // setTimeout(function(){
                 var decimal_places = 2;
                 var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
 
@@ -760,8 +763,8 @@ function closeWinModal() {
                     target.text(floored_number);
                   }
                 },
-                1000)
-          }, 1000);
+                1000);
+          // }, 1000);
             
         }
         
@@ -1058,7 +1061,7 @@ function showPayout(){
             $('.odd-payout').html(bet_amount);
             $('.even-payout').html(bet_amount);
 
-            $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(g_vip_point - bet_amount)));
+            $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(Number(g_vip_point) - Number(bet_amount))));
             g_bet_amount = bet_amount;
 
             if(bet_amount > 0){
@@ -1116,7 +1119,7 @@ function showPayout(){
 
                 
 
-                $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(g_vip_point - bet_amount)));
+                $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(Number(g_vip_point) - Number(bet_amount))));
 
                 $.ajax({
                     type: 'GET',
@@ -1194,7 +1197,7 @@ function showWinModal(){
 
     var bet_amount = getNumeric(getNumeric($('.span-bet').val()) * g_w_ratio);
     g_previous_point = getNumeric($('.spanAcuPointAndBalance').html());
-    g_vip_point = getNumeric(g_previous_point + bet_amount);
+    g_vip_point = getNumeric(Number(g_previous_point) + Number(bet_amount));
     var instructions = '您已抽中'+ g_vip_point +'挖宝币';
     html += bet_amount;
 
