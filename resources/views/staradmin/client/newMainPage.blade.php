@@ -89,11 +89,13 @@
         </div>
 
         <a name="p"></a>
-
+        @if(!empty($product_zero['list'][0]))
+        
         <h2 class="title-0goumai"><a href="/main/zero-price-product" class="title-checkall">查看全部<img class="icon-zero-go" src="{{ asset('/clientapp/images/icon-zero-go.png') }}"/></a></h2>
+        
         <div class="zeroBox">
           <div class="list">
-            @if(!empty($product_zero))
+            
             @foreach($product_zero['list'] as $p)
                 @php ($oldPrice = $p['originalPrice'])
                 @php ($promoPrice = $p['originalPrice'] - $p['couponPrice'])
@@ -113,9 +115,11 @@
               <h2><img class="butie" src="/clientapp/images/butie.png"><span class="butie-font">¥</span> <span class="butiejia">0</span></h2>
             </a>
           @endforeach 
-        @endif
+        
           </div>
         </div>
+        @endif
+
         <h2 class="listTitle"></h2>
         <div class="listBox">
           @if(!empty($product))
