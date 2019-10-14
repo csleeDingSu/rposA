@@ -3,9 +3,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Rank extends Model
+class RankNew extends Model
 {   
-    protected $fillable = [   'member_id','game_id','account_id','rank','credit'    ];	
+    protected $fillable = [   'member_id','game_id','rank','total_bet','win','lose'    ];
 			
     protected $table = 'member_rank_new';	
 	

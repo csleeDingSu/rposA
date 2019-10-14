@@ -3,11 +3,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Rank extends Model
+class Betting extends Model
 {   
-    protected $fillable = [   'member_id','game_id','account_id','rank','credit'    ];	
+    protected $fillable = [  ];	
 			
-    protected $table = 'member_rank_new';	
+    protected $table = 'view_betting';	
 	
 	public static function getTableName()
     {

@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Carbon\Carbon;
-class RankGenerator extends Command
+class RankGeneratorOld extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'generate:rank';
+    protected $signature = 'nousegenerate:rank';
 
     /**
      * The console command description.
@@ -37,20 +37,28 @@ class RankGenerator extends Command
      */
     public function handle()
     {        
-		$this->comment('-- Stared:'.' '.Carbon::now()->toDateTimeString());			
-		$this->line('-- fetch games');		
+		$this->comment('-- Stared:'.' '.Carbon::now()->toDateTimeString());	
+		
+		$this->line('-- fetch games');
+		
 		$games = \App\Game::select('*')
 				->get();
 		
-		$this->info('-- done');		
+		$this->info('-- done');
 		
-		$this->line('-- truncate old records');		
-			\App\RankNew::query()->truncate();
+		//mysql data seek pointer not reset to 0 so to fix that we pass the dynamic variibale
+		//Fixed on 12/09/2019 set @i = 0
+		$arr = ['0'=>'i','1'=>'j','2'=>'k','3'=>'l','4'=>'m','5'=>'n','6'=>'p','7'=>'q',];
+		
+		$this->line('-- truncate old records');
+		
+		\App\Rank::query()->truncate();
+
 		$this->info('-- done');
 		
 		foreach ($games as $key=>$game)
 		{
-					
+			$ds = $arr[$key];			
 			$this->line('-- generate ranks for game : '.$game->id);
 			
 			$cards = \DB::select("set @i = 0");
@@ -58,28 +66,33 @@ class RankGenerator extends Command
 			//\DB::connection()->enableQueryLog();
 		
 			//@i := coalesce(@i + 1, 1) rank, 
-			$select = \DB::raw("betamt,rewardamt, member_id, game_id,phone,wechat_name,username");
-			$ranks  = \App\Betting::select($select);
+			$select = \DB::raw("sum(credit) as credit, member_id, game_id,phone,wechat_name,username");
+			$ranks  = \App\History::select($select);
 			$ranks = $ranks->where('game_id',$game->id);		
 
-			$ranks  = $ranks->orderBy('lose','DESC')
-							->get();	
-
+			$ranks  = $ranks->where(function($query) {
+								$query->where('ledger_type' , 'LIKE' ,'AP%');
+								$query->orWhere('ledger_type' , 'CRPNT');
+							})
+							->join('members', 'members.id', '=', \App\History::getTableName().'.member_id')
+							->groupby('member_id','game_id')
+							->orderBy('credit','DESC')
+							->get();
 			$this->info('-- done');
 			//$queries = \DB::getQueryLog();		
 		
-			//dd($queries);			
+			//dd($queries);
+			
 			$newrank = 1;
 			foreach ($ranks->chunk(200) as $records)
 			{
+				//dd($records);
 				foreach ($records as $row)
 				{
-					$this->line('-- update ranks for game : '.$game->id);
-					$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
-					$rank->rank      = $newrank;
-					$rank->total_bet = $row->betamt;
-					$rank->win       = $row->rewardamt;
-					$rank->balance   = $row->rewardamt- $row->betamt;
+					$this->line('-- update ranks for member : '.$row->member_id);
+					$rank = \App\Rank::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
+					$rank->rank   = $newrank;
+					$rank->credit = $row->credit;
 					$rank->save();
 
 					$this->info('-- done');
