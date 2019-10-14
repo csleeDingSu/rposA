@@ -82,21 +82,19 @@ function getGlobalRanking() {
         	var global_rank = data.global_ranks.data;
         	var global_rank_html = '';
         	var global_rank_num = 0;
-        	var i =0;
         	var _phone = 'xxxxx';
 
             if(status){
 
-            	i = 0;
                 $.each(global_rank, function(i, item) {
-                	if ((i + 1) == 1) {
+                	if (item.rank == 1) {
                 		global_rank_num = '<img class="icon-one" src="/client/images/ranking/1.png" />';
-                	}else if ((i + 1) == 2) {
+                	}else if (item.rank == 2) {
                 		global_rank_num = '<img class="icon-one" src="/client/images/ranking/2.png" />';
-                	}else if ((i + 1) == 3) {
+                	}else if (item.rank == 3) {
                 		global_rank_num = '<img class="icon-one" src="/client/images/ranking/3.png" />';
                 	}else {
-                		global_rank_num = (i + 1);
+                		global_rank_num = (item.rank);
                 	}
 
                 	_phone = 'xxxxx';
@@ -107,7 +105,7 @@ function getGlobalRanking() {
                 	global_rank_html += '<div class="row tab-content-list">' +
 								'<div class="col-1 ranking-number">' + global_rank_num + '</div>' +
 								'<div class="col-5 ranking-name">' + _phone + '</div>' +
-								'<div class="col-3 ranking-point">' + item.credit + '</div>' +
+								'<div class="col-3 ranking-point">' + item.balance + '</div>' +
 							'</div>';
                 });
 
