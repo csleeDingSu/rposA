@@ -414,30 +414,30 @@ try {
 
         $(".loading").fadeOut("slow");
 
-        $.ajax({
-            type: 'GET',
-            url: "/api/get-game-result-temp?gameid=102&gametype=1&memberid=" + user_id + "&drawid=0",
-            dataType: "json",
-            beforeSend: function( xhr ) {
-                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            },
-            error: function (error) { 
-                console.log(error);
-                console.log(1);
-                $(".reload2").show();
-            },
-            success: function(data) {
+        // $.ajax({
+        //     type: 'GET',
+        //     url: "/api/get-game-result-temp?gameid=102&gametype=1&memberid=" + user_id + "&drawid=0",
+        //     dataType: "json",
+        //     beforeSend: function( xhr ) {
+        //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        //     },
+        //     error: function (error) { 
+        //         console.log(error);
+        //         console.log(1);
+        //         $(".reload2").show();
+        //     },
+        //     success: function(data) {
 
-                if(data.success && data.record.bet != null){
+        //         if(data.success && data.record.bet != null){
 
-                    var selected = data.record.bet;
+        //             var selected = data.record.bet;
 
-                    var btn_rectangle = $("input[value='"+ selected +"']").parent();
-                    btn_rectangle.addClass('clicked');
-                    showPayout();
-                }
-            }
-        }); // ajax get-game-result-temp
+        //             var btn_rectangle = $("input[value='"+ selected +"']").parent();
+        //             btn_rectangle.addClass('clicked');
+        //             showPayout();
+        //         }
+        //     }
+        // }); // ajax get-game-result-temp
 
     }
     catch(err) {
