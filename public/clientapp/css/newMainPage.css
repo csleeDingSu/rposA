@@ -96,17 +96,18 @@ span.type-sred {
 
 .listTitle {
   background: url(/clientapp/images/title-chaoshengouwu.png) left top no-repeat;
-  background-size: contain;
-  height: 0.5rem;
-  margin: 0 0.24rem;
+    background-size: contain;
+    height: 0.53rem;
+    margin: 0.3rem 0.24rem;
 }
 
 .title-0goumai {
   background: url(/clientapp/images/title-0yuangoumai.png) left top no-repeat;
     background-size: contain;
     height: 0.5rem;
-    margin: 0.1rem 0.24rem;
-    border-bottom: 1px solid gainsboro;
+    margin: 0.2rem 0.24rem;
+    /* border-bottom: 1px solid gainsboro; */
+    /* padding: 0; */
 }
 
 .title-checkall {
@@ -118,7 +119,7 @@ span.type-sred {
 .zeroBox {
     background-size: 100% 100%;
     margin: 0 auto;
-    margin: 0 0 0.24rem 0;
+    margin: 0 0 0.5rem 0;
 }
 
 .zeroBox .list {
@@ -134,7 +135,7 @@ span.type-sred {
   position: relative;
   height: 2.35rem;
   width: 2.35rem;
-  padding: 0 0.05rem 0 0;
+  padding: 0.1rem 0.1rem 0.1rem 0;
 }
 
 .title-0gou-product {
@@ -176,4 +177,15 @@ span.type-sred {
     margin: -0.05rem 0 0 0.1rem;
     padding: 0.08rem 0.05rem;
     line-height: 1rem;
+}
+
+.butie-padding {
+  padding: 0.1rem 0 0 0;
+}
+
+.line {
+  height: 0.1rem;
+  border-top: 0.012rem solid #e5e5e5;
+  margin: 0 0.24rem;
+
 }

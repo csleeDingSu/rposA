@@ -92,11 +92,15 @@
         @if(!empty($product_zero['list'][0]))
         
         <h2 class="title-0goumai"><a href="/main/zero-price-product" class="title-checkall">查看全部<img class="icon-zero-go" src="{{ asset('/clientapp/images/icon-zero-go.png') }}"/></a></h2>
-        
+        <h2 class="line"></h2>
         <div class="zeroBox">
           <div class="list">
-            
+            @php($i = 0)
             @foreach($product_zero['list'] as $p)
+                @php ($i++)
+                @if ($i > 3)
+                  @break
+                @endif
                 @php ($oldPrice = $p['originalPrice'])
                 @php ($promoPrice = $p['originalPrice'] - $p['couponPrice'])
                 @php ($promoPrice = ($promoPrice > 0) ? $promoPrice : 0)
@@ -112,7 +116,7 @@
             <a href="/main/product/detail{{$_param}}">
               <span><img class="zeroBox-product-img" src="{{$p['mainPic']}}_320x320.jpg"></span>
               <p class="title-0gou-product">{{$p['title']}}</p>
-              <h2><img class="butie" src="/clientapp/images/butie.png"><span class="butie-font">¥</span> <span class="butiejia">0</span></h2>
+              <h2 class="butie-padding"><img class="butie" src="/clientapp/images/butie.png"><span class="butie-font">¥</span> <span class="butiejia">0</span></h2>
             </a>
           @endforeach 
         
@@ -135,12 +139,10 @@
                 @php ($reward = (int)($promoPrice * $commissionRate))
                 @php ($reward = ($reward <= 0) ? '100' : $reward)
                 @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $_life)
-                
+                <a href="/main/product/detail{{$_param}}">
                 <div class="inBox">
                   <div class="imgBox">
-                    <a href="/main/product/detail{{$_param}}"> 
-                      <img src="{{$p['mainPic']}}_320x320.jpg">
-                    </a>
+                    <img src="{{$p['mainPic']}}_320x320.jpg">
                   </div>
                   <div class="txtBox flex1">
                     <h2 class="name">{{$p['title']}}</h2>
@@ -156,6 +158,7 @@
                     </div>
                   </div>
                 </div>
+              </a>
           @endforeach 
         @endif
       
