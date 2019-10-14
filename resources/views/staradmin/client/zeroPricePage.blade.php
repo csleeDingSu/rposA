@@ -30,7 +30,7 @@
         <div class="logo rel logo3-zero">
           <div class="c-header">
             <div class="pageHeader rel">
-              <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/zero-back.png') }}"><span>返回</span></a>
+              <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/zero-back-.png') }}"><span>返回</span></a>
               <h2></h2>
               <a class="rules">补贴说明</a>
             </div>
