@@ -15,14 +15,14 @@ class LedgerController extends Controller
 	public function get_notifications(Request $request)
 	{
 		$memberid      = $request->memberid;
-		$notification  = \App\Notification::with('ledger')->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+		$notification  = \App\Notification::with('ledger')->where('game_id',$request->gameid)->where('member_id',$memberid)->where('is_read',0)->orderby('created_at','DESC')->get();		
 		return response()->json(['success' => true, 'count'=>$notification->count(), 'records' => $notification]);
 	}
 	
 	public function mark_all_notifications(Request $request)
 	{
 		$memberid      = $request->memberid;		
-		$notification  =\App\Notification::where('member_id',$memberid)->where('is_read',0)->update(['read_at' => now(),'is_read'=>1]);
+		$notification  =\App\Notification::where('member_id',$memberid)->where('game_id',$request->gameid)->where('is_read',0)->update(['read_at' => now(),'is_read'=>1]);
 		if ($notification)
 		{
 			return response()->json(['success' => true]);
