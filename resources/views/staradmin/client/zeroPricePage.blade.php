@@ -51,7 +51,9 @@
                 @php ($reward = (int)($promoPrice * $commissionRate))
                 @php ($reward = ($reward <= 0) ? '100' : $reward)
                 @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $_life)
-                
+                {{$commissionRate}}
+                {{$promoPrice}}
+                {{$reward}}
                 <div class="inBox">
                   <div class="imgBox">
                     <a href="/main/product/detail{{$_param}}"> 

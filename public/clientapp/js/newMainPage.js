@@ -117,10 +117,10 @@ function populateData(item) {
   newPrice = (newPrice > 0) ? newPrice : 0;
   sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
   commissionRate = item.commissionRate;
-  commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
+  commissionRate = (commissionRate <= 0) ? 0 : parseInt(commissionRate);
   reward = parseInt(Number(promoPrice) * Number(commissionRate));
   reward = (reward <= 0) ? '100' : reward;
-  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=';
+  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=&life=' + life;
   // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
 
   html = '<div class="inBox">' +

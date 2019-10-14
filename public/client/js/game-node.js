@@ -211,7 +211,7 @@ function initUser(records){
 
         $('.btn-life').html('剩'+life+'次');
         
-        setBalance();
+        // setBalance();
 
         if(life == 0){
             if (user_id > 0) {
@@ -390,7 +390,7 @@ try {
             $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
         }
 
-        setBalance();
+        // setBalance();
 
         $('#freeze_time').val(freeze_time);
         $('#draw_id').val(draw_id);

@@ -438,7 +438,7 @@ class ClientController extends BaseController
 		Session::push('sharepic', $data->id);
 		Session::save();
 		
-		return view('client/share', ['data'=>$data]);
+		return view('client/sharev2', ['data'=>$data]);
 	}
 	
 	public function sharetest(Request $request)

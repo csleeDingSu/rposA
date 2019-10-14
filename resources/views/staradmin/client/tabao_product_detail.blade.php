@@ -52,10 +52,14 @@
         @php ($photourl = empty($data['mainPic']) ? null : $data['mainPic'])
 		@php ($photourl = str_replace('_310x310.jpg', '', $photourl))
 		@php ($photourl = str_replace('_160x160.jpg', '', $photourl))
-		@php ($newPrice = ($data['originalPrice'] - $data['couponPrice'] - 12) )
+		@php ($promoPrice = $data['originalPrice'] - $data['couponPrice'])
+        @php ($promoPrice = ($promoPrice > 0) ? $promoPrice : 0)                
+		@php ($newPrice = ($promoPrice - 12) )
         @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
         @php ($life = empty($data['life']) ? 0 : $data['life'])
-        
+        @php ($commissionRate = $data['commissionRate'])
+        @php ($commissionRate = ($commissionRate > 0) ? (int)$commissionRate : 0)
+        @php ($reward = (int)($promoPrice * $commissionRate))
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
@@ -67,7 +71,7 @@
 					<h2>{{$data['title']}}</h2>
 					<div class="line-reward">
 						<div class="reward-txt">下单后</div>
-						<div class="reward">返{{$newPrice * $data['commissionRate']}}积分</div>
+						<div class="reward">返{{$reward}}积分</div>
 						<div class="btn-reward">怎么返?</div>
 						<h3>热销{{$data['monthSales']}}件</h3>
 					</div>							
