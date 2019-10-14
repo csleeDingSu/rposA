@@ -19,6 +19,8 @@
 
 @section('content')
 
+@php ($_life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
+
 <div class="box">
         <input id="hidPageId" type="hidden" value="{{empty($pageId) ? '' : $pageId}}" />
         <input id="hidweChatVerificationStatus" type="hidden" value="{{empty($member->wechat_verification_status) ? '' : $member->wechat_verification_status}}" />
@@ -87,10 +89,36 @@
         </div>
 
         <a name="p"></a>
-        <h2 class="listTitle">超值爆款产品</h2>
+
+        <h2 class="title-0goumai"><a href="/main/zero-price-product" class="title-checkall">查看全部 ></a></h2>
+        <div class="zeroBox">
+          <div class="list">
+            @if(!empty($product_zero))
+            @foreach($product_zero['list'] as $p)
+                @php ($oldPrice = $p['originalPrice'])
+                @php ($promoPrice = $p['originalPrice'] - $p['couponPrice'])
+                @php ($promoPrice = ($promoPrice > 0) ? $promoPrice : 0)
+                @php ($newPrice = $p['originalPrice'] - $p['couponPrice'] - 12)
+                @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
+                @php ($sales = ($p['monthSales'] >= 1000) ? number_format(((float)$p['monthSales'] / 10000), 2, '.', '') . '万' : $p['monthSales'] . '件')
+                @php ($commissionRate = $p['commissionRate'])
+                @php ($commissionRate = ($commissionRate > 0) ? $commissionRate : 0)
+                @php ($reward = (int)($promoPrice * $commissionRate))
+                @php ($reward = ($reward <= 0) ? '100' : $reward)
+                @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $_life)
+                
+            <a href="/main/product/detail{{$_param}}">
+              <span><img class="zeroBox-product-img" src="{{$p['mainPic']}}_320x320.jpg"></span>
+              <p class="title-0gou-product">{{$p['title']}}</p>
+              <h2><img class="butie" src="/clientapp/images/butie.png"><span class="butie-font">¥</span> <span class="butiejia">0</span></h2>
+            </a>
+          @endforeach 
+        @endif
+          </div>
+        </div>
+        <h2 class="listTitle"></h2>
         <div class="listBox">
           @if(!empty($product))
-            @php ($_life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
             @foreach($product['list'] as $p)
                 @php ($oldPrice = $p['originalPrice'])
                 @php ($promoPrice = $p['originalPrice'] - $p['couponPrice'])

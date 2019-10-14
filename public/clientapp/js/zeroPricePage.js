@@ -16,14 +16,6 @@ $(document).ready(function () {
   isNewBie = $('#hidgame102UsedPoint').val() > 0 ? false : true;
   life = $('#hidgame102Life').val();
 
-  $('#btn-search').click(function() {
-    goSearch();
-  });
-
-  $('#search').click(function() {
-    goSearch();
-  });
-
   //execute scroll pagination
   being.scrollBottom('.scrolly', '.box', () => {   
     pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val();
@@ -46,9 +38,7 @@ function getFromTabao(pageId){
       type: 'GET',
       // url: "/tabao/get-goods-list?pageSize=" + _pageSize + "&pageId=" + pageId + "&priceLowerLimit=" + priceLowerLimit+ "&priceUpperLimit=" + priceUpperLimit, 
       // url: "/tabao/get-collection-list-with-detail?pageSize=" + _pageSize + "&pageId=" + pageId,
-      // url: "/tabao/get-taobao-collection-vouchers/" + pageId,
-      url: "/tabao/get-taobao-collection-vouchers-greater12/" + pageId,
-      
+      url: "/tabao/get-taobao-collection-vouchers-less12/" + pageId,
       contentType: "application/json; charset=utf-8",
       dataType: "text",
       error: function (error) {

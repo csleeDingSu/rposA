@@ -64,17 +64,17 @@
     height: 0.4rem;
  }
 
-.logo3-c1 {
-  background: url(../images/index3-img1.png) left top no-repeat;
+.logo3-zero {
+  background: url(/clientapp/images/zero-banner.png) left top no-repeat;
   background-size: 100% auto;
-  padding-top: 1.45rem;
+  /*padding-top: 1.45rem;*/
   box-sizing: border-box;
-  height: 5.9rem;
+  height: 2.8rem;
   margin-bottom: 0;
   
 }
 
-.logo3-c1 .searchBox {
+.logo3-zero ..c-header {
   position: relative;
   margin-bottom: 0;
   bottom: 0;
@@ -82,8 +82,34 @@
   width: calc(100% - 0.48rem);
 }
 
-.logo3-c1 .about li {
+.logo3-zero .about li {
   color: #fff;
+}
+
+.c-header {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+}
+
+.pageHeader {
+    height: 1rem;
+    background: transparent;
+    width: 100%;
+}
+.pageHeader a.returnBtn {
+    font-size: 0;
+    line-height: 1rem;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 1rem;
+    padding-left: 0.1rem;
+}
+
+.pageHeader a.returnBtn span {
+    color: #fff;
 }
 
 span.type-red {
@@ -170,4 +196,12 @@ span.type-sred {
     font-size: 0.4rem;
     padding: 0.1rem 0;
     vertical-align: middle;
+}
+
+.rules {
+  float: right;
+    line-height: 1rem;
+    height: 1rem;
+    padding-right: 0.1rem;
+    color: #fff !important;
 }

@@ -24,7 +24,7 @@
                   <img class="clsquestion" src="{{ asset('/clientapp/images/shop/question-icon.png') }}">
                 </a>
               </div>
-            <a class="shop-right-menu" href="/vip"><img src="{{ asset('/clientapp/images/shop/icon-redeem-rules.png') }}"></a>
+            <a class="shop-right-menu" href="/redeem/history"><img src="{{ asset('/clientapp/images/shop/icon-my-redeem.png') }}"></a>
         </div>
         <div class="shop-banner"></div>
         <div class="shop-notification">

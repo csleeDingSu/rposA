@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\taobao_collection_list;
 use App\taobao_collection_vouchers;
+use App\v_getTaobaoCollectionVouchersGreater12;
+use App\v_getTaobaoCollectionVouchersLess12;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -423,6 +425,58 @@ class tabaoApiController extends BaseController
         
         $totalNum = taobao_collection_vouchers::select('*')->get()->count();
         $res = taobao_collection_vouchers::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
+
+        if (!empty($res)) {
+            $next_pg = $page_num + 1;
+            $_content['code'] = 0;
+            $_content['data']['list'] = $res;
+            $_content['data']['pageId'] = $next_pg;
+            $_content['data']['totalNum'] = $totalNum;   
+            $_content['msg'] = 'ok';
+            $_content['time'] = null;
+        }
+
+        return $_content;
+
+    }
+
+    public function getTaobaoCollectionVouchersGreater12($page_num = null)
+    {
+        $_content = null;
+        $next_pg = 0;
+        $_pgsize = 10;
+        $page_num = empty($page_num) ? 1 : $page_num;
+        $_end = $page_num * $_pgsize;
+        $_start = $_end - $_pgsize;
+        
+        $totalNum = v_getTaobaoCollectionVouchersGreater12::select('*')->get()->count();
+        $res = v_getTaobaoCollectionVouchersGreater12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
+
+        if (!empty($res)) {
+            $next_pg = $page_num + 1;
+            $_content['code'] = 0;
+            $_content['data']['list'] = $res;
+            $_content['data']['pageId'] = $next_pg;
+            $_content['data']['totalNum'] = $totalNum;   
+            $_content['msg'] = 'ok';
+            $_content['time'] = null;
+        }
+
+        return $_content;
+
+    }
+
+    public function getTaobaoCollectionVouchersLess12($page_num = null)
+    {
+        $_content = null;
+        $next_pg = 0;
+        $_pgsize = 10;
+        $page_num = empty($page_num) ? 1 : $page_num;
+        $_end = $page_num * $_pgsize;
+        $_start = $_end - $_pgsize;
+        
+        $totalNum = v_getTaobaoCollectionVouchersLess12::select('*')->get()->count();
+        $res = v_getTaobaoCollectionVouchersLess12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
 
         if (!empty($res)) {
             $next_pg = $page_num + 1;

@@ -90,10 +90,16 @@ class MainController extends BaseController
 		// 	$data['pageId'] = $res['data']['pageId'];
 		// }
 		// $res = $this->tabao->getTaobaoCollection(1);
-		$res = $this->tabao->getTaobaoCollectionVouchers(1);
+		$res = $this->tabao->getTaobaoCollectionVouchersGreater12(1);
 		if (!empty($res)) {
  			$data['product'] = $res['data'];
  			$data['pageId'] = $res['data']['pageId'];	
+ 		}
+
+ 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1);
+		if (!empty($res)) {
+ 			$data['product_zero'] = $res['data'];
+ 			$data['pageId_zero'] = $res['data']['pageId'];	
  		}
 		
 		return view('client/newMainPage', $data);
@@ -200,6 +206,33 @@ class MainController extends BaseController
 		$data['RunInApp'] = false;
 
 		return view('auth.register_external', $data);
-	}  
+	}
+
+	public function tabaoZeroPriceProduct(Request $request)
+	{
+		if (Auth::Guard('member')->check())
+		{
+			$member = Auth::guard('member')->user()->id	;
+			$data['member']    = Member::get_member($member);
+			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+			$data['game_102_usedpoint'] = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',102)->sum('point');
+
+		} else {
+			$member = null;
+			$data['member'] = null;
+			$data['wallet'] = null;	
+			$data['game_102_usedpoint'] = 0;
+		}
+
+		$this->tabao = new tabaoApiController();
+
+ 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1);
+		if (!empty($res)) {
+ 			$data['product'] = $res['data'];
+ 			$data['pageId'] = $res['data']['pageId'];	
+ 		}
+		
+		return view('client/zeroPricePage', $data);
+	}
 
 }

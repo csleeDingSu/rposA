@@ -180,6 +180,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/guide/redeem', function () {
 		return view( 'client/quan');
 	} );
+	Route::any( '/main/zero-price-product', 'MainController@tabaoZeroPriceProduct' )->name( 'client.tabao.zeroPriceProduct' );	
 		
 } );
 
@@ -791,6 +792,8 @@ Route::any( '/tabao/get-owner-goods', 'tabaoApiController@getOwnerGoods' )->name
 Route::any( '/tabao/get-tb-service', 'tabaoApiController@getTbService' )->name('tabao.getTbService');
 Route::any( '/tabao/storeAllCollectionIntoVouchers', 'tabaoApiController@storeAllCollectionIntoVouchers' )->name('tabao.storeAllCollectionIntoVouchers');
 Route::any( '/tabao/get-taobao-collection-vouchers/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchers' )->name('tabao.getTaobaoCollectionVouchers');
+Route::any( '/tabao/get-taobao-collection-vouchers-greater12/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersGreater12' )->name('tabao.getTaobaoCollectionVouchers');
+Route::any( '/tabao/get-taobao-collection-vouchers-less12/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersLess12' )->name('tabao.getTaobaoCollectionVouchers');
 
 
 
