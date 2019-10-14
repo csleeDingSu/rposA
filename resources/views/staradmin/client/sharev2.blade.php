@@ -32,7 +32,7 @@ include(app_path().'/Lib/qr/qrlib.php');
 $filename = public_path().'/client/qr/'.$affiliate_id.'.png';
 
 //QRcode::png($url, $filename, 'L', '3', 2);  //old
-QRcode::png($url, $filename, 'L', '5.5', 2); 
+QRcode::png($url, $filename, 'L', '3', 2); 
 
 $showIcon = $filename;
 
