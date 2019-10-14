@@ -292,7 +292,7 @@ class ClientController extends BaseController
 			
 			$total_intro = 	(!empty($intro_count->count) ? $intro_count->count : 0) + (!empty($sc_child['count']) ? $sc_child['count'] : 0) ;
 
-			$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+			$row = \App\Rank::select('rank','member_id','game_id','total_bet','win','balance','username','phone','wechat_name','wechat_id')		
 					->where('game_id',102)
 					->where('member_id',$member_id)
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
