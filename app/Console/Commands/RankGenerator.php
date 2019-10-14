@@ -62,7 +62,7 @@ class RankGenerator extends Command
 			$ranks  = \App\Betting::select($select);
 			$ranks = $ranks->where('game_id',$game->id);		
 
-			$ranks  = $ranks->orderBy('rewardamt','DESC')
+			$ranks  = $ranks->orderBy('lose','DESC')
 							->get();	
 
 			$this->info('-- done');
@@ -79,7 +79,7 @@ class RankGenerator extends Command
 					$rank->rank      = $newrank;
 					$rank->total_bet = $row->betamt;
 					$rank->win       = $row->rewardamt;
-					$rank->lose      = $row->betamt - $row->rewardamt;
+					$rank->balance   = $row->rewardamt- $row->betamt;
 					$rank->save();
 
 					$this->info('-- done');
