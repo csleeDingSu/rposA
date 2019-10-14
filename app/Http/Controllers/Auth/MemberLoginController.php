@@ -74,11 +74,12 @@ class MemberLoginController extends Controller
             // var_dump($agent->isSafari());
             // dd($agent);
 
-        	if ($agent->isAndroidOS()) {
-        		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
-        	} else {
-        		$data['RunInApp'] = true;
-        	}
+        	// if ($agent->isAndroidOS()) {
+        	// 	$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+        	// } else {
+        	// 	$data['RunInApp'] = true;
+        	// }
+        	$data['RunInApp'] = true;
 			
             // return view('auth.login_new',$data);  
             return view('auth.login_vip_new',$data);        
