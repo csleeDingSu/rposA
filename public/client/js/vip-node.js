@@ -52,6 +52,7 @@ $(function () {
         getToken();
         getProduct();
         closeModal();
+        initNotification();
 
         ifvisible.on("wakeup", function(){
             //resetTimer();
@@ -378,7 +379,7 @@ function getToken(){
 
             socket.on(prefix+ id + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
                 $('.icon-newcoin').unbind('click');
-                getNotification(data.data);
+                getNotification(data.data, true);
             });
             
         });
@@ -392,7 +393,7 @@ function getToken(){
     
 }
 
-function getNotification(data){
+function getNotification(data, isSocket = false){
     console.log('get topup notifications');
     console.log(data);
     var notifications = data;
@@ -409,8 +410,13 @@ function getNotification(data){
     $('.icon-red').html(notifications_count).show();
 
     var records = notifications.records;
-    $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(records[0].ledger.balance_after) - getNumeric(g_bet_amount)));
-    g_vip_point = records[0].ledger.balance_after;
+
+    if ((typeof records[0].ledger.balance_after != 'undefined') || (records[0].ledger.balance_after > 0)) {
+        if (isSocket) {
+            $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(records[0].ledger.balance_after) - getNumeric(g_bet_amount)));
+            g_vip_point = records[0].ledger.balance_after;  
+        }
+    }    
 
     $('.icon-newcoin').click(function(){
         $('.span-topup').html(records[0].ledger.credit);
@@ -442,7 +448,7 @@ function getNotification(data){
                 new_data.count = new_data.records.length;
                 console.log(new_data.count);
                 if(new_data.count > 0){
-                    getNotification(new_data);
+                    getNotification(new_data, false);
                 } else {
                     $('.icon-red').html(notifications_count).hide();
                 }
@@ -609,18 +615,7 @@ function startGame() {
             });
 
         }
-    });
-    
-    $.ajax({
-        type: 'GET',
-        url: "/api/get-notifications?memberid=" + id + "&gameid=" + gameid,
-        dataType: "json",
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            console.log(data);
-            getNotification(data);
-        }
-    });
+    });    
 }
 
 function resetGame() {
@@ -1543,4 +1538,17 @@ function showHowToUnLock() {
     $('.btn-go-redeem').click(function() {
         window.location.href = '/redeem';
     }); 
+}
+
+function initNotification() {
+    $.ajax({
+        type: 'GET',
+        url: "/api/get-notifications?memberid=" + id + "&gameid=" + gameid,
+        dataType: "json",
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            console.log(data);
+            getNotification(data, false);
+        }
+    });
 }
