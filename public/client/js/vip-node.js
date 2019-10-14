@@ -430,7 +430,7 @@ function getNotification(data){
 
         $.ajax({
             type: 'POST',
-            url: "/api/notification-mark-as-read?id="+ records[0].id+"&memberid=" + $('#hidUserId').val(),
+            url: "/api/notification-mark-as-read?id="+ records[0].id+"&memberid=" + $('#hidUserId').val() + "&gameid=" + gameid,
             dataType: "json",
             error: function (error) { 
                 console.log(error.responseText);
