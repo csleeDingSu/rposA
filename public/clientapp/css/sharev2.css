@@ -1,0 +1,109 @@
+.scrolly {
+background-color: #f5904a;
+}
+
+.box {
+  height: 100%;
+}
+
+.back-ground {
+  box-sizing: border-box;
+  background-color: #f5904a;
+  height: 100%;
+}
+
+.c-header {
+  position: relative;
+  margin-bottom: 0;
+  bottom: 0;
+  box-shadow: none;
+}
+
+.pageHeader {
+    height: 1rem;
+    background: transparent;
+    width: 100%;
+}
+.pageHeader a.returnBtn {
+    font-size: 0;
+    line-height: 1rem;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 1rem;
+    padding-left: 0.1rem;
+}
+
+.pageHeader a.returnBtn span {
+    color: #fff;
+}
+
+.pageHeader a.returnBtn img {
+    padding: 0.11rem;
+}
+
+.h-title {
+  color: #fff !important;
+}
+
+.rules {
+  float: right;
+    line-height: 1rem;
+    height: 1rem;
+    padding-right: 0.3rem;
+    color: #fff !important;
+    font-size: 0.32rem;
+    margin:-1rem 0;
+}
+
+.shareBox {
+  background: url(/clientapp/images/share/background.png) left top no-repeat;
+    background-size: contain;
+    height: 100%;
+    margin: 0.5rem 0;
+    background-color: #f5904a;
+    
+}
+
+.qrcode {
+  height: 7rem;
+}
+
+.icon-thumb {
+    background-color: transparent;
+    width: 0.5rem;
+}
+
+.instruction1 {
+  text-align: center;
+    color: #fff;
+    font-size: 0.4rem;
+    margin: 0.4rem 0.2rem 0.1rem 0;
+
+}
+
+.instruction2 {
+  text-align: center;
+  color: #fff;
+  font-size: 0.3rem;
+
+}
+
+.instruction3 {
+    background: url(/clientapp/images/share/desc-bg.png) no-repeat;
+    background-size: contain;
+    margin: 1rem;
+    background-color: transparent;
+    text-align: center;
+    padding: 0.4rem;
+    color: #fff;
+    line-height: 0.5rem;
+    font-size: 0.3rem;
+}
+
+.small-img {
+  margin:3.7rem 1.88rem;
+}
+
+
