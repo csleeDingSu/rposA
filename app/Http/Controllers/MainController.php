@@ -210,6 +210,7 @@ class MainController extends BaseController
 
 	public function tabaoZeroPriceProduct(Request $request)
 	{
+		$this->vp = new VIPApp();
 		if (Auth::Guard('member')->check())
 		{
 			$member = Auth::guard('member')->user()->id	;
