@@ -171,3 +171,9 @@ span.type-sred {
     padding: 0.1rem 0;
     vertical-align: middle;
 }
+.icon-zero-go {
+  height: 0.4rem;
+    margin: -0.05rem 0 0 0.1rem;
+    padding: 0.08rem 0.05rem;
+    line-height: 1rem;
+}

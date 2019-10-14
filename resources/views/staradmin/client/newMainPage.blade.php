@@ -90,7 +90,7 @@
 
         <a name="p"></a>
 
-        <h2 class="title-0goumai"><a href="/main/zero-price-product" class="title-checkall">查看全部 ></a></h2>
+        <h2 class="title-0goumai"><a href="/main/zero-price-product" class="title-checkall">查看全部<img class="icon-zero-go" src="{{ asset('/clientapp/images/icon-zero-go.png') }}"/></a></h2>
         <div class="zeroBox">
           <div class="list">
             @if(!empty($product_zero))
