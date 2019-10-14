@@ -217,12 +217,14 @@ class MainController extends BaseController
 			$data['member']    = Member::get_member($member);
 			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
 			$data['game_102_usedpoint'] = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',102)->sum('point');
-
+			$data['life'] = empty($data['wallet']['gameledger']['102']['life']) ? 0 : $data['wallet']['gameledger']['102']['life'];
+			
 		} else {
 			$member = null;
 			$data['member'] = null;
 			$data['wallet'] = null;	
 			$data['game_102_usedpoint'] = 0;
+			$data['life'] = 0;
 		}
 
 		$this->tabao = new tabaoApiController();

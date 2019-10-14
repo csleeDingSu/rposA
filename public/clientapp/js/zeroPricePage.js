@@ -27,6 +27,14 @@ $(document).ready(function () {
     }
   }); 
 
+  $('.rules').click(function() {
+    $('#draw-rules').modal();
+  });
+
+  $('.modal-go-button').click(function() {
+    window.location.href = "/arcade"; 
+  });
+
 });
 
 function getFromTabao(pageId){
