@@ -65,9 +65,10 @@
         </div>
         @endif 
 
+<div class="mui-btn mui-btn-blue" style="margin:50px auto;width: 300px;" id="openURL">点击唤醒浏览器打开链接</div>
 
         <div class="navBox-3">
-          <a href="/guide/redeem"><img src="{{ asset('/clientapp/images/index3-nav.png') }}">
+          <a id="btn-test"><img src="{{ asset('/clientapp/images/index3-nav.png') }}">
             <p>查券教程</p>
           </a>
           <a href="/pre-share"><img src="{{ asset('/clientapp/images/index3-nav2.png') }}">
@@ -170,5 +171,20 @@
 @section('footer-javascript')
     @parent  
     <script src="{{ asset('/clientapp/js/newMainPage.js') }}"></script>
+    <script src="{{ asset('/clientapp/js/mui.min.js') }}"></script>
+    <link href="{{ asset('/clientapp/css/mui.min.css') }}" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+
+      document.getElementById("btn-test").addEventListener('tap',function(){
+        //
+        plus.runtime.openURL("{{url('/guide/redeem')}}");
+      });
+
+      document.getElementById("openURL").addEventListener('tap',function(){
+        //
+        plus.runtime.openURL("https://www.baidu.com");
+      });
+    </script>
 
 @endsection

@@ -128,27 +128,63 @@
   }
 })();
 
-  $('#f-main').on('touchend', function(){
+  $('#f-main').on('touchend', function(){    
+    $('#f-main').addClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').removeClass("on");
     window.top.location.href = "/main";
   });
 
-  $('#f-shop').on('touchend', function(){
+  $('#f-shop').on('touchend', function(){    
+    $('#f-main').removeClass("on");
+    $('#f-shop').addClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').removeClass("on");
     window.top.location.href = "/shop";
   });
 
-  $('#f-arcade').on('touchend', function(){
+  $('#f-arcade').on('touchend', function(){    
+    $('#f-main').removeClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').addClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').removeClass("on");
     window.top.location.href = "/arcade";
   });
 
   $('#f-vip').on('touchend', function(){
+    $('#f-main').removeClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').addClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').removeClass("on");
     window.top.location.href = "/vip";
   });
 
   $('#f-blog').on('touchend', function(){
+    $('#f-main').removeClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').addClass("on");
+    $('#f-profile').removeClass("on");
     window.top.location.href = "/blog";
   });
 
   $('#f-profile').on('touchend', function(){
+    $('#f-main').removeClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').addClass("on");
     window.top.location.href = "/profile";
   });
 
