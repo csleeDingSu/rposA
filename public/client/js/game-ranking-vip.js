@@ -48,7 +48,7 @@ function getMyEarnedPoint() {
                     }
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                                    '<div class="col-3 ranking-point">'+my_rank.credit+'</div>';
+                                    '<div class="col-3 ranking-point">'+my_rank.balance+'</div>';
                 
                     $('.tab-content-my-ranking').html(my_rank_html);    
                 }else {
