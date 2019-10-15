@@ -60,6 +60,7 @@
         @php ($commissionRate = $data['commissionRate'])
         @php ($commissionRate = ($commissionRate > 0) ? (int)$commissionRate : 0)
         @php ($reward = (int)($promoPrice * $commissionRate))
+        @php ($sales = ($data['monthSales'] >= 1000) ? number_format(((float)$data['monthSales'] / 10000), 2, '.', '') . '万' : $data['monthSales'] . '件')
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
@@ -73,7 +74,7 @@
 						<div class="reward-txt">下单后</div>
 						<div class="reward">返{{$reward}}积分</div>
 						<div class="btn-reward">怎么返?</div>
-						<h3>热销{{$data['monthSales']}}件</h3>
+						<h3>热销{{$sales}}</h3>
 					</div>							
 				</div>
 			</li>
