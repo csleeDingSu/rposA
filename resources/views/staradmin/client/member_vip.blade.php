@@ -12,10 +12,6 @@
 
 @section('top-javascript')
 @parent
-<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
-      <script type="text/javascript" charset="utf-8">
-          mui.init();
-      </script>
 @endsection
 
 @section('top-navbar')
@@ -117,8 +113,11 @@
 	@parent
 	<script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
 	<script src="{{ asset('/client/js/js.cookie.js') }}"></script>
+  <script src="{{ asset('/clientapp/js/mui.min.js') }}"></script>
+    <!-- <link href="{{ asset('/clientapp/css/mui.min.css') }}" rel="stylesheet"/> -->
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
 
-	<script type="text/javascript">
 		$(document).ready(function() {
 			var wechat_status = "<?php Print($member->wechat_verification_status);?>";
 			var normal_game_point = getNumeric("<?php Print(empty($wallet['gameledger']['102']->point) ? 0 : $wallet['gameledger']['102']->point);?>");
@@ -172,16 +171,11 @@
           }, false);          
 
         } else if (platform == 'AndroidOS') {
-          console.log(platform);
-            // document.getElementById("btn-go-topup").addEventListener('tap',function(){
-            //   console.log(platform);
-            //   plus.runtime.openURL(topupurl);
-            // });
 
-            var urlStr = encodeURI($('#topupurl').val());
-            $('#btn-go-topup').click(function() {
-                plus.runtime.openURL(urlStr);
-            });
+          document.getElementById("btn-go-topup").addEventListener('tap',function(){
+            //
+            plus.runtime.openURL($('#topupurl').val());
+          });
 
         } else {
             
