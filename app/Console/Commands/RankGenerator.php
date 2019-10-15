@@ -58,11 +58,14 @@ class RankGenerator extends Command
 			//\DB::connection()->enableQueryLog();
 		
 			//@i := coalesce(@i + 1, 1) rank, 
-			$select = \DB::raw("betamt,rewardamt, member_id, game_id,phone,wechat_name,username");
-			$ranks  = \App\Betting::select($select);
-			$ranks = $ranks->where('game_id',$game->id);		
+			$select  = \DB::raw("betamt,rewardamt, member_id, game_id,phone,wechat_name,username");
+			$ranks   = \App\Betting::select($select);
+			$ranks   = $ranks->where('game_id',$game->id);
 
-			$ranks  = $ranks->orderBy('lose','DESC')
+			$orderBy = 'lose';
+			if ($game->id == 102) $orderBy = 'rewardamt';
+
+			$ranks  = $ranks->orderBy($orderBy,'DESC')
 							->get();	
 
 			$this->info('-- done');
