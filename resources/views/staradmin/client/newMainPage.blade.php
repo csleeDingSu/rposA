@@ -65,8 +65,6 @@
         </div>
         @endif 
 
-<div class="mui-btn mui-btn-blue" style="margin:50px auto;width: 300px;" id="openURL">点击唤醒浏览器打开链接</div>
-
         <div class="navBox-3">
           <a id="btn-test"><img src="{{ asset('/clientapp/images/index3-nav.png') }}">
             <p>查券教程</p>
@@ -181,10 +179,6 @@
         plus.runtime.openURL("{{url('/guide/redeem')}}");
       });
 
-      document.getElementById("openURL").addEventListener('tap',function(){
-        //
-        plus.runtime.openURL("https://www.baidu.com");
-      });
     </script>
 
 @endsection
