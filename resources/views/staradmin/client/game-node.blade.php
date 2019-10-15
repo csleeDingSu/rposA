@@ -745,7 +745,7 @@
 											邀请好友
 										</div>
 									</a>
-									<a href="/profile" class="link-button">
+									<a href="/redeem" class="link-button">
 										<div class="modal-redeem-button">
 											余额提现
 										</div>

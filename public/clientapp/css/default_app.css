@@ -27,5 +27,9 @@ dt a.on h2, dt a:active h2 {
 }
 
 .card-bar {
+    z-index: 99998 !important;
+}
+
+.modal {
     z-index: 99999 !important;
 }
