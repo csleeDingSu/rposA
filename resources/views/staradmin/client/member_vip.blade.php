@@ -173,8 +173,7 @@
         } else if (platform == 'AndroidOS') {
 
           document.getElementById("btn-go-topup").addEventListener('tap',function(){
-            //
-            plus.runtime.openURL($('#topupurl').val());
+            plus.runtime.openURL(topupurl);
           });
 
         } else {
