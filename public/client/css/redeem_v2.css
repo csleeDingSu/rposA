@@ -1620,7 +1620,7 @@ textarea {
 
 #viewvouchermode_convert_coint .modal-dialog{
 	position: fixed;
-    bottom: 0;
+    bottom: 1rem;
     width: 100%;
     margin: 0;
     padding: 0;

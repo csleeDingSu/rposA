@@ -19,7 +19,7 @@
 
 @section('content')
 
-@php ($_life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
+@php ($life = empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life)
 
 <div class="box">
         <input id="hidPageId" type="hidden" value="{{empty($pageId) ? '' : $pageId}}" />
@@ -50,7 +50,7 @@
                 @php ($commissionRate = ($commissionRate > 0) ? $commissionRate : 0)
                 @php ($reward = (int)($promoPrice * $commissionRate))
                 @php ($reward = ($reward <= 0) ? '100' : $reward)
-                @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $_life)
+                @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $life)
                 {{$commissionRate}}
                 {{$promoPrice}}
                 {{$reward}}
