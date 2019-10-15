@@ -399,26 +399,28 @@ function getNotification(data, isSocket = false){
     var notifications = data;
 
     var notifications_count = notifications.count;
+    var _gameid = notifications.gameid;
 
-    if(notifications_count == 0){
-        $('.icon-red').html(notifications_count).hide();
-        return false;
-    } else if (notifications_count > 9){
-        notifications_count = 'N';
-    }
-
-    $('.icon-red').html(notifications_count).show();
-
-    var records = notifications.records;
-
-    if ((typeof records[0].ledger.balance_after != 'undefined') || (records[0].ledger.balance_after > 0)) {
-        if (isSocket) {
-            $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(records[0].ledger.balance_after) - getNumeric(g_bet_amount)));
-            g_vip_point = records[0].ledger.balance_after;  
+    if (_gameid == gameid) { //if game id is 103
+        if(notifications_count == 0){
+            $('.icon-red').html(notifications_count).hide();
+            return false;
+        } else if (notifications_count > 9){
+            notifications_count = 'N';
         }
-    }    
 
-    $('.icon-newcoin').click(function(){
+        $('.icon-red').html(notifications_count).show();
+
+        var records = notifications.records;
+
+        if ((typeof records[0].ledger.balance_after != 'undefined') || (records[0].ledger.balance_after > 0)) {
+            if (isSocket) {
+                $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(records[0].ledger.balance_after) - getNumeric(g_bet_amount)));
+                g_vip_point = records[0].ledger.balance_after;  
+            }
+        } 
+
+        $('.icon-newcoin').click(function(){
         $('.span-topup').html(records[0].ledger.credit);
         $('.span-before').html(records[0].ledger.balance_before);
         $('.span-after').html(records[0].ledger.balance_after);
@@ -430,36 +432,37 @@ function getNotification(data, isSocket = false){
         $('.span-updated').html(date[0]+'年'+date[1]+'月'+date[2]+'日'+time[0]+'点'+time[1]+'分');
 
         $('#modal-notification').modal();
-
         
         $( this ).unbind( "click" );
 
-        $.ajax({
-            type: 'POST',
-            url: "/api/notification-mark-as-read?id="+ records[0].id+"&memberid=" + $('#hidUserId').val() + "&gameid=" + gameid,
-            dataType: "json",
-            error: function (error) { 
-                console.log(error.responseText);
-                $(".reload2").show();
-            },
-            success: function() {
-                var new_data = data;
-                new_data.records.shift();
-                new_data.count = new_data.records.length;
-                console.log(new_data.count);
-                if(new_data.count > 0){
-                    getNotification(new_data, false);
-                } else {
-                    $('.icon-red').html(notifications_count).hide();
+            $.ajax({
+                type: 'POST',
+                url: "/api/notification-mark-as-read?id="+ records[0].id+"&memberid=" + $('#hidUserId').val() + "&gameid=" + gameid,
+                dataType: "json",
+                error: function (error) { 
+                    console.log(error.responseText);
+                    $(".reload2").show();
+                },
+                success: function() {
+                    var new_data = data;
+                    new_data.records.shift();
+                    new_data.count = new_data.records.length;
+                    console.log(new_data.count);
+                    if(new_data.count > 0){
+                        getNotification(new_data, false);
+                    } else {
+                        $('.icon-red').html(notifications_count).hide();
+                    }
                 }
-            }
+            });
+
         });
 
-    });
+        $('.modal-notification-button').click(function(){
+            $('#modal-notification').modal('hide');
+        }); 
 
-    $('.modal-notification-button').click(function(){
-        $('#modal-notification').modal('hide');
-    });
+    }
 
 }
 
