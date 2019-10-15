@@ -170,7 +170,7 @@
     @parent  
     <script src="{{ asset('/clientapp/js/newMainPage.js') }}"></script>
     <script src="{{ asset('/clientapp/js/mui.min.js') }}"></script>
-    <link href="{{ asset('/clientapp/css/mui.min.css') }}" rel="stylesheet"/>
+    <!-- <link href="{{ asset('/clientapp/css/mui.min.css') }}" rel="stylesheet"/> -->
     <script type="text/javascript" charset="utf-8">
         mui.init();
 
