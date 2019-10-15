@@ -237,6 +237,10 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/redeem_v2_vip', compact('slug'));		
 	} );
 
+	Route::get( '/redeem-vip-new', function () {
+		return view( 'client/redeem_v2_vip_new');		
+	} );
+
 	Route::get( '/validate', function () {
 		return view( 'client/validate' );
 	} );

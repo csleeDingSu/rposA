@@ -36,6 +36,7 @@ function getMyRanking() {
         	var i =0;
         	var _phone = 'xxxxx';
             var my_member_id = 0;
+            var _total_point = 0;
 
             if(status){
 
@@ -48,9 +49,11 @@ function getMyRanking() {
                         // console.log(my_rank.phone);
                         _phone = my_rank.phone.substring(0,3) + '*****' + my_rank.phone.slice(-4);
                     }
+
+                    _total_point = my_rank.win;
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                                    '<div class="col-3 ranking-point">'+my_rank.credit+'</div>';
+                                    '<div class="col-3 ranking-point">'+_total_point+'</div>';
                 
                     $('#my-ranking').html(my_rank_html);    
                 }else {
@@ -88,24 +91,25 @@ function getGlobalRanking() {
             var global_rank = data.global_ranks.data;
             var global_rank_html = '';
             var global_rank_num = 0;
-            var i =0;
+            // var i =0;
             var _phone = 'xxxxx';
             var my_member_id = 0;
+            var _total_point = 0;
 
             if(status){
 
                 // global_rank
-                i = 0;
+                // i = 0;
                 $.each(global_rank, function(i, item) {
                     if (my_member_id != item.member_id) {
-                        if ((i + 1) == 1) {
+                        if (item.rank == 1) {
                             global_rank_num = '<img class="icon-one" src="/client/images/ranking/1.png" />';
-                        }else if ((i + 1) == 2) {
+                        }else if (item.rank == 2) {
                             global_rank_num = '<img class="icon-one" src="/client/images/ranking/2.png" />';
-                        }else if ((i + 1) == 3) {
+                        }else if (item.rank == 3) {
                             global_rank_num = '<img class="icon-one" src="/client/images/ranking/3.png" />';
                         }else {
-                            global_rank_num = (i + 1);
+                            global_rank_num = item.rank;
                         }
 
                         _phone = 'xxxxx';
@@ -114,10 +118,12 @@ function getGlobalRanking() {
                             _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
                         }
 
+                        _total_point = item.win;
+
                         global_rank_html += '<div class="row tab-content-list">' +
                                     '<div class="col-1 ranking-number">' + global_rank_num + '</div>' +
                                     '<div class="col-5 ranking-name">' + _phone + '</div>' +
-                                    '<div class="col-3 ranking-point">' + item.credit + '</div>' +
+                                    '<div class="col-3 ranking-point">' + _total_point + '</div>' +
                                 '</div>';
                     }
                     
@@ -163,6 +169,7 @@ function getFriendRanking() {
             var i =0;
             var _phone = 'xxxxx';
             var my_member_id = 0;
+            var _total_point = 0;
 
             if(status){
 
@@ -171,14 +178,14 @@ function getFriendRanking() {
                 $.each(friends_rank, function(i, item) {
 
                     if (my_member_id != item.member_id) {
-                        if ((i + 1) == 1) {
+                        if (item.rank == 1) {
                             friends_rank_num = '<img class="icon-one" src="/client/images/ranking/1.png" />';
-                        }else if ((i + 1) == 2) {
+                        }else if (item.rank == 2) {
                             friends_rank_num = '<img class="icon-one" src="/client/images/ranking/2.png" />';
-                        }else if ((i + 1) == 3) {
+                        }else if (item.rank == 3) {
                             friends_rank_num = '<img class="icon-one" src="/client/images/ranking/3.png" />';
                         }else {
-                            friends_rank_num = (i + 1);
+                            friends_rank_num = item.rank;
                         }
 
                         _phone = 'xxxxx';
@@ -186,10 +193,12 @@ function getFriendRanking() {
                             _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
                         }
 
+                        _total_point = item.win;
+
                         friends_rank_html += '<div class="row tab-content-list">' +
                                     '<div class="col-1 ranking-number">' + friends_rank_num + '</div>' +
                                     '<div class="col-5 ranking-name">' + _phone + '</div>' +
-                                    '<div class="col-3 ranking-point">' + item.credit + '</div>' +
+                                    '<div class="col-3 ranking-point">' + _total_point + '</div>' +
                                 '</div>';
                     }
                 });
