@@ -228,7 +228,7 @@ class LedgerController extends BaseController
 		foreach ($gid as $k=>$v)
 		{
 			$notification = \App\Notification::with('ledger')->where('member_id',$userid)->where('game_id',$k)->where('is_read',0)->orderby('created_at','DESC')->get();		
-			$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
+			$ndata        = ['count'=>$notification->count(), 'records' => $notification, 'gameid' => $k];				
 			event(new \App\Events\EventDynamicChannel($userid.'-'.'topup-notification','',$ndata ));
 		}
 		if ($is_save)
