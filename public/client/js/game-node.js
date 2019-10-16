@@ -1443,7 +1443,7 @@ function startTimer(duration, timer, freeze_time) {
         var trigger_time = freeze_time - 1;
         var id = $('#hidUserId').val();
         var level = parseInt($('#hidLevel').val());
-        $('.small-border').addClass('fast-rotate');
+        // $('.small-border').addClass('fast-rotate');
         g_previous_point = parseInt($('.spanAcuPointAndBalance').html());
 
         $.ajax({
