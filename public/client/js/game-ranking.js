@@ -73,7 +73,7 @@ function getMyRanking() {
 }
 
 function getGlobalRanking() {
-    $('.tab-content').css('background-color','#f2f3f4');
+    // $('.tab-content').css('background-color','#f2f3f4');
     $.ajax({
         type: 'GET',
         url: "/api/global-rank?gameid=" + gameid,
@@ -88,7 +88,7 @@ function getGlobalRanking() {
                                     '<div>暂无记录</div>' +
                                 '</div>';
 
-            $('.tab-content').css('background-color','#fff');
+            // $('.tab-content').css('background-color','#fff');
             $('#general-list').html(global_rank_html);
         },
         success: function(data) {
@@ -139,7 +139,7 @@ function getGlobalRanking() {
                                             '<img src="/clientapp/images/no-record/ranking.png">' +
                                             '<div>暂无记录</div>' +
                                         '</div>';
-                    $('.tab-content').css('background-color','#fff');
+                    // $('.tab-content').css('background-color','#fff');
                 }
                 $('#general-list').html(global_rank_html);
 
@@ -149,7 +149,7 @@ function getGlobalRanking() {
 }
 
 function getFriendRanking() {
-    $('.tab-content').css('background-color','#f2f3f4');
+    // $('.tab-content').css('background-color','#f2f3f4');
     $.ajax({
         type: 'GET',
         url: "/api/friends-rank?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
@@ -163,7 +163,7 @@ function getFriendRanking() {
                                     '<img src="/clientapp/images/no-record/ranking.png">' +
                                     '<div>暂无邀请记录</div>' +
                                 '</div>';
-            $('.tab-content').css('background-color','#fff');
+            // $('.tab-content').css('background-color','#fff');
             $('#my-friend-list').html(friends_rank_html);
 
         },
@@ -214,7 +214,7 @@ function getFriendRanking() {
                                             '<img src="/clientapp/images/no-record/ranking.png">' +
                                             '<div>暂无邀请记录</div>' +
                                         '</div>';
-                    $('.tab-content').css('background-color','#fff');
+                    // $('.tab-content').css('background-color','#fff');
                 }
 
                 $('#my-friend-list').html(friends_rank_html);
