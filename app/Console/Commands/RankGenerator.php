@@ -56,17 +56,20 @@ class RankGenerator extends Command
 			$cards = \DB::select("set @i = 0");
 			
 			//\DB::connection()->enableQueryLog();
-		
-			//@i := coalesce(@i + 1, 1) rank, 
-			$select  = \DB::raw("betamt,rewardamt, member_id, game_id,phone,wechat_name,username");
-			$ranks   = \App\Betting::select($select);
-			$ranks   = $ranks->where('game_id',$game->id);
-
-			$orderBy = 'lose';
-			if ($game->id == 102) $orderBy = 'rewardamt';
-
-			$ranks  = $ranks->orderBy($orderBy,'DESC')
-							->get();	
+			if ($game->id == 102) 
+			{
+				//return ;
+			}
+			else
+			{
+				$select  = \DB::raw("totalreward,totallose,balance, member_id, game_id,phone,wechat_name,username");
+				$ranks   = \App\Betting::select($select);
+				$ranks   = $ranks->where('game_id',$game->id);
+				$orderBy = 'balance';
+				$ranks  = $ranks->orderBy($orderBy,'DESC')
+								->get();
+			}
+			//@i := coalesce(@i + 1, 1) rank, 		
 
 			$this->info('-- done');
 			//$queries = \DB::getQueryLog();		
@@ -79,17 +82,14 @@ class RankGenerator extends Command
 				{
 					$this->line('-- update ranks for game : '.$game->id);
 					$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
-					$rank->rank      = $newrank;
-					$rank->total_bet = $row->betamt;
-					$rank->win       = $row->rewardamt;
-					$rank->balance   = $row->rewardamt- $row->betamt;
+					$rank->rank        = $newrank;					
+					$rank->balance     = $row->balance;
 					$rank->save();
 
 					$this->info('-- done');
 					$newrank++;
 				}
-			}
-			
+			}			
 			$this->line('-- ranks update completed for : '.$game->id);
 			$this->line(' ');
 		}
