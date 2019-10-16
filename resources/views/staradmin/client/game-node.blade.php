@@ -198,7 +198,7 @@
 			<input id='hidMinAcupoint' type="hidden" value="{{env('coin_min', '6')}}" />
 			<input id='hidIsApp' type="hidden" value="{{env('THISVIPAPP','false')}}" />
 			<input id='hidLife' type="hidden" value="{{empty($wallet->life) ? 0 : $wallet->life}}" />
-			<input id="hidPhone" type="hidden" value="{{empty(Auth::Guard('member')->user()->phone) ? 0 : Auth::Guard('member')->user()->phone}}"
+			<input id="hidPhone" type="hidden" value="{{empty(Auth::Guard('member')->user()->phone) ? 0 : Auth::Guard('member')->user()->phone}}" />
 	  	</div>
 
 	</div>
