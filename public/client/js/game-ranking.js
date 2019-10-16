@@ -73,6 +73,7 @@ function getMyRanking() {
 }
 
 function getGlobalRanking() {
+    $('.tab-content').css('background-color','#f2f3f4');
     $.ajax({
         type: 'GET',
         url: "/api/global-rank?gameid=" + gameid,
@@ -148,6 +149,7 @@ function getGlobalRanking() {
 }
 
 function getFriendRanking() {
+    $('.tab-content').css('background-color','#f2f3f4');
     $.ajax({
         type: 'GET',
         url: "/api/friends-rank?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
