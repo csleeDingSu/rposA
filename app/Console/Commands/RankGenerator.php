@@ -67,20 +67,30 @@ class RankGenerator extends Command
 			$this->info('-- done');
 			//$queries = \DB::getQueryLog();		
 		
-			//dd($queries);			
+			//dd($queries);		
+			$preval  = '';	
 			$newrank = 1;
 			foreach ($ranks->chunk(200) as $records)
 			{
 				foreach ($records as $row)
 				{
+					if ($row->balance != $preval)
+					{
+						$newrank++;
+					}
+					$prerank = $row->balance;
+
+
 					$this->line('-- update ranks for game : '.$game->id);
 					$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
 					$rank->rank        = $newrank;					
 					$rank->balance     = $row->balance;
 					$rank->save();
 
-					$this->info('-- done');
-					$newrank++;
+					$this->info('-- done');				
+
+
+					
 				}
 			}			
 			$this->line('-- ranks update completed for : '.$game->id);
