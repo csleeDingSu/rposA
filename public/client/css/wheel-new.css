@@ -448,6 +448,7 @@ footer {width: 100%;line-height: 24px;color:#ffb820;text-align: center;margin-to
 
 .fast-rotate {
     -webkit-animation: circle 0.4s infinite linear;
+    z-index: -1;
 }
 
 @-webkit-keyframes circle {
