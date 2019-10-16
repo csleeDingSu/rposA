@@ -60,6 +60,7 @@ class RankGenerator extends Command
 			$ranks   = \App\Betting::select($select);
 			$ranks   = $ranks->where('game_id',$game->id);
 			$orderBy = 'balance';
+			if ($game->id == '102') $orderBy = 'totalreward';
 			$ranks  = $ranks->orderBy($orderBy,'DESC')
 							->get();
 			//@i := coalesce(@i + 1, 1) rank, 		
@@ -85,6 +86,7 @@ class RankGenerator extends Command
 					$this->line('-- update ranks for game : '.$game->id);
 					$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
 					$rank->rank        = $newrank;					
+					$rank->totalreward = $row->totalreward;
 					$rank->balance     = $row->balance;
 					$rank->save();
 
