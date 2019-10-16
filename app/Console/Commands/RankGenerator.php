@@ -68,13 +68,14 @@ class RankGenerator extends Command
 			//$queries = \DB::getQueryLog();		
 		
 			//dd($queries);		
-			$preval  = '';	
+			$preval  = '';
+			$prerank = '';	
 			$newrank = 1;
 			foreach ($ranks->chunk(200) as $records)
 			{
 				foreach ($records as $row)
 				{
-					if ($row->balance != $preval)
+					if ($row->balance != $prerank)
 					{
 						$newrank++;
 					}
