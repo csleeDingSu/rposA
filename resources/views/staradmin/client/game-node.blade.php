@@ -148,7 +148,7 @@
 				<div class="btn-calculate">
 					<div class="balance-banner">
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0</span>元补贴
+							<span class="spanAcuPointAndBalance">{{empty($wallet->acupoint) ? 0 : $wallet->acupoint}}</span>元补贴
 						</div>
 						<div class="btn-withdraw"></div>
 					</div>
@@ -157,7 +157,6 @@
 					<div class="speech-bubble-point">满{{env('coin_min', '6')}}元提现 最高{{env('coin_max', '12')}}元</div>
 				</a>
 			</div>
-
 			@if (env('THISVIPAPP', false))
 				<div id="flex-right-menu">
 					<div class="box">
