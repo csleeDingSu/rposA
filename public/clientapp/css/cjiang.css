@@ -1,0 +1,69 @@
+.cjiangBox .inDetail2 {
+    background: url(/clientapp/images/tips/desc_bg.png) center center no-repeat;
+    background-size: contain;
+    padding: 0.5rem;
+    height: 6rem;
+}
+
+.cjiangBox .inDetail2 .inTitle2 {
+  text-align: center;
+    padding: 0.1rem 0.1rem 0.2rem 0.1rem;
+    vertical-align: middle;
+    line-height: 0.6rem;
+}
+
+.cjiangBox .inDetail2 h2 img {
+  width: 0.29rem;
+  margin-right: 0.1rem;
+  vertical-align: middle;
+}
+.cjiangBox .inDetail2 h2 span {
+  font-size: 0.3rem;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.line-left:before {
+  content: "";
+  display: block;
+  border-top: solid 1px #fff;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+}
+
+.line-left {
+  /*background: #fff;*/
+  padding: 0 0.8rem;
+  position: relative;
+}
+
+.line-right:before {
+  content: "";
+  display: block;
+  border-top: solid 1px #fff;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  margin: 0 3.7rem;
+}
+
+.line-right {
+  /*background: #fff;*/
+  padding: 0 0.8rem;
+  position: relative;
+}
+
+.cjiangBox .inDetail2 h3 {
+  font-size: 0.26rem;
+  color: #f8ff35;
+  line-height: 0.6rem;
+}
+.cjiangBox .inDetail2 p {
+  font-size: 0.22rem;
+  color: #fff;
+  line-height: 1.4em;
+  margin-bottom: 0.2rem;
+}

@@ -12,6 +12,7 @@
   <title>抽奖攻略</title>
   <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/public.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/cjiang.css') }}" />
   <script type="text/javascript" src="{{ asset('clientapp/js/jquery-1.9.1.js') }}"></script>
   <script type="text/javascript" src="{{ asset('clientapp/js/being.js') }}"></script>
 </head>
@@ -54,9 +55,10 @@
                 <li><i>•</i><span>邀请一个好友<font color="#ff674a">得1次抽奖</font>，好友邀请别人，你也得1次抽奖，你的好友注册也能获得1次抽奖机会。</span></li>
                 <li><i>•</i><span>在挖宝搜索优惠券，并领券购买可获得返利积分，<font color="#ff674a">120积分兑换1次抽奖</font></span></li>
               </ul>
-              <div class="inDetail">
-                <div class="inTitle">
-                  <h2><img src="{{ asset('clientapp/images/glIcon.png') }}"><span>攻略技巧</span></h2>
+
+              <div class="inDetail2">
+                <div class="inTitle2">
+                  <h2><span class="line-left"></span><img src="{{ asset('clientapp/images/glIcon.png') }}"><span>攻略技巧</span><span class="line-right"></span></h2>
                 </div>
                 <h3>技巧1 邀请好友获抽奖次数 </h3>
                 <p>邀请好友是最容易获取场次的方式，好友注册后也能抽奖领红包，很好邀请，好友领到红包后，也会很好去邀请别人，你还能获得很多抽奖机会。</p>
@@ -94,9 +96,9 @@
                 <li><i>•</i><span>新人用户<font color="#ff674a">一定要进去看抽奖攻略</font>，掌握抽奖方法，才更更高机率赚取更多挖宝币，避免不必要的损失。</span></li>
                 <li><i>•</i><span>挖宝币可<font color="#ff674a">兑换大量奖品</font>，大额京东购物卡、手机、智能手表等等。</span></li>
               </ul>
-              <div class="inDetail">
-                <div class="inTitle">
-                  <h2><img src="{{ asset('clientapp/images/glIcon.png') }}"><span>攻略技巧</span></h2>
+              <div class="inDetail2">
+                <div class="inTitle2">
+                  <h2><span class="line-left"></span><img src="{{ asset('clientapp/images/glIcon.png') }}"><span>攻略技巧</span><span class="line-right"></span></h2>
                 </div>
                 <h3>技巧1 邀请好友获抽奖次数 </h3>
                 <p>邀请好友是最容易获取场次的方式，好友注册后也能抽奖领红包，很好邀请，好友领到红包后，也会很好去邀请别人，你还能获得很多抽奖机会。</p>
