@@ -58,7 +58,7 @@ class RankGenerator extends Command
 			//\DB::connection()->enableQueryLog();
 			if ($game->id == 102) 
 			{
-				return ;
+				//return ;
 			}
 			else
 			{
