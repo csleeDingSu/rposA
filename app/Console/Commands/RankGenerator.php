@@ -70,7 +70,7 @@ class RankGenerator extends Command
 			//dd($queries);		
 			$preval  = '';
 			$prerank = '';	
-			$newrank = 1;
+			$newrank = 0;
 			foreach ($ranks->chunk(200) as $records)
 			{
 				foreach ($records as $row)
