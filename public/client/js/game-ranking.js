@@ -50,7 +50,7 @@ function getMyRanking() {
                         _phone = my_rank.phone.substring(0,3) + '*****' + my_rank.phone.slice(-4);
                     }
 
-                    _total_point = my_rank.win;
+                    _total_point = my_rank.balance;
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
                                     '<div class="col-3 ranking-point">'+_total_point+'</div>';
@@ -118,7 +118,7 @@ function getGlobalRanking() {
                             _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
                         }
 
-                        _total_point = item.win;
+                        _total_point = item.balance;
 
                         global_rank_html += '<div class="row tab-content-list">' +
                                     '<div class="col-1 ranking-number">' + global_rank_num + '</div>' +
@@ -193,7 +193,7 @@ function getFriendRanking() {
                             _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
                         }
 
-                        _total_point = item.win;
+                        _total_point = item.balance;
 
                         friends_rank_html += '<div class="row tab-content-list">' +
                                     '<div class="col-1 ranking-number">' + friends_rank_num + '</div>' +
