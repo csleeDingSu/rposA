@@ -298,7 +298,7 @@ class ClientController extends BaseController
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
 					->first();
 
-			$earnedpoint = empty($row) ? 0 : $row->win;
+			$earnedpoint = empty($row->totalreward) ? 0 : $row->totalreward;
 			$wallet = \App\Ledger::ledger($member_id,'102');
 
 			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'earnedpoint', 'wallet'));
