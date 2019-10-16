@@ -1033,9 +1033,9 @@
 				$('.selection').show();
 			}
 
-			if ((_point > 0) && (_point < win_coin_min)) {
-				$('#modal-withdraw-insufficient').modal();
-			}
+			// if ((_point > 0) && (_point < win_coin_min)) {
+			// 	$('#modal-withdraw-insufficient').modal();
+			// }
 
 			var user_id = $('#hidUserId').val();
 
