@@ -162,7 +162,7 @@
 				<div id="flex-right-menu">
 					<div class="box">
 						<div class="btn-life">
-							剩0次
+							剩{{empty($wallet->life) ? 0 : $wallet->life}}次
 						</div>
 					</div>
 				</div>
@@ -199,7 +199,7 @@
 			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '12')}}" />
 			<input id='hidMinAcupoint' type="hidden" value="{{env('coin_min', '6')}}" />
 			<input id='hidIsApp' type="hidden" value="{{env('THISVIPAPP','false')}}" />
-			<input id='hidLife' type="hidden" value="" />
+			<input id='hidLife' type="hidden" value="{{empty($wallet->life) ? 0 : $wallet->life}}" />
 	  	</div>
 
 	</div>

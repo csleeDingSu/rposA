@@ -256,7 +256,7 @@ class ClientController extends BaseController
 			
 			$member_mainledger = null;
 			$firstwin 		   = null;
-
+			$wallet 		   = null;
 			//weixin_verify
 			$this->wx = new WX();
 			if ($this->wx->isWeiXin()) {
@@ -266,7 +266,7 @@ class ClientController extends BaseController
 	            $data['betting_count'] = 0;
 	            $total_intro = 0;
 	            $earnedpoint = 0;
-				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro', 'earnedpoint'));
+				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro', 'earnedpoint', 'wallet'));
 	        }
 			
 		} else {
@@ -299,8 +299,9 @@ class ClientController extends BaseController
 					->first();
 
 			$earnedpoint = empty($row) ? 0 : $row->win;
+			$wallet = \App\Ledger::ledger($member_id,'102');
 
-			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'earnedpoint'));
+			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'earnedpoint', 'wallet'));
 
 		}
 
@@ -315,15 +316,18 @@ class ClientController extends BaseController
 			$wbp = $this->set_payment_browser();
 			$usedpoint = 0;
 			$earnpoint = 0;
+			$wallet = null;
 
 			if (Auth::Guard('member')->check()) {
 				$gameid = 103;
 				$member = Auth::guard('member')->user()->id;
 				$earnpoint = \DB::table('a_view_earned_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
 				$usedpoint = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
+				$wallet = \App\Ledger::ledger($member,'103');
+				
 			}
 
-			return view( 'client/vip-node', compact( 'wbp', 'usedpoint', 'earnpoint') );
+			return view( 'client/vip-node', compact( 'wbp', 'usedpoint', 'earnpoint', 'wallet') );
 		}
 		
 	}

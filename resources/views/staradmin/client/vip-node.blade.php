@@ -133,7 +133,7 @@
 					<div class="balance-banner">
 						<div class="icon-newcoin"></div>
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0.00</span>
+							<span class="spanAcuPointAndBalance">{{empty($wallet->point) ? 0.00 : $wallet->point}}</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
 						<div class="btn-calculate-vip btn-redeemcash" id="btn-redeemcash"></div>
