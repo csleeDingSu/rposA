@@ -56,19 +56,12 @@ class RankGenerator extends Command
 			$cards = \DB::select("set @i = 0");
 			
 			//\DB::connection()->enableQueryLog();
-			if ($game->id == 102) 
-			{
-				//return ;
-			}
-			else
-			{
-				$select  = \DB::raw("totalreward,totallose,balance, member_id, game_id,phone,wechat_name,username");
-				$ranks   = \App\Betting::select($select);
-				$ranks   = $ranks->where('game_id',$game->id);
-				$orderBy = 'balance';
-				$ranks  = $ranks->orderBy($orderBy,'DESC')
-								->get();
-			}
+			$select  = \DB::raw("totalreward,totallose,balance, member_id, game_id,phone,wechat_name,username");
+			$ranks   = \App\Betting::select($select);
+			$ranks   = $ranks->where('game_id',$game->id);
+			$orderBy = 'balance';
+			$ranks  = $ranks->orderBy($orderBy,'DESC')
+							->get();
 			//@i := coalesce(@i + 1, 1) rank, 		
 
 			$this->info('-- done');
