@@ -41,9 +41,11 @@ class BlogController extends Controller
         return view('client.blog', compact('blog','page'));
     }
 
-    public function createform()
+    public function createform(Request $request)
     {
-        return view('client/blog_create');   
+        buy_product_redeemed_id = $request->buy_product_redeemed_id;
+
+        return view('client/blog_create', compact('buy_product_redeemed_id'));   
     }
 
     public function create(Request $request)
@@ -63,8 +65,9 @@ class BlogController extends Controller
         $address = (!empty($detail->city) ? $detail->city . ' ' : '') . (!empty($detail->address) ? $detail->address: '');
         $content = $request->input('content');
         $uploads = is_array($request->input('uploads')) ? json_encode($request->input('uploads')) : $request->input('uploads');
+        $blog_buy_product_redeemed_id = $request->input('blog_buy_product_redeemed_id');
         
-        $arr = ['member_id' => $member_id, 'phone' => $phone, 'address' => $address, 'content' => $content, 'uploads' => $uploads];
+        $arr = ['member_id' => $member_id, 'phone' => $phone, 'address' => $address, 'content' => $content, 'uploads' => $uploads, 'blog_buy_product_redeemed_id' => $blog_buy_product_redeemed_id];
         $data = $arr;
         $b = blog::updateOrCreate($arr,$data)->id;
         return ['success' => true]; 
