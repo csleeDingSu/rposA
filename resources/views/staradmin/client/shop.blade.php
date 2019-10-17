@@ -147,3 +147,30 @@
     </script>
 
 @endsection
+
+<!-- socket start-->  
+<script type="text/javascript">
+  @section('socket')
+  @parent
+    var id = "<?php Print(isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0);?>";
+    console.log('prefix --- ' + prefix);
+    console.log('id --- ' + id);
+
+    socket.on(prefix+ id + "-ledger" + ":App\\Events\\EventLedger" , function(data){
+        console.log(prefix+ id + "-ledger" + ":App\\Events\\EventLedger");
+        console.log(data.data);
+        var gameid = data.data.game_id;
+
+        if (gameid == 103) {
+          var previous_103_point = $('.shop-balance').html();
+          var updated_103_point = data.data.point;
+          if (!(previous_103_point == updated_103_point)) {
+            $('.shop-balance').html(updated_103_point); 
+          }
+          
+        }
+    });
+
+  @endsection
+</script>
+<!-- socket end-->

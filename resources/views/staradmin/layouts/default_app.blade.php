@@ -204,7 +204,7 @@
 				
 		    </script>
 			
-			@if(Request::is('profile'))
+			@if(Request::is('profile') || Request::is('shop'))
 				@include('layouts/socket')
 			@endif
 		@show
