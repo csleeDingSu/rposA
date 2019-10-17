@@ -967,6 +967,10 @@
                 $('.openForm').modal();
                 $('.modal-backdrop').css("z-index", "3");
 
+                $('.modal-backdrop').click(function() {
+	            	$('.closeForm').trigger("click");
+	            });
+
               });
 
             $(".instructions2").click(() => {  
