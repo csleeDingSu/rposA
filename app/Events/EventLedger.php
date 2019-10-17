@@ -21,7 +21,7 @@ class EventLedger implements ShouldBroadcast
     public function __construct($id, $data)
     {
       $this->id     = $id;
-		$this->data = $data;
+	  $this->data = $data;
     }
 
     public function broadcastOn()
