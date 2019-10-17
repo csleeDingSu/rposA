@@ -216,7 +216,8 @@
 	    padding-top: 0;
 	    padding-left: 0;
 	    color: #fff;
-	    padding: 0.1rem;
+	    padding: 0.2rem;
+    	line-height: 0.34rem;
 	}
 
 	#btn-copy .line-1 {
@@ -244,7 +245,8 @@
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-size: 2.37rem 100%;
-		padding: 0.1rem 0.4rem 0.1rem 0;
+		padding: 0.2rem 0.4rem 0.2rem 0;
+		line-height: 0.34rem;
 	}
 
 	#btn-voucher .line-1 {
@@ -263,7 +265,8 @@
 	    width: 2.57rem;
 	    height: 1rem;
 	    background-color: #f1f1f1;
-	    padding: 0.1rem;
+	    padding: 0.2rem;
+    	line-height: 0.34rem;
 	}
 
 	#btn-normal-price .line-1 {
