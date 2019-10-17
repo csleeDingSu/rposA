@@ -43,7 +43,7 @@ class BlogController extends Controller
 
     public function createform(Request $request)
     {
-        buy_product_redeemed_id = $request->buy_product_redeemed_id;
+        $buy_product_redeemed_id = $request->buy_product_redeemed_id;
 
         return view('client/blog_create', compact('buy_product_redeemed_id'));   
     }
