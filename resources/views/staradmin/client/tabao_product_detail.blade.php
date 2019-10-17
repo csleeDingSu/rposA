@@ -12,7 +12,7 @@
 	<!-- <link rel="stylesheet" href="{{ asset('/client/css/default.css') }}" /> -->
 
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/clientapp/css/tabao_product_detail.css?version=1.0') }}" />
+	<link rel="stylesheet" href="{{ asset('/clientapp/css/tabao_product_detail.css?version=1.0.1') }}" />
 	
 	@if( Agent::is('OS X') )   
       <style>
