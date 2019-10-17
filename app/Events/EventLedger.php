@@ -26,7 +26,7 @@ class EventLedger implements ShouldBroadcast
 
     public function broadcastOn()
     {
-		return ['ledger-'. $this->id ];
+		return [. $this->id.'-ledger' ];
     }
 	
 	public function broadcastWith()
