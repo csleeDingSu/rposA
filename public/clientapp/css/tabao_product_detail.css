@@ -216,16 +216,16 @@
 	    padding-top: 0;
 	    padding-left: 0;
 	    color: #fff;
-	    padding: 0.15rem;
+	    padding: 0.1rem;
 	}
 
 	#btn-copy .line-1 {
 		/*margin-top: -0.1rem;*/
-		font-size: 0.3rem;	
+		font-size: 0.33rem;	
 	}
 
 	#btn-copy .line-2 {
-		font-size: 0.2rem;
+		font-size: 0.23rem;
 	}
 
 	#btn-voucher {
@@ -244,16 +244,16 @@
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-size: 2.37rem 100%;
-		padding: 0.15rem;
+		padding: 0.1rem 0.3rem 0.1rem 0;
 	}
 
 	#btn-voucher .line-1 {
 		/*margin-top: -0.1rem;*/
-		font-size: 0.3rem;	
+		font-size: 0.33rem;	
 	}
 
 	#btn-voucher .line-2 {
-		font-size: 0.2rem;
+		font-size: 0.23rem;
 	}
 
 	#btn-normal-price {
@@ -263,16 +263,16 @@
 	    width: 2.57rem;
 	    height: 1rem;
 	    background-color: #f1f1f1;
-	    padding: 0.15rem;
+	    padding: 0.1rem;
 	}
 
 	#btn-normal-price .line-1 {
 		/*margin-top: -0.1rem;*/
-		font-size: 0.3rem;	
+		font-size: 0.33rem;	
 	}
 
 	#btn-normal-price .line-2 {
-		font-size: 0.2rem;
+		font-size: 0.23rem;
 	}
 
 	.product-detail-btn-bg {
