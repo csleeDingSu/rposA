@@ -1639,7 +1639,7 @@ textarea {
     letter-spacing: 2px;
 }
 
-.btn-create-blog .disable {
+.disable {
 	background: grey;
 }
 
