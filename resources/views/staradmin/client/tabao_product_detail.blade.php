@@ -29,6 +29,22 @@
 		    background-size: contain;
 		    background-repeat: round;
         }   
+
+        .footer2 {
+			height: 1.1rem;
+		}
+
+		#btn-normal-price {
+			height: 1.1rem;
+		}
+
+		#btn-copy {
+			height: 1.1rem;
+		}
+
+		#btn-voucher {
+			height: 1.1rem;
+		}
       </style>
     @endif
 @endsection
