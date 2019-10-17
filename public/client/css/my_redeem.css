@@ -1639,6 +1639,10 @@ textarea {
     letter-spacing: 2px;
 }
 
+.btn-create-blog .disable {
+	background: grey;
+}
+
 #redeem-history {
 	border-top: 1px solid #e1e1e1;
 }

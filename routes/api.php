@@ -61,6 +61,8 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	Route::get('/product-list', 'ProductController@list_product_by_point')->name('api.product.list');
 	
 	Route::get('/redeem-history', 'ProductController@get_redeem_history')->name('api.redeem.history');
+
+	Route::get('/redeem-history-blog', 'ProductController@get_redeem_history_blog')->name('api.redeem.blog.history');
 	
 	//Route::post('/request-redeem', 'ProductController@request_redeem')->name('api.redeem.request');	
 	

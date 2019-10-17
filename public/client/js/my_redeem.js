@@ -48,7 +48,7 @@ function getPosts(page, token){
 
     $.ajax({
         type: "GET",
-        url: "/api/redeem-history?memberid=" + member_id + "&page=" + page, 
+        url: "/api/redeem-history-blog?memberid=" + member_id + "&page=" + page, 
         dataType: "json",
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -122,6 +122,7 @@ function populateHistoryData(records, token) {
             var txt_status = '等待发放';
             var cls_status = 'pending';
             var html_card_detail = null;
+            var blog_buy_product_redeemed_id = item.blog_buy_product_redeemed_id;
 
             if(item.request_at){
                 var t = item.request_at.split(/[- :]/);
@@ -156,9 +157,14 @@ function populateHistoryData(records, token) {
                                     '<div class="product-desc">'+item.used_point+' ' + txt_coin + '</div>' +
                                 '</div>' +
                                 '<div class="redeem-result">' +
-                                    '<div class="redeem-quantity">X'+ item.quantity +'</div>' +
-                                    '<a href="/blog/createform"><div class="btn-create-blog">我要晒单</div></a>' +
-                                '</div>' +
+                                    '<div class="redeem-quantity">X'+ item.quantity +'</div>';
+                            if (blog_buy_product_redeemed_id > 0) {
+                                html += '<a href="#"><div class="btn-create-blog disable">已晒单</div></a>';
+                            } else {
+                                html += '<a href="/blog/createform"><div class="btn-create-blog">我要晒单</div></a>';
+                            }
+                
+                        html += '</div>' +
                             '</div>';
 
                 html += '</div>';
