@@ -52,10 +52,17 @@
         @php ($photourl = empty($data['mainPic']) ? null : $data['mainPic'])
 		@php ($photourl = str_replace('_310x310.jpg', '', $photourl))
 		@php ($photourl = str_replace('_160x160.jpg', '', $photourl))
+		
+		@php ($originalPrice = $data['originalPrice'])
+		@php ($originalPrice = number_format(empty($originalPrice) ? 0 : $originalPrice, 2) + 0)
+		@php ($couponPrice = $data['couponPrice'])
+		@php ($couponPrice = number_format(empty($couponPrice) ? 99 : $couponPrice,2) + 0)
+
 		@php ($promoPrice = $data['originalPrice'] - $data['couponPrice'])
         @php ($promoPrice = ($promoPrice > 0) ? $promoPrice : 0)                
-		@php ($newPrice = ($promoPrice - 12) )
-        @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
+		<!-- @php ($newPrice = ($promoPrice - 12) ) -->
+        <!-- @php ($newPrice = ($newPrice > 0) ? $newPrice : 0) -->
+        @php ($newPrice = 0 )
         @php ($life = empty($data['life']) ? 0 : $data['life'])
         @php ($commissionRate = $data['commissionRate'])
         @php ($commissionRate = ($commissionRate > 0) ? (int)$commissionRate : 0)
@@ -85,17 +92,17 @@
 						<img src="{{ asset('/client/images/productv2_detail_caption.png') }}" />
 					</div>
 					<div class="normal-price">
-						<span class="cur">￥<span class="price">{{number_format(empty($data['originalPrice']) ? 99 : $data['originalPrice'], 2) + 0}}</span></span>
+						<span class="cur">￥<span class="price">{{$originalPrice}}</span></span>
 						<div class="txt">原价</div>
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="voucher-price">
-                		<span class="cur">￥<span class="price">{{number_format(empty($data['couponPrice']) ? 99 : $data['couponPrice'],2) + 0}}</span></span>
+                		<span class="cur">￥<span class="price">{{$couponPrice}}</span></span>
                 		<div class="txt">优惠券</div>
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="draw-price">
-                		<span class="cur">￥<span class="price">12</span>
+                		<span class="cur">￥<span class="price">{{$promoPrice}}</span>
                 		<div class="txt">抽奖补贴</div>
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
@@ -109,35 +116,38 @@
 				<div class="dbox1 reward-desc">
 					<div class="title">奖励补贴说明</div>
 					<ul>
-						<li>抽奖补贴由挖宝官方提供，新用户能免费获得1场次免费抽奖，通过抽奖可获得12元红包。</li>
-						<li>用户可通过邀请好友，获得更多抽奖场次，从而获得更多购物红包。</li>
+						<li>抽奖补贴由<span class="highlight-red">挖宝官方</span>提供，新用户能免费获得<span class="highlight-red">1场次免费抽奖</span>，通过抽奖可获得<span class="highlight-red">12元红包</span>。</li>
+						<li>邀请1个好友可获得1次抽奖补贴，你的好友能获得1次新人抽奖补贴。你的好友每邀请1个好友，你还可以获得1次抽奖补贴，邀请越多，抽奖补贴越多。</li>
 					</ul>				
 				</div>
 			</li>
-			<li class="dbox footer">
-					<div id="button-wrapper">
-						@if (empty($data['couponLink']))
-						<a class="copyBtn"> 
-							<div id="btn-copy" class="btn-copy">领取优惠券</div>
-						</a>
-						@else
-						@php ($_url = $data['couponLink'])
-						@php ($_url = (str_replace('https://','taobao://',$_url)))
-						@php ($_url = (str_replace('http://','taobao://',$_url)))
-						<a id="btn-couponlink">
-						<!-- <a href="taobao://item.taobao.com/item.htm?id={{$data['goodsId']}}">  -->
-						<!-- <a href="https://t.asczwa.com/taobao?backurl={{$_url}}"> -->
-							<div id="btn-copy" class="btn-copy">领取优惠券</div>
-						</a>
-						@endif
-						<a href="/arcade">
-							<div id="btn-voucher" class="btn-voucher">马上抽奖</div>
-						</a>
+			<li class="dbox footer2">
+				<div class="footer-wrapper">
+				<a>
+					<div id="btn-normal-price">
+						<p class='line-1'>￥{{$originalPrice}}</p>
+						<p class='line-2'>原价购买</p>
 					</div>
+				</a>
 				
+				@php ($_url = $data['couponLink'])
+				@php ($_url = (str_replace('https://','taobao://',$_url)))
+				@php ($_url = (str_replace('http://','taobao://',$_url)))
+				<a id="btn-couponlink">
+					<div id="btn-copy" class="btn-copy">
+						<p class='line-1'>￥{{$promoPrice}}</p>
+						<p class='line-2'>领券购买</p>
+					</div>
+				</a>
+				<a href="/arcade">
+					<div id="btn-voucher" class="btn-voucher">
+						<p class='line-1'>0元购买</p>
+						<p class='line-2'>去抽奖赚补贴</p>
+					</div>
+				</a>
+				</div>
 				<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">￥tzFkYnKYZ2R￥</span></h4>
 
-				<img class="product-detail-btn-bg" src="{{ asset('/client/images/product-detail-btn-bg.jpg') }}" />
 			</li>
 			
 			
@@ -273,16 +283,16 @@
 			clipboard.on('success', function (e) {
 				console.log(e);
 				// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('margin-top', '0.95rem');
-				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
+				// $('#btn-copy').css('margin-top', '0.95rem');
+				// $('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 				window.location.href = 'taobao://';
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
 				// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('margin-top', '0.95rem');
-				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
+				// $('#btn-copy').css('margin-top', '0.95rem');
+				// $('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 				window.location.href = 'taobao://';
 			});
 
@@ -313,8 +323,8 @@
 			// console.log(_hidcouponLink);
 
 			// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-          $('#btn-copy').css('margin-top', '0.95rem');
-          $('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取优惠券</p><p class='inner_span_copy2'>处理中</p>");
+          // $('#btn-copy').css('margin-top', '0.95rem');
+          $('.btn-copy .line-2').html("处理中");
 
 			$.ajax({
 		      type: 'GET',
@@ -325,13 +335,15 @@
 		          console.log(error);
 		          alert(error.responseText);
 		          $(".reload").show();
-		          $('#btn-copy').css('margin-top','0.97rem');
-          		$('#btn-copy').html("领取优惠券");
+		          // $('#btn-copy').css('margin-top','0.97rem');
+          		// $('#btn-copy').html("领取优惠券");
+          		$('.btn-copy .line-2').html("领券购买");
 		      },
 		      success: function(data) {
 		          // console.log(data);
-		          $('#btn-copy').css('margin-top','0.97rem');
-	          		$('#btn-copy').html("领取优惠券");
+		          // $('#btn-copy').css('margin-top','0.97rem');
+	          		// $('#btn-copy').html("领取优惠券");
+	          		$('.btn-copy .line-2').html("领券购买");
 
 		          if (data.length > 0 && JSON.parse(data).code == 0) {
 		          	

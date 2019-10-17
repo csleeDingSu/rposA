@@ -185,27 +185,94 @@
 	  width: 100%;  
 	}
 
-	#button-wrapper {
-		margin-top:-1rem !important;
-		width: 100% !important;
+	.footer2 {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+
+		display: flex;
+		justify-content: space-between;
+		text-align: justify;
+		/*background-color: #000;*/
+		color: #fff;
+	}
+
+	.footer-wrapper {
+		width: 100%;
+    	display: flex;
+	    text-align: center;
+	    vertical-align: middle;
 	}
 
 	#btn-copy {
-		padding-left: 0 !important;
-    	text-align: center;
-    	width: 3.76rem;
-    	margin-top: 0.97rem;
+		text-align: center;
     	font-size: 5vw;
+    	position: relative;
+	    background-color: #ff9291;
+	    width: 2.57rem;
+	    height: 1rem;
+	    cursor: pointer;
+	    z-index: 10000;
+	    padding-top: 0;
+	    padding-left: 0;
+	    color: #fff;
+	    padding: 0.15rem;
+	}
+
+	#btn-copy .line-1 {
+		/*margin-top: -0.1rem;*/
+		font-size: 0.3rem;	
+	}
+
+	#btn-copy .line-2 {
+		font-size: 0.2rem;
 	}
 
 	#btn-voucher {
-	    padding-left: 0.5rem !important;
-	    text-align: center;
-	    width: 3.76rem;
-	    margin-top: 0.97rem;
-	    margin-left: 3.76rem;
-	    font-size: 5vw;
+		position: relative;
+	    top: 0;
+	    left: 0;
+	    width: 2.57rem;
+	    height: 1rem;
+	    cursor: pointer;
+	    padding-top: 0;
+	    padding-left: 0;
 	    color: #fff;
+	    text-align: center;
+		font-size: 5vw;
+		background-image: url("/clientapp/images/product/drawbtn.png");
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-size: 2.37rem 100%;
+		padding: 0.15rem;
+	}
+
+	#btn-voucher .line-1 {
+		/*margin-top: -0.1rem;*/
+		font-size: 0.3rem;	
+	}
+
+	#btn-voucher .line-2 {
+		font-size: 0.2rem;
+	}
+
+	#btn-normal-price {
+	    text-align: center;
+	    position: relative;
+	    color: #666;
+	    width: 2.57rem;
+	    height: 1rem;
+	    background-color: #f1f1f1;
+	    padding: 0.15rem;
+	}
+
+	#btn-normal-price .line-1 {
+		/*margin-top: -0.1rem;*/
+		font-size: 0.3rem;	
+	}
+
+	#btn-normal-price .line-2 {
+		font-size: 0.2rem;
 	}
 
 	.product-detail-btn-bg {
@@ -453,7 +520,7 @@
 	}
 
 	.reward-desc .title{
-		padding: 0;
+		padding: 0 0 0.2rem 0;
 	    font-size: 4vw;
 	    font-weight: 500;
 	    color: #666666;
@@ -464,6 +531,7 @@
 	}
 
 	.reward-desc ul>li{
+		padding: 0 0 0.3rem 0;
 	    list-style-type: initial;
 	    font-size: 3vw;
 	    color: #bebebe;
@@ -540,4 +608,9 @@
 		padding: 15px;
 	}
 
-	
+
+.highlight-red {
+	color: red;
+}
+
+
