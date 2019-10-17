@@ -159,7 +159,7 @@ function populateHistoryData(records, token) {
                                 '<div class="redeem-result">' +
                                     '<div class="redeem-quantity">X'+ item.quantity +'</div>';
                             if (blog_buy_product_redeemed_id > 0) {
-                                html += '<a href="#"><div class="btn-create-blog disable">已晒单</div></a>';
+                                html += '<a><div class="btn-create-blog disable">已晒单</div></a>';
                             } else {
                                 html += '<a href="/blog/createform?buy_product_redeemed_id=' + item.id + '"><div class="btn-create-blog">我要晒单</div></a>';
                             }
