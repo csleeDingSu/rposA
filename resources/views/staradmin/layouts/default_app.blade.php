@@ -202,9 +202,6 @@
 
 				resize()
 				
-				
-				
-
 		    </script>
 
 		@show
