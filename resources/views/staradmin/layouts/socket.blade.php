@@ -71,20 +71,6 @@
 		        socketIOConnectionUpdate(htm);
 		    });
 
-		    var id = "{{$member->id}}";
-			    alert('dasdas');
-			    console.log('id --- ' + id);
-
-			    socket.on(prefix+ id + "wallet-" + ":App\\Events\\EventWalletUpdate" , function(data){
-			        console.log(data.data);
-			    });
-
-			    socket.on(prefix+ id + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
-			        alert('dasdsa');
-			        alert(id);
-			        console.log(data.data);
-			    });
-
 		    @section('socket')
 			@show
 		    

@@ -203,7 +203,10 @@
 				resize()
 				
 		    </script>
-
+			
+			@if(Request::is('profile'))
+				@include('layouts/socket')
+			@endif
 		@show
     </body>
 </html>
