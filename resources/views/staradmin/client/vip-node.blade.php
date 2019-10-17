@@ -616,6 +616,12 @@
 		<div class="txt">请先解锁高级抽奖</div>					
 	</div>
 </div>
+<!-- insufficient point modal -->
+<div class="modal fade col-md-12" id="modal-go-shop" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="insufficient-point">请点击进入商城 ></div>					
+	</div>
+</div>
 
 <!-- insufficient point modal -->
 <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">

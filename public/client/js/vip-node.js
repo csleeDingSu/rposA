@@ -474,7 +474,6 @@ function getProduct(){
                         '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';
 
         $.each(data.records, function(i, item) {
-            
             if(i % 2 === 0){
                 html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
                             '<div class="left-box">' +
@@ -530,7 +529,11 @@ function getProduct(){
                     return false;         
                 } else {
                     console.log(2);
-                    $( "#frm_buy" ).submit(); 
+                    // $( "#frm_buy" ).submit();
+                    $('#modal-go-shop').modal();
+                    setTimeout(function(){ 
+                        $('#modal-go-shop').modal('hide');
+                    }, 3000); 
                     return false;   
                 }
 
