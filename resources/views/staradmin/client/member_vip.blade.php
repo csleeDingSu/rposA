@@ -32,7 +32,7 @@
         <a class="gobtn" href="/vip">去高级抽奖&nbsp;<b class="fhei">&gt;</b></a>
         <p class="userTitle"><img src="{{ asset('clientapp/images/user-coin.png') }}"><span>我的挖宝币</span></p>
         <h2 class="userMoney" id='103_point'></h2>
-        <p class="userTotal"><span>昨日收益&nbsp;&nbsp;<b>+0</b></span><span>累计收益&nbsp;&nbsp;<b>+0</b></span>
+        <p class="userTotal"><span>昨日收益&nbsp;&nbsp;<b>+0</b></span><span>累计收益&nbsp;&nbsp;<b><span id="granttotal">+0</span></b></span>
         </p>
       </div>
       <div class="sMain">
@@ -154,7 +154,7 @@
             console.log(overallpoint);
             $('#102_point').html('<em class="fs">¥</em>' + normal_game_point);
             $('#game_life').html(game_life);
-            $('.userTotal').html("<span>昨日收益&nbsp;&nbsp;<b>+" + getNumeric(yesterdaypoint) + "</b></span><span>累计收益&nbsp;&nbsp;<b>+" + getNumeric(overallpoint) + "</b></span>");
+            $('.userTotal').html("<span>昨日收益&nbsp;&nbsp;<b>+" + getNumeric(yesterdaypoint) + "</b></span><span>累计收益&nbsp;&nbsp;<b><span id='granttotal'>+" + getNumeric(overallpoint) + "</span></b></span>");
 
 
             $('.unverify').click(function(){
@@ -209,14 +209,31 @@
     console.log('prefix --- ' + prefix);
     console.log('id --- ' + id);
 
-    socket.on(prefix+ id + "-ledger" + ":App\\Events\\EventLedgerUpdate" , function(data){
-        console.log(prefix+ id + "-wallet" + ":App\\Events\\EventLedgerUpdate");
+    socket.on(prefix+ id + "-ledger" + ":App\\Events\\EventLedger" , function(data){
+        console.log(prefix+ id + "-ledger" + ":App\\Events\\EventLedger");
         console.log(data.data);
-    });
+        var gameid = data.data.game_id;
 
-    socket.on(prefix+ id + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
-        console.log(prefix+ id + "-topup-notification" + ":App\\Events\\EventDynamicChannel");
-        console.log(data.data);
+        if (gameid == 103) {
+          var previous_103_point = $('#103_point').html();
+          var previous_granttotal = $('#granttotal').html();
+
+          var updated_103_point = data.data.point;
+          if (!(previous_103_point == updated_103_point)) {
+            $('#103_point').html(updated_103_point);
+
+            var updated_granttotal = Number(previous_granttotal) - Number(previous_103_point) + Number(updated_103_point);
+            $('#granttotal').html(updated_granttotal);  
+          }
+          
+        }
+
+        if (gameid == 102) {
+          var updated_102_point = data.data.point;
+          var updated_102_life = data.data.life;
+          $('#102_point').html('<em class="fs">¥</em>' + updated_102_point);
+          $('#game_life').html(updated_102_life);
+        }
     });
 
   @endsection
