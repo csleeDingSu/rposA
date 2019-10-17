@@ -65,9 +65,9 @@ class BlogController extends Controller
         $address = (!empty($detail->city) ? $detail->city . ' ' : '') . (!empty($detail->address) ? $detail->address: '');
         $content = $request->input('content');
         $uploads = is_array($request->input('uploads')) ? json_encode($request->input('uploads')) : $request->input('uploads');
-        $blog_buy_product_redeemed_id = $request->input('blog_buy_product_redeemed_id');
+        $buy_product_redeemed_id = $request->input('buy_product_redeemed_id');
         
-        $arr = ['member_id' => $member_id, 'phone' => $phone, 'address' => $address, 'content' => $content, 'uploads' => $uploads, 'blog_buy_product_redeemed_id' => $blog_buy_product_redeemed_id];
+        $arr = ['member_id' => $member_id, 'phone' => $phone, 'address' => $address, 'content' => $content, 'uploads' => $uploads, 'buy_product_redeemed_id' => $buy_product_redeemed_id];
         $data = $arr;
         $b = blog::updateOrCreate($arr,$data)->id;
         return ['success' => true]; 

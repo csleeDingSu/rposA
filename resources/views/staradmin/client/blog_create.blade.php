@@ -85,7 +85,7 @@
                 $.ajax({
                     type: 'POST',
                     url: "/blog/create",
-                    data: { 'content': $('.txt').val(), 'uploads': gUpload, 'blog_buy_product_redeemed_id': buy_product_redeemed_id},
+                    data: { 'content': $('.txt').val(), 'uploads': gUpload, 'buy_product_redeemed_id': buy_product_redeemed_id},
                     dataType: "json",
                     // beforeSend: function( xhr ) {
                     //     xhr.setRequestHeader ("Authorization", "Bearer " + token);
