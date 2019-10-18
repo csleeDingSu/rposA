@@ -411,17 +411,7 @@
 	      	<div class="col-xs-2">
 		        <div class="bet-box">
 		        	<div class="speech-bubble-chips">可多次点击</div>
-		        	<div class="button-bet button-bet-1">1</div>
-		        </div>
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">		        	
 		        	<div class="button-bet button-bet-10">10</div>
-		        </div>
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">
-		        	<div class="button-bet button-bet-50">50</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
@@ -432,6 +422,16 @@
 		    <div class="col-xs-2">
 		        <div class="bet-box">
 		        	<div class="button-bet button-bet-500">500</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">		        	
+		        	<div class="button-bet button-bet-1000">1000</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">
+		        	<div class="button-bet button-bet-5000">5000</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
