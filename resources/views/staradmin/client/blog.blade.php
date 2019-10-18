@@ -48,14 +48,6 @@
 @section('right-menu')
 @endsection
 
-@section('blog-tab')
-  <div class="card-body flex0">
-    <div class="sdMain">
-      <a class="on">全部晒单</a>
-      <a>我的晒单</a>
-    </div>
-  </div>
-@endsection
 
 @section('content')
 <div class="loading2" id="loading2"></div>
@@ -65,11 +57,9 @@
 
 <div class="cardBody">
   <div class="infinite-scroll">
-    <div class="wfBox">  
-      <div class="inList">            
+    <ul class="list-2">               
         @include('client.blog_list')
-      </div>
-    </div>
+    </ul>
     {{ $blog->links() }}
   </div>
 </div>
@@ -152,8 +142,8 @@
             $('#loading').remove
           },
           success: function(responce) {
-            $('.inList').append(responce.html);
-            // initSwiper(page);
+            $('.list-2').append(responce.html);
+            initSwiper(page);
             $('#hidPg').val(page);
             $('#hidNextPg').val(page + 1);
           }
@@ -162,56 +152,56 @@
       //scroll pagination - end
 
       //swiper start
-      // initSwiper(page);
+      initSwiper(page);
 
-      // function initSwiper(page) {
-      //   //define swiper
-      //   var swiper = new Swiper(".swiper-container", {
-      //     autoHeight: window.innerHeight,
-      //     // autoplay: false, //可选选项，自动滑动
-      //     // centeredSlides: true,
-      //     // observer: true,
-      //     // observeParents: true,
-      //     // slidesPerView: 3,
-      //     navigation: {
-      //       nextEl: '.swiper-button-next',
-      //       prevEl: '.swiper-button-prev',
-      //     },
-      //     spaceBetween: 30,
-      //     pagination: {
-      //       el: '.swiper-pagination',
-      //       clickable: true,
-      //     },
-      //     // freeMode: true,
-      //     // zoom: true,
-      //   });
+      function initSwiper(page) {
+        //define swiper
+        var swiper = new Swiper(".swiper-container", {
+          autoHeight: window.innerHeight,
+          // autoplay: false, //可选选项，自动滑动
+          // centeredSlides: true,
+          // observer: true,
+          // observeParents: true,
+          // slidesPerView: 3,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          spaceBetween: 30,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          // freeMode: true,
+          // zoom: true,
+        });
 
-      //   //add click
-      //   $('._pg' + page + ' .listBox3 .imgBox li').click(function () {
-      //     $('.slideImg').removeClass('dn');
-      //     let html = "";
-      //     let that = $(this);
+        //add click
+        $('._pg' + page + ' .listBox3 .imgBox li').click(function () {
+          $('.slideImg').removeClass('dn');
+          let html = "";
+          let that = $(this);
           
-      //     $.each(that.parent().find('li'), function (index, res) {
-      //       img = $(res).find('img').attr('src');
-      //       html += ' <div class="swiper-slide">';
-      //       html += '<div class="inBox"><img src="' + img + '"></div>';
-      //       html += ' </div>';
-      //     });          
-      //     swiper.removeAllSlides();
-      //     swiper.appendSlide(html);
-      //     swiper.update();
+          $.each(that.parent().find('li'), function (index, res) {
+            img = $(res).find('img').attr('src');
+            html += ' <div class="swiper-slide">';
+            html += '<div class="inBox"><img src="' + img + '"></div>';
+            html += ' </div>';
+          });          
+          swiper.removeAllSlides();
+          swiper.appendSlide(html);
+          swiper.update();
           
-      //     $('.slideImg').click(function (e) {
-      //       if($(e.target).find('.swiper-container').length>0){
-      //         $('.slideImg').addClass('dn');
-      //          swiper.removeAllSlides();
-      //       };
-      //     });
+          $('.slideImg').click(function (e) {
+            if($(e.target).find('.swiper-container').length>0){
+              $('.slideImg').addClass('dn');
+               swiper.removeAllSlides();
+            };
+          });
 
-      //   });
+        });
 
-      // }
+      }
 
     </script>
 
