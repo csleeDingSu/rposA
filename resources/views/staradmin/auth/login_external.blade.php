@@ -106,6 +106,10 @@
 
 
   <!-- <div class="card-shade"></div> -->
+  
+@endsection
+
+@section('footer-javascript')
   <div class="loginMsg">
     <div class="inBox">
       <img src="{{ asset('clientapp/images/jiangbei.png') }}">
@@ -114,13 +118,10 @@
       <a class="downBtn gdt" href="{{env('DOWNLOAD_APP_URL','https://cixiapp.com/app.php/491')}}">下载APP 登录领取</a>
     </div>
   </div>
-@endsection
 
-@section('footer-javascript')
     @parent
   <script>
     $(function () {
-      
       // $('.login').click(function () {
       //   being.showMsg('.loginMsg');
       // });
