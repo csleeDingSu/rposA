@@ -131,8 +131,8 @@
                     </div>
                     <p class='newTxt'>券后价格<em>¥</em>{{$promoPrice}}</p>
                     <div class="moneyBox">                        
-                      <p class="txt-red">补贴价格<em>¥</em><span class="num-reward">{{$newPrice}}</span></p>
-                      <p class="num">热销{{$sales}}</p>
+                      <div class="btn-play-game">抽奖补贴</div>
+                      <div class="btn-zero-buy">0元购买</div>
                     </div>
                   </div>
                 </div>

@@ -171,8 +171,8 @@ var life = 0;
                                   '</div>' +
                                   '<p class="newTxt">券后价格<em>¥</em>' + promoPrice + '</p>' +
                                   '<div class="moneyBox">' +
-                                    _rewardtxt +
-                                    '<p class="num">热销'+ sales +'</p>' +
+                                    '<div class="btn-play-game">抽奖补贴</div>' +
+                                    '<div class="btn-zero-buy">0元购买</div>' +
                                   '</div>' +
                                 '</div>' +
                               '</div>';

@@ -43,7 +43,7 @@
 
 .newTxt {
   font-size: 0.22rem;
-  color: #bebebe;
+  color: ##7c7c7c;
   line-height: 1em;
   margin-right: 0.12rem;
 }
@@ -253,4 +253,26 @@ span.type-sred {
 
 .highlight-red {
   color: red;
+}
+
+.moneyBox {
+  position: relative;
+    background: url(/clientapp/images/main/btn.png) no-repeat;
+    background-size: contain;
+    height: 0.8rem;
+    padding: 0.08rem;
+    margin: 0 0 0 -0.15rem !important;
+}
+
+.moneyBox .btn-play-game {
+  color: #894d24;
+    font-size: 0.25rem;
+    padding: 0.165rem 0.15rem;
+
+}
+
+.moneyBox .btn-zero-buy {
+  color: #fff;
+    font-size: 0.27rem;
+    padding: 0.15rem 0 0.15rem 0.3rem;
 }
