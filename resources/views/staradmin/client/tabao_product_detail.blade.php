@@ -159,8 +159,8 @@
 				</a>
 				<a href="/arcade">
 					<div id="btn-voucher" class="btn-voucher">
-						<p class='line-1'>0元购买</p>
-						<p class='line-2'>去抽奖赚补贴</p>
+						<p class='line-1'>进入抽奖</p>
+						<p class='line-2'>赚补贴红包</p>
 					</div>
 				</a>
 				</div>

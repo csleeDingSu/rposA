@@ -151,7 +151,14 @@
 		    </div>
 		@show
 
-		<div class="card-body over ">
+		@yield('blog-tab')
+
+		@if(Request::is('blog') || Request::is('blog/*'))
+			<div class="card-body over bgf3 ">
+		@else
+			<div class="card-body over ">
+		@endif
+		
 	    	@yield('game-top-nav')
 	    	<div class="loading" id="loading"></div>
 	    	<div class="scrolly">
