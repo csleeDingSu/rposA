@@ -35,6 +35,15 @@ $(document).ready(function () {
     }
   }); 
 
+  $('.goShare-c').click(function() {
+    $('#redeem-plan-modal').modal();
+  });
+
+  $('.btn-close-modal').click(function() {
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove(); 
+  })
+
 });
 
 function getFromTabao(pageId){

@@ -26,7 +26,7 @@
         <input id="hidweChatVerificationStatus" type="hidden" value="{{empty($member->wechat_verification_status) ? '' : $member->wechat_verification_status}}" />
         <input id="hidgame102UsedPoint" type="hidden" value="{{$game_102_usedpoint}}" />
         <input id="hidgame102Life" type="hidden" value="{{empty($wallet['gameledger']['102']->life) ? 0 : $wallet['gameledger']['102']->life}}" />
-        @if(!empty($member) && $member->wechat_verification_status == 0 && $game_102_usedpoint > 0)   <!-- wechat verified && old user-->    
+
         <div class="logo rel logo3-c1">
           <div class="searchBox" id="search">
             <img class="tipsImg" src="{{ asset('/clientapp/images/searchTips.png') }}">
@@ -42,28 +42,8 @@
             <li>② 粘贴找券</li>
             <li>③ 领券购买有奖励</li>
           </ul>
-          <a class="goShare-c" href="/pre-share"></a>         
+          <a class="goShare-c"></a>         
         </div>
-        @else
-           <!-- wechat not verify && new user -->
-        <div class="logo rel logo3">
-          <div class="searchBox" id="search">
-            <img class="tipsImg" src="{{ asset('/clientapp/images/searchTips.png') }}">
-            <img src="{{ asset('/clientapp/images/searchIcon.png') }}">
-            <label>
-              <input type="text" placeholder="复制淘宝商品标题 粘贴搜索" disabled />
-            </label>
-            <div class="sBtn" id="btn-search">查券</div>
-          </div>
-
-          <ul class="about">
-            <li>① 复制淘宝商品标题</li>
-            <li>② 粘贴找券</li>
-            <li>③ 领券购买有奖励</li>
-          </ul>
-          <a class="goShare-c" href="/arcade"></a>          
-        </div>
-        @endif 
 
         <div class="navBox-3">
           <a href="/guide/redeem"><img src="{{ asset('/clientapp/images/index3-nav.png') }}">
@@ -167,8 +147,38 @@
 @endsection
 
 @section('footer-javascript')
+<!-- Modal starts -->
+<div class="modal fade col-lg-12" id="redeem-plan-modal" tabindex="-1" style="z-index: 9999">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-row">
+                  <div class="modal-title">
+                    购物全补贴计划
+                  </div>
+                  <div class="modal-description">
+                    在挖宝商城APP不仅能找到优惠券，还能抽奖领红包，没场抽奖有98％几率惠东12元。
+                  </div>
+                  <div class="modal-instructions">
+                    <p>①用户注册的领券下单能获得<span class="highlight-red">少量抽奖场次</span></p>
+                    <p>②邀请好友能获得<span class="highlight-red">大量抽奖场次</span></p>
+                    <p>③被邀请的好友能享受同等福利</p>
+                  </div>
+                  <div class="modal-description">
+                    全新购物理念，邀请好友抵买单，购物全额补贴，任性买买买不洗疼。
+                  </div>
+                </div>
+            </div>            
+        </div>
+        <div class="btn-close-modal">
+          <img src="{{ asset('/clientapp/images/main/close.png') }}">
+        </div>
+    </div>
+</div>
+<!-- Modal Ends -->
+
+
     @parent  
     <script src="{{ asset('/clientapp/js/newMainPage.js') }}"></script>
     
-
 @endsection
