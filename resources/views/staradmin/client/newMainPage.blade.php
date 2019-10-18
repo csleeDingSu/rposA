@@ -148,8 +148,8 @@
 
 @section('footer-javascript')
 <!-- Modal starts -->
-<div class="modal fade col-lg-12" id="redeem-plan-modal" tabindex="-1" style="z-index: 9999">
-    <div class="modal-dialog modal-sm" role="document">
+<div class="modal fade col-md-12" id="redeem-plan-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+    <div class="modal-dialog modal-lg close-modal" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="modal-row">

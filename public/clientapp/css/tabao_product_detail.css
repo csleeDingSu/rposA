@@ -420,43 +420,6 @@
 		-webkit-transform-origin:left top;
 	}
 
-	#draw-rules .modal-title {	
-	    font-size: 24px;
-	}
-
-	#draw-rules .instructions {
-		
-		/*margin-top: 5px;*/
-		/*margin-bottom: 10px;*/
-		font-size: 14px;
-		font-weight: 400;
-		color: #999;
-		padding:10px 5px;
-		text-align: left;
-		letter-spacing: 0.5px;
-		line-height: 0.4rem;
-
-	}
-
-	#draw-rules .modal-go-button {
-		background-color: #ff504a; 
-		background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff504a));	
-		color: white;
-		border-radius: 100px;
-		margin-left: 15%;
-		margin-right: 15%;
-		padding:10px;
-		font-size: 20px
-	}
-
-	#draw-rules .modal-body {
-		padding: 15px;
-	}
-
-	#draw-rules .txt-life {
-		line-height: 0.5rem;
-	}
-
 	.line-price {
 		padding: 0.2rem 0 0 0;
 		position: relative;
@@ -617,3 +580,96 @@
 }
 
 
+#draw-rules .modal-dialog {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#draw-rules .modal-content {
+  background: url(/clientapp/images/product/modal-bg.png) no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    outline: none;
+    width: 6.35rem;
+    height: auto;
+    padding: 1rem 0.1rem 0 0.1rem;
+    position: relative;
+    margin: 0.1rem 0;
+    
+
+}
+
+#draw-rules .modal-title{
+  color: #000;
+    font-size: 0.4rem;
+    line-height: 0.6rem;
+    text-align: center;
+    font-weight: 545;
+    position: relative;
+    padding: 0.7rem 0 0 0;
+    background-color: transparent;
+}
+
+#draw-rules .modal-description{
+  font-size: 0.24rem;
+    line-height: 0.45rem;
+    color: #666;
+    padding: 0.3rem 0 0 0;
+}
+
+#draw-rules .modal-instructions{
+  font-size: 0.24rem;
+  /*line-height: 0.45rem;*/
+  color: #666;
+  padding: 0 0 0.1rem 0;
+}
+
+#draw-rules .modal-instructions p{
+	background-color: #fff3df;
+}
+
+#draw-rules .btn-close-modal {
+    position: relative;
+    padding: 1rem;
+}
+
+#draw-rules .btn-close-modal img{
+  margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 0.6rem;
+  }
+
+#draw-rules .modal-summary {
+background: url(/clientapp/images/product/summary-bg.png) no-repeat;
+    background-size: cover;	
+    font-size: 0.28rem;
+    color: #895152;
+    padding: 0.3rem;
+    margin: 0.5rem 0 0.2rem 0;
+    text-align: center;
+}
+
+#draw-rules .modal-summary .d {
+	border-bottom-style: dashed;
+	border-bottom-color: #ff7a7e;
+	border-bottom-width: 0.02rem;
+}
+
+#draw-rules .modal-summary .highlight1 {
+	color: #f9262c;
+	font-size: 0.36rem;
+	font-weight: 550;
+}
+
+#draw-rules .modal-summary .highlight2 {
+	color: #f98e26;
+	font-size: 0.36rem;
+}

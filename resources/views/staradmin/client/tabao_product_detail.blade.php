@@ -84,6 +84,8 @@
         @php ($commissionRate = ($commissionRate > 0) ? (int)$commissionRate : 0)
         @php ($reward = (int)($promoPrice * $commissionRate))
         @php ($sales = ($data['monthSales'] >= 1000) ? number_format(((float)$data['monthSales'] / 10000), 2, '.', '') . '万' : $data['monthSales'] . '件')
+		@php ($life_needed = ceil($promoPrice / 12))
+
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
@@ -175,7 +177,7 @@
 @section('footer-javascript')
 
 	<!-- draw rules starts -->
-	<div class="modal fade col-md-12" id="draw-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12" id="draw-rules-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg close-modal" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
@@ -202,6 +204,39 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- new draw-rules Modal starts -->
+<div class="modal fade col-md-12" id="draw-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg close-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-row">
+                  <div class="modal-title">
+                    抽奖补贴说明
+                  </div>
+                  <div class="modal-description">
+                    <p>抽奖补贴由挖宝平台提供，每场抽奖有98.43％概率获得12元红包补貼（可提现支付宝）。</p>
+                    <p>通过以下方式，可获得抽奖场次：</p>
+                  </div>
+                  <div class="modal-instructions">
+                    <p>①邀请1个好友得1场，好友邀请別人，你再得1场。</p>
+                 </div>
+                 <div class="modal-instructions">
+                    <p>②新人注册和领券下单也能获得抽奖场次。</p>
+                  </div>
+                  <div class="modal-summary">
+                    <p class="d">要获得<span class="highlight1">{{$promoPrice}}</span>元补贴需<span class="highlight1">{{$life_needed}}</span>场次抽奖</p>
+                    <p>你当前拥有<span class="highlight2">{{$life}}</span>次抽奖补贴</p>
+                  </div>
+                </div>
+            </div>            
+        </div>
+        <div class="btn-close-modal">
+          <img src="{{ asset('/clientapp/images/product/close.png') }}">
+        </div>
+    </div>
+</div>
+<!-- Modal Ends -->
 
 	<!-- reward rules starts -->
 	<div class="modal fade col-md-12" id="reward-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
@@ -260,22 +295,13 @@
 	<script>
 		
 		$(document).ready(function(){
+
 			var usedpoint = $('#hidusedpoint').val();
 			var life = $('#hidlife').val();
-			if (usedpoint > 0) {
-				$('.input-txt').html('邀请奖励');
-				$('.caption_redeem_angpao').click( function() {
-		        	$('#invite-modal').modal();
-		    	});
-		    	$('.modal-go-invite').click(function() {
-		    		window.location.href = '/share';
-		    	});
-			} else {
-				$('.input-txt').html('如何补贴');
-				$('.caption_redeem_angpao').click( function() {
-		        	$('#draw-rules').modal();
-		    	});
-			}
+			
+			$('.caption_redeem_angpao').click( function() {
+	        	$('#draw-rules').modal();
+	    	});
 
 			$('.btn-reward').click(function() {
 				$('#reward-rules').modal();
@@ -284,6 +310,11 @@
 			$('.modal-close-btn').click( function() {
 	        	$('.modal').modal('hide');
 				$('.modal-backdrop').remove(); 
+	    	});
+
+	    	$('.btn-close-modal').click(function() {
+	    		$('.modal').modal('hide');
+				$('.modal-backdrop').remove();
 	    	});
 
 			$('#btn-couponlink').click(function () {
@@ -315,19 +346,6 @@
 			$('.draw-price').click( function() {
 	        	$('#draw-rules').modal();
 	    	});
-
-			if (life <= 0) {
-				$('.modal-go-button').html('邀请好友');
-				$('.modal-go-button').click( function() {
-		        	window.location.href = '/pre-share';
-		    	});
-			} else {
-				$('.modal-go-button').html('马上抽奖');
-				$('.modal-go-button').click( function() {
-		        	window.location.href = '/arcade';
-		    	});	
-			}
-	    	
 	    	
 		})
 
