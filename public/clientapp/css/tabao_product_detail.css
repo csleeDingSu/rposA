@@ -210,8 +210,8 @@
     	font-size: 5vw;
     	position: relative;
 	    background-color: #ffa09f;
-	    width: 2rem;
-	    height: 1rem;
+	    width: 2.1rem;
+	    /*height: 1rem;*/
 	    cursor: pointer;
 	    z-index: 10000;
 	    padding-top: 0;
@@ -247,6 +247,7 @@
 	    background-size: contain;
 	    padding: 0.2rem 0rem 0.2rem 0.4rem;
 	    line-height: 0.34rem;
+	    height: 1.02rem;
 
 	}
 
@@ -264,7 +265,7 @@
 	    position: relative;
 	    color: #666;
 	    width: 2.57rem;
-	    height: 1rem;
+	    /*height: 1rem;*/
 	    background-color: #f1f1f1;
 	    padding: 0.22rem;
     	line-height: 0.3rem;
