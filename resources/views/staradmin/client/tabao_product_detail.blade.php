@@ -31,9 +31,9 @@
         }   
 
         .footer2 {
-			height: 1.15rem;
+			height: 1.5rem;
 		}
-
+/*
 		#btn-normal-price {
 			height: 1.15rem;
 		}
@@ -44,7 +44,7 @@
 
 		#btn-voucher {
 			height: 1.15rem;
-		}
+		}*/
       </style>
     @endif
 @endsection

@@ -187,14 +187,14 @@
 
 	.footer2 {
 		position: fixed;
-		bottom: 0;
-		width: 100%;
-
-		display: flex;
-		justify-content: space-between;
-		text-align: justify;
-		/*background-color: #000;*/
-		color: #fff;
+	    bottom: 0;
+	    width: 100%;
+	    display: flex;
+	    justify-content: space-between;
+	    text-align: justify;
+	    color: #fff;
+	    border-top: 1px solid #b1b1b1;
+	    background-color: #f1f1f1;
 	}
 
 	.footer-wrapper {
@@ -202,23 +202,22 @@
     	display: flex;
 	    text-align: center;
 	    vertical-align: middle;
-	    background-color: #ffa09f;
 	}
 
 	#btn-copy {
 		text-align: center;
-    	font-size: 5vw;
-    	position: relative;
+	    font-size: 5vw;
+	    position: relative;
 	    background-color: #ffa09f;
 	    width: 2.1rem;
-	    /*height: 1rem;*/
+	    height: 1.02rem;
 	    cursor: pointer;
 	    z-index: 10000;
 	    padding-top: 0;
 	    padding-left: 0;
 	    color: #fff;
 	    padding: 0.22rem;
-    	line-height: 0.3rem;
+	    line-height: 0.3rem;
 	}
 
 	#btn-copy .line-1 {
@@ -265,10 +264,10 @@
 	    position: relative;
 	    color: #666;
 	    width: 2.57rem;
-	    /*height: 1rem;*/
+	    height: 1.01rem;
 	    background-color: #f1f1f1;
 	    padding: 0.22rem;
-    	line-height: 0.3rem;
+	    line-height: 0.3rem;
 	}
 
 	#btn-normal-price .line-1 {
