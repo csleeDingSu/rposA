@@ -157,15 +157,15 @@
                     购物全补贴计划
                   </div>
                   <div class="modal-description">
-                    在挖宝商城APP不仅能找到优惠券，还能抽奖领红包，没场抽奖有98％几率惠东12元。
+                    在挖宝商城APP不仅能找到优惠券，还能抽奖领红包补贴，每场抽奖有98％机率获得12元。
                   </div>
                   <div class="modal-instructions">
-                    <p>①用户注册的领券下单能获得<span class="highlight-red">少量抽奖场次</span></p>
+                    <p>①用户注册和领券下单能获得<span class="highlight-red">少量抽奖场次</span></p>
                     <p>②邀请好友能获得<span class="highlight-red">大量抽奖场次</span></p>
                     <p>③被邀请的好友能享受同等福利</p>
                   </div>
                   <div class="modal-description">
-                    全新购物理念，邀请好友抵买单，购物全额补贴，任性买买买不洗疼。
+                    全新购物理念，邀请好友抵买单，购物全额补贴，任性买买买不心疼。
                   </div>
                 </div>
             </div>            

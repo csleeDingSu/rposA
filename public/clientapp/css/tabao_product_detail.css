@@ -82,7 +82,7 @@
 
 	.infinite-scroll .new-price-icon-equal {
 		position: absolute;
-		margin-left: 5.25rem;
+		margin-left: 5.5rem;
 	    height: 20px;
 	    margin-top: 0.2rem;
 	}
@@ -124,7 +124,7 @@
 	    margin-left: 3.82rem;
 	    text-align: center;
 	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
-	    width: 1.15rem;
+	    width: 1.5rem;
 	}
 
 	.infinite-scroll .draw-price .cur{
@@ -146,7 +146,7 @@
 	    font-size: 8vw;
 	    /*width: 1.7rem;*/
 	    position: absolute;
-	    margin-left: 5.1rem;
+	    margin-left: 5.5rem;
 	    text-align: right;
 	}
 
@@ -168,7 +168,7 @@
 	 /*position: relative !important;*/
 	 /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
 	 /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
-	 padding-left: 3.6rem !important;
+	 padding-left: 3.77rem !important;
 	}
 
 	.caption_redeem_angpao img {
@@ -202,14 +202,15 @@
     	display: flex;
 	    text-align: center;
 	    vertical-align: middle;
+	    background-color: #ffa09f;
 	}
 
 	#btn-copy {
 		text-align: center;
     	font-size: 5vw;
     	position: relative;
-	    background-color: #ff9291;
-	    width: 2.57rem;
+	    background-color: #ffa09f;
+	    width: 2rem;
 	    height: 1rem;
 	    cursor: pointer;
 	    z-index: 10000;
@@ -233,20 +234,20 @@
 		position: relative;
 	    top: 0;
 	    left: 0;
-	    width: 2.57rem;
-	    height: 1rem;
+	    width: 3.3rem;
 	    cursor: pointer;
 	    padding-top: 0;
 	    padding-left: 0;
 	    color: #fff;
 	    text-align: center;
-		font-size: 5vw;
-		background-image: url("/clientapp/images/product/drawbtn.png");
-		background-color: transparent;
-		background-repeat: no-repeat;
-		background-size: 2.37rem 100%;
-		padding: 0.2rem 0.4rem 0.2rem 0;
-		line-height: 0.34rem;
+	    font-size: 5vw;
+	    background-image: url(/clientapp/images/product/choujiange.png);
+	    background-color: transparent;
+	    background-repeat: no-repeat;
+	    background-size: contain;
+	    padding: 0.2rem 0rem 0.2rem 0.4rem;
+	    line-height: 0.34rem;
+
 	}
 
 	#btn-voucher .line-1 {
