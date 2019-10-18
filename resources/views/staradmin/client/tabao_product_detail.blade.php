@@ -31,19 +31,19 @@
         }   
 
         .footer2 {
-			height: 1.1rem;
+			height: 1.15rem;
 		}
 
 		#btn-normal-price {
-			height: 1.1rem;
+			height: 1.15rem;
 		}
 
 		#btn-copy {
-			height: 1.1rem;
+			height: 1.15rem;
 		}
 
 		#btn-voucher {
-			height: 1.1rem;
+			height: 1.15rem;
 		}
       </style>
     @endif
