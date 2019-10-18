@@ -199,15 +199,18 @@ span.type-sred {
 }
 
 #redeem-plan-modal .modal-content {
-  background: url(/clientapp/images/main/modal-bg-redeem-plan.png) left top no-repeat;
-  background-size: 100% auto;
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  width: 5.6rem;
-  height: auto;
-  padding: 1rem 0.1rem 0 0.1rem;
+  background: url(/clientapp/images/main/modal-bg-redeem-plan.png) no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    outline: none;
+    width: 6rem;
+    height: auto;
+    padding: 1rem 0.1rem 0 0.1rem;
+    position: relative;
+    margin: 0.1rem 0;
+    
 
 }
 
@@ -242,7 +245,7 @@ span.type-sred {
 #redeem-plan-modal .btn-close-modal img{
   margin: 0;
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 0.6rem;
