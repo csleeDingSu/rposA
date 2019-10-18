@@ -51,7 +51,7 @@
   <!-- insufficient point modal -->
     <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
         <div class="modal-dialog modal-lg">
-            <div class="insufficient-point">金币不足 请充值</div>                  
+            <div class="insufficient-point">挖宝币不足 请先充值或兑换</div>                  
         </div>
     </div>
     <!-- insufficient point modal Ends -->
@@ -123,6 +123,7 @@
     @parent
     <script src="{{ asset('/clientapp/js/shop.js') }}"></script>
     <script type="text/javascript">
+      
         $(document).ready(function() {
             var user_id = "<?php Print(isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0);?>";
             var wechat_status = "<?php Print(isset($member->wechat_verification_status) ? $member->wechat_verification_status : 0);?>";

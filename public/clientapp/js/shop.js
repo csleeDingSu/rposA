@@ -78,6 +78,7 @@ function getProduct(){
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
                     // console.log(1);
                     $('#modal-insufficient-point').modal();
+                    $('.modal-backdrop').remove();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
                     }, 3000);                
@@ -105,6 +106,7 @@ function getProduct(){
                 var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
                     $('#modal-insufficient-point').modal();
+                    $('.modal-backdrop').remove();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
                     }, 3000);                
