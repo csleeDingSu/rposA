@@ -30,21 +30,31 @@
 		    background-repeat: round;
         }   
 
-        .footer2 {
-			height: 1.5rem;
-		}
-/*
-		#btn-normal-price {
-			height: 1.15rem;
-		}
+		/*iphone X*/
+        @media only screen  
+          and (device-width : 375px) 
+          and (device-height : 812px) 
+          and (-webkit-device-pixel-ratio : 3) {
+            .footer2 {
+				height: 1.5rem;
+			}
+          }
 
-		#btn-copy {
-			height: 1.15rem;
-		}
+          /*iPhone 7/8*/ 
+          @media only screen 
+            and (device-width : 375px) 
+            and (device-height : 667px) 
+            and (-webkit-device-pixel-ratio : 2) {
+              /*do nothing*/
+            }
 
-		#btn-voucher {
-			height: 1.15rem;
-		}*/
+          /*iPhone 6+/6s+/7+/8+*/
+          @media only screen 
+            and (device-width : 414px) 
+            and (device-height : 736px) 
+            and (-webkit-device-pixel-ratio : 3) {
+              /*do nothing*/
+            }
       </style>
     @endif
 @endsection
