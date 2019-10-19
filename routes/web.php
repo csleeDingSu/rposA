@@ -718,6 +718,14 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 	Route::get( 'tabao/list', 'AdminController@tabao_list' )->name( 'tabao_list' );
 	Route::any( 'tabao/change-order', 'AdminController@tabao_changeorder' )->name( 'tabao_changeorder' );
+
+	
+
+	Route::get( 'creditshare/list', 'CreditController@tabao_list' )->name( 'tabao_list' );
+	Route::get( 'creditshare/update', 'CreditController@update_resell' )->name( 'update_resell' );
+	Route::get( 'creditshare/show', 'CreditController@show' )->name( 'render_resell_edit' );
+	
+
 	
 } );
 //END
