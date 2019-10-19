@@ -235,6 +235,13 @@
 		</li> -->
 		
 		<li class="nav-item">
+			<a class="nav-link" href="/creditresell/list">
+              <i class="menu-icon  icon-note text-primary"></i>
+              <span class="menu-title text-capitalize"> @lang('dingsu.credit_resell')</span>
+            </a>
+		</li>
+
+		<li class="nav-item">
 			<a class="nav-link" href="/receipt/list">
               <i class="menu-icon  icon-note text-primary"></i>
               <span class="menu-title text-capitalize"> @lang('dingsu.receipt')</span>
