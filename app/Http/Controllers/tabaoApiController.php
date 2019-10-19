@@ -555,9 +555,9 @@ class tabaoApiController extends BaseController
         $array = [];
         $i = 0;
 
-        // if (!empty($data)){
-        //     taobao_collection_vouchers::query()->truncate();    
-        // }
+        if (!empty($data)){
+            taobao_collection_vouchers::query()->truncate();    
+        }
         
         foreach ($data as $d) {
             if (!empty(json_decode($d->content)->data->list)) {
