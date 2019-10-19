@@ -64,6 +64,37 @@ class CreditController extends Controller
 		return response()->json(['success' => true]);
 	}
 
+    public function get_buyer(Request $request)
+    {
+    	$type    = '';
+    	$record  = \App\CreditResell::with('status','member')->where('status_id', 1)->oldest()->first();
+
+    	if (!$record)
+    	{
+    		//use default data
+    		$record = \App\CompanyBank::first();
+    		$type   = 'companyaccount';
+    	}
+
+    	return response()->json(['success' => true, 'record'=>$record, 'type'=>$type]);
+
+    }
+
+    public function make_resell_expired(Request $request)
+    {
+    	$record  = \App\CreditResell::with('status','member')->where('id', $request->id)->first();
+    	$record->status_id = 5;
+    	$record->save();
+
+    	$history            = new \App\ResellHistory();
+		$history->cid       = $record->id;
+		$history->status_id = 5;
+		$history->amount    = $record->amount;
+		$history->point     = $record->point;
+		$history->save();
+
+    }
+
 
 	
 

@@ -177,6 +177,10 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/used-point', 'GameController@usedpoint')->name('usedpoint');
 	
 	Route::get('/game-used-point', 'GameController@usedpoint_103')->name('used_point');
+
+
+	Route::get( 'resell/request', 'CreditController@request_resell' )->name( 'request_resell' );
+	Route::get( 'resell/get-buyer', 'CreditController@get_buyer' )->name( 'get_buyer' );
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
@@ -185,6 +189,9 @@ Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilo
 Route::get('/mytestview', 'ProductController@list_package')->name('mytestview');
 
 Route::post('wechat-auth', 'Auth\MemberLoginController@wechat_auth')->name('wechat_auth');
+
+
+
 
 
 //cron_test
