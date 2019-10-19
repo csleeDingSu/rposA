@@ -722,7 +722,7 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	
 
 	Route::any( 'creditshare/list', 'CreditController@listdata' )->name( 'creditlist' );
-	Route::get( 'creditshare/update', 'CreditController@update_resell' )->name( 'update_resell' );
+	Route::post( 'creditshare/update', 'CreditController@update_resell' )->name( 'update_resell' );
 	Route::get( 'creditshare/show', 'CreditController@show' )->name( 'render_resell_edit' );
 	
 
