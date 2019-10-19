@@ -503,10 +503,10 @@ dd a:active h2 {
 .listBox .typeBox span {
   display: inline-block;
   font-size: 0.2rem;
-  padding: 0 .041rem;
+  padding: 0 0.04rem;
   border-radius: 0.05rem;
   line-height: 0.36rem;
-  margin-right: 0.1rem;
+  margin-right: 0.08rem;
   margin-top: .02rem;
   margin-bottom: 0.08rem;
 }
@@ -665,6 +665,32 @@ span.type-blue {
   font-size: 0.34rem;
   color: #ff557b;
   padding-right: 0.38rem;
+}
+
+
+.userViews {
+  background: #fff;
+  margin-bottom: 0.2rem;
+  padding: 0 0.24rem;
+}
+
+.userViews .userName {
+  height: 1.1rem;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userViews .userName h2 {
+  font-size: 0.48rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.userViews .userName a.set {
+  font-size: 0;
 }
 
 .userViews .userName a.set img {
