@@ -116,7 +116,7 @@ class CreditController extends BaseController
         		//update buyer data  
 	        	if (!$request->buyer_id)
 				{
-					return response()->json(['success' => false,'errors'=> ['buyer'=>['unknown member'] ] ],422);	
+					return response()->json(['success' => false,'errors'=> ['buyer_id'=>['unknown member'] ] ],422);	
 				}
 
         		$record->buyer_id = $member->id; 
@@ -130,7 +130,7 @@ class CreditController extends BaseController
         		//update buyer data & add points to buyer account
         		if (!$request->buyer_id)
 				{
-					return response()->json(['success' => false,'errors'=> ['buyer'=>['unknown member'] ] ],422);	
+					return response()->json(['success' => false,'errors'=> ['buyer_id'=>['unknown member'] ] ],422);	
 				}
         		$record->buyer_id = $member->id;   
         		//add points 
