@@ -24,7 +24,7 @@ function getProduct(){
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
@@ -40,7 +40,7 @@ function getProduct(){
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
@@ -78,10 +78,12 @@ function getProduct(){
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
                     // console.log(1);
                     $('#modal-insufficient-point').modal();
-                    $('.modal-backdrop').remove();
+                    // $('.modal-backdrop').remove();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
-                    }, 3000);                
+                    }, 3000);      
+                    console.log('insufficient point');          
+                    return false;
                 } else {
                     // console.log(2);
                     $( "#frm_buy" ).submit();    
@@ -106,10 +108,12 @@ function getProduct(){
                 var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
                     $('#modal-insufficient-point').modal();
-                    $('.modal-backdrop').remove();
+                    // $('.modal-backdrop').remove();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
-                    }, 3000);                
+                    }, 3000);           
+                    console.log('insufficient point');          
+                    return false;     
                 } else {
                     $( "#frm_buy" ).submit();    
                 }
