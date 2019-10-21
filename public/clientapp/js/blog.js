@@ -31,17 +31,20 @@ $(document).ready(function () {
     being.scrollBottom('.scrolly', '.wfBox', () => {
         
         if ($(".btn-all").hasClass("on")) {
-            page++;
-            console.log('new page ' + page);
-            var current_page = parseInt($('#hidPg').val());
-            console.log('current page ' + current_page);
-            var next_page = parseInt($('#hidNextPg').val());
-            console.log('next page ' + next_page);
+            
+            if (page > 1) {
+                page++;
+                console.log('new page ' + page);
+                var current_page = parseInt($('#hidPg').val());
+                console.log('current page ' + current_page);
+                var next_page = parseInt($('#hidNextPg').val());
+                console.log('next page ' + next_page);
 
-            if(page == next_page) {
-                getBlogList(page);                
-            } else {
-                console.log('no page ' + page);
+                if(page == next_page) {
+                    getBlogList(page);                
+                } else {
+                    console.log('no page ' + page);
+                }
             }
       
         } else {
