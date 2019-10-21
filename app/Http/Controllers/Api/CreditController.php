@@ -109,6 +109,25 @@ class CreditController extends Controller
     	return response()->json(['success' => false, 'message' => 'unknown record' ]);
     }
 
+    public function resell_list(Request $request)
+    {
+    	$result = \App\CreditResell::with('status')->where('member_id', $request->memberid)->paginate(30);
+
+    	return response()->json(['success' => true,  'result'=>$result]);
+    }
+
+    public function resell_tree(Request $request)
+    {
+    	
+    	$record = \App\CreditResell::where('member_id', $request->memberid)->first();
+    	if ($record)
+    	{
+    		$result = \App\ResellHistory::with('status')->where('cid', $request->id)->latest()->paginate(30);
+    		return response()->json(['success' => true,  'result'=>$result]);	
+    	}
+    	return response()->json(['success' => false, 'message' => 'unknown record' ]);
+    }
+
 
 	
 
