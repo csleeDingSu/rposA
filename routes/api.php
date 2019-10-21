@@ -179,8 +179,9 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/game-used-point', 'GameController@usedpoint_103')->name('used_point');
 
 
-	Route::get( 'resell/request', 'CreditController@request_resell' )->name( 'request_resell' );
-	Route::get( 'resell/get-buyer', 'CreditController@get_buyer' )->name( 'get_buyer' );
+	Route::get( '/resell-request', 'CreditController@request_resell' )->name( 'request_resell' );
+	Route::get('/getbuyer', 'CreditController@get_buyer')->name('get_buyer');
+	Route::post('/make-resell-expired', 'CreditController@make_resell_expired')->name('make_resell_expired');
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
