@@ -2,7 +2,7 @@
 
 @section('top-css')
     @parent  
-    <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css?version=1.0.1') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/client/css/blog.css?version=1.0.2') }}" />
     <style>
         /* Paste this css to your style sheet file or under head tag */
         /* This only works with JavaScript, 
@@ -66,7 +66,7 @@
 
     <div id="all">
       <div class="wfBox">  
-        <div class="inList">              
+        <div class="inList" id="inList-all">              
           <div class="item">
             <div class="item-line-1"></div>
           </div>
@@ -78,7 +78,7 @@
     </div>
     <div id="my">
       <div class="wfBox">  
-        <div class="inList">              
+        <div class="inList" id="inList-my">              
           <div class="item">
             <div class="item-line-1-my"></div>
           </div>
@@ -223,7 +223,7 @@
                           '<img src="/clientapp/images/no-record/blog.png">' +
                           '<div>暂无晒单记录</div>' +
                         '</div>';
-                $('.item-line-1').html(_html);
+                $('#inList-all').html(_html);
 
               } else {
                   $('.item-line-1').append(html1);
@@ -296,7 +296,7 @@
                         '<img src="/clientapp/images/no-record/blog.png">' +
                         '<div>暂无晒单记录</div>' +
                       '</div>';
-              $('.item-line-1-my').html(_html);
+              $('#inList-my').html(_html);
 
             } else {
                 $('.item-line-1-my').append(html1);
