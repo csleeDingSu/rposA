@@ -63,6 +63,7 @@
 <input id="hidPgMy" type="hidden" value="">
 <input id="hidNextPg" type="hidden" value="">
 <input id="hidNextPgMy" type="hidden" value="">
+<input id="hidMemberId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
 
 <div id="all">
   <div class="wfBox">  

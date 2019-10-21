@@ -157,7 +157,7 @@ function getBlogMyList(pageMy) {
 
     $.ajax({
         type: 'GET',
-        url: "/blog/list-my?page=" + pageMy + "&memberid={{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}", 
+        url: "/blog/list-my?page=" + pageMy + "&memberid=" + $('#hidMemberId').val(), 
         dataType: "json",
         error: function (error) { console.log(error);
           document.getElementById('loading2').style.visibility="hidden";
