@@ -92,6 +92,7 @@ class CreditController extends Controller
     		$record->status_id   = 5;
 	    	$record->is_locked   = null;
 	    	$record->locked_time = null;
+	    	$record->reason      = 'pay time exceeded';
 	    	$record->save();
 
 	    	$history            = new \App\ResellHistory();
