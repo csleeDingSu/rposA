@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/public.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/swiper.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('/client/blog/css/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/blog_create.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/blog_create.css') }}" />
     
 @endsection
 
