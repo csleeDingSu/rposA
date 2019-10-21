@@ -13,6 +13,16 @@ class ResellHistory extends Model
     {
         return with(new static)->getTable();
     }
+
+    public function status()
+    {
+        return $this->belongsTo(\App\ResellStatus::class, 'status_id', 'id');
+    }
+
+    public function buyer()
+    {
+        return $this->belongsTo(\App\Member::class, 'buyer_id', 'id');
+    }
 }
 
 

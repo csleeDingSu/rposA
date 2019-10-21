@@ -70,7 +70,8 @@ class CreditController extends Controller
     	$record  = \App\CreditResell::with('status','member')->where('is_locked', null)->where('status_id', 1)->where('point', $request->point)->oldest()->first();
     	if ($record)
     	{
-    		$record->is_locked = 1;
+    		$record->is_locked   = 1;
+    		$record->locked_time = now();
     		$record->save();
     	}    	
 
@@ -88,8 +89,11 @@ class CreditController extends Controller
     	$record  = \App\CreditResell::with('status','member')->where('is_locked', 1)->where('id', $request->id)->first();
     	if ($record)
     	{
-    		$record->status_id = 5;
-	    	$record->is_locked = null;
+    		$reason              = 'pay time exceeded';
+    		$record->status_id   = 5;
+	    	$record->is_locked   = null;
+	    	$record->locked_time = null;
+	    	$record->reason      = $reason;
 	    	$record->save();
 
 	    	$history            = new \App\ResellHistory();
@@ -97,12 +101,32 @@ class CreditController extends Controller
 			$history->status_id = 5;
 			$history->amount    = $record->amount;
 			$history->point     = $record->point;
+			$history->reason    = $reason;
 			$history->save();
 
 			return response()->json(['success' => true]);		
     	}
 
 
+    	return response()->json(['success' => false, 'message' => 'unknown record' ]);
+    }
+
+    public function resell_list(Request $request)
+    {
+    	$result = \App\CreditResell::with('status','buyer')->where('member_id', $request->memberid)->paginate(30);
+
+    	return response()->json(['success' => true,  'result'=>$result]);
+    }
+
+    public function resell_tree(Request $request)
+    {
+    	
+    	$record = \App\CreditResell::where('member_id', $request->memberid)->first();
+    	if ($record)
+    	{
+    		$result = \App\ResellHistory::with('status')->where('cid', $request->id)->latest()->paginate(30);
+    		return response()->json(['success' => true,  'result'=>$result]);	
+    	}
     	return response()->json(['success' => false, 'message' => 'unknown record' ]);
     }
 

@@ -182,6 +182,9 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get( '/resell-request', 'CreditController@request_resell' )->name( 'request_resell' );
 	Route::get('/getbuyer', 'CreditController@get_buyer')->name('get_buyer');
 	Route::post('/make-resell-expired', 'CreditController@make_resell_expired')->name('make_resell_expired');
+
+	Route::get('/resell-list', 'CreditController@resell_list')->name('resell_list');
+	Route::get('/resell-tree', 'CreditController@resell_tree')->name('resell_tree');
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
