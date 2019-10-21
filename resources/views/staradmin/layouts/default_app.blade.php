@@ -153,7 +153,7 @@
 
 		@yield('blog-tab')
 
-		@if(Request::is('blog') || Request::is('blog/*'))
+		@if(Request::is('blog'))
 			<div class="card-body over bgf3 ">
 		@else
 			<div class="card-body over ">
