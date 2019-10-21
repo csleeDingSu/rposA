@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\blog;
 use App\buy_product_redeemed;
 use App\v_blog_buy_product_records;
+use App\v_blog_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,5 +73,41 @@ class BlogController extends Controller
         $b = blog::updateOrCreate($arr,$data)->id;
         return ['success' => true]; 
             
+    }
+
+    public function listAll(Request $request)
+    {        
+        $page = empty($request->page) ? 1 : $request->page;
+        $blog = blog::select('*')->whereNull('deleted_at')->orderBy('updated_at','desc')->paginate(10);       
+        return response()->json(['success' => true, 'records' => $blog]);
+    }
+    public function listMy(Request $request)
+    {        
+        $page = empty($request->page) ? 1 : $request->page;
+        $memberid = empty($request->memberid) ? 0 : $request->memberid;
+        $blog = blog::select('*')->where('member_id',$memberid)->whereNull('deleted_at')->orderBy('updated_at','desc')->paginate(10);       
+        return response()->json(['success' => true, 'records' => $blog]);
+    }
+
+    public function detail(Request $request)
+    {
+        $id = $request->id;
+        $blog = null;
+
+        if (!empty($id)) {
+            $blog = v_blog_detail::select('*')->where('id',$id)->first();    
+        }
+
+        return view('client/blog_detail', compact('blog')); 
+        
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $blog = blog::where('id', $id)->delete();
+
+        return response()->json(['success' => true, 'records' => $blog]);
+        
     }
 }

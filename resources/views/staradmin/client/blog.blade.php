@@ -48,6 +48,15 @@
 @section('right-menu')
 @endsection
 
+@section('blog-tab')
+  <div class="card-body flex0">
+    <div class="sdMain">
+      <a class="btn-all on">全部晒单</a>
+      <a class="btn-my">我的晒单</a>
+    </div>
+  </div>
+@endsection
+
 
 @section('content')
 <div class="loading2" id="loading2"></div>
@@ -55,27 +64,32 @@
 <input id="hidPg" type="hidden" value="">
 <input id="hidNextPg" type="hidden" value="">
 
-<div class="cardBody">
-  <div class="infinite-scroll">
-    <ul class="list-2">               
-        @include('client.blog_list')
-    </ul>
-    {{ $blog->links() }}
-  </div>
-</div>
-@endsection
-
-<div class="slideImg dn">
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
+    <div id="all">
+      <div class="wfBox">  
+        <div class="inList">              
+          <div class="item">
+            <div class="item-line-1"></div>
+          </div>
+          <div class="item">
+            <div class="item-line-2"></div>
+          </div>
+        </div>
+      </div>
     </div>
-     <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-</div>
+    <div id="my">
+      <div class="wfBox">  
+        <div class="inList">              
+          <div class="item">
+            <div class="item-line-1-my"></div>
+          </div>
+          <div class="item">
+            <div class="item-line-2-my"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+@endsection
 
 @section('footer-javascript')
 <!-- view photo Modal starts -->
@@ -109,9 +123,29 @@
       $('#hidPg').val(page);
       $('#hidNextPg').val(page + 1);
 
-      $(document).ready(function () {           
+      $(document).ready(function () {  
+
+        $('#my').css('display','none');  
+
+        $('.btn-all').click(function() {
+          $('.btn-all').addClass('on');  
+          $('#all').css('display','block');
+          $('.btn-my').removeClass('on');
+          $('#my').css('display','none');  
+        });
+
+        $('.btn-my').click(function() {
+          $('.btn-all').removeClass('on');
+          $('#all').css('display','none');  
+          $('.btn-my').addClass('on');
+          $('#my').css('display','block');
+        });       
+        
+        getBlogList(page);
+        getBlogMyList(page);
+
         //execute scroll pagination
-        being.scrollBottom('.scrolly', '.cardBody', () => {
+        being.scrollBottom('.scrolly', '.wfBox', () => {
           page++;
           console.log('new page ' + page);
           var current_page = parseInt($('#hidPg').val());
@@ -120,7 +154,8 @@
           console.log('next page ' + next_page);
             
           if(page == next_page) {
-            getPosts(page);
+            getBlogList(page);
+            getBlogMyList(page);
           } else {
             console.log('no page ' + page);
           } 
@@ -128,80 +163,154 @@
         });
       });
 
-      //scroll pagination - start
-      $('ul.pagination').hide();
 
-      function getPosts(page){
-        $.ajax({
-          type: "GET",
-          url: window.location, 
-          data: { page: page },
-          beforeSend: function(){ 
-          },
-          complete: function(){ 
-            $('#loading').remove
-          },
-          success: function(responce) {
-            $('.list-2').append(responce.html);
-            initSwiper(page);
+
+  function getBlogList(page) {
+
+    page = (page > 0 ? page : 1);
+
+    $.ajax({
+        type: 'GET',
+        url: "/blog/list-all?page=" + page, 
+        dataType: "json",
+        error: function (error) { console.log(error) },
+        success: function(data) {
+            // console.log(data);
+            var records = data.records.data;
+            var html = '';
+            var html1 = '';
+            var html2 = '';
+            var isLine1 = true;
+            var _photo = null;
+            var _phone = null;
+            var _uploads = null;
+            var _address = null;
+
+            $.each(records, function(i, item) {
+              // console.log(JSON.parse(item.uploads));
+              isLine1 = ((i + 1) % 2) > 0 ? true : false;
+              _uploads = JSON.parse(item.uploads);
+              console.log(_uploads);
+              _photo = (_uploads == null) ? '' : (((_uploads != null && _uploads.length > 0) && (_uploads[0] != 'undefined')) ? _uploads[0] : _uploads);    
+              _photo = (_photo == '') ? '' : '<div class="imgBox"><img src="' + _photo + '"></div>';
+              _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
+              // _phone = item.phone;
+              _address = item.address;
+              _address = (_address == null) ? _address : ((_address.length > 5) ? _address.substring(0,5) + '...' : _address);
+              
+              html = '<a href="/blog/detail?id=' + item.id + '">' +
+                      '<div class="inBox">' +
+                        _photo +
+                        '<h2>' + item.content + '</h2>' +
+                        '<div class="inDetail">' +
+                          '<p>' + _phone + '</p>' +
+                          '<span>' + _address + '</span>' +
+                        '</div>' +
+                      '</div>' +
+                      '</a>';
+
+                if (isLine1) {
+                  html1 += html;
+                } else {
+                  html2 += html;
+                }
+
+              });
+
+              if (html1 == '' && html2 == '' && $('.item-line-1').html() == '')
+              {
+                _html = '<div class="no-record">' +
+                          '<img src="/clientapp/images/no-record/blog.png">' +
+                          '<div>暂无晒单记录</div>' +
+                        '</div>';
+                $('.item-line-1').html(_html);
+
+              } else {
+                  $('.item-line-1').append(html1);
+                $('.item-line-2').append(html2);
+              } 
+
+                $('#hidPg').val(page);
+                $('#hidNextPg').val(page + 1);
+
+            }
+    }); // end $.ajax
+    
+  } // end function
+
+  function getBlogMyList(page) {
+
+    page = (page > 0 ? page : 1);
+
+    $.ajax({
+        type: 'GET',
+        url: "/blog/list-my?page=" + page, 
+        dataType: "json",
+        error: function (error) { console.log(error) },
+        success: function(data) {
+            // console.log(data);
+            var records = data.records.data;
+            var html = '';
+            var html1 = '';
+            var html2 = '';
+            var isLine1 = true;
+            var _photo = null;
+            var _phone = null;
+            var _uploads = null;
+            var _address = null;
+
+            $.each(records, function(i, item) {
+              // console.log(JSON.parse(item.uploads));
+              isLine1 = (i % 2) > 0 ? true : false;
+              _uploads = JSON.parse(item.uploads);
+              console.log(_uploads);
+              _photo = (_uploads == null) ? '' : (((_uploads != null && _uploads.length > 0) && (_uploads[0] != 'undefined')) ? _uploads[0] : _uploads);    
+              _photo = (_photo == '') ? '' : '<div class="imgBox"><img src="' + _photo + '"></div>';
+              _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
+              // _phone = item.phone;
+              _address = item.address;
+              _address = (_address == null) ? _address : ((_address.length > 5) ? _address.substring(0,5) + '...' : _address);
+              
+              html = '<a href="/blog/detail?id=' + item.id + '">' +
+                      '<div class="inBox">' +
+                        _photo +
+                        '<h2>' + item.content + '</h2>' +
+                        '<div class="inDetail">' +
+                          '<p>' + _phone + '</p>' +
+                          '<span>' + _address + '</span>' +
+                        '</div>' +
+                      '</div>' +
+                      '</a>';
+
+                if (isLine1) {
+                  html1 += html;
+                } else {
+                  html2 += html;
+                }
+
+              });
+
+            if (html1 == '' && html2 == '' && $('.item-line-1-my').html() == '')
+            {
+              _html = '<div class="no-record">' +
+                        '<img src="/clientapp/images/no-record/blog.png">' +
+                        '<div>暂无晒单记录</div>' +
+                      '</div>';
+              $('.item-line-1-my').html(_html);
+
+            } else {
+                $('.item-line-1-my').append(html1);
+                $('.item-line-2-my').append(html2);
+            }
+          
             $('#hidPg').val(page);
             $('#hidNextPg').val(page + 1);
-          }
-         });
-      }
-      //scroll pagination - end
 
-      //swiper start
-      initSwiper(page);
+            }
+    }); // end $.ajax
+    
+  } // end function
 
-      function initSwiper(page) {
-        //define swiper
-        var swiper = new Swiper(".swiper-container", {
-          autoHeight: window.innerHeight,
-          // autoplay: false, //可选选项，自动滑动
-          // centeredSlides: true,
-          // observer: true,
-          // observeParents: true,
-          // slidesPerView: 3,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          spaceBetween: 30,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          // freeMode: true,
-          // zoom: true,
-        });
-
-        //add click
-        $('._pg' + page + ' .listBox3 .imgBox li').click(function () {
-          $('.slideImg').removeClass('dn');
-          let html = "";
-          let that = $(this);
-          
-          $.each(that.parent().find('li'), function (index, res) {
-            img = $(res).find('img').attr('src');
-            html += ' <div class="swiper-slide">';
-            html += '<div class="inBox"><img src="' + img + '"></div>';
-            html += ' </div>';
-          });          
-          swiper.removeAllSlides();
-          swiper.appendSlide(html);
-          swiper.update();
-          
-          $('.slideImg').click(function (e) {
-            if($(e.target).find('.swiper-container').length>0){
-              $('.slideImg').addClass('dn');
-               swiper.removeAllSlides();
-            };
-          });
-
-        });
-
-      }
 
     </script>
 

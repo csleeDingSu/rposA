@@ -1,67 +1,44 @@
 @if (!empty($blog))
+@php ($i = 0)
+@php ($html1 = '')
+@php ($html2 = '')
+@php ($line1 = true)
     @foreach($blog as $b)
-    <div class="_pg{{$page}}">
-        <div class="listBox3">
-          <div class="userBox">
-            <div class="username">
-              <h2>{{substr($b->phone, 0, 3)}}****{{substr($b->phone, 7, strlen($b->phone))}}</h2><span>{{date('Y.m.d H:i:s', strtotime($b->updated_at))}}</span>
-            </div>
-            <div class="address">{{$b->address}}</div>
-          </div>
-          <div class="txtBox">{{$b->content}}</div>
-          <ul class="imgBox">
-            @php ($i = 0)
-            @if (!empty($b->uploads) && (!empty(json_decode($b->uploads))))
-                @foreach(json_decode($b->uploads) as $photo)
-                  @php ($i++)
-                  @if ($i <= 2)
-                  <li>
-                    <div class="_container">
-                      <div class="_content">
-                        <img class="lazy" src="{{ $photo }}">
-                      </div>
-                    </div>
-                  </li>
-                  @endif                  
-                @endforeach 
-                
-                @php ($_i = 0)
-                @if ($i > 2)
-                  <li><div class='_container'>
-                  @foreach(json_decode($b->uploads) as $photo)
-                    @php ($_i++)
-                    @if ($_i > 2)
-                      @if ($i > 3)                    
-                        @php($clss = "_content2 pos" .$_i)   
-                        <div class="{{$clss}}"><img class="lazy" src="{{$photo}}"></div>                    
-                      @else
-                        <div class="_content"><img class="lazy" src="{{$photo}}"></div>
-                      @endif
-                    @endif
-                  @endforeach 
-                  </div></li> 
+    @php ($i++)
+    @php ($line1 = ($i % 2) > 0 ? true : false)
+    @php ($photo = (!empty($b->uploads) && (!empty(json_decode($b->uploads)))) ? json_decode($b->uploads)[0] : null)
+    @php ($content = $b->content)
+    @php ($phone = substr($b->phone, 0, 3) . '****' . substr($b->phone, 7, strlen($b->phone)))
+    @php ($address = $b->address)
 
-                  @if ($i > 3)
-                    @php ($__i = 0)
-                    @foreach(json_decode($b->uploads) as $photo)
-                      @php ($__i++)
-                      @if ($__i > 3)
-                      <li class="hide">
-                        <div class="_container">
-                          <div class="_content">
-                            <img class="lazy" src="{{ $photo }}">
-                          </div>
-                        </div>
-                      </li>
-                      @endif
-                    @endforeach
-                  @endif
-              @endif
-            @endif
-          </ul>
-        </div> 
-    </div>       
-    @endforeach
+    @php ($_html = "<div class='inBox'>
+        <div class='imgBox'>
+         <img src='{{$photo}}'>
+        </div>
+        <h2>{{$content}}</h2>
+        <div class='inDetail'>
+          <p>{{$phone}}</p>
+          <span>{{$address}}</span>
+        </div>
+      </div>")
+
+    @if ($line1)
+    
+      @php ($html1 .= $_html)
+    @else
+      @php ($html2 .= $_html)
+    
+    @endif
+      
+
+  @endforeach
+  
+  <div class="item">
+    <div class="item-line-1">{!! empty($html1) ? '' : $html1 !!}}</div>
+  </div>
+  <div class="item">
+    <div class="item-line-2">{!! empty($html2) ? '' : $html2 !!}}</div>
+  </div>
 
 @endif
 

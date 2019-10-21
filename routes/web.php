@@ -167,6 +167,10 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	} );
 	Route::any( '/blog/createform', 'BlogController@createform' )->name( 'client.blog.createform' );
 	Route::any( '/blog/create', 'BlogController@create' )->name( 'client.blog.create' );
+	Route::any( '/blog/list-all', 'BlogController@listAll' )->name( 'client.blog.list.all' );
+	Route::any( '/blog/list-my', 'BlogController@listMy' )->name( 'client.blog.list.my' );
+	Route::any( '/blog/detail', 'BlogController@detail' )->name( 'client.blog.detail' );
+	Route::any( '/blog/del', 'BlogController@delete' )->name( 'client.blog.delete' );
 
 	Route::any( '/receipt', 'ReceiptController@index' )->name( 'client.receipt' );
 	Route::any( '/receipt/guide', 'ReceiptController@showGuide' )->name( 'client.receipt.showGuide' );

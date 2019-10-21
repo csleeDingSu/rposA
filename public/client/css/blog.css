@@ -90,3 +90,17 @@
 .swiper-pagination {
 	display: none !important;
 }
+
+.inList .item {
+    width: 50%;
+}
+
+.wfBox .inBox .imgBox {
+    min-height:100% !important;
+}
+
+.no-record {
+    text-align: center;
+    position: absolute;
+    margin-left: 2rem;
+}
