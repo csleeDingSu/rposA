@@ -110,7 +110,7 @@
 
 .shareDetail .inBanner .btnBox {
     padding-right: 0rem !important;
-    padding-left: 1.1rem !important;
+    flex: 1 !important;
 }
 
 .shareDetail .inTitleBox {
