@@ -107,3 +107,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.shareDetail .inBanner .btnBox {
+    padding-right: 0rem !important;
+    padding-left: 1.1rem !important;
+}
+
+.shareDetail .inTitleBox {
+    margin-top: .12rem !important;
+}

@@ -190,7 +190,7 @@
               // console.log(JSON.parse(item.uploads));
               isLine1 = ((i + 1) % 2) > 0 ? true : false;
               _uploads = JSON.parse(item.uploads);
-              console.log(_uploads);
+              // console.log(_uploads);
               _photo = (_uploads == null) ? '' : (((_uploads != null && _uploads.length > 0) && (_uploads[0] != 'undefined')) ? _uploads[0] : _uploads);    
               _photo = (_photo == '') ? '' : '<div class="imgBox"><img src="' + _photo + '"></div>';
               _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
@@ -261,9 +261,9 @@
 
             $.each(records, function(i, item) {
               // console.log(JSON.parse(item.uploads));
-              isLine1 = (i % 2) > 0 ? true : false;
+              isLine1 = ((i + 1) % 2) > 0 ? true : false;
               _uploads = JSON.parse(item.uploads);
-              console.log(_uploads);
+              // console.log(_uploads);
               _photo = (_uploads == null) ? '' : (((_uploads != null && _uploads.length > 0) && (_uploads[0] != 'undefined')) ? _uploads[0] : _uploads);    
               _photo = (_photo == '') ? '' : '<div class="imgBox"><img src="' + _photo + '"></div>';
               _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);

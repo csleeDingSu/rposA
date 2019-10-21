@@ -83,7 +83,7 @@
       <p><em>{{$blog->point_to_redeem}}</em>挖宝币</p>
     </div>
     <div class="btnBox">
-      <a href="/blog/my-redeem">我也要抽奖</a>
+      <a href="/vip">我也要抽奖</a>
     </div>
   </div>
   <div class="inDetail">
