@@ -399,7 +399,8 @@ function getNotification(data, isSocket = false){
     var notifications = data;
 
     var notifications_count = notifications.count;
-    var _gameid = notifications.gameid;
+    console.log('notifications.gameid --- ' + notifications.gameid);
+    var _gameid = (typeof notifications.gameid == 'undefined') ? gameid : notifications.gameid;
 
     if (_gameid == gameid) { //if game id is 103
         if(notifications_count == 0){
@@ -413,10 +414,16 @@ function getNotification(data, isSocket = false){
 
         var records = notifications.records;
 
-        if ((typeof records[0].ledger.balance_after != 'undefined') || (records[0].ledger.balance_after > 0)) {
+        // if ((typeof records[0].ledger.balance_after != 'undefined') || (records[0].ledger.balance_after > 0)) {
+        if (records[0].ledger.ledger_type == 'APPAA'){
             if (isSocket) {
+                console.log('g_vip_point --- ' + g_vip_point);
+                console.log('g_bet_amount --- ' + g_bet_amount);
+                console.log('spanAcuPointAndBalance --- ' + $('.spanAcuPointAndBalance').html());
+                console.log('ledger.balance_after --- ' + records[0].ledger.balance_after);
                 $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(records[0].ledger.balance_after) - getNumeric(g_bet_amount)));
-                g_vip_point = records[0].ledger.balance_after;  
+                g_vip_point = records[0].ledger.balance_after; 
+                $('#hidBalance').val(records[0].ledger.balance_after); 
             }
         } 
 
