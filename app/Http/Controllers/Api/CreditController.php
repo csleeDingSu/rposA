@@ -70,7 +70,8 @@ class CreditController extends Controller
     	$record  = \App\CreditResell::with('status','member')->where('is_locked', null)->where('status_id', 1)->where('point', $request->point)->oldest()->first();
     	if ($record)
     	{
-    		$record->is_locked = 1;
+    		$record->is_locked   = 1;
+    		$record->locked_time = now();
     		$record->save();
     	}    	
 
@@ -88,8 +89,9 @@ class CreditController extends Controller
     	$record  = \App\CreditResell::with('status','member')->where('is_locked', 1)->where('id', $request->id)->first();
     	if ($record)
     	{
-    		$record->status_id = 5;
-	    	$record->is_locked = null;
+    		$record->status_id   = 5;
+	    	$record->is_locked   = null;
+	    	$record->locked_time = null;
 	    	$record->save();
 
 	    	$history            = new \App\ResellHistory();
