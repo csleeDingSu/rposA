@@ -89,10 +89,11 @@ class CreditController extends Controller
     	$record  = \App\CreditResell::with('status','member')->where('is_locked', 1)->where('id', $request->id)->first();
     	if ($record)
     	{
+    		$reason              = 'pay time exceeded';
     		$record->status_id   = 5;
 	    	$record->is_locked   = null;
 	    	$record->locked_time = null;
-	    	$record->reason      = 'pay time exceeded';
+	    	$record->reason      = $reason;
 	    	$record->save();
 
 	    	$history            = new \App\ResellHistory();
@@ -100,6 +101,7 @@ class CreditController extends Controller
 			$history->status_id = 5;
 			$history->amount    = $record->amount;
 			$history->point     = $record->point;
+			$history->reason    = $reason;
 			$history->save();
 
 			return response()->json(['success' => true]);		
