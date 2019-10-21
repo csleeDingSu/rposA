@@ -153,16 +153,16 @@ function getBlogMyList(pageMy) {
 
     pageMy = (pageMy > 0 ? pageMy : 1);
 
-    if (pageMy == 1) {
-        document.getElementById('loading2').style.visibility="visible";
-    } 
+    // if (pageMy == 1) {
+    //     document.getElementById('loading2').style.visibility="visible";
+    // } 
 
     $.ajax({
         type: 'GET',
         url: "/blog/list-my?page=" + pageMy + "&memberid=" + $('#hidMemberId').val(), 
         dataType: "json",
         error: function (error) { console.log(error);
-          document.getElementById('loading2').style.visibility="hidden";
+          // document.getElementById('loading2').style.visibility="hidden";
         },
         success: function(data) {
           
@@ -223,7 +223,7 @@ function getBlogMyList(pageMy) {
           
             $('#hidPgMy').val(pageMy);
             $('#hidNextPgMy').val(pageMy + 1);
-            document.getElementById('loading2').style.visibility="hidden";
+            // document.getElementById('loading2').style.visibility="hidden";
 
         }
     }); // end $.ajax
