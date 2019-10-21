@@ -591,14 +591,14 @@
 
 #draw-rules .modal-content {
   background: url(/clientapp/images/product/modal-bg.png) no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-color: transparent;
     border: 1px solid transparent;
     box-shadow: none;
     outline: none;
     width: 6.35rem;
     height: auto;
-    padding: 1rem 0.1rem 0 0.1rem;
+    padding: 1rem 0.25rem 0 0.25rem;
     position: relative;
     margin: 0.1rem 0;
     
@@ -607,31 +607,47 @@
 
 #draw-rules .modal-title{
   color: #000;
-    font-size: 0.4rem;
+    font-size: 0.34rem;
     line-height: 0.6rem;
     text-align: center;
     font-weight: 545;
     position: relative;
-    padding: 0.7rem 0 0 0;
+    padding: 0.65rem 0 0 0;
     background-color: transparent;
+    width: 100%;
 }
 
 #draw-rules .modal-description{
-  font-size: 0.24rem;
-    line-height: 0.45rem;
+  font-size: 0.22rem;
+    line-height: 0.35rem;
     color: #666;
-    padding: 0.3rem 0 0 0;
+    padding: 0.1rem 0;
 }
 
 #draw-rules .modal-instructions{
-  font-size: 0.24rem;
+  font-size: 0.26rem;
   /*line-height: 0.45rem;*/
-  color: #666;
-  padding: 0 0 0.1rem 0;
+  color: #333;
+  padding: 0.15rem 0;
 }
 
-#draw-rules .modal-instructions p{
-	background-color: #fff3df;
+#draw-rules .modal-instructions .chance {
+	font-size: 0.22rem;
+	color: #fea416;
+}
+
+#draw-rules .modal-instructions .small {
+	font-size: 0.22rem;
+	color: #999;
+}
+
+#draw-rules .modal-instructions a{
+	position: absolute;
+    margin: -0.64rem 0 0 4.3rem;
+}
+
+#draw-rules .modal-instructions img{
+	width: 1.1rem;
 }
 
 #draw-rules .btn-close-modal {
@@ -649,28 +665,36 @@
   }
 
 #draw-rules .modal-summary {
-background: url(/clientapp/images/product/summary-bg.png) no-repeat;
-    background-size: cover;	
-    font-size: 0.28rem;
-    color: #895152;
-    padding: 0.3rem;
-    margin: 0.5rem 0 0.2rem 0;
+    font-size: 0.26rem;
+    color: #666;
     text-align: center;
+    margin-top:0.1rem;
 }
 
 #draw-rules .modal-summary .d {
-	border-bottom-style: dashed;
-	border-bottom-color: #ff7a7e;
-	border-bottom-width: 0.02rem;
+	font-size: 0.3rem;
+	color: #fea416;
 }
 
-#draw-rules .modal-summary .highlight1 {
-	color: #f9262c;
-	font-size: 0.36rem;
+#draw-rules .highlight1 {
+	color: #f92a30;
+	font-size: 0.4rem;
 	font-weight: 550;
 }
 
-#draw-rules .modal-summary .highlight2 {
-	color: #f98e26;
-	font-size: 0.36rem;
+#draw-rules .highlight2 {
+	color: #f92a30;
+	font-size: 0.4rem;
+}
+
+#draw-rules .btn-go {
+	background: url(/clientapp/images/product/bg-btn-go.png) no-repeat;
+    background-size: contain;
+    font-size: 0.36rem;
+    color: #fff;
+    padding: 0.2rem;
+    text-align: center;
+    cursor: pointer;
+    height: 0.95rem;
+    width: 100%;
 }

@@ -186,35 +186,6 @@
 
 @section('footer-javascript')
 
-	<!-- draw rules starts -->
-	<div class="modal fade col-md-12" id="draw-rules-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-		<div class="modal-dialog modal-lg close-modal" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-title">
-								  抽奖补贴说明
-								</div>
-								<div class="instructions">
-									<p>抽奖补贴由挖宝提供，每1次抽奖有98.43%概率获得12元红包，红包可提现，抽奖次数来源说明：</p>
-									<p>①新用户注册送1次抽奖。</p>
-									<p>②邀请好友注册并认证，可获得1次抽奖，好友邀请别人，你也可以获得1次抽奖。</p>
-									<p>③领券下单返积分，1200积分兑换1次抽奖。</p>
-								</div>
-								<div class="txt-life">你当前拥有 <span class="mylife">{{$life}}</span> 次抽奖机会</div>
-								<div class="modal-go-button">
-									马上抽奖
-								</div>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- new draw-rules Modal starts -->
 <div class="modal fade col-md-12" id="draw-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg close-modal" role="document">
@@ -222,21 +193,29 @@
             <div class="modal-body">
                 <div class="modal-row">
                   <div class="modal-title">
-                    抽奖补贴说明
+                    想要<span class="highlight1">{{$promoPrice}}</span>元补贴 需<span class="highlight1">{{$life_needed}}</span>场抽奖
                   </div>
                   <div class="modal-description">
-                    <p>抽奖补贴由挖宝平台提供，每场抽奖有98.43％概率获得12元红包补貼（可提现支付宝）。</p>
-                    <p>通过以下方式，可获得抽奖场次：</p>
+                    <p>抽奖补贴是由挖宝提供，每1场抽奖有98.43％概率获得12元红包补貼，以下方式获得更多抽奖场次。</p>
                   </div>
                   <div class="modal-instructions">
-                    <p>①邀请1个好友得1场，好友邀请別人，你再得1场。</p>
+                    <p>邀请好友 <span class="chance">+1场次/人</span></p>
+                    <p><span class="small">每邀请1个好友送1场次抽奖</span></p>
+                    <a href="/pre-share"><img src="{{asset('clientapp/images/product/btn-action.png')}}"></a>
                  </div>
                  <div class="modal-instructions">
-                    <p>②新人注册和领券下单也能获得抽奖场次。</p>
-                  </div>
+                    <p>好友邀请别人 <span class="chance">+1场次/人</span></p>
+                    <p><span class="small">你邀请的好友邀请别人，你能得到1场次/人</span></p>
+                    <a href="/pre-share"><img src="{{asset('clientapp/images/product/btn-action.png')}}"></a>
+                 </div>
+                 <div class="modal-instructions">
+                    <p>新人注册和领券下单 <span class="chance">+N场次</span></p>
+                    <p><span class="small">用户注册送1次，领券下单返积分兑换场次</span></p>
+                    <a href="/arcade"><img src="{{asset('clientapp/images/product/btn-action.png')}}"></a>
+                 </div>
                   <div class="modal-summary">
-                    <p class="d">要获得<span class="highlight1">{{$promoPrice}}</span>元补贴需<span class="highlight1">{{$life_needed}}</span>场次抽奖</p>
-                    <p>你当前拥有<span class="highlight2">{{$life}}</span>次抽奖补贴</p>
+                    <p>你目前拥有 <span class="d">{{$life}}</span> 场次抽奖补贴</p>
+                    <a href="/arcade"><div class="btn-go">进入抽奖</div></a>
                   </div>
                 </div>
             </div>            
