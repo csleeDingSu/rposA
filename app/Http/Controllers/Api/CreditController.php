@@ -67,7 +67,12 @@ class CreditController extends Controller
     public function get_buyer(Request $request)
     {
     	$type    = '';
-    	$record  = \App\CreditResell::with('status','member')->where('status_id', 1)->oldest()->first();
+    	$record  = \App\CreditResell::with('status','member')->where('is_locked', null)->where('status_id', 1)->where('point', $request->point)->oldest()->first();
+    	if ($record)
+    	{
+    		$record->is_locked = 1;
+    		$record->save();
+    	}    	
 
     	if (!$record)
     	{
@@ -75,24 +80,30 @@ class CreditController extends Controller
     		$record = \App\CompanyBank::first();
     		$type   = 'companyaccount';
     	}
-
     	return response()->json(['success' => true, 'record'=>$record, 'type'=>$type]);
-
     }
 
     public function make_resell_expired(Request $request)
     {
-    	$record  = \App\CreditResell::with('status','member')->where('id', $request->id)->first();
-    	$record->status_id = 5;
-    	$record->save();
+    	$record  = \App\CreditResell::with('status','member')->where('is_locked', 1)->where('id', $request->id)->first();
+    	if ($record)
+    	{
+    		$record->status_id = 5;
+	    	$record->is_locked = null;
+	    	$record->save();
 
-    	$history            = new \App\ResellHistory();
-		$history->cid       = $record->id;
-		$history->status_id = 5;
-		$history->amount    = $record->amount;
-		$history->point     = $record->point;
-		$history->save();
+	    	$history            = new \App\ResellHistory();
+			$history->cid       = $record->id;
+			$history->status_id = 5;
+			$history->amount    = $record->amount;
+			$history->point     = $record->point;
+			$history->save();
 
+			return response()->json(['success' => true]);		
+    	}
+
+
+    	return response()->json(['success' => false, 'message' => 'unknown record' ]);
     }
 
 
