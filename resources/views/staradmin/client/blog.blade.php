@@ -244,7 +244,7 @@
 
     $.ajax({
         type: 'GET',
-        url: "/blog/list-my?page=" + page, 
+        url: "/blog/list-my?page=" + page + "&memberid={{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}", 
         dataType: "json",
         error: function (error) { console.log(error) },
         success: function(data) {
