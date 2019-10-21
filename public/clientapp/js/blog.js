@@ -9,10 +9,11 @@ $('#hidNextPgMy').val(pageMy + 1);
 $(document).ready(function () {  
 
     getBlogList(page);
+    getBlogMyList(pageMy);
     $('#my').css('display','none');  
 
     $('.btn-all').click(function() {
-      getBlogList(page);
+      // getBlogList(page);
       $('.btn-all').addClass('on');  
       $('#all').css('display','block');
       $('.btn-my').removeClass('on');
@@ -20,7 +21,7 @@ $(document).ready(function () {
     });
 
     $('.btn-my').click(function() {
-      getBlogMyList(pageMy);
+      // getBlogMyList(pageMy);
       $('.btn-all').removeClass('on');
       $('#all').css('display','none');  
       $('.btn-my').addClass('on');

@@ -97,7 +97,7 @@
   @parent  
   <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-  <script type="text/javascript" src="{{ asset('/clientapp/js/blog.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/clientapp/js/blog.js?version=1.0') }}"></script>
   <script type="text/javascript">
 
     document.onreadystatechange = function () {
