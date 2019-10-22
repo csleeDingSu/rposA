@@ -99,7 +99,7 @@
 
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/public.css')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/swiper.min.css')}}" />
-			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css?version=1.0.0')}}" />
+			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/style.css?version=1.0.1')}}" />
 			<link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/default_app.css')}}" />
 		@show
 		
@@ -153,7 +153,7 @@
 
 		@yield('blog-tab')
 
-		@if(Request::is('blog'))
+		@if(Request::is('blog') || Request::is('redeem-vip-new'))
 			<div class="card-body over bgf3 ">
 		@else
 			<div class="card-body over ">

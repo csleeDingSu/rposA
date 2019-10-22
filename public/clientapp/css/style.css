@@ -2152,17 +2152,285 @@ span.type-blue {
 .prcieList .inCourse h2{font-size: .2rem;color: #606060;line-height: 1.6em;}
 
 
+.cionPage{}
+.cionPage .pageHeader{ background: none; height: .9rem;}
+.cionPage .pageHeader h2{ line-height: .9rem;}
+.cionPage .pageHeader a{color: #fff; line-height: .9rem;}
+.cionPage .pageHeader a span{color: #fff;}
+.cionPage .pageHeader .coinListBtn{ font-size: .32rem;position: absolute; right:0;top:0;
+  line-height: .9rem; padding-right: .3rem;
+}
+.cionPage .pageHeader h2{color: #fff;}
+.cionPage .topBox{
+  background:#fff url(../images/coinBg.png) top left no-repeat;
+  background-size:100% auto ;
+  margin-bottom: .22rem;
+}
+.cionPage .topBox .inBox{ height: 2.45rem;
+display:flex;display: -webkit-flex; display: -moz-flex;
+justify-content: center;-webkit-justify-content: center;-moz-justify-content: center;
+align-items: center;-webkit-align-items: center;-moz-align-items: center;
+flex-direction: column;-webkit-flex-direction: column;-moz-flex-direction: column;
+margin-bottom: .15rem;
+}
+.cionPage .topBox .inBanner{ width: 6.33rem; margin-bottom: .3rem;}
+.cionPage .topBox .inBox span{display: inline-block; color: #fff; line-height: .5rem; font-size: .26rem; padding: 0 .28rem;
+background: rgba(0,0,0,0.1); border-radius:.5rem;
+}
+.cionPage .topBox .cionAbout{
+  display:flex;display: -webkit-flex; display: -moz-flex;
+  justify-content: center;
+  padding: 0 .3rem;
+  position: relative;
+  margin-bottom: .15rem;
+}
+
+.cionPage .topBox .cionAbout li{
+  flex:1; 
+  text-align: center;
+}
+.cionPage .topBox .cionAbout li p{font-size: .24rem; color: #7d7d7d; line-height: .52rem;}
+.cionPage .topBox .cionAbout img{ width: .52rem;}
+
+.cionPage .topBox .cionAbout::before,
+.cionPage .topBox .cionAbout::after{
+  content: '';
+  position: absolute;
+  height: .015rem;
+  background: url(../images/coinBorder.png) center bottom repeat-x;
+  width: 21%;
+  background-size:auto 100% ;
+}
+.cionPage .topBox .cionAbout::before{
+  top: .25rem;
+  left: 1.8rem;
+}
+
+.cionPage .topBox .cionAbout::after{
+  top: .25rem;
+  right: 1.8rem;
+}
 
 
+.cionPage .coinBox{background: #fff; margin: .22rem .3rem; border-radius: .15rem;padding: .15rem .3rem;}
+.cionPage .coinBox25{ padding-top: .25rem;}
+.cionPage .coinBox .inTitle{
+  height: .75rem;
+  display: flex;display: -webkit-flex; display: -moz-flex;
+  justify-content: space-between;-webkit-justify-content: space-between;-moz-justify-content: space-between;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+}
+.cionPage .coinBox .inTitle h2{font-size: .34rem;color: #3d3d3d;}
+.cionPage .coinBox .inTitle span{font-size: .28rem;color: #c4c4c4;}
+.cionPage .coinBox .inList{
+  margin-top: .18rem;
+  display: flex; display: -webkit-flex;display: -moz-flex;
+  flex-wrap:wrap;
+  -webkit-flex-wrap:wrap;
+  -moz-flex-wrap:wrap;
+  margin-bottom: .25rem;
+}
+.cionPage .coinBox .inList li{
+  display: flex; display: -webkit-flex;display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;justify-content: center;
+  -webkit-justify-content: center;-moz-justify-content: center;
+  flex-direction: column;-webkit-flex-direction: column;-moz-flex-direction: column;
+  width: 1.96rem; 
+  width:31%;
+  height: 1.14rem;
+  background: #f9f9f9;  border-radius:.15rem;
+  color: #7e7e7e;
+  margin-bottom: .25rem;
+}
+.cionPage .coinBox .inList p{font-size: 0;line-height: .5rem;}
+.cionPage .coinBox .inList img{ width: .38rem; vertical-align: middle; margin-right: .05rem;}
+.cionPage .coinBox .inList span{font-size:.3rem; vertical-align: middle;}
+.cionPage .coinBox .inList h2{font-size: .24rem;}
+.cionPage .coinBox .inList li:nth-of-type(3n-1){
+  margin: 0 3.5% .25rem;
+}
+.cionPage .coinBox .inList li.on,
+.cionPage .coinBox .inList li:active{
+  background: #ffa414; color: #fff;
+}
+.cionPage .coinBox .inUpFile{
+  padding: .42rem 0;
+  text-align: center;
+}
+.cionPage .coinBox .inUpFile a{
+  position: relative;
+  display: inline-block;
+  width: 2.68rem; height: 2.38rem;
+}
+.cionPage .coinBox .inUpFile a input{position: absolute; z-index: 1; left: 0;top:0;width: 100%; height: 100%;opacity: 0;;}
+.cionPage .coinBox .inUpFile a img{ width: 100%; height: 100%;}
+.cionPage .coinBox .btnBox{
+  text-align: center;padding-bottom: .38rem;
+}
+.cionPage .coinBox .btnBox a{
+  display: inline-block;
+  font-size: .26rem;color: #ff6e6e; line-height: .62rem;padding: 0 .4rem; border-radius:.62rem;border:.012rem solid #ff6e6e;
+}
+
+.cionPage .coinBox .copyBox{
+  margin: .4rem 0;
+  position: relative;
+  border-radius:0.05rem;background: #fbfbfb;
+  padding: .3rem .38rem;border:.012rem solid #e6e6e6;
+}
+
+.cionPage .coinBox .copyBox span{position: absolute;
+font-size: .32rem;color: #8e8e8e; top: 50%;
+left: 50%;z-index: 1;
+transform: translate(-50%, -50%);
+}
+.cionPage .coinBox .copyBox textarea{
+  position: relative; z-index: 2;
+  border:none;
+  font-size: .34rem;line-height: 1.2em;color: #747474;
+  width: 100%;
+  background: none;
+}
+
+.cionPage .sendBox{
+  background: #fff;
+  padding: .2rem .3rem;
+}
+.cionPage .sendBox a{
+  display: block;
+  font-size: .36rem;color: #fff; background: #d7d7d7; line-height: .9rem;
+  border-radius: .9rem;text-align: center;
+}
 
 
+.cionPage .sendBox a.on{background: #4690ff;}
 
 
+.coinShade {
+  transform: scale(0);
+  transition: all 0.2s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
+.coinShade.on {
+  transform: scale(1);
+}
+
+.coinShade .inBox {
+  width: 6.12rem;
+  background: #fff;
+  border-radius: 0.1rem;
+  text-align: center;
+}
+
+.coinShade img{ width: 1.44rem; height: 1.44rem; padding-top: .6rem;;}
+.coinShade h2{ line-height: .94rem; font-size: .44rem; color: #000000;}
+.coinShade p{font-size: .28rem;color: #989898; margin-bottom: .45rem;}
+.coinShade a{    display: block;
+  margin: 0 0.85rem;
+  font-size: 0.34rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 0.8rem;
+  border-radius: 0.05rem;
+  color: #fff;
+  background: #ffa414;
+  margin-bottom: .7rem;
+}
+
+.coinList{ padding-top: .18rem;}
+.coinList .inBox{ padding: .15rem .25rem; display: block; border-bottom: .02rem solid #f3f3f3; background: #fff;}
+.coinList h2{display: flex;display: -webkit-flex; display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+  justify-content: space-between;-webkit-justify-content: space-between;-moz-justify-content: space-between;
+}
+.coinList h2 span{font-size: .34rem;color: #3d3d3d; line-height: .6rem;}
+.coinList h2 font{font-size: .28rem;}
+.coinList p{display: flex;display: -webkit-flex; display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+  justify-content: space-between;-webkit-justify-content: space-between;-moz-justify-content: space-between;}
+.coinList p span{font-size: .22rem;color: #c4c4c4; line-height: .46rem;}
+.coinList p font{font-size: .26rem;color: #686868;}
+.coinList h3{font-size: .24rem;color: #ff8282; line-height: .4rem; padding: .1rem 0;}
+
+.addQrcode dd{text-align: center;}
+.addQrcode dd img{ width: 4.68rem; max-width: 100%;}
+
+.coinDetail{
+  background: #fff; margin: .24rem;
+  border-radius:.1rem;
+  position: relative;
+  padding-top: .2rem;
+}
+.coinDetail dd{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  padding: .3rem .2rem .4rem .2rem;
+}
+
+.coinDetail::before{
+  content: '';
+  display: block;
+  position: absolute;
+  top:.6rem;
+  bottom:.8rem;
+  left: 1.4rem;
+  width: .012rem;
+  background: #f0f0f0;
+  z-index: 2;
+
+}
+
+.coinDetail dd .inTtimeBox{ min-width: .88rem; text-align: right;}
+.coinDetail dd .inTtimeBox h2{font-size: .22rem;color: #333333; line-height: 1.4em;}
+.coinDetail dd .inTtimeBox p{font-size: .22rem;color: #888888; line-height: 1.6em;}
+.coinDetail dd .inIcon{ min-width: .6rem;padding: 0 .12rem;box-sizing: border-box; text-align: center;;}
+.coinDetail dd .inIcon img{width: .4rem;position: relative; z-index: 3; }
+.coinDetail dd .inDetail{ flex:1;}
+.coinDetail dd .inDetail h2{ font-size: .26rem; line-height: .36rem; color: #333;}
+.coinDetail dd .inDetail p{font-size: .2rem; line-height: 1.8em;color: #333;}
+
+.coinDetail dd.fail h2{ color: #b0b0b0;}
+.coinDetail dd.fail p{ color: #b0b0b0;}
+
+.rechargeListBtn{
+  position: absolute;
+  z-index: 1;
+  right:.3rem;top:0; font-size: .32rem;color: #ff8713; line-height: 1rem;
+  display: block;
+}
+
+.hrf3{
+  height: .12rem;background: #f3f3f3;
+}
+
+.rechargePage{background: #fff;}
+
+.rechargePage .coinBox{padding: 0;}
+.cionPage .sendBox a.rechargeBtn{
+  background: -webkit-linear-gradient(left, #ffb608, #ff8314);
+  background: -o-linear-gradient(right, #ffb608, #ff8314);
+  background: -moz-linear-gradient(right, #ffb608, #ff8314);
+  background: linear-gradient(to right, #ffb608, #ff8314);
+}
 
 
-
-
-
+.rechargePage .sendBox{padding: 0; margin-bottom: .3rem;}
+.rechargePage .coinBox .inList{margin-bottom: 0;}
+.rechargePage .rechargetHint{
+  padding: 0 .25rem; 
+  margin-bottom: .2rem;
+  font-size: .24rem;color: #7e7e7e; line-height: 1.4em; text-align: justify;}
 

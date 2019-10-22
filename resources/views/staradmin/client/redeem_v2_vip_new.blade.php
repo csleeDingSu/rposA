@@ -4,6 +4,7 @@
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/redeem_v2_vip_new.css') }}" />
 	<link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
+
 	<style>
         /* Paste this css to your style sheet file or under head tag */
         /* This only works with JavaScript, 
@@ -54,20 +55,8 @@
 		<input type="hidden" id="reload_pass" value="{{ env('reload_pass','￥EXpZYiJPcpg￥') }}" />
 		<input type="hidden" id="this_vip_app" value="{{ env('THISVIPAPP','false') }}" />
 
-		<div class="full-width-tabs">
-			<!-- tab content -->
-			<div class="tab-content">
-				<!-- redeem history content -->
-				<div id="history" class="tab-pane fade in active">				
-					<div id="redeem-history"></div>
-
-					<p class="isnext">下拉显示更多...</p>
-				</div>
-				<!-- end redeem list content -->
-			</div>
-		</div>
-		
-		<!-- End listing -->
+		<div class="prcieList"></div>
+		<p class="isnext">下拉显示更多...</p>
 
 @endsection
 
@@ -208,5 +197,6 @@
 	        },100);
 	      }
 	    }
-    </script>
+	    
+  </script>
 @endsection

@@ -24,7 +24,7 @@ function getProduct(){
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
@@ -40,7 +40,7 @@ function getProduct(){
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
