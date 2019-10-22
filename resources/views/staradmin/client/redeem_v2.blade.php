@@ -7,7 +7,7 @@
 
 @section('top-css')
     @parent
-	<link rel="stylesheet" href="{{ asset('/client/css/redeem_v2.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/redeem_v2.css?version=1.0.0') }}" />
 	<link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
 	<style>
         /* Paste this css to your style sheet file or under head tag */
@@ -241,7 +241,7 @@
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
-    <script src="{{ asset('/client/js/redeem_v2.js') }}"></script>
+    <script src="{{ asset('/client/js/redeem_v2.js?version=1.0.0') }}"></script>
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
     	document.onreadystatechange = function () {
