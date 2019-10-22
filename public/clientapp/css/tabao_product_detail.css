@@ -695,6 +695,7 @@
     padding: 0.2rem;
     text-align: center;
     cursor: pointer;
-    height: 0.95rem;
     width: 100%;
+    margin-left: 0.05rem;
+    margin-top: 0.1rem;
 }
