@@ -1285,7 +1285,7 @@ function getWallet(token, id) {
         success: function(data) {
             // console.log(data);
             wallet_point = data.record.gameledger[gameid].point;
-            $('.wabao-coin').html(wallet_point);
+            $('.wabao-coin').html(parseInt(wallet_point));
             getProductList(token);
             getPosts(page, token);
             scrollBottom(token);
