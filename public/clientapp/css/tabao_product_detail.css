@@ -629,6 +629,8 @@
   /*line-height: 0.45rem;*/
   color: #333;
   padding: 0.15rem 0;
+      font-weight: 550;
+
 }
 
 #draw-rules .modal-instructions .chance {
