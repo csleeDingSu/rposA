@@ -74,6 +74,10 @@ function getPosts(page, token){
 
     var member_id = $('#hidUserId').val();
 
+    if (page == 1) {
+        document.getElementById('loading2').style.visibility="visible";
+    }
+
     $.ajax({
         type: "GET",
         url: "/api/redeem-history?memberid=" + member_id + "&page=" + page, 
@@ -81,7 +85,9 @@ function getPosts(page, token){
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
-        error: function (error) { console.log(error) },
+        error: function (error) { console.log(error);
+        document.getElementById('loading2').style.visibility="hidden";
+        },
         success: function(data) {
             var current_page = parseInt(data.records.current_page);
             var last_page = parseInt(data.records.last_page);
@@ -113,6 +119,7 @@ function getPosts(page, token){
 
             page++;
             $('#page').val(page);
+            document.getElementById('loading2').style.visibility="hidden";
         }
      });
 }
@@ -490,6 +497,7 @@ function getNumeric(value) {
   }
   
 function getWallet(token, id) {
+    
     $.ajax({
         type: 'POST',
         url: "/api/wallet-detail?gameid=103&memberid=" + id, 
@@ -507,7 +515,7 @@ function getWallet(token, id) {
             wallet_point = data.record.gameledger[gameid].point;
             $('.wabao-coin').html(wallet_point);
             getPosts(page, token);
-            scrollBottom(token);
+            scrollBottom(token);            
         }
     });
 }

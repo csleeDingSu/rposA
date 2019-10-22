@@ -4,6 +4,25 @@
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/redeem_v2_vip_new.css') }}" />
 	<link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
+	<style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          position: fixed;
+          left: 0px;
+          top: 1rem;
+          width: 100%;
+          height: 100%;
+          z-index: 9999;
+          background: url(/client/images/preloader.gif) center no-repeat;
+          background-color: rgba(255, 255, 255, 1);
+          background-size: 32px 32px;
+        }
+
+    </style>
 @endsection
 
 <!-- top nav -->
@@ -24,6 +43,7 @@
 @endsection
 
 @section('content') 
+<div class="loading2" id="loading2"></div>
 		<!-- wabao coin info -->
 		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
 		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
@@ -175,5 +195,18 @@
     <script src="{{ asset('/client/js/redeem_v2_vip_new.js') }}"></script>
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
+
+    	document.onreadystatechange = function () {
+	      var state = document.readyState
+	      if (state == 'interactive') {
+	      } else if (state == 'complete') {
+	        setTimeout(function(){
+	            document.getElementById('interactive');
+	            document.getElementById('loading').style.visibility="hidden";
+	            $('.loading').css('display', 'initial');
+	            // document.getElementById('loading2').style.visibility="hidden";
+	        },100);
+	      }
+	    }
     </script>
 @endsection
