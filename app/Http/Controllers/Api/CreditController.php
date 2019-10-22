@@ -84,6 +84,28 @@ class CreditController extends Controller
     	return response()->json(['success' => true, 'record'=>$record, 'type'=>$type]);
     }
 
+    public function make_resell_success(Request $request)
+    {
+    	$record  = \App\CreditResell::with('status','member')->where('is_locked', 1)->where('id', $request->id)->first();
+    	if ($record)
+    	{
+    		$record->status_id   = 3; // in progress
+	    	$record->is_locked   = null;
+	    	$record->locked_time = null;
+	    	$record->save();
+
+	    	$history            = new \App\ResellHistory();
+			$history->cid       = $record->id;
+			$history->status_id = 3;
+			$history->amount    = $record->amount;
+			$history->point     = $record->point;
+			$history->save();
+
+			return response()->json(['success' => true]);
+    	}
+    	return response()->json(['success' => false, 'message' => 'unknown record' ]);
+    }
+
     public function make_resell_expired(Request $request)
     {
     	$record  = \App\CreditResell::with('status','member')->where('is_locked', 1)->where('id', $request->id)->first();

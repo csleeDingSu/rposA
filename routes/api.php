@@ -185,6 +185,10 @@ Route::group(['namespace' => 'Api'],function()
 
 	Route::get('/resell-list', 'CreditController@resell_list')->name('resell_list');
 	Route::get('/resell-tree', 'CreditController@resell_tree')->name('resell_tree');
+
+	Route::post('/make-resell-paid', 'CreditController@make_resell_success')->name('make_resell_success');
+
+	
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
