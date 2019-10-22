@@ -645,15 +645,30 @@ class BuyProductController extends BaseController
 
 	public function buy(Request $request){
 		$id = $request->hid_package_id;
+		$isEdit = $request->hidEdit;
 		$record = BuyProduct::get_product($id);
-		if($record->type == 1){
-			$member = Auth::guard('member')->user()->id	;		
-			$l = Ledger::all_ledger($member);
-			$wallet = $l['gameledger']['103'];
+		$member = Auth::guard('member')->user()->id;
+		if($record->type == 1){		
 
+			$wallet = Ledger::ledger($member, '103');
 			return view( 'client/confirm', ['request' => $request, 'record' => $record, 'wallet' => $wallet]);
 		} else {
-			return view( 'client/buy', ['request' => $request]);
+			//edit deliver address
+			if (!empty($isEdit) && $isEdit == 1) {
+				return view( 'client/buy', ['request' => $request]);	
+			} else {
+				//check deliver address
+				$result = \DB::table('order_shipping_detail')->select('receiver_name','contact_number','city','address')->where('member_id', $member)->latest('order_date')->first();
+
+				if (empty($result)) {
+					return view( 'client/buy', ['request' => $request]);	
+				} else {
+					$request->merge(['txt_name' => $result->receiver_name, 'txt_mobile' => $result->contact_number, 'txt_city' => $result->city, 'txt_address' => $result->address]);
+					$wallet = Ledger::ledger($member, '103');
+					return view( 'client/confirm', ['request' => $request, 'record' => $record, 'wallet' => $wallet]);
+				}	
+			}
+					
 		}
 	}
 }

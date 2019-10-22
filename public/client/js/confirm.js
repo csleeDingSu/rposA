@@ -138,7 +138,7 @@ function purchase() {
             if(data.success) {
                 
                 if (is_app) {
-                    window.top.location.href = "/redeem-vip/history";
+                    window.top.location.href = "/redeem-vip-new";
                 } else {
                     window.top.location.href = "/redeem/history";    
                 }

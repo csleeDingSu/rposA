@@ -166,7 +166,7 @@
 	    	</div>
 	    </div>
 
-	    @if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips') && !Request::is('share'))
+	    @if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips') && !Request::is('share') && !Request::is('buy') && !Request::is('confirm'))
 
 			@include('layouts/footer_app')
 		@endif

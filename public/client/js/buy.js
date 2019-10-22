@@ -37,35 +37,36 @@ function getAddress(){
     var id = $('#hidUserId').val();
     var edit = $('#hidEdit').val();
 
-    if(edit == 1){
-        $('.navbar-brand').html('修改收货地址');
-    } else {
-        $.ajax({
-            type: 'GET',
-            url: "/api/get-latest-address",
-            data: { 'memberid': id },
-            dataType: "json",
-            error: function (error) { console.log(error.responseText) },
-            success: function(data) {
-                if(data.success) {
-                    if(data.records !== undefined && data.records != '' && data.records != null){
-                        if($('#txt_name').val() === ''){
-                            $('#txt_name').val(data.records.receiver_name);
-                        }
-                        if($('#txt_mobile').val() === ''){
-                            $('#txt_mobile').val(data.records.contact_number);
-                        }
-                        if($('#txt_city').val() === ''){
-                            $('#txt_city').val(data.records.city);
-                        }
-                        if($('#txt_address').val() === ''){
-                            $('#txt_address').val(data.records.address);
-                        }
-
-                        $( "#buy" ).submit();
+    $.ajax({
+        type: 'GET',
+        url: "/api/get-latest-address",
+        data: { 'memberid': id },
+        dataType: "json",
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            if(data.success) {
+                if(data.records !== undefined && data.records != '' && data.records != null){
+                    if($('#txt_name').val() === ''){
+                        $('#txt_name').val(data.records.receiver_name);
                     }
+                    if($('#txt_mobile').val() === ''){
+                        $('#txt_mobile').val(data.records.contact_number);
+                    }
+                    if($('#txt_city').val() === ''){
+                        $('#txt_city').val(data.records.city);
+                    }
+                    if($('#txt_address').val() === ''){
+                        $('#txt_address').val(data.records.address);
+                    }
+
+                    if(edit == 1){
+                        $('.navbar-brand').html('修改收货地址');
+                    }else{
+                        $( "#buy" ).submit();    
+                    }
+                    
                 }
             }
-        });
-    }
+        }
+    });
 }
