@@ -82,7 +82,7 @@
 		@php ($originalPrice = $data['originalPrice'])
 		@php ($originalPrice = number_format((float)(empty($originalPrice) ? 0 : $originalPrice), 2, '.', '') + 0)
 		@php ($couponPrice = $data['couponPrice'])
-		@php ($couponPrice = number_format((float)(empty($couponPrice) ? 99 : $couponPrice), 2, '.', '') + 0)
+		@php ($couponPrice = number_format((float)(empty($couponPrice) ? 0 : $couponPrice), 2, '.', '') + 0)
 
 		@php ($promoPrice = $data['originalPrice'] - $data['couponPrice'])
         @php ($promoPrice = ($promoPrice > 0) ? $promoPrice : 0)                
