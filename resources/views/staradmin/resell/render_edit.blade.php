@@ -30,6 +30,15 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="buyer_id" class="col-sm-3 col-form-label">@lang('dingsu.buyer') @lang('dingsu.phone') </label>
+								<div class="col-sm-9">
+									<input id="buyer_id" name="buyer_id" class="form-control" type="text" value="{{$result->buyer->phone ?? ''}}" maxlength="50">
+								</div>
+							</div>
+						</div>
 						
 					</div>
 					<div class="row">
@@ -53,15 +62,19 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="buyer_id" class="col-sm-3 col-form-label">@lang('dingsu.buyer') @lang('dingsu.phone') </label>
+								<label for="buyer_id" class="col-sm-3 col-form-label">@lang('dingsu.barcode')</label>
 								<div class="col-sm-9">
-									<input id="buyer_id" name="buyer_id" class="form-control" type="text" value="{{$result->buyer->phone ?? ''}}" maxlength="50">
+									<img src="{{$result->barcode ?? ''}}" width="80%">
 								</div>
 							</div>
 						</div>
+
+
+						
+						
 					</div>
 
 
