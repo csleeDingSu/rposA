@@ -424,7 +424,7 @@ class tabaoApiController extends BaseController
         $_start = $_end - $_pgsize;
         
         $totalNum = taobao_collection_vouchers::select('*')->get()->count();
-        $res = taobao_collection_vouchers::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
+        $res = taobao_collection_vouchers::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_pgsize)->get();
 
         if (!empty($res)) {
             $next_pg = $page_num + 1;
@@ -451,7 +451,7 @@ class tabaoApiController extends BaseController
         
         $totalNum = v_getTaobaoCollectionVouchersGreater12::select('*')->get()->count();
         //$res = v_getTaobaoCollectionVouchersGreater12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
-        $res = v_getTaobaoCollectionVouchersGreater12::select('*')->skip($_start)->take($_end)->get();
+        $res = v_getTaobaoCollectionVouchersGreater12::select('*')->skip($_start)->take($_pgsize)->get();
 
         if (!empty($res)) {
             $next_pg = $page_num + 1;
@@ -478,7 +478,7 @@ class tabaoApiController extends BaseController
         
         $totalNum = v_getTaobaoCollectionVouchersLess12::select('*')->get()->count();
         // $res = v_getTaobaoCollectionVouchersLess12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
-        $res = v_getTaobaoCollectionVouchersLess12::select('*')->skip($_start)->take($_end)->get();
+        $res = v_getTaobaoCollectionVouchersLess12::select('*')->skip($_start)->take($_pgsize)->get();
 
         if (!empty($res)) {
             $next_pg = $page_num + 1;
