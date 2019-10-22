@@ -53,6 +53,8 @@ class CreditController extends Controller
 		$resell->status_id = 1;
 		$resell->image     = $request->image;
 		$resell->passcode  = $request->passcode;
+		$resell->barcode   = $request->barcode;
+		
 		$resell->save();
 		//add history
 		$history            = new \App\ResellHistory();
