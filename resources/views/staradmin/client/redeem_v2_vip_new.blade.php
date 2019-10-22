@@ -15,7 +15,7 @@
           left: 0px;
           top: 1rem;
           width: 100%;
-          height: 100%;
+          height: 90%;
           z-index: 9999;
           background: url(/client/images/preloader.gif) center no-repeat;
           background-color: rgba(255, 255, 255, 1);
