@@ -77,11 +77,13 @@
 
 		<!-- member listing -->
 		<div class="listing-table">
+			@if(env('THISVIPAPP','false'))
 			<div class="image-wrapper">
 				<a href="/share">
 					<img src="{{ asset('/client/images/share.png') }}" alt="share">
 				</a>
 			</div>
+			@endif
 			<ul class="list-group">
 			@if(env('THISVIPAPP','false'))
 
@@ -143,6 +145,7 @@
 					</li>
 				-->
 
+				@if(env('THISVIPAPP','false'))
 				<!-- 邀请记录 -->
 				<li class="list-group-item">
 					<div class="invitation_list">
@@ -153,6 +156,7 @@
 						邀请记录
 					</div>
 				</li>
+				@endif
 
 				<!-- 挖宝记录 -->
 				<li class="list-group-item">
