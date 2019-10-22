@@ -5,7 +5,7 @@ use Carbon\Carbon;
 
 class CreditResell extends Model
 {   
-    protected $fillable = [   'member_id','amount','status_id'   ];	
+    protected $fillable = [   'member_id','amount','status_id' ,'barcode','image','point'  ];	
 			
     protected $table    = 'credit_resell';	
 	

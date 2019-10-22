@@ -50,9 +50,12 @@ class CreditController extends Controller
 		$resell 		   = new \App\CreditResell();
 		$resell->member_id = $request->memberid;
 		$resell->point     = $request->point;
+		$resell->amount    = $request->amount;
 		$resell->status_id = 1;
 		$resell->image     = $request->image;
 		$resell->passcode  = $request->passcode;
+		$resell->barcode   = $request->barcode;
+		
 		$resell->save();
 		//add history
 		$history            = new \App\ResellHistory();
