@@ -6,6 +6,25 @@
     @parent
     <link rel="stylesheet" href="{{ asset('/clientapp/css/shop.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/productv2.css') }}" />
+    <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          position: fixed;
+          left: 0px;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 9999;
+          background: url(/client/images/preloader.gif) center no-repeat;
+          background-color: rgba(255, 255, 255, 1);
+          background-size: 32px 32px;
+        }
+
+    </style>
     
 @endsection
 
@@ -13,6 +32,7 @@
 @endsection
 
 @section('content')
+<div class="loading2" id="loading2"></div>
     <input id="hidUserId" type="hidden" value="" />
     
     <div class="card-header">
@@ -123,6 +143,21 @@
     @parent
     <script src="{{ asset('/clientapp/js/shop.js') }}"></script>
     <script type="text/javascript">
+      var end_of_result = "@lang('dingsu.end_of_result')";
+
+      document.onreadystatechange = function () {
+        var state = document.readyState
+        if (state == 'interactive') {
+        } else if (state == 'complete') {
+          setTimeout(function(){
+              document.getElementById('interactive');
+              document.getElementById('loading').style.visibility="hidden";
+              $('.loading').css('display', 'initial');
+              // document.getElementById('loading2').style.visibility="hidden";
+          },100);
+        }
+      }
+      
       
         $(document).ready(function() {
             var user_id = "<?php Print(isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0);?>";

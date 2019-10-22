@@ -7,6 +7,8 @@ $(function () {
 
 function getProduct(){
     
+    document.getElementById('loading2').style.visibility="visible";
+
     $.getJSON( "/api/get-product-list", function( data ) {
         // console.log(data);
 
@@ -29,7 +31,7 @@ function getProduct(){
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
                                 '</div>' +
-                            '</div>' +
+                            '</div></div>' +
                         '</div>';
             } else {
                 html += '<div class="redeem-prize">' + 
@@ -45,11 +47,16 @@ function getProduct(){
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
                                 '</div>' +
-                            '</div>' +
+                            '</div></div>' +
                         '</div>';
             }
             html += '<input id="hid_price_'+ item.id +'" name="hid_price_'+ item.id +'" type="hidden" value="'+item.point_to_redeem+'">';
         });
+
+        html += '<div class="redeem-prize">' + 
+                    '<div class="left-box" style="height: 0.5rem; display: flex;"></div>' +
+                    '<div class="right-box" style="height: 0.5rem; display: flex;"></div>' +
+                '</div>';
 
         html += '</form>';
 
@@ -121,6 +128,8 @@ function getProduct(){
             }
             
         });
+    
+        document.getElementById('loading2').style.visibility="hidden";
     });
 }
 
