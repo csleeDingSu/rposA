@@ -278,15 +278,16 @@ function populateHistoryData(records, token) {
                     clipboard_trackingno.on('success', function (e) {
                         // $('.copynumber').removeClass('copy-success').html('复制');
                         // $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('成功');
-                        
+                        $('#copyRight').css('display','none');
+                        $('#copyWrong').css('display','none');
                         $('#copyRight-' + item.type + '-' + item.id).css('display','inline');
-                        $('#copyWrong-' + item.type + '-' + item.id).css('display','none');
                     });
 
                     clipboard_trackingno.on('error', function (e) {
                         // $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('成功');
+                        $('#copyRight').css('display','none');
+                        $('#copyWrong').css('display','none');
                         $('#copyWrong-' + item.type + '-' + item.id).css('display','inline');
-                        $('#copyRight-' + item.type + '-' + item.id).css('display','none');
                     });
                 }
 
