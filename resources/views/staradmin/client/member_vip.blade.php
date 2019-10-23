@@ -46,6 +46,13 @@
 
     </div>
 
+    <div class="userMainList2">
+      <div class="inBox">
+        <p><img class="tIcon" src="{{ asset('clientapp/images/buTieIcon.png') }}"><span>我的补贴</span><em></em><span class="102_point"></span></p>
+        <a href="/redeem"><i class="bRed">去提现&nbsp;<img class="nIcon" src="{{ asset('clientapp/images/leftIcon.png') }}"></i></a>
+      </div>
+    </div>
+
     <div class="userMainList">
       <a class="inBox" href="/redeem">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-hb.png') }}"><span>购物补贴</span></p>
@@ -154,6 +161,9 @@
             console.log(yesterdaypoint);
             console.log(overallpoint);
             $('#102_point').html('<em class="fs">¥</em>' + normal_game_point);
+            $('.102_point').html('￥' + normal_game_point +'元');
+
+            
             $('#game_life').html(game_life);
             $('.userTotal').html("<span>昨日收益&nbsp;&nbsp;<b>+" + getNumeric(yesterdaypoint) + "</b></span><span>累计收益&nbsp;&nbsp;<b><span id='granttotal'>+" + getNumeric(overallpoint) + "</span></b></span>");
 
@@ -233,6 +243,7 @@
           var updated_102_point = data.data.point;
           var updated_102_life = data.data.life;
           $('#102_point').html('<em class="fs">¥</em>' + updated_102_point);
+          $('.102_point').html('￥' + updated_102_point +'元');
           $('#game_life').html(updated_102_life);
         }
     });
