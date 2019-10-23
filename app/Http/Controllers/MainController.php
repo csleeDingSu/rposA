@@ -205,7 +205,8 @@ class MainController extends BaseController
 		}
 		$data['RunInApp'] = false;
 
-		return view('auth.register_external', $data);
+		// return view('auth.register_external', $data);
+		return view('auth/login_external', $data);
 	}
 
 	public function tabaoZeroPriceProduct(Request $request)

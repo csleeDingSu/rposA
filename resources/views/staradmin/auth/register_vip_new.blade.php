@@ -166,7 +166,7 @@
 
 
            
-            $( '#doregi' ).click( function (e) {
+        $( '#doregi' ).click( function (e) {
                 $('#confirmpassword').val($('#password').val());
             e.preventDefault();     
             jQuery.ajax({
