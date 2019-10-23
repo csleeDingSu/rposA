@@ -65,7 +65,7 @@
 <div class="box-summary">
 	<div class="bg">
 		<img src="{{asset('clientapp/images/redeem/box-summary-icon.png')}}">
-		<div class="line1"><span class="wabao-coin"></span><span class="yuan">元</span></div>
+		<div class="line1"><span class="yuan"><span class="wabao-coin"></span>元</span></div>
 		<div class="line2">邀请好友送场次，抽更多红包，<a href="/share">去邀请></a></div>
 	</div>
 </div>

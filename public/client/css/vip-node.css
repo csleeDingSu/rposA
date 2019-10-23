@@ -704,3 +704,7 @@
     top: 3px;
     /*transform: translateY(-50%);*/
 }
+
+.line-through {
+    text-decoration: line-through;
+}
