@@ -256,10 +256,10 @@ function populateHistoryData(records, token) {
                               '<p>快递单号: <span>'+ item.tracking_partner +' <em><span id="number-buyproduct-' + item.type + '-' + item.id + '" >'+ item.tracking_number +'</span></em></span></p>' +
 
                               '<a><span id="copynumber-buyproduct-' + item.type + '-' + item.id + '" class="copynumber">复制单号</span></a>' +
-                              '<span class="copyRight copyHint dn">' +
+                              '<span class="copyRight copyHint dn" id="copyRight-' + item.type + '-' + item.id + '">' +
                                 '<font color="#54c700">复制成功</font>' +
                               '</span>' +
-                              '<span class="copyWrong copyHint dn">' +
+                              '<span class="copyWrong copyHint dn" id="copyWrong-' + item.type + '-' + item.id + '">' +
                                 '<font color="#ff6f6f">复制失败</font>' +
                               '</span>' +
                             '</div>';
@@ -279,14 +279,14 @@ function populateHistoryData(records, token) {
                         // $('.copynumber').removeClass('copy-success').html('复制');
                         // $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('成功');
                         
-                        $('.copyRight').css('display','inline');
-                        $('.copyWrong').css('display','none');
+                        $('#copyRight-' + item.type + '-' + item.id).css('display','inline');
+                        $('#copyWrong-' + item.type + '-' + item.id).css('display','none');
                     });
 
                     clipboard_trackingno.on('error', function (e) {
                         // $('#copynumber-buyproduct-' + item.type + '-' + item.id).addClass('copy-success').html('成功');
-                        $('.copyWrong').css('display','inline');
-                        $('.copyRight').css('display','none');
+                        $('#copyWrong-' + item.type + '-' + item.id).css('display','inline');
+                        $('#copyRight-' + item.type + '-' + item.id).css('display','none');
                     });
                 }
 
