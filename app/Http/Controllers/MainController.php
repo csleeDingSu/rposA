@@ -239,4 +239,70 @@ class MainController extends BaseController
 		return view('client/zeroPricePage', $data);
 	}
 
+	public function coin(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coin', $data);
+		
+	}
+
+	public function coinList(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinList', $data);
+		
+	}
+
+	public function coinReady(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinReady', $data);
+		
+	}
+
+	public function coinPayIng(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinPayIng', $data);
+		
+	}
+
+	public function coinPayOver(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinPayOver', $data);
+		
+	}
+
+	public function coinFail(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinFail', $data);
+		
+	}
+
 }

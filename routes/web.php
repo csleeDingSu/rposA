@@ -287,6 +287,19 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get( '/edit-setting', function () {
 		return view( 'client/edit_setting');
 	} );
+
+	Route::any( '/coin', 'MainController@coin' )->name( 'client.coin' );
+	Route::any( '/coin/list', 'MainController@coinList' )->name( 'client.coin.list' );
+	Route::any( '/coin/ready', 'MainController@coinReady' )->name( 'client.coin.ready' );
+	Route::any( '/coin/payIng', 'MainController@coinPayIng' )->name( 'client.coin.payIng' );
+	Route::any( '/coin/payOver', 'MainController@coinPayOver' )->name( 'client.coin.payOver' );
+	Route::any( '/coin/fail', 'MainController@coinFail' )->name( 'client.coin.fail' );
+	Route::get( '/coin/help/addQrcode', function () {
+		return view( 'client/addQrcode');
+	} );
+	Route::get( '/coin/help/copyTxt', function () {
+		return view( 'client/copyTxt');
+	} );
 	
 } );
 
