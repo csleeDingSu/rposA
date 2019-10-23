@@ -224,13 +224,12 @@
 
       //出售
 
-      $('.sendBox ').bind('click','a.on',function () {
+      $('.sendBox').on('click','a.on',function () {
         being.showMsg('.coinShade');
       });
       $('.coinShade ').click(function (e) {
         console.log($(e.target).html());
         let a = $(e.target).find('.inBox').length;
-        console.log(a);
         if(a>0){
           being.hideMsg('.coinShade');
         }

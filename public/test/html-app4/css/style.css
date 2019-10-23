@@ -2432,5 +2432,271 @@ transform: translate(-50%, -50%);
 .rechargePage .rechargetHint{
   padding: 0 .25rem; 
   margin-bottom: .2rem;
-  font-size: .24rem;color: #7e7e7e; line-height: 1.4em; text-align: justify;}
+  font-size: .24rem;color: #7e7e7e; line-height: 1.4em; text-align: justify;
+}
 
+.payCardPage{}
+.payCardPage .payMoney{
+  background: #fff;
+}
+.payCardPage .payMoney h2{background: #ff696f; font-size: .28rem;color: #fff; line-height: .68rem; text-align: center;}
+.payCardPage .payMoney h3{font-size: .3rem;color:#999; line-height: .64rem; padding-top: .28rem; text-align: center;}
+.payCardPage .payMoney p{ text-align: center; line-height: .8rem; height: .8rem; font-size: 0; padding-bottom: .3rem; color:#ff696f;}
+.payCardPage .payMoney p i{font-size: .35rem; vertical-align: text-bottom; display: inline-block; }
+.payCardPage .payMoney p span{font-size: .64rem; vertical-align: top;}
+.payCardPage .payCard{background: #fff; margin-top: .18rem;}
+.payCardPage .payCard li{border-bottom: .012rem solid #f3f3f3;
+  display: flex;display: -webkit-flex;display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+  padding: 0 .24rem;
+}
+.payCardPage .payCard li span{font-size: .3rem; color: #999;line-height: .92rem; margin-right: .2rem;}
+.payCardPage .payCard li p{font-size: .3rem;color:#333; margin-right: .2rem;}
+.payCardPage .payCard li a{display: inline-block;font-size: .2rem;color: #fff; padding: 0 .12rem; line-height: .38rem; border-radius: .05rem; background: #2d95e0;}
+
+.payCardPage .paySeller{
+  background: #fff; margin-top: .18rem; padding: .15rem .24rem .2rem;
+}
+.payCardPage .paySeller h2{font-size: .3rem;color: #333; line-height: .58rem;}
+.payCardPage .paySeller p{
+  height: .46rem;
+  display: flex;display: -webkit-flex;display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+  justify-content: space-between;-webkit-justify-content: space-between;-moz-justify-content: space-between;
+}
+.payCardPage .paySeller p span{ font-size: .24rem;color:#8f8f8f;}
+.payCardPage .buyName{
+  margin-top: .18rem;
+  background: #fff;padding: 0 .24rem; height: .92rem;
+  display: flex;display: -webkit-flex;display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+}
+.payCardPage .buyName span{font-size: .3rem; margin-right: .2rem;}
+.payCardPage .buyName label{flex:1;}
+.payCardPage .buyName input{font-size: .3rem; color: #666; line-height: .78rem; border:none; width: 100%;}
+.payCardPage .buyName input::placeholder{color: #999;}
+.payCardPage .buyName input::-moz-placeholder{color: #999;}
+.payCardPage .buyName input::-webkit-input-placeholder{color: #999;}
+.payCardPage .inBtnbox{background: #fff; padding: 0 .24rem .22rem; margin-top: .18rem;}
+.payCardPage .inBtnbox h2{ text-align: center;font-size: .24rem;color: #ff8383; line-height: .52rem;padding: .15rem 0;}
+.payCardPage .inBtnbox a{
+  display: block;font-size: .36rem;color:#fff; line-height: .85rem;border-radius: .1rem;
+  background: #2d95e0;
+  text-align: center;
+}
+
+
+.payShade{
+  transform: scale(0);
+    transition: all 0.2s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payShade.on {
+  transform: scale(1);
+}
+.payShade p{font-size: .28rem;color:#fff; background: #000; padding: 0 .3rem;line-height: .95rem;border-radius: .08rem;}
+
+.aliPayPage{ background: #2d95e0;}
+.aliPayPage .pageHeader { background: none;}
+.aliPayPage .pageHeader h2{color: #fff;}
+.aliPayPage .pageHeader a,
+.aliPayPage .pageHeader a.returnBtn span{color: #fff;}
+.aliPayPage .payTime{ line-height: .88rem; font-size: .32rem; color: #fff; text-align: center;;}
+.aliPayPage .payTime span{display: inline-block;
+  background: #fff; margin: 0 .1rem; line-height: .33rem;font-size: .26rem; padding: 0 .1rem;color: #ff696f;
+  border-radius: .08rem;display: inline-block; vertical-align: middle;
+}
+
+.aliPayPage .aliPayBox{
+  margin: 0 .29rem;
+  background: #fff;
+  border-radius:.15rem;
+  margin-bottom: .5rem;
+}
+.aliPayPage .aliPayBox h3{
+  text-align: center;font-size: .3rem;color: #999; line-height: .52rem; padding-top: .45rem;
+}
+.aliPayPage .aliPayBox .money{
+  text-align: center;font-size: 0;line-height: 1rem;margin-bottom: .05rem;color: #ff696f;
+  height: 1rem;
+}
+.aliPayPage .aliPayBox .money i{font-size: .35rem; vertical-align: text-bottom; display: inline-block; }
+.aliPayPage .aliPayBox .money span{font-size: .64rem; vertical-align: top;}
+.aliPayPage .aliPayBox .copyBtn{ display: block;
+margin: 0 2.05rem;font-size: .32rem;color: #fff;line-height: .68rem; text-align: center; border-radius: .68rem;
+background: -webkit-linear-gradient(left, #ffa2a6, #ff6d73);
+background: -o-linear-gradient(right, #ffa2a6, #ff6d73);
+background: -moz-linear-gradient(right, #ffa2a6, #ff6d73);
+background: linear-gradient(to right, #ffa2a6, #ff6d73);
+margin-bottom: .55rem;
+}
+
+.aliPayPage .helpBox{
+  display:flex;display: -webkit-flex; display: -moz-flex;
+  justify-content: center;
+  padding: 0 .25rem;
+  position: relative;
+  margin-bottom: .55rem;
+}
+
+.aliPayPage .helpBox li{
+  flex:1; 
+  text-align: center;
+}
+.aliPayPage .helpBox li p{font-size: .24rem; color: #8f8f8f; line-height: 1.2em;}
+.aliPayPage .helpBox img{ width: .38rem; margin-bottom: .28rem;}
+
+.aliPayPage .helpBox::before,
+.aliPayPage .helpBox::after{
+  content: '';
+  position: absolute;
+  height: .015rem;
+  background: url(../images/aliPayBorder.png) center bottom repeat-x;
+  width: 21%;
+  background-size:auto 100% ;
+  top:.19rem;
+}
+
+.aliPayPage .helpBox::before{
+  left: 1.6rem;
+}
+
+.aliPayPage .helpBox::after{right: 1.6rem;}
+
+.aliPayPage .paySeller{
+margin-top: .18rem; padding: .15rem .18rem 0;
+  margin: 0 .42rem .76rem;
+  border-top: .012rem solid #eeeeee;
+}
+.aliPayPage .paySeller h2{font-size: .3rem;color: #333; line-height: .58rem;}
+.aliPayPage .paySeller p{
+  height: .46rem;
+  display: flex;display: -webkit-flex;display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+  justify-content: space-between;-webkit-justify-content: space-between;-moz-justify-content: space-between;
+}
+.aliPayPage .paySeller p span{ font-size: .24rem;color:#8f8f8f;}
+.aliPayPage .inBtnbox{ padding: 0 .24rem .22rem; margin-top: .18rem;}
+.aliPayPage .inBtnbox h2{ text-align: center;font-size: .24rem;color: #ff8383; line-height: .52rem;padding: .15rem 0;}
+.aliPayPage .inBtnbox a{
+  display: block;font-size: .36rem;color:#fff; line-height: .85rem;border-radius: .1rem;
+  background: #2d95e0;
+  text-align: center;
+}
+
+.loginBox2{
+  background: url(../images/loginbg.jpg);
+  min-height: 100%;
+  background-size:100% 100% ;
+}
+.loginBox2 .imgBanner{ width: 7.17rem; margin: .67rem auto .55rem; display: block;}
+.loginBox2 .form {
+  background: #fff;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  flex-flow: column;
+  justify-content: center;
+min-height: 5.6rem;
+  margin: 0 .69rem;
+  border-radius:.15rem;
+  box-shadow: 0 0 .1rem rgba(125,74,202,.5) inset  ;
+}
+
+.loginBox2 .form dt {
+  font-size: 0.32rem;
+  color: #666;
+  line-height: 0.55rem;
+  
+}
+
+.loginBox2 .form dd {
+  margin-bottom: 0.15rem;
+  height: 0.68rem;
+  border-bottom: 0.012rem solid #ececec;
+  display: flex;
+  align-items: center;
+  display: -webkit-flex;
+  display: -moz-flex;
+}
+
+.loginBox2 .form dd img {
+  width: 0.32rem;
+  margin-right: 0.08rem;
+}
+
+.loginBox2 .form dd label {
+  flex: 1;
+}
+
+.loginBox2 .form dd input {
+  font-size: 0.28rem;
+  color: #999;
+  border: none;
+  height: 2em;
+  width: 100%;
+}
+
+.loginBox2 .form dd input::placeholder,
+.loginBox2 .form dd input::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+.loginBox2 .form dl {
+  margin-bottom: 0.25rem;
+  padding: .25rem 0.42rem 0;
+}
+
+.loginBox2 .form button {
+  display: block;
+  font-size: 0.32rem;
+  color: #fff;
+  height: 0.84rem;
+  text-align: center;
+  line-height: 0.84rem;
+  margin: 0 .44rem;
+  width: calc(100% - .44rem - .44rem);
+  border: none;
+  border-radius: 0.84rem;
+  background: -webkit-linear-gradient(left, #e0a3f2, #7c48e4);
+  background: -o-linear-gradient(right, #e0a3f2, #7c48e4);
+  background: -moz-linear-gradient(right, #e0a3f2, #7c48e4);
+  background: linear-gradient(to right, #e0a3f2, #7c48e4);
+  margin-bottom: 0.25rem;
+}
+
+.loginBox2 .form h2 {
+  text-align: center;
+  font-size: 0.32rem;
+  color: #666;
+  margin-bottom: .25rem;
+}
+.loginBox2 .form .hd{
+  font-size: 0;
+
+}
+.loginBox2 .form .hd a{
+  display: inline-block;
+  width: 50%;
+  text-align: center;font-size: .34rem;color: #fff; line-height: .74rem;
+  background: #5d1ec1;
+
+ 
+
+}
+.loginBox2 .form .hd a.on{background: #fff; color: #925ce7;
+}
+
+.loginBox2 .form .hd a:first-child{ border-radius:.15rem 0 0 0;}
+.loginBox2 .form .hd a:last-child{border-radius:0 .15rem 0 0;}
