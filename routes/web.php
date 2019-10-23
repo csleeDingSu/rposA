@@ -300,6 +300,10 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get( '/coin/help/copyTxt', function () {
 		return view( 'client/copyTxt');
 	} );
+	Route::any( '/recharge', 'MainController@recharge' )->name( 'client.recharge' );
+	Route::any( '/recharge/list', 'MainController@rechargeList' )->name( 'client.rechargeList' );
+	Route::any( '/recharge/rechargeAlipay', 'MainController@rechargeAlipay' )->name( 'client.rechargeAlipay' );
+	Route::any( '/recharge/rechargeCard', 'MainController@rechargeCard' )->name( 'client.rechargeCard' );	
 	
 } );
 

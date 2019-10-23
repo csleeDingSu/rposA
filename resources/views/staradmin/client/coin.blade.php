@@ -11,7 +11,7 @@
 
 @endsection
 
-@section('title', '专卖挖宝币')
+@section('title', '转卖挖宝币')
 
 @section('top-navbar')    
 @endsection
@@ -22,7 +22,7 @@
     <div class="pageHeader rel">
       <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('/clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
       <h2>我的奖品</h2>
-      <a class="coinListBtn" href="/coin/list">专卖记录</a>
+      <a class="coinListBtn" href="/coin/list">转卖记录</a>
     </div>
     <div class="inBox">
       <img class="inBanner" src="{{ asset('/clientapp/images/coinTxt.png') }}">
