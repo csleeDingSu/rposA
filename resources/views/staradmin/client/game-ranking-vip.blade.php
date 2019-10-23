@@ -47,7 +47,7 @@
         	<div class="row tab-row-header">
 				<div class="col-1 tab-col-header">排名</div>
 				<div class="col-5 tab-col-header-name">名称</div>
-				<div class="col-3 tab-col-header">总收益（元）</div>
+				<div class="col-3 tab-col-header">总收益（挖宝币）</div>
 			</div>
 			<div class="row tab-content-my-ranking">
 				<div class="col-1 ranking-number">123</div>
