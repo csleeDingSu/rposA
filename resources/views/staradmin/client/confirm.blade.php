@@ -122,7 +122,7 @@
             	<div class="col-xs-9">
             		<div class="lbl_description">{{ $record->name }}
             		</div>
-            		<div class="lbl_price">{{ $record->point_to_redeem }} 金币</div>
+            		<div class="lbl_price">{{ $record->point_to_redeem }} 挖宝币</div>
             	</div>
             </div>
         </div>
@@ -149,7 +149,7 @@
 
         <div id="info">
 	        <div class="col-xs-6 no-padding">
-	        	<div class="div_price">支付 <span class="span_price">{{ $record->point_to_redeem }}</span><span class="span_currency">金币</span></div>
+	        	<div class="div_price">支付 <span class="span_price">{{ $record->point_to_redeem }}</span><span class="span_currency">挖宝币</span></div>
 	        </div>
 	        <div class="col-xs-6 no-padding">
 	        	<button class="btn-confirm">确认兑换</button>
