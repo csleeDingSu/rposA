@@ -1107,8 +1107,8 @@ function showPayout(){
 
             } else {
                 //$('.middle-label').html('选择金币');
-                $('.span-odd').removeClass('ready-vip lose-vip').html('请选挖宝币').css('display', 'inline-block');
-                $('.span-even').removeClass('ready-vip lose-vip').html('请选挖宝币').css('display', 'inline-block');
+                $('.span-odd').removeClass('ready-vip lose-vip line-through').html('请选挖宝币').css('display', 'inline-block');
+                $('.span-even').removeClass('ready-vip lose-vip line-through').html('请选挖宝币').css('display', 'inline-block');
                 $('.shan div').addClass('clicked-vip');
             }
 
