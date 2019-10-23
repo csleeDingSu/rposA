@@ -1094,14 +1094,14 @@ function showPayout(){
             if(bet_amount > 0){
                 //$('.middle-label').html('开始抽奖');
                 if(selected == 'odd'){
-                    $('.span-odd').removeClass('lose-vip').addClass('ready-vip').html("<strong>"+bet_amount+" 挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+                    $('.span-odd').removeClass('lose-vip line-through').addClass('ready-vip').html("<strong>"+bet_amount+" 挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
                     $('.span-even').addClass('ready-vip lose-vip line-through').html('<strong>'+bet_amount+' 挖宝币</strong>');
                     // $('.span-even').addClass('ready-vip lose-vip').html('谢谢参与');
 
                 } else {
                     // $('.span-odd').addClass('ready-vip lose-vip').html('谢谢参与');
                     $('.span-odd').addClass('ready-vip lose-vip line-through').html('<strong>'+bet_amount+' 挖宝币</strong>');
-                    $('.span-even').removeClass('lose-vip').addClass('ready-vip').html("<strong>+"+bet_amount+" 挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+                    $('.span-even').removeClass('lose-vip line-through').addClass('ready-vip').html("<strong>+"+bet_amount+" 挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
                 }
                 $('.shan div').addClass('clicked-vip');
 
