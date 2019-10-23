@@ -20,7 +20,7 @@
 
 <div class="topBox fix">
     <div class="pageHeader rel">
-      <a class="returnBtn"><img src="{{ asset('/clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
+      <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('/clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
       <h2>我的奖品</h2>
       <a class="coinListBtn" href="/coin/list">专卖记录</a>
     </div>
