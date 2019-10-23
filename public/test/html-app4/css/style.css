@@ -670,8 +670,7 @@ span.type-blue {
 
 .userViews {
   background: #fff;
-  margin-bottom: 0.2rem;
-  padding: 0 0.24rem;
+  padding: 0 0.24rem .2rem;
 }
 
 .userViews .userName {
@@ -2700,3 +2699,51 @@ min-height: 5.6rem;
 
 .loginBox2 .form .hd a:first-child{ border-radius:.15rem 0 0 0;}
 .loginBox2 .form .hd a:last-child{border-radius:0 .15rem 0 0;}
+
+.userMainList2{
+  background: #fff;
+  padding: 0 .24rem;
+}
+
+.userMainList2 .inBox {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  height: 0.98rem;
+  justify-content: space-between;
+  padding: 0 0.23rem 0 .28rem;
+  align-items: center;
+  background:url(../images/tixianBg.png) left top no-repeat ;
+  background-size:100% 100% ;
+  border-radius:.1rem .1rem 0 0;
+  p
+}
+
+.userMainList2 .inBox p {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  align-items: center;
+  font-size: .34rem;color: #fff;;
+}
+.userMainList2 .inBox p img{ width: .48rem; margin-right: .15rem;}
+
+.userMainList2 .inBox p em{display: block; margin: 0 .15rem; height: .2rem; width: .015rem;background: #ffc1a2;}
+.userMainList2 a{
+  display: flex; display: -webkit-flex;display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+  padding: 0 .22rem; line-height: .46rem;border-radius: .46rem;
+  background: -webkit-linear-gradient(left, #ff7e7e, #ff5151);
+  background: -o-linear-gradient(right, #ff7e7e, #ff5151);
+  background: -moz-linear-gradient(right, #ff7e7e, #ff5151);
+  background: linear-gradient(to right, #ff7e7e, #ff5151);
+}
+.userMainList2 a i{color: #fff; font-size: .24rem;color: #fff9dc;}
+.userMainList2 a img{ width: .15rem; transform: rotate(180deg);}
+
+
+
+
+
+
+
