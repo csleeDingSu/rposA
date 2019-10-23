@@ -82,15 +82,32 @@ class RankGenerator extends Command
 					}
 					$prerank = $row->balance;
 
-
-					$this->line('-- update ranks for game : '.$game->id);
-					$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
-					$rank->rank        = $newrank;					
-					$rank->totalreward = $row->totalreward;
-					$rank->balance     = $row->balance;
-					$rank->save();
-
-					$this->info('-- done');				
+					if ($game->id != '102')
+					{
+						if ($row->balance > 0 )
+						{
+							$this->line('-- update ranks for game : '.$game->id);
+							$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
+							$rank->rank        = $newrank;					
+							$rank->totalreward = $row->totalreward;
+							$rank->balance     = $row->balance;
+							$rank->save();
+							$this->info('-- done');
+						}
+						else
+						{
+							$this->error('-- balance in negative.skipping record');
+						}
+					}
+					else
+					{
+						$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
+						$rank->rank        = $newrank;					
+						$rank->totalreward = $row->totalreward;
+						$rank->balance     = $row->balance;
+						$rank->save();
+						$this->info('-- done');
+					}				
 
 
 					
