@@ -1051,8 +1051,8 @@ function showPayout(){
         if (typeof selected == 'undefined'){
 
             //$('.middle-label').html('选择单双');
-            $('.span-odd').removeClass('ready-vip lose-vip').html("<strong>"+bet_amount+" 挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
-            $('.span-even').removeClass('ready-vip lose-vip').html("<strong>"+bet_amount+" 挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+            $('.span-odd').removeClass('ready-vip lose-vip').html("<strong>"+bet_amount+"挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+            $('.span-even').removeClass('ready-vip lose-vip').html("<strong>"+bet_amount+"挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
             $('.shan div').addClass('clicked-vip').removeClass('lose-vip');
 
             if(bet_count == 0){
