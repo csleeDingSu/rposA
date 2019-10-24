@@ -40,6 +40,7 @@
 
 <input id="hidSession" type="hidden" value="{{!empty(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 <input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['102']->point) ? $wallet['gameledger']['102']->point : 0}}" />
+<input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
 
 <div class="loading2" id="loading2"></div>
 <div class="topBox fix">
@@ -292,7 +293,7 @@
 
 
       function submitCoin(sendData) {
-        var memberid = "{{$member->id}}";
+        var memberid = $('#hidMemberId').val();
         var gUpload = [];
         console.log(memberid);
         console.log(sendData.upImg);
@@ -329,7 +330,7 @@
 
       function getToken(){
         var session = $('#hidSession').val();
-        var id = '{{$member->id}}';
+        var id = $('#hidMemberId').val();
         //login user
         if (id > 0) {
             $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {

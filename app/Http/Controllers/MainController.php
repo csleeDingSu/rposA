@@ -261,6 +261,17 @@ class MainController extends BaseController
 		
 	}
 
+	public function coinDetail(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinDetail', $data);
+		
+	}
+
 	public function coinReady(Request $request)
 	{
 		$this->vp = new VIPApp();
