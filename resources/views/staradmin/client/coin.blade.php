@@ -72,7 +72,7 @@
   <div class="coinBox">
     <div class="inTitle">
       <h2>转卖挖宝币</h2>
-      <span>剩余挖宝币&nbsp;<font color="#ffa414">{{$wallet['gameledger']['103']->point}}</font></span>
+      <span>剩余挖宝币&nbsp;<font color="#ffa414"><span class="bal-point">{{$wallet['gameledger']['103']->point}}</span></font></span>
     </div>
     <ul class="inList">
       <li class="on">
@@ -322,6 +322,7 @@
               success: function(data) {
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
+                    $('.bal-point').html(Number($('.bal-point').html()) - Number(sendData.vCoin));
                       being.showMsg('.coinShade'); 
                       setTimeout(function(){ 
                         window.location.href = '/profile';
