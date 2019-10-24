@@ -39,7 +39,7 @@
 @section('content')
 
 <input id="hidSession" type="hidden" value="{{!empty(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
-<input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['102']->point) ? $wallet['gameledger']['102']->point : 0}}" />
+<input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['103']->point) ? $wallet['gameledger']['103']->point : 0}}" />
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
 
 <div class="loading2" id="loading2"></div>
@@ -72,7 +72,7 @@
   <div class="coinBox">
     <div class="inTitle">
       <h2>转卖挖宝币</h2>
-      <span>剩余挖宝币&nbsp;<font color="#ffa414">{{$wallet['gameledger']['102']->point}}</font></span>
+      <span>剩余挖宝币&nbsp;<font color="#ffa414">{{$wallet['gameledger']['103']->point}}</font></span>
     </div>
     <ul class="inList">
       <li class="on">
@@ -287,6 +287,7 @@
 
       $('.inClostBtn').click(function(){
         being.hideMsg('.coinShade');
+        window.location.href = '/profile';
       });
 
     });
@@ -322,6 +323,9 @@
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
                       being.showMsg('.coinShade'); 
+                      setTimeout(function(){ 
+                        window.location.href = '/profile';
+                      }, 5000);                      
                   }
               }
           });
