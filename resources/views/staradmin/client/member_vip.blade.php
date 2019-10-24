@@ -54,10 +54,10 @@
     </div>
 
     <div class="userMainList">
-      <a class="inBox" href="/redeem">
+      <!-- <a class="inBox" href="/redeem">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-hb.png') }}"><span>购物补贴</span></p>
         <p><i class="bRed" id="102_point"></i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
-      </a>
+      </a> -->
       <a class="inBox" href="/arcade">
         <p><img class="tIcon" src="{{ asset('clientapp/images/icon-cs.png') }}"><span>剩余次数</span></p>
         <p><i class="bBlub" id="game_life"></i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>

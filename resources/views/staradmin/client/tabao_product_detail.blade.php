@@ -1,7 +1,5 @@
 @extends('layouts.default_app')
 
-@section('title', '挖宝优惠购')
-
 @section('top-css')
     @parent
     <link href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -59,7 +57,14 @@
     @endif
 @endsection
 
-@section('top-navbar')    
+<!-- top nav -->
+@section('left-menu')
+  <a class="returnBtn" href="javascript:historyBackWFallback('/profile');"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+@endsection
+
+@section('title', '挖宝优惠购')
+
+@section('right-menu')
 @endsection
 
 @section('content')
@@ -69,11 +74,11 @@
 <input id="hidlife" type="hidden" value="{{empty($data['life']) ? 0 : $data['life']}}" />
 
 	<div class="infinite-scroll" id="product">
-		<div class="header_pr header_goods ">
+		<!-- <div class="header_pr header_goods ">
     		<header class="icon_header">
     			<a href="javascript:history.back()" class="iconfont fa fa-angle-left fa-2x" aria-hidden="true"></a>
         	</header>	
-        </div>
+        </div> -->
 
         @php ($photourl = empty($data['mainPic']) ? null : $data['mainPic'])
 		@php ($photourl = str_replace('_310x310.jpg', '', $photourl))
