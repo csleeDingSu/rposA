@@ -37,7 +37,10 @@
 @endsection
 
 @section('content')
-<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+
+<input id="hidSession" type="hidden" value="{{!empty(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+<input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['102']->point) ? $wallet['gameledger']['102']->point : 0}}" />
+
 <div class="loading2" id="loading2"></div>
 <div class="topBox fix">
     <div class="pageHeader rel">
@@ -68,7 +71,7 @@
   <div class="coinBox">
     <div class="inTitle">
       <h2>转卖挖宝币</h2>
-      <span>剩余挖宝币&nbsp;<font color="#ffa414">360</font></span>
+      <span>剩余挖宝币&nbsp;<font color="#ffa414">{{$wallet['gameledger']['102']->point}}</font></span>
     </div>
     <ul class="inList">
       <li class="on">
@@ -180,15 +183,28 @@
       sendData.copyTxt = "";
       sendData.vCoin = "50"; //default
       sendData.vCash = "48"; //default
+      _point = Number($('#hidPoint').val());
+
+      if (Number(_point) < Number(sendData.vCoin)) {
+        $('.cionPage .coinBox .inList li').removeClass('on');
+        // alert('挖宝币不足');
+      }
 
       //专卖挖宝
       $('.cionPage .coinBox .inList li').click(function () {
         let vm = $(this);
-        vm.addClass('on').siblings().removeClass('on');
+        
         console.log($('.v-coin', this).text());
         console.log($('.v-cash', this).text());
         sendData.vCoin = $('.v-coin', this).text();
         sendData.vCash = $('.v-cash', this).text();
+
+        if (Number(_point) < Number(sendData.vCoin)) {
+          alert('挖宝币不足');
+        } else {
+          vm.addClass('on').siblings().removeClass('on');  
+        }
+        
       });
 
       //口令上传
@@ -235,7 +251,7 @@
         if (vm.val() != "") {
           $('.textPlace').hide(0);
         }
-        if (sendData.upImg != '' && sendData.copyTxt != "") {
+        if (sendData.upImg != '' && sendData.copyTxt != "" && Number(sendData.vCoin) > 0) {
           $('.inSendBtn').addClass('on');
         } else {
           $('.inSendBtn').removeClass('on');
