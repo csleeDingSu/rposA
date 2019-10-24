@@ -294,21 +294,21 @@
 
       function submitCoin(sendData) {
         var memberid = $('#hidMemberId').val();
-        var gUpload = [];
+        // var gUpload = [];
         console.log(memberid);
         console.log(sendData.upImg);
         console.log(sendData.copyTxt);
         console.log(sendData.vCoin);
         console.log(sendData.vCash);
         console.log(token);
-        gUpload.push(sendData.upImg);
+        // gUpload.push(sendData.upImg);
 
         document.getElementById('loading2').style.visibility="visible";
 
         $.ajax({
               type: 'POST',
               url: "/api/resell-request",
-              data: { 'memberid': memberid, 'barcode': gUpload, 'passcode': sendData.copyTxt, 'point': sendData.vCoin, 'amount' : sendData.vCash },
+              data: { 'memberid': memberid, 'barcode': sendData.upImg, 'passcode': sendData.copyTxt, 'point': sendData.vCoin, 'amount' : sendData.vCash },
               dataType: "json",
               beforeSend: function( xhr ) {
                   xhr.setRequestHeader ("Authorization", "Bearer " + token);
