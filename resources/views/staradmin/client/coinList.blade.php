@@ -79,7 +79,7 @@
                   console.log(data);
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
-                      $.each(data, function(i, item) {
+                      $.each(data.result.data, function(i, item) {
                         var txt_point = '';
                         var txt_status = '';
                         var txt_when = '';
