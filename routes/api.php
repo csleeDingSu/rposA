@@ -188,7 +188,7 @@ Route::group(['namespace' => 'Api'],function()
 
 	Route::post('/make-resell-paid', 'CreditController@make_resell_success')->name('make_resell_success');
 
-	
+	Route::get('/get-summary-new', 'MemberController@get_summary_new')->name('get_summary_new');
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
