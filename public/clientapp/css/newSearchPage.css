@@ -121,8 +121,8 @@ if it's not present, don't show loader */
 
 .newTxt {
   /*font-size: 0.22rem;*/
-  font-size: 0.26rem !important
-  color: ##7c7c7c;
+  font-size: 0.26rem !important;
+  color: #7c7c7c;
   line-height: 1em;
   margin-right: 0.12rem;
 }
