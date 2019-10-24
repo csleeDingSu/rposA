@@ -36,7 +36,7 @@
             <img src="{{ asset('/clientapp/images/help/copyTxt2.jpg') }}">
           </dd>
           <dt>
-            <font color="#108ee9">03</font><span>点击“微信好友”,生成AA收款吱口令弹框</span>
+            <font color="#108ee9">03</font><span>生成吱口令后，到平台“提交吱口令”这里粘贴吱口令，如图示。</span>
           </dt>
           <dd>
             <img src="{{ asset('/clientapp/images/help/copyTxt3.jpg') }}">
