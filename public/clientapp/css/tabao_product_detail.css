@@ -443,17 +443,17 @@
 
 	.line-reward .reward{
 		display: inline-block;
-	    width: auto;
-	    color: red;
-	    font-size: 3.5vw;
-	    margin: 0 auto;
-	    background-image: url(/clientapp/images/product/reward-bg.png);
-	    background-color: transparent;
-	    background-repeat: no-repeat;
-	    background-size: contain;
-	    padding: 0.02rem 0.1rem;
-	    text-align: center;
-	    line-height: 0.3rem;
+    width: auto;
+    color: red;
+    font-size: 3.5vw;
+    margin: 0 auto;
+    background-image: url(/clientapp/images/product/reward-bg.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0.06rem 0.05rem 0.06rem 0.15rem;
+    text-align: center;
+    /* line-height: 0.45rem; */
 	}
 
 	.line-reward .btn-reward {
@@ -462,7 +462,7 @@
 	    background-color: #f4f1f1;
 	    font-size: 3.5vw;
 	    color: #bebebe;
-	    padding: 0.02rem 0.2rem;
+	    padding: 0.06rem 0.2rem;
 	    width: auto;
 	    text-align: center;
 	    line-height: 0.3rem;
@@ -471,7 +471,7 @@
 	.line-reward h3{
 		display: inline-block;
 	    float: right;
-	    padding: 0 0.2rem;
+	    padding: 0.05rem 0.2rem;
 	    line-height: 0.3rem;
 	}
 
@@ -507,6 +507,8 @@
 
 	.dbox1 {
 		padding-top: 0.2rem;
+	    padding-bottom: 0.1rem;
+
 	}
 
 #reward-rules .modal-title {	

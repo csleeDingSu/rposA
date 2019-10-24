@@ -50,6 +50,7 @@
                 @php ($commissionRate = ($commissionRate > 0) ? $commissionRate : 0)
                 @php ($reward = (int)($promoPrice * $commissionRate))
                 @php ($reward = ($reward <= 0) ? '100' : $reward)
+                @php ($hong = $reward / 100)
                 @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $life)
                 <div class="inBox">
                   <div class="imgBox">
@@ -60,11 +61,11 @@
                   <div class="txtBox flex1">
                     <h2 class="name">{{$p['title']}}</h2>
                     <div class="typeBox">
-                      <span class="type-price">淘宝<em>¥</em>{{$oldPrice}}</span>
                       <span class="type-red">{{$p['couponPrice']}}元券</span>
-                      <span class="type-sred">返{{$reward}}积分</span>
+                      <span class="type-price">淘宝<em>¥</em>{{$oldPrice}} | 热销{{$sales}}件</span>
+                      <!-- <span class="type-sred">返{{$reward}}积分</span> -->
                     </div>
-                    <p class='newTxt'>券后价格<em>¥</em>{{$promoPrice}}</p>
+                    <p class='newTxt'>券后价<em>¥</em>{{$promoPrice}} <span class="hong">下单奖{{$hong}}红包</span></p>
                     <div class="moneyBox">                        
                       <div class="btn-play-game">抽奖补贴</div>
                       <div class="btn-zero-buy">0元购买</div>

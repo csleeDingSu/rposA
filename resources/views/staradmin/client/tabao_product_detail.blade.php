@@ -1,5 +1,7 @@
 @extends('layouts.default_app')
 
+@section('title', '挖宝优惠购')
+
 @section('top-css')
     @parent
     <link href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -57,14 +59,7 @@
     @endif
 @endsection
 
-<!-- top nav -->
-@section('left-menu')
-  <a class="returnBtn" href="javascript:historyBackWFallback('/profile');"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
-@endsection
-
-@section('title', '挖宝优惠购')
-
-@section('right-menu')
+@section('top-navbar')    
 @endsection
 
 @section('content')
@@ -74,11 +69,11 @@
 <input id="hidlife" type="hidden" value="{{empty($data['life']) ? 0 : $data['life']}}" />
 
 	<div class="infinite-scroll" id="product">
-		<!-- <div class="header_pr header_goods ">
+		<div class="header_pr header_goods ">
     		<header class="icon_header">
     			<a href="javascript:history.back()" class="iconfont fa fa-angle-left fa-2x" aria-hidden="true"></a>
         	</header>	
-        </div> -->
+        </div>
 
         @php ($photourl = empty($data['mainPic']) ? null : $data['mainPic'])
 		@php ($photourl = str_replace('_310x310.jpg', '', $photourl))
@@ -98,6 +93,7 @@
         @php ($commissionRate = $data['commissionRate'])
         @php ($commissionRate = ($commissionRate > 0) ? (int)$commissionRate : 0)
         @php ($reward = (int)($promoPrice * $commissionRate))
+        @php ($hong = $reward / 100) 
         @php ($sales = ($data['monthSales'] >= 1000) ? number_format(((float)$data['monthSales'] / 10000), 2, '.', '') . '万' : $data['monthSales'] . '件')
 		@php ($life_needed = ceil($promoPrice / 12))
 
@@ -112,7 +108,7 @@
 					<h2>{{$data['title']}}</h2>
 					<div class="line-reward">
 						<div class="reward-txt">下单后</div>
-						<div class="reward">返{{$reward}}积分</div>
+						<div class="reward">下单奖{{$hong}}红包</div>
 						<div class="btn-reward">怎么返?</div>
 						<h3>热销{{$sales}}</h3>
 					</div>							

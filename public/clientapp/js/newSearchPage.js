@@ -149,6 +149,7 @@ var life = 0;
                       commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
                       reward = parseInt(Number(promoPrice) * Number(commissionRate));
                       reward = (reward <= 0) ? '100' : reward;
+                      hong = (Number(reward) / 100);
                       _param = '?id=' + item.id + '&goodsId='+ goodsId +'&mainPic='+mainPic+'&title='+title+'&monthSales=' + monthSales +'&originalPrice=' +originalPrice+'&couponPrice=' +couponPrice + '&couponLink=' + encodeURIComponent(couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=&life=' + life;
                       _rewardtxt = '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + newPrice + '</span></p>';
             
@@ -165,11 +166,11 @@ var life = 0;
                                 '<div class="txtBox flex1">' +
                                   '<h2 class="name">'+title+'</h2>' +
                                   '<div class="typeBox">' +
-                                    '<span class="type-price">淘宝<em>¥</em>' + originalPrice + '</span>' +
-                                    '<span class="type-red">'+couponPrice+'元</span>' +
-                                    '<span class="type-sred">奖励'+reward+'积分</span>' +
+                                    '<span class="type-red">'+couponPrice+'元</span>' + 
+                                    '<span class="type-price">淘宝<em>¥</em>' + originalPrice + ' | 热销' + sales + '件</span>' +                                   
+                                    // '<span class="type-sred">奖励'+reward+'积分</span>' +
                                   '</div>' +
-                                  '<p class="newTxt">券后价格<em>¥</em>' + promoPrice + '</p>' +
+                                  '<p class="newTxt">券后价<em>¥</em>' + promoPrice + '<span class="hong">下单奖' + hong + '红包</span></p>' +
                                   '<div class="moneyBox">' +
                                     '<div class="btn-play-game">抽奖补贴</div>' +
                                     '<div class="btn-zero-buy">0元购买</div>' +

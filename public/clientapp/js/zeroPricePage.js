@@ -118,6 +118,7 @@ function populateData(item) {
   commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
   reward = parseInt(Number(promoPrice) * Number(commissionRate));
   reward = (reward <= 0) ? '100' : reward;
+  hong = (Number(reward) / 100);
   _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=&life=' + life;
   // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
 
@@ -131,11 +132,11 @@ function populateData(item) {
         '<div class="txtBox flex1">' +
           '<h2 class="name">'+item.title+'</h2>' +
           '<div class="typeBox">' +
-            '<span class="type-price">淘宝<em>¥</em>' + oldPrice + '</span>' +
             '<span class="type-red">'+item.couponPrice+'元券</span>' +
-            '<span class="type-sred">奖励'+reward+'积分</span>' +
+            '<span class="type-price">淘宝<em>¥</em>' + oldPrice + ' | 热销' + sales + '件</span>' +                                              
+            // '<span class="type-sred">奖励'+reward+'积分</span>' +
           '</div>' +
-          '<p class="newTxt">券后价格<em>¥</em>' + promoPrice + '</p>' +
+          '<p class="newTxt">券后价<em>¥</em>' + promoPrice + '<span class="hong">下单奖' + hong + '红包</span></p>' +
           '<div class="moneyBox">' +
             '<div class="btn-play-game">抽奖补贴</div>' +
             '<div class="btn-zero-buy">0元购买</div>' +

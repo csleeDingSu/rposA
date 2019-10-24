@@ -42,8 +42,9 @@
 }
 
 .newTxt {
-  font-size: 0.22rem;
-  color: #bebebe;
+  /*font-size: 0.22rem;*/
+  font-size: 0.26rem !important
+  color: ##7c7c7c;
   line-height: 1em;
   margin-right: 0.12rem;
 }
@@ -345,4 +346,8 @@ span.type-sred {
   color: #fff;
     font-size: 0.27rem;
     padding: 0.15rem 0 0.15rem 0.3rem;
+}
+
+.hong {
+  color: #f95976;
 }
