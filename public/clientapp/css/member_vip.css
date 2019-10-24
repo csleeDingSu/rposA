@@ -122,3 +122,7 @@ html, body {
 
 
 /* End Wechat Verification Modal*/
+
+.h36 {
+	height: 0.8rem !important;
+}
