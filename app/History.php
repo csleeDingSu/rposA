@@ -55,6 +55,21 @@ class History extends Model
 		return $result;		
 	}
 
+	public static function get_summary_new($memberid,$type = 'buyproduct')
+	{
+		$result = \DB::table('s_summary_new')->select('*');		
+		if ($type == 'buyproduct')
+		{
+			$result = $result->whereNotIn('type', ['basicpackage']);
+		}
+		elseif($type == 'basicpackage')
+		{
+			$result = $result->whereNotIn('type', ['buyproduct']);
+		}
+		$result = $result->where('member_id', $memberid)->orderby('created_at','DESC')->get();
+		return $result;		
+	}
+
 	public function member()
     {
         return $this->belongsTo(Member::class, 'member_id', 'id');
