@@ -46,40 +46,7 @@
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
 <div class="loading2" id="loading2"></div>
 <div class="coinList">
-          <a href="/coin/ready" class="inBox payReady">
-            <h2><span>200挖宝币</span>
-              <font color="#6ac2ff">正在匹配买家</font>
-            </h2>
-            <p><span>2019-08-22 15:30</span>
-              <font color="#686868">售价&nbsp;198元</font>
-            </p>
-          </a>
-          <a href="/coin/payIng" class="inBox payIng">
-            <h2><span>200挖宝币</span>
-              <font color="#ffa200">已匹配到买家 125****6839</font>
-            </h2>
-            <p><span>2019-08-22 15:30</span>
-              <font color="#686868">售价&nbsp;198元</font>
-            </p>
-          </a>
-          <a href="/coin/payOver" class="inBox payOver">
-            <h2><span>200挖宝币</span>
-              <font color="#51c000">买家付款完成</font>
-            </h2>
-            <p><span>2019-08-22 15:30</span>
-              <font color="#686868">售价&nbsp;198元</font>
-            </p>
-          </a>
-          <a href="/coin/fail" class="inBox payFail">
-              <h2><span>200挖宝币</span>
-                <font color="#ff8282">发布失败</font>
-              </h2>
-              <p><span>2019-08-22 15:30</span>
-                <font color="#686868">售价&nbsp;198元</font>
-              </p>
-              <h3>失败原因：提交收款码金额与出售金币金额不一致！</h3>
-            </a>
-        </div>
+</div>
 
 @endsection
 
@@ -113,21 +80,53 @@
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
                       $.each(data, function(i, item) {
-                        var txt_point = '200挖宝币';
-                        var txt_status = '正在匹配买家';
-                        var txt_when = '2019-08-22 15:30';
-                        var txt_amount = '售价&nbsp;198元';
-                        var txt_reason = '失败原因：提交收款码金额与出售金币金额不一致！';
+                        var txt_point = '';
+                        var txt_status = '';
+                        var txt_when = '';
+                        var txt_amount = '';
+                        var txt_reason = '';
+                        var _url = '';
+                        var _cls = '';
+                        var _fontcolor = '';
 
-                        html += '<a href="/coin/fail" class="inBox payFail">' +
-                                  '<h2><span>200挖宝币</span>' +
-                                    '<font color="#ff8282">发布失败</font>' +
+                        txt_point = item.point;
+                        txt_when = item.updated_at;
+                        txt_amount = item.amount;
+
+                        if (item.status_id == 1) {
+                          txt_status = '正在匹配买家';  
+                          _url = '/coin/ready';
+                          _cls = 'payReady';
+                          _fontcolor = '#6ac2ff';                        
+                        } else if (item.status_id == 2) {
+                          txt_status = '已匹配到买家 ' + item.buyer;
+                          _url = '/coin/payIng';
+                          _cls = 'payIng';
+                          _fontcolor = '#ffa200';
+                        } else if (item.status_id == 3) {
+                          txt_status = '买家付款完成';
+                          _url = '/coin/payOver';
+                          _cls = 'payOver';
+                          _fontcolor = '#51c000';
+                        } else if (item.status_id == 4) {
+                          txt_status = '发布失败';
+                          txt_reason = item.reason;
+                          _url = '/coin/fai';
+                          _cls = 'payFail';
+                          _fontcolor = '#ff8282';
+                        }
+
+                        html += '<a href="'+_url+'" class="inBox '+_cls+'">' +
+                                  '<h2><span>' +txt_point+ '挖宝币</span>' +
+                                    '<font color="'+_fontcolor+'">' + txt_status + '</font>' +
                                   '</h2>' +
-                                  '<p><span>2019-08-22 15:30</span>' +
-                                    '<font color="#686868">售价&nbsp;198元</font>' +
-                                  '</p>' +
-                                  '<h3>失败原因：提交收款码金额与出售金币金额不一致！</h3>' +
-                                '</a>';
+                                  '<p><span>' + txt_when +'</span>' +
+                                    '<font color="#686868">售价&nbsp;'+txt_amount+'元</font>' +
+                                  '</p>';
+                                if (txt_reason != '') {
+                        html +=   '<h3>失败原因：' +txt_reason+ '</h3>';  
+                                }                                  
+                        html += '</a>';
                       });
 
                       if ((html == '') && ($('.coinList').html() == '') ) {
