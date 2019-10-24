@@ -62,7 +62,7 @@
                     <h2 class="name">{{$p['title']}}</h2>
                     <div class="typeBox">
                       <span class="type-red">{{$p['couponPrice']}}元券</span>
-                      <span class="type-price">淘宝<em>¥</em>{{$oldPrice}} | 热销{{$sales}}件</span>
+                      <span class="type-price">淘宝<em>¥</em>{{$oldPrice}} | 销量{{$sales}}</span>
                       <!-- <span class="type-sred">返{{$reward}}积分</span> -->
                     </div>
                     <p class='newTxt'>券后价<em>¥</em>{{$promoPrice}} <span class="hong">下单奖{{$hong}}红包</span></p>

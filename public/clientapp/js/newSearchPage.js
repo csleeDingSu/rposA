@@ -167,7 +167,7 @@ var life = 0;
                                   '<h2 class="name">'+title+'</h2>' +
                                   '<div class="typeBox">' +
                                     '<span class="type-red">'+couponPrice+'元</span>' + 
-                                    '<span class="type-price">淘宝<em>¥</em>' + originalPrice + ' | 热销' + sales + '件</span>' +                                   
+                                    '<span class="type-price">淘宝<em>¥</em>' + originalPrice + ' | 销量' + sales + '</span>' +                                   
                                     // '<span class="type-sred">奖励'+reward+'积分</span>' +
                                   '</div>' +
                                   '<p class="newTxt">券后价<em>¥</em>' + promoPrice + '<span class="hong">下单奖' + hong + '红包</span></p>' +

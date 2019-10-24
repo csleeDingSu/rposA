@@ -108,7 +108,7 @@
 					<h2>{{$data['title']}}</h2>
 					<div class="line-reward">
 						<div class="reward-txt">下单后</div>
-						<div class="reward">下单奖{{$hong}}红包</div>
+						<div class="reward">奖{{$hong}}红包积分</div>
 						<div class="btn-reward">怎么返?</div>
 						<h3>热销{{$sales}}</h3>
 					</div>							
