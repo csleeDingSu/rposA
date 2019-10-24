@@ -1751,38 +1751,38 @@ textarea {
 .box-i {
 	width: 100%;
 	background-color: #ff1847;
-	padding: 0 0.4rem;
+	padding: 0.1rem 0.4rem;
 }
 
 .i-play, .i-withdraw, .i-redeem {
 	float: left;
 	width: auto;
 	color: #ffe1e7;
-	font-size: 0.24rem;
-	padding: 0.02rem 0 0 0.45rem;
-	height: 0.4rem;
+	font-size: 0.26rem;
+	padding: 0.045rem 0 0 0.45rem;
+	height: 0.45rem;
 }
 
 .i-play {
 	background: url(/clientapp/images/redeem/i-red-pack.png) no-repeat;
     background-size: contain;    
-    height: 0.35rem;
+    /*height: 0.35rem;*/
 }
 
 .i-withdraw{
 	background: url(/clientapp/images/redeem/i-alipay.png) no-repeat;
     background-size: contain;
-    height: 0.35rem;
-        margin-left: 0.5rem;
+    /*height: 0.35rem;*/
+        margin-left: 0.3rem;
 
 }
 
 .i-redeem {
 	background: url(/clientapp/images/redeem/i-star.png) no-repeat;
     background-size: contain;
-    height: 0.35rem;
+    /*height: 0.35rem;*/
     float: left;
-        margin-left: 0.5rem;
+        margin-left: 0.3rem;
 
 
 }
