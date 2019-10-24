@@ -3,11 +3,31 @@
 @section('top-css')
     @parent  
     <link rel="stylesheet" href="{{ asset('/clientapp/css/coin.css') }}" />
-    
+     <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          position: fixed;
+          left: 0px;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 9999;
+          background: url(/client/images/preloader.gif) center no-repeat;
+          background-color: rgba(255, 255, 255, 0.5);
+          background-size: 32px 32px;
+          visibility: hidden;
+        }
+         
+    </style>
 @endsection
 
 @section('top-javascript')
     @parent
+      <script src="{{ asset('/clientapp/js/lrz.mobile.min.js') }}"></script>
 
 @endsection
 
@@ -17,7 +37,8 @@
 @endsection
 
 @section('content')
-
+<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+<div class="loading2" id="loading2"></div>
 <div class="topBox fix">
     <div class="pageHeader rel">
       <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('/clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
@@ -51,28 +72,28 @@
     </div>
     <ul class="inList">
       <li class="on">
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span>50</span></p>
-        <h2>售价&nbsp;48元</h2>
+        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">50</span></p>
+        <h2>售价&nbsp;<span class="v-cash">48</span>元</h2>
       </li>
       <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span>100</span></p>
-        <h2>售价&nbsp;96元</h2>
+        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">100</span></p>
+        <h2>售价&nbsp;<span class="v-cash">96</span>元</h2>
       </li>
       <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span>200</span></p>
-        <h2>售价&nbsp;196元</h2>
+        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">200</span></p>
+        <h2>售价&nbsp;<span class="v-cash">196</span>元</h2>
       </li>
       <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span>500</span></p>
-        <h2>售价&nbsp;490元</h2>
+        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">500</span></p>
+        <h2>售价&nbsp;<span class="v-cash">490</span>元</h2>
       </li>
       <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span>1000</span></p>
-        <h2>售价&nbsp;980元</h2>
+        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">1000</span></p>
+        <h2>售价&nbsp;<span class="v-cash">980</span>元</h2>
       </li>
       <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span>2000</span></p>
-        <h2>售价&nbsp;1980元</h2>
+        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">2000</span></p>
+        <h2>售价&nbsp;<span class="v-cash">1980</span>元</h2>
       </li>
     </ul>
   </div>
@@ -138,7 +159,13 @@
     @parent
 
     <script type="text/javascript">
+
+      var token = null;
+
       $(document).ready(function () {
+        
+        getToken();
+
         $('.scrolly').addClass('cionPage');
 
         $('.close-modal').click(function() {
@@ -151,11 +178,17 @@
       let sendData = new Object();
       sendData.upImg = "";
       sendData.copyTxt = "";
+      sendData.vCoin = "50"; //default
+      sendData.vCash = "48"; //default
 
       //专卖挖宝
       $('.cionPage .coinBox .inList li').click(function () {
         let vm = $(this);
         vm.addClass('on').siblings().removeClass('on');
+        console.log($('.v-coin', this).text());
+        console.log($('.v-cash', this).text());
+        sendData.vCoin = $('.v-coin', this).text();
+        sendData.vCash = $('.v-cash', this).text();
       });
 
       //口令上传
@@ -224,8 +257,9 @@
       //出售
 
       $('.sendBox').on('click','a.on',function () {
-        being.showMsg('.coinShade');
+        submitCoin(sendData);
       });
+
       $('.coinShade ').click(function (e) {
         console.log($(e.target).html());
         let a = $(e.target).find('.inBox').length;
@@ -239,6 +273,57 @@
       });
 
     });
+
+
+      function submitCoin(sendData) {
+        var memberid = "{{$member->id}}";
+        var gUpload = [];
+        console.log(memberid);
+        console.log(sendData.upImg);
+        console.log(sendData.copyTxt);
+        console.log(sendData.vCoin);
+        console.log(sendData.vCash);
+        console.log(token);
+        gUpload.push(sendData.upImg);
+
+        document.getElementById('loading2').style.visibility="visible";
+
+        $.ajax({
+              type: 'GET',
+              url: "/api/resell-request",
+              data: { 'memberid': memberid, 'barcode': gUpload, 'passcode': sendData.copyTxt, 'point': sendData.vCoin, 'amount' : sendData.vCash },
+              dataType: "json",
+              beforeSend: function( xhr ) {
+                  xhr.setRequestHeader ("Authorization", "Bearer " + token);
+              },
+              error: function (error) { 
+                  document.getElementById('loading2').style.visibility="hidden";
+                  console.log(error.responseText);
+                  alert('提交失败');
+                },                  
+              success: function(data) {
+                  document.getElementById('loading2').style.visibility="hidden";
+                  if(data.success){
+                      being.showMsg('.coinShade'); 
+                  }
+              }
+          });
+         
+      }
+
+      function getToken(){
+        var session = $('#hidSession').val();
+        var id = '{{$member->id}}';
+        //login user
+        if (id > 0) {
+            $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
+                // console.log(data);
+                if(data.success) {
+                    token = data.access_token;
+                }
+            });
+        }
+      }
 
     </script>
 
