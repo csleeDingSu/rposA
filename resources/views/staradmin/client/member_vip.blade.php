@@ -172,28 +172,28 @@
                 $('#wechat-verification-modal').modal();
             });
 
-        if (platform == 'iOS') {          
-          document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
-              var a = document.createElement('a');
-              a.setAttribute("href", topupurl);
-              a.setAttribute("target", "_blank");
-              var dispatch = document.createEvent("HTMLEvents");
-              dispatch.initEvent("click", true, true);
-              a.dispatchEvent(dispatch);
-          }, false);          
+        // if (platform == 'iOS') {          
+        //   document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+        //       var a = document.createElement('a');
+        //       a.setAttribute("href", topupurl);
+        //       a.setAttribute("target", "_blank");
+        //       var dispatch = document.createEvent("HTMLEvents");
+        //       dispatch.initEvent("click", true, true);
+        //       a.dispatchEvent(dispatch);
+        //   }, false);          
 
-        } else if (platform == 'AndroidOS') {
+        // } else if (platform == 'AndroidOS') {
 
-          document.getElementById("btn-go-topup").addEventListener('tap',function(){
-            plus.runtime.openURL(topupurl);
-          });
+        //   document.getElementById("btn-go-topup").addEventListener('tap',function(){
+        //     plus.runtime.openURL(topupurl);
+        //   });
 
-        } else {
+        // } else {
             
-          $('#btn-go-topup').click(function(){
-            window.location.href = topupurl;
-          });
-        }
+        //   $('#btn-go-topup').click(function(){
+        //     window.location.href = topupurl;
+        //   });
+        // }
 
 		});
 
