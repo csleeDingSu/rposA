@@ -1,7 +1,9 @@
 var totalNum = 0;
 var pageId = 1;
+var current_pageId = 1;
 var pageSize = 20;
 var usedpoint = 0;
+var bSearch = false;
 var life = 0;
   $(document).ready(function () {
     $('.lastHint').css('visibility', 'hidden');
@@ -17,6 +19,8 @@ var life = 0;
     being.scrollBottom('.scrolly', '.listBox', () => {   
       pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val();
       console.log('scrollBottom - ' + pageId)
+      console.log('pageId --- ' + pageId);
+      console.log('current_pageId ---' + current_pageId);
         if ($('#search').val() != "") {
           console.log('2');
           goSearch(pageId);
@@ -40,6 +44,13 @@ var life = 0;
       var html = '';
 
       if (search != "") {
+        
+        if (bSearch) { //is searching in progress
+          console.log('previous search job in progress');
+          return false;
+        }
+
+        bSearch = true;
         if (pageId == 1) {
           document.getElementById('loading').style.visibility="visible";  
         }
@@ -52,6 +63,7 @@ var life = 0;
             contentType: "application/json; charset=utf-8",
             dataType: "text",
             error: function (error) {
+              bSearch = false;
               document.getElementById('loading').style.visibility="hidden";
                 console.log(error);
                 // alert(error.responseText);
@@ -77,7 +89,7 @@ var life = 0;
                   $(".reload").show();
             },
             success: function(data) {
-
+              bSearch = false;
               var _pageId = null;
 
                 document.getElementById('loading').style.visibility="hidden";
@@ -189,6 +201,7 @@ var life = 0;
                 $('.listBox').append(html); 
               }
 
+              current_pageId = pageId;
                pageId++;
                pageId = (typeof _pageId == 'undefined') ? pageId: _pageId;
               $('#hidPageId').val(pageId);
