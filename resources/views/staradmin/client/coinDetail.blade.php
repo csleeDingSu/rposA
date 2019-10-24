@@ -83,8 +83,16 @@
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
                       $.each(data.result.data, function(i, item) {
-                        var txt_date = '08-22';
-                        var txt_time = '15:30';
+                        var formattedDate = new Date(item.updated_at);
+                        var d = formattedDate.getDate();
+                        var m =  formattedDate.getMonth();
+                            m += 1;  // JavaScript months are 0-11
+                        var y = formattedDate.getFullYear();
+                        var h = formattedDate.getHours();
+                        var mm = formattedDate.getMinutes();
+                        mm = (mm > 9) ? mm : '0' + mm;
+                        var txt_date = d + "-" + m;
+                        var txt_time = h + ':' + mm;
                         var txt_status = '';
                         var txt_dec = '';
                         var txt_img = '';
@@ -122,10 +130,21 @@
                                 '</dd>';
 
                         if (item.status_id == 1) {
+                          formattedDate = new Date(item.created_at);
+                          d = formattedDate.getDate();
+                          m =  formattedDate.getMonth();
+                          m += 1;  // JavaScript months are 0-11
+                          y = formattedDate.getFullYear();
+                          h = formattedDate.getHours();
+                          mm = formattedDate.getMinutes();
+                          mm = (mm > 9) ? mm : '0' + mm;
+                          txt_date = d + "-" + m;
+                          txt_time = h + ':' + mm;
+
                           html += '<dd>' +
                                   '<div class="inTtimeBox">' +
                                     '<h2>'+txt_date+'</h2>' +
-                                    '<p>'+txt_time+'</p>' +
+                                    '<p>'+ txt_time +'</p>' +
                                   '</div>' +
                                   '<div class="inIcon">' +
                                     '<img src="/clientapp/images/coinRight2.png">' +
