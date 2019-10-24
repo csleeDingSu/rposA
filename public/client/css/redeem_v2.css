@@ -1751,61 +1751,72 @@ textarea {
 .box-i {
 	width: 100%;
 	background-color: #ff1847;
-	padding: 0 0.6rem;
+	padding: 0 0.4rem;
 }
 
 .i-play, .i-withdraw, .i-redeem {
 	float: left;
-	width: 33%;
+	width: auto;
 	color: #ffe1e7;
 	font-size: 0.24rem;
-	padding: 0.125rem 0 0 0.45rem;
-	height: 0.6rem;
+	padding: 0.02rem 0 0 0.45rem;
+	height: 0.4rem;
 }
 
 .i-play {
 	background: url(/clientapp/images/redeem/i-red-pack.png) no-repeat;
     background-size: contain;    
+    height: 0.35rem;
 }
 
 .i-withdraw{
 	background: url(/clientapp/images/redeem/i-alipay.png) no-repeat;
     background-size: contain;
+    height: 0.35rem;
+        margin-left: 0.5rem;
+
 }
 
 .i-redeem {
 	background: url(/clientapp/images/redeem/i-star.png) no-repeat;
     background-size: contain;
+    height: 0.35rem;
+    float: left;
+        margin-left: 0.5rem;
+
+
 }
 
 .box-summary {
 	background-color: #ff1847;
-	padding: 0.2rem 0.5rem;
+	padding: 0.2rem 0.2rem;
+    border: 1px solid #ff1847;
 }
 
 .box-summary .bg {
 	background: url(/clientapp/images/redeem/box-summary-bg.png) no-repeat;
-    background-size: contain;
-        height: 1.46rem;
+    background-size: cover;
+        height: 1.57rem;
     
 }
 
 .box-summary .bg img {
 	position: relative;
     float: left;
-    height: 1.5rem;
-    padding: 0.2rem;
+    height: 1.6rem;
+    padding: 0.3rem 0.2rem 0.3rem 0.4rem;
 }
 
 .box-summary .bg .wabao-coin {
 	font-size: 0.68rem;
 	color: #ff1d41;
+	font-weight: 550;
 }
 
 .box-summary .bg .line1 {
 	color: #ff1d41;
-	font-size: 0.34rem;
-    padding: 0.1rem 0.1rem;
+    font-size: 0.36rem;
+    padding: 0.15rem 0.1rem;
 
 }
 
@@ -1815,9 +1826,8 @@ textarea {
 
 .box-summary .bg .line2 {
 	color: #8b7579;
-	font-size: 0.22rem;
-
-    margin: -0.3rem 0 0 0;
+    font-size: 0.24rem;
+    margin: -0.4rem 0 0 0;
     padding: 0.1rem;
 }
 

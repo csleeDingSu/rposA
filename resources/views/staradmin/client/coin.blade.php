@@ -59,11 +59,11 @@
         <p>选择转卖挖宝币</p>
       </li>
       <li>
-        <img src="{{ asset('/clientapp/images/coinIcon1.png') }}">
+        <img src="{{ asset('/clientapp/images/coinIcon2.png') }}">
         <p>提交收款码和吱口令</p>
       </li>
       <li>
-        <img src="{{ asset('/clientapp/images/coinIcon1.png') }}">
+        <img src="{{ asset('/clientapp/images/coinIcon3.png') }}">
         <p>转卖收益</p>
       </li>
     </ul>
