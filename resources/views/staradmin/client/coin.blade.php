@@ -306,7 +306,7 @@
         document.getElementById('loading2').style.visibility="visible";
 
         $.ajax({
-              type: 'GET',
+              type: 'POST',
               url: "/api/resell-request",
               data: { 'memberid': memberid, 'barcode': gUpload, 'passcode': sendData.copyTxt, 'point': sendData.vCoin, 'amount' : sendData.vCash },
               dataType: "json",
