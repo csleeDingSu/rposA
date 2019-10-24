@@ -290,7 +290,7 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 
 	Route::any( '/coin', 'MainController@coin' )->name( 'client.coin' );
 	Route::any( '/coin/list', 'MainController@coinList' )->name( 'client.coin.list' );
-	Route::any( '/coin/list/detail', 'MainController@coinDetail' )->name( 'client.coin.detail' );
+	Route::any( '/coin/list/detail/{id?}', 'MainController@coinDetail' )->name( 'client.coin.detail' );
 	Route::any( '/coin/ready', 'MainController@coinReady' )->name( 'client.coin.ready' );
 	Route::any( '/coin/payIng', 'MainController@coinPayIng' )->name( 'client.coin.payIng' );
 	Route::any( '/coin/payOver', 'MainController@coinPayOver' )->name( 'client.coin.payOver' );

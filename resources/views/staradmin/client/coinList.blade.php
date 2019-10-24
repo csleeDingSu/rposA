@@ -92,26 +92,23 @@
                         txt_point = item.point;
                         txt_when = item.updated_at;
                         txt_amount = item.amount;
+                        _url = '/coin/detail/' + item.id;
 
                         if (item.status_id == 1) {
                           txt_status = '正在匹配买家';  
-                          _url = '/coin/ready';
                           _cls = 'payReady';
                           _fontcolor = '#6ac2ff';                        
                         } else if (item.status_id == 2) {
                           txt_status = '已匹配到买家 ' + item.buyer;
-                          _url = '/coin/payIng';
                           _cls = 'payIng';
                           _fontcolor = '#ffa200';
                         } else if (item.status_id == 3) {
                           txt_status = '买家付款完成';
-                          _url = '/coin/payOver';
                           _cls = 'payOver';
                           _fontcolor = '#51c000';
                         } else if (item.status_id == 4) {
                           txt_status = '发布失败';
                           txt_reason = item.reason;
-                          _url = '/coin/fai';
                           _cls = 'payFail';
                           _fontcolor = '#ff8282';
                         }

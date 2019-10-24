@@ -44,6 +44,7 @@
 <input id="hidSession" type="hidden" value="{{!empty(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 <input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['102']->point) ? $wallet['gameledger']['102']->point : 0}}" />
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
+<input id="hidReSellId" type="hidden" value="{{!empty($resell_id) ? $resell_id : 0}}" />
 <div class="loading2" id="loading2"></div>
 
 <dl class="coinDetail">
@@ -204,6 +205,7 @@
       function getToken(){
         var session = $('#hidSession').val();
         var id = $('#hidMemberId').val();
+        var resell_id = $('#hidReSellId').val();
         //login user
         if (id > 0) {
             
@@ -213,7 +215,7 @@
                 // console.log(data);
                 if(data.success) {
                     token = data.access_token;
-                    getReSellDetail(1);
+                    getReSellDetail(resell_id);
                 }
             });
         }
