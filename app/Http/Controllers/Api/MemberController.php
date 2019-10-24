@@ -27,6 +27,23 @@ class MemberController extends Controller
 		$ref_cre = \DB::table('ref_credit_type')->select('name','value','type')->get();
 		return response()->json(['success' => true,'records'=>$result,'credit_type_ref'=>$ref_cre]); 
 	}
+
+	public function get_summary_new(Request $request)
+    {
+		if ($request->type == 'vip')
+		{
+			$request->type = 'buyproduct';
+		}
+		else
+		{
+			$request->type = 'basicpackage';
+		}
+		$result  = \App\History::get_summary_new($request->memberid,$request->type);
+		$ref_cre = \DB::table('ref_credit_type')->select('name','value','type')->get();
+		return response()->json(['success' => true,'records'=>$result,'credit_type_ref'=>$ref_cre]); 
+	}
+
+
 	public function update_profile()
     {
 		return response()->json(['success' => true]); 
