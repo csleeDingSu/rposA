@@ -328,6 +328,26 @@ class MainController extends BaseController
 		
 	}
 
+	public function rechargeType(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		$data['content'] = json_decode($request->input('hidTypeContent'));
+		$data['coin'] = $request->input('hidSelectedCoin');
+		$data['cash'] = $request->input('hidSelectedCash');
+		$type = !empty($data['content']->type) ? $data['content']->type : '';
+
+		if ($type == 'companyaccount') {
+			return view('client/rechargeCard', $data);	
+		}else{
+			return view('client/rechargeAlipay', $data);	
+		}
+		
+	}
+
 	public function rechargeList(Request $request)
 	{
 		$this->vp = new VIPApp();

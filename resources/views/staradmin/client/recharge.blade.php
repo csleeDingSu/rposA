@@ -56,7 +56,10 @@
 <div class="loading2" id="loading2"></div>
 
 <div class="hrf3"></div>
-
+<form method="post" action="/recharge/type" id='recharge_type'>
+  <input id="hidSelectedCoin" name="hidSelectedCoin" type="hidden" value="0" />
+  <input id="hidSelectedCash" name="hidSelectedCash" type="hidden" value="0" />
+  <input id="hidTypeContent" name="hidTypeContent" type="hidden" value="0" />
         <div class="coinBox">
           <div class="inTitle">
             <h2>选择数量</h2>
@@ -96,7 +99,7 @@
 
 
         </div>
-<!-- </div> -->
+</form>
 @endsection
 
 @section('footer-javascript')      
@@ -142,11 +145,17 @@
                   console.log(data);
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
+                    $('#hidSelectedCoin').val(vCoin);
+                    $('#hidSelectedCash').val(vCash);
+                    $('#hidTypeContent').val(JSON.stringify(data));
+                    // console.log(data.type);
                     //go alipay       
-                    // window.location.href = '/recharge/rechargeAlipay';               
+                    // window.location.href = '/recharge/rechargeAlipay'; 
+                    $( "#recharge_type" ).submit();              
                   } else {
                     //go bank card
                     // window.location.href = '/recharge/rechargeCard';
+                    alert('提交失败，重新刷新试试');
                   }
               }
           });

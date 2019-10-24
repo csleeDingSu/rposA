@@ -302,6 +302,7 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/copyTxt');
 	} );
 	Route::any( '/recharge', 'MainController@recharge' )->name( 'client.recharge' );
+	Route::any( '/recharge/type', 'MainController@rechargeType' )->name( 'client.recharge.type' );
 	Route::any( '/recharge/list', 'MainController@rechargeList' )->name( 'client.rechargeList' );
 	Route::any( '/recharge/rechargeAlipay', 'MainController@rechargeAlipay' )->name( 'client.rechargeAlipay' );
 	Route::any( '/recharge/rechargeCard', 'MainController@rechargeCard' )->name( 'client.rechargeCard' );	
