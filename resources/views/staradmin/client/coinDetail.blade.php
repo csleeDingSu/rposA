@@ -48,90 +48,7 @@
 <div class="loading2" id="loading2"></div>
 
 <dl class="coinDetail">
-          <dd>
-            <div class="inTtimeBox">
-              <h2>08-22</h2>
-              <p>15:30</p>
-            </div>
-            <div class="inIcon">
-              <img src="{{ asset('/clientapp/images/coinRight2.png') }}">
-            </div>
-            <div class="inDetail">
-              <h2><font color="#51c000">买家付款完成</font></h2>
-              <p>买家已完成付款，请核实收款金额<font color="#ff6b6b">￥198</font>
-              </p>
-            </div>
-          </dd>
-          <dd>
-            <div class="inTtimeBox">
-              <h2>08-22</h2>
-              <p>15:30</p>
-            </div>
-            <div class="inIcon">
-              <img src="{{ asset('/clientapp/images/coinUser2.png') }}">
-            </div>
-            <div class="inDetail">
-              <h2>已匹配到买家<font color="#609cff">135****8888</font>
-              </h2>
-              <p>已匹配到买家，等待买家充值</p>
-            </div>
-          </dd>
-          <dd>
-            <div class="inTtimeBox">
-              <h2>08-22</h2>
-              <p>15:30</p>
-            </div>
-            <div class="inIcon">
-              <img src="{{ asset('/clientapp/images/coinClose2.png') }}">
-            </div>
-            <div class="inDetail">
-              <h2>
-                <font color="#fe8686">买家付款失败</font>
-              </h2>
-              <p>已匹配到买家，等待买家充值</p>
-            </div>
-          </dd>
-          <dd>
-            <div class="inTtimeBox">
-              <h2>08-22</h2>
-              <p>15:30</p>
-            </div>
-            <div class="inIcon">
-              <img src="{{ asset('/clientapp/images/coinUser2.png') }}">
-            </div>
-            <div class="inDetail">
-              <h2>已匹配到买家<font color="#609cff">135****8888</font>
-              </h2>
-              <p>已匹配到买家，等待买家充值</p>
-            </div>
-          </dd>
-          <dd>
-              <div class="inTtimeBox">
-                <h2>08-22</h2>
-                <p>15:30</p>
-              </div>
-              <div class="inIcon">
-                <img src="{{ asset('/clientapp/images/coinUserT2.png') }}">
-              </div>
-              <div class="inDetail">
-                <h2>正在匹配买家</h2>
-                <p>订单正在转卖中，等待匹配买家</p>
-              </div>
-            </dd>
-            <dd>
-                <div class="inTtimeBox">
-                  <h2>08-22</h2>
-                  <p>15:30</p>
-                </div>
-                <div class="inIcon">
-                  <img src="{{ asset('/clientapp/images/coinRight2.png') }}">
-                </div>
-                <div class="inDetail">
-                  <h2>订单已提交</h2>
-                  <p>转卖订单已提交，正在处理中</p>
-                </div>
-              </dd>
-        </dl>
+</dl>
 
 @endsection
 
@@ -165,27 +82,62 @@
                   console.log(data);
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
-                      $.each(data, function(i, item) {
+                      $.each(data.result.data, function(i, item) {
                         var txt_date = '08-22';
                         var txt_time = '15:30';
-                        var txt_status = '买家付款完成';
-                        var txt_point = '';
-                        var txt_amount = '买家已完成付款，请核实收款金额<font color="#ff6b6b">￥198</font>';
-                        var txt_reason = '失败原因：提交收款码金额与出售金币金额不一致！';
+                        var txt_status = '';
+                        var txt_dec = '';
+                        var txt_img = '';
 
-                        html += '<div class="inTtimeBox">' +
-                                  '<h2>08-22</h2>' +
-                                  '<p>15:30</p>' +
-                                '</div>' +
-                                '<div class="inIcon">' +
-                                  '<img src="/clientapp/images/coinRight2.png">' +
-                                '</div>' +
-                                '<div class="inDetail">' +
-                                  '<h2><font color="#51c000">买家付款完成</font></h2>' +
-                                  '<p>买家已完成付款，请核实收款金额<font color="#ff6b6b">￥198</font>' +
-                                  '</p>' +
-                                '</div>';
-                              });
+                        if (item.status_id == 1) {
+                          txt_status = '正在匹配买家'; 
+                          txt_dec = '订单正在转卖中，等待匹配买家'; 
+                          txt_img = '/clientapp/images/coinUserT2.png';  
+                        } else if (item.status_id == 2) {
+                          txt_status = '已匹配到买家 <font color="#609cff">135****8888</font>'; 
+                          txt_dec = '已匹配到买家，等待买家充值'; 
+                          txt_img = '/clientapp/images/coinUser2.png'; 
+                        } else if (item.status_id == 3) {
+                          txt_status = '<font color="#fe8686">买家付款失败</font>'; 
+                          txt_dec = '已匹配到买家，等待买家充值'; 
+                          txt_img = '/clientapp/images/coinClose2.png'; 
+                        } else if (item.status_id == 4) {
+                          txt_status = '已匹配到买家<font color="#609cff">135****8888</font>'; 
+                          txt_dec = '买家已完成付款，请核实收款金额<font color="#ff6b6b">￥'+item.amount+'</font>'; 
+                          txt_img = '/clientapp/images/coinRight2.png'; 
+                        }
+
+                        html += '<dd>' +
+                                  '<div class="inTtimeBox">' +
+                                    '<h2>'+txt_date+'</h2>' +
+                                    '<p>'+txt_time+'</p>' +
+                                  '</div>' +
+                                  '<div class="inIcon">' +
+                                    '<img src="'+txt_img+'">' +
+                                  '</div>' +
+                                  '<div class="inDetail">' +
+                                    '<h2>'+txt_status+'</h2>' +
+                                    '<p>'+txt_dec+'</p>' +
+                                  '</div>' +
+                                '</dd>';
+
+                        if (item.status_id == 1) {
+                          html += '<dd>' +
+                                  '<div class="inTtimeBox">' +
+                                    '<h2>'+txt_date+'</h2>' +
+                                    '<p>'+txt_time+'</p>' +
+                                  '</div>' +
+                                  '<div class="inIcon">' +
+                                    '<img src="/clientapp/images/coinRight2.png">' +
+                                  '</div>' +
+                                  '<div class="inDetail">' +
+                                    '<h2>订单已提交</h2>' +
+                                    '<p>转卖订单已提交，正在处理中</p>' +
+                                  '</div>' +
+                                '</dd>';
+                        }
+                        
+                      });
 
                       if ((html == '') && ($('.coinDetail').html() == '') ) {
                         html =  '<div class="no-record">' +
