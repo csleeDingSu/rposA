@@ -26,7 +26,7 @@
           line-height:0;*/
           height: 0;
           /*overflow: hidden;*/
-          /*visibility: hidden;*/
+          visibility: hidden;
         }
          
     </style> 
