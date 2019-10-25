@@ -120,23 +120,6 @@
               $('.scrolly').addClass('aliPayPage fix');
               getToken();
 
-              // // Copy passcode
-              //   var clipboard_passcode = new ClipboardJS('#copyBtn', {
-              //       target: function () {
-              //           return document.querySelector('#passcode');
-              //       }
-              //   });
-
-              //   clipboard_passcode.on('success', function (e) {
-              //     alert('dasd');
-              //     console.log('copy success');
-              //   });
-
-              //   clipboard_passcode.on('error', function (e) {
-              //     alert('ccc');
-              //      console.log('copy fail');
-              //   });
-
             });
 
             $(function () {
@@ -161,6 +144,7 @@
 
               $('.inClostBtn').click(function(){
                 being.hideMsg('.coinShade');
+                window.location.href = "/recharge/list";
               });
             });
 
