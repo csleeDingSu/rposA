@@ -75,7 +75,7 @@ class CreditController extends BaseController
     {
     	$updatehistory = '';	
 		$ledger        = '';
-
+		$reason = '';
 
     	$validator = $this->validate(
             $request,

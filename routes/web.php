@@ -747,6 +747,8 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::any( 'creditresell/list', 'CreditController@listdata' )->name( 'creditlist' );
 	Route::post( 'creditresell/update', 'CreditController@update_resell' )->name( 'update_resell' );
 	Route::get( 'creditresell/show', 'CreditController@show' )->name( 'render_resell_edit' );
+
+	
 	
 
 	
