@@ -69,8 +69,9 @@ class CreditController extends Controller
 
     public function get_buyer(Request $request)
     {
-    	$type    = '';
-    	$record  = \App\CreditResell::with('status','member')->where('is_locked', null)->where('status_id', 1)->where('point', $request->point)->oldest()->first();
+    	$type        = '';
+    	$companydata = '';
+    	$record      = \App\CreditResell::with('status','member')->where('is_locked', null)->where('status_id', 1)->where('point', $request->point)->oldest()->first();
     	if ($record)
     	{
     		$record->is_locked   = 1;
@@ -81,10 +82,29 @@ class CreditController extends Controller
     	if (!$record)
     	{
     		//use default data
-    		$record = \App\CompanyBank::first();
-    		$type   = 'companyaccount';
+    		$companydata = \App\CompanyBank::with('member')->first();
+    		$type        = 'companyaccount';
+
+    		//reserve point
+			$record 		     = new \App\CreditResell();
+			$record->member_id   = $companydata->member->id;
+			$record->point       = $request->point;
+			$record->amount      = 0;
+			$record->status_id   = 1;
+			$record->is_locked   = 1;
+    		$record->locked_time = now();			
+    		$record->type        = 1;			
+			$record->save();
+			//add history
+			$history             = new \App\ResellHistory();
+			$history->cid        = $record->id;
+			$history->status_id  = 1;
+			$history->point      = $request->point;
+			$history->save();
+
+
     	}
-    	return response()->json(['success' => true, 'record'=>$record, 'type'=>$type]);
+    	return response()->json(['success' => true, 'record'=>$record,'company'=>$companydata, 'type'=>$type]);
     }
 
     public function make_resell_success(Request $request)

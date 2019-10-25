@@ -23,7 +23,10 @@ class CompanyBank extends Model
         return with(new static)->getTable();
     }
 	
-	 
+	public function member()
+    {
+        return $this->belongsTo(\App\Member::class, 'member_id', 'id');
+    }
 	
 	
 }
