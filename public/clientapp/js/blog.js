@@ -34,11 +34,12 @@ $(document).ready(function () {
         
         if ($(".btn-all").hasClass("on")) {
             
-            console.log('new page ' + page);
+            // console.log('new page ' + page);
             var current_page = parseInt($('#hidPg').val());
             console.log('current page ' + current_page);
             var next_page = parseInt($('#hidNextPg').val());
             console.log('next page ' + next_page);
+            page = ($('#hidNextPg').val() == '') ? 1 : $('#hidNextPg').val();
 
             // if(page == next_page) {
                 getBlogList(page);                
@@ -47,12 +48,13 @@ $(document).ready(function () {
             // }
       
         } else {
-            pageMy++;
-            console.log('new page ' + pageMy);
+            // pageMy++;
+            // console.log('new page ' + pageMy);
             var current_page = parseInt($('#hidPgMy').val());
             console.log('current page ' + current_page);
             var next_page = parseInt($('#hidNextPgMy').val());
             console.log('next page ' + next_page);
+            pageMy = ($('#hidNextPgMy').val() == '') ? 1 : $('#hidNextPgMy').val();
 
             // if(pageMy == next_page) {
                 getBlogList(pageMy);                
@@ -240,6 +242,7 @@ function getBlogMyList(pageMy) {
           
             $('#hidPgMy').val(pageMy);
             $('#hidNextPgMy').val(pageMy + 1);
+            pageMy++;
             // document.getElementById('loading2').style.visibility="hidden";
 
         }
