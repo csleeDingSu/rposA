@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new-vip.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css?version=1.0.0') }}" />
 	<link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}">
 
     <style>
@@ -1011,5 +1011,5 @@
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<script src="{{ asset('/client/js/vip-node.js?version=1.0.0') }}"></script>
+	<script src="{{ asset('/client/js/vip-node.js?version=1.0.1') }}"></script>
 @endsection
