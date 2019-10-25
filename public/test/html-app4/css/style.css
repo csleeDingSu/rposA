@@ -2440,9 +2440,13 @@ transform: translate(-50%, -50%);
 }
 .payCardPage .payMoney h2{background: #ff696f; font-size: .28rem;color: #fff; line-height: .68rem; text-align: center;}
 .payCardPage .payMoney h3{font-size: .3rem;color:#999; line-height: .64rem; padding-top: .28rem; text-align: center;}
-.payCardPage .payMoney p{ text-align: center; line-height: .8rem; height: .8rem; font-size: 0; padding-bottom: .3rem; color:#ff696f;}
-.payCardPage .payMoney p i{font-size: .35rem; vertical-align: text-bottom; display: inline-block; }
-.payCardPage .payMoney p span{font-size: .64rem; vertical-align: top;}
+.payCardPage .payMoney p{ height: .8rem; 
+  display: flex;-moz-display: flex;-webkit-display: flex;
+  justify-content: center;-webkit-justify-content: center;-moz-justify-content: center;
+  align-items: center;-wekit-align-items: center;-moz-align-items: center;
+   padding-bottom: .3rem; color:#ff696f;}
+.payCardPage .payMoney p i{font-size: .35rem; }
+.payCardPage .payMoney p span{font-size: .64rem; }
 .payCardPage .payCard{background: #fff; margin-top: .18rem;}
 .payCardPage .payCard li{border-bottom: .012rem solid #f3f3f3;
   display: flex;display: -webkit-flex;display: -moz-flex;
@@ -2527,11 +2531,14 @@ transform: translate(-50%, -50%);
   text-align: center;font-size: .3rem;color: #999; line-height: .52rem; padding-top: .45rem;
 }
 .aliPayPage .aliPayBox .money{
-  text-align: center;font-size: 0;line-height: 1rem;margin-bottom: .05rem;color: #ff696f;
+  text-align: center;font-size: 0;margin-bottom: .05rem;color: #ff696f;
   height: 1rem;
+  display: flex; display: -webkit-flex;display: -moz-flex;
+  justify-content: center;-moz-justify-content: center;-webkit-justify-content: center;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
 }
-.aliPayPage .aliPayBox .money i{font-size: .35rem; vertical-align: text-bottom; display: inline-block; }
-.aliPayPage .aliPayBox .money span{font-size: .64rem; vertical-align: top;}
+.aliPayPage .aliPayBox .money i{font-size: .35rem;  }
+.aliPayPage .aliPayBox .money span{font-size: .64rem; ;}
 .aliPayPage .aliPayBox .copyBtn{ display: block;
 margin: 0 2.05rem;font-size: .32rem;color: #fff;line-height: .68rem; text-align: center; border-radius: .68rem;
 background: -webkit-linear-gradient(left, #ffa2a6, #ff6d73);
