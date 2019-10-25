@@ -97,7 +97,7 @@ class CreditController extends Controller
 			$record->save();
 			//add history
 			$history             = new \App\ResellHistory();
-			$history->cid        = $resell->id;
+			$history->cid        = $record->id;
 			$history->status_id  = 1;
 			$history->point      = $request->point;
 			$history->save();
