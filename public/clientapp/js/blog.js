@@ -1,5 +1,6 @@
 var page=1;
 var pageMy=1;
+var bScroll = false;
 
 $('#hidPg').val(page);
 $('#hidPgMy').val(pageMy);
@@ -33,7 +34,6 @@ $(document).ready(function () {
         
         if ($(".btn-all").hasClass("on")) {
             
-            page++;
             console.log('new page ' + page);
             var current_page = parseInt($('#hidPg').val());
             console.log('current page ' + current_page);
@@ -73,6 +73,13 @@ function getBlogList(page) {
         document.getElementById('loading2').style.visibility="visible";
     }
 
+    if (bScroll) { //is searching in progress
+      console.log('previous search job in progress');
+      return false;
+    }
+
+    bScroll = true;
+
     $.ajax({
         type: 'GET',
         url: "/blog/list-all?page=" + page, 
@@ -80,9 +87,10 @@ function getBlogList(page) {
         error: function (error) { 
             console.log(error);
             document.getElementById('loading2').style.visibility="hidden";
+            bScroll = false;
         },
         success: function(data) {
-            
+            bScroll = false;
             // console.log(data);
             var records = data.records.data;
             var html = '';
@@ -143,6 +151,7 @@ function getBlogList(page) {
                
             $('#hidPg').val(page);
             $('#hidNextPg').val(page + 1);
+            page++;
             document.getElementById('loading2').style.visibility="hidden";
         }
     }); // end $.ajax
@@ -157,15 +166,23 @@ function getBlogMyList(pageMy) {
     //     document.getElementById('loading2').style.visibility="visible";
     // } 
 
+    if (bScroll) { //is searching in progress
+      console.log('previous search job in progress');
+      return false;
+    }
+
+    bScroll = true;
+
     $.ajax({
         type: 'GET',
         url: "/blog/list-my?page=" + pageMy + "&memberid=" + $('#hidMemberId').val(), 
         dataType: "json",
         error: function (error) { console.log(error);
           // document.getElementById('loading2').style.visibility="hidden";
+          bScroll = true;
         },
         success: function(data) {
-          
+          bScroll = true;
             // console.log(data);
             var records = data.records.data;
             var html = '';
