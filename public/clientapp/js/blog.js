@@ -40,11 +40,11 @@ $(document).ready(function () {
             var next_page = parseInt($('#hidNextPg').val());
             console.log('next page ' + next_page);
 
-            if(page == next_page) {
+            // if(page == next_page) {
                 getBlogList(page);                
-            } else {
-                console.log('no page ' + page);
-            }
+            // } else {
+                // console.log('no page ' + page);
+            // }
       
         } else {
             pageMy++;
@@ -54,11 +54,11 @@ $(document).ready(function () {
             var next_page = parseInt($('#hidNextPgMy').val());
             console.log('next page ' + next_page);
 
-            if(pageMy == next_page) {
+            // if(pageMy == next_page) {
                 getBlogList(pageMy);                
-            } else {
-                console.log('no page ' + pageMy);
-            }
+            // } else {
+                // console.log('no page ' + pageMy);
+            // }
         }       
 
     });
