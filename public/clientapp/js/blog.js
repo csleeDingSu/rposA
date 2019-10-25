@@ -152,7 +152,7 @@ function getBlogList(page) {
             } 
                
             $('#hidPg').val(page);
-            $('#hidNextPg').val(page + 1);
+            $('#hidNextPg').val(Number(page) + 1);
             page++;
             document.getElementById('loading2').style.visibility="hidden";
         }
@@ -241,7 +241,7 @@ function getBlogMyList(pageMy) {
             }
           
             $('#hidPgMy').val(pageMy);
-            $('#hidNextPgMy').val(pageMy + 1);
+            $('#hidNextPgMy').val(Number(pageMy) + 1);
             pageMy++;
             // document.getElementById('loading2').style.visibility="hidden";
 
