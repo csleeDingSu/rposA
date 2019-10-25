@@ -1,6 +1,7 @@
 var page=1;
 var pageMy=1;
 var bScroll = false;
+var bScrollMy = false;
 
 $('#hidPg').val(page);
 $('#hidPgMy').val(pageMy);
@@ -168,12 +169,12 @@ function getBlogMyList(pageMy) {
     //     document.getElementById('loading2').style.visibility="visible";
     // } 
 
-    if (bScroll) { //is searching in progress
+    if (bScrollMy) { //is searching in progress
       console.log('previous search job in progress');
       return false;
     }
 
-    bScroll = true;
+    bScrollMy = true;
 
     $.ajax({
         type: 'GET',
@@ -181,10 +182,10 @@ function getBlogMyList(pageMy) {
         dataType: "json",
         error: function (error) { console.log(error);
           // document.getElementById('loading2').style.visibility="hidden";
-          bScroll = true;
+          bScrollMy = false;
         },
         success: function(data) {
-          bScroll = true;
+          bScrollMy = false;
             // console.log(data);
             var records = data.records.data;
             var html = '';
