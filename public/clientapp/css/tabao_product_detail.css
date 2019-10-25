@@ -441,19 +441,28 @@
 	    line-height: 0.3rem;
 	}
 
+	.line-reward .reward-hong {
+		display: inline-block;
+    	margin-left: 0.05rem;
+	}
+
+	.line-reward .reward-hong img {
+		display: inline-block;
+	    position: absolute;
+	    margin-left: -0.08rem;
+	    margin-top: 0.12rem;
+	}
+
 	.line-reward .reward{
 		display: inline-block;
-    width: auto;
-    color: red;
-    font-size: 3.5vw;
-    margin: 0 auto;
-    background-image: url(/clientapp/images/product/reward-bg.png);
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 0.06rem 0.16rem 0.06rem 0.2rem;
-    text-align: center;
-    /* line-height: 0.45rem; */
+	    width: auto;
+	    color: #fff;
+	    font-size: 3.5vw;
+	    margin: 0 auto;
+	    background-color: #ff6d88;
+	    padding: 0.06rem 0.1rem;
+	    text-align: center;
+	    border-radius: 0.05rem;
 	}
 
 	.line-reward .btn-reward {
@@ -704,3 +713,4 @@
     width: 90%;
     height: 1rem;
 }
+

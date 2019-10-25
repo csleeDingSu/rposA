@@ -791,19 +791,19 @@
 				<div class="modal-row">
 					<div class="wrapper modal-full-height">
 						<div class="modal-card">
-							<img class="btn-close" src="{{ asset('/clientapp/images/vip-node/icon-close.png') }}" />
 							<div class="instruction">
 								<ul class="star">
 									<li>
-										高级抽奖和普通抽奖类似，不同的是高级抽奖需投入挖宝币才能抽奖，<span class="highlight">无需邀请好友，无限抽无上限，挖宝币可兑换奖品。</span>
+										解锁需680挖宝币（68元），<span class="highlight">通过补贴抽奖兑换或微店购买。</span>
 										<br>
 									</li>
 									<li>
-										解锁高级抽奖需要<span class="highlight">680挖宝币</span>，通过<span class="highlight">普通抽奖可兑换或微店购买。</span>
+										高级抽奖可无限抽，不设抽奖上限，<span class="highlight">挖宝币可兑换高价值奖品。</span>
 										<br>
 									</li>
 									<li>
-										新用户请认真查看新用户必读，掌握方法才避免损失。
+										高级抽奖需消耗挖宝币，请查阅抽奖攻略，避免不必要损失。</span>
+										<br>
 									</li>
 								</ul>
 							</div>
@@ -812,12 +812,13 @@
 							</div>
 							<div class="btn-go-redeem">
 								兑换挖宝币
-							</div>												
+							</div>
 						</div>
 					</div>
 				</div>							
 			</div>
 		</div>	
+		<img class="btn-close" src="{{ asset('/clientapp/images/vip-node/icon-close.png') }}" />							
 	</div>
 </div>
 <!-- insufficient point modal Ends -->
