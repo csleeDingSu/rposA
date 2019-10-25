@@ -91,9 +91,16 @@ class CreditController extends BaseController
 		{
 			return response()->json(['success' => false,'errors'=> ['status'=>['already completed'] ] ]);	
 		}
-		if ($record->status_id == 5)
+		else if ($record->status_id == 5)
 		{
 			return response()->json(['success' => false,'errors'=> ['status'=>['already rejected'] ] ]);	
+		}
+		else if ($record->status_id == 6)
+		{
+			if(!in_array($request->status_id, [1,4,5]))
+			{
+				return response()->json(['success' => false,'errors'=> ['status_id'=>['you cant use this option'] ] ],422);	
+			}					
 		}
 
 		$member  = \App\Member::where('phone', $request->buyer_id )->first();
@@ -102,7 +109,20 @@ class CreditController extends BaseController
         switch($request->status_id)
         {
         	case '1':
-        	//no update
+        		//update only in unknow 
+	        	if ($record->status_id == 6)
+				{
+					$record->buyer_id    = null; 
+					$record->is_locked   = null; 
+					$record->locked_time = null;
+					$record->buyer_id    = null; 
+					$record->reason      = null; 
+					$record->barcode     = null; 
+        			$record->status_id   = 1;
+        			$reson               = 'admin reset to active';
+        			$record->save();
+        			$updatehistory = 'yes';		
+				}
         	break;
         	case '2':
         		//update
@@ -153,6 +173,9 @@ class CreditController extends BaseController
 
         		$updatehistory = 'yes';		
         	break;
+        	case '6':
+        		return response()->json(['success' => false,'errors'=> ['status_id'=>['you cant use this option'] ] ],422);	
+        	break;
         }
 
 
@@ -164,6 +187,8 @@ class CreditController extends BaseController
 			$history->status_id = $request->status_id;
 			$history->amount    = $record->amount;
 			$history->point     = $record->point;
+			$history->member_id = $member->id;
+			$history->reason    = $reason;
 
 			if ($ledger)
 			{
