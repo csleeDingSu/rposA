@@ -611,22 +611,26 @@
     height: 70%;
 }
 
+#modal-how-to-unlock .modal-dialog {
+    margin-top: -1rem;
+}
+
 #modal-how-to-unlock .modal-content {
   background: url(/clientapp/images/vip-node/banner-how-to-unlock.png) no-repeat;
     background-size: cover;
-    color: white;
-    text-align: center;
-    position: relative;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
+    background-color: transparent;
+    border: 1px solid transparent;
     box-shadow: none;
-    border: none;
-    padding: 10px;
-    margin: 0;
+    outline: none;
+    width: 6.35rem;
+    height: auto;
+    padding: 1rem 0.25rem 0 0.25rem;
+    position: relative;
+    margin: 0.1rem 0;
 }
 
 #modal-how-to-unlock .modal-body {
-    padding:0.2rem;
+    /*padding:0.2rem;*/
 }
 #modal-how-to-unlock .modal-full-height {
     padding-bottom: 0 !important;
@@ -640,9 +644,9 @@
     color: #888;
     font-size: 14px;
     text-align: left;
-    margin: 78px auto 5px auto;
+    margin: 55px auto 5px auto;
     line-height: 23px;
-    padding: 10px 0 0 0;
+    /*padding: 10px 0 0 0;*/
 }
 
 #modal-how-to-unlock .instruction .highlight {
@@ -652,34 +656,34 @@
 #modal-how-to-unlock .btn-go-topup {
     cursor: pointer;
     font-size: 16px;
-    padding: 15px;
+    padding: 16px;
     color: #fff;
     background: url(/clientapp/images/vip-node/btn-top-up-bg.png) no-repeat;
     background-size: cover;
     text-align: center;
     position: relative;
     line-height: 25px;
-    width: 100%;
+    height: 65px;
 }
 
 #modal-how-to-unlock .btn-go-redeem {
     cursor: pointer;
     font-size: 16px;
-    padding: 15px;
+    padding: 16px;
     color: #fff;
     background: url('/clientapp/images/vip-node/btn-redeem-bg.png') no-repeat;
     background-size: cover;
     text-align: center;
     position: relative;
     line-height: 25px;
-    width: 100%;
+    height: 65px;
     
 }
 
 #modal-how-to-unlock .btn-close {
     /*position: fixed;*/
     width: 20%;
-    margin: 10px 100px;
+    margin: 10px 125px;
     /*padding: 15px;*/
 }
 

@@ -444,6 +444,7 @@
 	.line-reward .reward-hong {
 		display: inline-block;
     	margin-left: 0.05rem;
+    	position: relative;
 	}
 
 	.line-reward .reward-hong img {
