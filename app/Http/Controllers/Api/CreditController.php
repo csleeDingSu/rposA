@@ -81,7 +81,7 @@ class CreditController extends Controller
     	if (!$record)
     	{
     		//use default data
-    		$record = \App\CompanyBank::first();
+    		$record = \App\CompanyBank::with('member')->first();
     		$type   = 'companyaccount';
     	}
     	return response()->json(['success' => true, 'record'=>$record, 'type'=>$type]);
