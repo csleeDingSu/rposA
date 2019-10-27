@@ -630,6 +630,13 @@
 	</div>
 </div>
 
+<!-- new haven't login modal -->
+<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="cls-modal-no-login">您还未登录，正在跳转登录页面...</div>					
+	</div>
+</div>
+
 <div class="modal fade col-md-12" id="modal-insufficient-point-new" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -656,7 +663,7 @@
 <!-- insufficient point modal Ends -->
 
 <!-- haven't login start modal -->
-<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+<div class="modal fade col-md-12" id="modal-no-login-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="nologin-bg">
 			<div class="instructions"><span class="highlight">无限制抽奖</span> 任你抽到爽</div>

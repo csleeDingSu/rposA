@@ -62,15 +62,30 @@ $(function () {
         if (user_id <= 0) {
             if (is_app) {
                 $('.bet-box').click(function() {
-                    $('#modal-no-login').modal();                   
+                    $( '#modal-no-login' ).modal( 'show' );                
+                    setTimeout(function(){
+                        console.log('1111');
+                        // $( '#modal-no-login' ).modal( 'hide' );
+                        window.location.href = '/login';
+                    }, 3000);                
                 });
 
                 $('.btn-withdraw').click(function() {
-                    $('#modal-no-login').modal();
+                    $( '#modal-no-login' ).modal( 'show' );                
+                    setTimeout(function(){
+                        console.log('1111');
+                        // $( '#modal-no-login' ).modal( 'hide' );
+                        window.location.href = '/login';
+                    }, 3000);
                 });
 
                 $('.btn-life').click(function() {
-                    $('#modal-no-login').modal();
+                    $( '#modal-no-login' ).modal( 'show' );                
+                    setTimeout(function(){
+                        console.log('1111');
+                        // $( '#modal-no-login' ).modal( 'hide' );
+                        window.location.href = '/login';
+                    }, 3000);
                 });
             } else {
                 $('.btn-withdraw').click(function() {
@@ -803,7 +818,12 @@ function bindBetButton(){
         if(user_id == 0){
             // window.top.location.href = "/member";
             if (is_app) {
-                $('#modal-no-login').modal();
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
             } else {
                 $( '#login-intropopup' ).modal( 'show' );    
             }
@@ -1006,7 +1026,12 @@ function bindTriggerButton(){
                 $('#reset-life-share').modal();    
             } else {
                 if (is_app) {
-                    $('#modal-no-login').modal();                    
+                    $( '#modal-no-login' ).modal( 'show' );                
+                    setTimeout(function(){
+                        console.log('1111');
+                        // $( '#modal-no-login' ).modal( 'hide' );
+                        window.location.href = '/login';
+                    }, 3000);                 
                 }
             }
         }
@@ -1795,7 +1820,12 @@ function bindButton () {
             }
         } else {
             if (is_app) {
-                $('#modal-no-login').modal(); 
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
             }else{
                 openmodel();    
             }
@@ -1810,7 +1840,12 @@ function bindButton () {
         if ((user_id <= 0)) {
             console.log(user_id);
             if (is_app) {
-                $('#modal-no-login').modal(); 
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
             }else{
                 openmodel();    
             }            
@@ -1847,7 +1882,12 @@ function bindButton () {
         var user_id = $('#hidUserId').val();
         if ((user_id <= 0)) {
             if (is_app) {
-                $('#modal-no-login').modal(); 
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
             }else{
                 openmodel();    
             }            

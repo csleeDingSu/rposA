@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.0') }}" />
     <!-- <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
@@ -565,8 +565,15 @@
 
 @section('footer-javascript')
 
+<!-- new haven't login modal -->
+<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="cls-modal-no-login">您还未登录，正在跳转登录页面...</div>					
+	</div>
+</div>
+
 <!-- haven't login start modal -->
-	<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal fade col-md-12" id="modal-no-login-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<a href="/nlogin">
 				<div class="nologin-bg">

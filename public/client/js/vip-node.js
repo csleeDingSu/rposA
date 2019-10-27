@@ -514,10 +514,12 @@ function getProduct(){
 
             var user_id = $('#hidUserId').val();
             if(user_id == 0){
-                // window.top.location.href = "/member";
-                // $( '#login-intropopup' ).modal( 'show' );
-                // $( '#nonloginmodal' ).modal( 'show' );
-                $( '#modal-no-login' ).modal( 'show' );
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
                 return false;
             } else {
 
@@ -866,6 +868,11 @@ function bindBetButton(){
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
             $( '#modal-no-login' ).modal( 'show' );
+            setTimeout(function(){
+                console.log('1112');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
             return false;
         } else {
 
@@ -939,10 +946,12 @@ function bindBetButton(){
 
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
-            // window.top.location.href = "/member";
-            // $( '#login-intropopup' ).modal( 'show' );
-            // $( '#nonloginmodal' ).modal( 'show' );
             $( '#modal-no-login' ).modal( 'show' );
+            setTimeout(function(){
+                console.log('1113');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
             return false;
         }
 
@@ -984,8 +993,12 @@ function bindBetButton(){
             if (touchmoved) {
                 return false;
             }
-
-            $('#modal-no-login').modal('show');
+            setTimeout(function(){
+                $( '#modal-no-login' ).modal( 'show' );
+                console.log('1114');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
             return false;
         }).on('touchmove', function(e){
             touchmoved = true;
@@ -1178,6 +1191,11 @@ function bindTriggerButton(){
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
             $( '#modal-no-login' ).modal( 'show' );
+            setTimeout(function(){
+                console.log('1115');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
         }else {
 
             if (g_vip_point < 1) {
