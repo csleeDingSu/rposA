@@ -109,6 +109,9 @@ class CreditController extends BaseController
         switch($request->status_id)
         {
         	case '1':
+        		
+        	break;
+        	case '2':        		        		
         		//update only in unknow 
 	        	if ($record->status_id == 6)
 				{
@@ -123,14 +126,13 @@ class CreditController extends BaseController
         			$record->save();
         			$updatehistory = 'yes';		
 				}
-        	break;
-        	case '2':
-        		//update
-
-        		$record->buyer_id  = $member->id; 
-        		$record->status_id = $request->status_id;
-				$record->save();				
-        		$updatehistory = 'yes';	
+				else
+				{
+					$record->buyer_id  = $member->id; 
+	        		$record->status_id = $request->status_id;
+					$record->save();				
+	        		$updatehistory = 'yes';	
+				}
         	break;
         	case '3':
         		//update buyer data  
