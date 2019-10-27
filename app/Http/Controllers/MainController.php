@@ -47,7 +47,7 @@ class MainController extends BaseController
 			$member = Auth::guard('member')->user()->id	;
 			$data['member'] = Member::get_member($member);
 			$data['wallet'] = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
-			$data['buy'] = view_buy_product_user_list::select('*')->groupby('product_id','member_id','updated_at')->orderBy('updated_at', 'DESC')->skip(0)->take(1)->get();
+			// $data['buy'] = view_buy_product_user_list::select('*')->groupby('product_id','member_id','updated_at')->orderBy('updated_at', 'DESC')->skip(0)->take(1)->get();
 
 		} else {
 			$member = null;

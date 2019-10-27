@@ -47,18 +47,19 @@
             <a class="shop-right-menu" href="/redeem-vip-new"><img src="{{ asset('/clientapp/images/shop/icon-my-redeem.png') }}"></a>
         </div>
         <div class="shop-banner"></div>
-        <div class="shop-notification">
-          <div class="txt-ellipsis">
-            @if (!empty($buy))
-              @foreach($buy as $b)
-                <span class="highlight">{{ substr($b->phone,0,3) }}*****{{ substr($b->phone, -4) }} </span> 换购 {{$b->package_name}}
+        <!-- <div class="shop-notification"> -->
+          <!-- <div class="txt-ellipsis"> -->
+            {{-- @if (!empty($buy)) --}}
+              {{-- @foreach($buy as $b) --}}
+                <!-- <span class="highlight">{{-- substr($b->phone,0,3) --}}*****{{-- substr($b->phone, -4) --}} </span> 换购 {{-- $b->package_name --}} -->
               
-              @endforeach
-            @else
-              <span class="highlight">158*****2686</span> 换购 iPhone X 256G 深黑色全网通苹果智能手机
-            @endif
-          </div>
-        </div>
+              {{-- @endforeach --}}
+            {{-- @else --}}
+              <!-- <span class="highlight">158*****2686</span> 换购 iPhone X 256G 深黑色全网通苹果智能手机 -->
+            {{-- @endif --}}
+          <!-- </div> -->
+        <!-- </div> -->
+        <div class="quchouj2"></div>
     </div>
 
     <div class="redeem-prize-wrapper"></div>
@@ -173,6 +174,10 @@
                   $('.modal').modal('hide');
                   $('.modal-backdrop').remove();
               });
+
+            $('.quchouj2').click(function() {
+              window.location.href = '/vip';
+            });
         });
 
         function openModal(id) {

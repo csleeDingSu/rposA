@@ -2,7 +2,7 @@ var from = 0;
 var to = 1;
 $(function () {
     getProduct();
-    getHighlight();
+    // getHighlight();
 });
 
 function getProduct(){
