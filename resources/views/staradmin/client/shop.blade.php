@@ -4,7 +4,7 @@
 
 @section('top-css')
     @parent
-    <link rel="stylesheet" href="{{ asset('/clientapp/css/shop.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/shop.css?version=1.0.0') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/productv2.css') }}" />
     <style>
         /* Paste this css to your style sheet file or under head tag */
