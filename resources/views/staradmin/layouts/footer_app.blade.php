@@ -57,7 +57,7 @@
 <!-- <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/footer.css')}}" /> -->
 
     @if( Agent::is('OS X') ) 
-      <style>
+      <style>        
       .card-bar
         {
           margin-bottom: 0px !important;
@@ -82,6 +82,15 @@
               height: 1.28rem;
 
             }
+
+            @keyframes newbie {
+              from {
+                top: 82.8%;
+              }
+              to {
+                top: 83.8%;
+              }
+            }
           }
 
           /*iPhone 7/8*/ 
@@ -89,7 +98,14 @@
             and (device-width : 375px) 
             and (device-height : 667px) 
             and (-webkit-device-pixel-ratio : 2) {
-              /*do nothing*/
+              @keyframes newbie {
+                from {
+                  top: 81.5%;
+                }
+                to {
+                  top: 82.5%;
+                }
+              }
             }
 
           /*iPhone 6+/6s+/7+/8+*/
@@ -97,7 +113,14 @@
             and (device-width : 414px) 
             and (device-height : 736px) 
             and (-webkit-device-pixel-ratio : 3) {
-              /*do nothing*/
+              @keyframes newbie {
+                from {
+                  top: 81.5%;
+                }
+                to {
+                  top: 82.5%;
+                }
+              }
             }
 
       </style>

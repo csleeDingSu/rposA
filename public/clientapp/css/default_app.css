@@ -46,10 +46,10 @@ dt a.on h2, dt a:active h2 {
 }
 
 @keyframes newbie {
-  from {
-    top: 82.8%;
-  }
-  to {
-    top: 83.8%;
-  }
+    from {
+      top: 81%;
+    }
+    to {
+      top: 82%;
+    }
 }
