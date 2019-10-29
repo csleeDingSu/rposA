@@ -86,7 +86,7 @@
 
         $.ajax({
               type: 'GET',
-              url: "/api/resell-list",
+              url: "/api/buyer-list",
               data: { 'memberid': memberid },
               dataType: "json",
               beforeSend: function( xhr ) {
