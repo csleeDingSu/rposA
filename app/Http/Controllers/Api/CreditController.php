@@ -95,6 +95,7 @@ class CreditController extends Controller
     		//reserve point
 			$record 		     = new \App\CreditResell();
 			$record->member_id   = $companydata->member->id;
+			$record->buyer_id    = $request->memberid;
 			$record->point       = $request->point;
 			$record->amount      = $amount;
 			$record->status_id   = 1;
