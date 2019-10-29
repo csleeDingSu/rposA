@@ -2,6 +2,61 @@ body {
     background: #8c35d8;
 }
 
+.shareBox .big {
+	margin: 0.22rem 0 !important;
+}
+
+.pre-share-main-img {
+	background: url(/clientapp/images/share/pre_share_main.png) no-repeat;
+    background-size: cover;
+    height: 4.4rem;
+    margin: 0 0 0.35rem 0;
+}
+
+.shareBtn {
+	background: url(/clientapp/images/share/shareBtn.png) no-repeat;
+    background-size: cover;
+    height: 1.1rem;
+    text-align: center;
+    padding: 0.25rem;
+    font-size: 0.32rem;
+    color: #fff;
+}
+
+.shareBox .txtBox {
+	padding: 0.5rem !important;
+}
+
+.description {
+	background: url(/clientapp/images/share/bg-description.png) no-repeat;
+    background-size: cover;
+    color: #fff;
+    font-size: 0.3rem;
+    height: 1rem;
+    margin: 0 0 0.3rem 0;
+    position: relative;
+}
+
+.description .desc-left {
+	font-size: 0.3rem;
+    font-weight: 550;
+    float: left;
+    width: 18%;
+    padding: 0.08rem 0.2rem;
+    margin: 0 0 0 0.05rem;
+}
+
+.description .desc-right {
+	color: #af9273;
+    padding: 0.27rem 0;
+    text-align: center;
+}
+
+.description .desc-right .highlight{
+	color: #ff5730;
+	font-weight: 500;
+}
+
 .shop-banner {
 	background: url(/clientapp/images/shop/banner.png) no-repeat;
     background-size: contain;
