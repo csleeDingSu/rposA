@@ -160,7 +160,7 @@
           $.ajax({
                 type: 'POST',
                 url: "/api/make-resell-paid",
-                data: { 'memberid': memberid, 'coin': coin, 'cash': cash, 'buyer_name': buyer_name, 'id' : id },
+                data: { 'buyerid': memberid, 'coin': coin, 'cash': cash, 'buyer_name': buyer_name, 'id' : id },
                 dataType: "json",
                 beforeSend: function( xhr ) {
                     xhr.setRequestHeader ("Authorization", "Bearer " + token);
