@@ -108,6 +108,12 @@
     </div>
   </div>
 
+  <div class="payShade" id="paySuccess">
+    <div class="inBox">
+      <p>付款成功，返回充值页面</p>
+    </div>
+  </div>
+
       @parent
       <script type="text/javascript">
         var token = null;
@@ -167,10 +173,10 @@
                 success: function(data) {
                     document.getElementById('loading2').style.visibility="hidden";
                     if(data.success){
-                        $('.payShade').addClass('on');
-                        // setTimeout(function(){ 
-                        //   window.location.href = '/profile';
-                        // }, 5000);                      
+                        $('#paySuccess').addClass('on');
+                        setTimeout(function(){ 
+                          window.location.href = '/recharge/list';
+                        }, 3000);                      
                     } else {
                       console.log(data);
                       alert('提交失败');
