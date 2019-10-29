@@ -25,6 +25,27 @@
           background-size: 32px 32px;
           visibility: hidden;
         }
+
+        #modal-find-seller .modal-dialog {
+          margin: 0;
+          position: absolute;
+          top: 30%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        #modal-find-seller .find-seller {
+          color: #fff;
+            font-size: 16px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: #000;
+            padding: 10px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
          
     </style>       
 @endsection
@@ -106,7 +127,7 @@
 <!-- insufficient point modal -->
 <div class="modal fade col-md-12" id="modal-find-seller" tabindex="-1">
   <div class="modal-dialog modal-lg">
-    <div class="find-seller">正在匹配卖家。。。</div>          
+    <div class="find-seller">正在匹配卖家...</div>          
   </div>
 </div>
 
@@ -128,9 +149,9 @@
 
             $('.sendBox').on('click',function () {
               $('#modal-find-seller').modal();
-              // setTimeout(function(){
-              //   getBuyer(vCoin);
-              // }, 3000);
+              setTimeout(function(){
+                getBuyer(vCoin);
+              }, 2000);
             });
             
         });
@@ -178,15 +199,16 @@
         //login user
         if (id > 0) {
             
-            document.getElementById('loading2').style.visibility="visible";
+            // document.getElementById('loading').style.visibility="hidden";
+            document.getElementById('loading').style.visibility="visible";
 
             $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
                 // console.log(data);
                 if(data.success) {
                     token = data.access_token;
-                    document.getElementById('loading2').style.visibility="hidden";
+                    document.getElementById('loading').style.visibility="hidden";
                 } else{
-                  document.getElementById('loading2').style.visibility="hidden";
+                  document.getElementById('loading').style.visibility="hidden";
                 }
             });
         }
