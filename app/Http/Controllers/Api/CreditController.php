@@ -115,6 +115,7 @@ class CreditController extends Controller
     		$record->status_id   = 3; // in progress
 	    	$record->is_locked   = null;
 	    	$record->locked_time = null;
+	    	$record->buyer_id    = $request->buyerid;
 	    	$record->save();
 
 	    	$history            = new \App\ResellHistory();
@@ -184,7 +185,18 @@ class CreditController extends Controller
 
     public function pending_list(Request $request)
     {
-    	$result = \App\CreditResell::with('status','member')->where('buyer_id', $request->memberid)->where('status_id', 3)->get();
+    	
+
+    	if ($request->type == 'buy')
+    	{
+    		$type = 'buyer_id';
+    	}
+    	else
+    	{
+    		$type = 'member_id';
+    	}
+
+    	$result = \App\CreditResell::with('status','member')->where($type, $request->memberid)->where('status_id', 3)->get();
 
     	$count  = $result->count();
 
