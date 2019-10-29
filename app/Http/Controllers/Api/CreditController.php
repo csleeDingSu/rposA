@@ -184,7 +184,18 @@ class CreditController extends Controller
 
     public function pending_list(Request $request)
     {
-    	$result = \App\CreditResell::with('status','member')->where('buyer_id', $request->memberid)->where('status_id', 3)->get();
+    	
+
+    	if ($request->buy)
+    	{
+    		$type = 'buyer_id';
+    	}
+    	else
+    	{
+    		$type = 'member_id';
+    	}
+
+    	$result = \App\CreditResell::with('status','member')->where($type, $request->memberid)->where('status_id', 3)->get();
 
     	$count  = $result->count();
 
