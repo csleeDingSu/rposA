@@ -85,11 +85,18 @@ class CreditController extends Controller
     		$companydata = \App\CompanyBank::with('member')->first();
     		$type        = 'companyaccount';
 
+    		$amdata = \DB::table('resell_amount')->where('point',$request->point)->first();
+    		$amount = 0;
+    		if ($amdata)
+    		{
+    			$amount = $amdata->amount;
+    		}
+
     		//reserve point
 			$record 		     = new \App\CreditResell();
 			$record->member_id   = $companydata->member->id;
 			$record->point       = $request->point;
-			$record->amount      = 0;
+			$record->amount      = $amount;
 			$record->status_id   = 1;
 			$record->is_locked   = 1;
     		$record->locked_time = now();			
