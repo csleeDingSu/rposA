@@ -1283,9 +1283,9 @@ a {
 	background: url(/clientapp/images/game-node/newbie_bg.png) no-repeat;
     background-size: contain;
     position: relative;
-    padding: 3.7rem 0.3rem 0.6rem 0.3rem;
-    height: 7.5rem;
-    width: 5.5rem;
+    /*padding: 3.7rem 0.3rem 0.6rem 0.3rem;*/
+    height: 8rem;
+    width: 7rem;
 }
 
 .btn-withdraw {
