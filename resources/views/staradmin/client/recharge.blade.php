@@ -162,7 +162,7 @@
         $.ajax({
               type: 'GET',
               url: "/api/getbuyer",
-              data: { 'point': point },
+              data: { 'point': point, 'memberid': memberid},
               dataType: "json",
               beforeSend: function( xhr ) {
                   xhr.setRequestHeader ("Authorization", "Bearer " + token);
