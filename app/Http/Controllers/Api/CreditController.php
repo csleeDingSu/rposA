@@ -182,6 +182,15 @@ class CreditController extends Controller
     	return response()->json(['success' => false, 'message' => 'unknown record' ]);
     }
 
+    public function pending_list(Request $request)
+    {
+    	$result = \App\CreditResell::with('status','member')->where('buyer_id', $request->memberid)->where('status_id', 3)->get();
+
+    	$count  = $result->count();
+
+    	return response()->json(['success' => true,  'count'=>$count,  'records'=>$result]);
+    }
+
 
 	
 

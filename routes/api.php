@@ -191,6 +191,8 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/get-summary-new', 'MemberController@get_summary_new')->name('get_summary_new');
 
 	Route::get('/buyer-list', 'CreditController@buyer_list')->name('buyer_list');
+
+	Route::get('/check-pending-resell', 'CreditController@pending_list')->name('resell_pending_list');
 	
 	
 });
