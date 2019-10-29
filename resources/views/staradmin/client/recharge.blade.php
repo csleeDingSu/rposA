@@ -46,8 +46,18 @@
             text-align: center;
             background-color: rgba(0, 0, 0, 0.6);
         }
+
+        .in-complete-note {
+          color: #ff5858;
+          background-color: #ffeded;
+          height: 0.7rem;
+          font-size: 0.3rem;
+          text-align: center;
+          padding: 0.15rem;
+          display: none;
+        }
          
-    </style>       
+    </style>
 @endsection
 
 @section('top-javascript')
@@ -77,6 +87,8 @@
 <div class="loading2" id="loading2"></div>
 
 <div class="hrf3"></div>
+<div class="in-complete-note">您有<span class="in-complete-count">1</span>笔充值还未完成，继续充值 ></div>
+
 <form method="post" action="/recharge/type" id='recharge_type'>
   <input id="hidSelectedCoin" name="hidSelectedCoin" type="hidden" value="0" />
   <input id="hidSelectedCash" name="hidSelectedCash" type="hidden" value="0" />
@@ -135,9 +147,12 @@
       <script type="text/javascript">
         var vCoin = 50;
         var vCash = 48;
+        var token = null;
+
         $(document).ready(function () {
             $('.scrolly').addClass('cionPage rechargePage');
             getToken();
+            getPendingCase();
 
             //选择数量
             $('.cionPage  li').click(function () {
@@ -212,6 +227,47 @@
                 }
             });
         }
+      }
+
+      function getPendingCase(){
+        var memberid = $('#hidMemberId').val();       
+
+        $.ajax({
+              type: 'GET',
+              url: "/api/check-pending-resell",
+              data: { 'type': 'buy', 'memberid': memberid},
+              dataType: "json",
+              beforeSend: function( xhr ) {
+                  xhr.setRequestHeader ("Authorization", "Bearer " + token);
+              },
+              error: function (error) { 
+                  // document.getElementById('loading2').style.visibility="hidden";
+                  console.log(error.responseText);
+                  alert('下载失败，重新刷新试试');
+                },                  
+              success: function(data) {
+                  console.log(data);
+                  // document.getElementById('loading2').style.visibility="hidden";
+                  if(data.success){
+                   
+                    console.log(data.count);
+                    
+                    // if (data.count > 0) {
+                      $('.in-complete-note').css('display', 'block');
+                      $('.in-complete-count').html(data.count);
+                      $('.hrf3').css('display', 'none');
+                      $('.in-complete-note').click(function () {
+                        window.location.href = '/recharge/list/pending';
+                      });
+                    // } 
+                                 
+                  } else {
+                    //go bank card
+                    // window.location.href = '/recharge/rechargeCard';
+                    // alert('提交失败，重新刷新试试');
+                  }
+              }
+          });
       }
 
       

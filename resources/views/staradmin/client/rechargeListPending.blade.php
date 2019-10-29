@@ -57,7 +57,7 @@
   <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
-@section('title', '充值记录')
+@section('title', '未完成充值')
 
 @section('right-menu')
 @endsection
@@ -81,12 +81,12 @@
          getToken();
         });
 
-      function getBuyList() {
+      function getPendingCase() {
         var memberid = $('#hidMemberId').val();       
 
         $.ajax({
               type: 'GET',
-              url: "/api/buyer-list",
+              url: "/api/check-pending-resell",
               data: { 'memberid': memberid },
               dataType: "json",
               beforeSend: function( xhr ) {
@@ -102,7 +102,7 @@
                   console.log(data);
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
-                      $.each(data.result.data, function(i, item) {
+                      $.each(data.records, function(i, item) {
                         var txt_point = '';
                         var txt_status = '';
                         var txt_when = '';
@@ -180,7 +180,7 @@
                 // console.log(data);
                 if(data.success) {
                     token = data.access_token;
-                    getBuyList();
+                    getPendingCase();
                 }
             });
         }
