@@ -35,10 +35,10 @@ dt a.on h2, dt a:active h2 {
 }
 
 .newBie-footer {
-    height: 0.9rem;
+    height: 1.2rem;
     position: absolute;
     /*top: -2rem;*/
-    left: 1.87rem;
+    left: 1.25rem;
     width: auto !important;
     animation: newbie 1.3s ease-in-out 0s infinite alternate;
   -webkit-animation: newbie 1.3s ease-in-out 0s infinite alternate;
@@ -47,9 +47,9 @@ dt a.on h2, dt a:active h2 {
 
 @keyframes newbie {
   from {
-    top: 85.2%;
+    top: 82.8%;
   }
   to {
-    top: 84.2%;
+    top: 83.8%;
   }
 }

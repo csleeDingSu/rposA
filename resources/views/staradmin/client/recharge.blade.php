@@ -102,7 +102,14 @@
 </form>
 @endsection
 
-@section('footer-javascript')      
+@section('footer-javascript')    
+<!-- insufficient point modal -->
+<div class="modal fade col-md-12" id="modal-find-seller" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="find-seller">正在匹配卖家。。。</div>          
+  </div>
+</div>
+
       @parent
       <script type="text/javascript">
         var vCoin = 50;
@@ -120,7 +127,10 @@
             });
 
             $('.sendBox').on('click',function () {
-              getBuyer(vCoin);
+              $('#modal-find-seller').modal();
+              // setTimeout(function(){
+              //   getBuyer(vCoin);
+              // }, 3000);
             });
             
         });
