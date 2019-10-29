@@ -128,7 +128,7 @@ class CreditController extends BaseController
 				}
 				else
 				{
-					$record->buyer_id  = $member->id; 
+					//$record->buyer_id  = $member->id; 
 	        		$record->status_id = $request->status_id;
 					$record->save();				
 	        		$updatehistory = 'yes';	
@@ -141,7 +141,7 @@ class CreditController extends BaseController
 					return response()->json(['success' => false,'errors'=> ['buyer_id'=>['unknown member'] ] ],422);	
 				}
 
-        		$record->buyer_id = $member->id; 
+        		$record->buyer_id  = $member->id; 
         		$record->status_id = $request->status_id;
 				$record->save();
 
