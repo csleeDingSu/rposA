@@ -40,6 +40,24 @@
           padding: 0.5rem 0.5rem 0.1rem 0.5rem;
         }
 
+        .countdown{
+          color: #333;
+          padding: 0 0.1rem 0 1.3rem;
+        }
+
+        .txt-red {
+          color: #ff8282; 
+          padding: 0 0.1rem;
+        }
+
+        .btn-go-recharge {
+          color: #fff;
+          background: #ff8282;
+          border-radius: 0.2rem;
+          text-align: center;
+          line-height: 0.64rem;
+          padding: 0.1rem;
+        }
          
     </style>  
 @endsection
@@ -67,8 +85,8 @@
 <input id="hidSession" type="hidden" value="{{!empty(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 <input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['103']->point) ? $wallet['gameledger']['103']->point : 0}}" />
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
-<div class="loading2" id="loading2"></div>
 
+<div class="loading2" id="loading2"></div>
 <div class="coinList"></div>
 
 @endsection
@@ -111,6 +129,7 @@
                         var _url = '';
                         var _cls = '';
                         var _fontcolor = '';
+                        var countdown = '';
 
                         txt_point = item.point;
                         txt_when = item.updated_at;
@@ -120,7 +139,8 @@
                         if (item.status_id == 1) {
                           txt_status = '等待付款';  
                           _cls = 'payIng';
-                          _fontcolor = '#6ac2ff';                        
+                          _fontcolor = '#6ac2ff'; 
+                          countdown = '06:06';                         
                         } else if (item.status_id == 2) {
                           // txt_status = '已匹配到卖家';
                           // _cls = 'payIng';
@@ -149,7 +169,10 @@
                                   '</p>';
                                 if (txt_reason != '') {
                         html +=   '<h3>失败原因：' +txt_reason+ '</h3>';  
-                                }                                  
+                                }  
+                                if (countdown != '') {
+                        html += '<h3><span class="countdown">请在<span class="txt-red">'+countdown+'</span>内完成付款，超时需要重新充值</span><span class="btn-go-recharge">去充值</span></h3>';  
+                                  }                                 
                         html += '</a>';
                       });
 
@@ -174,6 +197,7 @@
         //login user
         if (id > 0) {
             
+            document.getElementById('loading').style.visibility="hidden";
             document.getElementById('loading2').style.visibility="visible";
 
             $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
