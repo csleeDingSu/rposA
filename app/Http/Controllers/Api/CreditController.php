@@ -166,14 +166,14 @@ class CreditController extends Controller
 
     public function resell_list(Request $request)
     {
-    	$result = \App\CreditResell::with('status','buyer')->where('member_id', $request->memberid)->paginate(30);
+    	$result = \App\CreditResell::with('status','buyer')->where('member_id', $request->memberid)->latest()->paginate(30);
 
     	return response()->json(['success' => true,  'result'=>$result]);
     }
 
     public function buyer_list(Request $request)
     {
-    	$result = \App\CreditResell::with('status','member')->where('buyer_id', $request->memberid)->paginate(30);
+    	$result = \App\CreditResell::with('status','member')->where('buyer_id', $request->memberid)->latest()->paginate(30);
 
     	return response()->json(['success' => true,  'result'=>$result]);
     }
