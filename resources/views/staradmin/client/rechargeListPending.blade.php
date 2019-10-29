@@ -87,7 +87,7 @@
         $.ajax({
               type: 'GET',
               url: "/api/check-pending-resell",
-              data: { 'memberid': memberid },
+              data: { 'type': 'buy', 'memberid': memberid },
               dataType: "json",
               beforeSend: function( xhr ) {
                   xhr.setRequestHeader ("Authorization", "Bearer " + token);
