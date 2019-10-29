@@ -203,7 +203,7 @@ class CreditController extends Controller
     		$type = 'member_id';
     	}
 
-    	$result = \App\CreditResell::with('status','member')->where($type, $request->memberid)->where('status_id', 3)->get();
+    	$result = \App\CreditResell::with('status','member')->where($type, $request->memberid)->latest()->where('status_id', 3)->get();
 
     	$count  = $result->count();
 
