@@ -115,6 +115,7 @@ class CreditController extends Controller
     		$record->status_id   = 3; // in progress
 	    	$record->is_locked   = null;
 	    	$record->locked_time = null;
+	    	$record->buyer_id    = $request->buyerid;
 	    	$record->save();
 
 	    	$history            = new \App\ResellHistory();
