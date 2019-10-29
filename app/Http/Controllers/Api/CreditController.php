@@ -186,7 +186,7 @@ class CreditController extends Controller
     {
     	
 
-    	if ($request->buy)
+    	if ($request->type == 'buy')
     	{
     		$type = 'buyer_id';
     	}
