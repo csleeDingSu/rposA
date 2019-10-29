@@ -145,6 +145,10 @@
         <div class="lastHint">下拉显示更多产品...</div>
         <hr class="h36">
 </div>
+@php ($played = empty($wallet['gameledger'][102]->played) ? 0 : $wallet['gameledger'][102]->played)
+@if ($played == 0)
+<img class="newBie-footer" id="newbie" src="{{ asset('clientapp/images/main/newbie-bubble.png') }}">
+@endif
 @endsection
 
 @section('footer-javascript')

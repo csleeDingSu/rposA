@@ -1,4 +1,4 @@
-<div class="card-bar">
+<div class="card-bar">  
   <dl class="bar">
     <dd>
 	@if(Request::is('main') || Request::is('main/*'))

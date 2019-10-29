@@ -33,3 +33,23 @@ dt a.on h2, dt a:active h2 {
 .modal {
     z-index: 99999 !important;
 }
+
+.newBie-footer {
+    height: 0.9rem;
+    position: absolute;
+    /*top: -2rem;*/
+    left: 1.87rem;
+    width: auto !important;
+    animation: newbie 1.3s ease-in-out 0s infinite alternate;
+  -webkit-animation: newbie 1.3s ease-in-out 0s infinite alternate;
+  -moz-animation: newbie 1.3s ease-in-out 0s infinite alternate;
+}
+
+@keyframes newbie {
+  from {
+    top: 85.2%;
+  }
+  to {
+    top: 84.2%;
+  }
+}
