@@ -117,21 +117,24 @@
                         txt_amount = item.amount;
                         _url = '/coin/list/detail/' + item.id;
 
-                        //3 is in progress
                         if (item.status_id == 1) {
-                          txt_status = '正在匹配买家';  
-                          _cls = 'payReady';
-                          _fontcolor = '#6ac2ff';                        
+                          // txt_status = '等待卖家发币';  
+                          // _cls = 'payReady';
+                          // _fontcolor = '#6ac2ff';                        
                         } else if (item.status_id == 2) {
-                          txt_status = '已匹配到买家 ' + item.buyer;
+                          // txt_status = '已匹配到买家 ' + item.buyer;
+                          // _cls = 'payIng';
+                          // _fontcolor = '#ffa200';
+                        } else if (item.status_id == 3) {
+                          txt_status = '等待卖家发币';
                           _cls = 'payIng';
-                          _fontcolor = '#ffa200';
+                          _fontcolor = '#6ac2ff';
                         } else if (item.status_id == 4) {
-                          txt_status = '买家付款完成';
+                          txt_status = '卖家已发币';
                           _cls = 'payOver';
-                          _fontcolor = '#51c000';
+                          _fontcolor = '#23ca27';
                         } else if (item.status_id == 5) {
-                          txt_status = '发布失败';
+                          txt_status = '拒绝退回';
                           txt_reason = item.reason;
                           _cls = 'payFail';
                           _fontcolor = '#ff8282';
