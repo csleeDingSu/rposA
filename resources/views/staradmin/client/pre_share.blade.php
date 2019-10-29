@@ -2,7 +2,7 @@
 
 @section('top-css')
     @parent
-    <link rel="stylesheet" href="{{ asset('/clientapp/css/pre_share.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/pre_share.css?version=1.0.0') }}" />
     
 @endsection
 
