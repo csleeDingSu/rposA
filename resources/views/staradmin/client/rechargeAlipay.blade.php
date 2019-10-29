@@ -104,6 +104,12 @@
 @endsection
 
 @section('footer-javascript')   
+<div class="payShade">
+    <div class="inBox">
+      <p>付款已超时，返回充值页面</p>
+    </div>
+  </div>
+
 <div class="coinShade ">
       <div class="inBox fix">
         <img src="{{ asset('/clientapp/images/coinShare.png') }}">
@@ -146,6 +152,14 @@
                 being.hideMsg('.coinShade');
                 window.location.href = "/recharge/list";
               });
+
+              $('.payShade').click(function (e) {
+                console.log($(e.target).html());
+                let a = $(e.target).find('.inBox').length;
+                if (a > 0) {
+                  $('.payShade').removeClass('on');
+                }
+              });
             });
 
       function submitPay() {
@@ -173,10 +187,10 @@
                 success: function(data) {
                     document.getElementById('loading2').style.visibility="hidden";
                     if(data.success){
-                        being.showMsg('.coinShade');
-                        // setTimeout(function(){ 
-                        //   window.location.href = '/profile';
-                        // }, 5000);                      
+                        being.showMsg('.coinShade');                        
+                        setTimeout(function(){ 
+                          window.location.href = '/recharge/list';
+                        }, 3000);                     
                     } else {
                       console.log(data);
                       alert('提交失败');

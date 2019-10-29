@@ -108,11 +108,15 @@
     </div>
   </div>
 
-  <div class="payShade" id="paySuccess">
-    <div class="inBox">
-      <p>付款成功，返回充值页面</p>
+  <div class="coinShade ">
+      <div class="inBox fix">
+        <img src="{{ asset('/clientapp/images/coinShare.png') }}">
+        <h2>充值完成</h2>
+        <p>预计5-10分钟内挖宝币到账，<br>
+          您可以在-<font color="#ff9528">充值记录</font>-查看进展</p>
+          <a class="inClostBtn">我知道了</a>
+      </div>
     </div>
-  </div>
 
       @parent
       <script type="text/javascript">
@@ -145,6 +149,19 @@
         }
       });
 
+      $('.coinShade ').click(function (e) {
+          console.log($(e.target).html());
+          let a = $(e.target).find('.inBox').length;
+          if(a>0){
+            being.hideMsg('.coinShade');
+          }
+        });
+
+        $('.inClostBtn').click(function(){
+          being.hideMsg('.coinShade');
+          window.location.href = "/recharge/list";
+        });
+
     });
 
 
@@ -173,7 +190,7 @@
                 success: function(data) {
                     document.getElementById('loading2').style.visibility="hidden";
                     if(data.success){
-                        $('#paySuccess').addClass('on');
+                        being.showMsg('.coinShade');
                         setTimeout(function(){ 
                           window.location.href = '/recharge/list';
                         }, 3000);                      
