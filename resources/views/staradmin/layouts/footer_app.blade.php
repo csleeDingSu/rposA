@@ -85,10 +85,10 @@
 
             @keyframes newbie {
               from {
-                top: 83.8%;
+                top: 81.8%;
               }
               to {
-                top: 84.8%;
+                top: 82.8%;
               }
             }
           }
@@ -100,10 +100,10 @@
             and (-webkit-device-pixel-ratio : 2) {
               @keyframes newbie {
                 from {
-                  top: 82.5%;
+                  top: 80.5%;
                 }
                 to {
-                  top: 83.5%;
+                  top: 81.5%;
                 }
               }
             }
@@ -115,10 +115,10 @@
             and (-webkit-device-pixel-ratio : 3) {
               @keyframes newbie {
                 from {
-                  top: 82.5%;
+                  top: 80.5%;
                 }
                 to {
-                  top: 83.5%;
+                  top: 82.5%;
                 }
               }
             }
