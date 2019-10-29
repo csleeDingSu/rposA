@@ -85,11 +85,18 @@ class CreditController extends Controller
     		$companydata = \App\CompanyBank::with('member')->first();
     		$type        = 'companyaccount';
 
+    		$amdata = \DB::table('resell_amount')->where('point',$request->point)->first();
+    		$amount = 0;
+    		if ($amdata)
+    		{
+    			$amount = $amdata->amount;
+    		}
+
     		//reserve point
 			$record 		     = new \App\CreditResell();
 			$record->member_id   = $companydata->member->id;
 			$record->point       = $request->point;
-			$record->amount      = 0;
+			$record->amount      = $amount;
 			$record->status_id   = 1;
 			$record->is_locked   = 1;
     		$record->locked_time = now();			
@@ -159,14 +166,14 @@ class CreditController extends Controller
 
     public function resell_list(Request $request)
     {
-    	$result = \App\CreditResell::with('status','buyer')->where('member_id', $request->memberid)->paginate(30);
+    	$result = \App\CreditResell::with('status','buyer')->where('member_id', $request->memberid)->latest()->paginate(30);
 
     	return response()->json(['success' => true,  'result'=>$result]);
     }
 
     public function buyer_list(Request $request)
     {
-    	$result = \App\CreditResell::with('status','member')->where('buyer_id', $request->memberid)->paginate(30);
+    	$result = \App\CreditResell::with('status','member')->where('buyer_id', $request->memberid)->latest()->paginate(30);
 
     	return response()->json(['success' => true,  'result'=>$result]);
     }
@@ -196,7 +203,7 @@ class CreditController extends Controller
     		$type = 'member_id';
     	}
 
-    	$result = \App\CreditResell::with('status','member')->where($type, $request->memberid)->where('status_id', 3)->get();
+    	$result = \App\CreditResell::with('status','member')->where($type, $request->memberid)->latest()->where('status_id', 3)->get();
 
     	$count  = $result->count();
 
