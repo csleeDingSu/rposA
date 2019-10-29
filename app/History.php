@@ -23,8 +23,30 @@ class History extends Model
 		$history->save();
 		return $history;
 	}
-	
+
 	public static function get_point($memberid , $gameid = FALSE, $date = FALSE)
+    {
+		$result = \DB::table('view_betting_by_date')->where('member_id' , $memberid);
+		if ($gameid)
+		{
+			$result = $result->where('game_id' , $gameid);
+		}		
+		if ($date)
+		{			
+			$result = $result->where('created_at',$date);
+		}
+		
+		$result = $result->first();
+
+		if ($result)
+		{
+			return $result->balance;
+		}
+		return '0';
+    }
+
+	
+	public static function get_point_old($memberid , $gameid = FALSE, $date = FALSE)
     {
 		$result = \DB::table('a_point_by_date')->where('member_id' , $memberid);
 		if ($gameid)
