@@ -12,7 +12,7 @@
 	<!-- <link rel="stylesheet" href="{{ asset('/client/css/default.css') }}" /> -->
 
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/clientapp/css/tabao_product_detail.css?version=1.0.3') }}" />
+	<link rel="stylesheet" href="{{ asset('/clientapp/css/tabao_product_detail.css?version=1.0.4') }}" />
 	
 	@if( Agent::is('OS X') )   
       <style>
@@ -107,12 +107,8 @@
 				<div class="dbox1">
 					<h2>{{$data['title']}}</h2>
 					<div class="line-reward">
-						<div class="reward-txt">下单后</div>
-						<div class="reward-hong">
-							<img src="{{asset('/clientapp/images/product/triangle.png')}}">
-							<span class="reward">奖{{$hong}}红包积分</span>
-						</div>
-						<div class="btn-reward">怎么返?</div>
+						<div class="reward-txt">下单奖励<span class="reward"><span class="cur">￥</span>{{$hong}}</span>红包积分</div>
+						<div class="btn-reward">怎么奖励?</div>
 						<h3>热销{{$sales}}</h3>
 					</div>							
 				</div>
@@ -146,10 +142,10 @@
 			</li>
 			<li class="dbox reward-bg">		
 				<div class="dbox1 reward-desc">
-					<div class="title">奖励补贴说明</div>
+					<div class="title-head-spot"></div><div class="title">0元购说明</div>
 					<ul>
-						<li>抽奖补贴由<span class="highlight-red">挖宝官方</span>提供，新用户能免费获得<span class="highlight-red">1场次免费抽奖</span>，通过抽奖可获得<span class="highlight-red">12元红包</span>。</li>
-						<li>邀请1个好友可获得1次抽奖补贴，你的好友能获得1次新人抽奖补贴。你的好友每邀请1个好友，你还可以获得1次抽奖补贴，邀请越多，抽奖补贴越多。</li>
+						<li>本产品来源淘宝，点击“领券购买”即可领券按券后价购买。如果你不想花自己钱，可以去抽奖补贴，每次抽奖最多可获得12元红包。想获得更多抽奖次数，可按下面方式：</li>
+						<li><span class="highlight-red">新用户注册、邀请好友、好友邀请别人、领券下单都可以获得抽奖次数</span>，抽奖次数越多，可补贴金额越大，从此购物不花自己钱，全场0元购。</li>
 					</ul>				
 				</div>
 			</li>
