@@ -123,6 +123,8 @@ class CreditController extends Controller
 	    	$record->is_locked   = null;
 	    	$record->locked_time = null;
 	    	$record->buyer_id    = $request->buyerid;
+	    	$record->buyer_name  = $request->buyer_name;
+	    	
 	    	$record->save();
 
 	    	$history            = new \App\ResellHistory();
