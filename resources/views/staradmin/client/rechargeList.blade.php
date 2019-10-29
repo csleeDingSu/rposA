@@ -115,7 +115,7 @@
                         txt_point = item.point;
                         txt_when = item.updated_at;
                         txt_amount = item.amount;
-                        _url = '/coin/list/detail/' + item.id;
+                        _url = '#'; //'/coin/list/detail/' + item.id;
 
                         if (item.status_id == 1) {
                           // txt_status = '等待卖家发币';  
