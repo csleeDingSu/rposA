@@ -387,7 +387,7 @@
                       $('.in-complete-note').css('display', 'block');
                       $('.in-complete-count').html(data.count);
                       $('.in-complete-note').click(function () {
-                        window.location.href = '/coin/list/pending';
+                        window.location.href = '/coin/list/in-complete';
                       });
                     }  else {
                       $('.in-complete-note').css('display', 'none');
