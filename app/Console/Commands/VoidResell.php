@@ -39,7 +39,7 @@ class VoidResell extends Command
     {        
         $this->comment('-- Stared:'.' '.Carbon::now()->toDateTimeString());         
         $this->line('-- fetch data');       
-        $result = \App\CreditResell::where('is_locked' , 1)->where('locked_time' ,'<' , Carbon::now()->addMinutes(10))->get();
+        $result = \App\CreditResell::where('is_locked' , 1)->where('locked_time' ,'<' , now())->get();
         
         $this->info('-- done');     
                 

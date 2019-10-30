@@ -75,7 +75,7 @@ class CreditController extends Controller
     	if ($record)
     	{
     		$record->is_locked   = 1;
-    		$record->locked_time = now();
+    		$record->locked_time = Carbon::now()->addMinutes(10);
     		$record->save();
     	}    	
 
@@ -100,7 +100,7 @@ class CreditController extends Controller
 			$record->amount      = $amount;
 			$record->status_id   = 1;
 			$record->is_locked   = 1;
-    		$record->locked_time = now();			
+    		$record->locked_time = Carbon::now()->addMinutes(10);			
     		$record->type        = 1;			
 			$record->save();
 			//add history
