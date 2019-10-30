@@ -41,22 +41,27 @@
         }
 
         .countdown{
-          color: #333;
-          padding: 0 0.1rem 0 1.3rem;
+         padding: 0.1rem;
+          font-size: 0.26rem !important;
+          background: #f1f1f1;
+          border-radius: 1rem;
+          margin: 0 0.1rem;
         }
 
         .txt-red {
-          color: #ff8282; 
+          color: #ff8282 !important;
           padding: 0 0.1rem;
+          font-size: .26rem !important;
         }
 
         .btn-go-recharge {
-          color: #fff;
-          background: #ff8282;
-          border-radius: 0.2rem;
+          background: url(/clientapp/images/recharge/btn-pay.png) center no-repeat;
+          color: #fff !important;
           text-align: center;
           line-height: 0.64rem;
           padding: 0.1rem;
+          background-size: contain;
+          font-size: .3rem !important;
         }
 
          
@@ -165,19 +170,21 @@
                         }
 
                         html += '<a class="inBox '+_cls+'">' +
-                                '<h2><span>' +txt_point+ '挖宝币</span>' +
-                                    '<font color="'+_fontcolor+'">' + txt_status + '</font>' +
-                                  '</h2>' +
+                                '<h2><span>' +txt_point+ '挖宝币</span>';
+                        
+                        if (countdown != '') {
+                          html += '<span><span class="countdown">请在<span class="txt-red">'+countdown+'</span>内完成付款</span><span class="btn-go-recharge">去付款</span></span>';  
+                        }  else {
+                          html += '<font color="'+_fontcolor+'">' + txt_status + '</font>';
+                        }
+                                    
+                          html += '</h2>' +
                                   '<p><span>' + txt_when +'</span>' +
-                                    '<font color="#686868">售价&nbsp;'+txt_amount+'元</font>' +
+                                    '<font color="#686868">充值&nbsp;'+txt_amount+'元</font>' +
                                   '</p>';
                         if (txt_reason != '') {
                           html += '<h3>失败原因：' +txt_reason+ '</h3>';  
-                        }     
-                        
-                        if (countdown != '') {
-                          html += '<h3><span class="countdown">请在<span class="txt-red">'+countdown+'</span>内完成付款，超时需要重新充值</span><span class="btn-go-recharge">去充值</span></h3>';  
-                        }                             
+                        }                           
                         
                         html += '</a>';
                       });
