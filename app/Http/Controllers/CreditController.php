@@ -184,14 +184,19 @@ class CreditController extends BaseController
 
 
         if ($updatehistory)
-        {
+        {        	
+        	$memid = null;
+        	if (!empty($member->id))
+        	{
+        		$memid = $member->id
+        	}
         	//add history
     		$history            = new \App\ResellHistory();
 			$history->cid       = $record->id;
 			$history->status_id = $request->status_id;
 			$history->amount    = $record->amount;
 			$history->point     = $record->point;
-			$history->member_id = $member->id;
+			$history->member_id = $memid;
 			$history->reason    = $reason;
 
 			if ($ledger)
