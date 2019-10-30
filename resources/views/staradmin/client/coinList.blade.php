@@ -159,6 +159,7 @@
         //login user
         if (id > 0) {
             
+            document.getElementById('loading').style.visibility="hidden";
             document.getElementById('loading2').style.visibility="visible";
 
             $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
