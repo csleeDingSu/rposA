@@ -62,7 +62,7 @@ class VoidResell extends Command
             $record->barcode     = null; 
             $record->status_id   = 1;
             $status              = 'cron reset';
-            //$record->save();  
+            $record->save();  
 
             //add history
             $history             = new \App\ResellHistory();
