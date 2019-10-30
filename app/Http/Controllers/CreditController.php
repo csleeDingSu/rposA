@@ -188,7 +188,7 @@ class CreditController extends BaseController
         	$memid = null;
         	if (!empty($member->id))
         	{
-        		$memid = $member->id
+        		$memid = $member->id;
         	}
         	//add history
     		$history            = new \App\ResellHistory();
