@@ -146,18 +146,26 @@ class CreditController extends Controller
     	if ($record)
     	{
     		$reason              = 'pay time exceeded';
+
+    		$new = $record->replicate();       
+            $expired             = new \App\ExpiredResell();
+            $expired->fill($new->toArray());
+            $expired->status_id  = 5;
+            $expired->reason     = $reason;
+            $expired->save();
+
     		$record->status_id   = 2;
 	    	$record->is_locked   = null;
 	    	$record->locked_time = null;
 	    	$record->reason      = $reason;
 	    	$record->save();
 
-	    	$history            = new \App\ResellHistory();
-			$history->cid       = $record->id;
-			$history->status_id = 5;
-			$history->amount    = $record->amount;
-			$history->point     = $record->point;
-			$history->reason    = $reason;
+	    	$history             = new \App\ResellHistory();
+			$history->cid        = $record->id;
+			$history->status_id  = 5;
+			$history->amount     = $record->amount;
+			$history->point      = $record->point;
+			$history->reason     = $reason;
 			$history->save();
 
 			return response()->json(['success' => true]);		
