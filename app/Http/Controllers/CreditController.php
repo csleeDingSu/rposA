@@ -169,8 +169,8 @@ class CreditController extends BaseController
         		//return the point
 
         		//$ledger = \App\Ledger::credit($record->member_id,103,$record->point,'RRP','point refunded');
-        		$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
-        		
+        		$ledger = \App\Ledger::merge_reserved_point($member->id,103,$record->point,'PRRP', 'point refunded');
+        		//print_r($ledger);
         		$record->status_id  = $request->status_id;
         		$record->ledger_history_id = $ledger['id'];
         		$record->save();
@@ -184,14 +184,19 @@ class CreditController extends BaseController
 
 
         if ($updatehistory)
-        {
+        {        	
+        	$memid = null;
+        	if (!empty($member->id))
+        	{
+        		$memid = $member->id;
+        	}
         	//add history
     		$history            = new \App\ResellHistory();
 			$history->cid       = $record->id;
 			$history->status_id = $request->status_id;
 			$history->amount    = $record->amount;
 			$history->point     = $record->point;
-			$history->member_id = $member->id;
+			$history->member_id = $memid;
 			$history->reason    = $reason;
 
 			if ($ledger)
