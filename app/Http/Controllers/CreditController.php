@@ -170,7 +170,7 @@ class CreditController extends BaseController
 
         		//$ledger = \App\Ledger::credit($record->member_id,103,$record->point,'RRP','point refunded');
         		$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
-        		
+        		print_r($ledger);
         		$record->status_id  = $request->status_id;
         		$record->ledger_history_id = $ledger['id'];
         		$record->save();
