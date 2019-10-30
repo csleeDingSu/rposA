@@ -139,13 +139,14 @@
                         txt_point = item.point;
                         txt_when = item.created_at;
                         txt_amount = item.amount;
-                        _url = '#'; //'/coin/list/detail/' + item.id;
 
                         if (item.status_id == 1) {
                           txt_status = '等待付款';  
                           _cls = 'payIng';
                           _fontcolor = '#6ac2ff'; 
-                          countdown = '06:06';                         
+                          getCoundown(item.locked_time, item.id);
+                          countdown = '<span class="txt-red" id="'+item.id+'">10:00</span>'; 
+                          _url = '/recharge/type?credit_resell_id=' + item.id;                         
                         } else if (item.status_id == 2) {
                           // txt_status = '已匹配到卖家';
                           // _cls = 'payIng';
@@ -165,14 +166,20 @@
                           _fontcolor = '#ff8282';
                         }
 
-                        html += '<a href="'+_url+'" class="inBox '+_cls+'">' +
-                                  '<h2><span>' +txt_point+ '挖宝币</span>';
+                        if (_url != '') {
+                        html += '<a class="inBox '+_cls+'" href="'+_url+'">';  
+                        }else{
+                          html += '<a class="inBox '+_cls+'">';
+                        }
+                        
+                        html += '<h2><span>' +txt_point+ '挖宝币</span>';
 
                         if (countdown != '') {
-                          html += '<span><span class="countdown">请在<span class="txt-red">'+countdown+'</span>内完成付款</span><span class="btn-go-recharge">去付款</span></span>';  
+                          html += '<span><span class="countdown">请在'+countdown+'内完成付款</span><span class="btn-go-recharge" id="btn-go-'+item.id+'">去付款</span></span>';  
                         }  else {
                           html += '<font color="'+_fontcolor+'">' + txt_status + '</font>';
                         }
+
                           html += '</h2>' +
                                   '<p><span>' + txt_when +'</span>' +
                                     '<font color="#686868">售价&nbsp;'+txt_amount+'元</font>' +
@@ -216,6 +223,40 @@
                 }
             });
         }
+      }
+
+      function getCoundown(_time, id) {
+        var countDownDate = new Date(_time).getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+          // Get today's date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Display the result in the element with id="demo"
+          minutes = minutes <= 9 ? "0" + minutes : minutes;
+          seconds = seconds <= 9 ? "0" + seconds : seconds;
+          document.getElementById(id).innerHTML = minutes + ":" + seconds;
+
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById(id).innerHTML = "00:00";
+            $("#btn-go-" + id).off('click');
+            // $("#btn-go-" + id).css('display','none');
+            
+          }
+        }, 1000);
       }
       </script>
 
