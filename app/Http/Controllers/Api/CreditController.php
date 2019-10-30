@@ -222,7 +222,23 @@ class CreditController extends Controller
     }
 
 
-	
+	public function expired_list(Request $request)
+    {    
+    	if ($request->type == 'buy')
+    	{
+    		$type   = 'buyer_id';
+    	}
+    	else
+    	{
+    		$type = 'member_id';
+    	}
+
+    	$result = \DB::table('credit_resell_expired')->where($type, $request->memberid)->latest()->get();
+
+    	$count  = $result->count();
+
+    	return response()->json(['success' => true,  'count'=>$count,  'records'=>$result]);
+    }
 
 
 
