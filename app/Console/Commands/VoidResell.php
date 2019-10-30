@@ -42,6 +42,7 @@ class VoidResell extends Command
         \DB::enableQueryLog();    
         $result = \App\CreditResell::where('is_locked' , 1)->where('locked_time' ,'<' , now() )->get();
         print_r(\DB::getQueryLog());
+        print_r($result);
         $this->info('-- done');     
                 
         foreach ($result as $key=>$record)
