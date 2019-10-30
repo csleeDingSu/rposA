@@ -40,7 +40,7 @@ class VoidResell extends Command
         $this->comment('-- Stared:'.' '.Carbon::now()->toDateTimeString());         
         $this->line('-- fetch data');   
         \DB::enableQueryLog();    
-        $result = \App\CreditResell::where('is_locked' , 1)->where('locked_time' ,'<' , now())->get();
+        $result = \App\CreditResell::where('is_locked' , 1)->where('locked_time' ,'<' , Carbon::now()->toDateTimeString())->get();
         print_r(\DB::getQueryLog());
         $this->info('-- done');     
                 
