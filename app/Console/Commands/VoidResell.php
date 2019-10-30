@@ -45,7 +45,14 @@ class VoidResell extends Command
                 
         foreach ($result as $key=>$record)
         {
-                    
+            $this->line('-- replicate row : '.$record->id); 
+            $new = $record->replicate();       
+            $expired             = new \App\ExpiredResell();
+            $expired->fill($new->toArray());
+            $expired->status_id   = 5;
+            $expired->reason      = 'time exceeded';
+            $expired->save();
+
             $this->line('-- reset row : '.$record->id);
             $record->buyer_id    = null; 
             $record->is_locked   = null; 
@@ -55,7 +62,8 @@ class VoidResell extends Command
             $record->barcode     = null; 
             $record->status_id   = 1;
             $status              = 'cron reset';
-            $record->save();   
+            //$record->save();  
+
             //add history
             $history             = new \App\ResellHistory();
             $history->cid        = $record->id;
