@@ -202,19 +202,19 @@ class CreditController extends Controller
     }
 
     public function pending_list(Request $request)
-    {
-    	
+    {    	
 
     	if ($request->type == 'buy')
     	{
-    		$type = 'buyer_id';
+    		$type   = 'buyer_id';
+    		$result = \DB::table('view_credit_resell')->where($type, $request->memberid)->where('is_locked', 1)->latest()->get();
     	}
     	else
     	{
     		$type = 'member_id';
+    		$status = [1,2,3];
+    		$result = \DB::table('view_credit_resell')->where($type, $request->memberid)->latest()->wherein('status_id', $status)->latest()->get();
     	}
-
-    	$result = \App\CreditResell::with('status','member')->where($type, $request->memberid)->latest()->where('status_id', 3)->get();
 
     	$count  = $result->count();
 
