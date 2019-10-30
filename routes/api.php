@@ -193,6 +193,8 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/buyer-list', 'CreditController@buyer_list')->name('buyer_list');
 
 	Route::get('/check-pending-resell', 'CreditController@pending_list')->name('resell_pending_list');
+
+	Route::get('/resell-expired-list', 'CreditController@expired_list')->name('resell_expired_list');	
 	
 	
 });
