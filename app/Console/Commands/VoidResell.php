@@ -38,9 +38,10 @@ class VoidResell extends Command
     public function handle()
     {        
         $this->comment('-- Stared:'.' '.Carbon::now()->toDateTimeString());         
-        $this->line('-- fetch data');       
+        $this->line('-- fetch data');   
+        \DB::enableQueryLog();    
         $result = \App\CreditResell::where('is_locked' , 1)->where('locked_time' ,'<' , now())->get();
-        
+        print_r(\DB::getQueryLog());
         $this->info('-- done');     
                 
         foreach ($result as $key=>$record)
