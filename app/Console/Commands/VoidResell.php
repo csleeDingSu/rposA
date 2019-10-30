@@ -39,13 +39,20 @@ class VoidResell extends Command
     {        
         $this->comment('-- Stared:'.' '.Carbon::now()->toDateTimeString());         
         $this->line('-- fetch data');       
-        $result = \App\CreditResell::where('is_locked' , 1)->where('locked_time' ,'<' , Carbon::now()->addMinutes(10))->get();
+        $result = \App\CreditResell::where('is_locked' , 1)->where('locked_time' ,'<' , now())->get();
         
         $this->info('-- done');     
                 
         foreach ($result as $key=>$record)
         {
-                    
+            $this->line('-- replicate row : '.$record->id); 
+            $new = $record->replicate();       
+            $expired             = new \App\ExpiredResell();
+            $expired->fill($new->toArray());
+            $expired->status_id   = 5;
+            $expired->reason      = 'time exceeded';
+            $expired->save();
+
             $this->line('-- reset row : '.$record->id);
             $record->buyer_id    = null; 
             $record->is_locked   = null; 
@@ -55,7 +62,14 @@ class VoidResell extends Command
             $record->barcode     = null; 
             $record->status_id   = 1;
             $status              = 'cron reset';
-            $record->save();                
+            //$record->save();  
+
+            //add history
+            $history             = new \App\ResellHistory();
+            $history->cid        = $record->id;
+            $history->status_id  = 5;
+            $history->point      = $record->point;
+            $history->save();             
                         
             $this->line('-- record reset with default values');
             $this->line(' ');
