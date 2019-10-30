@@ -58,7 +58,6 @@
           line-height: 0.64rem;
           padding: 0.1rem;
         }
-
          
     </style>  
 @endsection
@@ -76,7 +75,7 @@
   <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
-@section('title', '充值记录')
+@section('title', '未完成充值')
 
 @section('right-menu')
 @endsection
@@ -100,16 +99,13 @@
          getToken();
         });
 
-      function getBuyList() {
-
-        document.getElementById('loading2').style.visibility="visible";
-
+      function getInCompleteCase() {
         var memberid = $('#hidMemberId').val();       
 
         $.ajax({
               type: 'GET',
-              url: "/api/buyer-list",
-              data: { 'memberid': memberid },
+              url: "/api/check-pending-resell",
+              data: { 'type': 'buy', 'memberid': memberid },
               dataType: "json",
               beforeSend: function( xhr ) {
                   xhr.setRequestHeader ("Authorization", "Bearer " + token);
@@ -122,9 +118,9 @@
               success: function(data) {
                   var html = '';
                   console.log(data);
-                  
+                  document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
-                      $.each(data.result.data, function(i, item) {
+                      $.each(data.records, function(i, item) {
                         var txt_point = '';
                         var txt_status = '';
                         var txt_when = '';
@@ -142,43 +138,41 @@
 
                         if (item.status_id == 1) {
                           txt_status = '等待付款';  
-                          // _cls = 'payIng';
+                          _cls = 'payIng';
                           _fontcolor = '#6ac2ff'; 
-                          countdown = '06:06';                       
+                          countdown = '06:06';                         
                         } else if (item.status_id == 2) {
                           // txt_status = '已匹配到卖家';
                           // _cls = 'payIng';
                           // _fontcolor = '#ffa200';
                         } else if (item.status_id == 3) {
                           txt_status = '等待卖家发币';
-                          // _cls = 'payIng';
+                          _cls = 'payIng';
                           _fontcolor = '#6ac2ff';
                         } else if (item.status_id == 4) {
                           txt_status = '卖家已发币';
-                          // _cls = 'payOver';
+                          _cls = 'payOver';
                           _fontcolor = '#23ca27';
                         } else if (item.status_id == 5) {
                           txt_status = '拒绝退回';
                           txt_reason = item.reason;
-                          // _cls = 'payFail';
+                          _cls = 'payFail';
                           _fontcolor = '#ff8282';
                         }
 
-                        html += '<a class="inBox '+_cls+'">' +
-                                '<h2><span>' +txt_point+ '挖宝币</span>' +
+                        html += '<a href="'+_url+'" class="inBox '+_cls+'">' +
+                                  '<h2><span>' +txt_point+ '挖宝币</span>' +
                                     '<font color="'+_fontcolor+'">' + txt_status + '</font>' +
                                   '</h2>' +
                                   '<p><span>' + txt_when +'</span>' +
                                     '<font color="#686868">售价&nbsp;'+txt_amount+'元</font>' +
                                   '</p>';
-                        if (txt_reason != '') {
-                          html += '<h3>失败原因：' +txt_reason+ '</h3>';  
-                        }     
-                        
-                        if (countdown != '') {
-                          html += '<h3><span class="countdown">请在<span class="txt-red">'+countdown+'</span>内完成付款，超时需要重新充值</span><span class="btn-go-recharge">去充值</span></h3>';  
-                        }                             
-                        
+                                if (txt_reason != '') {
+                        html +=   '<h3>失败原因：' +txt_reason+ '</h3>';  
+                                }  
+                                if (countdown != '') {
+                        html += '<h3><span class="countdown">请在<span class="txt-red">'+countdown+'</span>内完成付款，超时需要重新充值</span><span class="btn-go-recharge">去充值</span></h3>';  
+                                  }                                 
                         html += '</a>';
                       });
 
@@ -190,7 +184,7 @@
                       }
 
                       $('.coinList').append(html);
-                      document.getElementById('loading2').style.visibility="hidden";
+                      
                   }
               }
           });
@@ -210,7 +204,7 @@
                 // console.log(data);
                 if(data.success) {
                     token = data.access_token;
-                    getBuyList();
+                    getInCompleteCase();
                 }
             });
         }

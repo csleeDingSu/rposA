@@ -261,6 +261,18 @@ class MainController extends BaseController
 		
 	}
 
+	public function coinListInComplete(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinListInComplete', $data);
+		
+	}
+
+
 	public function coinDetail($id = null, Request $request)
 	{
 		$this->vp = new VIPApp();
@@ -359,14 +371,14 @@ class MainController extends BaseController
 		
 	}
 
-	public function rechargeListPending(Request $request)
+	public function rechargeListInComplete(Request $request)
 	{
 		$this->vp = new VIPApp();
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
 		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
 
-		return view('client/rechargeListPending', $data);
+		return view('client/rechargeListInComplete', $data);
 		
 	}
 

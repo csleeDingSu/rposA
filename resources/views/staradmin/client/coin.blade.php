@@ -21,6 +21,17 @@
           background-size: 32px 32px;
           visibility: hidden;
         }
+
+        .in-complete-note {
+          color: #9d6dff;
+          /*background-color: #ffeded;*/
+          height: 0.7rem;
+          font-size: 0.3rem;
+          text-align: center;
+          padding: 0.15rem;
+          display: none;
+          font-weight: 550;
+        }
          
     </style>
 @endsection
@@ -67,6 +78,7 @@
         <p>转卖收益</p>
       </li>
     </ul>
+    <div class="in-complete-note">您有<span class="in-complete-count">1</span>笔挖宝币正在转卖，查看进度 ></div>
   </div>
 
   <div class="coinBox">
@@ -169,7 +181,8 @@
       $(document).ready(function () {
         
         getToken();
-
+        getInCompleteCase();
+        
         $('.scrolly').addClass('cionPage');
 
         $('.close-modal').click(function() {
@@ -345,6 +358,48 @@
                 }
             });
         }
+      }
+
+      function getInCompleteCase(){
+        var memberid = $('#hidMemberId').val();       
+
+        $.ajax({
+              type: 'GET',
+              url: "/api/check-pending-resell",
+              data: { 'type': 'sell', 'memberid': memberid},
+              dataType: "json",
+              beforeSend: function( xhr ) {
+                  xhr.setRequestHeader ("Authorization", "Bearer " + token);
+              },
+              error: function (error) { 
+                  // document.getElementById('loading2').style.visibility="hidden";
+                  console.log(error.responseText);
+                  alert('下载失败，重新刷新试试');
+                },                  
+              success: function(data) {
+                  console.log(data);
+                  // document.getElementById('loading2').style.visibility="hidden";
+                  if(data.success){
+                   
+                    console.log(data.count);
+                    
+                    if (data.count > 0) {
+                      $('.in-complete-note').css('display', 'block');
+                      $('.in-complete-count').html(data.count);
+                      $('.in-complete-note').click(function () {
+                        window.location.href = '/coin/list/pending';
+                      });
+                    }  else {
+                      $('.in-complete-note').css('display', 'none');
+                    }
+                                 
+                  } else {
+                    //go bank card
+                    // window.location.href = '/recharge/rechargeCard';
+                    // alert('提交失败，重新刷新试试');
+                  }
+              }
+          });
       }
 
     </script>

@@ -55,6 +55,7 @@
           text-align: center;
           padding: 0.15rem;
           display: none;
+          font-weight: 550;
         }
          
     </style>
@@ -152,7 +153,7 @@
         $(document).ready(function () {
             $('.scrolly').addClass('cionPage rechargePage');
             getToken();
-            getPendingCase();
+            getInCompleteCase();
 
             //选择数量
             $('.cionPage  li').click(function () {
@@ -229,7 +230,7 @@
         }
       }
 
-      function getPendingCase(){
+      function getInCompleteCase(){
         var memberid = $('#hidMemberId').val();       
 
         $.ajax({
@@ -252,14 +253,17 @@
                    
                     console.log(data.count);
                     
-                    // if (data.count > 0) {
+                    if (data.count > 0) {
                       $('.in-complete-note').css('display', 'block');
                       $('.in-complete-count').html(data.count);
                       $('.hrf3').css('display', 'none');
                       $('.in-complete-note').click(function () {
-                        window.location.href = '/recharge/list/pending';
+                        window.location.href = '/recharge/list/in-complete';
                       });
-                    // } 
+                    }  else {
+                      $('.in-complete-note').css('display', 'none');
+                      $('.hrf3').css('display', 'block');
+                    }
                                  
                   } else {
                     //go bank card
