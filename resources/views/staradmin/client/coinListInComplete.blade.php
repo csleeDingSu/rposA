@@ -102,7 +102,7 @@
                         var _fontcolor = '';
 
                         txt_point = item.point;
-                        txt_when = item.updated_at;
+                        txt_when = item.created_at;
                         txt_amount = item.amount;
                         _url = '/coin/list/detail/' + item.id;
 
