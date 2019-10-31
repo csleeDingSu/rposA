@@ -2749,8 +2749,122 @@ min-height: 5.6rem;
 .userMainList2 a img{ width: .15rem; transform: rotate(180deg);}
 
 
+.freeBg{
+  background: #535cfa;
+}
 
 
 
+.freeHeader{ height: 0; position: relative;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-fex;
+  justify-content: space-between;
+  padding-left: .24rem;
+}
+.freeHeader a{margin-top: .27rem;}
+.freeHeader .returnBtn{
+  display: block;
+  height: .5rem;font-size: .28rem;font-weight: bold;;
+  padding: 0 .18rem;color: #fff;line-height: .5rem;border-radius: .5rem;background: rgba(0,0,0,0.3);;
+}
+.freeHeader .returnBtn i{margin-right: .05rem;}
+.freeHeader .gzbtn{
+  display: block; width: 1.36rem; height: .52rem; line-height: .52rem; text-align: center; font-size: .24rem;
+  background: url(../images/gzIcon.png) left top no-repeat;  background-size:100% 100% ;
+  color:#fff;
+}
+
+
+.freeView{
+  margin: 0 .24rem .3rem;
+  background: #26bffb;
+  padding: 0 .24rem .28rem;
+  border-radius: .15rem; box-shadow: 0 0 .1rem rgba(0,0,0,0.05);
+}
+
+.freeView .intitle{
+  text-align: center; font-size: .34rem; line-height: .8rem; color:#0e62f0;
+  font-weight: bold;
+}
+
+.freeView .inBody{
+  background: #5946fe; padding: 0 .24rem;
+  border-radius: .15rem;
+  border-top:.03rem solid #4939d0;
+  border-right: .02rem solid #4939d0;
+}
+
+.freeView .inGz p{
+  font-size: .26rem;color: #fff; line-height: .43rem; padding: .15rem 0 .4rem 0;
+}
+
+.freeView .listNav{
+  display: flex;
+  height: .74rem;
+border-bottom: .03rem solid #4032bc;
+margin-bottom: .32rem;
+}
+
+.freeView .listNav a{
+  flex:1;
+  line-height: .74rem;
+  text-align: center; font-size: .26rem;color: #fff;
+  position: relative;
+}
+.freeView .listNav a:active::before,
+.freeView .listNav a.on::before{
+  content: "";
+  height: .08rem;
+  background: #e3c863;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom:-.05rem;
+  border-radius: .08rem;
+}
+
+.freeView .inList li{
+  background: #fff;
+  padding: .22rem .18rem;
+  display: flex;display: -webkit-flex;display: -moz-flex;
+  align-items: center;
+  margin-top: .17rem;
+}
+.freeView .inList li:first-of-type{margin-top: 0;}
+.freeView .inList li img{ width: 1.2rem; height: 1.1rem;}
+.freeView .inList li .imgBox{min-width: 1.2rem; margin-right: .16rem;}
+.freeView .inList li .txtBox{flex:1}
+.freeView .inList li .txtBox h2{font-size: .28rem; color: #333; line-height: .38rem;}
+.freeView .inList li .txtBox p{ line-height: .38rem;font-size: .26rem;}
+.freeView .inList li .txtBox p font{color:#fd3d5f; margin-right: .05rem;}
+.freeView .inList li .txtBox p i{color: #bebebe; font-size: .24rem;text-decoration:line-through;}
+.freeView .inList li .txtBox h3{font-size: .24rem; color:#5946fe; line-height: .36rem;}
+
+.freeView .inList li .btnBox a{
+  display: flex;display: -webkit-lex;display: moz-flex;
+  align-items: center;justify-content: center;
+  width: 1.06rem;
+  height: 1.06rem;
+  background: -webkit-linear-gradient(top, #ffc146, #ff912b);
+  background: -o-linear-gradient(bottom, #ffc146, #ff912b);
+  background: -moz-linear-gradient(bottom, #ffc146, #ff912b);
+  background: linear-gradient(to bottom, #ffc146, #ff912b);
+  border-radius: 1.06rem;
+  text-align: center;  margin: 0 .06rem;
+}
+
+.freeView .inList li .btnBox a span{color: #fff; font-size: .26rem; line-height: 1.2em;}
+
+.freeView .inList .isLastPage{ font-size: .26rem; text-align: center; color: #cbc5ff; line-height: .84rem;}
+
+.card-fixed{
+  position: fixed;
+  bottom:.2rem;right: .2rem;
+}
+
+
+.card-fixed a img{ width: 1.04rem;}
 
 
