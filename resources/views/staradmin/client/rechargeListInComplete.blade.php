@@ -267,7 +267,7 @@
             clearInterval(x);
             document.getElementById(id).innerHTML = "00:00";
             $("#btn-go-" + id).off('click');
-            // $("#btn-go-" + id).css('display','none');
+            $("#btn-go-" + id).css('display','none');
             
           }
         }, 1000);
