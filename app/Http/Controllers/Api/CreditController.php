@@ -92,7 +92,7 @@ class CreditController extends Controller
     		{
     			$amount = $amdata->amount;
     		}
-    		print_($request->memberid);die();
+    		print_r($request->memberid);die();
     		//reserve point
 			$record 		     = new \App\CreditResell();
 			$record->member_id   = $companydata->member->id;
