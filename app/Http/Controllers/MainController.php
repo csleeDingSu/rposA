@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
 
 
 use App;
-use App\CreditResell;
 use App\Helpers\VIPApp;
 use App\Http\Controllers\Api\CreditController;
 use App\Http\Controllers\tabaoApiController;
@@ -352,14 +351,20 @@ class MainController extends BaseController
 		$credit_resell_id = $request->input('credit_resell_id');
 
 		if (!empty($credit_resell_id)) {
-			$record  = \App\CreditResell::with('status','member')->where('id', $credit_resell_id)->where('is_locked', 1)->first();
-			$data['content'] = $record;
+			$c = new CreditController();
+			$request->merge(['id' => $credit_resell_id]); 
+			$res = json_encode($c->get_resell_record($request));
+			$data['content'] = json_decode($res)->original;
+			$data['coin'] = $request->input('coin');
+			$data['cash'] = $request->input('cash');
 		} else {
-			$data['content'] = json_decode($request->input('hidTypeContent'));	
+			$data['content'] = json_decode($request->input('hidTypeContent'));
+			$data['coin'] = $request->input('hidSelectedCoin');
+			$data['cash'] = $request->input('hidSelectedCash');
 		}
+
+		// dd($data['content']);
 		
-		$data['coin'] = $request->input('hidSelectedCoin');
-		$data['cash'] = $request->input('hidSelectedCash');
 		$type = !empty($data['content']->type) ? $data['content']->type : '';
 
 		if ($type == 'companyaccount' || $type == '1') {

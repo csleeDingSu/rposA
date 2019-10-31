@@ -49,14 +49,16 @@
 <!-- top nav end-->
 
 @section('content')
-<input id="hidSession" type="hidden" value="{{!empty(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 <input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['103']->point) ? $wallet['gameledger']['103']->point : 0}}" />
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
 <input id="hidCoin" type="hidden" value="{{!empty($coin) ? $coin : 0}}" />
 <input id="hidCash" type="hidden" value="{{!empty($cash) ? $cash : 0}}" />
 <input id="hidRequestId" type="hidden" value="{{!empty($content->record->id) ? $content->record->id : 0}}" />
-@php($recod = $content->record)
-@php($company = $content->company)
+<input id="hidExpired" type="hidden" value="{{!empty($content->record->locked_time) ? $content->record->locked_time : 0}}" />
+
+@php($recod = empty($content->record) ? null : $content->record)
+@php($company = empty($content->company) ? null : $content->company)
 
 <div class="loading2" id="loading2"></div>
 
@@ -67,21 +69,21 @@
         </div>
         <ul class="payCard">
           <li><span>账户姓名</span>
-            <p class="name">{{$company->account_name}}</p><a class="copyBtn">复制</a>
+            <p class="name">{{empty($company->account_name) ? '' : $company->account_name}}</p><a class="copyBtn">复制</a>
           </li>
           <li><span>银行号码</span>
-            <p class="name">{{$company->account_number}}</p><a class="copyBtn">复制</a>
+            <p class="name">{{empty($company->account_number) ? '' : $company->account_number}}</p><a class="copyBtn">复制</a>
           </li>
           <li><span>银行名称</span>
             <p>
-              <font color="#2d95e0">{{$company->bank_name}}</font>
+              <font color="#2d95e0">{{empty($company->bank_name) ? '' : $company->bank_name}}</font>
             </p>
           </li>
         </ul>
         <div class="paySeller">
           <h2>卖家信息</h2>
           <p><span>用户账号</span><span>
-              <font color="#666">{{ substr($company->phone,0,3) }}*****{{ substr($company->phone, -4) }}</font>
+              <font color="#666">{{ empty($company->phone) ? '' : substr($company->phone,0,3) }}*****{{ empty($company->phone) ? '' : substr($company->phone, -4) }}</font>
             </span></p>
           <p><span>转卖挖宝币</span><span>
               <font color="#ff696f">{{$coin}}币</font>
@@ -89,7 +91,7 @@
           <p><span>收款方式</span><span>
               <font color="#2d95e0">银行卡</font>
             </span></p>
-          <p><span>转卖时间</span><span>{{$recod->created_at}}</span></p>
+          <p><span>转卖时间</span><span>{{empty($recod->created_at) ? '' : $recod->created_at}}</span></p>
         </div>
         <div class="buyName">
           <span>您的姓名</span>
@@ -232,9 +234,10 @@ var timer_txt = setInterval(function () {
 var minute = document.querySelector(".minute")
 var second = document.querySelector(".second")
 // 准备
+var expired = $('#hidExpired').val();
 var countdownMinute = 10 //10分钟倒计时
 var startTimes = new Date() //开始时间
-var endTimes = new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) //结束时间
+var endTimes = (expired==0) ? new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) : new Date(expired) //结束时间
 var curTimes = new Date() //当前时间
 var surplusTimes = endTimes.getTime() / 1000 - curTimes.getTime() / 1000 //结束毫秒-开始毫秒=剩余倒计时间
 

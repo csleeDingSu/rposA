@@ -52,14 +52,15 @@
 <!-- top nav end-->
 
 @section('content')
-<input id="hidSession" type="hidden" value="{{!empty(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 <input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['103']->point) ? $wallet['gameledger']['103']->point : 0}}" />
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
 <input id="hidCoin" type="hidden" value="{{!empty($coin) ? $coin : 0}}" />
 <input id="hidCash" type="hidden" value="{{!empty($cash) ? $cash : 0}}" />
 <input id="hidRequestId" type="hidden" value="{{!empty($content->record->id) ? $content->record->id : 0}}" />
+<input id="hidExpired" type="hidden" value="{{!empty($content->record->locked_time) ? $content->record->locked_time : 0}}" />
 
-@php($seller = $content->record)
+@php($seller = empty($content->record) ? null : $content->record)
 
 <div class="loading2" id="loading2"></div>
 
@@ -86,15 +87,16 @@
           <div class="paySeller">
             <h2>卖家信息</h2>
             <p><span>用户账号</span><span>
-                <font color="#666">{{ substr($seller->member->phone,0,3) }}*****{{ substr($seller->member->phone, -4) }}</font>
+                <font color="#666">{{ empty($seller->member->phone) ? '' : substr($seller->member->phone,0,3) }}*****{{ empty($seller->member->phone) ? '' : substr($seller->member->phone, -4) }}</font>
               </span></p>
+
             <p><span>转卖挖宝币</span><span>
                 <font color="#ff696f">{{$coin}}币</font>
               </span></p>
             <p><span>收款方式</span><span>
                 <font color="#2d95e0">银行卡</font>
               </span></p>
-            <p><span>转卖时间</span><span>{{$seller->created_at}}</span></p>
+            <p><span>转卖时间</span><span>{{empty($seller->created_at) ? '' : $seller->created_at}}</span></p>
           </div>
           <div class="inBtnbox">
             <h2>请确认您已完成支付，再点击“充值完成”</h2>
@@ -229,9 +231,10 @@ var timer_txt = setInterval(function () {
 var minute = document.querySelector(".minute")
 var second = document.querySelector(".second")
 // 准备
+var expired = $('#hidExpired').val();
 var countdownMinute = 10 //10分钟倒计时
 var startTimes = new Date() //开始时间
-var endTimes = new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) //结束时间
+var endTimes = (expired == 0) ? new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) : new Date(expired) //结束时间
 var curTimes = new Date() //当前时间
 var surplusTimes = endTimes.getTime() / 1000 - curTimes.getTime() / 1000 //结束毫秒-开始毫秒=剩余倒计时间
 
