@@ -108,6 +108,8 @@ class CreditController extends Controller
 			$history->cid        = $record->id;
 			$history->status_id  = 2;
 			$history->point      = $request->point;
+			$record->member_id   = $companydata->member->id;
+			$record->buyer_id    = $request->memberid;
 			$history->save();
 
 
@@ -133,6 +135,8 @@ class CreditController extends Controller
 			$history->status_id = 3;
 			$history->amount    = $record->amount;
 			$history->point     = $record->point;
+			$record->member_id  = $record->member_id;
+			$record->buyer_id   = $record->buyer_id;
 			$history->save();
 
 			return response()->json(['success' => true]);
@@ -166,6 +170,8 @@ class CreditController extends Controller
 			$history->amount     = $record->amount;
 			$history->point      = $record->point;
 			$history->reason     = $reason;
+			$record->member_id   = $record->member_id;
+			$record->buyer_id    = $record->buyer_id;
 			$history->save();
 
 			return response()->json(['success' => true]);		

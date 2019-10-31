@@ -196,7 +196,8 @@ class CreditController extends BaseController
 			$history->status_id = $request->status_id;
 			$history->amount    = $record->amount;
 			$history->point     = $record->point;
-			$history->member_id = $memid;
+			$history->member_id = $record->member_id;
+			$history->buyer_id  = $memid;
 			$history->reason    = $reason;
 
 			if ($ledger)

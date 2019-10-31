@@ -69,6 +69,8 @@ class VoidResell extends Command
             $history             = new \App\ResellHistory();
             $history->cid        = $record->id;
             $history->status_id  = 5;
+            $history->member_id  = $record->member_id;
+            $history->buyer_id   = $record->buyer_id;
             $history->point      = $record->point;
             $record->reason      = 'time expired'; 
             $history->save();             
