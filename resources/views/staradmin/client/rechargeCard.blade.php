@@ -239,7 +239,6 @@ var second = document.querySelector(".second")
 var t = $('#hidExpired').val().split(/[- :]/);
 var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
 var expired = new Date(d);
-
 var countdownMinute = 10 //10分钟倒计时
 var startTimes = new Date() //开始时间
 var endTimes = (expired==0) ? new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) : expired //结束时间

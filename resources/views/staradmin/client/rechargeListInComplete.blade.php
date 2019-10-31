@@ -238,7 +238,9 @@
       }
 
       function getCoundown(_time, id) {
-        var countDownDate = new Date(_time).getTime();
+        var t = _time.split(/[- :]/);
+        var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+        var countDownDate = new Date(d).getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {
