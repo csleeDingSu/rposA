@@ -236,7 +236,7 @@ var timer_txt = setInterval(function () {
 var minute = document.querySelector(".minute")
 var second = document.querySelector(".second")
 // 准备
-var expired = $('#hidExpired').val();
+var expired = 0; //$('#hidExpired').val();
 var countdownMinute = 10 //10分钟倒计时
 var startTimes = new Date() //开始时间
 var endTimes = (expired==0) ? new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) : new Date(expired) //结束时间
