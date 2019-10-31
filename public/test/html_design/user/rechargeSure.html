@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>确认充值</title>
+    <link rel="stylesheet" type="text/css" href="../css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../css/module.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/clipboard.min.js"></script>
+    <script type="text/javascript" src="../js/being.js"></script>
+</head>
+
+<body>
+    <section class="cardFull card-flex">
+        <div class="cardHeader">
+            <div class="headTitle">
+                <a class="return"><img src="../images/headReturn.png" /></a>
+                <h2>充值</h2>
+            </div>
+        </div>
+        <div class="cardBody ">
+            <div class="reSure">
+                <div class="detail">
+                    <h2>￥99.98<span class="type">待充值</span></h2>
+                    <h3>
+                        请用支付宝或微信打款到以下账户
+                        <a class="cJchengShow">充值教程</a>>
+                    </h3>
+                    <div class="bankres">
+                        <p><i>银行名称：</i><span>工商银行</span></p>
+                        <p><i>持卡人名字：</i><span id="nameText">平多多</span><a class="nameCut">点击复制</a></p>
+                        <p>
+                            <i>银行账号：</i><span id="cardText">6227 8888 8888 8888</span><a class="cardCut">点击复制</a>
+                        </p>
+                        <p><i>开户行：</i><span>延边支行</span></p>
+                    </div>
+                </div>
+                <h2 class="hintTime">
+                    请在
+                    <font color="#ff6772">9分35秒</font>内付款完成<br /> 付款完成后 请确认付款结果
+                </h2>
+                <div class="btnBox">
+                    <a class="gradientBtn">已付款完成</a> <a class="die">充值失败</a>
+                </div>
+            </div>
+            <!-- 充值教程 -->
+            <div class="cJcheng">
+                <div class="inShow">
+                    <div class="hd"><a class="on">支付宝转账</a> <a>微信转账</a></div>
+                    <div class="bd">
+                        <div class="inBox">
+                            <ul>
+                                <li>
+                                    <div>
+                                        <img src="../images/alpay-1.png" />
+                                        <p>01打开支付宝选择“转账”</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/alpay-2.png" />
+                                        <p>02选择“转到银行卡”</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/alpay-3.png" />
+                                        <p>03输入银行卡信息及金额</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/alpay-4.png" />
+                                        <p>04确认转账信息及备注手机账号</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/alpay-5.png" />
+                                        <p>05确认支付金额</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/alpay-6.png" />
+                                        <p>06账单提示“付款成功”完成操作</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="hintBox">
+                                <p>
+                                    付款成功后，<br /> 返回平台“确认充值”页面点击“充值完成”
+                                </p>
+                            </div>
+                        </div>
+                        <div class="inBox">
+                            <ul>
+                                <li>
+                                    <div>
+                                        <img src="../images/wxpay-1.png" />
+                                        <p>01打开微信钱包选择“收付款”</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/wxpay-2.png" />
+                                        <p>02下拉选择“转账到银行卡”</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/wxpay-3.png" />
+                                        <p>03输入银行卡信息及金额</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/wxpay-4.png" />
+                                        <p>04确认转账信息备注手机账号</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/wxpay-5.png" />
+                                        <p>05选择右上角“支付中心”图标</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/wxpay-6.png" />
+                                        <p>06选择“账单”功能</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/wxpay-7.png" />
+                                        <p>07查看支付账单信息</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="../images/wxpay-8.png" />
+                                        <p>08确认“到账成功”</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="hintBox">
+                                <p>
+                                    付款成功后，<br /> 返回平台“确认充值”页面点击“充值完成”
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成功 -->
+
+            <div class=" showType successBox">
+                <div class="inBox fix">
+                    <img src="../images/successIcon.png" />
+                    <h2>充值完成</h2>
+                    <p>等待系统核实充币</p>
+                </div>
+            </div>
+
+            <!-- 失败 -->
+            <div class=" showType failBox">
+                <div class="inBox fix">
+                    <img src="../images/faile.png" />
+                    <h2>充值失败</h2>
+                    <a class="reBegin">重新充值</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(function() {
+
+            $(".cJchengShow").click(() => {
+                being.wrapShow();
+                $(".cJcheng").slideDown(150);
+            });
+
+            $(".cJcheng .hd a").click(function() {
+                let that = $(this);
+                let i = that.index();
+                that
+                    .addClass("on")
+                    .siblings()
+                    .removeClass("on");
+                $(".cJcheng .bd .inBox")
+                    .eq(i)
+                    .fadeIn(0)
+                    .siblings()
+                    .fadeOut(0);
+            });
+            $(".cJcheng").click(function(e) {
+                var target = $(e.target).closest(".inShow").length;
+                if (target > 0) {
+                    return;
+                } else {
+                    $(".cJcheng").slideUp(150);
+                    being.wrapHide();
+                }
+            });
+
+            $(".gradientBtn").click(function() {
+                being.wrapShow('.cardBody');
+                $(".successBox").fadeIn(150);
+            });
+
+            $(".die").click(function() {
+                being.wrapShow('.cardBody');
+                $(".failBox").fadeIn(150);
+            });
+
+            $('.showType').click(function(e) {
+                var target = $(e.target).closest(".inShow").length;
+                if (target > 0) {
+                    return;
+                } else {
+                    $(".showType").fadeOut(150);
+                    being.wrapHide();
+                }
+            });
+
+            var clipboardName = new ClipboardJS(".nameCut", {
+                target: function() {
+                    return document.querySelector("#nameText");
+                }
+            });
+
+            $('.nameCut').click(function() {});
+
+            clipboardName.on("success", function(e) {
+                console.log(e);
+                alert('复制成功');
+            });
+
+            clipboardName.on("error", function(e) {
+                console.log(e);
+                alert('复制失败');
+            });
+
+            var clipboardCard = new ClipboardJS(".cardCut", {
+                target: function() {
+                    return document.querySelector("#cardText");
+                }
+            });
+
+            $('.cardCut').click(function() {});
+            clipboardCard.on("success", function(e) {
+                console.log(e);
+                alert('复制成功');
+            });
+
+            clipboardCard.on("error", function(e) {
+                console.log(e);
+                alert('复制失败');
+            });
+
+        });
+    </script>
+</body>
+
+</html>
