@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'dbHost' => '154.222.143.39',
+  'dbHost' => 'localhost',
   'dbPort' => '3306',
   'dbUser' => 'dev1',
   'dbPassword' => 'Abc@1234Abc@1234',
@@ -22,7 +22,7 @@ return array (
   ),
   'appSettings' => 
   array (
-    'contactMail' => 'admin@domain.com',
+    'contactMail' => 'admin@admin.com',
   ),
 );
 
