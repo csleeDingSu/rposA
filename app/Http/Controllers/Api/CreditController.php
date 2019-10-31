@@ -245,7 +245,7 @@ class CreditController extends Controller
     	$companydata = '';
     	$type        = '';
     	\DB::connection()->enableQueryLog();
-    	$record  = \App\CreditResell::with('status','member')->where('id', $request->id)->where('is_locked', 1)->first();
+    	$record  = \App\CreditResell::where('id', $request->id)->where('is_locked', 1)->first();
     	print_r(\DB::getQueryLog());
     	print_r($record);echo 'here';
     	if ($record)
