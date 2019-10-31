@@ -62,8 +62,7 @@ class VoidResell extends Command
             $record->buyer_id    = null; 
             $record->reason      = null; 
             $record->barcode     = null; 
-            $record->status_id   = 1;
-            $status              = 'cron reset';
+            $record->status_id   = 2;
             $record->save();  
 
             //add history
@@ -71,6 +70,7 @@ class VoidResell extends Command
             $history->cid        = $record->id;
             $history->status_id  = 5;
             $history->point      = $record->point;
+            $record->reason      = 'time expired'; 
             $history->save();             
                         
             $this->line('-- record reset with default values');
