@@ -192,7 +192,7 @@ class CreditController extends Controller
     public function resell_tree(Request $request)
     {
     	
-    	$record = \App\CreditResell::where('member_id', $request->memberid)->first();
+    	$record = \App\CreditResell::with('status','member','buyer')->where('member_id', $request->memberid)->first();
     	if ($record)
     	{
     		$result = \App\ResellHistory::with('status')->where('cid', $request->id)->latest()->paginate(30);
