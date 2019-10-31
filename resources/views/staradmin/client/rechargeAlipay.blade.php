@@ -58,7 +58,7 @@
 <input id="hidCoin" type="hidden" value="{{!empty($coin) ? $coin : 0}}" />
 <input id="hidCash" type="hidden" value="{{!empty($cash) ? $cash : 0}}" />
 <input id="hidRequestId" type="hidden" value="{{!empty($content->record->id) ? $content->record->id : 0}}" />
-<input id="hidExpired" type="hidden" value="{{!empty($content->record->locked_time) ? $content->record->locked_time : 0}}" />
+<input id="hidExpired" type="hidden" value="{{!empty($content->record->locked_time->date) ? $content->record->locked_time->date : (!empty($content->record->locked_time) ? $content->record->locked_time : 0)}}" />
 
 @php($seller = empty($content->record) ? null : $content->record)
 

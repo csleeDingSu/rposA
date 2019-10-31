@@ -49,13 +49,14 @@
 <!-- top nav end-->
 
 @section('content')
+
 <input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 <input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['103']->point) ? $wallet['gameledger']['103']->point : 0}}" />
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
 <input id="hidCoin" type="hidden" value="{{!empty($coin) ? $coin : 0}}" />
 <input id="hidCash" type="hidden" value="{{!empty($cash) ? $cash : 0}}" />
 <input id="hidRequestId" type="hidden" value="{{!empty($content->record->id) ? $content->record->id : 0}}" />
-<input id="hidExpired" type="hidden" value="{{!empty($content->record->locked_time) ? $content->record->locked_time : 0}}" />
+<input id="hidExpired" type="hidden" value="{{!empty($content->record->locked_time->date) ? $content->record->locked_time->date : (!empty($content->record->locked_time) ? $content->record->locked_time : 0)}}" />
 
 @php($recod = empty($content->record) ? null : $content->record)
 @php($company = empty($content->company) ? null : $content->company)
@@ -67,6 +68,7 @@
           <h3>支付金额</h3>
           <p><i>￥</i><span>{{$cash}}</span></p>
         </div>
+
         <ul class="payCard">
           <li><span>账户姓名</span>
             <p class="name">{{empty($company->account_name) ? '' : $company->account_name}}</p><a class="copyBtn">复制</a>
