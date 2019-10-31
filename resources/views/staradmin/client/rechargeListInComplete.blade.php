@@ -146,7 +146,7 @@
                           _fontcolor = '#6ac2ff'; 
                           getCoundown(item.locked_time, item.id);
                           countdown = '<span class="txt-red" id="'+item.id+'">10:00</span>'; 
-                          _url = '/recharge/type?credit_resell_id=' + item.id;                         
+                          _url = '/recharge/type?credit_resell_id=' + item.id + '&coin=' + txt_point + '&cash=' + txt_amount;                                             
                         } else if (item.status_id == 2) {
                           // txt_status = '已匹配到卖家';
                           // _cls = 'payIng';
