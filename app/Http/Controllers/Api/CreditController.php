@@ -245,7 +245,14 @@ class CreditController extends Controller
     	$record  = \App\CreditResell::with('status','member')->where('id', $request->id)->where('is_locked', 1)->first();
     	if (!$record)
     	{
-    		return response()->json(['success' => true,  'record'=>$record]);
+    		$companydata = '';
+    		$type  = '';
+    		if ($record->type == 1)
+    		{
+    			$companydata = \App\CompanyBank::with('member')->first();
+    			$type        = 'companyaccount';
+    		}
+    		return response()->json(['success' => true, 'record'=>$record,'company'=>$companydata, 'type'=>$type]);
     	}
     	return response()->json(['success' => false, 'message' => 'record expired' ]);
     }
