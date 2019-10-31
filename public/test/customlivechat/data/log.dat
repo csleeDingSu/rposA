@@ -1,0 +1,10 @@
+Application path: /test/customlivechat/php/app.php?install-wizard-2
+2019-10-31 09:20:28 [error] SQLSTATE[HY000] [2002] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+
+Stack trace:
+D:\task\wabao666\wabao666\public\test\customlivechat\php\service\Database.php:50 (Logger:error())
+D:\task\wabao666\wabao666\public\test\customlivechat\php\controller\InstallController.php:2 (Database:connect())
+D:\task\wabao666\wabao666\public\test\customlivechat\php\app\Application.php:165 (InstallController:wizard2Action())
+D:\task\wabao666\wabao666\public\test\customlivechat\php\app\Application.php:89 (Application:runAction())
+D:\task\wabao666\wabao666\public\test\customlivechat\php\app.php:27 (Application:run())
+
