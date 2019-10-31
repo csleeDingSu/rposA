@@ -7,7 +7,7 @@ class ViewCreditResell extends Model
 {   
     protected $fillable = [    ];	
 			
-    protected $table    = 'ViewCreditResell';	
+    protected $table    = 'view_credit_resell';	
 	
 	public static function getTableName()
     {
