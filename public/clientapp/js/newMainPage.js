@@ -36,7 +36,8 @@ $(document).ready(function () {
   }); 
 
   $('.goShare-c').click(function() {
-    $('#redeem-plan-modal').modal();
+    // $('#redeem-plan-modal').modal();
+    window.location.href = "/free";    
   });
 
   $('.btn-close-modal').click(function() {

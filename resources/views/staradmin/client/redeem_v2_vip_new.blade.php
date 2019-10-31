@@ -185,6 +185,10 @@
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
 
+    	$(document).ready(function () {
+	      $('.scrolly').addClass('bgf3');
+	    });
+
     	document.onreadystatechange = function () {
 	      var state = document.readyState
 	      if (state == 'interactive') {

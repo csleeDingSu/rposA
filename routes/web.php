@@ -184,7 +184,10 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/guide/redeem', function () {
 		return view( 'client/quan');
 	} );
-	Route::any( '/main/zero-price-product', 'MainController@tabaoZeroPriceProduct' )->name( 'client.tabao.zeroPriceProduct' );	
+	Route::any( '/main/zero-price-product', 'MainController@tabaoZeroPriceProduct' )->name( 'client.tabao.zeroPriceProduct' );
+	Route::get( '/free', function () {
+		return view( 'client/free');
+	} );	
 		
 } );
 

@@ -100,6 +100,10 @@
   <script type="text/javascript" src="{{ asset('/clientapp/js/blog.js?version=1.0') }}"></script>
   <script type="text/javascript">
 
+    $(document).ready(function () {
+      $('.scrolly').addClass('bgf3');
+    });
+
     document.onreadystatechange = function () {
       var state = document.readyState
       if (state == 'interactive') {

@@ -153,11 +153,7 @@
 
 		@yield('blog-tab')
 
-		@if(Request::is('blog') || Request::is('redeem-vip-new'))
-			<div class="card-body over bgf3 ">
-		@else
-			<div class="card-body over ">
-		@endif
+		<div class="card-body over ">
 		
 	    	@yield('game-top-nav')
 	    	<div class="loading" id="loading"></div>
@@ -168,9 +164,12 @@
 	    	@else
 	    		@yield('content')
 	    	@endif
+
+	    	@yield('fix-btn')
+	    
 	    </div>
 
-	    @if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips') && !Request::is('share') && !Request::is('buy') && !Request::is('confirm') && !Request::is('recharge/type'))
+	    @if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips') && !Request::is('share') && !Request::is('buy') && !Request::is('confirm') && !Request::is('recharge/type') && !Request::is('free'))
 
 			@include('layouts/footer_app')
 		@endif
@@ -181,7 +180,7 @@
 			<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 			@if(env('THISVIPAPP','false'))
-				<script language="javascript" src="https://api2.pop800.com/800.js?n=569521&t=3&l=cn"></script><div style="display:none;"><a href="https://www.pop800.com">在线客服</a></div>
+				<!-- <script language="javascript" src="https://api2.pop800.com/800.js?n=569521&t=3&l=cn"></script><div style="display:none;"><a href="https://www.pop800.com">在线客服</a></div> -->
 			@endif
 
 			<script type="text/javascript">
