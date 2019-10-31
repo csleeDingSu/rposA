@@ -249,7 +249,7 @@ class CreditController extends Controller
     		$type  = '';
     		if ($record->type == 1)
     		{
-    			$companydata = \App\CompanyBank::with('member')->first();
+    			$companydata = \App\CompanyBank::first();
     			$type        = 'companyaccount';
     		}
     		return response()->json(['success' => true, 'record'=>$record,'company'=>$companydata, 'type'=>$type]);
