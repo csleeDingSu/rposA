@@ -32,6 +32,21 @@
           display: none;
           font-weight: 550;
         }
+
+        .csBtn {
+          background: url(/clientapp/images/coin/beijing.png) center no-repeat;
+          font-size: .28rem;
+          position: absolute;
+          right: 0;
+          top: 0;
+          line-height: .9rem;
+          background-size: cover;
+          padding: 0 0.1rem 0.1rem 0.1rem;
+        }
+        .csBtn img{
+          padding: 0 0.1rem 0 0.15rem;
+          height: 0.4rem;
+        }
          
     </style>
 @endsection
@@ -58,7 +73,8 @@
     <div class="pageHeader rel">
       <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('/clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
       <h2>我的奖品</h2>
-      <a class="coinListBtn" href="/coin/list">转卖记录</a>
+      <!-- <a class="coinListBtn" href="/coin/list">转卖记录</a> -->
+      <a class="csBtn"><img src="{{ asset('/clientapp/images/coin/kefu1.png') }}">在线客服</a>
     </div>
     <div class="inBox">
       <img class="inBanner" src="{{ asset('/clientapp/images/coinTxt.png') }}">

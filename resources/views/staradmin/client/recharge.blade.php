@@ -57,6 +57,23 @@
           display: none;
           font-weight: 550;
         }
+
+        .csBtn {
+          position: absolute;
+          z-index: 1;
+          right: .3rem;
+          top: 0;
+          font-size: .20rem;
+          color: #2baef9;
+          line-height: 1.7rem;
+          display: block;
+        }
+
+        .csBtn img {
+          position: absolute;
+          height: 0.7rem;
+          padding: 0.1rem 0.1rem 0 0.1rem;
+        }
          
     </style>
 @endsection
@@ -77,7 +94,8 @@
 @section('title', '充值挖宝币')
 
 @section('right-menu')
-<a href="/recharge/list" class="rechargeListBtn">充值记录</a>
+<!-- <a href="/recharge/list" class="rechargeListBtn">充值记录</a> -->
+<a class="csBtn"><img src="{{ asset('/clientapp/images/coin/kefu2.png') }}">在线客服</a>
 @endsection
 <!-- top nav end-->
 
