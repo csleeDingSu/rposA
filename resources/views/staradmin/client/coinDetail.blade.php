@@ -98,21 +98,29 @@
                         var txt_img = '';
 
                         if (item.status_id == 1) {
+                          txt_status = '订单已提交'; 
+                          txt_dec = '转卖订单已提交，正在处理中'; 
+                          txt_img = '/clientapp/images/coinRight2.png';  
+                        } else if (item.status_id == 2) {
                           txt_status = '正在匹配买家'; 
                           txt_dec = '订单正在转卖中，等待匹配买家'; 
                           txt_img = '/clientapp/images/coinUserT2.png';  
-                        } else if (item.status_id == 2) {
+                        } else if (item.status_id == 3) {
                           txt_status = '已匹配到买家 <font color="#609cff">135****8888</font>'; 
                           txt_dec = '已匹配到买家，等待买家充值'; 
                           txt_img = '/clientapp/images/coinUser2.png'; 
-                        } else if (item.status_id == 3) {
-                          txt_status = '<font color="#fe8686">买家付款失败</font>'; 
-                          txt_dec = '已匹配到买家，等待买家充值'; 
-                          txt_img = '/clientapp/images/coinClose2.png'; 
                         } else if (item.status_id == 4) {
                           txt_status = '已匹配到买家<font color="#609cff">135****8888</font>'; 
                           txt_dec = '买家已完成付款，请核实收款金额<font color="#ff6b6b">￥'+item.amount+'</font>'; 
                           txt_img = '/clientapp/images/coinRight2.png'; 
+                        } else if (item.status_id == 5) {
+                          txt_status = '<font color="#fe8686">买家付款失败</font>'; 
+                          txt_dec = '付款超时'; 
+                          txt_img = '/clientapp/images/coinClose2.png'; 
+                        } else if (item.status_id == 7) {
+                          txt_status = '<font color="#fe8686">发布失败</font>'; 
+                          txt_dec = '审核失败'; 
+                          txt_img = '/clientapp/images/coinClose2.png'; 
                         }
 
                         html += '<dd>' +
@@ -128,33 +136,6 @@
                                     '<p>'+txt_dec+'</p>' +
                                   '</div>' +
                                 '</dd>';
-
-                        if (item.status_id == 1) {
-                          formattedDate = new Date(item.created_at);
-                          d = formattedDate.getDate();
-                          m =  formattedDate.getMonth();
-                          m += 1;  // JavaScript months are 0-11
-                          y = formattedDate.getFullYear();
-                          h = formattedDate.getHours();
-                          mm = formattedDate.getMinutes();
-                          mm = (mm > 9) ? mm : '0' + mm;
-                          txt_date = d + "-" + m;
-                          txt_time = h + ':' + mm;
-
-                          html += '<dd>' +
-                                  '<div class="inTtimeBox">' +
-                                    '<h2>'+txt_date+'</h2>' +
-                                    '<p>'+ txt_time +'</p>' +
-                                  '</div>' +
-                                  '<div class="inIcon">' +
-                                    '<img src="/clientapp/images/coinRight2.png">' +
-                                  '</div>' +
-                                  '<div class="inDetail">' +
-                                    '<h2>订单已提交</h2>' +
-                                    '<p>转卖订单已提交，正在处理中</p>' +
-                                  '</div>' +
-                                '</dd>';
-                        }
                         
                       });
 

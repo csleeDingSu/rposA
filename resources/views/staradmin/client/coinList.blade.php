@@ -107,7 +107,7 @@
                         _url = '/coin/list/detail/' + item.id;
 
                         if (item.status_id == 1) {
-                          txt_status = '等待确认';  
+                          txt_status = '订单已提交';  
                           _cls = 'payReady';
                           _fontcolor = '#6ac2ff';                        
                         } else if (item.status_id == 2) {
@@ -123,6 +123,11 @@
                           _cls = 'payOver';
                           _fontcolor = '#51c000';
                         } else if (item.status_id == 5) {
+                          txt_status = '买家付款失败';
+                          txt_reason = '付款超时';
+                          _cls = 'payFail';
+                          _fontcolor = '#ff8282';
+                        } else if (item.status_id == 7) {
                           txt_status = '发布失败';
                           txt_reason = item.reason;
                           _cls = 'payFail';

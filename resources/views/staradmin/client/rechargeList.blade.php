@@ -152,11 +152,11 @@
                           countdown = '<span class="txt-red" id="'+item.id+'">10:00</span>';   
                           _url = '/recharge/type?credit_resell_id=' + item.id + '&coin=' + txt_point + '&cash=' + txt_amount;                    
                         } else if (item.status_id == 2) {
-                          // txt_status = '已匹配到卖家';
-                          // _cls = 'payIng';
-                          // _fontcolor = '#ffa200';
-                        } else if (item.status_id == 3) {
                           txt_status = '等待卖家发币';
+                          // _cls = 'payIng';
+                          _fontcolor = '#ffa200';
+                        } else if (item.status_id == 3) {
+                          txt_status = '等待付款';
                           // _cls = 'payIng';
                           _fontcolor = '#6ac2ff';
                         } else if (item.status_id == 4) {
@@ -164,6 +164,11 @@
                           // _cls = 'payOver';
                           _fontcolor = '#23ca27';
                         } else if (item.status_id == 5) {
+                          txt_status = '付款超时';
+                          txt_reason = '付款超时';
+                          // _cls = 'payFail';
+                          _fontcolor = '#ff8282';
+                        } else if (item.status_id == 7) {
                           txt_status = '拒绝退回';
                           txt_reason = item.reason;
                           // _cls = 'payFail';
