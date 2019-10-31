@@ -242,11 +242,11 @@ class CreditController extends Controller
 
     public function get_resell_record(Request $request)
     { 
+    	$companydata = '';
+    	$type        = '';
     	$record  = \App\CreditResell::with('status','member')->where('id', $request->id)->where('is_locked', 1)->first();
-    	if (!$record)
-    	{
-    		$companydata = '';
-    		$type  = '';
+    	if ($record)
+    	{    		
     		if ($record->type == 1)
     		{
     			$companydata = \App\CompanyBank::first();
