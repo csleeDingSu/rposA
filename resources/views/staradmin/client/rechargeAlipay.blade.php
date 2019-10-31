@@ -94,7 +94,7 @@
                 <font color="#ff696f">{{$coin}}币</font>
               </span></p>
             <p><span>收款方式</span><span>
-                <font color="#2d95e0">银行卡</font>
+                <font color="#2d95e0">支付宝</font>
               </span></p>
             <p><span>转卖时间</span><span>{{empty($seller->created_at) ? '' : $seller->created_at}}</span></p>
           </div>
