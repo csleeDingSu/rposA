@@ -98,7 +98,7 @@ class CreditController extends Controller
 			$record->buyer_id    = $request->memberid;
 			$record->point       = $request->point;
 			$record->amount      = $amount;
-			$record->status_id   = 1;
+			$record->status_id   = 2;
 			$record->is_locked   = 1;
     		$record->locked_time = Carbon::now()->addMinutes(10);			
     		$record->type        = 1;			
@@ -106,7 +106,7 @@ class CreditController extends Controller
 			//add history
 			$history             = new \App\ResellHistory();
 			$history->cid        = $record->id;
-			$history->status_id  = 1;
+			$history->status_id  = 2;
 			$history->point      = $request->point;
 			$history->save();
 
