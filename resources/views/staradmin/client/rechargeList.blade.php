@@ -151,7 +151,14 @@
                           getCoundown(item.locked_time, item.id);
                           countdown = '<span class="txt-red" id="'+item.id+'">10:00</span>';   
                           _url = '/recharge/type?credit_resell_id=' + item.id + '&coin=' + txt_point + '&cash=' + txt_amount;                    
-                        } else if (item.status_id == 2) {
+                        } else if (item.status_id == 2 && item.is_locked == 1) {
+                          txt_status = '等待付款';  
+                          // _cls = 'payIng';
+                          _fontcolor = '#6ac2ff'; 
+                          getCoundown(item.locked_time, item.id);
+                          countdown = '<span class="txt-red" id="'+item.id+'">10:00</span>';   
+                          _url = '/recharge/type?credit_resell_id=' + item.id + '&coin=' + txt_point + '&cash=' + txt_amount;                    
+                        } else if (item.status_id == 2  && item.is_locked != 1) {
                           txt_status = '等待卖家发币';
                           // _cls = 'payIng';
                           _fontcolor = '#ffa200';
