@@ -14,6 +14,13 @@
 								<input type="text" class="form-control typeahead tt-input" name="s_member" id="s_member" placeholder="@lang('dingsu.member')">
 							</div>
 						</div>
+
+						<div class="col">
+							<label for="s_buyer">@lang('dingsu.buyer')</label>
+							<div id="the-basics">
+								<input type="text" class="form-control typeahead tt-input" name="s_buyer" id="s_buyer" placeholder="@lang('dingsu.buyer')">
+							</div>
+						</div>
 						
 						<div class="col">
 							<label for="s_status">@lang('dingsu.status')</label>
