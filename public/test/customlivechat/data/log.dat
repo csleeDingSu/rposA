@@ -8,3 +8,5 @@ D:\task\wabao666\wabao666\public\test\customlivechat\php\app\Application.php:165
 D:\task\wabao666\wabao666\public\test\customlivechat\php\app\Application.php:89 (Application:runAction())
 D:\task\wabao666\wabao666\public\test\customlivechat\php\app.php:27 (Application:run())
 
+Application path: /test/customlivechat/php/app.php?operator-is-online
+2019-10-31 09:59:40 count(): Parameter must be an array or an object that implements Countable on line 447 in D:\task\wabao666\wabao666\public\test\customlivechat\php\model\UserModel.php
