@@ -236,10 +236,13 @@ var timer_txt = setInterval(function () {
 var minute = document.querySelector(".minute")
 var second = document.querySelector(".second")
 // 准备
-var expired = 0; //$('#hidExpired').val();
+var t = $('#hidExpired').val().split(/[- :]/);
+var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+var expired = new Date(d);
+
 var countdownMinute = 10 //10分钟倒计时
 var startTimes = new Date() //开始时间
-var endTimes = (expired==0) ? new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) : new Date(expired) //结束时间
+var endTimes = (expired==0) ? new Date(startTimes.setMinutes(startTimes.getMinutes() + countdownMinute)) : expired //结束时间
 var curTimes = new Date() //当前时间
 var surplusTimes = endTimes.getTime() / 1000 - curTimes.getTime() / 1000 //结束毫秒-开始毫秒=剩余倒计时间
 
