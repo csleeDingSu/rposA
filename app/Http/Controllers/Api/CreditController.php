@@ -220,7 +220,8 @@ class CreditController extends Controller
     	{
     		$type = 'member_id';
     		$status = [1,2,3];
-    		$result = \DB::table('view_credit_resell')->where($type, $request->memberid)->latest()->wherein('status_id', $status)->latest()->get();
+    		//$result = \DB::table('view_credit_resell')->where($type, $request->memberid)->latest()->wherein('status_id', $status)->latest()->get();
+    		$result = \App\ViewCreditResell::with('status','member','buyer')->where($type, $request->memberid)->latest()->wherein('status_id', $status)->latest()->get();
     	}
 
     	$count  = $result->count();
