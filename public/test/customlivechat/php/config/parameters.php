@@ -7,7 +7,7 @@ return array (
   'dbPassword' => 'Abc@1234Abc@1234',
   'dbName' => 'livechat',
   'superUser' => 'admin@admin.com',
-  'superPass' => '',
+  'superPass' => '123456',
   'services' => 
   array (
     'mailer' => 
@@ -22,7 +22,7 @@ return array (
   ),
   'appSettings' => 
   array (
-    'contactMail' => 'admin@admin.com',
+    'contactMail' => 'admin@domain.com',
   ),
 );
 

@@ -1,4 +1,4 @@
-defaultLanguage=en
+defaultLanguage=zh
 widgetTheme=widget-themes/modern
 primaryColor=#36a9e1
 secondaryColor=#86C953
@@ -21,7 +21,7 @@ operatorInitChat=true
 onlineTrackInterval=10
 messageSound=audio/default.mp3
 systemMessageSound=audio/system.mp3
-installed=
+installed=1
 sharedFileMaxSize=10
 fileSharing=true
 gMapsKey=
