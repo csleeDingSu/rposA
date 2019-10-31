@@ -71,7 +71,8 @@ class CreditController extends Controller
     {
     	$type        = '';
     	$companydata = '';
-    	$record      = \App\CreditResell::with('status','member')->where('is_locked', null)->where('status_id', 2)->where('point', $request->point)->oldest()->first();
+    	$record      = \App\CreditResell::with('status','member')->where('member_id', '!=' , $request->memberid)->where('is_locked', null)->where('status_id', 2)->where('point', $request->point)->oldest()->first();
+
     	if ($record)
     	{
     		$record->is_locked   = 1;
@@ -146,7 +147,7 @@ class CreditController extends Controller
 
     public function make_resell_expired(Request $request)
     {
-    	$record  = \App\CreditResell::with('status','member')->where('is_locked', 1)->where('id', $request->id)->first();
+    	$record  = \App\CreditResell::with('status','member')->where('is_locked', 1)->where('id', $request->id)->first();    	
     	if ($record)
     	{
     		$reason              = 'pay time exceeded';
