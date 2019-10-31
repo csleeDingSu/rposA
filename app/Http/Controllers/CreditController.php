@@ -23,22 +23,36 @@ class CreditController extends BaseController
     public function listdata (Request $request)
 	{
 		
-		$result = \App\CreditResell::select('*')->with('member','status','buyer');
 		$input  = [];		
 		parse_str($request->_data, $input);
 		$input  = array_map('trim', $input);
 		
-    	if ($input) 
-		{
-			//filter					
-			if (!empty($input['s_status'])) {
-				$result = $result->where('status_id', $input['s_status']) ;				
-			}
-		}	
+		$callback = function($q) use($input) {
+            if (!empty($input['s_buyer'])) {
+            	$q->where('phone','LIKE', "%{$input['s_buyer']}%") ;
+            }
+            
+        };
 
-		//dd($result->where('id', 5)->get());	
+		$result = \App\CreditResell::with('buyer')
+					->whereHas('member', function($q) use($input) {
+						if (!empty($input['s_member'])) {
+							$q->where('phone','LIKE', "%{$input['s_member']}%") ;
+						}	
+					})
+					->whereHas('status', function($q) use($input) {
+						if (!empty($input['s_status']))  
+							$q->where('status_id','LIKE', "%{$input['s_status']}%") ;
+
+					});
+
+				if (!empty($input['s_buyer']))  
+				{
+					$result = $result->whereHas('buyer',$callback) ;
+				}	
+
 		$result =  $result->latest('updated_at')->paginate(30);
-				
+		
 		$data['page']    = 'resell.list'; 	
 				
 		$data['result']  = $result; 
