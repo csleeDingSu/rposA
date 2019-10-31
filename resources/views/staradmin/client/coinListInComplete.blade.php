@@ -115,7 +115,7 @@
                           _cls = 'payReady';
                           _fontcolor = '#6ac2ff';                        
                         } else if (item.status_id == 3) {
-                          txt_status = '已匹配到买家 ' + item.buyer;
+                          txt_status = '已匹配到买家 ' + item.buyer.phone;
                           _cls = 'payIng';
                           _fontcolor = '#ffa200';
                         } else if (item.status_id == 4) {
