@@ -3,7 +3,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class CreditResell extends Model
+class ViewCreditResell extends Model
 {   
     protected $fillable = [    ];	
 			
