@@ -207,7 +207,7 @@ class CreditController extends Controller
     	if ($request->type == 'buy')
     	{
     		$type   = 'buyer_id';
-    		$result = \DB::table('view_credit_resell')->where($type, $request->memberid)->where('is_locked', 1)->latest()->get();
+    		$result = \DB::table('credit_resell')->where($type, $request->memberid)->where('is_locked', 1)->latest()->get();
     	}
     	else
     	{
