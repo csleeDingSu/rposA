@@ -115,7 +115,10 @@
                           _cls = 'payReady';
                           _fontcolor = '#6ac2ff';                        
                         } else if (item.status_id == 3) {
-                          txt_status = '已匹配到买家 ' + item.buyer.phone;
+                          _buyer = item.buyer; 
+                          _phone = (_buyer != null) ? _buyer.phone : '';
+                          _phone = (_phone != '') ? (_phone.substring(0,3) + '*****' + _phone.slice(-4)) : '';
+                          txt_status = '已匹配到买家 ' + _phone;
                           _cls = 'payIng';
                           _fontcolor = '#ffa200';
                         } else if (item.status_id == 4) {
