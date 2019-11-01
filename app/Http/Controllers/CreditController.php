@@ -175,12 +175,14 @@ class CreditController extends BaseController
 				{
 					return response()->json(['success' => false,'errors'=> ['buyer_id'=>['unknown member'] ] ],422);	
 				}
+				if ($record->status_id != 3)
+				{
+					$updatehistory = 'yes';	
+				}
 
         		$record->buyer_id  = $member->id; 
         		$record->status_id = $request->status_id;
 				$record->save();
-
-        		$updatehistory = 'yes';	
 
         	break;
         	case '4':
