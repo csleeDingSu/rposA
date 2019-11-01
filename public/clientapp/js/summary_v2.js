@@ -169,7 +169,7 @@ function getSummary(token) {
     }
 
     $('#summary').append(html);
-    document.getElementById('loading2').style.visibility="hidden";
+    // document.getElementById('loading2').style.visibility="hidden";
 
 }
 
@@ -198,7 +198,7 @@ function getRecharge() {
               xhr.setRequestHeader ("Authorization", "Bearer " + token);
           },
           error: function (error) { 
-              document.getElementById('loading2').style.visibility="hidden";
+              // document.getElementById('loading2').style.visibility="hidden";
               console.log(error.responseText);
               alert('下载失败，重新刷新试试');
             },                  
@@ -319,7 +319,7 @@ function getResell() {
               xhr.setRequestHeader ("Authorization", "Bearer " + token);
           },
           error: function (error) { 
-              document.getElementById('loading2').style.visibility="hidden";
+              // document.getElementById('loading2').style.visibility="hidden";
               console.log(error.responseText);
               alert('下载失败，重新刷新试试');
             },                  

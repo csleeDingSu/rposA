@@ -222,11 +222,26 @@ html, body {
 	color: #fff;
 }
 
-#filter .redeem{
+.countdown{
+ padding: 0.1rem;
+  font-size: 0.26rem !important;
+  background: #f1f1f1;
+  border-radius: 1rem;
+  margin: 0 0.1rem;
 }
 
-#filter .recharge{
+.txt-red {
+  color: #ff8282 !important;
+  padding: 0 0.1rem;
+  font-size: .26rem !important;
 }
 
-#filter .resell{
+.btn-go-recharge {
+  background: url(/clientapp/images/recharge/btn-pay.png) center no-repeat;
+  color: #fff !important;
+  text-align: center;
+  line-height: 0.64rem;
+  padding: 0.1rem;
+  background-size: contain;
+  font-size: .3rem !important;
 }
