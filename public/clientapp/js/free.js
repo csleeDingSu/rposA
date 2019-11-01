@@ -53,6 +53,7 @@ $(document).ready(function () {
         $('.three').removeClass('on');
         _url = '/tabao/get-taobao-collection-vouchers-greater12less24/';
         _cat = 2;
+        pageId = 1;
         getProduct(pageId, _cat);
   });
 
@@ -62,6 +63,7 @@ $(document).ready(function () {
         $('.three').addClass('on');
         _url = '/tabao/get-taobao-collection-vouchers-greter24less36/';
         _cat = 3;
+        pageId = 1;
         getProduct(pageId, _cat);
   });
 
