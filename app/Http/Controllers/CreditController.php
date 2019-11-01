@@ -64,8 +64,7 @@ class CreditController extends BaseController
         }	
         $data['firstload'] = 'yes';
         $data['page']      = 'resell.list'; 		
-		$data['statuses']  = \App\ResellStatus::whereIn('id',[4,5]);
-		dd($data['statuses']);
+		$data['statuses']  = \App\ResellStatus::whereIn('id',[4,5])->get();
 		$data['result']    = collect([]); 
 
 		return view('main', $data);	
