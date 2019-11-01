@@ -88,7 +88,23 @@
         });
     });
 		
+	function displayFieldErrors(response,error_code)
+	{
+		$('.inputTxtError').remove();
+		if (error_code == 422)
+		{
+			$.each(response, function (key, item) {		
+				var msg = '<label class="error mt-2 text-danger inputTxtError" for="'+key+'">'+item+'</label>';
+				$('input[name="' + key + '"], select[name="' + key + '"]').addClass('form-control-danger').after(msg);
+
+			});
+		}
+		else
+		{
+			swal( '@lang("dingsu.error")', '@lang("dingsu.try_again")', "error" );
+		}
 		
+	}	
 		
 /* 
     Function for print connection message
