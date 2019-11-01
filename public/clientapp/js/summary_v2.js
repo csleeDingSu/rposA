@@ -139,6 +139,21 @@ function getSummary(token) {
                 str_points = '+' + getNumeric(value.credit) + '元';
                 _fontcolor = '#3d3d3d';
             break
+
+            case 'APPAA': //refund
+                if (Number(value.credit) >= 0) {
+                    str_type = '系统加款';
+                    str_points = '+' + getNumeric(value.credit) + '元';
+                    _fontcolor = '#3d3d3d';    
+                } else {
+                    str_type = '系统减款';
+                    str_points = '-' + getNumeric(value.debit) + '元';
+                    _fontcolor = '#3d3d3d';
+                }
+                
+            break
+
+            
         }
 
         if (str_type != '') {                     
