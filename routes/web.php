@@ -207,7 +207,11 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	} );
 
 	Route::get( '/summary', function () {
-		return view( 'client/summary' );
+		if (env('THISVIPAPP', false) == true) {
+			return view( 'client/summary_v2' );
+		}else{
+			return view( 'client/summary' );
+		}
 	} );	
 	
 	Route::get( '/results', function () {
