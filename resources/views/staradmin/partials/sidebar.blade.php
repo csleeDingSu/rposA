@@ -240,6 +240,30 @@
               <span class="menu-title text-capitalize"> @lang('dingsu.credit_resell')</span>
             </a>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#voucher" aria-expanded="false" aria-controls="voucher">
+              <i class="menu-icon icon-tag text-primary"></i>
+              <span class="menu-title text-capitalize">@lang('dingsu.credit_resell')</span>
+              <i class="menu-arrow"></i>
+            </a>		
+
+			<div class="collapse" id="voucher">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/creditresell/list"> @lang('dingsu.credit_resell') @lang('dingsu.list') </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/creditresell/list?status=1"> @lang('dingsu.submit') @lang('dingsu.list')  </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/creditresell/list?status=2"> @lang('dingsu.verified') @lang('dingsu.list') </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/creditresell/list?status=3"> @lang('dingsu.inprogress') @lang('dingsu.list')  </a>
+					</li>
+				</ul>
+			</div>
+		</li>
 
 		<li class="nav-item">
 			<a class="nav-link" href="/receipt/list">

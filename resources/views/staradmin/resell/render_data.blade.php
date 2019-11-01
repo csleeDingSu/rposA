@@ -14,6 +14,11 @@
 		<label class="text-capitalize badge badge-{{$list->status->color}}">
 			{{trans('dingsu.' . $list->status->name )}}
 		</label>
+		@if ($list->is_locked)
+			<label class="text-capitalize badge badge-warning">
+			{{trans('dingsu.pending_payment' )}}
+		</label>
+		@endif	
 	</td>	
 	<td>				
 		
