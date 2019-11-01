@@ -163,7 +163,7 @@ function getSummary(token) {
 
         html =   '<div class="no-record">' +
                     '<img src="/clientapp/images/no-record/summary.png">' +
-                    '<div>暂无明细</div>' +
+                    '<div>暂无兑奖</div>' +
                   '</div>';
 
     }
