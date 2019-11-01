@@ -45,12 +45,14 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.is_locked') <span class="text-danger">*</span></label>
+								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.is_paying') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									@if ($result->is_locked)
 										<label class="text-capitalize badge badge-warning">
-										{{trans('dingsu.pending_payment' )}}
+										{{trans('dingsu.yes' )}}
 									</label>
+									@else
+										{{trans('dingsu.no' )}}
 									@endif	
 								</div>
 							</div>
@@ -76,6 +78,8 @@
 										<label class="text-capitalize badge badge-success">
 										{{trans('dingsu.company_account' )}}
 									</label>
+									@else
+										{{trans('dingsu.zhifubao' )}}
 									@endif	
 								</div>
 							</div>
@@ -117,7 +121,7 @@
 							<div class="form-group row">
 								<label for="reason" class="col-sm-3 col-form-label">@lang('dingsu.reason') </label>
 								<div class="col-sm-9">
-									<textarea class="form-control" name="reason" id="reason" placeholder="enter the reason">{{$result->reason}}</textarea>
+									<textarea class="form-control" name="reason" id="reason" placeholder="{{trans('dingsu.enter_reason')}}">{{$result->reason}}</textarea>
 										
 									
 								</div>

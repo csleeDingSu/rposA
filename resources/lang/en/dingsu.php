@@ -741,5 +741,11 @@ return [
 	'in_progress' =>  'In Progress',
 	'barcode' => 'Barcode',
 	'success' => 'Success',
+	'enter_reason' => 'Enter a reason',
+	'is_paying' => 'Paying',
+	'payment_expired' => 'Payment expired',
+	'zhifubao' => '支付宝',
+	'company_account' => 'Company Account',
+	'pending_payment' => 'Pending Payment',
 
 ];

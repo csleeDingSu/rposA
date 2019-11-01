@@ -731,5 +731,11 @@ return [
 	'in_progress' => '进行中',
 	'barcode' => '二维码',
 	'success' => '成功',
+	'enter_reason' => '输入原因',
+	'is_paying' => '正在付款',
+	'payment_expired' => '付款超时',
+	'zhifubao' => '支付宝',
+	'company_account' => '公司账号',
+	'pending_payment' => '等待付款',
 
 ];
