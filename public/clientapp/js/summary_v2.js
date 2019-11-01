@@ -409,3 +409,39 @@ function getResell() {
          
       
 }
+
+function getCoundown(_time, id) {
+        var t = _time.split(/[- :]/);
+        var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+        var countDownDate = new Date(d).getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+          // Get today's date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Display the result in the element with id="demo"
+          minutes = minutes <= 9 ? "0" + minutes : minutes;
+          seconds = seconds <= 9 ? "0" + seconds : seconds;
+          document.getElementById(id).innerHTML = minutes + ":" + seconds;
+
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById(id).innerHTML = "00:00";
+            $("#btn-go-" + id).off('click');
+            $("#btn-go-" + id).css('display','none');
+            
+          }
+        }, 1000);
+      }
