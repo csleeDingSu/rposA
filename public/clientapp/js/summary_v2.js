@@ -120,6 +120,7 @@ function getSummary(token) {
     }
 
     $('#summary').append(html);
+    document.getElementById('loading2').style.visibility="hidden";
 
 }
 
