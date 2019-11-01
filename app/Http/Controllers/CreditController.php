@@ -52,7 +52,7 @@ class CreditController extends BaseController
 							}
 								
 						});
-							}
+							
 					if (!empty($input['s_buyer']))  
 					{
 						$result = $result->whereHas('buyer',$callback) ;
