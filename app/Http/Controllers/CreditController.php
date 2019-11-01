@@ -48,7 +48,7 @@ class CreditController extends BaseController
 							} 
 							else
 							{
-								$q->wherein('status_id',[4,5]) ;
+								$q->whereIn('status_id',[4,5]) ;
 							}
 								
 						});
@@ -64,7 +64,7 @@ class CreditController extends BaseController
         }	
         $data['firstload'] = 'yes';
         $data['page']      = 'resell.list'; 		
-		$data['statuses']  = \App\ResellStatus::wherein('id',[4,5]);
+		$data['statuses']  = \App\ResellStatus::whereIn('id',[4,5]);
 		$data['result']    = collect([]); 
 
 		return view('main', $data);	
