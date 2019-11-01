@@ -722,4 +722,14 @@ return [
 	'invalid_reserved_point' => '换挖宝币数量不在范围内',
 	'receipt_exist' => '订单号已经存在',
 
+	'tabao' => '淘宝',
+	'credit_resell' => '充值/转卖',
+	'seller' => '卖家',
+	'buyer' => '买家',
+	'waiting_verify' => '等待审核',
+	'waiting_confirmation' => '等待确认',
+	'in_progress' => '进行中',
+	'barcode' => '二维码',
+	'success' => '成功',
+
 ];

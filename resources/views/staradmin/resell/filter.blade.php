@@ -9,9 +9,9 @@
 						
 						
 						<div class="col">
-							<label for="s_member">@lang('dingsu.member')</label>
+							<label for="s_member">@lang('dingsu.seller')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="s_member" id="s_member" placeholder="@lang('dingsu.member')">
+								<input type="text" class="form-control typeahead tt-input" name="s_member" id="s_member" placeholder="@lang('dingsu.seller')">
 							</div>
 						</div>
 

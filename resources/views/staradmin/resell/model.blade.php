@@ -6,7 +6,7 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title formtitle" id="editmodelabel formtitle">@lang('dingsu.edit') @lang('dingsu.receipt')</h5>
+					<h5 class="modal-title formtitle" id="editmodelabel formtitle">@lang('dingsu.edit') @lang('dingsu.credit_resell')</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					 	<span aria-hidden="true">&times;</span>
 				  	</button>

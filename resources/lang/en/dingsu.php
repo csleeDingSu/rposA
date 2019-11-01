@@ -555,7 +555,7 @@ return [
 	'change_picture' => 'Change',
 
 	'share_product' => 'share product',
-	'voucher_pass' => 'tabao code',
+	'voucher_pass' => 'taobao code',
 	'move_all' => 'move all to voucher',
 	'delete_all' => 'remove all records',
 	'copy_url_success' => 'successfully copy url',
@@ -731,7 +731,15 @@ return [
 	'invalid_reserved_point' => 'Reserved point not in the range',
 	'receipt_exist' => 'receipt already exist',
 	'initiating' => 'initiating',
-	'tabao_cron' => 'Tabao cron',
-	
+	'tabao_cron' => 'Taobao cron',
+	'tabao' => 'Taobao',
+	'credit_resell' => 'Recharge/Resell',	
+	'seller' => 'Seller',
+	'buyer' => 'Buyer',
+	'waiting_verify' => 'Waiting Verification',
+	'waiting_confirmation' => 'Waiting Confirmation',
+	'in_progress' =>  'In Progress',
+	'barcode' => 'Barcode',
+	'success' => 'Success',
 
 ];
