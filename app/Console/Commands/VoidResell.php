@@ -59,7 +59,9 @@ class VoidResell extends Command
             if ($record->type == 1)
             {
                 $record->status_id   = 5;
-                $record->reason      = 'time exceeded'; 
+                $record->reason      = 'time exceeded';
+                $record->is_locked   = null; 
+                $record->locked_time = null; 
             }
             else 
             {
