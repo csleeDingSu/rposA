@@ -23,6 +23,7 @@ class CreditController extends BaseController
     public function listdata (Request $request)
 	{		
 		$input  = [];
+		$data['firstload'] = '';
 		if ($request->ajax()) 
 		{
 			parse_str($request->_data, $input);
@@ -53,7 +54,7 @@ class CreditController extends BaseController
 					
             return view('resell.ajaxlist', ['result' => $result])->render();  
         }	
-
+        $data['firstload'] = 'yes';
         $data['page']      = 'resell.list'; 		
 		$data['statuses']  = \App\ResellStatus::all();
 		$data['result']    = collect([]); 
