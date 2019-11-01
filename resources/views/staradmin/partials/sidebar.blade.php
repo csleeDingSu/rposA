@@ -248,13 +248,13 @@
 						<a class="nav-link" href="/creditresell/list"> @lang('dingsu.credit_resell') @lang('dingsu.list') </a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/creditresell/list?status=1"> @lang('dingsu.submit') @lang('dingsu.list')  </a>
+						<a class="nav-link" href="/creditresell/list?status=1"> @lang('dingsu.waiting_verify') @lang('dingsu.list')  </a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/creditresell/list?status=2"> @lang('dingsu.verified') @lang('dingsu.list') </a>
+						<a class="nav-link" href="/creditresell/list?status=2"> @lang('dingsu.in_progress') @lang('dingsu.list') </a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/creditresell/list?status=3"> @lang('dingsu.inprogress') @lang('dingsu.list')  </a>
+						<a class="nav-link" href="/creditresell/list?status=3"> @lang('dingsu.waiting_confirmation') @lang('dingsu.list')  </a>
 					</li>
 				</ul>
 			</div>

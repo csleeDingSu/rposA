@@ -6,7 +6,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.username') <span class="text-danger">*</span></label>
+								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.seller') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									{{$result->member->phone}}
 								</div>

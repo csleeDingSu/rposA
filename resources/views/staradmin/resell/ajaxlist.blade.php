@@ -10,7 +10,7 @@
 							<tr> 	
 								<th>#</th>
 								<th>@lang('dingsu.created')</th>
-								<th>@lang('dingsu.member')</th>
+								<th>@lang('dingsu.seller')</th>
 								<th>@lang('dingsu.point')</th>
 								<th>@lang('dingsu.amount')</th>
 								<th>@lang('dingsu.buyer')</th>
