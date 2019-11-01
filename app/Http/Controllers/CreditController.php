@@ -203,10 +203,14 @@ class CreditController extends BaseController
         	case '5':
         		//return the point
 
-        		//$ledger = \App\Ledger::credit($record->member_id,103,$record->point,'RRP','point refunded');
+        		if (!$request->reason)
+				{
+					return response()->json(['success' => false,'errors'=> ['reason'=>['add your reason here'] ] ],422);	
+				}
         		$ledger = \App\Ledger::merge_reserved_point($member->id,103,$record->point,'PRRP', 'point refunded');
         		//print_r($ledger);
         		$record->status_id  = $request->status_id;
+        		$record->reason     = $request->reason;
         		$record->ledger_history_id = $ledger['id'];
         		$record->save();
 
@@ -216,13 +220,18 @@ class CreditController extends BaseController
         		return response()->json(['success' => false,'errors'=> ['status_id'=>['you cant use this option'] ] ],422);	
         	break;
         	case '7':
+        		if (!$request->reason)
+				{
+					return response()->json(['success' => false,'errors'=> ['reason'=>['add your reason here'] ] ],422);	
+				}
         		$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
         		$record->status_id  = 7;
+        		$record->reason     = $request->reason;
+        		$record->ledger_history_id = $ledger['id'];
         		$record->save();
         		$updatehistory = 'yes';	
         	break; 
         }
-
 
         if ($updatehistory)
         {        	

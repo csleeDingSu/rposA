@@ -41,7 +41,58 @@
 						</div>
 						
 					</div>
+
 					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.is_locked') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									@if ($result->is_locked)
+										<label class="text-capitalize badge badge-warning">
+										{{trans('dingsu.pending_payment' )}}
+									</label>
+									@endif	
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="buyer_id" class="col-sm-3 col-form-label">@lang('dingsu.payment_expired') </label>
+								<div class="col-sm-9">
+									
+										{{$result->locked_time}}
+									
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.type') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									@if ($result->type)
+										<label class="text-capitalize badge badge-success">
+										{{trans('dingsu.company_account' )}}
+									</label>
+									@endif	
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.passcode') <span class="text-danger">*</span></label>
+								<div class="col-sm-9">
+									{{$result->passcode}}	
+								</div>
+							</div>
+						</div>
+
+												
+					</div>
+					<div class="row">
+						
 						<div class="col-md-6">
 							<div class="form-group row">
 								<label for="status" class="col-sm-3 col-form-label">@lang('dingsu.status') </label>
@@ -62,7 +113,21 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="reason" class="col-sm-3 col-form-label">@lang('dingsu.reason') </label>
+								<div class="col-sm-9">
+									<textarea class="form-control" name="reason" id="reason" placeholder="enter the reason">{{$result->reason}}</textarea>
+										
+									
+								</div>
+							</div>
+						</div>
 
+						
+					</div>
+
+					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group row">
 								<label for="buyer_id" class="col-sm-3 col-form-label">@lang('dingsu.barcode')</label>
@@ -70,10 +135,7 @@
 									<img src="{{$result->barcode ?? ''}}" width="80%" height="300px">
 								</div>
 							</div>
-						</div>
-
-
-						
+						</div>					
 						
 					</div>
 
