@@ -23,6 +23,7 @@ class CreditController extends BaseController
     public function listdata (Request $request)
 	{		
 		$input  = [];
+		$data['firstload'] = '';
 		if ($request->ajax()) 
 		{
 			parse_str($request->_data, $input);
@@ -53,7 +54,7 @@ class CreditController extends BaseController
 					
             return view('resell.ajaxlist', ['result' => $result])->render();  
         }	
-
+        $data['firstload'] = 'yes';
         $data['page']      = 'resell.list'; 		
 		$data['statuses']  = \App\ResellStatus::all();
 		$data['result']    = collect([]); 
@@ -99,11 +100,11 @@ class CreditController extends BaseController
         
 		if ($record->status_id == 4)
 		{
-			return response()->json(['success' => false,'errors'=> ['status'=>['already completed'] ] ]);	
+			return response()->json(['success' => false,'errors'=> ['status_id'=>['already completed'] ] ],422);	
 		}
 		else if ($record->status_id == 5)
 		{
-			return response()->json(['success' => false,'errors'=> ['status'=>['already rejected'] ] ]);	
+			return response()->json(['success' => false,'errors'=> ['status_id'=>['already rejected'] ] ],422);	
 		}
 		else if ($record->status_id == 6)
 		{
@@ -130,7 +131,7 @@ class CreditController extends BaseController
 					$record->locked_time = null;
 					$record->buyer_id    = null; 
 					$record->reason      = null; 
-					$record->barcode     = null; 
+					//$record->barcode     = null; 
         			$record->status_id   = 1;
         			$reson               = 'admin reset to active';
         			$record->save();

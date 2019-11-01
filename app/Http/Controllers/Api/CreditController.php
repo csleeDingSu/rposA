@@ -37,8 +37,8 @@ class CreditController extends Controller
 			return response()->json(['success' => false, 'message' => 'not enough point' ]);
 		}
 
-		//debit point
-		$debit   = \App\Ledger::updateledger('debit','point',$request->memberid,103,$request->point,'PRCP', 'point deducted for sell');
+		//debit point //no need to use updateledger
+		//$debit   = \App\Ledger::updateledger('debit','point',$request->memberid,103,$request->point,'PRCP', 'point deducted for sell');
 
 		$reserve = \App\Ledger::reserve($request->memberid,103,$request->point,'RCP', 'point reserved for sell');
 
@@ -77,6 +77,7 @@ class CreditController extends Controller
     	{
     		$record->is_locked   = 1;
     		$record->locked_time = Carbon::now()->addMinutes(10);
+    		$record->buyer_id    = $request->memberid;
     		$record->save();
     	}    	
 

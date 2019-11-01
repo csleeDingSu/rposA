@@ -30,8 +30,15 @@
 	@else
 	<div class="col-lg-12 grid-margin stretch-card">
 		<div class="card">
-			<h3 class="mt-3 mb-3 text-danger font-weight-medium text-center">
-                     @lang('dingsu.no_record_found') </h>               
+			@if (!empty($firstload))    
+            <h3 class="mt-3 mb-3 text-primary font-weight-medium text-center">
+            	@lang('dingsu.please_wait') 
+            </h3> 
+            @else
+            <h3 class="mt-3 mb-3 text-danger font-weight-medium text-center">
+            	@lang('dingsu.no_record_found') 
+            </h3> 
+            @endif              
               </div>
             </div>	
 	@endif

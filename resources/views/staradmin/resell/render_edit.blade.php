@@ -67,7 +67,7 @@
 							<div class="form-group row">
 								<label for="buyer_id" class="col-sm-3 col-form-label">@lang('dingsu.barcode')</label>
 								<div class="col-sm-9">
-									<img src="{{$result->barcode ?? ''}}" width="80%">
+									<img src="{{$result->barcode ?? ''}}" width="80%" height="300px">
 								</div>
 							</div>
 						</div>
