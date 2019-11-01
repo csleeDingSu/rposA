@@ -91,13 +91,13 @@ class MainController extends BaseController
 		// 	$data['pageId'] = $res['data']['pageId'];
 		// }
 		// $res = $this->tabao->getTaobaoCollection(1);
-		$res = $this->tabao->getTaobaoCollectionVouchersGreater12(1);
+		$res = $this->tabao->getTaobaoCollectionVouchersGreater12(1,$request);
 		if (!empty($res)) {
  			$data['product'] = $res['data'];
  			$data['pageId'] = $res['data']['pageId'];	
  		}
 
- 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1);
+ 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1,$request);
 		if (!empty($res)) {
  			$data['product_zero'] = $res['data'];
  			$data['pageId_zero'] = $res['data']['pageId'];	
@@ -231,7 +231,7 @@ class MainController extends BaseController
 
 		$this->tabao = new tabaoApiController();
 
- 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1);
+ 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1,$request);
 		if (!empty($res)) {
  			$data['product'] = $res['data'];
  			$data['pageId'] = $res['data']['pageId'];	

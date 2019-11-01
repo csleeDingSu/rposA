@@ -57,7 +57,7 @@ function getFromTabao(pageId){
       // url: "/tabao/get-goods-list?pageSize=" + _pageSize + "&pageId=" + pageId + "&priceLowerLimit=" + priceLowerLimit+ "&priceUpperLimit=" + priceUpperLimit, 
       // url: "/tabao/get-collection-list-with-detail?pageSize=" + _pageSize + "&pageId=" + pageId,
       // url: "/tabao/get-taobao-collection-vouchers/" + pageId,
-      url: "/tabao/get-taobao-collection-vouchers-greater12/" + pageId,
+      url: "/tabao/get-taobao-collection-vouchers-greater12/" + pageId + "?pgsize=" + pageSize,
       
       contentType: "application/json; charset=utf-8",
       dataType: "text",
