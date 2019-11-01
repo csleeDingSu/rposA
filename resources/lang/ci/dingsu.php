@@ -315,7 +315,7 @@ return [
 	'no' => '不',
 	'maintenance_message_placeholder' => '启用维护模式时将显示此消息',
 	'product' => '产品',
-	'softpins' => 'softpins',
+	'softpins' => '充值卡',
 	'pending' => '待',
 	
 	'available_quantity' => '可用数量',

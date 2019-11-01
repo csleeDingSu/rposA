@@ -177,7 +177,7 @@
 			</div>
 		</li>
 		
-		<li class="nav-item">
+		<!-- <li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uipackage" aria-expanded="false" aria-controls="uipackage">
               <i class="menu-icon  icon-layers   text-info"></i>
               <span class="menu-title"> VIP @lang('dingsu.package')</span>
@@ -199,9 +199,9 @@
 					
 				</ul>
 			</div>
-		</li>
+		</li> -->
 		
-		<li class="nav-item">
+		<!-- <li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uibasicpackage" aria-expanded="false" aria-controls="uibasicpackage">
               <i class="menu-icon  icon-layers   text-info"></i>
               <span class="menu-title"> @lang('dingsu.basicpackage')</span>
@@ -225,7 +225,7 @@
 					
 				</ul>
 			</div>
-		</li>
+		</li> -->
 
 		<!-- <li class="nav-item">
 			<a class="nav-link" href="/product/product-new">
