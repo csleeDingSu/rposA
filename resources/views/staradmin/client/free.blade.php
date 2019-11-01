@@ -2,82 +2,14 @@
 
 @section('top-css')
     @parent  
-    <style type="text/css">
-      body {
-        background: #f2f2f2;
-      }
-
-      #redeem-plan-modal .modal-dialog {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      #redeem-plan-modal .modal-content {
-        background: url(/clientapp/images/main/modal-bg-redeem-plan.png) no-repeat;
-          background-size: cover;
-          background-color: transparent;
-          border: 1px solid transparent;
-          box-shadow: none;
-          outline: none;
-          width: 6rem;
-          height: auto;
-          padding: 1rem 0.1rem 0 0.1rem;
-          position: relative;
-          margin: 0.1rem 0;
-          
-
-      }
-
-      #redeem-plan-modal .modal-title{
-        color: #000;
-          font-size: 0.4rem;
-          line-height: 0.6rem;
-          text-align: center;
-          font-weight: 545;
-          position: relative;
-          padding: 0.7rem 0 0 0;
-      }
-
-      #redeem-plan-modal .modal-description{
-        font-size: 0.25rem;
-          line-height: 0.45rem;
-          color: #848484;
-          padding: 0.3rem 0;
-      }
-
-      #redeem-plan-modal .modal-instructions{
-        font-size: 0.25rem;
-        line-height: 0.45rem;
-        color: #848484;
-      }
-
-      #redeem-plan-modal .btn-close-modal {
-          position: relative;
-          padding: 1rem;
-      }
-
-      #redeem-plan-modal .btn-close-modal img{
-        margin: 0;
-          position: absolute;
-          top: 30%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          height: 0.6rem;
-        }
-
-      .highlight-red {
-        color: red;
-      }
-    </style>
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/free.css') }}" />
         
 @endsection
 
 @section('top-javascript')
     @parent
-    
+    <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
+
 @endsection
 
 @section('title', '活动规则')
@@ -86,7 +18,8 @@
 @endsection
 
 @section('content')
-
+<input id="hidPageId" type="hidden" value="{{empty($pageId) ? '' : $pageId}}" />
+<div class="box">
 <div class="freeHeader">
   <a class="returnBtn"><i class="fs">&lt;</i>返回</a>
   <a class="gzbtn">活动规则</a>
@@ -110,12 +43,12 @@
             <div class="inBody">
 
               <div class="listNav">
-                <a class="on">1次抽奖带走</a>
-                <a>2次抽奖带走</a>
-                <a>3次抽奖带走</a>
+                <a class="one on">1次抽奖带走</a>
+                <a class="two">2次抽奖带走</a>
+                <a class="three">3次抽奖带走</a>
               </div>
               <div class="inList">
-                <ul>
+                <ul class="dtList">
                   <li>
                     <div class="imgBox">
                       <img src="{{ asset('/clientapp/images/mcImg.png') }}">
@@ -170,6 +103,7 @@
               </div>
             </div>
           </div>
+</div>
 @endsection
 
 @section('fix-btn')
@@ -211,22 +145,7 @@
 
 
     @parent  
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('.scrolly').addClass('freeBg');
-        $('.gzbtn').click(function() {
-          $('#redeem-plan-modal').modal();
-        });
-
-        $('.btn-close-modal').click(function() {
-          $('.modal').modal('hide');
-          $('.modal-backdrop').remove(); 
-        })
-
-        $('.returnBtn').click(function() {
-          window.location.href = "/main";
-        });
-      });
-    </script>
+    <script src="{{ asset('/clientapp/js/free.js') }}"></script>
+    
     
 @endsection

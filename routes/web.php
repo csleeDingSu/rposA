@@ -840,6 +840,8 @@ Route::any( '/tabao/storeAllCollectionIntoVouchers', 'tabaoApiController@storeAl
 Route::any( '/tabao/get-taobao-collection-vouchers/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchers' )->name('tabao.getTaobaoCollectionVouchers');
 Route::any( '/tabao/get-taobao-collection-vouchers-greater12/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersGreater12' )->name('tabao.getTaobaoCollectionVouchers');
 Route::any( '/tabao/get-taobao-collection-vouchers-less12/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersLess12' )->name('tabao.getTaobaoCollectionVouchers');
+Route::any( '/tabao/get-taobao-collection-vouchers-greater12less24/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersGreater12Less24' )->name('tabao.getTaobaoCollectionVouchersGreater12Less24');
+Route::any( '/tabao/get-taobao-collection-vouchers-greter24less36/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersGreater24Less36' )->name('tabao.getTaobaoCollectionVouchersGreater24Less36');
 
 
 

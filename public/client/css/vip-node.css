@@ -641,7 +641,7 @@
     height: auto;
     padding: 1rem 0.25rem 0 0.25rem;
     position: relative;
-    margin: 0.1rem 0;
+    /*margin: 0.1rem 0;*/
 }
 
 #modal-how-to-unlock .modal-body {

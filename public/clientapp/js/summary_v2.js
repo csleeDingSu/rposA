@@ -146,7 +146,7 @@ function getSummary(token) {
                     str_points = '+' + getNumeric(value.credit) + '元';
                     _fontcolor = '#3d3d3d';    
                 } else {
-                    str_type = '系统减款';
+                    str_type = '系统扣款';
                     str_points = '-' + getNumeric(value.debit) + '元';
                     _fontcolor = '#3d3d3d';
                 }
