@@ -118,6 +118,17 @@
 
 		} );
 
+		$(document).ready(function() {								
+				var status  = "{{ app('request')->input('status') }}";
+				var status = status.trim();
+				if (status)
+				{
+					$("#s_status").val(status);
+				}
+
+				getdatalist('');							
+			});
+
 		function getdatalist( url ) {
 			if ( !url ) {
 				var url = "";
