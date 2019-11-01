@@ -77,6 +77,7 @@ class CreditController extends Controller
     	{
     		$record->is_locked   = 1;
     		$record->locked_time = Carbon::now()->addMinutes(10);
+    		$record->buyer_id    = $request->memberid;
     		$record->save();
     	}    	
 
