@@ -131,7 +131,7 @@ class CreditController extends BaseController
 					$record->locked_time = null;
 					$record->buyer_id    = null; 
 					$record->reason      = null; 
-					$record->barcode     = null; 
+					//$record->barcode     = null; 
         			$record->status_id   = 1;
         			$reson               = 'admin reset to active';
         			$record->save();
