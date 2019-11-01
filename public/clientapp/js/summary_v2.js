@@ -85,6 +85,7 @@ function getSummary(token) {
     // console.log(results);
     var length = results.length;
     var html = '';
+    $('#summary').html('');
 
     $.each(results, function(key, value){
         //console.log(value);
