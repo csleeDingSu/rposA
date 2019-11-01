@@ -256,6 +256,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/creditresell/list?status=3"> @lang('dingsu.waiting_confirmation') @lang('dingsu.list')  </a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/creditresell/show-completed"> @lang('dingsu.completed') @lang('dingsu.list')  </a>
+					</li>
+					
 				</ul>
 			</div>
 		</li>

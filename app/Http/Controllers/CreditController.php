@@ -20,6 +20,56 @@ class CreditController extends BaseController
 {
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+	public function completed_listdata (Request $request)
+	{		
+		$input  = [];
+		$data['firstload'] = '';
+		if ($request->ajax()) 
+		{
+			parse_str($request->_data, $input);
+			$input  = array_map('trim', $input);
+			
+			$callback = function($q) use($input) {
+	            if (!empty($input['s_buyer'])) {
+	            	$q->where('phone','LIKE', "%{$input['s_buyer']}%") ;
+	            }
+	            
+	        };
+			$result = \App\CreditResell::with('buyer')
+						->whereHas('member', function($q) use($input) {
+							if (!empty($input['s_member'])) {
+								$q->where('phone','LIKE', "%{$input['s_member']}%") ;
+							}	
+						})
+						->whereHas('status', function($q) use($input) {
+							if (!empty($input['s_status'])) 
+							{
+								$q->where('status_id','LIKE', "%{$input['s_status']}%") ;
+							} 
+							else
+							{
+								$q->whereIn('status_id',[4,5]) ;
+							}
+								
+						});
+							
+					if (!empty($input['s_buyer']))  
+					{
+						$result = $result->whereHas('buyer',$callback) ;
+					}	
+	
+			$result =  $result->latest('updated_at')->paginate(30);
+					
+            return view('resell.ajaxlist', ['result' => $result])->render();  
+        }	
+        $data['firstload'] = 'yes';
+        $data['page']      = 'resell.list'; 		
+		$data['statuses']  = \App\ResellStatus::whereIn('id',[4,5])->get();
+		$data['result']    = collect([]); 
+
+		return view('main', $data);	
+	}
+
     public function listdata (Request $request)
 	{		
 		$input  = [];
