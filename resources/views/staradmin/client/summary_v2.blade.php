@@ -31,6 +31,9 @@
 <input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
 <input type="hidden" id="this_vip_app" value="{{ env('THISVIPAPP','false') }}" />
 
+<div id='filter'>
+    <span class="all">全部</span><span class="redeem">兑奖</span><span class="recharge">充值</span><span class="resell">转卖</span>
+</div>
 <div id="summary">
     <div class="loading2" id="loading2"></div>
 </div>
@@ -43,9 +46,6 @@
     <script src="{{ asset('/client/pagination.js.org/dist/2.1.4/pagination.min.js') }}"></script>
 	<script src="{{ asset('/clientapp/js/summary_v2.js') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-          $('.card-body').addClass('bgf3');
-        });
 
         document.onreadystatechange = function () {
             var state = document.readyState

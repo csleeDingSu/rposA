@@ -198,3 +198,35 @@ html, body {
   background-size: 32px 32px;
   visibility: hidden;
 }
+
+#filter {
+	position: absolute;
+	width: 100%;
+	padding: .15rem .25rem; border-top: .02rem solid #f3f3f3; background: #fff;
+	color: #fff;
+	font-size: .34rem;
+}
+
+#filter span{
+	background-color: #e8e8e8;
+    border-radius: 0.4rem;
+    padding: 0.1rem 0.6rem;
+    margin: 0.1rem 0.22rem;
+    display: inline-block;
+    text-align: center;
+    color: #666666;
+}
+
+#filter .on{	
+	background-color: #00beff;
+	color: #fff;
+}
+
+#filter .redeem{
+}
+
+#filter .recharge{
+}
+
+#filter .resell{
+}
