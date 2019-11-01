@@ -56,13 +56,22 @@ class VoidResell extends Command
             $expired->save();
 
             $this->line('-- reset row : '.$record->id);
-            $record->buyer_id    = null; 
-            $record->is_locked   = null; 
-            $record->locked_time = null;
-            $record->buyer_id    = null; 
-            $record->reason      = null; 
-            $record->barcode     = null; 
-            $record->status_id   = 2;
+            if ($record->type == 1)
+            {
+                $record->status_id   = 5;
+                $record->reason      = 'time exceeded'; 
+            }
+            else 
+            {
+                $record->buyer_id    = null; 
+                $record->is_locked   = null; 
+                $record->locked_time = null;
+                $record->buyer_id    = null; 
+                $record->reason      = null; 
+                $record->barcode     = null; 
+                $record->status_id   = 2; 
+            }
+            
             $record->save();  
 
             //add history
