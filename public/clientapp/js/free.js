@@ -5,6 +5,7 @@ var pageSize = 6;
 var currentPageId = 1;
 var life = 0;
 var _url = '/tabao/get-taobao-collection-vouchers-less12/';
+var _cat = 1;
 
 $(document).ready(function () {
 
@@ -31,18 +32,19 @@ $(document).ready(function () {
     console.log('currentPageId - ' + currentPageId);
     // alert('页 - ' + pageId);
     if (Number(pageId) > Number(currentPageId)) {
-      getTaobaoCollectionVouchersLess12(pageId);  
+      getProduct(pageId, _cat);  
     }
   }); 
 
-  getProduct(pageId, 1); 
+  getProduct(pageId, _cat); 
 
    $('.one').click(function(){
         $('.one').addClass('on');
         $('.two').removeClass('on');
         $('.three').removeClass('on');
         _url = '/tabao/get-taobao-collection-vouchers-less12/';
-        getProduct(pageId, 1);
+        _cat = 1;
+        getProduct(pageId, _cat);
   });
 
   $('.two').click(function(){
@@ -50,7 +52,8 @@ $(document).ready(function () {
         $('.two').addClass('on');
         $('.three').removeClass('on');
         _url = '/tabao/get-taobao-collection-vouchers-greater12less24/';
-        getProduct(pageId, 2);
+        _cat = 2;
+        getProduct(pageId, _cat);
   });
 
   $('.three').click(function(){
@@ -58,7 +61,8 @@ $(document).ready(function () {
         $('.two').removeClass('on');
         $('.three').addClass('on');
         _url = '/tabao/get-taobao-collection-vouchers-greter24less36/';
-        getProduct(pageId, 3);
+        _cat = 3;
+        getProduct(pageId, _cat);
   });
 
 });
