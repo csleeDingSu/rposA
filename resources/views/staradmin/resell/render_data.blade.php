@@ -21,10 +21,12 @@
 		@endif	
 	</td>	
 	<td>				
-		
-		<button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-success editrow"> <i class="fa fa-pencil-alt"></i> </button>		
+		@if (!$list->is_locked)!
+			<button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-success editrow"> <i class="fa fa-pencil-alt"></i> </button>		
 
-		<button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger rejectrow"> <i class="fa fa-trash"></i> </button>	
+			<button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-danger btn-inverse-danger rejectrow"> <i class="fa fa-trash"></i> </button>
+
+		@endif		
 	
 	</td>
 </tr>
