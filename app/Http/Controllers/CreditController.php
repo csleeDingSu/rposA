@@ -100,11 +100,11 @@ class CreditController extends BaseController
         
 		if ($record->status_id == 4)
 		{
-			return response()->json(['success' => false,'errors'=> ['status'=>['already completed'] ] ]);	
+			return response()->json(['success' => false,'errors'=> ['status_id'=>['already completed'] ] ],422);	
 		}
 		else if ($record->status_id == 5)
 		{
-			return response()->json(['success' => false,'errors'=> ['status'=>['already rejected'] ] ]);	
+			return response()->json(['success' => false,'errors'=> ['status_id'=>['already rejected'] ] ],422);	
 		}
 		else if ($record->status_id == 6)
 		{
