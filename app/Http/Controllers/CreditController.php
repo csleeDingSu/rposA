@@ -77,7 +77,27 @@ class CreditController extends BaseController
     	//$request->id = 8;
     	$record    = \App\CreditResell::with('status','member')->where('id',$request->id)->first();	
 		$statuses  = \App\ResellStatus::all();
-		//$statuses  = '';
+		switch ($record->status_id)
+		{
+			case '1':			
+				$statuses = $statuses->only(['1','2','7']);
+			break;
+			case '2':
+				$statuses = $statuses->only(['2','7']);
+			break;
+			case '3':
+				$statuses = $statuses->only(['3', '4', '5']);
+			break;
+			case '4':
+				$statuses = $statuses->only(['4']);
+			break;
+			case '5':
+				$statuses = $statuses->only(['5']);
+			break;
+			case '7':
+				$statuses = $statuses->only(['7']);
+			break;
+		}
 		$render    =  view('resell.render_edit', ['result' => $record , 'id'=>$record->id , 'statuses'=>$statuses]) ->render();
 		return response()->json(['success' => true,'id'=>$request->id,'record'=>$render]);	
     }
@@ -104,7 +124,7 @@ class CreditController extends BaseController
 		}
 		else if ($record->status_id == 5)
 		{
-			return response()->json(['success' => false,'errors'=> ['status_id'=>['already rejected'] ] ],422);	
+			return response()->json(['success' => false,'errors'=> ['status_id'=>['unsuccessful payment.you cant use this option'] ] ],422);	
 		}
 		else if ($record->status_id == 6)
 		{
@@ -112,6 +132,10 @@ class CreditController extends BaseController
 			{
 				return response()->json(['success' => false,'errors'=> ['status_id'=>['you cant use this option'] ] ],422);	
 			}					
+		}
+		else if ($record->status_id == 7)
+		{
+			return response()->json(['success' => false,'errors'=> ['status_id'=>['already rejected'] ] ],422);	
 		}
 
 		$member  = \App\Member::where('phone', $request->buyer_id )->first();
@@ -191,6 +215,12 @@ class CreditController extends BaseController
         	case '6':
         		return response()->json(['success' => false,'errors'=> ['status_id'=>['you cant use this option'] ] ],422);	
         	break;
+        	case '7':
+        		$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
+        		$record->status_id  = 7;
+        		$record->save();
+        		$updatehistory = 'yes';	
+        	break; 
         }
 
 
