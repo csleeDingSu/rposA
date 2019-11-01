@@ -42,9 +42,17 @@ class CreditController extends BaseController
 							}	
 						})
 						->whereHas('status', function($q) use($input) {
-							if (!empty($input['s_status']))  
+							if (!empty($input['s_status'])) 
+							{
 								$q->where('status_id','LIKE', "%{$input['s_status']}%") ;
+							} 
+							else
+							{
+								$q->wherein('status_id',[4,5]) ;
+							}
+								
 						});
+							}
 					if (!empty($input['s_buyer']))  
 					{
 						$result = $result->whereHas('buyer',$callback) ;
