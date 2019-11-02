@@ -66,3 +66,11 @@ body {
       .highlight-red {
         color: red;
       }
+
+      .freeView .inList li .txtBox h2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }

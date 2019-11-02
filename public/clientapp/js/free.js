@@ -158,7 +158,7 @@ function populateData(item, cat) {
           '</div>' +
           '<div class="txtBox">' +
             '<h2>'+item.title+'</h2>' +
-            '<p><font>下单奖' + hong + '红包</font><i>原价' + oldPrice + '元</i></p>' +
+            '<p><font>券后价<em>¥</em>' + promoPrice + '</font><i>原价' + oldPrice + '元</i></p>' +
             '<h3>'+ cat + '次抽奖 免费带走</h3>' +
           '</div>' +
           '<div class="btnBox">' +
