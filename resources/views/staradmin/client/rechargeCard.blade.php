@@ -283,9 +283,13 @@
             $(function () {
       //复制
       $('.copyBtn').click(function () {
+        $('.copyBtn').css('background-color', '#2d95e0');
+        $(this).html("复制");
         let txt = $(this).prev('p').html();
         console.log(txt);
         copyText(txt);
+        $(this).html("成功");
+        $(this).css('background-color','#35cd4e');
       });
 
       //充值完成
