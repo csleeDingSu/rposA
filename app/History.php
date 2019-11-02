@@ -80,14 +80,19 @@ class History extends Model
 	public static function get_summary_new($memberid,$type = 'buyproduct')
 	{
 		$result = \DB::table('s_summary_new')->select('*');		
-		if ($type == 'buyproduct')
+		if ($type == 'redeem')
 		{
-			//$result = $result->whereNotIn('type', ['basicpackage']);
+			$result = $result->whereIn('type', ['softpin','buyproduct']);
 		}
-		elseif($type == 'basicpackage')
+		elseif($type == 'resell')
 		{
-			//$result = $result->whereNotIn('type', ['buyproduct']);
+			$result = $result->where('type', 'creditresell');
 		}
+		elseif($type == 'recharge')
+		{
+			$result = $result->where('type', 'topup');
+		}
+		
 		$result = $result->where('member_id', $memberid)->orderby('created_at','DESC')->get();
 		return $result;		
 	}
