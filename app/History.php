@@ -77,7 +77,7 @@ class History extends Model
 		return $result;		
 	}
 
-	public static function get_summary_new($memberid,$type = 'buyproduct')
+	public static function get_summary_new($memberid,$type = '')
 	{
 		$result = \DB::table('s_summary_new')->select('*');		
 		if ($type == 'redeem')
