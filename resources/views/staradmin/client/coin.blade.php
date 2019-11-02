@@ -47,13 +47,29 @@
           padding: 0 0.1rem 0 0.15rem;
           height: 0.4rem;
         }
+
+        .cionPage .sendBox {
+          padding: .2rem .3rem 0.5rem .3rem !important;
+        }
+
+        .cJcheng .bd .inBox{
+          margin-bottom: 3rem !important;
+        }
+
+        .quanBox {
+          margin-bottom: 0 !important;
+        }
          
     </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('test/html_design/css/style.css') }}" />
+        
+        
 @endsection
 
 @section('top-javascript')
     @parent
       <script src="{{ asset('/clientapp/js/lrz.mobile.min.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('test/html_design/js/being.js') }}"></script>
 
 @endsection
 
@@ -143,9 +159,9 @@
         <img src="{{ asset('/clientapp/images/qrcodeDemo.png') }}">
       </a>
     </div>
-    <div class="btnBox">
+    <!-- <div class="btnBox">
       <a href="/coin/help/addQrcode">【必看】添加收款码教程</a>
-    </div>
+    </div> -->
   </div>
 
 
@@ -164,7 +180,8 @@
     </div>
 
     <div class="btnBox">
-      <a href="/coin/help/copyTxt">【必看】吱口令提交教程</a>
+      <!-- <a href="/coin/help/copyTxt">【必看】吱口令提交教程</a> -->
+      <a class="cJchengShow">【必看】提交收款码和提交吱口令教程<</a>
     </div>
 
   </div>
@@ -175,7 +192,69 @@
 
 @endsection
 
-@section('footer-javascript')      
+@section('footer-javascript')    
+
+<!-- 教程 -->
+<div class="cJcheng">
+    <div class="inShow">
+        <div class="hd"><a class="on">提交收款码</a> <a>提交吱口令</a></div>
+        <div class="bd">
+            <div class="inBox">
+              <dl class="quanBox addQrcode">
+                <dt>
+                  <font color="#108ee9">01</font><span>支付宝搜索“AA收款”点击进入官方平台</span>
+                </dt>
+                <dd>
+                  <img src="{{ asset('/clientapp/images/help/addCoin1.jpg') }}">
+                </dd>
+                <dt>
+                  <font color="#108ee9">02</font><span>进入AA收款，切换为<font color="#108ee9">填写人均金额。</font></span>
+                </dt>
+                <dd>
+                  <img src="{{ asset('/clientapp/images/help/addCoin2.jpg') }}">
+                </dd>
+                <dt>
+                  <font color="#108ee9">03</font><span>发起收款设置，出售价格100元，则填写人均
+                      金额100元，总人数2人，备注出售金币</span>
+                </dt>
+                <dd>
+                  <img src="{{ asset('/clientapp/images/help/addCoin3.jpg') }}">
+                </dd>
+                <dt>
+                  <font color="#108ee9">04</font><span>生成AA收款二维码，用手机自带截屏功能
+                      把图片保存到相册，然后在平台<font color="#108ee9">添加收款码图片</font></span>
+                </dt>
+                <dd>
+                    <img src="{{ asset('/clientapp/images/help/addCoin4.jpg') }}">
+                    <img src="{{ asset('/clientapp/images/help/addCoin5.jpg') }}">
+                </dd>
+              </dl>
+            </div>
+            <div class="inBox">
+              <dl class="quanBox addQrcode">
+                <dt>
+                  <font color="#108ee9">01</font><span>AA收款码生成页面--点击“通知其他好友”</span>
+                </dt>
+                <dd>
+                  <img src="{{ asset('/clientapp/images/help/copyTxt1.jpg') }}">
+                </dd>
+                <dt>
+                  <font color="#108ee9">02</font><span>点击“微信好友”,生成AA收款吱口令弹框</span>
+                </dt>
+                <dd>
+                  <img src="{{ asset('/clientapp/images/help/copyTxt2.jpg') }}">
+                </dd>
+                <dt>
+                  <font color="#108ee9">03</font><span>生成吱口令后，到平台“提交吱口令”这里粘贴吱口令，如图示。</span>
+                </dt>
+                <dd>
+                  <img src="{{ asset('/clientapp/images/help/copyTxt3.jpg') }}">
+                </dd>
+              </dl>
+            </div>
+        </div>
+    </div>
+</div>  
   
   <div class="coinShade ">
     <div class="inBox fix">
@@ -318,6 +397,35 @@
         being.hideMsg('.coinShade');
         window.location.href = '/profile';
       });
+
+      // 充值教程
+        $(".cJchengShow").click(() => {
+            being.wrapShow();
+            $(".cJcheng").slideDown(150);
+        });
+
+        $(".cJcheng .hd a").click(function() {
+            let that = $(this);
+            let i = that.index();
+            that
+                .addClass("on")
+                .siblings()
+                .removeClass("on");
+            $(".cJcheng .bd .inBox")
+                .eq(i)
+                .fadeIn(0)
+                .siblings()
+                .fadeOut(0);
+        });
+        $(".cJcheng").click(function(e) {
+            var target = $(e.target).closest(".inShow").length;
+            if (target > 0) {
+                return;
+            } else {
+                $(".cJcheng").slideUp(150);
+                being.wrapHide();
+            }
+        });
 
     });
 

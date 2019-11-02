@@ -25,14 +25,50 @@
           background-size: 32px 32px;
           visibility: hidden;
         }
+
+        .payMoney {
+          height: 3.3rem;
+        }
          
+         .guideCard {
+          display: block;
+          margin: 0 2.2rem;
+          font-size: .28rem;
+          color: #666;
+          line-height: .68rem;
+          text-align: center;
+          margin-bottom: .2rem;   
+          border-radius: 1rem;
+          background-color: #f4f4f4;
+
+        }
+
+        .guideCard img{
+          height: 0.5rem;
+          margin-top: -0.03rem;
+        }
+
+        .arrow {
+          height: 0.3rem !important;
+        }
+
+        .cbank {
+          color: #999 !important;
+          font-size: 0.26rem !important;
+          padding: 0 0.1rem !important;
+        }
+
+        .cJcheng .inShow .hintBox {
+          margin-bottom: 1.5rem !important;
+        }
     </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('test/html_design/css/style.css') }}" />
 @endsection
 
 @section('top-javascript')
     @parent
      <script src="{{ asset('clientapp/js/lrz.mobile.min.js') }}"></script>
-  <!-- <script type="text/javascript" src="{{ asset('clientapp/js/being.js') }}"></script> -->
+  <script type="text/javascript" src="{{ asset('test/html_design/js/being.js') }}"></script>
 
 
 @endsection
@@ -66,12 +102,14 @@
 <div class="payMoney">
           <h2 class="timeHint">请在 <font color="#ffec15"><span class="minute">10</span> : <span class="second">00</span></font> 内完成付款，超时需重新充值</h2>
           <h3>支付金额</h3>
-          <p><i>￥</i><span>{{$cash}}</span></p>
+          <p><i>￥</i><span>{{!empty($cash) ? $cash : 0}}</span></p>
+          <a class="guideCard cJchengShow"><img src="{{ asset('/clientapp/images/recharge/alipay.png') }}">&nbsp;<img src="{{ asset('/clientapp/images/recharge/weixin.png') }}">&nbsp;转账教程&nbsp;<img class="arrow" src="{{ asset('/clientapp/images/recharge/l.png') }}"></a>
         </div>
 
         <ul class="payCard">
           <li><span>账户姓名</span>
             <p class="name">{{empty($company->account_name) ? '' : $company->account_name}}</p><a class="copyBtn">复制</a>
+            <p class="cbank">建设银行</p>
           </li>
           <li><span>银行号码</span>
             <p class="name">{{empty($company->account_number) ? '' : $company->account_number}}</p><a class="copyBtn">复制</a>
@@ -88,7 +126,7 @@
               <font color="#666">{{ empty($company->phone) ? '' : substr($company->phone,0,3) }}*****{{ empty($company->phone) ? '' : substr($company->phone, -4) }}</font>
             </span></p>
           <p><span>转卖挖宝币</span><span>
-              <font color="#ff696f">{{$coin}}币</font>
+              <font color="#ff696f">{{!empty($coin) ? $coin : 0}}币</font>
             </span></p>
           <p><span>收款方式</span><span>
               <font color="#2d95e0">银行卡</font>
@@ -105,7 +143,118 @@
         </div>
 @endsection
 
-@section('footer-javascript')   
+@section('footer-javascript')
+<!-- 充值教程 -->
+<div class="cJcheng">
+    <div class="inShow">
+        <div class="hd"><a class="on">支付宝转账</a> <a>微信转账</a></div>
+        <div class="bd">
+            <div class="inBox">
+                <ul>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/alpay-1.png') }}" />
+                            <p>01打开支付宝选择“转账”</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/alpay-2.png') }}" />
+                            <p>02选择“转到银行卡”</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/alpay-3.png') }}" />
+                            <p>03输入银行卡信息及金额</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/alpay-4.png') }}" />
+                            <p>04确认转账信息及备注手机账号</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/alpay-5.png') }}" />
+                            <p>05确认支付金额</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/alpay-6.png') }}" />
+                            <p>06账单提示“付款成功”完成操作</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hintBox">
+                    <p>
+                        付款成功后，<br /> 返回平台“确认充值”页面点击“充值完成”
+                    </p>
+                </div>
+            </div>
+            <div class="inBox">
+                <ul>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/wxpay-1.png') }}" />
+                            <p>01打开微信钱包选择“收付款”</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/wxpay-2.png') }}" />
+                            <p>02下拉选择“转账到银行卡”</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/wxpay-3.png') }}" />
+                            <p>03输入银行卡信息及金额</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/wxpay-4.png') }}" />
+                            <p>04确认转账信息备注手机账号</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/wxpay-5.png') }}" />
+                            <p>05选择右上角“支付中心”图标</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/wxpay-6.png') }}" />
+                            <p>06选择“账单”功能</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/wxpay-7.png') }}" />
+                            <p>07查看支付账单信息</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="{{ asset('/clientapp/images/help/wxpay-8.png') }}" />
+                            <p>08确认“到账成功”</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hintBox">
+                    <p>
+                        付款成功后，<br /> 返回平台“确认充值”页面点击“充值完成”
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="payShade">
     <div class="inBox">
       <p>付款已超时，返回充值页面</p>
@@ -164,6 +313,35 @@
         $('.inClostBtn').click(function(){
           being.hideMsg('.coinShade');
           window.location.href = "/recharge/list";
+        });
+
+        // 充值教程
+        $(".cJchengShow").click(() => {
+            being.wrapShow();
+            $(".cJcheng").slideDown(150);
+        });
+
+        $(".cJcheng .hd a").click(function() {
+            let that = $(this);
+            let i = that.index();
+            that
+                .addClass("on")
+                .siblings()
+                .removeClass("on");
+            $(".cJcheng .bd .inBox")
+                .eq(i)
+                .fadeIn(0)
+                .siblings()
+                .fadeOut(0);
+        });
+        $(".cJcheng").click(function(e) {
+            var target = $(e.target).closest(".inShow").length;
+            if (target > 0) {
+                return;
+            } else {
+                $(".cJcheng").slideUp(150);
+                being.wrapHide();
+            }
         });
 
     });

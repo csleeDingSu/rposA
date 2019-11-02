@@ -28,8 +28,29 @@
           /*overflow: hidden;*/
           visibility: hidden;
         }
+
+        .aliPayPage .aliPayBox .copyBtn{
+          margin: 0 1.5rem !important;
+          margin-bottom: .2rem !important;
+
+        }
+
+        .guideAlipay {
+          display: block;
+          margin: 0 1.5rem;
+          font-size: .28rem;
+          color: #2ca4fa;
+          line-height: .68rem;
+          text-align: center;
+          margin-bottom: .2rem;          
+        }
+
+        .guideAlipay img{
+          height: 0.4rem;
+          margin-top: -0.03rem;
+        }
          
-    </style> 
+    </style>
 @endsection
 
 @section('top-javascript')
@@ -67,9 +88,10 @@
         <div class="payTime">请在<span class="minute">10</span>:<span class="second">00</span>完成付款，超时需重新充值</div>
         <div class="aliPayBox">
           <h3>支付金额</h3>
-          <p class="money"><i>￥</i><span>{{$cash}}</span></p>
+          <p class="money"><i>￥</i><span>{{!empty($cash) ? $cash : 0}}</span></p>
           <p id="passcode">{{!empty($content->record->passcode) ? $content->record->passcode : 0}}</p>
-          <a class="copyBtn" id="copyBtn">复制支付口令</a>
+          <a class="copyBtn" id="copyBtn">复制口令 去支付宝付款</a>
+          <a class="guideAlipay" href="/guide/alipay"><img src="{{ asset('/clientapp/images/recharge/icon-key.png') }}">&nbsp;吱口令付款教程<img src="{{ asset('/clientapp/images/recharge/alipay-arrow.png') }}"></a>
           <ul class="helpBox">
             <li>
               <img src="{{ asset('/clientapp/images/aliPay1.png') }}">
@@ -91,7 +113,7 @@
               </span></p>
 
             <p><span>转卖挖宝币</span><span>
-                <font color="#ff696f">{{$coin}}币</font>
+                <font color="#ff696f">{{!empty($coin) ? $coin : 0}}币</font>
               </span></p>
             <p><span>收款方式</span><span>
                 <font color="#2d95e0">支付宝</font>
@@ -136,6 +158,8 @@
                 let txt = $(this).prev('p').html();
                 console.log(txt);
                 copyText(txt);
+                $('.copyBtn').html('复制成功 去支付宝付款');
+                $('.copyBtn').css('background', '#49aaf0');
               });
 
               $('.paySend').click(function () {
