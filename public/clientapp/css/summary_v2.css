@@ -164,11 +164,11 @@ html, body {
 }
 
 .FilterBtn img {
-    right: 0.7rem;
+        right: 0.7rem;
     position: absolute;
-    height: 0.65rem;
+    height: 0.55rem;
     padding: 0.1rem;
-    top: 0.15rem;
+    top: 0.2rem;
 }
 
 #summary{ padding-top: .18rem;}
