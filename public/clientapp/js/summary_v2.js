@@ -13,7 +13,7 @@ $(document).ready(function () {
         $('.recharge').removeClass('on');
         $('.resell').removeClass('on');
         $('#filter').css('display', 'none');
-        getAll();
+        getAll(token);
 
   });
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
         $('.resell').removeClass('on');
         $('#filter').css('display', 'none');
         // getRedeem();
-        getSummary();
+        getSummary(token);
   });
 
   $('.recharge').click(function(){
@@ -58,7 +58,7 @@ function getToken(){
         if(data.success) {
             token = data.access_token;
             $('#hidSession').val(session);
-            getSummary(data.access_token);
+            getAll(data.access_token);
         } else {
         }
     });
@@ -192,8 +192,22 @@ function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) + 0 : Number(parseInt(value)) + 0;
   }
 
-function getAll() {
-
+function getAll(token) {
+  var user_id = $('#hidUserId').val();
+  _url = "api/get-summary?type=vip&memberid=" + user_id;
+    // _url = "api/get-summary-new?memberid=" + user_id;
+    
+    $.ajax({
+        type: 'GET',
+        url: _url,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        success: function(data) {
+            showSummary(data.records);
+        }
+    });
 }
 
 function getRedeem() {
