@@ -14,6 +14,11 @@ $(document).ready(function () {
 	getMyRanking();
     getGlobalRanking();
     getFriendRanking();
+
+    setInterval("getMyRanking()",60000);
+    setInterval("getGlobalRanking()",60000);
+    setInterval("getFriendRanking()",60000);
+
 });
 
 function getMyRanking() {

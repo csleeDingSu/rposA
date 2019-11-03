@@ -13,6 +13,10 @@ $(document).ready(function () {
     getMyEarnedPoint();
 	getGlobalRanking();
     getGameUsedPoint();
+
+    setInterval("getMyEarnedPoint()",60000);
+    setInterval("getGlobalRanking()",60000);
+    setInterval("getGameUsedPoint()",60000);
 });
 
 function getMyEarnedPoint() {
