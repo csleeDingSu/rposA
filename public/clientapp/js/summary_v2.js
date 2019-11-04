@@ -206,7 +206,7 @@ function getAll(token) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         success: function(data) {
-            showSummary(data.records);
+            showSummary(data.records.data);
         }
     });
 }
