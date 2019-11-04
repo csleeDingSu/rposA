@@ -13,9 +13,9 @@
         .loading2 {
           position: fixed;
           left: 0px;
-          top: 0;
+          top: 1 !important;
           width: 100%;
-          height: 100%;
+          height: 88% !important;
           z-index: 9999;
           background: url(/client/images/preloader.gif) center no-repeat;
           background-color: rgba(255, 255, 255, 1);
