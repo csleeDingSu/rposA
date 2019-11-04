@@ -50,7 +50,7 @@ class MemberController extends Controller
 		$type    = explode(',', $types);
 		print_r($type);
 
-		if ($type)
+		if (!empty($type))
 		{
 			$result = $result->whereIn('type', $type);
 		}
