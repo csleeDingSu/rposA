@@ -88,7 +88,7 @@ function getSummary(token) {
     $('#summary').html('');
 
     $.each(results, function(key, value){
-        console.log(value.created_at);
+        //console.log(value.created_at);
         var str_type = '';
         var str_points = '';
 
@@ -101,7 +101,7 @@ function getSummary(token) {
         var txt_reason = '';
         var _fontcolor = '#3d3d3d';
 
-        switch(value.credit_type){
+        switch(value.ledger_type){
             case 'CRPNT':
             break;
             case 'APMNT':
