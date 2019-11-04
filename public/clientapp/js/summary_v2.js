@@ -66,7 +66,7 @@ function getToken(){
 
 function getSummary(token) {
     var user_id = $('#hidUserId').val();
-    _url = "api/get-summary?type=vip&memberid=" + user_id;
+    _url = "api/get-summary-new?memberid=" + user_id;
     
     $.ajax({
         type: 'GET',
@@ -194,7 +194,7 @@ function getNumeric(value) {
 
 function getAll(token) {
   var user_id = $('#hidUserId').val();
-  _url = "api/get-summary?type=vip&memberid=" + user_id;
+  _url = "api/get-summary-new?memberid=" + user_id;
     // _url = "api/get-summary-new?memberid=" + user_id;
     
     $.ajax({
