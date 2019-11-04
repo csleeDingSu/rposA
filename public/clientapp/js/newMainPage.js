@@ -52,6 +52,8 @@ function getFromTabao(pageId){
   var highlight_list_html ='';
   var _pageSize = (pageId == 1) ? pageSize_init : pageSize;
   currentPageId = pageId;
+
+  Downloading('show');
   $.ajax({
       type: 'GET',
       // url: "/tabao/get-goods-list?pageSize=" + _pageSize + "&pageId=" + pageId + "&priceLowerLimit=" + priceLowerLimit+ "&priceUpperLimit=" + priceUpperLimit, 
@@ -63,8 +65,7 @@ function getFromTabao(pageId){
       dataType: "text",
       error: function (error) {
           console.log(error);
-          // alert(error.responseText);
-          // $(".reload").show();
+          Downloading('hide');
       },
       success: function(data) {
           // console.log(data);
@@ -93,6 +94,8 @@ function getFromTabao(pageId){
           });
 
           $('.listBox').append(html);
+
+          Downloading('hide');
 
         totalNum = JSON.parse(data).data.totalNum;
         $('#hidPageId').val(JSON.parse(data).data.pageId);
@@ -158,4 +161,13 @@ function populateData(item) {
 
   return html;
 
+}
+
+function Downloading(value) {
+  console.log(value);
+  if (value == 'hide') {
+    $('.lastHint').html('下拉显示更多产品...');
+  } else {
+    $('.lastHint').html('<img class="loading2" id="loading2" src="/client/images/preloader.gif">&nbsp;正在加载产品...');
+  }
 }

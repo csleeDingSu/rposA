@@ -53,6 +53,8 @@ var life = 0;
         bSearch = true;
         if (pageId == 1) {
           document.getElementById('loading').style.visibility="visible";  
+        } else {
+          Downloading('show');
         }
         
         $.ajax({
@@ -63,6 +65,7 @@ var life = 0;
             contentType: "application/json; charset=utf-8",
             dataType: "text",
             error: function (error) {
+              Downloading('hide');
               bSearch = false;
               document.getElementById('loading').style.visibility="hidden";
                 console.log(error);
@@ -89,6 +92,7 @@ var life = 0;
                   $(".reload").show();
             },
             success: function(data) {
+              Downloading('hide');
               bSearch = false;
               var _pageId = null;
 
@@ -222,3 +226,12 @@ var life = 0;
   function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
   }
+
+function Downloading(value) {
+  console.log(value);
+  if (value == 'hide') {
+    $('.lastHint').html('下拉显示更多产品...');
+  } else {
+    $('.lastHint').html('<img class="loading2" id="loading2" src="/client/images/preloader.gif">&nbsp;正在加载产品...');
+  }
+}

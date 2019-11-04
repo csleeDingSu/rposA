@@ -14,6 +14,20 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/swiper.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/style.css') }}" />
   <link rel="stylesheet" href="{{ asset('/clientapp/css/newSearchPage.css') }}" />
+  <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          height: 0.3rem;
+          width: 0.3rem;
+          position: relative;
+          z-index: 9999;
+        }
+
+    </style>
   <script type="text/javascript" src="{{ asset('/clientapp/js/swiper.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/jquery-1.9.1.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/being.js') }}"></script>

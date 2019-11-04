@@ -3,6 +3,20 @@
 @section('top-css')
     @parent  
     <link rel="stylesheet" href="{{ asset('/clientapp/css/zeroPricePage.css') }}" />
+    <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          height: 0.3rem;
+          width: 0.3rem;
+          position: relative;
+          z-index: 9999;
+        }
+
+    </style>
     
 @endsection
 
