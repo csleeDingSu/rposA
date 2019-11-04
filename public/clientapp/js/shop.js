@@ -54,8 +54,8 @@ function getProduct(){
         });
 
         html += '<div class="redeem-prize">' + 
-                    '<div class="left-box" style="height: 0.5rem; display: flex;"></div>' +
-                    '<div class="right-box" style="height: 0.5rem; display: flex;"></div>' +
+                    '<div class="left-box" style="height: 1rem; display: flex;"></div>' +
+                    '<div class="right-box" style="height: 1rem; display: flex;"></div>' +
                 '</div>';
 
         html += '</form>';

@@ -220,6 +220,10 @@ function getAll(token) {
   _url = "api/get-summary-new?memberid=" + user_id;
   url = _url;
     
+    if (page == 1) {
+      document.getElementById('loading2').style.visibility="visible";
+    }
+
     $.ajax({
         type: 'GET',
         url: _url,
@@ -227,7 +231,12 @@ function getAll(token) {
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
+        error: function (error) { 
+            console.log(error);
+            document.getElementById('loading2').style.visibility="hidden";
+        },
         success: function(data) {
+            document.getElementById('loading2').style.visibility="hidden";
             showSummary(data.records.data);
             _nextpg = (Number(data.records.last_page) > Number(page)) ? (Number(page) + 1) : ((Number(data.records.last_page) == Number(page)) ? page : 1) 
             console.log(_nextpg);
@@ -241,6 +250,10 @@ function getRedeem(token) {
   // _url = "api/get-summary-new?memberid=" + user_id + "&type=topup";
   _url = "api/get-summary-new?memberid=" + user_id;
   url = _url;
+
+  if (page == 1) {
+      document.getElementById('loading2').style.visibility="visible";
+    }
     
     $.ajax({
         type: 'GET',
@@ -249,16 +262,21 @@ function getRedeem(token) {
         beforeSend: function( xhr ) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
+        error: function (error) { 
+            console.log(error);
+            document.getElementById('loading2').style.visibility="hidden";
+        },
         success: function(data) {
             showSummary(data.records.data);
             _nextpg = (Number(data.records.last_page) > Number(page)) ? (Number(page) + 1) : ((Number(data.records.last_page) == Number(page)) ? page : 1) 
             console.log(_nextpg);          
+            document.getElementById('loading2').style.visibility="hidden";
         }
     });
 }
 
 function getRecharge() {
-    // document.getElementById('loading2').style.visibility="visible";
+    document.getElementById('loading2').style.visibility="visible";
     var memberid = $('#hidUserId').val();     
 
     $.ajax({
@@ -270,7 +288,7 @@ function getRecharge() {
               xhr.setRequestHeader ("Authorization", "Bearer " + token);
           },
           error: function (error) { 
-              // document.getElementById('loading2').style.visibility="hidden";
+              document.getElementById('loading2').style.visibility="hidden";
               console.log(error.responseText);
               alert('下载失败，重新刷新试试');
             },                  
@@ -372,7 +390,7 @@ function getRecharge() {
 
                   $('#summary').append(html);
                   
-                  // document.getElementById('loading2').style.visibility="hidden";
+                  document.getElementById('loading2').style.visibility="hidden";
               }
           }
       });      
@@ -380,6 +398,8 @@ function getRecharge() {
 
 function getResell() {
 
+    document.getElementById('loading2').style.visibility="visible";
+    
     var memberid = $('#hidUserId').val();    
 
     $.ajax({
@@ -391,7 +411,7 @@ function getResell() {
               xhr.setRequestHeader ("Authorization", "Bearer " + token);
           },
           error: function (error) { 
-              // document.getElementById('loading2').style.visibility="hidden";
+              document.getElementById('loading2').style.visibility="hidden";
               console.log(error.responseText);
               alert('下载失败，重新刷新试试');
             },                  
@@ -405,7 +425,7 @@ function getResell() {
                 $('#summary').html('');
               }
 
-              // document.getElementById('loading2').style.visibility="hidden";
+              document.getElementById('loading2').style.visibility="hidden";
               if(data.success){
                   $.each(data.result.data, function(i, item) {
                     var txt_point = '';
