@@ -238,7 +238,8 @@ function getAll(token) {
 
 function getRedeem(token) {
   var user_id = $('#hidUserId').val();
-  _url = "api/get-summary-new?memberid=" + user_id + "&type=topup";
+  // _url = "api/get-summary-new?memberid=" + user_id + "&type=topup";
+  _url = "api/get-summary-new?memberid=" + user_id;
   url = _url;
     
     $.ajax({
