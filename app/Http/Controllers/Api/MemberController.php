@@ -48,10 +48,11 @@ class MemberController extends Controller
 */
 		$types   = $request->type;
 		$type    = explode(',', $types);
-		print_r($type);
+		
 
 		if (!empty($type))
 		{
+			print_r($type);
 			$result = $result->whereIn('type', $type);
 		}
 
