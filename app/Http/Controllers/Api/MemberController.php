@@ -45,7 +45,7 @@ class MemberController extends Controller
 			$result = $result->where('type', 'topup');
 		}
 		
-		$result = $result->where('member_id', $memberid)->orderby('created_at','DESC')->paginate(30);
+		$result = $result->where('member_id', $request->memberid)->orderby('created_at','DESC')->paginate(30);
 		
 
 		$ref_cre = \DB::table('ref_credit_type')->select('name','value','type')->get();
