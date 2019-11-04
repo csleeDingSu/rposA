@@ -88,7 +88,7 @@ function getSummary(token) {
     $('#summary').html('');
 
     $.each(results, function(key, value){
-        //console.log(value);
+        console.log(value);
         var str_type = '';
         var str_points = '';
 
