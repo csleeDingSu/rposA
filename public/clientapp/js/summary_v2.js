@@ -121,9 +121,13 @@ function getSummary(token) {
         //console.log(value.created_at);
         var type = value.type;
 
+        // console.log(type);
+
+        //type => softpin,buyproduct,topup,merge,creditresell,buyer
         if (type == 'creditresell') {
+
           html += Resell_html(value);
-        } else if (type == 'topup' && value.ledger_type == null) {
+        } else if (type == 'buyer') {
           html += Recharge_html(value);
         } else {
           html += Summary_html(value);
@@ -406,6 +410,7 @@ function getAll(token) {
             document.getElementById('loading2').style.visibility="hidden";
         },
         success: function(data) {
+          console.log('dasdsad');
             document.getElementById('loading2').style.visibility="hidden";
             showSummary(data.records.data);
             _nextpg = (Number(data.records.last_page) > Number(page)) ? (Number(page) + 1) : ((Number(data.records.last_page) == Number(page)) ? page : 1) 
@@ -420,7 +425,7 @@ function getRedeem(token) {
   var user_id = $('#hidUserId').val();
   // _url = "api/get-summary-new?memberid=" + user_id + "&type=topup";
   // _url = "api/get-summary-new?memberid=" + user_id;
-  _url = "api/get-summary-new?memberid=" + user_id + "&type=redeem";
+  _url = "api/get-summary-new?memberid=" + user_id + "&type="+encodeURIComponent("softpin,buyproduct");
   url = _url;
 
   // if (page == 1) {
@@ -451,7 +456,7 @@ function getRedeem(token) {
 function getRecharge(token) {
     document.getElementById('loading2').style.visibility="visible";
     var memberid = $('#hidUserId').val();   
-    _url = "api/get-summary-new?memberid=" + memberid + "&type=recharge";
+    _url = "api/get-summary-new?memberid=" + memberid + "&type=buyer";
     url = _url;  
 
     $.ajax({
@@ -483,7 +488,7 @@ function getResell() {
     document.getElementById('loading2').style.visibility="visible";
     
     var memberid = $('#hidUserId').val();   
-    _url = "api/get-summary-new?memberid=" + memberid + "&type=resell"; 
+    _url = "api/get-summary-new?memberid=" + memberid + "&type=creditresell"; 
     url = _url;  
 
     $.ajax({
