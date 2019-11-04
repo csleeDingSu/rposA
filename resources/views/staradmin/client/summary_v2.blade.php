@@ -13,7 +13,7 @@
         .loading2 {
           position: fixed;
           left: 0px;
-          top: 1 !important;
+          top: 1rem !important;
           width: 100%;
           height: 88% !important;
           z-index: 9999;
