@@ -164,7 +164,7 @@ function getSummary(token) {
             case 'APPAA': //refund
                 _gameid = value.game_id;
                 if (_gameid == '103') {//only show vip
-                  _gamelbl = (_gameid == '102') ? '(普通版)' : '(高级版)';
+                  _gamelbl = ''; //(_gameid == '102') ? '(普通版)' : '(高级版)';
                   if (Number(value.credit) >= 0) {
                       str_type = '系统加款' + _gamelbl;
                       str_points = '+' + getNumeric(value.credit) + '元';
