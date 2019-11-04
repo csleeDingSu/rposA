@@ -141,12 +141,14 @@ function getSummary(token) {
             break
 
             case 'APPAA': //refund
+                _gameid = value.game_id;
+                _gamelbl = (_gameid == '102') ? '(普通版)' ： '(高级版)';
                 if (Number(value.credit) >= 0) {
-                    str_type = '系统加款';
+                    str_type = '系统加款' + _gamelbl;
                     str_points = '+' + getNumeric(value.credit) + '元';
                     _fontcolor = '#3d3d3d';    
                 } else {
-                    str_type = '系统扣款';
+                    str_type = '系统扣款' + _gamelbl;
                     str_points = '-' + getNumeric(value.debit) + '元';
                     _fontcolor = '#3d3d3d';
                 }
