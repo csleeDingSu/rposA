@@ -49,7 +49,7 @@ class MemberController extends Controller
 		$types   = $request->type;
 		$type    = explode(',', $types);
 		
-
+		echo count($type);
 		if (!empty($type))
 		{
 			print_r($type);
