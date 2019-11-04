@@ -30,7 +30,24 @@ class MemberController extends Controller
 
 	public function get_summary_new(Request $request)
     {		
-		$result  = \App\History::get_summary_new($request->memberid,$request->type);
+		//$result  = \App\History::get_summary_new($request->memberid,$request->type);
+		$result = \DB::table('s_summary_new')->select('*');		
+		if ($type == 'redeem')
+		{
+			$result = $result->whereIn('type', ['softpin','buyproduct']);
+		}
+		elseif($type == 'resell')
+		{
+			$result = $result->where('type', 'creditresell');
+		}
+		elseif($type == 'recharge')
+		{
+			$result = $result->where('type', 'topup');
+		}
+		
+		$result = $result->where('member_id', $memberid)->orderby('created_at','DESC')->paginate(30);
+		
+
 		$ref_cre = \DB::table('ref_credit_type')->select('name','value','type')->get();
 		return response()->json(['success' => true,'records'=>$result,'credit_type_ref'=>$ref_cre]); 
 	}
