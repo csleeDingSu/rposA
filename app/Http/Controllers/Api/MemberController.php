@@ -47,7 +47,7 @@ class MemberController extends Controller
 		}
 */
 		$types   = $request->type;
-		$type    = explode(',', $type);
+		$type    = explode(',', $types);
 
 		if ($type)
 		{
