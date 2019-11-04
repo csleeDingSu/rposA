@@ -333,6 +333,7 @@
 
 		<div class="carousel-cell">
 			<div class="frame-wrapper">
+				
 				<div id="wheel_banner">
 					<img src="{{ asset('/client/images/wheel/banner.png') }}" />
 				</div>
@@ -375,6 +376,11 @@
 					<div class="div-life">还剩<span class="span-life">15</span>次抽奖</div>
 					<div class="div-time"></div>
 				</div>
+				@if (env('THISVIPAPP', false))
+				<div class="banner-rules">
+					<img src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
+				</div>	
+				@endif
 		    </div>
 		</div>
 
@@ -530,10 +536,7 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
-	@if (env('THISVIPAPP', false))
-	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />	
-	@endif
-
+	
 </div>
 
 @if (env('THISVIPAPP', false))
