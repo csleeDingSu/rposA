@@ -76,7 +76,7 @@ function getSummary(token) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         success: function(data) {
-            console.log(data.records.data);
+            console.log('data::'+data.records.data);
             showSummary(data.records.data);
         }
     });
