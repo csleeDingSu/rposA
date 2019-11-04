@@ -1,4 +1,11 @@
 var token = null;
+var page=1;
+var _nextpg = page;
+var url = '';
+var bScroll = false;
+
+$('#hidPg').val(page);
+$('#hidNextPg').val(_nextpg);
 
 $(document).ready(function () {
   $('.card-body').addClass('bgf3');
@@ -23,8 +30,8 @@ $(document).ready(function () {
         $('.recharge').removeClass('on');
         $('.resell').removeClass('on');
         $('#filter').css('display', 'none');
-        // getRedeem();
-        getSummary(token);
+        getRedeem(token);
+        // getSummary(token);
   });
 
   $('.recharge').click(function(){
@@ -45,7 +52,21 @@ $(document).ready(function () {
         getResell();
   });
 
-    getToken();    
+  //execute scroll pagination
+  being.scrollBottom('.scrolly', '.scrollpg', () => {
+    // console.log('new page ' + page);
+    var current_page = parseInt($('#hidPg').val());
+    console.log('current page ' + current_page);
+    var next_page = parseInt($('#hidNextPg').val());
+    console.log('next page ' + next_page);
+    page = ($('#hidNextPg').val() == '') ? 1 : $('#hidNextPg').val();
+    if (current_page != page) {
+      getList(page);  
+    }
+    
+  });
+
+  getToken();  
 
 });
 
@@ -197,7 +218,7 @@ function getNumeric(value) {
 function getAll(token) {
   var user_id = $('#hidUserId').val();
   _url = "api/get-summary-new?memberid=" + user_id;
-    // _url = "api/get-summary-new?memberid=" + user_id;
+  url = _url;
     
     $.ajax({
         type: 'GET',
@@ -208,12 +229,31 @@ function getAll(token) {
         },
         success: function(data) {
             showSummary(data.records.data);
+            _nextpg = (Number(data.records.last_page) > Number(page)) ? (Number(page) + 1) : ((Number(data.records.last_page) == Number(page)) ? page : 1) 
+            console.log(_nextpg);
+            
         }
     });
 }
 
-function getRedeem() {
+function getRedeem(token) {
+  var user_id = $('#hidUserId').val();
+  _url = "api/get-summary-new?memberid=" + user_id + "&type=topup";
+  url = _url;
     
+    $.ajax({
+        type: 'GET',
+        url: _url,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
+        success: function(data) {
+            showSummary(data.records.data);
+            _nextpg = (Number(data.records.last_page) > Number(page)) ? (Number(page) + 1) : ((Number(data.records.last_page) == Number(page)) ? page : 1) 
+            console.log(_nextpg);          
+        }
+    });
 }
 
 function getRecharge() {
@@ -476,3 +516,36 @@ function getCoundown(_time, id) {
           }
         }, 1000);
       }
+
+function getList(page) {
+  var user_id = $('#hidUserId').val();
+  page = (page > 0 ? page : 1);
+  url = (url == '') ? "api/get-summary-new?memberid=" + user_id : url;
+  _url = url + "&page=" + page;
+  
+  if (bScroll) { //is searching in progress
+      console.log('previous search job in progress');
+      return false;
+    }
+
+    bScroll = true;
+
+    $.ajax({
+        type: 'GET',
+        url: _url,
+        dataType: "json",
+        beforeSend: function( xhr ) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            bScroll = false;
+        },
+        success: function(data) {
+          bScroll = false;
+          showSummary(data.records.data);
+          $('#hidPg').val(page);
+          _nextpg = (Number(data.records.last_page) > Number(page)) ? (Number(page) + 1) : ((Number(data.records.last_page) == Number(page)) ? page : 1) 
+          console.log(_nextpg);
+          $('#hidNextPg').val(_nextpg);
+          // page++;
+        }
+    });
+}
