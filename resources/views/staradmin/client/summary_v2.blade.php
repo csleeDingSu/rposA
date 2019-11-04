@@ -54,8 +54,7 @@
 <input id="hidNextPg" type="hidden" value="">
 
 <div id='filter'>
-    <!-- <span class="all">全部</span> -->
-    <span class="redeem">兑奖</span><span class="recharge">充值</span><span class="resell">转卖</span>
+    <span class="all">全部</span><span class="redeem">兑奖</span><span class="recharge">充值</span><span class="resell">转卖</span>
 </div>
 <div class="scrollpg"> 
 <div class="loading2" id="loading2"></div>
