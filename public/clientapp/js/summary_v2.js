@@ -76,14 +76,13 @@ function getSummary(token) {
             xhr.setRequestHeader ("Authorization", "Bearer " + token);
         },
         success: function(data) {
-            console.log('data::'+data.records.data);
             showSummary(data.records.data);
         }
     });
 }
 
  function showSummary(results) {
-     console.log(results);
+     //console.log(results);
     var length = results.length;
     var html = '';
     $('#summary').html('');
