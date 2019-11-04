@@ -159,7 +159,7 @@
                 console.log(txt);
                 copyText(txt);
                 $('.copyBtn').html('复制成功 去支付宝付款');
-                $('.copyBtn').css('background', '#49aaf0');
+                $('.copyBtn').css('background', '#35cd4e');
               });
 
               $('.paySend').click(function () {
