@@ -31,7 +31,8 @@ class MemberController extends Controller
 	public function get_summary_new(Request $request)
     {		
 		//$result  = \App\History::get_summary_new($request->memberid,$request->type);
-		$result = \DB::table('s_summary_new')->select('*');		
+		$result = \DB::table('s_summary_new')->select('*');	
+		/*	
 		if ($request->type == 'redeem')
 		{
 			$result = $result->whereIn('type', ['softpin','buyproduct']);
@@ -44,6 +45,17 @@ class MemberController extends Controller
 		{
 			$result = $result->where('type', 'topup');
 		}
+*/
+		$types   = $request->type;
+		$type    = explode(',', $types);
+		
+
+		if (!empty($type))
+		{
+			print_r($type);
+			$result = $result->whereIn('type', $type);
+		}
+
 		
 		$result = $result->where('member_id', $request->memberid)->orderby('created_at','DESC')->paginate(30);
 		
