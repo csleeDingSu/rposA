@@ -4,6 +4,25 @@
     @parent
 	<link rel="stylesheet" href="{{ asset('/clientapp/css/summary_v2.css') }}" />
     <link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          position: fixed;
+          left: 0px;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 9999;
+          background: url(/client/images/preloader.gif) center no-repeat;
+          background-color: rgba(255, 255, 255, 1);
+          background-size: 32px 32px;
+        }
+
+    </style>
     
 @endsection
 
@@ -38,8 +57,8 @@
     <span class="redeem">兑奖</span><span class="recharge">充值</span><span class="resell">转卖</span>
 </div>
 <div class="scrollpg"> 
+<div class="loading2" id="loading2"></div>
 <div id="summary">
-    <div class="loading2" id="loading2"></div>
 </div>
 </div>
 
