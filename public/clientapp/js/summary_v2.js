@@ -20,6 +20,7 @@ $(document).ready(function () {
         $('.recharge').removeClass('on');
         $('.resell').removeClass('on');
         $('#filter').css('display', 'none');
+        page = 1;
         getAll(token);
 
   });
@@ -30,6 +31,7 @@ $(document).ready(function () {
         $('.recharge').removeClass('on');
         $('.resell').removeClass('on');
         $('#filter').css('display', 'none');
+        page = 1;
         getRedeem(token);
         // getSummary(token);
   });
@@ -40,6 +42,7 @@ $(document).ready(function () {
         $('.recharge').addClass('on');
         $('.resell').removeClass('on');
         $('#filter').css('display', 'none');
+        page = 1;
         getRecharge(token);
   });
 
@@ -49,6 +52,7 @@ $(document).ready(function () {
         $('.recharge').removeClass('on');
         $('.resell').addClass('on');
         $('#filter').css('display', 'none');
+        page = 1;
         getResell(token);
   });
 
