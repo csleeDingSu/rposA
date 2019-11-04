@@ -50,7 +50,7 @@ class MemberController extends Controller
 		$type    = explode(',', $types);
 		
 		echo count($type);
-		if (!empty($type))
+		if (!empty($type[0]))
 		{
 			print_r($type);
 			$result = $result->whereIn('type', $type);
