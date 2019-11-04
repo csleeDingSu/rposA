@@ -61,6 +61,10 @@
         .cJcheng .inShow .hintBox {
           margin-bottom: 1.5rem !important;
         }
+
+        .cJcheng{
+          background: rgba(0, 0, 0, 0.5) !important;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('test/html_design/css/style.css') }}" />
 @endsection
