@@ -32,15 +32,15 @@ class MemberController extends Controller
     {		
 		//$result  = \App\History::get_summary_new($request->memberid,$request->type);
 		$result = \DB::table('s_summary_new')->select('*');		
-		if ($type == 'redeem')
+		if ($request->type == 'redeem')
 		{
 			$result = $result->whereIn('type', ['softpin','buyproduct']);
 		}
-		elseif($type == 'resell')
+		elseif($request->type == 'resell')
 		{
 			$result = $result->where('type', 'creditresell');
 		}
-		elseif($type == 'recharge')
+		elseif($request->type == 'recharge')
 		{
 			$result = $result->where('type', 'topup');
 		}
