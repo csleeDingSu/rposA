@@ -30,7 +30,7 @@
           text-align: center;
           padding: 0.15rem;
           display: none;
-          font-weight: 550;
+          /*font-weight: 550;*/
         }
 
         .csBtn {
@@ -235,7 +235,7 @@ var being2 = {
 
     <div class="btnBox">
       <!-- <a href="/coin/help/copyTxt">【必看】吱口令提交教程</a> -->
-      <a class="cJchengShow">【必看】提交收款码和提交吱口令教程<</a>
+      <a class="cJchengShow">【必看】提交收款码和提交吱口令教程></a>
     </div>
 
   </div>
@@ -517,7 +517,7 @@ var being2 = {
                     $('.bal-point').html(Number($('.bal-point').html()) - Number(sendData.vCoin));
                       being.showMsg('.coinShade'); 
                       setTimeout(function(){ 
-                        window.location.href = '/profile';
+                        window.location.href = '/coin/list';
                       }, 5000);                      
                   }
               }

@@ -29,6 +29,11 @@
         .payMoney {
           height: 3.3rem;
         }
+
+        .payCardPage .buyName input {
+          margin-top: 0.1rem !important;
+          font-weight: 500 !important;
+        }
          
          .guideCard {
           display: block;
@@ -79,7 +84,7 @@
 
 <!-- top nav -->
 @section('left-menu')
-  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  <a class="returnBtn" href="/recharge/list"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
 @section('title', '银行卡充值')
@@ -113,15 +118,10 @@
         <ul class="payCard">
           <li><span>账户姓名</span>
             <p class="name">{{empty($company->account_name) ? '' : $company->account_name}}</p><a class="copyBtn">复制</a>
-            <p class="cbank">建设银行</p>
+            <p class="cbank">{{empty($company->bank_name) ? '银行名称' : $company->bank_name}}</p>
           </li>
           <li><span>银行号码</span>
             <p class="name">{{empty($company->account_number) ? '' : $company->account_number}}</p><a class="copyBtn">复制</a>
-          </li>
-          <li><span>银行名称</span>
-            <p>
-              <font color="#2d95e0">{{empty($company->bank_name) ? '' : $company->bank_name}}</font>
-            </p>
           </li>
         </ul>
         <div class="paySeller">
