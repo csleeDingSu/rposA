@@ -20,6 +20,7 @@
           background: url(/client/images/preloader.gif) center no-repeat;
           background-color: rgba(255, 255, 255, 1);
           background-size: 32px 32px;
+          visibility: hidden;
         }
 
     </style>
@@ -80,7 +81,7 @@
                   document.getElementById('loading').style.visibility="hidden";
                   document.getElementById('loading2').style.visibility="visible";
                   $('.loading').css('display', 'initial');
-                  // document.getElementById('loading2').style.visibility="hidden";
+                  document.getElementById('loading2').style.visibility="hidden";
               },100);
             }
           }

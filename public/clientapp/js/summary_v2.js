@@ -80,7 +80,9 @@ function getToken(){
             token = data.access_token;
             $('#hidSession').val(session);
             getAll(data.access_token);
+            document.getElementById('loading2').style.visibility="hidden";
         } else {
+          document.getElementById('loading2').style.visibility="hidden";
         }
     });
 }
@@ -209,7 +211,7 @@ function getSummary(token) {
     }
 
     $('#summary').append(html);
-    // document.getElementById('loading2').style.visibility="hidden";
+    document.getElementById('loading2').style.visibility="hidden";
 
 }
 
@@ -222,9 +224,9 @@ function getAll(token) {
   _url = "api/get-summary-new?memberid=" + user_id;
   url = _url;
     
-    if (page == 1) {
+    // if (page == 1) {
       document.getElementById('loading2').style.visibility="visible";
-    }
+    // }
 
     $.ajax({
         type: 'GET',
@@ -253,9 +255,9 @@ function getRedeem(token) {
   _url = "api/get-summary-new?memberid=" + user_id;
   url = _url;
 
-  if (page == 1) {
+  // if (page == 1) {
       document.getElementById('loading2').style.visibility="visible";
-    }
+    // }
     
     $.ajax({
         type: 'GET',
