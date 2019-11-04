@@ -108,7 +108,7 @@
 
 @section('fix-btn')
   <div class="card-fixed">
-    <a class="fixBtn"><img src="{{ asset('/clientapp/images/fixBtn.png') }}"></a>
+    <a class="fixBtn" href="/arcade"><img src="{{ asset('/clientapp/images/fixBtn.png') }}"></a>
   </div>
 @endsection
 
