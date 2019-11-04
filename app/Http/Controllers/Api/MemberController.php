@@ -48,12 +48,13 @@ class MemberController extends Controller
 */
 		$types   = $request->type;
 		$type    = explode(',', $types);
+		print_r($type);
 
 		if ($type)
 		{
 			$result = $result->whereIn('type', $type);
 		}
-		
+
 		
 		$result = $result->where('member_id', $request->memberid)->orderby('created_at','DESC')->paginate(30);
 		
