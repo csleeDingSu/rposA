@@ -114,6 +114,17 @@ class RankGenerator extends Command
 				}
 			}			
 			$this->line('-- ranks update completed for : '.$game->id);
+			$this->line('-- send socket notification');
+			$ranks  = \App\Rank::select('rank','member_id','game_id','total_bet','totalreward','balance','username','phone','wechat_name','wechat_id')		
+					->where('game_id',$game->id)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->orderby('rank','ASC')
+					->paginate(30);
+
+			event(new \App\Events\EventDynamicChannel($game->id.'-rank-list','',$ranks ));	
+			
+			$this->info('-- done');
+
 			$this->line(' ');
 		}
 				
