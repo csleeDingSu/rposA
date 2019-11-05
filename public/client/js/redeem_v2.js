@@ -64,7 +64,9 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            getWallet(data.access_token, id);
+            if(previous_point == undefined){
+                getWallet(data.access_token, id);
+            }
         }      
     });
 }
