@@ -777,10 +777,6 @@ function closeWinModal() {
         
         if (g_current_point > g_previous_point) {
             musicPlay(2);
-            _totalEarnedPoint = $('#my-ranking').html();  
-            _totalEarnedPointLatest = Number(_totalEarnedPoint) + (Number(g_current_point) - Number(g_previous_point));  
-           $('#my-ranking').html(_totalEarnedPointLatest);
-           $('.my-earning-point').html(_totalEarnedPointLatest);
         } 
 
          if(g_current_point > max_acupoint){
