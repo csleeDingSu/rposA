@@ -63,7 +63,7 @@ class CreditController extends Controller
 		$history->status_id = 1;
 		$history->point     = $request->point;
 		$history->save();
-		
+		app('App\Http\Controllers\CreditController')->pushdata($resell);
 		return response()->json(['success' => true]);
 	}
 
@@ -79,6 +79,7 @@ class CreditController extends Controller
     		$record->locked_time = Carbon::now()->addMinutes(10);
     		$record->buyer_id    = $request->memberid;
     		$record->save();
+            app('App\Http\Controllers\CreditController')->pushdata($record, 'update');
     	}    	
 
     	if (!$record)
@@ -110,11 +111,11 @@ class CreditController extends Controller
 			$history->cid        = $record->id;
 			$history->status_id  = 2;
 			$history->point      = $request->point;
-			$record->member_id   = $companydata->member->id;
+			$history->member_id  = $companydata->member->id;
 			$record->buyer_id    = $request->memberid;
 			$history->save();
 
-
+            app('App\Http\Controllers\CreditController')->pushdata($record);
     	}
     	return response()->json(['success' => true, 'record'=>$record,'company'=>$companydata, 'type'=>$type]);
     }

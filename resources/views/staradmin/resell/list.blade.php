@@ -15,7 +15,13 @@
 
 @section('bottom_js')
 @parent
+<style type="text/css">
+	.highlight
+	{
+		background-color: coral;
+	}
 
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
 
 <script language="javascript">
@@ -164,6 +170,36 @@
 			} );
 		}
 	} );
+
+@section('socket')
+    @parent
+		
+     socket.on(prefix+"add-resell" + ":App\\Events\\EventDynamicChannel", function(result) {
+		var record = result.data;
+		if (record != null)
+			{
+				$('#listtable').prepend($(record));
+				$("#tr_"+result.id).fadeIn(500).addClass("highlight");
+				setTimeout(function(){
+				    $("#tr_"+result.id).removeClass('highlight');
+				},10000);
+			}
+	 });
+
+	 socket.on(prefix+"update-resell" + ":App\\Events\\EventDynamicChannel", function(result) {
+		var record = result.data;
+		if (record != null)
+			{
+				$("#tr_"+result.id).replaceWith(record);				
+				$("#tr_"+result.id).addClass("highlight");				
+				setTimeout(function(){
+				    $("#tr_"+result.id).removeClass('highlight');
+				},10000);
+			}
+	 });
+
+
+@endsection	
 	
 </script>
 

@@ -32,6 +32,6 @@ class EventDynamicChannel implements ShouldBroadcastNow
 
     public function broadcastWith()
 	{
-	    return ['data' => $this->data];
+	    return ['data' => $this->data,'id'=>$this->id];
 	}
 }
