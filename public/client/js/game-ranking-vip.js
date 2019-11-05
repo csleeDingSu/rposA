@@ -14,12 +14,13 @@ $(document).ready(function () {
 	getGlobalRanking();
     getGameUsedPoint();
 
-    setInterval("getMyEarnedPoint()",60000);
-    setInterval("getGlobalRanking()",60000);
-    setInterval("getGameUsedPoint()",60000);
+    // setInterval("getMyEarnedPoint()",60000);
+    // setInterval("getGlobalRanking()",60000);
+    // setInterval("getGameUsedPoint()",60000);
 });
 
 function getMyEarnedPoint() {
+    console.log('getMyEarnedPoint');
     $.ajax({
         type: 'GET',
         url: "/api/point-earned?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
@@ -69,6 +70,7 @@ function getMyEarnedPoint() {
 }
 
 function getGlobalRanking() {
+    console.log('getGlobalRanking');
 	$.ajax({
         type: 'GET',
         url: "/api/global-rank?gameid=" + gameid,
@@ -128,7 +130,7 @@ function getGlobalRanking() {
 }
 
 function getGameUsedPoint() {
-    
+    console.log('getGameUsedPoint');
     $.ajax({
         type: 'GET',
         url: "/api/game-used-point?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),

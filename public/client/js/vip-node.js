@@ -381,6 +381,14 @@ function getToken(){
                 $('.icon-newcoin').unbind('click');
                 getNotification(data.data, true);
             });
+
+            socket.on(prefix+gameid+"-rank-list" + ":App\\Events\\EventDynamicChannel", function(data) {
+                console.log(data);
+                getMyEarnedPoint();
+                getGlobalRanking();
+                getGameUsedPoint();
+
+            });
             
         });
     } else {
