@@ -561,6 +561,11 @@ function getToken(){
             socket.on(prefix+ id + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
                 getNotification(data.data, true);
             });
+
+            socket.on(perfix+gameid+"-rank-list" + ":App\\Events\\EventDynamicChannel", function(result) {
+                console.log(result);
+
+            });
             
         });
 

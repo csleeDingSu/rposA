@@ -15,13 +15,14 @@ $(document).ready(function () {
     getGlobalRanking();
     getFriendRanking();
 
-    setInterval("getMyRanking()",60000);
-    setInterval("getGlobalRanking()",60000);
-    setInterval("getFriendRanking()",60000);
+    // setInterval("getMyRanking()",60000);
+    // setInterval("getGlobalRanking()",60000);
+    // setInterval("getFriendRanking()",60000);
 
 });
 
 function getMyRanking() {
+    console.log('getMyRanking');
 	$.ajax({
         type: 'GET',
         url: "/api/point-earned?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
@@ -78,6 +79,7 @@ function getMyRanking() {
 }
 
 function getGlobalRanking() {
+    console.log('getGlobalRanking');
     // $('.tab-content').css('background-color','#f2f3f4');
     $.ajax({
         type: 'GET',
@@ -154,6 +156,7 @@ function getGlobalRanking() {
 }
 
 function getFriendRanking() {
+    console.log('getFriendRanking');
     // $('.tab-content').css('background-color','#f2f3f4');
     $.ajax({
         type: 'GET',
