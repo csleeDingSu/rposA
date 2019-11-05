@@ -124,7 +124,7 @@
               </dl>
               <button class="login" id="dologin">登录</button>
               <h2>没有账号，<a class="goRegistBtn">
-                  <font color="#7c48e4">注册</font>
+                  <font color="#7c48e4">请先注册</font>
                 </a></h2>
             </div>
             <div class="inBox registIn dn">
@@ -154,7 +154,7 @@
               </dl>
               <button class="registBtn" id="doregi">下一步</button>
               <h2>已有账号，<a class="goLoginBtn">
-                  <font color="#7c48e4">登录</font>
+                  <font color="#7c48e4">马上登录</font>
                 </a></h2>
               </form>
             </div>
