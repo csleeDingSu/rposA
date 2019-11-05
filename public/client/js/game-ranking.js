@@ -60,8 +60,9 @@ function getMyRanking() {
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
                                     '<div class="col-3 ranking-point">'+_total_point+'</div>';
-                
-                    $('#my-ranking').html(my_rank_html);    
+                    
+                    $('#my-ranking').html(my_rank_html);
+                    $('.my-earning-point').html(_total_point);    
                 }else {
                     // _phone = $('#hidPhone').val();
                     // _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4);
