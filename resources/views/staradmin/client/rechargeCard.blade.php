@@ -77,7 +77,57 @@
 @section('top-javascript')
     @parent
      <script src="{{ asset('clientapp/js/lrz.mobile.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('test/html_design/js/being.js') }}"></script>
+  <!-- <script type="text/javascript" src="{{ asset('test/html_design/js/being.js') }}"></script> -->
+  <script type="text/javascript">
+var being2 = {
+        //遮罩
+  wrapShow: function(cname) {
+    var that = this;
+    var len = $("body").find(".wrapBox").length;
+    if (len > 0) {
+      return;
+    } else {
+      var wrap = '<div class="wrapBox opacity2">&nbsp;</div>';
+      var me = this;
+      // 遮罩显示
+      if (cname) {
+        $(cname).append(wrap);
+      } else {
+        $("body").append(wrap);
+      }
+    }
+  },
+  //遮罩
+  wrapHide: function(callback) {
+    $(".wrapBox").fadeOut(150, function() {
+      if(callback && typeof callback == 'function'){
+        callback();
+      }
+      $(this).remove();
+      
+    });
+  },
+  //删除全部遮罩
+  wrapfaOutAll: function() {
+    $(".wrapBox").fadeOut(150, function() {
+      $(this).remove();
+    });
+  },
+  //显示--scale
+  scaleShow: function(cname, callback) {
+    var cname = $(cname);
+    cname.addClass("scaleShow").removeClass("scaleHide");
+    if (callback && typeof callback == "function") {
+      callback();
+    }
+  },
+  //隐藏-scale
+  scaleHide: function(cname) {
+    var cname = $(cname);
+    cname.addClass("scaleHide").removeClass("scaleShow");
+  }
+  };
+      </script>
 
 
 @endsection
@@ -325,7 +375,7 @@
 
         // 充值教程
         $(".cJchengShow").click(() => {
-            being.wrapShow();
+            being2.wrapShow();
             $(".cJcheng").slideDown(150);
         });
 
@@ -348,7 +398,7 @@
                 return;
             } else {
                 $(".cJcheng").slideUp(150);
-                being.wrapHide();
+                being2.wrapHide();
             }
         });
 
