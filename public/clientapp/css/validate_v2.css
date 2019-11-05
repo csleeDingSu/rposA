@@ -120,9 +120,14 @@ body {
 }
 
 .link-part {
-	border-top-style: dotted;
+	border-top-style: dashed;
 	padding: 0.5rem 0;
     margin: 0.5rem 0 0 0;
-    border-width: 0.1rem;
+    border-width: 0.05rem;
     border-color: #e7e7e7;
+}
+
+.pageHeader{
+	background: transparent !important;
+	height: 0rem !important;
 }

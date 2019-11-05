@@ -1,16 +1,9 @@
 @extends('layouts.default_app')
 
-<!-- top nav -->
-@section('left-menu')
-  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+@section('top-navbar')    
 @endsection
 
 @section('title', '审核认证')
-
-@section('right-menu')
-@endsection
-<!-- top nav end-->
-
 
 @section('top-css')
     @parent
@@ -20,6 +13,11 @@
 @section('content')
 
 <div class="card">
+	<div class="c-header">
+	    <div class="pageHeader rel">
+	      <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+	     </div>
+	  </div>
 	<div class="img-wechat">
 		<img src="{{ asset('/clientapp/images/validate/icon-wechat-verify.png') }}"/>
 		<p>你还未通过微信认证！</p>
