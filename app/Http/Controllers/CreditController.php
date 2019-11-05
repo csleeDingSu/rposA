@@ -20,6 +20,21 @@ class CreditController extends BaseController
 {
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+	public function pushdata($record, $update = FALSE)
+    {
+    	$id        = $record->id;
+    	$record    = \App\CreditResell::with('status','member')->where('id',$record->id)->get();	
+		$render    =  view('resell.render_data', ['result' => $record ,'highlight' => 'yes']) ->render();
+		if ($update)
+		{
+			event(new \App\Events\EventDynamicChannel('update-resell',$id,$render ));		
+		}
+		else
+		{
+			event(new \App\Events\EventDynamicChannel('add-resell',$id,$render ));		
+		}		
+    }
+
 	public function completed_listdata (Request $request)
 	{		
 		$input  = [];
