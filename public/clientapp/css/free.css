@@ -74,3 +74,14 @@ body {
         display: -webkit-box;
         -webkit-box-orient: vertical;
       }
+
+      .freeHeader .returnBtn{
+        font-size: 0.3rem !important;
+      }
+
+      .returnBtn img{
+        width: 0.4rem;
+    vertical-align: middle;
+    margin-top: -0.08rem;
+    margin-left: -0.15rem;
+      }

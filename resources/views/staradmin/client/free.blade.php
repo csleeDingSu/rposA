@@ -21,7 +21,8 @@
 <input id="hidPageId" type="hidden" value="{{empty($pageId) ? '' : $pageId}}" />
 <div class="box">
 <div class="freeHeader">
-  <a class="returnBtn"><i class="fs">&lt;</i>返回</a>
+  <!-- <a class="returnBtn"><i class="fs">&lt;</i>返回</a> -->
+  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
   <a class="gzbtn">活动规则</a>
 </div>
 
