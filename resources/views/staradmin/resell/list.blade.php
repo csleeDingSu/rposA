@@ -174,7 +174,7 @@
 @section('socket')
     @parent
 		
-     socket.on(perfix+"add-resell" + ":App\\Events\\EventDynamicChannel", function(result) {
+     socket.on(prefix+"add-resell" + ":App\\Events\\EventDynamicChannel", function(result) {
 		var record = result.data;
 		if (record != null)
 			{
@@ -186,7 +186,7 @@
 			}
 	 });
 
-	 socket.on(perfix+"update-resell" + ":App\\Events\\EventDynamicChannel", function(result) {
+	 socket.on(prefix+"update-resell" + ":App\\Events\\EventDynamicChannel", function(result) {
 		var record = result.data;
 		if (record != null)
 			{
