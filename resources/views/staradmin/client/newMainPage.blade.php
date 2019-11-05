@@ -77,7 +77,7 @@
         </div>
 
         <div class="banner">
-          <a href="/tips"><img src="{{ asset('/clientapp/images/banner3.png') }}" width="100%" /></a>
+          <a href="/shop"><img src="{{ asset('/clientapp/images/banner3.png') }}" width="100%" /></a>
         </div>
 
         <a name="p"></a>
