@@ -564,6 +564,9 @@ function getToken(){
 
             socket.on(prefix+gameid+"-rank-list" + ":App\\Events\\EventDynamicChannel", function(data) {
                 console.log(data);
+                getMyRanking();
+                getGlobalRanking();
+                getFriendRanking();
 
             });
             
