@@ -57,10 +57,9 @@ function getMyEarnedPoint() {
                 
                     $('.tab-content-my-ranking').html(my_rank_html);    
                 }else {
-                    // my_rank_html += '<div class="col-1 ranking-number">--</div>' +
-                    //                 '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                    //                 '<div class="col-3 ranking-point">0</div>';
-                    $('.tab-content-my-ranking').css('display', 'none');
+                    if ($('.tab-content-my-ranking').html() == '') {
+                        $('.tab-content-my-ranking').css('display', 'none');    
+                    }                    
                 }
                 
 
@@ -115,7 +114,7 @@ function getGlobalRanking() {
 							'</div>';
                 });
 
-                if (global_rank_html == '') {
+                if (global_rank_html == '' && $('#general-list').html() == '') {
                 	global_rank_html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/invitation.png">' +
                                             '<div>暂无记录</div>' +
@@ -180,7 +179,7 @@ function getGameUsedPoint() {
                     
                 });
 
-                if (_html == '') {
+                if (_html == '' && $('#buy-product-list').html() == '') {
                     _html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/invitation.png">' +
                                             '<div>暂无换购记录</div>' +

@@ -256,7 +256,11 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	} );
 
 	Route::get( '/validate', function () {
-		return view( 'client/validate' );
+		if (env('THISVIPAPP', false) == true) {
+			return view( 'client/validate_v2' );
+		} else {
+			return view( 'client/validate' );
+		}
 	} );
 
 	Route::get( '/membership', function () {

@@ -258,7 +258,7 @@ function Resell_html(item){
   _url = '/coin/list/detail/' + item.id;
 
   if (item.status_id == 1) {
-    txt_status = '订单已提交';  
+    txt_status = '等待审核'; //'订单已提交';  
     _cls = 'payReady';
     _fontcolor = '#6ac2ff';                        
   } else if (item.status_id == 2) {
@@ -269,11 +269,11 @@ function Resell_html(item){
     _buyer = item.buyer; 
     _phone = (_buyer != null) ? _buyer.phone : '';
     _phone = (_phone != '') ? (_phone.substring(0,3) + '*****' + _phone.slice(-4)) : '';
-    txt_status = '已匹配到买家 ' + _phone;
+    txt_status = '买家正在付款'; //'已匹配到买家 ' + _phone;
     _cls = 'payIng';
     _fontcolor = '#ffa200';
   } else if (item.status_id == 4) {
-    txt_status = '买家付款完成';
+    txt_status = '交易成功'; //'买家付款完成';
     _cls = 'payOver';
     _fontcolor = '#51c000';
   } else if (item.status_id == 5) {
@@ -338,20 +338,20 @@ function Recharge_html(item){
     // _cls = 'payIng';
     _fontcolor = '#ffa200';
   } else if (item.status_id == 3) {
-    txt_status = '等待卖家发币';
+    txt_status = '已提交审核'; //'等待卖家发币';
     // _cls = 'payIng';
     _fontcolor = '#6ac2ff';
   } else if (item.status_id == 4) {
-    txt_status = '卖家已发币';
+    txt_status = '交易成功'; //'卖家已发币';
     // _cls = 'payOver';
     _fontcolor = '#23ca27';
   } else if (item.status_id == 5) {
-    txt_status = '发布失败';
+    txt_status = '交易成功'; //'发布失败';
     txt_reason = '付款超时';
     // _cls = 'payFail';
     _fontcolor = '#ff8282';
   } else if (item.status_id == 7) {
-    txt_status = '拒绝退回';
+    txt_status = '交易失败'; //'拒绝退回';
     txt_reason = item.reason;
     // _cls = 'payFail';
     _fontcolor = '#ff8282';

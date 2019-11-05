@@ -64,16 +64,10 @@ function getMyRanking() {
                     $('#my-ranking').html(my_rank_html);
                     $('.my-earning-point').html(_total_point);    
                 }else {
-                    // _phone = $('#hidPhone').val();
-                    // _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4);
-                    // my_rank_html += '<div class="col-1 ranking-number">--</div>' +
-                    //                 '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                    //                 '<div class="col-3 ranking-point">0</div>';
-                    // $('#my-ranking').html(my_rank_html);
-                    $('#my-ranking').css('display', 'none');
+                    if ($('#my-ranking').html() == '') {
+                        $('#my-ranking').css('display', 'none');    
+                    }                    
                 }
-                
-                
             }
         }
     }); 
@@ -97,7 +91,10 @@ function getGlobalRanking() {
                                 '</div>';
 
             // $('.tab-content').css('background-color','#fff');
-            $('#general-list').html(global_rank_html);
+            if ($('#general-list').html() == '') {
+                $('#general-list').html(global_rank_html);    
+            }
+            
         },
         success: function(data) {
             var status = data.success;
@@ -142,7 +139,7 @@ function getGlobalRanking() {
                     
                 });
 
-                if (global_rank_html == '') {
+                if (global_rank_html == '' && $('#general-list').html() == '') {
                     global_rank_html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/ranking.png">' +
                                             '<div>暂无记录</div>' +
@@ -173,8 +170,9 @@ function getFriendRanking() {
                                     '<div>暂无邀请记录</div>' +
                                 '</div>';
             // $('.tab-content').css('background-color','#fff');
-            $('#my-friend-list').html(friends_rank_html);
-
+            if ($('#my-friend-list').html() == '' ){
+                $('#my-friend-list').html(friends_rank_html);    
+            }
         },
         success: function(data) {
             var status = data.success;
@@ -218,7 +216,7 @@ function getFriendRanking() {
                     }
                 });
 
-                if (friends_rank_html == '') {
+                if (friends_rank_html == '' && $('#my-friend-list').html() == '') {
                     friends_rank_html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/ranking.png">' +
                                             '<div>暂无邀请记录</div>' +
