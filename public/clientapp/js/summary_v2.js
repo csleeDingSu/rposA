@@ -295,9 +295,9 @@ function Resell_html(item){
             '<p><span>' + txt_when +'</span>' +
               '<font color="#686868">售价&nbsp;'+txt_amount+'元</font>' +
             '</p>';
-          if (txt_reason != '') {
-  html +=   '<h3>失败原因：' +txt_reason+ '</h3>';  
-          }                                  
+  //         if (txt_reason != '') {
+  // html +=   '<h3>失败原因：' +txt_reason+ '</h3>';  
+  //         }                                  
   html += '</a>';
 
   return html;
@@ -346,7 +346,7 @@ function Recharge_html(item){
     // _cls = 'payOver';
     _fontcolor = '#23ca27';
   } else if (item.status_id == 5) {
-    txt_status = '付款超时';
+    txt_status = '发布失败';
     txt_reason = '付款超时';
     // _cls = 'payFail';
     _fontcolor = '#ff8282';
@@ -375,9 +375,9 @@ function Recharge_html(item){
             '<p><span>' + txt_when +'</span>' +
               '<font color="#686868">充值&nbsp;'+txt_amount+'元</font>' +
             '</p>';
-  if (txt_reason != '') {
-    html += '<h3>失败原因：' +txt_reason+ '</h3>';  
-  }                           
+  // if (txt_reason != '') {
+  //   html += '<h3>失败原因：' +txt_reason+ '</h3>';  
+  // }                           
   
   html += '</a>'; 
 
