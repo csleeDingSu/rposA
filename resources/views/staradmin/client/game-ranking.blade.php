@@ -59,17 +59,14 @@
 		<div class="col-5 tab-col-header-name">名称</div>
 		<div class="col-3 tab-col-header">总收益（元）</div>
 	</div>
-	<div class="row tab-content-my-ranking" id="my-ranking">
-	</div>
+	<div class="row tab-content-my-ranking" id="my-ranking"></div>
     <div class="tab-content">
         <div id="general-ranking" class="tab-pane fade in active">
-            <div id="general-list" class="tab-pane fade in active">
-            </div>
+            <div id="general-list" class="tab-pane fade in active"></div>
         </div>
 
         <div id="my-friend-ranking" class="tab-pane fade">
-	        <div id="my-friend-list" class="tab-pane fade in active">
-	        </div>                    
+	        <div id="my-friend-list" class="tab-pane fade in active"></div>                    
         </div>
     </div>
     <div class="tab-content-bottom"></div>

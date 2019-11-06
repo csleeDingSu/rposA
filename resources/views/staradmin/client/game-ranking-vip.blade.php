@@ -49,10 +49,8 @@
 				<div class="col-5 tab-col-header-name">名称</div>
 				<div class="col-3 tab-col-header">总收益（挖宝币）</div>
 			</div>
-			<div class="row tab-content-my-ranking">
-			</div>
-            <div id="general-list" class="tab-pane fade in active">
-            </div>
+			<div class="row tab-content-my-ranking"></div>
+            <div id="general-list" class="tab-pane fade in active"></div>
         </div>
 
         <div id="buy-product-ranking" class="tab-pane fade">

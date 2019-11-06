@@ -20,6 +20,10 @@
           background-size: 32px 32px;
           visibility: hidden;
         }
+
+        .orderid {
+          margin: 0.24rem;
+        }
          
     </style> 
 @endsection
@@ -46,7 +50,7 @@
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
 <input id="hidReSellId" type="hidden" value="{{!empty($resell_id) ? $resell_id : 0}}" />
 <div class="loading2" id="loading2"></div>
-
+<div class="orderid"></div>
 <dl class="coinDetail">
 </dl>
 
@@ -79,10 +83,14 @@
                 },                  
               success: function(data) {
                   var html = '';
+                  var orderid = 0;
                   console.log(data);
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
+                      
                       $.each(data.result.data, function(i, item) {
+
+                        orderid = item.cid;
 
                         var t = item.updated_at.split(/[- :]/);
                         var _t = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
@@ -149,6 +157,7 @@
                                 '</div>';
                       }
                       
+                      $('.orderid').html('订单骗号：' + orderid);
                       $('.coinDetail').append(html);
                       
                   }

@@ -48,7 +48,7 @@ function getMyEarnedPoint() {
                     
                     _phone = 'xxxxx';
                     if (my_rank.phone != '' && my_rank.phone != null) {
-                        console.log(my_rank.phone);
+                        // console.log(my_rank.phone);
                         _phone = my_rank.phone.substring(0,3) + '*****' + my_rank.phone.slice(-4);
                     }
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
@@ -57,7 +57,8 @@ function getMyEarnedPoint() {
                 
                     $('.tab-content-my-ranking').html(my_rank_html);    
                 }else {
-                    if ($('.tab-content-my-ranking').html() == '') {
+
+                    if ($('.tab-content-my-ranking').html().length <= 0) {
                         $('.tab-content-my-ranking').css('display', 'none');    
                     }                    
                 }
@@ -90,6 +91,10 @@ function getGlobalRanking() {
         	var _phone = 'xxxxx';
 
             if(status){
+
+                if (global_rank.length <= 0) {
+                    return false;
+                }
 
                 $.each(global_rank, function(i, item) {
                 	if (item.rank == 1) {
@@ -143,7 +148,7 @@ function getGameUsedPoint() {
             // $(".reload2").show();
         },
         success: function(data) {
-            console.log(data);
+            // console.log(data);
 
             var status = data.success;
             var _data = data.point.data;
@@ -153,6 +158,10 @@ function getGameUsedPoint() {
             var _phone = 'xxxxx';
 
             if(status){
+
+                if (_data.length <= 0) {
+                    return false;
+                }
 
                 i = 0;
                 $.each(_data, function(i, item) {

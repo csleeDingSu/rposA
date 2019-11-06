@@ -831,9 +831,10 @@ function bindBetButton(){
             }
         }
 
-        if(isNaN(balance)){
-            return false;
-        }
+        // if(isNaN(balance)){
+        //     console.log('balance ' + balance);
+        //     return false;
+        // }
 
         console.log(user_id +":" + balance + ":" + life );
         if(user_id > 0 && life > 0){

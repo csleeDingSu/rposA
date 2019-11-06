@@ -49,12 +49,14 @@ class GetTaobaoCollectionList extends Command
         try {
         
 			$this->comment('---Start:'.Carbon::now()->toDateTimeString().'---');
-            \Log::info("This a command GetTaobaoCollectionList");
+            \Log::info("This a command GetTaobaoCollectionList - start");
 
             $_Controller = app(tabaoApiController::class);
             $res = $_Controller->storeAllCollectionList();
 
             $this->comment($res);
+
+            \Log::info("This a command GetTaobaoCollectionList - end");
             $this->comment('---End:'.Carbon::now()->toDateTimeString().'---');
 
             $dd->status = 3;

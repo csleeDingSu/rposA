@@ -61,11 +61,12 @@ function getMyRanking() {
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
                                     '<div class="col-3 ranking-point">'+_total_point+'</div>';
                     
-                    $('#my-ranking').html(my_rank_html);
+                    $('.tab-content-my-ranking').html(my_rank_html);
                     $('.my-earning-point').html(_total_point);    
                 }else {
-                    if ($('#my-ranking').html() == '') {
-                        $('#my-ranking').css('display', 'none');    
+                    // console.log('sss ---' + $('.tab-content-my-ranking').html());
+                    if ($('.tab-content-my-ranking').html() ==  '') {
+                        $('.tab-content-my-ranking').css('display', 'none');    
                     }                    
                 }
             }
@@ -91,7 +92,7 @@ function getGlobalRanking() {
                                 '</div>';
 
             // $('.tab-content').css('background-color','#fff');
-            if ($('#general-list').html() == '') {
+            if ($('#general-list').html().lenght <= 0) {
                 $('#general-list').html(global_rank_html);    
             }
             
@@ -107,6 +108,10 @@ function getGlobalRanking() {
             var _total_point = 0;
 
             if(status){
+
+                if (global_rank.lenght <= 0) {
+                    return false;
+                }
 
                 // global_rank
                 // i = 0;
@@ -170,7 +175,7 @@ function getFriendRanking() {
                                     '<div>暂无邀请记录</div>' +
                                 '</div>';
             // $('.tab-content').css('background-color','#fff');
-            if ($('#my-friend-list').html() == '' ){
+            if ($('#my-friend-list').html().lenght <= 0 ){
                 $('#my-friend-list').html(friends_rank_html);    
             }
         },
@@ -185,6 +190,10 @@ function getFriendRanking() {
             var _total_point = 0;
 
             if(status){
+
+                if (friends_rank.lenght <= 0) {
+                    return false;
+                }
 
                 // friends_rank
                 i = 0;
