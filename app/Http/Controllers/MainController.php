@@ -389,6 +389,18 @@ class MainController extends BaseController
 		
 	}
 
+	public function rechargeDetail($id = null, Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		$data['recharge_id']	= $id;
+
+		return view('client/rechargeDetail', $data);
+		
+	}
+
 	public function rechargeListInComplete(Request $request)
 	{
 		$this->vp = new VIPApp();

@@ -21,11 +21,24 @@
           visibility: hidden;
         }
 
-        .orderid {
+        .order-bar {
           margin: 0.24rem;
+          display: -webkit-box;
+          font-size: .24rem;
+          color: #333;
+        }
+
+        .orderid {
+          width: 73%;
+          color: #666;
+        }
+
+        .copyBtn {
+          color: #f96579;
         }
          
     </style> 
+
 @endsection
 
 @section('top-javascript')
@@ -50,7 +63,7 @@
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
 <input id="hidReSellId" type="hidden" value="{{!empty($resell_id) ? $resell_id : 0}}" />
 <div class="loading2" id="loading2"></div>
-<div class="orderid"></div>
+<div class="order-bar"><span>订单骗号：</span><p class="orderid"></p><a class="copyBtn">复制</a></div>
 <dl class="coinDetail">
 </dl>
 
@@ -59,10 +72,32 @@
 @section('footer-javascript')      
       @parent
       <script type="text/javascript">
+
+      document.onreadystatechange = function () {
+        var state = document.readyState
+        if (state == 'interactive') {
+        } else if (state == 'complete') {
+            document.getElementById('interactive');
+            document.getElementById('loading').style.visibility="hidden";
+            document.getElementById('loading2').style.visibility="visible";
+            $('.loading').css('display', 'initial');
+        }
+      }
+
       $(document).ready(function () {
         $('.card-body').addClass('bgf3');
         $('.scrolly').addClass('fix');
         getToken();
+
+        //复制
+        $('.copyBtn').click(function () {
+          $(this).html("复制");
+          let txt = $(this).prev('p').html();
+          console.log(txt);
+          copyText(txt);
+          $(this).html("成功");
+          $(this).css('color','#65d51a');
+        });
       });
 
       function getReSellDetail(id) {
@@ -107,31 +142,60 @@
                         var txt_status = '';
                         var txt_dec = '';
                         var txt_img = '';
+                        var txt_status_pre = '';
+                        var txt_dec_pre = '';
+                        var txt_img_pre = '';
 
                         if (item.status_id == 1) {
-                          txt_status = '订单已提交'; 
-                          txt_dec = '转卖订单已提交，正在处理中'; 
-                          txt_img = '/clientapp/images/coinRight2.png';  
+                          txt_status = '等待审核'; 
+                          txt_dec = '转卖订单已提交，正在审核中'; 
+                          txt_img = '/clientapp/images/summary/1-.png';  
                         } else if (item.status_id == 2) {
                           txt_status = '正在匹配买家'; 
-                          txt_dec = '订单正在转卖中，等待匹配买家'; 
-                          txt_img = '/clientapp/images/coinUserT2.png';  
+                          txt_dec = '订单转卖中，等待匹配买家'; 
+                          txt_img = '/clientapp/images/summary/2-1.png';  
                         } else if (item.status_id == 3) {
-                          txt_status = '已匹配到买家 <font color="#609cff">135****8888</font>'; 
-                          txt_dec = '已匹配到买家，等待买家充值'; 
-                          txt_img = '/clientapp/images/coinUser2.png'; 
+                          txt_status = '匹配到买家 <font color="#609cff">135****8888</font>'; 
+                          txt_dec = '已匹配到买家，等待买家付款'; 
+                          txt_img = '/clientapp/images/summary/3-1.png'; 
                         } else if (item.status_id == 4) {
-                          txt_status = '已匹配到买家<font color="#609cff">135****8888</font>'; 
-                          txt_dec = '买家已完成付款，请核实收款金额<font color="#ff6b6b">￥'+item.amount+'</font>'; 
-                          txt_img = '/clientapp/images/coinRight2.png'; 
+                          txt_status = '等待付款审核'; 
+                          txt_dec = '付款进行中，等待核实'; 
+                          txt_img = '/clientapp/images/summary/6-1.png'; 
                         } else if (item.status_id == 5) {
-                          txt_status = '<font color="#fe8686">买家付款失败</font>'; 
-                          txt_dec = '付款超时'; 
-                          txt_img = '/clientapp/images/coinClose2.png'; 
+                          txt_status = '<font color="#fe8686">付款超时</font>'; 
+                          txt_dec = '买家未在规定时间完成付款'; 
+                          txt_img = '/clientapp/images/summary/5-1.png';
+
+                          txt_status_pre = '正在重新匹配买家'; 
+                          txt_dec_pre = '买家158***3636，未付款成功'; 
+                          txt_img_pre = '/clientapp/images/summary/2-1.png';
+
                         } else if (item.status_id == 7) {
-                          txt_status = '<font color="#fe8686">发布失败</font>'; 
-                          txt_dec = '审核失败'; 
-                          txt_img = '/clientapp/images/coinClose2.png'; 
+                          txt_status = '<font color="#fe8686">审核失败</font>'; 
+                          txt_dec = '买家付款失败，正在匹配其他买家'; 
+                          txt_img = '/clientapp/images/summary/4-1.png';
+
+                          txt_status_pre = '正在重新匹配买家'; 
+                          txt_dec_pre = '买家158***3636，未付款成功';
+                          txt_img_pre = '/clientapp/images/summary/2-1.png';
+                        }
+
+                        if (txt_status_pre != '') {
+                          
+                         html += '<dd>' +
+                                  '<div class="inTtimeBox">' +
+                                    '<h2>'+txt_date+'</h2>' +
+                                    '<p>'+txt_time+'</p>' +
+                                  '</div>' +
+                                  '<div class="inIcon">' +
+                                    '<img src="'+txt_img_pre+'">' +
+                                  '</div>' +
+                                  '<div class="inDetail">' +
+                                    '<h2>'+txt_status_pre+'</h2>' +
+                                    '<p>'+txt_dec_pre+'</p>' +
+                                  '</div>' +
+                                '</dd>';
                         }
 
                         html += '<dd>' +
@@ -157,7 +221,7 @@
                                 '</div>';
                       }
                       
-                      $('.orderid').html('订单骗号：' + orderid);
+                      $('.orderid').html(orderid);
                       $('.coinDetail').append(html);
                       
                   }

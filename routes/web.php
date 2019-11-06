@@ -319,10 +319,10 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::any( '/recharge', 'MainController@recharge' )->name( 'client.recharge' );
 	Route::any( '/recharge/type', 'MainController@rechargeType' )->name( 'client.recharge.type' );
 	Route::any( '/recharge/list', 'MainController@rechargeList' )->name( 'client.rechargeList' );
+	Route::any( '/recharge/list/detail/{id?}', 'MainController@rechargeDetail' )->name( 'client.recharge.detail' );
 	Route::any( '/recharge/list/in-complete', 'MainController@rechargeListInComplete' )->name( 'client.rechargeListInComplete' );
 	Route::any( '/recharge/rechargeAlipay', 'MainController@rechargeAlipay' )->name( 'client.rechargeAlipay' );
 	Route::any( '/recharge/rechargeCard', 'MainController@rechargeCard' )->name( 'client.rechargeCard' );	
-	
 } );
 
 //Member routes end

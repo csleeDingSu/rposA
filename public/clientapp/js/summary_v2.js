@@ -120,17 +120,20 @@ function getSummary(token) {
     $.each(results, function(key, value){
         //console.log(value.created_at);
         var type = value.type;
+        var _nodata = '暂无明细';
 
         // console.log(type);
 
         //type => softpin,buyproduct,topup,merge,creditresell,buyer
         if (type == 'creditresell') {
-
           html += Resell_html(value);
+          _nodata = '暂无转卖';
         } else if (type == 'buyer') {
           html += Recharge_html(value);
+          _nodata = '暂无充值';
         } else {
           html += Summary_html(value);
+          _nodata = '暂无兑换';
         }        
         
     });            
@@ -139,7 +142,7 @@ function getSummary(token) {
 
         html =   '<div class="no-record">' +
                     '<img src="/clientapp/images/no-record/summary.png">' +
-                    '<div>暂无兑奖</div>' +
+                    '<div>' + _nodata + '</div>' +
                   '</div>';
 
     }
@@ -318,6 +321,8 @@ function Recharge_html(item){
   txt_point = item.used_point;
   txt_when = item.created_at;
   txt_amount = item.amount;
+
+  _url = '/recharge/list/detail/' + item.id;
 
   if (item.status_id == 1) {
     txt_status = '等待付款';  
