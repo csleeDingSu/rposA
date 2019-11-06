@@ -83,7 +83,10 @@
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
                       $.each(data.result.data, function(i, item) {
-                        var formattedDate = new Date(item.updated_at);
+
+                        var t = item.updated_at.split(/[- :]/);
+                        var _t = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+                        var formattedDate = new Date(_t);
                         var d = formattedDate.getDate();
                         var m =  formattedDate.getMonth();
                             m += 1;  // JavaScript months are 0-11
