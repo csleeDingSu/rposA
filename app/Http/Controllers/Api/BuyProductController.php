@@ -39,8 +39,9 @@ class BuyProductController extends Controller
     {    	
 		$member_id = $request->memberid;
 		$limit = $request->limit;
+		$skip = $request->skip;
 		
-		$result =  BuyProduct::list_available_redeem_package(0, $limit);
+		$result =  BuyProduct::list_available_redeem_package(0, $limit, $skip);
 		
 		$type = ['1'=>'virtual card','2'=>'Product'];
 		

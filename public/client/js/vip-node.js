@@ -27,6 +27,7 @@ var g_bet_amount = 0;
 var max_retry = 3;
 var nretry = 0;
 var touchmoved;
+var buyproduct_skip = 0;
 
 $(function () {
 
@@ -482,7 +483,9 @@ function getNotification(data, isSocket = false){
 }
 
 function getProduct(){
-    $.getJSON( "/api/get-product-list?limit=6", function( data ) {
+    buyproduct_skip = (buyproduct_skip <= 0) ? 0 : buyproduct_skip;
+
+    $.getJSON( "/api/get-product-list?limit=6&skip=" + buyproduct_skip, function( data ) {
         // console.log(data);
 
         var html = '<form id="frm_buy" method="post" action="/buy">' +
@@ -518,6 +521,8 @@ function getProduct(){
         html += '</form>';
 
         $('.redeem-prize-wrapper').html(html);
+        buyproduct_skip = (Number(buyproduct_skip) + 6); //next batch
+
         $('.redeem-button').on('click', function(){
 
             var user_id = $('#hidUserId').val();

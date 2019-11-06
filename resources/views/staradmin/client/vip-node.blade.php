@@ -815,7 +815,7 @@
 								</ul>
 							</div>
 							<div class="btn-go-topup">
-								充值挖宝币
+								购买挖宝币
 							</div>
 							<div class="btn-go-redeem">
 								兑换挖宝币

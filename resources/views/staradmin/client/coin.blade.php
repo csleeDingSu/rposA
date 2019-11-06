@@ -173,30 +173,18 @@ var being2 = {
       <span>剩余挖宝币&nbsp;<font color="#ffa414"><span class="bal-point">{{$wallet['gameledger']['103']->point}}</span></font></span>
     </div>
     <ul class="inList">
-      <li class="on">
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">50</span></p>
-        <h2>售价&nbsp;<span class="v-cash">48</span>元</h2>
-      </li>
-      <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">100</span></p>
-        <h2>售价&nbsp;<span class="v-cash">96</span>元</h2>
-      </li>
-      <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">200</span></p>
-        <h2>售价&nbsp;<span class="v-cash">196</span>元</h2>
-      </li>
-      <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">500</span></p>
-        <h2>售价&nbsp;<span class="v-cash">490</span>元</h2>
-      </li>
-      <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">1000</span></p>
-        <h2>售价&nbsp;<span class="v-cash">980</span>元</h2>
-      </li>
-      <li>
-        <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin">2000</span></p>
-        <h2>售价&nbsp;<span class="v-cash">1980</span>元</h2>
-      </li>
+      @php ($i = 0)
+      @foreach($resell_amount as $r)
+        @php ($i++)
+        @if ($i == 1)
+          <li class="on">
+        @else
+          <li>
+        @endif
+            <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin" id="{{$r->id}}">{{$r->point}}</span></p>
+            <h2>售价&nbsp;<span class="v-cash">{{number_format($r->amount, 0, ".", "")}}</span>元</h2>
+          </li>
+      @endforeach
     </ul>
   </div>
 

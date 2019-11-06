@@ -5,6 +5,7 @@ var this_vip_app = false;
 var txt_coin = '元';
 var wallet_point = 0;
 var gameid = 102;
+var previous_point = '';
 
 $(document).ready(function () {
 
@@ -64,9 +65,7 @@ function getToken(){
     $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
         //console.log(data);
         if(data.success) {
-            if(previous_point == undefined){
-                getWallet(data.access_token, id);
-            }
+            getWallet(data.access_token, id);
         }      
     });
 }
@@ -84,24 +83,6 @@ function getProductList(token) {
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
-            var current_point = getNumeric(wallet_point); //getNumeric(data.current_point);
-            var previous_point = Cookies.get('previous_point');
-            if(previous_point !== undefined){
-                previous_point = (getNumeric(previous_point));
-
-                $('.wabao-coin')
-                  .prop('number', previous_point)
-                  .animateNumber(
-                    {
-                      number: (current_point)
-                    },
-                    1000
-                  );
-                Cookies.remove('previous_point');
-            } else {
-                $('.wabao-coin').html(current_point);
-            }            
-
             var records = data.records.data;
             var packages = data.packages;
             var html = '';
@@ -119,6 +100,7 @@ function getProductList(token) {
 
             } else {
                 var current_life = getNumeric($(".nTxt").html());
+                var current_point = getNumeric(wallet_point);
 
                 $.each(records, function(i, item) {
                     var available_quantity = item.available_quantity;
@@ -1287,7 +1269,26 @@ function getWallet(token, id) {
         success: function(data) {
             // console.log(data);
             wallet_point = data.record.gameledger[gameid].point;
-            $('.wabao-coin').html(parseInt(wallet_point));
+
+            var current_point = getNumeric(wallet_point); //getNumeric(data.current_point);
+            var previous_point = Cookies.get('previous_point');
+            if(previous_point !== undefined){
+                previous_point = (getNumeric(previous_point));
+
+                $('.wabao-coin')
+                  .prop('number', previous_point)
+                  .animateNumber(
+                    {
+                      number: (current_point)
+                    },
+                    1000
+                  );
+                Cookies.remove('previous_point');
+            } else {
+                $('.wabao-coin').html(current_point);
+            }
+
+            // $('.wabao-coin').html(parseInt(wallet_point));
             getProductList(token);
             getPosts(page, token);
             scrollBottom(token);

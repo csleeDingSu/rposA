@@ -36,11 +36,10 @@
         </p>
       </div>
       <div class="sMain">
-        <!-- <a id="btn-go-topup"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>充值</span></a> -->
-        <a href="/recharge"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>充值</span></a>
-        <a href="/shop"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>商城</span></a>
+        <a href="/recharge"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>买入</span></a>
+        <a href="/coin"><img src="{{ asset('clientapp/images/user-4.png') }}"><span>卖出</span></a>
+        <a href="/shop"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>换购</span></a>
         <a href="/summary"><img src="{{ asset('clientapp/images/user-3.png') }}"><span>明细</span></a>
-        <a href="/coin"><img src="{{ asset('clientapp/images/user-4.png') }}"><span>转卖</span></a>
       </div>
 
 
@@ -59,11 +58,11 @@
         <p><i class="bRed" id="102_point"></i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a> -->
       <a class="inBox" href="/arcade">
-        <p><img class="tIcon" src="{{ asset('clientapp/images/icon-cs.png') }}"><span>剩余次数</span></p>
+        <p><img class="tIcon" src="{{ asset('clientapp/images/icon-cs.png') }}"><span>剩余抽奖</span></p>
         <p><i class="bBlub" id="game_life"></i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
       <a class="inBox" href="/pre-share">
-        <p><img class="tIcon" src="{{ asset('clientapp/images/icon-invite.png') }}"><span>邀请好友</span></p>
+        <p><img class="tIcon" src="{{ asset('clientapp/images/icon-invite.png') }}"><span>邀请好友</span><span class="highlight">奖励大量补贴抽奖</span></p>
         <p><i class="bYellow">{{$total_intro ?? '0'}}</i><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
       <a class="inBox" href="/receipt">
@@ -71,7 +70,7 @@
         <p><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
       <a class="inBox" href="blog/my-redeem">
-        <p><img class="tIcon" src="{{ asset('clientapp/images/icon-pj.png') }}"><span>晒单评价</span></p>
+        <p><img class="tIcon" src="{{ asset('clientapp/images/icon-pj.png') }}"><span>我要晒单</span></p>
         <p><img class="nIcon" src="{{ asset('clientapp/images/userGt.png') }}"></p>
       </a>
     </div>

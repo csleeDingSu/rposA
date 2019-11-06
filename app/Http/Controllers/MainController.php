@@ -16,6 +16,7 @@ use App\Shareproduct;
 use App\Voucher;
 use App\Wallet;
 use App\member_game_bet_temp_log;
+use App\resell_amount;
 use App\view_buy_product_user_list;
 use App\vouchers_yhq;
 use Auth;
@@ -246,6 +247,7 @@ class MainController extends BaseController
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
 		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		$data['resell_amount'] = resell_amount::select('*')->get();
 
 		return view('client/coin', $data);
 		
@@ -336,6 +338,7 @@ class MainController extends BaseController
 		$member = Auth::guard('member')->user()->id	;
 		$data['member']    = Member::get_member($member);
 		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		$data['resell_amount'] = resell_amount::select('*')->get();
 
 		return view('client/recharge', $data);
 		
