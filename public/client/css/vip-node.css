@@ -242,38 +242,47 @@
     height: 1.5rem;
 }
 
-.openForm{
-	background: #fff;
-	border-radius:.1rem .1rem 0 0 ;
-	-webkit-border-radius:.1rem .1rem 0 0 ;
-	-moz-border-radius:.1rem .1rem 0 0 ;
-	-ms-border-radius:.1rem .1rem 0 0 ;
-	-o-border-radius:.1rem .1rem 0 0 ;
-	position: absolute;
-	display: none;
-	bottom: 0;
-	z-index: 200;
-	width: 100%;
-	left: 0;
-	padding: 0.3rem 0;
+.openForm-new{
+    background: #ffeff2;
+    border-radius:.1rem .1rem 0 0 ;
+    -webkit-border-radius:.1rem .1rem 0 0 ;
+    -moz-border-radius:.1rem .1rem 0 0 ;
+    -ms-border-radius:.1rem .1rem 0 0 ;
+    -o-border-radius:.1rem .1rem 0 0 ;
+    position: absolute;
+    display: none;
+    bottom: 0;
+    z-index: 200;
+    width: 100%;
+    left: 0;
+    padding: 0.3rem 0;
     margin: 0 0 1rem 0;
+}
+
+.openForm-new .formTitle {
+    margin-bottom: 0.3rem;
+    position: relative;
+    margin-top: -1rem;
+}
+
+.openForm-new .formTitle img{
+    width: 100%;
 }
 
 .formWrapper{
 	padding: 0 0.3rem;
 }
 
-.formTitle{
-	font-size: .36rem;
-	text-align: center;
-	color: #333;
-	margin-bottom: 0.3rem;
-}
-
 .formBody{
 	font-size: .26rem;
-	color: #666;
-	line-height: .4rem;
+    color: #666;
+    line-height: .45rem;
+    margin: 0.3rem 0;
+}
+
+.formBody img{
+    width: 100%;
+    padding: 0.2rem 0;
 }
 
 
@@ -292,59 +301,8 @@
 	font-weight: 700;
 }
 
-.formTable {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 0.22rem;
-  color: #333;
-}
-
-.formTable td, .formTable th {
-  border: 1px solid #dfdfdf;
-  padding: 0.1rem;
-  text-align: center;
-}
-
-.formTable th {
-	background-color: #999;
-	color: #fff;
-}
-
-.formTable tr:nth-child(odd) {
-  background-color: #f4f4f4;
-}
-
 .formButtonWrapper {
 	padding: 0.3rem 0.3rem 0 0.3rem;
-}
-
-.formButton{
-	background-image: linear-gradient(to right, #24a6f1 , #0084ff);
-	height: 0.98rem;
-	border-radius: 0.5rem;
-	/*display: flex;*/
-    display: none;
-	align-items: center;
-	justify-content: center;
-	color: #fff;
-	font-size: 0.36rem;
-	cursor: pointer;
-	margin: 0 0 0.3rem 0;
-}
-
-.openForm td:last-child {
-	color: #ff4848;
-}
-
-.suggestion {
-	color:#ff8624;
-}
-
-.suggestion img {
-	width: 0.61rem;
-	height: 0.28rem;
-	position: absolute;
-	margin-top: -0.2rem;
 }
 
 #modal-no-login {
@@ -524,13 +482,6 @@
 
 .modal.in .modal-dialog {
   transform: translate3d(0, 0, 0);
-}
-
-.closeForm {
-	float: right;
-    padding: 0.1rem;
-    color: red;
-    margin: -1rem 0 0 0;
 }
 
 #lose-modal .modal-instruction {

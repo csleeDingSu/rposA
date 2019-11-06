@@ -676,83 +676,21 @@
 	</div>
 </div>
 <!-- haven't login modal Ends-->
-<div class="openForm">
+<div class="openForm-new">
+	<div class="formTitle closeForm"><img src="{{asset('clientapp/images/vip-node/intro-title.png')}}"></div>
 	<div class="formWrapper">
-	<div class="formTitle">玩法介绍</div>
-	<div class="closeForm">x 关闭</div>
-	<div class="formBody">
-		这是自助式抽奖，需自选单双和投入金币，投1金币可抽1.96金币，50%中奖率，使用倍增投币法能让中奖率提高到98%,<span class="highlight1">倍增投币法说明：</span><br />
-		✗第一次投入1金币，没抽中。<br />
-		✗第二次投入3金币，也没中。<br />
-		✓第三次投入8金币，抽中了。<br />
-		当第三次抽中，<span class="highlight1">能赚到8×1.96=15.68金币</span>，扣除三次<span class="highlight2">总投币12金币</span>，最终<span class="highlight3">赚了3.68金币</span>。<br /><br />
-		这就是倍增投币法，从1金币起步，没抽中就增加，抽中后又从1金币起步，不停循环赚取大量金币，更具体倍增方案可参考表格：<br />
-	</div>
-
-	<table class="formTable">
-	  <tr>
-	    <th>次数</th>
-	    <th>本次投入</th>
-	    <th>总投入</th>
-	    <th>抽中金币</th>
-	    <th>概率</th>
-	    <th>最终赚到</th>
-	  </tr>
-	  <tr>
-	    <td>1</td>
-	    <td>1</td>
-	    <td>1</td>
-	    <td>1.96</td>
-	    <td>50%</td>
-	    <td>0.96</td>
-	  </tr>
-	  <tr>
-	    <td>2</td>
-	    <td>3</td>
-	    <td>4</td>
-	    <td>5.88</td>
-	    <td>70%</td>
-	    <td>1.88</td>
-	  </tr>
-	  <tr>
-	    <td>3</td>
-	    <td>8</td>
-	    <td>12</td>
-	    <td>15.68</td>
-	    <td>87.50%</td>
-	    <td>3.68</td>
-	  </tr>
-	  <tr>
-	    <td>4</td>
-	    <td>18</td>
-	    <td>30</td>
-	    <td>35.28</td>
-	    <td>93.75%</td>
-	    <td>5.28</td>
-	  </tr>
-	  <tr>
-	    <td>5</td>
-	    <td>38</td>
-	    <td class="suggestion"><strong>68</strong><img src="/client/images/vip/label_suggestion.png" /></td>
-	    <td>174.48</td>
-	    <td>96.87%</td>
-	    <td>6.48</td>
-	  </tr>
-	  <tr>
-	    <td>6</td>
-	    <td>80</td>
-	    <td>148</td>
-	    <td>156.8</td>
-	    <td>98.43%</td>
-	    <td>8.8</td>
-	  </tr>
-	</table>
-	</div>
-
-	<div class="btn-calculate-vip formButtonWrapper" id="btn-calculate-vip">
-		<!-- <a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}"> -->
-			<div class="formButton">充值金币</div>
-		<!-- </a> -->
+		<div class="formBody">
+			高级抽奖需要投入挖宝币，抽中可获得1.96倍回报：<br/>
+			投入10挖宝币可抽中19.6挖宝币。<br/>
+			解锁高级抽奖需680挖宝币，680挖宝币要划分成以下5次进行抽奖：<br />
+			<img src="{{asset('clientapp/images/vip-node/intro-step.png')}}">
+			玩法解释说明：<br/>
+			第一次投入10挖宝币，如果没抽中。<br/>
+			第二次就投入30挖宝币，如果还没抽中。<br/>
+			第三次就投入80挖宝币......<br/>
+			以此类推，680挖宝币最多可投入5次，5次抽中1次的概率高达96.86％<br/>
+			请注意：如果抽中，返回从第一局投入10挖宝币开始，按此方式不停循环赚取大量挖宝币。
+		</div>
 	</div>
 </div>
 
@@ -967,12 +905,12 @@
             $(".btn-rules-vip").click(() => {  
 
                 being.wrapShow();
-                $(".openForm").slideDown(150);
+                $(".openForm-new").slideDown(150);
                 $(".wrapBox ").click(function (e) {
                   being.wrapHide();
-                  $(".openForm").slideUp(150);
+                  $(".openForm-new").slideUp(150);
                 });
-                $('.openForm').modal();
+                $('.openForm-new').modal();
                 $('.modal-backdrop').css("z-index", "3");
 
                 $('.modal-backdrop').click(function() {
@@ -984,15 +922,15 @@
             $(".instructions2").click(() => {  
             	$('#modal-isnewbie').modal('hide');
 	            being.wrapShow();
-	            $(".openForm").slideDown(150);
+	            $(".openForm-new").slideDown(150);
 	            $(".wrapBox ").click(function (e) {
 	              being.wrapHide();
-	              $(".openForm").slideUp(150);
+	              $(".openForm-new").slideUp(150);
 	            });
 	          });
         	
         	$('.closeForm').click(function() {
-	            $(".openForm").hide();
+	            $(".openForm-new").hide();
 	            $('.modal').modal('hide')
 	            // $('.modal-backdrop').remove() // removes the grey overlay.
 	            $('.modal-backdrop').css("z-index", "-1");
@@ -1008,10 +946,10 @@
 		function show_openform() { 
 			$('#modal-isnewbie').modal('hide');
             being.wrapShow();
-            $(".openForm").slideDown(150);
+            $(".openForm-new").slideDown(150);
             $(".wrapBox ").click(function (e) {
               being.wrapHide();
-              $(".openForm").slideUp(150);
+              $(".openForm-new").slideUp(150);
             });
 		}
 
