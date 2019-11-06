@@ -409,7 +409,8 @@ body{
 }
 
 .btn-rules-vip {
-	background: url(/client/images/vip/btn-intro.png) no-repeat top center;
+	/*background: url(/client/images/vip/btn-intro.png) no-repeat top center;*/
+	background: url(/clientapp/images/vip-node/btn-intro.png) no-repeat top center;
 	width: 2.28rem;
 	height: 0.72rem;
 	background-size: contain;

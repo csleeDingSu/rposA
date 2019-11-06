@@ -126,3 +126,9 @@ html, body {
 .h36 {
 	height: 0.8rem !important;
 }
+
+.userMainList .inBox .highlight {
+	color: #c9c9c9;
+    font-size: 0.25rem;
+    padding-left: 0.1rem;
+}
