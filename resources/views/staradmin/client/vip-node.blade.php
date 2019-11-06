@@ -145,6 +145,7 @@
 			<div class="box" id="btn-vip-wrapper">
 				<div class="btn-rules-wrapper btn-vip-wrapper">
 						<div class="btn-rules-vip"></div>
+						<div class="DB_G_hand_1"></div>
 					<div style="clear:both"></div>
 				</div>
 			</div>

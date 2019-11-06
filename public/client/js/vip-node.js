@@ -51,7 +51,7 @@ $(function () {
     if(wechat_status == 0 && wechat_name != null) {
 
         getToken();
-        getProduct();
+        setInterval("getProduct()",10000);
         closeModal();
         initNotification();
 
@@ -1544,7 +1544,11 @@ function lockWheel() {
         _img = '<a href="javascript:showHowToUnLock();"><div id="btn-how-to-unlock">&nbsp;</div></a>';
         _img += '<div id="wheel_banner"><img src="/clientapp/images/vip-node/wheel-newbie.png"></div>';
         $('.frame-wrapper').html(_img);
-        // $('#wheel_container').css('visibility', 'hidden');
+        $('.DB_G_hand_1').css('display', 'block');
+
+        $( ".DB_G_hand_1" ).click(function(){
+            $('.btn-rules-vip').trigger("click");
+        });
     }
 }
 
