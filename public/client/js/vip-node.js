@@ -1548,7 +1548,6 @@ function lockWheel() {
 
         $( ".DB_G_hand_1" ).click(function(){
             $('.btn-rules-vip').trigger("click");
-            $('.DB_G_hand_1').css('display', 'none');
         });
     }
 }

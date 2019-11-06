@@ -918,6 +918,8 @@
 	            	$('.closeForm').trigger("click");
 	            });
 
+	            $('.DB_G_hand_1').css('display', 'none');
+
               });
 
             $(".instructions2").click(() => {  
