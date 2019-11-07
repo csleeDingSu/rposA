@@ -186,7 +186,7 @@
                           txt_status = '<font color="#fe8686">审核失败</font>'; 
                           txt_dec = '提交质料错误，请重新提交'; 
                           txt_img = '/clientapp/images/summary/4-1.png';
-                        } else if (item.status_id == 8 && is_locked == 1) {
+                        } else if (item.status_id == 8) {
                           _phone = data.record.buyer.phone;
                           _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4)
                           txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
