@@ -177,6 +177,8 @@ var being2 = {
       @foreach($resell_amount as $r)
         @php ($i++)
         @if ($i == 1)
+          @php ($_init_cash = $r->amount)
+          @php ($_init_point = $r->point)
           <li class="on">
         @else
           <li>
@@ -333,8 +335,8 @@ var being2 = {
       let sendData = new Object();
       sendData.upImg = "";
       sendData.copyTxt = "";
-      sendData.vCoin = "50"; //default
-      sendData.vCash = "48"; //default
+      sendData.vCoin = "{{empty($_init_point) ? 680 : $_init_point}}"; //default
+      sendData.vCash = "{{empty($_init_cash) ? 68 : $_init_cash}}"; //default
       _point = Number($('#hidPoint').val());
 
       if (Number(_point) < Number(sendData.vCoin)) {
