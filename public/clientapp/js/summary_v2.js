@@ -263,10 +263,17 @@ function Resell_html(item){
     txt_status = '等待审核'; //'订单已提交';  
     _cls = 'payReady';
     _fontcolor = '#6ac2ff';                        
-  } else if (item.status_id == 2) {
+  } else if (item.status_id == 2 && item.is_locked != 1) {
     txt_status = '正在匹配买家';  
     _cls = 'payReady';
-    _fontcolor = '#6ac2ff';                        
+    _fontcolor = '#6ac2ff';
+  } else if (item.status_id == 2 && item.is_locked == 1) {
+    _buyer = item.buyer; 
+    _phone = (_buyer != null) ? _buyer.phone : '';
+    _phone = (_phone != '') ? (_phone.substring(0,3) + '*****' + _phone.slice(-4)) : '';
+    txt_status = '买家正在付款'; //'已匹配到买家 ' + _phone;
+    _cls = 'payIng';
+    _fontcolor = '#ffa200';                        
   } else if (item.status_id == 3) {
     _buyer = item.buyer; 
     _phone = (_buyer != null) ? _buyer.phone : '';

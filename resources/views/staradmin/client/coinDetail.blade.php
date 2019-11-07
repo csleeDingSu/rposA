@@ -184,10 +184,10 @@
                           txt_status = '<font color="#fe8686">审核失败</font>'; 
                           txt_dec = '提交质料错误，请重新提交'; 
                           txt_img = '/clientapp/images/summary/4-1.png';
-
-                          // txt_status_pre = '正在重新匹配买家'; 
-                          // txt_dec_pre = '买家158***3636，未付款成功';
-                          // txt_img_pre = '/clientapp/images/summary/2-1.png';
+                        } else if (item.status_id == 8) { //waitingforpayment
+                          txt_status = '等待付款审核'; 
+                          txt_dec = '付款进行中，等待核实'; 
+                          txt_img = '/clientapp/images/summary/6-1.png'; 
                         }
 
                         if (txt_status_pre != '') {
