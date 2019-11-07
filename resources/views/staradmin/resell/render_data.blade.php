@@ -2,7 +2,7 @@
 <tr id="tr_{{$list->id}}">
 	<td scope="row">{{$list->id}}</td>
 	<td>{{$list->created_at}}</td>
-	<td>{{$list->s_uuid}}</td>
+	<td>{{$list->uuid}}</td>
 	<td>
 	@if ($list->member_id)
 		{{ $list->member->phone ?? $list->member->wechat_name }}
