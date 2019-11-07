@@ -71,6 +71,10 @@ class CreditController extends BaseController
 					if (!empty($input['s_buyer']))  
 					{
 						$result = $result->whereHas('buyer',$callback) ;
+					}
+					if (!empty($input['s_uuid']))  
+					{
+						$result = $result->where('uuid','LIKE', "%{$input['s_uuid']}%") ;
 					}	
 	
 			$result =  $result->latest('updated_at')->paginate(30);
