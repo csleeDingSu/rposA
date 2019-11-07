@@ -261,7 +261,8 @@
             var amount = data.record.amount;
             var point = data.record.point;
             var phone = data.record.member.phone;
-            var orderid = data.record.id;
+            phone = (phone != '') ? (phone.substring(0,3) + '*****' + phone.slice(-4)) : '';
+            var orderid = (data.record.uuid.length > 0) ? data.record.uuid : data.record.id;
             var when = data.record.created_at;
             var txt_status = '';
             var txt_reason = '';

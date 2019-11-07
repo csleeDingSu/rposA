@@ -123,9 +123,9 @@
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
                       
-                      $.each(data.result.data, function(i, item) {
+                      orderid = var orderid = (data.record.uuid.length > 0) ? data.record.uuid : data.record.id;;
 
-                        orderid = item.cid;
+                      $.each(data.result.data, function(i, item) {
 
                         var t = item.updated_at.split(/[- :]/);
                         var _t = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
