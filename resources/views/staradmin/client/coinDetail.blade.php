@@ -153,17 +153,19 @@
                           txt_status = '等待审核'; 
                           txt_dec = '转卖订单已提交，正在审核中'; 
                           txt_img = '/clientapp/images/summary/1-.png';  
-                        } else if (item.status_id == 2 && is_locked != 1) {
+                        } else if (item.status_id == 2) {
                           txt_status = '正在匹配买家'; 
                           txt_dec = '订单转卖中，等待匹配买家'; 
                           txt_img = '/clientapp/images/summary/2-1.png';  
-                        } else if (item.status_id == 2 && is_locked == 1) {
-                          _phone = data.record.buyer.phone;
-                          _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4)
-                          txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
-                          txt_dec = '已匹配到买家，等待买家付款'; 
-                          txt_img = '/clientapp/images/summary/3-1.png';
-                        } else if (item.status_id == 3) {
+                        }
+                        //  else if (item.status_id == 2) {
+                        //   _phone = data.record.buyer.phone;
+                        //   _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4)
+                        //   txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
+                        //   txt_dec = '已匹配到买家，等待买家付款'; 
+                        //   txt_img = '/clientapp/images/summary/3-1.png';
+                        // } 
+                        else if (item.status_id == 3) {
                           txt_status = '等待付款审核'; 
                           txt_dec = '付款进行中，等待核实'; 
                           txt_img = '/clientapp/images/summary/6-1.png'; 
@@ -184,10 +186,12 @@
                           txt_status = '<font color="#fe8686">审核失败</font>'; 
                           txt_dec = '提交质料错误，请重新提交'; 
                           txt_img = '/clientapp/images/summary/4-1.png';
-                        } else if (item.status_id == 8) { //waitingforpayment
-                          txt_status = '等待付款审核'; 
-                          txt_dec = '付款进行中，等待核实'; 
-                          txt_img = '/clientapp/images/summary/6-1.png'; 
+                        } else if (item.status_id == 8 && is_locked == 1) {
+                          _phone = data.record.buyer.phone;
+                          _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4)
+                          txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
+                          txt_dec = '已匹配到买家，等待买家付款'; 
+                          txt_img = '/clientapp/images/summary/3-1.png';
                         }
 
                         if (txt_status_pre != '') {
