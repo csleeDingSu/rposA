@@ -93,13 +93,22 @@ class VoidResell extends Command
            // {
                 $this->line('-- send notification');  
                 $result = \App\CreditResell::with('status','member','buyer')->where('buyer_id', $record->member_id)->where('is_locked', 1)->latest()->get();
-                //buyer
-                event(new \App\Events\EventDynamicChannel($record->member_id.'-pending-buyer','',$result ));
 
+                $count  = $result->count();
+
+                $data   = [ 'count'=>$count,  'records'=>$result];
+
+                //buyer
+                event(new \App\Events\EventDynamicChannel($record->member_id.'-pending-buyer','',$data ));
+                $data   = '';
                 $status = [1,2,3];
                 $result = \App\ViewCreditResell::with('status','member','buyer')->where('member_id' , $record->member_id)->latest()->wherein('status_id', $status)->latest()->get();
+
+                $count  = $result->count();
+
+                $data   = [ 'count'=>$count,  'records'=>$result];
                 //seller
-                event(new \App\Events\EventDynamicChannel($record->member_id.'-pending-seller','',$result ));
+                event(new \App\Events\EventDynamicChannel($record->member_id.'-pending-seller','',$data ));
                 $this->info('-- done');
            // }            
             

@@ -180,6 +180,9 @@ class CreditController extends Controller
 			$record->buyer_id    = $record->buyer_id;
 			$history->save();
 
+            $this->pending_notificaiton($record->member_id , 'sell');
+            $this->pending_notificaiton($record->buyer_id , 'buy');
+
 			return response()->json(['success' => true]);		
     	}
 
@@ -287,7 +290,30 @@ class CreditController extends Controller
     }
 
 
+    public function pending_notificaiton($memberid , $rtype = 'buy')
+    { 
+        if ($rtype == 'buy')
+        {
+            $type   = 'buyer_id';
+            $result = \App\CreditResell::with('status','member','buyer')->where($type, $memberid)->where('is_locked', 1)->latest()->get();
+            $count  = $result->count();
 
+            $data   = [ 'count'=>$count,  'records'=>$result];
+            event(new \App\Events\EventDynamicChannel($memberid.'-pending-buyer','',$data ));
+        }
+        else
+        {
+            $type = 'member_id';
+            $status = [1,2,3];
+            $result = \App\ViewCreditResell::with('status','member','buyer')->where($type, $request->memberid)->latest()->wherein('status_id', $status)->latest()->get();
+
+            $count  = $result->count();
+            $data   = [ 'count'=>$count,  'records'=>$result];
+            event(new \App\Events\EventDynamicChannel($memberid.'-pending-seller','',$data ));
+        }
+        
+        return response()->json(['success' => true]  );
+    }
 
 
 
