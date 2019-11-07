@@ -187,6 +187,7 @@
                           txt_dec = '提交质料错误，请重新提交'; 
                           txt_img = '/clientapp/images/summary/4-1.png';
                         } else if (item.status_id == 8) {
+                          console.log(data.record.buyer);
                           _phone = (data.record.buyer === undefined) ? '' : data.record.buyer.phone;
                           _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4);
                           txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
