@@ -134,7 +134,7 @@ var being2 = {
 
 <!-- top nav -->
 @section('left-menu')
-  <a class="returnBtn" href="/recharge/list"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  <a class="returnBtn" href="/recharge"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
 @section('title', '银行卡充值')

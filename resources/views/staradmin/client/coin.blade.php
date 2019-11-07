@@ -141,7 +141,7 @@ var being2 = {
 <div class="loading2" id="loading2"></div>
 <div class="topBox fix">
     <div class="pageHeader rel">
-      <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('/clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
+      <a class="returnBtn" href="/profile"><img src="{{ asset('/clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
       <h2>我的奖品</h2>
       <!-- <a class="coinListBtn" href="/coin/list">转卖记录</a> -->
       <a class="csBtn"><img src="{{ asset('/clientapp/images/coin/kefu1.png') }}">在线客服</a>
@@ -505,7 +505,7 @@ var being2 = {
                     $('.bal-point').html(Number($('.bal-point').html()) - Number(sendData.vCoin));
                       being.showMsg('.coinShade'); 
                       setTimeout(function(){ 
-                        window.location.href = '/coin/list';
+                        window.location.href = '/coin';
                       }, 5000);                      
                   }
               }
