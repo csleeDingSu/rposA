@@ -166,7 +166,7 @@
     <li><span>订单状态</span><span class="status" id="status"><span class="reason">原因：test</span>付款失败</span><hr/></li>
     <li><span>付款金额</span><span class="status amount" id="amount">180元</span><hr/></li>
     <li><span>卖家信息</span><span class="status seller" id="phone">123***123</span><hr/></li>
-    <li><span>订单编号</span><span class="status"><span class="copy">复制</span><span class="orderid" id="orderid">112222</span><hr/></li>
+    <li><span>订单编号</span><span class="status"><span class="copy">复制</span><span class="orderid" id="orderid">112222</span></span><hr/></li>
     <li><span>下单时间</span><span class="status when" id="when">2019-11-11 11:11:11</span><hr/></li>
     <li>
       <div class="inBtnbox">

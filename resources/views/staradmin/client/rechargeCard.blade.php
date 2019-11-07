@@ -74,6 +74,23 @@
         .coinShade img {
           height: 100% !important;
         }
+
+        .copyBtnOrderId {
+          display: inline-block;
+          font-size: .2rem;
+          color: #fff;
+          padding: 0 .12rem;
+          line-height: .38rem;
+          border-radius: .05rem;
+          background: #2d95e0;
+          margin: 0 0 0 0.1rem;
+          
+        }
+
+        .orderid {
+          text-align: right;
+          width: 75%;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('test/html_design/css/style.css') }}" />
 @endsection
@@ -190,6 +207,7 @@ var being2 = {
               <font color="#2d95e0">银行卡</font>
             </span></p>
           <p><span>转卖时间</span><span>{{empty($recod->created_at) ? '' : $recod->created_at}}</span></p>
+          <p><span>订单编号</span><span class="orderid" id="orderid">112222</span><a class="copyBtnOrderId">复制</a></span></p>
         </div>
         <div class="buyName">
           <span>您的姓名</span>
@@ -344,6 +362,16 @@ var being2 = {
         $('.copyBtn').css('background-color', '#2d95e0');
         $(this).html("复制");
         let txt = $(this).prev('p').html();
+        console.log(txt);
+        copyText(txt);
+        $(this).html("成功");
+        $(this).css('background-color','#35cd4e');
+      });
+
+      $('.copyBtnOrderId').click(function () {
+        $('.copyBtnOrderId').css('background-color', '#2d95e0');
+        $(this).html("复制");
+        let txt = $(this).prev('span').html();
         console.log(txt);
         copyText(txt);
         $(this).html("成功");

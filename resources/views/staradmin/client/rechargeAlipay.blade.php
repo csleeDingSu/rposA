@@ -53,6 +53,23 @@
         .coinShade img {
           height: 100% !important;
         }
+
+        .copyBtnOrderId {
+          display: inline-block;
+          font-size: .2rem;
+          color: #fff !important;
+          padding: 0 .12rem;
+          line-height: .38rem;
+          border-radius: .05rem;
+          background: #2d95e0;
+          margin: 0 0 0 0.1rem;
+          
+        }
+
+        .orderid {
+          text-align: right;
+          width: 75%;
+        }
     </style>
 @endsection
 
@@ -122,6 +139,8 @@
                 <font color="#2d95e0">支付宝</font>
               </span></p>
             <p><span>转卖时间</span><span>{{empty($seller->created_at) ? '' : $seller->created_at}}</span></p>
+            <p><span>订单编号</span><span class="status"><span class="orderid" id="orderid">112222</span><span class="copyBtnOrderId">复制</span></span></p>
+
           </div>
           <div class="inBtnbox">
             <h2>请确认您已完成支付，再点击“充值完成”</h2>
@@ -163,6 +182,16 @@
                 copyText(txt);
                 $('.copyBtn').html('复制成功 去支付宝付款');
                 $('.copyBtn').css('background', '#35cd4e');
+              });
+
+              $('.copyBtnOrderId').click(function () {
+                $('.copyBtnOrderId').css('background-color', '#2d95e0');
+                $(this).html("复制");
+                let txt = $(this).prev('span').html();
+                console.log(txt);
+                copyText(txt);
+                $(this).html("成功");
+                $(this).css('background-color','#35cd4e');
               });
 
               $('.paySend').click(function () {
