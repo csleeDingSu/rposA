@@ -164,15 +164,13 @@
                           txt_dec = '已匹配到买家，等待买家付款'; 
                           txt_img = '/clientapp/images/summary/3-1.png';
                         } else if (item.status_id == 3) {
-                          _phone = data.record.buyer.phone;
-                          _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4)
-                          txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
-                          txt_dec = '已匹配到买家，等待买家付款'; 
-                          txt_img = '/clientapp/images/summary/3-1.png'; 
-                        } else if (item.status_id == 4) {
                           txt_status = '等待付款审核'; 
                           txt_dec = '付款进行中，等待核实'; 
                           txt_img = '/clientapp/images/summary/6-1.png'; 
+                        } else if (item.status_id == 4) {
+                          txt_status = '交易成功'; 
+                          txt_dec = '买家已完成付款'; 
+                          txt_img = '/clientapp/images/summary/7.png';
                         } else if (item.status_id == 5) {
                           txt_status = '<font color="#fe8686">付款超时</font>'; 
                           txt_dec = '买家未在规定时间完成付款'; 
