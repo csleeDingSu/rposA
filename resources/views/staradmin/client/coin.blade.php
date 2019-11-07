@@ -63,6 +63,10 @@
         .cJcheng{
           background: rgba(0, 0, 0, 0.5) !important;
         }
+
+        .coinShade img {
+          height: 100% !important;
+        }
          
     </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('test/html_design/css/style.css') }}" />
@@ -319,7 +323,7 @@ var being2 = {
       var token = null;
 
       $(document).ready(function () {
-        
+                
         getToken();
         getInCompleteCase();
         

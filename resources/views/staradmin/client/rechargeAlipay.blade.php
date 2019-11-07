@@ -49,7 +49,10 @@
           height: 0.4rem;
           margin-top: -0.03rem;
         }
-         
+        
+        .coinShade img {
+          height: 100% !important;
+        }
     </style>
 @endsection
 
