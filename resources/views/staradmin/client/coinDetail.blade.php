@@ -123,7 +123,7 @@
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
                       
-                      orderid = (data.record.uuid.length > 0) ? data.record.uuid : data.record.id;;
+                      orderid = data.record.uuid;
 
                       $.each(data.result.data, function(i, item) {
 
