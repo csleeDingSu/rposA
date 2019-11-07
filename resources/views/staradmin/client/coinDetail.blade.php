@@ -119,11 +119,13 @@
               success: function(data) {
                   var html = '';
                   var orderid = 0;
+                  var is_locked = '';
                   console.log(data);
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
                       
                       orderid = data.record.uuid;
+                      is_locked = data.record.is_locked;
 
                       $.each(data.result.data, function(i, item) {
 
@@ -145,17 +147,26 @@
                         var txt_status_pre = '';
                         var txt_dec_pre = '';
                         var txt_img_pre = '';
+                        var _phone = 0;
 
                         if (item.status_id == 1) {
                           txt_status = '等待审核'; 
                           txt_dec = '转卖订单已提交，正在审核中'; 
                           txt_img = '/clientapp/images/summary/1-.png';  
-                        } else if (item.status_id == 2) {
+                        } else if (item.status_id == 2 && is_locked != 1) {
                           txt_status = '正在匹配买家'; 
                           txt_dec = '订单转卖中，等待匹配买家'; 
                           txt_img = '/clientapp/images/summary/2-1.png';  
+                        } else if (item.status_id == 2 && is_locked == 1) {
+                          _phone = data.record.buyer.phone;
+                          _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4)
+                          txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
+                          txt_dec = '已匹配到买家，等待买家付款'; 
+                          txt_img = '/clientapp/images/summary/3-1.png';
                         } else if (item.status_id == 3) {
-                          txt_status = '匹配到买家 <font color="#609cff">135****8888</font>'; 
+                          _phone = data.record.buyer.phone;
+                          _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4)
+                          txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
                           txt_dec = '已匹配到买家，等待买家付款'; 
                           txt_img = '/clientapp/images/summary/3-1.png'; 
                         } else if (item.status_id == 4) {
