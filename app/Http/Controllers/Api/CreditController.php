@@ -62,6 +62,8 @@ class CreditController extends Controller
 		$history->cid       = $resell->id;
 		$history->status_id = 1;
 		$history->point     = $request->point;
+        $history->amount    = $request->amount;
+        $history->ledger_history_id    = $reserve['id'];
 		$history->save();
 		app('App\Http\Controllers\CreditController')->pushdata($resell);
 		return response()->json(['success' => true]);
