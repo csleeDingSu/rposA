@@ -374,7 +374,7 @@ var being2 = {
 
         $('.inClostBtn').click(function(){
           being.hideMsg('.coinShade');
-          window.location.href = "/recharge/list";
+          window.location.href = "/summary";
         });
 
         // 充值教程
@@ -436,7 +436,7 @@ var being2 = {
                     if(data.success){
                         being.showMsg('.coinShade');
                         setTimeout(function(){ 
-                          window.location.href = '/recharge/list';
+                          window.location.href = '/summary';
                         }, 3000);                      
                     } else {
                       console.log(data);
