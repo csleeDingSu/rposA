@@ -197,6 +197,8 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/resell-expired-list', 'CreditController@expired_list')->name('resell_expired_list');
 
 	Route::get('/get-resell-record', 'CreditController@get_resell_record')->name('get_resell_record');
+
+	Route::get('/buyer-tree', 'CreditController@buyer_tree')->name('buyer_tree');
 		
 	
 	
