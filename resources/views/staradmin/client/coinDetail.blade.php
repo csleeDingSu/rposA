@@ -187,8 +187,8 @@
                           txt_dec = '提交质料错误，请重新提交'; 
                           txt_img = '/clientapp/images/summary/4-1.png';
                         } else if (item.status_id == 8) {
-                          _phone = data.record.buyer.phone;
-                          _phone = (_phone == null) ? '' : _phone.substring(0,3) + '*****' + _phone.slice(-4)
+                          _phone = (data.record.buyer.phone === undefined) ? '' : data.record.buyer.phone;
+                          _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4);
                           txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
                           txt_dec = '已匹配到买家，等待买家付款'; 
                           txt_img = '/clientapp/images/summary/3-1.png';
