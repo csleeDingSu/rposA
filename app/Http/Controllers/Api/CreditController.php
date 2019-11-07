@@ -55,7 +55,7 @@ class CreditController extends Controller
 		$resell->image     = $request->image;
 		$resell->passcode  = $request->passcode;
 		$resell->barcode   = $request->barcode;
-        $resell->uuid      = unique_numeric_random(\App\CreditResell()->getTable(), 'uuid', 10);   
+        $resell->uuid      = unique_numeric_random($resell->getTable(), 'uuid', 10);   
     		
 		$resell->save();
 		//add history
