@@ -286,7 +286,7 @@ function Resell_html(item){
     _cls = 'payOver';
     _fontcolor = '#51c000';
   } else if (item.status_id == 5) {
-    return;
+    return html = '';
     txt_status = '买家付款失败';
     txt_reason = '付款超时';
     _cls = 'payFail';
