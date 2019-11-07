@@ -351,7 +351,7 @@ function Recharge_html(item){
     // _cls = 'payOver';
     _fontcolor = '#23ca27';
   } else if (item.status_id == 5) {
-    txt_status = '交易成功'; //'发布失败';
+    txt_status = '交易失败'; //'发布失败';
     txt_reason = '付款超时';
     // _cls = 'payFail';
     _fontcolor = '#ff8282';
