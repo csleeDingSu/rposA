@@ -54,7 +54,7 @@ class VoidResell extends Command
             $expired->status_id   = 5;
             $expired->reason      = 'time exceeded';
             $expired->save();
-
+            $notification         = '';
             $this->line('-- reset row : '.$record->id);
             if ($record->type == 1)
             {
@@ -72,6 +72,7 @@ class VoidResell extends Command
                 $record->reason      = null; 
                 $record->barcode     = null; 
                 $record->status_id   = 2; 
+                $notification        = 'yes';
             }
             
             $record->save();  
@@ -88,6 +89,20 @@ class VoidResell extends Command
                         
             $this->line('-- record reset with default values');
             $this->line(' ');
+           // if ($notification)
+           // {
+                $this->line('-- send notification');  
+                $result = \App\CreditResell::with('status','member','buyer')->where('buyer_id', $record->member_id)->where('is_locked', 1)->latest()->get();
+                //buyer
+                event(new \App\Events\EventDynamicChannel($record->member_id.'-pending-buyer','',$result ));
+
+                $status = [1,2,3];
+                $result = \App\ViewCreditResell::with('status','member','buyer')->where('member_id' , $record->member_id)->latest()->wherein('status_id', $status)->latest()->get();
+                //seller
+                event(new \App\Events\EventDynamicChannel($record->member_id.'-pending-seller','',$result ));
+                $this->info('-- done');
+           // }            
+            
         }
                 
         $this->line('-- End:'.' '.Carbon::now()->toDateTimeString());       
