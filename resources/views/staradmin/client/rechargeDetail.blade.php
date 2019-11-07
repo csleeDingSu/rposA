@@ -28,48 +28,108 @@
 
         .payMoney {
           height: 3.3rem;
+          margin: 0.2rem 0 0 0;
         }
 
-        .payCardPage .buyName input {
-          margin-top: 0.1rem !important;
-          font-weight: 500 !important;
-        }
-         
-         .guideCard {
-          display: block;
-          margin: 0 2.2rem;
-          font-size: .28rem;
-          color: #666;
-          line-height: .68rem;
-          text-align: center;
-          margin-bottom: .2rem;   
-          border-radius: 1rem;
-          background-color: #f4f4f4;
-
+        .payCardPage .payMoney h3{
+          color: #aaa !important;
+          font-size: 0.32rem !important;
         }
 
-        .guideCard img{
+        .payCardPage .payMoney p{
+          color: #333 !important;
+          font-size: 0.62rem !important;
+        }
+        
+        .payCardPage .payMoney p img{
           height: 0.5rem;
-          margin-top: -0.03rem;
         }
 
-        .arrow {
-          height: 0.3rem !important;
+        .payCardPage .payMoney p span{
+          padding: 0 0.1rem;
         }
 
-        .cbank {
+        .payCardPage .payCard li span {
+          color: #333 !important;
+        }
+
+        .payCardPage .payCard .status {
+          width: 80%;
+          margin: 0;
+          text-align: right;
+        }
+
+        .payCardPage .payCard .fail {
+          color: #ff4e4e !important;
+        }
+
+        .payCardPage .payCard .success {
+          color: #23ca27 !important;
+        }
+
+        .payCardPage .payCard .in-progress {
+          color: #6ac2ff !important;
+        }
+
+        .payCardPage .payCard .amount {
+          color: #333 !important;
+        }
+
+        .payCardPage .payCard .seller{
           color: #999 !important;
-          font-size: 0.26rem !important;
-          padding: 0 0.1rem !important;
         }
 
-        .cJcheng .inShow .hintBox {
-          margin-bottom: 1.5rem !important;
+        .payCardPage .payCard .orderid {
+          color: #aaa !important;
+          margin: 0 !important;
         }
 
-        .cJcheng{
-          background: rgba(0, 0, 0, 0.5) !important;
+        .payCardPage .payCard .when {
+          color: #aaa !important;
         }
+
+        .payCardPage .inBtnbox {
+          width: 100%;
+    text-align: center;
+    margin: 0.5rem;
+        }
+
+        .paySend {
+          /*display: inline-block;*/
+          font-size: .3rem !important;
+          color: #fff !important;
+          /*padding: 0 .12rem;*/
+          /*line-height: .38rem;*/
+          border-radius: 1rem !important;
+          background-image: linear-gradient(to right, #d5eaf8 0%, #2d95e0 100%) !important;
+          padding: 0.2rem !important;
+
+        }
+
+        .paySend img{
+          height: 0.5rem;
+        }
+
+        .payCardPage .payCard .copy {
+          color: #ff4141 !important;
+        }
+
+        .payCardPage .payCard .copy-success {
+          color: #23ca27 !important;
+        }
+
+        .point {
+          padding: 0.5rem;
+        }
+
+        .payCardPage .payCard .reason {
+          font-size: 0.24rem !important;
+          border-radius: 10px;
+          background-color: #f9f9f9;
+          padding: 0.1rem;
+          color: #ff4e4e !important;
+        }
+
     </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('test/html_design/css/style.css') }}" />
 @endsection
@@ -77,58 +137,6 @@
 @section('top-javascript')
     @parent
      <script src="{{ asset('clientapp/js/lrz.mobile.min.js') }}"></script>
-  <!-- <script type="text/javascript" src="{{ asset('test/html_design/js/being.js') }}"></script> -->
-  <script type="text/javascript">
-var being2 = {
-        //遮罩
-  wrapShow: function(cname) {
-    var that = this;
-    var len = $("body").find(".wrapBox").length;
-    if (len > 0) {
-      return;
-    } else {
-      var wrap = '<div class="wrapBox opacity2">&nbsp;</div>';
-      var me = this;
-      // 遮罩显示
-      if (cname) {
-        $(cname).append(wrap);
-      } else {
-        $("body").append(wrap);
-      }
-    }
-  },
-  //遮罩
-  wrapHide: function(callback) {
-    $(".wrapBox").fadeOut(150, function() {
-      if(callback && typeof callback == 'function'){
-        callback();
-      }
-      $(this).remove();
-      
-    });
-  },
-  //删除全部遮罩
-  wrapfaOutAll: function() {
-    $(".wrapBox").fadeOut(150, function() {
-      $(this).remove();
-    });
-  },
-  //显示--scale
-  scaleShow: function(cname, callback) {
-    var cname = $(cname);
-    cname.addClass("scaleShow").removeClass("scaleHide");
-    if (callback && typeof callback == "function") {
-      callback();
-    }
-  },
-  //隐藏-scale
-  scaleHide: function(cname) {
-    var cname = $(cname);
-    cname.addClass("scaleHide").removeClass("scaleShow");
-  }
-  };
-      </script>
-
 
 @endsection
 
@@ -148,61 +156,30 @@ var being2 = {
 <input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 <input id="hidPoint" type="hidden" value="{{!empty($wallet['gameledger']['103']->point) ? $wallet['gameledger']['103']->point : 0}}" />
 <input id="hidMemberId" type="hidden" value="{{!empty($member->id) ? $member->id : 0}}" />
-<input id="hidCoin" type="hidden" value="{{!empty($coin) ? $coin : 0}}" />
-<input id="hidCash" type="hidden" value="{{!empty($cash) ? $cash : 0}}" />
-<input id="hidRequestId" type="hidden" value="{{!empty($content->record->id) ? $content->record->id : 0}}" />
-<input id="hidExpired" type="hidden" value="{{!empty($content->record->locked_time->date) ? $content->record->locked_time->date : (!empty($content->record->locked_time) ? $content->record->locked_time : 0)}}" />
-
-@php($recod = empty($content->record) ? null : $content->record)
-@php($company = empty($content->company) ? null : $content->company)
-
+<input id="hidRechargeId" type="hidden" value="{{!empty($recharge_id) ? $recharge_id : 0}}" />
 <div class="loading2" id="loading2"></div>
 
 <div class="payMoney">
-          <h3>充值挖宝币</h3>
-          <p><img src="{{asset('clientapp/images/summary/icon-coin-big.png')}}"><span>{{!empty($cash) ? $cash : 0}}</span></p>
-          <ul class="payCard">
-          <li><span>订单状态</span>
-            <p class="name">{{empty($company->account_name) ? '' : $company->account_name}}</p><a class="copyBtn">复制</a>
-          </li>
-          <li><span>付款金额</span>
-            <p class="name">{{empty($company->account_number) ? '' : $company->account_number}}</p><a class="copyBtn">复制</a>
-          </li>
-          <li><span>卖家信息</span>
-            <p class="name">{{empty($company->account_number) ? '' : $company->account_number}}</p><a class="copyBtn">复制</a>
-          </li>
-          <li><span>订单编号</span>
-            <p class="name">{{empty($company->account_number) ? '' : $company->account_number}}</p><a class="copyBtn">复制</a>
-          </li>
-          <li><span>下单时间</span>
-            <p class="name">{{empty($company->account_number) ? '' : $company->account_number}}</p><a class="copyBtn">复制</a>
-          </li>
+  <h3>充值挖宝币</h3>
+  <p class="point"><img src="{{asset('clientapp/images/summary/icon-coin-big.png')}}"><span id="point">0</span></p>
+  <ul class="payCard">
+    <li><span>订单状态</span><span class="status" id="status"><span class="reason">原因：test</span>付款失败</span><hr/></li>
+    <li><span>付款金额</span><span class="status amount" id="amount">180元</span><hr/></li>
+    <li><span>卖家信息</span><span class="status seller" id="phone">123***123</span><hr/></li>
+    <li><span>订单编号</span><span class="status"><span class="copy">复制</span><span class="orderid" id="orderid">112222</span><hr/></li>
+    <li><span>下单时间</span><span class="status when" id="when">2019-11-11 11:11:11</span><hr/></li>
+    <li>
+      <div class="inBtnbox">
+        <a class="paySend"><img src="{{asset('clientapp/images/coin/kefu2.png')}}"> 若有付款问题，请联系客服处理 ></a>
+      </div>
+    </li>
+  </ul>
 
-        </ul>
-          
-        </div>
+</div>
 
         
-        <div class="paySeller">
-          <h2>卖家信息</h2>
-          <p><span>用户账号</span><span>
-              <font color="#666">{{ empty($company->phone) ? '' : substr($company->phone,0,3) }}*****{{ empty($company->phone) ? '' : substr($company->phone, -4) }}</font>
-            </span></p>
-          <p><span>转卖挖宝币</span><span>
-              <font color="#ff696f">{{!empty($coin) ? $coin : 0}}币</font>
-            </span></p>
-          <p><span>收款方式</span><span>
-              <font color="#2d95e0">银行卡</font>
-            </span></p>
-          <p><span>转卖时间</span><span>{{empty($recod->created_at) ? '' : $recod->created_at}}</span></p>
-        </div>
-        <div class="buyName">
-          <span>您的姓名</span>
-          <label><input id="buyer_name" type="text" placeholder="请输入您的真实姓名，以便核实发币"></label>
-        </div>
-        <div class="inBtnbox">
-          <a class="paySend"><img src="{{asset('clientapp/images/coin/kefu2.png')}}"> 若有付款问题，请联系客服处理 ></a>
-        </div>
+        
+        
 @endsection
 
 @section('footer-javascript')
@@ -210,69 +187,117 @@ var being2 = {
       <script type="text/javascript">
         var token = null;
 
-            $(document).ready(function () {
-              $('.scrolly').addClass('payCardPage');
-              getToken();
-            });
+        document.onreadystatechange = function () {
+        var state = document.readyState
+        if (state == 'interactive') {
+        } else if (state == 'complete') {
+            document.getElementById('interactive');
+            document.getElementById('loading').style.visibility="hidden";
+            // document.getElementById('loading2').style.visibility="visible";
+            $('.loading').css('display', 'initial');
+        }
+      }
+
+        $(document).ready(function () {
+          $('.scrolly').addClass('payCardPage');
+          getToken();
+        });
 
             $(function () {
       //复制
-      $('.copyBtn').click(function () {
-        $('.copyBtn').css('background-color', '#2d95e0');
+      $('.copy').click(function () {
         $(this).html("复制");
-        let txt = $(this).prev('p').html();
+        let txt = $(this).next('span').html();
         console.log(txt);
         copyText(txt);
+        $(this).removeClass('copy');
         $(this).html("成功");
-        $(this).css('background-color','#35cd4e');
+        $(this).addClass('copy-success');
       });
 
-      //充值完成
-
-      $('.paySend').click(function () {
-        // submitPay();
-      });
 
     });
 
+  function getToken(){
+    var session = $('#hidSession').val();
+    var id = $('#hidMemberId').val();
+    var recharge_id = $('#hidRechargeId').val();
+    //login user
+    if (id > 0) {
+        
+        document.getElementById('loading2').style.visibility="visible";
 
-        function submitPay() {
-          var memberid = $('#hidMemberId').val();
-          var coin = $('#hidCoin').val();
-          var cash = $('#hidCash').val();
-          var buyer_name = $('#buyer_name').val();
-          var id = $('#hidRequestId').val();
+        $.getJSON( "/api/gettoken?id=" + id + "&token=" + session, function( data ) {
+            // console.log(data);
+            if(data.success) {
+                token = data.access_token;
+                getRechargeDetail(recharge_id);
+            }
+        });
+    }
+  }
 
-          document.getElementById('loading2').style.visibility="visible";
+  function getRechargeDetail(id) {
+    var memberid = $('#hidMemberId').val(); 
+    $.ajax({
+          type: 'GET',
+          url: "/api/buyer-tree",
+          data: { 'memberid': memberid, 'id' : id },
+          dataType: "json",
+          beforeSend: function( xhr ) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + token);
+          },
+          error: function (error) { 
+              document.getElementById('loading2').style.visibility="hidden";
+              console.log(error.responseText);
+              alert('下载失败，重新刷新试试');
+            },                  
+          success: function(data) {
+            document.getElementById('loading2').style.visibility="hidden";
+            console.log(data);
+            console.log(data.record);
+            var status = data.record.status_id;
+            var is_locked = data.record.is_locked;
+            var amount = data.record.amount;
+            var point = data.record.point;
+            var phone = data.record.member.phone;
+            var orderid = data.record.id;
+            var when = data.record.created_at;
+            var txt_status = '';
+            var txt_reason = '';
+            var cls_status = 'in-progress';
 
-          $.ajax({
-                type: 'POST',
-                url: "/api/make-resell-paid",
-                data: { 'buyerid': memberid, 'coin': coin, 'cash': cash, 'buyer_name': buyer_name, 'id' : id },
-                dataType: "json",
-                beforeSend: function( xhr ) {
-                    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                },
-                error: function (error) { 
-                    document.getElementById('loading2').style.visibility="hidden";
-                    console.log(error.responseText);
-                    alert('提交失败');
-                  },                  
-                success: function(data) {
-                    document.getElementById('loading2').style.visibility="hidden";
-                    if(data.success){
-                        being.showMsg('.coinShade');
-                        setTimeout(function(){ 
-                          window.location.href = '/recharge/list';
-                        }, 3000);                      
-                    } else {
-                      console.log(data);
-                      alert('提交失败');
-                    }
-                }
-            });
-           
-        }
+            if (status == 1) {
+              txt_status = '等待付款';
+            } else if (status == 2 && is_locked == 1) {
+              txt_status = '等待付款';
+            } else if (status == 2 && is_locked != 1) {
+              txt_status = '等待卖家';
+            } else if (status == 3) {
+              txt_status = '已提交审核';
+            } else if (status == 4) {
+              txt_status = '交易成功';
+              var cls_status = 'success';
+            } else if (status == 5) {
+              txt_reason = '付款超时';
+              cls_status = 'fail';
+              txt_status = '<span class="reason">原因：' + txt_reason + '</span>交易失败';
+            } else if (status == 7) {
+              txt_reason = data.record.reason;
+              cls_status = 'fail';
+              txt_status = '<span class="reason">原因：' + txt_reason + '</span>交易失败';
+            }
+
+            $("#status").html(txt_status);
+            $("#status").addClass(cls_status);
+            $("#point").html(parseInt(point));
+            $("#amount").html(parseInt(amount)+ '元');
+            $("#phone").html(phone);
+            $("#orderid").html(orderid);
+            $("#when").html(when);
+          }
+      });
+  }
 
     </script>
 
