@@ -112,6 +112,7 @@ function getSummary(token) {
      //console.log(results);
     var length = results.length;
     var html = '';
+    var _nodata = '暂无明细';
 
     if (page == 1) {
       $('#summary').html('');  
@@ -120,8 +121,6 @@ function getSummary(token) {
     $.each(results, function(key, value){
         //console.log(value.created_at);
         var type = value.type;
-        var _nodata = '暂无明细';
-
         // console.log(type);
 
         //type => softpin,buyproduct,topup,merge,creditresell,buyer
