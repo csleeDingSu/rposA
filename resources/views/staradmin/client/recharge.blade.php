@@ -122,6 +122,8 @@
               @php ($i++)
               @if ($i == 1)
                 <li class="on">
+                  @php ($_init_cash = $r->amount)
+                  @php ($_init_point = $r->point)
               @else
                 <li>
               @endif
@@ -151,8 +153,8 @@
 
       @parent
       <script type="text/javascript">
-        var vCoin = 50;
-        var vCash = 48;
+        var vCoin = "{{empty($_init_point) ? 680 : $_init_point}}";
+        var vCash = "{{empty($_init_cash) ? 68 : $_init_cash}}";
         var token = null;
 
         $(document).ready(function () {
