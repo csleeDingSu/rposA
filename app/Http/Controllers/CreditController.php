@@ -151,7 +151,7 @@ class CreditController extends BaseController
 				$statuses = $statuses->only(['2','7']);
 			break;
 			case '3':
-				$statuses = $statuses->only(['3', '4', '5']);
+				$statuses = $statuses->only(['3', '4', '5','7']);
 			break;
 			case '4':
 				$statuses = $statuses->only(['4']);
