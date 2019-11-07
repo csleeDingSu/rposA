@@ -6,7 +6,12 @@
 					<form class="" name="searchform" id="searchform" action="" method="get" autocomplete="on">
 					<h4 class="card-title">Search</h4>
 					<div class="form-group row">
-						
+						<div class="col">
+							<label for="s_uuid">@lang('dingsu.orderid')</label>
+							<div id="the-basics">
+								<input type="text" class="form-control typeahead tt-input" name="s_uuid" id="s_uuid" placeholder="@lang('dingsu.orderid')">
+							</div>
+						</div>
 						
 						<div class="col">
 							<label for="s_member">@lang('dingsu.seller')</label>
