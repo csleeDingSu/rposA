@@ -82,6 +82,16 @@ class CreditController extends Controller
     		$record->locked_time = Carbon::now()->addMinutes(10);
     		$record->buyer_id    = $request->memberid;
     		$record->save();
+
+            $history             = new \App\ResellHistory();
+            $history->cid        = $record->id;
+            $history->status_id  = 8;
+            $history->point      = $request->point;
+            $history->member_id  = $record->member_id;
+            $record->buyer_id    = $request->memberid;
+            $history->save();
+
+
             app('App\Http\Controllers\CreditController')->pushdata($record, 'update');
     	}    	
 
@@ -117,6 +127,15 @@ class CreditController extends Controller
 			$history->member_id  = $companydata->member->id;
 			$record->buyer_id    = $request->memberid;
 			$history->save();
+
+            //add history
+            $history             = new \App\ResellHistory();
+            $history->cid        = $record->id;
+            $history->status_id  = 8;
+            $history->point      = $request->point;
+            $history->member_id  = $companydata->member->id;
+            $record->buyer_id    = $request->memberid;
+            $history->save();
 
             app('App\Http\Controllers\CreditController')->pushdata($record);
     	}
@@ -185,7 +204,6 @@ class CreditController extends Controller
 
 			return response()->json(['success' => true]);		
     	}
-
 
     	return response()->json(['success' => false, 'message' => 'unknown record' ]);
     }
