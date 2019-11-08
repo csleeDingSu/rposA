@@ -148,7 +148,7 @@ var being2 = {
       <a class="returnBtn" href="/profile"><img src="{{ asset('/clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
       <h2>我的奖品</h2>
       <!-- <a class="coinListBtn" href="/coin/list">转卖记录</a> -->
-      <a class="csBtn"><img src="{{ asset('/clientapp/images/coin/kefu1.png') }}">在线客服</a>
+      <a class="csBtn" href="{{env('CUSTOMERSERVICELINK', '#')}}"><img src="{{ asset('/clientapp/images/coin/kefu1.png') }}">在线客服</a>
     </div>
     <div class="inBox">
       <img class="inBanner" src="{{ asset('/clientapp/images/coinTxt.png') }}">

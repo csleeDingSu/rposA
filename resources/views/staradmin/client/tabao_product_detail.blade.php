@@ -107,7 +107,7 @@
 				<div class="dbox1">
 					<h2>{{$data['title']}}</h2>
 					<div class="line-reward">
-						<div class="reward-txt">下单奖励<span class="reward"><span class="cur">￥</span>{{$hong}}</span>红包积分</div>
+						<div class="reward-txt">奖励<span class="reward"><span class="cur">￥</span>{{$hong}}</span>红包积分</div>
 						<div class="btn-reward">怎么奖励?</div>
 						<h3>热销{{$sales}}</h3>
 					</div>							

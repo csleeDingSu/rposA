@@ -91,7 +91,7 @@
   <a class="returnBtn" href="/profile"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
-@section('title', '充值挖宝币')
+@section('title', '购买挖宝币')
 
 @section('right-menu')
 <!-- <a href="/recharge/list" class="rechargeListBtn">充值记录</a> -->

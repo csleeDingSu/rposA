@@ -28,7 +28,7 @@
 
   <div class="rewDetail">
     <h2>购物返积分&nbsp;抽奖拿红包</h2>
-    <h3><span>1200积分=1场次，系统自动兑换</span></h3>
+    <h3><span>12积分=1场次，系统自动兑换</span></h3>
     <ul class="rewIn">
       <li>①平台领券淘宝下单</li>
       <li>②提交淘宝订单号</li>
