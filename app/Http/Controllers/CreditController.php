@@ -302,14 +302,16 @@ class CreditController extends BaseController
         		
         		if ($record->status_id == 3)
         		{
-        			$resettoactive = TRUE;
+        			$resettoactive = TRUE;        			
+        		}
+        		else
+        		{
         			if ($record->type != 1)
 	        		{
 	        			$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
 	        			$record->ledger_history_id = $ledger['id'];
 	        		}
         		}
-
         		
         		$record->status_id  = 7;
         		$record->reason     = $request->reason;        		
