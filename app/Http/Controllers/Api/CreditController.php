@@ -80,8 +80,7 @@ class CreditController extends Controller
     	{
     		$record->is_locked   = 1;
     		$record->locked_time = Carbon::now()->addMinutes(10);
-    		$record->buyer_id    = $request->memberid;
-            $record->uuid        = unique_numeric_random($record->getTable(), 'uuid', 10);  
+    		$record->buyer_id    = $request->memberid;              
     		$record->save();
 
             $history             = new \App\ResellHistory();
@@ -117,7 +116,8 @@ class CreditController extends Controller
 			$record->amount      = $amount;
 			$record->status_id   = 2;
 			$record->is_locked   = 1;
-    		$record->locked_time = Carbon::now()->addMinutes(10);			
+    		$record->locked_time = Carbon::now()->addMinutes(10);	
+            $record->uuid        = unique_numeric_random($record->getTable(), 'uuid', 10);		
     		$record->type        = 1;			
 			$record->save();
 			//add history
