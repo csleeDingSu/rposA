@@ -152,9 +152,9 @@
 
         </div>
       </div>
+@endsection
 
-
-  <!-- <div class="card-shade"></div> -->
+@section('footer-javascript')
   <div class="loginMsg loginShade">
     <div class="inBox">
       <img src="{{ asset('clientapp/images/jiangbei.png') }}">
@@ -173,9 +173,6 @@
       </div>
     </div>
 
-@endsection
-
-@section('footer-javascript')
     @parent
   <script>
     $(function () {
