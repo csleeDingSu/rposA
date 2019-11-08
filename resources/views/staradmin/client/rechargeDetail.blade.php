@@ -170,7 +170,7 @@
     <li><span>下单时间</span><span class="status when" id="when">2019-11-11 11:11:11</span><hr/></li>
     <li>
       <div class="inBtnbox">
-        <a class="paySend"><img src="{{asset('clientapp/images/coin/kefu2.png')}}"> 若有付款问题，请联系客服处理 ></a>
+        <a class="paySend" href="{{env('CUSTOMERSERVICELINK', '#')}}"><img src="{{asset('clientapp/images/coin/kefu2.png')}}"> 若有付款问题，请联系客服处理 ></a>
       </div>
     </li>
   </ul>

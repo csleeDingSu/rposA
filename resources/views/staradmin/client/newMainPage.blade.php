@@ -71,7 +71,7 @@
           <a href="/shop"><img src="{{ asset('/clientapp/images/index3-nav4.png') }}">
             <p>金币换购</p>
           </a>
-          <a href="https://chat.mqimg.com/dist/standalone.html?eid=161661"><img src="{{ asset('/clientapp/images/index3-nav5.png') }}">
+          <a href="{{env('CUSTOMERSERVICELINK', '#')}}"><img src="{{ asset('/clientapp/images/index3-nav5.png') }}">
             <p>在线客服</p>
           </a>
         </div>

@@ -95,7 +95,7 @@
 
 @section('right-menu')
 <!-- <a href="/recharge/list" class="rechargeListBtn">充值记录</a> -->
-<a class="csBtn"><img src="{{ asset('/clientapp/images/coin/kefu2.png') }}">在线客服</a>
+<a class="csBtn" href="{{env('CUSTOMERSERVICELINK', '#')}}"><img src="{{ asset('/clientapp/images/coin/kefu2.png') }}">在线客服</a>
 @endsection
 <!-- top nav end-->
 
