@@ -179,8 +179,8 @@ class CreditController extends BaseController
     {
     	$updatehistory = '';	
 		$ledger        = '';
-		$reason = '';
-
+		$reason        = '';
+		$resettoactive = FALSE;
     	$validator = $this->validate(
             $request,
             [
@@ -300,16 +300,23 @@ class CreditController extends BaseController
 					return response()->json(['success' => false,'errors'=> ['reason'=>['add your reason here'] ] ],422);	
 				}
         		
-        		if ($record->type != 1)
+        		if ($record->status_id == 3)
         		{
-        			$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
-        			$record->ledger_history_id = $ledger['id'];
-        		}        		
+        			$resettoactive = TRUE;
+        			if ($record->type != 1)
+	        		{
+	        			$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
+	        			$record->ledger_history_id = $ledger['id'];
+	        		}
+        		}
+
         		
         		$record->status_id  = 7;
         		$record->reason     = $request->reason;        		
         		$record->save();
         		$updatehistory = 'yes';	
+
+        		
         	break; 
         }
 
@@ -338,6 +345,26 @@ class CreditController extends BaseController
 
 			$history->save();
         }
+        if ($resettoactive)
+        {        	
+        	$record->status_id  = 2;
+        	$record->buyer_id   = null;
+        	$record->reason     = 'reset to verified';        		
+        	$record->save();
+
+        	$history            = new \App\ResellHistory();
+			$history->cid       = $record->id;
+			$history->status_id = $record->status_id;
+			$history->amount    = $record->amount;
+			$history->point     = $record->point;
+			$history->member_id = $record->member_id;
+			$history->buyer_id  = null;
+			$history->reason    = 'reset to verified';
+			$history->uuid      = $record->uuid;
+			$history->save();
+        }
+
+        
 
         return response()->json(['success' => true, 'id'=>$record->id, 'record' => $this->render_data($record->id) ]);
     }
