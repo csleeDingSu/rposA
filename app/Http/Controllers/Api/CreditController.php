@@ -64,6 +64,7 @@ class CreditController extends Controller
 		$history->status_id = 1;
 		$history->point     = $request->point;
         $history->amount    = $request->amount;
+        $history->uuid      = $resell->uuid;
         $history->ledger_history_id    = $reserve['id'];
 		$history->save();
 		app('App\Http\Controllers\CreditController')->pushdata($resell);
@@ -88,7 +89,8 @@ class CreditController extends Controller
             $history->status_id  = 8;
             $history->point      = $request->point;
             $history->member_id  = $record->member_id;
-            $record->buyer_id    = $request->memberid;
+            $history->buyer_id    = $request->memberid;
+            $history->uuid       = $record->uuid;
             $history->save();
 
 
@@ -126,7 +128,8 @@ class CreditController extends Controller
 			$history->status_id  = 2;
 			$history->point      = $request->point;
 			$history->member_id  = $companydata->member->id;
-			$record->buyer_id    = $request->memberid;
+			$history->buyer_id    = $request->memberid;
+            $history->uuid       = $record->uuid;
 			$history->save();
 
             //add history
@@ -135,7 +138,8 @@ class CreditController extends Controller
             $history->status_id  = 8;
             $history->point      = $request->point;
             $history->member_id  = $companydata->member->id;
-            $record->buyer_id    = $request->memberid;
+            $history->buyer_id   = $request->memberid;
+            $history->uuid       = $record->uuid;
             $history->save();
 
             app('App\Http\Controllers\CreditController')->pushdata($record);
@@ -161,8 +165,9 @@ class CreditController extends Controller
 			$history->status_id = 3;
 			$history->amount    = $record->amount;
 			$history->point     = $record->point;
-			$record->member_id  = $record->member_id;
-			$record->buyer_id   = $record->buyer_id;
+			$history->member_id = $record->member_id;
+			$history->buyer_id  = $record->buyer_id;
+            $history->uuid      = $record->uuid;
 			$history->save();
 
 			return response()->json(['success' => true]);
@@ -196,8 +201,9 @@ class CreditController extends Controller
 			$history->amount     = $record->amount;
 			$history->point      = $record->point;
 			$history->reason     = $reason;
-			$record->member_id   = $record->member_id;
-			$record->buyer_id    = $record->buyer_id;
+			$history->member_id  = $record->member_id;
+			$history->buyer_id   = $record->buyer_id;
+            $history->uuid       = $record->uuid;
 			$history->save();
 
             $this->pending_notificaiton($record->member_id , 'sell');
