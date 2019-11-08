@@ -747,6 +747,7 @@ return [
 	'zhifubao' => '支付宝',
 	'company_account' => 'Company Account',
 	'pending_payment' => 'Waiting Payment',
+	'orderid' => 'Order ID',
 
 	//resell and recharge status
 	'resell_submit' => 'Submit',

@@ -727,7 +727,7 @@ return [
 	'seller' => '卖家',
 	'buyer' => '买家',
 	'waiting_verify' => '等待审核',
-	'waiting_confirmation' => '等待确认',
+	'waiting_confirmation' => '付款审核',
 	'in_progress' => '进行中',
 	'barcode' => '二维码',
 	'success' => '成功',
@@ -737,6 +737,7 @@ return [
 	'zhifubao' => '支付宝',
 	'company_account' => '公司账号',
 	'pending_payment' => '付款中',
+	'orderid' => '订单号',
 
 	//resell and recharge status
 	'resell_submit' => '等待审核',
