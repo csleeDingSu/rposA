@@ -284,7 +284,7 @@
               cls_status = 'fail';
               txt_status = '<span class="reason">原因：' + txt_reason + '</span>交易失败';
             } else if (status == 7) {
-              txt_reason = data.record.reason;
+              txt_reason = '未核实到付款'; //data.record.reason;
               cls_status = 'fail';
               txt_status = '<span class="reason">原因：' + txt_reason + '</span>交易失败';
             }
