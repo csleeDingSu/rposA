@@ -79,7 +79,7 @@
         } else if (state == 'complete') {
             document.getElementById('interactive');
             document.getElementById('loading').style.visibility="hidden";
-            document.getElementById('loading2').style.visibility="visible";
+            // document.getElementById('loading2').style.visibility="visible";
             $('.loading').css('display', 'initial');
         }
       }
