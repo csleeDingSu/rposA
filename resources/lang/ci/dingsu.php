@@ -736,6 +736,16 @@ return [
 	'payment_expired' => '付款超时',
 	'zhifubao' => '支付宝',
 	'company_account' => '公司账号',
-	'pending_payment' => '等待付款',
+	'pending_payment' => '付款中',
+
+	//resell and recharge status
+	'resell_submit' => '等待审核',
+	'resell_verified' => '匹配买家',
+	'resell_inprogress' => '付款审核',
+	'resell_success' => '成功交易',
+	'resell_paymentexpired' => '付款超时',
+	'resell_unknown' => '未知',
+	'resell_rejected' => '发布拒绝',
+	'resell_waitingforpayment' => '付款中',
 
 ];
