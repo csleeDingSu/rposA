@@ -207,7 +207,7 @@ var being2 = {
               <font color="#2d95e0">银行卡</font>
             </span></p>
           <p><span>转卖时间</span><span>{{empty($recod->created_at) ? '' : $recod->created_at}}</span></p>
-          <p><span>订单编号</span><span class="orderid" id="orderid">{{$recod->uuid}}</span><a class="copyBtnOrderId">复制</a></span></p>
+          <p><span>订单编号</span><span class="orderid" id="orderid">{{empty($recod->uuid) ? '' : $recod->uuid}}</span><a class="copyBtnOrderId">复制</a></span></p>
         </div>
         <div class="buyName">
           <span>您的姓名</span>
