@@ -491,6 +491,8 @@ function getProduct(){
             buyproduct_skip = 0;            
             return false;
         }
+
+        buyproduct_skip = data.next_skip;
         
         var html = '<form id="frm_buy" method="post" action="/buy">' +
                         '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';
