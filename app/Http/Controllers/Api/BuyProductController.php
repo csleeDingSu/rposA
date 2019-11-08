@@ -42,6 +42,10 @@ class BuyProductController extends Controller
 		$skip = $request->skip;
 		
 		$result =  BuyProduct::list_available_redeem_package(0, $limit, $skip);
+		if (empty($result) && $limit > 0) {
+			$limit = 0;
+			$result =  BuyProduct::list_available_redeem_package(0, $limit, $skip);
+		}
 		
 		$type = ['1'=>'virtual card','2'=>'Product'];
 		
