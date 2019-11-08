@@ -84,7 +84,8 @@ class VoidResell extends Command
             $history->member_id  = $record->member_id;
             $history->buyer_id   = $record->buyer_id;
             $history->point      = $record->point;
-            $record->reason      = 'time expired'; 
+            $history->reason     = 'time expired'; 
+            $history->uuid       = $record->uuid;
             $history->save();             
                         
             $this->line('-- record reset with default values');
