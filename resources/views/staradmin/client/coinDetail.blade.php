@@ -183,9 +183,16 @@
                           txt_img_pre = '/clientapp/images/summary/2-1.png';
 
                         } else if (item.status_id == 7) {
-                          txt_status = '<font color="#fe8686">发布失败</font>'; 
-                          txt_dec = '发布信息有误，请修改。'; 
-                          txt_img = '/clientapp/images/summary/4-1.png';
+                          if (i > 2) {
+                            txt_status = '重新匹配买家'; 
+                            txt_dec = '上个买家付款失败'; 
+                            txt_img = '/clientapp/images/summary/2-1.png';
+                          } else {
+                            txt_status = '<font color="#fe8686">发布失败</font>'; 
+                            txt_dec = '发布信息有误，请修改。'; 
+                            txt_img = '/clientapp/images/summary/4-1.png';  
+                          }
+                          
                         } else if (item.status_id == 8) {
                           console.log(data.record.buyer);
                           phone = (item.buyer == null) ? '' : item.buyer.phone;
