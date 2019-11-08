@@ -299,11 +299,11 @@ function Resell_html(item){
   }
 
   html += '<a href="'+_url+'" class="inBox '+_cls+'">' +
-            '<h2><span>转卖' +txt_point+ '挖宝币</span>' +
+            '<h2><span>转卖' +parseInt(txt_point)+ '挖宝币</span>' +
               '<font color="'+_fontcolor+'">' + txt_status + '</font>' +
             '</h2>' +
             '<p><span>' + txt_when +'</span>' +
-              '<font color="#686868">售价&nbsp;'+txt_amount+'元</font>' +
+              '<font color="#686868">售价&nbsp;'+parseInt(txt_amount)+'元</font>' +
             '</p>';
   //         if (txt_reason != '') {
   // html +=   '<h3>失败原因：' +txt_reason+ '</h3>';  
@@ -375,7 +375,7 @@ function Recharge_html(item){
     html += '<a class="inBox '+_cls+'">';
   }
   
-  html += '<h2><span>充值' +txt_point+ '挖宝币</span>';
+  html += '<h2><span>充值' +parseInt(txt_point)+ '挖宝币</span>';
   
   if (countdown != '') {
     html += '<span><span class="countdown">请在'+countdown+'内完成付款</span><span class="btn-go-recharge" id="btn-go-'+item.id+'">去付款</span></span>';  
@@ -385,7 +385,7 @@ function Recharge_html(item){
               
     html += '</h2>' +
             '<p><span>' + txt_when +'</span>' +
-              '<font color="#686868">充值&nbsp;'+txt_amount+'元</font>' +
+              '<font color="#686868">充值&nbsp;'+parseInt(txt_amount)+'元</font>' +
             '</p>';
   // if (txt_reason != '') {
   //   html += '<h3>失败原因：' +txt_reason+ '</h3>';  
