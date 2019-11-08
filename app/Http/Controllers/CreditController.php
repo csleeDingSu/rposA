@@ -301,7 +301,7 @@ class CreditController extends BaseController
 				}
         		print_r($record->point);
         		$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
-        		print_r($record->point);
+        		print_r($ledger);
         		$record->status_id  = 7;
         		$record->reason     = $request->reason;
         		$record->ledger_history_id = $ledger['id'];
