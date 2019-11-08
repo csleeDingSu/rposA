@@ -489,10 +489,8 @@ function getProduct(){
     $.getJSON( "/api/get-product-list?limit=6&skip=" + buyproduct_skip, function( data ) {
         if (data.records.length <= 0) {
             buyproduct_skip = 0;            
-            return false;
+            getProduct();
         }
-
-        buyproduct_skip = data.next_skip;
         
         var html = '<form id="frm_buy" method="post" action="/buy">' +
                         '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';

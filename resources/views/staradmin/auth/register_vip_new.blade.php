@@ -124,7 +124,7 @@
           </dl>
           <button class="login" id="doregi">下一步</button>
           <h2>已有账号，<a href="/app-login">
-              <font color="#7c48e4">登录</font>
+              <font color="#7c48e4">马上登录</font>
             </a></h2>
         </div>
 
