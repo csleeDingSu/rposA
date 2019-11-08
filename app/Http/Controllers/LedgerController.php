@@ -208,6 +208,10 @@ class LedgerController extends BaseController
 			else
 			{
 				$point  = str_replace('-', '', $point);
+				if ($point<1)
+				{
+					continue;
+				}
 				$ledger = Ledger::find($key);
 				$result = Ledger::debit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
 				$notification = new Notification();
