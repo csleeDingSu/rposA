@@ -375,8 +375,8 @@ function Recharge_html(item){
     html += '<a class="inBox '+_cls+'">';
   }
   
-  console.log(txt_point);
-  console.log((Number(txt_point) >= 100000) && (countdown != ''));
+  // console.log(txt_point);
+  // console.log((Number(txt_point) >= 100000) && (countdown != ''));
   if ((Number(txt_point) >= 100000) && (countdown != '')) {
     html += '<h2><span style="font-size: 14px !important;">充值' +parseInt(txt_point)+ '挖宝币</span>';
   } else {
