@@ -324,6 +324,7 @@ class CreditController extends BaseController
 			$history->member_id = $record->member_id;
 			$history->buyer_id  = $memid;
 			$history->reason    = $reason;
+			$history->uuid      = $record->uuid;
 
 			if ($ledger)
 			{
