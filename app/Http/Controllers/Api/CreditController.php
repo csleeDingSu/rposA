@@ -229,7 +229,7 @@ class CreditController extends Controller
     	$record = \App\CreditResell::with('status','member','buyer')->where('id', $request->id)->where('member_id', $request->memberid)->first();
     	if ($record)
     	{
-    		$result = \App\ResellHistory::with('status')->where('cid', $request->id)->latest()->paginate(30);
+    		$result = \App\ResellHistory::with('status','buyer')->where('cid', $request->id)->latest()->paginate(30);
     		return response()->json(['success' => true,  'result'=>$result , 'record'=>$record]);	
     	}
     	return response()->json(['success' => false, 'message' => 'unknown record' ]);
