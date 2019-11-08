@@ -33,7 +33,7 @@
 								<select id="s_status" name="s_status" class="form-control">
 									<option value="" selected>@lang('dingsu.default_select')</option>
 									@foreach($statuses ?? '' as $val)
-									<option value="{{$val->id}}">{{trans('dingsu.' . $val->name )}}</option>
+									<option value="{{$val->id}}">{{trans('dingsu.resell_' . $val->name )}}</option>
 									@endforeach
 								</select>
 							</div>

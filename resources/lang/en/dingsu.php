@@ -746,6 +746,16 @@ return [
 	'payment_expired' => 'Payment expired',
 	'zhifubao' => '支付宝',
 	'company_account' => 'Company Account',
-	'pending_payment' => 'Pending Payment',
+	'pending_payment' => 'Waiting Payment',
+
+	//resell and recharge status
+	'resell_submit' => 'Submit',
+	'resell_verified' => 'Verified',
+	'resell_inprogress' => 'In Progress',
+	'resell_success' => 'Success',
+	'resell_paymentexpired' => 'Payment Expired',
+	'resell_unknown' => 'Unknown',
+	'resell_rejected' => 'Rejected',
+	'resell_waitingforpayment' => 'Waiting Payment',
 
 ];

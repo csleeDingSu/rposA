@@ -60,7 +60,7 @@
 
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="buyer_id" class="col-sm-3 col-form-label">@lang('dingsu.payment_expired') </label>
+								<label for="buyer_id" class="col-sm-3 col-form-label">@lang('dingsu.resell_payment_expired') </label>
 								<div class="col-sm-9">
 									
 										{{$result->locked_time}}
@@ -109,7 +109,7 @@
 												 @endif											
 												
 												value="{{$val->id}}">
-											{{trans('dingsu.' . $val->name )}}
+											{{trans('dingsu.resell_' . $val->name )}}
 										</option>
 										@endforeach
 									</select>	

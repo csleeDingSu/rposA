@@ -13,7 +13,7 @@
 	<td>{{$list->buyer->phone ?? '-'  }}</td>
 	<td>
 		<label class="text-capitalize badge badge-{{$list->status->color}}">
-			{{trans('dingsu.' . $list->status->name )}}
+			{{trans('dingsu.resell_' . $list->status->name )}}
 		</label>
 		@if ($list->is_locked)
 			<label class="text-capitalize badge badge-warning">
