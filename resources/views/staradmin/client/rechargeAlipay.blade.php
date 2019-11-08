@@ -139,7 +139,7 @@
                 <font color="#2d95e0">支付宝</font>
               </span></p>
             <p><span>转卖时间</span><span>{{empty($seller->created_at) ? '' : $seller->created_at}}</span></p>
-            <p><span>订单编号</span><span class="status"><span class="orderid" id="orderid">112222</span><span class="copyBtnOrderId">复制</span></span></p>
+            <p><span>订单编号</span><span class="status"><span class="orderid" id="orderid">{{$content->record->uuid}}</span><span class="copyBtnOrderId">复制</span></span></p>
 
           </div>
           <div class="inBtnbox">
