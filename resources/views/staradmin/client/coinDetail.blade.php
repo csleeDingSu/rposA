@@ -127,7 +127,6 @@
                       
                       orderid = data.record.uuid;
                       is_locked = data.record.is_locked;
-                      phone = 
 
                       $.each(data.result.data, function(i, item) {
 
@@ -149,7 +148,6 @@
                         var txt_status_pre = '';
                         var txt_dec_pre = '';
                         var txt_img_pre = '';
-                        var _phone = 0;
 
                         if (item.status_id == 1) {
                           txt_status = '已提交审核'; 
@@ -190,10 +188,10 @@
                           txt_img = '/clientapp/images/summary/4-1.png';
                         } else if (item.status_id == 8) {
                           console.log(data.record.buyer);
-                          _phone = (data.record.buyer == null) ? '' : data.record.buyer.phone;
-                          _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4);
+                          phone = (item.buyer == null) ? '' : item.buyer.phone;
+                          phone = phone.substring(0,3) + '*****' + phone.slice(-4);
                           txt_status = '买家正在付款'; 
-                          txt_dec = '会员<font color="#609cff">' + _phone + '</font>'; 
+                          txt_dec = '会员<font color="#609cff">' + phone + '</font>'; 
                           txt_img = '/clientapp/images/summary/3-1.png';
                         }
 
