@@ -375,7 +375,12 @@ function Recharge_html(item){
     html += '<a class="inBox '+_cls+'">';
   }
   
-  html += '<h2><span>充值' +parseInt(txt_point)+ '挖宝币</span>';
+  if (Number(txt_point) >= 1000000) {
+    html += '<h2><span style="font-size: 14px !important">充值' +parseInt(txt_point)+ '挖宝币</span>';
+  } else {
+    html += '<h2><span>充值' +parseInt(txt_point)+ '挖宝币</span>';
+  }
+  
   
   if (countdown != '') {
     html += '<span><span class="countdown">请在'+countdown+'内完成付款</span><span class="btn-go-recharge" id="btn-go-'+item.id+'">去付款</span></span>';  
