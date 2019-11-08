@@ -807,50 +807,52 @@
 
         console.log(platform);
 
-        if (platform == 'iOS') {
-        	$('#isIOS').val('true');
+   //      if (platform == 'iOS') {
+   //      	$('#isIOS').val('true');
 
-			document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
-				// alert(1);
-			    var a = document.createElement('a');
-			    a.setAttribute("href", topupurl);
-			    a.setAttribute("target", "_blank");
-			    var dispatch = document.createEvent("HTMLEvents");
-			    dispatch.initEvent("click", true, true);
-			    a.dispatchEvent(dispatch);
-			}, false); 
+			// document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
+			// 	// alert(1);
+			//     var a = document.createElement('a');
+			//     a.setAttribute("href", topupurl);
+			//     a.setAttribute("target", "_blank");
+			//     var dispatch = document.createEvent("HTMLEvents");
+			//     dispatch.initEvent("click", true, true);
+			//     a.dispatchEvent(dispatch);
+			// }, false); 
 
-			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
-				// alert(111);
-			    var a = document.createElement('a');
-			    a.setAttribute("href", topupurl);
-			    a.setAttribute("target", "_blank");
-			    var dispatch = document.createEvent("HTMLEvents");
-			    dispatch.initEvent("click", true, true);
-			    a.dispatchEvent(dispatch);
-			}, false);      		
+			// document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+			// 	// alert(111);
+			//     var a = document.createElement('a');
+			//     a.setAttribute("href", topupurl);
+			//     a.setAttribute("target", "_blank");
+			//     var dispatch = document.createEvent("HTMLEvents");
+			//     dispatch.initEvent("click", true, true);
+			//     a.dispatchEvent(dispatch);
+			// }, false);      		
 
-    	} else if (platform == 'AndroidOS') {
-    		$('#isIOS').val('AndroidOS');
+   //  	} else if (platform == 'AndroidOS') {
+   //  		$('#isIOS').val('AndroidOS');
 
-    		document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
-	            plus.runtime.openURL(topupurl);
-	          });
+   //  		document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+	  //           plus.runtime.openURL(topupurl);
+	  //         });
 
-    		document.getElementById("btn-go-topup").addEventListener('tap',function(){
-	            plus.runtime.openURL(topupurl);
-	          });
+   //  		document.getElementById("btn-go-topup").addEventListener('tap',function(){
+	  //           plus.runtime.openURL(topupurl);
+	  //         });
 
-    	} else {
+   //  	} else {
 
 			$('#btn-calculate-vip').click(function(){
-				window.open(topupurl, '_blank'); 
+				// window.open(topupurl, '_blank'); 
+				window.location.href = '/recharge';
 			});
 			$('#btn-go-topup').click(function(){
-				window.open(topupurl, '_blank'); 
+				// window.open(topupurl, '_blank');
+				window.location.href = '/recharge'; 
 			});
 
-    	}
+   //  	}
 
     	$('.btn-go-arcade').click(function() {
     		window.location.href = '/arcade';

@@ -622,7 +622,7 @@
 #modal-how-to-unlock .btn-go-topup {
     cursor: pointer;
     font-size: 16px;
-    padding: 16px;
+    padding: 13px;
     color: #fff;
     background: url(/clientapp/images/vip-node/btn-top-up-bg.png) no-repeat;
     background-size: cover;
@@ -635,7 +635,7 @@
 #modal-how-to-unlock .btn-go-redeem {
     cursor: pointer;
     font-size: 16px;
-    padding: 16px;
+    padding: 13px;
     color: #fff;
     background: url('/clientapp/images/vip-node/btn-redeem-bg.png') no-repeat;
     background-size: cover;

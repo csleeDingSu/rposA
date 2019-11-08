@@ -17,7 +17,7 @@
   		<a id="f-shop">
   	@endif
         <span class="icon bar-2"></span>
-        <h2>商城</h2>
+        <h2>换购</h2>
       </a></dd>
     <dt>
     @if(Request::is('arcade') || Request::is('arcade/*'))

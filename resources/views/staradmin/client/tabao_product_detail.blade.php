@@ -107,7 +107,7 @@
 				<div class="dbox1">
 					<h2>{{$data['title']}}</h2>
 					<div class="line-reward">
-						<div class="reward-txt">奖励<span class="reward"><span class="cur">￥</span>{{$hong}}</span>红包积分</div>
+						<div class="reward-txt">奖励<span class="reward"><span class="cur">￥</span>{{$hong}}</span>抽奖积分</div>
 						<div class="btn-reward">怎么奖励?</div>
 						<h3>热销{{$sales}}</h3>
 					</div>							
@@ -240,8 +240,7 @@
 								</div>
 								<div class="instructions">
 									<p>积分是奖励给通过平台领券去淘宝下单的用户，积分可兑换抽奖场次。</p>
-									<p>1200积分兑换1场次，抽最高12元红包，系统自动兑换。
-									</p>
+									<p>12积分兑换1场抽奖补贴，最高获得12元，系统自动兑换。</p>
 								</div>
 								<div class="modal-close-btn">
 									知道了

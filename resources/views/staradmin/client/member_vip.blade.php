@@ -36,10 +36,10 @@
         </p>
       </div>
       <div class="sMain">
-        <a href="/recharge"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>买入</span></a>
-        <a href="/coin"><img src="{{ asset('clientapp/images/user-4.png') }}"><span>卖出</span></a>
+        <a href="/recharge"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>买入</span></a>        
         <a href="/shop"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>换购</span></a>
         <a href="/summary"><img src="{{ asset('clientapp/images/user-3.png') }}"><span>明细</span></a>
+        <a ><img src="{{ asset('clientapp/images/user-4.png') }}"><span>卖出</span></a>
       </div>
 
 
