@@ -205,6 +205,24 @@ class LedgerController extends BaseController
 				
 				$is_save = 'yes';
 			}
+			else
+			{
+				$point  = str_replace('-', '', $point);
+				if ($point<1)
+				{
+					continue;
+				}
+				$ledger = Ledger::find($key);
+				$result = Ledger::debit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				$notification = new Notification();
+				$notification->member_id       = $userid;
+				$notification->title           = 'Ledger Update';
+				$notification->notifiable_type = 'LEDUP';
+				$notification->notifiable_id   = $result['id'];
+				$notification->game_id         = $ledger->game_id;
+				$notification->save();
+				$is_save = 'yes';
+			}
 		}		
 		foreach($request->life as $key => $life)
 		{
