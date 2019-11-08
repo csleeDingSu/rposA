@@ -299,13 +299,16 @@ class CreditController extends BaseController
 				{
 					return response()->json(['success' => false,'errors'=> ['reason'=>['add your reason here'] ] ],422);	
 				}
-        		print_r($record->point);
-        		$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
-        		print_r($ledger);
+        		
+        		if ($record->type != 1)
+        		{
+        			$ledger = \App\Ledger::merge_reserved_point($record->member_id,103,$record->point,'PRRP', 'point refunded');
+        			$record->ledger_history_id = $ledger['id'];
+        		}        		
+        		
         		$record->status_id  = 7;
-        		$record->reason     = $request->reason;
-        		$record->ledger_history_id = $ledger['id'];
-        		//$record->save();
+        		$record->reason     = $request->reason;        		
+        		$record->save();
         		$updatehistory = 'yes';	
         	break; 
         }
