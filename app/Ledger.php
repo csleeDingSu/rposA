@@ -285,7 +285,7 @@ class Ledger extends Model
 			{
 				return ['success'=>false,'message'=>'reserved point cannot accepted to proceed'];	
 			}
-			print_r($wallet);
+			
 			if($wallet->reserved_point < $point )
 			{
 				return ['success'=>false,'message'=>'reserved point not in the range'];	
