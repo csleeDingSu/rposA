@@ -20,12 +20,7 @@
 <?php
 
 $affiliate_id = Auth::Guard( 'member' )->user()->affiliate_id;
-if (env('THISVIPAPP', false)) {
-  $url = env('APP_URL_share', 'http://wabao777.com') . '/external/register/' . $affiliate_id;
-} else {
-  $url = env('APP_URL_share', 'http://wabao777.com') . '/register/' . $affiliate_id;  
-}
-
+$url = env('APP_URL_share', 'http://wabao777.com') . '/vvregister/' . $affiliate_id;  
 
 include(app_path().'/Lib/qr/qrlib.php');
 
