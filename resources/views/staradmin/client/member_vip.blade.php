@@ -155,8 +155,8 @@
                 $('#103_point').html((current_point));
             }
 
-            var yesterdaypoint = "{{$yesterdaypoint}}";
-            var overallpoint = "{{$overallpoint}}";
+            var yesterdaypoint = "{{empty($yesterdaypoint) ? '+0' : (($yesterdaypoint >= 0) ? '+'.$yesterdaypoint : $yesterdaypoint)}}";
+            var overallpoint = "{{empty($overallpoint) ? '+0' : (($overallpoint >= 0) ? '+'.$overallpoint : $overallpoint)}}";
             console.log(yesterdaypoint);
             console.log(overallpoint);
             $('#102_point').html('<em class="fs">¥</em>' + normal_game_point);
@@ -164,7 +164,7 @@
 
             
             $('#game_life').html(game_life);
-            $('.userTotal').html("<span>昨日收益&nbsp;&nbsp;<b>+" + getNumeric(yesterdaypoint) + "</b></span><span>累计收益&nbsp;&nbsp;<b><span id='granttotal'>+" + getNumeric(overallpoint) + "</span></b></span>");
+            $('.userTotal').html("<span>昨日收益&nbsp;&nbsp;<b>" + yesterdaypoint + "</b></span><span>累计收益&nbsp;&nbsp;<b><span id='granttotal'>" + overallpoint + "</span></b></span>");
 
 
             $('.unverify').click(function(){

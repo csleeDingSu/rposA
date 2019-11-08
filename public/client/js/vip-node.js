@@ -398,6 +398,7 @@ function getToken(){
         DomeWebController.init();
         bindBetButton();
         $(".loading").fadeOut("slow");
+        setInterval("getProduct()",10000);
     }
     
 }
