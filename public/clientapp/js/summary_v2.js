@@ -260,7 +260,7 @@ function Resell_html(item){
   _url = '/coin/list/detail/' + item.id;
 
   if (item.status_id == 1) {
-    txt_status = '等待审核'; //'订单已提交';  
+    txt_status = '已提交审核'; //'订单已提交';  
     _cls = 'payReady';
     _fontcolor = '#6ac2ff';                        
   } else if (item.status_id == 2 && item.is_locked != 1) {
@@ -278,7 +278,7 @@ function Resell_html(item){
     _buyer = item.buyer; 
     _phone = (_buyer != null) ? _buyer.phone : '';
     _phone = (_phone != '') ? (_phone.substring(0,3) + '*****' + _phone.slice(-4)) : '';
-    txt_status = '买家正在付款'; //'已匹配到买家 ' + _phone;
+    txt_status = '买家已付款'; //'已匹配到买家 ' + _phone;
     _cls = 'payIng';
     _fontcolor = '#ffa200';
   } else if (item.status_id == 4) {
@@ -350,7 +350,7 @@ function Recharge_html(item){
     // _cls = 'payIng';
     _fontcolor = '#ffa200';
   } else if (item.status_id == 3) {
-    txt_status = '已提交审核'; //'等待卖家发币';
+    txt_status = '等待付款确认'; //'等待卖家发币';
     // _cls = 'payIng';
     _fontcolor = '#6ac2ff';
   } else if (item.status_id == 4) {

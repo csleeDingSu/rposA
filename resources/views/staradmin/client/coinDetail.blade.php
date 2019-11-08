@@ -120,12 +120,14 @@
                   var html = '';
                   var orderid = 0;
                   var is_locked = '';
+                  var phone = 0;
                   console.log(data);
                   document.getElementById('loading2').style.visibility="hidden";
                   if(data.success){
                       
                       orderid = data.record.uuid;
                       is_locked = data.record.is_locked;
+                      phone = 
 
                       $.each(data.result.data, function(i, item) {
 
@@ -150,12 +152,12 @@
                         var _phone = 0;
 
                         if (item.status_id == 1) {
-                          txt_status = '等待审核'; 
-                          txt_dec = '转卖订单已提交，正在审核中'; 
+                          txt_status = '已提交审核'; 
+                          txt_dec = '等待管理员核准信息'; 
                           txt_img = '/clientapp/images/summary/1-.png';  
                         } else if (item.status_id == 2) {
                           txt_status = '正在匹配买家'; 
-                          txt_dec = '订单转卖中，等待匹配买家'; 
+                          txt_dec = '请耐心等待'; 
                           txt_img = '/clientapp/images/summary/2-1.png';  
                         }
                         //  else if (item.status_id == 2) {
@@ -166,32 +168,32 @@
                         //   txt_img = '/clientapp/images/summary/3-1.png';
                         // } 
                         else if (item.status_id == 3) {
-                          txt_status = '等待付款审核'; 
-                          txt_dec = '付款进行中，等待核实'; 
+                          txt_status = '买家已付款'; 
+                          txt_dec = '等待系统审核'; 
                           txt_img = '/clientapp/images/summary/6-1.png'; 
                         } else if (item.status_id == 4) {
                           txt_status = '交易成功'; 
-                          txt_dec = '买家已完成付款'; 
+                          txt_dec = '买家已付款至你支付宝'; 
                           txt_img = '/clientapp/images/summary/7.png';
                         } else if (item.status_id == 5) {
                           txt_status = '<font color="#fe8686">付款超时</font>'; 
                           txt_dec = '买家未在规定时间完成付款'; 
                           txt_img = '/clientapp/images/summary/5-1.png';
 
-                          txt_status_pre = '正在重新匹配买家'; 
-                          txt_dec_pre = '买家158***3636，未付款成功'; 
+                          txt_status_pre = '重新匹配买家'; 
+                          txt_dec_pre = '上个买家付款失败'; 
                           txt_img_pre = '/clientapp/images/summary/2-1.png';
 
                         } else if (item.status_id == 7) {
-                          txt_status = '<font color="#fe8686">审核失败</font>'; 
-                          txt_dec = '提交质料错误，请重新提交'; 
+                          txt_status = '<font color="#fe8686">发布失败</font>'; 
+                          txt_dec = '发布信息有误，请修改。'; 
                           txt_img = '/clientapp/images/summary/4-1.png';
                         } else if (item.status_id == 8) {
                           console.log(data.record.buyer);
                           _phone = (data.record.buyer == null) ? '' : data.record.buyer.phone;
                           _phone = _phone.substring(0,3) + '*****' + _phone.slice(-4);
-                          txt_status = '匹配到买家 <font color="#609cff">' + _phone + '</font>'; 
-                          txt_dec = '已匹配到买家，等待买家付款'; 
+                          txt_status = '买家正在付款'; 
+                          txt_dec = '会员<font color="#609cff">' + _phone + '</font>'; 
                           txt_img = '/clientapp/images/summary/3-1.png';
                         }
 
