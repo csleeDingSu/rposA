@@ -489,7 +489,8 @@ function getProduct(){
     $.getJSON( "/api/get-product-list?limit=6&skip=" + buyproduct_skip, function( data ) {
         if (data.records.length <= 0) {
             buyproduct_skip = 0;            
-            getProduct();
+            // getProduct();
+            return false;
         }
         
         var html = '<form id="frm_buy" method="post" action="/buy">' +
