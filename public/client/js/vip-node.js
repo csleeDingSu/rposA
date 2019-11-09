@@ -492,7 +492,7 @@ function getProduct(){
             // getProduct();
             return false;
         }
-        
+
         var html = '<form id="frm_buy" method="post" action="/buy">' +
                         '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';
 
@@ -526,7 +526,8 @@ function getProduct(){
         html += '</form>';
 
         $('.redeem-prize-wrapper').html(html);
-        buyproduct_skip = (Number(buyproduct_skip) + 6); //next batch
+
+        buyproduct_skip = (Number(data.skip) + 6); //next batch
 
         $('.redeem-button').on('click', function(){
 
