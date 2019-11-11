@@ -6,6 +6,9 @@ var txt_coin = '元';
 var wallet_point = 0;
 var gameid = 102;
 var previous_point = '';
+var pid12_limit = 1;
+var pid13_limit = 0;
+var pid12_myhistory = 0;
 
 $(document).ready(function () {
 
@@ -103,6 +106,13 @@ function getProductList(token) {
                 var current_point = getNumeric(wallet_point);
 
                 $.each(records, function(i, item) {
+                    if (item.id == 12) {
+                        pid12_limit = (item.buy_limi_ == undefined) ? 0 : pid12_limit;    
+                        if ((pid12_limit > 0) && (pid12_myhistory >= pid12_limit)) {
+                            return;
+                        }
+                    }
+
                     var available_quantity = item.available_quantity;
                     var used_quantity = item.used_quantity;
                     var reserved_quantity = item.reserved_quantity;
@@ -205,6 +215,14 @@ function getProductList(token) {
                 var wechat_status = $('#hidWechatId').val();
 
                 $.each(packages, function(i, item) {
+                    
+                    if (item.id == 12) {
+                        pid12_limit = (item.buy_limi_ == undefined) ? 0 : pid12_limit;    
+                        if ((pid12_limit > 0) && (pid12_myhistory >= pid12_limit)) {
+                            return;
+                        }
+                    }
+
                     $('.openeditmodel_p' + i).click(function() {
                         if(wechat_status > 0 && this_vip_app != true){
                             $('#wechat-verification-modal').modal('show');
@@ -305,6 +323,8 @@ function getPosts(page, token){
 
             page++;
             $('#page').val(page);
+
+            getProductList(token);
         }
      });
 }
@@ -526,6 +546,9 @@ function populateHistoryData(records, token) {
                         '   <div class="product-bg"><div class="hbao"></div>' +
                         '       <div class="product-title">' + item.product_name + '<a href="/faq/4"><div class="gifhome"></div><div class="product-how-to-redeem">点击我<span class="highlight">看充值教程</span></div></a></div>';
                 if (item.pin_status == 2) {
+                    
+                    pid12_myhistory++;
+
                 html += '       <div class="product-content">' +
                         '           <div class="r"><div class="c1">卡号&nbsp;:</div><div id="number' + item.type + item.id + '" class="c2">' + item.code + '</div> <div id="copynumber' + item.type + item.id + '" class="copynumber c3">点击复制</div></div>' +
                         '           <div class="r"><div class="c1">密码&nbsp;:</div><div id="code' + item.type + item.id + '" class="c2">' + item.passcode + '</div> <div id="copycode' + item.type + item.id + '" class="copycode c3">点击复制</div></div>' +
@@ -1267,7 +1290,6 @@ function getWallet(token, id) {
             }
 
             // $('.wabao-coin').html(parseInt(wallet_point));
-            getProductList(token);
             getPosts(page, token);
             scrollBottom(token);
         }
