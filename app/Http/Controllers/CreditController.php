@@ -352,7 +352,7 @@ class CreditController extends BaseController
         	$record->status_id  = 2;
         	$record->buyer_id   = null;
         	$record->reason     = 'reset to verified';
-        	$resell->uuid       = unique_numeric_random($resell->getTable(), 'uuid', 10);           		
+        	$record->uuid       = unique_numeric_random($record->getTable(), 'uuid', 10);           		
         	$record->save();
 
         	$history            = new \App\ResellHistory();
