@@ -400,7 +400,7 @@ function getToken(){
         DomeWebController.init();
         bindBetButton();
         $(".loading").fadeOut("slow");
-        // setInterval("getProduct()",5000);
+        setInterval("getProduct()",5000);
     }
     
 }
@@ -487,18 +487,20 @@ function getNotification(data, isSocket = false){
 
 function getProduct(){
     _url = "/api/get-product-list";
+    if (buyproduct_data == ''){
+        $.getJSON( _url, function( data ) {
+            if (data.records.length <= 0) {
+                buyproduct_skip = 0;
+                return false;
+            } else {
+                buyproduct_data = data;
+                refreshProduct();
+            }
+        });
+    } else {
+        refreshProduct();
+    }
 
-    $.getJSON( _url, function( data ) {
-        if (data.records.length <= 0) {
-            buyproduct_skip = 0;            
-            // getProduct();
-            return false;
-        } else {
-            buyproduct_data = data;
-            setInterval("refreshProduct()",5000);
-        }
-
-    });
 }
 
 function refreshProduct(){
@@ -662,7 +664,7 @@ function startGame() {
                     //lock wheel
                     lockWheel();
 
-                    // setInterval("getProduct()",5000);
+                    setInterval("getProduct()",5000);
                 }
             });
 
