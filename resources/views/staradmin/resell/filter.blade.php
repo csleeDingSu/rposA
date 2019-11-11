@@ -4,6 +4,8 @@
 			<div class="card">
 				<div class="card-body">
 					<form class="" name="searchform" id="searchform" action="" method="get" autocomplete="on">
+						<input type="hidden" class="form-control typeahead tt-input" name="s_autobuy" id="s_autobuy" value="{{ request()->input('autobuy') }}">
+
 					<h4 class="card-title">Search</h4>
 					<div class="form-group row">
 						<div class="col">
