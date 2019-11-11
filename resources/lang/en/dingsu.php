@@ -758,5 +758,6 @@ return [
 	'resell_unknown' => 'Unknown',
 	'resell_rejected' => 'Rejected',
 	'resell_waitingforpayment' => 'Waiting Payment',
+	'resell_reset_rejected' => 'Rejected - reset',
 
 ];

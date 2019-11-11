@@ -748,5 +748,6 @@ return [
 	'resell_unknown' => '未知',
 	'resell_rejected' => '发布拒绝',
 	'resell_waitingforpayment' => '付款中',
+	'resell_reset_rejected' => '交易拒绝 - 重新匹配',
 
 ];

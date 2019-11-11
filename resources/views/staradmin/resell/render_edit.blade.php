@@ -102,6 +102,7 @@
 								<label for="status" class="col-sm-3 col-form-label">@lang('dingsu.status') </label>
 								<div class="col-sm-9">
 									<select id="status_id" name="status_id" class="form-control">									 	
+										@php ($iStatus = count($statuses))
 										@foreach($statuses as $val)
 										<option 
 												 @if ($val->id == $result->status_id)
@@ -109,7 +110,11 @@
 												 @endif											
 												
 												value="{{$val->id}}">
-											{{trans('dingsu.resell_' . $val->name )}}
+												@if (($val->id == 7) && ($iStatus > 3))
+													{{trans('dingsu.resell_reset_' . $val->name )}}
+												@else
+													{{trans('dingsu.resell_' . $val->name )}}
+												@endif
 										</option>
 										@endforeach
 									</select>	
