@@ -750,5 +750,6 @@ return [
 	'resell_waitingforpayment' => '付款中',
 	'resell_reset_rejected' => '交易拒绝 - 重新匹配',
 	'autobuy' => '等待管理员付款',
+	'limit' => '限制',
 
 ];
