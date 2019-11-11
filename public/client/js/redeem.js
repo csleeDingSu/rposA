@@ -232,6 +232,14 @@ function getProductList(token) {
                 var wechat_status = $('#hidWechatId').val();
 
                 $.each(packages, function(i, item) {
+
+                    if (item.id == 12) {
+                        pid12_limit = (item.buy_limit == undefined) ? 0 : pid12_limit;    
+                        if ((pid12_limit > 0) && (pid12_myhistory >= pid12_limit)) {
+                            return;
+                        }
+                    }
+                    
                     $('.openeditmodel_p' + i).click(function() {
                         if(wechat_status > 0 && this_vip_app != true){
                             $('#wechat-verification-modal').modal('show');
