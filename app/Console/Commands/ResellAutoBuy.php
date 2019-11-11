@@ -53,6 +53,7 @@ class ResellAutoBuy extends Command
             $resell->status_id   = 3;
             $resell->is_locked   = null;
             $resell->locked_time = null;       
+            $resell->is_autobuy  = 1;       
             $resell->save();            
             //add history
             $history             = new \App\ResellHistory();
