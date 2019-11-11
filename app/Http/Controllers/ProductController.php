@@ -233,7 +233,7 @@ class ProductController extends BaseController
             ]
         );	
 		$now = Carbon::now();
-		$data = ['product_name' => $request->product_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description,'seq' => $request->seq];
+		$data = ['product_name' => $request->product_name,'min_point' => $request->min_point,'product_status' => $request->status,'product_price' => $request->product_price,'created_at' => $now,'product_picurl' => $request->product_pic_url,'product_description' => $request->description,'seq' => $request->seq,'buy_limit' => $request->buy_limit];
 		
 		Product::update_product($id, $data);
 		
