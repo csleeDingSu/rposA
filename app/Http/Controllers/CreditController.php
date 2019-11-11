@@ -122,6 +122,10 @@ class CreditController extends BaseController
 					{
 						$result = $result->where('uuid','LIKE', "%{$input['s_uuid']}%") ;
 					}	
+					if (!empty($input['s_autobuy']))  
+					{
+						$result = $result->where('is_autobuy',1) ;
+					}	
 	
 			$result =  $result->latest('updated_at')->paginate(30);
 					
