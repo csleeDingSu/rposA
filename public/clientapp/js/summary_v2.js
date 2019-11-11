@@ -170,37 +170,37 @@ function Summary_html(value) {
       break;
       case 'APMNT':
           str_type = '游戏收益结算';
-          str_points = '+' + getNumeric(value.credit) + '元';   
+          str_points = '+' + getNumeric(value.credit) + '挖宝币';   
           _fontcolor = '#3d3d3d';             
       break;
 
       case 'DPRPO':
           str_type = '兑换话费卡';
-          str_points = '-' + getNumeric(value.debit) + '元';
+          str_points = '-' + getNumeric(value.debit) + '挖宝币';
           _fontcolor = '#12bf00';
       break;
 
       case 'DPBVP':
           str_type = '兑换VIP入场券';
-          str_points = '-' + getNumeric(value.debit) + '元';
+          str_points = '-' + getNumeric(value.debit) + '挖宝币';
           _fontcolor = '#12bf00';                   
       break;
 
       case 'DPRBP': //redeem / buy product
           str_type = '兑奖-' + value.title;
-          str_points = '-' + getNumeric(value.debit) + '元';
+          str_points = '-' + getNumeric(value.debit) + '挖宝币';
           _fontcolor = '#3d3d3d';
       break
 
       case 'APACP': //top up
           str_type = '充值挖宝币';
-          str_points = '+' + getNumeric(value.credit) + '元';
+          str_points = '+' + getNumeric(value.credit) + '挖宝币';
           _fontcolor = '#3d3d3d';
       break
 
       case 'APRBP': //refund
           str_type = '退还挖宝币-' + value.reject_notes;
-          str_points = '+' + getNumeric(value.credit) + '元';
+          str_points = '+' + getNumeric(value.credit) + '挖宝币';
           _fontcolor = '#3d3d3d';
       break
 
@@ -210,11 +210,11 @@ function Summary_html(value) {
             _gamelbl = ''; //(_gameid == '102') ? '(普通版)' : '(高级版)';
             if (Number(value.credit) >= 0) {
                 str_type = '系统加款' + _gamelbl;
-                str_points = '+' + getNumeric(value.credit) + '元';
+                str_points = '+' + getNumeric(value.credit) + '挖宝币';
                 _fontcolor = '#3d3d3d';    
             } else {
                 str_type = '系统扣款' + _gamelbl;
-                str_points = '-' + getNumeric(value.debit) + '元';
+                str_points = '-' + getNumeric(value.debit) + '挖宝币';
                 _fontcolor = '#3d3d3d';
             }  
           }

@@ -390,6 +390,7 @@ var being2 = {
         if (a > 0) {
           $('.payShade').removeClass('on');
         }
+        being.hideMsg('.payShade');
       });
 
       $('.coinShade ').click(function (e) {
@@ -443,6 +444,12 @@ var being2 = {
           var cash = $('#hidCash').val();
           var buyer_name = $('#buyer_name').val();
           var id = $('#hidRequestId').val();
+
+          if (buyer_name == '') {
+            $('.payShade .inBox').html('<p>请填写你的姓名</p>');
+            being.showMsg('.payShade');
+            return false;
+          }
 
           document.getElementById('loading2').style.visibility="visible";
 

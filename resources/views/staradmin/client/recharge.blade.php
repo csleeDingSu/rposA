@@ -121,11 +121,11 @@
             @foreach($resell_amount as $r)
               @php ($i++)
               @if ($i == 1)
-                <li class="on">
+                <li class="on" id = "_id_{{number_format($r->amount, 0, '.', '')}}">
                   @php ($_init_cash = $r->amount)
                   @php ($_init_point = $r->point)
               @else
-                <li>
+                <li id = "_id_{{number_format($r->amount, 0, '.', '')}}">
               @endif
                   <p><img src="{{ asset('/clientapp/images/user-coin.png') }}"><span class="v-coin" id="{{$r->id}}">{{$r->point}}</span></p>
                   <h2>售价&nbsp;<span class="v-cash">{{number_format($r->amount, 0, ".", "")}}</span>元</h2>
@@ -156,19 +156,19 @@
         var vCoin = "{{empty($_init_point) ? 680 : $_init_point}}";
         var vCash = "{{empty($_init_cash) ? 68 : $_init_cash}}";
         var token = null;
+        // var inCompleteCaseAmount = [];
 
         $(document).ready(function () {
             $('.scrolly').addClass('cionPage rechargePage');
             getToken();
-            getInCompleteCase();
-
+            
             //选择数量
             $('.cionPage  li').click(function () {
               let vm = $(this);
               vm.addClass('on').siblings().removeClass('on');
               vCoin = $('.v-coin', this).text();
               vCash = $('.v-cash', this).text();
-            });
+            });          
 
             $('.sendBox').on('click',function () {
               $('#modal-find-seller').modal();
@@ -176,6 +176,8 @@
                 getBuyer(vCoin);
               }, 2000);
             });
+
+            getInCompleteCase();  
             
         });
 
@@ -261,6 +263,16 @@
                     console.log(data.count);
                     
                     if (data.count > 0) {
+
+                      $.each(data.records, function(i, item) { 
+                        // inCompleteCaseAmount.push(item.amount);
+                        // console.log("#_id_" + parseInt(item.amount));
+                        $("#_id_" + parseInt(item.amount)).unbind();
+                        $("#_id_" + parseInt(item.amount)).removeClass('on');
+                      });
+
+                      // console.log(inCompleteCaseAmount);
+                      
                       $('.in-complete-note').css('display', 'block');
                       $('.in-complete-count').html(data.count);
                       $('.hrf3').css('display', 'none');
