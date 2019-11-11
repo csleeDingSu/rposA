@@ -28,6 +28,8 @@ var max_retry = 3;
 var nretry = 0;
 var touchmoved;
 var buyproduct_skip = 0;
+var buyproduct_data = '';
+var buyproduct_limit = 6;
 
 $(function () {
 
@@ -398,7 +400,7 @@ function getToken(){
         DomeWebController.init();
         bindBetButton();
         $(".loading").fadeOut("slow");
-        setInterval("getProduct()",5000);
+        // setInterval("getProduct()",5000);
     }
     
 }
@@ -484,92 +486,106 @@ function getNotification(data, isSocket = false){
 }
 
 function getProduct(){
-    buyproduct_skip = (buyproduct_skip <= 0) ? 0 : buyproduct_skip;
+    _url = "/api/get-product-list";
 
-    $.getJSON( "/api/get-product-list?limit=6&skip=" + buyproduct_skip, function( data ) {
+    $.getJSON( _url, function( data ) {
         if (data.records.length <= 0) {
             buyproduct_skip = 0;            
             // getProduct();
             return false;
+        } else {
+            buyproduct_data = data;
+            setInterval("refreshProduct()",5000);
         }
 
-        var html = '<form id="frm_buy" method="post" action="/buy">' +
-                        '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';
-
-        $.each(data.records, function(i, item) {
-            if(i % 2 === 0){
-                html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
-                            '<div class="left-box">' +
-                            '<div class="prize-box">' +
-                                '<div class="image-wrapper">' +
-                                    '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
-                                '</div>' +
-                                '<div class="redeem-product">'+ item.name +'</div>' +
-                                '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
-                            '</div>' +
-                        '</div>';
-            } else {
-                html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
-                            '<div class="right-box">' +
-                            '<div class="prize-box">' +
-                                '<div class="image-wrapper">' +
-                                    '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
-                                '</div>' +
-                                '<div class="redeem-product">'+ item.name +'</div>' +
-                                '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
-                            '</div>' +
-                        '</div>';
-            }
-            html += '<input id="hid_price_'+ item.id +'" name="hid_price_'+ item.id +'" type="hidden" value="'+item.point_to_redeem+'">';
-        });
-
-        html += '</form>';
-
-        $('.redeem-prize-wrapper').html(html);
-
-        buyproduct_skip = (Number(data.skip) + 6); //next batch
-
-        $('.redeem-button').on('click', function(){
-
-            var user_id = $('#hidUserId').val();
-            if(user_id == 0){
-                $( '#modal-no-login' ).modal( 'show' );                
-                setTimeout(function(){
-                    console.log('1111');
-                    // $( '#modal-no-login' ).modal( 'hide' );
-                    window.location.href = '/login';
-                }, 3000);
-                return false;
-            } else {
-
-                $( "#hid_package_id" ).val($(this).attr('rel'));
-                console.log($(this).attr('rel'));
-                var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
-                // console.log(price);
-                // console.log(g_vip_point);
-                console.log(getNumeric(price) > getNumeric(g_vip_point));
-                if (getNumeric(price) > getNumeric(g_vip_point)) {
-                    console.log(1);
-                    $('#modal-insufficient-point').modal();
-                    setTimeout(function(){ 
-                        $('#modal-insufficient-point').modal('hide');
-                    }, 3000);   
-                    return false;         
-                } else {
-                    console.log(2);
-                    // $( "#frm_buy" ).submit();
-                    $('#modal-go-shop').modal();
-                    setTimeout(function(){ 
-                        $('#modal-go-shop').modal('hide');
-                    }, 3000); 
-                    return false;   
-                }
-
-            }
-            
-        });
-
     });
+}
+
+function refreshProduct(){
+    data = buyproduct_data;
+    // console.log(data.records.length);
+    buyproduct_skip = (buyproduct_skip <= 0) ? 0 : ((buyproduct_skip >= data.records.length) ? 0 : buyproduct_skip);
+    buyproduct_limit = (buyproduct_limit <= 0) ? 6 : buyproduct_limit;
+
+    var html = '<form id="frm_buy" method="post" action="/buy">' +
+                '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';
+    // console.log('skip ---' + buyproduct_skip);
+    var _data = data.records;
+    var _end = Number(buyproduct_skip) + Number(buyproduct_limit);
+    for ( var i = buyproduct_skip; i < _end ; i++ ) {
+        item = _data[i];
+        if(i % 2 === 0){
+            html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
+                        '<div class="left-box">' +
+                        '<div class="prize-box">' +
+                            '<div class="image-wrapper">' +
+                                '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
+                            '</div>' +
+                            '<div class="redeem-product">'+ item.name +'</div>' +
+                            '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
+                        '</div>' +
+                    '</div>';
+        } else {
+            html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
+                        '<div class="right-box">' +
+                        '<div class="prize-box">' +
+                            '<div class="image-wrapper">' +
+                                '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
+                            '</div>' +
+                            '<div class="redeem-product">'+ item.name +'</div>' +
+                            '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
+                        '</div>' +
+                    '</div>';
+        }
+        html += '<input id="hid_price_'+ item.id +'" name="hid_price_'+ item.id +'" type="hidden" value="'+item.point_to_redeem+'">';
+    };
+
+    html += '</form>';
+
+    $('.redeem-prize-wrapper').html(html);
+
+    buyproduct_skip = _end; //next batch
+
+    $('.redeem-button').on('click', function(){
+
+        var user_id = $('#hidUserId').val();
+        if(user_id == 0){
+            $( '#modal-no-login' ).modal( 'show' );                
+            setTimeout(function(){
+                console.log('1111');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
+            return false;
+        } else {
+
+            $( "#hid_package_id" ).val($(this).attr('rel'));
+            console.log($(this).attr('rel'));
+            var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
+            // console.log(price);
+            // console.log(g_vip_point);
+            console.log(getNumeric(price) > getNumeric(g_vip_point));
+            if (getNumeric(price) > getNumeric(g_vip_point)) {
+                console.log(1);
+                $('#modal-insufficient-point').modal();
+                setTimeout(function(){ 
+                    $('#modal-insufficient-point').modal('hide');
+                }, 3000);   
+                return false;         
+            } else {
+                console.log(2);
+                // $( "#frm_buy" ).submit();
+                $('#modal-go-shop').modal();
+                setTimeout(function(){ 
+                    $('#modal-go-shop').modal('hide');
+                }, 3000); 
+                return false;   
+            }
+
+        }
+        
+    });
+
 }
 
 function resetTimer(){
@@ -646,7 +662,7 @@ function startGame() {
                     //lock wheel
                     lockWheel();
 
-                    setInterval("getProduct()",5000);
+                    // setInterval("getProduct()",5000);
                 }
             });
 
