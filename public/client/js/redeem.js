@@ -5,6 +5,9 @@ var this_vip_app = false;
 var txt_coin = '元';
 var gameid = 102;
 var wallet_point = 0;
+var pid12_limit = 3;
+var pid13_limit = 0;
+var pid12_myhistory = 0;
 
 $(document).ready(function () {
 
@@ -119,6 +122,14 @@ function getProductList(token) {
                 var current_life = getNumeric($(".nTxt").html());
 
                 $.each(records, function(i, item) {
+                    
+                    if (item.id == 12) {
+                        pid12_limit = (item.buy_limit == undefined) ? 0 : pid12_limit;    
+                        if ((pid12_limit > 0) && (pid12_myhistory >= pid12_limit)) {
+                            return;
+                        }
+                    }
+
                     var available_quantity = item.available_quantity;
                     var used_quantity = item.used_quantity;
                     var reserved_quantity = item.reserved_quantity;
@@ -320,6 +331,8 @@ function getPosts(page, token){
 
             page++;
             $('#page').val(page);
+            getProductList(token);
+            
         }
      });
 }
@@ -541,6 +554,9 @@ function populateHistoryData(records, token) {
                         '   <div class="product-bg"><div class="hbao"></div>' +
                         '       <div class="product-title">' + item.product_name + '<a href="/faq/4"><div class="gifhome"></div><div class="product-how-to-redeem">点击我<span class="highlight">看充值教程</span></div></a></div>';
                 if (item.pin_status == 2) {
+                    
+                    pid12_myhistory++;
+
                 html += '       <div class="product-content">' +
                         '           <div class="r"><div class="c1">卡号&nbsp;:</div><div id="number' + item.type + item.id + '" class="c2">' + item.code + '</div> <div id="copynumber' + item.type + item.id + '" class="copynumber c3">点击复制</div></div>' +
                         '           <div class="r"><div class="c1">密码&nbsp;:</div><div id="code' + item.type + item.id + '" class="c2">' + item.passcode + '</div> <div id="copycode' + item.type + item.id + '" class="copycode c3">点击复制</div></div>' +
@@ -1131,7 +1147,6 @@ function getWallet(token, id) {
             console.log(wallet_point);
             $('.wabao-coin').html(wallet_point);
             $('.nTxt').html(wallet_life);
-            getProductList(token);
             getPosts(page, token);
             scrollBottom(token);
         }

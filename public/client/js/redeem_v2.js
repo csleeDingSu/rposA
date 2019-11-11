@@ -6,7 +6,7 @@ var txt_coin = '元';
 var wallet_point = 0;
 var gameid = 102;
 var previous_point = '';
-var pid12_limit = 1;
+var pid12_limit = 2;
 var pid13_limit = 0;
 var pid12_myhistory = 0;
 
@@ -107,7 +107,7 @@ function getProductList(token) {
 
                 $.each(records, function(i, item) {
                     if (item.id == 12) {
-                        pid12_limit = (item.buy_limi_ == undefined) ? 0 : pid12_limit;    
+                        pid12_limit = (item.buy_limit == undefined) ? 0 : pid12_limit;    
                         if ((pid12_limit > 0) && (pid12_myhistory >= pid12_limit)) {
                             return;
                         }
@@ -217,7 +217,7 @@ function getProductList(token) {
                 $.each(packages, function(i, item) {
                     
                     if (item.id == 12) {
-                        pid12_limit = (item.buy_limi_ == undefined) ? 0 : pid12_limit;    
+                        pid12_limit = (item.buy_limit == undefined) ? 0 : pid12_limit;    
                         if ((pid12_limit > 0) && (pid12_myhistory >= pid12_limit)) {
                             return;
                         }
