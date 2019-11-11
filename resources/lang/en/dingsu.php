@@ -759,5 +759,6 @@ return [
 	'resell_rejected' => 'Rejected',
 	'resell_waitingforpayment' => 'Waiting Payment',
 	'resell_reset_rejected' => 'Rejected - reset',
+	'autobuy' => 'Waiting payment - administrator',
 
 ];
