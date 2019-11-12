@@ -63,7 +63,7 @@ class ResellAutoBuy extends Command
             $history->member_id  = $resell->member_id;
             $history->buyer_id   = $resell->buyer_id;
             $history->reason     = 'auto buy from admin member'; 
-            $history->uuid       = $record->uuid;
+            $history->uuid       = $resell->uuid;
             $history->save();           
                         
             $this->line('-- done');
