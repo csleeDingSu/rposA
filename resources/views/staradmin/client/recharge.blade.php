@@ -269,6 +269,10 @@
                         // console.log("#_id_" + parseInt(item.amount));
                         $("#_id_" + parseInt(item.amount)).unbind();
                         $("#_id_" + parseInt(item.amount)).removeClass('on');
+                        $("#_id_" + parseInt(item.amount)).click(function() {
+                          $('#modal-find-seller .find-seller').html('你有充值还未完成');
+                          $('#modal-find-seller').show();
+                        });
                       });
 
                       // console.log(inCompleteCaseAmount);
