@@ -95,7 +95,7 @@
 		{
 			$.each(response, function (key, item) {		
 				var msg = '<label class="error mt-2 text-danger inputTxtError" for="'+key+'">'+item+'</label>';
-				$('input[name="' + key + '"], select[name="' + key + '"]').addClass('form-control-danger').after(msg);
+				$('input[name="' + key + '"], select[name="' + key + '"], textarea[name="' + key + '"]').addClass('form-control-danger').after(msg);
 
 			});
 		}
