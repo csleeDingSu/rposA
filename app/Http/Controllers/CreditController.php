@@ -353,6 +353,15 @@ class CreditController extends BaseController
         }
         if ($resettoactive)
         {        	
+        	
+        	$new = $record->replicate();       
+            $rejected             = new \App\RejectedResell();
+            $rejected->fill($new->toArray());
+            $rejected->status_id  = 7;
+            $rejected->reason     = 'rejected by admin';
+            $rejected->save();
+
+
         	$record->status_id  = 2;
         	$record->buyer_id   = null;
         	$record->reason     = 'reset to verified';

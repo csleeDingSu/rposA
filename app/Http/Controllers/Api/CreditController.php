@@ -75,6 +75,7 @@ class CreditController extends Controller
     {
     	$type        = '';
     	$companydata = '';
+        $member      = '';
     	$record      = \App\CreditResell::with('status','member')->where('member_id', '!=' , $request->memberid)->where('is_locked', null)->where('status_id', 2)->where('point', $request->point)->oldest()->first();
 
     	if ($record)
@@ -93,15 +94,15 @@ class CreditController extends Controller
             $history->uuid       = $record->uuid;
             $history->save();
 
-
             app('App\Http\Controllers\CreditController')->pushdata($record, 'update');
     	}    	
 
     	if (!$record)
     	{
     		//use default data
-    		$companydata = \App\CompanyBank::with('member')->first();
     		$type        = 'companyaccount';
+            $companydata = \App\CompanyBank::all()->random(1)->first();    		
+            $member      = \App\CompanyAccount::all()->random(1)->first();
 
     		$amdata = \DB::table('resell_amount')->where('point',$request->point)->first();
     		$amount = 0;
@@ -109,10 +110,9 @@ class CreditController extends Controller
     		{
     			$amount = $amdata->amount;
     		}
-    		//print_r($request->memberid);die();
     		//reserve point
 			$record 		     = new \App\CreditResell();
-			$record->member_id   = $companydata->member->id;
+			$record->member_id   = $member->member_id;
 			$record->buyer_id    = $request->memberid;
 			$record->point       = $request->point;
 			$record->amount      = $amount;
@@ -127,8 +127,8 @@ class CreditController extends Controller
 			$history->cid        = $record->id;
 			$history->status_id  = 2;
 			$history->point      = $request->point;
-			$history->member_id  = $companydata->member->id;
-			$history->buyer_id    = $request->memberid;
+			$history->member_id  = $member->member_id;
+			$history->buyer_id   = $request->memberid;
             $history->uuid       = $record->uuid;
 			$history->save();
 
@@ -137,14 +137,14 @@ class CreditController extends Controller
             $history->cid        = $record->id;
             $history->status_id  = 8;
             $history->point      = $request->point;
-            $history->member_id  = $companydata->member->id;
+            $history->member_id  = $member->member_id;
             $history->buyer_id   = $request->memberid;
             $history->uuid       = $record->uuid;
             $history->save();
 
             app('App\Http\Controllers\CreditController')->pushdata($record);
     	}
-    	return response()->json(['success' => true, 'record'=>$record,'company'=>$companydata, 'type'=>$type]);
+    	return response()->json(['success' => true, 'record'=>$record,'company'=>$companydata, 'member'=>$member ,'type'=>$type]);
     }
 
     public function make_resell_success(Request $request)
