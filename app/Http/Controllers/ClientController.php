@@ -642,7 +642,8 @@ class ClientController extends BaseController
 
 		$title_customize = '挖宝网app下载-玩无限抽奖，换超值奖品';
 
-		return view('client/download_app',compact('devices', 'isMacDevices', 'title_customize'));
+		// return view('client/download_app',compact('devices', 'isMacDevices', 'title_customize'));
+		return view('client/download_app_new',compact('devices', 'isMacDevices', 'title_customize'));
 	}
 	
 }

@@ -275,49 +275,37 @@ var being2 = {
                     <li>
                         <div>
                             <img src="{{ asset('/clientapp/images/help/wxpay-1.png') }}" />
-                            <p>01打开微信钱包选择“收付款”</p>
+                            <p>01 点击右上角+ 选择“收付款”</p>
                         </div>
                     </li>
                     <li>
                         <div>
                             <img src="{{ asset('/clientapp/images/help/wxpay-2.png') }}" />
-                            <p>02下拉选择“转账到银行卡”</p>
+                            <p>02 或者点击“支付”-“收付款”</p>
                         </div>
                     </li>
                     <li>
                         <div>
                             <img src="{{ asset('/clientapp/images/help/wxpay-3.png') }}" />
-                            <p>03输入银行卡信息及金额</p>
+                            <p>03 下拉选择“转账到银行卡”</p>
                         </div>
                     </li>
                     <li>
                         <div>
                             <img src="{{ asset('/clientapp/images/help/wxpay-4.png') }}" />
-                            <p>04确认转账信息备注手机账号</p>
+                            <p>04 输入银行卡信息及金额</p>
                         </div>
                     </li>
                     <li>
                         <div>
                             <img src="{{ asset('/clientapp/images/help/wxpay-5.png') }}" />
-                            <p>05选择右上角“支付中心”图标</p>
+                            <p>05 确认账务无误，在转账</p>
                         </div>
                     </li>
                     <li>
                         <div>
                             <img src="{{ asset('/clientapp/images/help/wxpay-6.png') }}" />
-                            <p>06选择“账单”功能</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="{{ asset('/clientapp/images/help/wxpay-7.png') }}" />
-                            <p>07查看支付账单信息</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="{{ asset('/clientapp/images/help/wxpay-8.png') }}" />
-                            <p>08确认“到账成功”</p>
+                            <p>06 查看转账详情确认“到账成功”</p>
                         </div>
                     </li>
                 </ul>

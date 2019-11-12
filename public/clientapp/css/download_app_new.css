@@ -1,0 +1,81 @@
+body {
+  background-color: #eee !important;
+}
+
+.logo3-zero {
+  background: url(/clientapp/images/newbie/download-banner.png) left top no-repeat;
+  background-size: 100% auto;
+  /*padding-top: 1.45rem;*/
+  box-sizing: border-box;
+  /*height: 2.8rem;*/
+  margin-bottom: 0;
+  
+}
+
+.logo3-zero ..c-header {
+  position: relative;
+  margin-bottom: 0;
+  bottom: 0;
+  box-shadow: none;
+  width: calc(100% - 0.48rem);
+}
+
+.logo3-zero .about li {
+  color: #fff;
+}
+
+.c-header {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+}
+
+.pageHeader {
+    height: 2.3rem;
+    background: transparent;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    color: #fff;
+    font-size: 0.36rem;
+}
+
+.listBox {
+  padding: 1rem !important;
+}
+
+.highlight {
+  color: #ffed23;
+    padding: 0 0.1rem;
+}
+
+.inBox-download {
+  text-align: center;
+    margin: 0.2rem;
+    padding: 1rem 0;
+    line-height: 0.7rem;
+    font-size: 0.3rem;
+    color: #999;
+
+}
+
+.inBox-download .logo{
+  height: 3rem;
+}
+
+.inBox-download .guanfang{
+  
+    padding: 0 0.1rem;
+    font-size: 0.46rem;
+    color: #333;
+    font-weight: 550;
+}
+
+.inBox-download .guanfang img{
+  height: 0.5rem;
+    padding: 0 0.1rem;
+    margin-top: -0.05rem;
+}
+
+.inBox-download .star{
+  height: 0.5rem;
+}

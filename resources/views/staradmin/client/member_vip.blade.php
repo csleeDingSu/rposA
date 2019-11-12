@@ -39,7 +39,7 @@
         <a href="/recharge"><img src="{{ asset('clientapp/images/user-1.png') }}"><span>买入</span></a>        
         <a href="/shop"><img src="{{ asset('clientapp/images/user-2.png') }}"><span>换购</span></a>
         <a href="/summary"><img src="{{ asset('clientapp/images/user-3.png') }}"><span>明细</span></a>
-        <a ><img src="{{ asset('clientapp/images/user-4.png') }}"><span>卖出</span></a>
+        <a class="not-available"><img src="{{ asset('clientapp/images/user-4.png') }}"><span>卖出</span></a>
       </div>
 
 
@@ -91,6 +91,14 @@
 @endsection
 
 @section('footer-javascript')
+<!-- not available modal -->
+<div class="modal fade col-md-12" id="modal-not-available" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="txt">暂不提供卖出服务，请耐心等待</div>         
+  </div>
+</div>
+
+
 <!-- wechat verify Modal starts -->
   <div class="modal fade col-md-12" id="wechat-verification-modal" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -169,6 +177,14 @@
 
             $('.unverify').click(function(){
                 $('#wechat-verification-modal').modal();
+            });
+
+            $('.not-available').click(function() {
+                $('#modal-not-available').modal();
+                setTimeout(function(){ 
+                  $('.modal').modal('hide');
+                  $('.modal-backdrop').remove();
+              }, 3000);
             });
 
         // if (platform == 'iOS') {          

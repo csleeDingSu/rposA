@@ -185,6 +185,7 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/quan');
 	} );
 	Route::any( '/main/zero-price-product', 'MainController@tabaoZeroPriceProduct' )->name( 'client.tabao.zeroPriceProduct' );
+	Route::any( '/newbie', 'MainController@newbieProduct' )->name( 'client.tabao.newbieProduct' );
 	Route::get( '/free', function () {
 		return view( 'client/free');
 	} );
