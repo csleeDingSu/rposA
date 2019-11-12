@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.1') }}" />
     <!-- <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
@@ -125,7 +125,6 @@
 <div class="reload">
 	<div class="center-content">加载失败，请安刷新</div>
 </div>
-
 <div class="reload2">
 	<ul class="no-connection-list">
       <li>
@@ -148,7 +147,7 @@
 				<div class="btn-calculate">
 					<div class="balance-banner">
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0</span>元补贴
+							<span class="spanAcuPointAndBalance">{{empty($wallet->acupoint) ? 0 : $wallet->acupoint}}</span>元补贴
 						</div>
 						<div class="btn-withdraw"></div>
 					</div>
@@ -157,12 +156,11 @@
 					<div class="speech-bubble-point">满{{env('coin_min', '6')}}元提现 最高{{env('coin_max', '12')}}元</div>
 				</a>
 			</div>
-
 			@if (env('THISVIPAPP', false))
 				<div id="flex-right-menu">
 					<div class="box">
 						<div class="btn-life">
-							剩0次
+							剩{{empty($wallet->life) ? 0 : $wallet->life}}次
 						</div>
 					</div>
 				</div>
@@ -199,7 +197,8 @@
 			<input id='hidMaxAcupoint' type="hidden" value="{{env('coin_max', '12')}}" />
 			<input id='hidMinAcupoint' type="hidden" value="{{env('coin_min', '6')}}" />
 			<input id='hidIsApp' type="hidden" value="{{env('THISVIPAPP','false')}}" />
-			<input id='hidLife' type="hidden" value="" />
+			<input id='hidLife' type="hidden" value="{{empty($wallet->life) ? 0 : $wallet->life}}" />
+			<input id="hidPhone" type="hidden" value="{{empty(Auth::Guard('member')->user()->phone) ? 0 : Auth::Guard('member')->user()->phone}}" />
 	  	</div>
 
 	</div>
@@ -334,6 +333,7 @@
 
 		<div class="carousel-cell">
 			<div class="frame-wrapper">
+				
 				<div id="wheel_banner">
 					<img src="{{ asset('/client/images/wheel/banner.png') }}" />
 				</div>
@@ -376,6 +376,11 @@
 					<div class="div-life">还剩<span class="span-life">15</span>次抽奖</div>
 					<div class="div-time"></div>
 				</div>
+				@if (env('THISVIPAPP', false))
+				<div class="banner-rules">
+					<img src="{{ asset('/client/images/wheel/banner-rules.png') }}" />
+				</div>	
+				@endif
 		    </div>
 		</div>
 
@@ -531,10 +536,7 @@
 	    </article>
     </section>
 	<!-- end progress bar -->
-	@if (env('THISVIPAPP', false))
-	<img class="banner-rules" src="{{ asset('/client/images/wheel/banner-rules.png') }}" />	
-	@endif
-
+	
 </div>
 
 @if (env('THISVIPAPP', false))
@@ -566,8 +568,15 @@
 
 @section('footer-javascript')
 
+<!-- new haven't login modal -->
+<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="cls-modal-no-login">您还未登录，正在跳转登录页面...</div>					
+	</div>
+</div>
+
 <!-- haven't login start modal -->
-	<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+	<div class="modal fade col-md-12" id="modal-no-login-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<a href="/nlogin">
 				<div class="nologin-bg">
@@ -738,14 +747,14 @@
 								</div>
 								<div class="modal-invite-content">
 									<h1 class="modal-invite-title">邀请好友送场次</h1>
-									邀请<span class="highlight-peach">1个</span>好友送<span class="highlight-peach">1次</span>抽奖补贴(可抽{{env('coin_max',12)}}元)<br/>
+									邀请<span class="highlight-peach">1个</span>好友送<span class="highlight-peach">1次</span>抽奖补贴<br/>
 									好友邀请<span class="highlight-peach">1个</span>，你再获<span class="highlight-peach">1次抽奖补贴</span>。
 									<a href="/share" class="link-button">
 										<div class="modal-vip-button">
 											邀请好友
 										</div>
 									</a>
-									<a href="/profile" class="link-button">
+									<a href="/redeem" class="link-button">
 										<div class="modal-redeem-button">
 											余额提现
 										</div>
@@ -1017,6 +1026,7 @@
 
 		var url = "{{ env('APP_URL'), 'http://boge56.com' }}";      
     	var port = "{{ env('REDIS_CLI_PORT'), '6001' }}";
+    	var prefix = "{{ env('REDIS_PREFIX'), '' }}";
     	// var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
@@ -1033,9 +1043,9 @@
 				$('.selection').show();
 			}
 
-			if ((_point > 0) && (_point < win_coin_min)) {
-				$('#modal-withdraw-insufficient').modal();
-			}
+			// if ((_point > 0) && (_point < win_coin_min)) {
+			// 	$('#modal-withdraw-insufficient').modal();
+			// }
 
 			var user_id = $('#hidUserId').val();
 

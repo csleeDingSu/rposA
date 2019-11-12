@@ -21,12 +21,12 @@ class EventLedger implements ShouldBroadcast
     public function __construct($id, $data)
     {
       $this->id     = $id;
-		$this->data = $data;
+	  $this->data = $data;
     }
 
     public function broadcastOn()
     {
-		return ['ledger-'. $this->id ];
+		return [ $this->id.'-ledger' ];
     }
 	
 	public function broadcastWith()

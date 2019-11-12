@@ -120,13 +120,13 @@
         html += '<div class="inBox"><img src="' + img + '"></div>';
         html += ' </div>';
       });
-
       swiper.appendSlide(html);
 
     });
 
     $('.slideImg').click(function (e) {
       if($(e.target).find('.swiper-container').length>0){
+        $('.slideImg').find('.swiper-slide').remove();
         $('.slideImg').addClass('dn');
       };
     });

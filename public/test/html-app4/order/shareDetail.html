@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>晒单详情</title>
+  <link rel="stylesheet" type="text/css" href="../css/public.css" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+  <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="../js/swiper.min.js"></script>
+  <script type="text/javascript" src="../js/being.js"></script>
+</head>
+
+<body>
+
+  <section class="card">
+
+    <div class="card-header">
+      <div class="pageHeader rel">
+        <a class="returnBtn"><img src="../images/returnIcon.png"><span>返回</span></a>
+        <h2>晒单评价</h2>
+      </div>
+    </div>
+
+
+
+    <div class="card-body over ">
+      <div class="scrolly">
+
+        <Div class="shareDetail fix">
+          <div class="inTitleBox">
+            <div class="name"><span>188****9856</span><em>2019.8.20 18:12:36</em></div>
+            <div class="address">浙江省杭州市上城区88号</div>
+          </div>
+          <div class="imgBanner">
+            <div class="swiper-container imgSwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="../images/shareBannerDemo.png">
+                </div>
+                <div class="swiper-slide">
+                  <img src="../images/shareBannerDemo.png">
+                </div>
+                <div class="swiper-slide">
+                  <img src="../images/1231.jpg">
+                </div>
+              </div>
+              <div class="swiper-hd"></div>
+            </div>
+
+          </div>
+          <div class="inBanner">
+            <div class="imgBox">
+              <img src="../images/shareDetailImg.png">
+            </div>
+            <div class="txtBox">
+              <h2>Huawei/华为Mate 30麒麟990双超级快</h2>
+              <p><em>7600</em>挖宝币</p>
+            </div>
+            <div class="btnBox">
+              <a>我也要抽奖</a>
+            </div>
+          </div>
+          <div class="inDetail">
+            <p>在直播中看了华为mate30新品旗舰发布会，看的心潮澎湃和心痒痒，马上使用支付宝花呗抢购一台翡冷翠入门官方标配，已收到货并送给老婆国庆节快乐！手感有分量舒适，外观设计时尚新颖！系统速度超快！
+              希望大家支持华为支持国货！</p>
+          </div>
+          <div class="inSet">
+            <a class="delBtn">
+              <img src="../images/delIcon.png"><span>删除晒单</span>
+            </a>
+          </div>
+        </Div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="slideImg dn">
+    <div class="swiper-container swiper-Show">
+      <div class="swiper-wrapper ">
+        <!-- <div class="swiper-slide">
+            <div class="inBox"><img src="images/demo1.png"></div>
+          </div>
+          <div class="swiper-slide">
+            <div class="inBox"><img src="images/demo2.png"></div>
+          </div>
+          <div class="swiper-slide">
+            <div class="inBox"><img src="images/1231.jpg"></div>
+          </div> -->
+
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    $(function () {
+
+      var banner = new Swiper(".imgSwiper", {
+        autoHeight: window.innerHeight,
+        autoplay: false, //可选选项，自动滑动
+        pagination: {
+          el: '.swiper-hd',
+          type: 'custom',
+          renderCustom: function (swiper, current, total) {
+            return current + ' / ' + total;
+          },
+          preventClicksPropagation: false,
+        },
+      });
+
+      var swiper = new Swiper(".swiper-Show", {
+        autoHeight: window.innerHeight,
+        autoplay: false, //可选选项，自动滑动
+      });
+
+      $('.shareDetail .imgBanner').on('click', 'img', function () {
+        $('.slideImg').removeClass('dn');
+        let html = "";
+        let that = $(this);
+        $.each(that.parents('.swiper-wrapper').find('.swiper-slide'), function (index, res) {
+          img = $(res).find('img').attr('src');
+          console.log(img);
+          html += ' <div class="swiper-slide">';
+          html += '<div class="inBox"><img src="' + img + '"></div>';
+          html += ' </div>';
+        });
+        console.log(html);
+        swiper.appendSlide(html);
+      });
+
+      $('.slideImg').click(function (e) {
+        if ($(e.target).find('.swiper-container').length > 0) {
+          $('.slideImg').find('.swiper-slide').remove();
+          $('.slideImg').addClass('dn');
+        };
+      });
+
+
+
+
+
+
+
+    })
+  </script>
+
+
+
+</body>
+
+</html>

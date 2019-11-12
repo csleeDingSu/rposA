@@ -316,7 +316,7 @@ class MemberController extends BaseController
 				$life   = Member::get_introducer_life();
 				$ledger = \App\Ledger::life($record->referred_by,$gameid,'credit',$life->introduce_life,'LILE', ' Introducer bonus life.Introduced user :'.$record->username);
 				
-				if ($wallet['success'])
+				if ($ledger['success'])
 				{
 					$intro_bonus_life = 0.5;
 					$data = ['introducer_life'=> 1];					

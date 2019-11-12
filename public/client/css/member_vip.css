@@ -861,3 +861,7 @@ html, body {
 
 .button-setting span{
 }
+
+.h36 {
+	height: 0.8rem !important;
+}

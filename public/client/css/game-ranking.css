@@ -1,7 +1,7 @@
 .bgColor {
     background: #8c36d9;
     padding: 0 0 0.5rem 0;
-    margin: -0.01rem 0;
+    /*margin: 1.3rem 0;*/
 }
 
 .full-height {
@@ -250,7 +250,7 @@ font-size: 0.36rem;
     background: url(/client/images/ranking/icon-coin.png) no-repeat;
     background-size: 0.35rem 0.35rem;
     margin: 0 0 0 -1rem;
-    background-position: 0.4rem 0.08rem;
+    background-position: 0.35rem 0.07rem;
 }
 
 .tab-content {
@@ -289,6 +289,7 @@ font-size: 0.36rem;
     color: #999;
     font-size: 0.3rem;
     padding: 0.5rem;
+    background-color: #fff;
 }
 
 .no-record img{

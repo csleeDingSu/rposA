@@ -31,7 +31,14 @@
 
             var wabao666_domain = "<?php Print(env('wabao666_domain', 'www.wabao666.com'));?>";
             var sCurrentPathName = window.location.pathname;
-            var sNewPathName = sCurrentPathName.replace("vvregister", "register");
+            var sNewPathName = '';
+            var isApp = "<?php Print(env('THISVIPAPP', 'false'));?>";
+            if (isApp) {
+              var sNewPathName = sCurrentPathName.replace("vvregister", "external/register");
+            } else {
+              sNewPathName = sCurrentPathName.replace("vvregister", "register");  
+            }
+            
             // window.location.href = "https://www.wabao666.com" + sNewPathName;
             // var href_ = "https://www.wabao666.com" + sNewPathName;
 

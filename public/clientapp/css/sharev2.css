@@ -1,0 +1,511 @@
+.scrolly {
+background-color: #f5904a;
+}
+
+.box {
+  height: 100%;
+}
+
+.back-ground {
+  box-sizing: border-box;
+  background-color: #f5904a;
+  height: 100%;
+}
+
+.c-header {
+  position: relative;
+  margin-bottom: 0;
+  bottom: 0;
+  box-shadow: none;
+}
+
+.pageHeader {
+    height: 1rem;
+    background: transparent;
+    width: 100%;
+}
+.pageHeader a.returnBtn {
+    font-size: 0;
+    line-height: 1rem;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 1rem;
+    padding-left: 0.1rem;
+}
+
+.pageHeader a.returnBtn span {
+    color: #fff;
+}
+
+.pageHeader a.returnBtn img {
+    padding: 0.11rem;
+}
+
+.h-title {
+  color: #fff !important;
+}
+
+.rules {
+  float: right;
+    line-height: 1rem;
+    height: 1rem;
+    padding-right: 0.3rem;
+    color: #fff !important;
+    font-size: 0.32rem;
+    margin:-1rem 0;
+}
+
+.shareBox {
+  background: url(/clientapp/images/share/background.png) left top no-repeat;
+    background-size: contain;
+    height: 100%;
+    margin: 0.5rem 0;
+    background-color: #f5904a;
+    
+}
+
+.qrcode {
+  height: 7rem;
+}
+
+.icon-thumb {
+    background-color: transparent;
+    width: 0.5rem;
+}
+
+.instruction1 {
+  text-align: center;
+    color: #fff;
+    font-size: 0.4rem;
+    margin: 0.4rem 0.2rem 0.1rem 0;
+
+}
+
+.instruction2 {
+  text-align: center;
+  color: #fff;
+  font-size: 0.3rem;
+
+}
+
+.instruction3 {
+    background: url(/clientapp/images/share/desc-bg.png) no-repeat;
+    background-size: contain;
+    margin: 1rem;
+    background-color: transparent;
+    text-align: center;
+    padding: 0.4rem;
+    color: #fff;
+    line-height: 0.5rem;
+    font-size: 0.3rem;
+}
+
+.small-img {
+  margin:3.7rem 1.88rem;
+  height: 3.3rem;
+    width: 3.3rem;
+}
+
+/* Modal Box */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-content, .modal-title {
+  background: white;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-full-height {
+  text-align:center;
+  padding-bottom: 10px;
+  margin: 0 auto;
+}
+
+.modal-wechat {
+  margin-top: 0 !important;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.modal-title {
+  background: #4c89e2;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+}
+
+.modal-title h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-weight: 700;
+}
+
+.modal-card {
+  width: 250px;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+.copyvoucher {
+  border: 1px solid #e3e3e3;
+  background: #f0f0f0;
+  color: #4380d9;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  font-size: 30px;
+}
+
+.cutBtn, .cutBtn-success, .cutBtn-fail {
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 30px;
+  font-size: 20px;
+  color: white;
+  padding: 6px;
+  background-image: linear-gradient(#ffaf08, #ff830b);
+}
+
+.cutBtn-success {
+  background: #1ba908;
+}
+
+.cutBtn-fail {
+  background: #838383;
+}
+
+.packet-title {
+  color: #ffcccc;
+  font-size: 50px;
+  font-weight: 700;
+  margin-top: 50px;
+}
+
+.packet-title.lose {
+  color: #393939;
+}
+
+.modal-message-title, .modal-warning-title {
+  color: #f03838;
+  font-size: 22px;
+}
+
+.modal-lose-title {
+  color: #7a7a7a;
+  font-size: 29px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.modal-warning-title {
+  color: #333333;
+}
+
+.modal-lose-content {
+  color: #979797;
+  font-size: 13px;
+  padding-bottom: 0px;
+}
+
+.modal-lose-content {
+  padding-bottom: 30px;
+}
+
+.modal-warning-content {
+  color: #8e8e8e;
+  font-size: 14px;
+  padding-bottom: 30px;
+}
+
+.modal-invite-content {
+  color: #999;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+  background: #f6f6f6;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.btn-close-wabao {
+  color: #fff100;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.img-warning {
+  width: 80px;
+  height: 80px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.img-wabao {
+  width: 80px;
+  height: 95px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.modal-message-button, .modal-warning-button, .modal-manual-button, 
+.modal-confirm-button, .modal-invite-button, .modal-redeem-button {
+  background: #ff6868;
+  color: #ffffff;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 30px;
+  margin-left: 5%;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+.modal-warning-button {
+  background: #f8db9f;
+  color: #a17c3c;
+  font-size: 18px;
+  border-radius: 5px;
+
+}
+
+.modal-confirm-button {
+  background: #ffffff;
+  color: #ff6868;
+  border: 1px solid #ff6868;
+}
+
+.modal-invite-button {
+  border: 1px solid #ff6868;
+  margin-top: 10px;
+}
+
+.modal-redeem-button {
+  background: #fab235;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 20px;
+  padding: 8px;
+}
+
+.link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
+  text-decoration: none;
+}
+
+.instructions, .instructions-dark {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #cdcdcd;
+}
+
+.instructions-dark {
+  color: #bababa;
+}
+
+.highlight {
+  color: #e48f00;
+}
+
+.highlight-grey {
+  color: #333;
+}
+
+.highlight-red {
+  color: #ff414b;
+}
+
+.highlight-green {
+  color: #2ec400;
+}
+
+.highlight-orange {
+  color: #fe8c3e;
+}
+
+.highlight-peach {
+  color: #ff7282;
+  font-weight: 700;
+}
+
+.highlight-link {
+  color: #64aee2;
+  cursor: pointer;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.btn-close {
+  color: #ffd200;
+  font-size: 16px;
+  margin-top: 10px;
+  width: 270px;
+  padding-left: 30px;
+  display: inline-block;
+}
+
+.btn-close a {
+  text-decoration: none;
+  color: #ffd200;
+}
+
+.glyphicon {
+  font-size: 20px;
+  display: block;
+  float: left;
+  padding-left: 10px;
+}
+
+.left {
+  display: block;
+  padding-bottom: 3px;
+  float: left;
+  padding-left: 10px;
+}
+/* End Modal box */
+
+/* rules-modal */
+#rules-modal .modal-title {
+  background: white;
+  color: #5b5b5b;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding:0;
+  font-weight: 500;
+  font-size: 26px;
+  width: 100% !important;
+  height: 5% !important;
+}
+
+#rules-modal .modal-title h1 {
+  font-size: 20px;
+  padding-top: 30px;
+  font-weight: 500;
+}
+
+#rules-modal .modal-content {
+  background-color: white;
+  color: #959595;
+  text-align: center;
+  
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  padding: 10px;
+  border: none;
+}
+
+#rules-modal .instructions {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #999;
+  padding:10px;
+  text-align: left;
+  letter-spacing: 0.5px;
+  line-height: 0.4rem;
+}
+
+#rules-modal .game-title {
+  color: #f39f1c;
+  font-size: 18px;
+}
+
+#rules-modal .game-max-rules {
+  color: #b9b105b9;
+  font-size: 12px;
+}
+
+#rules-modal .modal-body {
+  padding: 0 !important;
+}
+
+#rules-modal .modal-card {
+  width: 100%;
+}
+
+#rules-modal .modal-warning-title {
+  padding-top: 10px;
+  color: white;
+  font-size: 26px;
+}
+
+#rules-modal .modal-warning-info {
+  background: #e32230;
+  color: white;
+  font-size: 11px;
+  border-radius: 12px;
+  width: 120px;
+  padding: 2px;
+  margin: 5px auto 15px auto;
+}
+
+#rules-modal .wallet-point {
+  color: #ff2737;
+}
+
+#game-rules .modal-content-wrapper {
+  width: 250px;
+  height: 56px;
+  float: left;
+  margin-left: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#rules-modal .modal-warning-content {
+  background: url('/client/images/voucher-background.png') no-repeat;
+  width: 541px;
+  height: 121px;
+  transform: scale(0.48); 
+  -webkit-transform: scale(0.48);
+  -webkit-transform-origin:left top;
+}
+
+#rules-modal .voucher-wrapper {
+  margin-left: 0px;
+  padding: 25px;
+}
+
+#rules-modal .modal-warning-button, #rules-modal .modal-warning-button {
+  background: #fcac12;
+  color: white;
+  border-radius: 25px;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 10px;
+}
+
+/* End Game Rules Modal */
+
+

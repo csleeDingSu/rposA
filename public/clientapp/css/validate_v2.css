@@ -1,0 +1,133 @@
+
+body {
+	background: #f9f9f9;
+}
+
+.navbar {
+	background: #f0f0f0;
+	color: #97969e;
+}
+
+.navbar-default .navbar-brand {
+	color: #303030;
+}
+
+.full-height {
+	padding-top: 60px;
+	font-size:14px;
+    font-family: 'Lato',verdana, sans-serif;
+    color: #a9a9a9;
+    text-align:left;
+    background:#ffffff;
+}
+
+.container {
+	width: 100%;
+}
+
+.title {
+	color: #313131;
+	font-size: 22px;
+	padding: 0 0 10px 0;
+}
+
+.sub-title {
+	color: #828282;
+	font-size: 16px;
+	padding: 10px 0;
+}
+
+.instructions {
+	color: #999;
+    font-size: 0.28rem;
+    text-align: left;
+}
+
+.step {
+	color: #808080;
+}
+
+.highlight {
+	color: #4fc725;
+    padding: 0.1rem 0;
+    font-size: 0.28rem;
+}
+
+.img-settings {
+	margin: 10px 0 20px 0;
+	height: 100%; 
+	width: 100%; 
+	object-fit: contain;
+}
+
+.wechat_card {
+	background: #fff;
+    border-radius: 0.3rem;
+    font-size: 0.36rem;
+    color: #666;
+    text-align: center;
+    width: 93%;
+    padding: 0.4rem 0.3rem 0 0.3rem;
+    margin: 0 0.25rem;
+    letter-spacing: 0.01rem;
+    line-height: 0.45rem;
+}
+
+.img-wechat {
+	width: 100%;
+    text-align: center;
+    padding: 0.5rem 0.5rem 0.1rem 0.5rem;
+}
+
+.img-wechat img{
+	height: 2rem;
+	padding:0.1rem;
+}
+
+.img-wechat p {
+	color: #555;
+    font-size: 0.36rem;
+    font-weight: 550;
+    padding: 0.3rem;
+}
+
+.wechat_id {
+	color: #7fc409;
+	background-color: #f9f9f9;
+    padding: 0.2rem 0;
+    margin: 0.2rem 0;
+    border-radius: 0.2rem;
+    font-size: 0.46rem;
+}
+
+.cutBtn, .cutBtn-success, .cutBtn-fail {
+	color: white;
+    padding: 0.2rem;
+    border-radius: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.46rem;
+    background-image: linear-gradient(to right, #9ade8c 0%, #6cd65d 100%);
+    margin-top: 0.3rem;
+}
+
+.cutBtn {
+	cursor: pointer;
+}
+
+.cutBtn-fail {
+    background: #999999;
+}
+
+.link-part {
+	border-top-style: dashed;
+	padding: 0.5rem 0;
+    margin: 0.5rem 0 0 0;
+    border-width: 0.05rem;
+    border-color: #e7e7e7;
+}
+
+.pageHeader{
+	background: transparent !important;
+	height: 0rem !important;
+}

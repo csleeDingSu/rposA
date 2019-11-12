@@ -6,7 +6,7 @@
 
 <!-- ranking start-->
 <div class="top-nav-bg">
-	<div class="btn-game-normal">普通抽奖</div>
+	<div class="btn-game-normal">补贴抽奖</div>
 	<div class="btn-game-vip">高级抽奖</div>
 </div>
 <!-- ranking end-->

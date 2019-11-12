@@ -14,12 +14,41 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/swiper.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('/clientapp/css/style.css') }}" />
   <link rel="stylesheet" href="{{ asset('/clientapp/css/newSearchPage.css') }}" />
+  <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          height: 0.3rem;
+          width: 0.3rem;
+          position: relative;
+          z-index: 9999;
+        }
+
+    </style>
   <script type="text/javascript" src="{{ asset('/clientapp/js/swiper.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/jquery-1.9.1.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/clientapp/js/being.js') }}"></script>
   <script src="{{ asset('/clientapp/js/newSearchPage.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-  </head>
+
+  <script>
+      // alert('yes. i am in.');
+      if(('standalone' in window.navigator)&&window.navigator.standalone){  
+        var noddy,remotes=false;  
+        document.addEventListener('click',function(event){  
+                noddy=event.target;  
+                while(noddy.nodeName!=='A'&&noddy.nodeName!=='HTML') noddy=noddy.parentNode;  
+                if('href' in noddy&&noddy.href.indexOf('http')!==-1&&(noddy.href.indexOf(document.location.host)!==-1||remotes)){  
+                        event.preventDefault();  
+                        document.location.href=noddy.href;  
+                }  
+        },false);  
+    }  
+  </script>
+</head>
 
 <body>
 

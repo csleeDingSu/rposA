@@ -1,0 +1,87 @@
+body {
+        background: #f2f2f2;
+      }
+
+      #redeem-plan-modal .modal-dialog {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      #redeem-plan-modal .modal-content {
+        background: url(/clientapp/images/main/modal-bg-redeem-plan.png) no-repeat;
+          background-size: cover;
+          background-color: transparent;
+          border: 1px solid transparent;
+          box-shadow: none;
+          outline: none;
+          width: 6rem;
+          height: auto;
+          padding: 1rem 0.1rem 0 0.1rem;
+          position: relative;
+          margin: 0.1rem 0;
+          
+
+      }
+
+      #redeem-plan-modal .modal-title{
+        color: #000;
+          font-size: 0.4rem;
+          line-height: 0.6rem;
+          text-align: center;
+          font-weight: 545;
+          position: relative;
+          padding: 0.7rem 0 0 0;
+      }
+
+      #redeem-plan-modal .modal-description{
+        font-size: 0.25rem;
+          line-height: 0.45rem;
+          color: #848484;
+          padding: 0.3rem 0;
+      }
+
+      #redeem-plan-modal .modal-instructions{
+        font-size: 0.25rem;
+        line-height: 0.45rem;
+        color: #848484;
+      }
+
+      #redeem-plan-modal .btn-close-modal {
+          position: relative;
+          padding: 1rem;
+      }
+
+      #redeem-plan-modal .btn-close-modal img{
+        margin: 0;
+          position: absolute;
+          top: 30%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          height: 0.6rem;
+        }
+
+      .highlight-red {
+        color: red;
+      }
+
+      .freeView .inList li .txtBox h2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }
+
+      .freeHeader .returnBtn{
+        font-size: 0.3rem !important;
+      }
+
+      .returnBtn img{
+        width: 0.4rem;
+    vertical-align: middle;
+    margin-top: -0.08rem;
+    margin-left: -0.15rem;
+      }

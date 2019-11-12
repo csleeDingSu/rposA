@@ -202,7 +202,7 @@ class RedeemController extends Controller
 		if ($validator->fails()) {
 			return response()->json(['success' => false, 'message' => $validator->errors()->all()]);
 		}
-		
+
 		$ledger    = Ledger::ledger($memberid, $gameid);
 		
 		$product   = Product::get_available_pin($productid,$ledger->point);
@@ -212,6 +212,19 @@ class RedeemController extends Controller
 		
 		if ($product)
 		{
+			$userbuylimit = \DB::table('softpins')->where('member_id' , $request->memberid)->where('pin_status' , 1)->count();
+
+			$softpinlimit = $product->buy_limit ;
+
+			if ($softpinlimit>0)
+			{
+				if ($softpinlimit <= $userbuylimit)
+				{
+					return response()->json(['success' => false, 'message' => 'buy limit exceeded']);
+				}
+			}
+
+
 			$now = Carbon::now();
 			
 			//$pin_status = 4;

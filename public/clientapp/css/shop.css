@@ -5,8 +5,15 @@ body {
 .shop-banner {
     background: url(/clientapp/images/shop/banner.png) no-repeat;
     background-size: contain;
-    padding: 1rem;
     margin: 0.1rem 0.4rem;
+    height: 1.7rem;
+}
+
+.quchouj2 {
+    background: url(/clientapp/images/shop/quchouj2.png) no-repeat;
+    background-size: contain;
+    margin: 0 1.5rem;
+    height: 0.94rem;  
 }
 
 .header-line{
@@ -78,7 +85,7 @@ body {
 }
 
 .redeem-prize-wrapper {
-	padding: 0.4rem;
+	padding: 0.2rem 0.4rem;
 }
 
 .redeem-prize .col-xs-6 {
@@ -213,6 +220,7 @@ body {
 
 #modal-insufficient-point .modal-dialog{
     margin-top: 6rem;
+    text-align: center;
 }
 
 #modal-insufficient-point .insufficient-point{
@@ -221,6 +229,7 @@ body {
 	padding: 0.2rem;
 	background: rgba(0, 0, 0, 0.6);
 	color: #fff;
+    display: inline;
 
 }
 

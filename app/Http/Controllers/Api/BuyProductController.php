@@ -39,12 +39,18 @@ class BuyProductController extends Controller
     {    	
 		$member_id = $request->memberid;
 		$limit = $request->limit;
+		$skip = $request->skip;
 		
-		$result =  BuyProduct::list_available_redeem_package(0, $limit);
+		$result =  BuyProduct::list_available_redeem_package(0, $limit, $skip);
+
+		if ((count($result) <= 0) && ($skip > 0)){
+			$skip = 0;
+			$result =  BuyProduct::list_available_redeem_package(0, $limit, $skip);
+		}
 		
 		$type = ['1'=>'virtual card','2'=>'Product'];
 		
-		return response()->json(['success' => true,'type_reference'=>$type ,  'records' => $result]);
+		return response()->json(['success' => true,'type_reference'=>$type ,  'records' => $result, 'skip' => $skip]);
 	}
 
 	public function buyproduct_history(Request $request)

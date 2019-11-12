@@ -5,6 +5,10 @@ var this_vip_app = false;
 var txt_coin = '元';
 var wallet_point = 0;
 var gameid = 102;
+var previous_point = '';
+var pid12_limit = 2;
+var pid13_limit = 0;
+var pid12_myhistory = 0;
 
 $(document).ready(function () {
 
@@ -82,24 +86,6 @@ function getProductList(token) {
         error: function (error) { console.log(error) },
         success: function(data) {
             //console.log(data);
-            var current_point = getNumeric(wallet_point); //getNumeric(data.current_point);
-            var previous_point = Cookies.get('previous_point');
-            if(previous_point !== undefined){
-                previous_point = (getNumeric(previous_point));
-
-                $('.wabao-coin')
-                  .prop('number', previous_point)
-                  .animateNumber(
-                    {
-                      number: (current_point)
-                    },
-                    1000
-                  );
-                Cookies.remove('previous_point');
-            } else {
-                $('.wabao-coin').html(current_point);
-            }            
-
             var records = data.records.data;
             var packages = data.packages;
             var html = '';
@@ -117,8 +103,16 @@ function getProductList(token) {
 
             } else {
                 var current_life = getNumeric($(".nTxt").html());
+                var current_point = getNumeric(wallet_point);
 
                 $.each(records, function(i, item) {
+                    if (item.id == 12) {
+                        pid12_limit = (item.buy_limit == undefined) ? 0 : pid12_limit;    
+                        if ((pid12_limit > 0) && (pid12_myhistory >= pid12_limit)) {
+                            return;
+                        }
+                    }
+
                     var available_quantity = item.available_quantity;
                     var used_quantity = item.used_quantity;
                     var reserved_quantity = item.reserved_quantity;
@@ -221,6 +215,14 @@ function getProductList(token) {
                 var wechat_status = $('#hidWechatId').val();
 
                 $.each(packages, function(i, item) {
+                    
+                    if (item.id == 12) {
+                        pid12_limit = (item.buy_limit == undefined) ? 0 : pid12_limit;    
+                        if ((pid12_limit > 0) && (pid12_myhistory >= pid12_limit)) {
+                            return;
+                        }
+                    }
+
                     $('.openeditmodel_p' + i).click(function() {
                         if(wechat_status > 0 && this_vip_app != true){
                             $('#wechat-verification-modal').modal('show');
@@ -321,6 +323,8 @@ function getPosts(page, token){
 
             page++;
             $('#page').val(page);
+
+            getProductList(token);
         }
      });
 }
@@ -542,6 +546,9 @@ function populateHistoryData(records, token) {
                         '   <div class="product-bg"><div class="hbao"></div>' +
                         '       <div class="product-title">' + item.product_name + '<a href="/faq/4"><div class="gifhome"></div><div class="product-how-to-redeem">点击我<span class="highlight">看充值教程</span></div></a></div>';
                 if (item.pin_status == 2) {
+                    
+                    pid12_myhistory++;
+
                 html += '       <div class="product-content">' +
                         '           <div class="r"><div class="c1">卡号&nbsp;:</div><div id="number' + item.type + item.id + '" class="c2">' + item.code + '</div> <div id="copynumber' + item.type + item.id + '" class="copynumber c3">点击复制</div></div>' +
                         '           <div class="r"><div class="c1">密码&nbsp;:</div><div id="code' + item.type + item.id + '" class="c2">' + item.passcode + '</div> <div id="copycode' + item.type + item.id + '" class="copycode c3">点击复制</div></div>' +
@@ -1149,49 +1156,27 @@ function getConvertCointInfo(softpinCount, token, current_point) {
                                                 '</div>' +
                                             '</div>' +
                                             '<div class="row content">' +
-                                                '<a href="#" onclick="selectContentAmountValue(12, 120);">' +
-                                                '<div class="content-amount" id="120">' +
+                                                '<a href="#" onclick="selectContentAmountValue(68, 680);">' +
+                                                '<div class="content-amount" id="680">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
-                                                    '120' +
-                                                    '<span class="content-price">售价 12 元</span>' +
+                                                    '680' +
+                                                    '<span class="content-price">售价 68 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(24, 240);">' +
-                                                '<div class="content-amount" id="240">' +
+                                                '<a href="#" onclick="selectContentAmountValue(100, 1000);">' +
+                                                '<div class="content-amount" id="1000">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
-                                                    '240' +
-                                                    '<span class="content-price">售价 24 元</span>' +
+                                                    '1000' +
+                                                    '<span class="content-price">售价 100 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(36, 360);">' +
-                                                '<div class="content-amount" id="360">' +
+                                                '<a href="#" onclick="selectContentAmountValue(200, 2000);">' +
+                                                '<div class="content-amount" id="2000">' +
                                                     '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
-                                                    '360' +
-                                                    '<span class="content-price">售价 36 元</span>' +
+                                                    '2000' +
+                                                    '<span class="content-price">售价 200 元</span>' +
                                                 '</div>' +
                                                 '</a>' +
-                                            '</div>' +
-                                            '<div class="row content">' +
-                                                '<a href="#" onclick="selectContentAmountValue(48, 480);">' +
-                                                '<div class="content-amount" id="480">' +
-                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
-                                                    '480' +
-                                                    '<span class="content-price">售价 48 元</span>' +
-                                                '</div>' +
-                                                '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(72, 720);">' +
-                                                '<div class="content-amount" id="720">' +
-                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
-                                                    '720' +
-                                                    '<span class="content-price">售价 72 元</span>' +
-                                                '</div>' +
-                                                '</a>' +
-                                                '<a href="#" onclick="selectContentAmountValue(144, 1440);">' +
-                                                '<div class="content-amount" id="1440">' +
-                                                    '<img class="icon-coin-small" src="/client/images/normal-point-to-vip-point/icon-coin-small.png" alt="兑换挖宝币">' +
-                                                    '1440' +
-                                                    '<span class="content-price">售价 144 元</span>' +
-                                                '</div>' +
                                             '</div>';
 
                                     htmlmodel += '<div>' +
@@ -1260,7 +1245,7 @@ function getConvertCointInfo(softpinCount, token, current_point) {
 function selectContentAmountValue(from_value, to_value) {
     if (wallet_point > from_value) {
         $('.content-amount').removeClass('active');
-        $('#' + from_value).addClass('active');
+        $('#' + to_value).addClass('active');
         $('#hidSelectedContentAmountValue').val(from_value);
         $('#hidSelectedContentConvertedAmountValue').val(to_value);
     } else {
@@ -1285,8 +1270,26 @@ function getWallet(token, id) {
         success: function(data) {
             // console.log(data);
             wallet_point = data.record.gameledger[gameid].point;
-            $('.wabao-coin').html(wallet_point);
-            getProductList(token);
+
+            var current_point = getNumeric(wallet_point); //getNumeric(data.current_point);
+            var previous_point = Cookies.get('previous_point');
+            if(previous_point !== undefined){
+                previous_point = (getNumeric(previous_point));
+
+                $('.wabao-coin')
+                  .prop('number', previous_point)
+                  .animateNumber(
+                    {
+                      number: (current_point)
+                    },
+                    1000
+                  );
+                Cookies.remove('previous_point');
+            } else {
+                $('.wabao-coin').html(current_point);
+            }
+
+            // $('.wabao-coin').html(parseInt(wallet_point));
             getPosts(page, token);
             scrollBottom(token);
         }

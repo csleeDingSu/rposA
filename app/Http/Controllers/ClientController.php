@@ -256,7 +256,7 @@ class ClientController extends BaseController
 			
 			$member_mainledger = null;
 			$firstwin 		   = null;
-
+			$wallet 		   = null;
 			//weixin_verify
 			$this->wx = new WX();
 			if ($this->wx->isWeiXin()) {
@@ -266,7 +266,7 @@ class ClientController extends BaseController
 	            $data['betting_count'] = 0;
 	            $total_intro = 0;
 	            $earnedpoint = 0;
-				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro', 'earnedpoint'));
+				return view('client/game-node',compact('betting_count','vouchers','cid','member_mainledger','firstwin','total_intro', 'earnedpoint', 'wallet'));
 	        }
 			
 		} else {
@@ -292,15 +292,16 @@ class ClientController extends BaseController
 			
 			$total_intro = 	(!empty($intro_count->count) ? $intro_count->count : 0) + (!empty($sc_child['count']) ? $sc_child['count'] : 0) ;
 
-			$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+			$row = \App\Rank::select('rank','member_id','game_id','total_bet','totalreward','balance','username','phone','wechat_name','wechat_id')		
 					->where('game_id',102)
 					->where('member_id',$member_id)
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
 					->first();
 
-			$earnedpoint = empty($row) ? 0 : $row->credit;
+			$earnedpoint = empty($row->totalreward) ? 0 : $row->totalreward;
+			$wallet = \App\Ledger::ledger($member_id,'102');
 
-			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'earnedpoint'));
+			return view('client/game-node', compact('betting_count','vouchers','cid','member_mainledger','firstwin', 'total_intro', 'earnedpoint', 'wallet'));
 
 		}
 
@@ -315,15 +316,18 @@ class ClientController extends BaseController
 			$wbp = $this->set_payment_browser();
 			$usedpoint = 0;
 			$earnpoint = 0;
+			$wallet = null;
 
 			if (Auth::Guard('member')->check()) {
 				$gameid = 103;
 				$member = Auth::guard('member')->user()->id;
 				$earnpoint = \DB::table('a_view_earned_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
 				$usedpoint = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',$gameid)->sum('point');
+				$wallet = \App\Ledger::ledger($member,'103');
+				
 			}
 
-			return view( 'client/vip-node', compact( 'wbp', 'usedpoint', 'earnpoint') );
+			return view( 'client/vip-node', compact( 'wbp', 'usedpoint', 'earnpoint', 'wallet') );
 		}
 		
 	}
@@ -438,7 +442,7 @@ class ClientController extends BaseController
 		Session::push('sharepic', $data->id);
 		Session::save();
 		
-		return view('client/share', ['data'=>$data]);
+		return view('client/sharev2', ['data'=>$data]);
 	}
 	
 	public function sharetest(Request $request)
@@ -638,7 +642,8 @@ class ClientController extends BaseController
 
 		$title_customize = '挖宝网app下载-玩无限抽奖，换超值奖品';
 
-		return view('client/download_app',compact('devices', 'isMacDevices', 'title_customize'));
+		// return view('client/download_app',compact('devices', 'isMacDevices', 'title_customize'));
+		return view('client/download_app_new',compact('devices', 'isMacDevices', 'title_customize'));
 	}
 	
 }

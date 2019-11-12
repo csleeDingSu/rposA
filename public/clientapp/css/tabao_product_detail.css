@@ -75,14 +75,14 @@
 
 	.infinite-scroll .voucher-price-icon-minus {
 		position: absolute;
-		margin-left: 3.45rem;
+		margin-left: 3.55rem;
 		height: 20px;
 	    margin-top: 0.2rem;
 	}
 
 	.infinite-scroll .new-price-icon-equal {
 		position: absolute;
-		margin-left: 5.25rem;
+		margin-left: 5.6rem;
 	    height: 20px;
 	    margin-top: 0.2rem;
 	}
@@ -97,7 +97,7 @@
 	    margin-left: 2.1rem;
 	    text-align: center;
 	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
-	    width: 1.15rem;
+	    width: 1.3rem;
 	}
 
 	.infinite-scroll .voucher-price .cur{
@@ -121,10 +121,10 @@
 	    position: absolute;
 	    border: 1px dashed red;
 	    border-radius: 5px;
-	    margin-left: 3.82rem;
+	    margin-left: 3.92rem;
 	    text-align: center;
 	    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
-	    width: 1.15rem;
+	    width: 1.5rem;
 	}
 
 	.infinite-scroll .draw-price .cur{
@@ -146,7 +146,7 @@
 	    font-size: 8vw;
 	    /*width: 1.7rem;*/
 	    position: absolute;
-	    margin-left: 5.1rem;
+	    margin-left: 5.6rem;
 	    text-align: right;
 	}
 
@@ -168,7 +168,7 @@
 	 /*position: relative !important;*/
 	 /*animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
 	 /*-webkit-animation: MoveUpDown_angpao_p 1s linear infinite 0s !important;*/
-	 padding-left: 3.6rem !important;
+	 padding-left: 3.87rem !important;
 	}
 
 	.caption_redeem_angpao img {
@@ -185,27 +185,98 @@
 	  width: 100%;  
 	}
 
-	#button-wrapper {
-		margin-top:-1rem !important;
-		width: 100% !important;
+	.footer2 {
+		position: fixed;
+	    bottom: 0;
+	    width: 100%;
+	    display: flex;
+	    justify-content: space-between;
+	    text-align: justify;
+	    color: #fff;
+	    border-top: 1px solid #e6e5e5;
+	    background-color: #f1f1f1;
+	}
+
+	.footer-wrapper {
+		width: 100%;
+    	display: flex;
+	    text-align: center;
+	    vertical-align: middle;
 	}
 
 	#btn-copy {
-		padding-left: 0 !important;
-    	text-align: center;
-    	width: 3.76rem;
-    	margin-top: 0.97rem;
-    	font-size: 5vw;
+		text-align: center;
+	    font-size: 5vw;
+	    position: relative;
+	    background-color: #ffa09f;
+	    width: 2.1rem;
+	    height: 1.02rem;
+	    cursor: pointer;
+	    z-index: 10000;
+	    padding-top: 0;
+	    padding-left: 0;
+	    color: #fff;
+	    padding: 0.22rem;
+	    line-height: 0.3rem;
+	}
+
+	#btn-copy .line-1 {
+		/*margin-top: -0.1rem;*/
+		font-size: 0.33rem;	
+	}
+
+	#btn-copy .line-2 {
+		font-size: 0.23rem;
 	}
 
 	#btn-voucher {
-	    padding-left: 0.5rem !important;
-	    text-align: center;
-	    width: 3.76rem;
-	    margin-top: 0.97rem;
-	    margin-left: 3.76rem;
-	    font-size: 5vw;
+		position: relative;
+	    top: 0;
+	    left: 0;
+	    width: 3.3rem;
+	    cursor: pointer;
+	    padding-top: 0;
+	    padding-left: 0;
 	    color: #fff;
+	    text-align: center;
+	    font-size: 5vw;
+	    background-image: url(/clientapp/images/product/choujiange.png);
+	    background-color: transparent;
+	    background-repeat: no-repeat;
+	    background-size: contain;
+	    padding: 0.2rem 0rem 0.2rem 0.4rem;
+	    line-height: 0.34rem;
+	    height: 1.02rem;
+
+	}
+
+	#btn-voucher .line-1 {
+		/*margin-top: -0.1rem;*/
+		font-size: 0.33rem;	
+	}
+
+	#btn-voucher .line-2 {
+		font-size: 0.23rem;
+	}
+
+	#btn-normal-price {
+	    text-align: center;
+	    position: relative;
+	    color: #666;
+	    width: 2.57rem;
+	    height: 1.01rem;
+	    background-color: #f1f1f1;
+	    padding: 0.22rem;
+	    line-height: 0.3rem;
+	}
+
+	#btn-normal-price .line-1 {
+		/*margin-top: -0.1rem;*/
+		font-size: 0.33rem;	
+	}
+
+	#btn-normal-price .line-2 {
+		font-size: 0.23rem;
 	}
 
 	.product-detail-btn-bg {
@@ -350,43 +421,6 @@
 		-webkit-transform-origin:left top;
 	}
 
-	#draw-rules .modal-title {	
-	    font-size: 24px;
-	}
-
-	#draw-rules .instructions {
-		
-		/*margin-top: 5px;*/
-		/*margin-bottom: 10px;*/
-		font-size: 14px;
-		font-weight: 400;
-		color: #999;
-		padding:10px 5px;
-		text-align: left;
-		letter-spacing: 0.5px;
-		line-height: 0.4rem;
-
-	}
-
-	#draw-rules .modal-go-button {
-		background-color: #ff504a; 
-		background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6767), to(#ff504a));	
-		color: white;
-		border-radius: 100px;
-		margin-left: 15%;
-		margin-right: 15%;
-		padding:10px;
-		font-size: 20px
-	}
-
-	#draw-rules .modal-body {
-		padding: 15px;
-	}
-
-	#draw-rules .txt-life {
-		line-height: 0.5rem;
-	}
-
 	.line-price {
 		padding: 0.2rem 0 0 0;
 		position: relative;
@@ -396,7 +430,7 @@
 
 	.line-reward{
 		display: inline-block;
-		padding: 0 0.2rem 0.1rem 0.2rem;
+		padding: 0 0.2rem 0.2rem 0.2rem;
 		width: 100%;
 	}
 
@@ -407,19 +441,22 @@
 	    line-height: 0.3rem;
 	}
 
-	.line-reward .reward{
+	.line-reward .reward-hong {
 		display: inline-block;
-	    width: auto;
-	    color: red;
-	    font-size: 3.5vw;
-	    margin: 0 auto;
-	    background-image: url(/clientapp/images/product/reward-bg.png);
-	    background-color: transparent;
-	    background-repeat: no-repeat;
-	    background-size: contain;
-	    padding: 0.02rem 0.1rem;
-	    text-align: center;
-	    line-height: 0.3rem;
+    	margin-left: 0.05rem;
+    	position: relative;
+	}
+
+	.line-reward .reward-hong img {
+		display: inline-block;
+	    position: absolute;
+	    margin-left: -0.08rem;
+	    margin-top: 0.12rem;
+	}
+
+	.line-reward .reward{
+	    color: #ff6d88;
+        padding: 0 0.05rem;
 	}
 
 	.line-reward .btn-reward {
@@ -428,7 +465,7 @@
 	    background-color: #f4f1f1;
 	    font-size: 3.5vw;
 	    color: #bebebe;
-	    padding: 0.02rem 0.2rem;
+	    padding: 0.06rem 0.2rem;
 	    width: auto;
 	    text-align: center;
 	    line-height: 0.3rem;
@@ -437,14 +474,14 @@
 	.line-reward h3{
 		display: inline-block;
 	    float: right;
-	    padding: 0 0.2rem;
+	    padding: 0.05rem;
 	    line-height: 0.3rem;
 	}
 
 	.reward-bg {
 		background-color: #eeeeee;
 	    height: auto;
-	    padding: 0.2rem 0 0 0;
+	    padding: 0.2rem 0 1.5rem 0;
 	}
 
 	.reward-desc {
@@ -452,26 +489,33 @@
     	padding: 0.2rem 0.2rem 1.2rem 0.2rem;
 	}
 
+	.reward-desc .title-head-spot {
+		background-color: #ff6d88;
+	    position: relative;
+	    float: left;
+	    padding: 0.2rem 0.05rem;
+	    border-radius: 20px;
+	    margin: 0 0.1rem 0 0;
+	}
+
 	.reward-desc .title{
-		padding: 0;
-	    font-size: 4vw;
+		padding: 0 0 0.2rem 0;
+	    font-size: 4.5vw;
 	    font-weight: 500;
 	    color: #666666;
 	}
 
-	.reward-desc ul {
-		padding: 0 0.3rem;
-	}
-
 	.reward-desc ul>li{
-	    list-style-type: initial;
-	    font-size: 3vw;
+		font-size: 3.8vw;
 	    color: #bebebe;
-	    line-height: 0.4rem;
+	    line-height: 0.42rem;
+	    /*text-align: justify;*/
 	}
 
 	.dbox1 {
 		padding-top: 0.2rem;
+	    padding-bottom: 0.1rem;
+
 	}
 
 #reward-rules .modal-title {	
@@ -540,4 +584,131 @@
 		padding: 15px;
 	}
 
-	
+
+.highlight-red {
+	color: red;
+}
+
+
+#draw-rules .modal-dialog {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#draw-rules .modal-content {
+  background: url(/clientapp/images/product/modal-bg.png) no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    outline: none;
+    width: 6.35rem;
+    height: auto;
+    padding: 1rem 0.25rem 0 0.25rem;
+    position: relative;
+    margin: 0.1rem 0;
+    
+
+}
+
+#draw-rules .modal-title{
+  color: #000;
+    font-size: 0.34rem;
+    line-height: 0.6rem;
+    text-align: center;
+    font-weight: 545;
+    position: relative;
+    padding: 0.65rem 0 0 0;
+    background-color: transparent;
+    width: 100%;
+}
+
+#draw-rules .modal-description{
+  font-size: 0.22rem;
+    line-height: 0.35rem;
+    color: #666;
+    padding: 0.1rem 0;
+}
+
+#draw-rules .modal-instructions{
+  font-size: 0.26rem;
+  /*line-height: 0.45rem;*/
+  color: #333;
+  padding: 0.15rem 0;
+      font-weight: 550;
+
+}
+
+#draw-rules .modal-instructions .chance {
+	font-size: 0.26rem;
+	color: #fea416;
+}
+
+#draw-rules .modal-instructions .small {
+	font-size: 0.22rem;
+	color: #999;
+}
+
+#draw-rules .modal-instructions a{
+	position: absolute;
+    margin: -0.64rem 0 0 4.3rem;
+}
+
+#draw-rules .modal-instructions img{
+	width: 1.1rem;
+}
+
+#draw-rules .btn-close-modal {
+    position: relative;
+    padding: 1rem;
+}
+
+#draw-rules .btn-close-modal img{
+  margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 0.6rem;
+  }
+
+#draw-rules .modal-summary {
+    font-size: 0.26rem;
+    color: #666;
+    text-align: center;
+    margin-top:0.1rem;
+}
+
+#draw-rules .modal-summary .d {
+	font-size: 0.3rem;
+	color: #fea416;
+}
+
+#draw-rules .highlight1 {
+	color: #f92a30;
+	font-size: 0.4rem;
+	font-weight: 550;
+}
+
+#draw-rules .highlight2 {
+	color: #f92a30;
+	font-size: 0.4rem;
+}
+
+#draw-rules .btn-go {
+	background: url(/clientapp/images/product/bg-btn-go.png) no-repeat;
+    background-size: contain;
+    font-size: 0.36rem;
+    color: #fff;
+    padding: 0.15rem;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 0.23rem;
+    margin-top: 0.1rem;
+    width: 90%;
+    height: 1rem;
+}
+

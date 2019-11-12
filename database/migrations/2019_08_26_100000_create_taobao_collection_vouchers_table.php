@@ -66,6 +66,9 @@ class CreateTaobaoCollectionVouchersTable extends Migration
             $table->string('serviceScore',11)->nullable();
             $table->string('servicePercent',11)->nullable();
             $table->longtext('subcid')->nullable();
+            $table->string('discountFull',255)->nullable();
+            $table->string('discountCut',255)->nullable();
+            $table->string('discountType',255)->nullable();
             $table->longtext('imgs')->nullable();
             $table->string('reimgs',255)->nullable();
             $table->string('tbcid',11)->nullable();

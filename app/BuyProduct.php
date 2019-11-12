@@ -41,12 +41,16 @@ class BuyProduct extends Model
 	}
 	
 	
-	public static function list_available_redeem_package($point, $limit = null)
+	public static function list_available_redeem_package($point, $limit = null, $skip = null)
 	{		
 		if (empty($limit)) {
-			$result = DB::table('view_buy_product')->where('status', '=', 1);	
+			$result = DB::table('view_buy_product')->where('status', '=', 1)->orderBy('seq');	
 		} else {
-			$result = DB::table('view_buy_product')->where('status', '=', 1)->take($limit);
+			if (empty($skip)) {
+				$result = DB::table('view_buy_product')->where('status', '=', 1)->take($limit)->orderBy('seq');	
+			} else {
+				$result = DB::table('view_buy_product')->where('status', '=', 1)->skip($skip)->take($limit)->orderBy('seq');	
+			}
 		}
 		
 		

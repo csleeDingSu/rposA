@@ -124,7 +124,7 @@
           </dl>
           <button class="login" id="doregi">下一步</button>
           <h2>已有账号，<a href="/app-login">
-              <font color="#7c48e4">登录</font>
+              <font color="#7c48e4">马上登录</font>
             </a></h2>
         </div>
 
@@ -140,7 +140,7 @@
       <img src="{{ asset('clientapp/images/jiangbei.png') }}">
       <h2>恭喜你&nbsp;注册成功</h2>
       <p>您有<font color="#f62f5b"><b>12元</b></font>奖励红包等待领取</p>
-      <a class="downBtn gdt" href="/download-app">下载APP 登录领取</a>
+      <a class="downBtn gdt" href="{{env('DOWNLOAD_APP_URL','https://cixiapp.com/app.php/491')}}">下载APP 登录领取</a>
     </div>
   </div>
 
@@ -166,7 +166,7 @@
 
 
            
-            $( '#doregi' ).click( function (e) {
+        $( '#doregi' ).click( function (e) {
                 $('#confirmpassword').val($('#password').val());
             e.preventDefault();     
             jQuery.ajax({

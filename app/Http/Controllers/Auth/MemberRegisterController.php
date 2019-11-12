@@ -116,14 +116,16 @@ class MemberRegisterController extends Controller
 		}
 		
 		$agent = new Agent();
-		if ($agent->isAndroidOS()) {
-    		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
-    	} else {
-    		$data['RunInApp'] = true;
-    	}
+		// if ($agent->isAndroidOS()) {
+  //   		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+  //   	} else {
+  //   		$data['RunInApp'] = true;
+  //   	}
+    	$data['RunInApp'] = true;
     	
 		// return view('auth.register_new',$data); 
-		return view('auth.register_vip_new',$data);        
+		// return view('auth.register_vip_new',$data);  
+		return view('auth.login_vip_new',$data);
 	}
 
 	public function showRegisterFormApp($ref = FALSE)
@@ -146,14 +148,16 @@ class MemberRegisterController extends Controller
 		}
 		
 		$agent = new Agent();
-		if ($agent->isAndroidOS()) {
-    		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
-    	} else {
-    		$data['RunInApp'] = true;
-    	}
+		// if ($agent->isAndroidOS()) {
+  //   		$data['RunInApp'] = empty($_SERVER['HTTP_X_REQUESTED_WITH']) ? false : true;	
+  //   	} else {
+  //   		$data['RunInApp'] = true;
+  //   	}
+		$data['RunInApp'] = true;
 
 		// return view('auth.register_new', $data);
-		return view('auth.register_vip_new',$data); 
+		// return view('auth.register_vip_new',$data); 
+		return view('auth.login_vip_new',$data); 
 	}
     
     public function showAuthForm($ref = FALSE, Request $request)

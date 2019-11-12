@@ -167,6 +167,10 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	} );
 	Route::any( '/blog/createform', 'BlogController@createform' )->name( 'client.blog.createform' );
 	Route::any( '/blog/create', 'BlogController@create' )->name( 'client.blog.create' );
+	Route::any( '/blog/list-all', 'BlogController@listAll' )->name( 'client.blog.list.all' );
+	Route::any( '/blog/list-my', 'BlogController@listMy' )->name( 'client.blog.list.my' );
+	Route::any( '/blog/detail', 'BlogController@detail' )->name( 'client.blog.detail' );
+	Route::any( '/blog/del', 'BlogController@delete' )->name( 'client.blog.delete' );
 
 	Route::any( '/receipt', 'ReceiptController@index' )->name( 'client.receipt' );
 	Route::any( '/receipt/guide', 'ReceiptController@showGuide' )->name( 'client.receipt.showGuide' );
@@ -180,6 +184,14 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/guide/redeem', function () {
 		return view( 'client/quan');
 	} );
+	Route::any( '/main/zero-price-product', 'MainController@tabaoZeroPriceProduct' )->name( 'client.tabao.zeroPriceProduct' );
+	Route::any( '/newbie', 'MainController@newbieProduct' )->name( 'client.tabao.newbieProduct' );
+	Route::get( '/free', function () {
+		return view( 'client/free');
+	} );
+	Route::get( '/guide/alipay', function () {
+		return view( 'client/guide_alipay');
+	} );	
 		
 } );
 
@@ -199,7 +211,11 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	} );
 
 	Route::get( '/summary', function () {
-		return view( 'client/summary' );
+		if (env('THISVIPAPP', false) == true) {
+			return view( 'client/summary_v2' );
+		}else{
+			return view( 'client/summary' );
+		}
 	} );	
 	
 	Route::get( '/results', function () {
@@ -236,8 +252,16 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 		return view( 'client/redeem_v2_vip', compact('slug'));		
 	} );
 
+	Route::get( '/redeem-vip-new', function () {
+		return view( 'client/redeem_v2_vip_new');		
+	} );
+
 	Route::get( '/validate', function () {
-		return view( 'client/validate' );
+		if (env('THISVIPAPP', false) == true) {
+			return view( 'client/validate_v2' );
+		} else {
+			return view( 'client/validate' );
+		}
 	} );
 
 	Route::get( '/membership', function () {
@@ -278,7 +302,28 @@ Route::group( [ 'middleware' => [ 'auth:member', 'sso' ] ], function () {
 	Route::get( '/edit-setting', function () {
 		return view( 'client/edit_setting');
 	} );
-	
+
+	Route::any( '/coin', 'MainController@coin' )->name( 'client.coin' );
+	Route::any( '/coin/list', 'MainController@coinList' )->name( 'client.coin.list' );
+	Route::any( '/coin/list/detail/{id?}', 'MainController@coinDetail' )->name( 'client.coin.detail' );
+	Route::any( '/coin/list/in-complete', 'MainController@coinListInComplete' )->name( 'client.coin.list.incomplete' );
+	Route::any( '/coin/ready', 'MainController@coinReady' )->name( 'client.coin.ready' );
+	Route::any( '/coin/payIng', 'MainController@coinPayIng' )->name( 'client.coin.payIng' );
+	Route::any( '/coin/payOver', 'MainController@coinPayOver' )->name( 'client.coin.payOver' );
+	Route::any( '/coin/fail', 'MainController@coinFail' )->name( 'client.coin.fail' );
+	Route::get( '/coin/help/addQrcode', function () {
+		return view( 'client/addQrcode');
+	} );
+	Route::get( '/coin/help/copyTxt', function () {
+		return view( 'client/copyTxt');
+	} );
+	Route::any( '/recharge', 'MainController@recharge' )->name( 'client.recharge' );
+	Route::any( '/recharge/type', 'MainController@rechargeType' )->name( 'client.recharge.type' );
+	Route::any( '/recharge/list', 'MainController@rechargeList' )->name( 'client.rechargeList' );
+	Route::any( '/recharge/list/detail/{id?}', 'MainController@rechargeDetail' )->name( 'client.recharge.detail' );
+	Route::any( '/recharge/list/in-complete', 'MainController@rechargeListInComplete' )->name( 'client.rechargeListInComplete' );
+	Route::any( '/recharge/rechargeAlipay', 'MainController@rechargeAlipay' )->name( 'client.rechargeAlipay' );
+	Route::any( '/recharge/rechargeCard', 'MainController@rechargeCard' )->name( 'client.rechargeCard' );	
 } );
 
 //Member routes end
@@ -713,6 +758,16 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 
 	Route::get( 'tabao/list', 'AdminController@tabao_list' )->name( 'tabao_list' );
 	Route::any( 'tabao/change-order', 'AdminController@tabao_changeorder' )->name( 'tabao_changeorder' );
+
+	
+
+	Route::any( 'creditresell/list', 'CreditController@listdata' )->name( 'creditlist' );
+	Route::post( 'creditresell/update', 'CreditController@update_resell' )->name( 'update_resell' );
+	Route::get( 'creditresell/show', 'CreditController@show' )->name( 'render_resell_edit' );
+
+	Route::get( 'creditresell/show-completed', 'CreditController@completed_listdata' )->name( 'completed_listdata' );
+	
+
 	
 } );
 //END
@@ -791,6 +846,10 @@ Route::any( '/tabao/get-owner-goods', 'tabaoApiController@getOwnerGoods' )->name
 Route::any( '/tabao/get-tb-service', 'tabaoApiController@getTbService' )->name('tabao.getTbService');
 Route::any( '/tabao/storeAllCollectionIntoVouchers', 'tabaoApiController@storeAllCollectionIntoVouchers' )->name('tabao.storeAllCollectionIntoVouchers');
 Route::any( '/tabao/get-taobao-collection-vouchers/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchers' )->name('tabao.getTaobaoCollectionVouchers');
+Route::any( '/tabao/get-taobao-collection-vouchers-greater12/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersGreater12' )->name('tabao.getTaobaoCollectionVouchers');
+Route::any( '/tabao/get-taobao-collection-vouchers-less12/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersLess12' )->name('tabao.getTaobaoCollectionVouchers');
+Route::any( '/tabao/get-taobao-collection-vouchers-greater12less24/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersGreater12Less24' )->name('tabao.getTaobaoCollectionVouchersGreater12Less24');
+Route::any( '/tabao/get-taobao-collection-vouchers-greter24less36/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersGreater24Less36' )->name('tabao.getTaobaoCollectionVouchersGreater24Less36');
 
 
 

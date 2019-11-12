@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+     <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" /> 
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="css/public.css" />
+    <link rel="stylesheet" type="text/css" href="css/module.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/being.js"></script>
+    <style type="text/css">
+      
+      body {
+          background-color: #f2f2f2;
+      }
+
+      /* Modal Box */
+      .modal-content, .modal-title {
+          background: white;
+          width: 300px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+
+      .modal-full-height {
+          text-align:center;
+          padding-bottom: 10px;
+          margin: 0 auto;
+      }
+
+      .modal-wechat {
+          margin-top: 0;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+      }
+
+      .modal-title {
+          background: #4c89e2;
+          color: white;
+          text-align: center;
+          margin-top: 10%;
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+          padding: 10px;
+          font-weight: 700;
+      }
+
+      .modal-title h1 {
+          font-size: 20px;
+          margin-bottom: 10px;
+          margin-top: 5px;
+          color: #666666;
+          /*font-weight: 700;*/
+      }
+
+      .modal-card {
+          width: 250px;
+          margin: 0 auto;
+          font-size: 16px;
+      }
+
+      .copyvoucher {
+          border: 1px solid #e3e3e3;
+          background: #f0f0f0;
+          color: #4380d9;
+          margin-left: 10%;
+          margin-right: 10%;
+          margin-bottom: 30px;
+          border-radius: 5px;
+          font-size: 30px;
+      }
+
+      .cutBtn, .cutBtn-success, .cutBtn-fail {
+          margin-left: 10%;
+          margin-right: 10%;
+          border-radius: 30px;
+          font-size: 20px;
+          color: white;
+          padding: 6px;
+          background-image: linear-gradient(#ffaf08, #ff830b);
+      }
+
+      .cutBtn {
+          cursor: pointer;
+      }
+
+      .cutBtn-success {
+          background: #1ba908;
+      }
+
+      .cutBtn-fail {
+          background: #838383;
+      }
+
+      .instructions, .instructions-dark {
+          margin-top: 10px;
+          margin-bottom: 5px;
+          font-size: 12px;
+          font-weight: 500;
+          color: #cdcdcd;
+      }
+
+      .instructions-dark {
+          color: #bababa;
+      }
+
+      @media only screen and (max-width: 360px) {
+          .modal-content, .modal-title {
+              width: 270px;
+          }
+
+          .modal-card {
+              width: 230px;
+              margin: 0 auto;
+              font-size: 16px;
+          }
+      }
+      /* End Modal box */
+
+      .modal {
+        text-align: center;
+        padding: 0!important;
+      }
+
+      .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px;
+      }
+
+      .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+
+  <body style="background:#efefef">
+    <section class="cardFull card-flex">
+      <div class="cardBody loginBody">
+        <div class="loginHead">
+          <a class="logo"><img src="images/logo.png"></a>
+          <div class="name"><img src="images/logoTitle.png"></div>
+        </div>
+        <div class="loginBox">
+          <div class="hd flex">
+            <a class="on">快速注册</a>
+            <a>账号登录</a>
+          </div>
+          <div class="bd">
+            <div class="inBox on">
+              <ul>
+                <li>
+                  <div class="flexSp">
+                    <img src="images/telIcon.png">
+                    <input type="text" placeholder="输入手机号码">
+                  </div>
+                </li>
+                <li>
+                    <div class="flexSp">
+                      <img src="images/lockIcon.png">
+                      <input type="text" placeholder="设置登录密码">
+                    </div>
+                  </li>
+                  <li>
+                      <div class="flexSp">
+                        <img src="images/lockIcon.png">
+                        <input type="text" placeholder="重复登录密码">
+                      </div>
+                    </li>
+                    <li>
+                      <button type="button">注册</button>
+                    </li>
+              </ul>
+            </div>
+            <div class="inBox">
+                <ul>
+                  <li>
+                    <div class="flexSp">
+                      <img src="images/telIcon.png">
+                      <input type="text" placeholder="输入手机号码">
+                    </div>
+                  </li>
+                  <li>
+                      <div class="flexSp">
+                        <img src="images/lockIcon.png">
+                        <input type="text" placeholder="设置登录密码">
+                      </div>
+                    </li>
+                      <li>
+                        <button type="button">登录</button>
+                      </li>
+                    <li>
+                        <p>忘记密码?<a href="#" class="sendKf">请联系客服</a></p>
+                    </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kfBox flexCenterC scaleHide">
+              <div class="modal-title">
+                <h1>请加客服微信</h1>
+              </div>
+              <div class="modal-content modal-wechat">
+                <div class="modal-body">
+                  <div class="modal-row">
+                    <div class="wrapper modal-full-height">
+                      <div class="modal-card">
+                        <div class="instructions">
+                          客服微信在线时间：早上8点-晚上9点
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div id="cut" class="copyvoucher">WABAO666</div>
+                        <div class="cutBtn">一键复制</div>
+                      </div>
+                      <div class="modal-card">
+                        <div class="instructions-dark">
+                          请按复制按钮，复制成功后到微信添加。<br/> 如复制不成功，请到微信手动输入添加。
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+        </div>
+
+      <script>
+      $(function(){
+      $('.loginBox .hd a').click(function(){
+        var that=$(this);
+        let i=that.index();
+        console.log(i);
+        that.addClass('on').siblings().removeClass('on');
+        $('.loginBox .bd').children('.inBox').eq(i).fadeIn(0).siblings().fadeOut(0);
+      })
+      })</script>
+
+      <script>
+      $(function() {
+
+$('.sendKf').click(function(){
+  being.wrapShow('.cardFull ');
+  being.scaleShow('.kfBox');
+});
+$('.kfBox').click(function(e){
+  var target = $(e.target).closest(".inBox").length;
+          if (target > 0) {
+            return;
+          } else {
+            being.scaleHide('.kfBox');
+            being.wrapHide();
+
+          }
+})
+
+      });
+    </script>
+
+   <script src="https://cdn.bootcss.com/clipboard.js/2.0.4/clipboard.min.js" ></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+    
+            var clipboard = new ClipboardJS('.cutBtn', {
+                target: function () {
+                    return document.querySelector('#cut');
+                }
+            });
+            clipboard.on('success', function (e) {
+                $('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+                
+            });
+
+            clipboard.on('error', function (e) {
+                 $('.cutBtn').addClass('cutBtn-fail').html('<i class="far fa-times-circle"></i>复制失败');
+                ///$('.cutBtn').addClass('cutBtn-success').html('<i class="far fa-check-circle"></i>复制成功');
+            });
+      
+        }); 
+    </script>
+
+  
+  </body>
+</html>

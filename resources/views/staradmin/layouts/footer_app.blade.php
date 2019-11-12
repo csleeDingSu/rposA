@@ -1,10 +1,10 @@
-<div class="card-bar">
+<div class="card-bar">  
   <dl class="bar">
     <dd>
 	@if(Request::is('main') || Request::is('main/*'))
-  		<a class="on" href="/main">
+  		<a class="on" id="f-main">
   	@else
-  		<a href="/main">
+  		<a id="f-main">
   	@endif
         <span class="icon bar-1"></span>
         <h2>首页</h2>
@@ -12,20 +12,20 @@
     </dd>
     <dd>
 	@if(Request::is('shop') || Request::is('shop/*'))
-  		<a class="on" href="/shop">
+  		<a class="on" id="f-shop">
   	@else
-  		<a href="/shop">
+  		<a id="f-shop">
   	@endif
         <span class="icon bar-2"></span>
-        <h2>商城</h2>
+        <h2>换购</h2>
       </a></dd>
     <dt>
     @if(Request::is('arcade') || Request::is('arcade/*'))
-  		<a class="on" href="/arcade">
+  		<a class="on" id="f-arcade">
   	@elseif(Request::is('vip') || Request::is('vip/*'))
-  		<a class="on" href="/vip">
+  		<a class="on" id="f-vip">
   	@else
-  		<a href="/arcade">
+  		<a id="f-arcade">
   	@endif
         <span class="icon bar-center">
           <img src="{{ asset('clientapp/images/bar-m.png') }}">
@@ -34,9 +34,9 @@
       </a></dt>
     <dd>
     @if((Request::is('blog') || Request::is('blog/*')) && (!Request::is('blog/my-redeem')))
-  		<a class="on" href="/blog">
+  		<a class="on" id = "f-blog">
   	@else
-  		<a href="/blog">
+  		<a id = "f-blog">
   	@endif
         <span class="icon bar-3"></span>
         <h2>晒单</h2>
@@ -44,9 +44,9 @@
     <dd>
       
     @if((Request::is('profile') || Request::is('profile/*')) || (Request::is('blog/my-redeem') || Request::is('pre-share')))
-  		<a class="on" href="/profile">
+  		<a class="on" id = "f-profile">
   	@else
-  		<a href="/profile">
+  		<a id = "f-profile">
   	@endif
         <span class="icon bar-4"></span>
         <h2>我的</h2>
@@ -57,7 +57,7 @@
 <!-- <link rel="stylesheet" type="text/css" href="{{ asset('clientapp/css/footer.css')}}" /> -->
 
     @if( Agent::is('OS X') ) 
-      <style>
+      <style>        
       .card-bar
         {
           margin-bottom: 0px !important;
@@ -82,6 +82,15 @@
               height: 1.28rem;
 
             }
+
+            @keyframes newbie {
+              from {
+                top: 81.8%;
+              }
+              to {
+                top: 82.8%;
+              }
+            }
           }
 
           /*iPhone 7/8*/ 
@@ -89,7 +98,14 @@
             and (device-width : 375px) 
             and (device-height : 667px) 
             and (-webkit-device-pixel-ratio : 2) {
-              /*do nothing*/
+              @keyframes newbie {
+                from {
+                  top: 80.5%;
+                }
+                to {
+                  top: 81.5%;
+                }
+              }
             }
 
           /*iPhone 6+/6s+/7+/8+*/
@@ -97,7 +113,14 @@
             and (device-width : 414px) 
             and (device-height : 736px) 
             and (-webkit-device-pixel-ratio : 3) {
-              /*do nothing*/
+              @keyframes newbie {
+                from {
+                  top: 80.5%;
+                }
+                to {
+                  top: 82.5%;
+                }
+              }
             }
 
       </style>
@@ -127,5 +150,65 @@
     $(".card-bar").addClass("footer_mb");
   }
 })();
+
+  $('#f-main').on('touchend', function(){    
+    $('#f-main').addClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').removeClass("on");
+    window.top.location.href = "/main";
+  });
+
+  $('#f-shop').on('touchend', function(){    
+    $('#f-main').removeClass("on");
+    $('#f-shop').addClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').removeClass("on");
+    window.top.location.href = "/shop";
+  });
+
+  $('#f-arcade').on('touchend', function(){    
+    $('#f-main').removeClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').addClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').removeClass("on");
+    window.top.location.href = "/arcade";
+  });
+
+  $('#f-vip').on('touchend', function(){
+    $('#f-main').removeClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').addClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').removeClass("on");
+    window.top.location.href = "/vip";
+  });
+
+  $('#f-blog').on('touchend', function(){
+    $('#f-main').removeClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').addClass("on");
+    $('#f-profile').removeClass("on");
+    window.top.location.href = "/blog";
+  });
+
+  $('#f-profile').on('touchend', function(){
+    $('#f-main').removeClass("on");
+    $('#f-shop').removeClass("on");
+    $('#f-arcade').removeClass("on");
+    $('#f-vip').removeClass("on");
+    $('#f-blog').removeClass("on");
+    $('#f-profile').addClass("on");
+    window.top.location.href = "/profile";
+  });
 
     </script>

@@ -199,6 +199,8 @@ input[type=tel]{
 }
 
 
+.dFlex{display: flex; display: -webkit-flex; display: -moz-flex;}
+
 .flex1{ flex:1; -webkit-flex:1; -moz-flex:1;}
 
 
@@ -220,3 +222,4 @@ input[type=tel]{
 
 hr{ border:none; margin: 0; padding: 0;}
 .borderBottom{ border-bottom: .02rem solid #f3f3f3;}
+

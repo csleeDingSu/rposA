@@ -25,6 +25,7 @@ var user_id = 0;
 var is_app = false;
 var max_retry = 3;
 var nretry = 0;
+var gameid = 102;
 
 $(function () {
 
@@ -61,15 +62,30 @@ $(function () {
         if (user_id <= 0) {
             if (is_app) {
                 $('.bet-box').click(function() {
-                    $('#modal-no-login').modal();                   
+                    $( '#modal-no-login' ).modal( 'show' );                
+                    setTimeout(function(){
+                        console.log('1111');
+                        // $( '#modal-no-login' ).modal( 'hide' );
+                        window.location.href = '/login';
+                    }, 3000);                
                 });
 
                 $('.btn-withdraw').click(function() {
-                    $('#modal-no-login').modal();
+                    $( '#modal-no-login' ).modal( 'show' );                
+                    setTimeout(function(){
+                        console.log('1111');
+                        // $( '#modal-no-login' ).modal( 'hide' );
+                        window.location.href = '/login';
+                    }, 3000);
                 });
 
                 $('.btn-life').click(function() {
-                    $('#modal-no-login').modal();
+                    $( '#modal-no-login' ).modal( 'show' );                
+                    setTimeout(function(){
+                        console.log('1111');
+                        // $( '#modal-no-login' ).modal( 'hide' );
+                        window.location.href = '/login';
+                    }, 3000);
                 });
             } else {
                 $('.btn-withdraw').click(function() {
@@ -211,7 +227,7 @@ function initUser(records){
 
         $('.btn-life').html('剩'+life+'次');
         
-        setBalance();
+        // setBalance();
 
         if(life == 0){
             if (user_id > 0) {
@@ -390,7 +406,7 @@ try {
             $('#reset-life-lose').modal({backdrop: 'static', keyboard: false});
         }
 
-        setBalance();
+        // setBalance();
 
         $('#freeze_time').val(freeze_time);
         $('#draw_id').val(draw_id);
@@ -414,30 +430,30 @@ try {
 
         $(".loading").fadeOut("slow");
 
-        $.ajax({
-            type: 'GET',
-            url: "/api/get-game-result-temp?gameid=102&gametype=1&memberid=" + user_id + "&drawid=0",
-            dataType: "json",
-            beforeSend: function( xhr ) {
-                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            },
-            error: function (error) { 
-                console.log(error);
-                console.log(1);
-                $(".reload2").show();
-            },
-            success: function(data) {
+        // $.ajax({
+        //     type: 'GET',
+        //     url: "/api/get-game-result-temp?gameid=102&gametype=1&memberid=" + user_id + "&drawid=0",
+        //     dataType: "json",
+        //     beforeSend: function( xhr ) {
+        //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        //     },
+        //     error: function (error) { 
+        //         console.log(error);
+        //         console.log(1);
+        //         $(".reload2").show();
+        //     },
+        //     success: function(data) {
 
-                if(data.success && data.record.bet != null){
+        //         if(data.success && data.record.bet != null){
 
-                    var selected = data.record.bet;
+        //             var selected = data.record.bet;
 
-                    var btn_rectangle = $("input[value='"+ selected +"']").parent();
-                    btn_rectangle.addClass('clicked');
-                    showPayout();
-                }
-            }
-        }); // ajax get-game-result-temp
+        //             var btn_rectangle = $("input[value='"+ selected +"']").parent();
+        //             btn_rectangle.addClass('clicked');
+        //             showPayout();
+        //         }
+        //     }
+        // }); // ajax get-game-result-temp
 
     }
     catch(err) {
@@ -478,6 +494,84 @@ function getToken(){
                 }
             }      
         });
+
+        socketIOConnectionUpdate('Requesting JWT Token from Laravel');
+
+        $.ajax({
+            url: '/token'
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            htm = '<p class="text-warning">Unauthorized.</p>';
+            socketIOConnectionUpdate( htm);
+        })
+        .done(function (result, textStatus, jqXHR) {
+
+            socketIOConnectionUpdate('Response from Laravel');
+
+            var c_url = url + ':' + port;
+            
+            console.log('connecting URL: '+c_url);
+            
+            //Output have userid , token and username 
+            
+            var socket = new io.connect(c_url, {
+                'reconnection': true,
+                'reconnectionDelay': 1000, //1 sec
+                'reconnectionDelayMax' : 5000,
+                'reconnectionAttempts': 2,
+                'transports': ['websocket'],
+                'timeout' : 10000, //1 min
+                'force new connection' : true,
+                 query: 'token='+result.token
+            });
+
+            /* 
+            connect with socket io
+            */
+            socket.on('connect', function () {
+                socketIOConnectionUpdate('Connected to SocketIO, Authenticating')
+                console.log('Token: '+result.token);
+                socket.emit('authenticate', {token: result.token});
+            });
+
+            /* 
+            If token authenticated successfully then here will get message 
+            */
+            socket.on('authenticated', function () {
+                htm = '<p class="text-success">Authenticated.</p>';
+                socketIOConnectionUpdate(htm);
+            });
+
+            /* 
+            If token unauthorized then here will get message 
+            */
+            socket.on('unauthorized', function (data) {
+                socketIOConnectionUpdate('Unauthorized, error msg: ' + data.message);
+            });
+
+            /* 
+            If disconnect socketio then here will get message 
+            */
+            socket.on('disconnect', function () {
+                console.log('disconnect--');
+                htm = '<p class="text-danger">Disconnected.</p>';
+                socketIOConnectionUpdate(htm);
+            });
+
+            socket.on(prefix+ id + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
+                getNotification(data.data, true);
+            });
+
+            socket.on(prefix+gameid+"-rank-list" + ":App\\Events\\EventDynamicChannel", function(data) {
+                console.log(data);
+                getMyRanking();
+                getGlobalRanking();
+                getFriendRanking();
+
+            });
+            
+        });
+
     } else {
         //non-logged in user
         $('#hidLatestResult').val(1);
@@ -682,13 +776,7 @@ function closeWinModal() {
         // console.log(g_previous_point);
         
         if (g_current_point > g_previous_point) {
-            musicPlay(2);  
-            // console.log('play coin mp3');  
-
-            // $('.speech-bubble-point').css('display', 'block');
-            // setTimeout(function(){ 
-            //     $('.speech-bubble-point').css('display', 'none');
-            // }, 5000);
+            musicPlay(2);
         } 
 
          if(g_current_point > max_acupoint){
@@ -732,15 +820,21 @@ function bindBetButton(){
         if(user_id == 0){
             // window.top.location.href = "/member";
             if (is_app) {
-                $('#modal-no-login').modal();
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
             } else {
                 $( '#login-intropopup' ).modal( 'show' );    
             }
         }
 
-        if(isNaN(balance)){
-            return false;
-        }
+        // if(isNaN(balance)){
+        //     console.log('balance ' + balance);
+        //     return false;
+        // }
 
         console.log(user_id +":" + balance + ":" + life );
         if(user_id > 0 && life > 0){
@@ -935,7 +1029,12 @@ function bindTriggerButton(){
                 $('#reset-life-share').modal();    
             } else {
                 if (is_app) {
-                    $('#modal-no-login').modal();                    
+                    $( '#modal-no-login' ).modal( 'show' );                
+                    setTimeout(function(){
+                        console.log('1111');
+                        // $( '#modal-no-login' ).modal( 'hide' );
+                        window.location.href = '/login';
+                    }, 3000);                 
                 }
             }
         }
@@ -1724,7 +1823,12 @@ function bindButton () {
             }
         } else {
             if (is_app) {
-                $('#modal-no-login').modal(); 
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
             }else{
                 openmodel();    
             }
@@ -1739,7 +1843,12 @@ function bindButton () {
         if ((user_id <= 0)) {
             console.log(user_id);
             if (is_app) {
-                $('#modal-no-login').modal(); 
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
             }else{
                 openmodel();    
             }            
@@ -1776,7 +1885,12 @@ function bindButton () {
         var user_id = $('#hidUserId').val();
         if ((user_id <= 0)) {
             if (is_app) {
-                $('#modal-no-login').modal(); 
+                $( '#modal-no-login' ).modal( 'show' );                
+                setTimeout(function(){
+                    console.log('1111');
+                    // $( '#modal-no-login' ).modal( 'hide' );
+                    window.location.href = '/login';
+                }, 3000);
             }else{
                 openmodel();    
             }            
@@ -1791,4 +1905,35 @@ function bindButton () {
         }
 
     });    
+}
+
+function socketIOConnectionUpdate(err)
+{
+    console.log(err);
+}
+
+function getNotification(data, isSocket = false){
+    console.log('get topup notifications');
+    console.log(data);
+    var notifications = data;
+    var notifications_count = notifications.count;
+    var _gameid = notifications.gameid;
+
+    if (_gameid == gameid) { //if game id is 102
+        if(notifications_count == 0){
+            return false;
+        }
+
+        var records = notifications.records;
+
+        if ((typeof records[0].ledger.balance_after != 'undefined') || (records[0].ledger.balance_after > 0)) {
+            if (isSocket) {
+                
+                if (records[0].ledger.ledger_type == 'ALLAA') {
+                    $('.btn-life').html('剩' + parseInt(records[0].ledger.balance_after) + '次');
+                }  
+            }
+        } 
+    }
+
 }

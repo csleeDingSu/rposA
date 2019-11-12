@@ -12,6 +12,26 @@
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/summary.css') }}" />
     <link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .FilterBtn {
+          position: absolute;
+            z-index: 1;
+            right: .3rem;
+            top: 0;
+            font-size: .36rem;
+            color: #2baef9;
+            line-height: 1rem;
+            display: block;
+        }
+
+        .FilterBtn img {
+            right: 0.7rem;
+            position: absolute;
+            height: 0.65rem;
+            padding: 0.1rem;
+            top: 0.15rem;
+        }
+    </style>
 @endsection
 
 @section('top-javascript')
@@ -28,6 +48,7 @@
     @section('title', '明细')
 
     @section('right-menu')
+    <a class="FilterBtn"><img src="{{ asset('/clientapp/images/summary/filterbtn.png') }}">筛选</a>
     @endsection
     <!-- top nav end-->
 

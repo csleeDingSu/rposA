@@ -34,6 +34,42 @@
 @section('top-css')
     @parent
 	<link rel="stylesheet" href="{{ asset('/client/css/buy.css') }}" />
+    @if( Agent::is('OS X') )   
+      <style>
+      
+        /*iphone X*/
+        @media only screen  
+          and (device-width : 375px) 
+          and (device-height : 812px) 
+          and (-webkit-device-pixel-ratio : 3) {
+            #info {
+                height: 1.5rem;
+                border-top: 1px solid #e6e5e5;
+                background-color: #f1f1f1;
+            }
+            .div_price {
+                background-color: #fff;
+                height: 1rem;
+            }
+          }
+
+          /*iPhone 7/8*/ 
+          @media only screen 
+            and (device-width : 375px) 
+            and (device-height : 667px) 
+            and (-webkit-device-pixel-ratio : 2) {
+              /*do nothing*/
+            }
+
+          /*iPhone 6+/6s+/7+/8+*/
+          @media only screen 
+            and (device-width : 414px) 
+            and (device-height : 736px) 
+            and (-webkit-device-pixel-ratio : 3) {
+              /*do nothing*/
+            }
+      </style>
+      @endif
 @endsection
 
 @section('content')
@@ -86,7 +122,7 @@
             	<div class="col-xs-9">
             		<div class="lbl_description">{{ $record->name }}
             		</div>
-            		<div class="lbl_price">{{ $record->point_to_redeem }} 金币</div>
+            		<div class="lbl_price">{{ $record->point_to_redeem }} 挖宝币</div>
             	</div>
             </div>
         </div>
@@ -113,7 +149,7 @@
 
         <div id="info">
 	        <div class="col-xs-6 no-padding">
-	        	<div class="div_price">支付 <span class="span_price">{{ $record->point_to_redeem }}</span><span class="span_currency">金币</span></div>
+	        	<div class="div_price">支付 <span class="span_price">{{ $record->point_to_redeem }}</span><span class="span_currency">挖宝币</span></div>
 	        </div>
 	        <div class="col-xs-6 no-padding">
 	        	<button class="btn-confirm">确认兑换</button>

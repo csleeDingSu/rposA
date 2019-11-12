@@ -7,7 +7,7 @@ class Rank extends Model
 {   
     protected $fillable = [   'member_id','game_id','account_id','rank','credit'    ];	
 			
-    protected $table = 'member_rank';	
+    protected $table = 'member_rank_new';	
 	
 	public static function getTableName()
     {

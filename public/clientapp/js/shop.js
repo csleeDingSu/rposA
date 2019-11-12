@@ -2,11 +2,13 @@ var from = 0;
 var to = 1;
 $(function () {
     getProduct();
-    getHighlight();
+    // getHighlight();
 });
 
 function getProduct(){
     
+    document.getElementById('loading2').style.visibility="visible";
+
     $.getJSON( "/api/get-product-list", function( data ) {
         // console.log(data);
 
@@ -24,12 +26,12 @@ function getProduct(){
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
                                 '</div>' +
-                            '</div>' +
+                            '</div></div>' +
                         '</div>';
             } else {
                 html += '<div class="redeem-prize">' + 
@@ -40,16 +42,21 @@ function getProduct(){
                                 '</div>' +
                                 '<div class="redeem-product">'+ item.name +'</div>' +
                                 '<div class="redeem-details">' +
-                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
+                                    '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">币</span></div>' +
                                     '<div class="redeem-button-wrapper">' +
                                         '<div class="redeem-button" rel="'+ item.id +'">兑换</div>' +
                                     '</div>' +
                                 '</div>' +
-                            '</div>' +
+                            '</div></div>' +
                         '</div>';
             }
             html += '<input id="hid_price_'+ item.id +'" name="hid_price_'+ item.id +'" type="hidden" value="'+item.point_to_redeem+'">';
         });
+
+        html += '<div class="redeem-prize">' + 
+                    '<div class="left-box" style="height: 1rem; display: flex;"></div>' +
+                    '<div class="right-box" style="height: 1rem; display: flex;"></div>' +
+                '</div>';
 
         html += '</form>';
 
@@ -78,9 +85,12 @@ function getProduct(){
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
                     // console.log(1);
                     $('#modal-insufficient-point').modal();
+                    // $('.modal-backdrop').remove();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
-                    }, 3000);                
+                    }, 3000);      
+                    console.log('insufficient point');          
+                    return false;
                 } else {
                     // console.log(2);
                     $( "#frm_buy" ).submit();    
@@ -105,9 +115,12 @@ function getProduct(){
                 var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
                 if (getNumeric(price) > getNumeric(g_vip_point)) {
                     $('#modal-insufficient-point').modal();
+                    // $('.modal-backdrop').remove();
                     setTimeout(function(){ 
                         $('#modal-insufficient-point').modal('hide');
-                    }, 3000);                
+                    }, 3000);           
+                    console.log('insufficient point');          
+                    return false;     
                 } else {
                     $( "#frm_buy" ).submit();    
                 }
@@ -115,6 +128,8 @@ function getProduct(){
             }
             
         });
+    
+        document.getElementById('loading2').style.visibility="hidden";
     });
 }
 

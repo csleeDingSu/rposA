@@ -37,70 +37,94 @@ class RankGenerator extends Command
      */
     public function handle()
     {        
-		$this->comment('-- Stared:'.' '.Carbon::now()->toDateTimeString());	
-		
-		$this->line('-- fetch games');
-		
+		$this->comment('-- Stared:'.' '.Carbon::now()->toDateTimeString());			
+		$this->line('-- fetch games');		
 		$games = \App\Game::select('*')
 				->get();
 		
-		$this->info('-- done');
+		$this->info('-- done');		
 		
-		//mysql data seek pointer not reset to 0 so to fix that we pass the dynamic variibale
-		//Fixed on 12/09/2019 set @i = 0
-		$arr = ['0'=>'i','1'=>'j','2'=>'k','3'=>'l','4'=>'m','5'=>'n','6'=>'p','7'=>'q',];
-		
-		$this->line('-- truncate old records');
-		
-		\App\Rank::query()->truncate();
-
+		$this->line('-- truncate old records');		
+			\App\RankNew::query()->truncate();
 		$this->info('-- done');
 		
 		foreach ($games as $key=>$game)
 		{
-			$ds = $arr[$key];			
+					
 			$this->line('-- generate ranks for game : '.$game->id);
 			
 			$cards = \DB::select("set @i = 0");
 			
 			//\DB::connection()->enableQueryLog();
-		
-			//@i := coalesce(@i + 1, 1) rank, 
-			$select = \DB::raw("sum(credit) as credit, member_id, game_id,phone,wechat_name,username");
-			$ranks  = \App\History::select($select);
-			$ranks = $ranks->where('game_id',$game->id);		
-
-			$ranks  = $ranks->where(function($query) {
-								$query->where('ledger_type' , 'LIKE' ,'AP%');
-								$query->orWhere('ledger_type' , 'CRPNT');
-							})
-							->join('members', 'members.id', '=', \App\History::getTableName().'.member_id')
-							->groupby('member_id','game_id')
-							->orderBy('credit','DESC')
+			$select  = \DB::raw("totalreward,totallose,balance, member_id, game_id,phone,wechat_name,username");
+			$ranks   = \App\Betting::select($select);
+			$ranks   = $ranks->where('game_id',$game->id);
+			$orderBy = 'balance';
+			if ($game->id == '102') $orderBy = 'totalreward';
+			$ranks  = $ranks->orderBy($orderBy,'DESC')
 							->get();
+			//@i := coalesce(@i + 1, 1) rank, 		
+
 			$this->info('-- done');
 			//$queries = \DB::getQueryLog();		
 		
-			//dd($queries);
-			
-			$newrank = 1;
+			//dd($queries);		
+			$preval  = '';
+			$prerank = '';	
+			$newrank = 0;
 			foreach ($ranks->chunk(200) as $records)
 			{
-				//dd($records);
 				foreach ($records as $row)
 				{
-					$this->line('-- update ranks for member : '.$row->member_id);
-					$rank = \App\Rank::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
-					$rank->rank   = $newrank;
-					$rank->credit = $row->credit;
-					$rank->save();
+					if ($row->balance != $prerank)
+					{
+						$newrank++;
+					}
+					$prerank = $row->balance;
 
-					$this->info('-- done');
-					$newrank++;
+					if ($game->id != '102')
+					{
+						if ($row->balance > 0 )
+						{
+							$this->line('-- update ranks for game : '.$game->id);
+							$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
+							$rank->rank        = $newrank;					
+							$rank->totalreward = $row->totalreward;
+							$rank->balance     = $row->balance;
+							$rank->save();
+							$this->info('-- done');
+						}
+						else
+						{
+							$this->error('-- balance in negative.skipping record');
+						}
+					}
+					else
+					{
+						$rank = \App\RankNew::firstOrNew( ['member_id'=>$row->member_id,'game_id'=>$game->id] );
+						$rank->rank        = $newrank;					
+						$rank->totalreward = $row->totalreward;
+						$rank->balance     = $row->balance;
+						$rank->save();
+						$this->info('-- done');
+					}				
+
+
+					
 				}
-			}
-			
+			}			
 			$this->line('-- ranks update completed for : '.$game->id);
+			$this->line('-- send socket notification');
+			$ranks  = \App\Rank::select('rank','member_id','game_id','total_bet','totalreward','balance','username','phone','wechat_name','wechat_id')		
+					->where('game_id',$game->id)
+					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
+					->orderby('rank','ASC')
+					->paginate(30);
+
+			event(new \App\Events\EventDynamicChannel($game->id.'-rank-list','',$ranks ));	
+			
+			$this->info('-- done');
+
 			$this->line(' ');
 		}
 				

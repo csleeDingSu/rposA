@@ -1790,7 +1790,7 @@ class GameController extends Controller
 	public function global_rank(Request $request)
     {
     	//Global Ranks
-		$ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+		$ranks  = \App\Rank::select('rank','member_id','game_id','total_bet','totalreward','balance','username','phone','wechat_name','wechat_id')		
 					->where('game_id',$request->gameid)
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
 					->orderby('rank','ASC')
@@ -1802,7 +1802,7 @@ class GameController extends Controller
 
     public function friends_rank(Request $request)
     {
-    	$fr_ranks  = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')
+    	$fr_ranks  = \App\Rank::select('rank','member_id','game_id','total_bet','totalreward','balance','username','phone','wechat_name','wechat_id')
 			->where('game_id',$request->gameid)
 		    ->whereIn('member_id', function($query) use ($request) {
 							$query->select('id')
@@ -1820,7 +1820,7 @@ class GameController extends Controller
     {		
 		//Current User rank
 		
-		$row = \App\Rank::select('rank','member_id','game_id','credit','username','phone','wechat_name','wechat_id')		
+		$row = \App\Rank::select('rank','member_id','game_id','total_bet','totalreward','balance','username','phone','wechat_name','wechat_id')		
 					->where('game_id',$request->gameid)
 					->where('member_id',$request->memberid)
 					->join('members', 'members.id', '=', \App\Rank::getTableName().'.member_id')
@@ -1841,7 +1841,7 @@ class GameController extends Controller
     {
 		//$point   = \DB::table('a_view_used_point_list')->where('game_id',103)->groupby('member_id')->paginate(30);
 
-		$point   = \DB::table('a_view_used_point_list')->selectRaw('*, sum(debit) as point')->where('game_id',103)->groupby('member_id')->paginate(30);
+		$point   = \DB::table('a_view_used_point_list')->selectRaw('*, sum(debit) as point')->where('game_id',103)->where('ledger_type','DPRBP')->groupby('member_id')->orderby('point' , 'DESC')->paginate(30);
 		
 		return response()->json(['success' => true, 'point' => $point]);
 	}

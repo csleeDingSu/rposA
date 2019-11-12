@@ -14,9 +14,15 @@ $(document).ready(function () {
 	getMyRanking();
     getGlobalRanking();
     getFriendRanking();
+
+    // setInterval("getMyRanking()",60000);
+    // setInterval("getGlobalRanking()",60000);
+    // setInterval("getFriendRanking()",60000);
+
 });
 
 function getMyRanking() {
+    console.log('getMyRanking');
 	$.ajax({
         type: 'GET',
         url: "/api/point-earned?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
@@ -36,6 +42,7 @@ function getMyRanking() {
         	var i =0;
         	var _phone = 'xxxxx';
             var my_member_id = 0;
+            var _total_point = 0;
 
             if(status){
 
@@ -48,25 +55,28 @@ function getMyRanking() {
                         // console.log(my_rank.phone);
                         _phone = my_rank.phone.substring(0,3) + '*****' + my_rank.phone.slice(-4);
                     }
+
+                    _total_point = my_rank.totalreward;
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                                    '<div class="col-3 ranking-point">'+my_rank.credit+'</div>';
-                
-                    $('#my-ranking').html(my_rank_html);    
+                                    '<div class="col-3 ranking-point">'+_total_point+'</div>';
+                    
+                    $('.tab-content-my-ranking').html(my_rank_html);
+                    $('.my-earning-point').html(_total_point);    
                 }else {
-                    // my_rank_html += '<div class="col-1 ranking-number">--</div>' +
-                                    // '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                                    // '<div class="col-3 ranking-point">0</div>';
-                    $('#my-ranking').html('');
+                    // console.log('sss ---' + $('.tab-content-my-ranking').html());
+                    if ($('.tab-content-my-ranking').html() ==  '') {
+                        $('.tab-content-my-ranking').css('display', 'none');    
+                    }                    
                 }
-                
-                
             }
         }
     }); 
 }
 
 function getGlobalRanking() {
+    console.log('getGlobalRanking');
+    // $('.tab-content').css('background-color','#f2f3f4');
     $.ajax({
         type: 'GET',
         url: "/api/global-rank?gameid=" + gameid,
@@ -77,35 +87,44 @@ function getGlobalRanking() {
         error: function (error) { 
             console.log(error);
             global_rank_html = '<div class="no-record">' +
-                                    '<img src="/clientapp/images/no-record/blog.png">' +
+                                    '<img src="/clientapp/images/no-record/ranking.png">' +
                                     '<div>暂无记录</div>' +
                                 '</div>';
 
-            $('#general-list').html(global_rank_html);
+            // $('.tab-content').css('background-color','#fff');
+            if ($('#general-list').html().lenght <= 0) {
+                $('#general-list').html(global_rank_html);    
+            }
+            
         },
         success: function(data) {
             var status = data.success;
             var global_rank = data.global_ranks.data;
             var global_rank_html = '';
             var global_rank_num = 0;
-            var i =0;
+            // var i =0;
             var _phone = 'xxxxx';
             var my_member_id = 0;
+            var _total_point = 0;
 
             if(status){
 
+                if (global_rank.lenght <= 0) {
+                    return false;
+                }
+
                 // global_rank
-                i = 0;
+                // i = 0;
                 $.each(global_rank, function(i, item) {
                     if (my_member_id != item.member_id) {
-                        if ((i + 1) == 1) {
+                        if (item.rank == 1) {
                             global_rank_num = '<img class="icon-one" src="/client/images/ranking/1.png" />';
-                        }else if ((i + 1) == 2) {
+                        }else if (item.rank == 2) {
                             global_rank_num = '<img class="icon-one" src="/client/images/ranking/2.png" />';
-                        }else if ((i + 1) == 3) {
+                        }else if (item.rank == 3) {
                             global_rank_num = '<img class="icon-one" src="/client/images/ranking/3.png" />';
                         }else {
-                            global_rank_num = (i + 1);
+                            global_rank_num = item.rank;
                         }
 
                         _phone = 'xxxxx';
@@ -114,22 +133,24 @@ function getGlobalRanking() {
                             _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
                         }
 
+                        _total_point = item.totalreward;
+
                         global_rank_html += '<div class="row tab-content-list">' +
                                     '<div class="col-1 ranking-number">' + global_rank_num + '</div>' +
                                     '<div class="col-5 ranking-name">' + _phone + '</div>' +
-                                    '<div class="col-3 ranking-point">' + item.credit + '</div>' +
+                                    '<div class="col-3 ranking-point">' + _total_point + '</div>' +
                                 '</div>';
                     }
                     
                 });
 
-                if (global_rank_html == '') {
+                if (global_rank_html == '' && $('#general-list').html() == '') {
                     global_rank_html += '<div class="no-record">' +
-                                            '<img src="/clientapp/images/no-record/blog.png">' +
+                                            '<img src="/clientapp/images/no-record/ranking.png">' +
                                             '<div>暂无记录</div>' +
                                         '</div>';
+                    // $('.tab-content').css('background-color','#fff');
                 }
-
                 $('#general-list').html(global_rank_html);
 
             }
@@ -138,6 +159,8 @@ function getGlobalRanking() {
 }
 
 function getFriendRanking() {
+    console.log('getFriendRanking');
+    // $('.tab-content').css('background-color','#f2f3f4');
     $.ajax({
         type: 'GET',
         url: "/api/friends-rank?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
@@ -148,12 +171,13 @@ function getFriendRanking() {
         error: function (error) { 
             console.log(error);
             friends_rank_html = '<div class="no-record">' +
-                                    '<img src="/clientapp/images/no-record/blog.png">' +
+                                    '<img src="/clientapp/images/no-record/ranking.png">' +
                                     '<div>暂无邀请记录</div>' +
                                 '</div>';
-        
-            $('#my-friend-list').html(friends_rank_html);
-
+            // $('.tab-content').css('background-color','#fff');
+            if ($('#my-friend-list').html().lenght <= 0 ){
+                $('#my-friend-list').html(friends_rank_html);    
+            }
         },
         success: function(data) {
             var status = data.success;
@@ -163,22 +187,27 @@ function getFriendRanking() {
             var i =0;
             var _phone = 'xxxxx';
             var my_member_id = 0;
+            var _total_point = 0;
 
             if(status){
+
+                if (friends_rank.lenght <= 0) {
+                    return false;
+                }
 
                 // friends_rank
                 i = 0;
                 $.each(friends_rank, function(i, item) {
 
                     if (my_member_id != item.member_id) {
-                        if ((i + 1) == 1) {
+                        if (item.rank == 1) {
                             friends_rank_num = '<img class="icon-one" src="/client/images/ranking/1.png" />';
-                        }else if ((i + 1) == 2) {
+                        }else if (item.rank == 2) {
                             friends_rank_num = '<img class="icon-one" src="/client/images/ranking/2.png" />';
-                        }else if ((i + 1) == 3) {
+                        }else if (item.rank == 3) {
                             friends_rank_num = '<img class="icon-one" src="/client/images/ranking/3.png" />';
                         }else {
-                            friends_rank_num = (i + 1);
+                            friends_rank_num = item.rank;
                         }
 
                         _phone = 'xxxxx';
@@ -186,19 +215,22 @@ function getFriendRanking() {
                             _phone = item.phone.substring(0,3) + '*****' + item.phone.slice(-4);
                         }
 
+                        _total_point = item.totalreward;
+
                         friends_rank_html += '<div class="row tab-content-list">' +
                                     '<div class="col-1 ranking-number">' + friends_rank_num + '</div>' +
                                     '<div class="col-5 ranking-name">' + _phone + '</div>' +
-                                    '<div class="col-3 ranking-point">' + item.credit + '</div>' +
+                                    '<div class="col-3 ranking-point">' + _total_point + '</div>' +
                                 '</div>';
                     }
                 });
 
-                if (friends_rank_html == '') {
+                if (friends_rank_html == '' && $('#my-friend-list').html() == '') {
                     friends_rank_html += '<div class="no-record">' +
-                                            '<img src="/clientapp/images/no-record/blog.png">' +
+                                            '<img src="/clientapp/images/no-record/ranking.png">' +
                                             '<div>暂无邀请记录</div>' +
                                         '</div>';
+                    // $('.tab-content').css('background-color','#fff');
                 }
 
                 $('#my-friend-list').html(friends_rank_html);

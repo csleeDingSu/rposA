@@ -1,149 +1,107 @@
-@php
-    if (env('THISVIPAPP','false')) {
-        $default = 'layouts.default_app';
-    } else {
-        $default = 'layouts.default';
-    }
-@endphp
+@extends('layouts.default_app')
 
-@extends($default)
+@section('title', '购物补贴')
 
-@if(env('THISVIPAPP','false'))
-    <!-- top nav -->
-    @section('left-menu')
-      <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
-    @endsection
-
-    @section('title', '购物补贴')
-
-    @section('right-menu')
-    @endsection
-    <!-- top nav end-->
-
-@else
-    @section('title', '兑换红包')
-    @section('top-navbar')
-    @endsection
-@endif
+@section('top-navbar')    
+@endsection
 
 @section('top-css')
     @parent
-    <!-- <link href="{{ asset('/client/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" rel="stylesheet">			 -->
-	<link rel="stylesheet" href="{{ asset('/client/css/redeem_v2.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/client/css/redeem_v2.css?version=1.0.0') }}" />
 	<link href="{{ asset('/client/css/pagination.css') }}" rel="stylesheet" type="text/css">
+	<style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          position: fixed;
+          left: 0px;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 9999;
+          background: url(/client/images/preloader.gif) center no-repeat;
+          background-color: rgba(255, 255, 255, 1);
+          background-size: 32px 32px;
+        }
+
+    </style>
 @endsection
 
 @section('top-javascript')
 	@parent
-	<!-- <script src="{{ asset('/client/js/jquery-1.11.1.min.js') }}"></script> -->
-			<!-- <script src="{{ asset('/client/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script> -->
-			<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 
 @endsection
 
 @section('content') 
-@if(!env('THISVIPAPP','false'))
-<div class="full-height no-header">
-	<div class="container">
-@endif
-		<!-- wabao coin info -->
-		<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
-		<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
-		<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
-		<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
-		<input type="hidden" id="page" value="1" />
-		<input type="hidden" id="max_page" value="1" />
-		<input type="hidden" id="reload_pass" value="{{ env('reload_pass','￥EXpZYiJPcpg￥') }}" />
-		<input type="hidden" id="this_vip_app" value="{{ env('THISVIPAPP','false') }}" />
+<div class="loading2" id="loading2"></div>
+<!-- wabao coin info -->
+<input type="hidden" id="hidUserId" name="hidUserId" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
+<input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
+<input id="hidUsername" type="hidden" value="{{isset(Auth::Guard('member')->user()->username) ? Auth::Guard('member')->user()->username : null}}" />
+<input id="hidWechatId" type="hidden" value="{{isset(Auth::Guard('member')->user()->wechat_verification_status) ? Auth::Guard('member')->user()->wechat_verification_status : 1}}" />
+<input type="hidden" id="page" value="1" />
+<input type="hidden" id="max_page" value="1" />
+<input type="hidden" id="reload_pass" value="{{ env('reload_pass','￥EXpZYiJPcpg￥') }}" />
+<input type="hidden" id="this_vip_app" value="{{ env('THISVIPAPP','false') }}" />
 
-		<div class="card-summary">
-			<img class="redeem-background" src="{{ asset('/client/images/redeem-background.jpg') }}" alt="redeem background">
-			<div class="summary-table">
-				@if(!env('THISVIPAPP','false'))
-					<div class="nav-top">
-						<div class="col-xs-2 nav-left">
-							<a href="/profile">返回</a>
-						</div>
-						<div class="col-xs-8">
-							@if(env('THISVIPAPP','false'))
-								兑换奖品
-							@else
-								兑换红包
-							@endif
-							
-						</div>
-						<div class="col-xs-2 nav-right">
-							<a href="/summary">明细</a>
-						</div>
-					</div>
-					<div class="label-coin"><span class="wabao-coin"></span>元</div>			
-					<div class="label-desc">
-						<a href="/share">邀请好友送场次，抽红包，去邀请 ></a>
-					</div>
-				@else
-					<div class="label-coin">
-						<img class="icon-newcoin"src="{{ asset('/client/images/coin.png') }}" />
-						<span class="wabao-coin"></span>
-					</div>
-					<div class="label-desc">
-						<a href="/share">邀请好友送场次，抽红包，去邀请 ></a>
-					</div>
-				@endif
-			</div>
-		</div>
-		<!-- end wabao coin info -->
-
-		<div class="full-width-tabs">
-			<!-- redeem tabs -->
-			<ul class="nav nav-pills">
-			  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#prize">
-			  @if(env('THISVIPAPP','false'))
-				兑换奖品
-			 @else
-				兑换红包
-			@endif
-
-				</a></li>
-			  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can"><a class="tab" data-toggle="tab" href="#history">
-			
-			@if(env('THISVIPAPP','false'))
-				我的兑换
-			 @else
-				我的红包
-			@endif
-
-			  </a></li>
-			</ul>
-			<!-- end redeem tabs -->
-
-			<!-- tab content -->
-			<div class="tab-content">
-				<!-- redeem list content -->
-				<div id="prize" class="prize tab-pane fade {{ empty($slug) ? 'in active' : '' }}">
-					<div id="softpin"></div>
-					<div id="newProduct"></div>
-					<div class="vipProduct"></div>
-				</div>
-
-				<!-- end redeem list content -->
-
-				<!-- redeem history content -->
-				<div id="history" class="tab-pane fade {{ (!empty($slug) and $slug == 'history') ? 'in active' : '' }}">
-		
-					<div id="redeem-history"></div>
-
-					<p class="isnext">下拉显示更多...</p>
-				</div>
-				<!-- end redeem list content -->
-			</div>
-		</div>
-		
-		<!-- End listing -->
-@if(!env('THISVIPAPP','false'))
+<div class="c-header">
+	<div class="pageHeader rel">
+	  <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/zero-back-.png') }}"><span>返回</span></a>
+	  <h2 class="h-title">购物补贴</h2>
 	</div>
 </div>
-@endif
 
+<div class="box-i">
+	<div class="i-play">抽的多补的多</div>
+	<div class="i-withdraw">可提现支付宝</div>
+	<div class="i-redeem">可兑换挖宝币</div>
+	<br style="clear: left;" />
+</div>
+
+<div class="box-summary">
+	<div class="bg">
+		<img src="{{asset('clientapp/images/redeem/box-summary-icon.png')}}">
+		<div class="line1"><span class="yuan"><span class="wabao-coin"></span>元</span></div>
+		<div class="line2">邀请好友送场次，抽更多红包，<a href="/share">去邀请></a></div>
+	</div>
+</div>
+
+<div class="full-width-tabs">
+	<!-- redeem tabs -->
+	<ul class="nav nav-pills">
+	  <li class="{{ empty($slug) ? 'active' : '' }} take-all-space-you-can">
+	  	<a class="tab" data-toggle="tab" href="#prize">兑换奖品</a>
+	  </li>
+	  <li class="{{ (!empty($slug) and $slug == 'history') ? 'active' : '' }} take-all-space-you-can">
+	  	<a class="tab" data-toggle="tab" href="#history">我的兑换</a>
+	  </li>
+	</ul>
+	<!-- end redeem tabs -->
+
+	<!-- tab content -->
+	<div class="tab-content">
+		<!-- redeem list content -->
+		<div id="prize" class="prize tab-pane fade {{ empty($slug) ? 'in active' : '' }}">
+			<div id="softpin"></div>
+			<div id="newProduct"></div>
+			<div class="vipProduct"></div>
+		</div>
+		<!-- end redeem list content -->
+
+		<!-- redeem history content -->
+		<div id="history" class="tab-pane fade {{ (!empty($slug) and $slug == 'history') ? 'in active' : '' }}">
+
+			<div id="redeem-history"></div>
+
+			<p class="isnext">下拉显示更多...</p>
+		</div>
+		<!-- end redeem list content -->
+	</div>
+</div>
 @endsection
 
 @section('footer-javascript')
@@ -283,8 +241,21 @@
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
-    <script src="{{ asset('/client/js/redeem_v2.js') }}"></script>
+    <script src="{{ asset('/client/js/redeem_v2.js?version=1.0.0') }}"></script>
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
+    	document.onreadystatechange = function () {
+        var state = document.readyState
+        if (state == 'interactive') {
+        } else if (state == 'complete') {
+          setTimeout(function(){
+              document.getElementById('interactive');
+              document.getElementById('loading').style.visibility="hidden";
+              document.getElementById('loading2').style.visibility="visible";
+              $('.loading').css('display', 'initial');
+              document.getElementById('loading2').style.visibility="hidden";
+          },100);
+        }
+      }
     </script>
 @endsection

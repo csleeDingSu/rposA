@@ -183,21 +183,35 @@ class LedgerController extends BaseController
 	
 	public function update_gameledger (Request $request)
 	{
-		$is_save = '';
-		$userid  = $request->id;		
+		$is_save      = '';
+		$userid       = $request->id;	
+		$gid          = [];	
+		$typepoint    =  $request->typepoint;
+		$typelife     =  $request->typelife;	
 		foreach($request->point as $key => $point)
 		{
 			if ($point>0)
 			{
 				$ledger = Ledger::find($key);
-				$result = Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				
+				if ($typepoint[$key] == 1)
+				{
+					$result = Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				}
+				else
+				{
+					$result = Ledger::debit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				}
 				
 				$notification = new Notification();
 				$notification->member_id       = $userid;
 				$notification->title           = 'Ledger Update';
 				$notification->notifiable_type = 'LEDUP';
 				$notification->notifiable_id   = $result['id'];
-				$notification->save();				
+				$notification->game_id         = $ledger->game_id;
+				$notification->save();	
+
+				$gid[$ledger->game_id] = $ledger->game_id;			
 				
 				$is_save = 'yes';
 			}
@@ -207,24 +221,39 @@ class LedgerController extends BaseController
 			if ($life>0)
 			{
 				$ledger = Ledger::find($key);					
-				$result = Ledger::life($userid,$ledger->game_id,'credit',$life,'LAA', 'admin adjust point');
+				
+				if ($typelife[$key] == 1)
+				{
+					$result = Ledger::life($userid,$ledger->game_id,'credit',$life,'LAA', 'admin adjust point');
+				}
+				else
+				{
+					$result = Ledger::life($userid,$ledger->game_id,'debit',$life,'LAA', 'admin adjust point');
+				}
 				
 				$notification = new Notification();
 				$notification->member_id       = $userid;
 				$notification->title           = 'Ledger Update';
 				$notification->notifiable_type = 'LELUP';
 				$notification->notifiable_id   = $result['id'];
+				$notification->game_id         = $ledger->game_id;
 				$notification->save();
-				
+				$gid[$ledger->game_id] = $ledger->game_id;			
 				$is_save = 'yes';
 			}
 		}
 		
+		foreach ($gid as $k=>$v)
+		{
+			$notification = \App\Notification::with('ledger')->where('member_id',$userid)->where('game_id',$k)->where('is_read',0)->orderby('created_at','DESC')->get();		
+			$ndata        = ['count'=>$notification->count(), 'records' => $notification, 'gameid' => $k];				
+			event(new \App\Events\EventDynamicChannel($userid.'-'.'topup-notification','',$ndata ));
+		}
 		if ($is_save)
 		{
-			$notification = \App\Notification::with('ledger')->where('member_id',$userid)->where('is_read',0)->orderby('created_at','DESC')->get();		
-			$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
-			event(new \App\Events\EventDynamicChannel($userid.'-'.'topup-notification','',$ndata ));
+			//$notification = \App\Notification::with('ledger')->where('member_id',$userid)->where('is_read',0)->orderby('created_at','DESC')->get();		
+			//$ndata        = ['count'=>$notification->count(), 'records' => $notification];				
+			//event(new \App\Events\EventDynamicChannel($userid.'-'.'topup-notification','',$ndata ));
 		}
 		
 		return response()->json(['success' => true]);

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>明细</title>
+    <link rel="stylesheet" type="text/css" href="../css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../css/module.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/being.js"></script>
+  </head>
+
+  <body style=" background:#f2f2f2;">
+    <section class="cardFull card-flex">
+      <div class="cardHeader">
+        <div class="headTitle">
+          <a class="return"><img src="../images/headReturn.png"/></a>
+          <h2>全部明细</h2>
+          <a class="screenBtn">筛选</a>
+        </div>
+      </div>
+      <div class="cardBody rel ">
+        <div class="reDetail ">
+          <div class="screenBox"><a>全部</a> <a>充值</a> <a>提现</a></div>
+      
+          <div class="listBox">
+              <ul>
+                <li>
+                    <div class="name flexSp">
+                      <span>充值</span>
+                      <p>
+                        <img src="../images/goldIcon.png" /><font color="#fe4a4a"
+                          >+500</font
+                        >
+                      </p>
+                    </div>
+                    <div class="timeType flexSp">
+                      <span>2018-10-20 16:20</span> <span>2656</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="name flexSp">
+                      <span>提现</span>
+                      <p>
+                        <img src="../images/goldIcon.png" /><font color="#59bf3d"
+                        >-500</font
+                        >
+                      </p>
+                    </div>
+                    <div class="timeType flexSp">
+                      <span>2018-10-20 16:20</span> <span>2656</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="name flexSp">
+                      <span>充值</span>
+                      <p>
+                        <img src="../images/goldIcon.png" /><font color="#fe4a4a"
+                          >+500</font
+                        >
+                      </p>
+                    </div>
+                    <div class="timeType flexSp">
+                      <span>2018-10-20 16:20</span> <span>2656</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="name flexSp">
+                      <span>充值</span>
+                      <p><font color="#fe4a4a">充值失败</font></p>
+                    </div>
+                    <div class="timeType flexSp">
+                      <span>2018-10-20 16:20</span> <a class="resBtn">查看原因</a>
+                    </div>
+                    <div class="resBox"><p>支付超时，充值未完成！</p></div>
+                </li>
+                <li>
+                    <div class="name flexSp">
+                      <span>提现</span>
+                      <p><font color="#fe4a4a">提现失败</font></p>
+                    </div>
+                    <div class="timeType flexSp">
+                      <span>2018-10-20 16:20</span> <a class="resBtn">查看原因</a>
+                    </div>
+                    <div class="resBox"><p>支付超时，充值未完成！</p></div>
+                </li>
+                <li>
+                      <div class="name flexSp">
+                        <span>充值</span>
+                        <p>
+                          <img src="../images/goldIcon.png" /><font color="#fe4a4a"
+                            >+500</font
+                          >
+                        </p>
+                      </div>
+                      <div class="timeType flexSp">
+                        <span>2018-10-20 16:20</span> <span>2656</span>
+                      </div>
+                  </li>
+                  <li>
+                        <div class="name flexSp">
+                          <span>充值</span>
+                          <p>
+                            <font color="#2fcb33"
+                              >待充币</font
+                            >
+                          </p>
+                        </div>
+                        <div class="timeType flexSp">
+                          <span>2018-10-20 16:20</span> <span>2656</span>
+                        </div>
+                    </li>
+              </ul>
+            </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+    <script>
+      $(function() {
+          //筛选
+        $(".screenBtn").click(function() {
+          let that = $(this);
+          being.wrapShow(".cardBody");
+          $(".screenBox").fadeIn(150);
+          $(".wrapBox").click(function() {
+            $(".screenBox").fadeOut(150);
+            being.wrapHide();
+          });
+        });
+        //查看原因
+        $('.resBtn').click(function(){
+          let that=$(this);
+          that.parent().next('.resBox').slideToggle(150);
+        })
+      });
+    </script>
+  </body>
+</html>

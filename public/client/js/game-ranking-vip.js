@@ -13,9 +13,14 @@ $(document).ready(function () {
     getMyEarnedPoint();
 	getGlobalRanking();
     getGameUsedPoint();
+
+    // setInterval("getMyEarnedPoint()",60000);
+    // setInterval("getGlobalRanking()",60000);
+    // setInterval("getGameUsedPoint()",60000);
 });
 
 function getMyEarnedPoint() {
+    console.log('getMyEarnedPoint');
     $.ajax({
         type: 'GET',
         url: "/api/point-earned?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
@@ -43,19 +48,19 @@ function getMyEarnedPoint() {
                     
                     _phone = 'xxxxx';
                     if (my_rank.phone != '' && my_rank.phone != null) {
-                        console.log(my_rank.phone);
+                        // console.log(my_rank.phone);
                         _phone = my_rank.phone.substring(0,3) + '*****' + my_rank.phone.slice(-4);
                     }
                     my_rank_html += '<div class="col-1 ranking-number">'+my_rank.rank+'</div>' +
                                     '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                                    '<div class="col-3 ranking-point">'+my_rank.credit+'</div>';
+                                    '<div class="col-3 ranking-point">'+my_rank.balance+'</div>';
                 
                     $('.tab-content-my-ranking').html(my_rank_html);    
                 }else {
-                    // my_rank_html += '<div class="col-1 ranking-number">--</div>' +
-                    //                 '<div class="col-5 ranking-name">'+_phone+'</div>' +
-                    //                 '<div class="col-3 ranking-point">0</div>';
-                    $('.tab-content-my-ranking').css('display', 'none');
+
+                    if ($('.tab-content-my-ranking').html().length <= 0) {
+                        $('.tab-content-my-ranking').css('display', 'none');    
+                    }                    
                 }
                 
 
@@ -65,6 +70,7 @@ function getMyEarnedPoint() {
 }
 
 function getGlobalRanking() {
+    console.log('getGlobalRanking');
 	$.ajax({
         type: 'GET',
         url: "/api/global-rank?gameid=" + gameid,
@@ -82,21 +88,23 @@ function getGlobalRanking() {
         	var global_rank = data.global_ranks.data;
         	var global_rank_html = '';
         	var global_rank_num = 0;
-        	var i =0;
         	var _phone = 'xxxxx';
 
             if(status){
 
-            	i = 0;
+                if (global_rank.length <= 0) {
+                    return false;
+                }
+
                 $.each(global_rank, function(i, item) {
-                	if ((i + 1) == 1) {
+                	if (item.rank == 1) {
                 		global_rank_num = '<img class="icon-one" src="/client/images/ranking/1.png" />';
-                	}else if ((i + 1) == 2) {
+                	}else if (item.rank == 2) {
                 		global_rank_num = '<img class="icon-one" src="/client/images/ranking/2.png" />';
-                	}else if ((i + 1) == 3) {
+                	}else if (item.rank == 3) {
                 		global_rank_num = '<img class="icon-one" src="/client/images/ranking/3.png" />';
                 	}else {
-                		global_rank_num = (i + 1);
+                		global_rank_num = (item.rank);
                 	}
 
                 	_phone = 'xxxxx';
@@ -107,11 +115,11 @@ function getGlobalRanking() {
                 	global_rank_html += '<div class="row tab-content-list">' +
 								'<div class="col-1 ranking-number">' + global_rank_num + '</div>' +
 								'<div class="col-5 ranking-name">' + _phone + '</div>' +
-								'<div class="col-3 ranking-point">' + item.credit + '</div>' +
+								'<div class="col-3 ranking-point">' + item.balance + '</div>' +
 							'</div>';
                 });
 
-                if (global_rank_html == '') {
+                if (global_rank_html == '' && $('#general-list').html() == '') {
                 	global_rank_html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/invitation.png">' +
                                             '<div>暂无记录</div>' +
@@ -126,7 +134,7 @@ function getGlobalRanking() {
 }
 
 function getGameUsedPoint() {
-    
+    console.log('getGameUsedPoint');
     $.ajax({
         type: 'GET',
         url: "/api/game-used-point?gameid=" + gameid + "&memberid=" + $('#hidUserId').val(),
@@ -140,7 +148,7 @@ function getGameUsedPoint() {
             // $(".reload2").show();
         },
         success: function(data) {
-            console.log(data);
+            // console.log(data);
 
             var status = data.success;
             var _data = data.point.data;
@@ -150,6 +158,10 @@ function getGameUsedPoint() {
             var _phone = 'xxxxx';
 
             if(status){
+
+                if (_data.length <= 0) {
+                    return false;
+                }
 
                 i = 0;
                 $.each(_data, function(i, item) {
@@ -176,7 +188,7 @@ function getGameUsedPoint() {
                     
                 });
 
-                if (_html == '') {
+                if (_html == '' && $('#buy-product-list').html() == '') {
                     _html += '<div class="no-record">' +
                                             '<img src="/clientapp/images/no-record/invitation.png">' +
                                             '<div>暂无换购记录</div>' +

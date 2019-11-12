@@ -42,8 +42,9 @@
 }
 
 .newTxt {
-  font-size: 0.22rem;
-  color: #bebebe;
+  /*font-size: 0.22rem;*/
+  font-size: 0.26rem !important;
+  color: #7c7c7c;
   line-height: 1em;
   margin-right: 0.12rem;
 }
@@ -93,3 +94,191 @@ span.type-red {
 span.type-sred {
   line-height: 0.3rem !important;
 }
+
+.listTitle {
+  background: url(/clientapp/images/title-chaoshengouwu.png) left top no-repeat;
+    background-size: contain;
+    height: 0.53rem;
+    margin: 0.3rem 0.24rem;
+}
+
+.title-0goumai {
+  background: url(/clientapp/images/title-0yuangoumai.png) left top no-repeat;
+    background-size: contain;
+    height: 0.5rem;
+    margin: 0.2rem 0.24rem;
+    /* border-bottom: 1px solid gainsboro; */
+    /* padding: 0; */
+}
+
+.title-checkall {
+  float: right;
+  color: #b0b0b0;
+  padding: 0.1rem 0;
+}
+
+.zeroBox {
+    background-size: 100% 100%;
+    margin: 0 auto;
+    margin: 0 0 0.5rem 0;
+}
+
+.zeroBox .list {
+  padding: 0 0.24rem;
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  align-items: center;
+  position: relative;
+}
+
+.zeroBox-product-img {
+  position: relative;
+  height: 2.35rem;
+  width: 2.35rem;
+  padding: 0.1rem 0.1rem 0.1rem 0;
+}
+
+.title-0gou-product {
+  font-size: 0.26rem !important;
+  font-weight: bold;
+  color: #333 !important;
+  line-height: 1.5em !important;
+  padding: 0.1rem 0 0 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  width: 2.2rem;
+}
+
+.butie-font {
+  color: #fe002f;
+  font-family: '黑体' !important;
+  vertical-align: middle;
+}
+
+.butie {
+    background-size: contain;
+    height: 100% !important;
+    width: 0.9rem !important;
+    padding: 0 0.1rem 0 0;
+}
+
+.butiejia {
+  color: #fe002f;
+    font-size: 0.4rem;
+    padding: 0.1rem 0;
+    vertical-align: middle;
+}
+.icon-zero-go {
+  height: 0.4rem;
+    margin: -0.05rem 0 0 0.1rem;
+    padding: 0.08rem 0.05rem;
+    line-height: 1rem;
+}
+
+.butie-padding {
+  padding: 0.1rem 0 0 0;
+}
+
+.line {
+  height: 0.1rem;
+  border-top: 0.012rem solid #e5e5e5;
+  margin: 0 0.24rem;
+
+}
+
+#redeem-plan-modal .modal-dialog {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#redeem-plan-modal .modal-content {
+  background: url(/clientapp/images/main/modal-bg-redeem-plan.png) no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    outline: none;
+    width: 6rem;
+    height: auto;
+    padding: 1rem 0.1rem 0 0.1rem;
+    position: relative;
+    margin: 0.1rem 0;
+    
+
+}
+
+#redeem-plan-modal .modal-title{
+  color: #000;
+    font-size: 0.4rem;
+    line-height: 0.6rem;
+    text-align: center;
+    font-weight: 545;
+    position: relative;
+    padding: 0.7rem 0 0 0;
+}
+
+#redeem-plan-modal .modal-description{
+  font-size: 0.25rem;
+    line-height: 0.45rem;
+    color: #848484;
+    padding: 0.3rem 0;
+}
+
+#redeem-plan-modal .modal-instructions{
+  font-size: 0.25rem;
+  line-height: 0.45rem;
+  color: #848484;
+}
+
+#redeem-plan-modal .btn-close-modal {
+    position: relative;
+    padding: 1rem;
+}
+
+#redeem-plan-modal .btn-close-modal img{
+  margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 0.6rem;
+  }
+
+.highlight-red {
+  color: red;
+}
+
+.moneyBox {
+  position: relative;
+    background: url(/clientapp/images/main/btn.png) no-repeat;
+    background-size: contain;
+    height: 0.8rem;
+    padding: 0.08rem;
+    margin: 0 0 0 -0.15rem !important;
+}
+
+.moneyBox .btn-play-game {
+  color: #894d24;
+    font-size: 0.25rem;
+    padding: 0.165rem 0.15rem;
+
+}
+
+.moneyBox .btn-zero-buy {
+  color: #fff;
+    font-size: 0.27rem;
+    padding: 0.15rem 0 0.15rem 0.3rem;
+}
+
+.hong {
+  color: #f95976;
+}
+

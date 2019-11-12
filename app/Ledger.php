@@ -223,7 +223,7 @@ class Ledger extends Model
 	{
 		$uuid       = '';
 		$newcredit  = '';		
-		$prefix     = 'MBP';
+		$prefix     = 'A';
 		$action_sym = '1';			
 		$wallet     = self::ledger($userid,$gameid);
 		if ($wallet)
@@ -276,7 +276,7 @@ class Ledger extends Model
 	{	
 		$uuid       = '';
 		$newcredit  = '';		
-		$prefix     = 'MRP';
+		$prefix     = 'A';
 		$action_sym = '1';			
 		$wallet     = self::ledger($userid,$gameid);
 		if ($wallet)
@@ -285,6 +285,7 @@ class Ledger extends Model
 			{
 				return ['success'=>false,'message'=>'reserved point cannot accepted to proceed'];	
 			}
+			
 			if($wallet->reserved_point < $point )
 			{
 				return ['success'=>false,'message'=>'reserved point not in the range'];	

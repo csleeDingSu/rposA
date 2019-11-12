@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Helpers\VIPApp;
+use App\Http\Controllers\Api\CreditController;
 use App\Http\Controllers\tabaoApiController;
 use App\Members as Member;
 use App\Members;
@@ -15,6 +16,7 @@ use App\Shareproduct;
 use App\Voucher;
 use App\Wallet;
 use App\member_game_bet_temp_log;
+use App\resell_amount;
 use App\view_buy_product_user_list;
 use App\vouchers_yhq;
 use Auth;
@@ -47,7 +49,7 @@ class MainController extends BaseController
 			$member = Auth::guard('member')->user()->id	;
 			$data['member'] = Member::get_member($member);
 			$data['wallet'] = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
-			$data['buy'] = view_buy_product_user_list::select('*')->groupby('product_id','member_id','updated_at')->orderBy('updated_at', 'DESC')->skip(0)->take(1)->get();
+			// $data['buy'] = view_buy_product_user_list::select('*')->groupby('product_id','member_id','updated_at')->orderBy('updated_at', 'DESC')->skip(0)->take(1)->get();
 
 		} else {
 			$member = null;
@@ -90,10 +92,16 @@ class MainController extends BaseController
 		// 	$data['pageId'] = $res['data']['pageId'];
 		// }
 		// $res = $this->tabao->getTaobaoCollection(1);
-		$res = $this->tabao->getTaobaoCollectionVouchers(1);
+		$res = $this->tabao->getTaobaoCollectionVouchersGreater12(1,$request);
 		if (!empty($res)) {
  			$data['product'] = $res['data'];
  			$data['pageId'] = $res['data']['pageId'];	
+ 		}
+
+ 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1,$request);
+		if (!empty($res)) {
+ 			$data['product_zero'] = $res['data'];
+ 			$data['pageId_zero'] = $res['data']['pageId'];	
  		}
 		
 		return view('client/newMainPage', $data);
@@ -199,7 +207,278 @@ class MainController extends BaseController
 		}
 		$data['RunInApp'] = false;
 
-		return view('auth.register_external', $data);
-	}  
+		// return view('auth.register_external', $data);
+		return view('auth/login_external', $data);
+	}
+
+	public function tabaoZeroPriceProduct(Request $request)
+	{
+		$this->vp = new VIPApp();
+		if (Auth::Guard('member')->check())
+		{
+			$member = Auth::guard('member')->user()->id	;
+			$data['member']    = Member::get_member($member);
+			$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+			$data['game_102_usedpoint'] = \DB::table('a_view_used_point')->where('member_id',$member)->where('game_id',102)->sum('point');
+			$data['life'] = empty($data['wallet']['gameledger']['102']['life']) ? 0 : $data['wallet']['gameledger']['102']['life'];
+			
+		} else {
+			$member = null;
+			$data['member'] = null;
+			$data['wallet'] = null;	
+			$data['game_102_usedpoint'] = 0;
+			$data['life'] = 0;
+		}
+
+		$this->tabao = new tabaoApiController();
+
+ 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1,$request);
+		if (!empty($res)) {
+ 			$data['product'] = $res['data'];
+ 			$data['pageId'] = $res['data']['pageId'];	
+ 		}
+		
+		return view('client/zeroPricePage', $data);
+	}
+
+	public function newbieProduct(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = null;
+		$data['member'] = null;
+		$data['wallet'] = null;	
+		$data['game_102_usedpoint'] = 0;
+		$data['life'] = 0;
+	
+		$this->tabao = new tabaoApiController();
+
+ 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1,$request);
+		if (!empty($res)) {
+ 			$data['product'] = $res['data'];
+ 			$data['pageId'] = $res['data']['pageId'];	
+ 		}
+
+ 		$data['devices'] = "android";
+		$data['isMacDevices'] = false;
+
+		//Detect special conditions devices
+		$iPod    = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
+		$iPhone  = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+		$iPad    = stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
+		$Android = stripos($_SERVER['HTTP_USER_AGENT'],"Android");
+		$webOS   = stripos($_SERVER['HTTP_USER_AGENT'],"webOS");
+
+		//do something with this information
+		if( $iPod || $iPhone ){
+		    //browser reported as an iPhone/iPod touch -- do something here
+		    $data['devices'] = "iphone";
+		    $data['isMacDevices'] = true;
+		}else if($iPad){
+		    //browser reported as an iPad -- do something here
+		    $data['devices'] = "ipad";
+		    $data['isMacDevices'] = true;
+		}else if($Android){
+		    //browser reported as an Android device -- do something here
+		    $data['devices'] = "android";
+		}else if($webOS){
+		    //browser reported as a webOS device -- do something here
+		    $data['devices'] = "webos";
+		}
+		
+		return view('client/newBiePage', $data);
+	}
+
+	public function coin(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		$data['resell_amount'] = resell_amount::select('*')->get();
+
+		return view('client/coin', $data);
+		
+	}
+
+	public function coinList(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinList', $data);
+		
+	}
+
+	public function coinListInComplete(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinListInComplete', $data);
+		
+	}
+
+
+	public function coinDetail($id = null, Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		$data['resell_id']	= $id;
+
+		return view('client/coinDetail', $data);
+		
+	}
+
+	public function coinReady(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinReady', $data);
+		
+	}
+
+	public function coinPayIng(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinPayIng', $data);
+		
+	}
+
+	public function coinPayOver(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinPayOver', $data);
+		
+	}
+
+	public function coinFail(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/coinFail', $data);
+		
+	}
+
+	public function recharge(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		$data['resell_amount'] = resell_amount::select('*')->get();
+
+		return view('client/recharge', $data);
+		
+	}
+
+	public function rechargeType(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		$credit_resell_id = $request->input('credit_resell_id');
+
+		if (!empty($credit_resell_id)) {
+			$c = new CreditController();
+			$request->merge(['id' => $credit_resell_id]); 
+			$res = json_encode($c->get_resell_record($request));
+			$data['content'] = json_decode($res)->original;
+			$data['coin'] = $request->input('coin');
+			$data['cash'] = $request->input('cash');
+		} else {
+			$data['content'] = json_decode($request->input('hidTypeContent'));
+			$data['coin'] = $request->input('hidSelectedCoin');
+			$data['cash'] = $request->input('hidSelectedCash');
+		}
+
+		// dd($data['content']);
+		
+		$type = !empty($data['content']->type) ? $data['content']->type : '';
+
+		if ($type == 'companyaccount' || $type == '1') {
+			return view('client/rechargeCard', $data);	
+		}else{
+			return view('client/rechargeAlipay', $data);	
+		}
+		
+	}
+
+	public function rechargeList(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/rechargeList', $data);
+		
+	}
+
+	public function rechargeDetail($id = null, Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+		$data['recharge_id']	= $id;
+
+		return view('client/rechargeDetail', $data);
+		
+	}
+
+	public function rechargeListInComplete(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/rechargeListInComplete', $data);
+		
+	}
+
+	public function rechargeAlipay(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/rechargeAlipay', $data);
+		
+	}
+
+	public function rechargeCard(Request $request)
+	{
+		$this->vp = new VIPApp();
+		$member = Auth::guard('member')->user()->id	;
+		$data['member']    = Member::get_member($member);
+		$data['wallet']    = Wallet::get_wallet_details_all($member, $this->vp->isVIPApp());
+
+		return view('client/rechargeCard', $data);
+		
+	}
 
 }

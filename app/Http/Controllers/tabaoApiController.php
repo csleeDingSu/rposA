@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\taobao_collection_list;
 use App\taobao_collection_vouchers;
+use App\v_getTaobaoCollectionVouchers;
+use App\v_getTaobaoCollectionVouchersGreater12;
+use App\v_getTaobaoCollectionVouchersLess12;
+use App\v_getTaobaoCollectionVouchers_Greater12Less24;
+use App\v_getTaobaoCollectionVouchers_Greater24Less36;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -421,8 +426,117 @@ class tabaoApiController extends BaseController
         $_end = $page_num * $_pgsize;
         $_start = $_end - $_pgsize;
         
-        $totalNum = taobao_collection_vouchers::select('*')->get()->count();
-        $res = taobao_collection_vouchers::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
+        $totalNum = v_getTaobaoCollectionVouchers::select('*')->get()->count();
+        //$res = taobao_collection_vouchers::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_pgsize)->get();
+        $res = v_getTaobaoCollectionVouchers::select('*')->skip($_start)->take($_pgsize)->get();
+
+        if (!empty($res)) {
+            $next_pg = $page_num + 1;
+            $_content['code'] = 0;
+            $_content['data']['list'] = $res;
+            $_content['data']['pageId'] = $next_pg;
+            $_content['data']['totalNum'] = $totalNum;   
+            $_content['msg'] = 'ok';
+            $_content['time'] = null;
+        }
+
+        return $_content;
+
+    }
+
+    public function getTaobaoCollectionVouchersGreater12($page_num = null)
+    {
+        $_content = null;
+        $next_pg = 0;
+        $_pgsize = 10;
+        $page_num = empty($page_num) ? 1 : $page_num;
+        $_end = $page_num * $_pgsize;
+        $_start = $_end - $_pgsize;
+        
+        $totalNum = v_getTaobaoCollectionVouchersGreater12::select('*')->get()->count();
+        //$res = v_getTaobaoCollectionVouchersGreater12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
+        $res = v_getTaobaoCollectionVouchersGreater12::select('*')->skip($_start)->take($_pgsize)->get();
+
+        if (!empty($res)) {
+            $next_pg = $page_num + 1;
+            $_content['code'] = 0;
+            $_content['data']['list'] = $res;
+            $_content['data']['pageId'] = $next_pg;
+            $_content['data']['totalNum'] = $totalNum;   
+            $_content['msg'] = 'ok';
+            $_content['time'] = null;
+        }
+
+        return $_content;
+
+    }
+
+    public function getTaobaoCollectionVouchersLess12($page_num = null, Request $request)
+    {
+        $_content = null;
+        $next_pg = 0;
+        $_pgsize = empty($request->pgsize) ? 10 : $request->pgsize;
+        $page_num = empty($page_num) ? 1 : $page_num;
+        $_end = $page_num * $_pgsize;
+        $_start = $_end - $_pgsize;
+        
+        $totalNum = v_getTaobaoCollectionVouchersLess12::select('*')->get()->count();
+        // $res = v_getTaobaoCollectionVouchersLess12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
+        $res = v_getTaobaoCollectionVouchersLess12::select('*')->skip($_start)->take($_pgsize)->get();
+
+        if (!empty($res)) {
+            $next_pg = $page_num + 1;
+            $_content['code'] = 0;
+            $_content['data']['list'] = $res;
+            $_content['data']['pageId'] = $next_pg;
+            $_content['data']['totalNum'] = $totalNum;   
+            $_content['msg'] = 'ok';
+            $_content['time'] = null;
+        }
+
+        return $_content;
+
+    }
+
+     public function getTaobaoCollectionVouchersGreater12Less24($page_num = null, Request $request)
+    {
+        $_content = null;
+        $next_pg = 0;
+        $_pgsize = empty($request->pgsize) ? 10 : $request->pgsize;
+        $page_num = empty($page_num) ? 1 : $page_num;
+        $_end = $page_num * $_pgsize;
+        $_start = $_end - $_pgsize;
+        
+        $totalNum = v_getTaobaoCollectionVouchers_Greater12Less24::select('*')->get()->count();
+        // $res = v_getTaobaoCollectionVouchersLess12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
+        $res = v_getTaobaoCollectionVouchers_Greater12Less24::select('*')->skip($_start)->take($_pgsize)->get();
+
+        if (!empty($res)) {
+            $next_pg = $page_num + 1;
+            $_content['code'] = 0;
+            $_content['data']['list'] = $res;
+            $_content['data']['pageId'] = $next_pg;
+            $_content['data']['totalNum'] = $totalNum;   
+            $_content['msg'] = 'ok';
+            $_content['time'] = null;
+        }
+
+        return $_content;
+
+    }
+
+    public function getTaobaoCollectionVouchersGreater24Less36($page_num = null, Request $request)
+    {
+        $_content = null;
+        $next_pg = 0;
+        $_pgsize = empty($request->pgsize) ? 10 : $request->pgsize;
+        $page_num = empty($page_num) ? 1 : $page_num;
+        $_end = $page_num * $_pgsize;
+        $_start = $_end - $_pgsize;
+        
+        $totalNum = v_getTaobaoCollectionVouchers_Greater24Less36::select('*')->get()->count();
+        // $res = v_getTaobaoCollectionVouchersLess12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
+        $res = v_getTaobaoCollectionVouchers_Greater24Less36::select('*')->skip($_start)->take($_pgsize)->get();
 
         if (!empty($res)) {
             $next_pg = $page_num + 1;
@@ -500,6 +614,10 @@ class tabaoApiController extends BaseController
         $filter = [];
         $array = [];
         $i = 0;
+
+        if (!empty($data)){
+            taobao_collection_vouchers::query()->truncate();    
+        }
 
         foreach ($data as $d) {
             if (!empty(json_decode($d->content)->data->list)) {

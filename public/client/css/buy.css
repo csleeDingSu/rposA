@@ -138,7 +138,7 @@
 	#info { 
 	    height: 1rem; 
 	    position: fixed; 
-	    bottom: 1rem;
+	    bottom: 0;
 	    width:100%;
 	    background-color: #fff; 
 	    opacity: 1;

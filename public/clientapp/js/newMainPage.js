@@ -35,6 +35,16 @@ $(document).ready(function () {
     }
   }); 
 
+  $('.goShare-c').click(function() {
+    // $('#redeem-plan-modal').modal();
+    window.location.href = "/free";    
+  });
+
+  $('.btn-close-modal').click(function() {
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove(); 
+  })
+
 });
 
 function getFromTabao(pageId){
@@ -42,17 +52,20 @@ function getFromTabao(pageId){
   var highlight_list_html ='';
   var _pageSize = (pageId == 1) ? pageSize_init : pageSize;
   currentPageId = pageId;
+
+  Downloading('show');
   $.ajax({
       type: 'GET',
       // url: "/tabao/get-goods-list?pageSize=" + _pageSize + "&pageId=" + pageId + "&priceLowerLimit=" + priceLowerLimit+ "&priceUpperLimit=" + priceUpperLimit, 
       // url: "/tabao/get-collection-list-with-detail?pageSize=" + _pageSize + "&pageId=" + pageId,
-      url: "/tabao/get-taobao-collection-vouchers/" + pageId,
+      // url: "/tabao/get-taobao-collection-vouchers/" + pageId,
+      url: "/tabao/get-taobao-collection-vouchers-greater12/" + pageId + "?pgsize=" + pageSize,
+      
       contentType: "application/json; charset=utf-8",
       dataType: "text",
       error: function (error) {
           console.log(error);
-          // alert(error.responseText);
-          // $(".reload").show();
+          Downloading('hide');
       },
       success: function(data) {
           // console.log(data);
@@ -81,6 +94,8 @@ function getFromTabao(pageId){
           });
 
           $('.listBox').append(html);
+
+          Downloading('hide');
 
         totalNum = JSON.parse(data).data.totalNum;
         $('#hidPageId').val(JSON.parse(data).data.pageId);
@@ -115,10 +130,11 @@ function populateData(item) {
   newPrice = (newPrice > 0) ? newPrice : 0;
   sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
   commissionRate = item.commissionRate;
-  commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
+  commissionRate = (commissionRate <= 0) ? 0 : parseInt(commissionRate);
   reward = parseInt(Number(promoPrice) * Number(commissionRate));
   reward = (reward <= 0) ? '100' : reward;
-  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=';
+  hong = (Number(reward) / 100);
+  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=&life=' + life;
   // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
 
   html = '<div class="inBox">' +
@@ -131,18 +147,27 @@ function populateData(item) {
         '<div class="txtBox flex1">' +
           '<h2 class="name">'+item.title+'</h2>' +
           '<div class="typeBox">' +
-            '<span class="type-price">淘宝<em>¥</em>' + oldPrice + '</span>' +
             '<span class="type-red">'+item.couponPrice+'元券</span>' +
-            '<span class="type-sred">奖励'+reward+'积分</span>' +
+            '<span class="type-price">淘宝<em>¥</em>' + oldPrice + ' | 销量' + sales + '</span>' +
+            // '<span class="type-sred">奖励'+reward+'积分</span>' +
           '</div>' +
-          '<p class="newTxt">券后价格<em>¥</em>' + promoPrice + '</p>' +
+          '<p class="newTxt">券后价<em>¥</em>' + promoPrice + '</p>' +
           '<div class="moneyBox">' +
-          '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + newPrice + '</span></p>' +
-          '<p class="num">热销'+ sales +'</p>' +
+            '<div class="btn-play-game">抽奖补贴</div>' +
+            '<div class="btn-zero-buy">0元购买</div>' +
           '</div>' +
         '</div>' +
       '</div>';
 
   return html;
 
+}
+
+function Downloading(value) {
+  console.log(value);
+  if (value == 'hide') {
+    $('.lastHint').html('下拉显示更多产品...');
+  } else {
+    $('.lastHint').html('<img class="loading2" id="loading2" src="/client/images/preloader.gif">&nbsp;正在加载产品...');
+  }
 }

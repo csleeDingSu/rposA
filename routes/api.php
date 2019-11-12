@@ -61,6 +61,8 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function(){
 	Route::get('/product-list', 'ProductController@list_product_by_point')->name('api.product.list');
 	
 	Route::get('/redeem-history', 'ProductController@get_redeem_history')->name('api.redeem.history');
+
+	Route::get('/redeem-history-blog', 'ProductController@get_redeem_history_blog')->name('api.redeem.blog.history');
 	
 	//Route::post('/request-redeem', 'ProductController@request_redeem')->name('api.redeem.request');	
 	
@@ -175,6 +177,30 @@ Route::group(['namespace' => 'Api'],function()
 	Route::get('/used-point', 'GameController@usedpoint')->name('usedpoint');
 	
 	Route::get('/game-used-point', 'GameController@usedpoint_103')->name('used_point');
+
+
+	Route::post( '/resell-request', 'CreditController@request_resell' )->name( 'request_resell' );
+	Route::get('/getbuyer', 'CreditController@get_buyer')->name('get_buyer');
+	Route::post('/make-resell-expired', 'CreditController@make_resell_expired')->name('make_resell_expired');
+
+	Route::get('/resell-list', 'CreditController@resell_list')->name('resell_list');
+	Route::get('/resell-tree', 'CreditController@resell_tree')->name('resell_tree');
+
+	Route::post('/make-resell-paid', 'CreditController@make_resell_success')->name('make_resell_success');
+
+	Route::get('/get-summary-new', 'MemberController@get_summary_new')->name('get_summary_new');
+
+	Route::get('/buyer-list', 'CreditController@buyer_list')->name('buyer_list');
+
+	Route::get('/check-pending-resell', 'CreditController@pending_list')->name('resell_pending_list');
+
+	Route::get('/resell-expired-list', 'CreditController@expired_list')->name('resell_expired_list');
+
+	Route::get('/get-resell-record', 'CreditController@get_resell_record')->name('get_resell_record');
+
+	Route::get('/buyer-tree', 'CreditController@buyer_tree')->name('buyer_tree');
+		
+	
 	
 });
 //Route::post( 'firsttime-login', 'Auth\MemberLoginController@apilogin' )->name( 'api_apilogin' );
@@ -183,6 +209,9 @@ Route::post('api-login', 'Auth\MemberLoginController@apilogin')->name('api_apilo
 Route::get('/mytestview', 'ProductController@list_package')->name('mytestview');
 
 Route::post('wechat-auth', 'Auth\MemberLoginController@wechat_auth')->name('wechat_auth');
+
+
+
 
 
 //cron_test

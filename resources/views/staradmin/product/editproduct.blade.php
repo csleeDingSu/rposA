@@ -117,6 +117,15 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-md-6">
+						<div class="form-group row">
+							<label for="buy_limit" class="col-sm-3 col-form-label">@lang('dingsu.limit')</label>
+							<div class="col-sm-9">
+								<input id="buy_limit" name="buy_limit" class="form-control" type="text" value="{{ old('buy_limit', $record->buy_limit) }}" maxlength="3">
+							</div>
+						</div>
+					</div>
+					
 				</div>
 
 

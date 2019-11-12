@@ -27,5 +27,29 @@ dt a.on h2, dt a:active h2 {
 }
 
 .card-bar {
+    z-index: 99998 !important;
+}
+
+.modal {
     z-index: 99999 !important;
+}
+
+.newBie-footer {
+    height: 1.2rem;
+    position: absolute;
+    /*top: -2rem;*/
+    left: 1.25rem;
+    width: auto !important;
+    animation: newbie 1.3s ease-in-out 0s infinite alternate;
+  -webkit-animation: newbie 1.3s ease-in-out 0s infinite alternate;
+  -moz-animation: newbie 1.3s ease-in-out 0s infinite alternate;
+}
+
+@keyframes newbie {
+    from {
+      top: 80%;
+    }
+    to {
+      top: 81%;
+    }
 }

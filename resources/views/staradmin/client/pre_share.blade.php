@@ -2,7 +2,7 @@
 
 @section('top-css')
     @parent
-    <link rel="stylesheet" href="{{ asset('/clientapp/css/pre_share.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/pre_share.css?version=1.0.0') }}" />
     
 @endsection
 
@@ -29,15 +29,14 @@
     <div class="shareBox fix">
         <img src="{{ asset('/clientapp/images/shareImg.png') }}" class="big">
         <div class="txtBox">
-          <div class="txtIn fix">
-            <p>邀请1个好友可获得1次抽奖补贴，而你的好友能获得1次新人抽奖补贴，你的好友每邀请1个好友，你还可以获得1次抽奖补贴，邀请越多，抽奖补贴越多。
-              <br><br>
-              每次抽奖补贴有98.43%概率获得12元。
-              <br><br>
-              好友需通过网站的微信认证，你才能得到抽奖补贴次数。 严厉打击小号注册领取福利。
-            </p>
+          <div class="pre-share-main-img"></div>
+          <div class="description">
+            <div class="desc-left">好友可得</div>
+            <div class="desc-right">新人红包补贴 抽奖<span class="highlight">12</span>元红包</div>
           </div>
-          <a class="_btn" href="/share"><img src="{{ asset('/clientapp/images/shareBtn.png') }}"></a>
+          <a class="_btn" href="/share">
+            <div class="shareBtn">邀好友赚补贴 多邀多得</div>
+          </a>
         </div>
 
         <div class="sMain">

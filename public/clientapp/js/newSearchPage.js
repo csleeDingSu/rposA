@@ -1,7 +1,9 @@
 var totalNum = 0;
 var pageId = 1;
+var current_pageId = 1;
 var pageSize = 20;
 var usedpoint = 0;
+var bSearch = false;
 var life = 0;
   $(document).ready(function () {
     $('.lastHint').css('visibility', 'hidden');
@@ -17,6 +19,8 @@ var life = 0;
     being.scrollBottom('.scrolly', '.listBox', () => {   
       pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val();
       console.log('scrollBottom - ' + pageId)
+      console.log('pageId --- ' + pageId);
+      console.log('current_pageId ---' + current_pageId);
         if ($('#search').val() != "") {
           console.log('2');
           goSearch(pageId);
@@ -40,8 +44,17 @@ var life = 0;
       var html = '';
 
       if (search != "") {
+        
+        if (bSearch) { //is searching in progress
+          console.log('previous search job in progress');
+          return false;
+        }
+
+        bSearch = true;
         if (pageId == 1) {
           document.getElementById('loading').style.visibility="visible";  
+        } else {
+          Downloading('show');
         }
         
         $.ajax({
@@ -52,6 +65,8 @@ var life = 0;
             contentType: "application/json; charset=utf-8",
             dataType: "text",
             error: function (error) {
+              Downloading('hide');
+              bSearch = false;
               document.getElementById('loading').style.visibility="hidden";
                 console.log(error);
                 // alert(error.responseText);
@@ -77,7 +92,8 @@ var life = 0;
                   $(".reload").show();
             },
             success: function(data) {
-
+              Downloading('hide');
+              bSearch = false;
               var _pageId = null;
 
                 document.getElementById('loading').style.visibility="hidden";
@@ -149,6 +165,7 @@ var life = 0;
                       commissionRate = (commissionRate <= 0) ? 0 : commissionRate;
                       reward = parseInt(Number(promoPrice) * Number(commissionRate));
                       reward = (reward <= 0) ? '100' : reward;
+                      hong = (Number(reward) / 100);
                       _param = '?id=' + item.id + '&goodsId='+ goodsId +'&mainPic='+mainPic+'&title='+title+'&monthSales=' + monthSales +'&originalPrice=' +originalPrice+'&couponPrice=' +couponPrice + '&couponLink=' + encodeURIComponent(couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=&life=' + life;
                       _rewardtxt = '<p class="txt-red">补贴价格<em>¥</em><span class="num-reward">' + newPrice + '</span></p>';
             
@@ -165,14 +182,14 @@ var life = 0;
                                 '<div class="txtBox flex1">' +
                                   '<h2 class="name">'+title+'</h2>' +
                                   '<div class="typeBox">' +
-                                    '<span class="type-price">淘宝<em>¥</em>' + originalPrice + '</span>' +
-                                    '<span class="type-red">'+couponPrice+'元</span>' +
-                                    '<span class="type-sred">奖励'+reward+'积分</span>' +
+                                    '<span class="type-red">'+couponPrice+'元</span>' + 
+                                    '<span class="type-price">淘宝<em>¥</em>' + originalPrice + ' | 销量' + sales + '</span>' +                                   
+                                    // '<span class="type-sred">奖励'+reward+'积分</span>' +
                                   '</div>' +
-                                  '<p class="newTxt">券后价格<em>¥</em>' + promoPrice + '</p>' +
+                                  '<p class="newTxt">券后价<em>¥</em>' + promoPrice + '</p>' +
                                   '<div class="moneyBox">' +
-                                    _rewardtxt +
-                                    '<p class="num">热销'+ sales +'</p>' +
+                                    '<div class="btn-play-game">抽奖补贴</div>' +
+                                    '<div class="btn-zero-buy">0元购买</div>' +
                                   '</div>' +
                                 '</div>' +
                               '</div>';
@@ -188,6 +205,7 @@ var life = 0;
                 $('.listBox').append(html); 
               }
 
+              current_pageId = pageId;
                pageId++;
                pageId = (typeof _pageId == 'undefined') ? pageId: _pageId;
               $('#hidPageId').val(pageId);
@@ -208,3 +226,12 @@ var life = 0;
   function getNumeric(value) {
     return ((value % 1) > 0) ? Number(parseFloat(value).toFixed(2)) : Number(parseInt(value));
   }
+
+function Downloading(value) {
+  console.log(value);
+  if (value == 'hide') {
+    $('.lastHint').html('下拉显示更多产品...');
+  } else {
+    $('.lastHint').html('<img class="loading2" id="loading2" src="/client/images/preloader.gif">&nbsp;正在加载产品...');
+  }
+}

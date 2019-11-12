@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>充值</title>
+    <link rel="stylesheet" type="text/css" href="../css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../css/module.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/being.js"></script>
+  </head>
+
+  <body>
+    <section class="cardFull card-flex">
+      <div class="cardHeader">
+        <div class="headTitle">
+          <a class="return"><img src="../images/headReturn.png"/></a>
+          <h2>全部明细</h2>
+          <a class="list" href="detailed.html">明细</a>
+        </div>
+      </div>
+      <div class="cardBody ">
+        <div class="recharge">
+          <div class="total flexCenterC">
+            <p class="flexCenter">
+              <img src="../images/goldIcon.png" /><span>我的金币</span>
+            </p>
+            <h2>0</h2>
+          </div>
+          <div class="reList">
+            <ul>
+              <li class="flexSp on">
+                <div class="flexCenter">
+                  <img src="../images/goldIcon.png" /><em>100</em>
+                </div>
+                <span>￥99.98</span>
+              </li>
+              <li class="flexSp">
+                <div class="flexCenter">
+                  <img src="../images/goldIcon.png" /><em>200</em>
+                </div>
+                <span>￥199.90</span>
+              </li>
+              <li class="flexSp">
+                <div class="flexCenter">
+                  <img src="../images/goldIcon.png" /><em>500</em>
+                </div>
+                <span>￥490</span>
+              </li>
+              <li class="flexSp">
+                <div class="flexCenter">
+                  <img src="../images/goldIcon.png" /><em>1000</em>
+                </div>
+                <span>￥990</span>
+              </li>
+              <li class="flexSp">
+                <div class="flexCenter">
+                  <img src="../images/goldIcon.png" /><em>5000</em>
+                </div>
+                <span>￥4950</span>
+              </li>
+              <li class="flexSp">
+                <div class="flexCenter">
+                  <img src="../images/goldIcon.png" /><input class="saveDev"
+                    type="tel"
+                    placeholder="手动输入金币数量"
+                  />
+                </div>
+                <span>￥0</span>
+              </li>
+            </ul>
+          </div>
+          <div class="btnBox">
+            <a href="rechargeSure.html" class="gradientBtn">确认充值</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      $(function() {
+        $(".reList ul li").click(function(){
+          let that = $(this);
+          that.addClass("on").siblings().removeClass("on");
+        });
+        $('.saveDev').on('input propertychange',function(){
+          let that = $(this);
+          console.log(that.val());
+          that.parent().next('span').html('¥'+that.val());
+        });
+      });
+    </script>
+  </body>
+</html>

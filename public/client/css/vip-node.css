@@ -193,6 +193,21 @@
     /* margin-top: 50px; */
 }
 
+.cls-modal-no-login {
+    color: #fff;
+    font-size: 16px;
+    /*width: 220px;*/
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #000;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* margin-top: 50px; */
+}
+
 .flickity-enabled.is-draggable {
 	margin-top: -5px !important;
  }
@@ -227,37 +242,47 @@
     height: 1.5rem;
 }
 
-.openForm{
-	background: #fff;
-	border-radius:.1rem .1rem 0 0 ;
-	-webkit-border-radius:.1rem .1rem 0 0 ;
-	-moz-border-radius:.1rem .1rem 0 0 ;
-	-ms-border-radius:.1rem .1rem 0 0 ;
-	-o-border-radius:.1rem .1rem 0 0 ;
-	position: absolute;
-	display: none;
-	bottom: 0;
-	z-index: 200;
-	width: 100%;
-	left: 0;
-	padding-top: 0.3rem;
+.openForm-new{
+    background: #ffeff2;
+    border-radius:.1rem .1rem 0 0 ;
+    -webkit-border-radius:.1rem .1rem 0 0 ;
+    -moz-border-radius:.1rem .1rem 0 0 ;
+    -ms-border-radius:.1rem .1rem 0 0 ;
+    -o-border-radius:.1rem .1rem 0 0 ;
+    position: absolute;
+    display: none;
+    bottom: 0;
+    z-index: 200;
+    width: 100%;
+    left: 0;
+    padding: 0.3rem 0;
+    margin: 0 0 1rem 0;
+}
+
+.openForm-new .formTitle {
+    margin-bottom: 0.3rem;
+    position: relative;
+    margin-top: -1rem;
+}
+
+.openForm-new .formTitle img{
+    width: 100%;
 }
 
 .formWrapper{
 	padding: 0 0.3rem;
 }
 
-.formTitle{
-	font-size: .36rem;
-	text-align: center;
-	color: #333;
-	margin-bottom: 0.3rem;
-}
-
 .formBody{
 	font-size: .26rem;
-	color: #666;
-	line-height: .4rem;
+    color: #666;
+    line-height: .45rem;
+    margin: 0.3rem 0;
+}
+
+.formBody img{
+    width: 100%;
+    padding: 0.2rem 0;
 }
 
 
@@ -276,58 +301,8 @@
 	font-weight: 700;
 }
 
-.formTable {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 0.22rem;
-  color: #333;
-}
-
-.formTable td, .formTable th {
-  border: 1px solid #dfdfdf;
-  padding: 0.1rem;
-  text-align: center;
-}
-
-.formTable th {
-	background-color: #999;
-	color: #fff;
-}
-
-.formTable tr:nth-child(odd) {
-  background-color: #f4f4f4;
-}
-
 .formButtonWrapper {
 	padding: 0.3rem 0.3rem 0 0.3rem;
-}
-
-.formButton{
-	background-image: linear-gradient(to right, #24a6f1 , #0084ff);
-	height: 0.98rem;
-	border-radius: 0.5rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #fff;
-	font-size: 0.36rem;
-	cursor: pointer;
-	margin: 0 0 0.3rem 0;
-}
-
-.openForm td:last-child {
-	color: #ff4848;
-}
-
-.suggestion {
-	color:#ff8624;
-}
-
-.suggestion img {
-	width: 0.61rem;
-	height: 0.28rem;
-	position: absolute;
-	margin-top: -0.2rem;
 }
 
 #modal-no-login {
@@ -509,13 +484,6 @@
   transform: translate3d(0, 0, 0);
 }
 
-.closeForm {
-	float: right;
-    padding: 0.1rem;
-    color: red;
-    margin: -1rem 0 0 0;
-}
-
 #lose-modal .modal-instruction {
     color: #888;
     font-size: 0.28rem;
@@ -545,7 +513,7 @@
     border: 1px solid #ffae00;
     font-size: 0.3rem;
     padding: 0.16rem;
-    margin: 2% 5%;
+    margin: 0.4rem 0.3rem;
 }
 
 #modal-insufficient-point-new img {
@@ -603,30 +571,35 @@
 #btn-how-to-unlock {
     color: #fff;
     position: fixed;
-    margin: 4.3rem 0 0 2.8rem;
+    margin: 1rem;
     z-index: 999;
-    width: 2.5rem;
-    height: 0.8rem;
+    width: 80%;
+    height: 70%;
+}
+
+#modal-how-to-unlock .modal-dialog {
+    margin-top: -1rem;
 }
 
 #modal-how-to-unlock .modal-content {
-  background: url('/clientapp/images/vip-node/banner-how-to-unlock.png') no-repeat;
-    background-size: contain;
-    color: white;
-    text-align: center;
-    position: relative;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
+  background: url(/clientapp/images/vip-node/banner-how-to-unlock.png) no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    border: 1px solid transparent;
     box-shadow: none;
-    border: none;
-    padding: 10px;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+    outline: none;
+    width: 6.35rem;
+    height: auto;
+    padding: 1rem 0.25rem 0 0.25rem;
+    position: relative;
+    /*margin: 0.1rem 0;*/
 }
 
 #modal-how-to-unlock .modal-body {
-    width: 270px;
+    /*padding:0.2rem;*/
+}
+#modal-how-to-unlock .modal-full-height {
+    padding-bottom: 0 !important;
 }
 
 #modal-how-to-unlock .modal-card {
@@ -637,9 +610,9 @@
     color: #888;
     font-size: 14px;
     text-align: left;
-    margin: 75px auto auto auto;
-    line-height: 20px;
-    padding: 10px 0 0 0;
+    margin: 55px auto 5px auto;
+    line-height: 23px;
+    /*padding: 10px 0 0 0;*/
 }
 
 #modal-how-to-unlock .instruction .highlight {
@@ -649,35 +622,35 @@
 #modal-how-to-unlock .btn-go-topup {
     cursor: pointer;
     font-size: 16px;
-    padding: 15px;
+    padding: 13px;
     color: #fff;
     background: url(/clientapp/images/vip-node/btn-top-up-bg.png) no-repeat;
     background-size: cover;
     text-align: center;
     position: relative;
-    line-height: 20px;
-    width: 100%;
+    line-height: 25px;
+    height: 1.2rem;
 }
 
 #modal-how-to-unlock .btn-go-redeem {
     cursor: pointer;
     font-size: 16px;
-    padding: 15px;
+    padding: 13px;
     color: #fff;
     background: url('/clientapp/images/vip-node/btn-redeem-bg.png') no-repeat;
     background-size: cover;
     text-align: center;
     position: relative;
-    line-height: 20px;
-    width: 100%;
+    line-height: 25px;
+    height: 1.2rem;
     
 }
 
 #modal-how-to-unlock .btn-close {
-    position: fixed;
-    width: 18%;
-    margin: -100px 100px;
-    padding: 15px;
+    /*position: fixed;*/
+    width: 20%;
+    margin: 10px 125px;
+    /*padding: 15px;*/
 }
 
 #modal-how-to-unlock .star {
@@ -701,4 +674,13 @@
     left: 0;
     top: 3px;
     /*transform: translateY(-50%);*/
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.DB_G_hand_1 {
+    margin: 0.4rem 2.6rem;
+    padding: 0;
 }

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new-vip.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css?version=1.0.0') }}" />
 	<link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}">
 
     <style>
@@ -97,10 +97,6 @@
 @section('top-javascript')
 @parent
 <script src="{{ asset('/client/js/jquery.wheel.js') }}"></script>
-<script src="{{ asset('/test/open-new-browser-2/js/mui.min.js') }}"></script>
-	    <script type="text/javascript" charset="utf-8">
-	      	mui.init();
-	    </script>
 @endsection
 
 @section('top-navbar')
@@ -137,7 +133,7 @@
 					<div class="balance-banner">
 						<div class="icon-newcoin"></div>
 						<div class="spanAcuPoint2">
-							<span class="spanAcuPointAndBalance">0.00</span>
+							<span class="spanAcuPointAndBalance">{{empty($wallet->point) ? 0.00 : $wallet->point}}</span>
 							<!-- <span class="spanAcuPoint" style="font-size: 0;">0</span> -->
 						</div>
 						<div class="btn-calculate-vip btn-redeemcash" id="btn-redeemcash"></div>
@@ -149,6 +145,7 @@
 			<div class="box" id="btn-vip-wrapper">
 				<div class="btn-rules-wrapper btn-vip-wrapper">
 						<div class="btn-rules-vip"></div>
+						<div class="DB_G_hand_1"></div>
 					<div style="clear:both"></div>
 				</div>
 			</div>
@@ -415,17 +412,7 @@
 	      	<div class="col-xs-2">
 		        <div class="bet-box">
 		        	<div class="speech-bubble-chips">可多次点击</div>
-		        	<div class="button-bet button-bet-1">1</div>
-		        </div>
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">		        	
 		        	<div class="button-bet button-bet-10">10</div>
-		        </div>
-		    </div>
-		    <div class="col-xs-2">
-		        <div class="bet-box">
-		        	<div class="button-bet button-bet-50">50</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
@@ -436,6 +423,16 @@
 		    <div class="col-xs-2">
 		        <div class="bet-box">
 		        	<div class="button-bet button-bet-500">500</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">		        	
+		        	<div class="button-bet button-bet-1000">1000</div>
+		        </div>
+		    </div>
+		    <div class="col-xs-2">
+		        <div class="bet-box">
+		        	<div class="button-bet button-bet-5000">5000</div>
 		        </div>
 		    </div>
 		    <div class="col-xs-2">
@@ -602,7 +599,7 @@
 									再抽一次
 								</div>
 								<div class="btn-view-game-rules">
-									了解倍投 更容易中
+									查看攻略 轻松抽中
 								</div>												
 							</div>
 						</div>
@@ -620,11 +617,24 @@
 		<div class="txt">请先解锁高级抽奖</div>					
 	</div>
 </div>
+<!-- insufficient point modal -->
+<div class="modal fade col-md-12" id="modal-go-shop" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="insufficient-point">请点击进入商城 ></div>					
+	</div>
+</div>
 
 <!-- insufficient point modal -->
 <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
 	<div class="modal-dialog modal-lg">
 		<div class="insufficient-point">金币不足 请充值</div>					
+	</div>
+</div>
+
+<!-- new haven't login modal -->
+<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="cls-modal-no-login">您还未登录，正在跳转登录页面...</div>					
 	</div>
 </div>
 
@@ -654,7 +664,7 @@
 <!-- insufficient point modal Ends -->
 
 <!-- haven't login start modal -->
-<div class="modal fade col-md-12" id="modal-no-login" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
+<div class="modal fade col-md-12" id="modal-no-login-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="nologin-bg">
 			<div class="instructions"><span class="highlight">无限制抽奖</span> 任你抽到爽</div>
@@ -667,83 +677,20 @@
 	</div>
 </div>
 <!-- haven't login modal Ends-->
-<div class="openForm">
+<div class="openForm-new">
+	<div class="formTitle closeForm"><img src="{{asset('clientapp/images/vip-node/intro-title.png')}}"></div>
 	<div class="formWrapper">
-	<div class="formTitle">玩法介绍</div>
-	<div class="closeForm">x 关闭</div>
-	<div class="formBody">
-		这是自助式抽奖，需自选单双和投入金币，投1金币可抽1.96金币，50%中奖率，使用倍增投币法能让中奖率提高到98%,<span class="highlight1">倍增投币法说明：</span><br />
-		✗第一次投入1金币，没抽中。<br />
-		✗第二次投入3金币，也没中。<br />
-		✓第三次投入8金币，抽中了。<br />
-		当第三次抽中，<span class="highlight1">能赚到8×1.96=15.68金币</span>，扣除三次<span class="highlight2">总投币12金币</span>，最终<span class="highlight3">赚了3.68金币</span>。<br /><br />
-		这就是倍增投币法，从1金币起步，没抽中就增加，抽中后又从1金币起步，不停循环赚取大量金币，更具体倍增方案可参考表格：<br />
-	</div>
-
-	<table class="formTable">
-	  <tr>
-	    <th>次数</th>
-	    <th>本次投入</th>
-	    <th>总投入</th>
-	    <th>抽中金币</th>
-	    <th>概率</th>
-	    <th>最终赚到</th>
-	  </tr>
-	  <tr>
-	    <td>1</td>
-	    <td>1</td>
-	    <td>1</td>
-	    <td>1.96</td>
-	    <td>50%</td>
-	    <td>0.96</td>
-	  </tr>
-	  <tr>
-	    <td>2</td>
-	    <td>3</td>
-	    <td>4</td>
-	    <td>5.88</td>
-	    <td>70%</td>
-	    <td>1.88</td>
-	  </tr>
-	  <tr>
-	    <td>3</td>
-	    <td>8</td>
-	    <td>12</td>
-	    <td>15.68</td>
-	    <td>87.50%</td>
-	    <td>3.68</td>
-	  </tr>
-	  <tr>
-	    <td>4</td>
-	    <td>18</td>
-	    <td>30</td>
-	    <td>35.28</td>
-	    <td>93.75%</td>
-	    <td>5.28</td>
-	  </tr>
-	  <tr>
-	    <td>5</td>
-	    <td>38</td>
-	    <td class="suggestion"><strong>68</strong><img src="/client/images/vip/label_suggestion.png" /></td>
-	    <td>174.48</td>
-	    <td>96.87%</td>
-	    <td>6.48</td>
-	  </tr>
-	  <tr>
-	    <td>6</td>
-	    <td>80</td>
-	    <td>148</td>
-	    <td>156.8</td>
-	    <td>98.43%</td>
-	    <td>8.8</td>
-	  </tr>
-	</table>
-	</div>
-
-	<div class="btn-calculate-vip formButtonWrapper" id="btn-calculate-vip">
-		<!-- <a  href="{{$wbp['wbp']}}{{env('TOPUP_URL','#')}}"> -->
-			<div class="formButton">充值金币</div>
-		<!-- </a> -->
+		<div class="formBody">
+			高级抽奖需要投入挖宝币，抽中可获得1.96倍回报：<br/>
+			投入10挖宝币可抽中19.6挖宝币。解锁高级抽奖需680挖宝币，680挖宝币要划分成以下5次进行抽奖：<br />
+			<img src="{{asset('clientapp/images/vip-node/intro-step.png')}}">
+			玩法解释说明：<br/>
+			第一次投入10挖宝币，如果没抽中。<br/>
+			第二次就投入30挖宝币，如果还没抽中。<br/>
+			第三次就投入80挖宝币......<br/>
+			以此类推，680挖宝币最多可投入5次，5次抽中1次的概率高达96.86％<br/>
+			请注意：如果抽中，返回从第一局投入10挖宝币开始，按此方式不停循环赚取大量挖宝币。
+		</div>
 	</div>
 </div>
 
@@ -789,33 +736,34 @@
 				<div class="modal-row">
 					<div class="wrapper modal-full-height">
 						<div class="modal-card">
-							<img class="btn-close" src="{{ asset('/clientapp/images/vip-node/icon-close.png') }}" />
 							<div class="instruction">
 								<ul class="star">
 									<li>
-										高级抽奖和普通抽奖类似，不同的是高级抽奖需投入挖宝币才能抽奖，<span class="highlight">无需邀请好友，无限抽无上限，挖宝币可兑换奖品。</span>
+										解锁需680挖宝币（68元），<span class="highlight">通过补贴抽奖兑换或微店购买。</span>
 										<br>
 									</li>
 									<li>
-										解锁高级抽奖需要<span class="highlight">680挖宝币</span>，通过<span class="highlight">普通抽奖可兑换或微店购买。</span>
+										高级抽奖可无限抽，不设抽奖上限，<span class="highlight">挖宝币可兑换高价值奖品。</span>
 										<br>
 									</li>
 									<li>
-										新用户请认真查看新用户必读，掌握方法才避免损失。
+										高级抽奖需消耗挖宝币，请查阅抽奖攻略，避免不必要损失。</span>
+										<br>
 									</li>
 								</ul>
 							</div>
 							<div class="btn-go-topup">
-								充值挖宝币
+								购买挖宝币
 							</div>
 							<div class="btn-go-redeem">
 								兑换挖宝币
-							</div>												
+							</div>
 						</div>
 					</div>
 				</div>							
 			</div>
 		</div>	
+		<img class="btn-close" src="{{ asset('/clientapp/images/vip-node/icon-close.png') }}" />							
 	</div>
 </div>
 <!-- insufficient point modal Ends -->
@@ -835,9 +783,10 @@
 	<script src="{{ asset('/client/js/slide.js') }}"></script>
 	
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
-
-
-    <script type="text/javascript">
+	<script src="{{ asset('/clientapp/js/mui.min.js') }}"></script>
+    <!-- <link href="{{ asset('/clientapp/css/mui.min.css') }}" rel="stylesheet"/> -->
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
 
     	document.onreadystatechange = function () {
           var state = document.readyState
@@ -857,14 +806,11 @@
 
         console.log(platform);
 
-        mui.plusReady(function(){
-		             // 在这里调用plus api
-		             alert('ready');
-		});
+   //      if (platform == 'iOS') {
+   //      	$('#isIOS').val('true');
 
-        if (platform == 'iOS') {
-        	$('#isIOS').val('true');
-			// document.getElementById("btn-purchase-point").addEventListener("click", function(evt) {
+			// document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
+			// 	// alert(1);
 			//     var a = document.createElement('a');
 			//     a.setAttribute("href", topupurl);
 			//     a.setAttribute("target", "_blank");
@@ -873,67 +819,39 @@
 			//     a.dispatchEvent(dispatch);
 			// }, false); 
 
-			document.getElementById("btn-calculate-vip").addEventListener("click", function(evt) {
-				// alert(1);
-			    var a = document.createElement('a');
-			    a.setAttribute("href", topupurl);
-			    a.setAttribute("target", "_blank");
-			    var dispatch = document.createEvent("HTMLEvents");
-			    dispatch.initEvent("click", true, true);
-			    a.dispatchEvent(dispatch);
-			}, false); 
+			// document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
+			// 	// alert(111);
+			//     var a = document.createElement('a');
+			//     a.setAttribute("href", topupurl);
+			//     a.setAttribute("target", "_blank");
+			//     var dispatch = document.createEvent("HTMLEvents");
+			//     dispatch.initEvent("click", true, true);
+			//     a.dispatchEvent(dispatch);
+			// }, false);      		
 
-			document.getElementById("btn-go-topup").addEventListener("click", function(evt) {
-				// alert(111);
-			    var a = document.createElement('a');
-			    a.setAttribute("href", topupurl);
-			    a.setAttribute("target", "_blank");
-			    var dispatch = document.createEvent("HTMLEvents");
-			    dispatch.initEvent("click", true, true);
-			    a.dispatchEvent(dispatch);
-			}, false);      		
+   //  	} else if (platform == 'AndroidOS') {
+   //  		$('#isIOS').val('AndroidOS');
 
-    	} else if (platform == 'AndroidOS') {
-    		$('#isIOS').val('AndroidOS');
-   //  		document.getElementById("btn-purchase-point").addEventListener('tap',function(){
-			// 	plus.runtime.openURL(topupurl);
-			// });
-			var urlStr = encodeURI($('#topupurl').val());
-            $('#btn-calculate-vip').click(function() {
-                plus.runtime.openURL(urlStr);
-            });
+   //  		document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
+	  //           plus.runtime.openURL(topupurl);
+	  //         });
 
-			// document.getElementById("btn-calculate-vip").addEventListener('tap',function(){
-			// 	// alert(2);
-			// 	plus.runtime.openURL(topupurl);
-			// });
+   //  		document.getElementById("btn-go-topup").addEventListener('tap',function(){
+	  //           plus.runtime.openURL(topupurl);
+	  //         });
 
-			$('#btn-go-topup').click(function() {
-                plus.runtime.openURL(urlStr);
-            });
+   //  	} else {
 
-			// document.getElementById("btn-go-topup").addEventListener('tap',function(){
-			// 	// alert(222);
-			// 	plus.runtime.openURL(topupurl);
-			// });
-
-    	} else {
-
-   //  		$('#btn-purchase-point').click(function(){
-			// 	window.location.href = topupurl;
-			// });
 			$('#btn-calculate-vip').click(function(){
-				// alert(3);
-				// window.location.href = topupurl;
-				window.open(topupurl, '_blank'); 
+				// window.open(topupurl, '_blank'); 
+				window.location.href = '/recharge';
 			});
 			$('#btn-go-topup').click(function(){
-				// alert(333);
-				// window.location.href = topupurl;
-				window.open(topupurl, '_blank'); 
+				// window.open(topupurl, '_blank');
+				window.location.href = '/recharge'; 
 			});
 
-    	}
+   //  	}
 
     	$('.btn-go-arcade').click(function() {
     		window.location.href = '/arcade';
@@ -960,6 +878,7 @@
 			})();
 
 		$(document).ready(function () {
+
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
 			var user_id = $('#hidUserId').val();
@@ -989,28 +908,34 @@
             $(".btn-rules-vip").click(() => {  
 
                 being.wrapShow();
-                $(".openForm").slideDown(150);
+                $(".openForm-new").slideDown(150);
                 $(".wrapBox ").click(function (e) {
                   being.wrapHide();
-                  $(".openForm").slideUp(150);
+                  $(".openForm-new").slideUp(150);
                 });
-                $('.openForm').modal();
+                $('.openForm-new').modal();
                 $('.modal-backdrop').css("z-index", "3");
+
+                $('.modal-backdrop').click(function() {
+	            	$('.closeForm').trigger("click");
+	            });
+
+	            $('.DB_G_hand_1').css('display', 'none');
 
               });
 
             $(".instructions2").click(() => {  
             	$('#modal-isnewbie').modal('hide');
 	            being.wrapShow();
-	            $(".openForm").slideDown(150);
+	            $(".openForm-new").slideDown(150);
 	            $(".wrapBox ").click(function (e) {
 	              being.wrapHide();
-	              $(".openForm").slideUp(150);
+	              $(".openForm-new").slideUp(150);
 	            });
 	          });
         	
         	$('.closeForm').click(function() {
-	            $(".openForm").hide();
+	            $(".openForm-new").hide();
 	            $('.modal').modal('hide')
 	            // $('.modal-backdrop').remove() // removes the grey overlay.
 	            $('.modal-backdrop').css("z-index", "-1");
@@ -1026,15 +951,15 @@
 		function show_openform() { 
 			$('#modal-isnewbie').modal('hide');
             being.wrapShow();
-            $(".openForm").slideDown(150);
+            $(".openForm-new").slideDown(150);
             $(".wrapBox ").click(function (e) {
               being.wrapHide();
-              $(".openForm").slideUp(150);
+              $(".openForm-new").slideUp(150);
             });
 		}
 
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<script src="{{ asset('/client/js/vip-node.js') }}"></script>
+	<script src="{{ asset('/client/js/vip-node.js?version=1.0.1') }}"></script>
 @endsection

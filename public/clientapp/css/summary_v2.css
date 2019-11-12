@@ -1,0 +1,247 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);  /* <-- Just for the demo, Yes I like pretty fonts... */
+
+.container {
+	width: 100%;
+	padding: 0;
+	background-color: #f3f3f3;
+}
+
+html, body {
+	height: 100%;
+	background-color: #f3f3f3;
+}
+
+#summary {
+	/*margin-top: 0.2rem;*/
+	text-align: center;
+}
+
+.row {
+	height: 1.4rem;
+	color: #494949;
+	font-size: 0.28rem;
+	padding-top: 0.2rem;
+	margin-right: 0;
+	margin-left: 0;
+	border-top: 1px solid #e3e3e3;
+	background: #ffffff;
+}
+
+.row:first-child {
+	border-top: none;
+}
+
+.column-1 {
+	padding-right: 0.1rem;
+	padding-left: 0.2rem;
+}
+
+.column-2 {
+	padding-right: 0.1rem;
+	padding-left: 0.2rem;
+	text-align: left;
+}
+
+.right-wrapper {
+	float: right;
+	margin-right: 0.2rem;
+}
+
+.item {
+	text-align: left;
+    color: #333333;
+    font-size: 0.32rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 5.5rem;
+}
+
+.date {
+	text-align: left;
+	color: #b6b6b6;
+	font-size: 0.28rem;
+	padding-top: 0.06rem;
+}
+
+.icon-coin-wrapper {
+	height: 20px;
+	width: 20px;
+	float: right;
+	margin-top: 6px;
+	margin-right: 3px;
+	padding-top: 0;
+}
+
+.icon-coin {
+	background: url('/client/images/game.png') no-repeat -1674px -715px;
+	width: 82px;
+	height: 82px;
+	transform: scale(0.22); 
+	-webkit-transform: scale(0.22);
+	-webkit-transform-origin:left top;
+	float: left;
+	z-index: 100;
+	position: relative;
+}
+
+.points {
+	color: #ff4e4e;
+	font-size: 0.4rem;
+	float: right;
+}
+
+.negative {
+	color: #12bf00;
+}
+
+.balance {
+	float: right;
+	color: #888;
+	padding-top: 3px;
+}
+
+#pagination {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	margin-left: 10px;
+}
+
+.new_poins {
+	color: #333;
+	font-size: 0.3rem;
+}
+
+.row-full {
+	font-size: 20px;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    padding-bottom: 50px;
+    color: #666;
+}
+
+.new_item {
+    text-align: left;
+    color: #333333;
+    font-size: 0.3rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 5.7rem;
+}
+
+.share-link {
+	color: red;
+}
+
+.no-record {
+	text-align: center;
+	color: #999;
+	font-size: 0.3rem;
+	padding: 0.5rem;
+}
+
+.no-record img{
+	width: 70%;
+	/*height: 50%;*/
+	padding: 0.5rem;
+}
+
+.FilterBtn {
+  position: absolute;
+    z-index: 1;
+    right: .3rem;
+    top: 0;
+    font-size: .36rem;
+    color: #2baef9;
+    line-height: 1rem;
+    display: block;
+}
+
+.FilterBtn img {
+        right: 0.7rem;
+    position: absolute;
+    height: 0.55rem;
+    padding: 0.1rem;
+    top: 0.2rem;
+}
+
+#summary{ padding-top: .18rem;}
+#summary .inBox{ padding: .15rem .25rem; display: block; border-bottom: .02rem solid #f3f3f3; background: #fff;}
+#summary h2{display: flex;display: -webkit-flex; display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+  justify-content: space-between;-webkit-justify-content: space-between;-moz-justify-content: space-between;
+}
+#summary h2 span{font-size: .34rem;color: #3d3d3d; line-height: .6rem;}
+#summary h2 font{font-size: .28rem;}
+#summary p{display: flex;display: -webkit-flex; display: -moz-flex;
+  align-items: center;-webkit-align-items: center;-moz-align-items: center;
+  justify-content: space-between;-webkit-justify-content: space-between;-moz-justify-content: space-between;}
+#summary p span{font-size: .22rem;color: #c4c4c4; line-height: .46rem;}
+#summary p font{font-size: .26rem;color: #686868;}
+#summary h3{font-size: .24rem;color: #ff8282; line-height: .4rem; padding: .1rem 0;}
+
+.loading2 {
+  position: fixed;
+  left: 0px;
+  top: -0.15rem;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(/client/images/preloader.gif) center no-repeat;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-size: 32px 32px;
+  visibility: hidden;
+}
+
+#filter {
+	position: absolute;
+	width: 100%;
+	padding: .15rem .25rem; border-top: .02rem solid #f3f3f3; background: #fff;
+	color: #fff;
+	font-size: .34rem;
+}
+
+#filter span{
+	background-color: #e8e8e8;
+    border-radius: 0.4rem;
+    padding: 0.1rem 0.6rem;
+    margin: 0.1rem 0.22rem;
+    display: inline-block;
+    text-align: center;
+    color: #666666;
+}
+
+#filter .on{	
+	background-color: #00beff;
+	color: #fff;
+}
+
+.countdown{
+ padding: 0.1rem;
+  font-size: 0.26rem !important;
+  background: #f1f1f1;
+  border-radius: 1rem;
+  margin: 0 0.1rem;
+}
+
+.txt-red {
+  color: #ff8282 !important;
+  padding: 0 0.1rem;
+  font-size: .26rem !important;
+}
+
+.btn-go-recharge {
+  background: url(/clientapp/images/recharge/btn-pay.png) center no-repeat;
+  color: #fff !important;
+  text-align: center;
+  line-height: 0.64rem;
+  padding: 0.1rem;
+  background-size: contain;
+  font-size: .3rem !important;
+}

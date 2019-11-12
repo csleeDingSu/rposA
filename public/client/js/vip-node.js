@@ -26,6 +26,10 @@ var gameid = 103;
 var g_bet_amount = 0;
 var max_retry = 3;
 var nretry = 0;
+var touchmoved;
+var buyproduct_skip = 0;
+var buyproduct_data = '';
+var buyproduct_limit = 6;
 
 $(function () {
 
@@ -51,6 +55,7 @@ $(function () {
         getToken();
         getProduct();
         closeModal();
+        initNotification();
 
         ifvisible.on("wakeup", function(){
             //resetTimer();
@@ -100,7 +105,7 @@ function updateResult(records){
 
 function updateHistory(records){
 
-    var length = Object.keys(records).length;
+    var length = g_betting_history_total;//Object.keys(records).length;
     var maxCount = 7;
 
     if(length < maxCount){
@@ -244,29 +249,29 @@ try {
 
         $(".loading").fadeOut("slow");
 
-        $.ajax({
-            type: 'GET',
-            url: "/api/get-game-result-temp?gameid=103&gametype=1&memberid=" + user_id + "&drawid=0",
-            dataType: "json",
-            beforeSend: function( xhr ) {
-                xhr.setRequestHeader ("Authorization", "Bearer " + token);
-            },
-            error: function (error) { 
-                console.log(error);
-                // $(".reload2").show();
-            },
-            success: function(data) {
+        // $.ajax({
+        //     type: 'GET',
+        //     url: "/api/get-game-result-temp?gameid=103&gametype=1&memberid=" + user_id + "&drawid=0",
+        //     dataType: "json",
+        //     beforeSend: function( xhr ) {
+        //         xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        //     },
+        //     error: function (error) { 
+        //         console.log(error);
+        //         // $(".reload2").show();
+        //     },
+        //     success: function(data) {
 
-                if(data.success && data.record.bet != null){
+        //         if(data.success && data.record.bet != null){
 
-                    var selected = data.record.bet;
+        //             var selected = data.record.bet;
 
-                    var btn_rectangle = $("input[value='"+ selected +"']").parent();
-                    btn_rectangle.addClass('clicked');
-                    showPayout();
-                }
-            }
-        }); // ajax get-game-result-temp
+        //             var btn_rectangle = $("input[value='"+ selected +"']").parent();
+        //             btn_rectangle.addClass('clicked');
+        //             showPayout();
+        //         }
+        //     }
+        // }); // ajax get-game-result-temp
 
     }
     catch(err) {
@@ -377,7 +382,15 @@ function getToken(){
 
             socket.on(prefix+ id + "-topup-notification" + ":App\\Events\\EventDynamicChannel" , function(data){
                 $('.icon-newcoin').unbind('click');
-                getNotification(data.data);
+                getNotification(data.data, true);
+            });
+
+            socket.on(prefix+gameid+"-rank-list" + ":App\\Events\\EventDynamicChannel", function(data) {
+                console.log(data);
+                getMyEarnedPoint();
+                getGlobalRanking();
+                getGameUsedPoint();
+
             });
             
         });
@@ -387,31 +400,46 @@ function getToken(){
         DomeWebController.init();
         bindBetButton();
         $(".loading").fadeOut("slow");
+        setInterval("getProduct()",5000);
     }
     
 }
 
-function getNotification(data){
+function getNotification(data, isSocket = false){
     console.log('get topup notifications');
     console.log(data);
     var notifications = data;
 
     var notifications_count = notifications.count;
+    console.log('notifications.gameid --- ' + notifications.gameid);
+    var _gameid = (typeof notifications.gameid == 'undefined') ? gameid : notifications.gameid;
 
-    if(notifications_count == 0){
-        $('.icon-red').html(notifications_count).hide();
-        return false;
-    } else if (notifications_count > 9){
-        notifications_count = 'N';
-    }
+    if (_gameid == gameid) { //if game id is 103
+        if(notifications_count == 0){
+            $('.icon-red').html(notifications_count).hide();
+            return false;
+        } else if (notifications_count > 9){
+            notifications_count = 'N';
+        }
 
-    $('.icon-red').html(notifications_count).show();
+        $('.icon-red').html(notifications_count).show();
 
-    var records = notifications.records;
-    $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(records[0].ledger.balance_after) - getNumeric(g_bet_amount)));
-    g_vip_point = records[0].ledger.balance_after;
+        var records = notifications.records;
 
-    $('.icon-newcoin').click(function(){
+        // if ((typeof records[0].ledger.balance_after != 'undefined') || (records[0].ledger.balance_after > 0)) {
+        if (records[0].ledger.ledger_type == 'APPAA'){
+            if (isSocket) {
+                console.log('g_vip_point --- ' + g_vip_point);
+                console.log('g_bet_amount --- ' + g_bet_amount);
+                console.log('spanAcuPointAndBalance --- ' + $('.spanAcuPointAndBalance').html());
+                console.log('ledger.balance_after --- ' + records[0].ledger.balance_after);
+                $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(records[0].ledger.balance_after) - getNumeric(g_bet_amount)));
+                g_vip_point = records[0].ledger.balance_after; 
+                $('#hidBalance').val(records[0].ledger.balance_after); 
+            }
+        } 
+
+        $('.icon-newcoin').click(function(){
         $('.span-topup').html(records[0].ledger.credit);
         $('.span-before').html(records[0].ledger.balance_before);
         $('.span-after').html(records[0].ledger.balance_after);
@@ -423,112 +451,143 @@ function getNotification(data){
         $('.span-updated').html(date[0]+'年'+date[1]+'月'+date[2]+'日'+time[0]+'点'+time[1]+'分');
 
         $('#modal-notification').modal();
-
         
         $( this ).unbind( "click" );
 
-        $.ajax({
-            type: 'POST',
-            url: "/api/notification-mark-as-read?id="+ records[0].id+"&memberid=" + $('#hidUserId').val(),
-            dataType: "json",
-            error: function (error) { 
-                console.log(error.responseText);
-                $(".reload2").show();
-            },
-            success: function() {
-                var new_data = data;
-                new_data.records.shift();
-                new_data.count = new_data.records.length;
-                console.log(new_data.count);
-                if(new_data.count > 0){
-                    getNotification(new_data);
-                } else {
-                    $('.icon-red').html(notifications_count).hide();
+            $.ajax({
+                type: 'POST',
+                url: "/api/notification-mark-as-read?id="+ records[0].id+"&memberid=" + $('#hidUserId').val() + "&gameid=" + gameid,
+                dataType: "json",
+                error: function (error) { 
+                    console.log(error.responseText);
+                    $(".reload2").show();
+                },
+                success: function() {
+                    var new_data = data;
+                    new_data.records.shift();
+                    new_data.count = new_data.records.length;
+                    console.log(new_data.count);
+                    if(new_data.count > 0){
+                        getNotification(new_data, false);
+                    } else {
+                        $('.icon-red').html(notifications_count).hide();
+                    }
                 }
-            }
+            });
+
         });
 
-    });
+        $('.modal-notification-button').click(function(){
+            $('#modal-notification').modal('hide');
+        }); 
 
-    $('.modal-notification-button').click(function(){
-        $('#modal-notification').modal('hide');
-    });
+    }
 
 }
 
 function getProduct(){
-    $.getJSON( "/api/get-product-list?limit=6", function( data ) {
-        // console.log(data);
-
-        var html = '<form id="frm_buy" method="post" action="/buy">' +
-                        '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';
-
-        $.each(data.records, function(i, item) {
-            
-            if(i % 2 === 0){
-                html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
-                            '<div class="left-box">' +
-                            '<div class="prize-box">' +
-                                '<div class="image-wrapper">' +
-                                    '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
-                                '</div>' +
-                                '<div class="redeem-product">'+ item.name +'</div>' +
-                                '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
-                            '</div>' +
-                        '</div>';
-            } else {
-                html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
-                            '<div class="right-box">' +
-                            '<div class="prize-box">' +
-                                '<div class="image-wrapper">' +
-                                    '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
-                                '</div>' +
-                                '<div class="redeem-product">'+ item.name +'</div>' +
-                                '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
-                            '</div>' +
-                        '</div>';
-            }
-            html += '<input id="hid_price_'+ item.id +'" name="hid_price_'+ item.id +'" type="hidden" value="'+item.point_to_redeem+'">';
-        });
-
-        html += '</form>';
-
-        $('.redeem-prize-wrapper').html(html);
-        $('.redeem-button').on('click', function(){
-
-            var user_id = $('#hidUserId').val();
-            if(user_id == 0){
-                // window.top.location.href = "/member";
-                // $( '#login-intropopup' ).modal( 'show' );
-                // $( '#nonloginmodal' ).modal( 'show' );
-                $( '#modal-no-login' ).modal( 'show' );
+    _url = "/api/get-product-list";
+    if (buyproduct_data == ''){
+        $.getJSON( _url, function( data ) {
+            if (data.records.length <= 0) {
+                buyproduct_skip = 0;
                 return false;
             } else {
-
-                $( "#hid_package_id" ).val($(this).attr('rel'));
-                console.log($(this).attr('rel'));
-                var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
-                console.log(price);
-                console.log(g_vip_point);
-                console.log(getNumeric(price) > getNumeric(g_vip_point));
-                if (getNumeric(price) > getNumeric(g_vip_point)) {
-                    console.log(1);
-                    $('#modal-insufficient-point').modal();
-                    setTimeout(function(){ 
-                        $('#modal-insufficient-point').modal('hide');
-                    }, 3000);   
-                    return false;         
-                } else {
-                    console.log(2);
-                    $( "#frm_buy" ).submit(); 
-                    return false;   
-                }
-
+                buyproduct_data = data;
+                refreshProduct();
             }
-            
         });
+    } else {
+        refreshProduct();
+    }
 
+}
+
+function refreshProduct(){
+    data = buyproduct_data;
+    // console.log(data.records.length);
+    buyproduct_skip = (buyproduct_skip <= 0) ? 0 : ((buyproduct_skip >= data.records.length) ? 0 : buyproduct_skip);
+    buyproduct_limit = (buyproduct_limit <= 0) ? 6 : buyproduct_limit;
+
+    var html = '<form id="frm_buy" method="post" action="/buy">' +
+                '<input id="hid_package_id" name="hid_package_id" type="hidden" value="">';
+    // console.log('skip ---' + buyproduct_skip);
+    var _data = data.records;
+    var _end = Number(buyproduct_skip) + Number(buyproduct_limit);
+    for ( var i = buyproduct_skip; i < _end ; i++ ) {
+        item = _data[i];
+        if(i % 2 === 0){
+            html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
+                        '<div class="left-box">' +
+                        '<div class="prize-box">' +
+                            '<div class="image-wrapper">' +
+                                '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
+                            '</div>' +
+                            '<div class="redeem-product">'+ item.name +'</div>' +
+                            '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
+                        '</div>' +
+                    '</div>';
+        } else {
+            html += '<div class="redeem-prize redeem-button" rel="'+ item.id +'">' + 
+                        '<div class="right-box">' +
+                        '<div class="prize-box">' +
+                            '<div class="image-wrapper">' +
+                                '<img class="redeem-img" rel="'+ item.id +'" src="'+ item.picture_url +'">' +
+                            '</div>' +
+                            '<div class="redeem-product">'+ item.name +'</div>' +
+                            '<div class="redeem-price">'+ Math.ceil(item.point_to_redeem) +' <span class="redeem-currency">挖宝币</span></div>' +
+                        '</div>' +
+                    '</div>';
+        }
+        html += '<input id="hid_price_'+ item.id +'" name="hid_price_'+ item.id +'" type="hidden" value="'+item.point_to_redeem+'">';
+    };
+
+    html += '</form>';
+
+    $('.redeem-prize-wrapper').html(html);
+
+    buyproduct_skip = _end; //next batch
+
+    $('.redeem-button').on('click', function(){
+
+        var user_id = $('#hidUserId').val();
+        if(user_id == 0){
+            $( '#modal-no-login' ).modal( 'show' );                
+            setTimeout(function(){
+                console.log('1111');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
+            return false;
+        } else {
+
+            $( "#hid_package_id" ).val($(this).attr('rel'));
+            console.log($(this).attr('rel'));
+            var price = getNumeric($("#hid_price_"+ $(this).attr('rel')).val());
+            // console.log(price);
+            // console.log(g_vip_point);
+            console.log(getNumeric(price) > getNumeric(g_vip_point));
+            if (getNumeric(price) > getNumeric(g_vip_point)) {
+                console.log(1);
+                $('#modal-insufficient-point').modal();
+                setTimeout(function(){ 
+                    $('#modal-insufficient-point').modal('hide');
+                }, 3000);   
+                return false;         
+            } else {
+                console.log(2);
+                // $( "#frm_buy" ).submit();
+                $('#modal-go-shop').modal();
+                setTimeout(function(){ 
+                    $('#modal-go-shop').modal('hide');
+                }, 3000); 
+                return false;   
+            }
+
+        }
+        
     });
+
 }
 
 function resetTimer(){
@@ -604,22 +663,13 @@ function startGame() {
 
                     //lock wheel
                     lockWheel();
+
+                    setInterval("getProduct()",5000);
                 }
             });
 
         }
-    });
-    
-    $.ajax({
-        type: 'GET',
-        url: "/api/get-notifications?memberid=" + id + "&gameid=" + gameid,
-        dataType: "json",
-        error: function (error) { console.log(error.responseText) },
-        success: function(data) {
-            console.log(data);
-            getNotification(data);
-        }
-    });
+    });    
 }
 
 function resetGame() {
@@ -642,6 +692,9 @@ function resetGame() {
     $('.shan span').hide();
     $('.shan div').removeClass('clicked-vip');    
     $('.btn-trigger').unbind('click');
+    g_previous_point = $('#hidBalance').val();
+    g_bet_amount = 0;
+    g_vip_point = $('#hidBalance').val();
     startGame();
 }
 
@@ -734,7 +787,7 @@ function closeWinModal() {
             musicPlay(1);  
             // console.log('play coin mp3');
 
-           setTimeout(function(){
+           // setTimeout(function(){
                 var decimal_places = 2;
                 var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
 
@@ -759,8 +812,8 @@ function closeWinModal() {
                     target.text(floored_number);
                   }
                 },
-                1000)
-          }, 1000);
+                1000);
+          // }, 1000);
             
         }
         
@@ -846,11 +899,19 @@ function bindBetButton(){
     });
 
     $('.button-bet').on('touchend', function(event){
+        if (touchmoved) {
+            return false;
+        }
 // event.stopImmediatePropagation();
         $('.speech-bubble-chips').hide();
          var user_id = $('#hidUserId').val();
         if(user_id == 0){
             $( '#modal-no-login' ).modal( 'show' );
+            setTimeout(function(){
+                console.log('1112');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
             return false;
         } else {
 
@@ -890,6 +951,10 @@ function bindBetButton(){
 
         }
 
+    }).on('touchmove', function(e){
+        touchmoved = true;
+    }).on('touchstart', function(){
+        touchmoved = false;
     });
 
     $('.button-bet-clear').click(function(){
@@ -906,6 +971,10 @@ function bindBetButton(){
     });
 
     $('.radio-primary').on('touchend', function(event){
+        if (touchmoved) {
+            return false;
+        }
+
         event.stopImmediatePropagation();
 
         var balance = parseInt($('#hidBalance').val());
@@ -916,10 +985,12 @@ function bindBetButton(){
 
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
-            // window.top.location.href = "/member";
-            // $( '#login-intropopup' ).modal( 'show' );
-            // $( '#nonloginmodal' ).modal( 'show' );
             $( '#modal-no-login' ).modal( 'show' );
+            setTimeout(function(){
+                console.log('1113');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
             return false;
         }
 
@@ -947,6 +1018,10 @@ function bindBetButton(){
         $(this).find('.radio').toggleClass('clicked');
 
         showPayout();
+    }).on('touchmove', function(e){
+        touchmoved = true;
+    }).on('touchstart', function(){
+        touchmoved = false;
     });
 
      var user_id = $('#hidUserId').val();
@@ -954,8 +1029,20 @@ function bindBetButton(){
     if(user_id == 0){
 
         $('#btn-redeemcash').on('touchend', function() {
-            $('#modal-no-login').modal('show');
+            if (touchmoved) {
+                return false;
+            }
+            setTimeout(function(){
+                $( '#modal-no-login' ).modal( 'show' );
+                console.log('1114');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
             return false;
+        }).on('touchmove', function(e){
+            touchmoved = true;
+        }).on('touchstart', function(){
+            touchmoved = false;
         });
             
     } else {
@@ -1016,8 +1103,8 @@ function showPayout(){
         if (typeof selected == 'undefined'){
 
             //$('.middle-label').html('选择单双');
-            $('.span-odd').removeClass('ready-vip lose-vip').html("<strong>+"+bet_amount+"</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
-            $('.span-even').removeClass('ready-vip lose-vip').html("<strong>+"+bet_amount+"</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+            $('.span-odd').removeClass('ready-vip lose-vip line-through').html("<strong>"+bet_amount+"挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+            $('.span-even').removeClass('ready-vip lose-vip line-through').html("<strong>"+bet_amount+"挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
             $('.shan div').addClass('clicked-vip').removeClass('lose-vip');
 
             if(bet_count == 0){
@@ -1034,7 +1121,7 @@ function showPayout(){
             $('.odd-payout').html(bet_amount);
             $('.even-payout').html(bet_amount);
 
-            $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(g_vip_point - bet_amount)));
+            $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(Number(g_vip_point) - Number(bet_amount))));
             g_bet_amount = bet_amount;
 
             if(bet_amount > 0){
@@ -1059,18 +1146,21 @@ function showPayout(){
             if(bet_amount > 0){
                 //$('.middle-label').html('开始抽奖');
                 if(selected == 'odd'){
-                    $('.span-odd').removeClass('lose-vip').addClass('ready-vip').html("<strong>+"+bet_amount+"</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
-                    $('.span-even').addClass('ready-vip lose-vip').html('谢谢参与');
+                    $('.span-odd').removeClass('lose-vip line-through').addClass('ready-vip').html("<strong>"+bet_amount+"挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+                    $('.span-even').addClass('ready-vip lose-vip line-through').html('<strong>'+bet_amount+'挖宝币</strong>');
+                    // $('.span-even').addClass('ready-vip lose-vip').html('谢谢参与');
+
                 } else {
-                    $('.span-odd').addClass('ready-vip lose-vip').html('谢谢参与');
-                    $('.span-even').removeClass('lose-vip').addClass('ready-vip').html("<strong>+"+bet_amount+"</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
+                    // $('.span-odd').addClass('ready-vip lose-vip').html('谢谢参与');
+                    $('.span-odd').addClass('ready-vip lose-vip line-through').html('<strong>'+bet_amount+'挖宝币</strong>');
+                    $('.span-even').removeClass('lose-vip line-through').addClass('ready-vip').html("<strong>"+bet_amount+"挖宝币</strong><br /><span class='span-ratio'>×"+g_w_ratio+"<br /></span>").css('display', 'inline-block');
                 }
                 $('.shan div').addClass('clicked-vip');
 
             } else {
                 //$('.middle-label').html('选择金币');
-                $('.span-odd').removeClass('ready-vip lose-vip').html('请选挖宝币').css('display', 'inline-block');
-                $('.span-even').removeClass('ready-vip lose-vip').html('请选挖宝币').css('display', 'inline-block');
+                $('.span-odd').removeClass('ready-vip lose-vip line-through').html('请选挖宝币').css('display', 'inline-block');
+                $('.span-even').removeClass('ready-vip lose-vip line-through').html('请选挖宝币').css('display', 'inline-block');
                 $('.shan div').addClass('clicked-vip');
             }
 
@@ -1092,7 +1182,7 @@ function showPayout(){
 
                 
 
-                $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(g_vip_point - bet_amount)));
+                $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(Number(g_vip_point) - Number(bet_amount))));
 
                 $.ajax({
                     type: 'GET',
@@ -1140,6 +1230,11 @@ function bindTriggerButton(){
         var user_id = $('#hidUserId').val();
         if(user_id == 0){
             $( '#modal-no-login' ).modal( 'show' );
+            setTimeout(function(){
+                console.log('1115');
+                // $( '#modal-no-login' ).modal( 'hide' );
+                window.location.href = '/login';
+            }, 3000);
         }else {
 
             if (g_vip_point < 1) {
@@ -1170,7 +1265,7 @@ function showWinModal(){
 
     var bet_amount = getNumeric(getNumeric($('.span-bet').val()) * g_w_ratio);
     g_previous_point = getNumeric($('.spanAcuPointAndBalance').html());
-    g_vip_point = getNumeric(g_previous_point + bet_amount);
+    g_vip_point = getNumeric(Number(g_previous_point) + Number(bet_amount));
     var instructions = '您已抽中'+ g_vip_point +'挖宝币';
     html += bet_amount;
 
@@ -1475,7 +1570,11 @@ function lockWheel() {
         _img = '<a href="javascript:showHowToUnLock();"><div id="btn-how-to-unlock">&nbsp;</div></a>';
         _img += '<div id="wheel_banner"><img src="/clientapp/images/vip-node/wheel-newbie.png"></div>';
         $('.frame-wrapper').html(_img);
-        // $('#wheel_container').css('visibility', 'hidden');
+        $('.DB_G_hand_1').css('display', 'block');
+
+        $( ".DB_G_hand_1" ).click(function(){
+            $('.btn-rules-vip').trigger("click");
+        });
     }
 }
 
@@ -1490,9 +1589,9 @@ function isLock() {
         }    
     }
     
-    console.log(g_betting_history_total);
-    console.log(g_vip_point);
-    console.log(res);
+    // console.log(g_betting_history_total);
+    // console.log(g_vip_point);
+    // console.log(res);
     return res;
 }
 
@@ -1516,4 +1615,18 @@ function showHowToUnLock() {
     $('.btn-go-redeem').click(function() {
         window.location.href = '/redeem';
     }); 
+}
+
+function initNotification() {
+    var user_id = $('#hidUserId').val();
+    $.ajax({
+        type: 'GET',
+        url: "/api/get-notifications?memberid=" + user_id + "&gameid=" + gameid,
+        dataType: "json",
+        error: function (error) { console.log(error.responseText) },
+        success: function(data) {
+            console.log(data);
+            getNotification(data, false);
+        }
+    });
 }

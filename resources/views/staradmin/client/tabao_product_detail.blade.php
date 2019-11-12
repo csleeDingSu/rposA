@@ -12,7 +12,7 @@
 	<!-- <link rel="stylesheet" href="{{ asset('/client/css/default.css') }}" /> -->
 
 	<link rel="stylesheet" href="{{ asset('/client/css/flickity.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/clientapp/css/tabao_product_detail.css') }}" />
+	<link rel="stylesheet" href="{{ asset('/clientapp/css/tabao_product_detail.css?version=1.0.4') }}" />
 	
 	@if( Agent::is('OS X') )   
       <style>
@@ -29,6 +29,32 @@
 		    background-size: contain;
 		    background-repeat: round;
         }   
+
+		/*iphone X*/
+        @media only screen  
+          and (device-width : 375px) 
+          and (device-height : 812px) 
+          and (-webkit-device-pixel-ratio : 3) {
+            .footer2 {
+				height: 1.5rem;
+			}
+          }
+
+          /*iPhone 7/8*/ 
+          @media only screen 
+            and (device-width : 375px) 
+            and (device-height : 667px) 
+            and (-webkit-device-pixel-ratio : 2) {
+              /*do nothing*/
+            }
+
+          /*iPhone 6+/6s+/7+/8+*/
+          @media only screen 
+            and (device-width : 414px) 
+            and (device-height : 736px) 
+            and (-webkit-device-pixel-ratio : 3) {
+              /*do nothing*/
+            }
       </style>
     @endif
 @endsection
@@ -52,10 +78,25 @@
         @php ($photourl = empty($data['mainPic']) ? null : $data['mainPic'])
 		@php ($photourl = str_replace('_310x310.jpg', '', $photourl))
 		@php ($photourl = str_replace('_160x160.jpg', '', $photourl))
-		@php ($newPrice = ($data['originalPrice'] - $data['couponPrice'] - 12) )
-        @php ($newPrice = ($newPrice > 0) ? $newPrice : 0)
+		
+		@php ($originalPrice = $data['originalPrice'])
+		@php ($originalPrice = number_format((float)(empty($originalPrice) ? 0 : $originalPrice), 2, '.', '') + 0)
+		@php ($couponPrice = $data['couponPrice'])
+		@php ($couponPrice = number_format((float)(empty($couponPrice) ? 0 : $couponPrice), 2, '.', '') + 0)
+
+		@php ($promoPrice = $data['originalPrice'] - $data['couponPrice'])
+        @php ($promoPrice = ($promoPrice > 0) ? $promoPrice : 0)                
+		<!-- @php ($newPrice = ($promoPrice - 12) ) -->
+        <!-- @php ($newPrice = ($newPrice > 0) ? $newPrice : 0) -->
+        @php ($newPrice = 0 )
         @php ($life = empty($data['life']) ? 0 : $data['life'])
-        
+        @php ($commissionRate = $data['commissionRate'])
+        @php ($commissionRate = ($commissionRate > 0) ? (int)$commissionRate : 0)
+        @php ($reward = (int)($promoPrice * $commissionRate))
+        @php ($hong = $reward / 100) 
+        @php ($sales = ($data['monthSales'] >= 1000) ? number_format(((float)$data['monthSales'] / 10000), 2, '.', '') . '万' : $data['monthSales'] . '件')
+		@php ($life_needed = ceil($promoPrice / 12))
+
 		<ul class="list-2">
 			<li class="dbox">
 				<a class="dbox0 imgBox" href="#">
@@ -66,10 +107,9 @@
 				<div class="dbox1">
 					<h2>{{$data['title']}}</h2>
 					<div class="line-reward">
-						<div class="reward-txt">下单后</div>
-						<div class="reward">返{{$newPrice * $data['commissionRate']}}积分</div>
-						<div class="btn-reward">怎么返?</div>
-						<h3>热销{{$data['monthSales']}}件</h3>
+						<div class="reward-txt">奖励<span class="reward"><span class="cur">￥</span>{{$hong}}</span>抽奖积分</div>
+						<div class="btn-reward">怎么奖励?</div>
+						<h3>热销{{$sales}}</h3>
 					</div>							
 				</div>
 			</li>
@@ -80,17 +120,17 @@
 						<img src="{{ asset('/client/images/productv2_detail_caption.png') }}" />
 					</div>
 					<div class="normal-price">
-						<span class="cur">￥<span class="price">{{number_format(empty($data['originalPrice']) ? 99 : $data['originalPrice'], 2) + 0}}</span></span>
+						<span class="cur">￥<span class="price">{{$originalPrice}}</span></span>
 						<div class="txt">原价</div>
 					</div>
 					<img class="normal-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="voucher-price">
-                		<span class="cur">￥<span class="price">{{number_format(empty($data['couponPrice']) ? 99 : $data['couponPrice'],2) + 0}}</span></span>
+                		<span class="cur">￥<span class="price">{{$couponPrice}}</span></span>
                 		<div class="txt">优惠券</div>
                 	</div>
                 	<img class="voucher-price-icon-minus" src="{{ asset('/client/images/icon-minus.png') }}" />
                 	<div class="draw-price">
-                		<span class="cur">￥<span class="price">12</span>
+                		<span class="cur">￥<span class="price">{{$promoPrice}}</span>
                 		<div class="txt">抽奖补贴</div>
                 	</div>					
                 	<img class="new-price-icon-equal" src="{{ asset('/client/images/icon-equal.png') }}" />
@@ -102,37 +142,40 @@
 			</li>
 			<li class="dbox reward-bg">		
 				<div class="dbox1 reward-desc">
-					<div class="title">奖励补贴说明</div>
+					<div class="title-head-spot"></div><div class="title">0元购说明</div>
 					<ul>
-						<li>抽奖补贴由挖宝官方提供，新用户能免费获得1场次免费抽奖，通过抽奖可获得12元红包。</li>
-						<li>用户可通过邀请好友，获得更多抽奖场次，从而获得更多购物红包。</li>
+						<li>本产品来源淘宝，点击“领券购买”即可领券按券后价购买。如果你不想花自己钱，可以去抽奖补贴，每次抽奖最多可获得12元红包。想获得更多抽奖次数，可按下面方式：</li>
+						<li><span class="highlight-red">新用户注册、邀请好友、好友邀请别人、领券下单都可以获得抽奖次数</span>，抽奖次数越多，可补贴金额越大，从此购物不花自己钱，全场0元购。</li>
 					</ul>				
 				</div>
 			</li>
-			<li class="dbox footer">
-					<div id="button-wrapper">
-						@if (empty($data['couponLink']))
-						<a class="copyBtn"> 
-							<div id="btn-copy" class="btn-copy">领取优惠券</div>
-						</a>
-						@else
-						@php ($_url = $data['couponLink'])
-						@php ($_url = (str_replace('https://','taobao://',$_url)))
-						@php ($_url = (str_replace('http://','taobao://',$_url)))
-						<a id="btn-couponlink">
-						<!-- <a href="taobao://item.taobao.com/item.htm?id={{$data['goodsId']}}">  -->
-						<!-- <a href="https://t.asczwa.com/taobao?backurl={{$_url}}"> -->
-							<div id="btn-copy" class="btn-copy">领取优惠券</div>
-						</a>
-						@endif
-						<a href="/arcade">
-							<div id="btn-voucher" class="btn-voucher">马上抽奖</div>
-						</a>
+			<li class="dbox footer2">
+				<div class="footer-wrapper">
+				<a>
+					<div id="btn-normal-price">
+						<p class='line-1'>￥{{$originalPrice}}</p>
+						<p class='line-2'>原价购买</p>
 					</div>
+				</a>
 				
+				@php ($_url = $data['couponLink'])
+				@php ($_url = (str_replace('https://','taobao://',$_url)))
+				@php ($_url = (str_replace('http://','taobao://',$_url)))
+				<a id="btn-couponlink">
+					<div id="btn-copy" class="btn-copy">
+						<p class='line-1'>￥{{$promoPrice}}</p>
+						<p class='line-2'>领券购买</p>
+					</div>
+				</a>
+				<a href="/arcade">
+					<div id="btn-voucher" class="btn-voucher">
+						<p class='line-1'>进入抽奖</p>
+						<p class='line-2'>赚补贴红包</p>
+					</div>
+				</a>
+				</div>
 				<h4 style="font-size: 0;">优惠券代码 <span id="cut" class="copyvoucher">￥tzFkYnKYZ2R￥</span></h4>
 
-				<img class="product-detail-btn-bg" src="{{ asset('/client/images/product-detail-btn-bg.jpg') }}" />
 			</li>
 			
 			
@@ -143,34 +186,46 @@
 
 @section('footer-javascript')
 
-	<!-- draw rules starts -->
-	<div class="modal fade col-md-12" id="draw-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<!-- new draw-rules Modal starts -->
+<div class="modal fade col-md-12" id="draw-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg close-modal" role="document">
-			<div class="modal-content">
-				<div class="modal-body">				
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<div class="modal-card">
-								<div class="modal-title">
-								  抽奖补贴说明
-								</div>
-								<div class="instructions">
-									<p>抽奖补贴由挖宝提供，每1次抽奖有98.43%概率获得12元红包，红包可提现，抽奖次数来源说明：</p>
-									<p>①新用户注册送1次抽奖。</p>
-									<p>②邀请好友注册并认证，可获得1次抽奖，好友邀请别人，你也可以获得1次抽奖。</p>
-									<p>③领券下单返积分，1200积分兑换1次抽奖。</p>
-								</div>
-								<div class="txt-life">你当前拥有 <span class="mylife">{{$life}}</span> 次抽奖机会</div>
-								<div class="modal-go-button">
-									马上抽奖
-								</div>
-							</div>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-row">
+                  <div class="modal-title">
+                    想要<span class="highlight1">{{$promoPrice}}</span>元补贴 需<span class="highlight1">{{$life_needed}}</span>场抽奖
+                  </div>
+                  <div class="modal-description">
+                    <p>抽奖补贴是由挖宝提供，每1场抽奖有98.43％概率获得12元红包补貼，以下方式获得更多抽奖场次。</p>
+                  </div>
+                  <div class="modal-instructions">
+                    <p>邀请好友 <span class="chance">+1场次/人</span></p>
+                    <p><span class="small">每邀请1个好友送1场次抽奖</span></p>
+                    <a href="/pre-share"><img src="{{asset('clientapp/images/product/btn-action.png')}}"></a>
+                 </div>
+                 <div class="modal-instructions">
+                    <p>好友邀请别人 <span class="chance">+1场次/人</span></p>
+                    <p><span class="small">你邀请的好友邀请别人，你能得到1场次/人</span></p>
+                    <a href="/pre-share"><img src="{{asset('clientapp/images/product/btn-action.png')}}"></a>
+                 </div>
+                 <div class="modal-instructions">
+                    <p>新人注册和领券下单 <span class="chance">+N场次</span></p>
+                    <p><span class="small">用户注册送1次，领券下单返积分兑换场次</span></p>
+                    <a href="/arcade"><img src="{{asset('clientapp/images/product/btn-action.png')}}"></a>
+                 </div>
+                  <div class="modal-summary">
+                    <p>你目前拥有 <span class="d">{{$life}}</span> 场次抽奖补贴</p>
+                    <a href="/arcade"><div class="btn-go">进入抽奖</div></a>
+                  </div>
+                </div>
+            </div>            
+        </div>
+        <div class="btn-close-modal">
+          <img src="{{ asset('/clientapp/images/product/close.png') }}">
+        </div>
+    </div>
+</div>
+<!-- Modal Ends -->
 
 	<!-- reward rules starts -->
 	<div class="modal fade col-md-12" id="reward-rules" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
@@ -185,8 +240,7 @@
 								</div>
 								<div class="instructions">
 									<p>积分是奖励给通过平台领券去淘宝下单的用户，积分可兑换抽奖场次。</p>
-									<p>1200积分兑换1场次，抽最高12元红包，系统自动兑换。
-									</p>
+									<p>12积分兑换1场抽奖补贴，最高获得12元，系统自动兑换。</p>
 								</div>
 								<div class="modal-close-btn">
 									知道了
@@ -229,22 +283,13 @@
 	<script>
 		
 		$(document).ready(function(){
+
 			var usedpoint = $('#hidusedpoint').val();
 			var life = $('#hidlife').val();
-			if (usedpoint > 0) {
-				$('.input-txt').html('邀请奖励');
-				$('.caption_redeem_angpao').click( function() {
-		        	$('#invite-modal').modal();
-		    	});
-		    	$('.modal-go-invite').click(function() {
-		    		window.location.href = '/share';
-		    	});
-			} else {
-				$('.input-txt').html('如何补贴');
-				$('.caption_redeem_angpao').click( function() {
-		        	$('#draw-rules').modal();
-		    	});
-			}
+			
+			$('.caption_redeem_angpao').click( function() {
+	        	$('#draw-rules').modal();
+	    	});
 
 			$('.btn-reward').click(function() {
 				$('#reward-rules').modal();
@@ -253,6 +298,11 @@
 			$('.modal-close-btn').click( function() {
 	        	$('.modal').modal('hide');
 				$('.modal-backdrop').remove(); 
+	    	});
+
+	    	$('.btn-close-modal').click(function() {
+	    		$('.modal').modal('hide');
+				$('.modal-backdrop').remove();
 	    	});
 
 			$('#btn-couponlink').click(function () {
@@ -268,35 +318,22 @@
 			clipboard.on('success', function (e) {
 				console.log(e);
 				// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('margin-top', '0.95rem');
-				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
+				// $('#btn-copy').css('margin-top', '0.95rem');
+				// $('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 				window.location.href = 'taobao://';
 			});
 
 			clipboard.on('error', function (e) {
 				console.log(e);
 				// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-				$('#btn-copy').css('margin-top', '0.95rem');
-				$('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
+				// $('#btn-copy').css('margin-top', '0.95rem');
+				// $('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取成功</p><p class='inner_span_copy2'>请打开淘宝APP</p>");
 				window.location.href = 'taobao://';
 			});
 
 			$('.draw-price').click( function() {
 	        	$('#draw-rules').modal();
 	    	});
-
-			if (life <= 0) {
-				$('.modal-go-button').html('邀请好友');
-				$('.modal-go-button').click( function() {
-		        	window.location.href = '/pre-share';
-		    	});
-			} else {
-				$('.modal-go-button').html('马上抽奖');
-				$('.modal-go-button').click( function() {
-		        	window.location.href = '/arcade';
-		    	});	
-			}
-	    	
 	    	
 		})
 
@@ -308,8 +345,8 @@
 			// console.log(_hidcouponLink);
 
 			// $('.btn-product-details').attr('src', '/client/images/btn-copy-code.png');
-          $('#btn-copy').css('margin-top', '0.95rem');
-          $('.btn-copy').html("<p class='inner_span_copy1' style='margin-top: -0.1rem;'>领取优惠券</p><p class='inner_span_copy2'>处理中</p>");
+          // $('#btn-copy').css('margin-top', '0.95rem');
+          $('.btn-copy .line-2').html("处理中");
 
 			$.ajax({
 		      type: 'GET',
@@ -320,13 +357,15 @@
 		          console.log(error);
 		          alert(error.responseText);
 		          $(".reload").show();
-		          $('#btn-copy').css('margin-top','0.97rem');
-          		$('#btn-copy').html("领取优惠券");
+		          // $('#btn-copy').css('margin-top','0.97rem');
+          		// $('#btn-copy').html("领取优惠券");
+          		$('.btn-copy .line-2').html("领券购买");
 		      },
 		      success: function(data) {
 		          // console.log(data);
-		          $('#btn-copy').css('margin-top','0.97rem');
-	          		$('#btn-copy').html("领取优惠券");
+		          // $('#btn-copy').css('margin-top','0.97rem');
+	          		// $('#btn-copy').html("领取优惠券");
+	          		$('.btn-copy .line-2').html("领券购买");
 
 		          if (data.length > 0 && JSON.parse(data).code == 0) {
 		          	

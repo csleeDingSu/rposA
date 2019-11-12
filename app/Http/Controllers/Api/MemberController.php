@@ -27,6 +27,41 @@ class MemberController extends Controller
 		$ref_cre = \DB::table('ref_credit_type')->select('name','value','type')->get();
 		return response()->json(['success' => true,'records'=>$result,'credit_type_ref'=>$ref_cre]); 
 	}
+
+	public function get_summary_new(Request $request)
+    {		
+		//$result  = \App\History::get_summary_new($request->memberid,$request->type);
+		$result = \DB::table('s_summary_new')->select('*');	
+		/*	
+		if ($request->type == 'redeem')
+		{
+			$result = $result->whereIn('type', ['softpin','buyproduct']);
+		}
+		elseif($request->type == 'resell')
+		{
+			$result = $result->where('type', 'creditresell');
+		}
+		elseif($request->type == 'recharge')
+		{
+			$result = $result->where('type', 'topup');
+		}
+*/
+		$types   = $request->type;
+		$type    = explode(',', $types);
+		if (!empty($type[0]))
+		{
+			$result = $result->whereIn('type', $type);
+		}
+
+		
+		$result = $result->where('member_id', $request->memberid)->orderby('created_at','DESC')->paginate(30);
+		
+
+		$ref_cre = \DB::table('ref_credit_type')->select('name','value','type')->get();
+		return response()->json(['success' => true,'records'=>$result,'credit_type_ref'=>$ref_cre]); 
+	}
+
+
 	public function update_profile()
     {
 		return response()->json(['success' => true]); 

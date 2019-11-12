@@ -91,6 +91,16 @@
 	background-size: contain;
 }
 
+.button-bet-1000 {
+	background:url(/client/images/vip/1000.png) no-repeat;
+	background-size: contain;
+}
+
+.button-bet-5000 {
+	background:url(/client/images/vip/5000.png) no-repeat;
+	background-size: contain;
+}
+
 .button-bet-clear {
 	background:url(/client/images/vip/btn-clear.png) no-repeat;
 	background-size: contain;

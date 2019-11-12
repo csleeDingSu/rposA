@@ -122,3 +122,27 @@ html, body {
 
 
 /* End Wechat Verification Modal*/
+
+.h36 {
+	height: 0.8rem !important;
+}
+
+.userMainList .inBox .highlight {
+	color: #c9c9c9;
+    font-size: 0.25rem;
+    padding-left: 0.1rem;
+}
+
+#modal-not-available {
+	margin-top: -2rem !important;
+}
+
+#modal-not-available .txt {
+	padding: 0.3rem 0.5rem;
+    color: #fff;
+    background: #000;
+    border-radius: 10px;
+    font-size: 0.3rem;
+    text-align: center;
+    line-height: 0.5rem;
+}

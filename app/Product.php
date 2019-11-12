@@ -1,11 +1,11 @@
 <?php
 namespace App;
-use Illuminate\Database\Eloquent\Model;
-use DB;
-
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Carbon\Carbon;
 use App\ad_display;
+use App\v_blog_buy_product_redeemed;
+use Carbon\Carbon;
+use DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {   
@@ -289,6 +289,13 @@ class Product extends Model
 		}
 		// return 'yes'; //for testing
 		return '';
+	}
+
+	public static function get_redeem_history_blog($memberid, $limit = 100)
+	{
+		$result =  v_blog_buy_product_redeemed::select('*')->where('member_id', $memberid)->orderBy('request_at', 'DESC')->paginate($limit);
+		
+		return $result;
 	}
 	
 }

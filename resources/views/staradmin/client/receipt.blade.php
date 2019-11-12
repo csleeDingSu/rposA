@@ -12,7 +12,7 @@
 
 <!-- top nav -->
 @section('left-menu')
-  <a class="returnBtn" href="javascript:historyBackWFallback('/profile');"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
+  <a class="returnBtn" href="/profile"><img src="{{ asset('clientapp/images/returnIcon.png') }}"><span>返回</span></a>
 @endsection
 
 @section('title', '下单奖励')
@@ -28,7 +28,7 @@
 
   <div class="rewDetail">
     <h2>购物返积分&nbsp;抽奖拿红包</h2>
-    <h3><span>1200积分=1场次，系统自动兑换</span></h3>
+    <h3><span>12积分=1场次，系统自动兑换</span></h3>
     <ul class="rewIn">
       <li>①平台领券淘宝下单</li>
       <li>②提交淘宝订单号</li>

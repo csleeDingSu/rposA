@@ -4,8 +4,27 @@
 
 @section('top-css')
     @parent
-    <link rel="stylesheet" href="{{ asset('/clientapp/css/shop.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/shop.css?version=1.0.0') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/productv2.css') }}" />
+    <style>
+        /* Paste this css to your style sheet file or under head tag */
+        /* This only works with JavaScript, 
+        if it's not present, don't show loader */
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .loading2 {
+          position: fixed;
+          left: 0px;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 9999;
+          background: url(/client/images/preloader.gif) center no-repeat;
+          background-color: rgba(255, 255, 255, 1);
+          background-size: 32px 32px;
+        }
+
+    </style>
     
 @endsection
 
@@ -13,6 +32,7 @@
 @endsection
 
 @section('content')
+<div class="loading2" id="loading2"></div>
     <input id="hidUserId" type="hidden" value="" />
     
     <div class="card-header">
@@ -24,21 +44,22 @@
                   <img class="clsquestion" src="{{ asset('/clientapp/images/shop/question-icon.png') }}">
                 </a>
               </div>
-            <a class="shop-right-menu" href="/vip"><img src="{{ asset('/clientapp/images/shop/icon-redeem-rules.png') }}"></a>
+            <a class="shop-right-menu" href="/redeem-vip-new"><img src="{{ asset('/clientapp/images/shop/icon-my-redeem.png') }}"></a>
         </div>
         <div class="shop-banner"></div>
-        <div class="shop-notification">
-          <div class="txt-ellipsis">
-            @if (!empty($buy))
-              @foreach($buy as $b)
-                <span class="highlight">{{ substr($b->phone,0,3) }}*****{{ substr($b->phone, -4) }} </span> 换购 {{$b->package_name}}
+        <!-- <div class="shop-notification"> -->
+          <!-- <div class="txt-ellipsis"> -->
+            {{-- @if (!empty($buy)) --}}
+              {{-- @foreach($buy as $b) --}}
+                <!-- <span class="highlight">{{-- substr($b->phone,0,3) --}}*****{{-- substr($b->phone, -4) --}} </span> 换购 {{-- $b->package_name --}} -->
               
-              @endforeach
-            @else
-              <span class="highlight">158*****2686</span> 换购 iPhone X 256G 深黑色全网通苹果智能手机
-            @endif
-          </div>
-        </div>
+              {{-- @endforeach --}}
+            {{-- @else --}}
+              <!-- <span class="highlight">158*****2686</span> 换购 iPhone X 256G 深黑色全网通苹果智能手机 -->
+            {{-- @endif --}}
+          <!-- </div> -->
+        <!-- </div> -->
+        <div class="quchouj2"></div>
     </div>
 
     <div class="redeem-prize-wrapper"></div>
@@ -51,7 +72,7 @@
   <!-- insufficient point modal -->
     <div class="modal fade col-md-12" id="modal-insufficient-point" tabindex="-1">
         <div class="modal-dialog modal-lg">
-            <div class="insufficient-point">金币不足 请充值</div>                  
+            <div class="insufficient-point">挖宝币不足 请先充值或兑换</div>                  
         </div>
     </div>
     <!-- insufficient point modal Ends -->
@@ -123,6 +144,22 @@
     @parent
     <script src="{{ asset('/clientapp/js/shop.js') }}"></script>
     <script type="text/javascript">
+      var end_of_result = "@lang('dingsu.end_of_result')";
+
+      document.onreadystatechange = function () {
+        var state = document.readyState
+        if (state == 'interactive') {
+        } else if (state == 'complete') {
+          setTimeout(function(){
+              document.getElementById('interactive');
+              document.getElementById('loading').style.visibility="hidden";
+              $('.loading').css('display', 'initial');
+              // document.getElementById('loading2').style.visibility="hidden";
+          },100);
+        }
+      }
+      
+      
         $(document).ready(function() {
             var user_id = "<?php Print(isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0);?>";
             var wechat_status = "<?php Print(isset($member->wechat_verification_status) ? $member->wechat_verification_status : 0);?>";
@@ -137,6 +174,10 @@
                   $('.modal').modal('hide');
                   $('.modal-backdrop').remove();
               });
+
+            $('.quchouj2').click(function() {
+              window.location.href = '/vip';
+            });
         });
 
         function openModal(id) {
@@ -147,3 +188,30 @@
     </script>
 
 @endsection
+
+<!-- socket start-->  
+<script type="text/javascript">
+  @section('socket')
+  @parent
+    var id = "<?php Print(isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0);?>";
+    console.log('prefix --- ' + prefix);
+    console.log('id --- ' + id);
+
+    socket.on(prefix+ id + "-ledger" + ":App\\Events\\EventLedger" , function(data){
+        console.log(prefix+ id + "-ledger" + ":App\\Events\\EventLedger");
+        console.log(data.data);
+        var gameid = data.data.game_id;
+
+        if (gameid == 103) {
+          var previous_103_point = $('.shop-balance').html();
+          var updated_103_point = data.data.point;
+          if (!(previous_103_point == updated_103_point)) {
+            $('.shop-balance').html(updated_103_point); 
+          }
+          
+        }
+    });
+
+  @endsection
+</script>
+<!-- socket end-->

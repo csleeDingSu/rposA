@@ -22,7 +22,7 @@ body{
     background-position: center top;
     background-attachment: scroll;
     background-color: #8c36d9;
-    height: 10.3rem;
+    /*height: 10.3rem;*/
 }
 
 .information-table {
@@ -409,7 +409,8 @@ body{
 }
 
 .btn-rules-vip {
-	background: url(/client/images/vip/btn-intro.png) no-repeat top center;
+	/*background: url(/client/images/vip/btn-intro.png) no-repeat top center;*/
+	background: url(/clientapp/images/vip-node/btn-intro.png) no-repeat top center;
 	width: 2.28rem;
 	height: 0.72rem;
 	background-size: contain;
@@ -1892,9 +1893,9 @@ body{
 
 #lose-modal .modal-content{
 	background: url('/client/images/vip/lose-modal-bg.png') no-repeat;
-  	background-size: contain;
-	width: 6.66rem;
-	height: 6.44rem;
+  	background-size: cover;
+	width: 7rem;
+	/*height: 6.44rem;*/
 	margin-left: auto;
 	margin-right: auto;
 	border: 0;
@@ -1902,6 +1903,11 @@ body{
 	border-top-left-radius: 0;
 	box-shadow: none;
 	-webkit-box-shadow: none;
+	margin-top:-2rem;
+}
+
+#lose-modal .modal-card {
+	padding-bottom: 0px;
 }
 
 #lose-modal .modal-body {
