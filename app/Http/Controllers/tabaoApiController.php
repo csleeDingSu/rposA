@@ -480,9 +480,14 @@ class tabaoApiController extends BaseController
         $_end = $page_num * $_pgsize;
         $_start = $_end - $_pgsize;
         
-        $totalNum = v_getTaobaoCollectionVouchersLess12::select('*')->get()->count();
-        // $res = v_getTaobaoCollectionVouchersLess12::select('*')->orderBy('updated_at', 'desc')->orderBy('monthSales', 'desc')->skip($_start)->take($_end)->get();
-        $res = v_getTaobaoCollectionVouchersLess12::select('*')->skip($_start)->take($_pgsize)->get();
+        $_modal = new v_getTaobaoCollectionVouchersLess12;
+
+        if (!env('THISVIPAPP')) {
+            $_modal->setConnection('mysql2');
+        }
+        
+        $totalNum = $_modal->select('*')->get()->count();
+        $res = $_modal->select('*')->skip($_start)->take($_pgsize)->get();
 
         if (!empty($res)) {
             $next_pg = $page_num + 1;
