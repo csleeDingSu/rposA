@@ -69,7 +69,7 @@
                 @php ($_param = "?id=" . $p['id'] . "&goodsId=" . $p['goodsId'] . "&mainPic=" . $p['mainPic'] . "&title=" . $p['title'] . "&monthSales=" . $p['monthSales'] . "&originalPrice=" . $oldPrice . "&couponPrice=" . $p['couponPrice'] . "&couponLink=" . urlencode($p['couponLink']) . "&commissionRate=" . $p['commissionRate'] . "&voucher_pass=&life=" . $life)
                 <div class="inBox">
                   <div class="imgBox">
-                    <a href="/main/product/detail{{$_param}}"> 
+                    <a href="/download-app"> 
                       <img src="{{$p['mainPic']}}_320x320.jpg">
                     </a>
                   </div>

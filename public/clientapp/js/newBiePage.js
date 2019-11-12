@@ -127,7 +127,7 @@ function populateData(item) {
   html = '<div class="inBox">' +
         '<div class="imgBox">' +
           // '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '" rel="external nofollow">' +
-          '<a href="/main/product/detail' + _param +'">' + 
+          '<a href="/download-app">' + 
             '<img class="lazy" src="'+item.mainPic+'_320x320.jpg">' +
           '</a>' +
         '</div>' +
