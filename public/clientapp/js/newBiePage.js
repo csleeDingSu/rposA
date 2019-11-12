@@ -7,7 +7,7 @@ var priceUpperLimit = 50;
 var weChatVerificationStatus = '';
 var isNewBie = true;
 var life = 0;
-var currentPageId = 1;
+var currentPageId = 0;
 
 $(document).ready(function () {
 
