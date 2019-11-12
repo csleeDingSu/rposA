@@ -183,15 +183,25 @@ class LedgerController extends BaseController
 	
 	public function update_gameledger (Request $request)
 	{
-		$is_save = '';
-		$userid  = $request->id;	
-		$gid     = [];	
+		$is_save      = '';
+		$userid       = $request->id;	
+		$gid          = [];	
+		$typepoint    =  $request->typepoint;
+		$typelife     =  $request->typelife;	
 		foreach($request->point as $key => $point)
 		{
 			if ($point>0)
 			{
 				$ledger = Ledger::find($key);
-				$result = Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				
+				if ($typepoint[$key] == 1)
+				{
+					$result = Ledger::credit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				}
+				else
+				{
+					$result = Ledger::debit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
+				}
 				
 				$notification = new Notification();
 				$notification->member_id       = $userid;
@@ -205,31 +215,21 @@ class LedgerController extends BaseController
 				
 				$is_save = 'yes';
 			}
-			else
-			{
-				$point  = str_replace('-', '', $point);
-				if ($point<1)
-				{
-					continue;
-				}
-				$ledger = Ledger::find($key);
-				$result = Ledger::debit($userid,$ledger->game_id,$point,'PAA', 'admin adjust point');
-				$notification = new Notification();
-				$notification->member_id       = $userid;
-				$notification->title           = 'Ledger Update';
-				$notification->notifiable_type = 'LEDUP';
-				$notification->notifiable_id   = $result['id'];
-				$notification->game_id         = $ledger->game_id;
-				$notification->save();
-				$is_save = 'yes';
-			}
 		}		
 		foreach($request->life as $key => $life)
 		{
 			if ($life>0)
 			{
 				$ledger = Ledger::find($key);					
-				$result = Ledger::life($userid,$ledger->game_id,'credit',$life,'LAA', 'admin adjust point');
+				
+				if ($typelife[$key] == 1)
+				{
+					$result = Ledger::life($userid,$ledger->game_id,'credit',$life,'LAA', 'admin adjust point');
+				}
+				else
+				{
+					$result = Ledger::life($userid,$ledger->game_id,'debit',$life,'LAA', 'admin adjust point');
+				}
 				
 				$notification = new Notification();
 				$notification->member_id       = $userid;
