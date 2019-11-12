@@ -273,7 +273,7 @@
                         $("#_id_" + parseInt(item.amount)).removeClass('on');
                         $("#_id_" + parseInt(item.amount)).click(function() {                          
                           $('#modal-find-seller').modal();
-                          $('.find-seller').html('你有' + parseInt(item.point) + '挖宝币充值还未完成');
+                          $('.find-seller').html(parseInt(item.point) + '挖宝币充值还未完成');
                           setTimeout(function(){
                             $('.modal').modal('hide');
                             $('.modal-backdrop').remove();
