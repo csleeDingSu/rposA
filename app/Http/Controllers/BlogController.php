@@ -62,19 +62,20 @@ class BlogController extends Controller
         //     $address = $detail->city . ' ' . $detail->address;
         // }
 
-        $phone = '15601294856';//Auth::guard('member')->user()->phone;
+        $phone = Auth::guard('member')->user()->phone;
         $address = (!empty($detail->city) ? $detail->city . ' ' : '') . (!empty($detail->address) ? $detail->address: '');
         $content = $request->input('content');
         $uploads = is_array($request->input('uploads')) ? json_encode($request->input('uploads')) : $request->input('uploads');
         $buy_product_redeemed_id = $request->input('buy_product_redeemed_id');
 
-        $_url = "http://www.86callchina.com/locator.asp?o=" .$phone;
-        $_address = self::getJson($_url);
-        if (!empty($res)) {
-            $_url = "https://translate.google.com.my/translate_a/single?client=webapp&sl=auto&tl=zh-CN&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&otf=1&pc=1&ssel=3&tsel=3&kc=2&tk=801589.692345&q=" . strtolower($_address);
-            $_address_t = self::getJson($_url);
-        }
-        $address = empty($_address_t) ? $address : $_address_t;
+        // $_url = "http://www.86callchina.com/locator.asp?o=" .$phone;
+        // $_address = self::getJson($_url);
+        // if (!empty($res)) {
+        //     $_url = "https://translate.google.com.my/translate_a/single?client=webapp&sl=auto&tl=zh-CN&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&otf=1&pc=1&ssel=3&tsel=3&kc=2&tk=801589.692345&q=" . strtolower($_address);
+        //     $_address_t = self::getJson($_url);
+        // }
+        // $address = empty($_address_t) ? $address : $_address_t;
+        
         $arr = ['member_id' => $member_id, 'phone' => $phone, 'address' => $address, 'content' => $content, 'uploads' => $uploads, 'buy_product_redeemed_id' => $buy_product_redeemed_id];
         $data = $arr;
         $b = blog::updateOrCreate($arr,$data)->id;
