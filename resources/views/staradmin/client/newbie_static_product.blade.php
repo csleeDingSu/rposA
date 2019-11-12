@@ -1,6 +1,7 @@
+@php($_url = '/download-app')
 <div class="inBox">
   <div class="imgBox">
-    <a href="/download-app"> 
+    <a href="{{$_url}}"> 
       <img src="/clientapp/images/newbie/1.jpg">
     </a>
   </div>
@@ -19,7 +20,7 @@
 
 <div class="inBox">
   <div class="imgBox">
-    <a href="/download-app"> 
+    <a href="{{$_url}}">  
       <img src="/clientapp/images/newbie/2.jpg">
     </a>
   </div>
@@ -38,7 +39,7 @@
 
 <div class="inBox">
   <div class="imgBox">
-    <a href="/download-app"> 
+    <a href="{{$_url}}">  
       <img src="/clientapp/images/newbie/3.png">
     </a>
   </div>
@@ -57,7 +58,7 @@
 
 <div class="inBox">
   <div class="imgBox">
-    <a href="/download-app"> 
+    <a href="{{$_url}}">  
       <img src="/clientapp/images/newbie/4.jpg">
     </a>
   </div>
@@ -76,7 +77,7 @@
 
 <div class="inBox">
   <div class="imgBox">
-    <a href="/download-app"> 
+    <a href="{{$_url}}">  
       <img src="/clientapp/images/newbie/5.jpg">
     </a>
   </div>
@@ -95,7 +96,7 @@
 
 <div class="inBox">
   <div class="imgBox">
-    <a href="/download-app"> 
+    <a href="{{$_url}}">  
       <img src="/clientapp/images/newbie/6.jpg">
     </a>
   </div>
@@ -114,7 +115,7 @@
 
 <div class="inBox">
   <div class="imgBox">
-    <a href="/download-app"> 
+    <a href="{{$_url}}">  
       <img src="/clientapp/images/newbie/7.jpg">
     </a>
   </div>
@@ -133,7 +134,7 @@
 
 <div class="inBox">
   <div class="imgBox">
-    <a href="/download-app"> 
+    <a href="{{$_url}}">  
       <img src="/clientapp/images/newbie/8.jpg">
     </a>
   </div>

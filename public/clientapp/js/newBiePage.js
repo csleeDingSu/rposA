@@ -4,17 +4,19 @@ var pageSize_init = 10;
 var pageSize = 10;
 var priceLowerLimit = 12;
 var priceUpperLimit = 50;
-var weChatVerificationStatus = '';
-var isNewBie = true;
-var life = 0;
 var currentPageId = 0;
+var isMacDevices = false;
+var DOWNLOAD_APP_IOS = '#';
+var DOWNLOAD_APP_ANDROID = '#';
+var download_url = '#';
 
 $(document).ready(function () {
 
   pageId = ($('#hidPageId').val() == '') ? 1 : $('#hidPageId').val(); 
-  weChatVerificationStatus = $('#hidweChatVerificationStatus').val(); 
-  isNewBie = $('#hidgame102UsedPoint').val() > 0 ? false : true;
-  life = $('#hidgame102Life').val();
+  isMacDevices = $('#hidisMacDevices').val(); 
+  DOWNLOAD_APP_IOS = $('#hidDOWNLOAD_APP_IOS').val();
+  DOWNLOAD_APP_ANDROID = $('#hidDOWNLOAD_APP_ANDROID').val();
+  download_url = '/download-app'; //(isMacDevices == true) ? DOWNLOAD_APP_IOS : DOWNLOAD_APP_ANDROID;
 
   //execute scroll pagination
   being.scrollBottom('.scrolly', '.box', () => {   
@@ -74,8 +76,7 @@ function getFromTabao(pageId){
             sales = (Number(item.monthSales) >= 1000) ? parseFloat(Number(item.monthSales) / 10000).toFixed(1) + '万' : Number(item.monthSales) + '件';
             reward = parseInt(newPrice * 10);
             reward = (reward <= 0) ? '100' : reward;
-            _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&voucher_pass=&life=' + life;
-            // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
+            _param = '';
 
               html += populateData(item);              
 
@@ -121,13 +122,13 @@ function populateData(item) {
   reward = parseInt(Number(promoPrice) * Number(commissionRate));
   reward = (reward <= 0) ? '100' : reward;
   hong = (Number(reward) / 100);
-  _param = '?id=' + item.id + '&goodsId='+ item.goodsId +'&mainPic='+item.mainPic+'&title='+item.title+'&monthSales=' + item.monthSales +'&originalPrice=' +oldPrice+'&couponPrice=' +item.couponPrice + '&couponLink=' + encodeURIComponent(item.couponLink) + '&commissionRate=' + commissionRate + '&voucher_pass=&life=' + life;
+  _param = '';
   // _param = '?id=' + item.id + '&goodsId='+ item.goodsId;
 
   html = '<div class="inBox">' +
         '<div class="imgBox">' +
           // '<a href="https://t.asczwa.com/taobao?backurl=' + item.couponLink + '" rel="external nofollow">' +
-          '<a href="/download-app">' + 
+          '<a href="'+ download_url +'">' + 
             '<img class="lazy" src="'+item.mainPic+'_320x320.jpg">' +
           '</a>' +
         '</div>' +
@@ -138,7 +139,6 @@ function populateData(item) {
             '<span class="type-price">淘宝<em>¥</em>' + oldPrice + ' | 销量' + sales + '</span>' +                                              
             // '<span class="type-sred">奖励'+reward+'积分</span>' +
           '</div>' +
-          '<p class="newTxt">券后价<em>¥</em>' + promoPrice + '</p>' +
           '<div class="moneyBox">' +
             '<div class="amount"><em>¥</em>0</div>' +
             '<div class="txt">APP专享补贴</div>' +

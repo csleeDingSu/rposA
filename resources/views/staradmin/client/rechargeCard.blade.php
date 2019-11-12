@@ -299,7 +299,7 @@ var being2 = {
                     <li>
                         <div>
                             <img src="{{ asset('/clientapp/images/help/wxpay-5.png') }}" />
-                            <p>05 确认账务无误，在转账</p>
+                            <p>05 确认账号无误，在转账</p>
                         </div>
                     </li>
                     <li>
