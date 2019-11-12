@@ -761,5 +761,6 @@ return [
 	'resell_reset_rejected' => 'Rejected - reset',
 	'autobuy' => 'Waiting payment - administrator',
 	'limit' => 'Limit',
+	'subtract' => 'subtract',
 
 ];
