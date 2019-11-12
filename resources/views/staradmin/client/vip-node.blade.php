@@ -681,8 +681,8 @@
 	<div class="formTitle closeForm"><img src="{{asset('clientapp/images/vip-node/intro-title.png')}}"></div>
 	<div class="formWrapper">
 		<div class="formBody">
-			高级抽奖需要投入挖宝币，抽中可获得1.96倍回报：<br/>
-			投入10挖宝币可抽中19.6挖宝币。解锁高级抽奖需680挖宝币，680挖宝币要划分成以下5次进行抽奖：<br />
+			高级抽奖需要投入挖宝币，抽中可获得1.96倍回报：投入10挖宝币可抽中19.6挖宝币。<br/>
+			解锁高级抽奖需680挖宝币，680挖宝币要划分成以下5次进行抽奖：<br />
 			<img src="{{asset('clientapp/images/vip-node/intro-step.png')}}">
 			玩法解释说明：<br/>
 			第一次投入10挖宝币，如果没抽中。<br/>

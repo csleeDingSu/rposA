@@ -38,7 +38,7 @@
         <div class="logo rel logo3-zero">
           <div class="c-header">
             <div class="pageHeader rel">
-              <p>点击又上角</p>
+              <p>点击右上角</p>
               <p>选着Safari或浏览器</p>
               <p>即可下载<span class="highlight">挖宝APP</span></p>
             </div>
@@ -47,10 +47,9 @@
 
         <div class="listBox">
           <div class="inBox-download">
-            @php($_url = ($isMacDevices) ? env('DOWNLOAD_APP_IOS', '#') : env('DOWNLOAD_APP_ANDROID', '#'))
-            <a href="{{$_url}}"><img class="logo" src="{{ asset('clientapp/images/newbie/logo.png') }}"></a>            
+            <a><img class="logo" src="{{ asset('clientapp/images/newbie/logo.png') }}"></a>            
             <p class="guanfang">挖宝商城<img src="{{ asset('clientapp/images/newbie/guanfang.png') }}"></p>
-            <p>2000 万次下载 | 12.13MB</p>
+            <p>6 万次下载 | 5.8MB</p>
             <p><img class="star" src="{{ asset('clientapp/images/newbie/star.png') }}"></p>
           </div>
         </div>
@@ -60,5 +59,30 @@
 
 @section('footer-javascript')
     @parent  
+    <script type="text/javascript">
+      $(document).ready(function () {
+        checkDownload();
+      });      
+      
+      function checkDownload() {
+        var isMacDevices = "{{ $isMacDevices }}";
+        var DOWNLOAD_APP_IOS= "{{env('DOWNLOAD_APP_IOS', '#')}}";      
+        var DOWNLOAD_APP_ANDROID= "{{env('DOWNLOAD_APP_ANDROID', '#')}}";        
+        var ua = navigator.userAgent.toLowerCase();
+
+        if (ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) {
+            console.log('in weixin');              
+            return false;
+          }else{
+            console.log('out from weixin');
+              if (isMacDevices) {
+                window.location.href = DOWNLOAD_APP_IOS;
+              } else {
+                window.location.href = DOWNLOAD_APP_ANDROID;
+              }
+          }
+      }
+    
+</script>
 
 @endsection

@@ -35,6 +35,9 @@
 
 <div class="box">
    <input id="hidPageId" type="hidden" value="" />
+   <input id="hidisMacDevices" type="hidden" value="{{empty($isMacDevices) ? false : $isMacDevices}}" />
+   <input id="hidDOWNLOAD_APP_IOS" type="hidden" value="{{env('DOWNLOAD_APP_IOS', '#')}}" />
+   <input id="hidDOWNLOAD_APP_ANDROID" type="hidden" value="{{env('DOWNLOAD_APP_ANDROID', '#')}}" />
 
   <div class="logo rel logo3-zero">
     <div class="c-header">
