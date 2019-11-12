@@ -242,22 +242,7 @@ class MainController extends BaseController
 	}
 
 	public function newbieProduct(Request $request)
-	{
-		$this->vp = new VIPApp();
-		$member = null;
-		$data['member'] = null;
-		$data['wallet'] = null;	
-		$data['game_102_usedpoint'] = 0;
-		$data['life'] = 0;
-	
-		$this->tabao = new tabaoApiController();
-
- 		$res = $this->tabao->getTaobaoCollectionVouchersLess12(1,$request);
-		if (!empty($res)) {
- 			$data['product'] = $res['data'];
- 			$data['pageId'] = $res['data']['pageId'];	
- 		}
-
+	{ 	
  		$data['devices'] = "android";
 		$data['isMacDevices'] = false;
 
