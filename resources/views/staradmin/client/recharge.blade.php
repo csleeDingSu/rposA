@@ -269,9 +269,9 @@
                         // console.log("#_id_" + parseInt(item.amount));
                         $("#_id_" + parseInt(item.amount)).unbind();
                         $("#_id_" + parseInt(item.amount)).removeClass('on');
-                        $("#_id_" + parseInt(item.amount)).click(function() {
-                          $('#modal-find-seller .find-seller').html('你有充值还未完成');
-                          $('#modal-find-seller').show();
+                        $("#_id_" + parseInt(item.amount)).click(function() {                          
+                          $('#modal-find-seller').modal();
+                          $('.find-seller').html('你有充值还未完成');
                         });
                       });
 
