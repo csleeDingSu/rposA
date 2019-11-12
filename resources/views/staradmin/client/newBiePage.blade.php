@@ -49,7 +49,8 @@
               <a class="rules">补贴说明</a>
             </div> -->
           </div>
-          <a class="download-app" href="/download-app"><img src="{{ asset('clientapp/images/newbie/download.png') }}"></a>
+          @php($_url = ($isMacDevices) ? '/download-app' : env('DOWNLOAD_APP_ANDROID', '#'))
+          <a class="download-app" href="{{$_url}}"><img src="{{ asset('clientapp/images/newbie/download.png') }}"></a>
         </div>
 
         <div class="listBox">
