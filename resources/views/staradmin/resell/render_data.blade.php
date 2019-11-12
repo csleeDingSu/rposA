@@ -5,7 +5,7 @@
 	<td>{{$list->uuid}}</td>
 	<td>
 	@if ($list->member_id)
-		{{ $list->member->phone ?? $list->member->wechat_name }}
+		{{ $list->member->phone ?? (empty($list->member->wechat_name) ? '' : $list->member->wechat_name) }}
 	@endif	
 	</td>
 	<td>{{$list->point ?? '-' }}</td>
