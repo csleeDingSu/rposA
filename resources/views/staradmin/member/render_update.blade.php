@@ -50,8 +50,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="form-group row">
-				<label for="life_{{$list->id}}" class="col-sm-6 col-form-label">@lang('dingsu.add_life') </label>
+			<div class="form-group row">				
 				<div class="col-sm-12">
 					<select class="form-control" name="life[{{$list->id}}]" id="life[{{$list->id}}]">
 						<option value="0">@lang('dingsu.nothing_to_change')</option>
