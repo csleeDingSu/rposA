@@ -346,8 +346,8 @@ span.type-sred {
 
 .moneyBox .txt {
   color: #fff;
-    font-size: 0.27rem;
-    padding: 0.1rem;
+    font-size: 0.25rem;
+    padding: 0.1rem 0 0.1rem 0.15rem;
     background: url(/clientapp/images/newbie/app-bg-1.png) no-repeat;
     background-size: contain;
     text-align: center;
