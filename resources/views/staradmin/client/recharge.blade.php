@@ -173,6 +173,7 @@
 
             $('.sendBox').on('click',function () {
               $('#modal-find-seller').modal();
+              $('.find-seller').html('正在匹配卖家...');
               setTimeout(function(){
                 getBuyer(vCoin);
               }, 2000);
@@ -273,6 +274,10 @@
                         $("#_id_" + parseInt(item.amount)).click(function() {                          
                           $('#modal-find-seller').modal();
                           $('.find-seller').html('你有' + parseInt(item.point) + '挖宝币充值还未完成');
+                          setTimeout(function(){
+                            $('.modal').modal('hide');
+                            $('.modal-backdrop').remove();
+                          }, 3000);
                         });
                       });
 
