@@ -411,6 +411,7 @@ class tabaoApiController extends BaseController
                 echo "\nThis a command storeAllCollectionList - getCollectionListWithDetail"; 
                 //store data
                 if (!empty($_list['data']['list'])) {
+                    $pageId = $_list['data']['pageId'];
                     $filter = ['page_num' => $page_num];
                     $array = ['page_num' => $page_num, 'content' => json_encode($_list, true)];
                     $_id = taobao_collection_list::updateOrCreate($filter, $array)->id;
