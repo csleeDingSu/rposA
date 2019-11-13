@@ -333,11 +333,11 @@ class tabaoApiController extends BaseController
             // 'cid' => "1,2,3,4,5,6,7,8,9,10,11,12,13,14",
             // 'cid' => '6',
             // 'trailerType' => 1,
-            'sort' => 2,
+            // 'sort' => 2,
             // 'collectionTimeOrder' => '20190926',
         ];
 
-        // dd($data);
+        var_dump($data);
 
         //加密的参数
         $data['sign'] = $this->makeSign($data,$this->appSecret);
