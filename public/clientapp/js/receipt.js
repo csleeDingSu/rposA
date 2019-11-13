@@ -105,7 +105,7 @@ function populateHtml(records) {
     html +=         '<font color="#a144ff">正在处理</font>';                
                 }else if (item.status == 2) {
     html +=         '<font color="#a144ff">奖励到账</font>';
-                    earned_point = Number(earned_point) + Number(item.amount);
+                    earned_point = Number(parseInt(earned_point)) + Number(parseInt(item.amount));
 
                 }else if (item.status == 3) {
     html +=         '<font color="#ff6161">奖励失效</font>';                
