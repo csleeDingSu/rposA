@@ -661,11 +661,11 @@ class tabaoApiController extends BaseController
         $array = [];
         $i = 0;
 
-        // if (!empty($data)){
-        //     taobao_collection_vouchers::query()->truncate();
-        //     \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate");
-        //     echo "\nThis a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate";    
-        // }
+        if (!empty($data)){
+            taobao_collection_vouchers::query()->truncate();
+            \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate");
+            echo "\nThis a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate";    
+        }
 
         foreach ($data as $d) {
             if (!empty(json_decode($d->content)->data->list)) {
