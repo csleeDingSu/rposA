@@ -99,7 +99,7 @@ function populateHtml(records) {
     var html = '';
     earned_point = 0;
     $.each(records, function(i, item) {          
-    html += '<li>' +
+    html += '<li id=r_"'+item.id+'">' +
                 '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
                 if (item.status == 1) {
     html +=         '<font color="#a144ff">正在处理</font>';                
@@ -133,13 +133,12 @@ function populateHtml(records) {
     }
 }
 
-function populateHtmlSocket (records) {
-    console.log(records);
+function populateHtmlSocket (item) {
+    console.log(item);
     var html = '';
     earned_point = parseInt($('.earned_point').html());
-    $.each(records, function(i, item) {          
-    html += '<li>' +
-                '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
+
+    html += '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
                 if (item.status == 1) {
     html +=         '<font color="#a144ff">正在处理</font>';                
                 }else if (item.status == 2) {
@@ -159,12 +158,8 @@ function populateHtmlSocket (records) {
     html +=         '<p><span>'+item.updated_at+'</span></p>';              
                 }
 
-              '</li>';
-
-    });
-
     if (html != '') {
-        $('.data-list').html(html);
+        $('#_'+data.id).html(html);
         $('.earned_point').html(earned_point);
         earned_play_times = parseInt(earned_point / default_exchange_point);
         earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
