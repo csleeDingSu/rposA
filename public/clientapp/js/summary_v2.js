@@ -187,7 +187,7 @@ function Summary_html(value) {
       break;
 
       case 'DPRBP': //redeem / buy product
-          str_type = '兑奖-' + value.title;
+          str_type = '兑奖-' + value.package_name; //value.title;
           str_points = '-' + getNumeric(value.debit) + '挖宝币';
           _fontcolor = '#3d3d3d';
       break
