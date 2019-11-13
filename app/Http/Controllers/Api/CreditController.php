@@ -85,8 +85,7 @@ class CreditController extends Controller
                                          ->orWhere('status_id', 3);
                         })
                         ->get();
-                    print_r( $pending);
-        if (!$pending->isEmpty)
+        if ($pending->isNotEmpty())
         {
             return response()->json(['success' => false, 'errormessage'=>'pending_record']);
         }
