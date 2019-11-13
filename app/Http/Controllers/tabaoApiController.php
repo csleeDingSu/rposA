@@ -104,22 +104,34 @@ class tabaoApiController extends BaseController
 
     function getCurl($url) {
 
-        $ch = curl_init();
+        try {
 
-        curl_setopt($ch, CURLOPT_URL, $url);
+            $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_URL, $url);
 
-        curl_setopt($ch,CURLOPT_TIMEOUT,60);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,0);
 
-        $output = curl_exec($ch);
+            curl_setopt($ch,CURLOPT_TIMEOUT,0);
 
-        curl_close($ch);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
 
-        return $output;
-        // return json_encode($output, true);
+            $output = curl_exec($ch);
+
+            curl_close($ch);
+
+            return $output;
+            // return json_encode($output, true);
+
+        } 
+        catch (\Exception $e) 
+        { 
+            $data='getCurl: ' . (string) $e;
+            \Log::error($data);
+            return null;
+        }
     }
 
     public function test()
