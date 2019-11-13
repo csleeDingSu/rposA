@@ -6,7 +6,7 @@ class CompanyAccount extends Model
 {   
     
 	protected $fillable = [
-       'id', 
+       'member_id', 
     ];
 	
 	protected $columns = array('id');

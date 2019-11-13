@@ -436,4 +436,145 @@ class CreditController extends BaseController
 
 		return response()->json(['success' => false, 'message' => 'unknown record']);
     }
+
+    public function listcompanyaccount (Request $request)
+	{
+		$input  = [];
+		if ($request->ajax()) {
+			$data['firstload']  = '';
+			parse_str($request->_data, $input);
+			$input  = array_map('trim', $input);
+						
+			$result = \App\CompanyBank::latest('updated_at');
+			$result =  $result->paginate(30);				
+					
+			$data['result']  = $result; 						
+            return view('resell.account.ajaxlist', ['result' => $result, 'members' => collect([]) ])->render();  
+        }	
+        $data['firstload'] = 'yes';
+        $data['page']      = 'resell.account.list'; 	
+		$data['result']    = collect([]); 
+		return view('main', $data);	
+	}
+
+	public function render_account_edit(Request $request)
+    {
+    	$record    = \App\CompanyBank::where('id',$request->id)->first();
+		$render    =  view('resell.account.render_edit', ['result' => $record , 'id'=>$record->id ]) ->render();
+		return response()->json(['success' => true,'id'=>$request->id,'record'=>$render]);	
+    }
+
+    public function render_account($id)
+    {    	
+    	$record    = \App\CompanyBank::where('id',$id)->get();	
+		return  view('resell.account.render_data', ['result' => $record ,'highlight' => 'table-info']) ->render();
+    }
+
+    public function render_member($id)
+    {    	
+    	$record    = \App\CompanyAccount::with('member')->where('id',$id)->get();
+    	return  view('resell.account.render_memberdata', ['members' => $record ,'highlight' => 'table-info']) ->render();
+    }
+
+    public function add_resell_account(Request $request)
+    {
+    	$validator = $this->validate(
+            $request,
+            [
+                'bank_detail' => 'required',
+                'account_name' => 'required',
+                'account_number' => 'required',
+                'bank_name' => 'required',
+                'phone' => 'required',
+                'name' => 'required'
+            ]
+        );
+
+        $record = new \App\CompanyBank();
+        $record->fill($request->all());
+        $record->save();
+        $render    =  $this->render_account($record->id);
+
+		return response()->json(['success' => true,'id'=>$record->id,'record'=>$render]);	
+    }
+
+    public function update_resell_account(Request $request)
+    {    	
+		$validator = $this->validate(
+            $request,
+            [
+                'bank_detail' => 'required',
+                'account_name' => 'required',
+                'account_number' => 'required',
+                'bank_name' => 'required',
+                'phone' => 'required',
+                'name' => 'required'
+            ]
+        );
+        $record = \App\CompanyBank::find($request->id);
+        $record->fill($request->all());
+        $record->save();
+        $render    =  $this->render_account($record->id);
+		return response()->json(['success' => true,'id'=>$record->id,'record'=>$render]);	
+    }
+
+    public function delete_resell_account(Request $request)
+    {
+    	$record = \App\CompanyBank::find($request->id);
+		$record->delete();
+		return response()->json(['success' => true,'id'=>$request->id]);	
+    }
+
+    public function delete_resell_member(Request $request)
+    {
+    	$record = \App\CompanyAccount::find($request->id);
+		$record->delete();
+		return response()->json(['success' => true,'id'=>$request->id]);	
+    }
+
+    public function add_resell_member(Request $request)
+    {
+    	$validator = $this->validate(
+            $request,
+            [
+                'phone' => 'required',
+            ]
+        );
+
+        $member = \App\Member::where('phone' , $request->phone)->first();
+
+        if ($member)
+        {
+        	$record = \App\CompanyAccount::firstOrCreate([
+			    'member_id' => $member->id
+			], [
+			    'member_id' => $member->id
+			]);
+			if ($record->wasRecentlyCreated)
+			{
+				$render    =  $this->render_member($record->id);
+        		return response()->json(['success' => true,'id'=>$record->id,'record'=>$render]);	
+			}
+			return response()->json(['success' => false,'errors'=> ['phone'=>['user already exists'] ] ],422);
+        }
+		return response()->json(['success' => false,'errors'=> ['phone'=>['unknown number'] ] ],422);
+    }
+
+    public function listcompanymember (Request $request)
+	{
+		$input  = [];
+		if ($request->ajax()) {
+			$data['firstload']  = '';
+			parse_str($request->_data, $input);
+			$input  = array_map('trim', $input);
+			
+			$result = \App\CompanyAccount::with('member')->latest('updated_at');
+			$result =  $result->paginate(30);			
+            return view('resell.account.memberajaxlist', ['members' => $result, ])->render();  
+        }	
+        $data['firstload']  = 'yes';
+        $data['page']       = 'resell.account.list'; 	
+		$data['members']    = collect([]); 
+		return view('main', $data);	
+	}
 }
