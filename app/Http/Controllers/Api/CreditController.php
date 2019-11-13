@@ -81,7 +81,7 @@ class CreditController extends Controller
         $pending = \App\CreditResell::where('buyer_id', $request->memberid)
                         ->where('point', $request->point)
                         ->where('is_locked', 1)
-                        ->orwhere('status_id', 2)
+                        ->orwhere('status_id', 3)
                         ->latest()
                         ->get();
 
