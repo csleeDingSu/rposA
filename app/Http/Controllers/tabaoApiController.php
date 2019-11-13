@@ -337,7 +337,7 @@ class tabaoApiController extends BaseController
             // 'collectionTimeOrder' => '20190926',
         ];
 
-        var_dump($data);
+        // var_dump($data);
 
         //加密的参数
         $data['sign'] = $this->makeSign($data,$this->appSecret);
