@@ -768,7 +768,16 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get( 'creditresell/show-completed', 'CreditController@completed_listdata' )->name( 'completed_listdata' );
 	
 
+	Route::get( '/resell/company', 'CreditController@listcompanyaccount' )->name( 'listcompanyaccount' );
+
+	Route::post( '/resell/add-account', 'CreditController@add_resell_account' )->name( 'add_resell_account' );
+	Route::post( '/resell/update-account', 'CreditController@update_resell_account' )->name( 'update_resell_account' );
+	Route::get( '/resell/render-account', 'CreditController@render_account_edit' )->name( 'render_account_edit' );
+	Route::delete( '/resell/delete-account', 'CreditController@delete_resell_account' )->name( 'delete_resell_account' );
 	
+	Route::get( '/resell/member-list', 'CreditController@listcompanymember' )->name( 'listcompanymember' );
+	Route::delete( '/resell/delete-member', 'CreditController@delete_resell_member' )->name( 'delete_resell_member' );
+	Route::post( '/resell/add-member', 'CreditController@add_resell_member' )->name( 'add_resell_member' );
 } );
 //END
 
