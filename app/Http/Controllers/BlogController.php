@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\TracePhoneNumber;
+use App\helpers\TracePhoneNumber;
 use App\blog;
 use App\buy_product_redeemed;
 use App\v_blog_buy_product_records;
