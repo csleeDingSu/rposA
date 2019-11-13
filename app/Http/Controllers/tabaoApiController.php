@@ -120,9 +120,13 @@ class tabaoApiController extends BaseController
 
             $output = curl_exec($ch);
 
+            if (curl_errno($ch)) {
+                $error_msg = curl_error($ch);
+            }
+
             curl_close($ch);
 
-            return $output;
+            return empty($error_msg) ? $output : $error_msg;
             // return json_encode($output, true);
 
         } 
