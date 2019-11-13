@@ -411,6 +411,7 @@ class tabaoApiController extends BaseController
                 echo "\nThis a command storeAllCollectionList - getCollectionListWithDetail"; 
                 //store data
                 if (!empty($_list['data']['list'])) {
+                    var_dump($_list['data']);
                     $pageId = $_list['data']['pageId'];
                     $filter = ['page_num' => $page_num];
                     $array = ['page_num' => $page_num, 'content' => json_encode($_list, true)];
