@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
-use App\Helpers\TracePhoneNumber;
+use App\helpers\TracePhoneNumber;
 use App\Helpers\VIPApp;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\weixinController;
