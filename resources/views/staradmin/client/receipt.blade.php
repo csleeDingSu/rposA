@@ -130,8 +130,8 @@
 
     socket.on(prefix+"receipt-updated" + ":App\\Events\\EventDynamicChannel" , function(data){
         console.log(prefix+"receipt-updated" + ":App\\Events\\EventDynamicChannel");
-        console.log(data.data);
-        records = data.data.records;
+        console.log(data);
+        records = data.data;
         populateHtmlSocket(records);
     });
     
