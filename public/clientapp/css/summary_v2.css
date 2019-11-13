@@ -253,4 +253,5 @@ html, body {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     width: 75%;
+    text-align: left;
 }
