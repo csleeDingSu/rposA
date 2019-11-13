@@ -86,7 +86,7 @@ class CreditController extends Controller
                         })
                         ->get();
                     print_r( $pending);
-        if ($pending)
+        if ($pending->isNotEmpty)
         {
             return response()->json(['success' => false, 'errormessage'=>'pending_record']);
         }
