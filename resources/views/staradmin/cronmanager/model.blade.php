@@ -18,8 +18,8 @@
 								<div class="col-sm-9">
 									<select class="form-control" name="c_status" id="c_status" disabled >
 										<option value="1">@lang('dingsu.active')</option>
-										<option value="2">@lang('dingsu.onhold')</option>
-										<option value="3">@lang('dingsu.suspended')</option>
+										<option value="2">@lang('dingsu.processing')</option>
+										<option value="3">@lang('dingsu.completed')</option>
 										<option value="4">@lang('dingsu.restart')</option>
 									</select>
 								</div>
