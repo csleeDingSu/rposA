@@ -389,11 +389,17 @@ class tabaoApiController extends BaseController
         $request->merge(['pageSize' => $pageSize]);
         $request->merge(['pageId' => $pageId]);
         $list = $this->getCollectionListWithDetail($request);
+        echo "\nThis a command storeAllCollectionList - getCollectionListWithDetail"; 
         if (!empty($list['data']['list'])) {
+            //remove all
+            taobao_collection_list::delete();
+            echo "\nThis a command storeAllCollectionList - taobao_collection_list - clear all old data"; 
+
             //store 1st pg data
             $filter = ['page_num' => $page_num];
             $array = ['page_num' => $page_num, 'content' => json_encode($list, true)];
-            taobao_collection_list::updateOrCreate($filter, $array)->id;
+            $_id = taobao_collection_list::updateOrCreate($filter, $array)->id;
+            echo "\nThis a command storeAllCollectionList - taobao_collection_list - updateOrCreate - id" .$_id; 
 
             $totalNum = $list['data']['totalNum'];
             $pageId = $list['data']['pageId'];
@@ -402,20 +408,24 @@ class tabaoApiController extends BaseController
                 $request->merge(['pageSize' => $pageSize]);
                 $request->merge(['pageId' => $pageId]);
                 $_list = $this->getCollectionListWithDetail($request);
+                echo "\nThis a command storeAllCollectionList - getCollectionListWithDetail"; 
                 //store data
                 if (!empty($_list['data']['list'])) {
                     $filter = ['page_num' => $page_num];
                     $array = ['page_num' => $page_num, 'content' => json_encode($_list, true)];
-                    taobao_collection_list::updateOrCreate($filter, $array)->id;
+                    $_id = taobao_collection_list::updateOrCreate($filter, $array)->id;
+                    echo "\nThis a command storeAllCollectionList - taobao_collection_list - updateOrCreate - id" .$_id; 
                 }
             }
 
             //remove old records
-            taobao_collection_list::where('page_num', '>', $totalPg)->delete(); 
+            // taobao_collection_list::where('page_num', '>', $totalPg)->delete(); 
         }
 
         //store into voucher table
-        $this->storeAllCollectionIntoVouchers();
+        if (count(taobao_collection_list::get()) > 0) {
+            $this->storeAllCollectionIntoVouchers();    
+        }
 
         return ("totalNum: $totalNum, totalPg: $totalPg");
     }
@@ -641,7 +651,8 @@ class tabaoApiController extends BaseController
 
         if (!empty($data)){
             taobao_collection_vouchers::query()->truncate();
-            \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate");    
+            \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate");
+            echo "\nThis a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate";    
         }
 
         foreach ($data as $d) {
@@ -667,9 +678,12 @@ class tabaoApiController extends BaseController
                     }
 
                     $id = taobao_collection_vouchers::updateOrCreate($filter,$array)->id;
-                    $render_data = $this->render_product($id);
+                    if (!empty($id)) {
+                        $render_data = $this->render_product($id);    
+                    }
                     $i++;
-                    \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - updateOrCreate - id - " . $id);    
+                    \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - updateOrCreate - id - " . $id);
+                    echo "\nThis a command GetTaobaoCollectionList - taobao_collection_vouchers - updateOrCreate - id - " . $id;
                     
                 }
             }

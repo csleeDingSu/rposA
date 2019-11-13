@@ -63,7 +63,8 @@ class StoreAllCollectionIntoVouchers extends Command
             // $dd->save();
             // event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
 
-            return $res;
+            return json_encode($res);
+            // return 'done';
         } 
         catch (\Exception $e) 
         { 
@@ -72,6 +73,7 @@ class StoreAllCollectionIntoVouchers extends Command
             // $dd->status = 3;
             // $dd->save();
             // event(new \App\Events\EventDynamicChannel('-tabao-cron', '' ,$dd ));
+            return 'error';
 
 
 
