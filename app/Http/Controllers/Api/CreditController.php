@@ -87,7 +87,7 @@ class CreditController extends Controller
 
         if ($pending)
         {
-            return response()->json(['success' => false, 'errormessage'=>'pending_record']);
+            //return response()->json(['success' => false, 'errormessage'=>'pending_record']);
         }
 
 
