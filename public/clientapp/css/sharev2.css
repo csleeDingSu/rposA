@@ -1,5 +1,5 @@
 .scrolly {
-background-color: #f5904a;
+background-color: #f3971b;
 }
 
 .box {
@@ -8,7 +8,7 @@ background-color: #f5904a;
 
 .back-ground {
   box-sizing: border-box;
-  background-color: #ef891c;
+  background-color: #f3971b;
   height: 100%;
 }
 
@@ -59,10 +59,10 @@ background-color: #f5904a;
 
 .shareBox {
   background: url(/clientapp/images/share/background.png) left top no-repeat;
-    background-size: contain;
-    height: 100%;
+    background-size: cover;
+    /*height: 100%;*/
     /*margin: 0.5rem 0;*/
-    background-color: #ef891c;
+    background-color: #f3971b;
     
 }
 
