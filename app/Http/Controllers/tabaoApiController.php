@@ -339,12 +339,14 @@ class tabaoApiController extends BaseController
         $newList = null;
 
         $list = $this->getCollectionList($request);
-        
+        \Log::info("This a command GetTaobaoCollectionList - getCollectionList");
+
         if (!empty($list['data']['list'])) {
             foreach($list['data']['list'] as $p) {
                 $request->merge(['id' => $p['id']]);
                 $request->merge(['goodsId' => $p['goodsId']]);
                 $details = $this->getGoodsDetails($request);
+                \Log::info("This a command GetTaobaoCollectionList - getGoodsDetails - goodsId - " . $p['goodsId']);
                 if (!empty($details['data'])) {
                     array_push($result,$details['data']);                    
                 }
