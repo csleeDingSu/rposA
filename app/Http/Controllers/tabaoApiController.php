@@ -1,5 +1,4 @@
 <?php
-ini_set('max_execution_time', 180); //3 minutes
 
 namespace App\Http\Controllers;
 
@@ -19,6 +18,7 @@ class tabaoApiController extends BaseController
 
     public function __construct() {
 
+        ini_set('max_execution_time', 180); //3 minutes
         //
        $this->appKey = env('TABAO_APPKEY', '5d6a770f7f9cc');//应用的key
        $this->appSecret = env('TABAO_APPSECRET', 'c7fa184a5c92e9a93dc3b0f54d7088bc');//应用的Secret
