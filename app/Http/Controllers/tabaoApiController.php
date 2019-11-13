@@ -406,13 +406,14 @@ class tabaoApiController extends BaseController
             $totalPg = ceil($totalNum / 10);
             for ($page_num = 2; $page_num <= $totalPg; $page_num++) { //loop started with 2nd - skip initial
                 $request->merge(['pageSize' => $pageSize]);
-                $request->merge(['pageId' => $pageId]);
+                // $request->merge(['pageId' => $pageId]);
+                $request->merge(['pageId' => $page_num]);
                 $_list = $this->getCollectionListWithDetail($request);
                 echo "\nThis a command storeAllCollectionList - getCollectionListWithDetail"; 
                 //store data
                 if (!empty($_list['data']['list'])) {
-                    var_dump($_list['data']['pageId']);
-                    $pageId = $_list['data']['pageId'];
+                    // var_dump($_list['data']['pageId']);
+                    // $pageId = $_list['data']['pageId'];
                     $filter = ['page_num' => $page_num];
                     $array = ['page_num' => $page_num, 'content' => json_encode($_list, true)];
                     $_id = taobao_collection_list::updateOrCreate($filter, $array)->id;
