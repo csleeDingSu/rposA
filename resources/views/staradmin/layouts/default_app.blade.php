@@ -138,7 +138,7 @@
 		@endif
 
 
-		@if(!Request::is('newbie') && !Request::is('download-app'))
+		@if(!Request::is('newbie') && !Request::is('download-app') && !Request::is('share'))
 			<script type='text/javascript'>
 			    (function(m, ei, q, i, a, j, s) {
 			        m[i] = m[i] || function() {
