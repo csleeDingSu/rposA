@@ -45,8 +45,6 @@ function getWallet(token, id) {
 }
 
 function getReceiptList(token, id) {
-    var html = '';
-
     $.ajax({
         type: 'GET',
         url: "/api/list-receipt?memberid=" + id, 
@@ -98,6 +96,7 @@ function AssignSubmitReceipt(token) {
 }
 
 function populateHtml(records) {
+    var html = '';
     earned_point = 0;
     $.each(records, function(i, item) {          
     html += '<li>' +
