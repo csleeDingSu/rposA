@@ -623,7 +623,8 @@ class tabaoApiController extends BaseController
         $i = 0;
 
         if (!empty($data)){
-            taobao_collection_vouchers::query()->truncate();    
+            taobao_collection_vouchers::query()->truncate();
+            \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate");    
         }
 
         foreach ($data as $d) {
@@ -651,6 +652,7 @@ class tabaoApiController extends BaseController
                     $id = taobao_collection_vouchers::updateOrCreate($filter,$array)->id;
                     $render_data = $this->render_product($id);
                     $i++;
+                    \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - updateOrCreate - id - " . $id);    
                     
                 }
             }
