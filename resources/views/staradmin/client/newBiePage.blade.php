@@ -58,5 +58,44 @@
 @section('footer-javascript')
     @parent  
     <script src="{{ asset('/clientapp/js/newBiePage.js') }}"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        checkDownload();
+      });      
+      
+      function checkDownload() {
+        var isMacDevices = "{{ $isMacDevices }}";
+        var DOWNLOAD_APP_IOS= "{{env('DOWNLOAD_APP_IOS', '#')}}";      
+        var DOWNLOAD_APP_ANDROID= "{{env('DOWNLOAD_APP_ANDROID', '#')}}";        
+        var ua = navigator.userAgent.toLowerCase();
+        var _url = "/download-app";
+
+        if (ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) {
+            console.log('in weixin');              
+            
+            $('.download-app').click(function () {
+                window.location.href = _url;
+              });
+              $('.go-url').click(function () {
+                window.location.href = _url;
+              });
+
+          }else{
+            console.log('out from weixin');
+              // if (isMacDevices) {
+              //   window.location.href = DOWNLOAD_APP_IOS;
+              // } else {
+              //   window.location.href = DOWNLOAD_APP_IOS; //DOWNLOAD_APP_ANDROID;
+              // }
+              $('.download-app').click(function () {
+                window.location.href = DOWNLOAD_APP_IOS;
+              });
+              $('.go-url').click(function () {
+                window.location.href = DOWNLOAD_APP_IOS;
+              });
+          }
+      }
+    
+</script>
 
 @endsection

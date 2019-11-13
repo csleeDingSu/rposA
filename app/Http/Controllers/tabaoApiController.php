@@ -352,29 +352,38 @@ class tabaoApiController extends BaseController
 
     public function getCollectionListWithDetail(Request $request)
     {
-        $result = array();
-        $newList = null;
+        try {
+            $result = array();
+            $newList = null;
 
-        $list = $this->getCollectionList($request);
-        \Log::info("This a command GetTaobaoCollectionList - getCollectionList");
+            $list = $this->getCollectionList($request);
+            \Log::info("This a command GetTaobaoCollectionList - getCollectionList");
 
-        if (!empty($list['data']['list'])) {
-            foreach($list['data']['list'] as $p) {
-                $request->merge(['id' => $p['id']]);
-                $request->merge(['goodsId' => $p['goodsId']]);
-                $details = $this->getGoodsDetails($request);
-                \Log::info("This a command GetTaobaoCollectionList - getGoodsDetails - goodsId - " . $p['goodsId']);
-                if (!empty($details['data'])) {
-                    array_push($result,$details['data']);                    
+            if (!empty($list['data']['list'])) {
+                foreach($list['data']['list'] as $p) {
+                    $request->merge(['id' => $p['id']]);
+                    $request->merge(['goodsId' => $p['goodsId']]);
+                    $details = $this->getGoodsDetails($request);
+                    \Log::info("This a command GetTaobaoCollectionList - getGoodsDetails - goodsId - " . $p['goodsId']);
+                    if (!empty($details['data'])) {
+                        array_push($result,$details['data']);                    
+                    }
                 }
             }
-        }
 
-        if (!empty($result)) {
-            $newList = ['time' => $list['time'], 'code' => $list['code'], 'msg' => $list['msg'], 'data' => ['list' => $result, 'totalNum' => $list['data']['totalNum'], 'pageId' => $list['data']['pageId']]];
-        }
+            if (!empty($result)) {
+                $newList = ['time' => $list['time'], 'code' => $list['code'], 'msg' => $list['msg'], 'data' => ['list' => $result, 'totalNum' => $list['data']['totalNum'], 'pageId' => $list['data']['pageId']]];
+            }
 
-        return $newList;
+            return $newList;    
+        }
+        catch (\Exception $e) 
+        { 
+            $data='console getCollectionListWithDetail: ' . (string) $e;
+            \Log::error($data);
+            return 'error';
+        }
+        
     }
 
     public function storeAllCollectionList()
