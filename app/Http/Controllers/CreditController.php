@@ -454,6 +454,7 @@ class CreditController extends BaseController
         $data['firstload'] = 'yes';
         $data['page']      = 'resell.account.list'; 	
 		$data['result']    = collect([]); 
+		$data['members']   = collect([]); 
 		return view('main', $data);	
 	}
 
