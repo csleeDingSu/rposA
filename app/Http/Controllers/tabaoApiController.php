@@ -392,7 +392,7 @@ class tabaoApiController extends BaseController
         echo "\nThis a command storeAllCollectionList - getCollectionListWithDetail"; 
         if (!empty($list['data']['list'])) {
             //remove all
-            taobao_collection_list::delete();
+            taobao_collection_list::truncate();
             echo "\nThis a command storeAllCollectionList - taobao_collection_list - clear all old data"; 
 
             //store 1st pg data
