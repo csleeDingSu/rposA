@@ -232,7 +232,7 @@
 				
 		    </script>
 			
-			@if(Request::is('profile') || Request::is('shop'))
+			@if(Request::is('profile') || Request::is('shop') || Request::is('receipt'))
 				@include('layouts/socket')
 			@endif
 		@show
