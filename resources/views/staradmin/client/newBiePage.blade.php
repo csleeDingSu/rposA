@@ -42,7 +42,7 @@
   <div class="logo rel logo3-zero">
     <div class="c-header">
     </div>
-    <a class="download-app" href="/download-app"><img src="{{ asset('clientapp/images/newbie/download.png') }}"></a>
+    <a class="download-app"><img src="{{ asset('clientapp/images/newbie/download.png') }}"></a>
   </div>
 
   <div class="listBox">
