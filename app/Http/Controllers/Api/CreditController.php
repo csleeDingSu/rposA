@@ -80,14 +80,15 @@ class CreditController extends Controller
 
         $pending = \App\CreditResell::where('buyer_id', $request->memberid)
                         ->where('point', $request->point)
-                        ->where('is_locked', 1)
-                        ->orwhere('status_id', 3)
-                        ->latest()
+                        ->where(function ($query)  {
+                            return $query->where('is_locked', 1)
+                                         ->orWhere('status_id', 3);
+                        })
                         ->get();
 
         if ($pending)
         {
-            //return response()->json(['success' => false, 'errormessage'=>'pending_record']);
+            return response()->json(['success' => false, 'errormessage'=>'pending_record']);
         }
 
 
