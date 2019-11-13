@@ -1,5 +1,5 @@
 .scrolly {
-background-color: #f5904a;
+background-color: #f3971b;
 }
 
 .box {
@@ -8,7 +8,7 @@ background-color: #f5904a;
 
 .back-ground {
   box-sizing: border-box;
-  background-color: #f5904a;
+  background-color: #f3971b;
   height: 100%;
 }
 
@@ -59,10 +59,10 @@ background-color: #f5904a;
 
 .shareBox {
   background: url(/clientapp/images/share/background.png) left top no-repeat;
-    background-size: contain;
-    height: 100%;
-    margin: 0.5rem 0;
-    background-color: #f5904a;
+    background-size: cover;
+    /*height: 100%;*/
+    /*margin: 0.5rem 0;*/
+    background-color: #f3971b;
     
 }
 
@@ -93,7 +93,7 @@ background-color: #f5904a;
 .instruction3 {
     background: url(/clientapp/images/share/desc-bg.png) no-repeat;
     background-size: contain;
-    margin: 1rem;
+    margin: 3.3rem 1rem;
     background-color: transparent;
     text-align: center;
     padding: 0.4rem;
@@ -103,8 +103,8 @@ background-color: #f5904a;
 }
 
 .small-img {
-  margin:3.7rem 1.88rem;
-  height: 3.3rem;
+  margin: 3.9rem 1.85rem;
+    height: 3.3rem;
     width: 3.3rem;
 }
 
@@ -507,5 +507,10 @@ background-color: #f5904a;
 }
 
 /* End Game Rules Modal */
+
+.returnBtn img {
+    height: 1.1rem;
+    padding: 0.15rem 0;
+}
 
 

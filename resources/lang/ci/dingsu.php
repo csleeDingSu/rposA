@@ -738,6 +738,7 @@ return [
 	'company_account' => '公司账号',
 	'pending_payment' => '付款中',
 	'orderid' => '订单号',
+	'tabao_cron' => '淘宝Cron状况',
 
 	//resell and recharge status
 	'resell_submit' => '等待审核',
@@ -751,5 +752,6 @@ return [
 	'resell_reset_rejected' => '交易拒绝 - 重新匹配',
 	'autobuy' => '等待管理员付款',
 	'limit' => '限制',
+	'subtract' => '减去',
 
 ];

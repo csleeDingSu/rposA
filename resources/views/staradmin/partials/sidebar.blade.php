@@ -262,7 +262,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/creditresell/list?autobuy=1"> @lang('dingsu.autobuy') @lang('dingsu.list')  </a>
 					</li>
-					
+					<li class="nav-item">
+						<a class="nav-link" href="/resell/company"> @lang('dingsu.resell') @lang('dingsu.account')  </a>
+					</li>					
 				</ul>
 			</div>
 		</li>

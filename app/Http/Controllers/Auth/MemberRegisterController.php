@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\TracePhoneNumber;
 use App\Helpers\VIPApp;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\weixinController;
@@ -12,12 +13,12 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Jenssegers\Agent\Agent;
 use Khsing\WechatAgent\WechatAgent;
 use Mail;
 use Session;
 use Validator;
 use \App\helpers\WeiXin as WX;
-use Jenssegers\Agent\Agent;
 
 class MemberRegisterController extends Controller
 {
@@ -278,6 +279,10 @@ class MemberRegisterController extends Controller
 			// 	'referred_by'   => $referred_by,
 			// ]);
 
+			//trace phone location
+			$this->tpn = new TracePhoneNumber();
+        	$nLocation = $this->tpn->getLocation($data['phone']);
+
 			$member = Members::create([
 				'username' => $data['phone'],
 				'email' => $data['phone'] . '@email.com',
@@ -288,6 +293,7 @@ class MemberRegisterController extends Controller
 				//'wechat_name' => $data['username'],//(isset($data['wechat_name']) ? $data['wechat_name'] : null),
 				'wechat_verification_status' => 1,
 				'apikey' => unique_numeric_random('members', 'apikey', 8),
+				'number_location' => empty($nLocation) ? null : json_encode($nLocation),
 			]);
 			
 			$id = $member->id;

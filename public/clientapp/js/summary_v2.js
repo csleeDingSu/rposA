@@ -187,7 +187,7 @@ function Summary_html(value) {
       break;
 
       case 'DPRBP': //redeem / buy product
-          str_type = '兑奖-' + value.title;
+          str_type = '兑奖-' + value.package_name; //value.title;
           str_points = '-' + getNumeric(value.debit) + '挖宝币';
           _fontcolor = '#3d3d3d';
       break
@@ -226,7 +226,7 @@ function Summary_html(value) {
   if (str_type != '') {                     
 
       html += '<a class="inBox">';                        
-      html += '<h2><span>' +str_type+ '</span>';
+      html += '<h2><span class="title_ellipsis">' +str_type+ '</span>';
       html += '<font color="'+_fontcolor+'">' + str_points + '</font>';                                    
       html += '</h2>' +
                 '<p><span>' + str_date +'</span>' +

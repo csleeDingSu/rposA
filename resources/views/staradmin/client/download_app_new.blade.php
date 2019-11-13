@@ -78,7 +78,7 @@
               if (isMacDevices) {
                 window.location.href = DOWNLOAD_APP_IOS;
               } else {
-                window.location.href = DOWNLOAD_APP_ANDROID;
+                window.location.href = DOWNLOAD_APP_IOS; //DOWNLOAD_APP_ANDROID;
               }
           }
       }

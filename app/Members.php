@@ -25,7 +25,8 @@ class Members extends Model
 		'current_life',
 		'gender','profile_pic','openid',
 		'activation_code',
-		'activation_code_expiry'
+		'activation_code_expiry',
+		'number_location'
 		
     ];
 

@@ -32,6 +32,7 @@
           top: 30%;
           left: 50%;
           transform: translate(-50%, -50%);
+          width: 60%;
         }
 
         #modal-find-seller .find-seller {
@@ -172,6 +173,7 @@
 
             $('.sendBox').on('click',function () {
               $('#modal-find-seller').modal();
+              $('.find-seller').html('正在匹配卖家...');
               setTimeout(function(){
                 getBuyer(vCoin);
               }, 2000);
@@ -269,6 +271,14 @@
                         // console.log("#_id_" + parseInt(item.amount));
                         $("#_id_" + parseInt(item.amount)).unbind();
                         $("#_id_" + parseInt(item.amount)).removeClass('on');
+                        $("#_id_" + parseInt(item.amount)).click(function() {                          
+                          $('#modal-find-seller').modal();
+                          $('.find-seller').html(parseInt(item.point) + '挖宝币充值还未完成');
+                          setTimeout(function(){
+                            $('.modal').modal('hide');
+                            $('.modal-backdrop').remove();
+                          }, 3000);
+                        });
                       });
 
                       // console.log(inCompleteCaseAmount);

@@ -2,7 +2,7 @@
 
 @section('top-css')
     @parent  
-    <link rel="stylesheet" href="{{ asset('/clientapp/css/sharev2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/sharev2.css?version=1.0.1') }}" />
     
 @endsection
 
@@ -65,22 +65,15 @@ imagedestroy( $image );
 
 <div class="box">
         <div class="back-ground">
-          <div class="c-header">
-            <div class="pageHeader rel">
-              <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/zero-back-.png') }}"><span>返回</span></a>
-              <h2 class="h-title">分享给好友</h2>
-              <a class="rules">活动规则</a>
-            </div>
-          </div>       
-          
           <div class="shareBox">
+            <a class="returnBtn" href="javascript:history.back();"><img src="{{ asset('clientapp/images/share/btn-back.png') }}"></a>
             <div class="qrcode">
               <?php echo '<img  class="small-img" src="data:image/png;base64,'.base64_encode($imgData).'"/>';?>
             </div>
-            <div class="instruction1"><img class="icon-thumb" src="{{ asset('/clientapp/images/share/icon-thumb.png') }}">长按扫一扫</div>
-            <div class="instruction2">注册下载APP有福利</div>
+            <div class="instruction1"></div>
+            <div class="instruction2"></div>
             <div class="instruction3">
-              <p>分享先请载图保存</p>
+              <p>分享请用手机载图保存</p>
               <p>再发微信好友或朋友圈</p>
             </div>
           </div>

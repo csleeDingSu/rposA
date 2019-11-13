@@ -76,6 +76,21 @@ class CreditController extends Controller
     	$type        = '';
     	$companydata = '';
         $member      = '';
+
+
+        $pending = \App\CreditResell::where('buyer_id', $request->memberid)
+                        ->where('point', $request->point)
+                        ->where(function ($query)  {
+                            return $query->where('is_locked', 1)
+                                         ->orWhere('status_id', 3);
+                        })
+                        ->get();
+        if ($pending->isNotEmpty())
+        {
+            return response()->json(['success' => false, 'errormessage'=>'pending_record']);
+        }
+
+
     	$record      = \App\CreditResell::with('status','member')->where('member_id', '!=' , $request->memberid)->where('is_locked', null)->where('status_id', 2)->where('point', $request->point)->oldest()->first();
 
     	if ($record)

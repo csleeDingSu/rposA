@@ -18,6 +18,7 @@ class tabaoApiController extends BaseController
 
     public function __construct() {
 
+        ini_set('max_execution_time', 10800); //180 minutes
         //
        $this->appKey = env('TABAO_APPKEY', '5d6a770f7f9cc');//应用的key
        $this->appSecret = env('TABAO_APPSECRET', 'c7fa184a5c92e9a93dc3b0f54d7088bc');//应用的Secret
@@ -104,22 +105,38 @@ class tabaoApiController extends BaseController
 
     function getCurl($url) {
 
-        $ch = curl_init();
+        try {
 
-        curl_setopt($ch, CURLOPT_URL, $url);
+            $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_URL, $url);
 
-        curl_setopt($ch,CURLOPT_TIMEOUT,10);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,0);
 
-        $output = curl_exec($ch);
+            curl_setopt($ch,CURLOPT_TIMEOUT,0);
 
-        curl_close($ch);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
 
-        return $output;
-        // return json_encode($output, true);
+            $output = curl_exec($ch);
+
+            if (curl_errno($ch)) {
+                $error_msg = curl_error($ch);
+            }
+
+            curl_close($ch);
+
+            return empty($error_msg) ? $output : $error_msg;
+            // return json_encode($output, true);
+
+        } 
+        catch (\Exception $e) 
+        { 
+            $data='getCurl: ' . (string) $e;
+            \Log::error($data);
+            return null;
+        }
     }
 
     public function test()
@@ -316,11 +333,11 @@ class tabaoApiController extends BaseController
             // 'cid' => "1,2,3,4,5,6,7,8,9,10,11,12,13,14",
             // 'cid' => '6',
             // 'trailerType' => 1,
-            'sort' => 2,
+            // 'sort' => 2,
             // 'collectionTimeOrder' => '20190926',
         ];
 
-        // dd($data);
+        // var_dump($data);
 
         //加密的参数
         $data['sign'] = $this->makeSign($data,$this->appSecret);
@@ -335,27 +352,38 @@ class tabaoApiController extends BaseController
 
     public function getCollectionListWithDetail(Request $request)
     {
-        $result = array();
-        $newList = null;
+        try {
+            $result = array();
+            $newList = null;
 
-        $list = $this->getCollectionList($request);
-        
-        if (!empty($list['data']['list'])) {
-            foreach($list['data']['list'] as $p) {
-                $request->merge(['id' => $p['id']]);
-                $request->merge(['goodsId' => $p['goodsId']]);
-                $details = $this->getGoodsDetails($request);
-                if (!empty($details['data'])) {
-                    array_push($result,$details['data']);                    
+            $list = $this->getCollectionList($request);
+            \Log::info("This a command GetTaobaoCollectionList - getCollectionList");
+
+            if (!empty($list['data']['list'])) {
+                foreach($list['data']['list'] as $p) {
+                    $request->merge(['id' => $p['id']]);
+                    $request->merge(['goodsId' => $p['goodsId']]);
+                    $details = $this->getGoodsDetails($request);
+                    \Log::info("This a command GetTaobaoCollectionList - getGoodsDetails - goodsId - " . $p['goodsId']);
+                    if (!empty($details['data'])) {
+                        array_push($result,$details['data']);                    
+                    }
                 }
             }
-        }
 
-        if (!empty($result)) {
-            $newList = ['time' => $list['time'], 'code' => $list['code'], 'msg' => $list['msg'], 'data' => ['list' => $result, 'totalNum' => $list['data']['totalNum'], 'pageId' => $list['data']['pageId']]];
-        }
+            if (!empty($result)) {
+                $newList = ['time' => $list['time'], 'code' => $list['code'], 'msg' => $list['msg'], 'data' => ['list' => $result, 'totalNum' => $list['data']['totalNum'], 'pageId' => $list['data']['pageId']]];
+            }
 
-        return $newList;
+            return $newList;    
+        }
+        catch (\Exception $e) 
+        { 
+            $data='console getCollectionListWithDetail: ' . (string) $e;
+            \Log::error($data);
+            return 'error';
+        }
+        
     }
 
     public function storeAllCollectionList()
@@ -370,33 +398,46 @@ class tabaoApiController extends BaseController
         $request->merge(['pageSize' => $pageSize]);
         $request->merge(['pageId' => $pageId]);
         $list = $this->getCollectionListWithDetail($request);
+        echo "\nThis a command storeAllCollectionList - getCollectionListWithDetail"; 
         if (!empty($list['data']['list'])) {
+            //remove all
+            taobao_collection_list::truncate();
+            echo "\nThis a command storeAllCollectionList - taobao_collection_list - clear all old data"; 
+
             //store 1st pg data
             $filter = ['page_num' => $page_num];
             $array = ['page_num' => $page_num, 'content' => json_encode($list, true)];
-            taobao_collection_list::updateOrCreate($filter, $array)->id;
+            $_id = taobao_collection_list::updateOrCreate($filter, $array)->id;
+            echo "\nThis a command storeAllCollectionList - taobao_collection_list - updateOrCreate - id" .$_id; 
 
             $totalNum = $list['data']['totalNum'];
             $pageId = $list['data']['pageId'];
             $totalPg = ceil($totalNum / 10);
             for ($page_num = 2; $page_num <= $totalPg; $page_num++) { //loop started with 2nd - skip initial
                 $request->merge(['pageSize' => $pageSize]);
-                $request->merge(['pageId' => $pageId]);
+                // $request->merge(['pageId' => $pageId]);
+                $request->merge(['pageId' => $page_num]);
                 $_list = $this->getCollectionListWithDetail($request);
+                echo "\nThis a command storeAllCollectionList - getCollectionListWithDetail"; 
                 //store data
                 if (!empty($_list['data']['list'])) {
+                    // var_dump($_list['data']['pageId']);
+                    // $pageId = $_list['data']['pageId'];
                     $filter = ['page_num' => $page_num];
                     $array = ['page_num' => $page_num, 'content' => json_encode($_list, true)];
-                    taobao_collection_list::updateOrCreate($filter, $array)->id;
+                    $_id = taobao_collection_list::updateOrCreate($filter, $array)->id;
+                    echo "\nThis a command storeAllCollectionList - taobao_collection_list - updateOrCreate - id" .$_id; 
                 }
             }
 
             //remove old records
-            taobao_collection_list::where('page_num', '>', $totalPg)->delete(); 
+            // taobao_collection_list::where('page_num', '>', $totalPg)->delete(); 
         }
 
         //store into voucher table
-        $this->storeAllCollectionIntoVouchers();
+        if (count(taobao_collection_list::get()) > 0) {
+            $this->storeAllCollectionIntoVouchers();    
+        }
 
         return ("totalNum: $totalNum, totalPg: $totalPg");
     }
@@ -621,7 +662,9 @@ class tabaoApiController extends BaseController
         $i = 0;
 
         if (!empty($data)){
-            taobao_collection_vouchers::query()->truncate();    
+            taobao_collection_vouchers::query()->truncate();
+            \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate");
+            echo "\nThis a command GetTaobaoCollectionList - taobao_collection_vouchers - truncate";    
         }
 
         foreach ($data as $d) {
@@ -647,8 +690,12 @@ class tabaoApiController extends BaseController
                     }
 
                     $id = taobao_collection_vouchers::updateOrCreate($filter,$array)->id;
-                    $render_data = $this->render_product($id);
+                    // if (!empty($id)) {
+                       $render_data = $this->render_product($id);    
+                    // }
                     $i++;
+                    // \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - updateOrCreate - id - " . $id);
+                    // echo "\nThis a command GetTaobaoCollectionList - taobao_collection_vouchers - updateOrCreate - id - " . $id;
                     
                 }
             }

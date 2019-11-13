@@ -31,9 +31,9 @@
 									@if($list->status == 1)
 									<label class="badge badge-success">@lang('dingsu.active')</label> 
 									@elseif ($list->status == 2)
-									<label class="badge badge-info">@lang('dingsu.onhold')</label> 
+									<label class="badge badge-info">@lang('dingsu.processing')</label> 
 									@elseif ($list->status == 3)
-									<label class="badge badge-danger">@lang('dingsu.suspended')</label> 
+									<label class="badge badge-danger">@lang('dingsu.completed')</label> 
 									@elseif ($list->status == 4)
 									<label class="badge badge-warning">@lang('dingsu.restart')</label> 
 									@else 
