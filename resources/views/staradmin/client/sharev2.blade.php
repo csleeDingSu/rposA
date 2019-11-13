@@ -2,7 +2,7 @@
 
 @section('top-css')
     @parent  
-    <link rel="stylesheet" href="{{ asset('/clientapp/css/sharev2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/clientapp/css/sharev2.css?version=1.0.1') }}" />
     
 @endsection
 
