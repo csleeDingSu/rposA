@@ -690,9 +690,9 @@ class tabaoApiController extends BaseController
                     }
 
                     $id = taobao_collection_vouchers::updateOrCreate($filter,$array)->id;
-                    if (!empty($id)) {
+                    // if (!empty($id)) {
                         $render_data = $this->render_product($id);    
-                    }
+                    // }
                     $i++;
                     \Log::info("This a command GetTaobaoCollectionList - taobao_collection_vouchers - updateOrCreate - id - " . $id);
                     echo "\nThis a command GetTaobaoCollectionList - taobao_collection_vouchers - updateOrCreate - id - " . $id;
