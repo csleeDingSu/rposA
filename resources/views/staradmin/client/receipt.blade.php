@@ -121,18 +121,18 @@
     console.log('prefix --- ' + prefix);
     console.log('id --- ' + id);
 
-    socket.on(prefix+"new-receipt" + ":App\\Events\\EventDynamicChannel" , function(data){
-        console.log(prefix+"new-receipt" + ":App\\Events\\EventDynamicChannel");
-        console.log(data.data);
-        records = data.data.records;
-        populateHtml(records);
-    });
+    // socket.on(prefix+"new-receipt" + ":App\\Events\\EventDynamicChannel" , function(data){
+    //     console.log(prefix+"new-receipt" + ":App\\Events\\EventDynamicChannel");
+    //     console.log(data.data);
+    //     records = data.data.records;
+    //     populateHtmlSocket(records);
+    // });
 
     socket.on(prefix+"receipt-updated" + ":App\\Events\\EventDynamicChannel" , function(data){
         console.log(prefix+"receipt-updated" + ":App\\Events\\EventDynamicChannel");
         console.log(data.data);
         records = data.data.records;
-        populateHtml(records);
+        populateHtmlSocket(records);
     });
     
   @endsection
