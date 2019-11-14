@@ -1178,7 +1178,7 @@ WHERE
 		$game = \DB::table('games')->where('id' , $gameid)->first();
 		
 		$camout = $game->reward_ratio;
-		$credit = $request->amount *  $camout;
+		$credit = $request->amount;
 			
 		$record->status     = $request->status;	
 		$record->amount     = $request->amount;	
