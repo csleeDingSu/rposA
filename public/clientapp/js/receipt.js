@@ -159,7 +159,7 @@ function populateHtmlSocket (item) {
                 }
 
     if (html != '') {
-        $('#r_'+data.id).html(html);
+        $('#r_'+item.id).html(html);
         $('.earned_point').html(earned_point);
         earned_play_times = parseInt(earned_point / default_exchange_point);
         earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;

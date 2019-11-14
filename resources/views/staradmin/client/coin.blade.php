@@ -590,7 +590,7 @@ var being2 = {
 
     socket.on(prefix+id+"-pending-seller" + ":App\\Events\\EventDynamicChannel" , function(data){
         console.log(prefix+id+"-pending-seller" + ":App\\Events\\EventDynamicChannel");
-        console.log(data.data);
+        console.log(data);
     });
     
   @endsection

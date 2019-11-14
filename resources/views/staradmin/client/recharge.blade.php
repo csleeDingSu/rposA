@@ -320,7 +320,7 @@
 
     socket.on(prefix+id+"-pending-buyer" + ":App\\Events\\EventDynamicChannel" , function(data){
         console.log(prefix+id+"-pending-buyer" + ":App\\Events\\EventDynamicChannel");
-        console.log(data.data);
+        console.log(data);
     });
     
   @endsection
