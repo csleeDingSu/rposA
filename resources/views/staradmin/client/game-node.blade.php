@@ -734,7 +734,7 @@
 				<div class="modal-body">
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<p class="t1">恭喜获得<span class="drawn">0</span>元补贴</p>	
+							<p class="t1">恭喜获得<span class="spanAcuPointAndBalance">0</span>元补贴</p>	
 							<p class="t2">扫码加客服领取</p>
 							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
 							<p class="t3">长按扫一扫加好友</p>
