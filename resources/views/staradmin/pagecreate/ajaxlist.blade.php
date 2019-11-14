@@ -9,17 +9,18 @@
 						<thead>
 							<tr> 	
 								<th>#</th>
-								<th>@lang('dingsu.created_at')</th>
-								<th>@lang('dingsu.member')</th>
-								<th>@lang('dingsu.receipt_no')</th>
+								<th>@lang('dingsu.created')</th>
+								<th>@lang('dingsu.orderid')</th>
+								<th>@lang('dingsu.seller')</th>
+								<th>@lang('dingsu.point')</th>
 								<th>@lang('dingsu.amount')</th>
+								<th>@lang('dingsu.buyer')</th>
 								<th>@lang('dingsu.status')</th>
-								<th>@lang('dingsu.reason')</th>
 								<th>@lang('dingsu.action')</th>
 							</tr>
 						</thead>
 						<tbody>
-							@include('receipt.render_data')
+							@include('resell.render_data')
 						</tbody>
 					</table>
 					{!! $result->render() !!}
@@ -30,8 +31,15 @@
 	@else
 	<div class="col-lg-12 grid-margin stretch-card">
 		<div class="card">
-			<h3 class="mt-3 mb-3 text-danger font-weight-medium text-center">
-                     @lang('dingsu.no_record_found') </h>               
+			@if (!empty($firstload))    
+            <h3 class="mt-3 mb-3 text-primary font-weight-medium text-center">
+            	@lang('dingsu.please_wait') 
+            </h3> 
+            @else
+            <h3 class="mt-3 mb-3 text-danger font-weight-medium text-center">
+            	@lang('dingsu.no_record_found') 
+            </h3> 
+            @endif              
               </div>
             </div>	
 	@endif

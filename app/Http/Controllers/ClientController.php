@@ -7,11 +7,13 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Category;
+use App\Http\Controllers\tabaoApiController;
 use App\Members as Member;
 use App\Wallet;
 use App\helpers\VIPApp;
 use App\member_game_result;
 use App\tips;
+use App\v_getTaobaoCollectionVouchersLess12;
 use App\view_vip_status;
 use Auth;
 use Carbon\ Carbon;
@@ -24,11 +26,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Jenssegers\Agent\Agent;
 use Khsing\WechatAgent\WechatAgent;
 use \App\helpers\WeiXin as WX;
 use session;
-
-use Jenssegers\Agent\Agent;
 //use App\Http\Controllers\Api\MemberController;
 
 class ClientController extends BaseController
@@ -217,28 +218,36 @@ class ClientController extends BaseController
 
 		// $setting = \DB::table('settings')->where('id', 1)->select('mobile_default_image_url','product_home_popup_size')->first();
 
-		if ($cid)
-		{
-			//$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
-			//$vouchers = Voucher_category::latest()
-			$vouchers = \DB::table('voucher_category')
-			->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
-			->where('voucher_category.category' ,'=' , $cid)
-			->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
-			->groupBy('vouchers.id')
-			->orderby('vouchers.created_at', 'DESC')
-			->orderby('vouchers.id','DESC')
-			->paginate(6);
+		// if ($cid)
+		// {
+		// 	//$vouchers = Voucher::latest()->where('category' ,'=' , $cid)->paginate(5);
+		// 	//$vouchers = Voucher_category::latest()
+		// 	$vouchers = \DB::table('voucher_category')
+		// 	->join('vouchers', 'voucher_category.voucher_id', '=', 'vouchers.id')
+		// 	->where('voucher_category.category' ,'=' , $cid)
+		// 	->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())
+		// 	->groupBy('vouchers.id')
+		// 	->orderby('vouchers.created_at', 'DESC')
+		// 	->orderby('vouchers.id','DESC')
+		// 	->paginate(6);
 
-			//$vouchers = Voucher::get_vouchers($cid)->paginate(5);
-			//pagination already have the count data so no need to call again
-			//$vouchers_total = Voucher::where('category' ,'=' , $cid)->count(); 
+		// 	//$vouchers = Voucher::get_vouchers($cid)->paginate(5);
+		// 	//pagination already have the count data so no need to call again
+		// 	//$vouchers_total = Voucher::where('category' ,'=' , $cid)->count(); 
 			
-		}
-		else{
-			$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->orderby('created_at', 'DESC')->orderby('id', 'DESC')->paginate(6);
+		// }
+		// else{
+		// 	$vouchers = Voucher::latest()->whereDate('vouchers.expiry_datetime' ,'>=' , Carbon::today())->orderby('created_at', 'DESC')->orderby('id', 'DESC')->paginate(6);
 			
-		}
+		// }
+
+		$_modal = new v_getTaobaoCollectionVouchersLess12;
+        if (!env('THISVIPAPP')) {
+            $_modal->setConnection('mysql2');
+        }
+        $vouchers = $_modal->paginate(6);
+  //       dd($tdata);
+		// $vouchers = empty($tdata['data']['list']) ? null : json_decode($tdata['data']['list']);
 
 		if ($request->ajax()) {
 			// \Log::warning('get vouchers 2nd page');

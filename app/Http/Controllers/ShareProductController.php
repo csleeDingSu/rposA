@@ -14,6 +14,7 @@ use App\Shareproduct;
 use App\Voucher;
 use App\Wallet;
 use App\member_game_bet_temp_log;
+use App\v_getTaobaoCollectionVouchersLess12;
 use App\vouchers_yhq;
 use Auth;
 use Carbon\Carbon;
@@ -188,7 +189,13 @@ class ShareProductController extends BaseController
 
 	public function getVoucherDetail($id)
 	{
-		$data['voucher'] = Voucher::where('id',$id)->select('*')->first();
+		$_modal = new v_getTaobaoCollectionVouchersLess12;
+        if (!env('THISVIPAPP')) {
+            $_modal->setConnection('mysql2');
+        }
+        $data['voucher'] = $_modal->where('id',$id)->select('*')->first();
+        
+		// $data['voucher'] = Voucher::where('id',$id)->select('*')->first();
 		return view('client/productv2_detail', $data);
 		
 	}
