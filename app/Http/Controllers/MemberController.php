@@ -318,6 +318,11 @@ class MemberController extends BaseController
 			$wallet = \App\Ledger::ledger($record->id,$gameid);
 			app('App\Http\Controllers\Api\GameController')->life_redemption($record->id, $gameid, 'yes');
 
+			$data = ['introducer_life'=> 1];					
+					
+			$res  = Member::update_member($record->id,$data);	
+			$data = [];
+
 			if ($wallet->life > 1)
 			{
 				//$dlife = $wallet->life - 1;
@@ -339,9 +344,6 @@ class MemberController extends BaseController
 				if ($ledger['success'])
 				{
 					$intro_bonus_life = 0.5;
-					$data = ['introducer_life'=> 1];					
-					
-					$res  = Member::update_member($record->id,$data);					
 					
 					//Second level introducer bonus life
 					$frecord  = Member::find($record->referred_by); 
