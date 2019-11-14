@@ -482,12 +482,12 @@ class CreditController extends BaseController
     	$validator = $this->validate(
             $request,
             [
-                'bank_detail' => 'required',
+               // 'bank_detail' => 'required',
                 'account_name' => 'required',
                 'account_number' => 'required',
                 'bank_name' => 'required',
-                'phone' => 'required',
-                'name' => 'required'
+                //'phone' => 'required',
+                //'name' => 'required'
             ]
         );
 
@@ -504,10 +504,10 @@ class CreditController extends BaseController
 		$validator = $this->validate(
             $request,
             [
-                'bank_detail' => 'required',
+                //'bank_detail' => 'required',
                 'account_name' => 'required',
                 'account_number' => 'required',
-                //'bank_name' => 'required',
+                'bank_name' => 'required',
                 //'phone' => 'required',
                // 'name' => 'required'
             ]
