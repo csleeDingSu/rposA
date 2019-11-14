@@ -86,7 +86,7 @@
               积分是奖励给通过平台领券去淘宝下单的用户，积分可兑换抽奖场次。
             </p>
             <p>
-              1200积分兑换1场次，抽最高12元红包，系统自动兑换。
+              12积分兑换1场次，抽最高12元红包，系统自动兑换。
             </p>
           </div>
           <div class="modal-close-btn">
@@ -111,3 +111,30 @@
     </script>
 
 @endsection
+
+<!-- socket start-->  
+<script type="text/javascript">
+  @section('socket')
+  @parent
+
+    var id = "{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}";
+    console.log('prefix --- ' + prefix);
+    console.log('id --- ' + id);
+
+    // socket.on(prefix+"new-receipt" + ":App\\Events\\EventDynamicChannel" , function(data){
+    //     console.log(prefix+"new-receipt" + ":App\\Events\\EventDynamicChannel");
+    //     console.log(data.data);
+    //     records = data.data.records;
+    //     populateHtmlSocket(records);
+    // });
+
+    socket.on(prefix+"receipt-updated" + ":App\\Events\\EventDynamicChannel" , function(data){
+        console.log(prefix+"receipt-updated" + ":App\\Events\\EventDynamicChannel");
+        console.log(data);
+        records = data.data;
+        populateHtmlSocket(records);
+    });
+    
+  @endsection
+</script>
+<!-- socket end-->

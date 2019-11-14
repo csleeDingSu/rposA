@@ -578,3 +578,21 @@ var being2 = {
     </script>
 
 @endsection
+
+<!-- socket start-->  
+<script type="text/javascript">
+  @section('socket')
+  @parent
+
+    var id = "{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}";
+    console.log('prefix --- ' + prefix);
+    console.log('id --- ' + id);
+
+    socket.on(prefix+id+"-pending-seller" + ":App\\Events\\EventDynamicChannel" , function(data){
+        console.log(prefix+id+"-pending-seller" + ":App\\Events\\EventDynamicChannel");
+        console.log(data);
+    });
+    
+  @endsection
+</script>
+<!-- socket end-->

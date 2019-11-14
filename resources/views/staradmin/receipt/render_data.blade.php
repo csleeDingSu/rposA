@@ -4,7 +4,7 @@
 	<td>{{$list->created_at}}</td>
 	<td>
 	@if ($list->member_id)
-		{{ $list->member->phone ?? $list->member->wechat_name }}
+		{{ $list->member->phone ?? empty($list->member->wechat_name) ? '' : $list->member->wechat_name }}
 	@endif	
 	</td>
 	<td>{{$list->receipt ?? '-' }}</td>

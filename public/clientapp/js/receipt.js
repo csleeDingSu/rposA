@@ -2,7 +2,7 @@ var wallet_point =0;
 var gameid = 102;
 var earned_point = Number(0);
 var earned_play_times = Number(0);
-var default_exchange_point = Number(1200);
+var default_exchange_point = Number(12);
 
 $(document).ready(function () {
     getToken();     
@@ -45,8 +45,6 @@ function getWallet(token, id) {
 }
 
 function getReceiptList(token, id) {
-    var html = '';
-
     $.ajax({
         type: 'GET',
         url: "/api/list-receipt?memberid=" + id, 
@@ -58,40 +56,7 @@ function getReceiptList(token, id) {
         success: function(data) {
             console.log(data); 
             records = data.records;
-            earned_point = 0;
-            $.each(records, function(i, item) {          
-            html += '<li>' +
-                        '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
-                        if (item.status == 1) {
-            html +=         '<font color="#a144ff">正在处理</font>';                
-                        }else if (item.status == 2) {
-            html +=         '<font color="#a144ff">奖励到账</font>';
-                            earned_point = earned_point + Number(item.amount * 10);
-
-                        }else if (item.status == 3) {
-            html +=         '<font color="#ff6161">奖励失效</font>';                
-                        }else {
-            html +=         '<font color="#ff6161">订单号无效</font>';                
-                        }            
-            html +=     '</h2>';
-
-                        if (item.status == 2) {
-            html +=         '<p><span>'+item.updated_at+'</span><font color="#ff6161">+'+item.amount+'</font></p>';           
-                        }else {
-            html +=         '<p><span>'+item.updated_at+'</span></p>';              
-                        }
-
-                      '</li>';
-        
-            });
-
-            if (html != '') {
-                $('.data-list').html(html);
-                $('.earned_point').html(earned_point);
-                earned_play_times = parseInt(earned_point / default_exchange_point);
-                earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
-                $('.earned_play_times').html(earned_play_times);    
-            }            
+            populateHtml(records);      
         } // end success
     }); // end $.ajax
 }
@@ -128,4 +93,76 @@ function AssignSubmitReceipt(token) {
             });
         }
     });
+}
+
+function populateHtml(records) {
+    var html = '';
+    earned_point = 0;
+    $.each(records, function(i, item) {          
+    html += '<li id="r_'+item.id+'">' +
+                '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
+                if (item.status == 1) {
+    html +=         '<font color="#a144ff">正在处理</font>';                
+                }else if (item.status == 2) {
+    html +=         '<font color="#a144ff">奖励到账</font>';
+                    earned_point = Number(parseInt(earned_point)) + Number(parseInt(item.amount));
+
+                }else if (item.status == 3) {
+    html +=         '<font color="#ff6161">奖励失效</font>';                
+                }else {
+    html +=         '<font color="#ff6161">订单号无效</font>';                
+                }            
+    html +=     '</h2>';
+
+                if (item.status == 2) {
+    html +=         '<p><span>'+item.updated_at+'</span><font color="#ff6161">+'+parseInt(item.amount)+'</font></p>';           
+                }else {
+    html +=         '<p><span>'+item.updated_at+'</span></p>';              
+                }
+
+              '</li>';
+
+    });
+
+    if (html != '') {
+        $('.data-list').html(html);
+        $('.earned_point').html(earned_point);
+        earned_play_times = parseInt(earned_point / default_exchange_point);
+        earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
+        $('.earned_play_times').html(earned_play_times);    
+    }
+}
+
+function populateHtmlSocket (item) {
+    console.log(item);
+    var html = '';
+    earned_point = parseInt($('.earned_point').html());
+
+    html += '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
+                if (item.status == 1) {
+    html +=         '<font color="#a144ff">正在处理</font>';                
+                }else if (item.status == 2) {
+    html +=         '<font color="#a144ff">奖励到账</font>';
+                    earned_point = Number(parseInt(earned_point)) + Number(parseInt(item.amount));
+
+                }else if (item.status == 3) {
+    html +=         '<font color="#ff6161">奖励失效</font>';                
+                }else {
+    html +=         '<font color="#ff6161">订单号无效</font>';                
+                }            
+    html +=     '</h2>';
+
+                if (item.status == 2) {
+    html +=         '<p><span>'+item.updated_at+'</span><font color="#ff6161">+'+parseInt(item.amount)+'</font></p>';           
+                }else {
+    html +=         '<p><span>'+item.updated_at+'</span></p>';              
+                }
+
+    if (html != '') {
+        $('#r_'+item.id).html(html);
+        $('.earned_point').html(earned_point);
+        earned_play_times = parseInt(earned_point / default_exchange_point);
+        earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
+        $('.earned_play_times').html(earned_play_times);    
+    }
 }

@@ -762,5 +762,11 @@ return [
 	'autobuy' => 'Waiting payment - administrator',
 	'limit' => 'Limit',
 	'subtract' => 'subtract',
+	'system_recharge_resell_account' => 'System Account (recharge/resell)',
+	'bank' => 'Bank',
+	'bank_detail' => 'Bank Detail',
+	'account_name' => 'Account Name',
+	'account_number' => 'Account Number',
+	'bank_name' => 'Bank Name',
 
 ];
