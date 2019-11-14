@@ -1619,3 +1619,73 @@ a {
     background-color: rgba(0, 0, 0, 0.6);
     /* margin-top: 50px; */
 }
+
+.w-logo {
+	width: 2rem;
+    margin: 0.5rem;
+}
+
+.w-desc1 {
+	font-size: 0.48rem;
+    padding: 0.1rem;
+    color: #7f7f7f;
+}
+
+.w-desc2 {
+	font-size: 0.3rem;
+    padding: 0.1rem;
+    color: #7f7f7f;
+
+}
+
+.w-download-btn {
+	width: 3.5rem;
+    margin: 0.5rem;
+}
+
+#reset-life-max .modal-content-new {
+  background: url('/client/images/game-node/bgred.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  width: 303px !important;
+  height: 368px;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+#reset-life-max .modal-content-new .t1{
+	font-size: 0.45rem;
+    font-weight: 500;
+    padding: 0.2rem 0 0 0
+}
+
+#reset-life-max .modal-content-new .t1 .highlight {
+	color: #ffec69;
+}
+
+#reset-life-max .modal-content-new .t2{
+	font-size: 0.32rem;
+	font-weight: 500;
+}
+#reset-life-max .modal-content-new .t3{
+	font-size: 0.30rem;
+	font-weight: 500;
+}
+#reset-life-max .modal-content-new .t4{
+	font-size: 0.26rem;
+	font-weight: 500;
+	padding: 0.1rem;
+}
+#reset-life-max .modal-content-new .p1 img{
+	width: 80%;
+    padding: 0.3rem;
+}
