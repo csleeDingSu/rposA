@@ -753,5 +753,11 @@ return [
 	'autobuy' => '等待管理员付款',
 	'limit' => '限制',
 	'subtract' => '减去',
+	'system_recharge_resell_account' => '系统账户(充值/转卖)',
+	'bank' => '银行',
+	'bank_detail' => '银行明细',
+	'account_name' => '用户名',
+	'account_number' => '帐号',
+	'bank_name' => '银行名字',
 
 ];
