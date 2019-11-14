@@ -293,6 +293,10 @@ class MemberController extends BaseController
 				case '3':
 					$badge = "<label class='badge badge-danger'>".trans('dingsu.suspended')."</label> ";
 				break;
+				case '0':
+					$badge = "<label class='badge badge-success'>".trans('dingsu.verified')."</label> ";
+					$this->add_life($record);
+				break;
 				default:
 					$badge = "<label class='badge badge-success'>".trans('dingsu.verified')."</label> ";
 					$this->add_life($record);
@@ -312,11 +316,20 @@ class MemberController extends BaseController
 		if (empty($record->introducer_life))
 		{
 			$wallet = \App\Ledger::ledger($record->id,$gameid);
+			app('App\Http\Controllers\Api\GameController')->life_redemption($record->id, $gameid, 'yes');
+
+			$data = ['introducer_life'=> 1];					
+					
+			$res  = Member::update_member($record->id,$data);	
+			$data = [];
+
 			if ($wallet->life > 1)
 			{
 				//$dlife = $wallet->life - 1;
-				\App\Game::reset_member_game_level($record->id , $gameid);	
-				$ledger = \App\Ledger::life($record->id,$gameid,'debit',1,'LILE', ' Life reset to default.');
+				//\App\Game::reset_member_game_level($record->id , $gameid);	
+				
+				
+				//$ledger = \App\Ledger::life($record->id,$gameid,'debit',1,'LILE', ' Life reset to default.');
 			}
 		}	
 
@@ -331,9 +344,6 @@ class MemberController extends BaseController
 				if ($ledger['success'])
 				{
 					$intro_bonus_life = 0.5;
-					$data = ['introducer_life'=> 1];					
-					
-					$res  = Member::update_member($record->id,$data);					
 					
 					//Second level introducer bonus life
 					$frecord  = Member::find($record->referred_by); 
