@@ -293,6 +293,10 @@ class MemberController extends BaseController
 				case '3':
 					$badge = "<label class='badge badge-danger'>".trans('dingsu.suspended')."</label> ";
 				break;
+				case '0':
+					$badge = "<label class='badge badge-success'>".trans('dingsu.verified')."</label> ";
+					$this->add_life($record);
+				break;
 				default:
 					$badge = "<label class='badge badge-success'>".trans('dingsu.verified')."</label> ";
 					$this->add_life($record);
