@@ -149,19 +149,23 @@
 			  if (state == 'interactive') {
 			  	// $( ".intro-container" ).addClass( "hidespan" );
 			  	document.getElementById('contents').style.visibility="hidden";
-			  	// document.getElementById('load').style.visibility="hidden";
+			  	document.getElementById('load').style.visibility="hidden";
+			  	console.log(1);
 			  } else if (state == 'complete') {
+			  	console.log(2);
 			  	setTimeout(function(){
-			  		// document.getElementById('interactive');
+			  		console.log(3);
+			  		document.getElementById('interactive');
 			        // document.getElementById('preload').style.visibility="hidden";
 			        // document.getElementById('load').style.visibility="visible";
-			        // document.getElementById('load').style.visibility="hidden";
-			        $( ".intro-container" ).addClass( "showspan" );
+			        document.getElementById('load').style.visibility="hidden";
+			        // $( ".intro-container" ).addClass( "showspan" );
 			        setTimeout(function(){
-			        	// document.getElementById('load'
-			        		// document.getElementById('load').style.visibility="visible";).style.visibility="hidden";
+			        	console.log(4);
+			        	document.getElementById('load').style.visibility="hidden";
+			        	// document.getElementById('load').style.visibility="visible";
 				        // document.getElementById('contents').style.visibility="visible";
-				        $( ".intro-container" ).addClass( "showspan" );
+				        // $( ".intro-container" ).addClass( "showspan" );
 				    },900);
 			    },100);
 			  }
