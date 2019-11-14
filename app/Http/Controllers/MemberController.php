@@ -314,8 +314,8 @@ class MemberController extends BaseController
 			$wallet = \App\Ledger::ledger($record->id,$gameid);
 			if ($wallet->life > 1)
 			{
-				$dlife = $wallet->life - 1;
-				$ledger = \App\Ledger::life($record->id,$gameid,'debit',$dlife,'LILE', ' Life reset to default.');
+				//$dlife = $wallet->life - 1;
+				$ledger = \App\Ledger::life($record->id,$gameid,'debit',1,'LILE', ' Life reset to default.');
 			}
 		}	
 
