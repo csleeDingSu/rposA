@@ -307,7 +307,18 @@ class MemberController extends BaseController
 	
 	public function add_life ($record)
 	{
-		$gameid = 102;
+		$gameid = 102;	
+		
+		if (empty($record->introducer_life))
+		{
+			$wallet = \App\Ledger::ledger($record->id,$gameid);
+			if ($wallet->life > 1)
+			{
+				$dlife = $wallet->life - 1;
+				$ledger = \App\Ledger::life($record->id,$gameid,'debit',$dlife,'LILE', ' Life reset to default.');
+			}
+		}	
+
 		if ($record->referred_by)
 		{
 			if (empty($record->introducer_life))
