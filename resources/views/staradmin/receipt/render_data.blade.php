@@ -9,7 +9,7 @@
 	</td>
 	<td>{{$list->receipt ?? '-' }}</td>
 	<td>{{$list->amount ?? '0' }}</td>
-	<td>{{$list->reward ?? '0' }}</td>
+	
 	<td>
 		@if($list->status == 1)
 		
