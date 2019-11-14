@@ -3,24 +3,28 @@ body {
 }
 
 .shareBox .big {
-	margin: 0.22rem 0 !important;
+	margin: 0.22rem 0 0 0 !important
 }
 
 .pre-share-main-img {
-	background: url(/clientapp/images/share/pre_share_main.png) no-repeat;
-    background-size: cover;
-    height: 4.4rem;
-    margin: 0 0 0.35rem 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-top: -0.3rem;
 }
 
 .shareBtn {
-	background: url(/clientapp/images/share/shareBtn.png) no-repeat;
-    background-size: cover;
-    height: 1.1rem;
     text-align: center;
-    padding: 0.25rem;
+    padding: 0 0.35rem 0.5rem 0.35rem;
     font-size: 0.32rem;
     color: #fff;
+    position: relative;
+    margin-top: -0.2rem;
+}
+
+.shareBtn img {
+    position: relative;
+    width: 100%;
 }
 
 .shareBox .txtBox {

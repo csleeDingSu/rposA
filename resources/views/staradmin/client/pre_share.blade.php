@@ -27,15 +27,11 @@
 <input type="hidden" id="max_page_nextlvl" value="1" />
 
     <div class="shareBox fix">
-        <img src="{{ asset('/clientapp/images/shareImg.png') }}" class="big">
-        <div class="txtBox">
-          <div class="pre-share-main-img"></div>
-          <div class="description">
-            <div class="desc-left">好友可得</div>
-            <div class="desc-right">新人红包补贴 抽奖<span class="highlight">12</span>元红包</div>
-          </div>
-          <a class="_btn" href="/share">
-            <div class="shareBtn">邀好友赚补贴 多邀多得</div>
+        <img src="{{ asset('/clientapp/images/share/shareImg.png') }}" class="big">
+        <img class="pre-share-main-img" src="{{ asset('/clientapp/images/share/pre_share_main.png') }}">
+        <div class="shareBtn">
+          <a href="/share">
+            <img  src="{{ asset('/clientapp/images/share/shareBtn.png') }}">
           </a>
         </div>
 
