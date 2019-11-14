@@ -103,6 +103,8 @@ $this->get( 'display-error-screen/database', function () {
 
 Route::any( '/youzan', 'PaymentController@index' )->name( 'client.payment.index' );
 
+Route::any( '/newbie', 'MainController@newbieProduct' )->name( 'client.tabao.newbieProduct' );
+	
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
@@ -185,7 +187,6 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 		return view( 'client/quan');
 	} );
 	Route::any( '/main/zero-price-product', 'MainController@tabaoZeroPriceProduct' )->name( 'client.tabao.zeroPriceProduct' );
-	Route::any( '/newbie', 'MainController@newbieProduct' )->name( 'client.tabao.newbieProduct' );
 	Route::get( '/free', function () {
 		return view( 'client/free');
 	} );
