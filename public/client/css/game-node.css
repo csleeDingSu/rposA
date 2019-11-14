@@ -1643,7 +1643,8 @@ a {
     margin: 0.5rem;
 }
 
-#reset-life-max .modal-content-new {
+/*#reset-life-max*/
+.modal-content-new {
   background: url('/client/images/game-node/bgred.png') no-repeat;
   background-size: contain;
   color: white;
@@ -1662,32 +1663,33 @@ a {
   border: none;
 }
 
-#reset-life-max .modal-content-new .t1{
+.modal-content-new .t1{
 	font-size: 0.45rem;
     font-weight: 500;
     padding: 0.2rem 0 0 0
 }
 
-#reset-life-max .modal-content-new .t1 .spanAcuPointAndBalance {
+.modal-content-new .t1 .spanAcuPointAndBalance {
 	font-size: 0.45rem;
     font-weight: 500;
 	color: #ffec69;
 }
 
-#reset-life-max .modal-content-new .t2{
+.modal-content-new .t2{
 	font-size: 0.32rem;
 	font-weight: 500;
 }
-#reset-life-max .modal-content-new .t3{
+.modal-content-new .t3{
 	font-size: 0.30rem;
 	font-weight: 500;
 }
-#reset-life-max .modal-content-new .t4{
+.modal-content-new .t4{
 	font-size: 0.26rem;
 	font-weight: 500;
 	padding: 0.1rem;
 }
-#reset-life-max .modal-content-new .p1 img{
+.modal-content-new .p1 img{
 	width: 80%;
     padding: 0.3rem;
 }
+
