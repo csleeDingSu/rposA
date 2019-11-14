@@ -492,6 +492,15 @@ class MemberLoginController extends Controller
 					'current_balance' => env('initial_balance',120),
 					'balance_before'  => env('initial_balance',120)
 				]);
+
+			//create Game Ledgers
+			\App\Ledger::intiateledger($user->id);
+			
+			//add welcome bonus life
+			\App\Ledger::life($user->id,102,'credit',$setting->game_default_life,'WBL', '');
+			
+			$balance = env('initial_balance',1200);
+			\App\Ledger::balance($user->id,102,'credit',$balance,'WBB', '');
 			
 		}
 

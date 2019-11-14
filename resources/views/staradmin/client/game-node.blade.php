@@ -673,8 +673,9 @@
 			</div>
 		</div>
 	</div>
+@if (env('THISVIPAPP', false))
 
-	<div class="modal fade col-md-12" id="modal-withdraw-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12" id="modal-withdraw" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg close-modal" role="document">
 			<div class="modal-content">
 				<div class="modal-body">				
@@ -708,25 +709,7 @@
 		</div>
 	</div>
 
-	<div class="modal fade col-md-12" id="modal-withdraw" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-	<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content-new">
-				<div class="modal-body">
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<p class="t1">恭喜获得<span class="spanAcuPointAndBalance">0</span>元补贴</p>	
-							<p class="t2">扫码加客服领取</p>
-							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
-							<p class="t3">长按扫一扫加好友</p>
-							<p class="t4">*拒绝微信小号 每人限领一次</p>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade col-md-12" id="reset-life-max-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 	<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
@@ -746,29 +729,7 @@
 		</div>
 	</div>
 
-	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-	<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content-new">
-				<div class="modal-body">
-					<div class="modal-row">
-						<div class="wrapper modal-full-height">
-							<p class="t1">恭喜获得<span class="spanAcuPointAndBalance">0</span>元补贴</p>	
-							<p class="t2">扫码加客服领取</p>
-							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
-							<p class="t3">长按扫一扫加好友</p>
-							<p class="t4">*拒绝微信小号 每人限领一次</p>
-						</div>
-					</div>							
-				</div>
-			</div>
-		</div>
-	</div>
-<!--  end -->
-
-
-<!-- Start Reset Life Share -->
-
-	<div class="modal fade col-md-12" id="reset-life-share-old" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="share-logo-wrapper">
@@ -810,6 +771,43 @@
 			</div>
 		</div>
 	</div>
+@else
+
+	<div class="modal fade col-md-12" id="modal-withdraw" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content-new">
+				<div class="modal-body">
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<p class="t1">恭喜获得<span class="spanAcuPointAndBalance">0</span>元补贴</p>	
+							<p class="t2">扫码加客服领取</p>
+							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
+							<p class="t3">长按扫一扫加好友</p>
+							<p class="t4">*拒绝微信小号 每人限领一次</p>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade col-md-12" id="reset-life-max" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+	<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content-new">
+				<div class="modal-body">
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<p class="t1">恭喜获得<span class="spanAcuPointAndBalance">0</span>元补贴</p>	
+							<p class="t2">扫码加客服领取</p>
+							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
+							<p class="t3">长按扫一扫加好友</p>
+							<p class="t4">*拒绝微信小号 每人限领一次</p>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="modal fade col-md-12" id="reset-life-share" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 		<div class="modal-dialog modal-lg" role="document">
@@ -833,6 +831,9 @@
 			</div>
 		</div>
 	</div>
+@endif
+		
+<!--  end -->
 
 <!-- Start Reset Life Lose -->
 

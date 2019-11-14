@@ -246,9 +246,7 @@ class ClientController extends BaseController
             $_modal->setConnection('mysql2');
         }
         $vouchers = $_modal->paginate(6);
-  //       dd($tdata);
-		// $vouchers = empty($tdata['data']['list']) ? null : json_decode($tdata['data']['list']);
-
+        
 		if ($request->ajax()) {
 			// \Log::warning('get vouchers 2nd page');
     		$view = view('client.productv2',compact('vouchers'))->render();
