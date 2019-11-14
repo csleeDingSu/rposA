@@ -1202,13 +1202,23 @@ WHERE
 			{
 				$ledger = \App\Ledger::ledger($record->member_id , $gameid);
 				$bonus  = $ledger->bonus_point;
+				while ($bonus >= $camout)
+				{
+					$bonus = $bonus - $camout;
+					
+					$debit = \App\Ledger::updateledger('debit','bonus_point',$record->member_id,$gameid,$game->reward_ratio,'BRBL', 'bonus point redeemd for life');
+						
+					$life  = \App\Ledger::life($record->member_id,$gameid,'credit',$game->bonus_point_to_life,$category = 'RBL', 'bonus life for bonus point');
+
+				}
+				/*
 				while($i <= $bonus) 
 				{
 					$bonus = $bonus - $i;					
 					$debit = \App\Ledger::updateledger('debit','bonus_point',$record->member_id,$gameid,$game->bonus_point_to_life,'BRBL', 'bonus point redeemd for life');
 					
 					$life  = \App\Ledger::life($record->member_id,$gameid,'credit',1,$category = 'RBL', 'bonus life for bonus point');					
-				}
+				} */
 			}			
 		}
 				
