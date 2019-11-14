@@ -1668,7 +1668,9 @@ a {
     padding: 0.2rem 0 0 0
 }
 
-#reset-life-max .modal-content-new .t1 .highlight {
+#reset-life-max .modal-content-new .t1 .spanAcuPointAndBalance {
+	font-size: 0.45rem;
+    font-weight: 500;
 	color: #ffec69;
 }
 
