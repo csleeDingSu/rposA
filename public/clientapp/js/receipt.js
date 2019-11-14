@@ -153,7 +153,7 @@ function populateHtmlSocket (item) {
     html +=     '</h2>';
 
                 if (item.status == 2) {
-    html +=         '<p><span>'+item.updated_at+'</span><font color="#ff6161">+'+item.amount+'</font></p>';           
+    html +=         '<p><span>'+item.updated_at+'</span><font color="#ff6161">+'+parseInt(item.amount)+'</font></p>';           
                 }else {
     html +=         '<p><span>'+item.updated_at+'</span></p>';              
                 }
