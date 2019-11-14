@@ -99,7 +99,7 @@ function populateHtml(records) {
     var html = '';
     earned_point = 0;
     $.each(records, function(i, item) {          
-    html += '<li id=r_"'+item.id+'">' +
+    html += '<li id="r_'+item.id+'">' +
                 '<h2><span>订单号&nbsp;'+item.receipt+'</span>';
                 if (item.status == 1) {
     html +=         '<font color="#a144ff">正在处理</font>';                
