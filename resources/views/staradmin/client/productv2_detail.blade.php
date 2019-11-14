@@ -157,8 +157,9 @@
 	<script>
 		
 		$(document).ready(function(){
-
-			gettpwd();
+			if ($('#hidgoodsId').val() != 0) {
+				gettpwd();
+			}			
 			
 			var clipboard = new ClipboardJS('.copyBtn', {
 				target: function () {
@@ -206,7 +207,7 @@
 		      dataType: "text",
 		      error: function (error) {
 		          console.log(error);
-		          alert(error.responseText);
+		          // alert(error.responseText);
 		      },
 		      success: function(data) {
 		          console.log(data);
