@@ -315,7 +315,10 @@ class MemberController extends BaseController
 			if ($wallet->life > 1)
 			{
 				//$dlife = $wallet->life - 1;
-				\App\Game::reset_member_game_level($record->id , $gameid);	
+				//\App\Game::reset_member_game_level($record->id , $gameid);	
+				
+				app('App\Http\Controllers\Api\GameController')->life_redemption($record->id, $gameid, 'yes');
+
 				$ledger = \App\Ledger::life($record->id,$gameid,'debit',1,'LILE', ' Life reset to default.');
 			}
 		}	
