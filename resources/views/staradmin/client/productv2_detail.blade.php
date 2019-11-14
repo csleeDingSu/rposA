@@ -31,8 +31,10 @@
 @php ($discount_price = !empty($item->discount_price) ? $item->discount_price : $newPrice)
 
 @php ($sales_show = !empty($item->sales_show) ? $item->sales_show : 0)
-@php ($sales = ($item->monthSales >= 1000) ? number_format(((float)$item->monthSales / 10000), 2, '.', '') . '万' : $item->monthSales . '件')
-@php ($sales_show = ($sales_show > 0) ? $sales_show : (($item->monthSales >= 1000) ? number_format(((float)$item->monthSales / 10000), 2, '.', '') . '万' : $item->monthSales))
+@php ($monthSales = !empty($item->monthSales) ? $item->monthSales : 0)
+@php ($sales = ($monthSales <= 0) ? $sales_show : $monthSales)
+@php ($sales = ($sales >= 1000) ? number_format(((float)$sales / 10000), 2, '.', '') . '万' : $sales . '件')
+@php ($sales_show = sales)
 
 @php ($commissionRate = empty($item->commissionRate) ? 0 : $item->commissionRate)
 @php ($commissionRate = ($commissionRate > 0) ? (int)$commissionRate : 0)
