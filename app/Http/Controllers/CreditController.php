@@ -507,9 +507,9 @@ class CreditController extends BaseController
                 'bank_detail' => 'required',
                 'account_name' => 'required',
                 'account_number' => 'required',
-                'bank_name' => 'required',
-                'phone' => 'required',
-                'name' => 'required'
+                //'bank_name' => 'required',
+                //'phone' => 'required',
+               // 'name' => 'required'
             ]
         );
         $record = \App\CompanyBank::find($request->id);
