@@ -14,6 +14,7 @@ use App\helpers\VIPApp;
 use App\member_game_result;
 use App\tips;
 use App\v_getTaobaoCollectionVouchersLess12;
+use App\v_getTaobaoCollectionVouchersLess15;
 use App\view_vip_status;
 use Auth;
 use Carbon\ Carbon;
@@ -241,7 +242,7 @@ class ClientController extends BaseController
 			
 		// }
 
-		$_modal = new v_getTaobaoCollectionVouchersLess12;
+		$_modal = new v_getTaobaoCollectionVouchersLess15;
         if (!env('THISVIPAPP')) {
             $_modal->setConnection('mysql2');
         }

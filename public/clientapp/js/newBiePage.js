@@ -50,7 +50,7 @@ function getFromTabao(pageId){
       type: 'GET',
       // url: "/tabao/get-goods-list?pageSize=" + _pageSize + "&pageId=" + pageId + "&priceLowerLimit=" + priceLowerLimit+ "&priceUpperLimit=" + priceUpperLimit, 
       // url: "/tabao/get-collection-list-with-detail?pageSize=" + _pageSize + "&pageId=" + pageId,
-      url: "/tabao/get-taobao-collection-vouchers-less15/" + pageId+ "?pgsize=" + pageSize,
+      url: "/tabao/get-taobao-collection-vouchers-less12/" + pageId+ "?pgsize=" + pageSize,
       contentType: "application/json; charset=utf-8",
       dataType: "text",
       error: function (error) {
@@ -140,7 +140,7 @@ function populateData(item) {
             // '<span class="type-sred">奖励'+reward+'积分</span>' +
           '</div>' +
           '<div class="moneyBox">' +
-            '<div class="amount"><em>¥</em>'+newPrice+'</div>' +
+            '<div class="amount"><em>¥</em>0</div>' +
             '<div class="txt">APP专享补贴</div>' +
           '</div>' +
         '</div>' +

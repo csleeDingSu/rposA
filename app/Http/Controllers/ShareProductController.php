@@ -189,7 +189,7 @@ class ShareProductController extends BaseController
 
 	public function getVoucherDetail($id)
 	{
-		$_modal = new v_getTaobaoCollectionVouchersLess12;
+		$_modal = new v_getTaobaoCollectionVouchersLess15;
         if (!env('THISVIPAPP')) {
             $_modal->setConnection('mysql2');
         }
