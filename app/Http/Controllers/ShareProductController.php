@@ -15,6 +15,7 @@ use App\Voucher;
 use App\Wallet;
 use App\member_game_bet_temp_log;
 use App\v_getTaobaoCollectionVouchersLess12;
+use App\v_getTaobaoCollectionVouchersLess15;
 use App\vouchers_yhq;
 use Auth;
 use Carbon\Carbon;
@@ -189,7 +190,7 @@ class ShareProductController extends BaseController
 
 	public function getVoucherDetail($id)
 	{
-		$_modal = new v_getTaobaoCollectionVouchersLess12;
+		$_modal = new v_getTaobaoCollectionVouchersLess15;
         if (!env('THISVIPAPP')) {
             $_modal->setConnection('mysql2');
         }
