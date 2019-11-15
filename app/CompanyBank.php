@@ -6,7 +6,7 @@ class CompanyBank extends Model
 {   
     
 	protected $fillable = [
-       'id', 
+        'bank_detail', 'account_name', 'account_number', 'bank_name', 'phone', 'resell_point', 'name', 
     ];
 	
 	protected $columns = array('id');
