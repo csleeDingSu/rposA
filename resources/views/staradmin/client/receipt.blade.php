@@ -128,8 +128,8 @@
     //     populateHtmlSocket(records);
     // });
 
-    socket.on(prefix+id"-receipt-updated" + ":App\\Events\\EventDynamicChannel" , function(data){
-        console.log(prefix+id"-receipt-updated" + ":App\\Events\\EventDynamicChannel");
+    socket.on(prefix+id+"-receipt-updated" + ":App\\Events\\EventDynamicChannel" , function(data){
+        console.log(prefix+id+"-receipt-updated" + ":App\\Events\\EventDynamicChannel");
         console.log(data);
         records = data.data;
         populateHtmlSocket(records);
