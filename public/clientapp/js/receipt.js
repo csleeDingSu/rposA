@@ -127,8 +127,11 @@ function populateHtml(records) {
     if (html != '') {
         $('.data-list').html(html);
         $('.earned_point').html(earned_point);
+        console.log(earned_point);
+        console.log(default_exchange_point);
+        console.log(parseInt(earned_point / default_exchange_point));
         earned_play_times = parseInt(earned_point / default_exchange_point);
-        earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
+        earned_play_times = (earned_play_times > 0) ? earned_play_times : 0;
         $('.earned_play_times').html(earned_play_times);    
     }
 }
@@ -162,7 +165,7 @@ function populateHtmlSocket (item) {
         $('#r_'+item.id).html(html);
         $('.earned_point').html(earned_point);
         earned_play_times = parseInt(earned_point / default_exchange_point);
-        earned_play_times = (earned_play_times > 1) ? earned_play_times : 0;
+        earned_play_times = (earned_play_times > 0) ? earned_play_times : 0;
         $('.earned_play_times').html(earned_play_times);    
     }
 }

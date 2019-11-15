@@ -1223,15 +1223,15 @@ WHERE
 		}
 				
 		$record->save();		
-		$row = $this->render_receiptdata($request->id);
+		$row = $this->render_receiptdata($request->id, $record->member_id);
 		return response()->json(['success' => true,'id'=>$request->id,'record'=>$row]);
     }
 	
-	public function render_receiptdata($id)
+	public function render_receiptdata($id , $memberid = 0)
     {
     	$record    = \App\Receipt::with('reason')->where('id',$id)->get();
     	if (!empty($record[0])	) {
-    		event(new \App\Events\EventDynamicChannel($record->member_id.'-receipt-updated','',$record[0] ));	
+    		event(new \App\Events\EventDynamicChannel($memberid.'-receipt-updated','',$record[0] ));	
     	}    	
 		$record    =  view('receipt.render_data', ['result' => $record])->render();						
 		return $record;
