@@ -7,6 +7,7 @@ use App\taobao_collection_vouchers;
 use App\v_getTaobaoCollectionVouchers;
 use App\v_getTaobaoCollectionVouchersGreater12;
 use App\v_getTaobaoCollectionVouchersLess12;
+use App\v_getTaobaoCollectionVouchersLess15;
 use App\v_getTaobaoCollectionVouchers_Greater12Less24;
 use App\v_getTaobaoCollectionVouchers_Greater24Less36;
 use Carbon\Carbon;
@@ -522,6 +523,38 @@ class tabaoApiController extends BaseController
         $_start = $_end - $_pgsize;
         
         $_modal = new v_getTaobaoCollectionVouchersLess12;
+
+        if (!env('THISVIPAPP')) {
+            $_modal->setConnection('mysql2');
+        }
+        
+        $totalNum = $_modal->select('*')->get()->count();
+        $res = $_modal->select('*')->skip($_start)->take($_pgsize)->get();
+
+        if (!empty($res)) {
+            $next_pg = $page_num + 1;
+            $_content['code'] = 0;
+            $_content['data']['list'] = $res;
+            $_content['data']['pageId'] = $next_pg;
+            $_content['data']['totalNum'] = $totalNum;   
+            $_content['msg'] = 'ok';
+            $_content['time'] = null;
+        }
+
+        return $_content;
+
+    }
+
+    public function getTaobaoCollectionVouchersLess15($page_num = null, Request $request)
+    {
+        $_content = null;
+        $next_pg = 0;
+        $_pgsize = empty($request->pgsize) ? 10 : $request->pgsize;
+        $page_num = empty($page_num) ? 1 : $page_num;
+        $_end = $page_num * $_pgsize;
+        $_start = $_end - $_pgsize;
+        
+        $_modal = new v_getTaobaoCollectionVouchersLess15;
 
         if (!env('THISVIPAPP')) {
             $_modal->setConnection('mysql2');

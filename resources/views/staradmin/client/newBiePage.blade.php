@@ -59,6 +59,8 @@
     @parent  
     <script src="{{ asset('/clientapp/js/newBiePage.js') }}"></script>
     <script type="text/javascript">
+      var gURL = "/download-app";
+
       $(document).ready(function () {
         checkDownload();
       });      
@@ -72,7 +74,7 @@
 
         if (ua.indexOf("micromessenger") > -1 || ua.indexOf("qq/") > -1) {
             console.log('in weixin');              
-            
+            gURL = _url;
             $('.download-app').click(function () {
                 window.location.href = _url;
               });
@@ -82,6 +84,7 @@
 
           }else{
             console.log('out from weixin');
+            gURL = DOWNLOAD_APP_IOS;
               // if (isMacDevices) {
               //   window.location.href = DOWNLOAD_APP_IOS;
               // } else {

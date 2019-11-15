@@ -123,16 +123,18 @@
 		    checkDownload();
 		</script>
 
-		<script>
-		//这个统计代码。
-		var hmt = hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?5e39d74009d8416a3c77c62c47158471";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-		})();
-		</script>
+		@if(!env('THISVIPAPP',false))
+			<!-- //这个统计代码。 -->
+			<script>
+			var hmt = hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?cb6633a9333e623d429ac791d9ad7d2a";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+			</script>
+		@endif
 
 		@if(env('THISVIPAPP',false))
 		  <script>

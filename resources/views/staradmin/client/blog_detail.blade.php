@@ -144,20 +144,20 @@
           autoplay: false, //可选选项，自动滑动
         });
 
-        $('.shareDetail .imgBanner').on('click', 'img', function () {
-          $('.slideImg').removeClass('dn');
-          let html = "";
-          let that = $(this);
-          $.each(that.parents('.swiper-wrapper').find('.swiper-slide'), function (index, res) {
-            img = $(res).find('img').attr('src');
-            console.log(img);
-            html += ' <div class="swiper-slide">';
-            html += '<div class="inBox"><img src="' + img + '"></div>';
-            html += ' </div>';
-          });
-          console.log(html);
-          swiper.appendSlide(html);
-        });
+        // $('.shareDetail .imgBanner').on('click', 'img', function () {
+        //   $('.slideImg').removeClass('dn');
+        //   let html = "";
+        //   let that = $(this);
+        //   $.each(that.parents('.swiper-wrapper').find('.swiper-slide'), function (index, res) {
+        //     img = $(res).find('img').attr('src');
+        //     // console.log(img);
+        //     html += ' <div class="swiper-slide">';
+        //     html += '<div class="inBox"><img src="' + img + '"></div>';
+        //     html += ' </div>';
+        //   });
+        //   // console.log(html);
+        //   swiper.appendSlide(html);
+        // });
 
         $('.slideImg').click(function (e) {
           if ($(e.target).find('.swiper-container').length > 0) {
@@ -176,7 +176,7 @@
             dataType: "json",
             error: function (error) { console.log(error) },
             success: function(data) {
-              console.log(data);
+              // console.log(data);
               window.top.location.href = "/blog";  
             }
           }); // end $.ajax
