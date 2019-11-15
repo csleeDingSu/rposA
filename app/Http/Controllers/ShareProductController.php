@@ -15,6 +15,7 @@ use App\Voucher;
 use App\Wallet;
 use App\member_game_bet_temp_log;
 use App\v_getTaobaoCollectionVouchersLess12;
+use App\v_getTaobaoCollectionVouchersLess15;
 use App\vouchers_yhq;
 use Auth;
 use Carbon\Carbon;
