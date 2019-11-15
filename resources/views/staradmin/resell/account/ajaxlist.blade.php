@@ -9,12 +9,12 @@
 						<thead>
 							<tr> 	
 								<th>#</th>
-								<th>@lang('dingsu.name')</th>
-								<th>@lang('dingsu.bank_detail')</th>
+								
+								
 								<th>@lang('dingsu.account_name')</th>
 								<th>@lang('dingsu.account_number')</th>
 								<th>@lang('dingsu.bank_name')</th>
-								<th>@lang('dingsu.phone')</th>
+								
 								<th>@lang('dingsu.action')</th>
 							</tr>
 						</thead>

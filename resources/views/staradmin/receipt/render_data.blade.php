@@ -2,11 +2,7 @@
 <tr id="tr_{{$list->id}}">
 	<td scope="row">{{$list->id}}</td>
 	<td>{{$list->created_at}}</td>
-	<td>
-	@if ($list->member_id)
-		{{ $list->member->phone ?? empty($list->member->wechat_name) ? '' : $list->member->wechat_name }}
-	@endif	
-	</td>
+	<td>{{ $list->member->phone ?? '-'}}</td>
 	<td>{{$list->receipt ?? '-' }}</td>
 	<td>{{$list->amount ?? '0' }}</td>
 	

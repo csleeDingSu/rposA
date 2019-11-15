@@ -1,3 +1,981 @@
+/*from game-node-vip.css start*/
+html, body {
+    height: 100%;
+}
+
+body{
+    background: #f6f6f6;
+    padding:0px;
+    margin:0px;
+}
+
+.full-height {
+    padding-top: 0.2rem;
+    margin: 0 auto;    
+    position: relative;
+    background-image: url("/client/images/wheel/background_game.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: scroll;
+    background-color: #8c36d9;
+    /*height: 10.3rem;*/
+}
+
+.information-table {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.text {
+    font-size:24px;
+}
+
+.instruction {
+    visibility: visible;
+    font-size: 20px;
+}
+
+.btn-rectangle, .btn-rectangle:active {
+    margin: 0 auto;
+    background: url('/client/images/wheel/btn-default.png') no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    font-size: 0.4rem;
+    color: #fff;
+    padding-top: 0.16rem;
+    outline: none !important;
+    box-shadow: none;
+    cursor: pointer;
+  /* other styles */
+}
+
+.left-rectangle {
+    text-align: left;
+    padding-left: 0.65rem;
+}
+
+.right-rectangle {
+    text-align: right;
+    padding-right: 0.65rem;
+}
+
+.btn-rectangle.clicked {
+    margin: 0 auto;
+    background: url('/client/images/wheel/btn-selected.png') no-repeat;
+    background-size: contain;
+    color: #8c6d28;
+}
+
+.bet-container, .bet {
+    padding-top: 20px;
+    font-size: 55px;
+    color: #9d5f3e;
+    display: none;
+}
+
+.btn-rectangle.clicked .guess{
+    margin-top: -5px;
+}
+
+.button-wrapper {
+    margin: 0 auto;
+    width: 100%
+    height: 80px;
+    position: relative;
+    margin-top: 0.5rem;
+}
+
+.button-card {
+    margin-top: 0;
+    width: 3.3rem !important;
+    height: 1rem;
+    float: left;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto  1.5rem;
+  height: 0.9rem;
+}
+
+.box {
+  font-size: 1em;
+  color: #fff;
+  background-color: transparent;
+}
+
+.btn-calculate {
+    width: 3.18rem;
+    height: 0.72rem;
+}
+
+.balance-banner {
+    background: url('/client/images/vip/info-bar.png') no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    float: left;
+    position: relative;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 0.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.icon-red {
+    background: url('/client/images/vip/icon-red.png') no-repeat;
+    background-size: contain;
+    width: 0.4rem;
+    height: 0.4rem;
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.2rem;
+    padding-top: 0.05rem;
+    margin-top: -0.05rem;
+    margin-left: 0.1rem;
+    z-index: 100;
+    display: none;
+
+}
+
+.btn-vip-wrapper {
+    width: 149.5px;
+    height: 50px;
+    margin-top: 3px;
+}
+
+.btn-rules-vip {
+    /*background: url(/client/images/vip/btn-intro.png) no-repeat top center;*/
+    background: url(/clientapp/images/vip-node/btn-intro.png) no-repeat top center;
+    width: 2.28rem;
+    height: 0.72rem;
+    background-size: contain;
+    font-size: 0.33rem;
+    cursor: pointer;
+    color: #fefeec;
+    font-weight: 700;
+    text-align: left;
+    padding: 0rem 0.1rem 0rem 0.3rem;
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+    float: right;
+    margin-top: -0.02rem;
+    /*margin-right: -0.05rem;*/
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-rules-vip img {
+    width: 0.35rem;
+    height: 0.35rem;
+    margin-right: 0.1rem;
+}
+
+.spanAcuPointAndBalance{
+    padding-top: 0.02rem;
+    font-size: 0.35rem;
+    color: #fff171;
+}
+
+.right {
+    float: right;
+}
+
+/* Modal Box */
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-content, .modal-title {
+    background: white;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-full-height {
+    text-align:center;
+    padding-bottom: 10px;
+    margin: 0 auto;
+}
+
+.modal-title {
+    background: #4c89e2;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.modal-title h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.modal-card {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.packet-title {
+    color: #ffcccc;
+    font-size: 50px;
+    font-weight: 700;
+    margin-top: 50px;
+}
+
+.modal-notification-title {
+    color: #7b7b7b;
+    font-size: 0.39rem;
+}
+
+.modal-notification-content {
+    color: #d0d0d0;
+    font-size: 0.3rem;
+    padding: 0.3rem 0 0.4rem 0;
+    line-height: 0.4rem;
+}
+
+.img-notification {
+    width: 1.35rem;
+    height: 1.35rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.modal-message-button, .modal-warning-button, .modal-manual-button, 
+.modal-confirm-button, .modal-invite-button, .modal-redeem-button {
+    background: #ff6868;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+.modal-redeem-button {
+    background: #fab235;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 20px;
+    padding: 8px;
+}
+
+.modal-notification-button {
+    background: #f6cf88;
+    color: #fff;
+    font-size: 0.36rem;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    width: 70%;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.modal-notification-info {
+    color: #d0d0d0;
+    font-size: 0.2rem;
+    padding-top: 0.3rem;
+}
+
+.span-topup {
+    color: #f0b13c;
+}
+
+.span-before, .span-after {
+    color: #7b7b7b;
+}
+
+#modal-notification .modal-full-height {
+    padding-bottom: 0;
+}
+
+.link-button:link, .link-button:visited, .link-button:hover, .link-button:active{
+    text-decoration: none;
+}
+
+.instructions, .instructions-dark {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #cdcdcd;
+}
+
+.instructions-dark {
+    color: #bababa;
+}
+
+.highlight {
+    color: #e48f00;
+}
+
+.highlight-grey {
+    color: #333;
+}
+
+.highlight-red {
+    color: #ff414b;
+}
+
+.highlight-green {
+    color: #2ec400;
+}
+
+.highlight-orange {
+    color: #fe8c3e;
+}
+
+.highlight-peach {
+    color: #ff7282;
+    font-weight: 700;
+}
+
+.highlight-link {
+    color: #64aee2;
+    cursor: pointer;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.btn-close {
+    color: #ffd200;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 270px;
+    padding-left: 30px;
+    display: inline-block;
+}
+
+.btn-close a {
+    text-decoration: none;
+    color: #ffd200;
+}
+
+.glyphicon {
+    font-size: 20px;
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+.left {
+    display: block;
+    padding-bottom: 3px;
+    float: left;
+    padding-left: 10px;
+}
+/* End Modal box */
+
+/* Wechat Modal */
+
+#verify-steps .modal-content, .modal-title {
+    background: white;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#verify-steps .modal-full-height {
+    text-align:center;
+    margin: 0 auto;
+}
+
+#verify-steps .modal-wechat {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#verify-steps .modal-title {
+    background: #4c89e2;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-weight: 700;
+}
+
+#verify-steps .modal-title h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+#verify-steps .modal-card {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+#verify-steps .copyvoucher {
+    border: 1px solid #dfdfdf;
+    background: #f7f7f7;
+    color: #51abff;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 6px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#verify-steps .cutBtn, #verify-steps .cutBtn-success, #verify-steps .cutBtn-fail {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    padding: 6px;
+    background-color: #51acff;
+    border: none;
+    text-align: center;
+    background-image: none;
+}
+
+#verify-steps .cutBtn {
+    cursor: pointer;
+}
+
+#verify-steps .cutBtn-success {
+    background: #1ba908;
+}
+
+#verify-steps .cutBtn-fail {
+    background: #838383;
+}
+
+#verify-steps .instructions, #verify-steps .instructions-dark {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #999;
+}
+
+#verify-steps .instructions-dark {
+    margin-bottom: 0px;
+}
+
+#verify-steps .btn-close {
+    color: #ffd200;
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    width: 250px;
+    padding-left: 0px;
+}
+
+#verify-steps .btn-close a {
+    text-decoration: underline;
+    color: #f7ff22;
+}
+
+#verify-steps .body-title {
+    color: #51abff;
+    font-size: 18px;
+}
+
+#verify-steps .glyphicon {
+    font-size: 20px;
+    display: block;
+    float: left;
+    padding-left: 10px;
+}
+
+#verify-steps .left {
+    display: block;
+    padding-bottom: 3px;
+    float: left;
+    padding-left: 10px;
+}
+
+#verify-steps .modal-title {
+    background: url('/client/images/wechat-header.png') no-repeat;
+    background-size: contain;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-weight: 700;
+    width: 300px !important;
+    height: 255px;
+}
+
+#verify-steps .modal-title h1 {
+    /*font-size: 20px;*/
+    margin-bottom: 0px;
+    margin-top: 100px;
+    /*font-weight: 500;*/
+    font-size: 14px !important;
+    font-weight: 200 !important;
+    color: #fffc22 !important;
+}
+
+#verify-steps .reward {
+    /*font-size: 16px;*/
+    color: #fffc22;
+    font-weight: 200 !important;
+    padding: 0 !important;
+    margin-top: 0px;
+}
+
+#verify-steps .reward-amount {
+    font-size: 55px;
+    font-weight: 500;
+    color: #fffc22;
+}
+
+#verify-steps .reward-instructions {
+    /*color: #f2ee10;*/
+    font-weight: 500;
+    /*font-size: 15px;*/
+    font-size: 16px;
+    color: white;
+}
+/* End Wechat Modal*/
+
+/* Swiper */
+
+.frame-wrapper {
+    margin: 0.2rem auto 0 auto;
+    width: 8rem;
+    height: 6.3rem;
+    display:block;    
+}
+
+.share-logo-wrapper {
+    width: 300px;
+    height: 38px;
+    position: relative;
+    text-align: center;
+    margin-top: -30px;
+}
+
+.share-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.share-card {
+    margin-top: 10px;
+}
+
+.modal-share-title {
+    color: #999;
+    font-size: 20px;
+}
+
+.modal-share-button {
+    background: #f6f9ff;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #3774ff;
+    padding: 5px;
+    border: 1px solid #a2b9ff;
+    width: 100px;
+    margin: 0 auto;
+}
+
+.modal-vip-button {
+    border-radius: 20px;
+    font-size: 19px;
+    padding: 5px;
+    background: #fffbf7;
+    border: 1px solid #d4b189;
+    color: #c19867;
+    margin-top: 10px;
+}
+
+#reset-life-share .modal-vip-button {
+  background: url('/client/images/btn-invite.png') no-repeat top center;
+  font-size: 18px;
+  color: #fff;
+  background-size: contain;
+  height: 58px;
+  padding-top: 12px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+  border: none;
+}
+
+#reset-life-share .modal-full-height {
+    padding: 0;
+}
+
+#reset-life-share .span-purchase {
+    color: #666;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.reload {
+    display: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 98%;
+    z-index: 9999;
+    background: url('/client/images/reload.png') center no-repeat;
+    background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.center-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 20px;
+    margin: 50px 0 0 -60px;
+}
+
+.spinning {
+    color: #fff;
+    font-size: 16px;
+    visibility: hidden;
+    width: 220px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 230px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #000;
+    padding:7px;
+    padding-left: 15px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top:50px;
+    z-index: 3;
+}
+
+.speech-bubble {
+    position: relative;
+    background: #f1f1f1;
+    border-radius: .4em;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 11px;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #f1f1f1;
+    border-top: 0;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+/* Wechat Modal */
+#lose-modal .modal-win-title {
+    font-size: 0.46rem;
+    color: #ff6067;
+    font-weight: 500;
+    padding-top: 3.2rem;
+}
+
+#lose-modal .modal-content{
+    background: url('/client/images/vip/lose-modal-bg.png') no-repeat;
+    background-size: cover;
+    width: 7rem;
+    /*height: 6.44rem;*/
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    margin-top:-2rem;
+}
+
+#lose-modal .modal-card {
+    padding-bottom: 0px;
+}
+
+#lose-modal .modal-body {
+    padding-top: 0;
+}
+
+#lose-modal .modal-instruction {
+    color: #888;
+    font-size: 0.28rem;
+    text-align: center;
+    margin: 0.1rem auto 0.6rem auto;
+}
+
+#lose-modal .modal-redeem-button {
+    background: #ffae00;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 0.4rem;
+    padding: 0.16rem;
+}
+
+.separator {
+    margin-top: -10px;
+}
+
+.background {
+    margin: 0px auto;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+    color: #c0c0c0;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.modal-progress-bar {
+    margin-bottom: 5px;
+}
+
+.modal-result{
+    color: #62c807;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.modal-lose-result{
+    color: #26ae26;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.modal-minus {
+    color: #e55858;
+}
+
+.modal-add {
+    color: #11b500;
+}
+
+.padding-left {
+    padding-left: 70px;
+}
+
+/* Win Modal */
+#win-modal .packet-title {
+    padding-top: 20px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#win-modal .modal-card {
+    margin: 0 auto;
+    font-size: 16px;
+    width: 100%;
+}
+
+#win-modal .packet-value {
+    font-size: 0.96rem;
+    line-height: 1rem;
+    color: #ff6067;
+    font-weight: 500;
+    padding-bottom: 0.4rem;
+}
+
+#win-modal .packet-info {
+    font-size: 11px;
+    font-weight: 500;
+    color: #ff6067;
+    text-align: left;
+    line-height: 18px;
+    padding-left: 50px;
+}
+
+#win-modal .packet-currency {
+    font-size: 0.3rem;
+}
+
+#win-modal .modal-content {
+  background: url('/client/images/packet-background.png') no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 10px;
+  font-weight: 700;
+  padding: 0;
+  position:relative;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+#win-modal .modal-content {
+  margin-top: -12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 296px;
+  z-index: 9999;
+  position:relative;
+}
+
+#win-modal .instructions {
+  font-size: 0.28rem;
+  font-weight: 500;
+  color: #888;
+  text-align: center;
+}
+
+#win-modal .highlight {
+  color: #333;
+}
+
+#win-modal .highlight-red {
+    font-weight: 700;
+}
+
+#win-modal .btn-red-packet {
+    background: #ffae00;
+  font-size: 0.36rem;
+  width: 4rem;
+  height: 0.85rem;
+  padding-top: 0.15rem;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 0.6rem;
+  margin: 0 auto;
+}
+/* Win Modal */
+
+.btn-redeemcash {
+    position: relative;
+    float: right;
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.icon-newcoin {
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    z-index: 200;
+}
+
+.spanAcuPoint2 {
+    position: relative;
+    text-align: center;
+    width: 2rem;
+    margin-left: 0rem;
+    font-size: 0.2rem;
+}
+
+.speech-bubble-point {
+    position: relative;
+    background: #ffe12e;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #a27124;
+    height: 20px;
+    width: 170px;
+    padding: 2px 5px;
+    top: -30px;
+    left: 20px;
+    z-index: 200;
+    display: none;
+    clear:both;
+}
+
+.speech-bubble-point:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-bottom-color: #ffe12e;
+    border-top: 0;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+
+/* strikethrough title */
+.strikethrough {
+  line-height: 0.5;
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+.strikethrough span {
+  display: inline-block;
+  position: relative;
+  color: #b45df4;
+  font-size: 14px;
+}
+.strikethrough span:before,
+.strikethrough span:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #d59ae6;
+  top: 0;
+  width: 10px;
+}
+.strikethrough span:before {
+  right: 100%;
+  margin-right: 5px;
+}
+.strikethrough span:after {
+  left: 100%;
+  margin-left: 5px;
+}
+
+/*from game-node-vip.css end*/
 
 .card-flex .cardBody {
     background-color: #8c35d8;
