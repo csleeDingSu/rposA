@@ -140,7 +140,7 @@ function populateData(item) {
             // '<span class="type-sred">奖励'+reward+'积分</span>' +
           '</div>' +
           '<div class="moneyBox">' +
-            '<div class="amount"><em>¥</em>0</div>' +
+            '<div class="amount"><em>¥</em>'+newPrice+'</div>' +
             '<div class="txt">APP专享补贴</div>' +
           '</div>' +
         '</div>' +
