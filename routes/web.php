@@ -104,7 +104,9 @@ $this->get( 'display-error-screen/database', function () {
 Route::any( '/youzan', 'PaymentController@index' )->name( 'client.payment.index' );
 
 Route::any( '/newbie', 'MainController@newbieProduct' )->name( 'client.tabao.newbieProduct' );
-	
+
+Route::any( '/download-app', 'ClientController@download_app' )->name( 'client.download_app' );
+
 //Member routes without member guard
 Route::group( [ 'middleware' => 'sso' ], function () {
 	
@@ -160,8 +162,6 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::any( '/how-to-play', 'ClientController@how_to_play' )->name( 'client.how_to_play' );
 
 	Route::any( '/tips-new', 'ClientController@tips_new' )->name( 'client.tips_new' );	
-
-	Route::any( '/download-app', 'ClientController@download_app' )->name( 'client.download_app' );
 
 	Route::any( '/blog', 'BlogController@index' )->name( 'client.blog' );
 	Route::get( '/blog/my-redeem', function () {
