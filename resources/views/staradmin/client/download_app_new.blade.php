@@ -49,7 +49,7 @@
           <div class="inBox-download">
             <a><img class="logo" src="{{ asset('clientapp/images/newbie/logo.png') }}"></a>            
             <p class="guanfang">挖宝商城<img src="{{ asset('clientapp/images/newbie/guanfang.png') }}"></p>
-            <p>6 万次下载 | 5.8MB</p>
+            <p>6 万次下载 | 1.2MB</p>
             <p><img class="star" src="{{ asset('clientapp/images/newbie/star.png') }}"></p>
           </div>
         </div>
