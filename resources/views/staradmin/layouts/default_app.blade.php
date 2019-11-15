@@ -109,16 +109,31 @@
 		<script type="text/javascript" src="{{ asset('clientapp/js/being.js')}}"></script>
 		<script type="text/javascript" src="{{ asset('clientapp/js/default_app.js')}}"></script>
 
-		<!-- <script type="text/javascript">
-		//这个统计代码。
-		var hmt = hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?5e39d74009d8416a3c77c62c47158471";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-		})();
-		</script> -->
+		<!-- //这个统计代码。 -->
+		@if(env('THISVIPAPP',false))
+		<!-- wabaoshop -->
+			<script>
+				var hmt = hmt || [];
+				(function() {
+				  var hm = document.createElement("script");
+				  hm.src = "https://hm.baidu.com/hm.js?4eef71bf73ea9ff29a80d71712de58e3";
+				  var s = document.getElementsByTagName("script")[0]; 
+				  s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+		@else
+		<!-- wabao666 -->
+			<script>
+				var hmt = hmt || [];
+				(function() {
+				  var hm = document.createElement("script");
+				  hm.src = "https://hm.baidu.com/hm.js?cb6633a9333e623d429ac791d9ad7d2a";
+				  var s = document.getElementsByTagName("script")[0]; 
+				  s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+		
+		@endif
 
 		@if(env('THISVIPAPP',false))
 		  <script>
@@ -138,6 +153,7 @@
 		@endif
 
 
+		<!-- cs link -->
 		@if(!Request::is('newbie') && !Request::is('download-app') && !Request::is('share'))
 			<script type='text/javascript'>
 			    (function(m, ei, q, i, a, j, s) {
