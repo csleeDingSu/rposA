@@ -20,13 +20,13 @@
 	  </div>
 	<div class="img-wechat">
 		<img src="{{ asset('/clientapp/images/validate/icon-wechat-verify.png') }}"/>
-		<p>快速微信认证！</p>
+		<p>快速微信认证</p>
 	</div>
 
 	<div class="wechat_card">
 		<div class="instructions">
 			为了打击小号刷补贴，你需要通过微信认证才可以领取补贴，微信认证说明：
-			<div class="highlight">①加客服微信号</div>
+			<div class="highlight">①加客服微信号（{{env('wechat_id', 'LUNLY028')}}）</div>
 			<div class="highlight">②打开朋友圈审核</div>
 			仅需3分钟，审核后即可关闭朋友图。
 		</div>
