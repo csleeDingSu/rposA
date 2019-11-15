@@ -701,12 +701,14 @@ function resetGame() {
 function initShowModal(){
 
     if(show_win){
-        $('#win-modal').modal({backdrop: 'static', keyboard: false});
+        // $('#win-modal').modal({backdrop: 'static', keyboard: false});
+        $('#win-modal').modal({backdrop: 'static'});
         closeWinModal();
     }
 
     if(show_lose){
-        $('#lose-modal').modal({backdrop: 'static', keyboard: false});
+        // $('#lose-modal').modal({backdrop: 'static', keyboard: false});
+        $('#lose-modal').modal({backdrop: 'static'});
         closeWinModal();
     }
 }
@@ -870,32 +872,32 @@ function bindBetButton(){
         document.activeElement.blur();  // 阻止弹出系统软键盘
         var _cliss = $(this).attr("class");
 
-        $('body').keyboard({
-            defaults:'number',    //键盘显示类型   English 字母  number 数字  symbol 符号
-            inputClass:_cliss,        //输入框Class
-            caseSwitch:'toLowerCase', //英文大小写  toLowerCase 小写  toUpperCase 大写
-        });
+        // $('body').keyboard({
+        //     defaults:'number',    //键盘显示类型   English 字母  number 数字  symbol 符号
+        //     inputClass:_cliss,        //输入框Class
+        //     caseSwitch:'toLowerCase', //英文大小写  toLowerCase 小写  toUpperCase 大写
+        // });
 
-        $('#keycontent').bind('remove', function() {
-            var final_bet = parseInt($('.span-bet').val());
+        // $('#keycontent').bind('remove', function() {
+        //     var final_bet = parseInt($('.span-bet').val());
 
-            if(final_bet <= g_vip_point){
-                $('.span-bet').val(final_bet);
-                previous_bet = final_bet;
-            } else {
-                if (isLock()) {
-                    showUnLockModal();
-                } else {
-                    $( '#modal-isnewbie' ).modal( 'show' );    
-                }
+        //     if(final_bet <= g_vip_point){
+        //         $('.span-bet').val(final_bet);
+        //         previous_bet = final_bet;
+        //     } else {
+        //         if (isLock()) {
+        //             showUnLockModal();
+        //         } else {
+        //             $( '#modal-isnewbie' ).modal( 'show' );    
+        //         }
                 
-                $('.span-bet').val(getNumeric(g_vip_point));
-                previous_bet = g_vip_point;
-            }
+        //         $('.span-bet').val(getNumeric(g_vip_point));
+        //         previous_bet = g_vip_point;
+        //     }
 
-            showPayout();
+        //     showPayout();
 
-        });
+        // });
     });
 
     $('.button-bet').on('touchend', function(event){

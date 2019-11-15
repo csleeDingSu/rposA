@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/wheel-new-vip.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/vip-node.css?version=1.0.0') }}" />
-	<link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}">
+	<!-- <link rel="stylesheet" href="{{ asset('/client/css/keyboard.css') }}"> -->
 
     <style>
 
@@ -888,7 +888,8 @@
 			});
 			
 			if(wechat_status > 0) {
-				$('#verify-steps').modal({backdrop: 'static', keyboard: false});
+				// $('#verify-steps').modal({backdrop: 'static', keyboard: false});
+				$('#verify-steps').modal({backdrop: 'static'});
 			}
 
 			var clipboard = new ClipboardJS('.cutBtn', {
