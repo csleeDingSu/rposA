@@ -400,7 +400,7 @@ function getToken(){
         DomeWebController.init();
         bindBetButton();
         $(".loading").fadeOut("slow");
-        setInterval("getProduct()",5000);
+        setInterval("getProduct()",8000);
     }
     
 }
@@ -664,7 +664,7 @@ function startGame() {
                     //lock wheel
                     lockWheel();
 
-                    setInterval("getProduct()",5000);
+                    setInterval("getProduct()",8000);
                 }
             });
 
@@ -960,10 +960,15 @@ function bindBetButton(){
     });
 
     $('.button-bet-clear').click(function(){
-        $('.speech-bubble-clear').hide();
-        $('.span-bet').val(0);
-        showPayout();
-        previous_bet = 0;
+        // $('.speech-bubble-clear').hide();
+        // $('.span-bet').val(0);
+        // showPayout();
+        // previous_bet = 0;
+        // g_bet_amount = 0;
+        // $('.radio-primary').unbind('click');
+        // $('.radio-primary').unbind('touchend');  
+        resetGame();  
+    
     });
 
     $('.button-bet-all').click(function(){
@@ -1185,37 +1190,7 @@ function showPayout(){
             } else {
                 //$('#spanPoint').html(newtotalbalance);
                 $('.instruction').css('visibility', 'hidden');
-
-                
-
                 $('.spanAcuPointAndBalance').html(get2Decimal(getNumeric(Number(g_vip_point) - Number(bet_amount))));
-
-                $.ajax({
-                    type: 'GET',
-                    url: "/api/update-game-result-temp?gameid=103&gametype=1&memberid="+ user_id
-                    + "&drawid=0" 
-                    + "&bet="+ selected 
-                    + "&betamt=" + (bet_amount)
-                    + "&level=" + level,
-                    dataType: "json",
-                    beforeSend: function( xhr ) {
-                        xhr.setRequestHeader ("Authorization", "Bearer " + token);
-                    },
-                    error: function (error) {
-                        console.log('memberid: ' + user_id + ', 下注失败'); 
-                        console.log(error.responseText);
-                        $('.spinning').html('下注失败<br/>请重新选择');
-                        $('.spinning').css('visibility', 'visible');
-                        setTimeout(function(){ 
-                            $('.spinning').css('visibility', 'hidden');
-                        }, 3000);
-                        resetGame();
-                        $(".reload2").show();
-                    },
-                    success: function(data) {
-                    }
-                });
-
             }
 
         }
@@ -1329,53 +1304,79 @@ function startTimer(duration, timer, freeze_time) {
         var id = $('#hidUserId').val();
         var level = parseInt($('#hidLevel').val());
         $('.small-border').addClass('medium-rotate');
-        g_previous_point = getNumeric($('.spanAcuPoint').html());
 
+        //update bet
         $.ajax({
-            type: 'POST',
-            url: "/api/get-betting-result?gameid=103&memberid=" + id, 
+            type: 'GET',
+            url: "/api/update-game-result-temp?gameid=103&gametype=1&memberid="+ id
+            + "&drawid=0" 
+            + "&bet="+ selected 
+            + "&betamt=" + (g_bet_amount)
+            + "&level=" + level,
             dataType: "json",
             beforeSend: function( xhr ) {
                 xhr.setRequestHeader ("Authorization", "Bearer " + token);
             },
-            error: function (error) { 
-                console.log(error); 
-                $('.spinning').html('等待网络');
+            error: function (error) {
+                console.log('memberid: ' + id + ', 下注失败'); 
+                console.log(error.responseText);
+                $('.spinning').html('下注失败<br/>请重新选择');
                 $('.spinning').css('visibility', 'visible');
                 setTimeout(function(){ 
                     $('.spinning').css('visibility', 'hidden');
                 }, 3000);
-                // window.top.location.href = "/arcade";
+                resetGame();
                 $(".reload2").show();
             },
             success: function(data) {
-                _success = data.success;
-                console.log(data);
-                if (_success) {
-                    nretry = 0;
-                    $('.small-border').removeClass('medium-rotate');
-                    $('#result').val(data.game_result);
-                    if(data.status == 'win'){
-                        show_win = true;
-                        showWinModal();
-                    } else if(data.status == 'lose') {
-                        show_lose = true;
-                        showLoseModal();
-                    }
-                    triggerResult();
-                } else {
-                    nretry++;
-                    if (nretry < max_retry) {
-                        for (i = nretry; i <= max_retry; i++) {
-                          startTimer(duration, timer, freeze_time);
-                        }    
-                    } else {
-                        console.log('retry exist');
+                //get win or lose
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/get-betting-result?gameid=103&memberid=" + id, 
+                    dataType: "json",
+                    beforeSend: function( xhr ) {
+                        xhr.setRequestHeader ("Authorization", "Bearer " + token);
+                    },
+                    error: function (error) { 
+                        console.log(error); 
+                        $('.spinning').html('等待网络');
+                        $('.spinning').css('visibility', 'visible');
+                        setTimeout(function(){ 
+                            $('.spinning').css('visibility', 'hidden');
+                        }, 3000);
+                        // window.top.location.href = "/arcade";
                         $(".reload2").show();
-                    }
-                }
-            },
-            timeout: 10000 // sets timeout to 10 seconds
+                    },
+                    success: function(data) {
+                        _success = data.success;
+                        console.log(data);
+                        if (_success) {
+                            nretry = 0;
+                            $('.small-border').removeClass('medium-rotate');
+                            $('#result').val(data.game_result);
+                            if(data.status == 'win'){
+                                show_win = true;
+                                showWinModal();
+                            } else if(data.status == 'lose') {
+                                show_lose = true;
+                                showLoseModal();
+                            }
+                            triggerResult();
+                        } else {
+                            nretry++;
+                            if (nretry < max_retry) {
+                                for (i = nretry; i <= max_retry; i++) {
+                                  startTimer(duration, timer, freeze_time);
+                                }    
+                            } else {
+                                console.log('retry exist');
+                                $(".reload2").show();
+                            }
+                        }
+                    },
+                    timeout: 10000 // sets timeout to 10 seconds
+                });
+            }
         });
 
     }
