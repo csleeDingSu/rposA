@@ -1231,7 +1231,7 @@ WHERE
     {
     	$record    = \App\Receipt::with('reason')->where('id',$id)->get();
     	if (!empty($record[0])	) {
-    		event(new \App\Events\EventDynamicChannel('receipt-updated','',$record[0] ));	
+    		event(new \App\Events\EventDynamicChannel($record->member_id.'-receipt-updated','',$record[0] ));	
     	}    	
 		$record    =  view('receipt.render_data', ['result' => $record])->render();						
 		return $record;
