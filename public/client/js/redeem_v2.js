@@ -1243,7 +1243,7 @@ function getConvertCointInfo(softpinCount, token, current_point) {
 }
 
 function selectContentAmountValue(from_value, to_value) {
-    if (wallet_point > from_value) {
+    if (wallet_point >= from_value) {
         $('.content-amount').removeClass('active');
         $('#' + to_value).addClass('active');
         $('#hidSelectedContentAmountValue').val(from_value);
