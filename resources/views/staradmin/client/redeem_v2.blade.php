@@ -241,7 +241,7 @@
     <script src="{{ asset('/test/main/js/clipboard.min.js') }}" ></script>
     <script src="{{ asset('/client/js/jquery.animateNumber.js') }}"></script>
     <script src="{{ asset('/client/js/js.cookie.js') }}"></script>
-    <script src="{{ asset('/client/js/redeem_v2.js?version=1.0.0') }}"></script>
+    <script src="{{ asset('/client/js/redeem_v2.js?version=1.0.1') }}"></script>
     <script type="text/javascript">
     	var end_of_result = "@lang('dingsu.end_of_result')";
     	document.onreadystatechange = function () {
