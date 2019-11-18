@@ -190,8 +190,8 @@ function initUser(records){
     } else {
         
         records = records.gameledger['102'];
-        console.log(records);
-        console.log(records.life);
+        // console.log(records);
+        // console.log(records.life);
 
         var balance = parseInt(records.balance);
         var life = records.life;
@@ -400,8 +400,8 @@ try {
 
         $('.barBox').find('li').removeClass('on');
     
-        console.log('consecutive_lose'+consecutive_lose);
-        console.log('life'+g_life);
+        // console.log('consecutive_lose'+consecutive_lose);
+        // console.log('life'+g_life);
 
         if (consecutive_lose == 'yes' && life > 0) {
             bindResetLifeButton();
@@ -573,6 +573,22 @@ function getToken(){
 
                 });    
             }
+
+            socket.on(prefix+ id + "-ledger" + ":App\\Events\\EventLedger" , function(data){
+                console.log(prefix+ id + "-ledger" + ":App\\Events\\EventLedger");
+                console.log(data.data);
+                var gameid = data.data.game_id;
+
+                if (gameid == 102) {
+                  var updated_102_point = data.data.point;
+                  var updated_102_life = data.data.life;
+
+                  if (updated_102_life <= 0) {
+                    $('#reset-life-share').modal();
+                  }
+
+                }
+            });
             
         });
 
@@ -663,7 +679,7 @@ function startGame() {
             latest_result = data.record.bettinghistory.data;
             var level = data.record.level;
             var consecutive_lose = data.record.consecutive_lose;
-            console.log('consecutive_lose:'+consecutive_lose);
+            // console.log('consecutive_lose:'+consecutive_lose);
             initGame(game_records, level, latest_result, consecutive_lose);
 
             
@@ -840,7 +856,7 @@ function bindBetButton(){
         //     return false;
         // }
 
-        console.log(user_id +":" + balance + ":" + life );
+        // console.log(user_id +":" + balance + ":" + life );
         if(user_id > 0 && life > 0){
 
             if(balance < 63) {
