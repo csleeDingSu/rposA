@@ -28,6 +28,16 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
+								<label for="model_alipay_account" class="col-sm-3 col-form-label">@lang('dingsu.alipay_account') </label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="model_alipay_account" id="model_alipay_account" value="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
 								<label for="model_wechat_name" class="col-sm-3 col-form-label">@lang('dingsu.wechat') @lang('dingsu.name') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="model_wechat_name" id="model_wechat_name" value="">
