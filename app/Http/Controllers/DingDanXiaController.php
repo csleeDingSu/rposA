@@ -155,7 +155,7 @@ class DingDanXiaController extends BaseController
         $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
         $res = json_decode($req->getBody());
 
-        if !empty($res->code) {
+        if (!empty($res->code)) {
             $status = true;
             
             if ($res->code != '200') {
