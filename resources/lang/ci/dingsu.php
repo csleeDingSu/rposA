@@ -760,5 +760,6 @@ return [
 	'account_name' => '用户名',
 	'account_number' => '帐号',
 	'bank_name' => '银行名字',
+	'alipay_account' => '支付宝',
 
 ];
