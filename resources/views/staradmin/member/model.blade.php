@@ -43,7 +43,7 @@
 				  	</button>
 					@csrf
 				</div>
-				<div class="modal-body renderdata">	
+				<div class="modal-body renderalipaydata">	
 				<div class="row">
 						<div class="col-md-6">
 							<div class="form-group row">
