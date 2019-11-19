@@ -108,7 +108,7 @@
 								
 								
 								
-								 
+								 <button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-success addpayment"> <i class="fa fa-money"></i> </button>	
 								
 								
 								

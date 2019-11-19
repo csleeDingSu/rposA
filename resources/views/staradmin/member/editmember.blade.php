@@ -92,7 +92,7 @@
                         <div class="form-group row">
                           <label for="email" class="col-sm-3 col-form-label">@lang('dingsu.email')</label>
                           <div class="col-sm-9">
-                            <input id="email" name="email" class="form-control" type="text" required value="{{ old('email', $member->email) }}">
+                            <input id="email" name="email" class="form-control" type="text"  value="{{ old('email', $member->email) }}">
                           </div>
                         </div>
                       </div>

@@ -867,5 +867,8 @@ Route::any( '/dingdanxia/test', 'DingDanXiaController@test' )->name( 'tabao.test
 Route::any( '/dingdanxia/pay', 'DingDanXiaController@pay' )->name( 'tabao.pay' );
 
 
+Route::any( '/dingdanxia/store_alipay', 'DingDanXiaController@pay' )->name( 'store_alipay' );
+
+
 
 

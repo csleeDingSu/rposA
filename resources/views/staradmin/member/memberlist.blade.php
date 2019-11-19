@@ -919,4 +919,53 @@ function confirm_Delete(id)	{
 				}
 			} );
 		});	
+
+
+
+$(".datalist").on("click",".addpayment", function(){
+	var id=$(this).data('id');
+	$('#formalipay')[0].reset();	
+	$('#hi_pay_id').val(id);
+	$('#rvalidation-errors').html('');
+	$('#openalipaymodel').modal('show');
+	var acu =$('.ShowRecentPlay').html(); 
+	$('#pay_acupoint').val(acu);
+});	
+
+
+//edit 
+	$('#formalipay').on('submit', function(event){
+		event.preventDefault();
+		$('.inputTxtError').remove();
+		show_wait('update');				
+		var formData = new FormData();		
+		$.ajax( {
+				url: "{{route('store_alipay')}}",
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				type: 'POST', 
+				data:new FormData(this),
+				cache : false, 
+				processData: false,
+				success: function ( result ) {					
+					if ( result.success == true ) {
+						swal.close();
+						$( '#openalipaymodel' ).modal( 'hide' );			
+						
+						swal({ icon: "success",  type: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.update_success_msg")', confirmButtonText: '@lang("dingsu.okay")'});	
+						
+					} else {						
+						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+					}
+										
+				},
+				error: function ( xhr, ajaxOptions, thrownError ) {
+					swal.close();			
+					displayFieldErrors(xhr.responseJSON.errors,xhr.status);	
+				}
+			} );
+		
+	});	
 </script>
