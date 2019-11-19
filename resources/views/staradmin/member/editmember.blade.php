@@ -56,27 +56,27 @@
                     
 					  
 					  
-					  <!-- <div class="row">
+					   <div class="row">
 						
                       <div class="col-md-6">
                         <div class="form-group row"> 
-							<label for="firstname" class="col-sm-3 col-form-label">@lang('dingsu.firstname')</label>
+							<label for="alipay_account" class="col-sm-3 col-form-label">@lang('dingsu.alipay_account')</label>
                           
 							 
                           <div class="col-sm-9">
-                            <input id="firstname" name="firstname" class="form-control" type="text" autofocus value="{{ old('firstname', $member->firstname) }}">
+                            <input id="alipay_account" name="alipay_account" class="form-control" type="text"  value="{{ old('alipay_account', $member->alipay_account) }}">
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                     <!-- <div class="col-md-6">
                         <div class="form-group row">
                           <label for="lastname" class="col-sm-3 col-form-label">@lang('dingsu.last_name')</label>
                           <div class="col-sm-9">
                             <input id="lastname" name="lastname" class="form-control" type="text" value="{{ old('lastname', $member->lastname) }}">
                           </div>
                         </div>
-                      </div>
-                    </div> -->
+                      </div>-->
+                    </div> 
 					  
 					  <div class="row"> 
 						
