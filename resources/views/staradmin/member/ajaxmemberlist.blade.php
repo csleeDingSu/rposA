@@ -48,7 +48,7 @@
 								<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
 								
 								{{ $list->wechat_name ?? $list->username }}</td>
-							<td id="show_alipay_account_{{ $list->id }}">{{ $list->alipay_account }}</td>	
+							<td class="show_alipay_account_{{ $list->id }}">{{ $list->alipay_account }}</td>	
 							<td>
 								@if($list->parentuser)
 									<img class="profile-img-circle" src="{{ $list->parentuser->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
