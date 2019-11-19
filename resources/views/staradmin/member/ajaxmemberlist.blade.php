@@ -63,7 +63,7 @@
 								{{ $list->ledger['102']->life ?? '0'  }}
 							</td>
 							<td id="cb_{{ $list->id }}">
-								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->ledger['102']->acupoint ?? 0 }}</h6>
+								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2 show_acupoint_{{ $list->id }}" data-id="{{ $list->id }}">{{ $list->ledger['102']->acupoint ?? 0 }}</h6>
 							</td>
 							<td id="cp_{{ $list->id }}">
 								{{ $list->ledger['103']->point ?? 0  }}
@@ -108,7 +108,7 @@
 								
 								
 								
-								 <button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-success addpayment"> <i class="fa fa-money"></i> </button>	
+								 <button type="button" data-id="{{$list->id}}" id="{{$list->id}}" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-success addpayment"> <i class=" icon-tag"></i> </button>	
 								
 								
 								

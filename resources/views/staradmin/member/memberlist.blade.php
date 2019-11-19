@@ -928,8 +928,10 @@ $(".datalist").on("click",".addpayment", function(){
 	$('#hi_pay_id').val(id);
 	$('#rvalidation-errors').html('');
 	$('#openalipaymodel').modal('show');
-	var acu =$('.ShowRecentPlay').html(); 
-	$('#pay_acupoint').val(acu);
+	var acu =$('.show_acupoint_'+id).html(); 
+	$('#pay_acupoint').html(acu);
+	$('#payee_account').val( $('#show_alipay_account_'+id).val() );
+	console.log('acp' + $('.show_acupoint_'+id).html() );
 });	
 
 
@@ -957,7 +959,7 @@ $(".datalist").on("click",".addpayment", function(){
 						swal({ icon: "success",  type: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.update_success_msg")', confirmButtonText: '@lang("dingsu.okay")'});	
 						
 					} else {						
-						swal( '@lang("dingsu.no_record_found")', '@lang("dingsu.try_again")', "error" );
+						swal( '@lang("dingsu.payment_error")', '@lang("dingsu.try_again")', "error" );
 					}
 										
 				},

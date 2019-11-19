@@ -780,11 +780,11 @@
 				<div class="modal-body">
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<p class="t1">恭喜获得<span class="spanAcuPointAndBalance">0</span>元补贴</p>	
-							<p class="t2">扫码加客服领取</p>
+							<p class="t1">加客服领取补贴</p>	
+							<p class="t2">您当前可领<span class="spanAcuPointAndBalance">0</span>元红包</p>
 							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
-							<p class="t3">长按扫一扫加好友</p>
-							<p class="t4">*拒绝微信小号 每人限领一次</p>
+							<p class="t3">扫一扫加好友</p>
+							<p class="t4">拒绝微信小号</p>
 						</div>
 					</div>							
 				</div>
@@ -798,11 +798,11 @@
 				<div class="modal-body">
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
-							<p class="t1">恭喜获得<span class="spanAcuPointAndBalance">0</span>元补贴</p>	
-							<p class="t2">扫码加客服领取</p>
+							<p class="t1">加客服领取补贴</p>	
+							<p class="t2">您当前可领<span class="spanAcuPointAndBalance">0</span>元红包</p>
 							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
-							<p class="t3">长按扫一扫加好友</p>
-							<p class="t4">*拒绝微信小号 每人限领一次</p>
+							<p class="t3">扫一扫加好友</p>
+							<p class="t4">拒绝微信小号</p>
 						</div>
 					</div>							
 				</div>
@@ -840,8 +840,8 @@
 					<div class="modal-row">
 						<div class="wrapper modal-full-height">
 							<div class="modal-card">
-								<p class="title">请填写收款账号</p>
-								<p class="title-small">请正确填写，否则无法提现成功</p>	
+								<p class="title">恭喜获得<em class="spanAcuPointAndBalance">0</em>元补贴</p>
+								<p class="title-small">请填写收款信息</p>	
 								<div class="input-form">
 									<ul>
 		                                <li>
@@ -1268,6 +1268,8 @@
 		var alipay_account = $('#alipayaccount').val();
 		var phone = $('#contactno').val();
 
+		$('#btn-submit-alipayform').html('提交 - 处理中');
+
 	    $.ajax({
 	    	type: 'POST',
           url: "/alipay/api/storeAlipayAccount",
@@ -1280,8 +1282,10 @@
 	            console.log(error);
 	            alert(error.message);
 	            console.log(5);
+	            $('#btn-submit-alipayform').html('提交 - 失败');
 	        },
 	        success: function(data) {
+	        	$('#btn-submit-alipayform').html('提交 - 成功');
 	        	$('#hidAlipayAccount').val(alipay_account);
 	        	console.log(data);
 	        	$('#alipayform').modal('hide');
