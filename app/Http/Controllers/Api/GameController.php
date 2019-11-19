@@ -669,7 +669,7 @@ class GameController extends Controller
 					
 					event(new \App\Events\EventDynamicChannel('redeem-point','',$total_redeem ));
 					
-
+					event(new \App\Events\EventDynamicChannel($memberid.'-ac-redeem-point','',['debit'=>$debit] ));
 					return response()->json(['success' => true,  'Acupoint' => $wallet->acupoint]); 
 					//return response()->json(['success' => true]); 
 				}
@@ -736,6 +736,8 @@ class GameController extends Controller
 					$total_redeem = Game::get_total_redeem();
 					
 					event(new \App\Events\EventDynamicChannel('redeem-point','',$total_redeem ));
+
+					event(new \App\Events\EventDynamicChannel($memberid.'-ac-redeem-point','',['debit'=>$debit] ));
 					
 					return response()->json(['success' => true]); 
 					
