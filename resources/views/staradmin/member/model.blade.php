@@ -32,7 +32,7 @@
 
 
 <!-- Ali pay starts -->
-<form class="form-sample" name="formalipay" id="formedit" action="" method="post" autocomplete="on" enctype="multipart/form-data">
+<form class="form-sample" name="formalipay" id="formalipay" action="" method="post" autocomplete="on" >
 	<div class="modal fade" id="openalipaymodel" tabindex="-1" role="dialog" aria-labelledby="openalipaymodellabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
