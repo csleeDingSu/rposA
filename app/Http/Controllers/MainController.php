@@ -467,4 +467,12 @@ class MainController extends BaseController
 		
 	}
 
+	public function storeAlipayAccount(Request $request)
+	{
+		$filter = ['id' => $request->memberid];
+		$array = ['id' => $request->memberid, 'alipay_account' => $request->alipay_account, 'phone' => $request->phone ];
+		$id = Members::updateOrCreate($filter,$array)->id;
+		return response()->json(['success' => true, 'data' => 'updated member id ' . $id]); 
+	}
+
 }

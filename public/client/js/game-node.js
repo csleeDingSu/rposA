@@ -1884,16 +1884,24 @@ function bindButton () {
                     $('#modal-withdraw-insufficient').modal();
                 // } else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
                 } else if ((_point >= win_coin_min) && (_point < 10)) {
-                    $('.withdraw-value').html(6);
-                    $('.drawn').html(_point);
-                    $('#modal-withdraw').modal();
+                    if ($('#hidAlipayAccount').val() == 0) {
+                        $('#alipayform').modal();    
+                    } else {
+                        $('.withdraw-value').html(6);
+                        $('.drawn').html(_point);
+                        $('#modal-withdraw').modal();
+                    }
 
                 } else if ((_point >= win_coin_min) && (_point >= 10)) {
-                    $('.withdraw-value').html(10);
-                    $('.drawn').html(_point);
-                    $('#modal-withdraw').modal();
-
+                    if ($('#hidAlipayAccount').val() == 0) {
+                        $('#alipayform').modal();    
+                    } else {
+                        $('.withdraw-value').html(10);
+                        $('.drawn').html(_point);
+                        $('#modal-withdraw').modal();
+                    }
                 } else if (_point >= win_coin_max) {
+                    $('#alipayform').modal();
                     $('#reset-life-max').modal();
                     return false;
                 } else {

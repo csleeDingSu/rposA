@@ -26,7 +26,8 @@ class Members extends Model
 		'gender','profile_pic','openid',
 		'activation_code',
 		'activation_code_expiry',
-		'number_location'
+		'number_location',
+		'alipay_account'
 		
     ];
 

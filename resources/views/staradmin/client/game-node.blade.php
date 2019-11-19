@@ -199,6 +199,7 @@
 			<input id='hidIsApp' type="hidden" value="{{env('THISVIPAPP','false')}}" />
 			<input id='hidLife' type="hidden" value="{{empty($wallet->life) ? 0 : $wallet->life}}" />
 			<input id="hidPhone" type="hidden" value="{{empty(Auth::Guard('member')->user()->phone) ? 0 : Auth::Guard('member')->user()->phone}}" />
+			<input id="hidAlipayAccount" type="hidden" value="{{empty(Auth::Guard('member')->user()->alipay_account) ? 0 : Auth::Guard('member')->user()->alipay_account}}" />
 	  	</div>
 
 	</div>
@@ -831,6 +832,44 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade col-md-12" id="alipayform" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">				
+					<div class="modal-row">
+						<div class="wrapper modal-full-height">
+							<div class="modal-card">
+								<p class="title">请填写收款账号</p>
+								<p class="title-small">请正确填写，否则无法提现成功</p>	
+								<div class="input-form">
+									<ul>
+		                                <li>
+		                                    <div class="flexSp">
+		                                        <img src="{{ asset('client/images/alipayform/alpay.png') }}">
+		                                        <input type="text" id="alipayaccount" name="alipayaccount" placeholder="@lang('dingsu.ph_alipayaccount')" required maxlength="30">
+		                                    </div>
+		                                </li>
+		                                <li>
+		                                    <div class="flexSp">
+		                                        <img src="{{ asset('client/images/alipayform/phone.png') }}">
+		                                        <input type="text" id="contactno" name="contactno" placeholder="@lang('dingsu.ph_username_mobile_no')" value="{{empty(Auth::Guard('member')->user()->phone) ? '' : Auth::Guard('member')->user()->phone}}" required maxlength="30">
+		                                    </div>
+		                                </li>
+		                            </ul>
+								</div>
+								<div class="modal-confirm-button" id="btn-submit-alipayform">提交</div>
+
+							</div>
+						</div>
+					</div>							
+				</div>
+			</div>
+			<div class="close-modal">
+	          <img src="{{ asset('/clientapp/images/main/close.png') }}">
+	        </div>
+		</div>
+	</div>
 @endif
 		
 <!--  end -->
@@ -1176,6 +1215,15 @@
 				}	
 			});
 
+			$('#btn-submit-alipayform').click(function () {
+				if ($('#alipayaccount').val().length > 0) {
+					storeAlipayAccount();	
+				} else {
+					alert('请填写支付宝账号');
+				}
+				
+			});
+
 		});
 
 	//scroll pagination - start
@@ -1207,6 +1255,34 @@
 	function closecss(cssname) {
 		var name = '.' + cssname;
 		$('' +name + '').css('display', 'none');
+
+	}
+
+	function storeAlipayAccount() {
+		var memberid = $('#hidUserId').val();
+		var session = $('#hidSession').val();
+		var alipay_account = $('#alipayaccount').val();
+		var phone = $('#contactno').val();
+
+	    $.ajax({
+	    	type: 'POST',
+          url: "/alipay/api/storeAlipayAccount",
+          data: { 'memberid': memberid, 'alipay_account': alipay_account, 'phone': phone},
+          dataType: "json",
+          beforeSend: function( xhr ) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + session);
+          },
+          error: function (error) {
+	            console.log(error);
+	            alert(error.message);
+	            console.log(5);
+	        },
+	        success: function(data) {
+	        	console.log(data);
+	        	$('#alipayform').modal('hide');
+                $('#modal-withdraw').modal();
+            }
+	    });
 
 	}
 		
