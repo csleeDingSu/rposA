@@ -44,8 +44,7 @@ class Members extends Model
 	}
 	
 	public static function update_member($id,$data)
-	{	
-		
+	{			
 		 return $result = DB::table('members')
             ->where('id', $id)
             ->update($data);

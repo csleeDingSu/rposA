@@ -13,6 +13,7 @@
 							<th>@lang('dingsu.id')</th>
 							<th>@lang('dingsu.create_Date')</th>
 							<th>@lang('dingsu.name')</th>
+							<th>@lang('dingsu.alipay_account')</th>
 							<th>@lang('dingsu.referred_by')</th>							
 							<th>@lang('dingsu.referred_count')</th>	
 							<th>@lang('dingsu.used_life')</th>		
@@ -45,6 +46,7 @@
 								<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
 								
 								{{ $list->wechat_name ?? $list->username }}</td>
+							<td>{{ $list->alipay_account }}</td>	
 							<td>
 								@if($list->parentuser)
 									<img class="profile-img-circle" src="{{ $list->parentuser->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
