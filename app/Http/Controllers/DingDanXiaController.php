@@ -179,7 +179,8 @@ class DingDanXiaController extends BaseController
         $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
         $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
         $res = json_decode($req->getBody());
-        // var_dump($res);
+        var_dump($res);
+        dd('dsadsa');
         
         return $res;
         
