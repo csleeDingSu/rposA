@@ -611,7 +611,7 @@
 					$("#show_wechat_id_"+id).val(result.wechat_id);
 					$(".show_wechat_id_"+id).val(result.wechat_id);	
 
-					$("#show_alipay_account_"+id).val(result.alipay_account);
+					$("#show_alipay_account_"+id).html(result.alipay_account);
 					
 				}
 			},

@@ -36,6 +36,8 @@
 							<input type="hidden" name="show_wechat_id_{{ $list->id }}" id="show_wechat_id_{{ $list->id }}" value="{{ $list->wechat_id }}">
 							
 							<input type="hidden" name="show_status_{{ $list->id }}" id="show_status_{{ $list->id }}" value="{{ $list->member_status }}">
+
+							<input type="hidden" name="show_alipay_account_{{ $list->id }}" id="show_alipay_account_{{ $list->id }}" value="{{ $list->alipay_account }}">
 							
 							
 							<td>{{ $list->id }}</td>
