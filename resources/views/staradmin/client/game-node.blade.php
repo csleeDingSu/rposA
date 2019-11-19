@@ -1216,10 +1216,14 @@
 			});
 
 			$('#btn-submit-alipayform').click(function () {
-				if ($('#alipayaccount').val().length > 0) {
+				if (($('#alipayaccount').val().length > 0) && ($('#contactno').val().length > 0)) {
 					storeAlipayAccount();	
 				} else {
-					alert('请填写支付宝账号');
+					if ($('#alipayaccount').val().length <= 0) {
+						alert('请填写支付宝账号');	
+					} else {
+						alert('请输入手机号');
+					}
 				}
 				
 			});
