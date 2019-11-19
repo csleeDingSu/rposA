@@ -863,6 +863,8 @@ Route::any( '/tabao/get-taobao-collection-vouchers-greater12less24/{page_num?}',
 Route::any( '/tabao/get-taobao-collection-vouchers-greter24less36/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersGreater24Less36' )->name('tabao.getTaobaoCollectionVouchersGreater24Less36');
 Route::any( '/tabao/get-taobao-collection-vouchers-less15/{page_num?}', 'tabaoApiController@getTaobaoCollectionVouchersLess15' )->name('tabao.getTaobaoCollectionVouchersLess15');
 
+Route::any( '/dingdanxia/test', 'DingDanXiaController@test' )->name( 'tabao.test' );
+Route::any( '/dingdanxia/pay', 'DingDanXiaController@pay' )->name( 'tabao.pay' );
 
 
 
