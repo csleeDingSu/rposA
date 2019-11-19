@@ -157,6 +157,12 @@ class DingDanXiaController extends BaseController
                 $status = false;
             }
 
+
+            if ($request->redeem_life == 1)
+            {
+                app('App\Http\Controllers\Api\GameController')->life_redemption($record->id, $gameid, 'yes');
+            }
+
             return ['success' => $status, 'data' => $res];
 
         } else {
