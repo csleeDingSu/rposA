@@ -385,13 +385,15 @@
 		var wename = $("#show_wechat_name_"+id).val();		
 		var status = $("#show_wechat_status_"+id).val();
 		var wechat_id = $("#show_wechat_id_"+id).val();
-		
+		var alipay_account = $("#show_alipay_account_"+id).val();
+		alert(alipay_account);
 		$('#hidden_void').val(id);
 		$('#notes').val(notes);
 		$('#validation-errors').html('');
 		$("#model_wechat_status").val(status);		
 		$("#model_wechat_name").val(wename);		
 		$("#model_wechat_id").val(wechat_id);	
+		$("#model_alipay_account").val(alipay_account);	
 		$('#editwechatstatusmode').modal('show');
 	}
 	
@@ -608,6 +610,9 @@
 
 					$("#show_wechat_id_"+id).val(result.wechat_id);
 					$(".show_wechat_id_"+id).val(result.wechat_id);	
+
+					$("#show_alipay_account_"+id).val(result.alipay_account);
+					
 				}
 			},
 			error: function ( xhr, ajaxOptions, thrownError ) {
