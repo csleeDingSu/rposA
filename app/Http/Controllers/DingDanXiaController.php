@@ -132,44 +132,6 @@ class DingDanXiaController extends BaseController
         }
     }
 
-    public function test()
-    {
-        return response()->json(['success' => true, 'data' => 'test']); 
-
-        $url = 'http://api.tbk.dingdanxia.com/pay/biz_transfer';
-        
-        $payload["apikey"] = $this->apiKey;
-        $payload["signature"] = '';
-        $payload["payee_account"] = '';
-        $payload["amount"] = '';
-        $payload["payer_show_name"] = '';
-        $payload["payee_real_name"] = '';
-        $payload["remark"] = '';
-        $payload["appid"] = '';
-        $payload["private_key"] = '';
-        $payload["public_key"] = '';
-        
-        $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
-        $option = ['connect_timeout' => 60, 'timeout' => 180];
-        $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
-        $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
-        $res = json_decode($req->getBody());
-
-        if (!empty($res->code)) {
-            $status = true;
-            
-            if ($res->code != '200') {
-                $status = false;
-            }
-
-            return ['success' => $status, 'data' => $res];
-
-        } else {
-            return $res;
-        }
-        
-    }
-
     public function pay(Request $request)
     {
          // return response()->json(['success' => true, 'data' => 'test']); 
@@ -190,7 +152,18 @@ class DingDanXiaController extends BaseController
         $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
         $res = json_decode($req->getBody(), true);
         
-        return $res;
+        if (!empty($res->code)) {
+            $status = true;
+            
+            if ($res->code != '200') {
+                $status = false;
+            }
+
+            return ['success' => $status, 'data' => $res];
+
+        } else {
+            return $res;
+        }
         
     }
 }
