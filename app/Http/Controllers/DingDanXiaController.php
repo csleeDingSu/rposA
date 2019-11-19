@@ -13,11 +13,8 @@ class DingDanXiaController extends BaseController
 
         ini_set('max_execution_time', 10800); //180 minutes
         //
-       $this->apiKey = env('DINGDANXIA_APIKEY', '5d6a770f7f9cc');
+       $this->apiKey = env('DINGDANXIA_APIKEY', 'H1XHdUmBXkNUTBrsHUGXqwFvfDQRKqGX');
        $this->payerShowName = env('DINGDANXIA_PAYERSHOWNAME', 'test');
-       $this->appId = env('DINGDANXIA_APPID', '5d6a770f7f9cc');
-       $this->privateKey = env('DINGDANXIA_PRIVATEKEY', '5d6a770f7f9cc');
-       $this->publicKey = env('DINGDANXIA_PUBLICKEY', '5d6a770f7f9cc');
 
     }
 
@@ -167,25 +164,22 @@ class DingDanXiaController extends BaseController
     {
          return response()->json(['success' => true, 'data' => 'test']); 
 
-        $url = 'http://api.tbk.dingdanxia.com/pay/biz_transfer';
+        $url = env('DINGDANXIA_APIURL', 'http://api.tbk.dingdanxia.com') . "/pay/transfer";
         
-        $payload["apikey"] = $this->apikey;
-        $payload["signature"] = '';
-        $payload["payee_account"] = '';
-        $payload["amount"] = '';
-        $payload["payer_show_name"] = '';
-        $payload["payee_real_name"] = '';
-        $payload["remark"] = '';
-        $payload["appid"] = '';
-        $payload["private_key"] = '';
-        $payload["public_key"] = '';
+        $payload["apikey"] = $this->apikey; //require
+        $payload["payee_account"] = $request->payee_account; //require
+        $payload["amount"] = $request->amount; //require
+        $payload["payer_show_name"] = $request->payer_show_name;
+        $payload["payee_real_name"] = $request->payee_real_name;
+        $payload["remark"] = $request->remark;
+        $payload["signature"] = ''; //$this->makeSign($payload,$this->appSecret);
         
         $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
         $option = ['connect_timeout' => 60, 'timeout' => 180];
         $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
         $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
         $res = json_decode($req->getBody());
-        var_dump($res);
+        // var_dump($res);
         
         return $res;
         
