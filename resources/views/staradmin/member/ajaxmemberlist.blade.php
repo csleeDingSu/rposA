@@ -36,6 +36,8 @@
 							<input type="hidden" name="show_wechat_id_{{ $list->id }}" id="show_wechat_id_{{ $list->id }}" value="{{ $list->wechat_id }}">
 							
 							<input type="hidden" name="show_status_{{ $list->id }}" id="show_status_{{ $list->id }}" value="{{ $list->member_status }}">
+
+							<input type="hidden" name="show_alipay_account_{{ $list->id }}" id="show_alipay_account_{{ $list->id }}" value="{{ $list->alipay_account }}">
 							
 							
 							<td>{{ $list->id }}</td>
@@ -46,7 +48,7 @@
 								<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
 								
 								{{ $list->wechat_name ?? $list->username }}</td>
-							<td id="show_alipay_account_{{ $list->id }}">{{ $list->alipay_account }}</td>	
+							<td class="show_alipay_account_{{ $list->id }}">{{ $list->alipay_account }}</td>	
 							<td>
 								@if($list->parentuser)
 									<img class="profile-img-circle" src="{{ $list->parentuser->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
