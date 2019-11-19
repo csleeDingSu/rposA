@@ -929,9 +929,8 @@ $(".datalist").on("click",".addpayment", function(){
 	$('#rvalidation-errors').html('');
 	$('#openalipaymodel').modal('show');
 	var acu =$('.show_acupoint_'+id).html(); 
-	$('#pay_acupoint').val(acu);
+	$('#pay_acupoint').html(acu);
 	$('#payee_account').val( $('#show_alipay_account_'+id).val() );
-	console.log('acc' + $('#show_alipay_account_'+id).val() );
 	console.log('acp' + $('.show_acupoint_'+id).html() );
 });	
 
