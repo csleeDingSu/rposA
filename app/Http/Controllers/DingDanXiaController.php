@@ -160,6 +160,7 @@ class DingDanXiaController extends BaseController
 
             if ($request->redeem_life == 1)
             {
+                die('sd');
                 app('App\Http\Controllers\Api\GameController')->life_redemption($request->hi_pay_id, 102, 'yes');
             }
 
