@@ -928,11 +928,11 @@ $(".datalist").on("click",".addpayment", function(){
 	$('#hi_pay_id').val(id);
 	$('#rvalidation-errors').html('');
 	$('#openalipaymodel').modal('show');
-	var acu =$('.ShowRecentPlay').html(); 
+	var acu =$('.show_acupoint_').html(); 
 	$('#pay_acupoint').val(acu);
 	$('#payee_account').val( $('#show_alipay_account_'+id).val() );
 	console.log('acc' + $('#show_alipay_account_'+id).val() );
-	console.log('acp' + $('.ShowRecentPlay').html() );
+	console.log('acp' + $('.show_acupoint_').html() );
 });	
 
 
