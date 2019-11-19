@@ -162,7 +162,7 @@ class DingDanXiaController extends BaseController
 
     public function pay(Request $request)
     {
-         return response()->json(['success' => true, 'data' => 'test']); 
+         // return response()->json(['success' => true, 'data' => 'test']); 
 
         $url = env('DINGDANXIA_APIURL', 'http://api.tbk.dingdanxia.com') . "/pay/transfer";
         
