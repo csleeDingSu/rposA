@@ -139,71 +139,55 @@ class DingDanXiaController extends BaseController
     {
         return response()->json(['success' => true, 'data' => 'test']); 
 
-        // //接口地址
-
-        // $host = 'http://api.tbk.dingdanxia.com/pay/biz_transfer';
+        $url = 'http://api.tbk.dingdanxia.com/pay/biz_transfer';
         
-        // //默认必传参数
-        // $data = [
-
-        //     'apiKey' => $this->apiKey,
-
-        //     'version' => '1',
-        // ];
-
-        // //加密的参数
-        // $data['sign'] = $this->makeSign($data,$this->appSecret);
-
-        // //拼接请求地址
-        // $url = $host .'?'. http_build_query($data);
-
-        // // var_dump($url);
+        $payload["apikey"] = $this->apikey;
+        $payload["signature"] = '';
+        $payload["payee_account"] = '';
+        $payload["amount"] = '';
+        $payload["payer_show_name"] = '';
+        $payload["payee_real_name"] = '';
+        $payload["remark"] = '';
+        $payload["appid"] = '';
+        $payload["private_key"] = '';
+        $payload["public_key"] = '';
         
-        // //执行请求获取数据
-        // return $this->getCurl($url);
+        $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+        $option = ['connect_timeout' => 60, 'timeout' => 180];
+        $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+        $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
+        $res = json_decode($req->getBody());
+        var_dump($res);
+        
+        return $res;
         
     }
 
     public function pay(Request $request)
     {
-        return response()->json(['success' => true, 'data' => 'test']); 
-        //接口地址
+         return response()->json(['success' => true, 'data' => 'test']); 
 
-        // $host = 'http://api.tbk.dingdanxia.com/pay/biz_transfer';
-
-        //默认必传参数
-
-        // $data = [
-
-        //     'apiKey' => $this->apiKey,
-
-        //     'version' => 'v1.1.0',
-            
-        //     'pageSize' => empty($request->input('pageSize')) ? 10 : $request->input('pageSize'),
-
-        //     'pageId' => empty($request->input('pageId')) ? 1 : $request->input('pageId'),
-
-        //     'sort' => 2,
-
-        //     'priceLowerLimit' => empty($request->input('priceLowerLimit')) ? 12 : $request->input('priceLowerLimit'),
-
-        //     'priceUpperLimit' => empty($request->input('priceUpperLimit')) ? 99999 : $request->input('priceUpperLimit'),
-
-        // ];
-
-        // return $data;
-
-        //加密的参数
-        // $data['sign'] = $this->makeSign($data,$this->appSecret);
-
-        //拼接请求地址
-        // $url = $host .'?'. http_build_query($data);
-
-        // var_dump($url);
+        $url = 'http://api.tbk.dingdanxia.com/pay/biz_transfer';
         
-        //执行请求获取数据
-
-        // return json_decode($this->getCurl($url),true);
+        $payload["apikey"] = $this->apikey;
+        $payload["signature"] = '';
+        $payload["payee_account"] = '';
+        $payload["amount"] = '';
+        $payload["payer_show_name"] = '';
+        $payload["payee_real_name"] = '';
+        $payload["remark"] = '';
+        $payload["appid"] = '';
+        $payload["private_key"] = '';
+        $payload["public_key"] = '';
+        
+        $headers = [ 'Content-Type' => "application/x-www-form-urlencoded"];
+        $option = ['connect_timeout' => 60, 'timeout' => 180];
+        $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
+        $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
+        $res = json_decode($req->getBody());
+        var_dump($res);
+        
+        return $res;
         
     }
 }
