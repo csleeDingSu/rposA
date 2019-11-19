@@ -924,11 +924,12 @@ function confirm_Delete(id)	{
 
 $(".datalist").on("click",".addpayment", function(){
 	var id=$(this).data('id');
-	$('#formalipay')[0].reset();
+	$('#formalipay')[0].reset();	
 	$('#hi_pay_id').val(id);
 	$('#rvalidation-errors').html('');
 	$('#openalipaymodel').modal('show');
-
+	var acu =$('.ShowRecentPlay').html(); 
+	$('#pay_acupoint').val(acu);
 });	
 
 
