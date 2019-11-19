@@ -64,10 +64,10 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-success" id="savebtn">@lang('dingsu.update')</button>
+					<button type="submit" class="btn btn-success" id="savebtn">@lang('dingsu.make') @lang('dingsu.payment')</button>
 					<button type="button" class="btn btn-dark" data-dismiss="modal">@lang('dingsu.cancel')</button>
 				</div>
-				<input type="hidden" name="mode" id="mode" value="edit">
+				<input type="hidden" name="hi_pay_id" id="hi_pay_id" value="">
 			</div>
 		</div>
 	</div>
