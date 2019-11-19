@@ -134,8 +134,6 @@ class DingDanXiaController extends BaseController
 
     public function pay(Request $request)
     {
-         // return response()->json(['success' => true, 'data' => 'test']); 
-
         $url = env('DINGDANXIA_APIURL', 'http://api.tbk.dingdanxia.com') . "/pay/transfer";
         
         $payload["apikey"] = empty($request->apikey) ? $this->apiKey : $request->apikey; //require
@@ -152,14 +150,14 @@ class DingDanXiaController extends BaseController
         $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
         $res = json_decode($req->getBody(), true);
         
-        if (!empty($res->code)) {
+        if (!empty(json_decode($res)->code)) {
             $status = true;
             
-            if ($res->code != '200') {
+            if (json_decode($res)->code != '200') {
                 $status = false;
             }
 
-            return ['success' => $status, 'data' => $res];
+            return ['success' => $status, 'data' => json_decode($res)];
 
         } else {
             return $res;
