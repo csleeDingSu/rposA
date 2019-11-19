@@ -1903,7 +1903,7 @@ function bindButton () {
                 } else if (_point >= win_coin_max) {
                     $('#alipayform').modal();
                     $('#reset-life-max').modal();
-                    return false;
+                    // return false;
                 } else {
                     $('.withdraw-value').html(_point);
                     $('#modal-withdraw-insufficient').modal();
