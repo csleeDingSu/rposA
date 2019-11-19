@@ -273,6 +273,7 @@ return [
 	'ph_password' => '设置登录密码',
 	'ph_confirm_password' => '重复登录密码',
 	'ph_enter_password' => '输入登录密码',
+	'ph_alipayaccount' => '请填写支付宝账号',
 
 	//message
 	'info_forgot_password' => '如忘记密码请找我们的客服.',

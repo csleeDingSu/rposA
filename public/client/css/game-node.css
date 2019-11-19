@@ -1693,3 +1693,82 @@ a {
     padding: 0.3rem;
 }
 
+#alipayform .modal-content {
+	background-color: #f4f4f4;
+}
+
+#alipayform .title {
+	font-size: 0.48rem;
+    padding: 0.1rem;
+    color: #8f8f8f;
+}
+
+#alipayform .title-small {
+	font-size: 0.25rem;
+    padding: 0 0.1rem 0.2rem 0.1rem;
+    color: #8f8f8f;
+
+}
+
+#alipayform .modal-confirm-button {
+	background: #fcac12;
+    color: white;
+    border-radius: 25px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px;
+}
+
+#alipayform .close-modal {
+	position: relative;
+    padding: 1rem;
+}
+
+#alipayform .close-modal img{
+	margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 0.6rem;
+}
+
+#alipayform .input-form {
+	margin: 0;
+    padding: 0.2rem 0;
+}
+
+#alipayform .input-form li {
+    padding: 0 0.25rem;
+    margin-bottom: 0.28rem;
+}
+
+#alipayform .input-form .flexSp {
+    background: #fff;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+    height: 0.84rem;
+    align-items: center;
+    padding: 0 0.2rem;
+    display: flex;
+    border: 1px solid #bababa;
+}
+
+#alipayform .input-form .flexSp img {
+    height: 0.5rem;
+}
+
+#alipayform .input-form .flexSp input {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 0.25rem;
+    padding-top: 0rem;
+    font-size: 0.32rem;
+    line-height: 2em;
+    background: none;
+    border: none;
+}
