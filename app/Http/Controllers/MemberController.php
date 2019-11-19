@@ -305,7 +305,7 @@ class MemberController extends BaseController
 					
 			}
 			
-			return response()->json(['success' => true,'wechat_id'=>$wechatid,'wechat_name'=>$wechat,'wechat_status'=>$status,'badge'=>$badge]);
+			return response()->json(['success' => true,'wechat_id'=>$wechatid,'wechat_name'=>$wechat,'wechat_status'=>$status,'alipay_account'=>$alipay_account,'badge'=>$badge]);
 		}		
 		return response()->json(['success' => false]);
 	}
