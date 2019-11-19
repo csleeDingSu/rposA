@@ -72,6 +72,21 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group row">
+								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.redeem_life') </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="redeem_life" id="redeem_life">
+										<option value="1">@lang('dingsu.yes')</option>
+										<option value="2">@lang('dingsu.no')</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-success" id="savebtn">@lang('dingsu.make') @lang('dingsu.payment')</button>
