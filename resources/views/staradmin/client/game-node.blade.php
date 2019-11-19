@@ -1282,6 +1282,7 @@
 	            console.log(5);
 	        },
 	        success: function(data) {
+	        	$('#hidAlipayAccount').val(alipay_account);
 	        	console.log(data);
 	        	$('#alipayform').modal('hide');
                 $('#modal-withdraw').modal();
