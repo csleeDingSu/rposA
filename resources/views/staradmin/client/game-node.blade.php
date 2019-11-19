@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.2') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.3') }}" />
     <!-- <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
@@ -783,8 +783,7 @@
 							<p class="t1">加客服领取补贴</p>	
 							<p class="t2">您当前可领<span class="spanAcuPointAndBalance">0</span>元红包</p>
 							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
-							<p class="t3">扫一扫加好友</p>
-							<p class="t4">拒绝微信小号</p>
+							<p class="t3">扫一扫加好友 小号勿加</p>
 						</div>
 					</div>							
 				</div>
@@ -801,8 +800,7 @@
 							<p class="t1">加客服领取补贴</p>	
 							<p class="t2">您当前可领<span class="spanAcuPointAndBalance">0</span>元红包</p>
 							<p class="p1"><img src="{{ asset('/client/images/game-node/csqrcode.JPG') }}"/></p>
-							<p class="t3">扫一扫加好友</p>
-							<p class="t4">拒绝微信小号</p>
+							<p class="t3">扫一扫加好友 小号勿加</p>
 						</div>
 					</div>							
 				</div>
@@ -1298,7 +1296,7 @@
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<script src="{{ asset('/client/js/game-node.js') }}"></script>
+	<script src="{{ asset('/client/js/game-node.js?version=1.0.0') }}"></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 	
 @endsection
