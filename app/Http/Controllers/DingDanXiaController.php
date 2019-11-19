@@ -14,7 +14,7 @@ class DingDanXiaController extends BaseController
         ini_set('max_execution_time', 10800); //180 minutes
         //
        $this->apiKey = env('DINGDANXIA_APIKEY', 'H1XHdUmBXkNUTBrsHUGXqwFvfDQRKqGX');
-       $this->payerShowName = env('DINGDANXIA_PAYERSHOWNAME', 'test');
+       $this->payerShowName = env('DINGDANXIA_PAYERSHOWNAME', '挖宝红包补贴');
 
     }
 
@@ -154,9 +154,19 @@ class DingDanXiaController extends BaseController
         $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
         $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
         $res = json_decode($req->getBody());
-        var_dump($res);
-        
-        return $res;
+
+        if (!empty($res->code)) {
+            $status = true;
+            
+            if ($res->code != '200') {
+                $status = false;
+            }
+
+            return ['success' => $status, 'data' => $res];
+
+        } else {
+            return $res;
+        }
         
     }
 
@@ -166,10 +176,10 @@ class DingDanXiaController extends BaseController
 
         $url = env('DINGDANXIA_APIURL', 'http://api.tbk.dingdanxia.com') . "/pay/transfer";
         
-        $payload["apikey"] = $this->apiKey; //require
+        $payload["apikey"] = empty($request->apikey) ? $this->apiKey : $request->apikey; //require
         $payload["payee_account"] = $request->payee_account; //require
         $payload["amount"] = $request->amount; //require
-        $payload["payer_show_name"] = $request->payer_show_name;
+        $payload["payer_show_name"] = empty($request->payer_show_name) ? $this->payerShowName : $request->payer_show_name;
         $payload["payee_real_name"] = $request->payee_real_name;
         $payload["remark"] = $request->remark;
         $payload["signature"] = ''; //$this->makeSign($payload,$this->appSecret);
