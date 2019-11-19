@@ -252,7 +252,7 @@ class MemberController extends BaseController
 		$status   = $dbi['model_wechat_status'];
 		$wechat   = $dbi['model_wechat_name'];
 		$wechatid = $dbi['model_wechat_id'];
-		
+		$alipay_account = $dbi['model_alipay_account'];
 		$record = Member::find($id);
 		if ($record)
 		{
@@ -278,7 +278,8 @@ class MemberController extends BaseController
 			}	
 			else
 			{
-				$data = ['wechat_id'=> $wechatid,'wechat_name'=> $wechat,'wechat_verification_status'=>$status,'wechat_notes'=>$dbi['notes']];
+				$data = ['wechat_id'=> $wechatid,'wechat_name'=> $wechat,'wechat_verification_status'=>$status,'wechat_notes'=>$dbi['notes']
+				,'alipay_account' => $alipay_account ];
 				$res = Member::update_member($record->id,$data);
 			}	
 			
@@ -304,7 +305,7 @@ class MemberController extends BaseController
 					
 			}
 			
-			return response()->json(['success' => true,'wechat_id'=>$wechatid,'wechat_name'=>$wechat,'wechat_status'=>$status,'badge'=>$badge]);
+			return response()->json(['success' => true,'wechat_id'=>$wechatid,'wechat_name'=>$wechat,'wechat_status'=>$status,'alipay_account'=>$alipay_account,'badge'=>$badge]);
 		}		
 		return response()->json(['success' => false]);
 	}

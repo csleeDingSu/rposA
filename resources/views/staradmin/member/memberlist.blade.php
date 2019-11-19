@@ -28,6 +28,16 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group row">
+								<label for="model_alipay_account" class="col-sm-3 col-form-label">@lang('dingsu.alipay_account') </label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="model_alipay_account" id="model_alipay_account" value="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group row">
 								<label for="model_wechat_name" class="col-sm-3 col-form-label">@lang('dingsu.wechat') @lang('dingsu.name') <span class="text-danger">*</span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="model_wechat_name" id="model_wechat_name" value="">
@@ -375,13 +385,14 @@
 		var wename = $("#show_wechat_name_"+id).val();		
 		var status = $("#show_wechat_status_"+id).val();
 		var wechat_id = $("#show_wechat_id_"+id).val();
-		
+		var alipay_account = $("#show_alipay_account_"+id).val();
 		$('#hidden_void').val(id);
 		$('#notes').val(notes);
 		$('#validation-errors').html('');
 		$("#model_wechat_status").val(status);		
 		$("#model_wechat_name").val(wename);		
 		$("#model_wechat_id").val(wechat_id);	
+		$("#model_alipay_account").val(alipay_account);	
 		$('#editwechatstatusmode').modal('show');
 	}
 	
@@ -598,6 +609,10 @@
 
 					$("#show_wechat_id_"+id).val(result.wechat_id);
 					$(".show_wechat_id_"+id).val(result.wechat_id);	
+
+					$("#show_alipay_account_"+id).val(result.alipay_account);
+					$(".show_alipay_account_"+id).html(result.alipay_account);	
+					
 				}
 			},
 			error: function ( xhr, ajaxOptions, thrownError ) {

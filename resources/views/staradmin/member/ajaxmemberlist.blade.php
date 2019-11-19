@@ -18,7 +18,7 @@
 							<th>@lang('dingsu.referred_count')</th>	
 							<th>@lang('dingsu.used_life')</th>		
 							<th>@lang('dingsu.life')</th>
-							<th>@lang('dingsu.current_balance') </th>
+							<th>@lang('dingsu.acupoint') </th>
 							<th>@lang('dingsu.current_point') </th>
 							<th>@lang('dingsu.wechat_status')</th>
 							<th>@lang('dingsu.status')</th>
@@ -36,6 +36,8 @@
 							<input type="hidden" name="show_wechat_id_{{ $list->id }}" id="show_wechat_id_{{ $list->id }}" value="{{ $list->wechat_id }}">
 							
 							<input type="hidden" name="show_status_{{ $list->id }}" id="show_status_{{ $list->id }}" value="{{ $list->member_status }}">
+
+							<input type="hidden" name="show_alipay_account_{{ $list->id }}" id="show_alipay_account_{{ $list->id }}" value="{{ $list->alipay_account }}">
 							
 							
 							<td>{{ $list->id }}</td>
@@ -46,7 +48,7 @@
 								<img class="profile-img-circle" src="{{ $list->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
 								
 								{{ $list->wechat_name ?? $list->username }}</td>
-							<td>{{ $list->alipay_account }}</td>	
+							<td class="show_alipay_account_{{ $list->id }}">{{ $list->alipay_account }}</td>	
 							<td>
 								@if($list->parentuser)
 									<img class="profile-img-circle" src="{{ $list->parentuser->profile_pic ?? '/client/images/avatar.png' }}">&nbsp;
@@ -61,7 +63,7 @@
 								{{ $list->ledger['102']->life ?? '0'  }}
 							</td>
 							<td id="cb_{{ $list->id }}">
-								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->ledger['102']->balance ?? 0 }}</h6>
+								<h6 class="ShowRecentPlay text-info font-weight-semibold ml-2" data-id="{{ $list->id }}">{{ $list->ledger['102']->acupoint ?? 0 }}</h6>
 							</td>
 							<td id="cp_{{ $list->id }}">
 								{{ $list->ledger['103']->point ?? 0  }}
