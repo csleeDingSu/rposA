@@ -157,7 +157,7 @@ class DingDanXiaController extends BaseController
                 $status = false;
             }
 
-            return ['success' => $status, 'data' => json_encode($res)];
+            return ['success' => $status, 'data' => $res];
 
         } else {
             return $res;
