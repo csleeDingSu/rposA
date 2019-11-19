@@ -244,6 +244,18 @@ function initUser(records){
             bindResetLifeButton();
             // $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
             $('#reset-life-max').modal();
+            
+            $('.btn-withdraw').click(function() {
+                $('.modal').modal('hide');
+                $('.modal-backdrop').remove(); 
+                    
+                if ($('#hidAlipayAccount').val() == 0) {
+                    $('#alipayform').modal();
+                } else {
+                    $('#reset-life-max').modal();    
+                } 
+            });
+
             return false;
         } else {
             bindButton();
@@ -1901,8 +1913,11 @@ function bindButton () {
                         $('#modal-withdraw').modal();
                     }
                 } else if (_point >= win_coin_max) {
-                    $('#alipayform').modal();
-                    $('#reset-life-max').modal();
+                    if ($('#hidAlipayAccount').val() == 0) {
+                        $('#alipayform').modal();
+                    } else {
+                        $('#reset-life-max').modal();    
+                    }                    
                     return false;
                 } else {
                     $('.withdraw-value').html(_point);
