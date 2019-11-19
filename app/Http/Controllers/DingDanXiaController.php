@@ -138,7 +138,7 @@ class DingDanXiaController extends BaseController
 
         $url = 'http://api.tbk.dingdanxia.com/pay/biz_transfer';
         
-        $payload["apikey"] = $this->apikey;
+        $payload["apikey"] = $this->apiKey;
         $payload["signature"] = '';
         $payload["payee_account"] = '';
         $payload["amount"] = '';
@@ -166,7 +166,7 @@ class DingDanXiaController extends BaseController
 
         $url = env('DINGDANXIA_APIURL', 'http://api.tbk.dingdanxia.com') . "/pay/transfer";
         
-        $payload["apikey"] = $this->apikey; //require
+        $payload["apikey"] = $this->apiKey; //require
         $payload["payee_account"] = $request->payee_account; //require
         $payload["amount"] = $request->amount; //require
         $payload["payer_show_name"] = $request->payer_show_name;
