@@ -47,7 +47,7 @@
 				<div class="row">
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.acupoint') <span class="text-danger">*</span></label>
+								<label for="amount" class="col-sm-3 col-form-label">@lang('dingsu.acupoint') </label>
 								<div class="col-sm-9">
 									<span id="pay_acupoint"></span>
 								</div>

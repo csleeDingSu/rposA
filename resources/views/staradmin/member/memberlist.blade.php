@@ -930,6 +930,9 @@ $(".datalist").on("click",".addpayment", function(){
 	$('#openalipaymodel').modal('show');
 	var acu =$('.ShowRecentPlay').html(); 
 	$('#pay_acupoint').val(acu);
+	$('#payee_account').val( $('#show_alipay_account_'+id).val() );
+	console.log('acc' + $('#show_alipay_account_'+id).val() );
+	console.log('acp' + $('.ShowRecentPlay').html() );
 });	
 
 
