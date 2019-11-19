@@ -1666,13 +1666,13 @@ a {
 .modal-content-new .t1{
 	font-size: 0.45rem;
     font-weight: 500;
-    padding: 0.2rem 0 0 0
+    padding: 0.6rem 0 0 0
 }
 
-.modal-content-new .t1 .spanAcuPointAndBalance {
-	font-size: 0.45rem;
+.modal-content-new .t2 .spanAcuPointAndBalance {
+	font-size: 0.32rem;
     font-weight: 500;
-	color: #ffec69;
+	color: #fff;
 }
 
 .modal-content-new .t2{
@@ -1689,7 +1689,7 @@ a {
 	padding: 0.1rem;
 }
 .modal-content-new .p1 img{
-	width: 80%;
+	width: 70%;
     padding: 0.3rem;
 }
 
@@ -1700,14 +1700,19 @@ a {
 #alipayform .title {
 	font-size: 0.48rem;
     padding: 0.1rem;
-    color: #8f8f8f;
+    color: #ff2626;
 }
 
 #alipayform .title-small {
-	font-size: 0.25rem;
+	font-size: 0.3rem;
     padding: 0 0.1rem 0.2rem 0.1rem;
     color: #8f8f8f;
 
+}
+
+#alipayform .title .spanAcuPointAndBalance {
+    font-weight: 500;
+	font-size: 0.48rem;
 }
 
 #alipayform .modal-confirm-button {

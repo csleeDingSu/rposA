@@ -769,6 +769,8 @@ return [
 	'account_name' => 'Account Name',
 	'account_number' => 'Account Number',
 	'bank_name' => 'Bank Name',
-	'alipay_account' => '支付宝',
+	'alipay_account' => '支付宝 account',
+	'acupoint' => 'Accumulated Point',
+	'Payee_account' => 'Payee account',
 
 ];
