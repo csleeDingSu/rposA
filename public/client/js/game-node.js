@@ -243,7 +243,11 @@ function initUser(records){
         } else if (user_id > 0 && acupoint >= max_acupoint) {
             bindResetLifeButton();
             // $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
-            $('#reset-life-max').modal();
+            if ($('#hidAlipayAccount').val() == 0) {
+                $('#alipayform').modal();
+            } else {
+                $('#reset-life-max').modal();    
+            } 
             
             $('.btn-withdraw').click(function() {
                 $('.modal').modal('hide');
