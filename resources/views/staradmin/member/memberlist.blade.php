@@ -386,7 +386,7 @@
 		var status = $("#show_wechat_status_"+id).val();
 		var wechat_id = $("#show_wechat_id_"+id).val();
 		var alipay_account = $("#show_alipay_account_"+id).val();
-
+		alert(alipay_account);
 		$('#hidden_void').val(id);
 		$('#notes').val(notes);
 		$('#validation-errors').html('');
