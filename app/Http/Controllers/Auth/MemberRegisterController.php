@@ -335,7 +335,8 @@ class MemberRegisterController extends Controller
 				}
 				else
 				{
-					$ledger = \App\ledger::ledger($id,102);
+					$ledger = \App\ledger::ledger($id,102); print_r($ledger);
+					\Log::error($ledger);
 					if ($ledger->life >= 1)
 					{
 						//add welcome bonus life
