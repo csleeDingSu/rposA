@@ -337,7 +337,7 @@ class MemberRegisterController extends Controller
 				{
 					$ledger = \App\ledger::ledger($id,102); print_r($ledger);
 					\Log::error($ledger);
-					if ($ledger->life >= 1)
+					if (!empty($ledger->life))
 					{
 						//add welcome bonus life
 					    \App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
