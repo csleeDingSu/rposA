@@ -1126,17 +1126,7 @@
     	var prefix = "{{ env('REDIS_PREFIX'), '' }}";
     	// var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
-		$(document).ready(function () {
-
-			//fix / prevent ios keyboard from pushing the view off screen
-			document.ontouchmove = function(e){
-	          e.preventDefault();
-	        }
-
-	        $('#alipayaccount').onfocus = function () {
-			    window.scrollTo(0, 0);
-			    document.body.scrollTop = 0;
-			}
+		$(document).ready(function () {			
 			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
@@ -1306,7 +1296,7 @@
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<script src="{{ asset('/client/js/game-node.js?version=1.0.1') }}"></script>
+	<script src="{{ asset('/client/js/game-node.js?version=1.0.2') }}"></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 	
 @endsection
