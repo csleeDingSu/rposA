@@ -710,7 +710,7 @@ function startGame() {
             show_win = false;
             show_lose = false;
 
-            if (betting_records.length <= 0) { //is newbie or not
+            if (betting_records.length <= 0 && g_life > 0) { //is newbie or not
                 $('#modal-newbie').modal();    
             }
         }
