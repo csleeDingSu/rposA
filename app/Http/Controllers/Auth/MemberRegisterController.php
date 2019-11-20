@@ -327,7 +327,7 @@ class MemberRegisterController extends Controller
 			$_modal->setConnection('mysql2');
 
 			$euser = $_modal->where('phone' , $data['phone'])->first();
-			
+			\Log::error($euser);
 			if ($euser)
 			{
 				if ($euser->wechat_verification_status == 0)					
@@ -337,6 +337,7 @@ class MemberRegisterController extends Controller
 				}
 				else
 				{
+					echo $euser->id.'--';
 					$ledger = new Ledger;
 					$ledger->setConnection('mysql2');
 					$ledger = $ledger->ledger($euser->id,102); 
