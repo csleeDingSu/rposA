@@ -31,6 +31,8 @@ class Members extends Model
 		
     ];
 
+    protected $connection = 'mysql';
+
     /**
      * The attributes that should be hidden for arrays.
      *
