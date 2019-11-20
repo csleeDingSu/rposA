@@ -327,7 +327,7 @@ class MemberRegisterController extends Controller
 			$_modal->setConnection('mysql2');
 
 			$euser = $_modal->where('phone' , $data['phone'])->first();
-			\Log::error($euser);
+			//\Log::error($euser);
 			if ($euser)
 			{
 				if ($euser->wechat_verification_status == 0)					
@@ -342,8 +342,8 @@ class MemberRegisterController extends Controller
 					$ledger->setConnection('mysql2');
 					//$ledger = $ledger->ledger($euser->id,102);
 					$ledger = $ledger->where('member_id' , $euser->id)->where('game_id' , 102)->first();
-					\Log::error($ledger); 
-					echo $ledger->life.'--';
+					//\Log::error($ledger); 
+					//echo $ledger->life.'--';
 					if (!empty($ledger->life))
 					{
 						//add welcome bonus life
