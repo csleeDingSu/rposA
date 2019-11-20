@@ -159,9 +159,11 @@
         
         <hr class="h36">
 </div>
+
 @php ($userid = isset(Auth::guard('member')->user()->id) ? Auth::guard('member')->user()->id : 0)
 @php ($played = empty($wallet['gameledger'][102]->played) ? 0 : $wallet['gameledger'][102]->played)
-@if ($userid > 0 && $played == 0)
+@php ($life = empty($wallet['gameledger'][102]->life) ? 0 : $wallet['gameledger'][102]->life)
+@if ($userid > 0 && $life > 0 && $played == 0)
 <img class="newBie-footer" id="newbie" src="{{ asset('clientapp/images/main/newbie-bubble.png') }}">
 @endif
 @endsection
