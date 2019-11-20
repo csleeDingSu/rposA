@@ -20,6 +20,8 @@ use Session;
 use Validator;
 use \App\helpers\WeiXin as WX;
 
+use App\Ledger;
+
 class MemberRegisterController extends Controller
 {
     /*
@@ -325,7 +327,7 @@ class MemberRegisterController extends Controller
 			$_modal->setConnection('mysql2');
 
 			$euser = $_modal->where('phone' , $data['phone'])->first();
-			\Log::error($euser);
+			
 			if ($euser)
 			{
 				if ($euser->wechat_verification_status == 0)					
@@ -335,8 +337,10 @@ class MemberRegisterController extends Controller
 				}
 				else
 				{
-					$ledger = \App\ledger::ledger($id,102); print_r($ledger);
-					\Log::error($ledger);
+					$ledger = new Ledger;
+					$ledger->setConnection('mysql2');
+					$ledger = $ledger->ledger($id,102); 
+					
 					if (!empty($ledger->life))
 					{
 						//add welcome bonus life
