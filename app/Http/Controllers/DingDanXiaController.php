@@ -149,6 +149,8 @@ class DingDanXiaController extends BaseController
         $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
         $req = $client->post($url, ['headers' => $headers, 'form_params'=>$payload]);
         $res = json_decode($req->getBody(), true);
+
+        \Log::info("test - pay " . json_encode($res));
         
         if (!empty($res['code'])) {
             $status = true;
