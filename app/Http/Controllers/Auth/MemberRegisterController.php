@@ -343,6 +343,10 @@ class MemberRegisterController extends Controller
 					    \App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
 					}					
 				}
+			}
+			else
+			{
+				App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
 			}			
 			
 			//Send Welcome Mail			

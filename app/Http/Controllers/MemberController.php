@@ -320,7 +320,7 @@ class MemberController extends BaseController
 		if (empty($record->introducer_life))
 		{
 			$wallet = \App\Ledger::ledger($record->id,$gameid);
-			app('App\Http\Controllers\Api\GameController')->life_redemption($record->id, $gameid, 'yes');
+			///app('App\Http\Controllers\Api\GameController')->life_redemption($record->id, $gameid, 'yes');
 
 			$data = ['introducer_life'=> 1];					
 					
