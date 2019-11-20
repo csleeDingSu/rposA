@@ -94,6 +94,9 @@ class MemberController extends BaseController
 				if ($input['s_status'] != '' )
 					$result = $result->where('member_status','=',$input['s_status']);
 			}
+			if (!empty($input['s_alipay'])) { 
+				$result = $result->where('alipay_account','LIKE', "%{$input['s_alipay']}%");
+			}
 		}
 		$result =  $result->orderby('id','DESC')->paginate(30);
 

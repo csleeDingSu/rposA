@@ -16,6 +16,13 @@
 					<h4 class="card-title">@lang('dingsu.search')</h4>
 					<div class="form-group row">
 						<div class="col">
+							<label>@lang('dingsu.alipay_account')</label>
+							<div id="the-basics">
+								<input type="text" class="form-control typeahead tt-input" name="s_alipay" id="s_alipay" placeholder="@lang('dingsu.alipay_account')">
+							</div>
+						</div>
+
+						<div class="col">
 							<label>@lang('dingsu.username')</label>
 							<div id="the-basics">
 								<input type="text" class="form-control typeahead tt-input" name="s_username" id="s_username" placeholder="@lang('dingsu.username')">
