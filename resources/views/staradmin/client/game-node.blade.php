@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.3') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.4') }}" />
     <!-- <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
@@ -1296,7 +1296,7 @@
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<script src="{{ asset('/client/js/game-node.js?version=1.0.3') }}"></script>
+	<script src="{{ asset('/client/js/game-node.js?version=1.0.4') }}"></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 	
 @endsection
