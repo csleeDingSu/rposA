@@ -13,6 +13,8 @@ class Ledger extends Model
     protected $table = 'ledger';
 		
 	protected $table_history = 'game_ledger_history';	
+
+	protected $connection = 'mysql';
 	/*
 	//Add point
 	credit($userid , $gameid, $amount , $category , $notes);
