@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.5') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.3') }}" />
     <!-- <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
@@ -1127,6 +1127,13 @@
     	// var life = "{{isset(Auth::Guard('member')->user()->current_life) ? Auth::Guard('member')->user()->current_life : 0}}";
 
 		$(document).ready(function () {
+
+			if( navigator.userAgent.match(/iPhone|iPad|iPod/i) ) {
+			   var styleEl = document.createElement('style'), styleSheet;
+			   document.head.appendChild(styleEl);
+			   styleSheet = styleEl.sheet;
+			   styleSheet.insertRule(".modal { position:absolute; bottom:auto; }", 0);
+			 }
 			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
