@@ -325,7 +325,7 @@ class MemberRegisterController extends Controller
 			$_modal->setConnection('mysql2');
 
 			$euser = $_modal->where('phone' , $data['phone'])->first();
-
+			\Log::error($euser);
 			if ($euser)
 			{
 				if ($euser->wechat_verification_status == 0)					
