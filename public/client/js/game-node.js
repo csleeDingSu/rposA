@@ -2007,7 +2007,7 @@ function showAliPayForm() {
     //     document.body.scrollTop = 0;
     // }
     
-    // $('#alipayaccount').focus();
+    $('#alipayaccount').focus();
 
 }
 
