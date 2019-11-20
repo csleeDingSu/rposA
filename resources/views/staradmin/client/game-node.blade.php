@@ -845,7 +845,7 @@
 		                                <li>
 		                                    <div class="flexSp">
 		                                        <img src="{{ asset('client/images/alipayform/alpay.png') }}">
-		                                        <input type="text" id="alipayaccount" name="alipayaccount" placeholder="@lang('dingsu.ph_alipayaccount')" required maxlength="30">
+		                                        <input type="text" id="alipayaccount" name="alipayaccount" placeholder="@lang('dingsu.ph_alipayaccount')" required maxlength="30" autofocus>
 		                                    </div>
 		                                </li>
 		                                <li>

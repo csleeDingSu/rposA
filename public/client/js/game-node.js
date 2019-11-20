@@ -1999,15 +1999,15 @@ function getNotification(data, isSocket = false){
 function showAliPayForm() {
     $('#alipayform').modal({backdrop: 'static', keyboard: false});
     //fix / prevent ios keyboard from pushing the view off screen
-    document.ontouchmove = function(e){
-      e.preventDefault();
-    }
-    $('#alipayaccount').onfocus = function () {
-        window.scrollTo(0, 0);
-        document.body.scrollTop = 0;
-    }
+    // document.ontouchmove = function(e){
+    //   e.preventDefault();
+    // }
+    // $('#alipayaccount').onfocus = function () {
+    //     window.scrollTo(0, 0);
+    //     document.body.scrollTop = 0;
+    // }
     
-    $('#alipayaccount').focus();
+    // $('#alipayaccount').focus();
 
 }
 
