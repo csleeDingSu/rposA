@@ -316,12 +316,38 @@ class MemberRegisterController extends Controller
 			//create Game Ledgers
 			\App\Ledger::intiateledger($id);
 			
-			//add welcome bonus life
-			\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
+			
 			
 			$balance = env('initial_balance',1200);
 			\App\Ledger::balance($id,102,'credit',$balance,'WBB', '');
-			
+
+
+			$_modal->setConnection('mysql2');
+
+			$euser = $_modal->table('members')->where('phone' , $data['phone'])->first();
+
+			if ($euser)
+			{
+				if ($euser->wechat_verification_status == 0)					
+				{
+					$member->wechat_verification_status = 0;
+					$member->save();
+					
+				}
+				else
+				{
+					$ledger = \App\ledger($id,102);
+					if ($ledger->life >= 1)
+					{
+						//add welcome bonus life
+					    \App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
+					}					
+				}
+			}
+			else
+			{
+				App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
+			}			
 			
 			//Send Welcome Mail			
 					
