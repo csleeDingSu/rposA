@@ -340,7 +340,7 @@ class MemberRegisterController extends Controller
 					$ledger = new Ledger;
 					$ledger->setConnection('mysql2');
 					$ledger = $ledger->ledger($id,102); 
-					
+					echo $ledger->life.'--';
 					if (!empty($ledger->life))
 					{
 						//add welcome bonus life
