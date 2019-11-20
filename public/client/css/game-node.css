@@ -1695,6 +1695,11 @@ a {
 
 #alipayform .modal-content {
 	background-color: #f4f4f4;
+	width: 100%;
+}
+
+#alipayform .modal-card {
+	width: 100%;
 }
 
 #alipayform .title {
@@ -1724,17 +1729,14 @@ a {
     padding: 10px;
 }
 
-#alipayform .close-modal {
-	position: relative;
-    padding: 1rem;
+#alipayform .icon-close {
+	/*position: relative;*/
+    /*padding: 1rem;*/
+    text-align: center;
 }
 
-#alipayform .close-modal img{
-	margin: 0;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#alipayform .icon-close img{
+	margin-top:0.2rem;
     height: 0.6rem;
 }
 
@@ -1760,6 +1762,7 @@ a {
     padding: 0 0.2rem;
     display: flex;
     border: 1px solid #bababa;
+    width: 100%;
 }
 
 #alipayform .input-form .flexSp img {
