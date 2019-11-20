@@ -1128,12 +1128,14 @@
 
 		$(document).ready(function () {
 
-			if( navigator.userAgent.match(/iPhone|iPad|iPod/i) ) {
-			   var styleEl = document.createElement('style'), styleSheet;
-			   document.head.appendChild(styleEl);
-			   styleSheet = styleEl.sheet;
-			   styleSheet.insertRule(".modal { position:absolute; bottom:auto; }", 0);
-			 }
+			//fix / prevent ios keyboard from pushing the view off screen
+			document.ontouchmove = function(e){
+	          e.preventDefault();
+	        }
+	        input.onfocus = function () {
+			    window.scrollTo(0, 0);
+			    document.body.scrollTop = 0;
+			}
 			
 			var wechat_status = $('#hidWechatId').val();
 			var wechat_name = $('#hidWechatName').val();
