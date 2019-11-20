@@ -244,7 +244,7 @@ function initUser(records){
             bindResetLifeButton();
             // $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
             if ($('#hidAlipayAccount').val() == 0) {
-                $('#alipayform').modal();
+                $('#alipayform').modal({backdrop: 'static', keyboard: false});
             } else {
                 $('#reset-life-max').modal();    
             } 
@@ -254,7 +254,7 @@ function initUser(records){
                 $('.modal-backdrop').remove(); 
                     
                 if ($('#hidAlipayAccount').val() == 0) {
-                    $('#alipayform').modal();
+                    $('#alipayform').modal({backdrop: 'static', keyboard: false});
                 } else {
                     $('#reset-life-max').modal();    
                 } 
@@ -1901,7 +1901,7 @@ function bindButton () {
                 // } else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
                 } else if ((_point >= win_coin_min) && (_point < 10)) {
                     if ($('#hidAlipayAccount').val() == 0) {
-                        $('#alipayform').modal();    
+                        $('#alipayform').modal({backdrop: 'static', keyboard: false});    
                     } else {
                         $('.withdraw-value').html(6);
                         $('.drawn').html(_point);
@@ -1910,7 +1910,7 @@ function bindButton () {
 
                 } else if ((_point >= win_coin_min) && (_point >= 10)) {
                     if ($('#hidAlipayAccount').val() == 0) {
-                        $('#alipayform').modal();    
+                        $('#alipayform').modal({backdrop: 'static', keyboard: false});    
                     } else {
                         $('.withdraw-value').html(10);
                         $('.drawn').html(_point);
@@ -1918,7 +1918,7 @@ function bindButton () {
                     }
                 } else if (_point >= win_coin_max) {
                     if ($('#hidAlipayAccount').val() == 0) {
-                        $('#alipayform').modal();
+                        $('#alipayform').modal({backdrop: 'static', keyboard: false});
                     } else {
                         $('#reset-life-max').modal();    
                     }                    
