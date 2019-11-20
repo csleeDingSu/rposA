@@ -340,7 +340,9 @@ class MemberRegisterController extends Controller
 					echo $euser->id.'--';
 					$ledger = new Ledger;
 					$ledger->setConnection('mysql2');
-					$ledger = $ledger->ledger($euser->id,102); 
+					//$ledger = $ledger->ledger($euser->id,102);
+					$ledger = $ledger->where('member_id' , $euser->id)->where('game_id' , 102)->first();
+					\Log::error($ledger); 
 					echo $ledger->life.'--';
 					if (!empty($ledger->life))
 					{
