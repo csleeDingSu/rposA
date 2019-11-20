@@ -194,7 +194,7 @@ function initUser(records){
         // console.log(records.life);
 
         var balance = parseInt(records.balance);
-        var life = records.life;
+        var life = parseInt((records.life == null) ? 0 : records.life);
         g_life = life;
         var point = parseInt(records.point);
         g_cookies_point = point;

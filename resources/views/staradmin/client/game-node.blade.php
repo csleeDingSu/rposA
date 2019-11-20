@@ -843,16 +843,16 @@
 								<div class="input-form">
 									<ul>
 		                                <li>
-		                                    <!-- <div class="flexSp"> -->
+		                                    <div class="flexSp">
 		                                        <img src="{{ asset('client/images/alipayform/alpay.png') }}">
 		                                        <input type="text" id="alipayaccount" name="alipayaccount" placeholder="@lang('dingsu.ph_alipayaccount')" required maxlength="30">
-		                                    <!-- </div> -->
+		                                    </div>
 		                                </li>
 		                                <li>
-		                                    <!-- <div class="flexSp"> -->
+		                                    <div class="flexSp">
 		                                        <img src="{{ asset('client/images/alipayform/phone.png') }}">
 		                                        <input type="text" id="contactno" name="contactno" placeholder="@lang('dingsu.ph_username_mobile_no')" value="{{empty(Auth::Guard('member')->user()->phone) ? '' : Auth::Guard('member')->user()->phone}}" required maxlength="30">
-		                                    <!-- </div> -->
+		                                    </div>
 		                                </li>
 		                            </ul>
 								</div>
@@ -1296,7 +1296,7 @@
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<script src="{{ asset('/client/js/game-node.js?version=1.0.2') }}"></script>
+	<script src="{{ asset('/client/js/game-node.js?version=1.0.3') }}"></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 	
 @endsection
