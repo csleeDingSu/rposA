@@ -20,6 +20,8 @@ use Session;
 use Validator;
 use \App\helpers\WeiXin as WX;
 
+use App\Ledger;
+
 class MemberRegisterController extends Controller
 {
     /*
@@ -321,23 +323,28 @@ class MemberRegisterController extends Controller
 			$balance = env('initial_balance',1200);
 			\App\Ledger::balance($id,102,'credit',$balance,'WBB', '');
 
-
+			$_modal = new Members;
 			$_modal->setConnection('mysql2');
 
-			$euser = $_modal->table('members')->where('phone' , $data['phone'])->first();
-
+			$euser = $_modal->where('phone' , $data['phone'])->first();
+			//\Log::error($euser);
 			if ($euser)
 			{
 				if ($euser->wechat_verification_status == 0)					
 				{
 					$member->wechat_verification_status = 0;
-					$member->save();
-					
+					$member->save();					
 				}
 				else
 				{
-					$ledger = \App\ledger($id,102);
-					if ($ledger->life >= 1)
+					echo $euser->id.'--';
+					$ledger = new Ledger;
+					$ledger->setConnection('mysql2');
+					//$ledger = $ledger->ledger($euser->id,102);
+					$ledger = $ledger->where('member_id' , $euser->id)->where('game_id' , 102)->first();
+					//\Log::error($ledger); 
+					//echo $ledger->life.'--';
+					if (!empty($ledger->life))
 					{
 						//add welcome bonus life
 					    \App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
@@ -346,7 +353,7 @@ class MemberRegisterController extends Controller
 			}
 			else
 			{
-				App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
+				\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBLL', '');
 			}			
 			
 			//Send Welcome Mail			

@@ -194,7 +194,7 @@ function initUser(records){
         // console.log(records.life);
 
         var balance = parseInt(records.balance);
-        var life = records.life;
+        var life = parseInt((records.life == null) ? 0 : records.life);
         g_life = life;
         var point = parseInt(records.point);
         g_cookies_point = point;
@@ -231,6 +231,7 @@ function initUser(records){
 
         if(life == 0){
             if (user_id > 0) {
+                closeAllModal();
                 $('#reset-life-share').modal();    
             }
             html = '<div class="box" id="btn-vip-wrapper">' +
@@ -357,6 +358,7 @@ try {
 
                     if(g_life == 0){
                         if (user_id > 0) {
+                            closeAllModal();
                             $('#reset-life-share').modal();    
                         }
                     } else { 
@@ -404,6 +406,7 @@ try {
                         }, 3000);    
                     } else {
                         if (user_id > 0) {
+                            closeAllModal();
                             $('#reset-life-share').modal();    
                         }
                     }
@@ -601,6 +604,7 @@ function getToken(){
                   var updated_102_life = data.data.life;
 
                   if (updated_102_life <= 0) {
+                    closeAllModal();
                     $('#reset-life-share').modal();
                   }
 
@@ -888,6 +892,7 @@ function bindBetButton(){
             }
 
         } else if(user_id > 0 && life == 0){
+                closeAllModal();
                 $('#reset-life-share').modal();
         }
 
@@ -1021,6 +1026,7 @@ function bindCalculateButton(){
             $('#game-rules').modal();
         } else {
             if (user_id > 0) {
+                closeAllModal();
                 $('#reset-life-share').modal();    
             }
         }
@@ -1039,6 +1045,7 @@ function bindTriggerButton(){
             checkSelection();
         } else {
            if (user_id > 0) {
+            closeAllModal();
                 $('#reset-life-share').modal();    
             } else {
                 if (is_app) {
@@ -1999,4 +2006,9 @@ function showAliPayForm() {
         window.scrollTo(0, 0);
         document.body.scrollTop = 0;
     }
+}
+
+function closeAllModal() {
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove(); 
 }
