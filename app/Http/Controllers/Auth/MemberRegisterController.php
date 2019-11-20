@@ -346,7 +346,7 @@ class MemberRegisterController extends Controller
 			}
 			else
 			{
-				\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
+				\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBLL', '');
 			}			
 			
 			//Send Welcome Mail			
