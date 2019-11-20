@@ -1,4 +1,4 @@
-<!-- <div id="preload"></div> -->
+<div id="preload"></div>
 <!-- <div id="load"></div> -->
 <div id="contents">
 <!-- show not yet login modal -->
@@ -144,34 +144,10 @@
 @section('footer-javascript')
     @parent
    		<script>
-	   		document.onreadystatechange = function () {
-			  var state = document.readyState
-			  if (state == 'interactive') {
-			  	// $( ".intro-container" ).addClass( "hidespan" );
-			  	document.getElementById('contents').style.visibility="hidden";
-			  	document.getElementById('load').style.visibility="hidden";
-			  	console.log(1);
-			  } else if (state == 'complete') {
-			  	console.log(2);
-			  	setTimeout(function(){
-			  		console.log(3);
-			  		document.getElementById('interactive');
-			        // document.getElementById('preload').style.visibility="hidden";
-			        // document.getElementById('load').style.visibility="visible";
-			        document.getElementById('load').style.visibility="hidden";
-			        // $( ".intro-container" ).addClass( "showspan" );
-			        setTimeout(function(){
-			        	console.log(4);
-			        	document.getElementById('load').style.visibility="hidden";
-			        	// document.getElementById('load').style.visibility="visible";
-				        // document.getElementById('contents').style.visibility="visible";
-				        // $( ".intro-container" ).addClass( "showspan" );
-				    },900);
-			    },100);
-			  }
-			}
-
+   			
    			$(document).on('ready', function() {
+
+   				document.getElementById('preload').style.visibility="hidden";
 
             	var temp = "<?php Print(Session::put('re_route','yes'));?>";
             					

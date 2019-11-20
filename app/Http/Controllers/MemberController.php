@@ -124,7 +124,7 @@ class MemberController extends BaseController
 		$validator = $this->validate(
             $request,
             [
-                'email' => 'required|email|unique:members,email',
+                //'email' => 'required|email|unique:members,email',
 				'username' => 'required|unique:members,username',
             ]
         );
@@ -176,7 +176,7 @@ class MemberController extends BaseController
 		$validator = $this->validate(
             $request,
             [
-				'email' => 'required|email|unique:members,email,'.$id,
+				//'email' => 'required|email|unique:members,email,'.$id,
 				//'wechat_name' => 'nullable|unique:members,wechat_name,'.$id,
 				'phone' => 'nullable|min:4|max:12|unique:members,phone,'.$id,
             ]

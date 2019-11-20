@@ -959,7 +959,7 @@ $(".datalist").on("click",".addpayment", function(){
 						swal({ icon: "success",  type: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.update_success_msg")', confirmButtonText: '@lang("dingsu.okay")'});	
 						
 					} else {						
-						swal( '@lang("dingsu.payment_error")', '@lang("dingsu.try_again")', "error" );
+						swal( '@lang("dingsu.error") ' + result.data.msg, '@lang("dingsu.code") ' + result.data.code, "error" );
 					}
 										
 				},
