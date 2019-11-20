@@ -321,7 +321,7 @@ class MemberRegisterController extends Controller
 			$balance = env('initial_balance',1200);
 			\App\Ledger::balance($id,102,'credit',$balance,'WBB', '');
 
-
+			$_modal = new Members;
 			$_modal->setConnection('mysql2');
 
 			$euser = $_modal->where('phone' , $data['phone'])->first();
