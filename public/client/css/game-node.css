@@ -1693,6 +1693,15 @@ a {
     padding: 0.3rem;
 }
 
+#alipayform .modal-dialog {
+	position: absolute;
+    overflow: visible;
+    left: 0;
+    top: 4.5rem;
+    right: 0;
+    margin: 0 1rem;
+}
+
 #alipayform .modal-content {
 	background-color: #f4f4f4;
 	width: 100%;
