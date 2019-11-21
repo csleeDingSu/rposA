@@ -2010,18 +2010,18 @@ function showAliPayForm() {
     $('#alipayaccount').focus();
 
 
-    var _originalSize = $(window).width() + $(window).height()
-    alert('testing');
-      $(window).resize(function(){
-        alert('testing - resize');
-        if($(window).width() + $(window).height() != _originalSize){
-          $("#alipayform").css("position","relative");  
-          alert("keyboard show up");
-        }else{
-          alert("keyboard closed");
-          $("#alipayform").css("position","fixed");  
-        }
-      });
+    // var _originalSize = $(window).width() + $(window).height()
+    // alert('testing');
+    //   $(window).resize(function(){
+    //     alert('testing - resize');
+    //     if($(window).width() + $(window).height() != _originalSize){
+    //       $("#alipayform").css("position","relative");  
+    //       alert("keyboard show up");
+    //     }else{
+    //       alert("keyboard closed");
+    //       $("#alipayform").css("position","fixed");  
+    //     }
+    //   });
 
 
 }
