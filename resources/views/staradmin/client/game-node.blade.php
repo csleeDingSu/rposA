@@ -105,19 +105,22 @@
 	}
 
     </style>
+    
+    <!-- fix / prevent ios keyboard from pushing the view off screen -->
+    @php ($Android = stripos($_SERVER['HTTP_USER_AGENT'],"Android"))
+	@php ($webOS   = stripos($_SERVER['HTTP_USER_AGENT'],"webOS"))
+	@php ($isMacDevices = (empty($Android) && empty($webOS)) ? true : false)
 
-    @php    
-		$iPhone = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
-		if($iPhone){
-			echo "<style>
-					.modal-open {
-					    position: fixed;
-					    width: 100%;
-					    overflow: hidden;
-					}
-				</style>";
-		}
-    @endphp
+    @if ($isMacDevices)
+    	<style>
+			.modal-open {
+			    position: fixed !important;
+			    width: 100% !important;
+			    overflow: hidden !important;
+			}
+		</style>
+    @endif
+
 @endsection
     	
 @section('top-navbar')
