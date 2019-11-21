@@ -581,8 +581,8 @@ function getToken(){
                 });    
             }
 
-            socket.on(prefix+ id + "-ledger" + ":App\\Events\\EventLedger" , function(data){
-                console.log(prefix+ id + "-ledger" + ":App\\Events\\EventLedger");
+            socket.on(prefix+ id + "-ac-redeem-point" + ":App\Events\EventDynamicChannel" , function(data){
+                console.log(prefix+ id + "-ac-redeem-point" + ":App\Events\EventDynamicChannel");
                 console.log(data.data);
                 var gameid = data.data.game_id;
 
