@@ -35,7 +35,7 @@
 
 <!-- login modal -->
 <form class="form-sample" name="loginform" id="loginform" action="" method="post" autocomplete="on">
-<div class="modal fade col-md-12 intropopup" id="alipayform" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
+<div class="modal fade col-md-12 intropopup" id="login-intropopup" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-title">
 			<h1>账号登录</h1>
@@ -128,47 +128,6 @@
 </form>
 
 <!-- registration modal Ends -->
-
-<!-- show alipay form modal -->
-<form class="form-sample" name="_alipayform" id="_alipayform" action="" method="post" autocomplete="on">
-<div class="modal fade col-md-12" id="alipayform-" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-body">				
-				<div class="modal-row">
-					<div class="wrapper modal-full-height">
-						<div class="modal-card">
-							<p class="title">恭喜获得<em class="spanAcuPointAndBalance">0</em>元补贴</p>
-							<p class="title-small">请填写收款信息</p>	
-							<div class="input-form">
-								<ul>
-	                                <li>
-	                                    <div class="flexSp">
-	                                        <img src="{{ asset('client/images/alipayform/alpay.png') }}">
-	                                        <input type="text" id="alipayaccount" name="alipayaccount" placeholder="@lang('dingsu.ph_alipayaccount')" required maxlength="30" autofocus>
-	                                    </div>
-	                                </li>
-	                                <li>
-	                                    <div class="flexSp">
-	                                        <img src="{{ asset('client/images/alipayform/phone.png') }}">
-	                                        <input type="text" id="contactno" name="contactno" placeholder="@lang('dingsu.ph_username_mobile_no')" value="{{empty(Auth::Guard('member')->user()->phone) ? '' : Auth::Guard('member')->user()->phone}}" required maxlength="30">
-	                                    </div>
-	                                </li>
-	                            </ul>
-							</div>
-							<div class="modal-confirm-button" id="btn-submit-alipayform">提交</div>
-
-						</div>
-					</div>
-				</div>							
-			</div>
-		</div>
-		<div class="icon-close">
-          <img class="close-modal" src="{{ asset('/clientapp/images/main/close.png') }}">
-        </div>
-	</div>
-</div>
-</form>
 
 </div>
 

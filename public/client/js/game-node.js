@@ -244,22 +244,9 @@ function initUser(records){
         } else if (user_id > 0 && acupoint >= max_acupoint) {
             bindResetLifeButton();
             // $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
-            if ($('#hidAlipayAccount').val() == 0) {
-                showAliPayForm();
-                
-            } else {
-                $('#reset-life-max').modal();    
-            } 
-            
+            promptResetLifeModal();
             $('.btn-withdraw').click(function() {
-                $('.modal').modal('hide');
-                $('.modal-backdrop').remove(); 
-                    
-                if ($('#hidAlipayAccount').val() == 0) {
-                    showAliPayForm();
-                } else {
-                    $('#reset-life-max').modal();    
-                } 
+                promptResetLifeModal()                 
             });
 
             return false;
@@ -1908,28 +1895,36 @@ function bindButton () {
                     $('#modal-withdraw-insufficient').modal();
                 // } else if ((_point >= win_coin_min) && (_point <= win_coin_max)) {
                 } else if ((_point >= win_coin_min) && (_point < 10)) {
-                    if ($('#hidAlipayAccount').val() == 0) {
-                        showAliPayForm(); 
-                    } else {
+                    if (is_app) {
                         $('.withdraw-value').html(6);
                         $('.drawn').html(_point);
                         $('#modal-withdraw').modal();
+                    } else {
+                        if ($('#hidAlipayAccount').val() == 0) {
+                            showAliPayForm(); 
+                        } else {
+                            $('.withdraw-value').html(6);
+                            $('.drawn').html(_point);
+                            $('#modal-withdraw').modal();
+                        }    
                     }
 
                 } else if ((_point >= win_coin_min) && (_point >= 10)) {
-                    if ($('#hidAlipayAccount').val() == 0) {
-                        showAliPayForm();
-                    } else {
+                    if (is_app) {
                         $('.withdraw-value').html(10);
                         $('.drawn').html(_point);
                         $('#modal-withdraw').modal();
+                    } else {
+                        if ($('#hidAlipayAccount').val() == 0) {
+                            showAliPayForm();
+                        } else {
+                            $('.withdraw-value').html(10);
+                            $('.drawn').html(_point);
+                            $('#modal-withdraw').modal();
+                        }
                     }
                 } else if (_point >= win_coin_max) {
-                    if ($('#hidAlipayAccount').val() == 0) {
-                        showAliPayForm();
-                    } else {
-                        $('#reset-life-max').modal();    
-                    }                    
+                    promptResetLifeModal();
                     return false;
                 } else {
                     $('.withdraw-value').html(_point);
@@ -2029,4 +2024,17 @@ function showAliPayForm() {
 function closeAllModal() {
     $('.modal').modal('hide');
     $('.modal-backdrop').remove(); 
+}
+
+function promptResetLifeModal() {
+    closeAllModal();
+    if (is_app) {
+        $('#reset-life-max').modal();  
+    } else {
+        if ($('#hidAlipayAccount').val() == 0) {
+            showAliPayForm();            
+        } else {
+            $('#reset-life-max').modal();    
+        } 
+    }
 }
