@@ -154,7 +154,7 @@
 
 
 		<!-- cs link -->
-		@if(!Request::is('newbie') && !Request::is('download-app') && !Request::is('share'))
+		@if(!Request::is('newbie') && !Request::is('download-app') && !Request::is('share') && !Request::is('alipay/form'))
 			<script type='text/javascript'>
 			    (function(m, ei, q, i, a, j, s) {
 			        m[i] = m[i] || function() {
@@ -203,7 +203,7 @@
 	    
 	    </div>
 
-	    @if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips') && !Request::is('share') && !Request::is('buy') && !Request::is('confirm') && !Request::is('recharge/type') && !Request::is('free') && !Request::is('newbie') && !Request::is('download-app'))
+	    @if(!Request::is('receipt') && !Request::is('receipt/*') && !Request::is('login') && !Request::is('member/login') && !Request::is('member/login/*') && !Request::is('app-login') && !Request::is('app-register') && !Request::is('register') && !Request::is('register/*') && !Request::is('nlogin')  && !Request::is('main/product/detail') && !Request::is('external') && !Request::is('external/*') && !Request::is('youzan') && !Request::is('confirm') && !Request::is('guide/redeem') && !Request::is('tips') && !Request::is('share') && !Request::is('buy') && !Request::is('confirm') && !Request::is('recharge/type') && !Request::is('free') && !Request::is('newbie') && !Request::is('download-app') && !Request::is('alipay/form'))
 
 			@include('layouts/footer_app')
 		@endif
