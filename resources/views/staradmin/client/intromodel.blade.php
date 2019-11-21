@@ -36,7 +36,7 @@
 
 <!-- login modal -->
 <form class="form-sample" name="loginform" id="loginform" action="" method="post" autocomplete="on">
-<div class="modal fade col-md-12 intropopup" id="login-intropopup" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
+<div class="modal fade col-md-12 intropopup" id="alipayform" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-title">
 			<h1>账号登录</h1>
@@ -132,7 +132,7 @@
 
 <!-- show alipay form modal -->
 <form class="form-sample" name="_alipayform" id="_alipayform" action="" method="post" autocomplete="on">
-<div class="modal fade col-md-12" id="alipayform" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+<div class="modal fade col-md-12" id="alipayform-" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">				
