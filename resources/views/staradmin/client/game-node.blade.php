@@ -105,6 +105,19 @@
 	}
 
     </style>
+
+    @php    
+		$iPhone = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+		if($iPhone){
+			echo "<style>
+					.modal-open {
+					    position: fixed;
+					    width: 100%;
+					    overflow: hidden;
+					}
+				</style>";
+		}
+    @endphp
 @endsection
     	
 @section('top-navbar')
