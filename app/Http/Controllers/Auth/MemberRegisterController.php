@@ -328,12 +328,6 @@ class MemberRegisterController extends Controller
 
 			$euser = $_modal->where('phone' , $data['phone'])->first();
 
-			$member->alipay_account = $euser->alipay_account;
-			$member->wechat_name    = $euser->wechat_name;
-			$member->wechat_id      = $euser->wechat_id;
-			$member->openid         = $euser->openid;
-
-
 			//\Log::error($euser);
 			if ($euser)
 			{
@@ -356,14 +350,20 @@ class MemberRegisterController extends Controller
 					    \App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBL', '');
 					}					
 				}
+
+				$member->alipay_account = $euser->alipay_account;
+				$member->wechat_name    = $euser->wechat_name;
+				$member->wechat_id      = $euser->wechat_id;
+				$member->openid         = $euser->openid;
+
+				$member->save();							
+			
 			}
 			else
 			{
 				\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBLL', '');
 			}	
 
-			$member->save();							
-			
 			//Send Welcome Mail			
 					
 			//Mail::to($data['email'])->queue(new SendMail('welcomemail', $input)); //correct one
