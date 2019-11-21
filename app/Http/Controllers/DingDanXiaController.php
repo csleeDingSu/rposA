@@ -210,10 +210,15 @@ class DingDanXiaController extends BaseController
             $status = 2;
         }
 
-        $member = \App\Member::where('phone' , $payload["payee_account"] )->first();
+        $member = \App\Member::where('alipay_account' , $payload["payee_account"] )->first();
+        $memberid = 0;
+        if ($member)
+        {
+            $memberid = $member->id;
+        }
        
         $alipay = new \App\Alipay();
-        $alipay->member_id = $member->id;
+        $alipay->member_id = $memberid;
         $alipay->amount    = $payload["amount"];
         $alipay->status    = $status;
         $alipay->code      = $res['code'];
