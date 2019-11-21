@@ -368,6 +368,11 @@ function populateHistoryData(records, token) {
                 var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
                 str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
                             ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+            } else {
+                var t = item.created_at.split(/[- :]/);
+                var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+                str_date =    d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + 
+                            ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
             }
 
             if (item.type == 'vip') {
@@ -597,6 +602,26 @@ function populateHistoryData(records, token) {
                 html += '   </div>' +
                         '</div>';
                 }
+            } else if (item.type == 'ledger'  && this_vip_app == false){
+                _used_point = parseInt(item.used_point);
+                _product_name = '兑换' + (_used_point * 10)+ '挖宝币';
+                _product_url = '/client/images/normal-point-to-vip-point/icon-coin-big.png';
+                txt_status = '已兑换';
+                cls_status = 'confirmed';                
+
+               html += '<div class="row row-new">' +
+                            '<div class="redeem-info">' +
+                                '<div class="redeem-time">兑换时间: '+str_date+'</div>' +
+                                '<div class="redeem-status '+cls_status+'">'+txt_status+'</div>' +
+                            '</div>' +
+                            '<div class="product-info">' +
+                                '<div class="product-img"><img src="'+_product_url+'" alt="'+_product_name+'"></div>' +
+                                '<div class="product-detail">' +
+                                    '<div class="product-name">'+_product_name+'</div>' +
+                                    '<div class="product-desc">'+_used_point+' ' + txt_coin + '</div>' +
+                                '</div>' +
+                            '</div>';
+                html += '</div>';
             }
 
         });
