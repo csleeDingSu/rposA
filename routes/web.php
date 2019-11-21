@@ -193,7 +193,10 @@ Route::group( [ 'middleware' => 'sso' ], function () {
 	Route::get( '/guide/alipay', function () {
 		return view( 'client/guide_alipay');
 	} );	
-	Route::any( '/alipay/api/storeAlipayAccount', 'MainController@storeAlipayAccount' )->name( 'client.storeAlipayAccount' );	
+	Route::any( '/alipay/api/storeAlipayAccount', 'MainController@storeAlipayAccount' )->name( 'client.storeAlipayAccount' );
+	Route::get( '/alipay/form', function () {
+		return view( 'client/alipayform');
+	} );
 		
 } );
 

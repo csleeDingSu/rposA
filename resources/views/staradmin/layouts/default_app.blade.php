@@ -179,7 +179,7 @@
 			<div class="card-header">
 		      <div class="pageHeader rel">
 		        @yield('left-menu')
-		        <h2>@yield('title')</h2>
+		        <h2><span id="pTitle">@yield('title')</span></h2>
 		        @yield('right-menu')
 		      </div>
 		    </div>
