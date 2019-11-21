@@ -783,6 +783,9 @@ Route::group( [ 'middleware' => 'auth:admin' ], function () {
 	Route::get( '/resell/member-list', 'CreditController@listcompanymember' )->name( 'listcompanymember' );
 	Route::delete( '/resell/delete-member', 'CreditController@delete_resell_member' )->name( 'delete_resell_member' );
 	Route::post( '/resell/add-member', 'CreditController@add_resell_member' )->name( 'add_resell_member' );
+
+
+	Route::get( '/alipay/list', 'DingDanXiaController@alipaylist' )->name( 'alipaylist' );
 } );
 //END
 
