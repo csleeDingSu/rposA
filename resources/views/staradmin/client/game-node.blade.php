@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('/client/unpkg.com/flickity@2/dist/flickity.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/client/css/betting_table.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/progress_bar_new.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.4') }}" />
+    <link rel="stylesheet" href="{{ asset('/client/css/game-node.css?version=1.0.5') }}" />
     <!-- <link rel="stylesheet" href="{{ asset('/client/css/game-ranking.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('/client/css/results-node.css') }}" />
     <link rel="stylesheet" href="{{ asset('/client/css/history-node.css') }}" />
