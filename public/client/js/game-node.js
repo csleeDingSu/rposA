@@ -1992,7 +1992,8 @@ function getNotification(data, isSocket = false){
 }
 
 function showAliPayForm() {
-    $('#alipayform').modal({backdrop: 'static', keyboard: false});
+    window.location.href = '/alipay/form';
+    // $('#alipayform').modal({backdrop: 'static', keyboard: false});
     //fix / prevent ios keyboard from pushing the view off screen
     // document.ontouchmove = function(e){
     //   e.preventDefault();
@@ -2002,7 +2003,7 @@ function showAliPayForm() {
     //     document.body.scrollTop = 0;
     // }
     
-    $('#alipayaccount').focus();
+    // $('#alipayaccount').focus();
 
 
     // var _originalSize = $(window).width() + $(window).height()
