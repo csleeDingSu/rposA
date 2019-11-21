@@ -143,7 +143,7 @@
   <a class="returnBtn" href="/arcade"><img src="{{ asset('clientapp/images/returnIcon2.png') }}"><span>返回</span></a>
 @endsection
 
-@section('title', '绑定支付宝')
+@section('title', '幸运转盘')
 
 @section('right-menu')
 @endsection
@@ -222,6 +222,7 @@
     }
 
     $(document).ready(function () {
+      $('#pTitle').html('绑定支付宝');
       $bAccount = $('#hidalipayaccount').val();
       console.log($bAccount);
 
