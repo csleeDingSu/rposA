@@ -586,6 +586,9 @@ function getToken(){
                 console.log(data.data);
                 console.log(data.data.debit);
                 $('.spanAcuPointAndBalance').html(0);
+                g_life = Number(g_life) - 1;
+                g_life = (g_life > 0) ? g_life : 0;
+                $('.btn-life').html('剩'+g_life+'次');
                 closeAllModal();
                 $('#reset-life-share').modal();
             });
