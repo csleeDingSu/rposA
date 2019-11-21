@@ -327,13 +327,19 @@ class MemberRegisterController extends Controller
 			$_modal->setConnection('mysql2');
 
 			$euser = $_modal->where('phone' , $data['phone'])->first();
+
+			$member->alipay_account = $euser->alipay_account;
+			$member->wechat_name    = $euser->wechat_name;
+			$member->wechat_id      = $euser->wechat_id;
+			$member->openid         = $euser->openid;
+
+
 			//\Log::error($euser);
 			if ($euser)
 			{
 				if ($euser->wechat_verification_status == 0)					
 				{
 					$member->wechat_verification_status = 0;
-					$member->save();					
 				}
 				else
 				{
@@ -354,7 +360,9 @@ class MemberRegisterController extends Controller
 			else
 			{
 				\App\Ledger::life($id,102,'credit',$setting->game_default_life,'WBLL', '');
-			}			
+			}	
+
+			$member->save();							
 			
 			//Send Welcome Mail			
 					
