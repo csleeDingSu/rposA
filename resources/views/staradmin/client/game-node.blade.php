@@ -111,15 +111,15 @@
 	@php ($webOS   = stripos($_SERVER['HTTP_USER_AGENT'],"webOS"))
 	@php ($isMacDevices = (empty($Android) && empty($webOS)) ? true : false)
 
-    @if ($isMacDevices)
-    	<style>
+    <!-- @if ($isMacDevices) -->
+    	<!-- <style>
 			.modal-open {
 			    position: fixed !important;
 			    width: 100% !important;
 			    overflow: hidden !important;
 			}
-		</style>
-    @endif
+		</style> -->
+    <!-- @endif -->
 
 @endsection
     	
