@@ -2,7 +2,7 @@
 <!-- <div id="load"></div> -->
 <div id="contents">
 <!-- show alipay form modal -->
-<div class="modal fade col-md-12" id="alipayform" tabindex="-1" role="dialog" aria-labelledby="viewvouchermodellabel" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
+<div class="modal fade col-md-12" id="alipayform" tabindex="-1" role="dialog" aria-labelledby="intropopupl" aria-hidden="true" style="background-color: rgba(17, 17, 17, 0.65);">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">				

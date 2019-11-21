@@ -1265,7 +1265,6 @@
 @endsection
 
 @if (!env('THISVIPAPP', false))
-
 	<link rel="stylesheet" href="{{ asset('/client/css/intro_popup.css') }}"/>
 
 	@include('client.intromodel')

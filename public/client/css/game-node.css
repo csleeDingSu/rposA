@@ -1694,7 +1694,7 @@ a {
 }
 
 #alipayform .modal-dialog {
-	top: -2rem !important;
+	/*top: -2rem !important;*/
 }
 
 #alipayform .modal-content {
