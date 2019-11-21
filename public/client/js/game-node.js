@@ -584,18 +584,10 @@ function getToken(){
             socket.on(prefix+ id + "-ac-redeem-point" + ":App\\Events\\EventDynamicChannel" , function(data){
                 console.log(prefix+ id + "-ac-redeem-point" + ":App\\Events\\EventDynamicChannel");
                 console.log(data.data);
-                var gameid = data.data.game_id;
-
-                if (gameid == 102) {
-                  var updated_102_point = data.data.point;
-                  var updated_102_life = data.data.life;
-
-                  if (updated_102_life <= 0) {
-                    closeAllModal();
-                    $('#reset-life-share').modal();
-                  }
-
-                }
+                console.log(data.data.debit);
+                $('#spanAcuPointAndBalance').html(0);
+                closeAllModal();
+                $('#reset-life-share').modal();
             });
             
         });
