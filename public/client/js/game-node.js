@@ -585,7 +585,7 @@ function getToken(){
                 console.log(prefix+ id + "-ac-redeem-point" + ":App\\Events\\EventDynamicChannel");
                 console.log(data.data);
                 console.log(data.data.debit);
-                $('#spanAcuPointAndBalance').html(0);
+                $('.spanAcuPointAndBalance').html(0);
                 closeAllModal();
                 $('#reset-life-share').modal();
             });
