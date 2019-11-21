@@ -343,7 +343,7 @@ class MemberRegisterController extends Controller
 				}
 				else
 				{
-					echo $euser->id.'--';
+					// echo $euser->id.'--';
 					$ledger = new Ledger;
 					$ledger->setConnection('mysql2');
 					//$ledger = $ledger->ledger($euser->id,102);
