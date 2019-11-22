@@ -279,6 +279,7 @@ return [
 	'ph_confirm_password' => 'Please re-enter your password',
 	'ph_enter_password' => 'Please key in your password',
 	'ph_alipayaccount' => 'Please key in your alipay account',
+	'ph_alipayaccount_phone' => 'Please key in your mobile number',
 
 	//message
 	'info_forgot_password' => 'If you forget your password, please contact Our customer service.',
