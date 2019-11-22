@@ -55,7 +55,19 @@
 
       .input-form .title{
         color: #5a5a5a;
-        font-size: 0.35rem;
+        font-size: 0.42rem;
+        text-align: center;
+      }
+
+      .input-form .title .highlight {
+        color: #ff4545;
+      }
+
+      .input-form .title-small{
+        color: #bababa;
+        font-size: 0.24rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
       }
 
       .input-form img{
@@ -74,12 +86,12 @@
           border: none;
       }
 
-      .input-form .warning {
+      /*.input-form .warning {
         color: #8f8f8f;
         font-size: 0.25rem;
         text-align: center;
         margin-top: 0.5rem;
-      }
+      }*/
 
       .input-form .modal-confirm-button {
         cursor: pointer;
@@ -90,6 +102,7 @@
         border-radius: 25px;
         padding: 10px;
         text-align: center;
+        margin-top: 0.6rem;
       }
 
       .input-form-success {
@@ -98,9 +111,14 @@
 
       .input-form-success .title{
         color: #5c4ad0;
-        font-size: 0.4rem;
-        text-align: center;
-        line-height: 0.7rem;
+      font-size: 0.5rem;
+      text-align: center;
+      line-height: 0.7rem;
+      }
+
+      .input-form-success .title img{
+        height: 1rem;
+        padding: 0.15rem;
       }
 
       .input-form-success .title-small{
@@ -128,7 +146,23 @@
       }
 
       .input-form-success img{
-        height: 4.5rem;
+        height: 5rem;
+      }
+
+      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #c5c5c5;
+        opacity: 1; /* Firefox */
+        font-size: 0.24rem;
+      }
+
+      :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #c5c5c5;
+        font-size: 0.24rem;
+      }
+
+      ::-ms-input-placeholder { /* Microsoft Edge */
+        color: #c5c5c5;
+        font-size: 0.24rem;
       }
 
     </style>
@@ -149,6 +183,8 @@
 @endsection
 
 @section('content')
+
+@php ($acpoint = empty(app('request')->input('acpoint')) ? 0 : app('request')->input('acpoint'))
 <input id="hidMemberId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
 <input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
 <input id="hidalipayaccount" type="hidden" value="0" />
@@ -158,7 +194,8 @@
 <div class="input-form">
   <ul>
     <li>
-      <p class="title">请填写收款支付宝和手机号</p>  
+      <p class="title">提现<span class="highlight">{{$acpoint}}</span>元补贴</p>
+      <p class="title-small">请填写收款信息</p>  
     </li>
     <li>
         <div class="flexSp">
@@ -169,12 +206,12 @@
     <li>
         <div class="flexSp">
             <img src="{{ asset('client/images/alipayform/phone.png') }}">
-            <input type="text" id="contactno" name="contactno" placeholder="@lang('dingsu.ph_username_mobile_no')" value="{{empty(Auth::Guard('member')->user()->phone) ? '' : Auth::Guard('member')->user()->phone}}" required maxlength="30">
+            <input type="text" id="contactno" name="contactno" placeholder="@lang('dingsu.ph_alipayaccount_phone')" value="{{empty(Auth::Guard('member')->user()->phone) ? '' : Auth::Guard('member')->user()->phone}}" required maxlength="30">
         </div>
     </li>
-    <li>
+    <!-- <li>
       <p class="warning">*请确认填写信息正确，否则无法提现。</p>  
-    </li>
+    </li> -->
     <li>
       <div class="modal-confirm-button" id="btn-submit-alipayform">提交</div>
     </li>
@@ -184,10 +221,10 @@
 <div class="input-form-success">
   <ul>
     <li>
-      <p class="title">您已成功绑定支付宝</p>  
+      <p class="title"><img src="{{ asset('/clientapp/images/tickicon-success.png') }}"/>提现成功提交</p>  
     </li>
     <li>
-      <p class="title-small">马上联系客服提现</p>  
+      <p class="title-small">请联系客服发放，否则无法提现成功</p>  
     </li>
     <li>
       <p class="csimg">

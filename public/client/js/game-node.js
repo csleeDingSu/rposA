@@ -1987,7 +1987,7 @@ function getNotification(data, isSocket = false){
 }
 
 function showAliPayForm() {
-    window.location.href = '/alipay/form';
+    window.location.href = '/alipay/form?acpoint=' + $('.spanAcuPointAndBalance').html();
     // $('#alipayform').modal({backdrop: 'static', keyboard: false});
     //fix / prevent ios keyboard from pushing the view off screen
     // document.ontouchmove = function(e){
