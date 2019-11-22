@@ -469,10 +469,26 @@ class MainController extends BaseController
 
 	public function storeAlipayAccount(Request $request)
 	{
-		$filter = ['id' => $request->memberid];
-		$array = ['id' => $request->memberid, 'alipay_account' => $request->alipay_account, 'phone' => $request->phone ];
-		$id = Members::updateOrCreate($filter,$array)->id;
-		return response()->json(['success' => true, 'data' => 'updated member id ' . $id]); 
+		$id = empty($request->memberid) ? 0 : $request->memberid;
+		if ($id > 0) {
+			// $filter = ['id' => $id];
+			// $array = ['id' => $id, 'alipay_account' => $request->alipay_account, 'phone' => $request->phone ];
+			// $id = Members::updateOrCreate($filter,$array)->id;
+
+			//check alreadt exist in wabaoshop or wabao666
+			$_modal = new Members;
+			$_modal->setConnection('mysql2');
+			$_member = $_modal->where('phone' , $request->phone)->first();
+			if (empty($_member)) {
+				return response()->json(['success' => true, 'code' => '200', 'data' => 'updated member id ' . $id]); 	
+			} else {
+				$_db = DB::connection('mysql2')->getDatabaseName();
+				return response()->json(['success' => false, 'code' => '001', 'data' => 'already exist in ' . $_db . ' DB member id: ' . $id]); 	
+			}	
+		} else {
+			return response()->json(['success' => false, 'code' => '002', 'data' => 'Invalid member id: ' . $id]); 	
+		}
+		
 	}
 
 }

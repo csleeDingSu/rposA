@@ -271,17 +271,32 @@
               $('#btn-submit-alipayform').html('提交 - 失败');
           },
           success: function(data) {
-            $('#hidalipayaccount').val(alipay_account);
-            $('#btn-submit-alipayform').html('提交 - 成功');
-            $('#pTitle').html('提交成功');
-            // $('#hidAlipayAccount').val(alipay_account);
             console.log(data);
-            // $('#alipayform').modal('hide');
-            // $('#modal-withdraw').modal();
-            $('.input-form').css('display','none');
-            $('.input-form-success').css('display','block');
-
+            console.log(data.success);
+            if (data.success) {
+              $('#hidalipayaccount').val(alipay_account);
+              $('#btn-submit-alipayform').html('提交 - 成功');
+              $('#pTitle').html('提交成功');
+              $('.input-form').css('display','none');
+              $('.input-form-success').css('display','block');
+            } else {
+              $('#btn-submit-alipayform').html('提交');
+              $('#pTitle').html('提交失败');
+              code = data.code;
+              if (code == '001') {
+                msg = '已经是wabao666.com会员';
+              } else if (code == '002') {
+                msg = '无效的会员ID';
+              } else {
+                msg = '请联络客服';
+              }
+              alert(msg);
+              setTimeout(function(){ 
+                window.location.href = '/arcade';
+              }, 500); 
             }
+
+          }
       });
 
   }
