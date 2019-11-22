@@ -151,7 +151,7 @@
 @section('content')
 <input id="hidMemberId" type="hidden" value="{{isset(Auth::Guard('member')->user()->id) ? Auth::Guard('member')->user()->id : 0}}">
 <input id="hidSession" type="hidden" value="{{isset(Auth::Guard('member')->user()->active_session) ? Auth::Guard('member')->user()->active_session : null}}" />
-<input id="hidalipayaccount" type="hidden" value="{{isset(Auth::Guard('member')->user()->alipay_account) ? Auth::Guard('member')->user()->alipay_account : 0}}" />
+<input id="hidalipayaccount" type="hidden" value="0" />
 
 <div class="loading2" id="loading2"></div>
 <!-- show alipay form  -->
@@ -163,7 +163,7 @@
     <li>
         <div class="flexSp">
             <img src="{{ asset('client/images/alipayform/alpay.png') }}">
-            <input type="text" id="alipayaccount" name="alipayaccount" placeholder="@lang('dingsu.ph_alipayaccount')" required maxlength="30" autofocus>
+            <input type="text" id="alipayaccount" name="alipayaccount" placeholder="@lang('dingsu.ph_alipayaccount')" value="{{empty(Auth::Guard('member')->user()->alipay_account) ? '' : Auth::Guard('member')->user()->alipay_account}}" required maxlength="30" autofocus>
         </div>
     </li>
     <li>
