@@ -422,7 +422,7 @@ return [
 	
 	'report' => '报告',
 	'credit_type' => '活动类型',
-	'redeem_life' => 'Redeem life',
+	'redeem_life' => '扣除次数',
 	'redeem_product' => '兑换产品',
 	'before_balance' => '之前的余额',
 	'after_balance' => '之后的余额',
@@ -763,6 +763,10 @@ return [
 	'bank_name' => '银行名字',
 	'alipay_account' => '支付宝',
 	'acupoint' => '积分',
-	'Payee_account' => '收款账号',
+	'payee_account' => '收款账号',
+	'alipay' => '支付宝',
+	'makepayment' => '付款',
+
+	'commission_rate' => '佣金率',
 
 ];
