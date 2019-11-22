@@ -283,10 +283,8 @@
               $('#btn-submit-alipayform').html('提交');
               $('#pTitle').html('提交失败');
               code = data.code;
-              if (code == '001') {
-                msg = '已经是wabao666.com会员';
-              } else if (code == '002') {
-                msg = '无效的会员ID';
+              if (code.length > 0) {
+                msg = data.data; //'已经是wabao666.com会员';
               } else {
                 msg = '请联络客服';
               }
