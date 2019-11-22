@@ -1314,7 +1314,7 @@
 	</script>
 
 	<script src="{{ asset('/client/js/Date.format.min.js') }}"></script>
-	<script src="{{ asset('/client/js/game-node.js?version=1.0.6') }}"></script>
+	<script src="{{ asset('/client/js/game-node.js?version=1.0.7') }}"></script>
 	<script type="text/javascript" src="{{ asset('/test/main/js/being.js') }}" ></script>
 	
 @endsection
