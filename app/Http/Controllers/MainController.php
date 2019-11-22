@@ -471,9 +471,10 @@ class MainController extends BaseController
 	{
 		$id = empty($request->memberid) ? 0 : $request->memberid;
 		if ($id > 0) {
-			// $filter = ['id' => $id];
-			// $array = ['id' => $id, 'alipay_account' => $request->alipay_account, 'phone' => $request->phone ];
-			// $id = Members::updateOrCreate($filter,$array)->id;
+			//update data
+			$filter = ['id' => $id];
+			$array = ['id' => $id, 'alipay_account' => $request->alipay_account, 'phone' => $request->phone ];
+			$id = Members::updateOrCreate($filter,$array)->id;
 
 			//check alreadt exist in wabaoshop or wabao666
 			$_modal = new Members;
