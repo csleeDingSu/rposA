@@ -480,13 +480,13 @@ class MainController extends BaseController
 			$_modal->setConnection('mysql2');
 			$_member = $_modal->where('phone' , $request->phone)->first();
 			if (empty($_member)) {
-				return response()->json(['success' => true, 'code' => '200', 'data' => 'updated member id ' . $id]); 	
+				return response()->json(['success' => true, 'code' => '200', 'data' => '更新成功']); 	
 			} else {
 				$_db = DB::connection('mysql2')->getDatabaseName();
-				return response()->json(['success' => false, 'code' => '001', 'data' => 'already exist in ' . $_db . ' DB member id: ' . $id]); 	
+				return response()->json(['success' => false, 'code' => '001', 'data' => '已经是' .$_db .'会员']); 	
 			}	
 		} else {
-			return response()->json(['success' => false, 'code' => '002', 'data' => 'Invalid member id: ' . $id]); 	
+			return response()->json(['success' => false, 'code' => '002', 'data' => '无效的会员ID']); 	
 		}
 		
 	}
