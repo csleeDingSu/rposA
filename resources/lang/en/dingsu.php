@@ -773,5 +773,9 @@ return [
 	'alipay_account' => '支付宝 account',
 	'acupoint' => 'Accumulated Point',
 	'Payee_account' => 'Payee account',
+	'alipay' => '支付宝',
+	'makepayment' => 'Make Payment',
+
+	'commission_rate' => 'Commission Rate',
 
 ];
