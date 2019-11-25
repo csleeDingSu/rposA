@@ -3,7 +3,7 @@
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
-					<form class="" name="formalipay" id="formalipay" action="" method="get" autocomplete="on">
+					<form class="" name="searchform" id="searchform" action="" method="get" autocomplete="on">
 					<h4 class="card-title">Search</h4>
 					<div class="form-group row">
 						
