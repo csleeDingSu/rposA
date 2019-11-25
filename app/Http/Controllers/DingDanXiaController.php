@@ -182,8 +182,8 @@ class DingDanXiaController extends BaseController
             parse_str($request->_data, $input);
             $input  = array_map('trim', $input);           
             $result = \App\Alipay::whereHas('member', function($q) use($input) {
-                            if (!empty($input['s_member'])) {
-                                $q->where('phone','LIKE', "%{$input['s_member']}%") ;
+                            if (!empty($input['payee_account'])) {
+                                $q->where('phone','LIKE', "%{$input['payee_account']}%") ;
                             }   
                         });
   

@@ -1,3 +1,8 @@
+<div class="col-12 d-flex  text-right">
+	<a onClick="return openmodel();return false;" href="javascript:void(0)" class="btn btn-success mr-2">@lang('dingsu.add')</a>
+</div>
+
+<div class="clearfix">&nbsp;</div>
 
 <section class="filter">
 	@include('alipay.filter')
@@ -25,8 +30,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.all.min.js"></script>
 
 <script language="javascript">
-	
-$('#formalipay').on('submit', function(event){
+
+function openmodel()
+	{
+		$('.inputTxtError').remove();
+		$( '.models #formalipay' )[ 0 ].reset();
+		$('#openmodel').modal('show');
+	}
+
+$('.models #formalipay').on('submit', function(event){
 		event.preventDefault();
 		$('.inputTxtError').remove();
 		show_wait('update');				
