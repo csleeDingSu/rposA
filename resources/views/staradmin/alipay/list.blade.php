@@ -55,8 +55,8 @@ $('.models #formalipay').on('submit', function(event){
 				processData: false,
 				success: function ( result ) {	
 				console.log(result.record);				
-					if ( result.success == true ) {
-						swal.close();
+					swal.close();
+					if ( result.success == true ) {						
 						$( '#openalipaymodel' ).modal( 'hide' );			
 						
 						swal({ icon: "success",  type: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.update_success_msg")', confirmButtonText: '@lang("dingsu.okay")'});	
