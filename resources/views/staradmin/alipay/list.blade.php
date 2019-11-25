@@ -1,5 +1,5 @@
 <div class="col-12 d-flex  text-right">
-	<a onClick="return openmodel();return false;" href="javascript:void(0)" class="btn btn-success mr-2">@lang('dingsu.add')</a>
+	<a onClick="return openmodel();return false;" href="javascript:void(0)" class="btn btn-success mr-2">@lang('dingsu.makepayment')</a>
 </div>
 
 <div class="clearfix">&nbsp;</div>
