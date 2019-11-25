@@ -26,7 +26,7 @@
 
 <script language="javascript">
 	
-$('#formalipay').on('submit', function(event){
+$('.models #formalipay').on('submit', function(event){
 		event.preventDefault();
 		$('.inputTxtError').remove();
 		show_wait('update');				

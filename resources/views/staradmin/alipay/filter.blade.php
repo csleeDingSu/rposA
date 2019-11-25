@@ -15,19 +15,13 @@
 							</div>
 						</div>
 
-						<div class="col">
-							<label for="amount">@lang('dingsu.amount')</label>
-							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="amount" id="amount" placeholder="@lang('dingsu.amount')">
-							</div>
-						</div>
-						
 						
 
 						<div class="col">
 							<label>@lang('dingsu.action')</label>
 							<div id="bloodhound">
-								<button  type="submit" id="addpayment" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info addpayment"> <i class="  icon-magnifier  "></i> </button>
+								<button onClick="Search();return false();" type="button" id="search" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-info search"> <i class="  icon-magnifier  "></i> </button>
+								<button type="button" id="reset_search" class="btn btn-icons btn-rounded btn-outline-info btn-inverse-danger "> <i class=" icon-refresh "></i> </button>
 							</div>
 						</div>
 					</div>
