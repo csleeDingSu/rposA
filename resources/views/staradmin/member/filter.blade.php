@@ -1,6 +1,8 @@
 <div class="row">
-	<div class="col-3 d-flex  text-right"><a href="/member/add" class="btn btn-success mr-2">@lang('dingsu.add_new_member')</a></div>
-	<div class="col-3 d-flex  text-right"><a href="/alipay/list" class="btn btn-success mr-2">@lang('dingsu.alipay_transaction_log')</a></div>
+	<div class="col-12 d-flex  text-right">
+		<a href="/member/add" class="btn btn-success mr-2">@lang('dingsu.add_new_member')</a>
+		<a href="/alipay/list" class="btn btn-success mr-2">@lang('dingsu.alipay_transaction_log')</a>
+	</div>
 </div>
 <div class="clearfix">&nbsp;</div>
 
