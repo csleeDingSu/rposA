@@ -53,7 +53,8 @@ $('.models #formalipay').on('submit', function(event){
 				data:new FormData(this),
 				cache : false, 
 				processData: false,
-				success: function ( result ) {					
+				success: function ( result ) {	
+				console.log(result.record);				
 					if ( result.success == true ) {
 						swal.close();
 						$( '#openalipaymodel' ).modal( 'hide' );			
@@ -61,7 +62,7 @@ $('.models #formalipay').on('submit', function(event){
 						swal({ icon: "success",  type: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.update_success_msg")', confirmButtonText: '@lang("dingsu.okay")'});	
 						
 					} else {						
-						swal( '@lang("dingsu.error") ' + record.msg, '@lang("dingsu.code") ' + record.code, "error" );
+						swal( '@lang("dingsu.error") ' + result.record.msg, '@lang("dingsu.code") ' + result.record.code, "error" );
 					}
 										
 				},
@@ -150,7 +151,7 @@ var prefix = perfix;
     @parent		
      socket.on(prefix+"update-alipay-record" + ":App\\Events\\EventDynamicChannel", function(result) {
 		var record = result.data;
-		console.log(record);
+		
 		if (record != null)
 			{
 				$('#listtable').prepend($(record));
