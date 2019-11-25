@@ -165,8 +165,8 @@ class DingDanXiaController extends BaseController
                 $rr = app('App\Http\Controllers\Api\GameController')->life_redemption($request->hi_pay_id, 102, 'yes');  
                 //print_r($rr);die() ;           
             }
-            $this->createpayrecord($payload , $res, $status);
-            return ['success' => $status, 'data' => $res];
+            $record = $this->createpayrecord($payload , $res, $status);
+            return ['success' => $status, 'data' => $res, 'record' => $record];
 
         } else {
             return $res;
@@ -222,11 +222,12 @@ class DingDanXiaController extends BaseController
         $alipay->amount    = $payload["amount"];
         $alipay->status    = $status;
         $alipay->code      = $res['code'];
-        $alipay->msg       = empty($res['data']['error']) ? $res['msg'] : $res['data']['error'];
+        // $alipay->msg       = empty($res['data']['error']) ? $res['msg'] : $res['data']['error'];
+        $alipay->msg       = empty($res['data'][0]['error']) ? $res['msg'] : $res['data'][0]['error'];
         $alipay->save();
         $record    = \App\Alipay::with('member')->where('id',$alipay->id)->get();    
         $render    =  view('alipay.render_data', ['result' => $record ]) ->render();
         event(new \App\Events\EventDynamicChannel('update-alipay-record', $alipay->id , $render));
-        return ;
+        return $alipay;
     }
 }

@@ -952,14 +952,15 @@ $(".datalist").on("click",".addpayment", function(){
 				cache : false, 
 				processData: false,
 				success: function ( result ) {					
+					swal.close();
 					if ( result.success == true ) {
-						swal.close();
+						
 						$( '#openalipaymodel' ).modal( 'hide' );			
 						
 						swal({ icon: "success",  type: 'success',  title: '@lang("dingsu.done")!',text: '@lang("dingsu.update_success_msg")', confirmButtonText: '@lang("dingsu.okay")'});	
 						
 					} else {						
-						swal( '@lang("dingsu.error") ' + result.data.msg, '@lang("dingsu.code") ' + result.data.code, "error" );
+						swal( '@lang("dingsu.error") ' + result.record.msg, '@lang("dingsu.code") ' + result.record.code, "error" );
 					}
 										
 				},
