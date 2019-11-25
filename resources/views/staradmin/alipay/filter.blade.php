@@ -7,11 +7,16 @@
 					<h4 class="card-title">Search</h4>
 					<div class="form-group row">
 						
+						<div class="col">
+							<label>@lang('dingsu.username')</label>
+							<div id="the-basics">
+								<input type="text" class="form-control typeahead tt-input" name="username" id="username" placeholder="@lang('dingsu.username') "> </div>
+						</div>
 						
 						<div class="col">
-							<label for="payee_account">@lang('dingsu.member')</label>
+							<label for="payee_account">@lang('dingsu.payee_account')</label>
 							<div id="the-basics">
-								<input type="text" class="form-control typeahead tt-input" name="payee_account" id="payee_account" placeholder="@lang('dingsu.member')">
+								<input type="text" class="form-control typeahead tt-input" name="payee_account" id="payee_account" placeholder="@lang('dingsu.payee_account')">
 							</div>
 						</div>
 

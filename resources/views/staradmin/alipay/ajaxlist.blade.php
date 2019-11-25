@@ -10,7 +10,8 @@
 							<tr> 	
 								<th>#</th>
 								<th>@lang('dingsu.created')</th>
-								<th>@lang('dingsu.member')</th>
+								<th>@lang('dingsu.username')</th>
+								<th>@lang('dingsu.alipay_account')</th>
 								<th>@lang('dingsu.amount')</th>
 								<th>@lang('dingsu.status')</th>
 								<th>@lang('dingsu.code')</th>

@@ -7,6 +7,9 @@
 		{{ $list->member->phone ?? $list->member->wechat_name }}
 	@endif	
 	</td>
+	<td>
+	{{ $list->member->alipay_account }}
+	</td>
 	<td>{{$list->amount ?? '-' }}</td>
 	<td>
 		@if ($list->status == 1)
