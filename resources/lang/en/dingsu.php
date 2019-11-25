@@ -780,5 +780,6 @@ return [
 	'msg' => 'Message',
 	'failed' => 'Failed',
 	'payee_real_name' => 'Payee Name',
+	'alipay_transaction_log' => '交易记录',
 
 ];

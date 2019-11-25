@@ -290,12 +290,12 @@
             </a>	
 		</li> -->
 
-		<li class="nav-item">
+		<!-- <li class="nav-item">
 			<a class="nav-link" href="/alipay/list">
 			<i class="menu-icon icon-game-controller  text-info"></i>
               <span class="menu-title text-capitalize"> @lang('dingsu.alipay') @lang('dingsu.list')</span>
             </a>
-		</li>
+		</li> -->
 		
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#uisetting" aria-expanded="false" aria-controls="uisetting">
