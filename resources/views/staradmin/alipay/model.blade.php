@@ -24,7 +24,7 @@
 						</div>	
 						<div class="col-md-6">
 							<div class="form-group row">
-								<label for="payee_real_name" class="col-sm-3 col-form-label">@lang('dingsu.payee_real_name') <span class="text-danger">*</span></label>
+								<label for="payee_real_name" class="col-sm-3 col-form-label">@lang('dingsu.payee_real_name')</label>
 								<div class="col-sm-9">
 									<input id="payee_real_name" name="payee_real_name" class=" form-control" type="text" value="" maxlength="50">
 								</div>

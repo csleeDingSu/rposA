@@ -779,5 +779,6 @@ return [
 	'commission_rate' => 'Commission Rate',
 	'msg' => 'Message',
 	'failed' => 'Failed',
+	'payee_real_name' => 'Payee Name',
 
 ];
