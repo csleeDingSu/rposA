@@ -768,5 +768,7 @@ return [
 	'makepayment' => '付款',
 
 	'commission_rate' => '佣金率',
+	'msg' => '信息',
+	'failed' => '失败',
 
 ];
