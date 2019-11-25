@@ -770,5 +770,6 @@ return [
 	'commission_rate' => '佣金率',
 	'msg' => '信息',
 	'failed' => '失败',
+	'payee_real_name' => '收款人姓名'
 
 ];

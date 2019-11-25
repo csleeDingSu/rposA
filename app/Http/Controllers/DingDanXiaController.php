@@ -222,7 +222,7 @@ class DingDanXiaController extends BaseController
         $alipay->amount    = $payload["amount"];
         $alipay->status    = $status;
         $alipay->code      = $res['code'];
-        $alipay->msg       = $res['msg'];
+        $alipay->msg       = empty($res['data']['error']) ? $res['msg'] : $res['data']['error'];
         $alipay->save();
         $record    = \App\Alipay::with('member')->where('id',$alipay->id)->get();    
         $render    =  view('alipay.render_data', ['result' => $record ]) ->render();
