@@ -152,7 +152,7 @@ class DingDanXiaController extends BaseController
 
         \Log::info("DingDanXiaController - pay " . json_encode($res));
         
-        if (!empty($res['code']) && !empty($res['msg'])) {
+        if (!empty($res['code']) || !empty($res['msg'])) {
             $status = true;
             
             if ($res['code'] != '200') {
