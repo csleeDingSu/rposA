@@ -2028,7 +2028,7 @@ function promptResetLifeModal() {
         $('#reset-life-max').modal();  
     } else {
         if ($('#hidAlipayAccount').val() == 0) {
-            showAliPayForm();            
+            // showAliPayForm();            
         } else {
             $('#reset-life-max').modal();    
         } 
