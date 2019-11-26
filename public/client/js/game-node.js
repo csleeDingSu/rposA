@@ -217,7 +217,11 @@ function initUser(records){
             
         } else {
             $('.spanAcuPoint').html(acupoint);
-            $('.spanAcuPointAndBalance').html(g_current_point);
+            if (Number(g_current_point) > Number(max_acupoint)) {
+                $('.spanAcuPointAndBalance').html(max_acupoint);    
+            } else {
+                $('.spanAcuPointAndBalance').html(g_current_point);
+            }
         }
         $('#hidBalance').val(balance);
         $("#nTxt").val(life);
@@ -247,6 +251,9 @@ function initUser(records){
             promptResetLifeModal();
             $('.btn-withdraw').click(function() {
                 promptResetLifeModal()                 
+            });
+            $('.bet-box').click(function() {
+                promptResetLifeModal();                
             });
 
             return false;
@@ -1987,7 +1994,17 @@ function getNotification(data, isSocket = false){
 }
 
 function showAliPayForm() {
-    window.location.href = '/alipay/form?acpoint=' + $('.spanAcuPointAndBalance').html();
+
+    if (is_app) {
+        $('#reset-life-max').modal();  
+    } else {
+        if ($('#hidAlipayAccount').val() == 0) {
+            window.location.href = '/alipay/form?acpoint=' + $('.spanAcuPointAndBalance').html();            
+        } else {
+            $('#reset-life-max').modal();    
+        } 
+    }
+    
     // $('#alipayform').modal({backdrop: 'static', keyboard: false});
     //fix / prevent ios keyboard from pushing the view off screen
     // document.ontouchmove = function(e){
@@ -2024,13 +2041,14 @@ function closeAllModal() {
 
 function promptResetLifeModal() {
     closeAllModal();
-    if (is_app) {
-        $('#reset-life-max').modal();  
-    } else {
-        if ($('#hidAlipayAccount').val() == 0) {
-            // showAliPayForm();            
-        } else {
-            $('#reset-life-max').modal();    
-        } 
-    }
+    $('#reset-life-max').modal();
+    // if (is_app) {
+    //     $('#reset-life-max').modal();  
+    // } else {
+    //     if ($('#hidAlipayAccount').val() == 0) {
+    //         // showAliPayForm();            
+    //     } else {
+    //         $('#reset-life-max').modal();    
+    //     } 
+    // }
 }
