@@ -250,10 +250,10 @@ function initUser(records){
             // $('#reset-life-max').modal({backdrop: 'static', keyboard: false});
             promptResetLifeModal();
             $('.btn-withdraw').click(function() {
-                promptResetLifeModal()                 
+                showAliPayForm()                 
             });
             $('.bet-box').click(function() {
-                promptResetLifeModal();                
+                showAliPayForm();                
             });
 
             return false;
@@ -1926,7 +1926,7 @@ function bindButton () {
                         }
                     }
                 } else if (_point >= win_coin_max) {
-                    promptResetLifeModal();
+                    showAliPayForm();
                     return false;
                 } else {
                     $('.withdraw-value').html(_point);
@@ -1995,6 +1995,14 @@ function getNotification(data, isSocket = false){
 
 function showAliPayForm() {
 
+    var win_coin_max = Number($('#hidMaxAcupoint').val());
+    var win_coin_min = Number($('#hidMinAcupoint').val());
+    var current_point = Number($('.spanAcuPointAndBalance').html());
+
+    if (current_point > win_coin_max) {
+        $('.spanAcuPointAndBalance').html(win_coin_max);        
+    }
+
     if (is_app) {
         $('#reset-life-max').modal();  
     } else {
@@ -2040,15 +2048,23 @@ function closeAllModal() {
 }
 
 function promptResetLifeModal() {
+    var win_coin_max = Number($('#hidMaxAcupoint').val());
+    var win_coin_min = Number($('#hidMinAcupoint').val());
+    var current_point = Number($('.spanAcuPointAndBalance').html());
+
+    if (current_point > win_coin_max) {
+        $('.spanAcuPointAndBalance').html(win_coin_max);        
+    }
+
     closeAllModal();
-    $('#reset-life-max').modal();
-    // if (is_app) {
-    //     $('#reset-life-max').modal();  
-    // } else {
-    //     if ($('#hidAlipayAccount').val() == 0) {
-    //         // showAliPayForm();            
-    //     } else {
-    //         $('#reset-life-max').modal();    
-    //     } 
-    // }
+    // $('#reset-life-max').modal();
+    if (is_app) {
+        $('#reset-life-max').modal();  
+    } else {
+        if ($('#hidAlipayAccount').val() == 0) {
+            // showAliPayForm();            
+        } else {
+            $('#reset-life-max').modal();    
+        } 
+    }
 }
