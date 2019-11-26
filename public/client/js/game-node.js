@@ -1050,7 +1050,7 @@ function bindTriggerButton(){
             checkSelection();
         } else {
            if (user_id > 0) {
-            closeAllModal();
+                // closeAllModal();
                 $('#reset-life-share').modal();    
             } else {
                 if (is_app) {
