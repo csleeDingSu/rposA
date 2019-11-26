@@ -252,10 +252,17 @@ function initUser(records){
             $('.btn-withdraw').click(function() {
                 showAliPayForm()                 
             });
-            $('.bet-box').click(function() {
+            $('.bet-box').click(function( event ){
+                event.stopImmediatePropagation();
                 $('.btn-withdraw').trigger("click");
             });
-            $('.radio-primary').click(function(){
+            $('.radio-primary').click(function( event ){
+                event.stopImmediatePropagation();
+                $('.btn-withdraw').trigger("click");
+            });
+
+            $('.btn-trigger').click(function( event ){
+                event.stopImmediatePropagation();
                 $('.btn-withdraw').trigger("click");
             });
 
